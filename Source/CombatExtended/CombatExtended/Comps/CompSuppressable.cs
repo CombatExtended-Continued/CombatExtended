@@ -14,11 +14,11 @@ namespace CombatExtended
     {
         #region Constants
 
-        private const float minSuppressionDist = 5f;         // Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
+        //private const float minSuppressionDist = 5f;       // Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
         private const float maxSuppression = 1050f;          // Cap to prevent suppression from building indefinitely
-        private const int TicksForDecayStart = 120;          // How long since last suppression before decay starts
-        private const float SuppressionDecayRate = 5f;       // How much suppression decays per tick
-        private const int TicksPerMote = 150;                // How many ticks between throwing a mote        
+        private const int TicksForDecayStart = 30;           // How long since last suppression before decay starts
+        private const float SuppressionDecayRate = 4f;       // How much suppression decays per tick
+        private const int TicksPerMote = 150;                // How many ticks between throwing a mote
 
         private const int MinTicksUntilMentalBreak = 600;    // How long until pawn can have a mental break
         private const float ChanceBreakPerTick = 0.001f;     // How likely we are to break each tick above the threshold
@@ -33,7 +33,7 @@ namespace CombatExtended
 
         /*
          * We track the initial location from which a pawn was suppressed and the total amount of suppression coming from that location separately.
-         * That way if suppression stops coming from location A but keeps coming from location B the location will get updated without bouncing 
+         * That way if suppression stops coming from location A but keeps coming from location B the location will get updated without bouncing
          * pawns or having to track fire coming from multiple locations
          */
         private int lastHelpRequestAt = -1;
@@ -107,7 +107,10 @@ namespace CombatExtended
         {
             get
             {
-                if (_compInventory == null) _compInventory = parent.TryGetComp<CompInventory>();
+                if (_compInventory == null)
+                {
+                    _compInventory = parent.TryGetComp<CompInventory>();
+                }
                 return _compInventory;
             }
         }
@@ -136,9 +139,9 @@ namespace CombatExtended
             get
             {
                 Pawn pawn = parent as Pawn;
-                return !pawn.Position.InHorDistOf(SuppressorLoc, minSuppressionDist)
-                    && !pawn.Downed
-                    && !pawn.InMentalState;
+                return !pawn.Downed
+                       && !pawn.InMentalState
+                       && !((pawn.stances?.curStance as Stance_Busy)?.verb?.IsMeleeAttack ?? false); // Pawns in melee ignore suppression;
             }
         }
 
@@ -192,9 +195,9 @@ namespace CombatExtended
             // Add suppression to current suppressor location if appropriate
             if (suppressorLoc == origin)
             {
-                locSuppressionAmount += amount;
+                locSuppressionAmount += suppressAmount;
             }
-            else if (locSuppressionAmount < SuppressionThreshold)
+            else if (locSuppressionAmount < SuppressionThreshold || suppressAmount > SuppressionThreshold)
             {
                 suppressorLoc = origin;
                 locSuppressionAmount = currentSuppression;
@@ -204,23 +207,32 @@ namespace CombatExtended
             if (currentSuppression > SuppressionThreshold)
             {
                 isSuppressed = true;
-                Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
-                if (reactJob == null && IsHunkering)
+
+                var curJobDef = pawn.CurJobDef;
+
+                // If this pawn is not already attempting to run for cover, try to find an appropriate location with cover to run to
+                if (curJobDef != CE_JobDefOf.RunForCover)
                 {
-                    reactJob = JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
-                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
-                }
-                if (reactJob != null && reactJob.def != pawn.CurJob?.def)
-                {
-                    // Only reserve destination when we know for certain the pawn isn't already running for cover
-                    pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
-                    pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def == JobDefOf.ManTurret);
-                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
-                }
-                else
-                {
-                    // Crouch-walk
-                    isCrouchWalking = true;
+                    Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                    if (reactJob == null && IsHunkering)
+                    {
+                        // no good locations with cover found, so hunker down
+                        reactJob = JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
+                        LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
+                    }
+
+                    if (reactJob != null && reactJob.def != curJobDef)
+                    {
+                        // Only reserve destination when we know for certain the pawn isn't already running for cover
+                        pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
+                        pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def == JobDefOf.ManTurret);
+                        LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
+                    }
+                    else
+                    {
+                        // Crouch-walk
+                        isCrouchWalking = true;
+                    }
                 }
                 // Throw taunt
                 if (Rand.Chance(0.01f))
@@ -237,9 +249,13 @@ namespace CombatExtended
 
             // Update suppressed tick counter and check for mental breaks
             if (!isSuppressed)
+            {
                 ticksHunkered = 0;
+            }
             else if (IsHunkering)
+            {
                 ticksHunkered++;
+            }
 
             if (ticksHunkered > MinTicksUntilMentalBreak && Rand.Chance(ChanceBreakPerTick))
             {
@@ -270,7 +286,10 @@ namespace CombatExtended
                 isSuppressed = currentSuppression > 0;
 
                 // Clear crouch-walking
-                if (!isSuppressed) isCrouchWalking = false;
+                if (!isSuppressed)
+                {
+                    isCrouchWalking = false;
+                }
 
                 //Decay location suppression
                 locSuppressionAmount -= Mathf.Min(SuppressionDecayRate, locSuppressionAmount);
@@ -289,9 +308,9 @@ namespace CombatExtended
                 }
             }
             if (!parent.Faction.IsPlayerSafe()
-                && parent.IsHashIntervalTick(120)
-                && isSuppressed
-                && GenTicks.TicksGame - lastHelpRequestAt > HelpRequestCooldown)
+                    && parent.IsHashIntervalTick(120)
+                    && isSuppressed
+                    && GenTicks.TicksGame - lastHelpRequestAt > HelpRequestCooldown)
             {
                 lastHelpRequestAt = GenTicks.TicksGame;
                 SuppressionUtility.TryRequestHelp(parent as Pawn);

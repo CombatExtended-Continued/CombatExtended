@@ -1,0 +1,1567 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>[K4G] RimWorld War 2</li>
+      </mods>
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ======= Russian Nagant M1895 Revolver ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceRevolver"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceRevolver</defName>
+                     <label>Russian Nagant M1895 Revolver</label>
+                     <description>An old pattern double-action revolver used during WW2. It's not very powerful, but it has a decent range for a pistol and is quick on the draw. It works quite well on deserters.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceRevolver</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Revolver</soundInteract>
+                     <statBases>
+                        <WorkToMake>4500</WorkToMake>
+                        <SightsEfficiency>0.7</SightsEfficiency>
+                        <ShotSpread>0.18</ShotSpread>
+                        <SwayFactor>1.2</SwayFactor>
+                        <Bulk>2.2</Bulk>
+                        <Mass>0.82</Mass>
+                        <RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_Sidearm</li>
+                        <li>CE_OneHandedWeapon</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaPistol</li>
+                        <li>K4GWW2FinlandPistolShared</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>25</Steel>
+                        <ComponentIndustrial>2</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2ChainOfCommand</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>3</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x38mmR_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>16</range>
+                           <soundCast>Shot_Revolver</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>7</magazineSize>
+                           <reloadTime>4.6</reloadTime>
+                           <ammoSet>AmmoSet_762x38mmR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>grip</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian TT-33 Pistol ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServicePistol"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServicePistol</defName>
+                     <label>Russian TT-33 Pistol</label>
+                     <description>An old pattern blowback-operated self-loading pistol used during WW2. It lacks stopping power and range, but is quick to fire..</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServicePistol</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Revolver</soundInteract>
+                     <statBases>
+                        <Mass>0.85</Mass>
+                        <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+                        <SightsEfficiency>0.7</SightsEfficiency>
+                        <ShotSpread>0.17</ShotSpread>
+                        <SwayFactor>1.07</SwayFactor>
+                        <Bulk>1.7</Bulk>
+                        <WorkToMake>5000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_Sidearm</li>
+                        <li>CE_OneHandedWeapon</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaPistol</li>
+                        <li>K4GWW2GermanyPistolSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>25</Steel>
+                        <ComponentIndustrial>3</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2StandardIssueEquipment</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>4</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x25mmTokarev_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>16</range>
+                           <soundCast>Shot_Autopistol</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>8</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_762x25mmTokarev</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>grip</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian Mosin-Nagant Model 1891/30 Rifle ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceRifle"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceRifle</defName>
+                     <label>Russian Mosin-Nagant Model 1891/30 Rifle</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. Its range and low fire rate make it great for warfare, or hunting.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceRifle</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.00</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.63</SwayFactor>
+                        <Bulk>12.32</Bulk>
+                        <WorkToMake>12000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaRifle</li>
+                        <li>K4GWW2UnitedStatesRifleSharedAllies</li>
+                        <li>K4GWW2EnglandRifleSharedAllies</li>
+                        <li>K4GWW2GermanyRifleSharedAxis</li>
+                        <li>K4GWW2FinlandRifleShared</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>50</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2StandardIssueEquipment</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>5</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_762x54mmR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian Mosin-Nagant Model 1891/30 Rifle (Bayonet) ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceRifleBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceRifleBayonet</defName>
+                     <label>Russian Mosin-Nagant Model 1891/30 Rifle (Bayonet)</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. Its range and low fire rate make it great for warfare, or hunting. This one is equipped with a bayonet.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceRifleBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.2</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.63</SwayFactor>
+                        <Bulk>12.32</Bulk>
+                        <WorkToMake>13000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaRifle</li>
+                        <li>K4GWW2UnitedStatesRifleSharedAllies</li>
+                        <li>K4GWW2EnglandRifleSharedAllies</li>
+                        <li>K4GWW2GermanyRifleSharedAxis</li>
+                        <li>K4GWW2FinlandRifleShared</li>
+                        <li>NoSwitch</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>60</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>5</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_762x54mmR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>blade</label>
+                           <capacities>
+                              <li>Cut</li>
+                           </capacities>
+                           <power>10</power>
+                           <cooldownTime>1.18</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.32</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>18</power>
+                           <cooldownTime>1.19</cooldownTime>
+                           <chanceFactor>1.00</chanceFactor>
+                           <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                           <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian SVT-40 Semi-Automatic Rifle ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceSemiAutomaticRifle"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceSemiAutomaticRifle</defName>
+                     <label>Russian SVT-40 Rifle</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. It fires faster than a bolt-action rifle but maintains the damage and range that would have been lost with a carbine.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSemiAutomaticRifle</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3.85</Mass>
+                        <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.04</ShotSpread>
+                        <SwayFactor>1.61</SwayFactor>
+                        <Bulk>12.26</Bulk>
+                        <WorkToMake>19000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaRifle</li>
+                        <li>K4GWW2GermanyRifleSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>55</Steel>
+                        <ComponentIndustrial>3</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2SemiAutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_HeavySMG</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>7</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>10</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_762x54mmR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian SVT-40 Semi-Automatic Rifle (Bayonet) ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceSemiAutomaticRifleBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceSemiAutomaticRifleBayonet</defName>
+                     <label>Russian SVT-40 Rifle (Bayonet)</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. It fires faster than a bolt-action rifle but maintains the damage and range that would have been lost with a carbine. This one is equipped with a bayonet.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSemiAutomaticRifleBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3.85</Mass>
+                        <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.04</ShotSpread>
+                        <SwayFactor>1.61</SwayFactor>
+                        <Bulk>12.26</Bulk>
+                        <WorkToMake>20000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaRifle</li>
+                        <li>K4GWW2GermanyRifleSharedAxis</li>
+                        <li>NoSwitch</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>55</Steel>
+                        <ComponentIndustrial>3</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_HeavySMG</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>7</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>10</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_762x54mmR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>blade</label>
+                           <capacities>
+                              <li>Cut</li>
+                           </capacities>
+                           <power>10</power>
+                           <cooldownTime>1.18</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.32</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>18</power>
+                           <cooldownTime>1.19</cooldownTime>
+                           <chanceFactor>1.00</chanceFactor>
+                           <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                           <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian PPSh-41 Stick Mag SMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceSMG"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceSMG</defName>
+                     <label>Russian PPSh-41 SMG (Stick Mag)</label>
+                     <description>A compact, quickly firing weapon used during WW2. It's got a very short range, but it packs a punch and handles quite well.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSMG</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3.63</Mass>
+                        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.14</ShotSpread>
+                        <SwayFactor>1.21</SwayFactor>
+                        <Bulk>8.43</Bulk>
+                        <WorkToMake>27000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_SMG</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaSMG</li>
+                        <li>K4GWW2GermanySMGSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>10</WoodLog>
+                        <Steel>40</Steel>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.22</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x25mmTokarev_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>23</range>
+                           <burstShotCount>6</burstShotCount>
+                           <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+                           <soundCast>Shot_HeavySMG</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>35</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_762x25mmTokarev</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>Snapshot</aiAimMode>
+                           <aimedBurstShotCount>3</aimedBurstShotCount>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian PPSh-41 Drum Mag SMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceSMGB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceSMGB</defName>
+                     <label>Russian PPSh-41 SMG (Drum Mag)</label>
+                     <description>A compact, quickly firing weapon used during WW2. It's got a very short range, but it packs a punch and handles quite well.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSMGB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3.63</Mass>
+                        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.14</ShotSpread>
+                        <SwayFactor>1.21</SwayFactor>
+                        <Bulk>8.43</Bulk>
+                        <WorkToMake>27000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_SMG</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaSMG</li>
+                        <li>K4GWW2GermanySMGSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>10</WoodLog>
+                        <Steel>40</Steel>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.22</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x25mmTokarev_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>23</range>
+                           <burstShotCount>6</burstShotCount>
+                           <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+                           <soundCast>Shot_HeavySMG</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>71</magazineSize>
+                           <reloadTime>4.9</reloadTime>
+                           <ammoSet>AmmoSet_762x25mmTokarev</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>Snapshot</aiAimMode>
+                           <aimedBurstShotCount>3</aimedBurstShotCount>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian PPS-43 SMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceSMGC"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceSMGC</defName>
+                     <label>Russian PPS-43 SMG</label>
+                     <description>A compact, quickly firing weapon used during WW2. It's got a very short range, but it packs a punch and handles quite well.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSMGC</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3.23</Mass>
+                        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.13</ShotSpread>
+                        <SwayFactor>1.12</SwayFactor>
+                        <Bulk>6.43</Bulk>
+                        <WorkToMake>29000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_SMG</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaSMG</li>
+                        <li>K4GWW2GermanySMGSharedAxis</li>
+                        <li>K4GWW2FinlandSMGShared</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>10</WoodLog>
+                        <Steel>45</Steel>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.35</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x25mmTokarev_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>23</range>
+                           <burstShotCount>6</burstShotCount>
+                           <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+                           <soundCast>Shot_HeavySMG</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>35</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_762x25mmTokarev</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>Snapshot</aiAimMode>
+                           <aimedBurstShotCount>3</aimedBurstShotCount>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian DP-27 LMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceLMG"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceLMG</defName>
+                     <label>Russian DP-27 LMG</label>
+                     <description>A gas-operated light machine gun used during WW2. While it is somewhat unwieldy and inaccurate, its bipod and long bursts of fire make it an effective weapon against enemy groups.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceLMG</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>9.12</Mass>
+                        <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.53</SwayFactor>
+                        <Bulk>14.7</Bulk>
+                        <WorkToMake>32000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_MachineGun</li>
+                        <li>CE_AI_LMG</li>
+                        <li>CE_AI_Suppressive</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaLMG</li>
+                        <li>K4GWW2FinlandLMGShared</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>85</Steel>
+                        <WoodLog>10</WoodLog>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2LightMachineGuns</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>6</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.32</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+                           <warmupTime>1.3</warmupTime>
+                           <range>62</range>
+                           <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+                           <burstShotCount>10</burstShotCount>
+                           <soundCast>Shot_Minigun</soundCast>
+                           <soundCastTail>GunTail_Medium</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                           <targetParams>
+                              <canTargetLocations>true</canTargetLocations>
+                           </targetParams>
+                           <recoilPattern>Mounted</recoilPattern>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>47</magazineSize>
+                           <reloadTime>4.9</reloadTime>
+                           <ammoSet>AmmoSet_762x54mmR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aimedBurstShotCount>5</aimedBurstShotCount>
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>SuppressFire</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian Fedorov Avtomat Automatic Rifle ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceAutomaticRifle"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceAutomaticRifle</defName>
+                     <label>Russian Fedorov Avtomat Rifle</label>
+                     <description>A general-purpose gas-operated automatic rifle used during WW2. It has good stats across the board and was frequently used in field or urban combat.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceAutomaticRifle</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.60</Mass>
+                        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.03</ShotSpread>
+                        <SwayFactor>1.49</SwayFactor>
+                        <Bulk>9.40</Bulk>
+                        <WorkToMake>28500</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_AR</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaAutomaticRifle</li>
+                        <li>K4GWW2FinlandAutomaticRifleShared</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>10</WoodLog>
+                        <Steel>55</Steel>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>6</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.68</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>48</range>
+                           <burstShotCount>5</burstShotCount>
+                           <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+                           <soundCast>Shot_AssaultRifle</soundCast>
+                           <soundCastTail>GunTail_Medium</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>25</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_762x54mmR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>TRUE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                           <aimedBurstShotCount>3</aimedBurstShotCount>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian Mosin-Nagant Model 1891/30 Sniper Rifle ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceSniperRifle"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceSniperRifle</defName>
+                     <label>Russian Mosin-Nagant Model 1891/30 Sniper Rifle</label>
+                     <description>An old design of precision sniper rifle used during WW2. Its has incredibly long range but because it's so unwieldy, other weapons outclass it at close range.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSniperRifle</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.27</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>2.21</SightsEfficiency>
+                        <ShotSpread>0.04</ShotSpread>
+                        <SwayFactor>1.63</SwayFactor>
+                        <Bulk>12.32</Bulk>
+                        <WorkToMake>15000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>SniperRifle</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaSniperRifle</li>
+                        <li>K4GWW2FinlandSniperRifleShared</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>55</Steel>
+                        <ComponentIndustrial>2</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2SniperWarfare</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>7</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+                           <warmupTime>1.4</warmupTime>
+                           <range>75</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>5</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_762x54mmR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian SVT-40 Semi-Automatic Sniper Rifle ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceSemiAutomaticSniperRifle"]</xpath>
+               <value>
+                  <ThingDef Name="WW2ServiceSemiAutomaticSniperRifle" ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceSemiAutomaticSniperRifle</defName>
+                     <label>Russian SVT-40 Sniper Rifle</label>
+                     <description>A more versatile design of precision sniper rifle used during WW2. It has incredibly long range and is more versatile than a normal sniper rifle. Because it's so unwieldy, other weapons outclass it at close range.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSemiAutomaticSniperRifle</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3.85</Mass>
+                        <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.04</ShotSpread>
+                        <SwayFactor>1.61</SwayFactor>
+                        <Bulk>12.26</Bulk>
+                        <WorkToMake>21000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>SniperRifle</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaSniperRifle</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>55</Steel>
+                        <ComponentIndustrial>4</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2SniperWarfare</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>7</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>75</range>
+                           <soundCast>Shot_HeavySMG</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>7</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>10</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_762x54mmR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian PTRD-41 Anti-Tank Rifle ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceAntiTankRifle"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceAntiTankRifle</defName>
+                     <label>Russian PTRD-41 Anti-Tank Rifle</label>
+                     <description>Ancient anti-tank rifle, originally designed for use against primitive armored vehicles. Fires a single shot, very powerful cartridge but the large size and weight make it unwieldy.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceAntiTankRifle</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <WorkToMake>36500</WorkToMake>
+                        <SightsEfficiency>1.0</SightsEfficiency>
+                        <ShotSpread>0.01</ShotSpread>
+                        <SwayFactor>2.89</SwayFactor>
+                        <Bulk>22.0</Bulk>
+                        <Mass>20.30</Mass>
+                        <RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+                     </statBases>
+                     <weaponTags>
+                        <li>Bipod_ATR</li>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaAntiTank</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>125</Steel>
+                        <ComponentIndustrial>2</ComponentIndustrial>
+                        <WoodLog>15</WoodLog>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AntiTankEquipment</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>7</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_145x114mm_FMJ</defaultProjectile>
+                           <warmupTime>2.8</warmupTime>
+                           <range>62</range>
+                           <soundCast>HeavyMG</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>1</magazineSize>
+						   <AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
+                           <reloadTime>3.8</reloadTime>
+                           <ammoSet>AmmoSet_145x114mm</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Russian PTRS-41 Anti-Tank Rifle ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceAntiTankRifleB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMakeableGun">
+                     <defName>K4G_Gun_WW2RussianServiceAntiTankRifleB</defName>
+                     <label>Russian PTRS-41 Anti-Tank Rifle</label>
+                     <description>Ancient anti-tank rifle, originally designed for use against primitive armored vehicles. Fires a very powerful cartridge but the large size and weight make it unwieldy.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceAntiTankRifleB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <WorkToMake>44500</WorkToMake>
+                        <SightsEfficiency>1.0</SightsEfficiency>
+                        <ShotSpread>0.01</ShotSpread>
+                        <SwayFactor>2.89</SwayFactor>
+                        <Bulk>22.0</Bulk>
+                        <Mass>20.30</Mass>
+                        <RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+                     </statBases>
+                     <weaponTags>
+                        <li>Bipod_ATR</li>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaAntiTank</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>145</Steel>
+                        <ComponentIndustrial>2</ComponentIndustrial>
+                        <WoodLog>15</WoodLog>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AntiTankEquipment</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>9</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_145x114mm_FMJ</defaultProjectile>
+                           <warmupTime>2.8</warmupTime>
+                           <range>62</range>
+                           <soundCast>HeavyMG</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>5</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_145x114mm</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>

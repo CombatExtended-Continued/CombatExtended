@@ -19,16 +19,46 @@ namespace CombatExtended
         private bool stabilized = false;
         private float bleedModifier = 1;
 
-        public HediffCompProperties_Stabilize Props { get { return props as HediffCompProperties_Stabilize; } }
-        public bool Stabilized { get { return stabilized; } }
+        public HediffCompProperties_Stabilize Props
+        {
+            get
+            {
+                return props as HediffCompProperties_Stabilize;
+            }
+        }
+        public bool Stabilized
+        {
+            get
+            {
+                return stabilized;
+            }
+        }
         public float BleedModifier
         {
             get
             {
                 float mod = bleedModifier;
-                if (parent is Hediff_MissingPart) mod *= 0.5f;
-                if (parent.Part.depth == BodyPartDepth.Inside) mod += internalBleedOffset;
+                if (parent is Hediff_MissingPart)
+                {
+                    mod *= 0.5f;
+                }
+                if (parent.Part.depth == BodyPartDepth.Inside)
+                {
+                    mod += internalBleedOffset;
+                }
                 return Mathf.Clamp01(mod);
+            }
+        }
+        public float StabilizedBleed  //returns the amount by which stabilization has reduced bleeding rate
+        {
+            get
+            {
+                float unstabilizedBleedRate = parent.Severity * parent.def.injuryProps.bleedRate;
+                if (parent.Part != null)
+                {
+                    unstabilizedBleedRate *= parent.Part.def.bleedRate;
+                }
+                return unstabilizedBleedRate * (1 - BleedModifier);
             }
         }
 
@@ -78,15 +108,24 @@ namespace CombatExtended
         {
             get
             {
-                if (bleedModifier < 1 && !parent.IsPermanent() && !parent.IsTended()) return new TextureAndColor(StabilizedIcon, Color.white);
+                if (bleedModifier < 1 && !parent.IsPermanent() && !parent.IsTended())
+                {
+                    return new TextureAndColor(StabilizedIcon, Color.white);
+                }
                 return TextureAndColor.None;
             }
         }
 
         public override string CompDebugString()
         {
-            if (parent.BleedRate < 0) return "Not bleeding";
-            if (!stabilized) return "Not stabilized";
+            if (parent.BleedRate < 0)
+            {
+                return "Not bleeding";
+            }
+            if (!stabilized)
+            {
+                return "Not stabilized";
+            }
             return String.Concat("Stabilized", parent.Part.depth == BodyPartDepth.Inside ? " internal bleeding" : "", "\nbleed rate modifier: ", bleedModifier.ToString());
         }
     }

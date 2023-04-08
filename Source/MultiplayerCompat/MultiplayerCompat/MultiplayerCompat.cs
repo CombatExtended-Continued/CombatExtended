@@ -13,45 +13,59 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
 {
     public class MultiplayerCompat : IModPart
     {
-	public MultiplayerCompat() {}
-	public Type GetSettingsType() {
-	    return null;
-	    
-	}
+        public MultiplayerCompat() { }
+        public Type GetSettingsType()
+        {
+            return null;
 
-	public IEnumerable<string> GetCompatList() {
-	    yield break;
-	}
-	
-	public void PostLoad(ModContentPack content, ISettingsCE _) {
-	    LongEventHandler.QueueLongEvent(()=>this.SlowInit(content), "CE_LongEvent_CompatibilityPatches", false, null);
-	}
-	public void SlowInit(ModContentPack content) {
+        }
+
+        public IEnumerable<string> GetCompatList()
+        {
+            yield break;
+        }
+
+        public void PostLoad(ModContentPack content, ISettingsCE _)
+        {
+            LongEventHandler.QueueLongEvent(() => this.SlowInit(content), "CE_LongEvent_CompatibilityPatches", false, null);
+        }
+        public void SlowInit(ModContentPack content)
+        {
             var methods = content.assemblies.loadedAssemblies
-                .SelectMany(a => a.GetTypes())
-                .SelectMany(t => t.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
-                .Where(m => !m.IsAbstract)
-                .Where(m => m.HasAttribute<SyncMethodAttribute>());
+                          .SelectMany(a => a.GetTypes())
+                          .SelectMany(t => t.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
+                          .Where(m => !m.IsAbstract)
+                          .Where(m => m.HasAttribute<SyncMethodAttribute>());
 
             //MP.RegisterSyncMethod(typeof(Building_TurretGunCE), nameof(Building_TurretGunCE.OrderAttack));
             foreach (var method in methods)
             {
-                if (!method.TryGetAttribute<SyncMethodAttribute>(out var attribute)) continue;
+                if (!method.TryGetAttribute<SyncMethodAttribute>(out var attribute))
+                {
+                    continue;
+                }
 
                 var syncMethod = MP.RegisterSyncMethod(method);
-                
-                if (attribute.syncContext != -1)
-                    syncMethod.SetContext((SyncContext)attribute.syncContext);
 
-                if (attribute.exposeParameters == null) continue;
+                if (attribute.syncContext != -1)
+                {
+                    syncMethod.SetContext((SyncContext)attribute.syncContext);
+                }
+
+                if (attribute.exposeParameters == null)
+                {
+                    continue;
+                }
 
                 foreach (var parameter in attribute.exposeParameters)
+                {
                     syncMethod.ExposeParameter(parameter);
+                }
             }
 
             MP.RegisterAll();
 
-	    global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((()=>MP.IsInMultiplayer), (()=>MP.IsExecutingSyncCommandIssuedBySelf));
+            global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((() => MP.IsInMultiplayer), (() => MP.IsExecutingSyncCommandIssuedBySelf));
         }
 
 
@@ -82,9 +96,13 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
             else
             {
                 if (sync.Read<bool>())
+                {
                     comp = sync.Read<Building_TurretGunCE>().CompAmmo;
+                }
                 else
+                {
                     comp = sync.Read<ThingComp>() as CompAmmoUser;
+                }
             }
         }
 
@@ -114,9 +132,13 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
             else
             {
                 if (sync.Read<bool>())
+                {
                     comp = sync.Read<Building_TurretGunCE>().CompFireModes;
+                }
                 else
+                {
                     comp = sync.Read<ThingComp>() as CompFireModes;
+                }
             }
         }
 
@@ -124,12 +146,16 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
         private static void SyncLoadout(SyncWorker sync, ref Loadout loadout)
         {
             if (sync.isWriting)
+            {
                 sync.Write(LoadoutManager.Loadouts.IndexOf(loadout));
+            }
             else
             {
                 var index = sync.Read<int>();
                 if (index >= 0)
+                {
                     loadout = LoadoutManager.Loadouts[index];
+                }
             }
         }
 
@@ -147,7 +173,9 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
                     var value = list[loadoutIndex];
                     slotIndex = value.Slots.IndexOf(loadoutSlot);
                     if (slotIndex >= 0)
+                    {
                         break;
+                    }
                 }
 
                 if (slotIndex >= 0)
@@ -156,16 +184,26 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
                     sync.Write(slotIndex);
                 }
                 else
+                {
                     sync.Write(-1);
+                }
             }
             else
             {
                 var loadoutIndex = sync.Read<int>();
                 if (loadoutIndex < 0)
+                {
                     return;
+                }
 
                 loadoutSlot = LoadoutManager.Loadouts[loadoutIndex].Slots[sync.Read<int>()];
             }
         }
+
+        // Don't sync anything, we just want a blank instance for method calling purposes
+        // We only care about shouldConstruct being true
+        [SyncWorker(shouldConstruct = true)]
+        private static void SyncITab_Inventory(SyncWorker sync, ref ITab_Inventory inventory)
+        { }
     }
 }

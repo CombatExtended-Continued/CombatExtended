@@ -32,7 +32,7 @@ namespace CombatExtended
             Scribe_Collections.Look( ref recs, "holdRecords" );
 
 #if DEBUG
-Log.Message( Scribe.mode + ", pawn: " + ( pawn == null ? "NULL" : pawn.NameStringShort ) + ", holdRecords: " + ( recs == null ? "NULL" : string.Join(", ", recs.Select(hr => hr.thingDef.ToString()).ToArray()) ) );
+            Log.Message( Scribe.mode + ", pawn: " + ( pawn == null ? "NULL" : pawn.NameStringShort ) + ", holdRecords: " + ( recs == null ? "NULL" : string.Join(", ", recs.Select(hr => hr.thingDef.ToString()).ToArray()) ) );
 #endif
         }
 

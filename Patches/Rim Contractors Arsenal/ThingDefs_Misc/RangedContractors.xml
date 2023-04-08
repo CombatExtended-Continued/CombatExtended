@@ -13,7 +13,8 @@
 		<operations>
 
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_LNF35L" or 
+				<xpath>Defs/ThingDef[
+				defName="Gun_LNF35L" or 
 				defName="Gun_B3500A" or 
 				defName="Gun_M34A" or 
 				defName="Gun_M168B" or 
@@ -742,6 +743,7 @@
 				</Properties>
 				<AmmoUser>
 					<magazineSize>1</magazineSize>
+					<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
 					<reloadTime>1.6</reloadTime>
 					<ammoSet>AmmoSet_30x64mmFuel</ammoSet>
 				</AmmoUser>
@@ -791,50 +793,44 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="Bullet_ContractorATRocket"]/thingClass</xpath>
-			<value>
-			  <thingClass>CombatExtended.BulletCE</thingClass>
-			</value>
+				<xpath>Defs/ThingDef[defName="Bullet_ContractorATRocket"]/thingClass</xpath>
+				<value>
+				<thingClass>CombatExtended.BulletCE</thingClass>
+				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="Bullet_ContractorATRocket"]/projectile</xpath>
-			<value>
-			  <projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>Bullet</damageDef>
-				<damageAmountBase>350</damageAmountBase>
-				<armorPenetrationSharp>600</armorPenetrationSharp>
-				<armorPenetrationBlunt>50</armorPenetrationBlunt>
-				<speed>65</speed>
-			  </projectile>
-			</value>
+				<xpath>Defs/ThingDef[defName="Bullet_ContractorATRocket"]/projectile</xpath>
+				<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>350</damageAmountBase>
+					<armorPenetrationSharp>600</armorPenetrationSharp>
+					<armorPenetrationBlunt>50</armorPenetrationBlunt>
+					<speed>65</speed>
+				</projectile>
+				</value>
 			</li>
-			
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-				  <li Class="PatchOperationTest">
-					<xpath>Defs/ThingDef[defName="Bullet_ContractorATRocket"]/comps</xpath>
-					<success>Invert</success>
-				  </li>
-				  <li Class="PatchOperationAdd">
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Bullet_ContractorATRocket"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Bullet_ContractorATRocket"]</xpath>
 					<value>
-					  <comps />
+						<comps />
 					</value>
-				  </li>
-				</operations>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Bullet_ContractorATRocket"]/comps</xpath>
-			<value>
-			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>160</damageAmountBase>
-				<explosiveDamageType>EMP</explosiveDamageType>
-				<explosiveRadius>2.5</explosiveRadius>
-			  </li>
-			</value>
+				<xpath>Defs/ThingDef[defName="Bullet_ContractorATRocket"]/comps</xpath>
+				<value>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>160</damageAmountBase>
+					<explosiveDamageType>EMP</explosiveDamageType>
+					<explosiveRadius>2.5</explosiveRadius>
+				</li>
+				</value>
 			</li>
 			
 		</operations>

@@ -16,7 +16,9 @@ namespace CombatExtended
             var def = req.Def as ThingDef;
 
             if (def?.building?.IsTurret ?? false)
+            {
                 def = def.building.turretGunDef;
+            }
 
             return def;
         }
@@ -29,7 +31,7 @@ namespace CombatExtended
         public override bool ShouldShowFor(StatRequest req)
         {
             return base.ShouldShowFor(req) && (GunDef(req)?.Verbs?
-                .Any(x => ((x as VerbPropertiesCE)?.ammoConsumedPerShotCount ?? 1) > 1) ?? false);
+                                               .Any(x => ((x as VerbPropertiesCE)?.ammoConsumedPerShotCount ?? 1) > 1) ?? false);
         }
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)

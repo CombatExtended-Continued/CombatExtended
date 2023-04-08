@@ -68,17 +68,19 @@ namespace CombatExtended.HarmonyCE
                     continue;
                 }
                 yield return codes[i];
-            }            
+            }
         }
 
         private static int GetTicksBetweenBurstShots(Verb verb)
         {
             float ticksBetweenBurstShots = verb.verbProps.ticksBetweenBurstShots;
-            if(verb is Verb_LaunchProjectileCE && verb.EquipmentSource != null)
+            if (verb is Verb_LaunchProjectileCE && verb.EquipmentSource != null)
             {
                 float modified = verb.EquipmentSource.GetStatValue(CE_StatDefOf.TicksBetweenBurstShots);
                 if (modified > 0)
+                {
                     ticksBetweenBurstShots = modified;
+                }
             }
             return (int)ticksBetweenBurstShots;
         }

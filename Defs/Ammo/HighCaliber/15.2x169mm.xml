@@ -14,17 +14,14 @@
     <defName>AmmoSet_152x169mm</defName>
     <label>15.2x169mm</label>
     <ammoTypes>
-      <Ammo_152x169mm_FMJ>Bullet_152x169mm_FMJ</Ammo_152x169mm_FMJ>
-			<Ammo_152x169mm_Incendiary>Bullet_152x169mm_Incendiary</Ammo_152x169mm_Incendiary>
-			<Ammo_152x169mm_HE>Bullet_152x169mm_HE</Ammo_152x169mm_HE>
-			<Ammo_152x169mm_Sabot>Bullet_152x169mm_Sabot</Ammo_152x169mm_Sabot>	       
+      <Ammo_152x169mm_Sabot>Bullet_152x169mm_Sabot</Ammo_152x169mm_Sabot>	       
     </ammoTypes>
-		<similarTo>AmmoSet_AntiMateriel</similarTo>
+    <similarTo>AmmoSet_AntiMateriel</similarTo>
   </CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo152x169mmBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo152x169mmBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Prototype smoothbore cartridge designed for anti-material use.</description>
     <statBases>
 	  <Mass>0.15</Mass>
@@ -41,53 +38,11 @@
   </ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo152x169mmBase">
-		<defName>Ammo_152x169mm_FMJ</defName>
-		<label>15.2x169mm cartridge (FMJ)</label>
-		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/FMJ</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.6</MarketValue>
-		</statBases>
-		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_152x169mm_FMJ</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo152x169mmBase">
-		<defName>Ammo_152x169mm_Incendiary</defName>
-		<label>15.2x169mm cartridge (AP-I)</label>
-		<graphicData>
-		<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-		<MarketValue>0.73</MarketValue>
-		</statBases>
-		<ammoClass>IncendiaryAP</ammoClass>
-		<cookOffProjectile>Bullet_152x169mm_Incendiary</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo152x169mmBase">
-		<defName>Ammo_152x169mm_HE</defName>
-		<label>15.2x169mm cartridge (HE)</label>
-		<graphicData>
-		<texPath>Things/Ammo/HighCaliber/HE</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-		<MarketValue>1.01</MarketValue>
-		</statBases>
-		<ammoClass>ExplosiveAP</ammoClass>
-		<cookOffProjectile>Bullet_152x169mm_HE</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo152x169mmBase">
 		<defName>Ammo_152x169mm_Sabot</defName>
 		<label>15.2x169mm cartridge (Sabot)</label>
 		<graphicData>
-		<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>0.64</MarketValue>
@@ -99,56 +54,13 @@
 	
 	<!-- ================== Projectile ================== -->
 
-    <ThingDef Name="Base152x169mmBullet" ParentName="BaseBullet" Abstract="true">
+    <ThingDef Name="Base152x169mmBullet" ParentName="BaseBulletCE" Abstract="true">
       <graphicData>
         <texPath>Things/Projectile/Bullet_Big</texPath>
         <graphicClass>Graphic_Single</graphicClass>
       </graphicData>
       <projectile Class="CombatExtended.ProjectilePropertiesCE">
         <damageDef>Bullet</damageDef>
-        <speed>290</speed>
-      </projectile>
-    </ThingDef>
-    
-    <ThingDef ParentName="Base152x169mmBullet">
-      <defName>Bullet_152x169mm_FMJ</defName>
-      <label>15.2x169mm bullet (FMJ)</label>
-      <projectile Class="CombatExtended.ProjectilePropertiesCE">
-        <damageAmountBase>56</damageAmountBase>
-        <armorPenetrationSharp>17</armorPenetrationSharp>
-        <armorPenetrationBlunt>735.88</armorPenetrationBlunt>
-      </projectile>
-    </ThingDef>
-
-    <ThingDef ParentName="Base152x169mmBullet">
-      <defName>Bullet_152x169mm_Incendiary</defName>
-      <label>15.2x169mm bullet (AP-I)</label>
-      <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>36</damageAmountBase>
-      <armorPenetrationSharp>35</armorPenetrationSharp>
-      <armorPenetrationBlunt>735.88</armorPenetrationBlunt>
-      <secondaryDamage>
-        <li>
-        <def>Flame_Secondary</def>
-        <amount>22</amount>
-        </li>
-      </secondaryDamage>
-      </projectile>
-    </ThingDef>
-    
-    <ThingDef ParentName="Base152x169mmBullet">
-      <defName>Bullet_152x169mm_HE</defName>
-      <label>15.2x169mm bullet (HE)</label>
-      <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>56</damageAmountBase>
-      <armorPenetrationSharp>17</armorPenetrationSharp>
-      <armorPenetrationBlunt>735.88</armorPenetrationBlunt>
-      <secondaryDamage>
-        <li>
-        <def>Bomb_Secondary</def>
-        <amount>34</amount>
-        </li>
-      </secondaryDamage>
       </projectile>
     </ThingDef>
 
@@ -157,109 +69,13 @@
       <label>15.2x169mm bullet (Sabot)</label>
       <projectile Class="CombatExtended.ProjectilePropertiesCE">
         <speed>435</speed>
-      <damageAmountBase>30</damageAmountBase>
-      <armorPenetrationSharp>60</armorPenetrationSharp>
-      <armorPenetrationBlunt>943.76</armorPenetrationBlunt>
+	    <damageAmountBase>26</damageAmountBase>
+	    <armorPenetrationSharp>60</armorPenetrationSharp>
+	    <armorPenetrationBlunt>420.5</armorPenetrationBlunt>
       </projectile>
     </ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
-
-    <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_152x169mm_FMJ</defName>
-      <label>make 15.2x169mm (FMJ) cartridge x200</label>
-      <description>Craft 200 15.2x169mm (FMJ) cartridges.</description>
-      <jobString>Making 15.2x169mm (FMJ) cartridges.</jobString>
-      <ingredients>
-        <li>
-          <filter>
-            <thingDefs>
-              <li>Steel</li>
-            </thingDefs>
-          </filter>
-          <count>60</count>
-        </li>
-      </ingredients>
-      <fixedIngredientFilter>
-        <thingDefs>
-          <li>Steel</li>
-        </thingDefs>
-      </fixedIngredientFilter>
-      <products>
-        <Ammo_152x169mm_FMJ>200</Ammo_152x169mm_FMJ>
-      </products>
-      <workAmount>6000</workAmount>
-    </RecipeDef>
-
-    <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-      <defName>MakeAmmo_152x169mm_Incendiary</defName>
-      <label>make 15.2x169mm (AP-I) cartridge x200</label>
-      <description>Craft 200 15.2x169mm (AP-I) cartridges.</description>
-      <jobString>Making 15.2x169mm (AP-I) cartridges.</jobString>
-      <ingredients>
-      <li>
-        <filter>
-        <thingDefs>
-          <li>Steel</li>
-        </thingDefs>
-        </filter>
-        <count>60</count>
-      </li>
-      <li>
-        <filter>
-        <thingDefs>
-          <li>Prometheum</li>
-        </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>
-      </ingredients>
-      <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Prometheum</li>
-      </thingDefs>
-      </fixedIngredientFilter>
-      <products>
-      <Ammo_152x169mm_Incendiary>200</Ammo_152x169mm_Incendiary>
-      </products>
-      <workAmount>7600</workAmount>
-    </RecipeDef>
-
-    <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-      <defName>MakeAmmo_152x169mm_HE</defName>
-      <label>make 15.2x169mm (HE) cartridge x200</label>
-      <description>Craft 200 15.2x169mm (HE) cartridges.</description>
-      <jobString>Making 15.2x169mm (HE) cartridges.</jobString>
-      <ingredients>
-      <li>
-        <filter>
-        <thingDefs>
-          <li>Steel</li>
-        </thingDefs>
-        </filter>
-        <count>60</count>
-      </li>
-      <li>
-        <filter>
-        <thingDefs>
-          <li>FSX</li>
-        </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-      </ingredients>
-      <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-      </thingDefs>
-      </fixedIngredientFilter>
-      <products>
-      <Ammo_152x169mm_HE>200</Ammo_152x169mm_HE>
-      </products>
-      <workAmount>9200</workAmount>
-    </RecipeDef>
 
     <RecipeDef ParentName="AdvancedAmmoRecipeBase">
       <defName>MakeAmmo_152x169mm_Sabot</defName>

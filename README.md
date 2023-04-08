@@ -6,7 +6,7 @@
   <a href="https://discord.gg/safyWuA">
     <img src="https://img.shields.io/badge/join%20us-black?style=for-the-badge&logo=discord&logoColor=white">
   </a>
-  <a href="https://steamcommunity.com/workshop/filedetails/?id=1631756268">
+  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044">
     <img src="https://img.shields.io/badge/subscribe-black?style=for-the-badge&logo=steam">
   </a>
   <a href="https://github.com/CombatExtended-Continued/CombatExtended/releases">
@@ -74,7 +74,7 @@ If you want to build the assembly yourself, please see [Building](Building.md) f
 
 ### Armor
 **Armor Rebalance**
-- Vanilla percentage based armor system is gone. CE replaces it with a deflection-based model where projectiles have armor penetration which determines whether a bullet penetrates and how much it's damage is reduced. A rifle bullet will go straight through a synthread parka but will completely bounce off of legendary power armor.
+- Vanilla percentage based armor system is gone. CE replaces it with a deflection-based model where projectiles have armor penetration which determines whether a bullet penetrates and how much its damage is reduced. A rifle bullet will go straight through a synthread parka but will completely bounce off of legendary power armor.
 
 **Shields**
 - New shields provide additional protection against ranged fire. Basic melee shields can be made at the smithy and will block arrows, researching machining gives access to modern ballistic shields with improved coverage and protection against gunfire.

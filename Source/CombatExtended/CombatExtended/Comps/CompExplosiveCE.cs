@@ -30,21 +30,40 @@ namespace CombatExtended
                 Log.Warning("Tried to explodeCE out of bounds");
                 return;
             }
-            
+
             //Try to throw fragments -- increase count by scaleFactor
             parent.TryGetComp<CompFragments>()?.Throw(pos, map, instigator);//scaleFactor);
 
             if (Props.explosiveRadius > 0 //&& Props.damageAmountBase > 0 Disabled to allow flame explosions etc
-                && parent.def != null)
+                    && parent.def != null)
             {
                 //Call GenExplosionCE for main explosion
-                GenExplosionCE.DoExplosion(posIV, map, Props.explosiveRadius, Props.explosiveDamageType, instigator,
-                    GenMath.RoundRandom(Props.damageAmountBase), Props.GetExplosionArmorPenetration(),
-                    Props.explosionSound, null, parent.def, null,
-                    Props.postExplosionSpawnThingDef, Props.postExplosionSpawnChance, Props.postExplosionSpawnThingCount,
-                    Props.applyDamageToExplosionCellsNeighbors, Props.preExplosionSpawnThingDef, Props.preExplosionSpawnChance,
-                    Props.preExplosionSpawnThingCount, Props.chanceToStartFire, Props.damageFalloff, direction, ignoredThings,
-                    pos.y, scaleFactor);
+                GenExplosionCE.DoExplosion(
+                    posIV,
+                    map,
+                    Props.explosiveRadius,
+                    Props.explosiveDamageType,
+                    instigator,
+                    GenMath.RoundRandom(Props.damageAmountBase),
+                    Props.GetExplosionArmorPenetration(),
+                    Props.explosionSound,
+                    weapon: null,
+                    projectile: parent.def,
+                    intendedTarget: null,
+                    Props.postExplosionSpawnThingDef,
+                    Props.postExplosionSpawnChance,
+                    Props.postExplosionSpawnThingCount,
+                    Props.postExplosionGasType,
+                    Props.applyDamageToExplosionCellsNeighbors,
+                    Props.preExplosionSpawnThingDef,
+                    Props.preExplosionSpawnChance,
+                    Props.preExplosionSpawnThingCount,
+                    Props.chanceToStartFire,
+                    Props.damageFalloff,
+                    direction,
+                    ignoredThings,
+                    height: pos.y,
+                    scaleFactor: scaleFactor);
             }
         }
     }

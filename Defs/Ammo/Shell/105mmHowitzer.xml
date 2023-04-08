@@ -42,6 +42,9 @@
 		<thingCategories>
 			<li>Ammo105mmHowitzerShells</li>
 		</thingCategories>
+		<graphicData>
+			<drawSize>0.90</drawSize>
+		</graphicData>		
 		<stackLimit>25</stackLimit>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -63,10 +66,9 @@
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
-			<drawSize>0.90</drawSize>
 		</graphicData>
 		<statBases>
-			<MarketValue>144.04</MarketValue>
+			<MarketValue>128.17</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_105mmHowitzerShell_HE</detonateProjectile>
@@ -81,7 +83,7 @@
 		</graphicData>
 		<statBases>
 		  <Mass>21</Mass>
-		  <MarketValue>128</MarketValue>
+		  <MarketValue>128.54</MarketValue>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
 		<detonateProjectile>Bullet_105mmHowitzerShell_HEAT_directfire</detonateProjectile>
@@ -93,10 +95,9 @@
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Howitzer/INC</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
-			<drawSize>0.90</drawSize>
 		</graphicData>
 		<statBases>
-			<MarketValue>117.37</MarketValue>
+			<MarketValue>101.5</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeIncendiary</ammoClass>
 		<detonateProjectile>Bullet_105mmHowitzerShell_Incendiary</detonateProjectile>
@@ -108,10 +109,9 @@
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Howitzer/EMP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
-			<drawSize>0.90</drawSize>
 		</graphicData>
 		<statBases>
-			<MarketValue>237.87</MarketValue>
+			<MarketValue>222</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
 	</ThingDef>
@@ -122,10 +122,9 @@
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Howitzer/SMK</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
-			<drawSize>0.90</drawSize>
 		</graphicData>
 		<statBases>
-			<MarketValue>114.2</MarketValue>
+			<MarketValue>101.5</MarketValue>
 		</statBases>
 		<ammoClass>Smoke</ammoClass>
 		<detonateProjectile>Bullet_105mmHowitzerShell_Smoke</detonateProjectile>
@@ -134,7 +133,7 @@
 	<!-- ================== Projectiles ================== -->
 
 	<!-- indirect fire-->
-	<ThingDef Name="Base105mmHowitzerShell" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base105mmHowitzerShell" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -147,6 +146,7 @@
 			<flyOverhead>true</flyOverhead>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 			<gravityFactor>5</gravityFactor>
 		</projectile>
 	</ThingDef>
@@ -161,8 +161,8 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>370</damageAmountBase>
-			<explosionRadius>5</explosionRadius>
+			<damageAmountBase>217</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
@@ -185,9 +185,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>PrometheumFlame</damageDef>
-			<damageAmountBase>0</damageAmountBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<damageAmountBase>15</damageAmountBase>
 			<explosionRadius>7</explosionRadius>
 			<flyOverhead>true</flyOverhead>
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
@@ -199,7 +197,6 @@
 			  <damageAmountBase>120</damageAmountBase>
 			  <explosiveDamageType>Thermobaric</explosiveDamageType>
 			  <explosiveRadius>2.5</explosiveRadius>
-			  <explosionSound>MortarIncendiary_Explode</explosionSound>
 			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
 		</comps>
@@ -214,7 +211,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageDef>EMP</damageDef>
-		  <damageAmountBase>136</damageAmountBase>
+		  <damageAmountBase>217</damageAmountBase>
 		  <armorPenetrationSharp>0</armorPenetrationSharp>
 		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
 		  <flyOverhead>true</flyOverhead>
@@ -231,15 +228,15 @@
 		</graphicData>
 	<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageDef>Smoke</damageDef>
-		  <armorPenetrationSharp>0</armorPenetrationSharp>
-		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
-		  <explosionRadius>7.5</explosionRadius>
+		  <suppressionFactor>0.0</suppressionFactor>
+		  <dangerFactor>0.0</dangerFactor>
+		  <explosionRadius>8.5</explosionRadius>
 		  <flyOverhead>true</flyOverhead>
 		  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
 		  <soundExplode>Explosion_EMP</soundExplode>
 		  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 		  <soundAmbient>MortarRound_Ambient</soundAmbient>
-		  <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+		  <postExplosionGasType>BlindSmoke</postExplosionGasType>
 		  <preExplosionSpawnChance>1</preExplosionSpawnChance>
 		  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  <explosionEffect>ExtinguisherExplosion</explosionEffect>
@@ -247,16 +244,17 @@
 	</ThingDef>
 
 	<!-- direct fire-->
-	<ThingDef Name="Base105mmHowitzerShellDirectfire" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base105mmHowitzerShellDirectfire" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
-		  </graphicData>
-		  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>154</speed>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<flyOverhead>false</flyOverhead>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
@@ -270,14 +268,14 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>200</speed>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>400</damageAmountBase>
+			<damageAmountBase>352</damageAmountBase>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<armorPenetrationSharp>375</armorPenetrationSharp>
-			<armorPenetrationBlunt>251</armorPenetrationBlunt>
+			<armorPenetrationBlunt>46.013</armorPenetrationBlunt>
 		</projectile>
 		<comps>
 		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>150</damageAmountBase>
+			<damageAmountBase>153</damageAmountBase>
 			<explosiveDamageType>Bomb</explosiveDamageType>
 			<explosiveRadius>1.5</explosiveRadius>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -301,8 +299,8 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>370</damageAmountBase>
-			<explosionRadius>5</explosionRadius>
+			<damageAmountBase>217</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
@@ -325,12 +323,10 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>PrometheumFlame</damageDef>
-			<damageAmountBase>0</damageAmountBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<damageAmountBase>15</damageAmountBase>
 			<explosionRadius>7</explosionRadius>
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
+			<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
 			<soundExplode>MortarIncendiary_Explode</soundExplode>
 		  </projectile>
 		  <comps>
@@ -338,7 +334,6 @@
 			  <damageAmountBase>120</damageAmountBase>
 			  <explosiveDamageType>Thermobaric</explosiveDamageType>
 			  <explosiveRadius>2.5</explosiveRadius>
-			  <explosionSound>MortarIncendiary_Explode</explosionSound>
 			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
 		</comps>
@@ -353,7 +348,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageDef>EMP</damageDef>
-		  <damageAmountBase>136</damageAmountBase>
+		  <damageAmountBase>216</damageAmountBase>
 		  <armorPenetrationSharp>0</armorPenetrationSharp>
 		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
 		  <explosionRadius>6.5</explosionRadius>
@@ -369,14 +364,16 @@
 		</graphicData>
 	<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageDef>Smoke</damageDef>
+		  <suppressionFactor>0.0</suppressionFactor>
+		  <dangerFactor>0.0</dangerFactor>
 		  <armorPenetrationSharp>0</armorPenetrationSharp>
 		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
-		  <explosionRadius>7.5</explosionRadius>
+		  <explosionRadius>8.5</explosionRadius>
 		  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
 		  <soundExplode>Explosion_EMP</soundExplode>
 		  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 		  <soundAmbient>MortarRound_Ambient</soundAmbient>
-		  <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+		  <postExplosionGasType>BlindSmoke</postExplosionGasType>
 		  <preExplosionSpawnChance>1</preExplosionSpawnChance>
 		  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  <explosionEffect>ExtinguisherExplosion</explosionEffect>
@@ -390,7 +387,7 @@
 		<label>make 105mm HE Howitzer shells x2</label>
 		<description>Craft 2 105mm HE Howitzer shells.</description>
 		<jobString>Making 105mm HE Howitzer shells.</jobString>
-		<workAmount>11600</workAmount>
+		<workAmount>10000</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -398,7 +395,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>76</count>
+				<count>60</count>
 			</li>
 			<li>
 				<filter>
@@ -458,7 +455,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>5</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -478,7 +475,7 @@
 		<label>make 105mm Incendiary Howitzer shells x2</label>
 		<description>Craft 2 105mm Incendiary Howitzer shells.</description>
 		<jobString>Making 105mm Incendiary Howitzer shells.</jobString>
-		<workAmount>10000</workAmount>
+		<workAmount>8400</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -486,7 +483,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>66</count>
+				<count>60</count>
 			</li>
 			<li>
 				<filter>
@@ -502,7 +499,7 @@
 						<li>Prometheum</li>
 					</thingDefs>
 				</filter>
-				<count>7</count>
+				<count>3</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -522,7 +519,8 @@
 		<label>make 105mm EMP Howitzer shells x2</label>
 		<description>Craft 2 105mm EMP Howitzer shells.</description>
 		<jobString>Making 105mm EMP Howitzer shells.</jobString>
-		<workAmount>13600</workAmount>
+		<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
+		<workAmount>12000</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -530,7 +528,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>76</count>
+				<count>60</count>
 			</li>
 			<li>
 				<filter>
@@ -538,7 +536,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>9</count>
+				<count>10</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -557,7 +555,7 @@
 		<label>make 105mm Smoke Howitzer shells x2</label>
 		<description>Craft 2 105mm Smoke Howitzer shells.</description>
 		<jobString>Making 105mm Smoke Howitzer shells.</jobString>
-		<workAmount>9600</workAmount>
+		<workAmount>8400</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -565,7 +563,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>76</count>
+				<count>60</count>
 			</li>
 			<li>
 				<filter>
@@ -581,7 +579,7 @@
 				<li>Prometheum</li>
 				</thingDefs>
 			</filter>
-			<count>2</count>
+			<count>3</count>
 			</li>
 		</ingredients>
 			<fixedIngredientFilter>
@@ -595,4 +593,5 @@
 			<Ammo_105mmHowitzerShell_Smoke>2</Ammo_105mmHowitzerShell_Smoke>
 		</products>
 	</RecipeDef>
+
 </Defs>

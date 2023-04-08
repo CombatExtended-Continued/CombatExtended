@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rimworld-Style Pilas And Bows Strapped With Grenades and Shells Extended</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+		<operations>
+
+            <!--ARROWS-->
+		
+            <!--Remove the bows and their projectiles-->
+			<li Class="PatchOperationRemove">
+                <xpath>Defs/ThingDef[defName="Bow_Grenade"] |
+                Defs/ThingDef[defName="Arrow_Grenade"] |
+                Defs/ThingDef[defName="Bow_Molotov"] |
+                Defs/ThingDef[defName="Arrow_Molotov"] |
+                Defs/ThingDef[defName="Bow_EMP"] |
+                Defs/ThingDef[defName="Arrow_EMP"] |
+                Defs/ThingDef[defName="Bow_Battery"] |
+                Defs/ThingDef[defName="Arrow_Battery"]
+                </xpath>
+			</li>
+
+            <!-- Ammo Set -->
+            <!--Regular Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_Arrow"]/ammoTypes</xpath>
+                <value>
+                    <Ammo_Arrow_Grenade>Projectile_Arrow_Grenade</Ammo_Arrow_Grenade>
+                    <Ammo_Arrow_Molotov>Projectile_Arrow_Molotov</Ammo_Arrow_Molotov>
+                    <Ammo_Arrow_EMP>Projectile_Arrow_EMP</Ammo_Arrow_EMP>
+                    <Ammo_Arrow_Battery>Projectile_Arrow_Battery</Ammo_Arrow_Battery>
+                </value>
+            </li>
+            
+            <!--Streamlined Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_StreamlinedArrow"]/ammoTypes</xpath>
+                <value>
+                    <Ammo_Arrow_Grenade>Projectile_StreamlinedArrow_Grenade</Ammo_Arrow_Grenade>
+                    <Ammo_Arrow_Molotov>Projectile_StreamlinedArrow_Molotov</Ammo_Arrow_Molotov>
+                    <Ammo_Arrow_EMP>Projectile_StreamlinedArrow_EMP</Ammo_Arrow_EMP>
+                    <Ammo_Arrow_Battery>Projectile_StreamlinedArrow_Battery</Ammo_Arrow_Battery>
+                </value>
+            </li>
+
+            <!--Great Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_GreatArrow"]/ammoTypes</xpath>
+                <value>
+                    <Ammo_GreatArrow_Grenade>Projectile_GreatArrow_Grenade</Ammo_GreatArrow_Grenade>
+                    <Ammo_GreatArrow_Molotov>Projectile_GreatArrow_Molotov</Ammo_GreatArrow_Molotov>
+                    <Ammo_GreatArrow_EMP>Projectile_GreatArrow_EMP</Ammo_GreatArrow_EMP>
+                    <Ammo_GreatArrow_Battery>Projectile_GreatArrow_Battery</Ammo_GreatArrow_Battery>
+                </value>
+            </li>
+
+            <!-- Ammo Categories-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs</xpath>
+                <value>
+                    <CombatExtended.AmmoCategoryDef>
+                        <defName>ArrowGrenade</defName>
+                        <label>Bownade</label>
+                        <description>Pull the pin and immediately shoot the arrow, or else.</description>
+                    </CombatExtended.AmmoCategoryDef>
+                    
+                    <CombatExtended.AmmoCategoryDef>
+                        <defName>ArrowMolotov</defName>
+                        <label>Bowlotov</label>
+                        <description>No need for accuracy when your arrows explode.</description>
+                    </CombatExtended.AmmoCategoryDef>
+                    
+                    <CombatExtended.AmmoCategoryDef>
+                        <defName>ArrowEMP</defName>
+                        <label>BowMP</label>
+                        <description>Demonic servants of a sleeping god, meet 'demonic servant of a sleeping god'-stopper.</description>
+                    </CombatExtended.AmmoCategoryDef>
+                    
+                    <CombatExtended.AmmoCategoryDef>
+                        <defName>ArrowBattery</defName>
+                        <label>Bowttery</label>
+                        <description>When the guns are gone and you can't go on.</description>
+                    </CombatExtended.AmmoCategoryDef>
+                </value>
+            </li>
+
+            <!--Arrows (Ammunition)-->
+            <!--Regular & Streamlined Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs</xpath>
+                <value>
+                    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
+                        <defName>Ammo_Arrow_Grenade</defName>
+                        <label>arrow (grenade)</label>
+                        <graphicData>
+                            <texPath>Bownade</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <ammoClass>ArrowGrenade</ammoClass>
+                        <statBases>
+                            <MarketValue>12.35</MarketValue>
+                        </statBases>
+                        <tradeTags>
+                            <li>CE_AutoEnableCrafting_CraftingSpot</li>
+                        </tradeTags>
+						<generateAllowChance>0.1</generateAllowChance> <!-- Should be a bit rarer than Plasteel -->
+                    </ThingDef>
+                    
+                    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
+                        <defName>Ammo_Arrow_Molotov</defName>
+                        <label>arrow (molotov)</label>
+                        <graphicData>
+                            <texPath>Bowlotov</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <ammoClass>ArrowMolotov</ammoClass>
+                        <statBases>
+                            <MarketValue>7.18</MarketValue>
+                        </statBases>
+                        <tradeTags>
+                            <li>CE_AutoEnableCrafting_CraftingSpot</li>
+                        </tradeTags>
+						<generateAllowChance>0.1</generateAllowChance> <!-- Should be a bit rarer than a flame arrow -->
+                    </ThingDef>
+                    
+                    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
+                        <defName>Ammo_Arrow_EMP</defName>
+                        <label>arrow (EMP)</label>
+                        <graphicData>
+                            <texPath>BowMP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <ammoClass>ArrowEMP</ammoClass>
+                        <statBases>
+                            <MarketValue>21.22</MarketValue>
+                        </statBases>
+                        <tradeTags>
+                            <li>CE_AutoEnableCrafting_CraftingSpot</li>
+                        </tradeTags>
+						<generateAllowChance>0.05</generateAllowChance> <!-- Very rare? -->
+                    </ThingDef>
+                    
+                    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
+                        <defName>Ammo_Arrow_Battery</defName>
+                        <label>arrow (battery)</label>
+                        <graphicData>
+                            <texPath>Bowttery</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <ammoClass>ArrowBattery</ammoClass>
+                        <statBases>
+                            <MarketValue>26.04</MarketValue>
+                        </statBases>
+                        <tradeTags>
+                            <li>CE_AutoEnableCrafting_CraftingSpot</li>
+                        </tradeTags>
+						<generateAllowChance>0.05</generateAllowChance> <!-- Very rare? -->
+                    </ThingDef>
+                </value>
+            </li>
+
+            <!--Great Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs</xpath>
+                <value>
+                    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+                        <defName>Ammo_GreatArrow_Grenade</defName>
+                        <label>great arrow (grenade)</label>
+                        <graphicData>
+                            <texPath>Bownade</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <ammoClass>ArrowGrenade</ammoClass>
+                        <statBases>
+                            <MarketValue>12.61</MarketValue>
+                        </statBases>
+                        <tradeTags>
+                            <li>CE_AutoEnableCrafting_CraftingSpot</li>
+                        </tradeTags>
+						<generateAllowChance>0.1</generateAllowChance> <!-- Should be a bit rarer than a plasteel arrow -->
+                    </ThingDef>
+                    
+                    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+                        <defName>Ammo_GreatArrow_Molotov</defName>
+                        <label>great arrow (molotov)</label>
+                        <graphicData>
+                            <texPath>Bowlotov</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <ammoClass>ArrowMolotov</ammoClass>
+                        <statBases>
+                            <MarketValue>7.44</MarketValue>
+                        </statBases>
+                        <tradeTags>
+                            <li>CE_AutoEnableCrafting_CraftingSpot</li>
+                        </tradeTags>
+						<generateAllowChance>0.1</generateAllowChance> <!-- Should be a bit rarer than a flame arrow -->
+                    </ThingDef>
+                    
+                    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+                        <defName>Ammo_GreatArrow_EMP</defName>
+                        <label>great arrow (EMP)</label>
+                        <graphicData>
+                            <texPath>BowMP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <ammoClass>ArrowEMP</ammoClass>
+                        <statBases>
+                            <MarketValue>21.48</MarketValue>
+                        </statBases>
+                        <tradeTags>
+                            <li>CE_AutoEnableCrafting_CraftingSpot</li>
+                        </tradeTags>
+						<generateAllowChance>0.05</generateAllowChance> <!-- Very rare? -->
+                    </ThingDef>
+                    
+                    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+                        <defName>Ammo_GreatArrow_Battery</defName>
+                        <label>great arrow (battery)</label>
+                        <graphicData>
+                            <texPath>Bowttery</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <ammoClass>ArrowBattery</ammoClass>
+                        <statBases>
+                            <MarketValue>26.3</MarketValue>
+                        </statBases>
+                        <tradeTags>
+                            <li>CE_AutoEnableCrafting_CraftingSpot</li>
+                        </tradeTags>
+						<generateAllowChance>0.05</generateAllowChance> <!-- Very rare? -->
+                    </ThingDef>
+                </value>
+            </li>
+
+            <!--Arrow Projectiles-->
+            <!--Regular Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs</xpath>
+                <value>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_Arrow_Grenade</defName>
+                        <label>arrow (bownade)</label>
+                        <graphicData>
+                            <texPath>BownadeP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>1.5</explosionRadius>
+                            <damageDef>Bomb</damageDef>
+                            <damageAmountBase>56</damageAmountBase>
+                            <explosionDelay>60</explosionDelay>
+                            <dropsCasings>true</dropsCasings>
+                            <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+                            <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+                            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                            <speed>18</speed>
+                        </projectile>
+                        <comps>
+                            <li Class="CombatExtended.CompProperties_Fragments">
+                                <fragments>
+                                    <Fragment_Small>40</Fragment_Small>
+                                </fragments>
+                            </li>
+                        </comps>
+					</ThingDef>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_Arrow_Molotov</defName>
+                        <label>arrow (bowlotov)</label>
+                        <graphicData>
+                            <texPath>BowlotovP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>1.1</explosionRadius>
+                            <damageDef>PrometheumFlame</damageDef>
+                            <damageAmountBase>10</damageAmountBase>
+                            <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+                            <preExplosionSpawnChance>1</preExplosionSpawnChance>
+                            <speed>18</speed>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_Arrow_EMP</defName>
+                        <label>arrow (bowMP)</label>
+                        <graphicData>
+                            <texPath>BowMPP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>3</explosionRadius>
+                            <damageDef>EMP</damageDef>
+                            <damageAmountBase>56</damageAmountBase>
+                            <explosionDelay>60</explosionDelay>
+                            <dropsCasings>true</dropsCasings>
+                            <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+                            <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+                            <speed>18</speed>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_Arrow_Battery</defName>
+                        <label>arrow (bowttery)</label>
+                        <graphicData>
+                            <texPath>BowtteryP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>1.1</explosionRadius>
+                            <damageDef>Bomb</damageDef>
+                            <damageAmountBase>200</damageAmountBase>
+                            <speed>18</speed>
+                        </projectile>
+                    </ThingDef>
+                
+                </value>
+            </li>
+
+            <!--Streamlined Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs</xpath>
+                <value>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_StreamlinedArrow_Grenade</defName>
+                        <label>streamlined arrow (bownade)</label>
+                        <graphicData>
+                            <texPath>BownadeP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>1.5</explosionRadius>
+                            <damageDef>Bomb</damageDef>
+                            <damageAmountBase>56</damageAmountBase>
+                            <explosionDelay>60</explosionDelay>
+                            <dropsCasings>true</dropsCasings>
+                            <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+                            <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+                            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                            <speed>20</speed>
+                        </projectile>
+                        <comps>
+                            <li Class="CombatExtended.CompProperties_Fragments">
+                                <fragments>
+                                    <Fragment_Small>40</Fragment_Small>
+                                </fragments>
+                            </li>
+                        </comps>
+					</ThingDef>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_StreamlinedArrow_Molotov</defName>
+                        <label>streamlined arrow (bowlotov)</label>
+                        <graphicData>
+                            <texPath>BowlotovP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>1.1</explosionRadius>
+                            <damageDef>PrometheumFlame</damageDef>
+                            <damageAmountBase>10</damageAmountBase>
+                            <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+                            <preExplosionSpawnChance>1</preExplosionSpawnChance>
+                            <speed>20</speed>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_StreamlinedArrow_EMP</defName>
+                        <label>streamlined arrow (bowMP)</label>
+                        <graphicData>
+                            <texPath>BowMPP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>3</explosionRadius>
+                            <damageDef>EMP</damageDef>
+                            <damageAmountBase>56</damageAmountBase>
+                            <explosionDelay>60</explosionDelay>
+                            <dropsCasings>true</dropsCasings>
+                            <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+                            <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+                            <speed>20</speed>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_StreamlinedArrow_Battery</defName>
+                        <label>streamlined arrow (bowttery)</label>
+                        <graphicData>
+                            <texPath>BowtteryP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>1.1</explosionRadius>
+                            <damageDef>Bomb</damageDef>
+                            <damageAmountBase>200</damageAmountBase>
+                            <speed>20</speed>
+                        </projectile>
+                    </ThingDef>
+                
+                </value>
+            </li>
+
+            <!--Great Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs</xpath>
+                <value>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_GreatArrow_Grenade</defName>
+                        <label>great arrow (bownade)</label>
+                        <graphicData>
+                            <texPath>BownadeP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>1.5</explosionRadius>
+                            <damageDef>Bomb</damageDef>
+                            <damageAmountBase>56</damageAmountBase>
+                            <explosionDelay>60</explosionDelay>
+                            <dropsCasings>true</dropsCasings>
+                            <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+                            <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+                            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                            <speed>18</speed>
+                        </projectile>
+                        <comps>
+                            <li Class="CombatExtended.CompProperties_Fragments">
+                                <fragments>
+                                    <Fragment_Small>40</Fragment_Small>
+                                </fragments>
+                            </li>
+                        </comps>
+					</ThingDef>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_GreatArrow_Molotov</defName>
+                        <label>great arrow (bowlotov)</label>
+                        <graphicData>
+                            <texPath>BowlotovP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>1.1</explosionRadius>
+                            <damageDef>PrometheumFlame</damageDef>
+                            <damageAmountBase>10</damageAmountBase>
+                            <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+                            <preExplosionSpawnChance>1</preExplosionSpawnChance>
+                            <speed>18</speed>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_GreatArrow_EMP</defName>
+                        <label>great arrow (bowMP)</label>
+                        <graphicData>
+                            <texPath>BowMPP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>3</explosionRadius>
+                            <damageDef>EMP</damageDef>
+                            <damageAmountBase>56</damageAmountBase>
+                            <explosionDelay>60</explosionDelay>
+                            <dropsCasings>true</dropsCasings>
+                            <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+                            <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+                            <speed>20</speed>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseArrowProjectile">
+                        <defName>Projectile_GreatArrow_Battery</defName>
+                        <label>great arrow (bowttery)</label>
+                        <graphicData>
+                            <texPath>BowtteryP</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <explosionRadius>1.1</explosionRadius>
+                            <damageDef>Bomb</damageDef>
+                            <damageAmountBase>200</damageAmountBase>
+                            <speed>18</speed>
+                        </projectile>
+                    </ThingDef>
+                
+                </value>
+            </li>
+
+            <!--Arrow Recipes-->
+            <!--Normal Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs</xpath>
+                <value>
+
+                <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+                    <defName>MakeAmmo_Arrow_Grenade</defName>
+                    <label>make bownade arrows x10</label>
+                    <description>Craft 10 bownade arrows.</description>
+                    <jobString>Making bownade arrows.</jobString>
+                    <workAmount>100</workAmount>
+                    <ingredients>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>WoodLog</li>
+                        </thingDefs>
+                        </filter>
+                        <count>1</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>Weapon_GrenadeFrag</li>
+                        </thingDefs>
+                        </filter>
+                        <count>10</count>
+                    </li>
+                    </ingredients>
+                    <fixedIngredientFilter>
+                    <thingDefs>
+                        <li>WoodLog</li>
+                        <li>Weapon_GrenadeFrag</li>
+                    </thingDefs>
+                    </fixedIngredientFilter>
+                    <products>
+                        <Ammo_Arrow_Grenade>10</Ammo_Arrow_Grenade>
+                    </products>
+                </RecipeDef>
+                
+                <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+                    <defName>MakeAmmo_Arrow_Molotov</defName>
+                    <label>make bowlotov arrows x10</label>
+                    <description>Craft 10 bowlotov arrows.</description>
+                    <jobString>Making bowlotov arrows.</jobString>
+                    <workAmount>100</workAmount>
+                    <ingredients>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>WoodLog</li>
+                        </thingDefs>
+                        </filter>
+                        <count>1</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>Weapon_GrenadeMolotov</li>
+                        </thingDefs>
+                        </filter>
+                        <count>10</count>
+                    </li>
+                    </ingredients>
+                    <fixedIngredientFilter>
+                    <thingDefs>
+                        <li>WoodLog</li>
+                        <li>Weapon_GrenadeMolotov</li>
+                    </thingDefs>
+                    </fixedIngredientFilter>
+                    <products>
+                        <Ammo_Arrow_Molotov>10</Ammo_Arrow_Molotov>
+                    </products>
+                </RecipeDef>
+                
+                <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+                    <defName>MakeAmmo_Arrow_EMP</defName>
+                    <label>make bowMP arrows x10</label>
+                    <description>Craft 10 bowMP arrows.</description>
+                    <jobString>Making bowMP arrows.</jobString>
+                    <workAmount>100</workAmount>
+                    <ingredients>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>WoodLog</li>
+                        </thingDefs>
+                        </filter>
+                        <count>1</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>Weapon_GrenadeEMP</li>
+                        </thingDefs>
+                        </filter>
+                        <count>10</count>
+                    </li>
+                    </ingredients>
+                    <fixedIngredientFilter>
+                    <thingDefs>
+                        <li>WoodLog</li>
+                        <li>Weapon_GrenadeEMP</li>
+                    </thingDefs>
+                    </fixedIngredientFilter>
+                    <products>
+                        <Ammo_Arrow_EMP>10</Ammo_Arrow_EMP>
+                    </products>
+                </RecipeDef>
+                
+                <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+                    <defName>MakeAmmo_Arrow_Battery</defName>
+                    <label>make bowttery arrows x10</label>
+                    <description>Craft 10 bowttery arrows.</description>
+                    <jobString>Making bowttery arrows.</jobString>
+                    <workAmount>100</workAmount>
+                    <ingredients>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>WoodLog</li>
+                        </thingDefs>
+                        </filter>
+                        <count>1</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>Steel</li>
+                        </thingDefs>
+                        </filter>
+                        <count>20</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>ComponentIndustrial</li>
+                        </thingDefs>
+                        </filter>
+                        <count>1</count>
+                    </li>
+                    </ingredients>
+                    <fixedIngredientFilter>
+                    <thingDefs>
+                        <li>WoodLog</li>
+                        <li>Steel</li>
+                        <li>ComponentIndustrial</li>
+                    </thingDefs>
+                    </fixedIngredientFilter>
+                    <products>
+                        <Ammo_Arrow_Battery>10</Ammo_Arrow_Battery>
+                    </products>
+                </RecipeDef>
+
+                </value>
+            </li>
+            
+            <!--Great Arrows-->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs</xpath>
+                <value>
+
+                <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+                    <defName>MakeAmmo_GreatArrow_Grenade</defName>
+                    <label>make bownade great arrows x10</label>
+                    <description>Craft 10 bownade great arrows.</description>
+                    <jobString>Making bownade great arrows.</jobString>
+                    <workAmount>300</workAmount>
+                    <ingredients>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>WoodLog</li>
+                        </thingDefs>
+                        </filter>
+                        <count>3</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>Weapon_GrenadeFrag</li>
+                        </thingDefs>
+                        </filter>
+                        <count>10</count>
+                    </li>
+                    </ingredients>
+                    <fixedIngredientFilter>
+                    <thingDefs>
+                        <li>WoodLog</li>
+                        <li>Weapon_GrenadeFrag</li>
+                    </thingDefs>
+                    </fixedIngredientFilter>
+                    <products>
+                        <Ammo_GreatArrow_Grenade>10</Ammo_GreatArrow_Grenade>
+                    </products>
+                </RecipeDef>
+                
+                <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+                    <defName>MakeAmmo_GreatArrow_Molotov</defName>
+                    <label>make bowlotov great arrows x10</label>
+                    <description>Craft 10 bowlotov great arrows.</description>
+                    <jobString>Making bowlotov great arrows.</jobString>
+                    <workAmount>100</workAmount>
+                    <ingredients>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>WoodLog</li>
+                        </thingDefs>
+                        </filter>
+                        <count>3</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>Weapon_GrenadeMolotov</li>
+                        </thingDefs>
+                        </filter>
+                        <count>10</count>
+                    </li>
+                    </ingredients>
+                    <fixedIngredientFilter>
+                    <thingDefs>
+                        <li>WoodLog</li>
+                        <li>Weapon_GrenadeMolotov</li>
+                    </thingDefs>
+                    </fixedIngredientFilter>
+                    <products>
+                        <Ammo_GreatArrow_Molotov>10</Ammo_GreatArrow_Molotov>
+                    </products>
+                </RecipeDef>
+                
+                <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+                    <defName>MakeAmmo_GreatArrow_EMP</defName>
+                    <label>make bowMP great arrows x10</label>
+                    <description>Craft 10 bowMP great arrows.</description>
+                    <jobString>Making bowMP great arrows.</jobString>
+                    <workAmount>100</workAmount>
+                    <ingredients>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>WoodLog</li>
+                        </thingDefs>
+                        </filter>
+                        <count>3</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>Weapon_GrenadeEMP</li>
+                        </thingDefs>
+                        </filter>
+                        <count>10</count>
+                    </li>
+                    </ingredients>
+                    <fixedIngredientFilter>
+                    <thingDefs>
+                        <li>WoodLog</li>
+                        <li>Weapon_GrenadeEMP</li>
+                    </thingDefs>
+                    </fixedIngredientFilter>
+                    <products>
+                        <Ammo_GreatArrow_EMP>10</Ammo_GreatArrow_EMP>
+                    </products>
+                </RecipeDef>
+                
+                <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+                    <defName>MakeAmmo_GreatArrow_Battery</defName>
+                    <label>make bowttery great arrows x10</label>
+                    <description>Craft 10 bowttery great arrows.</description>
+                    <jobString>Making bowttery great arrows.</jobString>
+                    <workAmount>100</workAmount>
+                    <ingredients>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>WoodLog</li>
+                        </thingDefs>
+                        </filter>
+                        <count>3</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>Steel</li>
+                        </thingDefs>
+                        </filter>
+                        <count>20</count>
+                    </li>
+                    <li>
+                        <filter>
+                        <thingDefs>
+                            <li>ComponentIndustrial</li>
+                        </thingDefs>
+                        </filter>
+                        <count>1</count>
+                    </li>
+                    </ingredients>
+                    <fixedIngredientFilter>
+                    <thingDefs>
+                        <li>WoodLog</li>
+                        <li>Steel</li>
+                        <li>ComponentIndustrial</li>
+                    </thingDefs>
+                    </fixedIngredientFilter>
+                    <products>
+                        <Ammo_GreatArrow_Battery>10</Ammo_GreatArrow_Battery>
+                    </products>
+                </RecipeDef>
+
+                </value>
+            </li>
+
+		</operations>
+	</match>
+	</Operation>
+</Patch>

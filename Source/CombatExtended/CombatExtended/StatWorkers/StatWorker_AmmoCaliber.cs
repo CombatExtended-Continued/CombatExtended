@@ -50,13 +50,13 @@ namespace CombatExtended
                     foreach (var ammoSet in ammoSetDefs)
                     {
                         var launcherNameArray = users.Where(x => count == 1 || x.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet == ammoSet)
-                                            .Select(y => y.label.CapitalizeFirst())
-                                            .ToArray();
+                                                .Select(y => y.label.CapitalizeFirst())
+                                                .ToArray();
 
                         var projectile = ammoSet.ammoTypes.Find(x => x.ammo == (req.Def as AmmoDef)).projectile;
 
                         stringBuilder.AppendLine(ammoSet.LabelCap + " (" + string.Join(", ", launcherNameArray) + "):\n"
-                            + projectile.GetProjectileReadout(null));   //Is fine handling req.Thing == null, then it sets mult = 1
+                                                 + projectile.GetProjectileReadout(null));   //Is fine handling req.Thing == null, then it sets mult = 1
                     }
                 }
             }
@@ -67,7 +67,7 @@ namespace CombatExtended
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
             var list = (optionalReq.Def as AmmoDef)?.AmmoSetDefs;
-            return list.FirstOrDefault().LabelCap + (list.Count > 1 ? " (+"+(list.Count - 1)+")" : "");
+            return list.FirstOrDefault().LabelCap + (list.Count > 1 ? " (+" + (list.Count - 1) + ")" : "");
         }
     }
 }

@@ -21,7 +21,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="70mmMechanoidGrenadeBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="70mmMechanoidGrenadeBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
 		<description>Low velocity, large bore grenade fired from mechanoid grenade launchers.</description>
 		<statBases>
 			<Mass>1.58</Mass>
@@ -45,7 +45,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-		<MarketValue>36.68</MarketValue>
+		<MarketValue>18.34</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
 		</statBases>		
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_70mmMechanoidGrenade_HE</detonateProjectile>
@@ -59,7 +59,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-		<MarketValue>78.64</MarketValue>
+		<MarketValue>39.32</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
 		</statBases>		
 		<ammoClass>GrenadeEMP</ammoClass>
 		<comps>
@@ -79,7 +79,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base70mmMechanoidGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base70mmMechanoidGrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>

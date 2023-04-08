@@ -3,7 +3,7 @@
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Censored Armory [1.3]</li>
+			<li>Censored Armory</li>
 		</mods>
 		<match Class="PatchOperationAdd">
 			<xpath>Defs</xpath>
@@ -30,7 +30,7 @@
 
 				<!-- ==================== Ammo ========================== -->
 
-				<ThingDef Class="CombatExtended.AmmoDef" Name="75cmleIG18CannonShellBase" ParentName="AmmoBase" Abstract="True">
+				<ThingDef Class="CombatExtended.AmmoDef" Name="75cmleIG18CannonShellBase" ParentName="HeavyAmmoBase" Abstract="True">
 					<description>Light cannon shell used in field guns.</description>
 					<thingCategories>
 						<li>Ammo75cmleIG18CannonShells</li>
@@ -90,7 +90,7 @@
 
 				<!-- ================== Projectiles ================== -->
 
-				<ThingDef Name="Base75cmleIG18CannonShell" ParentName="BaseBullet" Abstract="true">
+				<ThingDef Name="Base75cmleIG18CannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
 					<graphicData>
 						<shaderType>TransparentPostLight</shaderType>
 					</graphicData>
@@ -100,6 +100,7 @@
 						<flyOverhead>false</flyOverhead>
 						<dropsCasings>true</dropsCasings>
 						<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 						<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 					</projectile>
 				</ThingDef>
 

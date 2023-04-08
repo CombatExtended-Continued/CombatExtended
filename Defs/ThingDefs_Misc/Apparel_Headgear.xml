@@ -1,13 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
     <ThingDef ParentName="ArmorHelmetMakeableBase">
-        <defName>Apparel_Bascinet</defName>
-        <label>bascinet</label>
+        <defName>CE_Apparel_PlateHelmet</defName>
+        <label>plate helmet</label>
         <description>A medieval helmet that provides full coverage of the head. Somewhat protective, but restricts the wearer's field of view which affects attack accuracy.</description>
         <graphicData>
-            <texPath>Things/Apparel/Bascinet/Bascinet</texPath>
+            <texPath>Things/Apparel/PlateHelmet/CE_PlateHelmet</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
+        <possessionCount>1</possessionCount>
         <stuffCategories>
             <li>Metallic</li>
         </stuffCategories>
@@ -15,7 +17,7 @@
         <statBases>
             <WorkToMake>8000</WorkToMake>
             <MaxHitPoints>120</MaxHitPoints>
-            <Mass>3.5</Mass>
+            <Mass>3.0</Mass>
             <Bulk>5</Bulk>
             <WornBulk>1</WornBulk>
             <StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
@@ -24,9 +26,9 @@
             <EquipDelay>4</EquipDelay>
         </statBases>
         <equippedStatOffsets>
-			<AimingAccuracy>-0.4</AimingAccuracy>
+            <AimingAccuracy>-0.4</AimingAccuracy>
             <MeleeHitChance>-2</MeleeHitChance>
-		</equippedStatOffsets>
+        </equippedStatOffsets>
         <recipeMaker>
             <recipeUsers>
                 <li>ElectricSmithy</li>
@@ -41,9 +43,11 @@
             <bodyPartGroups>
                 <li>FullHead</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/Bascinet/Bascinet</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/PlateHelmet/CE_PlateHelmet</wornGraphicPath>
             <layers>
                 <li>Overhead</li>
+                <li>OnHead</li>
+                <li>StrappedHead</li>                
             </layers>
             <tags>
                 <li>MedievalMilitary</li>                
@@ -70,28 +74,33 @@
 				</stats>
 			</li>
 		</modExtensions>
+		<tradeTags>
+			<li>Armor</li>
+		</tradeTags>
     </ThingDef>
 
-    <ThingDef ParentName="ArmorHelmetMakeableBase">
-        <defName>Apparel_GasMask</defName>
+    <ThingDef ParentName="HatMakeableBase">
+        <defName>CE_Apparel_GasMask</defName>
         <label>gas mask</label>
         <description>Sealed rubber mask with a filter attached. Will protect against smoke inhalation and airborne toxins.</description>
         <graphicData>
             <texPath>Things/Apparel/GasMask/CE_GasMask</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
-		<techLevel>Industrial</techLevel>
-		<generateAllowChance>0.2</generateAllowChance>
-		<recipeMaker>
-		  <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-		  <skillRequirements>
-			<Crafting>8</Crafting>
-		  </skillRequirements>
-		</recipeMaker>
-		<costList>
-		  <ComponentIndustrial>2</ComponentIndustrial>
-		  <Chemfuel>10</Chemfuel>
-		</costList>
+        <possessionCount>1</possessionCount>
+        <techLevel>Industrial</techLevel>
+        <generateAllowChance>0.5</generateAllowChance>
+        <recipeMaker>
+            <researchPrerequisite>Machining</researchPrerequisite>
+            <unfinishedThingDef>UnfinishedMask</unfinishedThingDef>
+            <recipeUsers Inherit="False">
+                <li>TableMachining</li>
+            </recipeUsers>
+        </recipeMaker>
+        <costList>
+            <ComponentIndustrial>2</ComponentIndustrial>
+            <Chemfuel>10</Chemfuel>
+        </costList>
         <statBases>
             <WorkToMake>8000</WorkToMake>
             <MaxHitPoints>100</MaxHitPoints>
@@ -101,11 +110,13 @@
             <EquipDelay>0.5</EquipDelay>
         </statBases>
         <equippedStatOffsets>
-            <ToxicSensitivity>-0.5</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
             <SmokeSensitivity>-1</SmokeSensitivity>
         </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
+            <immuneToToxGasExposure>true</immuneToToxGasExposure>
             <bodyPartGroups>
                 <li>Eyes</li>
                 <li>Teeth</li>
@@ -115,13 +126,10 @@
                 <li>StrappedHead</li>
             </layers>
             <tags>
-                <li>IndustrialMilitaryAdvanced</li>
+                <li>IndustrialMilitaryBasic</li>
                 <li>GasMask</li>
             </tags>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
-              <hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
+            <hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
         </apparel>
         <modExtensions>
             <li Class="CombatExtended.ApparelHediffExtension">
@@ -132,33 +140,32 @@
                 <HideBeard>true</HideBeard>
             </li>
         </modExtensions>
-        <thingCategories Inherit="false">
-            <li>Headgear</li>
-        </thingCategories>
+        <tradeTags>
+            <li>Clothing</li>
+        </tradeTags>
     </ThingDef>
 
     <ThingDef ParentName="HatMakeableBase">
-        <defName>Apparel_ImprovGasMask</defName>
+        <defName>CE_Apparel_ImprovGasMask</defName>
         <label>improvised gas mask</label>
         <description>Crude gas mask fashioned from thick cloth and charcoal. Provides some limited protection against smoke and airborne toxins.</description>
         <graphicData>
             <texPath>Things/Apparel/ImprovGasMask/CE_ImprovGasMask</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
-		<techLevel>Neolithic</techLevel>
-		<generateAllowChance>0.1</generateAllowChance>
-		<recipeMaker>
-		  <skillRequirements>
-			<Crafting>6</Crafting>
-		  </skillRequirements>
-		  <recipeUsers>
-			  <li>CraftingSpot</li>
-		  </recipeUsers>
-		</recipeMaker>
-		<costList>
-		  <WoodLog>4</WoodLog>
-		  <Cloth>40</Cloth>
-		</costList>
+        <possessionCount>1</possessionCount>
+        <techLevel>Neolithic</techLevel>
+        <generateAllowChance>0.25</generateAllowChance>
+        <recipeMaker>
+            <unfinishedThingDef>UnfinishedMask</unfinishedThingDef>
+            <recipeUsers>
+                <li>CraftingSpot</li>
+            </recipeUsers>
+        </recipeMaker>
+        <costList>
+            <WoodLog>4</WoodLog>
+            <Cloth>20</Cloth>
+        </costList>
         <statBases>
             <WorkToMake>8000</WorkToMake>
             <MaxHitPoints>100</MaxHitPoints>
@@ -168,11 +175,12 @@
             <EquipDelay>1</EquipDelay>
         </statBases>
         <equippedStatOffsets>
-            <ToxicSensitivity>-0.3</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
             <SmokeSensitivity>-0.6</SmokeSensitivity>
         </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
             <bodyPartGroups>
                 <li>Eyes</li>
                 <li>Teeth</li>
@@ -181,9 +189,6 @@
             <layers>
                 <li>StrappedHead</li>
             </layers>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
             <tags>
                 <li>GasMask</li>
             </tags>
@@ -198,29 +203,33 @@
                 <HideBeard>true</HideBeard>
             </li>
         </modExtensions>
+        <tradeTags>
+            <li>Clothing</li>
+        </tradeTags>
     </ThingDef>
 
     <ThingDef ParentName="ArmorHelmetMakeableBase">
-        <defName>Apparel_SimpleNightVision</defName>
+        <defName>CE_Apparel_SimpleNightVision</defName>
         <label>night vision monocular</label>
         <description>A simple, monocular night vision device, worn strapped to the head.</description>
         <graphicData>
             <texPath>Things/Apparel/SimpleNightVision/CE_SimpleNightVision</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
-		<techLevel>Industrial</techLevel>
-		<generateAllowChance>0.2</generateAllowChance>
-		<recipeMaker>
-		  <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-		  <skillRequirements>
-			<Crafting>6</Crafting>
-		  </skillRequirements>
-			<researchPrerequisite>CE_SimpleNV</researchPrerequisite>      
-		</recipeMaker>
-		<costList>
-		  <ComponentIndustrial>5</ComponentIndustrial>
-		  <Steel>50</Steel>
-		</costList>
+        <possessionCount>1</possessionCount>
+        <techLevel>Industrial</techLevel>
+        <generateAllowChance>0.2</generateAllowChance>
+        <recipeMaker>
+            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+            <skillRequirements>
+                <Crafting>6</Crafting>
+            </skillRequirements>
+            <researchPrerequisite>CE_SimpleNV</researchPrerequisite>      
+        </recipeMaker>
+        <costList>
+            <ComponentIndustrial>5</ComponentIndustrial>
+            <Steel>50</Steel>
+        </costList>
         <statBases>
             <WorkToMake>8000</WorkToMake>
             <MaxHitPoints>100</MaxHitPoints>
@@ -253,33 +262,36 @@
                 <HideBeard>false</HideBeard>
             </li>
         </modExtensions>
-        <thingCategories Inherit="false">
+        <thingCategories Inherit="False">
             <li>Headgear</li>
         </thingCategories>
+        <tradeTags>
+            <li>Armor</li>
+        </tradeTags>
     </ThingDef>
 
     <ThingDef ParentName="ArmorHelmetMakeableBase">
-        <defName>Apparel_AdvancedNightVision</defName>
+        <defName>CE_Apparel_AdvancedNightVision</defName>
         <label>advanced night vision goggles</label>
         <description>An set of advanced night vision goggles offering detailed, panoramic vision when fighting in the dark.</description>
         <graphicData>
             <texPath>Things/Apparel/AdvancedNightVision/CE_AdvancedNightVision</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
-		<techLevel>Industrial</techLevel>
-		<generateAllowChance>0.1</generateAllowChance>
-		<recipeMaker>
-		  <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-		  <skillRequirements>
-			<Crafting>9</Crafting>
-		  </skillRequirements>
-		  <researchPrerequisite>CE_AdvancedNV</researchPrerequisite>         
-		</recipeMaker>
-		<costList>
-		  <ComponentIndustrial>6</ComponentIndustrial>
-		  <Steel>40</Steel>
-		  <Plasteel>10</Plasteel>
-		</costList>
+        <techLevel>Industrial</techLevel>
+        <generateAllowChance>0.1</generateAllowChance>
+        <recipeMaker>
+            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+            <skillRequirements>
+                <Crafting>9</Crafting>
+            </skillRequirements>
+            <researchPrerequisite>CE_AdvancedNV</researchPrerequisite>         
+        </recipeMaker>
+        <costList>
+            <ComponentIndustrial>6</ComponentIndustrial>
+            <Steel>40</Steel>
+            <Plasteel>10</Plasteel>
+        </costList>
         <statBases>
             <WorkToMake>14000</WorkToMake>
             <MaxHitPoints>100</MaxHitPoints>
@@ -312,9 +324,12 @@
                 <HideBeard>false</HideBeard>
             </li>
         </modExtensions>
-        <thingCategories Inherit="false">
+        <thingCategories Inherit="False">
             <li>Headgear</li>
         </thingCategories>
+        <tradeTags>
+            <li>Armor</li>
+        </tradeTags>
     </ThingDef>
 
 </Defs>

@@ -90,7 +90,7 @@
 
 					<!-- ================== Projectiles ================== -->
 
-					<ThingDef Name="BaseXennBullet" ParentName="BaseBullet" Abstract="true">
+					<ThingDef Name="BaseXennBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 						<graphicData>
 							<texPath>Things/Projectile/LauncherShot</texPath>
 							<graphicClass>Graphic_Single</graphicClass>
@@ -133,6 +133,8 @@
 						<label>foam bolt</label>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<damageDef>Extinguish</damageDef>
+<suppressionFactor>0.0</suppressionFactor>
+<dangerFactor>0.0</dangerFactor>
 							<damageAmountBase>50</damageAmountBase>
 							<explosionRadius>1</explosionRadius>
 							<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>

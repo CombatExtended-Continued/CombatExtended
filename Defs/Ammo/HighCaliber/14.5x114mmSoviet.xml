@@ -15,16 +15,17 @@
     <label>14.5x114mm</label>
     <ammoTypes>
       <Ammo_145x114mm_FMJ>Bullet_145x114mm_FMJ</Ammo_145x114mm_FMJ>
+      <Ammo_145x114mm_AP>Bullet_145x114mm_AP</Ammo_145x114mm_AP>
       <Ammo_145x114mm_Incendiary>Bullet_145x114mm_Incendiary</Ammo_145x114mm_Incendiary>
       <Ammo_145x114mm_HE>Bullet_145x114mm_HE</Ammo_145x114mm_HE>
-	  <Ammo_145x114mm_Sabot>Bullet_145x114mm_Sabot</Ammo_145x114mm_Sabot>	  
+      <Ammo_145x114mm_Sabot>Bullet_145x114mm_Sabot</Ammo_145x114mm_Sabot>	  
     </ammoTypes>
-		<similarTo>AmmoSet_AntiMateriel</similarTo>
+    <similarTo>AmmoSet_AntiMateriel</similarTo>
   </CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo145x114mmBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo145x114mmBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Old-school anti-tank cartridge originally designed for AT rifles, it is also used by a number of heavy machine guns.</description>
     <statBases>
       <Mass>0.186</Mass>
@@ -55,6 +56,20 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo145x114mmBase">
+    <defName>Ammo_145x114mm_AP</defName>
+    <label>14.5x114mm cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.76</MarketValue>
+    </statBases>
+    <ammoClass>ArmorPiercing</ammoClass>
+    <cookOffProjectile>Bullet_145x114mm_AP</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo145x114mmBase">
     <defName>Ammo_145x114mm_Incendiary</defName>
     <label>14.5x114mm cartridge (AP-I)</label>
     <graphicData>
@@ -70,7 +85,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo145x114mmBase">
     <defName>Ammo_145x114mm_HE</defName>
-    <label>14.5x114mm cartridge (HE)</label>
+    <label>14.5x114mm cartridge (AP-HE)</label>
     <graphicData>
       <texPath>Things/Ammo/HighCaliber/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -99,7 +114,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base145x114mmBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base145x114mmBullet" ParentName="BaseBulletCE" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/Bullet_Big</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -122,6 +137,16 @@
   </ThingDef>
 
   <ThingDef ParentName="Base145x114mmBullet">
+    <defName>Bullet_145x114mm_AP</defName>
+    <label>14.5x114mm bullet (AP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>33</damageAmountBase>
+      <armorPenetrationSharp>36</armorPenetrationSharp>
+      <armorPenetrationBlunt>634</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base145x114mmBullet">
     <defName>Bullet_145x114mm_Incendiary</defName>
     <label>14.5x114mm bullet (AP-I)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -139,7 +164,7 @@
 
   <ThingDef ParentName="Base145x114mmBullet">
     <defName>Bullet_145x114mm_HE</defName>
-    <label>14.5x114mm bullet (HE)</label>
+    <label>14.5x114mm bullet (AP-HE)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>53</damageAmountBase>
       <armorPenetrationSharp>18</armorPenetrationSharp>
@@ -163,6 +188,7 @@
       <armorPenetrationBlunt>820.360</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
+
   <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -189,6 +215,32 @@
       <Ammo_145x114mm_FMJ>200</Ammo_145x114mm_FMJ>
     </products>
     <workAmount>7600</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_145x114mm_AP</defName>
+    <label>make 14.5x114mm (AP) cartridge x200</label>
+    <description>Craft 200 14.5x114mm (AP) cartridges.</description>
+    <jobString>Making 14.5x114mm (AP) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>76</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_145x114mm_AP>200</Ammo_145x114mm_AP>
+    </products>
+    <workAmount>9120</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -228,9 +280,9 @@
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_145x114mm_HE</defName>
-    <label>make 14.5x114mm (HE) cartridge x200</label>
-    <description>Craft 200 14.5x114mm (HE) cartridges.</description>
-    <jobString>Making 14.5x114mm (HE) cartridges.</jobString>
+    <label>make 14.5x114mm (AP-HE) cartridge x200</label>
+    <description>Craft 200 14.5x114mm (AP-HE) cartridges.</description>
+    <jobString>Making 14.5x114mm (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

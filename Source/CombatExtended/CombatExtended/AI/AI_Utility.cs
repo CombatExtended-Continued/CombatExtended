@@ -17,9 +17,14 @@ namespace CombatExtended.AI
         public static CompTacticalManager GetTacticalManager(this Pawn pawn)
         {
             if (_compTactical.TryGetValue(pawn, out var comp))
+            {
                 return comp;
+            }
             comp = pawn.TryGetComp<CompTacticalManager>();
-            if (comp != null) _compTactical[pawn] = comp;
+            if (comp != null)
+            {
+                _compTactical[pawn] = comp;
+            }
             return comp;
         }
 
@@ -29,13 +34,15 @@ namespace CombatExtended.AI
             IntVec3 startPos = pawn.Position;
             IntVec3 endPos = targetFacing.Cell;
             foreach (IntVec3 cell in GenSight.PointsOnLineOfSight(startPos, new IntVec3(
-                    (int)((startPos.x * 3 + endPos.x) / 4f),
-                    (int)((startPos.y * 3 + endPos.y) / 4f),
-                    (int)((startPos.z * 3 + endPos.z) / 4f))))
+                         (int)((startPos.x * 3 + endPos.x) / 4f),
+                         (int)((startPos.y * 3 + endPos.y) / 4f),
+                         (int)((startPos.z * 3 + endPos.z) / 4f))))
             {
                 Thing cover = cell.GetCover(map);
                 if (cover != null && cover.def.Fillage == FillCategory.Partial)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -47,7 +54,9 @@ namespace CombatExtended.AI
             float d = Mathf.Max(Mathf.Abs(dx), Mathf.Abs(dz));
             float score = 0f;
             if (d == 0)
+            {
                 return 0f;
+            }
             dx /= d;
             dz /= d;
             int i = 1;
@@ -57,9 +66,13 @@ namespace CombatExtended.AI
                 if (cover != null)
                 {
                     if (cover.def.Fillage == FillCategory.Partial)
+                    {
                         score += 0.99999f;
+                    }
                     else if (cover.def.Fillage == FillCategory.Full)
+                    {
                         score += 0.33333f;
+                    }
                 }
                 map.debugDrawer.FlashCell((startPos + new IntVec3((int)(dx * i), 0, (int)(dz * i))), 1.0f);
                 i++;
@@ -70,7 +83,9 @@ namespace CombatExtended.AI
         public static void TrySetFireMode(this CompFireModes fireModes, FireMode mode)
         {
             if (fireModes.CurrentFireMode == mode || fireModes.AvailableFireModes.Count == 1)
+            {
                 return;
+            }
             int m = (int)mode;
             int i = 0;
             while (i < 3)
@@ -88,7 +103,9 @@ namespace CombatExtended.AI
         public static void TrySetAimMode(this CompFireModes fireModes, AimMode mode)
         {
             if (fireModes.CurrentAimMode == mode || fireModes.AvailableAimModes.Count == 1)
+            {
                 return;
+            }
             int m = (int)mode;
             int i = 0;
             while (i < 3)
@@ -108,9 +125,13 @@ namespace CombatExtended.AI
         {
             float curDist = other.Position.DistanceTo(pawn.Position);
             if (other.pather.moving && curDist > other.pather.destination.Cell.DistanceTo(pawn.Position))
+            {
                 return true;
+            }
             if (pawn.pather.moving && curDist > pawn.pather.destination.Cell.DistanceTo(other.Position))
+            {
                 return true;
+            }
             return false;
         }
 
@@ -118,9 +139,13 @@ namespace CombatExtended.AI
         {
             float curDist = other.Position.DistanceTo(pawn.Position);
             if (other.pather.moving && curDist < other.pather.destination.Cell.DistanceTo(pawn.Position))
+            {
                 return true;
+            }
             if (pawn.pather.moving && curDist < pawn.pather.destination.Cell.DistanceTo(other.Position))
+            {
                 return true;
+            }
             return false;
         }
 
@@ -128,15 +153,25 @@ namespace CombatExtended.AI
         {
             LightingTracker tracker = map.GetLightingTracker();
             if (!tracker.IsNight)
+            {
                 return true;
+            }
             if (target.DistanceTo(shooter.Position) < 15)
+            {
                 return true;
+            }
             if (tracker.CombatGlowAtFor(shooter.Position, target) >= 0.5f)
+            {
                 return true;
+            }
             if ((nightVisionEfficiency == -1 ? shooter.GetStatValue(CE_StatDefOf.NightVisionEfficiency) : nightVisionEfficiency) > 0.6)
+            {
                 return true;
+            }
             if (target.Roofed(map))
+            {
                 return true;
+            }
             return false;
         }
 
@@ -148,7 +183,9 @@ namespace CombatExtended.AI
             {
                 IntVec3 centroid = new IntVec3((int)(((float)center.x + node.x) / 2f), (int)(((float)center.y + node.y) / 2f), (int)(((float)center.z + node.z) / 2f));
                 if (verbRange >= centroid.DistanceTo(castPosition) && (predicate?.Invoke(centroid) ?? false))
+                {
                     center = centroid;
+                }
             }
             return center;
         }

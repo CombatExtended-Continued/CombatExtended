@@ -29,7 +29,10 @@ namespace CombatExtended.AI
         public static bool CanDoRole(this Pawn pawn, CombatRole role)
         {
             CompInventory comp = pawn.TryGetComp<CompInventory>();
-            if (comp == null) return false;
+            if (comp == null)
+            {
+                return false;
+            }
             switch (role)
             {
                 default:
@@ -66,14 +69,26 @@ namespace CombatExtended.AI
         /// <returns>True if the pawn has a gun tagged as assault weapon (e.g. SMG or shotgun) or their only ranged weapon is a pistol (with ammo), false otherwise</returns>
         private static bool CanBeAssault(Pawn pawn, CompInventory comp)
         {
-            if (comp.rangedWeaponList.NullOrEmpty()) return false;
+            if (comp.rangedWeaponList.NullOrEmpty())
+            {
+                return false;
+            }
             bool hasPistol = false;
             bool hasNonPistol = false;
             foreach (ThingWithComps gun in comp.rangedWeaponList)
             {
-                if (gun.def.IsAssaultGun() && gun.HasAmmo()) return true;
-                if (gun.def.IsPistol()) hasPistol = hasPistol || gun.HasAmmo();
-                else hasNonPistol = hasNonPistol || gun.HasAmmo();
+                if (gun.def.IsAssaultGun() && gun.HasAmmo())
+                {
+                    return true;
+                }
+                if (gun.def.IsPistol())
+                {
+                    hasPistol = hasPistol || gun.HasAmmo();
+                }
+                else
+                {
+                    hasNonPistol = hasNonPistol || gun.HasAmmo();
+                }
             }
             return hasPistol && !hasNonPistol;
         }
@@ -185,7 +200,10 @@ namespace CombatExtended.AI
                         // Score the grenade based on damage and explosion radius and compare against stored max
                         ThingDef grenade = compEq.PrimaryVerb.verbProps.projectileDef;
                         score = grenade.projectile.damageAmountBase * grenade.projectile.explosionRadius * (grenade.HasComp(typeof(CompExplosiveCE)) ? 2 : 1);
-                        if (score > maxGrenadeScore) bestGrenade = curWeapon;
+                        if (score > maxGrenadeScore)
+                        {
+                            bestGrenade = curWeapon;
+                        }
                     }
                     else
                     {
@@ -194,7 +212,10 @@ namespace CombatExtended.AI
                         ThingDef bullet = verb as Verb_LaunchProjectileCE == null ? verb.verbProps.projectileDef : (verb as Verb_LaunchProjectileCE).ProjectileDef;
                         float secPerBurst = verb.verbProps.warmupTime + curWeapon.GetStatValue(StatDefOf.RangedWeapon_Cooldown) + (verb.verbProps.ticksBetweenBurstShots * verb.verbProps.burstShotCount);  // Overall time for one burst
                         score = bullet.projectile.damageAmountBase * verb.verbProps.burstShotCount / secPerBurst;
-                        if (score > maxGunScore) bestGun = curWeapon;
+                        if (score > maxGunScore)
+                        {
+                            bestGun = curWeapon;
+                        }
                     }
                 }
             }

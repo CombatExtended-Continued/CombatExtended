@@ -55,52 +55,52 @@ namespace CombatExtended
 
             // label + buttons for outfit
             Rect outfitRect = new Rect(header.xMin,
-                                        header.yMin,
-                                        header.width * (1f / 4f) + (_margin + _buttonSize) / 2f,
-                                        header.height);
+                                       header.yMin,
+                                       header.width * (1f / 4f) + (_margin + _buttonSize) / 2f,
+                                       header.height);
             Rect labelOutfitRect = new Rect(outfitRect.xMin,
-                                             outfitRect.yMin,
-                                             outfitRect.width - _margin * 3 - _buttonSize * 2,
-                                             outfitRect.height)
-                                             .ContractedBy(_margin / 2f);
+                                            outfitRect.yMin,
+                                            outfitRect.width - _margin * 3 - _buttonSize * 2,
+                                            outfitRect.height)
+            .ContractedBy(_margin / 2f);
             Rect editOutfitRect = new Rect(labelOutfitRect.xMax + _margin,
-                                            outfitRect.yMin + ((outfitRect.height - _buttonSize) / 2),
-                                            _buttonSize,
-                                            _buttonSize);
+                                           outfitRect.yMin + ((outfitRect.height - _buttonSize) / 2),
+                                           _buttonSize,
+                                           _buttonSize);
             Rect forcedOutfitRect = new Rect(labelOutfitRect.xMax + _buttonSize + _margin * 2,
-                                              outfitRect.yMin + ((outfitRect.height - _buttonSize) / 2),
-                                              _buttonSize,
-                                              _buttonSize);
+                                             outfitRect.yMin + ((outfitRect.height - _buttonSize) / 2),
+                                             _buttonSize,
+                                             _buttonSize);
 
             // label + button for drugs
             Rect drugRect = new Rect(outfitRect.xMax,
-                                  header.yMin,
-                                  header.width * (1f / 4f) - (_margin + _buttonSize) / 2f,
-                                  header.height);
+                                     header.yMin,
+                                     header.width * (1f / 4f) - (_margin + _buttonSize) / 2f,
+                                     header.height);
             Rect labelDrugRect = new Rect(drugRect.xMin,
-                                              drugRect.yMin,
-                                              drugRect.width - _margin * 2 - _buttonSize,
-                                              drugRect.height)
-                                              .ContractedBy(_margin / 2f);
+                                          drugRect.yMin,
+                                          drugRect.width - _margin * 2 - _buttonSize,
+                                          drugRect.height)
+            .ContractedBy(_margin / 2f);
             Rect editDrugRect = new Rect(labelDrugRect.xMax + _margin,
-                                             drugRect.yMin + ((drugRect.height - _buttonSize) / 2),
-                                             _buttonSize,
-                                             _buttonSize);
+                                         drugRect.yMin + ((drugRect.height - _buttonSize) / 2),
+                                         _buttonSize,
+                                         _buttonSize);
 
             // label + button for loadout
             Rect loadoutRect = new Rect(drugRect.xMax,
-                                         header.yMin,
-                                         header.width * (1f / 4f) - (_margin + _buttonSize) / 2f,
-                                         header.height);
+                                        header.yMin,
+                                        header.width * (1f / 4f) - (_margin + _buttonSize) / 2f,
+                                        header.height);
             Rect labelLoadoutRect = new Rect(loadoutRect.xMin,
-                                              loadoutRect.yMin,
-                                              loadoutRect.width - _margin * 2 - _buttonSize,
-                                              loadoutRect.height)
-                                              .ContractedBy(_margin / 2f);
+                                             loadoutRect.yMin,
+                                             loadoutRect.width - _margin * 2 - _buttonSize,
+                                             loadoutRect.height)
+            .ContractedBy(_margin / 2f);
             Rect editLoadoutRect = new Rect(labelLoadoutRect.xMax + _margin,
-                                             loadoutRect.yMin + ((loadoutRect.height - _buttonSize) / 2),
-                                             _buttonSize,
-                                             _buttonSize);
+                                            loadoutRect.yMin + ((loadoutRect.height - _buttonSize) / 2),
+                                            _buttonSize,
+                                            _buttonSize);
 
             // weight + bulk indicators
             Rect weightRect = new Rect(loadoutRect.xMax, header.yMin, header.width * (1f / 8f) - _margin, header.height).ContractedBy(_margin / 2f);
@@ -154,57 +154,57 @@ namespace CombatExtended
 
             // label + buttons for outfit
             Rect outfitRect = new Rect(rowRect.xMin,
-                                        rowRect.yMin,
-                                        rowRect.width * (1f / 4f) + (_margin + _buttonSize) / 2f,
-                                        rowRect.height);
+                                       rowRect.yMin,
+                                       rowRect.width * (1f / 4f) + (_margin + _buttonSize) / 2f,
+                                       rowRect.height);
 
             Rect labelOutfitRect = new Rect(outfitRect.xMin,
-                                             outfitRect.yMin,
-                                             outfitRect.width - _margin * 3 - _buttonSize * 2,
-                                             outfitRect.height)
-                                             .ContractedBy(_margin / 2f);
+                                            outfitRect.yMin,
+                                            outfitRect.width - _margin * 3 - _buttonSize * 2,
+                                            outfitRect.height)
+            .ContractedBy(_margin / 2f);
             Rect editOutfitRect = new Rect(labelOutfitRect.xMax + _margin,
-                                            outfitRect.yMin + ((outfitRect.height - _buttonSize) / 2),
-                                            _buttonSize,
-                                            _buttonSize);
+                                           outfitRect.yMin + ((outfitRect.height - _buttonSize) / 2),
+                                           _buttonSize,
+                                           _buttonSize);
             Rect forcedOutfitRect = new Rect(labelOutfitRect.xMax + _buttonSize + _margin * 2,
-                                              outfitRect.yMin + ((outfitRect.height - _buttonSize) / 2),
-                                              _buttonSize,
-                                              _buttonSize);
+                                             outfitRect.yMin + ((outfitRect.height - _buttonSize) / 2),
+                                             _buttonSize,
+                                             _buttonSize);
 
             // drucg policy
             Rect drugRect = new Rect(outfitRect.xMax,
-                                         rowRect.yMin,
-                                         rowRect.width * (1f / 4f) - (_margin + _buttonSize) / 2f,
-                                         rowRect.height);
+                                     rowRect.yMin,
+                                     rowRect.width * (1f / 4f) - (_margin + _buttonSize) / 2f,
+                                     rowRect.height);
             Rect labelDrugRect = new Rect(drugRect.xMin,
-                                              drugRect.yMin,
-                                              drugRect.width - _margin * 2 - _buttonSize,
-                                              drugRect.height)
-                                              .ContractedBy(_margin / 2f);
+                                          drugRect.yMin,
+                                          drugRect.width - _margin * 2 - _buttonSize,
+                                          drugRect.height)
+            .ContractedBy(_margin / 2f);
             Rect editDrugRect = new Rect(labelDrugRect.xMax + _margin,
-                                             drugRect.yMin + ((drugRect.height - _buttonSize) / 2),
-                                             _buttonSize,
-                                             _buttonSize);
+                                         drugRect.yMin + ((drugRect.height - _buttonSize) / 2),
+                                         _buttonSize,
+                                         _buttonSize);
 
             // label + button for loadout
             Rect loadoutRect = new Rect(drugRect.xMax,
-                                         rowRect.yMin,
-                                         rowRect.width * (1f / 4f) - (_margin + _buttonSize) / 2f,
-                                         rowRect.height);
+                                        rowRect.yMin,
+                                        rowRect.width * (1f / 4f) - (_margin + _buttonSize) / 2f,
+                                        rowRect.height);
             Rect labelLoadoutRect = new Rect(loadoutRect.xMin,
-                                              loadoutRect.yMin,
-                                              loadoutRect.width - _margin * 3 - _buttonSize * 2,
-                                              loadoutRect.height)
-                                              .ContractedBy(_margin / 2f);
+                                             loadoutRect.yMin,
+                                             loadoutRect.width - _margin * 3 - _buttonSize * 2,
+                                             loadoutRect.height)
+            .ContractedBy(_margin / 2f);
             Rect editLoadoutRect = new Rect(labelLoadoutRect.xMax + _margin,
-                                             loadoutRect.yMin + ((loadoutRect.height - _buttonSize) / 2),
-                                             _buttonSize,
-                                             _buttonSize);
-            Rect forcedHoldRect = new Rect(labelLoadoutRect.xMax + _buttonSize + _margin * 2,
-                                            loadoutRect.yMin + ((loadoutRect.height - _buttonSize) /2),
+                                            loadoutRect.yMin + ((loadoutRect.height - _buttonSize) / 2),
                                             _buttonSize,
                                             _buttonSize);
+            Rect forcedHoldRect = new Rect(labelLoadoutRect.xMax + _buttonSize + _margin * 2,
+                                           loadoutRect.yMin + ((loadoutRect.height - _buttonSize) / 2),
+                                           _buttonSize,
+                                           _buttonSize);
 
             // fight or flight button
             HostilityResponseModeUtility.DrawResponseButton(responsePos, p);
@@ -297,7 +297,7 @@ namespace CombatExtended
             // main button
             if (Widgets.ButtonText(labelLoadoutRect, p.GetLoadout().LabelCap, true, false))
             {
-            	LoadoutManager.SortLoadouts();
+                LoadoutManager.SortLoadouts();
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
                 foreach (Loadout loadout in LoadoutManager.Loadouts)
                 {
@@ -331,7 +331,10 @@ namespace CombatExtended
                     string text = "CE_ForcedHold".Translate() + ":\n";
                     foreach (HoldRecord rec in LoadoutManager.GetHoldRecords(p))
                     {
-                        if (!rec.pickedUp) continue;
+                        if (!rec.pickedUp)
+                        {
+                            continue;
+                        }
                         text = text + "\n   " + rec.thingDef.LabelCap + " x" + rec.count;
                     }
                     return text;

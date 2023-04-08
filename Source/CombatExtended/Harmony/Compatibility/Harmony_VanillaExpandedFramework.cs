@@ -37,7 +37,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 {
                     __result = false;
                 }
-                // Enable toggling webbing rendering             
+                // Enable toggling webbing rendering
                 else if (def == CE_ApparelLayerDefOf.Webbing && !Controller.settings.ShowTacticalVests)
                 {
                     __result = false;
@@ -47,6 +47,35 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 {
                     __result = __result || def.IsVisibleLayer();
                 }
+            }
+        }
+
+        [HarmonyPatch]
+        public class Harmony_Patch_YeetVEshieldStat
+        {
+            //It's my lucky day run aross a code doing similar stuff
+
+            private static MethodBase _target;
+
+            public static bool Prepare()
+            {
+                Type t = AccessTools.TypeByName("VFECore.Patch_ThingDef");
+                if (t == null)
+                {
+                    return false;
+                }
+                t = AccessTools.FindIncludingInnerTypes(t, type => type.Name == "SetFaction" ? type : null);
+                return (_target = AccessTools.Method(t, "Postfix")) != null;
+            }
+
+            public static MethodBase TargetMethod()
+            {
+                return _target;
+            }
+
+            public static bool Prefix()
+            {
+                return false;
             }
         }
     }

@@ -17,7 +17,7 @@
 			<Ammo_77x58mmArisaka_FMJ>Bullet_77x58mmArisaka_FMJ</Ammo_77x58mmArisaka_FMJ>
 			<Ammo_77x58mmArisaka_AP>Bullet_77x58mmArisaka_AP</Ammo_77x58mmArisaka_AP>
 			<Ammo_77x58mmArisaka_HP>Bullet_77x58mmArisaka_HP</Ammo_77x58mmArisaka_HP>
-		    <Ammo_77x58mmArisaka_Incendiary>Bullet_77x58mmArisaka_Incendiary</Ammo_77x58mmArisaka_Incendiary>
+			<Ammo_77x58mmArisaka_Incendiary>Bullet_77x58mmArisaka_Incendiary</Ammo_77x58mmArisaka_Incendiary>
 			<Ammo_77x58mmArisaka_HE>Bullet_77x58mmArisaka_HE</Ammo_77x58mmArisaka_HE>
 			<Ammo_77x58mmArisaka_Sabot>Bullet_77x58mmArisaka_Sabot</Ammo_77x58mmArisaka_Sabot>			
 		</ammoTypes>
@@ -32,10 +32,10 @@
 		<Mass>0.028</Mass>
 		<Bulk>0.03</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo77x58mmArisaka</li>
 		</thingCategories>
@@ -99,7 +99,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
 		<defName>Ammo_77x58mmArisaka_HE</defName>
-		<label>7.7x58mm Arisaka cartridge (HE)</label>
+		<label>7.7x58mm Arisaka cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -128,7 +128,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base77x58mmArisakaBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base77x58mmArisakaBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -189,7 +189,7 @@
 	  
 	  <ThingDef ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_77x58mmArisaka_HE</defName>
-		<label>7.7x58mm Arisaka bullet (HE)</label>
+		<label>7.7x58mm Arisaka bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>19</damageAmountBase>
 		  <armorPenetrationSharp>6</armorPenetrationSharp>
@@ -266,7 +266,7 @@
 		<products>
 			<Ammo_77x58mmArisaka_AP>500</Ammo_77x58mmArisaka_AP>
 		</products>
-	<workAmount>3000</workAmount>		
+	<workAmount>3600</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -332,9 +332,9 @@
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_77x58mmArisaka_HE</defName>
-    <label>make 7.7x58mm Arisaka (HE) cartridge x500</label>
-    <description>Craft 500 7.7x58mm Arisaka (HE) cartridges.</description>
-    <jobString>Making 7.7x58mm Arisaka (HE) cartridges.</jobString>
+    <label>make 7.7x58mm Arisaka (AP-HE) cartridge x500</label>
+    <description>Craft 500 7.7x58mm Arisaka (AP-HE) cartridges.</description>
+    <jobString>Making 7.7x58mm Arisaka (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

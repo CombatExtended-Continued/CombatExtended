@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Call of Duty: Mystery Box</li>
+      <li>Call of Duty: Zombies Pack</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/MysteryBoxFrameWork.ItemReplacerDef[defName="Replacer_RandomWeapons"]/producedItems/Gun_SmokeLauncher</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/MysteryBoxFrameWork.ItemReplacerDef[defName="Replacer_RandomWeapons"]/producedItems/Gun_EmpLauncher</xpath>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

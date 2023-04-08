@@ -82,7 +82,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base50AEBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base50AEBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -98,7 +98,7 @@
 		<label>.50 AE bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>19</damageAmountBase>
-			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationSharp>7</armorPenetrationSharp>
 			<armorPenetrationBlunt>38.480</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -108,7 +108,7 @@
 		<label>.50 AE bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
 			<armorPenetrationBlunt>38.480</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -118,7 +118,7 @@
 		<label>.50 AE bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>24</damageAmountBase>
-			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationSharp>3.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>38.480</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -150,7 +150,33 @@
 		</products>
 		<workAmount>3000</workAmount>
 	</RecipeDef>
-	
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_50AE_AP</defName>
+		<label>make .50 AE (AP) cartridge x500</label>
+		<description>Craft 500 .50 AE (AP) cartridges.</description>
+		<jobString>Making .50 AE (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_50AE_AP>500</Ammo_50AE_AP>
+		</products>
+		<workAmount>3600</workAmount>
+	</RecipeDef>
+
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_50AE_HP</defName>
 		<label>make .50 AE (HP) cartridge x500</label>
@@ -176,32 +202,5 @@
 		</products>
 		<workAmount>3000</workAmount>
 	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_50AE_AP</defName>
-		<label>make .50 AE (AP) cartridge x500</label>
-		<description>Craft 500 .50 AE (AP) cartridges.</description>
-		<jobString>Making .50 AE (AP) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>30</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_50AE_AP>500</Ammo_50AE_AP>
-		</products>
-		<workAmount>3000</workAmount>
-	</RecipeDef>
-
 
 </Defs>

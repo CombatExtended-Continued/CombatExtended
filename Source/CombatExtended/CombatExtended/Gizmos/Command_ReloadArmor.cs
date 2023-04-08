@@ -38,7 +38,7 @@ namespace CombatExtended
         {
             get
             {
-		yield break;
+                yield break;
             }
         }
 

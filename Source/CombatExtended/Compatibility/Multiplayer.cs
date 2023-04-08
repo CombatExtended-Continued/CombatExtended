@@ -13,26 +13,29 @@ namespace CombatExtended.Compatibility
 
         public bool CanInstall()
         {
-	    Log.Message("Checking Multiplayer Compat");
+            Log.Message("Checking Multiplayer Compat");
             return ModLister.HasActiveModWithName("Multiplayer");
         }
 
         public void Install()
         {
-	    Log.Message("CombatExtended :: Installing Multiplayer Compat");
-	    isMultiplayerActive = true;
-	}
+            Log.Message("CombatExtended :: Installing Multiplayer Compat");
+            isMultiplayerActive = true;
+        }
 
-	public IEnumerable<string> GetCompatList() {
-	    yield return "MultiplayerCompat";
-	}
+        public IEnumerable<string> GetCompatList()
+        {
+            yield return "MultiplayerCompat";
+        }
 
         public static bool InMultiplayer
         {
             get
             {
                 if (isMultiplayerActive)
+                {
                     return _inMultiplayer();
+                }
                 return false;
             }
         }
@@ -42,15 +45,18 @@ namespace CombatExtended.Compatibility
             get
             {
                 if (isMultiplayerActive)
+                {
                     return _isExecutingCommandsIssuedBySelf();
+                }
                 return false;
             }
         }
 
-	public static void registerCallbacks(Func<bool> inMP, Func<bool> iecibs) {
-	    _inMultiplayer = inMP;
-	    _isExecutingCommandsIssuedBySelf = iecibs;
-	}
+        public static void registerCallbacks(Func<bool> inMP, Func<bool> iecibs)
+        {
+            _inMultiplayer = inMP;
+            _isExecutingCommandsIssuedBySelf = iecibs;
+        }
 
         private static Func<bool> _inMultiplayer = null;
 
@@ -62,7 +68,7 @@ namespace CombatExtended.Compatibility
             public int syncContext = -1;
             public int[] exposeParameters = null;
         }
-	
+
 
     }
 }

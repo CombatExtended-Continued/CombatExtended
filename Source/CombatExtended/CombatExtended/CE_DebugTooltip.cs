@@ -26,11 +26,11 @@ namespace CombatExtended
         /// A call to this function should return a string to be added to the tooltip.
         /// Usage:
         /// Requires that the function has (Map map, IntVec3 pos) as input parameters for usage within maps.
-        /// Requires that the function has (World map, int tile) as input parameters for usage within the world map.        
+        /// Requires that the function has (World map, int tile) as input parameters for usage within the world map.
         /// Requires that the flaged function has a return type of string.
         /// </summary>
         /// <param name="tooltipType">Where to call this function</param>
-        /// <param name="altKey">alternative key instead of left shift</param>        
+        /// <param name="altKey">alternative key instead of left shift</param>
         public CE_DebugTooltip(CE_DebugTooltipType tooltipType, KeyCode altKey = KeyCode.None)
         {
             this.tooltipType = tooltipType;

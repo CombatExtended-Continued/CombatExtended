@@ -13,27 +13,27 @@
         Ammo = 2,
 
         /// <summary>
-        /// Defs that have ThingDef.IsWeapon return true 
+        /// Defs that have ThingDef.IsWeapon return true
         /// </summary>
         Weapons = 4,
 
         /// <summary>
-        /// Defs that have ThingDef.IsApparel return true 
+        /// Defs that have ThingDef.IsApparel return true
         /// </summary>
         Apparel = 8,
 
         /// <summary>
-        /// Defs that have ThingDef.IsMedicine return true 
+        /// Defs that have ThingDef.IsMedicine return true
         /// </summary>
         Medicine = 16,
 
         /// <summary>
-        /// Defs that have ThingDef.IsMedicine return true 
+        /// Defs that have ThingDef.IsMedicine return true
         /// </summary>
         Flares = 32,
 
         /// <summary>
-        /// Defs that have ThingDef.IsMedicine return true 
+        /// Defs that have ThingDef.IsMedicine return true
         /// </summary>
         Attachments = 64
     }

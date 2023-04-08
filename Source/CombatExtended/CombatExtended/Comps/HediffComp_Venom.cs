@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended
@@ -13,8 +14,8 @@ namespace CombatExtended
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
-
-            _venomPerTick = Props.VenomPerSeverity * parent.Severity / parent.pawn.BodySize * parent.pawn.GetStatValue(StatDefOf.ToxicSensitivity);
+            var toxicSensitivity = Mathf.Max(1f - parent.pawn.GetStatValue(StatDefOf.ToxicResistance), 0f);
+            _venomPerTick = Props.VenomPerSeverity * parent.Severity / parent.pawn.BodySize * toxicSensitivity;
             _lifetime = Rand.Range(Props.MinTicks, Props.MaxTicks);
         }
 
@@ -22,7 +23,9 @@ namespace CombatExtended
         {
             base.CompPostTick(ref severityAdjustment);
             if (parent.ageTicks < _lifetime)
+            {
                 HealthUtility.AdjustSeverity(parent.pawn, CE_HediffDefOf.VenomBuildup, _venomPerTick);
+            }
         }
 
         public override void CompTended(float quality, float maxQuality, int batchPosition = 0)

@@ -15,12 +15,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Elephant"]/statBases</xpath>
-		<value>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Elephant"]/tools</xpath>
 		<value>
@@ -79,13 +73,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Elephant"]/combatPower</xpath>
-		<value>
-			<combatPower>250</combatPower>
-		</value>
-	</Operation>
-
 	<!-- ========== Megasloth ========== -->
 
 	<Operation Class="PatchOperationAdd">
@@ -124,6 +111,17 @@
 					<armorPenetrationBlunt>10</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.5</cooldownTime>
+					<chanceFactor>0.7</chanceFactor>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.08</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
 						<li>Blunt</li>
@@ -144,13 +142,6 @@
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
 			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Megasloth"]/combatPower</xpath>
-		<value>
-			<combatPower>225</combatPower>
 		</value>
 	</Operation>
 
@@ -184,13 +175,6 @@
 		<xpath>Defs/ThingDef[defName="Thrumbo"]/statBases/ArmorRating_Heat</xpath>
 		<value>
 			<ArmorRating_Heat>0.6</ArmorRating_Heat>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Thrumbo"]/race/baseHealthScale</xpath>
-		<value>
-			<baseHealthScale>5</baseHealthScale>
 		</value>
 	</Operation>
 
@@ -247,6 +231,7 @@
 					</capacities>
 					<power>19</power>
 					<cooldownTime>1.62</cooldownTime>
+					<chanceFactor>0.7</chanceFactor>
 					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 					<armorPenetrationSharp>0.09</armorPenetrationSharp>
 					<armorPenetrationBlunt>2.016</armorPenetrationBlunt>
@@ -272,13 +257,6 @@
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Birdlike</bodyShape>
 			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Thrumbo"]/combatPower</xpath>
-		<value>
-			<combatPower>450</combatPower>
 		</value>
 	</Operation>
 

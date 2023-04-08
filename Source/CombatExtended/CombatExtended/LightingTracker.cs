@@ -18,7 +18,7 @@ namespace CombatExtended
         private static readonly IntVec3[] AdjCells;
         private static readonly float[] AdjWeights;
         private readonly float[] glowGridCache;
-	private int lastTick = 0;
+        private int lastTick = 0;
 
         static LightingTracker()
         {
@@ -85,7 +85,9 @@ namespace CombatExtended
             public static MuzzleRecord operator +(MuzzleRecord first, MuzzleRecord second)
             {
                 if (!first.Recent || !second.Recent)
+                {
                     return new MuzzleRecord(Mathf.Max(first.intensity, second.intensity, 0));
+                }
                 int tick = GenTicks.TicksGame;
                 float a = 1.0f - (float)Mathf.Min(tick - first.createdAt, FLASHAGE) / FLASHAGE;
                 float b = 1.0f - (float)Mathf.Min(tick - second.createdAt, FLASHAGE) / FLASHAGE;
@@ -139,7 +141,7 @@ namespace CombatExtended
             _cellIndices = map.cellIndices;
 
             muzzle_grid = new MuzzleRecord[NumGridCells];
-	    glowGridCache = new float[map.Size.x * map.Size.y];
+            glowGridCache = new float[map.Size.x * map.Size.y];
         }
 
         public override void ExposeData()
@@ -187,10 +189,14 @@ namespace CombatExtended
                     map.debugDrawer.FlashCell(position, glow, glow.ToStringByStyle(ToStringStyle.FloatOne), duration: 15);
                 }
                 foreach (IntVec3 position in _removal)
+                {
                     _recent.Remove(position);
+                }
             }
             else if (_recent.Count > 0)
+            {
                 _recent.Clear();
+            }
 
             base.MapComponentOnGUI();
         }
@@ -204,16 +210,23 @@ namespace CombatExtended
         public void Notify_ShotsFiredAt(IntVec3 position, float intensity = 0.8f)
         {
             if (!position.InBounds(map) || intensity <= 1e-3f)
+            {
                 return;
+            }
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 cell = position + AdjCells[i];
-                if (cell.InBounds(map)) muzzle_grid[CellToIndex(cell)] += new MuzzleRecord(intensity * AdjWeights[i] / MUZZLEFLASH_MEAN);
+                if (cell.InBounds(map))
+                {
+                    muzzle_grid[CellToIndex(cell)] += new MuzzleRecord(intensity * AdjWeights[i] / MUZZLEFLASH_MEAN);
+                }
             }
             if (Controller.settings.DebuggingMode && Controller.settings.DebugMuzzleFlash)
             {
                 for (int i = 0; i < 9; i++)
+                {
                     _recent.Add(position + AdjCells[i]);
+                }
             }
         }
 
@@ -226,24 +239,28 @@ namespace CombatExtended
         {
             float result = 0f;
             for (int i = 0; i < 9; i++)
+            {
                 result += AdjWeights[i] * GetGlowForCell(position + AdjCells[i]) / WEIGHTSSUM;
+            }
             return Mathf.Min(result, IsNight ? 0.5f : 1.0f);
         }
 
-	private float GameGlowAt(IntVec3 source)
-	{
-	    int thisTick = Find.TickManager.TicksAbs;
+        private float GameGlowAt(IntVec3 source)
+        {
+            int thisTick = Find.TickManager.TicksAbs;
 
-	    if (thisTick != lastTick) {
-		Array.Fill(glowGridCache, -1f);
-		lastTick = thisTick;
-	    }
-	    float glow = glowGridCache[source.x * map.Size.y + source.y];
-	    if (glow == -1) {
-		glowGridCache[source.x * map.Size.y + source.y] = glow = map.glowGrid.GameGlowAt(source);
-	    }
-	    return glow;
-	}
+            if (thisTick != lastTick)
+            {
+                Array.Fill(glowGridCache, -1f);
+                lastTick = thisTick;
+            }
+            float glow = glowGridCache[source.x * map.Size.y + source.y];
+            if (glow == -1)
+            {
+                glowGridCache[source.x * map.Size.y + source.y] = glow = map.glowGrid.GameGlowAt(source);
+            }
+            return glow;
+        }
 
         /// <summary>
         /// Used to retrive the combat lighting value in CE in relation to an other position. It combines both the vanilla system and a new muzzle flash system with a diffusion system. It is used to balance the difference lighting during daytime hours.
@@ -257,21 +274,23 @@ namespace CombatExtended
             // Detect day light
             if (glowAtSource > 0.5f)
             {
-                // Limit the advantage of being under a roof since the AI can be a bit stupid.                
+                // Limit the advantage of being under a roof since the AI can be a bit stupid.
                 return Mathf.Max(CombatGlowAt(target), glowAtSource / 2f);
             }
             // Normally just return this
             return CombatGlowAt(target);
         }
 
-        private float GetGlowForCell(IntVec3 position)
+        public float GetGlowForCell(IntVec3 position)
         {
             if (position.InBounds(map))
             {
                 var glow = GameGlowAt(position);
                 var record = muzzle_grid[CellToIndex(position)];
                 if (!record.Recent)
+                {
                     return glow;
+                }
                 return Mathf.Clamp01(Mathf.Max(glow, record.Intensity * 0.75f));
             }
             return 0f;
@@ -291,9 +310,13 @@ namespace CombatExtended
             if (Scribe.mode != LoadSaveMode.Saving)
             {
                 if (grid == null || grid.Count < NumGridCells)
+                {
                     muzzle_grid = new MuzzleRecord[NumGridCells];
+                }
                 else
+                {
                     muzzle_grid = grid.ToArray();
+                }
             }
             grid?.Clear();
         }

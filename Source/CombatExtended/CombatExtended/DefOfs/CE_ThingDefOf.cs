@@ -20,6 +20,8 @@ namespace CombatExtended
 
         public static FleckDef Mote_EmptyCasing;
 
+        public static ThingDef Filth_RifleAmmoCasings;
+
         public static ThingDef FSX;
 
         public static ThingDef Flare;
@@ -32,7 +34,7 @@ namespace CombatExtended
 
         public static ThingDef Gas_BlackSmoke;
 
-        public static ThingDef Mech_Centipede;
+        public static ThingDef Mech_CentipedeBlaster;
 
         public static ThingDef Gun_BinocularsRadio;
     }

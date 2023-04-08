@@ -2,39 +2,22 @@
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
-					<mods>
-						<li>Vanilla Weapons Expanded - Frontier</li>
-					</mods>
+			<mods>
+				<li>Vanilla Weapons Expanded - Frontier</li>
+			</mods>
 		<match Class="PatchOperationFindMod">
-					<mods>
-						<li>Vanilla Weapons Expanded - Heavy Weapons</li>
-					</mods>
+			<mods>
+				<li>Vanilla Weapons Expanded - Heavy Weapons</li>
+			</mods>
 					
 			<match Class="PatchOperationSequence">
 				<operations>
-              
-        <!-- === verbClass === -->
-        <li Class="PatchOperationReplace">
-          <xpath>
-            /Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/verbs/li/verbClass
-          </xpath>
-          <value>
-            <verbClass>Verb_Shoot</verbClass>
-          </value>
-        </li>
-
-        <!-- === CompOversizedWeapon === -->
-        <li Class="PatchOperationRemove">
-          <xpath>
-            /Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/comps/li[compClass="CompOversizedWeapon.CompOversizedWeapon"]
-          </xpath>
-        </li>
 
         <!-- === Tools === -->
 
         <li Class="PatchOperationReplace">
           <xpath>
-            /Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/tools
+            Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/tools
           </xpath>
           <value>
             <tools>
@@ -54,7 +37,7 @@
 
         <!-- === Handheld Gatling Gun === -->
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/costList/ComponentIndustrial</xpath>
+          <xpath>Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/costList/ComponentIndustrial</xpath>
           <value>
             <ComponentIndustrial>14</ComponentIndustrial>  
           </value>
@@ -98,15 +81,8 @@
           <AllowWithRunAndGun>false</AllowWithRunAndGun>
         </li>
 
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/recipeMaker/researchPrerequisite</xpath>
-          <value>
-            <researchPrerequisite>VWEFT_FrontierWeapons</researchPrerequisite>
-          </value>
-        </li>
-
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]</xpath>
+          <xpath>Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]</xpath>
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>1.3,1.3</DrawSize>
@@ -121,4 +97,3 @@
 	</Operation>
 
 </Patch>
-

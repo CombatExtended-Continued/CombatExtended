@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[1.4] Astra Militarum Regimentum - Krieg</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- === Krieg Uniform === -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_KriegUniform"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>2</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_KriegUniform"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- === Combat Webbing === -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_CombatWebbing"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_CombatWebbing"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- === Flak Armor === -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>12</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>18</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierArmor"]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_FlakArmor"]</xpath>
+				<value>
+				<li Class="CombatExtended.PartialArmorExt">
+					<stats>
+						<li>
+							<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+							<parts>
+								<li>Shoulder</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
+							<parts>
+								<li>Shoulder</li>
+							</parts>
+						</li>
+					</stats>
+				</li>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

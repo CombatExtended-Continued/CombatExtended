@@ -6,14 +6,14 @@ on:
         description: PR Number
         required: true
   pull_request_target:
-    branches: [ master, Development ]
+    branches: [ master, Development, Rimworld-Version-1.4 ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
     - name: Prebuild
@@ -46,7 +46,7 @@ jobs:
     - name: package
       run: |
         mkdir CombatExtended
-        cp -r Source/ Assemblies/ AssembliesCompat/ AssembliesCore/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
+        cp -r Source/ Assemblies/ AssembliesCompat/ AssembliesCore/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Biotech/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
         zip -9 -r build.zip CombatExtended
     - name: Upload to DO
       run: |
@@ -61,7 +61,7 @@ jobs:
         SSH_KEY_PUB: ${{secrets.ID_ECDSA_PUB}}
 
     - name: Create comment
-      uses: peter-evans/create-or-update-comment@v1
+      uses: peter-evans/create-or-update-comment@v2
       with:
         issue-number: ${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}
         body: |

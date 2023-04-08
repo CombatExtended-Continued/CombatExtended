@@ -82,7 +82,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base38SpecialBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base38SpecialBullet" ParentName="BaseBulletCE" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -99,7 +99,7 @@
     <label>.38 Special bullet (FMJ)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>9</damageAmountBase>
-      <armorPenetrationSharp>4</armorPenetrationSharp>
+      <armorPenetrationSharp>3.5</armorPenetrationSharp>
       <armorPenetrationBlunt>6.94</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
@@ -109,7 +109,7 @@
     <label>.38 Special bullet (AP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>6</damageAmountBase>
-      <armorPenetrationSharp>8</armorPenetrationSharp>
+      <armorPenetrationSharp>7</armorPenetrationSharp>
       <armorPenetrationBlunt>6.94</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
@@ -139,7 +139,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>16</count>
+        <count>14</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -150,41 +150,8 @@
     <products>
       <Ammo_38Special_FMJ>500</Ammo_38Special_FMJ>
     </products>
-    <workAmount>1600</workAmount>
+    <workAmount>1400</workAmount>
   </RecipeDef>
-
-  <!-- Crafting Spot -->
-  <!--
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_38Special_FMJ_Alt</defName>
-    <label>make .38 Special (FMJ) cartridge x50 (inefficient)</label>
-    <description>Craft 50 .38 Special (FMJ) cartridges.\n\nTakes longer, and is proportionally more expensive.</description>
-    <jobString>Making .38 Special (FMJ) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>3</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_38Special_FMJ>50</Ammo_38Special_FMJ>
-    </products>
-    <researchPrerequisite>Smithing</researchPrerequisite>
-    <recipeUsers>
-    	<li>CraftingSpot</li>
-    </recipeUsers>
-    <workAmount>3000</workAmount>
-  </RecipeDef>
--->
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_38Special_AP</defName>
@@ -198,7 +165,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>16</count>
+        <count>14</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -209,7 +176,7 @@
     <products>
       <Ammo_38Special_AP>500</Ammo_38Special_AP>
     </products>
-    <workAmount>1600</workAmount>
+    <workAmount>1680</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -224,7 +191,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>16</count>
+        <count>14</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -235,7 +202,7 @@
     <products>
       <Ammo_38Special_HP>500</Ammo_38Special_HP>
     </products>
-    <workAmount>1600</workAmount>
+    <workAmount>1400</workAmount>
   </RecipeDef>
 
 </Defs>

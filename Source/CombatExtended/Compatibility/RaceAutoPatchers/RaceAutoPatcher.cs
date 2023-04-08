@@ -13,19 +13,20 @@ namespace CombatExtended.Compatibility
     {
         static RaceAutoPatcher()
         {
-	    if (!Controller.settings.EnableRaceAutopatcher)
-	    {
-		return;
-	    }
+            if (!Controller.settings.EnableRaceAutopatcher)
+            {
+                return;
+            }
             #region Animal patching
             var animalsUnpatched = DefDatabase<ThingDef>.AllDefs.Where(x =>
-                   x.race != null &&
-                   x.race.Animal &&
-                   x.tools != null &&
-                   x.tools.Any(y => y != null && !(y is ToolCE))
-                );
+                                   x.race != null &&
+                                   x.race.Animal &&
+                                   x.tools != null &&
+                                   x.tools.Any(y => y != null && !(y is ToolCE))
+                                                                      );
 
             int patchCount = 0;
+            string patchedanimals = "";
             foreach (ThingDef animal in animalsUnpatched)
             {
                 if (animal.modExtensions == null)
@@ -41,7 +42,7 @@ namespace CombatExtended.Compatibility
                 #region Tool patching
                 foreach (Tool tool in animal.tools)
                 {
-                    if ( !(tool is ToolCE) )
+                    if (!(tool is ToolCE))
                     {
                         newTools.Add(tool.ConvertTool());
                     }
@@ -75,7 +76,7 @@ namespace CombatExtended.Compatibility
                     animal.statBases.Add(RatingSharpBP);
                 }
 
-                
+
 
                 var RatingBlunt = animal.statBases.Find(y => y.stat == StatDefOf.ArmorRating_Blunt);
 
@@ -93,15 +94,20 @@ namespace CombatExtended.Compatibility
 
                     animal.statBases.Add(RatingBlunt);
 
-                    var RatingBluntBP = new StatModifier { stat = CE_StatDefOf.BodyPartBluntArmor, value = 1f};
+                    var RatingBluntBP = new StatModifier { stat = CE_StatDefOf.BodyPartBluntArmor, value = 1f };
 
                     animal.statBases.Add(RatingBluntBP);
                 }
 
                 patchCount++;
+                patchedanimals += animal.ToString() + "\n";
             }
-
-            Log.Message("CE successfully patched " + patchCount.ToString() + " animals");
+            // Don't show log if there are no animals being patched by autopatcher.
+            if (patchCount > 0)
+            {
+                Log.Message("CE successfully patched " + patchCount.ToString() + " animals.\nAnimal Defs autopatched:" + patchedanimals);
+            }
+            //Log.Message(patchedanimals);
 
             #endregion
 
@@ -112,7 +118,7 @@ namespace CombatExtended.Compatibility
                 RaceUtil.PatchHARs();
             }
 
-           
+
 
             #endregion
 

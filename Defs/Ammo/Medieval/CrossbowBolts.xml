@@ -45,9 +45,9 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
     <defName>Ammo_CrossbowBolt_Stone</defName>
-    <label>crossbow bolt</label>
+    <label>crossbow bolt (stone)</label>
     <graphicData>
-      <texPath>Things/Ammo/Neolithic/Bolt/Stone</texPath>
+      <texPath>Things/Ammo/Medieval/Bolt/Stone</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
@@ -64,7 +64,7 @@
     <defName>Ammo_CrossbowBolt_Steel</defName>
     <label>crossbow bolt (steel)</label>
     <graphicData>
-      <texPath>Things/Ammo/Neolithic/Bolt/Steel</texPath>
+      <texPath>Things/Ammo/Medieval/Bolt/Steel</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
@@ -77,7 +77,7 @@
     <defName>Ammo_CrossbowBolt_Plasteel</defName>
     <label>crossbow bolt (plasteel)</label>
     <graphicData>
-      <texPath>Things/Ammo/Neolithic/Bolt/Plasteel</texPath>
+      <texPath>Things/Ammo/Medieval/Bolt/Plasteel</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
@@ -91,14 +91,14 @@
     <defName>Ammo_CrossbowBolt_Venom</defName>
     <label>crossbow bolt (venom)</label>
     <graphicData>
-      <texPath>Things/Ammo/Neolithic/Arrow/Venom</texPath>
+      <texPath>Things/Ammo/Medieval/Bolt/Venom</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <Mass>0.131</Mass>	
       <MarketValue>3.73</MarketValue>
     </statBases>
-    <ammoClass>VenomArrow</ammoClass>
+    <ammoClass>VenomCrossbowBolt</ammoClass>
     <generateAllowChance>0</generateAllowChance>    
   </ThingDef>
   
@@ -106,20 +106,20 @@
     <defName>Ammo_CrossbowBolt_Flame</defName>
     <label>crossbow bolt (flame)</label>
     <graphicData>
-      <texPath>Things/Ammo/Neolithic/Arrow/Flame</texPath>
+      <texPath>Things/Ammo/Medieval/Bolt/Flame</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <Mass>0.086</Mass>	
       <MarketValue>1.29</MarketValue>
     </statBases>
-    <ammoClass>FlameArrow</ammoClass>
+    <ammoClass>FlameCrossbowBolt</ammoClass>
     <generateAllowChance>0.2</generateAllowChance>
   </ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseCrossbowBoltProjectile" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseCrossbowBoltProjectile" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Arrow_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -222,7 +222,7 @@
 		</projectile>
 	</ThingDef>
 
-	<!-- ==================== Recipes ========================== -->
+  <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeNeolithicBase">
     <defName>MakeAmmo_CrossbowBolt_Stone</defName>

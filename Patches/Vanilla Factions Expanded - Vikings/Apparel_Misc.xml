@@ -10,7 +10,7 @@
 
 		<!-- Torch Belt -->
 		<li Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="VFEV_Apparel_TorchBelt"]/verbs</xpath>
+		<xpath>Defs/ThingDef[defName="VFEV_Apparel_TorchBelt"]/verbs</xpath>
 		<value>
 			<verbs>
 				<li Class="CombatExtended.VerbPropertiesCE">
@@ -34,6 +34,13 @@
 		</value>
 		</li>
 
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_TorchBelt"]/statBases</xpath>
+			<value>
+				<Bulk>0</Bulk>     
+			</value>
+		</li>
+
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="VFEV_Proj_GrenadeTorch"]/projectile</xpath>
 			<value>
@@ -42,7 +49,6 @@
 					<damageDef>Flame</damageDef>
 					<speed>10</speed>
 					<ai_IsIncendiary>true</ai_IsIncendiary>
-					<gravityFactor>2</gravityFactor>
 				</projectile>
 			</value>
 		</li>
@@ -119,7 +125,6 @@
 					</tags>
 					</apparel>
 					<comps>
-						<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon"/>
 						<li>
 							<compClass>CompColorable</compClass>
 						</li>
@@ -192,7 +197,6 @@
 					</tags>
 					</apparel>
 					<comps>
-						<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon"/>
 						<li>
 							<compClass>CompColorable</compClass>
 						</li>
@@ -214,6 +218,16 @@
 					</modExtensions>
 				</ThingDef>
 				
+			</value>
+		</li>
+
+		<!-- Orbital Targeter - Mjollnir -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_OrbitalTargeterMjollnir"]</xpath>
+			<value>
+				<statBases>
+					<Bulk>0</Bulk>
+				</statBases> 
 			</value>
 		</li>
 

@@ -34,6 +34,11 @@ namespace CombatExtended
         public bool damageFalloff = true;
         public float chanceToStartFire;
 
+        /// <summary>
+        /// The type of built-in core game gas to spawn on detonation.
+        /// </summary>
+        public GasType? postExplosionGasType;
+
         public CompProperties_ExplosiveCE()
         {
             compClass = typeof(CompExplosiveCE);
@@ -42,16 +47,24 @@ namespace CombatExtended
         public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
         {
             foreach (var i in base.ConfigErrors(parentDef))
+            {
                 yield return i;
+            }
 
             if (explosiveRadius <= 0f)
+            {
                 yield return "explosiveRadius smaller or equal to zero, this explosion cannot occur";
+            }
 
             if (parentDef.tickerType != TickerType.Normal)
+            {
                 yield return "CompExplosiveCE requires Normal ticker type";
+            }
 
             if (fragments.Any())
+            {
                 yield return "fragments is removed from CompExplosiveCE, please use CombatExtended.CompFragments instead";
+            }
         }
 
         public override void ResolveReferences(ThingDef parentDef)

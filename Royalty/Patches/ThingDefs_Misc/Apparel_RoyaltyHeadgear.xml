@@ -85,7 +85,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAttributeAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/equippedStatOffsets</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/costList</xpath>
     <attribute>Inherit</attribute>
       <value>false</value>
   </Operation>
@@ -93,7 +93,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/equippedStatOffsets</xpath>
     <value>
-      <equippedStatOffsets>
+      <equippedStatOffsets Inherit="False">
         <AimingAccuracy>0.6</AimingAccuracy>
         <ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
       </equippedStatOffsets>
@@ -103,7 +103,7 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/apparel</xpath>
     <value>
-    <layers Inherit="false">
+    <layers Inherit="False">
       <li>StrappedHead</li>
     </layers>  
     </value>
@@ -161,7 +161,7 @@
       <equippedStatOffsets>
         <PsychicSensitivity>-0.2</PsychicSensitivity>
         <AimingAccuracy>0.15</AimingAccuracy>
-        <ToxicSensitivity>-0.50</ToxicSensitivity>
+        <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
         <SmokeSensitivity>-1</SmokeSensitivity>
       </equippedStatOffsets>
     </value>
@@ -172,6 +172,13 @@
     <value>
       <Plasteel>110</Plasteel>
       <DevilstrandCloth>25</DevilstrandCloth>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetCataphractBase"]/apparel</xpath>
+    <value>
+      <immuneToToxGasExposure>true</immuneToToxGasExposure>
     </value>
   </Operation>
 

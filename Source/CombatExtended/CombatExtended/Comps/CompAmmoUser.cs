@@ -47,7 +47,9 @@ namespace CombatExtended
                     CompInventory.UpdateInventory();
                     int count = 0;
                     foreach (AmmoLink link in Props.ammoSet.ammoTypes)
+                    {
                         count += CompInventory.AmmoCountOfDef(link.ammo);
+                    }
                     return count;
                 }
                 return 0;
@@ -58,6 +60,13 @@ namespace CombatExtended
             get
             {
                 return (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
+            }
+        }
+        public int MagSizeOverride
+        {
+            get
+            {
+                return (int)parent.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride);
             }
         }
         public int CurMagCount
@@ -71,22 +80,28 @@ namespace CombatExtended
                 if (curMagCountInt != value && value >= 0)
                 {
                     curMagCountInt = value;
-                    if (CompInventory != null) CompInventory.UpdateInventory();     //Must be positioned after curMagCountInt is updated, because it relies on that value
+                    if (CompInventory != null)
+                    {
+                        CompInventory.UpdateInventory();    //Must be positioned after curMagCountInt is updated, because it relies on that value
+                    }
                 }
             }
         }
         public CompEquippable CompEquippable
         {
-            get { return parent.GetComp<CompEquippable>(); }
+            get
+            {
+                return parent.GetComp<CompEquippable>();
+            }
         }
         public Pawn Wielder
         {
             get
             {
                 if (CompEquippable == null
-                    || CompEquippable.PrimaryVerb == null
-                    || CompEquippable.PrimaryVerb.caster == null
-                    || ((CompEquippable?.parent?.ParentHolder as Pawn_InventoryTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))
+                        || CompEquippable.PrimaryVerb == null
+                        || CompEquippable.PrimaryVerb.caster == null
+                        || ((CompEquippable?.parent?.ParentHolder as Pawn_InventoryTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))
                 {
                     return null;
                 }
@@ -150,6 +165,10 @@ namespace CombatExtended
             {
                 return UseAmmo ? currentAmmoInt : null;
             }
+            set
+            {
+                currentAmmoInt = value;
+            }
         }
 
         public bool EmptyMagazine => HasMagazine && CurMagCount == 0;
@@ -157,8 +176,14 @@ namespace CombatExtended
         {
             get
             {
-                if (!HasMagazine) { return 0; }
-                if (SelectedAmmo == CurrentAmmo) { return MagSize - CurMagCount; }
+                if (!HasMagazine)
+                {
+                    return 0;
+                }
+                if (SelectedAmmo == CurrentAmmo)
+                {
+                    return MagSize - CurMagCount;
+                }
                 return MagSize;
             }
         }
@@ -173,7 +198,7 @@ namespace CombatExtended
                 }
                 return CurMagCount >= MagSize;
             }
-        }        
+        }
 
         public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
         public CompInventory CompInventory
@@ -187,19 +212,40 @@ namespace CombatExtended
         {
             get
             {
-                if (IsEquippedGun) return Wielder.Position;
-                else if (turret != null) return turret.Position;
-                else if (Holder != null) return Holder.Position;
-                else return parent.Position;
+                if (IsEquippedGun)
+                {
+                    return Wielder.Position;
+                }
+                else if (turret != null)
+                {
+                    return turret.Position;
+                }
+                else if (Holder != null)
+                {
+                    return Holder.Position;
+                }
+                else
+                {
+                    return parent.Position;
+                }
             }
         }
         private Map Map
         {
             get
             {
-                if (Holder != null) return Holder.MapHeld;
-                else if (turret != null) return turret.MapHeld;
-                else return parent.MapHeld;
+                if (Holder != null)
+                {
+                    return Holder.MapHeld;
+                }
+                else if (turret != null)
+                {
+                    return turret.MapHeld;
+                }
+                else
+                {
+                    return parent.MapHeld;
+                }
             }
         }
         public bool ShouldThrowMote => Props.throwMote && MagSize > 1;
@@ -241,9 +287,13 @@ namespace CombatExtended
                 else
                 {
                     if (currentAmmoInt == null)
+                    {
                         currentAmmoInt = (AmmoDef)Props.ammoSet.ammoTypes[0].ammo;
+                    }
                     if (selectedAmmo == null)
+                    {
                         selectedAmmo = currentAmmoInt;
+                    }
                 }
             }
         }
@@ -321,7 +371,9 @@ namespace CombatExtended
                     }
 
                     if (ammoToBeDeleted.stackCount > 1)
+                    {
                         ammoToBeDeleted = ammoToBeDeleted.SplitOff(1);
+                    }
                 }
                 return true;
             }
@@ -346,7 +398,10 @@ namespace CombatExtended
 
             // Original: curMagCountInt--;
 
-            if (curMagCountInt < 0) TryStartReload();
+            if (curMagCountInt < 0)
+            {
+                TryStartReload();
+            }
             return true;
         }
 
@@ -372,8 +427,17 @@ namespace CombatExtended
         /// </summary>
         public void TryStartReload()
         {
-            if (Wielder?.jobs.curDriver is IJobDriver_Tactical)
+            //Don't reload when changing player pawn ammo in god mode
+            if (DebugSettings.godMode && Wielder != null && (Wielder.IsColonistPlayerControlled || Wielder.IsColonyMech) && selectedAmmo != CurrentAmmo)
+            {
                 return;
+            }
+
+
+            if (Wielder?.jobs.curDriver is IJobDriver_Tactical)
+            {
+                return;
+            }
 
             if (!HasMagazine)
             {
@@ -384,7 +448,9 @@ namespace CombatExtended
                 return;
             }
             if (!IsEquippedGun && turret == null)
+            {
                 return;
+            }
 
             // secondary branch for if we ended up being called up by a turret somehow...
             if (turret != null)
@@ -395,7 +461,9 @@ namespace CombatExtended
 
             // R&G compatibility, prevents an initial attempt to reload while moving
             if (Wielder.stances.curStance.GetType() == rgStance)
+            {
                 return;
+            }
 
             if (UseAmmo)
             {
@@ -420,7 +488,9 @@ namespace CombatExtended
             {
                 Job reloadJob = TryMakeReloadJob();
                 if (reloadJob == null)
+                {
                     return;
+                }
                 _lastReloadJobTick = GenTicks.TicksGame;
                 reloadJob.playerForced = true;
                 Wielder.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, Wielder.CurJob?.def != reloadJob.def, true);
@@ -446,10 +516,14 @@ namespace CombatExtended
         {
             droppedAmmo = null;
             if (!HasMagazine || (Holder == null && turret == null))
-                return false; // nothing to do as we are in a bad state;
+            {
+                return false;    // nothing to do as we are in a bad state;
+            }
 
             if (!UseAmmo || curMagCountInt == 0)
-                return true; // nothing to do but we aren't in a bad state either.  Claim success.
+            {
+                return true;    // nothing to do but we aren't in a bad state either.  Claim success.
+            }
 
             if (Props.reloadOneAtATime && !forceUnload && selectedAmmo == CurrentAmmo && turret == null)
             {
@@ -464,9 +538,13 @@ namespace CombatExtended
             bool doDrop = false;
 
             if (CompInventory != null)
-                doDrop = (curMagCountInt != CompInventory.container.TryAdd(ammoThing, ammoThing.stackCount)); // TryAdd should report how many ammoThing.stackCount it stored.
+            {
+                doDrop = (curMagCountInt != CompInventory.container.TryAdd(ammoThing, ammoThing.stackCount));    // TryAdd should report how many ammoThing.stackCount it stored.
+            }
             else
-                doDrop = true; // Inventory was null so no place to shift the ammo besides the ground.
+            {
+                doDrop = true;    // Inventory was null so no place to shift the ammo besides the ground.
+            }
 
             if (doDrop)
             {
@@ -475,7 +553,7 @@ namespace CombatExtended
                 if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out droppedAmmo, turret.Faction != Faction.OfPlayer))
                 {
                     Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
-                                             "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
+                                              "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
                 }
             }
 
@@ -494,14 +572,17 @@ namespace CombatExtended
         {
 
             if (!HasMagazine || (Holder == null && turret == null))
-                return null; // the job couldn't be created.
+            {
+                return null;    // the job couldn't be created.
+            }
 
             return JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, Holder, parent);
         }
 
         private void DoOutOfAmmoAction()
         {
-            if (this.parent.def.weaponTags.Contains("NoSwitch"))
+            //Don't stow weapon for player pawns when in god mode, can be ammoying when testing single shot weapons.
+            if (this.parent.def.weaponTags.Contains("NoSwitch") || (DebugSettings.godMode && Wielder != null && (Wielder.IsColonistPlayerControlled || Wielder.IsColonyMech)))
             {
                 return;
             }
@@ -519,7 +600,9 @@ namespace CombatExtended
                     return;
                 }
                 if (!Holder.IsColonist || !parent.def.IsAOEWeapon())
+                {
                     TryPickupAmmo();
+                }
             }
             CompInventory?.SwitchToNextViableWeapon(!this.parent.def.weaponTags.Contains("NoSwitch"), !Holder.IsColonist, stopJob: false);
         }
@@ -527,18 +610,26 @@ namespace CombatExtended
         public bool TryPickupAmmo()
         {
             if (!Holder.RaceProps.Humanlike)
+            {
                 return false;
+            }
             if (Holder.MentalState != null)
+            {
                 return false;
+            }
             IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
             foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo
-                                        && supportedAmmo.Contains(ammo.AmmoDef)
-                                        && (!Holder.IsColonist || (!ammo.IsForbidden(Holder) && ammo.Position.AdjacentTo8WayOrInside(Holder)))))
+                     && supportedAmmo.Contains(ammo.AmmoDef)
+                     && (!Holder.IsColonist || (!ammo.IsForbidden(Holder) && ammo.Position.AdjacentTo8WayOrInside(Holder)))))
             {
                 if (!Holder.CanReserve(thing))
+                {
                     continue;
+                }
                 if (!Holder.CanReach(thing, PathEndMode.InteractionCell, Danger.Unspecified, false, false))
+                {
                     continue;
+                }
                 if (CompInventory.CanFitInInventory(thing, out int count))
                 {
                     Thing ammo = thing;
@@ -628,8 +719,14 @@ namespace CombatExtended
                 newMagCount = (Props.reloadOneAtATime) ? (curMagCountInt + 1) : MagSize;
             }
             CurMagCount = newMagCount;
-            if (turret != null) turret.SetReloading(false);
-            if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(new TargetInfo(Position, Map, false));
+            if (turret != null)
+            {
+                turret.SetReloading(false);
+            }
+            if (parent.def.soundInteract != null)
+            {
+                parent.def.soundInteract.PlayOneShot(new TargetInfo(Position, Map, false));
+            }
         }
 
         /// <summary>
@@ -685,26 +782,52 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
-            yield return ammoStatusGizmo;
             var mannableComp = turret?.GetMannable();
-            if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
+
+            // Only show ammo status for colonists under player control (i.e. not mental breaking / slave rebelling) and colony mechs.
+            // Note that we use IsColonyMech rather than IsColonyMechPlayerControlled for checking whether the pawn is a colony mech,
+            // as the latter would only apply to mechs currently controlled by a mechanitor.
+            var isColonyMechOrColonist = Wielder != null && (Wielder.IsColonistPlayerControlled || Wielder.IsColonyMech);
+            var isPlayerControlled = isColonyMechOrColonist || (turret?.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo));
+
+            if (isPlayerControlled)
             {
+                GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
+                yield return ammoStatusGizmo;
+
                 Action action = null;
-                if (IsEquippedGun) action = SyncedTryStartReload;
-                else if (mannableComp != null) action = SyncedTryForceReload;
+                if (IsEquippedGun)
+                {
+                    action = SyncedTryStartReload;
+                }
+                else if (mannableComp != null)
+                {
+                    action = SyncedTryForceReload;
+                }
 
                 // Check for teaching opportunities
                 string tag;
                 if (turret == null)
                 {
-                    if (HasMagazine) tag = "CE_Reload"; // Teach reloading weapons with magazines
-                    else tag = "CE_ReloadNoMag";    // Teach about mag-less weapons
+                    if (HasMagazine)
+                    {
+                        tag = "CE_Reload";    // Teach reloading weapons with magazines
+                    }
+                    else
+                    {
+                        tag = "CE_ReloadNoMag";    // Teach about mag-less weapons
+                    }
                 }
                 else
                 {
-                    if (mannableComp == null) tag = "CE_ReloadAuto";  // Teach about auto-turrets
-                    else tag = "CE_ReloadManned";    // Teach about reloading manned turrets
+                    if (mannableComp == null)
+                    {
+                        tag = "CE_ReloadAuto";    // Teach about auto-turrets
+                    }
+                    else
+                    {
+                        tag = "CE_ReloadManned";    // Teach about reloading manned turrets
+                    }
                 }
                 LessonAutoActivator.TeachOpportunity(ConceptDef.Named(tag), turret, OpportunityType.GoodToKnow);
 
@@ -718,6 +841,24 @@ namespace CombatExtended
                     tutorTag = tag
                 };
                 yield return reloadCommandGizmo;
+
+                // God mode gizmos for emptying and filling the magazine
+                if (DebugSettings.godMode)
+                {
+                    Command_Action devSetAmmoToMinCommandGizmo = new Command_Action
+                    {
+                        action = delegate { CurMagCount = 0; },
+                        defaultLabel = "DEV: Set ammo to 0"
+                    };
+                    yield return devSetAmmoToMinCommandGizmo;
+
+                    Command_Action devSetAmmoToMaxCommandGizmo = new Command_Action
+                    {
+                        action = delegate { CurrentAmmo = SelectedAmmo; CurMagCount = MagSize; },
+                        defaultLabel = "DEV: Set ammo to max"
+                    };
+                    yield return devSetAmmoToMaxCommandGizmo;
+                }
             }
         }
 

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Archotech PowerArmor</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ===== Add Bodypart Groups and Layers ===== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/apparel/layers</xpath>
+                    <value>
+                        <li>OnHead</li>
+                        <li>StrappedHead</li>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/apparel/bodyPartGroups</xpath>
+                    <value>
+                        <li>Hands</li>
+                        <li>Feet</li>
+                    </value>
+                </li>
+
+                <!-- ===== Add Costlist ===== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/costList</xpath>
+                    <value>
+                        <Uranium>20</Uranium>
+                        <Hyperweave>30</Hyperweave>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/costList</xpath>
+                    <value>
+                        <Uranium>45</Uranium>
+                        <Hyperweave>90</Hyperweave>
+                    </value>
+                </li>
+
+                <!-- ===== Stats Adjustment ===== -->
+
+                <!-- === Archotech Power Helmet === -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/statBases/WorkToMake</xpath>
+                    <value>
+                        <WorkToMake>26250</WorkToMake>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <MaxHitPoints>360</MaxHitPoints>
+                        <Bulk>5.5</Bulk>
+                        <WornBulk>1.25</WornBulk>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>5</Mass>
+                    </value>
+                </li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/equippedStatOffsets</xpath>
+                    <value>
+                        <AimingAccuracy>0.20</AimingAccuracy>
+                        <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+                        <SmokeSensitivity>-1</SmokeSensitivity>
+                        <NightVisionEfficiency_Apparel>1.0</NightVisionEfficiency_Apparel>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>24</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>52</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>Defs/ThingDef[@Name="APA_HelmetBase"]</xpath>
+                    <value>
+                        <li Class="CombatExtended.PartialArmorExt">
+                            <stats>
+                                <li>
+                                    <ArmorRating_Sharp>1.05</ArmorRating_Sharp>
+                                    <parts>
+                                        <li>Eye</li>
+                                    </parts>
+                                </li>
+                                <li>
+                                    <ArmorRating_Blunt>1.05</ArmorRating_Blunt>
+                                    <parts>
+                                        <li>Eye</li>
+                                    </parts>
+                                </li>
+                            </stats>
+                        </li>
+                    </value>
+                </li>
+
+                <!-- === Archotech Power Armor === -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/statBases/WorkToMake</xpath>
+                    <value>
+                        <WorkToMake>80000</WorkToMake>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <MaxHitPoints>650</MaxHitPoints>
+                        <Bulk>100</Bulk>
+                        <WornBulk>15</WornBulk>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>60</Mass>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/equippedStatOffsets</xpath>
+                    <value>
+						<CarryWeight>90</CarryWeight>
+						<CarryBulk>12.5</CarryBulk>
+						<ShootingAccuracyPawn>0.20</ShootingAccuracyPawn>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>30</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>62</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>Defs/ThingDef[@Name="APA_ArmorBase"]</xpath>
+                    <value>
+                        <li Class="CombatExtended.PartialArmorExt">
+                            <stats>
+                                <li>
+                                    <ArmorRating_Sharp>0.95</ArmorRating_Sharp>
+                                    <parts>
+                                        <li>Hand</li>
+                                    </parts>
+                                </li>
+                                <li>
+                                    <ArmorRating_Blunt>0.95</ArmorRating_Blunt>
+                                    <parts>
+                                        <li>Hand</li>
+                                    </parts>
+                                </li>
+                            </stats>
+                        </li>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>

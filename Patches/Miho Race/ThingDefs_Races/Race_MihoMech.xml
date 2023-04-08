@@ -1,51 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods><li>Miho, the celestial fox</li></mods>
-	  <match Class="PatchOperationFindMod">
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
 			
-		<mods><li>Vanilla Expanded Framework</li></mods>
+		<mods><li>Miho, the celestial fox</li></mods>
 			
 		<match Class="PatchOperationSequence">
 		<operations>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Bulgasal" or
-				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
-				defName="MihoVFE_Mechanoids_Sapsal" or
-				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
-				defName="MihoVFE_Mechanoids_MyeongIl" or
-				defName="MihoVFE_Mechanoids_Bulgasal_NP" or
-				defName="MihoVFE_Mechanoids_Sapsal_NP"
-				]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
-					</li>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Bulgasal"
-				]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Birdlike</bodyShape>
-					</li>
-				</value>
-			</li>
 
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/ThingDef[defName="MihoVFE_Mechanoids_Bulgasal" or
-				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
-				defName="MihoVFE_Mechanoids_Sapsal" or
-				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
-				defName="MihoVFE_Mechanoids_MyeongIl" or
-				defName="MihoVFE_Mechanoids_Bulgasal_NP" or
-				defName="MihoVFE_Mechanoids_Sapsal_NP"]/statBases</xpath>
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_Sapsal"]/statBases</xpath>
 				  <value>
 					<MeleeDodgeChance>0.05</MeleeDodgeChance>
 					<MeleeCritChance>0.15</MeleeCritChance>
@@ -55,257 +21,278 @@
 				  </value>
 			</li>
 			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/ThingDef[defName="MihoVFE_Mechanoids_Security"]/statBases</xpath>
+			<li Class="PatchOperationReplace">
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_Sapsal"]/statBases/ArmorRating_Sharp</xpath>
 				  <value>
-					<MeleeDodgeChance>0.15</MeleeDodgeChance>
-					<MeleeCritChance>0.15</MeleeCritChance>
-					<MeleeParryChance>0.15</MeleeParryChance>
-					<NightVisionEfficiency>0.30</NightVisionEfficiency>
-					<ShootingAccuracyPawn>2.5</ShootingAccuracyPawn>
-					<AimingAccuracy>2</AimingAccuracy>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
 				  </value>
 			</li>
 			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/ThingDef[defName="MihoVFE_Mechanoids_Bulgasal_Melee"]/statBases</xpath>
+			<li Class="PatchOperationReplace">
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_Sapsal"]/statBases/ArmorRating_Blunt</xpath>
 				  <value>
-					<MeleeDodgeChance>0.05</MeleeDodgeChance>
-					<MeleeCritChance>0.45</MeleeCritChance>
-					<MeleeParryChance>0.50</MeleeParryChance>
+					<ArmorRating_Blunt>40</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Mech_Sapsal"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>front left leg</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>front right leg</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							<chanceFactor>0.6</chanceFactor>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]/statBases</xpath>
+				  <value>
+					<MeleeDodgeChance>0.65</MeleeDodgeChance>
+					<MeleeCritChance>0.05</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
 					<NightVisionEfficiency>0.60</NightVisionEfficiency>
 					<ShootingAccuracyPawn>4.5</ShootingAccuracyPawn>
 				  </value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Bulgasal" or
-				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
-				defName="MihoVFE_Mechanoids_Bulgasal_NP"
-				]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]/tools</xpath> 
 				<value>
-					<ArmorRating_Sharp>12</ArmorRating_Sharp>
-					<AimingAccuracy>4</AimingAccuracy>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>right blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.2</cooldownTime>
+							<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.75</armorPenetrationSharp>
+							<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+					</tools>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Bulgasal" or
-				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
-				defName="MihoVFE_Mechanoids_Bulgasal_NP"
-				]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>18</ArmorRating_Blunt>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Bulgasal_Melee"
-				]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<ArmorRating_Sharp>24</ArmorRating_Sharp>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Bulgasal_Melee"
-				]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>54</ArmorRating_Blunt>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Sapsal" or
-				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
-				defName="MihoVFE_Mechanoids_Sapsal_NP"
-				]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<ArmorRating_Sharp>10</ArmorRating_Sharp>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Sapsal" or
-				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
-				defName="MihoVFE_Mechanoids_Sapsal_NP"
-				]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>15</ArmorRating_Blunt>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_MyeongIl"
-				]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<ArmorRating_Sharp>8</ArmorRating_Sharp>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_MyeongIl"
-				]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>18</ArmorRating_Blunt>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Security"
-				]/statBases/ArmorRating_Sharp</xpath>
-				<value>
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
 					<ArmorRating_Sharp>4</ArmorRating_Sharp>
-				</value>
+				  </value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Security"
-				]/statBases/ArmorRating_Blunt</xpath>
-				<value>
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_DesertSphex"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
 					<ArmorRating_Blunt>6</ArmorRating_Blunt>
-				</value>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_Bulgasal" or defName="Miho_Mech_BulgasalSiege"]/statBases</xpath>
+				  <value>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
+					<NightVisionEfficiency>0.60</NightVisionEfficiency>
+					<ShootingAccuracyPawn>4.5</ShootingAccuracyPawn>
+					<CarryBulk>40</CarryBulk>
+				  </value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Logi"
-				]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<ArmorRating_Sharp>4</ArmorRating_Sharp>
-				</value>
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_Bulgasal" or defName="Miho_Mech_BulgasalSiege"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
+					<ArmorRating_Sharp>28</ArmorRating_Sharp>
+				  </value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Logi"
-				]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-				</value>
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_Bulgasal" or defName="Miho_Mech_BulgasalSiege"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>60</ArmorRating_Blunt>
+				  </value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Cleaner"
-				]/statBases/ArmorRating_Sharp</xpath>
-				<value>
-					<ArmorRating_Sharp>2</ArmorRating_Sharp>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Cleaner"
-				]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="MihoVFE_Mechanoids_Bulgasal" or
-				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
-				defName="MihoVFE_Mechanoids_Sapsal" or
-				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
-				defName="MihoVFE_Mechanoids_MyeongIl" or
-				defName="MihoVFE_Mechanoids_Bulgasal_NP" or
-				defName="MihoVFE_Mechanoids_Sapsal_NP"]/tools</xpath> 
+				<xpath>Defs/ThingDef[defName="Miho_Mech_Bulgasal" or defName="Miho_Mech_BulgasalSiege"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
+							<label>front left leg</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>35</power>
-							<cooldownTime>3.51</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>15</armorPenetrationBlunt>
+							<power>21</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>front right leg</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>21</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
 							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 						</li>
 					</tools>
 				</value>
 			</li>
 			
+			<li Class="PatchOperationAdd">
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_Cataphract" or defName="Miho_Mech_CataphractRocket"]/statBases</xpath>
+				  <value>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
+					<NightVisionEfficiency>0.60</NightVisionEfficiency>
+					<ShootingAccuracyPawn>4.5</ShootingAccuracyPawn>
+					<CarryWeight>100</CarryWeight>
+					<CarryBulk>150</CarryBulk>
+				  </value>
+			</li>
+			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Security"
-				]/tools</xpath> 
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_Cataphract"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
+					<ArmorRating_Sharp>32</ArmorRating_Sharp>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_Cataphract"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>72</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Mech_Cataphract"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
+							<label>front left leg</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>14</power>
-							<cooldownTime>2.07</cooldownTime>
+							<power>21</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>front right leg</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>21</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>jaw</label>
+							<capacities>
+								<li>Demolish</li>
+							</capacities>
+							<power>80</power>
+							<cooldownTime>7.06</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+							<armorPenetrationBlunt>37.5</armorPenetrationBlunt>
+							<chanceFactor>2</chanceFactor>
 							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 						</li>
 					</tools>
 				</value>
 			</li>
 			
+			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-				defName="MihoVFE_Mechanoids_Cleaner" or
-				defName="MihoVFE_Mechanoids_Logi"
-				]/tools</xpath> 
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_CataphractRocket"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			 <xpath>Defs/ThingDef[defName="Miho_Mech_CataphractRocket"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+					<ArmorRating_Blunt>22.5</ArmorRating_Blunt>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Mech_CataphractRocket"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
+							<label>front left leg</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>5</power>
-							<cooldownTime>5.04</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<power>21</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>front right leg</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>21</power>
+							<cooldownTime>1.9</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
 							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 						</li>
 					</tools>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="MihoVFE_Mechanoids_Bulgasal_Melee"]/tools</xpath> 
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>51</power>
-							<cooldownTime>3.73</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>30</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>false</alwaysTreatAsWeapon>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
 		</operations>
 		</match>	
-	  </match>	
+	  </li>
+	</operations>	
   </Operation>
 </Patch>

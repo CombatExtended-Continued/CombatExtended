@@ -102,13 +102,24 @@
 		</value>
 	</Operation>
 
+	<!-- ========== Cape ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Cape"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1.5</WornBulk>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
 	<!-- ========== Plate armor ========== -->
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Apparel_PlateArmor"]/statBases</xpath>
 		<value>
 			<Bulk>100</Bulk>
-			<WornBulk>15</WornBulk>
+			<WornBulk>10</WornBulk>
 		</value>
 	</Operation>
 
@@ -479,25 +490,18 @@
 
 	<!-- ========== Power armor ========== -->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PowerArmor"]/description</xpath>
+		<value>
+			<description>A suit of powered armor. Layered plasteel-weave plates are very effective at stopping attacks, with few vulnerable joint sections. Neuro-memetic assistors allow a human to wear the armor and still move easily.\n\nArmor like this is often used by rapid-incursion space marines.\n\nWhile bulky and heavy, the advanced servo-motors greatly increase the wearer's load bearing capacity and assist in weapon-handling.</description>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="ApparelArmorPowerBase"]/statBases</xpath>
 		<value>
 			<Bulk>100</Bulk>
 			<WornBulk>15</WornBulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_PowerArmor"]/label</xpath>
-		<value>
-			<label>power armor</label>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_PowerArmor"]/description</xpath>
-		<value>
-			<description>A suit of powered armor. Layered plasteel-weave plates are very effective at stopping attacks, with few vulnerable joint sections. Neuro-memetic assistors allow a human to wear the armor and still move easily.\n\nArmor like this is often used by imperial janissaries and rapid-incursion space marines. \n\nWhile bulky and heavy, the advanced servo-motors greatly increase the wearer's load bearing capacity and assist in weapon-handling.</description>
 		</value>
 	</Operation>
 
@@ -553,7 +557,7 @@
 			<CarryWeight>80</CarryWeight>
 			<CarryBulk>10</CarryBulk>
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-			<ToxicSensitivity>-0.50</ToxicSensitivity>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 		</value>
 	</Operation>
 
@@ -629,6 +633,13 @@
 
 	<!-- ========== Recon armor ========== -->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_ArmorRecon"]/description</xpath>
+		<value>
+			<description>A suit of light partially-powered armor, designed to permit quick movement. Lightweight plasteel-weave plates block attacks without compromising mobility, and neuro-memetic assistors in the lower body allow a human to wear the armor and still move easily.\n\nArmor like this is often used by imperial scout troops and glitterworld police forces.\n\nThe advanced servo-motors greatly increase the wearer's load bearing capacity.</description>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="ApparelArmorReconBase"]/statBases</xpath>
 		<value>
@@ -685,7 +696,7 @@
 		<equippedStatOffsets>
 			<CarryWeight>50</CarryWeight>
 			<CarryBulk>8</CarryBulk>
-			<ToxicSensitivity>-0.50</ToxicSensitivity>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 			<MoveSpeed>0.4</MoveSpeed>
 		</equippedStatOffsets>
 		</value>

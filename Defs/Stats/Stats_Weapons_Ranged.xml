@@ -34,12 +34,23 @@
   </StatDef>
 
   <StatDef>
-    <defName>OneHandedNess</defName>
-    <label>One-handed weapon (CE)</label>
-    <description>Whether the gun can be used with shields</description>
+    <defName>OneHandedness</defName>
+    <label>One-handed weapon</label>
+    <description>Whether or not the weapon can be used with shields</description>
     <workerClass>CombatExtended.StatWorker_OneHandedness</workerClass>
     <category>Weapon</category>
     <displayPriorityInCategory>895</displayPriorityInCategory>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+  </StatDef>
+
+  <StatDef>
+    <defName>UBGLInfo</defName>
+    <label>Additional weapon info</label>
+    <description>Information about under/over barrel or otherwise mounted weapons</description>
+    <workerClass>CombatExtended.StatWorker_UBGLStats</workerClass>
+    <category>Weapon</category>
+    <displayPriorityInCategory>900</displayPriorityInCategory>
     <defaultBaseValue>0</defaultBaseValue>
     <minValue>0</minValue>
   </StatDef>
@@ -191,6 +202,7 @@
     <description>How long should this weapon take to reload.</description>
     <category>Weapon</category>
     <showIfUndefined>false</showIfUndefined>
+    <alwaysHide>true</alwaysHide>
     <displayPriorityInCategory>897</displayPriorityInCategory>
     <defaultBaseValue>1</defaultBaseValue>
     <parts>
@@ -204,8 +216,19 @@
     <label>ammo consumed per shot</label>
     <description>How many units of ammunition this gun consumes for each individual shot.\n\nThis applies to guns with multiple barrels that fire simultaneously with each pull of the trigger, or exotic energy weapons that use up different amounts of energy from a power cell.</description>
     <category>Weapon</category>
-      <showIfUndefined>true</showIfUndefined>
-	  <displayPriorityInCategory>877</displayPriorityInCategory>
+    <showIfUndefined>true</showIfUndefined>
+    <displayPriorityInCategory>877</displayPriorityInCategory>
+  </StatDef>
+  
+  <StatDef>
+    <defName>AmmoGenPerMagOverride</defName>
+    <label>ammo generation per magazine override</label>
+    <description>How many units of ammunition per magazine specified in pawnKindDef should a pawn bring.\n\nPurely used in pawn generation.  You should not be able to read this in game.</description>
+    <category>Weapon</category>
+    <showIfUndefined>true</showIfUndefined>
+    <alwaysHide>true</alwaysHide>
+    <defaultBaseValue>0</defaultBaseValue>
+    <displayPriorityInCategory>877</displayPriorityInCategory>
   </StatDef>
 
 </Defs>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +10,7 @@ using Verse.Grammar;
 using UnityEngine;
 using CombatExtended.AI;
 using System.Net.Mail;
+using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
@@ -36,6 +37,7 @@ namespace CombatExtended
 
         private float shotAngle = 0f;   // Shot angle off the ground in radians.
         private float shotRotation = 0f;    // Angle rotation towards target.
+        private float distance = 10f;
 
         public CompCharges compCharges = null;
         public CompAmmoUser compAmmo = null;
@@ -48,6 +50,18 @@ namespace CombatExtended
         private float angleRadians = 0f;
 
         //private int lastTauntTick;
+
+        private bool shootingAtDowned = false;
+        private LocalTargetInfo lastTarget = null;
+        private IntVec3 lastTargetPos = IntVec3.Invalid;
+
+        protected float lastShotAngle;
+        protected float lastShotRotation;
+        protected float lastRecoilDeg;
+        protected float? storedShotReduction = null;
+        protected ShootLine lastShootLine;
+        protected bool repeating = false;
+        private bool doRetarget = true;
 
         #endregion
 
@@ -69,7 +83,9 @@ namespace CombatExtended
                 {
                     float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
                     if (modified > 0)
+                    {
                         shotsPerBurst = modified;
+                    }
                 }
                 return (int)shotsPerBurst;
             }
@@ -124,7 +140,7 @@ namespace CombatExtended
                 isTurretMannable = (Caster.TryGetComp<CompMannable>() != null);
                 return Mathf.Min(CasterShootingAccuracyValue(Shooter), 4.5f);
             }
-           
+
         }
         public float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
         public float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
@@ -199,11 +215,13 @@ namespace CombatExtended
             get
             {
                 float recoil = VerbPropsCE.recoilAmount;
-                if(EquipmentSource != null)
+                if (EquipmentSource != null)
                 {
                     float modified = EquipmentSource.GetStatValue(CE_StatDefOf.Recoil);
                     if (modified > 0)
+                    {
                         recoil = modified;
+                    }
                 }
                 return recoil;
             }
@@ -228,18 +246,45 @@ namespace CombatExtended
 
         #region Methods
 
+        public override void Reset()
+        {
+            base.Reset();
+            shootingAtDowned = false;
+            lastTarget = null;
+            lastTargetPos = IntVec3.Invalid;
+
+            repeating = false;
+            storedShotReduction = null;
+        }
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<bool>(ref this.shootingAtDowned, "shootingAtDowned", false, false);
+            Scribe_TargetInfo.Look(ref this.lastTarget, "lastTarget");
+            Scribe_Values.Look<IntVec3>(ref this.lastTargetPos, "lastTargetPos", IntVec3.Invalid, false);
+            Scribe_Values.Look<bool>(ref this.repeating, "repeating", false, false);
+            Scribe_Values.Look<float>(ref this.lastShotAngle, "lastShotAngle", 0f, false);
+            Scribe_Values.Look<float>(ref this.lastShotRotation, "lastShotRotation", 0f, false);
+            Scribe_Values.Look<float>(ref this.lastRecoilDeg, "lastRecoilDeg", 0f, false);
+
+        }
+
         public override bool Available()
         {
             // This part copied from vanilla Verb_LaunchProjectile
             if (!base.Available())
+            {
                 return false;
+            }
 
             if (CasterIsPawn)
             {
                 if (CasterPawn.Faction != Faction.OfPlayer
-                    && CasterPawn.mindState.MeleeThreatStillThreat
-                    && CasterPawn.mindState.meleeThreat.AdjacentTo8WayOrInside(CasterPawn))
+                        && CasterPawn.mindState.MeleeThreatStillThreat
+                        && CasterPawn.mindState.meleeThreat.AdjacentTo8WayOrInside(CasterPawn))
+                {
                     return false;
+                }
             }
 
             // Add check for reload
@@ -256,13 +301,14 @@ namespace CombatExtended
         /// </summary>
         /// <param name="caster">What thing is equipping the projectile launcher</param>
         private float CasterShootingAccuracyValue(Thing caster) => // ShootingAccuracy was split into ShootingAccuracyPawn and ShootingAccuracyTurret
-            (caster as Pawn != null) ? caster.GetStatValue(StatDefOf.ShootingAccuracyPawn) : caster.GetStatValue(StatDefOf.ShootingAccuracyTurret);
+        (caster as Pawn != null) ? caster.GetStatValue(StatDefOf.ShootingAccuracyPawn) : caster.GetStatValue(StatDefOf.ShootingAccuracyTurret);
 
         /// <summary>
         /// Resets current burst shot count and estimated distance at beginning of the burst
         /// </summary>
         public override void WarmupComplete()
         {
+            lastTarget = null;
             if (ShooterPawn != null && ShooterPawn.pather == null)
             {
                 return; //Pawn has started a jump pack animation, or otherwise became despawned temporarily
@@ -303,7 +349,9 @@ namespace CombatExtended
                 }
                 Vector3 v = report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
                 if (report.targetPawn != null)
+                {
                     v += report.targetPawn.Drawer.leaner.LeanOffset * 0.5f;
+                }
 
                 newTargetLoc.Set(v.x, v.z);
 
@@ -352,7 +400,7 @@ namespace CombatExtended
                         targetRange.min = coverRange.max;
 
                         // Target fully hidden, shift aim upwards if we're doing suppressive fire
-                        if (targetRange.max <= coverRange.max && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
+                        if (targetRange.max <= coverRange.max && (CompFireModes?.CurrentAimMode == AimMode.SuppressFire || VerbPropsCE.ignorePartialLoSBlocker))
                         {
                             targetRange.max = coverRange.max * 2;
                         }
@@ -370,7 +418,7 @@ namespace CombatExtended
                         if (IsAccurate)
                         {
                             if (((CasterPawn?.Faction ?? Caster.Faction) == Faction.OfPlayer) &&
-                                        (CompFireModes?.targetMode != TargettingMode.automatic))
+                                    (CompFireModes?.targetMode != TargettingMode.automatic))
                             {
                                 if (AppropiateAimMode)
                                 {
@@ -480,10 +528,19 @@ namespace CombatExtended
                             }
 
                         }
-                       
+
 
                     }
-                    targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
+
+                    targetHeight = targetRange.Average;
+                    if (projectilePropsCE != null)
+                    {
+                        targetHeight += projectilePropsCE.aimHeightOffset;
+                    }
+                    if (targetHeight > CollisionVertical.WallCollisionHeight && report.roofed)
+                    {
+                        targetHeight = CollisionVertical.WallCollisionHeight;
+                    }
                 }
                 if (projectilePropsCE.isInstant)
                 {
@@ -504,6 +561,7 @@ namespace CombatExtended
             var w = (newTargetLoc - sourceLoc);
             shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
+            distance = (newTargetLoc - sourceLoc).magnitude;
         }
 
         /// <summary>
@@ -520,9 +578,12 @@ namespace CombatExtended
             float minY = -recoil / 3;
 
             float recoilMagnitude = numShotsFired == 0 ? 0 : Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
+            float nextRecoilMagnitude = Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired + 1) / 6.25f));
 
             rotation += recoilMagnitude * Rand.Range(minX, maxX);
-            angle += Mathf.Deg2Rad * recoilMagnitude * Rand.Range(minY, maxY);
+            var trd = Rand.Range(minY, maxY);
+            angle += recoilMagnitude * Mathf.Deg2Rad * trd;
+            lastRecoilDeg += nextRecoilMagnitude * trd;
         }
 
         /// <summary>
@@ -545,6 +606,12 @@ namespace CombatExtended
             report.target = target;
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;
+            report.blindFiring = ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight);
+
+            if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+            {
+                report.sightsEfficiency = 0;
+            }
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = EffectiveRange;
             report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
@@ -559,20 +626,22 @@ namespace CombatExtended
             report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
             Thing cover;
             float smokeDensity;
+            bool roofed;
 
-            GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
+            GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity, out roofed);
             report.cover = cover;
             report.smokeDensity = smokeDensity;
+            report.roofed = roofed;
             return report;
         }
 
         public float AdjustShotHeight(Thing caster, LocalTargetInfo target, ref float shotHeight)
         {
-            /* TODO:  This really should determine how much the shooter needs to rise up for a *good* shot.  
-               If we're shooting at something tall, we might not need to rise at all, if we're shooting at 
-               something short, we might need to rise *more* than just above the cover.  This at least handles 
+            /* TODO:  This really should determine how much the shooter needs to rise up for a *good* shot.
+               If we're shooting at something tall, we might not need to rise at all, if we're shooting at
+               something short, we might need to rise *more* than just above the cover.  This at least handles
                cases where we're below cover, but the taret is taller than the cover */
-            GetHighestCoverAndSmokeForTarget(target, out Thing cover, out float smoke);
+            GetHighestCoverAndSmokeForTarget(target, out Thing cover, out float smoke, out bool roofed);
             var shooterHeight = CE_Utility.GetBoundsFor(caster).max.y;
             var coverHeight = CE_Utility.GetBoundsFor(cover).max.y;
             var centerOfVisibleTarget = (CE_Utility.GetBoundsFor(target.Thing).max.y - coverHeight) / 2 + coverHeight;
@@ -599,18 +668,19 @@ namespace CombatExtended
         /// <param name="target">The target of which to find cover of</param>
         /// <param name="cover">Output parameter, filled with the highest cover object found</param>
         /// <returns>True if cover was found, false otherwise</returns>
-        private bool GetHighestCoverAndSmokeForTarget(LocalTargetInfo target, out Thing cover, out float smokeDensity)
+        private bool GetHighestCoverAndSmokeForTarget(LocalTargetInfo target, out Thing cover, out float smokeDensity, out bool roofed)
         {
             Map map = caster.Map;
             Thing targetThing = target.Thing;
             Thing highestCover = null;
             float highestCoverHeight = 0f;
+            roofed = false;
 
             smokeDensity = 0;
 
             // Iterate through all cells on line of sight and check for cover and smoke
-            var cells = GenSight.PointsOnLineOfSight(target.Cell, caster.Position).ToArray();
-            if (cells.Length < 3)
+            var cells = GenSightCE.AllPointsOnLineOfSight(target.Cell, caster.Position);
+            if (cells.Count < 3)
             {
                 cover = null;
                 return false;
@@ -620,38 +690,54 @@ namespace CombatExtended
             {
                 instant = pprop.isInstant;
             }
-            int endCell = instant ? cells.Length : cells.Length / 2;
+            int endCell = instant ? cells.Count : cells.Count / 2;
 
             for (int i = 0; i < endCell; i++)
             {
                 var cell = cells[i];
 
-                if (cell.AdjacentTo8Way(caster.Position)) continue;
+                if (cell.AdjacentTo8Way(caster.Position))
+                {
+                    continue;
+                }
 
                 // Check for smoke
                 var gas = cell.GetGas(map);
-                if (gas != null)
+                // TODO 1.4: Figure out how the new hardcoded gas system will work for our smoke and custom gases
+                if (cell.AnyGas(map, GasType.BlindSmoke))
                 {
-                    smokeDensity += gas.def.gas.accuracyPenalty;
+                    smokeDensity += GasUtility.BlindingGasAccuracyPenalty;
+                }
+                if (!roofed)
+                {
+                    roofed = map.roofGrid.RoofAt(cell) != null;
                 }
 
+
                 // Check for cover in the second half of LoS
-                if (instant || i <= cells.Length / 2)
+                if (instant || i <= cells.Count / 2)
                 {
                     Pawn pawn = cell.GetFirstPawn(map);
                     Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
-                    float newCoverHeight = new CollisionVertical(newCover).Max;
 
                     // Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
                     if (newCover != null
-                        && (targetThing == null || !newCover.Equals(targetThing))
-                        && (highestCover == null || highestCoverHeight < newCoverHeight)
-                        && newCover.def.Fillage == FillCategory.Partial
-                        && !newCover.IsPlant())
+                            && (targetThing == null || !newCover.Equals(targetThing))
+                            && newCover.def.Fillage == FillCategory.Partial
+                            && !newCover.IsPlant())
                     {
-                        highestCover = newCover;
-                        highestCoverHeight = newCoverHeight;
-                        if (Controller.settings.DebugDrawTargetCoverChecks) map.debugDrawer.FlashCell(cell, highestCoverHeight, highestCoverHeight.ToString());
+                        float newCoverHeight = new CollisionVertical(newCover).Max;
+
+                        if (highestCover == null || highestCoverHeight < newCoverHeight)
+                        {
+                            highestCover = newCover;
+                            highestCoverHeight = newCoverHeight;
+                        }
+
+                        if (Controller.settings.DebugDrawTargetCoverChecks)
+                        {
+                            map.debugDrawer.FlashCell(cell, highestCoverHeight, highestCoverHeight.ToString());
+                        }
                     }
                 }
             }
@@ -723,7 +809,7 @@ namespace CombatExtended
                     foreach (Apparel current in wornApparel)
                     {
                         //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
-                        if (!current.AllowVerbCast(this) && !(current is ShieldBelt && isTurretOperator))
+                        if (!current.AllowVerbCast(this) && !(current.TryGetComp<CompShield>() != null && isTurretOperator))
                         {
                             report = "Shooting disallowed by " + current.LabelShort;
                             return false;
@@ -753,15 +839,96 @@ namespace CombatExtended
             return true;
         }
 
+        protected bool Retarget()
+        {
+            if (!doRetarget)
+            {
+                return true;
+            }
+            doRetarget = false;
+            if (currentTarget != lastTarget)
+            {
+                lastTarget = currentTarget;
+                lastTargetPos = currentTarget.Cell;
+                shootingAtDowned = currentTarget.Pawn?.Downed ?? true;
+                return true;
+            }
+            if (shootingAtDowned)
+            {
+                return true;
+            }
+            if (currentTarget.Pawn?.Downed ?? true)
+            {
+                Pawn newTarget = null;
+                Thing caster = Caster;
+
+
+                foreach (Pawn possibleTarget in Caster.Position.PawnsNearSegment(lastTargetPos, caster.Map, 3, false))
+                {
+                    if ((possibleTarget.Faction == currentTarget.Pawn?.Faction) && possibleTarget.Faction.HostileTo(caster.Faction) && !possibleTarget.Downed && CanHitFromCellIgnoringRange(Caster.Position, possibleTarget, out IntVec3 dest))
+                    {
+                        newTarget = possibleTarget;
+                        break;
+                    }
+                }
+
+
+                if (newTarget != null)
+                {
+                    currentTarget = new LocalTargetInfo(newTarget);
+                    lastTarget = currentTarget;
+                    lastTargetPos = currentTarget.Cell;
+                    shootingAtDowned = false;
+                    if (caster is Building_TurretGunCE bt)
+                    {
+                        float curRotation = (currentTarget.Cell.ToVector3Shifted() - bt.DrawPos).AngleFlat();
+                        bt.top.CurRotation = curRotation;
+                    }
+                    return true;
+                }
+                shootingAtDowned = true;
+                return false;
+            }
+            return true;
+        }
+
+        public virtual void RecalculateWarmupTicks()
+        {
+        }
+
+        public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false, bool nonInterruptingSelfCast = false)
+        {
+            bool startedCasting = base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
+            if (startedCasting)
+            {
+                if (Controller.settings.FasterRepeatShots && this.repeating && this.verbProps.warmupTime > 0f) // now warming up
+                {
+                    this.RecalculateWarmupTicks();
+                }
+            }
+            return startedCasting;
+        }
+
+
         /// <summary>
         /// Fires a projectile using the new aiming system
         /// </summary>
         /// <returns>True for successful shot, false otherwise</returns>
         public override bool TryCastShot()
         {
-            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
+            Retarget();
+            repeating = true;
+            doRetarget = true;
+            storedShotReduction = null;
+            bool firingWithoutTarget = false;
+            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst, keep shooting.
             {
-                return false;
+                if (numShotsFired == 0)
+                {
+                    return false;
+                }
+                shootLine = lastShootLine;
+                firingWithoutTarget = true;
             }
             if (projectilePropsCE.pelletCount < 1)
             {
@@ -778,6 +945,15 @@ namespace CombatExtended
                 instant = pprop.isInstant;
                 spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * pprop.spreadMult;
                 aperatureSize = 0.03f;
+            }
+
+            if (firingWithoutTarget)
+            {
+                currentTarget = new LocalTargetInfo(lastTargetPos);
+                if (!currentTarget.IsValid)
+                {
+                    return false;
+                }
             }
 
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
@@ -797,34 +973,50 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
+                if (firingWithoutTarget)
+                {
+                    //cease fire if targeting mode is not suppressive and target is null
+                    if (CompFireModes != null && (CompFireModes?.CurrentAimMode == AimMode.AimedShot || CompFireModes?.CurrentAimMode == AimMode.Snapshot))
+                    {
+                        return false;
+                    }
 
+                    shotAngle = lastShotAngle;
+                    shotRotation = lastShotRotation;
+                    GetSwayVec(ref shotRotation, ref shotAngle);
+                    GetRecoilVec(ref shotRotation, ref shotAngle);
+                }
+                this.lastShotAngle = shotAngle;
+                this.lastShotRotation = shotRotation;
+                this.lastShootLine = shootLine;
                 if (instant)
                 {
                     var shotHeight = ShotHeight;
                     float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
                     projectile.RayCast(
-                                       Shooter,
-                                       verbProps,
-                                       sourceLoc,
-                                       shotAngle + tsa,
-                                       shotRotation,
-                                       shotHeight,
-                                       ShotSpeed,
-                                       spreadDegrees,
-                                       aperatureSize,
-                                       EquipmentSource);
+                        Shooter,
+                        verbProps,
+                        sourceLoc,
+                        shotAngle + tsa,
+                        shotRotation,
+                        shotHeight,
+                        ShotSpeed,
+                        spreadDegrees,
+                        aperatureSize,
+                        EquipmentSource);
 
                 }
                 else
                 {
                     projectile.Launch(
-                                      Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
-                                      sourceLoc,
-                                      shotAngle,
-                                      shotRotation,
-                                      ShotHeight,
-                                      ShotSpeed,
-                                      EquipmentSource);
+                        Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
+                        sourceLoc,
+                        shotAngle,
+                        shotRotation,
+                        ShotHeight,
+                        ShotSpeed,
+                        EquipmentSource,
+                        distance);
                 }
                 pelletMechanicsOnly = true;
             }
@@ -874,15 +1066,15 @@ namespace CombatExtended
         public virtual void VerbTickCE()
         {
         }
-       
+
 
         #region Line of Sight Utility
 
         /* Line of sight calculating methods
-         * 
+         *
          * Copied from vanilla Verse.Verb class, the only change here is usage of our own validator for partial cover checks. Copy-paste should be kept up to date with vanilla
          * and if possible replaced with a cleaner solution.
-         * 
+         *
          * -NIA
          */
 
@@ -981,14 +1173,22 @@ namespace CombatExtended
                 Thing thing = list[i];
                 CompProjectileInterceptor interceptor = thing.TryGetComp<CompProjectileInterceptor>();
                 if (!interceptor.Active)
+                {
                     continue;
+                }
                 float d1 = Vector3.Distance(source, thing.Position.ToVector3());
                 if (d1 < interceptor.Props.radius + 1)
+                {
                     continue;
+                }
                 if (Vector3.Distance(target, thing.Position.ToVector3()) < interceptor.Props.radius)
+                {
                     return true;
+                }
                 if (thing.Position.ToVector3().DistanceToSegment(source, target, out _) < interceptor.Props.radius)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -1040,7 +1240,10 @@ namespace CombatExtended
                         }
 
                         // Skip this check entirely if we're doing suppressive fire and cell is adjacent to target
-                        if ((VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire) && cover.def.Fillage != FillCategory.Full) return true;
+                        if ((VerbPropsCE.ignorePartialLoSBlocker || aimMode == AimMode.SuppressFire) && cover.def.Fillage != FillCategory.Full)
+                        {
+                            return true;
+                        }
 
                         Bounds bounds = CE_Utility.GetBoundsFor(cover);
 
@@ -1052,13 +1255,18 @@ namespace CombatExtended
                             var shotTargDist = shotSource.ToIntVec3().DistanceTo(targetLoc);
 
                             if (shotTargDist > cellTargDist)
+                            {
                                 return cover is Pawn || bounds.size.y < shotSource.y;
+                            }
                         }
 
                         // Check for intersect
                         if (bounds.IntersectRay(shotLine))
                         {
-                            if (Controller.settings.DebugDrawPartialLoSChecks) caster.Map.debugDrawer.FlashCell(cell, 0, bounds.extents.y.ToString());
+                            if (Controller.settings.DebugDrawPartialLoSChecks)
+                            {
+                                caster.Map.debugDrawer.FlashCell(cell, 0, bounds.extents.y.ToString());
+                            }
                             return false;
                         }
 
@@ -1075,7 +1283,9 @@ namespace CombatExtended
                 foreach (IntVec3 curCell in GenSightCE.PointsOnLineOfSight(shotSource, targetLoc.ToVector3Shifted()))
                 {
                     if (Controller.settings.DebugDrawPartialLoSChecks)
+                    {
                         caster.Map.debugDrawer.FlashCell(curCell, 0.4f);
+                    }
                     if (curCell != shotSource.ToIntVec3() && curCell != targetLoc && !CanShootThroughCell(curCell))
                     {
                         return false;

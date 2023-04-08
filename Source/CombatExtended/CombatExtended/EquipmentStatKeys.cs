@@ -14,7 +14,9 @@ namespace CombatExtended
         {
             equipmentDef = equipment.def;
             if (!equipment.TryGetQuality(out quality))
+            {
                 quality = QualityCategory.Normal;
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

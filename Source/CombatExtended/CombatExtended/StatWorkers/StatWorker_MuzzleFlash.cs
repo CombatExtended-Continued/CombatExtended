@@ -20,10 +20,10 @@ namespace CombatExtended
                         scale += prop.muzzleFlashScale;
                         count++;
                     }
-                }                
+                }
                 return scale / count;
             }
             return 0f;
-        }        
+        }
     }
 }

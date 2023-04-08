@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Star Crafters Armory</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- ==================== CMC405a Armor =====================-->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/statBases</xpath>
+					<value>
+						<Bulk>135</Bulk>
+						<WornBulk>10</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PPSa"]/statBases/WorkToMake</xpath>
+					<value>
+						<WorkToMake>95000</WorkToMake>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>750</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/statBases/Mass</xpath>
+					<value>
+						<Mass>125</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>24</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>90</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>80</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>200</Plasteel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/costList/ComponentIndustrial</xpath>
+					<value>
+						<ComponentSpacer>6</ComponentSpacer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>150</CarryWeight>
+						<CarryBulk>30</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<match Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</nomatch>
+				</li>
+
+				<!-- ==================== CMC-405 helmet =====================-->
+
+				<!--100% night vision because of "integrated x ray"-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<WornBulk>1</WornBulk>
+						<NightVisionEfficiency_Apparel>1</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/statBases/WorkToMake</xpath>
+					<value>
+						<WorkToMake>30000</WorkToMake>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/statBases/Mass</xpath>
+					<value>
+						<Mass>8.5</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>320</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>21</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>70</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets</xpath>
+					<value>
+						<AimingAccuracy>0.15</AimingAccuracy>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<match Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>90</Plasteel>
+						<DevilstrandCloth>25</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/apparel/layers</xpath>
+					<value>
+						<li>OnHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="CMC405H"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Eye</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Eye</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

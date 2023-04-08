@@ -17,7 +17,7 @@
 			<Ammo_792x33mmKurz_FMJ>Bullet_792x33mmKurz_FMJ</Ammo_792x33mmKurz_FMJ>
 			<Ammo_792x33mmKurz_AP>Bullet_792x33mmKurz_AP</Ammo_792x33mmKurz_AP>
 			<Ammo_792x33mmKurz_HP>Bullet_792x33mmKurz_HP</Ammo_792x33mmKurz_HP>
-		    <Ammo_792x33mmKurz_Incendiary>Bullet_792x33mmKurz_Incendiary</Ammo_792x33mmKurz_Incendiary>
+			<Ammo_792x33mmKurz_Incendiary>Bullet_792x33mmKurz_Incendiary</Ammo_792x33mmKurz_Incendiary>
 			<Ammo_792x33mmKurz_HE>Bullet_792x33mmKurz_HE</Ammo_792x33mmKurz_HE>
 			<Ammo_792x33mmKurz_Sabot>Bullet_792x33mmKurz_Sabot</Ammo_792x33mmKurz_Sabot>			
 		</ammoTypes>
@@ -32,10 +32,10 @@
 		<Mass>0.019</Mass>
 		<Bulk>0.02</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo792x33mmKurz</li>
 		</thingCategories>
@@ -99,7 +99,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="792x33mmKurzBase">
 		<defName>Ammo_792x33mmKurz_HE</defName>
-		<label>7.92x33mm Kurz cartridge (HE)</label>
+		<label>7.92x33mm Kurz cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -128,7 +128,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base792x33mmKurzBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base792x33mmKurzBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -188,7 +188,7 @@
 	  
 	  <ThingDef ParentName="Base792x33mmKurzBullet">
 		<defName>Bullet_792x33mmKurz_HE</defName>
-		<label>7.92mm Kurz bullet (HE)</label>
+		<label>7.92mm Kurz bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>16</damageAmountBase>
 		  <armorPenetrationSharp>5</armorPenetrationSharp>
@@ -264,7 +264,7 @@
 		<products>
 			<Ammo_792x33mmKurz_AP>500</Ammo_792x33mmKurz_AP>
 		</products>
-	<workAmount>2000</workAmount>		
+	<workAmount>2400</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -330,9 +330,9 @@
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_792x33mmKurz_HE</defName>
-    <label>make 7.92x33mm Kurz (HE) cartridge x500</label>
-    <description>Craft 500 7.92x33mm Kurz (HE) cartridges.</description>
-    <jobString>Making 7.92x33mm Kurz (HE) cartridges.</jobString>
+    <label>make 7.92x33mm Kurz (AP-HE) cartridge x500</label>
+    <description>Craft 500 7.92x33mm Kurz (AP-HE) cartridges.</description>
+    <jobString>Making 7.92x33mm Kurz (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

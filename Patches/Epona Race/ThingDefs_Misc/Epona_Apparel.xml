@@ -143,7 +143,7 @@
 				<value>
 					<StuffEffectMultiplierArmor>2.7</StuffEffectMultiplierArmor>
 					<Bulk>100</Bulk>
-					<WornBulk>8</WornBulk>
+					<WornBulk>6</WornBulk>
 				</value>
 			</li>
 			
@@ -307,7 +307,7 @@
 					<CarryWeight>80</CarryWeight>
 					<CarryBulk>10</CarryBulk>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<MoveSpeed>-0.8</MoveSpeed>
 				</value>
 			</li>
@@ -342,12 +342,22 @@
 					<ArmorRating_Blunt>36</ArmorRating_Blunt>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitHelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitHelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitHelmet"]/equippedStatOffsets/MoveSpeed</xpath>
 				<value>
 					<AimingAccuracy>0.15</AimingAccuracy>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</value>
 			</li>

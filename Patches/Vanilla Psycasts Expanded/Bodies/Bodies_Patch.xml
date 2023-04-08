@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Psycasts Expanded</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ======= Body Parts ======= -->
+
+                <!-- ===== Constructs ===== -->
+
+                <!-- === Rock Construct === -->
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_RockConstructBody"]/corePart/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_RockConstructBody"]/corePart/parts/li[def = "VPE_RockHead"]/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_RockConstructBody"]/corePart/parts/li[def = "VPE_RockBody"]</xpath>
+                    <value>
+                        <groups>
+                            <li>CoveredByNaturalArmor</li>
+                        </groups>
+                    </value>
+                </li>
+
+                <!-- === Metal Construct === -->
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_MetalConstructBody"]/corePart/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_MetalConstructBody"]/corePart/parts/li[def = "VPE_MetalHead"]/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_MetalConstructBody"]/corePart/parts/li[def = "VPE_MetalBody"]</xpath>
+                    <value>
+                        <groups>
+                            <li>CoveredByNaturalArmor</li>
+                        </groups>
+                    </value>
+                </li>
+
+                <!-- ===== Skeletal Body ===== -->
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_SkeletalBody"]/corePart/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_SkeletalBody"]/corePart/parts/li[def = "VPE_Skull"]/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_SkeletalBody"]/corePart/parts/li[def = "VPE_SkeletalArm"]/groups</xpath>
+                    <value>
+                        <li>CoveredByNaturalArmor</li>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/BodyDef[defName="VPE_SkeletalBody"]/corePart/parts/li[def = "VPE_SkeletalLeg"]</xpath>
+                    <value>
+                        <groups>
+                            <li>CoveredByNaturalArmor</li>
+                        </groups>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>

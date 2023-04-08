@@ -26,23 +26,23 @@ namespace CombatExtended
         public override void TransformValue(StatRequest req, ref float val)
         {
 
-            var comp = (req.Thing?.TryGetComp<CompMechArmorDurability>() ?? null);
+            var comp = (req.Thing?.TryGetComp<CompArmorDurability>() ?? null);
             if (comp != null)
             {
                 var mech = (Pawn)req.Thing;
 
-                val *= comp.curDurabilityPercent;                
+                val *= comp.curDurabilityPercent;
             }
         }
 
         public override string ExplanationPart(StatRequest req)
         {
-            var comp = (req.Thing?.TryGetComp<CompMechArmorDurability>() ?? null);
+            var comp = (req.Thing?.TryGetComp<CompArmorDurability>() ?? null);
             if (comp != null)
             {
                 var mech = (Pawn)req.Thing;
 
-                return "Armor durability: " + comp.curDurabilityPercent.ToStringPercent();
+                return "Armor durability: " + comp.curDurabilityPercent.ToStringPercent() + "\n" + comp.curDurability.ToString() + "/" + comp.maxDurability.ToString();
             }
             return null;
         }

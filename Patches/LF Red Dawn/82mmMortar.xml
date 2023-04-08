@@ -90,7 +90,7 @@
     <ammoClass>GrenadeIncendiary</ammoClass>
     <comps>
 	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>0</damageAmountBase>
+		<damageAmountBase>11</damageAmountBase>
 		<explosiveDamageType>PrometheumFlame</explosiveDamageType>
 		<explosiveRadius>5</explosiveRadius>
         <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
@@ -171,7 +171,7 @@
         <explosiveRadius>6</explosiveRadius>
         <explosiveDamageType>Smoke</explosiveDamageType>
         <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-        <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+        <postExplosionGasType>BlindSmoke</postExplosionGasType>
         <preExplosionSpawnChance>1</preExplosionSpawnChance>
 		    <explodeOnKilled>True</explodeOnKilled>
         <wickTicks>30~82</wickTicks>
@@ -182,7 +182,7 @@
   <!-- ================== Projectiles ================== -->
 
 
-  <ThingDef Name="Base82mmMortarShell" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base82mmMortarShell" ParentName="BaseExplosiveBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
@@ -235,10 +235,8 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>PrometheumFlame</damageDef>
-      <damageAmountBase>0</damageAmountBase>
-      <armorPenetrationSharp>0</armorPenetrationSharp>
-      <armorPenetrationBlunt>0</armorPenetrationBlunt>
-      <explosionRadius>9.5</explosionRadius>
+      <damageAmountBase>11</damageAmountBase>
+      <explosionRadius>6.5</explosionRadius>
       <flyOverhead>true</flyOverhead>
       <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
       <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
@@ -272,9 +270,11 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Extinguish</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
-      <explosionRadius>9.5</explosionRadius>
+      <explosionRadius>4.75</explosionRadius>
       <flyOverhead>true</flyOverhead>
       <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
       <soundExplode>Explosion_EMP</soundExplode>
@@ -297,6 +297,8 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>6</explosionRadius>
@@ -305,7 +307,7 @@
       <soundExplode>Explosion_EMP</soundExplode>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
-      <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+      <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <explosionEffect>ExtinguisherExplosion</explosionEffect>

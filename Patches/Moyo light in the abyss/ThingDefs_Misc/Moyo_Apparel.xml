@@ -402,7 +402,7 @@
 					<li>StrappedHead</li>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="RedMoyo_GasMask"]/equippedStatOffsets</xpath>
 				<value>
@@ -496,7 +496,7 @@
 				<value>
 					<CarryWeight>110</CarryWeight>
 					<CarryBulk>15</CarryBulk>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<MoveSpeed>-0.75</MoveSpeed>
 				</value>
 			</li>
@@ -601,12 +601,22 @@
 					<Flammability>0</Flammability>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="RedMoyo_AbyssHelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RedMoyo_AbyssHelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="RedMoyo_AbyssHelmet"]/equippedStatOffsets</xpath>
 				<value>
 						<SmokeSensitivity>-1</SmokeSensitivity>
-						<ToxicSensitivity>-0.50</ToxicSensitivity>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				</value>
 			</li>
 			

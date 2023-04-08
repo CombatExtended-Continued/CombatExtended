@@ -17,7 +17,7 @@
 			<Ammo_3006Springfield_FMJ>Bullet_3006Springfield_FMJ</Ammo_3006Springfield_FMJ>
 			<Ammo_3006Springfield_AP>Bullet_3006Springfield_AP</Ammo_3006Springfield_AP>
 			<Ammo_3006Springfield_HP>Bullet_3006Springfield_HP</Ammo_3006Springfield_HP>
-		    <Ammo_3006Springfield_Incendiary>Bullet_3006Springfield_Incendiary</Ammo_3006Springfield_Incendiary>
+			<Ammo_3006Springfield_Incendiary>Bullet_3006Springfield_Incendiary</Ammo_3006Springfield_Incendiary>
 			<Ammo_3006Springfield_HE>Bullet_3006Springfield_HE</Ammo_3006Springfield_HE>
 			<Ammo_3006Springfield_Sabot>Bullet_3006Springfield_Sabot</Ammo_3006Springfield_Sabot>			
 		</ammoTypes>
@@ -99,7 +99,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="3006SpringfieldBase">
 		<defName>Ammo_3006Springfield_HE</defName>
-		<label>.30-06 Springfield cartridge (HE)</label>
+		<label>.30-06 Springfield cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -128,7 +128,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base3006SpringfieldBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base3006SpringfieldBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -188,7 +188,7 @@
 	  
 	  <ThingDef ParentName="Base3006SpringfieldBullet">
 		<defName>Bullet_3006Springfield_HE</defName>
-		<label>.30-06 Springfield bullet (HE)</label>
+		<label>.30-06 Springfield bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>21</damageAmountBase>
 		  <armorPenetrationSharp>8</armorPenetrationSharp>
@@ -264,7 +264,7 @@
 		<products>
 			<Ammo_3006Springfield_AP>500</Ammo_3006Springfield_AP>		
 		</products>
-		<workAmount>2800</workAmount>			
+		<workAmount>3360</workAmount>			
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -330,9 +330,9 @@
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_3006Springfield_HE</defName>
-    <label>make .30-06 Springfield (HE) cartridge x500</label>
-    <description>Craft 500 .30-06 Springfield (HE) cartridges.</description>
-    <jobString>Making .30-06 Springfield (HE) cartridges.</jobString>
+    <label>make .30-06 Springfield (AP-HE) cartridge x500</label>
+    <description>Craft 500 .30-06 Springfield (AP-HE) cartridges.</description>
+    <jobString>Making .30-06 Springfield (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

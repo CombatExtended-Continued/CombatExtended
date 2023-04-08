@@ -17,7 +17,7 @@
 			<Ammo_65x52mmCarcano_FMJ>Bullet_65x52mmCarcano_FMJ</Ammo_65x52mmCarcano_FMJ>
 			<Ammo_65x52mmCarcano_AP>Bullet_65x52mmCarcano_AP</Ammo_65x52mmCarcano_AP>
 			<Ammo_65x52mmCarcano_HP>Bullet_65x52mmCarcano_HP</Ammo_65x52mmCarcano_HP>
-		    <Ammo_65x52mmCarcano_Incendiary>Bullet_65x52mmCarcano_Incendiary</Ammo_65x52mmCarcano_Incendiary>
+			<Ammo_65x52mmCarcano_Incendiary>Bullet_65x52mmCarcano_Incendiary</Ammo_65x52mmCarcano_Incendiary>
 			<Ammo_65x52mmCarcano_HE>Bullet_65x52mmCarcano_HE</Ammo_65x52mmCarcano_HE>
 			<Ammo_65x52mmCarcano_Sabot>Bullet_65x52mmCarcano_Sabot</Ammo_65x52mmCarcano_Sabot>								
 		</ammoTypes>
@@ -32,10 +32,10 @@
 		<Mass>0.022</Mass>
 		<Bulk>0.03</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo65x52mmCarcano</li>
 		</thingCategories>
@@ -99,7 +99,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="65x52mmCarcanoBase">
     <defName>Ammo_65x52mmCarcano_HE</defName>
-    <label>6.5x52mm Carcano cartridge (HE)</label>
+    <label>6.5x52mm Carcano cartridge (AP-HE)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -128,7 +128,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base65x52mmCarcanoBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base65x52mmCarcanoBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -188,7 +188,7 @@
 	
 	<ThingDef ParentName="Base65x52mmCarcanoBullet">
 	<defName>Bullet_65x52mmCarcano_HE</defName>
-	<label>6.5x52mm Carcano bullet (HE)</label>
+	<label>6.5x52mm Carcano bullet (AP-HE)</label>
 	<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		<damageAmountBase>17</damageAmountBase>
 		<armorPenetrationSharp>6</armorPenetrationSharp>
@@ -330,9 +330,9 @@
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_65x52mmCarcano_HE</defName>
-    <label>make 6.5x52mm Carcano (HE) cartridge x500</label>
-    <description>Craft 500 6.5x52mm Carcano (HE) cartridges.</description>
-    <jobString>Making 6.5x52mm Carcano (HE) cartridges.</jobString>
+    <label>make 6.5x52mm Carcano (AP-HE) cartridge x500</label>
+    <description>Craft 500 6.5x52mm Carcano (AP-HE) cartridges.</description>
+    <jobString>Making 6.5x52mm Carcano (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

@@ -16,7 +16,7 @@ namespace CombatExtended.HarmonyCE
     internal static class Harmony_PawnRenderer
     {
         /*
-         * 
+         *
          * Please remember to:
          *          - SYNC these with vanilla PawnRenderer constants
          *          - CHECK if any names changed.
@@ -39,14 +39,14 @@ namespace CombatExtended.HarmonyCE
 
         /*
          * Compatiblity stuff IMPORTANT
-         * 
+         *
          * These are patched by compatibility patches so we can have custom drawsize, drawoffsets for mods like Alien races
          * IF YOU ARE A MODDER PLEASE READ THIS...
-         * 
-         * In order to make compatiblity with CE easier, we've implemented several empty functions that return a default value. 
+         *
+         * In order to make compatiblity with CE easier, we've implemented several empty functions that return a default value.
          * These are to be patched by either other mods or by CE it self inorder to make the process of changing simple things in CE a bit simpler.
-         * 
-         * <==================================== Example of adding support for customHeadDrawSize form HAR in CE ====================================>               
+         *
+         * <==================================== Example of adding support for customHeadDrawSize form HAR in CE ====================================>
          */
 
         // dubwise apparel tweak loaded check
@@ -54,16 +54,16 @@ namespace CombatExtended.HarmonyCE
 
         /// <summary>
         /// Intended to allow an easy point that allow other mods or CE to patch the rendering in runtime
-        /// </summary>                
+        /// </summary>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static Mesh GetHeadMesh(PawnRenderFlags renderFlags, Pawn pawn, Rot4 headFacing, PawnGraphicSet graphics)
+        public static GraphicMeshSet GetHumanlikeHeadSetForPawnHelper(float lifeStageFactor, Pawn pawn)
         {
             return null;
         }
 
         /// <summary>
         /// Intended to allow an easy point that allow other mods or CE to patch the rendering in runtime
-        /// </summary>        
+        /// </summary>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Vector2 GetHeadCustomSize(ThingDef def)
         {
@@ -72,7 +72,7 @@ namespace CombatExtended.HarmonyCE
 
         /// <summary>
         /// Intended to allow an easy point that allow other mods or CE to patch the rendering in runtime
-        /// </summary>        
+        /// </summary>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Vector2 GetHeadCustomOffset(ThingDef def)
         {
@@ -80,7 +80,7 @@ namespace CombatExtended.HarmonyCE
         }
 
         /*
-         * 
+         *
          * Check this patch if:
          *   - Apparel is rendered slightly off from the pawn sprite (update YOffset constants based on PawnRenderer values
          *
@@ -89,16 +89,16 @@ namespace CombatExtended.HarmonyCE
          *       CHECK Harmony_ApparelGraphicRecordGetter.cs
          *       INSTEAD!
          *
-         * - Patch Harmony_PawnRenderer_DrawBodyApparel 
-         * 
+         * - Patch Harmony_PawnRenderer_DrawBodyApparel
+         *
          * This patch is used to enable rendering of backpacks and tac vest and similar items.
-         *      
-         * - Patch Harmony_PawnRenderer_DrawHeadHair 
-         * 
+         *
+         * - Patch Harmony_PawnRenderer_DrawHeadHair
+         *
          * Should render just after vanilla tattoos. Used to render headgrear with the CE apparel extension
-         * 
+         *
          * - Patch Harmony_PawnRenderer_ShellFullyCoversHead
-         * 
+         *
          * Should Allow headgear to render since most CE gear has full head coverage.
          */
         [HarmonyPatch(typeof(PawnRenderer), "DrawBodyApparel")]
@@ -112,13 +112,19 @@ namespace CombatExtended.HarmonyCE
             {
                 // If it's invisible skip everything
                 if (!def.IsVisibleLayer())
+                {
                     return false;
-                // Moved to since backpacks use 
+                }
+                // Moved to since backpacks use
                 if (def == CE_ApparelLayerDefOf.Backpack)
+                {
                     return false;
-                // Enable toggling webbing rendering             
+                }
+                // Enable toggling webbing rendering
                 if (def == CE_ApparelLayerDefOf.Webbing && !Controller.settings.ShowTacticalVests)
+                {
                     return false;
+                }
                 return true;
             }
 
@@ -130,7 +136,7 @@ namespace CombatExtended.HarmonyCE
                 for (int i = 0; i < codes.Count; i++)
                 {
                     CodeInstruction code = codes[i];
-                    /* 
+                    /*
                      * Replace ApparelLayerDef::lastLayer != ApparelLayerDefOf::Shell with IsPreShellLayer(ApparelLayerDef::lastLayer)
                      * by poping the first part and replacin the second part and changing != to brtrue
                      */
@@ -141,12 +147,15 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Brfalse_S, codes[i].operand);
                         continue;
                     }
-                    /* 
+                    /*
                      * Add the offset to loc before calling mDrawMeshNowOrLater
                      */
                     if (code.opcode == OpCodes.Call && code.OperandIs(mDrawMeshNowOrLater))
                     {
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 5) { labels = code.labels };
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 5)
+                        {
+                            labels = code.labels
+                        };
                         yield return new CodeInstruction(OpCodes.Dup);
                         yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
@@ -160,7 +169,7 @@ namespace CombatExtended.HarmonyCE
                      */
                     if (code.opcode == OpCodes.Ldarg_2)
                     {
-                        /* 
+                        /*
                          * Load apparelGraphicRecord from for(int i = 0....) { ApparelGraphicRecord apparelGraphicRecord = apparelGraphics[i];
                          * From the start of the function
                          */
@@ -179,7 +188,10 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(GetBackpackOffset)));                          // shellloc
                         yield return new CodeInstruction(OpCodes.Br_S, l2);     // continue;
 
-                        code.labels = new List<Label>() { l1 };
+                        code.labels = new List<Label>()
+                        {
+                            l1
+                        };
                         yield return code;
                         codes[i + 1].labels.Add(l2);
                         continue;
@@ -192,11 +204,13 @@ namespace CombatExtended.HarmonyCE
             private static Vector3 GetBackpackOffset(Vector3 vector, Rot4 bodyFacing)
             {
                 /*
-                 * Need to subract  0.023166021f since if we don't backpacks will render 
+                 * Need to subract  0.023166021f since if we don't backpacks will render
                  * infront of pawns when facing the player (south)
                  */
                 if (bodyFacing == Rot4.South)
+                {
                     vector.y -= 0.023166021f;
+                }
                 return vector;
             }
 
@@ -207,7 +221,7 @@ namespace CombatExtended.HarmonyCE
             private static float GetPostShellOffset(PawnRenderer renderer)
             {
                 List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics
-                    .Where(a => a.sourceApparel.def.apparel.LastLayer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder).ToList();
+                        .Where(a => a.sourceApparel.def.apparel.LastLayer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder).ToList();
                 return apparelGraphics.Count == 0 ? 0 : YOffsetIntervalClothes / apparelGraphics.Count;
             }
         }
@@ -216,7 +230,7 @@ namespace CombatExtended.HarmonyCE
         public static class Harmony_PawnRenderer_DrawHeadHair
         {
             private static Rot4 north = Rot4.North;
-            
+
 
             // skip this if dubs apparel tweak is loaded
             private static bool Prepare()
@@ -229,12 +243,16 @@ namespace CombatExtended.HarmonyCE
                 return true;
             }
 
-            private static void DrawHeadApparel(PawnRenderer renderer, Pawn pawn, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, Rot4 headFacing, ref bool hideHair)
+            private static void DrawHeadApparel(PawnRenderer renderer, Pawn pawn, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, Rot4 headFacing, ref bool shouldRenderHair)
             {
                 if (flags.FlagSet(PawnRenderFlags.Portrait) && Prefs.HatsOnlyOnMap)
+                {
                     return;
+                }
                 if (!flags.FlagSet(PawnRenderFlags.Headgear))
+                {
                     return;
+                }
                 List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics;
 
                 // This will limit us to only 32 layers of headgear
@@ -243,14 +261,19 @@ namespace CombatExtended.HarmonyCE
                 Vector3 customScale = Vec2ToVec3(GetHeadCustomSize(pawn.def));
                 Vector3 headwearPos = headLoc + Vec2ToVec3(GetHeadCustomOffset(pawn.def));
 
-                Mesh mesh = GetHeadMesh(flags, pawn, headFacing, renderer.graphics) ?? renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
+                // Let other mods such as HAR inject an alternative graphic for the hair/head.
+                // Note that in the absence of a specific bodyWidth multiplier (Biotech/HAR) for this pawn,
+                // we must use MeshPool.HumanlikeHeadAverageWidth (1.5f) to ensure proper headgear sizing.
+                float lifeStageFactor = pawn.ageTracker.CurLifeStage.bodyWidth ?? MeshPool.HumanlikeHeadAverageWidth;
+                GraphicMeshSet gms = GetHumanlikeHeadSetForPawnHelper(lifeStageFactor, pawn);
+                Mesh mesh = gms?.MeshAt(bodyFacing) ?? renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
 
                 for (int i = 0; i < apparelGraphics.Count; i++)
                 {
                     ApparelGraphicRecord apparelRecord = apparelGraphics[i];
                     if (apparelRecord.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead && !apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
                     {
-                        hideHair = apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? true;
+                        shouldRenderHair = !apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? false;
                     }
                     else if (apparelRecord.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
                     {
@@ -267,8 +290,10 @@ namespace CombatExtended.HarmonyCE
                         else
                         {
                             Matrix4x4 matrix = new Matrix4x4();
-                            if(!quickFast_Loaded)
-                                hideHair = apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? true;
+                            if (!quickFast_Loaded)
+                            {
+                                shouldRenderHair = !apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? false;
+                            }
                             headwearPos.y += interval;
                             matrix.SetTRS(headwearPos, quaternion, customScale);
                             GenDraw.DrawMeshNowOrLater(mesh, matrix, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
@@ -281,7 +306,10 @@ namespace CombatExtended.HarmonyCE
             private static Material GetMaterial(PawnRenderer renderer, Pawn pawn, ApparelGraphicRecord record, Rot4 bodyFacing, PawnRenderFlags flags)
             {
                 Material mat = record.graphic.MatAt(bodyFacing);
-                if (flags.FlagSet(PawnRenderFlags.Cache)) return mat;
+                if (flags.FlagSet(PawnRenderFlags.Cache))
+                {
+                    return mat;
+                }
                 return renderer.OverrideMaterialIfNeeded(mat, pawn, flags.FlagSet(PawnRenderFlags.Portrait));
             }
 
@@ -298,8 +326,8 @@ namespace CombatExtended.HarmonyCE
             //private const string displayClassName = "DisplayClass39";
 
             /*
-             * For VFE vikings compatiblity 
-             * Required for better compatiblity 
+             * For VFE vikings compatiblity
+             * Required for better compatiblity
              */
             [HarmonyPriority(Priority.Last)]
             internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
@@ -311,12 +339,12 @@ namespace CombatExtended.HarmonyCE
                 for (int i = 0; i < codes.Count; i++)
                 {
                     var code = codes[i];
-                    /* 
+                    /*
                      * 1. Insert calls for head renderer
-                     * 
+                     *
                      * Ldloc_2 is the bool used to controll the rendering of headstumps
-                     *  
-                     * Look for Ldloc_2 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it 
+                     *
+                     * Look for Ldloc_2 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it
                      * breaks make sure to check compat with Alien Races & VFE-Vikings/Beards
                      */
 
@@ -327,7 +355,10 @@ namespace CombatExtended.HarmonyCE
                         //yield return new CodeInstruction(OpCodes.Brfalse_S, l1);
 
                         // Insert new calls for headgear renderer
-                        yield return new CodeInstruction(OpCodes.Ldarg_0) { labels = code.labels }; // PawnRenderer renderer
+                        yield return new CodeInstruction(OpCodes.Ldarg_0)
+                        {
+                            labels = code.labels
+                        }; // PawnRenderer renderer
 
                         yield return new CodeInstruction(OpCodes.Ldarg_0); // render.pawn
                         yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(PawnRenderer), "pawn"));
@@ -353,7 +384,7 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Ldloc_0); // PawnRenderFlags flags
                         yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "headFacing"));
 
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 2);  // ref bool hideHair
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 2);  // ref bool shouldRenderHair
 
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawHeadHair), nameof(DrawHeadApparel)));
                         code.labels = new List<Label>();
@@ -382,23 +413,29 @@ namespace CombatExtended.HarmonyCE
                 equipment = eq;
             }
 
-            private static void DrawMesh(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
-            {              
-                GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
-                Matrix4x4 matrix = new Matrix4x4();                
+            private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle)
+            {
+                GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension() { DrawSize = eq.def.graphicData.drawSize };
+                if (drawData.DrawSize == Vector2.one) { drawData.DrawSize = eq.def.graphicData.drawSize; }
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
                 if (aimAngle > 200 && aimAngle < 340)
+                {
                     posVec.x *= -1;
-                matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
-                if(eq is WeaponPlatform platform)                
+                }
+                matrix.SetTRS(position + posVec.RotatedBy(matrix.rotation.eulerAngles.y), matrix.rotation, scale);
+                if (eq is WeaponPlatform platform)
+                {
                     platform.DrawPlatform(matrix, mesh == MeshPool.plane10Flip, layer);
+                }
                 else
+                {
                     Graphics.DrawMesh(mesh, matrix, mat, layer);
+                }
             }
 
             /*
-             * This replace the last DrawMesh in 
+             * This replace the last DrawMesh in
              */
             internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
@@ -408,6 +445,7 @@ namespace CombatExtended.HarmonyCE
                 codes.InsertRange(codes.Count - 2, new[]
                 {
                     new CodeInstruction(OpCodes.Ldarg_1),
+                    new CodeInstruction(OpCodes.Ldarg_2),
                     new CodeInstruction(OpCodes.Ldarg_3)
                 });
                 return codes;

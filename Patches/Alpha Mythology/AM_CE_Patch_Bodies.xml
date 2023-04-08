@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Alpha Mythology</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+			<!-- Ahuizotl -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_AhuizotlBody"]//*[
+				def="Body" or
+				def="Tail" or
+				def="Neck" or
+				def="Leg" or
+				customLabel="rear left paw" or
+				customLabel="rear right paw"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_AhuizotlBody"]//*[
+				def="Body" or
+				def="Hand" or
+				def="Finger" or
+				def="Neck" or
+				def="Head" or
+				def="AnimalJaw" or
+				def="Leg" or
+				def="Paw"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- Cerberus -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_ThreeHeadedDog"]//*[
+				def="Body" or
+				def="Tail" or
+				def="Neck" or
+				def="Leg" or
+				customLabel="rear left paw" or
+				customLabel="rear right paw"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_ThreeHeadedDog"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Head" or
+				def="AnimalJaw" or
+				def="Leg" or
+				def="Paw"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- Chimera -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_Chimera_Body"]//*[
+				def="Body" or
+				def="MM_Goathead" or
+				def="Neck" or
+				def="Leg" or
+				customLabel="rear left paw" or
+				customLabel="rear right paw"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/BodyDef[defName="MM_Chimera_Body"]/corePart/parts/li[def="MM_ChimeraTail"]/parts/li[def="Head"]/groups</xpath>
+				<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="MM_Chimera_Body"]/corePart/parts/li[def="MM_ChimeraTail"]/parts/li[def="Head"]</xpath>
+						<value>
+							<groups>
+								<li>CoveredByNaturalArmor</li>
+							</groups>
+						</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="MM_Chimera_Body"]/corePart/parts/li[def="MM_ChimeraTail"]/parts/li[def="Head"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</match>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_Chimera_Body"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Head" or
+				def="MM_Goathead" or
+				def="AnimalJaw" or
+				def="Leg" or
+				def="Paw"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- Hydra -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_Hydra"]//*[
+				def="SnakeBody" or
+				customLabel="rear left leg" or
+				customLabel="rear right leg" or
+				def="Hoof"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_Hydra"]//*[
+				def="SnakeBody" or
+				def="SnakeHead" or
+				def="SnakeMouth" or
+				def="Leg" or
+				def="Hoof"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- Maticore -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_ManticoreBody"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Leg" or
+				customLabel="rear left paw" or
+				customLabel="rear right paw"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_ManticoreBody"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Head" or
+				def="AnimalJaw" or
+				def="Leg" or
+				def="Paw"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- Pegasus -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_PegasusBody"]//*[
+				def="Body" or
+				def="Neck" or
+				customLabel="rear left leg" or
+				customLabel="rear right leg" or
+				def="Hoof"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_PegasusBody"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Head" or
+				def="AnimalJaw" or
+				def="Leg" or
+				def="Hoof"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- Qilin -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_QilinBody"]//*[
+				def="Body" or
+				def="Neck" or
+				customLabel="rear left leg" or
+				customLabel="rear right leg" or
+				def="Hoof"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_QilinBody"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Head" or
+				def="MM_Antlers" or
+				def="AnimalJaw" or
+				def="Leg" or
+				def="Hoof"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- QuadrupedAnimalWithBeakAndWings -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_QuadrupedAnimalWithBeakAndWings"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Leg" or
+				customLabel="rear left paw" or
+				customLabel="rear right paw"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_QuadrupedAnimalWithBeakAndWings"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Head" or
+				def="Beak" or
+				def="Leg" or
+				def="Paw"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- Wyvern -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_WyvernBody"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Leg"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_WyvernBody"]//*[
+				def="Body" or
+				def="MM_ScorpionTail" or
+				def="MM_Wing" or
+				def="Neck" or
+				def="Head" or
+				def="AnimalJaw" or
+				def="Leg" or
+				def="Paw"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- HornedHumanlike -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_MinotaurBody"]//*[
+				def="Torso" or
+				def="Neck" or
+				def="Head" or
+				def="MM_Horns" or
+				def="Ear" or
+				def="Nose" or
+				def="Jaw" or
+				def="Shoulder" or
+				def="Arm" or
+				def="Hand" or
+				def="Finger" or
+				def="Leg" or
+				def="Foot" or
+				def="Toe"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- HornedMechanoid -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_HornedMechanoid"]//*[
+				def="MechanicalThorax" or
+				def="MechanicalNeck" or
+				def="MechanicalShoulder" or
+				def="MechanicalArm" or
+				def="MechanicalHand" or
+				def="MechanicalLeg" or
+				def="MechanicalFoot"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="MM_HornedMechanoid"]//*[
+				def="MechanicalThorax" or
+				def="MechanicalNeck" or
+				def="MechanicalHead" or
+				def="MM_Horns" or
+				def="MechanicalShoulder" or
+				def="MechanicalArm" or
+				def="MechanicalHand" or
+				def="MechanicalFinger" or
+				def="MechanicalLeg" or
+				def="MechanicalFoot"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>

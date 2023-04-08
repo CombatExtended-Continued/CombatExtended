@@ -9,7 +9,7 @@ namespace CombatExtended
         /// <summary>
         /// Multiplier used to scale the armor penetration of a given projectile's explosion
         /// </summary>
-        private const float ExplosiveArmorPenetrationMultiplier = 0.25f;
+        private const float ExplosiveArmorPenetrationMultiplier = 0.33f;
 
         /// <summary>
         ///     Generates a readout text for a projectile with the damage amount, type, secondary explosion and other CE stats for
@@ -56,10 +56,10 @@ namespace CombatExtended
             if (props.explosionRadius > 0)
             {
                 if (props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Heat
-                    && props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Electric
-                    && props.damageDef != DamageDefOf.Stun
-                    && props.damageDef != DamageDefOf.Extinguish
-                    && props.damageDef != DamageDefOf.Smoke)
+                        && props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Electric
+                        && props.damageDef != DamageDefOf.Stun
+                        && props.damageDef != DamageDefOf.Extinguish
+                        && props.damageDef != DamageDefOf.Smoke)
                 {
                     stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.GetExplosionArmorPenetration() + " " + "CE_MPa".Translate());
                 }
@@ -127,13 +127,19 @@ namespace CombatExtended
 
         public static bool IsAmmoSystemActive(AmmoDef def)
         {
-            if (Controller.settings.EnableAmmoSystem) return true;
+            if (Controller.settings.EnableAmmoSystem)
+            {
+                return true;
+            }
             return (def != null && def.isMortarAmmo);
         }
 
         public static bool IsAmmoSystemActive(AmmoSetDef ammoSet)
         {
-            if (Controller.settings.EnableAmmoSystem) return true;
+            if (Controller.settings.EnableAmmoSystem)
+            {
+                return true;
+            }
             return (ammoSet != null && ammoSet.isMortarAmmoSet);
         }
     }

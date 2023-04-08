@@ -14,7 +14,7 @@
 		<defName>AmmoCatapult</defName>
 		<label>catapult ammo</label>
 		<parent>AmmoNeolithic</parent>
-		<iconPath>Things/Ammo/Neolithic/Catapult/CatapultStone_a</iconPath>
+		<iconPath>Things/Ammo/Medieval/Catapult/CatapultStone_a</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -28,7 +28,7 @@
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" Name="CatapultShellBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="CatapultShellBase" ParentName="MediumAmmoBase" Abstract="True">
 		<thingCategories>
 			<li>AmmoCatapult</li>
 		</thingCategories>
@@ -46,7 +46,7 @@
 		<label>boulder</label>
 		<description>A heavy stone, cut to an appropriate size and shape to be thrown by a siege engine.</description>	
 		<graphicData>
-			<texPath>Things/Ammo/Neolithic/Catapult/CatapultStone_a</texPath>
+			<texPath>Things/Ammo/Medieval/Catapult/CatapultStone_a</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>0.80</drawSize>	
 			<color>(105,95,97)</color>	    
@@ -59,7 +59,7 @@
 	</ThingDef>
 
 	<!-- ================== Projectile ================== -->
-	<ThingDef Name="BaseCatapultBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseCatapultBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>	
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>0</speed>
@@ -76,7 +76,7 @@
 		<defName>Projectile_CatapultBullet_Boulder</defName>
 		<label>boulder</label>
 		<graphicData>
-			<texPath>Things/Ammo/Neolithic/Catapult</texPath>
+			<texPath>Things/Ammo/Medieval/Catapult</texPath>
 			<graphicClass>Graphic_Random</graphicClass>
 			<flipExtraRotation>80</flipExtraRotation>
 			<drawSize>0.80</drawSize>	
@@ -115,7 +115,7 @@
 			<li>StoneChunks</li>
 			</categories>
 		</fixedIngredientFilter>
-		<recipeUsers Inherit="false">
+		<recipeUsers Inherit="False">
 			<li>TableStonecutter</li>
 		</recipeUsers>		  
 		<products>

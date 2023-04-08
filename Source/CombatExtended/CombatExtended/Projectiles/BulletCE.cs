@@ -17,13 +17,6 @@ namespace CombatExtended
         private static RulePackDef cookOffDamageEvent = null;
 
         public static RulePackDef CookOff => cookOffDamageEvent ?? (cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff"));
-        public virtual float DamageAmount
-        {
-            get
-            {
-                return def.projectile.GetDamageAmount(1);
-            }
-        }
 
         public virtual float PenetrationAmount
         {
@@ -40,15 +33,17 @@ namespace CombatExtended
             var ed = equipmentDef ?? ThingDef.Named("Gun_Autopistol");
             logEntry =
                 new BattleLogEntry_RangedImpact(
-                    launcher,
-                    hitThing,
-                    intendedTargetThing,
-                    ed,
-                    def,
-                    null //CoverDef Missing!
-                    );
+                launcher,
+                hitThing,
+                intendedTargetThing,
+                ed,
+                def,
+                null //CoverDef Missing!
+            );
             if (!(launcher is AmmoThing))
+            {
                 Find.BattleLog.Add(logEntry);
+            }
         }
 
         public override void Impact(Thing hitThing)
@@ -72,20 +67,24 @@ namespace CombatExtended
                 var penetration = PenetrationAmount;
                 var damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
                 var dinfo = new DamageInfo(
-                          def.projectile.damageDef,
-                          damageAmountBase,
-                          penetration, //Armor Penetration
-                          ExactRotation.eulerAngles.y,
-                          launcher,
-                          null,
-                          def);
+                    def.projectile.damageDef,
+                    damageAmountBase,
+                    penetration, //Armor Penetration
+                    ExactRotation.eulerAngles.y,
+                    launcher,
+                    null,
+                    def,
+                    instigatorGuilty: InstigatorGuilty);
 
                 // Set impact height
                 BodyPartDepth partDepth = damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
                 //NOTE: ExactPosition.y isn't always Height at the point of Impact!
                 BodyPartHeight partHeight = new CollisionVertical(hitThing).GetCollisionBodyHeight(ExactPosition.y);
                 dinfo.SetBodyRegion(partHeight, partDepth);
-                if (damDefCE.harmOnlyOutsideLayers) dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                if (damDefCE.harmOnlyOutsideLayers)
+                {
+                    dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                }
 
                 //The following code excludes turrets etcetera from having cook off projectile impacts recorded in their combat log.
                 //If it is necessary to add cook off to turret logs, a new BattleLogEntry_ must be created, because BattleLogEntry_DamageTaken,
@@ -94,9 +93,9 @@ namespace CombatExtended
                 {
                     logEntry =
                         new BattleLogEntry_DamageTaken(
-                            hitPawn,
-                            CookOff
-                            );
+                        hitPawn,
+                        CookOff
+                    );
                     Find.BattleLog.Add(logEntry);
                 }
 
@@ -111,7 +110,10 @@ namespace CombatExtended
                     {
                         foreach (SecondaryDamage cur in projectilePropsCE.secondaryDamage)
                         {
-                            if (hitThing.Destroyed || !Rand.Chance(cur.chance)) break;
+                            if (hitThing.Destroyed || !Rand.Chance(cur.chance))
+                            {
+                                break;
+                            }
 
                             var secDinfo = cur.GetDinfo(dinfo);
                             hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
@@ -141,7 +143,7 @@ namespace CombatExtended
                     FleckMaker.Static(this.ExactPosition, map, FleckDefOf.ShotHit_Dirt, 1f);
                     if (base.Position.GetTerrain(map).takeSplashes)
                     {
-                        FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
+                        FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt(DamageAmount), 4f);
                     }
                     Rand.PopState();
                 }
@@ -177,7 +179,9 @@ namespace CombatExtended
                             thingList[j].Notify_BulletImpactNearby(impactData);
                         }
                         if (thingList[j] is Pawn pawn)
+                        {
                             pawn.GetTacticalManager()?.Notify_BulletImpactNearby();
+                        }
                     }
                 }
             }

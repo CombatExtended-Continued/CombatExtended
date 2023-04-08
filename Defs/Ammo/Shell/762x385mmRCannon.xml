@@ -49,8 +49,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<Mass>9.62</Mass>
-			<MarketValue>64.28</MarketValue>
+			<MarketValue>61.1</MarketValue>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
 		<detonateProjectile>Bullet_762x385mmRCannonShell_HEAT</detonateProjectile>
@@ -97,7 +96,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base762x385mmRCannonShell" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base762x385mmRCannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -107,6 +106,7 @@
 			<flyOverhead>false</flyOverhead>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
@@ -187,7 +187,7 @@
 		<label>make 76.2x385mmR HEAT cannon shells x5</label>
 		<description>Craft 5 76.2x385mmR HEAT cannon shells.</description>
 		<jobString>Making 76.2x385mmR HEAT cannon shells.</jobString>
-		<workAmount>13400</workAmount>
+		<workAmount>12600</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -195,7 +195,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>98</count>
+				<count>90</count>
 			</li>
 			<li>
 				<filter>
@@ -275,6 +275,7 @@
 		<label>make 76.2x385mmR EMP cannon shells x5</label>
 		<description>Craft 5 76.2x385mmR EMP cannon shells.</description>
 		<jobString>Making 76.2x385mmR EMP cannon shells.</jobString>
+		<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
 		<workAmount>13800</workAmount>
 		<ingredients>
 			<li>

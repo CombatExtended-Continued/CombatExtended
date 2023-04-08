@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Steamworld Uniforms</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Headgear -->
+		<!-- Caps -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="SteamworldUniforms_Caps_Base"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>				
+			</value>
+		</li>
+
+		<!-- Helmets -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="Steamworld_Helmet_Base"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<Bulk>3.5</Bulk>
+				<WornBulk>1</WornBulk>
+				<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>				
+			</value>
+		</li>
+
+		<!-- Pith Helmets (Armor based upon roughly material thickness in cloth/wood.)-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="SteamworldUniforms_PithHelm"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<Bulk>3.5</Bulk>
+				<WornBulk>1</WornBulk>
+				<ArmorRating_Sharp>0.95</ArmorRating_Sharp>				
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="SteamworldUniforms_PithHelm"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>1.25</ArmorRating_Blunt>				
+			</value>
+		</li>
+
+		<!-- Jackets -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="SteamworldUniforms_UniformJacketBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>1</WornBulk>
+				<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>				
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="SteamworldUniforms_ZouaveJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>				
+			</value>
+		</li>
+
+		<!-- Rolled-up Bedroll -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="SteamworldUniforms_BedRoll"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<Bulk>4</Bulk>
+				<WornBulk>1.5</WornBulk>
+				<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>				
+			</value>
+		</li>
+
+		<!-- Decorations -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="SteamworldUniforms_Gold"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<Bulk>0.25</Bulk>
+				<ArmorRating_Sharp>0.05</ArmorRating_Sharp>				
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="SteamworldUniforms_Gold"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.05</ArmorRating_Blunt>				
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

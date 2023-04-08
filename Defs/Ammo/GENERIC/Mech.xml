@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ==================== Mech Ammo ========================== -->
+
+	<!-- ============= Category ============= -->
+
+  <ThingCategoryDef>
+    <defName>AmmoMechCharged</defName>
+    <label>mech charged ammo</label>
+    <parent>AmmoAdvanced</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+  </ThingCategoryDef>
+
+  <ThingCategoryDef>
+    <defName>AmmoMechShell</defName>
+    <label>mech shell</label>
+    <parent>AmmoAdvanced</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberFuelLarge</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_MechCharged</defName>
+    <label>mech charged ammo</label>
+    <ammoTypes>
+      <Ammo_MechCharged>Bullet_5x35mmCharged</Ammo_MechCharged>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_MechShell</defName>
+    <label>mech shell</label>
+    <ammoTypes>
+      <Ammo_MechShell>Bullet_80x256mmFuel_Incendiary</Ammo_MechShell>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+	<!-- ============= Ammo ============= -->
+
+  <!-- Mech Charged -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="MechChargedAmmo" ParentName="SpacerAmmoBase" Abstract="True">
+    <description>Charged shot ammo used by mechanoid weaponry.</description>
+    <statBases>
+      <Mass>0.013</Mass>
+      <Bulk>0.01</Bulk>
+      <MarketValue>0.45</MarketValue>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade_Sellable</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoMechCharged</li>
+    </thingCategories>
+    <stackLimit>5000</stackLimit>	
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="MechChargedAmmo">
+    <defName>Ammo_MechCharged</defName>
+    <label>mech charged cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/MediumMech</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>Charged</ammoClass>
+  </ThingDef>
+
+  <!-- Mech Shell -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="MechShellAmmo" ParentName="SpacerMediumAmmoBase" Abstract="True">
+    <description>Large shell used by mechanoid cannons and heavy weapons.</description>
+    <statBases>
+      <Mass>0.85</Mass>
+      <Bulk>3.87</Bulk>  
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade_Sellable</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoMechShell</li>
+    </thingCategories>
+    <stackLimit>25</stackLimit>	
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="MechShellAmmo">
+    <defName>Ammo_MechShell</defName>
+    <label>Mech Shell</label>
+    <graphicData>
+      <texPath>Things/Ammo/FuelCell/Large</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>GrenadeIncendiary</ammoClass>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>1.9</explosiveRadius>
+        <damageAmountBase>5</damageAmountBase>
+        <explosiveDamageType>PrometheumFlame</explosiveDamageType>
+        <explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
+        <startWickHitPointsPercent>0.33</startWickHitPointsPercent>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        <explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>60~300</wickTicks>
+      </li>
+    </comps>    
+  </ThingDef>
+
+</Defs>

@@ -62,19 +62,22 @@ namespace CombatExtended
 
         public override void Tick()
         {
-	    if (density > DensityDissipationThreshold)   //very low density smoke clouds eventually dissipate on their own
+            if (density > DensityDissipationThreshold)   //very low density smoke clouds eventually dissipate on their own
             {
                 destroyTick++;
-		if (Rand.Range(0,10) == 5) {
-		  float d = density * 0.0001f;
-		  if (density > 300) {
-		      if (Rand.Range(0, (int)(MaxDensity)) < d) {
-			  FilthMaker.TryMakeFilth(Position, Map, ThingDefOf.Filth_Ash, 1, FilthSourceFlags.None);
-		      }
-		  }
-		  density -= d;
-		  
-		}
+                if (Rand.Range(0, 10) == 5)
+                {
+                    float d = density * 0.0001f;
+                    if (density > 300)
+                    {
+                        if (Rand.Range(0, (int)(MaxDensity)) < d)
+                        {
+                            FilthMaker.TryMakeFilth(Position, Map, ThingDefOf.Filth_Ash, 1, FilthSourceFlags.None);
+                        }
+                    }
+                    density -= d;
+
+                }
             }
 
             if ((GenTicks.TicksGame + updateTickOffset) % UpdateIntervalTicks == 0)
@@ -93,7 +96,9 @@ namespace CombatExtended
                 ApplyHediffs();
             }
             if (this.IsHashIntervalTick(120))
+            {
                 DangerTracker?.Notify_SmokeAt(Position);
+            }
 
             base.Tick();
         }
@@ -101,62 +106,66 @@ namespace CombatExtended
         private void ApplyHediffs()
         {
             if (!Position.InBounds(Map))
+            {
                 return;
+            }
 
             var pawns = Position.GetThingList(Map).Where(t => t is Pawn).ToList();
-	    var baseTargetSeverity = Mathf.Pow(density / LethalAirPPM, 1.25f);
-	    var baseSeverityRate = InhalationPerSec * density / MaxDensity;
+            var baseTargetSeverity = Mathf.Pow(density / LethalAirPPM, 1.25f);
+            var baseSeverityRate = InhalationPerSec * density / MaxDensity;
 
             foreach (Pawn pawn in pawns)
             {
                 if (pawn.RaceProps.FleshType == FleshTypeDefOf.Insectoid)
                 {
                     if (density > MaxDensity * BugConfusePercent)
+                    {
                         pawn.mindState.mentalStateHandler.TryStartMentalState(CE_MentalStateDefOf.WanderConfused);
+                    }
                     continue;
                 }
                 pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask();
-		var sensitivity = pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
-		var breathing = PawnCapacityUtility.CalculateCapacityLevel(pawn.health.hediffSet, PawnCapacityDefOf.Breathing);
+                var sensitivity = pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
+                var breathing = PawnCapacityUtility.CalculateCapacityLevel(pawn.health.hediffSet, PawnCapacityDefOf.Breathing);
                 float curSeverity = pawn.health.hediffSet.GetFirstHediffOfDef(CE_HediffDefOf.SmokeInhalation, false)?.Severity ?? 0f;
-		
 
-		if (breathing < 0.01f)
-		{
-		    breathing = 0.01f;
-		}
-		var targetSeverity = sensitivity / breathing * baseTargetSeverity;
-		if (targetSeverity > 1.5f)
-		{
-		    targetSeverity = 1.5f;
-		}
 
-		var severityDelta = targetSeverity - curSeverity;
-		
-		bool downed = pawn.Downed;
-		bool awake = pawn.Awake();
-		
-		
-		var severityRate = baseSeverityRate * sensitivity / breathing * Mathf.Pow(severityDelta, 1.5f);
-		
-		if (downed)
-		{
-		    severityRate /= 100;
-		}
+                if (breathing < 0.01f)
+                {
+                    breathing = 0.01f;
+                }
+                var targetSeverity = sensitivity / breathing * baseTargetSeverity;
+                if (targetSeverity > 1.5f)
+                {
+                    targetSeverity = 1.5f;
+                }
 
-		if (!awake)
-		{
-		    severityRate /= 2;
-		    if (curSeverity > 0.1)
-		    {
-			RestUtility.WakeUp(pawn);
-		    }
-		}
+                var severityDelta = targetSeverity - curSeverity;
 
-		if (severityRate > 0 && severityDelta > 0)
-		{
-		    HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severityRate);
-		}
+                bool downed = pawn.Downed;
+                bool awake = pawn.Awake();
+
+
+                var severityRate = baseSeverityRate * sensitivity / breathing * Mathf.Pow(severityDelta, 1.5f);
+
+                if (downed)
+                {
+                    severityRate /= 100;
+                }
+
+                if (!awake)
+                {
+                    severityRate /= 2;
+                    if (curSeverity > 0.1)
+                    {
+                        RestUtility.WakeUp(pawn);
+                    }
+                }
+
+                if (severityRate > 0 && severityDelta > 0)
+                {
+                    HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severityRate);
+                }
             }
         }
 

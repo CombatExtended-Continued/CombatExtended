@@ -49,12 +49,12 @@
 			<value>
 				<CarryWeight>150</CarryWeight> <!-- Has a built-in exoskeleton -->
 				<CarryBulk>120</CarryBulk> <!-- has a TacVest and backpack -->
-				<ToxicSensitivity>-0.50</ToxicSensitivity>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 			</value>
 		</li>
 			
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Apparel_UACRavenArmor" or defName="Apparel_UACTrackerArmor" or defName="Apparel_UACFractalArmor" or defName="Apparel_UACLEETArmor" or defName="Apparel_UACSheperdArmor"]/apparel/layers</xpath>
+			<xpath>Defs/ThingDef[defName="Apparel_UACRavenArmor" or defName="Apparel_UACTrackerArmor" or defName="Apparel_UACFractalArmor" or defName="Apparel_UACLEETArmor" or defName="Apparel_UACSheperdArmor"]/apparel/layers</xpath>
 			<value>
 				<li>Webbing</li>
 			</value>
@@ -98,14 +98,23 @@
 				<ArmorRating_Blunt>60</ArmorRating_Blunt>
 			</value>
         </li>
-		
+
+		<li Class="PatchOperationConditional">
+			<xpath>Defs/ThingDef[defName="Apparel_UACWildcatHelm" or defName="Apparel_UACSheperdHelm" or defName="Apparel_UACRavenHelm" or defName="Apparel_UACLEETHelm" or defName="Apparel_UACASPHelm"]/apparel/immuneToToxGasExposure</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_UACWildcatHelm" or defName="Apparel_UACSheperdHelm" or defName="Apparel_UACRavenHelm" or defName="Apparel_UACLEETHelm" or defName="Apparel_UACASPHelm"]/apparel</xpath>
+				<value>
+					<immuneToToxGasExposure>true</immuneToToxGasExposure>
+				</value>
+			</nomatch>
+		</li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Apparel_UACWildcatHelm" or defName="Apparel_UACSheperdHelm" or defName="Apparel_UACRavenHelm" or defName="Apparel_UACLEETHelm" or defName="Apparel_UACASPHelm"]/equippedStatOffsets</xpath>
 			<value>
 				<equippedStatOffsets>
-					<PsychicSensitivity>-0.2</PsychicSensitivity>
 					<AimingAccuracy>0.15</AimingAccuracy>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<SmokeSensitivity>-1</SmokeSensitivity>
 					<MoveSpeed>-0.02</MoveSpeed>
 					<ShootingAccuracyPawn>0.40</ShootingAccuracyPawn>
@@ -167,7 +176,7 @@
 				<equippedStatOffsets>
 					<CarryWeight>150</CarryWeight> <!-- Built-in exoskeleton -->
 					<CarryBulk>150</CarryBulk> <!-- has a TacVest and backpack -->
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<MoveSpeed>1</MoveSpeed>
 					<MeleeHitChance>1</MeleeHitChance>
 					<MeleeDodgeChance>1</MeleeDodgeChance>
@@ -181,7 +190,7 @@
         </li>
 			
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Apparel_DOOMPraetorSuit"]/apparel/layers</xpath>
+			<xpath>Defs/ThingDef[defName="Apparel_DOOMPraetorSuit"]/apparel/layers</xpath>
 			<value>
 				<li>Webbing</li>
 			</value>
@@ -224,7 +233,17 @@
 				<ArmorRating_Blunt>60</ArmorRating_Blunt>
 			</value>
         </li>
-		
+
+		<li Class="PatchOperationConditional">
+			<xpath>Defs/ThingDef[defName="Apparel_DOOMPraetorHelm" or defName="Apparel_DOOMGuyHelm"]/apparel/immuneToToxGasExposure</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_DOOMPraetorHelm" or defName="Apparel_DOOMGuyHelm"]/apparel</xpath>
+				<value>
+					<immuneToToxGasExposure>true</immuneToToxGasExposure>
+				</value>
+			</nomatch>
+		</li>
+
         <li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="Apparel_DOOMPraetorHelm" or defName="Apparel_DOOMGuyHelm"]/equippedStatOffsets</xpath>
 			<value>
@@ -232,9 +251,8 @@
 					<ShootingAccuracyPawn>0.30</ShootingAccuracyPawn>
 					<AimingDelayFactor>-0.05</AimingDelayFactor>
 					<MentalBreakThreshold>-0.04</MentalBreakThreshold>
-					<PsychicSensitivity>-0.2</PsychicSensitivity>
 					<AimingAccuracy>0.15</AimingAccuracy>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</equippedStatOffsets>
 			</value>

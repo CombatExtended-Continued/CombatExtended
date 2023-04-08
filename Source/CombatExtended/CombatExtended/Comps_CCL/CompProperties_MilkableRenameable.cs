@@ -8,11 +8,11 @@ namespace CombatExtended
     public class CompProperties_MilkableRenameable : CompProperties_Milkable
     {
 
-        public string                       growthLabel = "";
+        public string growthLabel = "";
 
         public CompProperties_MilkableRenameable()
         {
-            this.compClass = typeof( CompMilkableRenameable );
+            this.compClass = typeof(CompMilkableRenameable);
         }
 
     }

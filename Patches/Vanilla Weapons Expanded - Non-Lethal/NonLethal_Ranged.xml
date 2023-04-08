@@ -11,7 +11,7 @@
 	<!-- === Tools === -->
 
 	<li Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="VWE_Gun_Taser" or defName="VWE_Gun_RubberBulletPistol"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="VWE_Gun_Taser" or defName="VWE_Gun_RubberBulletPistol"]/tools</xpath>
 		<value>
 		<tools>
 			<li Class="CombatExtended.ToolCE">
@@ -40,7 +40,7 @@
 	</li>
 
 	<li Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName = "VWE_Gun_DartGun"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName = "VWE_Gun_DartGun"]/tools</xpath>
 		<value>
 		<tools>
 			<li Class="CombatExtended.ToolCE">
@@ -79,7 +79,7 @@
 	</li>
 
 	<li Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="VWE_Gun_TearGasLauncher"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="VWE_Gun_TearGasLauncher"]/tools</xpath>
 		<value>
 		<tools>
 			<li Class="CombatExtended.ToolCE">
@@ -145,6 +145,7 @@
 		<Bulk>2.10</Bulk>
 	</statBases>
 	<Properties>
+		<recoilAmount>2.0</recoilAmount>
 		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		<hasStandardCommand>true</hasStandardCommand>
 		<defaultProjectile>Bullet_43cal_NL</defaultProjectile>
@@ -185,6 +186,7 @@
       <ComponentIndustrial>5</ComponentIndustrial>
 	</costList>
 	<Properties>
+		<recoilAmount>1.2</recoilAmount>
 		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		<hasStandardCommand>true</hasStandardCommand>
 		<defaultProjectile>Bullet_DartRifle_NL</defaultProjectile>
@@ -196,6 +198,7 @@
 	</Properties>
 	<AmmoUser>
 		<magazineSize>1</magazineSize>
+		<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
 		<reloadTime>2.4</reloadTime>
 		<ammoSet>AmmoSet_DartRifle_NonLethal</ammoSet>
 	</AmmoUser>
@@ -220,6 +223,7 @@
 			<ComponentIndustrial>3</ComponentIndustrial>
 		</costList>
 		<Properties>
+			<recoilAmount>2.3</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_40x46mmGrenade_CN</defaultProjectile>
@@ -236,6 +240,7 @@
 		</Properties>
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
 			<reloadTime>2.2</reloadTime>
 			<ammoSet>AmmoSet_40x46mmGrenadeNL</ammoSet>
 		</AmmoUser>

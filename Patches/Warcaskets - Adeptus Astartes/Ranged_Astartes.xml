@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Warcaskets: Adeptus Astartes</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- "The boltgun is far more than a weapon; it is an instrument of Mankind's divinity." -->
+
+        <!-- === Tools === -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            Defs/ThingDef[
+              defName = "HP_WarcasketGun_Bolter" or
+              defName = "HP_WarcasketGun_BolterRifle" or
+              defName = "VFEP_WarcasketGun_HeavyBolter" or
+              defName = "HP_WarcasketGun_StormBolter" or
+              defName = "VFEP_WarcasketGun_MeltaGun" or
+              defName = "VFEP_WarcasketGun_PlasmaCannon"              
+            ]/tools
+          </xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>35</power>
+                <cooldownTime>2.44</cooldownTime>
+                <armorPenetrationBlunt>16</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Bolter === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>HP_WarcasketGun_Bolter</defName>
+          <statBases>
+            <SightsEfficiency>0.7</SightsEfficiency>
+            <ShotSpread>0.07</ShotSpread>
+            <SwayFactor>2.58</SwayFactor> <!-- Sway has been reduced, given the wielders. -->
+            <Bulk>7.5</Bulk>
+            <Mass>8</Mass>
+            <RangedWeapon_Cooldown>0.43</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>3.27</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <burstShotCount>5</burstShotCount>
+            <ticksBetweenBurstShots>14</ticksBetweenBurstShots>
+            <range>25</range>
+            <soundCast>HP_Bolt_Gun_Sound</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>            
+          </Properties>
+          <AmmoUser>
+            <magazineSize>10</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_Bolter75</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aimedBurstShotCount>2</aimedBurstShotCount>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>Snapshot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <!-- === Bolter Rifle === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>HP_WarcasketGun_BolterRifle</defName>
+          <statBases>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.04</ShotSpread>
+            <SwayFactor>1.27</SwayFactor>
+            <Bulk>10.5</Bulk>
+            <Mass>15</Mass>
+            <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.38</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+            <warmupTime>1.1</warmupTime>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+            <range>44</range>
+            <soundCast>HP_Bolt_Gun_Sound</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>            
+          </Properties>
+          <AmmoUser>
+            <magazineSize>30</magazineSize>
+            <reloadTime>5.5</reloadTime>
+            <ammoSet>AmmoSet_Bolter75</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <!-- === Heavy Bolter Rifle === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VFEP_WarcasketGun_HeavyBolter</defName>
+          <statBases>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.01</ShotSpread>
+            <SwayFactor>2.55</SwayFactor>
+            <Bulk>12.5</Bulk>
+            <Mass>25</Mass>
+            <RangedWeapon_Cooldown>0.42</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>3.22</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_Bolter998_Standard</defaultProjectile>
+            <warmupTime>1.3</warmupTime>
+            <burstShotCount>8</burstShotCount>
+            <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+            <range>52</range>
+            <soundCast>HP_HeavyBolter_Gun_Sound</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>12</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>             
+          </Properties>
+          <AmmoUser>
+            <magazineSize>40</magazineSize>
+            <reloadTime>6.2</reloadTime>
+            <ammoSet>AmmoSet_Bolter998</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aimedBurstShotCount>4</aimedBurstShotCount>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <!-- === Storm Bolter === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>HP_WarcasketGun_StormBolter</defName>
+          <statBases>
+            <SightsEfficiency>0.7</SightsEfficiency>
+            <ShotSpread>0.07</ShotSpread>
+            <SwayFactor>2.92</SwayFactor>
+            <Bulk>7.5</Bulk>
+            <Mass>10</Mass>
+            <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.93</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <burstShotCount>8</burstShotCount>
+            <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+            <range>20</range>
+            <soundCast>HP_HeavyBolter_Gun_Sound</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>            
+          </Properties>
+          <AmmoUser>
+            <magazineSize>40</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_Bolter75</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aimedBurstShotCount>4</aimedBurstShotCount>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>Snapshot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <!-- === Melta Gun === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VFEP_WarcasketGun_MeltaGun</defName>
+          <statBases>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.01</ShotSpread>
+            <SwayFactor>1.27</SwayFactor>
+            <Bulk>10</Bulk>
+            <Mass>12</Mass>
+            <RangedWeapon_Cooldown>1.32</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_Laser_MeltaCharge</defaultProjectile>
+            <warmupTime>2.2</warmupTime>
+            <range>42</range>
+            <ammoConsumedPerShotCount>50</ammoConsumedPerShotCount>
+            <soundCast>HP_Meltagun_Gun_Sound</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>19</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>             
+          </Properties>
+          <AmmoUser>
+            <magazineSize>100</magazineSize>
+            <reloadTime>7.2</reloadTime>
+            <ammoSet>AmmoSet_MeltaCharge</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <!-- === Plasma Cannon === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VFEP_WarcasketGun_PlasmaCannon</defName>
+          <statBases>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.01</ShotSpread>
+            <SwayFactor>1.27</SwayFactor>
+            <Bulk>8</Bulk>
+            <Mass>10</Mass>
+            <RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_PlasmaCannon_Astartes</defaultProjectile>
+            <warmupTime>1.2</warmupTime>
+            <range>42</range>
+            <soundCast>HP_PlasmaCannon_Gun_Sound</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>19</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>             
+          </Properties>
+          <AmmoUser>
+            <magazineSize>10</magazineSize>
+            <reloadTime>6.2</reloadTime>
+            <ammoSet>AmmoSet_PlasmaCanister_Astartes</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

@@ -10,7 +10,7 @@
 
   <!-- ========== Melee Tools ========== -->
   <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[
+    <xpath>Defs/ThingDef[
     defName="VWEFT_Gun_HeavyRevolver" or
     defName="VWEFT_Gun_VolcanicPistol" or
     defName="VWEFT_Gun_FrontierPistol"
@@ -43,7 +43,7 @@
   </li>
 
   <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName="VWEFT_Gun_RollingBlockRifle" or defName="VWEFT_Gun_RepeatingShotgun"]/tools</xpath>
+    <xpath>Defs/ThingDef[defName="VWEFT_Gun_RollingBlockRifle" or defName="VWEFT_Gun_RepeatingShotgun"]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -83,7 +83,7 @@
 
   <!-- Crafting Recipes -->
   <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[
+    <xpath>Defs/ThingDef[
     defName="VWEFT_Gun_HeavyRevolver" or
     defName="VWEFT_Gun_VolcanicPistol" or
     defName="VWEFT_Gun_FrontierPistol"
@@ -94,7 +94,7 @@
   </li>
 
   <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName = "VWEFT_Gun_RepeatingShotgun"]/costList/ComponentIndustrial</xpath>
+    <xpath>Defs/ThingDef[defName = "VWEFT_Gun_RepeatingShotgun"]/costList/ComponentIndustrial</xpath>
     <value>
       <ComponentIndustrial>3</ComponentIndustrial>  
     </value>
@@ -112,6 +112,7 @@
       <Bulk>3.75</Bulk>
     </statBases>
     <Properties>
+      <recoilAmount>2.2</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_44MagnumHR_FMJ</defaultProjectile>
@@ -151,6 +152,7 @@
       <Bulk>3.80</Bulk>
     </statBases>
     <Properties>
+      <recoilAmount>1.5</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_25ACPHR_FMJ</defaultProjectile>
@@ -191,13 +193,14 @@
 			<Bulk>3.12</Bulk>
 		</statBases>
 		<Properties>
+			<recoilAmount>2.5</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_763x25mmMauserHR_FMJ</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
 			<range>12</range>
-      <soundCast>Shot_Autopistol</soundCast>
-      <soundCastTail>GunTail_Light</soundCastTail>
+			<soundCast>Shot_Autopistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
@@ -227,6 +230,7 @@
       <Bulk>12.80</Bulk>
     </statBases>
     <Properties>
+      <recoilAmount>2.0</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_4570GovHR_FMJ</defaultProjectile>
@@ -238,6 +242,7 @@
     </Properties>
     <AmmoUser>
       <magazineSize>1</magazineSize>
+	  <AmmoGenPerMagOverride>7</AmmoGenPerMagOverride>
       <reloadTime>2.2</reloadTime>
       <ammoSet>AmmoSet_4570GovHR</ammoSet>
     </AmmoUser>
@@ -263,6 +268,7 @@
       <SightsEfficiency>1</SightsEfficiency>
     </statBases>
     <Properties>
+      <recoilAmount>3.0</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_12GaugeHR_Buck</defaultProjectile>
@@ -289,4 +295,3 @@
 	</Operation>
 
 </Patch>
-

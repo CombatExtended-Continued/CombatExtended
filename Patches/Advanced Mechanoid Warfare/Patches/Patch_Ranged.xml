@@ -11,17 +11,19 @@
 			
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="BreacherGrenade"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[defName="BreacherGrenade"]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="BreacherGrenade"]/projectile</xpath>
+				<xpath>Defs/ThingDef[defName="BreacherGrenade"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					  <explosionRadius>2.5</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
 					  <damageDef>Bomb</damageDef>
 					  <damageAmountBase>33</damageAmountBase> <!-- 70mm Mech Grenade damage / 4 -->
 					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -70,23 +72,26 @@
 					</FireModes>
 					<weaponTags>
 						<li>CE_AI_Launcher</li>
+						<li>NoSwitch</li>
 					</weaponTags>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_PlasmaSpit"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_PlasmaSpit"]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_PlasmaSpit"]/projectile</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_PlasmaSpit"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					  <damageDef>Bomb</damageDef>
 					  <damageAmountBase>309</damageAmountBase>
 					  <explosionRadius>3.2</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
 					  <speed>75</speed>
 					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 					  <dropsCasings>false</dropsCasings>
@@ -123,19 +128,20 @@
 					</FireModes>
 					<weaponTags>
 						<li>CE_AI_Launcher</li>
+						<li>NoSwitch</li>
 					</weaponTags>
 			</li>
 			
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_KineticWing"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_KineticWing"]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_KineticWing"]/projectile</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_KineticWing"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					  <damageDef>Bullet</damageDef>
@@ -198,19 +204,20 @@
 					</FireModes>
 					<weaponTags>
 						<li>CE_AI_Launcher</li>
+						<li>NoSwitch</li>
 					</weaponTags>
 			</li>
 			
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_PlasmaRocket"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_PlasmaRocket"]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_PlasmaRocket"]/projectile</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_PlasmaRocket"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					  <damageDef>NovaBomb</damageDef>
@@ -218,6 +225,8 @@
 					  <armorPenetrationSharp>0</armorPenetrationSharp>
 					  <armorPenetrationBlunt>30</armorPenetrationBlunt>
 					  <explosionRadius>1.5</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
 					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 					  <flyOverhead>false</flyOverhead>
 					  <speed>50</speed>
@@ -265,6 +274,7 @@
 					</FireModes>
 					<weaponTags>
 						<li>CE_AI_Launcher</li>
+						<li>NoSwitch</li>
 					</weaponTags>
 			</li>
 			
@@ -300,17 +310,20 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Nomad</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_CryoLiquid"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_CryoLiquid"]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_CryoLiquid"]/projectile</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_CryoLiquid"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					  <damageDef>CryoFlame</damageDef>
@@ -318,6 +331,8 @@
 					  <armorPenetrationSharp>0</armorPenetrationSharp>
 					  <armorPenetrationBlunt>20</armorPenetrationBlunt>
 					  <explosionRadius>1.2</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
 					  <speed>40</speed>
 					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 					</projectile>
@@ -357,6 +372,7 @@
 					</FireModes>
 					<weaponTags>
 						<li>CE_AI_Launcher</li>
+						<li>NoSwitch</li>
 					</weaponTags>
 			</li>
 			
@@ -393,6 +409,9 @@
 						<reloadTime>7</reloadTime>
 						<ammoSet>AmmoSet_Nomad</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -426,14 +445,17 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Stalker</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 			
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="Gun_UWMEmp"]</xpath>
+				<xpath>Defs/ThingDef[defName="Gun_UWMEmp"]</xpath>
 			</li>
 			
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="Gun_UWMFire"]</xpath>
+				<xpath>Defs/ThingDef[defName="Gun_UWMFire"]</xpath>
 			</li>
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -467,21 +489,26 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_UMW</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 			
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_ChargeCannon"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_ChargeCannon"]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_ChargeCannon"]/projectile</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_ChargeCannon"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					  <explosionRadius>3.4</explosionRadius >
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
 					  <damageDef>Bomb</damageDef>
 					  <damageAmountBase>60</damageAmountBase>
 					  <armorPenetrationBlunt>48</armorPenetrationBlunt>
@@ -532,6 +559,7 @@
 					</FireModes>
 					<weaponTags>
 						<li>CE_AI_Launcher</li>
+						<li>NoSwitch</li>
 					</weaponTags>
 			</li>
 			
@@ -567,6 +595,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Lens</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 
 
@@ -599,6 +630,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Vapor</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -629,7 +663,7 @@
 			
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bullet_SupShard"]/projectile</xpath>
+				<xpath>Defs/ThingDef[defName="Bullet_SupShard"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					  <damageDef>Bullet</damageDef>
@@ -672,6 +706,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Lens</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -705,6 +742,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Nomad</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 			
 			
@@ -739,6 +779,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Headhunter</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 			
 			
@@ -773,6 +816,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Nomad</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -806,6 +852,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Nomad</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -839,6 +888,9 @@
 						<reloadTime>7</reloadTime>
 						<ammoSet>AmmoSet_Nomad</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -872,6 +924,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Nomad</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -905,6 +960,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Nomad</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -938,6 +996,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Stalker</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -970,6 +1031,7 @@
 					</FireModes>
 					<weaponTags>
 						<li>CE_AI_Launcher</li>
+						<li>NoSwitch</li>
 					</weaponTags>
 			</li>
 
@@ -1001,6 +1063,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Stalker</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -1033,6 +1098,9 @@
 						<reloadTime>3</reloadTime>
 						<ammoSet>AmmoSet_Stalker</ammoSet>
 					</AmmoUser>
+					<weaponTags>
+						<li>NoSwitch</li>
+					</weaponTags>
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -1066,6 +1134,7 @@
 					</FireModes>
 					<weaponTags>
 						<li>CE_AI_Launcher</li>
+						<li>NoSwitch</li>
 					</weaponTags>
 			</li>
 

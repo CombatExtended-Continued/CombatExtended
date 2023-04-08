@@ -3,12 +3,12 @@
 
   <!-- ==================== Grenade Launcher ==================== -->
 
-  <ThingDef ParentName="BaseMakeableGun">
+  <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>CE_GrenadeLauncher</defName>
     <label>grenade launcher</label>
     <description>A simple, locally produced break-action grenade launcher, capable of firing a variety of different projectiles.</description>
     <graphicData>
-      <texPath>Things/Weapons/GrenadeLauncher</texPath>
+      <texPath>Things/Weapons/CE_GrenadeLauncher</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -29,7 +29,7 @@
       <ComponentIndustrial>1</ComponentIndustrial>
       <WoodLog>10</WoodLog>
     </costList>
-    <weaponTags>
+    <weaponTags Inherit="False">
       <li>GunGrenadeLauncher</li>
       <li>GunHeavy</li>
       <li>GrenadeEMP</li>
@@ -38,6 +38,7 @@
     </weaponTags>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
+        <recoilAmount>3.28</recoilAmount>
         <verbClass>CombatExtended.Verb_ShootCE</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
@@ -56,6 +57,7 @@
     <comps>
       <li Class="CombatExtended.CompProperties_AmmoUser">
         <magazineSize>1</magazineSize>
+		<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
         <reloadTime>2.2</reloadTime>
         <ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
       </li>
@@ -109,7 +111,7 @@
     <label>disposable rocket launcher</label>
     <description>A lightweight single-use anti-tank launcher. Designed to provide soldiers in the field with a compact anti-armor weapon.</description>
     <graphicData>
-      <texPath>Things/Weapons/M72</texPath>
+      <texPath>Things/Weapons/CE_M72</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -120,6 +122,7 @@
     <tickerType>Normal</tickerType>
     <resourceReadoutPriority>First</resourceReadoutPriority>
     <techLevel>Industrial</techLevel>
+    <stackLimit>25</stackLimit>
     <statBases>
       <MarketValue>91</MarketValue>
       <SightsEfficiency>1.0</SightsEfficiency>
@@ -157,7 +160,6 @@
         <aiAimMode>AimedShot</aiAimMode>
       </li>
     </comps>
-    <stackLimit>25</stackLimit>
     <tools>
       <li Class="CombatExtended.ToolCE">
         <label>stock</label>
@@ -197,6 +199,9 @@
         <DrawOffset>-0.3,0.0</DrawOffset>
       </li>
     </modExtensions>
+    <tradeTags Inherit="False">
+      <li>CE_HeavyAmmo</li>
+    </tradeTags>
   </ThingDef>
 
    <RecipeDef ParentName="GrenadeRecipeBase">
@@ -289,41 +294,44 @@
     <researchPrerequisite>CE_Launchers</researchPrerequisite>
   </RecipeDef>
 
-  <!-- ==================== Explosive Bolt Launcher ==================== -->
+  <!-- ==================== Thermal Bolt Projector ==================== -->
 
-  <ThingDef ParentName="BaseGunWithQuality">
-    <defName>CE_ExplosiveBoltProjector</defName>
-    <label>explosive bolt projector</label>
-    <description>A low-velocity, high-trajectory fire support system deployed by mechanoid Pikeman. While inaccurate and slow-firing, it remains a potent weapon against static targets.</description>
+  <ThingDef ParentName="BaseGun">
+    <defName>CE_ThermalBoltProjector</defName>
+    <label>thermal bolt projector</label>
+    <description>A medium-velocity, low-trajectory fire support system deployed by mechanoids. While inaccurate and slow-firing, it remains a potent weapon against static targets.</description>
+    <relicChance>0</relicChance>
     <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/NeedleGun</texPath>
+      <texPath>Things/Weapons/ExplosiveBoltProjector</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <equippedAngleOffset>-45</equippedAngleOffset>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
       <SightsEfficiency>1</SightsEfficiency>
       <ShotSpread>0.16</ShotSpread>
       <SwayFactor>1.00</SwayFactor>
-      <Bulk>7.31</Bulk>
-      <Mass>20.00</Mass>
-      <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
+      <Bulk>7.5</Bulk>
+      <Mass>10.00</Mass>
+      <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
       <MarketValue>1400</MarketValue>
     </statBases>
     <techLevel>Spacer</techLevel>
     <tradeability>None</tradeability>
     <destroyOnDrop>true</destroyOnDrop>
     <weaponTags>
-      <li>MechanoidGunLongRange</li>
+      <li>MechanoidGunIndirect</li>
+      <li>NoSwitch</li>
     </weaponTags>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
         <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
-        <warmupTime>3</warmupTime>
+        <defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
+        <warmupTime>4</warmupTime>
         <minRange>10</minRange>
-        <range>45</range>
+        <range>55</range>
         <burstShotCount>1</burstShotCount>
         <soundCast>Mortar_LaunchA</soundCast>
         <muzzleFlashScale>16</muzzleFlashScale>
@@ -344,13 +352,12 @@
         </chargeSpeeds>
       </li>
       <li Class="CombatExtended.CompProperties_AmmoUser">
-        <magazineSize>5</magazineSize>
+        <magazineSize>3</magazineSize>
         <reloadTime>12</reloadTime>
-        <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
+        <ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
       </li>
       <li Class="CombatExtended.CompProperties_FireModes">
         <aiUseBurstMode>FALSE</aiUseBurstMode>
-        <aiAimMode>SuppressFire</aiAimMode>
       </li>
     </comps>
     <tools>
@@ -366,10 +373,6 @@
       </li>
     </tools>
     <modExtensions>
-      <li Class="CombatExtended.GunDrawExtension">
-        <DrawSize>1.2,1.4</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
-      </li>
       <li Class="CombatExtended.ThingDefExtensionCE">
         <MenuHidden>True</MenuHidden>
       </li>
@@ -383,7 +386,7 @@
     <label>flare gun</label>
     <description>An ancient, single-shot flare gun, used for signaling or illumination. Loaded from the breech, its barrel is too thin to fire anything but flares.</description>
     <graphicData>
-      <texPath>Things/Weapons/FlareGun</texPath>
+      <texPath>Things/Weapons/CE_FlareGun</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>
@@ -406,7 +409,7 @@
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Bullet_Flare</defaultProjectile>
-        <warmupTime>3</warmupTime>
+        <warmupTime>1.1</warmupTime>
         <range>45</range>
         <soundCast>InfernoCannon_Fire</soundCast>
         <muzzleFlashScale>16</muzzleFlashScale>
