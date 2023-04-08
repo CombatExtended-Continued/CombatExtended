@@ -459,8 +459,9 @@ Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
 Vanilla Races Expanded - Hussar  |
-Vanilla Races Expanded - Saurid  |
 Vanilla Races Expanded - Phytokin  |
+Vanilla Races Expanded - Sanguophage  |
+Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
