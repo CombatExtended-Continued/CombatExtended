@@ -426,7 +426,6 @@ namespace CombatExtended
         {
             base.ExposeData();
 
-            Log.Message(this.ThingID);
             if (Scribe.mode == LoadSaveMode.Saving && launcher != null && launcher.Destroyed)
             {
                 launcher = null;
