@@ -1267,13 +1267,9 @@ namespace CombatExtended
                 float dangerAmount = 0f;
                 var dir = new float?(origin.AngleTo(Vec2Position()));
 
-                Log.Message("1");
                 // Opt-out for things without explosionRadius
                 if (def.projectile.explosionRadius > 0f)
                 {
-                    Log.Message("2");
-                    Log.Message(Map.ToString());
-                    Log.Message(explodePos.ToString());
                     GenExplosionCE.DoExplosion(
                         explodePos.ToIntVec3(),
                         Map,

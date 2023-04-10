@@ -18,7 +18,6 @@ namespace CombatExtended
         }
         public override void Tick()
         {
-            Log.Message(ExactPosition.ToString());
             base.Tick();
             if (this.ticksToDetonation > 0)
             {
