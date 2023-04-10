@@ -426,6 +426,7 @@ namespace CombatExtended
         {
             base.ExposeData();
 
+            Log.Message(this.ThingID);
             if (Scribe.mode == LoadSaveMode.Saving && launcher != null && launcher.Destroyed)
             {
                 launcher = null;
@@ -448,16 +449,9 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
 
+            //To fix landed grenades sl problem
+            Scribe_Values.Look(ref impactPosition, "impactPosition");
             // To insure saves don't get affected..
-            Thing target = null;
-            if (Scribe.mode != LoadSaveMode.Saving)
-            {
-                Scribe_References.Look<Thing>(ref target, "intendedTarget");
-                if (target != null)
-                {
-                    intendedTarget = new LocalTargetInfo(target);
-                }
-            }
         }
         #endregion
 
@@ -1273,9 +1267,13 @@ namespace CombatExtended
                 float dangerAmount = 0f;
                 var dir = new float?(origin.AngleTo(Vec2Position()));
 
+                Log.Message("1");
                 // Opt-out for things without explosionRadius
                 if (def.projectile.explosionRadius > 0f)
                 {
+                    Log.Message("2");
+                    Log.Message(Map.ToString());
+                    Log.Message(explodePos.ToString());
                     GenExplosionCE.DoExplosion(
                         explodePos.ToIntVec3(),
                         Map,
