@@ -148,6 +148,7 @@ namespace CombatExtended
 
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
+            Log.Message(dinfo.ToString());
             base.PostPreApplyDamage(dinfo, out absorbed);
             if (curDurability > 0)
             {
