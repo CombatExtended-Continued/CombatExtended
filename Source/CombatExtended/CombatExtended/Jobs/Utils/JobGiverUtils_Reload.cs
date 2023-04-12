@@ -59,6 +59,34 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
             return job;
         }
 
+        public static Job MakeReloadJob(Pawn pawn, Building_AmmoContainerCE AmmoContainer)
+        {
+            var compAmmo = AmmoContainer.CompAmmoUser;
+            if (compAmmo == null)
+            {
+                CELogger.Error($"{pawn} tried to create a reload job on a thing ({AmmoContainer}) that's not reloadable.");
+                return null;
+            }
+
+            if (!compAmmo.UseAmmo)
+            {
+                CELogger.Error($"{pawn} tried to create a reload job on a thing ({AmmoContainer}) that's doesn't need ammo.");
+                return null;
+            }
+
+            var ammo = FindBestAmmo(pawn, AmmoContainer);
+            if (ammo == null)
+            {
+                CELogger.Error($"{pawn} tried to create a reload job without ammo. This should have been checked earlier.");
+                return null;
+            }
+            CELogger.Message($"Making a reload job for {pawn}, {AmmoContainer} and {ammo}");
+
+            Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadAmmoContainer, AmmoContainer, ammo);
+            job.count = Mathf.Min(ammo.stackCount, compAmmo.MissingToFullMagazine);
+            return job;
+        }
+
         private static Job MakeReloadJobNoAmmo(Building_Turret turret)
         {
             var compAmmo = turret.GetAmmo();
@@ -131,6 +159,29 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
                 return false;
             }
             return true;
+        }
+
+        public static Thing FindBestAmmo(Pawn pawn, Building_AmmoContainerCE AmmoContainer)
+        {
+            var ammoComp = AmmoContainer.CompAmmoUser;
+            AmmoDef requestedAmmo = ammoComp.SelectedAmmo;
+            var bestAmmo = FindBestAmmo(pawn, requestedAmmo);   // try to find currently selected ammo first
+            if (bestAmmo == null && ammoComp.EmptyMagazine && requestedAmmo.AmmoSetDefs != null && AmmoContainer.Faction != Faction.OfPlayer)
+            {
+                //Turret's selected ammo not available, and magazine is empty. Pick a new ammo from the set to load.
+                foreach (AmmoSetDef set in requestedAmmo.AmmoSetDefs)
+                {
+                    foreach (AmmoLink link in set.ammoTypes)
+                    {
+                        bestAmmo = FindBestAmmo(pawn, link.ammo);
+                        if (bestAmmo != null)
+                        {
+                            return bestAmmo;
+                        }
+                    }
+                }
+            }
+            return bestAmmo;
         }
 
         private static Thing FindBestAmmo(Pawn pawn, Building_Turret turret)

@@ -9,7 +9,7 @@ using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
-    public class JobDriver_ReloadTurret : JobDriver
+    public class JobDriver_ReloadAmmoContainer : JobDriver
     {
         #region Fields
         private CompAmmoUser _compReloader;
@@ -18,16 +18,16 @@ namespace CombatExtended
         #region Properties
         private string errorBase => this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ";
 
-        private Building_Turret turret => TargetThingA as Building_Turret;
+        private Building_AmmoContainerCE ammoContainer => TargetThingA as Building_AmmoContainerCE;
         private AmmoThing ammo => TargetThingB as AmmoThing;
 
-        private CompAmmoUser compReloader
+        private CompAmmoUser AmmoUser
         {
             get
             {
-                if (_compReloader == null && turret != null)
+                if (_compReloader == null && ammoContainer != null)
                 {
-                    _compReloader = turret.GetAmmo();
+                    _compReloader = ammoContainer.CompAmmoUser;
                 }
                 return _compReloader;
             }
@@ -40,11 +40,11 @@ namespace CombatExtended
         {
             if (!pawn.Reserve(TargetA, job))
             {
-                CELogger.Message("Combat Extended: Could not reserve turret for reloading job.");
+                CELogger.Message("Combat Extended: Could not reserve ammo container for reloading job.");
                 return false;
             }
 
-            var compAmmo = turret?.GetAmmo();
+            var compAmmo = ammoContainer?.CompAmmoUser;
 
             if (compAmmo == null)
             {
@@ -71,29 +71,20 @@ namespace CombatExtended
             return true;
         }
 
-        public override string GetReport()
-        {
-            string text = CE_JobDefOf.ReloadTurret.reportString;
-            text = compReloader.UseAmmo
-                ? text.Replace("TargetB", TargetThingB.def.label)
-                : text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
-            return text;
-        }
-
         public override IEnumerable<Toil> MakeNewToils()
         {
             // Error checking/input validation.
-            if (turret == null)
+            if (ammoContainer == null)
             {
-                Log.Error(string.Concat(errorBase, "TargetThingA isn't a Building_TurretGunCE"));
+                Log.Error(string.Concat(errorBase, "TargetThingA isn't a Building_AmmoContainerCE"));
                 yield return null;
             }
-            if (compReloader == null)
+            if (AmmoUser == null)
             {
-                Log.Error(string.Concat(errorBase, "TargetThingA (Building_TurretGunCE) is missing its CompAmmoUser."));
+                Log.Error(string.Concat(errorBase, "TargetThingA (Building_AmmoContainerCE) is missing its CompAmmoUser."));
                 yield return null;
             }
-            if (compReloader.UseAmmo && ammo == null)
+            if (AmmoUser.UseAmmo && ammo == null)
             {
                 Log.Error(string.Concat(errorBase, "TargetThingB is either null or not an AmmoThing."));
                 yield return null;
@@ -118,10 +109,10 @@ namespace CombatExtended
 
             // If someone else magically reloaded our turret while we were reloading, fail.
             // This happens when Project RimFactory's refueling machine is set up.
-            this.FailOn(() => compReloader.MissingToFullMagazine == 0);
+            this.FailOn(() => AmmoUser.MissingToFullMagazine == 0);
 
             // Perform ammo system specific activities, failure condition and hauling
-            if (compReloader.UseAmmo)
+            if (AmmoUser.UseAmmo)
             {
                 var toilGoToCell = Toils_Goto.GotoCell(ammo.Position, PathEndMode.Touch).FailOnBurningImmobile(TargetIndex.B);
                 var toilCarryThing = Toils_Haul.StartCarryThing(TargetIndex.B).FailOnBurningImmobile(TargetIndex.B);
@@ -157,12 +148,12 @@ namespace CombatExtended
             }
 
             // If ammo system is turned off we just need to go to the turret.
-            yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
+            yield return Toils_Goto.GotoCell(ammoContainer.Position, PathEndMode.Touch);
 
             //If pawn fails reloading from this point, reset isReloading
             this.AddFinishAction(delegate
             {
-                turret.SetReloading(false);
+                ammoContainer.isReloading = false;
             });
 
             // Wait in place
@@ -173,26 +164,20 @@ namespace CombatExtended
             waitToil.initAction = delegate
             {
                 // Initial relaod process activities.
-                turret.SetReloading(true);
+                ammoContainer.isReloading = true;
                 waitToil.actor.pather.StopDead();
-                if (compReloader.ShouldThrowMote)
+                if (AmmoUser.ShouldThrowMote)
                 {
-                    MoteMakerCE.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
+                    MoteMakerCE.ThrowText(ammoContainer.Position.ToVector3Shifted(), ammoContainer.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
                 }
-                //Thing newAmmo;
-                //compReloader.TryUnload(out newAmmo);
-                //if (newAmmo?.CanStackWith(ammo) ?? false)
-                //{
-                //    pawn.carryTracker.TryStartCarry(newAmmo, Mathf.Min(newAmmo.stackCount, compReloader.MagSize - ammo.stackCount));
-                //}
-                AmmoDef currentAmmo = compReloader.CurrentAmmo;
+                AmmoDef currentAmmo = AmmoUser.CurrentAmmo;
                 if (currentAmmo != ammo?.def)    //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                 {
-                    compReloader.TryUnload(out Thing newAmmo);
+                    ammoContainer.DropAmmo();
                 }
             };
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            waitToil.defaultDuration = Mathf.CeilToInt(AmmoUser.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             yield return waitToil.WithProgressBarToilDelay(TargetIndex.A);
 
             //Actual reloader
@@ -200,8 +185,10 @@ namespace CombatExtended
             reloadToil.defaultCompleteMode = ToilCompleteMode.Instant;
             reloadToil.initAction = delegate
             {
-                compReloader.LoadAmmo(ammo);
-                turret.SetReloading(false);
+
+                AmmoUser.LoadAmmo(ammo);
+                ammoContainer.isReloading = false;
+                ammoContainer.Notify_ColorChanged();
             };
             //if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;

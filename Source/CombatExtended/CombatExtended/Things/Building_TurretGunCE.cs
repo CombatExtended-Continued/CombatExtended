@@ -297,9 +297,16 @@ namespace CombatExtended
                 ticksUntilAutoReload--;    // Reduce time until we can auto-reload
             }
 
-            if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks) && (MannableComp?.MannedNow ?? false))
+            if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks))
             {
-                TryOrderReload();
+                if (MannableComp?.MannedNow ?? false)
+                {
+                    TryOrderReload();
+                }
+                else
+                {
+                    TryReloadViaAmmoContainer();
+                }
             }
 
             //This code runs TryOrderReload for manning pawns or for non-humanlike intelligence such as mechs
@@ -742,6 +749,11 @@ namespace CombatExtended
                 return;
             }
 
+            if (TryReloadViaAmmoContainer())
+            {
+                return;
+            }
+
             //Non-mannableComp interaction
             if (!mannableComp?.MannedNow ?? true)
             {
@@ -769,7 +781,26 @@ namespace CombatExtended
                     manningPawn.jobs.StartJob(jobOnThing, JobCondition.Ongoing, null, manningPawn.CurJob?.def != CE_JobDefOf.ReloadTurret);
                 }
             }
+        }
 
+        public bool TryReloadViaAmmoContainer()
+        {
+            if (TargetCurrentlyAimingAt != null)
+            {
+                return false;
+            }
+
+            List<Thing> adjThings = new List<Thing>();
+            GenAdjFast.AdjacentThings8Way(this, adjThings);
+
+            foreach (Thing building in adjThings)
+            {
+                if (building is Building_AmmoContainerCE container && container.StartReload(compAmmo))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
     }

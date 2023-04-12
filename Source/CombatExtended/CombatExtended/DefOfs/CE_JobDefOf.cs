@@ -14,6 +14,7 @@ namespace CombatExtended
         public static JobDef TakeFromOther;
         public static JobDef ReloadWeapon;
         public static JobDef ReloadTurret;
+        public static JobDef ReloadAmmoContainer;
         public static JobDef HunkerDown;
         public static JobDef RunForCover;
         public static JobDef Stabilize;
