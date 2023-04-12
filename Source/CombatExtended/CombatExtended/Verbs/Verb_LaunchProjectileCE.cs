@@ -845,7 +845,6 @@ namespace CombatExtended
             {
                 return true;
             }
-            Log.Message("a");
             doRetarget = false;
             if (currentTarget != lastTarget)
             {
@@ -854,12 +853,10 @@ namespace CombatExtended
                 shootingAtDowned = currentTarget.Pawn?.Downed ?? true;
                 return true;
             }
-            Log.Message("b");
             if (shootingAtDowned)
             {
                 return true;
             }
-            Log.Message("c");
             if (currentTarget.Pawn == null || currentTarget.Pawn.Downed || !CanHitFromCellIgnoringRange(Caster.Position, currentTarget, out IntVec3 _))
             {
                 Log.Message("retargeting");
@@ -927,16 +924,17 @@ namespace CombatExtended
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
-            bool firingSuppresively = false;
             if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst & suppressive & target is unreachable but alive, keep shooting suppressively.
             {
                 if (numShotsFired == 0 || (CompFireModes != null && CompFireModes.CurrentAimMode != AimMode.SuppressFire) || currentTarget.ThingDestroyed)
                 {
+                    Log.Message("don'tfireSuppresively");
                     return false;
                 }
                 shootLine = lastShootLine;
-                firingSuppresively = true;
                 currentTarget = new LocalTargetInfo(lastTargetPos);
+
+                Log.Message("firingSuppresively");
                 if (!currentTarget.IsValid)
                 {
                     return false;
@@ -961,7 +959,6 @@ namespace CombatExtended
 
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
-            Log.Message("FiringWithoutTarget?" + firingSuppresively.ToString());
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
 
