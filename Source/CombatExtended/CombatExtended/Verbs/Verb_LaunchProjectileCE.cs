@@ -859,7 +859,6 @@ namespace CombatExtended
             }
             if (currentTarget.Pawn == null || currentTarget.Pawn.Downed || !CanHitFromCellIgnoringRange(Caster.Position, currentTarget, out IntVec3 _))
             {
-                Log.Warning("retargeting");
                 Pawn newTarget = null;
                 Thing caster = Caster;
 
@@ -868,7 +867,6 @@ namespace CombatExtended
                 {
                     if ((possibleTarget.Faction == currentTarget.Pawn?.Faction) && possibleTarget.Faction.HostileTo(caster.Faction) && !possibleTarget.Downed && CanHitFromCellIgnoringRange(Caster.Position, possibleTarget, out IntVec3 dest))
                     {
-                        Log.Message("retarget find pawn");
                         newTarget = possibleTarget;
                         break;
                     }
@@ -918,9 +916,7 @@ namespace CombatExtended
         /// <returns>True for successful shot, false otherwise</returns>
         public override bool TryCastShot()
         {
-            Log.Message("====================");
             Retarget();
-            Log.Message("CurTarget" + currentTarget.ToString());
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
@@ -928,13 +924,11 @@ namespace CombatExtended
             {
                 if (numShotsFired == 0 || (CompFireModes != null && CompFireModes.CurrentAimMode != AimMode.SuppressFire) || currentTarget.ThingDestroyed)
                 {
-                    Log.Message("don'tfireSuppresively");
                     return false;
                 }
                 shootLine = lastShootLine;
                 currentTarget = new LocalTargetInfo(lastTargetPos);
 
-                Log.Warning("firingSuppresively");
                 if (!currentTarget.IsValid)
                 {
                     return false;
