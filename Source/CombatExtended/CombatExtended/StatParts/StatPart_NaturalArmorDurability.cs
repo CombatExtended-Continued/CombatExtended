@@ -9,7 +9,7 @@ using Verse;
 namespace CombatExtended
 {
 
-    public class StatPart_MechDurability : StatPart
+    public class StatPart_NaturalArmorDurability : StatPart
     {
         float getMinArmorExplicit(CompArmorDurability comp)
         {
