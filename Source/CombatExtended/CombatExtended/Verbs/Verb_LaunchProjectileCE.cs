@@ -916,7 +916,9 @@ namespace CombatExtended
         /// <returns>True for successful shot, false otherwise</returns>
         public override bool TryCastShot()
         {
-            Retarget();
+            Log.Message("====================");
+            Log.Message("retarget?" + Retarget().ToString());
+            Log.Message("CurTarget" + currentTarget.ToString());
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
@@ -958,6 +960,7 @@ namespace CombatExtended
 
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
+            Log.Message("FiringWithoutTarget?" + firingWithoutTarget.ToString());
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
                 if (firingWithoutTarget)
