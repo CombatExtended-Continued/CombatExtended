@@ -841,13 +841,12 @@ namespace CombatExtended
 
         protected bool Retarget()
         {
-            Log.Message("doRetarget?" + doRetarget.ToString());
             if (!doRetarget)
             {
                 return true;
             }
+            Log.Message("a");
             doRetarget = false;
-            Log.Message("should retarget");
             if (currentTarget != lastTarget)
             {
                 lastTarget = currentTarget;
@@ -855,11 +854,13 @@ namespace CombatExtended
                 shootingAtDowned = currentTarget.Pawn?.Downed ?? true;
                 return true;
             }
+            Log.Message("b");
             if (shootingAtDowned)
             {
                 return true;
             }
-            if (currentTarget.Pawn?.Downed ?? true)
+            Log.Message("c");
+            if (currentTarget.Pawn == null || currentTarget.Pawn.Downed || !CanHitFromCellIgnoringRange(Caster.Position, currentTarget, out IntVec3 _))
             {
                 Log.Message("retargeting");
                 Pawn newTarget = null;
@@ -921,20 +922,25 @@ namespace CombatExtended
         public override bool TryCastShot()
         {
             Log.Message("====================");
-            Log.Message("retarget?" + Retarget().ToString());
+            Retarget();
             Log.Message("CurTarget" + currentTarget.ToString());
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
-            bool firingWithoutTarget = false;
-            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst, keep shooting.
+            bool firingSuppresively = false;
+            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst & suppressive & target is unreachable but alive, keep shooting suppressively.
             {
-                if (numShotsFired == 0)
+                if (numShotsFired == 0 || (CompFireModes != null && CompFireModes.CurrentAimMode != AimMode.SuppressFire) || currentTarget.ThingDestroyed)
                 {
                     return false;
                 }
                 shootLine = lastShootLine;
-                firingWithoutTarget = true;
+                firingSuppresively = true;
+                currentTarget = new LocalTargetInfo(lastTargetPos);
+                if (!currentTarget.IsValid)
+                {
+                    return false;
+                }
             }
             if (projectilePropsCE.pelletCount < 1)
             {
@@ -953,34 +959,11 @@ namespace CombatExtended
                 aperatureSize = 0.03f;
             }
 
-            if (firingWithoutTarget)
-            {
-                currentTarget = new LocalTargetInfo(lastTargetPos);
-                if (!currentTarget.IsValid)
-                {
-                    return false;
-                }
-            }
-
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
-            Log.Message("FiringWithoutTarget?" + firingWithoutTarget.ToString());
+            Log.Message("FiringWithoutTarget?" + firingSuppresively.ToString());
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
-                if (firingWithoutTarget)
-                {
-                    //cease fire if targeting mode is not suppressive and target is null
-                    if (CompFireModes != null && (CompFireModes?.CurrentAimMode == AimMode.AimedShot || CompFireModes?.CurrentAimMode == AimMode.Snapshot))
-                    {
-                        return false;
-                    }
-
-
-                    shotAngle = lastShotAngle;
-                    shotRotation = lastShotRotation;
-                    GetSwayVec(ref shotRotation, ref shotAngle);
-                    GetRecoilVec(ref shotRotation, ref shotAngle);
-                }
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
