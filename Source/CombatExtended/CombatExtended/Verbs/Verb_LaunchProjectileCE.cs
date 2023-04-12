@@ -960,6 +960,20 @@ namespace CombatExtended
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
+                if (firingWithoutTarget)
+                {
+                    //cease fire if targeting mode is not suppressive and target is null
+                    if (CompFireModes != null && (CompFireModes?.CurrentAimMode == AimMode.AimedShot || CompFireModes?.CurrentAimMode == AimMode.Snapshot))
+                    {
+                        return false;
+                    }
+
+
+                    shotAngle = lastShotAngle;
+                    shotRotation = lastShotRotation;
+                    GetSwayVec(ref shotRotation, ref shotAngle);
+                    GetRecoilVec(ref shotRotation, ref shotAngle);
+                }
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
@@ -973,19 +987,7 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-                if (firingWithoutTarget)
-                {
-                    //cease fire if targeting mode is not suppressive and target is null
-                    if (CompFireModes != null && (CompFireModes?.CurrentAimMode == AimMode.AimedShot || CompFireModes?.CurrentAimMode == AimMode.Snapshot))
-                    {
-                        return false;
-                    }
 
-                    shotAngle = lastShotAngle;
-                    shotRotation = lastShotRotation;
-                    GetSwayVec(ref shotRotation, ref shotAngle);
-                    GetRecoilVec(ref shotRotation, ref shotAngle);
-                }
                 this.lastShotAngle = shotAngle;
                 this.lastShotRotation = shotRotation;
                 this.lastShootLine = shootLine;
