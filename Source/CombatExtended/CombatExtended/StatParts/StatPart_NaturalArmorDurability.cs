@@ -28,17 +28,19 @@ namespace CombatExtended
 
         public override void TransformValue(StatRequest req, ref float val)
         {
-
-            var comp = (req.Thing?.TryGetComp<CompArmorDurability>() ?? null);
-            if (comp != null)
+            if (val != 0)
             {
-                var mech = (Pawn)req.Thing;
+                var comp = (req.Thing?.TryGetComp<CompArmorDurability>() ?? null);
+                if (comp != null)
+                {
+                    var mech = (Pawn)req.Thing;
 
-                float minArmor = getMinArmor(comp, val);
+                    float minArmor = getMinArmor(comp, val);
 
-                val -= (val - minArmor) * (1 - comp.curDurabilityPercent);
+                    val -= (val - minArmor) * (1 - comp.curDurabilityPercent);
 
-                if (val < minArmor) { val = minArmor; }
+                    if (val < minArmor) { val = minArmor; }
+                }
             }
         }
 
