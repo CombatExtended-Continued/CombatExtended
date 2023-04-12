@@ -135,9 +135,16 @@ namespace CombatExtended
             base.PostPostMake();
         }
 
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            regens = durabilityProps.Regenerates;
+            base.PostSpawnSetup(respawningAfterLoad);
+        }
+
         public override void PostExposeData()
         {
-            Scribe_Values.Look<bool>(ref regens, "regens", false);
+            Scribe_Values.Look(ref curDurability, "curDurability");
+            Scribe_Values.Look(ref timer, "timer");
             base.PostExposeData();
         }
 
@@ -148,7 +155,6 @@ namespace CombatExtended
 
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
-            Log.Message(dinfo.ToString());
             base.PostPreApplyDamage(dinfo, out absorbed);
             if (curDurability > 0)
             {
