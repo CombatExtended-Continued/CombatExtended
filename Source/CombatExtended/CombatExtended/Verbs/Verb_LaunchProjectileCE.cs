@@ -841,11 +841,13 @@ namespace CombatExtended
 
         protected bool Retarget()
         {
+            Log.Message("doRetarget?" + doRetarget.ToString());
             if (!doRetarget)
             {
                 return true;
             }
             doRetarget = false;
+            Log.Message("should retarget");
             if (currentTarget != lastTarget)
             {
                 lastTarget = currentTarget;
@@ -859,6 +861,7 @@ namespace CombatExtended
             }
             if (currentTarget.Pawn?.Downed ?? true)
             {
+                Log.Message("retargeting");
                 Pawn newTarget = null;
                 Thing caster = Caster;
 
@@ -867,6 +870,7 @@ namespace CombatExtended
                 {
                     if ((possibleTarget.Faction == currentTarget.Pawn?.Faction) && possibleTarget.Faction.HostileTo(caster.Faction) && !possibleTarget.Downed && CanHitFromCellIgnoringRange(Caster.Position, possibleTarget, out IntVec3 dest))
                     {
+                        Log.Message("retarget find pawn");
                         newTarget = possibleTarget;
                         break;
                     }
