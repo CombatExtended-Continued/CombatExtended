@@ -859,7 +859,7 @@ namespace CombatExtended
             }
             if (currentTarget.Pawn == null || currentTarget.Pawn.Downed || !CanHitFromCellIgnoringRange(Caster.Position, currentTarget, out IntVec3 _))
             {
-                Log.Message("retargeting");
+                Log.Warning("retargeting");
                 Pawn newTarget = null;
                 Thing caster = Caster;
 
@@ -934,7 +934,7 @@ namespace CombatExtended
                 shootLine = lastShootLine;
                 currentTarget = new LocalTargetInfo(lastTargetPos);
 
-                Log.Message("firingSuppresively");
+                Log.Warning("firingSuppresively");
                 if (!currentTarget.IsValid)
                 {
                     return false;
