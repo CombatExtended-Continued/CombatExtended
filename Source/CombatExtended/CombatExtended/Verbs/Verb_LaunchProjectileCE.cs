@@ -857,7 +857,7 @@ namespace CombatExtended
             {
                 return true;
             }
-            if (currentTarget.Pawn?.Downed ?? true)
+            if (currentTarget.Pawn == null || currentTarget.Pawn.Downed || !CanHitFromCellIgnoringRange(Caster.Position, currentTarget, out IntVec3 _))
             {
                 Pawn newTarget = null;
                 Thing caster = Caster;
@@ -920,15 +920,19 @@ namespace CombatExtended
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
-            bool firingWithoutTarget = false;
-            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst, keep shooting.
+            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst & suppressive & target is unreachable but alive, keep shooting suppressively.
             {
-                if (numShotsFired == 0)
+                if (numShotsFired == 0 || (CompFireModes != null && CompFireModes.CurrentAimMode != AimMode.SuppressFire) || currentTarget.ThingDestroyed)
                 {
                     return false;
                 }
                 shootLine = lastShootLine;
-                firingWithoutTarget = true;
+                currentTarget = new LocalTargetInfo(lastTargetPos);
+
+                if (!currentTarget.IsValid)
+                {
+                    return false;
+                }
             }
             if (projectilePropsCE.pelletCount < 1)
             {
@@ -945,15 +949,6 @@ namespace CombatExtended
                 instant = pprop.isInstant;
                 spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * pprop.spreadMult;
                 aperatureSize = 0.03f;
-            }
-
-            if (firingWithoutTarget)
-            {
-                currentTarget = new LocalTargetInfo(lastTargetPos);
-                if (!currentTarget.IsValid)
-                {
-                    return false;
-                }
             }
 
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
@@ -973,19 +968,7 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-                if (firingWithoutTarget)
-                {
-                    //cease fire if targeting mode is not suppressive and target is null
-                    if (CompFireModes != null && (CompFireModes?.CurrentAimMode == AimMode.AimedShot || CompFireModes?.CurrentAimMode == AimMode.Snapshot))
-                    {
-                        return false;
-                    }
 
-                    shotAngle = lastShotAngle;
-                    shotRotation = lastShotRotation;
-                    GetSwayVec(ref shotRotation, ref shotAngle);
-                    GetRecoilVec(ref shotRotation, ref shotAngle);
-                }
                 this.lastShotAngle = shotAngle;
                 this.lastShotRotation = shotRotation;
                 this.lastShootLine = shootLine;
