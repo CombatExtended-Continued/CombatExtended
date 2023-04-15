@@ -97,7 +97,7 @@ namespace CombatExtended
             }
             if (this.IsHashIntervalTick(120))
             {
-                DangerTracker?.Notify_SmokeAt(Position);
+                DangerTracker?.Notify_SmokeAt(Position, density / MaxDensity);
             }
 
             base.Tick();
