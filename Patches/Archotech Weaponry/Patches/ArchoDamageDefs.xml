@@ -1,37 +1,44 @@
-<?xml version="1.0" encoding="utf-8" ?>
-
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
-	<mods>
-		<li>Archotech Weaponry</li>
-	</mods>
+		<mods>
+			<li>Archotech Weaponry</li>
+		</mods>
+
 		<match Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
+			<xpath>Defs</xpath>
+			<value>
 
-	<DamageDef ParentName="Bullet">
-		<defName>CE_ArchoNL</defName>
-		<label>advanced ballistics that deploys archonanites(less Lethal verion)</label>
-		<additionalHediffs>
-		<li>
-			<hediff>VoidToxin</hediff>
-			<severityPerDamageDealt>0.09</severityPerDamageDealt>
-		</li>
-		</additionalHediffs>
-	</DamageDef>
+				<DamageDef ParentName="Bullet">
+					<defName>CE_ArchoNL</defName>
+					<label>advanced ballistics that deploys archonanites(less Lethal verion)</label>
+					<additionalHediffs>
+						<li>
+							<hediff>VoidToxin</hediff>
+							<severityPerDamageDealt>0.29</severityPerDamageDealt>
+						</li>
+					</additionalHediffs>
+					<modExtensions>		
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+						</li>	
+					</modExtensions>	
+				</DamageDef>
 
-	<DamageDef ParentName="Bullet">
-		<defName>CE_ArchoL</defName>
-		<label>advanced ballistics that deploys archonanites(Lethal verion)</label>
-		<additionalHediffs>
-		<li>
-			<hediff>VoidNecrosisTemp</hediff>
-			<severityPerDamageDealt>0.05</severityPerDamageDealt>
-		</li>
-		</additionalHediffs>
-	</DamageDef>
+				<DamageDef ParentName="Bullet">
+					<defName>CE_ArchoL</defName>
+					<label>advanced ballistics that deploys archonanites(Lethal verion)</label>
+					<additionalHediffs>
+						<li>
+							<hediff>VoidNecrosisTemp</hediff>
+							<severityPerDamageDealt>0.05</severityPerDamageDealt>
+						</li>
+					</additionalHediffs>
+				</DamageDef>
 
-		</value>
+			</value>
 		</match>
 	</Operation>
+
 </Patch>
