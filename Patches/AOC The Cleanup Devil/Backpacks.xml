@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>AOC The Cleanup Devil</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!--Battle Backpacks-->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_Battle_Backpacks"]/statBases</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_Battle_Backpacks"]/equippedStatOffsets/CarryingCapacity</xpath>
+          <value>
+            <CarryBulk>70</CarryBulk>
+          </value>
+        </li>
+        <!--Cleaner Backpacks-->
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_Cleaner_Backpacks"]/statBases</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_Cleaner_Backpacks"]/equippedStatOffsets/CarryingCapacity</xpath>
+          <value>
+            <CarryBulk>100</CarryBulk>
+          </value>
+        </li>
+
+        <!--Recycle Backpacks-->
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AOC_Recyle_Backpacks"]/statBases</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_Recyle_Backpacks"]/equippedStatOffsets/CarryingCapacity</xpath>
+          <value>
+            <CarryBulk>100</CarryBulk>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
