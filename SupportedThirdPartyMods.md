@@ -433,6 +433,7 @@ Vanilla Animals Expanded - Caves |
 Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
 Vanilla Animals Expanded - Vehicles |
+Vanilla Animals Expanded - Waste Animals |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
