@@ -102,6 +102,7 @@ Arachne Race	|
 Archotech Expanded  |
 Archotech Expanded Prosthetics  |
 Archotech PowerArmor    |
+Archotech Weaponry    |
 Archotech+ (Continued)  |
 Arasaka Corporation [1.3]	|
 Argonians of Blackmarsh (Continued) |
