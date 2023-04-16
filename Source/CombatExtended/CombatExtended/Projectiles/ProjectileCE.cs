@@ -448,16 +448,9 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
 
+            //To fix landed grenades sl problem
+            Scribe_Values.Look(ref impactPosition, "impactPosition");
             // To insure saves don't get affected..
-            Thing target = null;
-            if (Scribe.mode != LoadSaveMode.Saving)
-            {
-                Scribe_References.Look<Thing>(ref target, "intendedTarget");
-                if (target != null)
-                {
-                    intendedTarget = new LocalTargetInfo(target);
-                }
-            }
         }
         #endregion
 
