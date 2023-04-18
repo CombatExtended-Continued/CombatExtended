@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationConditional">
@@ -6,7 +6,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[@Name="BasePawn"]</xpath>
 			<value>
-				<statBases />
+				<statBases/>
 			</value>
 		</nomatch>
 	</Operation>
@@ -30,10 +30,37 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="BasePawn"]/comps</xpath>
 		<value>
-			<li Class="CombatExtended.CompProperties_Inventory" />
-			<li Class="CombatExtended.CompProperties_TacticalManager" />																											
+			<li Class="CombatExtended.CompProperties_Inventory"/>
+			<li Class="CombatExtended.CompProperties_TacticalManager"/>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AnimalThingBase"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>500</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>600</RegenInterval>
+					<RegenValue>5</RegenValue>
+<!-- 					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>240</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>500</MaxOverHeal> -->
+					<MinArmorPct>0.75</MinArmorPct>
+<!-- 					<MinArmorValueSharp>14</MinArmorValueSharp>
+					<MinArmorValueBlunt>30</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</comps>
 		</value>
 	</Operation>
 
 </Patch>
-

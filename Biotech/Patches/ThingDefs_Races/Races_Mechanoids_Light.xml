@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationReplace">
@@ -41,9 +41,9 @@
 		<value>
 			<CarryWeight>50</CarryWeight>
 			<CarryBulk>20</CarryBulk>
-			<MeleeDodgeChance>0</MeleeDodgeChance>
-			<MeleeCritChance>0.01</MeleeCritChance>
-			<MeleeParryChance>0</MeleeParryChance>
+			<MeleeDodgeChance>0.1</MeleeDodgeChance>
+			<MeleeCritChance>0.04</MeleeCritChance>
+			<MeleeParryChance>0.04</MeleeParryChance>
 		</value>
 	</Operation>
 
@@ -64,6 +64,62 @@
 				</li>
 			</tools>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Militor" or defName="Mech_Lifter" or defName="Mech_Constructoid" or defName="Mech_Fabricor" or defName="Mech_Agrihand" or defName="Mech_Paramedic"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Militor" or defName="Mech_Lifter" or defName="Mech_Constructoid" or defName="Mech_Fabricor" or defName="Mech_Agrihand" or defName="Mech_Paramedic"]</xpath>
+			<value>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ArmorDurability">
+						<Durability>700</Durability>
+						<Regenerates>true</Regenerates>
+						<RegenInterval>600</RegenInterval>
+						<RegenValue>5</RegenValue>
+						<Repairable>true</Repairable>
+						<RepairIngredients>
+							<Steel>5</Steel>
+							<Plasteel>5</Plasteel>
+						</RepairIngredients>
+						<RepairTime>300</RepairTime>
+						<RepairValue>200</RepairValue>
+						<CanOverHeal>true</CanOverHeal>
+						<MaxOverHeal>70</MaxOverHeal>
+						<MinArmorPct>0.5</MinArmorPct>
+<!-- 						<MinArmorValueSharp>10</MinArmorValueSharp>
+						<MinArmorValueBlunt>22</MinArmorValueBlunt>
+						<MinArmorValueHeat>0.2</MinArmorValueHeat>
+						<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+					</li>
+				</comps>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Militor" or defName="Mech_Lifter" or defName="Mech_Constructoid" or defName="Mech_Fabricor" or defName="Mech_Agrihand" or defName="Mech_Paramedic"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>700</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>600</RegenInterval>
+					<RegenValue>5</RegenValue>
+					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>70</MaxOverHeal>
+					<MinArmorPct>0.5</MinArmorPct>
+<!-- 					<MinArmorValueSharp>10</MinArmorValueSharp>
+					<MinArmorValueBlunt>22</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</value>
+		</match>
 	</Operation>
 
 	<!-- ========== Militor ========== -->
@@ -205,6 +261,62 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Cleansweeper"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Cleansweeper"]</xpath>
+			<value>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ArmorDurability">
+						<Durability>500</Durability>
+						<Regenerates>true</Regenerates>
+						<RegenInterval>600</RegenInterval>
+						<RegenValue>5</RegenValue>
+						<Repairable>true</Repairable>
+						<RepairIngredients>
+							<Steel>5</Steel>
+							<Plasteel>5</Plasteel>
+						</RepairIngredients>
+						<RepairTime>300</RepairTime>
+						<RepairValue>200</RepairValue>
+						<CanOverHeal>true</CanOverHeal>
+						<MaxOverHeal>50</MaxOverHeal>
+						<MinArmorPct>0.5</MinArmorPct>
+<!-- 						<MinArmorValueSharp>10</MinArmorValueSharp>
+						<MinArmorValueBlunt>22</MinArmorValueBlunt>
+						<MinArmorValueHeat>0.2</MinArmorValueHeat>
+						<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+					</li>
+				</comps>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Cleansweeper"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>500</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>600</RegenInterval>
+					<RegenValue>5</RegenValue>
+					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>50</MaxOverHeal>
+					<MinArmorPct>0.5</MinArmorPct>
+<!-- 					<MinArmorValueSharp>10</MinArmorValueSharp>
+					<MinArmorValueBlunt>22</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</value>
+		</match>
+	</Operation>
+
 	<!-- ========== WarUrchin ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -219,9 +331,70 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_WarUrchin"]/statBases</xpath>
 		<value>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
 			<AimingAccuracy>1.0</AimingAccuracy>
 			<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.14</MeleeDodgeChance>
+			<MeleeCritChance>0.06</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_WarUrchin"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_WarUrchin"]</xpath>
+			<value>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ArmorDurability">
+						<Durability>1000</Durability>
+						<Regenerates>true</Regenerates>
+						<RegenInterval>600</RegenInterval>
+						<RegenValue>5</RegenValue>
+						<Repairable>true</Repairable>
+						<RepairIngredients>
+							<Steel>5</Steel>
+							<Plasteel>5</Plasteel>
+						</RepairIngredients>
+						<RepairTime>300</RepairTime>
+						<RepairValue>200</RepairValue>
+						<CanOverHeal>true</CanOverHeal>
+						<MaxOverHeal>100</MaxOverHeal>
+						<MinArmorPct>0.5</MinArmorPct>
+<!-- 						<MinArmorValueSharp>10</MinArmorValueSharp>
+						<MinArmorValueBlunt>22</MinArmorValueBlunt>
+						<MinArmorValueHeat>0.2</MinArmorValueHeat>
+						<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+					</li>
+				</comps>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_WarUrchin"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>1000</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>600</RegenInterval>
+					<RegenValue>5</RegenValue>
+					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>100</MaxOverHeal>
+					<MinArmorPct>0.5</MinArmorPct>
+<!-- 					<MinArmorValueSharp>10</MinArmorValueSharp>
+					<MinArmorValueBlunt>22</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</value>
+		</match>
 	</Operation>
 
 	<!-- ========== Paramedic ========== -->

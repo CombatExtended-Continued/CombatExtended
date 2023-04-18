@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<!-- ========== Elephant ========== -->
@@ -7,8 +7,8 @@
 		<xpath>Defs/ThingDef[defName="Elephant"]/statBases/MoveSpeed</xpath>
 		<value>
 			<MoveSpeed>5</MoveSpeed>
-			<MeleeDodgeChance>0.1</MeleeDodgeChance>
-			<MeleeCritChance>0.88</MeleeCritChance>
+			<MeleeDodgeChance>0.08</MeleeDodgeChance>
+			<MeleeCritChance>0.79</MeleeCritChance>
 			<MeleeParryChance>0.51</MeleeParryChance>
 			<ArmorRating_Blunt>0.205</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
@@ -27,7 +27,7 @@
 					<power>67</power>
 					<cooldownTime>3.37</cooldownTime>
 					<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>40.226</armorPenetrationBlunt>	
+					<armorPenetrationBlunt>40.226</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>left foot</label>
@@ -37,7 +37,7 @@
 					<power>33</power>
 					<cooldownTime>2.37</cooldownTime>
 					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>25.960</armorPenetrationBlunt>	
+					<armorPenetrationBlunt>25.960</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right foot</label>
@@ -47,7 +47,7 @@
 					<power>33</power>
 					<cooldownTime>2.37</cooldownTime>
 					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>25.960</armorPenetrationBlunt>	
+					<armorPenetrationBlunt>25.960</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
@@ -58,7 +58,7 @@
 					<cooldownTime>3.69</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>36</armorPenetrationBlunt>	
+					<armorPenetrationBlunt>36</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -78,8 +78,8 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Megasloth"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.06</MeleeDodgeChance>
-			<MeleeCritChance>0.41</MeleeCritChance>
+			<MeleeDodgeChance>0.09</MeleeDodgeChance>
+			<MeleeCritChance>0.67</MeleeCritChance>
 			<MeleeParryChance>0.48</MeleeParryChance>
 		</value>
 	</Operation>
@@ -150,9 +150,9 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Thrumbo"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.09</MeleeDodgeChance>
-			<MeleeCritChance>0.76</MeleeCritChance>
-			<MeleeParryChance>0.45</MeleeParryChance>
+			<MeleeDodgeChance>0.1</MeleeDodgeChance>
+			<MeleeCritChance>0.82</MeleeCritChance>
+			<MeleeParryChance>0.48</MeleeParryChance>
 			<Flammability>0.6</Flammability>
 		</value>
 	</Operation>
@@ -260,5 +260,32 @@
 		</value>
 	</Operation>
 
-</Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Thrumbo"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>3000</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>600</RegenInterval>
+					<RegenValue>5</RegenValue>
+<!-- 					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>375</MaxOverHeal> -->
+					<MinArmorPct>0.75</MinArmorPct>
+<!-- 					<MinArmorValueSharp>10</MinArmorValueSharp>
+					<MinArmorValueBlunt>22</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</comps>
+		</value>
+	</Operation>
 
+</Patch>

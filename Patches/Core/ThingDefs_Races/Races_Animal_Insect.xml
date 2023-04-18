@@ -12,6 +12,37 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="BaseInsect"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+						<parts>
+							<li>InsectLeg</li>
+						</parts>
+					</li>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+						<parts>
+							<li>InsectLeg</li>
+						</parts>
+					</li>
+				</stats>
+			</li> 
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseInsect"]/statBases</xpath>
+		<value>
+			<PartialArmorBody>0</PartialArmorBody>
+		</value>
+	</Operation>
+
 	<!-- ========== Megascarab ========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -71,6 +102,34 @@
 		<xpath>Defs/ThingDef[defName="Megascarab"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>0.3</baseHealthScale>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Megascarab"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>150</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>600</RegenInterval>
+					<RegenValue>5</RegenValue>
+<!-- 					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>15</MaxOverHeal> -->
+					<MinArmorPct>0.5</MinArmorPct>
+<!-- 					<MinArmorValueSharp>10</MinArmorValueSharp>
+					<MinArmorValueBlunt>22</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</comps>
 		</value>
 	</Operation>
 
@@ -148,6 +207,34 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Spelopede"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>500</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>600</RegenInterval>
+					<RegenValue>5</RegenValue>
+<!-- 					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>15</MaxOverHeal> -->
+					<MinArmorPct>0.5</MinArmorPct>
+<!-- 					<MinArmorValueSharp>10</MinArmorValueSharp>
+					<MinArmorValueBlunt>22</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
 	<!-- ========== Megaspider ========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -222,5 +309,32 @@
 		</value>
 	</Operation>
 
-</Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Megaspider"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>750</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>600</RegenInterval>
+					<RegenValue>5</RegenValue>
+<!-- 					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>15</MaxOverHeal> -->
+					<MinArmorPct>0.5</MinArmorPct>
+<!-- 					<MinArmorValueSharp>10</MinArmorValueSharp>
+					<MinArmorValueBlunt>22</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</comps>
+		</value>
+	</Operation>
 
+</Patch>
