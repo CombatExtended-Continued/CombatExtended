@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo7mm08Remington</defName>
+		<label>7mm-08 Remington</label>
+		<parent>AmmoRifles</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_7mm08Remington</defName>
+		<label>7mm-08 Remington</label>
+		<ammoTypes>
+			<Ammo_7mm08Remington_FMJ>Bullet_7mm08Remington_FMJ</Ammo_7mm08Remington_FMJ>
+			<Ammo_7mm08Remington_AP>Bullet_7mm08Remington_AP</Ammo_7mm08Remington_AP>
+			<Ammo_7mm08Remington_HP>Bullet_7mm08Remington_HP</Ammo_7mm08Remington_HP>
+			<Ammo_7mm08Remington_Incendiary>Bullet_7mm08Remington_Incendiary</Ammo_7mm08Remington_Incendiary>
+			<Ammo_7mm08Remington_HE>Bullet_7mm08Remington_HE</Ammo_7mm08Remington_HE>
+			<Ammo_7mm08Remington_Sabot>Bullet_7mm08Remington_Sabot</Ammo_7mm08Remington_Sabot>				
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="7mm08RemingtonBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Necked down .308 cartridge meant for hunting and sporting use.</description>
+		<statBases>
+		<Mass>0.025</Mass>
+		<Bulk>0.03</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo7mm08Remington</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="7mm08RemingtonBase">
+		<defName>Ammo_7mm08Remington_FMJ</defName>
+		<label>7mm-08 Remington cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.11</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_7mm08Remington_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="7mm08RemingtonBase">
+		<defName>Ammo_7mm08Remington_AP</defName>
+		<label>7mm-08 Remington cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.11</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_7mm08Remington_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="7mm08RemingtonBase">
+		<defName>Ammo_7mm08Remington_HP</defName>
+		<label>7mm-08 Remington cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.11</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_7mm08Remington_HP</cookOffProjectile>
+	</ThingDef>
+	
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="7mm08RemingtonBase">
+    <defName>Ammo_7mm08Remington_Incendiary</defName>
+    <label>7mm-08 Remington cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.15</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_7mm08Remington_Incendiary</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="7mm08RemingtonBase">
+    <defName>Ammo_7mm08Remington_HE</defName>
+    <label>7mm-08 Remington cartridge (AP-HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.21</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_7mm08Remington_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="7mm08RemingtonBase">
+    <defName>Ammo_7mm08Remington_Sabot</defName>
+    <label>7mm-08 Remington cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.12</MarketValue>
+	  <Mass>0.021</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_7mm08Remington_Sabot</cookOffProjectile>
+  </ThingDef>
+  
+	<!-- ================== Projectiles ================== -->
+	
+	<ThingDef Name="Base7mm08RemingtonBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>162</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base7mm08RemingtonBullet">
+		<defName>Bullet_7mm08Remington_FMJ</defName>
+		<label>7mm-08 Remington bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetrationSharp>7</armorPenetrationSharp>
+			<armorPenetrationBlunt>63.64</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base7mm08RemingtonBullet">
+		<defName>Bullet_7mm08Remington_AP</defName>
+		<label>7mm-08 Remington bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>63.64</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base7mm08RemingtonBullet">
+		<defName>Bullet_7mm08Remington_HP</defName>
+		<label>7mm-08 Remington bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>24</damageAmountBase>
+			<armorPenetrationSharp>3.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>63.64</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	  <ThingDef ParentName="Base7mm08RemingtonBullet">
+		<defName>Bullet_7mm08Remington_Incendiary</defName>
+		<label>7mm-08 Remington bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>12</damageAmountBase>
+		  <armorPenetrationSharp>14</armorPenetrationSharp>
+		  <armorPenetrationBlunt>63.64</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame_Secondary</def>
+			  	<amount>7</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef ParentName="Base7mm08RemingtonBullet">
+		<defName>Bullet_7mm08Remington_HE</defName>
+		<label>7mm-08 Remington bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>19</damageAmountBase>
+		  <armorPenetrationSharp>7</armorPenetrationSharp>
+		  <armorPenetrationBlunt>63.64</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>11</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+
+	  <ThingDef ParentName="Base7mm08RemingtonBullet">
+		<defName>Bullet_7mm08Remington_Sabot</defName>
+		<label>7mm-08 Remington bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>10</damageAmountBase>
+		  <armorPenetrationSharp>24.50</armorPenetrationSharp>
+		  <armorPenetrationBlunt>81.64</armorPenetrationBlunt>
+		  <speed>243</speed>
+		</projectile>
+	  </ThingDef>
+	  
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_7mm08Remington_FMJ</defName>
+		<label>make 7mm-08 Remington (FMJ) cartridge x500</label>
+		<description>Craft 500 7mm-08 Remington (FMJ) cartridges.</description>
+		<jobString>Making 7mm-08 Remington (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_7mm08Remington_FMJ>500</Ammo_7mm08Remington_FMJ>
+		</products>
+    	<workAmount>2600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_7mm08Remington_AP</defName>
+		<label>make 7mm-08 Remington (AP) cartridge x500</label>
+		<description>Craft 500 7mm-08 Remington (AP) cartridges.</description>
+		<jobString>Making 7mm-08 Remington (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_7mm08Remington_AP>500</Ammo_7mm08Remington_AP>
+		</products>
+	<workAmount>3120</workAmount>		
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_7mm08Remington_HP</defName>
+		<label>make 7mm-08 Remington (HP) cartridge x500</label>
+		<description>Craft 500 7mm-08 Remington (HP) cartridges.</description>
+		<jobString>Making 7mm-08 Remington (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_7mm08Remington_HP>500</Ammo_7mm08Remington_HP>
+		</products>
+	<workAmount>2600</workAmount>		
+	</RecipeDef>
+
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_7mm08Remington_Incendiary</defName>
+    <label>make 7mm-08 Remington (AP-I) cartridge x500</label>
+    <description>Craft 500 7mm-08 Remington (AP-I) cartridges.</description>
+    <jobString>Making 7mm-08 Remington (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>26</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_7mm08Remington_Incendiary>500</Ammo_7mm08Remington_Incendiary>
+    </products>
+    <workAmount>3800</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_7mm08Remington_HE</defName>
+    <label>make 7mm-08 Remington (AP-HE) cartridge x500</label>
+    <description>Craft 500 7mm-08 Remington (AP-HE) cartridges.</description>
+    <jobString>Making 7mm-08 Remington (AP-HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>26</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_7mm08Remington_HE>500</Ammo_7mm08Remington_HE>
+    </products>
+    <workAmount>4600</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_7mm08Remington_Sabot</defName>
+    <label>make 7mm-08 Remington (Sabot) cartridge x500</label>
+    <description>Craft 500 7mm-08 Remington (Sabot) cartridges.</description>
+    <jobString>Making 7mm-08 Remington (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>16</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_7mm08Remington_Sabot>500</Ammo_7mm08Remington_Sabot>
+    </products>
+    <workAmount>3400</workAmount>
+  </RecipeDef>
+	
+</Defs>
