@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo41Magnum</defName>
+		<label>.41 Magnum</label>
+		<parent>AmmoPistols</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_41Magnum</defName>
+		<label>.41 Magnum</label>
+		<ammoTypes>
+			<Ammo_41Magnum_FMJ>Bullet_41Magnum_FMJ</Ammo_41Magnum_FMJ>
+			<Ammo_41Magnum_AP>Bullet_41Magnum_AP</Ammo_41Magnum_AP>
+			<Ammo_41Magnum_HP>Bullet_41Magnum_HP</Ammo_41Magnum_HP>			
+		</ammoTypes>
+		<similarTo>AmmoSet_PistolMagnum</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="41MagnumBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Rare magnum revolver cartridge designed to sit between the .357 and .44 Magnum rounds in terms of performance, but never as successful as either.</description>
+		<statBases>
+			<Mass>0.023</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo41Magnum</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="41MagnumBase">
+		<defName>Ammo_41Magnum_FMJ</defName>
+		<label>.41 Magnum cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.10</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_41Magnum_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="41MagnumBase">
+		<defName>Ammo_41Magnum_AP</defName>
+		<label>.41 Magnum cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.10</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_41Magnum_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="41MagnumBase">
+		<defName>Ammo_41Magnum_HP</defName>
+		<label>.41 Magnum cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.10</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_41Magnum_HP</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base41MagnumBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>76</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base41MagnumBullet">
+		<defName>Bullet_41Magnum_FMJ</defName>
+		<label>.41 Magnum bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>23.1</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base41MagnumBullet">
+		<defName>Bullet_41Magnum_AP</defName>
+		<label>.41 Magnum bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>23.1</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base41MagnumBullet">
+		<defName>Bullet_41Magnum_HP</defName>
+		<label>.41 Magnum bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>23.1</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_41Magnum_FMJ</defName>
+		<label>make .41 Magnum cartridge x500</label>
+		<description>Craft 500 .41 Magnum cartridges.</description>
+		<jobString>Making .41 Magnum cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_41Magnum_FMJ>500</Ammo_41Magnum_FMJ>
+		</products>
+		<workAmount>2400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_41Magnum_AP</defName>
+		<label>make .41 Magnum (AP) cartridge x500</label>
+		<description>Craft 500 .41 Magnum (AP) cartridges.</description>
+		<jobString>Making .41 Magnum (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_41Magnum_AP>500</Ammo_41Magnum_AP>
+		</products>
+		<workAmount>2880</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_41Magnum_HP</defName>
+		<label>make .41 Magnum (HP) cartridge x500</label>
+		<description>Craft 500 .41 Magnum (HP) cartridges.</description>
+		<jobString>Making .41 Magnum (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_41Magnum_HP>500</Ammo_41Magnum_HP>
+		</products>
+		<workAmount>2400</workAmount>
+	</RecipeDef>
+
+</Defs>
