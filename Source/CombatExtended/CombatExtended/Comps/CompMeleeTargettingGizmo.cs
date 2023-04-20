@@ -57,7 +57,7 @@ namespace CombatExtended
 
             if (primaryWeapon != null)
             {
-                maxWeaponPen = primaryWeapon.def.tools.Select(x => x as ToolCE).Max(x => x.armorPenetrationSharp) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
+                maxWeaponPen = primaryWeapon.def.tools.Max(x => { ToolCE y = x as ToolCE; return y == null ? 0f : y.armorPenetrationSharp; }) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
             }
 
             if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 16 && PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 7)

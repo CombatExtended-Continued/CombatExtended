@@ -30,11 +30,11 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="MusketBallBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="MusketBallBase" ParentName="AmmoBase" Abstract="True">
 		<description>A paper cartridge sealed with wax containing a round projectile and black powder, fired by early, smoothbore firearms.</description>
 		<statBases>
-		<Mass>0.087</Mass>
-		<Bulk>0.12</Bulk>
+			<Mass>0.087</Mass>
+			<Bulk>0.12</Bulk>
 		</statBases>
 		<tradeTags>
 		  <li>CE_PreIndustrialAmmo</li>
@@ -60,7 +60,7 @@
 		</statBases>
 		<ammoClass>MusketBall</ammoClass>
 	</ThingDef>
-	
+
 	<!-- ================== Projectile Base ================== -->
 	
 	<ThingDef Name="MusketBallBullet" ParentName="BaseBulletCE" Abstract="true">
@@ -80,10 +80,10 @@
 		<defName>Bullet_FastMusketBall</defName>
 		<label>musket ball</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>90</speed>	
-			<damageAmountBase>26</damageAmountBase>		
+			<speed>90</speed>
+			<damageAmountBase>26</damageAmountBase>
 			<armorPenetrationSharp>5</armorPenetrationSharp>
-			<armorPenetrationBlunt>64.8</armorPenetrationBlunt>				
+			<armorPenetrationBlunt>64.8</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -93,13 +93,13 @@
 		<defName>Bullet_SlowMusketBall</defName>
 		<label>musket ball</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>50</speed>	
-			<damageAmountBase>17</damageAmountBase>		
+			<speed>50</speed>
+			<damageAmountBase>17</damageAmountBase>
 			<armorPenetrationSharp>3.5</armorPenetrationSharp>
-			<armorPenetrationBlunt>20</armorPenetrationBlunt>				
+			<armorPenetrationBlunt>20</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -108,7 +108,7 @@
 		<description>Craft 100 musket balls.</description>
 		<jobString>Making musket balls.</jobString>
 		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
-    	<workAmount>2000</workAmount>		
+    	<workAmount>2000</workAmount>
 		<ingredients>
 			<li>
 			<filter>
@@ -128,5 +128,5 @@
 			<Ammo_MusketBall>100</Ammo_MusketBall>
 		</products>
 	</RecipeDef>
-	
+
 </Defs>

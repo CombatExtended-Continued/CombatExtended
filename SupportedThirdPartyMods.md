@@ -102,6 +102,7 @@ Arachne Race	|
 Archotech Expanded  |
 Archotech Expanded Prosthetics  |
 Archotech PowerArmor    |
+Archotech Weaponry    |
 Archotech+ (Continued)  |
 Arasaka Corporation [1.3]	|
 Argonians of Blackmarsh (Continued) |
@@ -207,7 +208,6 @@ Forgotten Realms - Lizardfolk	|
 Forgotten Realms - Minotaur	|
 Forsakens	|
 Fort's Firefighter gadget   |
-Fortifications - Industrial |
 Frontline Collection  |
 FROG Suit Set   |
 Fuck it Unboomas Your Lope |
@@ -265,7 +265,6 @@ Makeshift Melee Weapons |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
-Mechanite Plague    |
 Mechanized Armor Set    |
 Mechanoid Bench 2   |
 Mechanoid Bench 3   |
@@ -435,6 +434,7 @@ Vanilla Animals Expanded - Caves |
 Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
 Vanilla Animals Expanded - Vehicles |
+Vanilla Animals Expanded - Waste Animals |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
