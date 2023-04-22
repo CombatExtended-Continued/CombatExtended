@@ -55,7 +55,7 @@ namespace CombatExtended
             }
 
             // Process all weapons
-            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.HasComp(typeof(CompAmmoUser))))
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.verbs != null && d.verbs.Any(x => typeof(Verb_LaunchProjectileCE).IsAssignableFrom(x.verbClass))))
             {
                 ProcessWeapons(def);
             }
@@ -220,7 +220,7 @@ namespace CombatExtended
         /// <param name="def"></param>
         private static void ProcessWeapons(ThingDef def)
         {
-            CompProperties_AmmoUser props = (CompProperties_AmmoUser)(def.comps?.First(c => c.compClass == typeof(CompAmmoUser)) ?? null);
+            CompProperties_AmmoUser props = (CompProperties_AmmoUser)(def.comps?.FirstOrDefault(c => c.compClass == typeof(CompAmmoUser)));
 
             if (props?.ammoSet != null)
             {
@@ -239,7 +239,7 @@ namespace CombatExtended
                 def.statBases.Add(new StatModifier()
                 {
                     stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots
-                });
+                }); 
             }
 
             float burstShotCount = def.verbs.Max(v => v.burstShotCount);
@@ -260,22 +260,25 @@ namespace CombatExtended
                 });
             }
 
-            float reloadTime = def.GetCompProperties<CompProperties_AmmoUser>().reloadTime;
-            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.ReloadTime))
+            if(props != null)
             {
-                def.statBases.Add(new StatModifier()
+                float reloadTime = def.GetCompProperties<CompProperties_AmmoUser>().reloadTime;
+                if (!def.statBases.Any(s => s.stat == CE_StatDefOf.ReloadTime))
                 {
-                    stat = CE_StatDefOf.ReloadTime, value = reloadTime
-                });
-            }
+                    def.statBases.Add(new StatModifier()
+                    {
+                        stat = CE_StatDefOf.ReloadTime, value = reloadTime
+                    });
+                }
 
-            float ammoGenPerMagOverride = def.GetCompProperties<CompProperties_AmmoUser>().AmmoGenPerMagOverride;
-            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.AmmoGenPerMagOverride))
-            {
-                def.statBases.Add(new StatModifier()
+                float ammoGenPerMagOverride = def.GetCompProperties<CompProperties_AmmoUser>().AmmoGenPerMagOverride;
+                if (!def.statBases.Any(s => s.stat == CE_StatDefOf.AmmoGenPerMagOverride))
                 {
-                    stat = CE_StatDefOf.AmmoGenPerMagOverride, value = ammoGenPerMagOverride
-                });
+                    def.statBases.Add(new StatModifier()
+                    {
+                        stat = CE_StatDefOf.AmmoGenPerMagOverride, value = ammoGenPerMagOverride
+                    });
+                }
             }
         }
 
