@@ -239,7 +239,7 @@ namespace CombatExtended
                 def.statBases.Add(new StatModifier()
                 {
                     stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots
-                }); 
+                });
             }
 
             float burstShotCount = def.verbs.Max(v => v.burstShotCount);
@@ -260,7 +260,7 @@ namespace CombatExtended
                 });
             }
 
-            if(props != null)
+            if (props != null)
             {
                 float reloadTime = def.GetCompProperties<CompProperties_AmmoUser>().reloadTime;
                 if (!def.statBases.Any(s => s.stat == CE_StatDefOf.ReloadTime))
