@@ -289,6 +289,7 @@ Moa |
 Moonjelly Race  |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
+More Medieval Helms and Armor	|
 More Persona Traits	|
 More Practical Traits	|
 More Psycasts   |
