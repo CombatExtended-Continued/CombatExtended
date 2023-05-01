@@ -1127,5 +1127,42 @@ namespace CombatExtended
             }
             return thingDef;
         }
+
+        public static void DamageOutsideSquishy(DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result, float lastHitPartHealth)
+        {
+            var hitPart = dinfo.HitPart;
+
+            Log.Message("squishyPatch");
+            if (dinfo.Def != DamageDefOf.SurgicalCut && dinfo.Def != DamageDefOf.ExecutionCut && hitPart.IsInGroup(CE_BodyPartGroupDefOf.OutsideSquishy))
+            {
+                Log.Message("squishy");
+                var parent = hitPart.parent;
+                if (parent != null)
+                {
+                    Log.Message(lastHitPartHealth.ToString());
+                    float hitPartHealth = lastHitPartHealth;
+                    if (hitPartHealth > totalDamage)
+                    {
+                        return;
+                    }
+
+                    dinfo.SetHitPart(parent);
+                    float parentPartHealth = pawn.health.hediffSet.GetPartHealth(parent);
+                    if (parentPartHealth != 0f && parent.coverageAbs > 0f)
+                    {
+                        Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, parent), pawn, null);
+                        hediff_Injury.Part = parent;
+                        hediff_Injury.source = dinfo.Weapon;
+                        hediff_Injury.sourceBodyPartGroup = dinfo.WeaponBodyPartGroup;
+                        hediff_Injury.Severity = totalDamage - (hitPartHealth * hitPartHealth / totalDamage);
+                        if (hediff_Injury.Severity <= 0f)
+                        {
+                            hediff_Injury.Severity = 1f;
+                        }
+                        __instance.FinalizeAndAddInjury(pawn, hediff_Injury, dinfo, result);
+                    }
+                }
+            }
+        }
     }
 }
