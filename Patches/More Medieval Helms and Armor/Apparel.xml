@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>More Medieval Helms and Armor</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Aketon =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Domi_Aketon"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Domi_Aketon"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="Domi_Aketon"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<!-- ========== Cloak =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Domi_Cloak"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Domi_Cloak"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Thick Cloak =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Domi_ThickCloak"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>1.85</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Domi_ThickCloak"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
