@@ -30,13 +30,19 @@
 					<value>
 						<Bulk>25</Bulk>
 						<WornBulk>6</WornBulk>
+						<ArmorRating_Sharp>2</ArmorRating_Sharp>						
+						<ArmorRating_Blunt>4</ArmorRating_Blunt>
 					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Domi_LamellarArmor"]/equippedStatOffsets/MoveSpeed</xpath>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Domi_LamellarArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
-						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+						<StuffEffectMultiplierArmor>0.5</StuffEffectMultiplierArmor>
 					</value>
 				</li>
 
@@ -114,6 +120,10 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Domi_LightPlateMail"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="Domi_LightPlateMail"]</xpath>
 					<value>
@@ -180,8 +190,8 @@
 					<xpath>Defs/ThingDef[defName="Domi_PlateMail"]/equippedStatOffsets/MoveSpeed</xpath>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Domi_PlateMail"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Domi_PlateMail"]/equippedStatOffsets</xpath>
 					<value>
 						<MeleeDodgeChance>-0.1</MeleeDodgeChance>
 					</value>
@@ -287,6 +297,13 @@
 
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Domi_KnightArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Domi_KnightArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeDodgeChance>-0.18</MeleeDodgeChance>
+					</value>
 				</li>
 
 				<li Class="PatchOperationAdd">
