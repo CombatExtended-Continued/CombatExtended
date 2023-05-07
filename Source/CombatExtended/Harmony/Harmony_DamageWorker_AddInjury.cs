@@ -151,25 +151,12 @@ namespace CombatExtended.HarmonyCE
         }
 
         [StaticConstructorOnStartup]
-        [HarmonyPatch(typeof(DamageWorker_Bite), "ApplySpecialEffectsToPart")]
-        static class Patch_DamageWorker_Bite
-        {
-            [HarmonyPrefix]
-            static bool Prefix(DamageWorker_Bite __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
-            {
-                CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
-                return true;
-            }
-        }
-
-        [StaticConstructorOnStartup]
         [HarmonyPatch(typeof(DamageWorker_Blunt), "ApplySpecialEffectsToPart")]
         static class Patch_DamageWorker_Blunt
         {
             [HarmonyPrefix]
             static bool Prefix(DamageWorker_Blunt __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
             {
-                Log.Message("bluntdamagepatch");
                 CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
                 return true;
             }
