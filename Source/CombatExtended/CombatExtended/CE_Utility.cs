@@ -1133,6 +1133,8 @@ namespace CombatExtended
             var hitPart = dinfo.HitPart;
 
             Log.Message("squishyPatch");
+            Log.Message(dinfo.Def.ToString());
+            Log.Message(hitPart.IsInGroup(CE_BodyPartGroupDefOf.OutsideSquishy).ToString());
             if (dinfo.Def != DamageDefOf.SurgicalCut && dinfo.Def != DamageDefOf.ExecutionCut && hitPart.IsInGroup(CE_BodyPartGroupDefOf.OutsideSquishy))
             {
                 Log.Message("squishy");

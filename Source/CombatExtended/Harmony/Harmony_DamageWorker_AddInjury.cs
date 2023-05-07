@@ -169,6 +169,7 @@ namespace CombatExtended.HarmonyCE
             [HarmonyPrefix]
             static bool Prefix(DamageWorker_Blunt __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
             {
+                Log.Message("bluntdamagepatch");
                 CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
                 return true;
             }
