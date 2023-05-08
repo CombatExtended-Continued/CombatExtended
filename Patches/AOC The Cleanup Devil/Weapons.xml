@@ -9,7 +9,6 @@
       <operations>
 
         <!--Killakill/Launcher-->
-
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>AOC_KILLAKILL</defName>
           <statBases>
@@ -60,7 +59,6 @@
         </li>
 
         <!--KJW-->
-
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>AOC_KJW</defName>
           <statBases>
@@ -127,7 +125,6 @@
         </li>
 
         <!--Scp-->
-
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>AOC_SCP_SK</defName>
           <statBases>
@@ -170,8 +167,25 @@
           <researchPrerequisite>AOC_Toy2_Access</researchPrerequisite>
         </li>
 
-        <!--SuviSniper-->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_SCP_SK"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>2.44</cooldownTime>
+                <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
 
+        <!--SuviSniper-->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>AOC_Suvi_Sniper</defName>
           <statBases>
@@ -200,6 +214,24 @@
           <FireModes>
             <aiAimMode>AimedShot</aiAimMode>
           </FireModes>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AOC_Suvi_Sniper"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>2.44</cooldownTime>
+                <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
         </li>
 
       </operations>
