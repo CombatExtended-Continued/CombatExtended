@@ -97,7 +97,7 @@ namespace CombatExtended.Compatibility
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
             float radius = interceptorHediff.OverlaySize;
             float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
-            if ((lastExactPos-shieldPosition).sqrMagnitude < radius * radius)
+            if ((lastExactPos - shieldPosition).sqrMagnitude < radius * radius)
             {
                 return false;
             }
