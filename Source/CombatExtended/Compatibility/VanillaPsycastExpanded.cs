@@ -39,7 +39,7 @@ namespace CombatExtended.Compatibility
                 var hediff = interceptor.health.hediffSet.hediffs.FirstOrDefault(x => x is Hediff_Overshield) as Hediff_Overshield;
                 projectile.ExactPosition = IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.DrawPos, hediff.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 projectile.landed = true;
-                PostColide(interceptor, hediff , projectile.ExactPosition);
+                PostColide(interceptor, hediff, projectile.ExactPosition);
                 return true;
             }
             else
@@ -83,12 +83,12 @@ namespace CombatExtended.Compatibility
             var newExactPos = projectile.ExactPosition;
             if (interceptorHediff.GetType() == typeof(Hediff_Overshield))
             {
-                var result = interceptorThing.Position==cell || PreventTryColideWithPawn(projectile, interceptorThing, newExactPos);
+                var result = interceptorThing.Position == cell || PreventTryColideWithPawn(projectile, interceptorThing, newExactPos);
                 if (result)
                 {
                     projectile.ExactPosition = IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptorThing.DrawPos, interceptorHediff.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                     projectile.landed = true;
-                    PostColide( interceptorThing, interceptorHediff,  projectile.ExactPosition);
+                    PostColide(interceptorThing, interceptorHediff, projectile.ExactPosition);
                 }
 
                 return result;
@@ -97,7 +97,7 @@ namespace CombatExtended.Compatibility
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
             float radius = interceptorHediff.OverlaySize;
             float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
-            if((lastExactPos-shieldPosition).sqrMagnitude<radius*radius)
+            if ((lastExactPos-shieldPosition).sqrMagnitude < radius * radius)
             {
                 return false;
             }
@@ -105,37 +105,13 @@ namespace CombatExtended.Compatibility
             {
                 return false;
             }
-            //No such property
-            //if (!interceptorComp.Active)
-            //{
-            //    return false;
-            //}
 
-            if (
-                //No such property. Always ground projectiles
-                //interceptorComp.Props.interceptGroundProjectiles && 
-                projectile.def.projectile.flyOverhead)
+            if (projectile.def.projectile.flyOverhead)
             {
                 return false;
             }
-            //No such property. Always ground projectiles
-            //if (interceptorComp.Props.interceptAirProjectiles && !projectile.def.projectile.flyOverhead)
-            //{
-            //    return false;
-            //}
 
-            //if ((launcher == null || !launcher.HostileTo(interceptorThing))
-            //    //No such property
-            //    //&& !interceptorComp.debugInterceptNonHostileProjectiles
-            //    //&& !interceptorComp.Props.interceptNonHostileProjectiles
-            //    )
-            //{
-            //    return false;
-            //}
-            if (
-                //All custom interceptors abilities (not skipshield) allows outgoing. I found no such property, guess it's always true
-                //!interceptorComp.Props.interceptOutgoingProjectiles &&
-                (shieldPosition - lastExactPos).sqrMagnitude <= Mathf.Pow((float)radius, 2))
+            if ((shieldPosition - lastExactPos).sqrMagnitude <= Mathf.Pow((float)radius, 2))
             {
                 return false;
             }
@@ -174,7 +150,7 @@ namespace CombatExtended.Compatibility
             {
                 return false;
             }
-            if (dist * dist > projectile.ExactMinusLastPos.sqrMagnitude+(projectile.minCollisionDistance*2))
+            if (dist * dist > projectile.ExactMinusLastPos.sqrMagnitude + (projectile.minCollisionDistance * 2))
             {
                 return false;
             }
