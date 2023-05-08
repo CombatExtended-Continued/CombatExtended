@@ -21,6 +21,7 @@ TAB=8
 
 METHOD = re.compile(r'(private )?(public )?(static )?(override )? ?([a-zA-Z0-9_<>]+) ([a-zA-Z0-9_]+)(\(.*?\))$')
 
+
 def findClose(source, out=None):
     count = 0
     dquote = False
@@ -50,6 +51,7 @@ def findClose(source, out=None):
             if count == 0:
                 return idx
             
+
 def findClasses(source, out):
     lines = iter(source.split('\n'))
     for line in lines:
@@ -60,10 +62,12 @@ def findClasses(source, out):
         else:
             out.append(line)
 
+
 def wrappedIter(lines):
     for line in lines:
         yield from line
         yield '\n'
+
 
 def findMethods(source, out):
     lines = iter(source)
@@ -77,6 +81,7 @@ def findMethods(source, out):
             yield m
         else:
             out.append(line)
+
 
 class Method(object):
     def __init__(self, match, first, lines):
@@ -98,8 +103,7 @@ class Method(object):
     def makeReference(self):
         self.body = f"{' '*TAB*(self.level)}throw null;\n{' '*TAB*(self.level-1)}"
         
-        
-            
+                 
 class Class(object):
     def __init__(self, first, lines):
         self.level = indent.incr()
@@ -114,15 +118,14 @@ class Class(object):
         self.body = []
         self.methods = list(findMethods(body, self.body))
         indent.decr()
-        
-        
+                
     def __repr__(self):
         return f"Class(name={self.name}, methods={self.methods}, internal={self.inner})"
-    def __str__(self):
 
-        body = str.join('\n', (str(i) for i in self.body))
-        
+    def __str__(self):
+        body = str.join('\n', (str(i) for i in self.body))        
         return f"{self.header}\n{' '*(TAB*(self.level-1))}{{{body}}}"
+
     def makeReference(self):
         for c in self.inner:
             c.makeReference()
@@ -141,6 +144,7 @@ class Class(object):
                 continue
             self.body.append(line)
             
+
 class Namespace(object):
     def __init__(self, source):
         self.level = indent.incr()

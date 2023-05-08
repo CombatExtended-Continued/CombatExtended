@@ -18,15 +18,18 @@ class PackageReference(object):
     version: str
     destination: str
 
+
 @dataclass
 class LibraryReference(object):
     name: str
     hintPath: str
 
+
 @dataclass
 class PublicizeTarget(object):
     inputName: str
     outputName: str
+
 
 def parseArgs(argv):
     argParser = argparse.ArgumentParser(description="Automate compiling C# projects on Linux, using Mono")
@@ -61,6 +64,7 @@ def downloadLib(name, version, dest, verbose):
     if os.system(f"wget {quiet} https://www.nuget.org/api/v2/package/{name}/{version} -O {dest}"):
         raise Exception(f"Can't find version {version} of {name} on nuget")
 
+
 def unpackLib(path, dest, verbose):
     cwd = os.getcwd()
     quiet = "-q" if verbose < 6 else ""
@@ -81,6 +85,7 @@ def resolveLibrary(library, reference, csproj, verbose):
         print("Searching for library named {library.name}.dll")
     return os.path.join(reference, library.name+'.dll')
     
+
 def publicize(p, publicizer, verbose):
     if verbose:
         print(f"Publicizing Assembly: {p}")
@@ -89,6 +94,7 @@ def publicize(p, publicizer, verbose):
     os.system(f"mono {publicizer} --exit -i {p} -o {p[:-4]}_publicized.dll")
     os.chdir(cwd)
     return p[:-4]+'_publicized.dll'
+
 
 def makePublicizer(p, verbose):
     ap_path = os.path.join(p, "AssemblyPublicizer.exe")
@@ -112,6 +118,7 @@ def makePublicizer(p, verbose):
         os.chdir(cwd)
     return ap_path
 
+
 def parse_packages(csproj):
     packages = []
     for idx, package in enumerate(csproj.getElementsByTagName("PackageReference")):
@@ -120,6 +127,7 @@ def parse_packages(csproj):
         dest = f"{tdir}/downloads/rwref-{idx}.zip"
         packages.append(PackageReference(name, version, dest))
     return packages
+
 
 def parse_libraries(csproj):
     libraries = []
@@ -136,6 +144,7 @@ def parse_libraries(csproj):
             hintPath = hintPath.replace("\\", "/")
         libraries.append(LibraryReference(reference.attributes['Include'].value, hintPath))
     return libraries, removed_libraries
+
 
 def parse_sources(csproj, base_dir, verbose):
     sources = []
@@ -164,6 +173,7 @@ def parse_sources(csproj, base_dir, verbose):
                 else:
                     print("Directive to exclude non-existent file:", v)
     return [os.path.join(base_dir, i) for i in sources]
+
 
 def parse_publicize(csproj):
     publicized_libraries = []
@@ -204,6 +214,7 @@ def parse_publicize(csproj):
     
     return publicized_libraries, removed_libraries
 
+
 def parse_csproj(csproj_path, verbose):
     
     base_dir = os.path.split(csproj_path)[0]
@@ -220,10 +231,9 @@ def parse_csproj(csproj_path, verbose):
 
         publicized_libraries, removed_libraries_2 = parse_publicize(csproj)
         removed_libraries.extend(removed_libraries_2)
-
-        
-
+    
     return packages, libraries, removed_libraries, publicized_libraries, sources
+
 
 def main(argv=sys.argv):
     rest = []
@@ -235,8 +245,7 @@ def main(argv=sys.argv):
 
     os.system(f"mkdir -p {tdir}/downloads/unpack")
     os.system(f"mkdir -p {options.reference}")
-    
-    
+        
     packages, libraries, removed_libraries, publicized_libraries, sources = parse_csproj(options.csproj, options.verbose)
     if publicized_libraries:
         if not options.publicizer:
@@ -245,7 +254,6 @@ def main(argv=sys.argv):
 
         publicizer = makePublicizer(options.publicizer, verbose)
               
-
     if options.download_libs:
         for package in packages:
             downloadLib(package.name, package.version, package.destination, verbose=verbose)
@@ -268,7 +276,6 @@ def main(argv=sys.argv):
                 libraries.append(publicize(l, publicizer, verbose))
                 break
                 
-
     libraries = [l for l in set(libraries) if not os.path.basename(l) in removed_libraries]
     args.extend([f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
     args.extend(rest)
