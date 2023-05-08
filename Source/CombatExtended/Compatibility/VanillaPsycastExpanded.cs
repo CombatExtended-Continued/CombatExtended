@@ -28,7 +28,7 @@ namespace CombatExtended.Compatibility
             BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckIntercept);
         }
-        
+
         private static bool ImpactSomething(ProjectileCE projectile, Thing launcher)
         {
 
@@ -157,45 +157,6 @@ namespace CombatExtended.Compatibility
             new Traverse(interceptorHediff).Field("lastInterceptAngle").SetValue(newExactPos.AngleToFlat(interceptorThing.TrueCenter()));
             new Traverse(interceptorHediff).Field("lastInterceptTicks").SetValue(Find.TickManager.TicksGame);
             new Traverse(interceptorHediff).Field("drawInterceptCone").SetValue(true);
-            
-            //Psycast shields are unbreakable
-            //var projectileProperties = def.projectile as ProjectilePropertiesCE;
-            //var areWeLucky = Rand.Chance(projectileProperties?.empShieldBreakChance ?? 0);
-            //if (areWeLucky)
-            //{
-            //    // If the chance check for this EMP projectile succeeds, break the shield using the appropriate damage type
-            //    // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
-            //    // Note that empShieldBreakChance defaults to 1 even for non-EMP projectiles, so a non-EMP projectile
-            //    // may still technically pass the chance check.
-            //    var empDamageDef = def.projectile.damageDef == DamageDefOf.EMP
-            //                       ? def.projectile.damageDef
-            //                       : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
-
-            //    if (empDamageDef != null)
-            //    {
-            //        interceptorComp.BreakShieldEmp(new DamageInfo(empDamageDef, empDamageDef.defaultDamage));
-
-            //        // Ensure we reset hit points for Biotech's new shields if broken by EMP
-            //        interceptorComp.currentHitPoints = 0;
-            //    }
-            //}
-
-            //// Handle Biotech's new shields used e.g. on the Centurion mech, which, unlike mech cluster shields, can only take
-            //// a finite amount of damage before breaking.
-            //// This simply mirrors the corresponding vanilla logic - we apply the incoming damage from our projectile to the shield
-            //// and break it if we manage to decrease its hitpoints to zero or lower.
-            //if (interceptorComp.currentHitPoints > 0)
-            //{
-            //    interceptorComp.currentHitPoints -= Mathf.FloorToInt(projectile.DamageAmount);
-
-            //    if (interceptorComp.currentHitPoints <= 0)
-            //    {
-            //        interceptorComp.currentHitPoints = 0;
-            //        interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
-            //        interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, projectile.DamageAmount));
-            //        return true;
-            //    }
-            //}
 
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
             eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptorThing.Map, false), TargetInfo.Invalid);
