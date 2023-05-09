@@ -10,7 +10,7 @@
 			<operations>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="AA_Goliath"]</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Goliath"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
@@ -21,21 +21,21 @@
 				<!-- Assign armor values, change replace and add depending on what exists or not -->
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Goliath"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Goliath"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>40</ArmorRating_Blunt>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Goliath"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Goliath"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>18</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Goliath"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Goliath"]/statBases</xpath>
 					<value>
 						<CarryWeight>400</CarryWeight>
 						<CarryBulk>500</CarryBulk>
@@ -49,14 +49,14 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Goliath"]/race/baseHealthScale</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Goliath"]/race/baseHealthScale</xpath>
 					<value>
 						<baseHealthScale>2.8</baseHealthScale>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Goliath"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Goliath"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -77,7 +77,7 @@
 				<!-- Guns are ok, adding ammo -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Goliath"]/comps</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Goliath"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -88,7 +88,7 @@
 				<!-- Remove the explosive bolt projector -->
 
 				<li Class="PatchOperationRemove">
-					<xpath>/Defs/PawnKindDef[defName="AA_Goliath"]/weaponTags/li[.="MechanoidGunLongRange"]</xpath>
+					<xpath>Defs/PawnKindDef[defName="AM_Goliath"]/weaponTags/li[.="MechanoidGunLongRange"]</xpath>
 				</li>
 
 			</operations>

@@ -10,7 +10,7 @@
 			<operations>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="AA_Demolisher"]</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Demolisher"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>QuadrupedLow</bodyShape>
@@ -21,27 +21,27 @@
 				<!-- Assign armor values, change replace and add depending on what exists or not -->
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Demolisher"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Demolisher"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>48</ArmorRating_Blunt>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Demolisher"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Demolisher"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>21</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Demolisher"]/race/baseHealthScale</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Demolisher"]/race/baseHealthScale</xpath>
 					<value>
 						<baseHealthScale>2</baseHealthScale>
 					</value>
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Demolisher"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Demolisher"]/statBases</xpath>
 					<value>
 						<CarryWeight>50</CarryWeight>
 						<CarryBulk>100</CarryBulk>
@@ -54,18 +54,18 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Demolisher"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Demolisher"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
 								<label>mechanoid claws</label>
 								<capacities>
 									<li>Cut</li>
-									<li>AA_SiegeBlunt</li>
+									<li>AM_SiegeBlunt</li>
 								</capacities>
 								<power>46</power>
 								<cooldownTime>2.3</cooldownTime>
-								<linkedBodyPartsGroup>AA_MechaClaws</linkedBodyPartsGroup>
+								<linkedBodyPartsGroup>AM_MechaClaws</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 								<armorPenetrationSharp>20</armorPenetrationSharp>
 								<armorPenetrationBlunt>80</armorPenetrationBlunt>
@@ -77,7 +77,7 @@
 				<!-- Make it spawn with ammo -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Demolisher"]/comps</xpath>
+					<xpath>Defs/ThingDef[defName="AM_Demolisher"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
