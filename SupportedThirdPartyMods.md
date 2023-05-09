@@ -231,6 +231,7 @@ Heyra the Horned    |
 High Caliber	|
 Hive Armory |
 Idhale Race	|
+Impact Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
