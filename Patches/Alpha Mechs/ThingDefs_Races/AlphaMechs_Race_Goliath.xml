@@ -18,8 +18,6 @@
 					</value>
 				</li>
 
-				<!-- Assign armor values, change replace and add depending on what exists or not -->
-
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AM_Goliath"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
@@ -38,20 +36,13 @@
 					<xpath>Defs/ThingDef[defName="AM_Goliath"]/statBases</xpath>
 					<value>
 						<CarryWeight>400</CarryWeight>
-						<CarryBulk>500</CarryBulk>
+						<CarryBulk>200</CarryBulk>
 						<AimingAccuracy>1.0</AimingAccuracy>
 						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 						<MeleeDodgeChance>0.05</MeleeDodgeChance>
 						<MeleeCritChance>0.75</MeleeCritChance>
 						<MeleeParryChance>0.2</MeleeParryChance>
 						<MaxHitPoints>500</MaxHitPoints>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="AM_Goliath"]/race/baseHealthScale</xpath>
-					<value>
-						<baseHealthScale>2.8</baseHealthScale>
 					</value>
 				</li>
 
@@ -64,17 +55,15 @@
 								<capacities>
 									<li>Blunt</li>
 								</capacities>
-								<power>30</power>
-								<cooldownTime>2.0</cooldownTime>
+								<power>35</power>
+								<cooldownTime>3.0</cooldownTime>
 								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-								<armorPenetrationBlunt>30</armorPenetrationBlunt>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
 							</li>
 						</tools>
 					</value>
 				</li>
-
-				<!-- Guns are ok, adding ammo -->
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="AM_Goliath"]/comps</xpath>
@@ -83,12 +72,6 @@
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
 						</li>
 					</value>
-				</li>
-
-				<!-- Remove the explosive bolt projector -->
-
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/PawnKindDef[defName="AM_Goliath"]/weaponTags/li[.="MechanoidGunLongRange"]</xpath>
 				</li>
 
 			</operations>

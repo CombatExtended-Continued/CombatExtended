@@ -18,8 +18,6 @@
 					</value>
 				</li>
 
-				<!-- Assign armor values, change replace and add depending on what exists or not -->
-
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AM_Phalanx"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
@@ -30,13 +28,6 @@
 					<xpath>Defs/ThingDef[defName="AM_Phalanx"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>12</ArmorRating_Sharp>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="AM_Phalanx"]/race/baseHealthScale</xpath>
-					<value>
-						<baseHealthScale>2.0</baseHealthScale>
 					</value>
 				</li>
 
@@ -60,17 +51,15 @@
 								<capacities>
 									<li>Blunt</li>
 								</capacities>
-								<power>40</power>
+								<power>36</power>
 								<cooldownTime>2</cooldownTime>
 								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-								<armorPenetrationBlunt>55</armorPenetrationBlunt>
+								<armorPenetrationBlunt>30</armorPenetrationBlunt>
 							</li>
 						</tools>
 					</value>
 				</li>
-
-				<!-- Make it spawn with ammo -->
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="AM_Phalanx"]/comps</xpath>
