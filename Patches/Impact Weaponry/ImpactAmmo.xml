@@ -89,7 +89,8 @@
                   <texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
                   <graphicClass>Graphic_StackCount</graphicClass>
                </graphicData>
-               <cookOffProjectile>Bullet_ImpactShellsSmall</cookOffProjectile>
+               <ammoClass>GrenadeHE</ammoClass>
+               <detonateProjectile>Bullet_ImpactShellsSmall</detonateProjectile>
             </ThingDef>
             <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
                <defName>Ammo_ImpactShellsBig</defName>
@@ -102,7 +103,8 @@
                   <texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
                   <graphicClass>Graphic_StackCount</graphicClass>
                </graphicData>
-               <cookOffProjectile>Bullet_ImpactShellsBig</cookOffProjectile>
+               <ammoClass>GrenadeHE</ammoClass>
+               <detonateProjectile>Bullet_ImpactShellsBig</detonateProjectile>
             </ThingDef>
             <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
                <defName>Ammo_ImpactShellsShell</defName>
@@ -115,7 +117,8 @@
                   <texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
                   <graphicClass>Graphic_StackCount</graphicClass>
                </graphicData>
-               <cookOffProjectile>Bullet_ImpactShellsShell</cookOffProjectile>
+               <ammoClass>GrenadeHE</ammoClass>
+               <detonateProjectile>Bullet_ImpactShellsShell</detonateProjectile>
             </ThingDef>
             <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
                <defName>Ammo_ImpactShellsSniper</defName>
@@ -128,7 +131,8 @@
                   <texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
                   <graphicClass>Graphic_StackCount</graphicClass>
                </graphicData>
-               <cookOffProjectile>Bullet_ImpactShellsSniper</cookOffProjectile>
+               <ammoClass>GrenadeHE</ammoClass>
+               <detonateProjectile>Bullet_ImpactShellsSniper</detonateProjectile>
             </ThingDef>
             <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
                <defName>Ammo_ImpactShellsBolter</defName>
@@ -141,7 +145,8 @@
                   <texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
                   <graphicClass>Graphic_StackCount</graphicClass>
                </graphicData>
-               <cookOffProjectile>Bullet_ImpactShellsBolter</cookOffProjectile>
+               <ammoClass>GrenadeHE</ammoClass>
+               <detonateProjectile>Bullet_ImpactShellsBolter</detonateProjectile>
             </ThingDef>
             <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
                <defName>Ammo_ImpactShellsSlugger</defName>
@@ -154,7 +159,8 @@
                   <texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
                   <graphicClass>Graphic_StackCount</graphicClass>
                </graphicData>
-               <cookOffProjectile>Bullet_ImpactShellsSlugger</cookOffProjectile>
+               <ammoClass>GrenadeHE</ammoClass>
+               <detonateProjectile>Bullet_ImpactShellsSlugger</detonateProjectile>
             </ThingDef>
             <!-- ================== Projectiles ================== -->
             <ThingDef Name="BaseImpactShellCE" ParentName="BaseExplosiveBullet" Abstract="true">
@@ -162,7 +168,6 @@
                <projectile Class="CombatExtended.ProjectilePropertiesCE">
                   <dropsCasings>true</dropsCasings>
                   <!--<speed>53</speed>-->
-                  <casingMoteDefname>Mote_BolterCasing</casingMoteDefname>
                </projectile>
             </ThingDef>
             <ThingDef ParentName="BaseImpactShellCE">
@@ -179,6 +184,7 @@
                   <damageDef>Bomb</damageDef>
                   <damageAmountBase>15</damageAmountBase>
                   <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                  <casingMoteDefname>Mote_BolterCasing</casingMoteDefname>
                </projectile>
             </ThingDef>
             <ThingDef ParentName="BaseImpactShellCE">
@@ -195,6 +201,7 @@
                   <damageDef>Bomb</damageDef>
                   <damageAmountBase>17</damageAmountBase>
                   <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                  <casingMoteDefname>Mote_BolterCasing</casingMoteDefname>
                </projectile>
             </ThingDef>
             <ThingDef ParentName="BaseImpactShellCE">
@@ -211,6 +218,7 @@
                   <damageDef>Bomb</damageDef>
                   <damageAmountBase>18</damageAmountBase>
                   <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                  <casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
                </projectile>
             </ThingDef>
             <ThingDef ParentName="BaseImpactShellCE">
@@ -227,6 +235,7 @@
                   <damageDef>Bomb</damageDef>
                   <damageAmountBase>24</damageAmountBase>
                   <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                  <casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
                </projectile>
             </ThingDef>
             <ThingDef ParentName="BaseImpactShellCE">
@@ -243,6 +252,7 @@
                   <damageDef>Bomb</damageDef>
                   <damageAmountBase>28</damageAmountBase>
                   <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                  <casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
                </projectile>
             </ThingDef>
             <ThingDef ParentName="BaseImpactShellCE">
@@ -259,8 +269,9 @@
                   <explosionRadius>0.4</explosionRadius>
                   <damageDef>Bomb</damageDef>
                   <damageAmountBase>16</damageAmountBase>
-                  <spreadMult>6.9</spreadMult>
+                  <spreadMult>9.9</spreadMult>
                   <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+                  <casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
                </projectile>
             </ThingDef>
             <!-- ==================== Recipes ========================== -->

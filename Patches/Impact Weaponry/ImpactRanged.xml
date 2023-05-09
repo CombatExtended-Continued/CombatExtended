@@ -8,9 +8,7 @@
          <operations>
             <!-- === Tools === -->
             <li Class="PatchOperationReplace">
-               <xpath>Defs/ThingDef[
-              defName = "DV_ImpactRifle" or
-              defName = "DV_ImpactStubber"]/tools</xpath>
+               <xpath>Defs/ThingDef[defName = "DV_ImpactStubber"]/tools</xpath>
                <value>
                   <tools>
                      <li Class="CombatExtended.ToolCE">
@@ -40,6 +38,7 @@
 			
             <li Class="PatchOperationReplace">
                <xpath>/Defs/ThingDef[
+               defName = "DV_ImpactRifle" or
 					defName = "DV_ImpactCannon" or
 					defName = "DV_ImpactSlinger" or
 					defName = "DV_ImpactSniper"]/tools</xpath>
@@ -80,7 +79,7 @@
                </value>
             </li>
 
-            <!-- === Bolter === -->
+            <!-- === Impact Rifle === -->
             <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
                <defName>DV_ImpactRifle</defName>
                <statBases>
@@ -117,6 +116,9 @@
                   <aiUseBurstMode>FALSE</aiUseBurstMode>
                   <aiAimMode>Snapshot</aiAimMode>
                </FireModes>
+               <weaponTags>
+                  <li>CE_AI_AOE</li>
+               </weaponTags>
             </li>
 
             <!-- === Impact Stubber === -->
@@ -156,6 +158,11 @@
                   <aiUseBurstMode>FALSE</aiUseBurstMode>
                   <aiAimMode>AimedShot</aiAimMode>
                </FireModes>
+               <weaponTags>
+                  <li>CE_AI_AOE</li>
+                  <li>CE_Sidearm</li>
+                  <li>CE_OneHandedWeapon</li>
+               </weaponTags>
             </li>
 
             <!-- === Impact Cannon === -->
@@ -195,6 +202,9 @@
                   <aiUseBurstMode>FALSE</aiUseBurstMode>
                   <aiAimMode>AimedShot</aiAimMode>
                </FireModes>
+               <weaponTags>
+                  <li>CE_AI_AOE</li>
+               </weaponTags>
             </li>
             <li Class="PatchOperationAddModExtension">
                <xpath>Defs/ThingDef[defName="DV_ImpactCannon"]</xpath>
@@ -243,6 +253,9 @@
                   <aiUseBurstMode>FALSE</aiUseBurstMode>
                   <aiAimMode>AimedShot</aiAimMode>
                </FireModes>
+               <weaponTags>
+                  <li>CE_AI_AOE</li>
+               </weaponTags>
             </li>
             <li Class="PatchOperationAddModExtension">
                <xpath>Defs/ThingDef[defName="DV_ImpactSlinger"]</xpath>
@@ -286,11 +299,12 @@
                   <ammoSet>AmmoSet_ImpactShellsSniper</ammoSet>
                </AmmoUser>
                <FireModes>
-                  <aiUseBurstMode>FALSE</aiUseBurstMode>
                   <aiAimMode>AimedShot</aiAimMode>
                </FireModes>
                <weaponTags>
                   <li>Bipod_AMR</li>
+                  <li>CE_AI_SR</li>
+                  <li>CE_AI_AOE</li>
                </weaponTags>
             </li>
             <li Class="PatchOperationAddModExtension">
