@@ -229,6 +229,7 @@ Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
 Heyra the Horned    |
 High Caliber	|
+High Tech Laboratory Facilities	|
 Hive Armory |
 Idhale Race	|
 Infinity Rim: Ariadna (Continued) 	|
