@@ -121,7 +121,6 @@ namespace CombatExtended.HarmonyCE
             [HarmonyPrefix]
             static bool Prefix(DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
             {
-                Log.Message("addinjury");
                 CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
                 return true;
             }
@@ -134,7 +133,6 @@ namespace CombatExtended.HarmonyCE
             [HarmonyPrefix]
             static bool Prefix(DamageWorker_Cut __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
             {
-                Log.Message("cut");
                 CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
                 return true;
             }
@@ -147,20 +145,6 @@ namespace CombatExtended.HarmonyCE
             [HarmonyPrefix]
             static bool Prefix(DamageWorker_Stab __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
             {
-                Log.Message("stab");
-                CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
-                return true;
-            }
-        }
-
-        [StaticConstructorOnStartup]
-        [HarmonyPatch(typeof(DamageWorker_Blunt), "ApplySpecialEffectsToPart")]
-        static class Patch_DamageWorker_Blunt
-        {
-            [HarmonyPrefix]
-            static bool Prefix(DamageWorker_Blunt __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
-            {
-                Log.Message("blunt");
                 CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
                 return true;
             }
