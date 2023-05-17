@@ -312,6 +312,7 @@ Nakin Race  |
 Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
+New Mech: Mini-Miner    |
 NewRatkinPlus |
 Ni'Hal	|
 Nukes   |
