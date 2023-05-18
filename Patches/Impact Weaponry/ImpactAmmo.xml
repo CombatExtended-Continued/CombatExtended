@@ -175,8 +175,8 @@
 				</ThingDef>
 
 				<!-- ================== Projectiles ================== -->
-				<ThingDef Name="BaseImpactShellCE" ParentName="BaseExplosiveBullet" Abstract="true">
-					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				<ThingDef Name="BaseImpactShellCE" ParentName="BaseBullet" Abstract="true">
+					<thingClass>CombatExtended.BulletCE</thingClass>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<dropsCasings>true</dropsCasings>
 						<!--<speed>53</speed>-->
@@ -193,12 +193,19 @@
 					<label>Impact Shells (Small)</label>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<speed>80</speed>
-						<explosionRadius>0.6</explosionRadius>
-						<damageDef>Bomb</damageDef>
-						<damageAmountBase>15</damageAmountBase>
-						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<damageAmountBase>18</damageAmountBase>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.131</armorPenetrationBlunt>
 						<casingMoteDefname>Mote_BolterCasing</casingMoteDefname>
 					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>15</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>0.6</explosiveRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>					
 				</ThingDef>
 
 				<ThingDef ParentName="BaseImpactShellCE">
@@ -210,13 +217,21 @@
 					</graphicData>
 					<label>Impact Shells (Big)</label>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>37</damageAmountBase>
+						<armorPenetrationSharp>14</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.931</armorPenetrationBlunt>
 						<speed>75</speed>
-						<explosionRadius>1.5</explosionRadius>
-						<damageDef>Bomb</damageDef>
-						<damageAmountBase>17</damageAmountBase>
-						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 						<casingMoteDefname>Mote_BolterCasing</casingMoteDefname>
 					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveRadius>1.5</explosiveRadius>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<damageAmountBase>17</damageAmountBase>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>							
 				</ThingDef>
 
 				<ThingDef ParentName="BaseImpactShellCE">
@@ -228,13 +243,20 @@
 					</graphicData>
 					<label>Impact Shells (Shell)</label>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageAmountBase>64</damageAmountBase>
+						<armorPenetrationSharp>20</armorPenetrationSharp>
+						<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
 						<speed>70</speed>
-						<explosionRadius>2.2</explosionRadius>
-						<damageDef>Bomb</damageDef>
-						<damageAmountBase>18</damageAmountBase>
-						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-						<casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
+						<damageDef>Bullet</damageDef>
 					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveRadius>2.2</explosiveRadius>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<damageAmountBase>18</damageAmountBase>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>						
 				</ThingDef>
 
 				<ThingDef ParentName="BaseImpactShellCE">
@@ -247,12 +269,19 @@
 					<label>Impact Shells (Sniper)</label>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<speed>78</speed>
-						<explosionRadius>1.6</explosionRadius>
-						<damageDef>Bomb</damageDef>
-						<damageAmountBase>24</damageAmountBase>
-						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-						<casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>56</damageAmountBase>
+						<armorPenetrationSharp>18</armorPenetrationSharp>
+						<armorPenetrationBlunt>4.801</armorPenetrationBlunt>
 					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveRadius>1.6</explosiveRadius>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<damageAmountBase>24</damageAmountBase>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>						
 				</ThingDef>
 
 				<ThingDef ParentName="BaseImpactShellCE">
@@ -265,12 +294,20 @@
 					<label>Impact Shells (Bolter)</label>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<speed>78</speed>
-						<explosionRadius>1.8</explosionRadius>
-						<damageDef>Bomb</damageDef>
-						<damageAmountBase>28</damageAmountBase>
-						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-						<casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>24</damageAmountBase>
+						<armorPenetrationSharp>8</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.831</armorPenetrationBlunt>
+						<casingMoteDefname>Mote_BolterCasing</casingMoteDefname>
 					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>18</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>1.8</explosiveRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>					
 				</ThingDef>
 
 				<ThingDef ParentName="BaseImpactShellCE">
