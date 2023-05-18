@@ -232,6 +232,7 @@ High Caliber	|
 High Tech Laboratory Facilities	|
 Hive Armory |
 Idhale Race	|
+Impact Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
