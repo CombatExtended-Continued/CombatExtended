@@ -128,84 +128,6 @@ namespace CombatExtended.Compatibility
 
             return false;
         }
-        //public static IEnumerable<Hediff_Overshield> CustomShieldHediffs(Map map)
-        //{
-        //    //Log.Message(map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Count.ToString());
-        //    return map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>()
-        //        .SelectMany(x => x.health.hediffSet.hediffs)
-        //        .Where(x => typeof(Hediff_Overshield).IsAssignableFrom(x.def.hediffClass)).Cast<Hediff_Overshield>();
-        //}
-
-        /// <summary>
-        /// Just copy of original method, but adapt for VE psycast new abilities
-        /// </summary>
-        /// <param name="interceptorThing">Pawn</param>
-        /// <param name=""></param>
-        /// <param name="withDebug"></param>
-        /// <returns></returns>
-        //private static bool CheckIntercept(ProjectileCE projectile, Thing interceptorThing, Hediff_Overshield interceptorHediff, IntVec3 cell, bool withDebug = false)
-        //{
-        //    var def = projectile.def;
-        //    Vector3 lastExactPos = (Vector3)new Traverse(projectile).Field("lastExactPos").GetValue();//Why this field(or linked property) is private?
-        //    var launcher = projectile.launcher;
-        //    var newExactPos = projectile.ExactPosition;
-        //    if (interceptorHediff.GetType() == typeof(Hediff_Overshield))
-        //    {
-        //        var result = interceptorThing.Position == cell || PreventTryColideWithPawn(projectile, interceptorThing, newExactPos);
-        //        if (result)
-        //        {
-        //            projectile.ExactPosition = IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptorThing.DrawPos, interceptorHediff.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
-        //            projectile.landed = true;
-        //            PostColide(interceptorThing, interceptorHediff, projectile.ExactPosition);
-        //        }
-
-        //        return result;
-        //    }
-        //    #region AOE shields
-        //    Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
-        //    float radius = interceptorHediff.OverlaySize;
-        //    float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
-        //    if ((lastExactPos - shieldPosition).sqrMagnitude < radius * radius)
-        //    {
-        //        return false;
-        //    }
-        //    if ((newExactPos - shieldPosition).sqrMagnitude > Mathf.Pow(blockRadius, 2))
-        //    {
-        //        return false;
-        //    }
-
-        //    if (projectile.def.projectile.flyOverhead)
-        //    {
-        //        return false;
-        //    }
-
-        //    if ((shieldPosition - lastExactPos).sqrMagnitude <= Mathf.Pow((float)radius, 2))
-        //    {
-        //        return false;
-        //    }
-        //    if (!IntersectLineSphericalOutline(shieldPosition, radius, lastExactPos, newExactPos))
-        //    {
-        //        return false;
-        //    }
-        //    var exactPosition = //BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptorThing.Position.ToVector3(), (radius ) * (radius));
-        //        IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptorThing.Position.ToVector3(), (radius)).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
-        //    projectile.ExactPosition = exactPosition;
-        //    projectile.landed = true;
-        //    PostColide(interceptorThing, interceptorHediff, exactPosition);
-        //    return true;
-        //    #endregion
-        //}
-        //private static void PostColide(Thing interceptorThing, Hediff_Overshield interceptorHediff, Vector3 newExactPos)
-        //{
-        //    //FIX ME(?): guess, thats not best practics to do it
-        //    new Traverse(interceptorHediff).Field("lastInterceptAngle").SetValue(newExactPos.AngleToFlat(interceptorThing.TrueCenter()));
-        //    new Traverse(interceptorHediff).Field("lastInterceptTicks").SetValue(Find.TickManager.TicksGame);
-        //    new Traverse(interceptorHediff).Field("drawInterceptCone").SetValue(true);
-
-        //    Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
-        //    eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptorThing.Map, false), TargetInfo.Invalid);
-        //    eff.Cleanup();
-        //}
         private static bool PreventTryColideWithPawn(ProjectileCE projectile, Thing pawn, Vector3 newExactPos)
         {
             if (newExactPos.ToIntVec3() == pawn.Position)
@@ -224,14 +146,6 @@ namespace CombatExtended.Compatibility
             }
             return true;
         }
-        /// <summary>
-        /// seems BlockerRegistry.GetExactPosition works a bit incorrect (at least for overshield with 1 radius: position can be behind of target - shoot from west, but impact on east side of pawn/shield)
-        /// Copied from https://answers.unity.com/questions/1658184/circle-line-intersection-points.html
-        /// </summary>
-        /// <param name="p1">origin</param>
-        /// <param name="p2">destination/Exact position</param>
-        /// <param name="center">shield pos</param>
-        /// <param name="radius">shield radius</param>
 
         public static Vector3[] IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius)
         {
