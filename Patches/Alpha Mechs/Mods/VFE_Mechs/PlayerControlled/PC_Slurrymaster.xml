@@ -3,18 +3,24 @@
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Alpha Mechs</li>
+			<li>Biotech</li>
 		</mods>
+
 		<match Class="PatchOperationFindMod">
 			<mods>
-				<li>Vanilla Factions Expanded - Mechanoids</li>
+				<li>Alpha Mechs</li>
 			</mods>
+
+			<match Class="PatchOperationFindMod">
+				<mods>
+					<li>Vanilla Factions Expanded - Mechanoids</li>
+				</mods>
 
 			<match Class="PatchOperationSequence">
 				<operations>
 
 					<li Class="PatchOperationAddModExtension">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]</xpath>
+						<xpath>Defs/ThingDef[defName="AM_Mech_Advanced_PristineSlurrypede_PlayerControlled"]</xpath>
 						<value>
 							<li Class="CombatExtended.RacePropertiesExtensionCE">
 								<bodyShape>QuadrupedLow</bodyShape>
@@ -23,29 +29,29 @@
 					</li>
 
 					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]/statBases</xpath>
+						<xpath>Defs/ThingDef[defName="AM_Mech_Advanced_PristineSlurrypede_PlayerControlled"]/statBases</xpath>
 						<value>
-							<MeleeDodgeChance>0.17</MeleeDodgeChance>
+							<MeleeDodgeChance>0.12</MeleeDodgeChance>
 							<MeleeCritChance>0.1</MeleeCritChance>
 							<MeleeParryChance>0.17</MeleeParryChance>
 						</value>
 					</li>
 
 					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]/statBases/ArmorRating_Blunt</xpath>
+						<xpath>Defs/ThingDef[defName="AM_Mech_Advanced_PristineSlurrypede_PlayerControlled"]/statBases/ArmorRating_Blunt</xpath>
 						<value>
-							<ArmorRating_Blunt>25</ArmorRating_Blunt>
+							<ArmorRating_Blunt>22</ArmorRating_Blunt>
 						</value>
 					</li>
 					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]/statBases/ArmorRating_Sharp</xpath>
+						<xpath>Defs/ThingDef[defName="AM_Mech_Advanced_PristineSlurrypede_PlayerControlled"]/statBases/ArmorRating_Sharp</xpath>
 						<value>
-							<ArmorRating_Sharp>11</ArmorRating_Sharp>
+							<ArmorRating_Sharp>10</ArmorRating_Sharp>
 						</value>
 					</li>
 
 					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]/tools</xpath>
+						<xpath>Defs/ThingDef[defName="AM_Mech_Advanced_PristineSlurrypede_PlayerControlled"]/tools</xpath>
 						<value>
 							<tools>
 								<li Class="CombatExtended.ToolCE">
@@ -63,6 +69,7 @@
 					</li>
 
 				</operations>
+			</match>
 			</match>
 		</match>
 	</Operation>

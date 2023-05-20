@@ -14,49 +14,41 @@
 				<operations>
 
 					<li Class="PatchOperationAddModExtension">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Advanced_Phalanx"]</xpath>
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Fireworm"]</xpath>
 						<value>
 							<li Class="CombatExtended.RacePropertiesExtensionCE">
-								<bodyShape>Quadruped</bodyShape>
+								<bodyShape>QuadrupedLow</bodyShape>
 							</li>
 						</value>
 					</li>
 
-					<!-- Assign armor values, change replace and add depending on what exists or not -->
-
 					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Advanced_Phalanx"]/statBases/ArmorRating_Blunt</xpath>
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Fireworm"]/statBases/ArmorRating_Blunt</xpath>
 						<value>
-							<ArmorRating_Blunt>32</ArmorRating_Blunt>
+							<ArmorRating_Blunt>28</ArmorRating_Blunt>
 						</value>
 					</li>
+
 					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Advanced_Phalanx"]/statBases/ArmorRating_Sharp</xpath>
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Fireworm"]/statBases/ArmorRating_Sharp</xpath>
 						<value>
 							<ArmorRating_Sharp>14</ArmorRating_Sharp>
 						</value>
 					</li>
 
-					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Advanced_Phalanx"]/race/baseHealthScale</xpath>
-						<value>
-							<baseHealthScale>2.0</baseHealthScale>
-						</value>
-					</li>
-
 					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Advanced_Phalanx"]/statBases</xpath>
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Fireworm"]/statBases</xpath>
 						<value>
 							<AimingAccuracy>1.0</AimingAccuracy>
 							<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 							<MeleeDodgeChance>0.01</MeleeDodgeChance>
-							<MeleeCritChance>0.37</MeleeCritChance>
-							<MeleeParryChance>0.4</MeleeParryChance>
+							<MeleeCritChance>0.19</MeleeCritChance>
+							<MeleeParryChance>0.19</MeleeParryChance>
 						</value>
 					</li>
 
 					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Advanced_Phalanx"]/tools</xpath>
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Fireworm"]/tools</xpath>
 						<value>
 							<tools>
 								<li Class="CombatExtended.ToolCE">
@@ -64,20 +56,18 @@
 									<capacities>
 										<li>Blunt</li>
 									</capacities>
-									<power>42</power>
-									<cooldownTime>2</cooldownTime>
+									<power>24</power>
+									<cooldownTime>2.6</cooldownTime>
 									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 									<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-									<armorPenetrationBlunt>64</armorPenetrationBlunt>
+									<armorPenetrationBlunt>12</armorPenetrationBlunt>
 								</li>
 							</tools>
 						</value>
 					</li>
 
-					<!-- Make it spawn with ammo -->
-
 					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Advanced_Phalanx"]/comps</xpath>
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Fireworm"]/comps</xpath>
 						<value>
 							<li>
 								<compClass>CombatExtended.CompPawnGizmo</compClass>

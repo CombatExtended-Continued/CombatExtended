@@ -5,7 +5,6 @@
 		<mods>
 			<li>Alpha Mechs</li>
 		</mods>
-
 		<match Class="PatchOperationFindMod">
 			<mods>
 				<li>Vanilla Factions Expanded - Mechanoids</li>
@@ -15,70 +14,66 @@
 				<operations>
 
 					<li Class="PatchOperationAddModExtension">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Aura"]</xpath>
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Daggersnout"]</xpath>
 						<value>
 							<li Class="CombatExtended.RacePropertiesExtensionCE">
-								<bodyShape>Humanoid</bodyShape>
+								<bodyShape>QuadrupedLow</bodyShape>
 							</li>
 						</value>
 					</li>
 
-					<!-- Assign armor values, change replace and add depending on what exists or not -->
-
 					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Aura"]</xpath>
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Daggersnout"]</xpath>
 						<value>
-							<statBases><!-- Ok this is pissing me off -->
-								<MoveSpeed>5.5</MoveSpeed>
-								<ArmorRating_Blunt>6</ArmorRating_Blunt>
-								<ArmorRating_Sharp>4</ArmorRating_Sharp>
-								<MeleeDodgeChance>0.5</MeleeDodgeChance>
+							<statBases>
+								<ArmorRating_Blunt>3</ArmorRating_Blunt>
+								<ArmorRating_Sharp>2</ArmorRating_Sharp>
+								<MeleeDodgeChance>0.08</MeleeDodgeChance>
 								<MeleeCritChance>0.24</MeleeCritChance>
-								<MeleeParryChance>0.33</MeleeParryChance>
-								<MaxHitPoints>200</MaxHitPoints>
+								<MeleeParryChance>0.18</MeleeParryChance>
 							</statBases>
 						</value>
 					</li>
 
 					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="VFE_Mech_Aura"]/tools</xpath>
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Daggersnout"]/tools</xpath>
 						<value>
 							<tools>
 								<li Class="CombatExtended.ToolCE">
-									<label>wing blade</label>
+									<label>snout blade</label>
 									<capacities>
 										<li>Cut</li>
 									</capacities>
-									<power>37</power>
-									<cooldownTime>1.5</cooldownTime>
-									<linkedBodyPartsGroup>AM_WingBlades</linkedBodyPartsGroup>
+									<power>19</power>
+									<cooldownTime>1.4</cooldownTime>
+									<linkedBodyPartsGroup>AM_NoseBlade</linkedBodyPartsGroup>
 									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-									<armorPenetrationBlunt>6</armorPenetrationBlunt>
-									<armorPenetrationSharp>2.5</armorPenetrationSharp>
+									<armorPenetrationBlunt>8</armorPenetrationBlunt>
+									<armorPenetrationSharp>3</armorPenetrationSharp>
 								</li>
 								<li Class="CombatExtended.ToolCE">
-									<label>wing blade</label>
+									<label>snout blade</label>
 									<capacities>
 										<li>Stab</li>
 									</capacities>
-									<power>18</power>
-									<cooldownTime>1.25</cooldownTime>
-									<linkedBodyPartsGroup>AM_WingBlades</linkedBodyPartsGroup>
+									<power>14</power>
+									<cooldownTime>1.2</cooldownTime>
+									<linkedBodyPartsGroup>AM_NoseBlade</linkedBodyPartsGroup>
 									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-									<armorPenetrationBlunt>15</armorPenetrationBlunt>
-									<armorPenetrationSharp>30</armorPenetrationSharp>
+									<armorPenetrationBlunt>12</armorPenetrationBlunt>
+									<armorPenetrationSharp>16</armorPenetrationSharp>
 								</li>
 								<li Class="CombatExtended.ToolCE">
 									<label>head</label>
 									<capacities>
 										<li>Blunt</li>
 									</capacities>
-									<power>10</power>
+									<power>3</power>
 									<cooldownTime>2</cooldownTime>
 									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 									<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 									<chanceFactor>0.2</chanceFactor>
-									<armorPenetrationBlunt>3</armorPenetrationBlunt>
+									<armorPenetrationBlunt>5</armorPenetrationBlunt>
 								</li>
 							</tools>
 						</value>
