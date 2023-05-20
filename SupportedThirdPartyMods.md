@@ -278,6 +278,10 @@ Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
 Megafauna	|
+MH: Android Tiers	|
+MH: Android Tiers Core	|
+MH: Mechanical Biomimetics	|
+MH: Military Tiers	|
 Midworld Expanded: Flak Armor  |
 Miho, the Celestial Fox  |
 Mincho, The Mint Choco Slime  |
