@@ -40,7 +40,7 @@ namespace CombatExtended.Compatibility
                 var hediff = interceptor.health.hediffSet.hediffs.FirstOrDefault(x => x is Hediff_Overshield) as Hediff_Overshield;
                 projectile.ExactPosition = IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.DrawPos, hediff.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 projectile.landed = true;
-                //PostColide(interceptor, hediff, projectile.ExactPosition);
+
                 new Traverse(interceptor).Field("lastInterceptAngle").SetValue(projectile.ExactPosition.AngleToFlat(interceptor.TrueCenter()));
                 new Traverse(interceptor).Field("lastInterceptTicks").SetValue(Find.TickManager.TicksGame);
                 new Traverse(interceptor).Field("drawInterceptCone").SetValue(true);
@@ -114,8 +114,7 @@ namespace CombatExtended.Compatibility
                     IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.Position.ToVector3(), (radius)).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 projectile.ExactPosition = exactPosition;
                 projectile.landed = true;
-                //PostColide(interceptor.pawn, interceptor, exactPosition);
-                //PostColide(Thing interceptorThing, Hediff_Overshield interceptorHediff, Vector3 newExactPos)
+
                 new Traverse(interceptor).Field("lastInterceptAngle").SetValue(newExactPos.AngleToFlat(interceptor.pawn.TrueCenter()));
                 new Traverse(interceptor).Field("lastInterceptTicks").SetValue(Find.TickManager.TicksGame);
                 new Traverse(interceptor).Field("drawInterceptCone").SetValue(true);
