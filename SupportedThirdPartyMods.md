@@ -96,6 +96,7 @@ Animal Equipment	|
 Anthro Race |
 Antinium    |
 Anty the War Ant Race |
+AOC The Cleanup Devil |
 Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
 Arachne Race	|
@@ -229,8 +230,10 @@ Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
 Heyra the Horned    |
 High Caliber	|
+High Tech Laboratory Facilities	|
 Hive Armory |
 Idhale Race	|
+Impact Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
@@ -311,6 +314,7 @@ Nakin Race  |
 Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
+New Mech: Mini-Miner    |
 NewRatkinPlus |
 Ni'Hal	|
 Nukes   |
