@@ -468,23 +468,28 @@ namespace CombatExtended
             //However, if it's a partially-penetrating sharp attack, then we're using the blocked values of penetration amount and damage amount instead
             //and because localPenAmount is the sharp attack's remaining penetration amount and localDmgAmount is the sharp attack's remaining damage amount,
             //we have to take that amount away from the base penetration amount and damage amount.
-            float penMulti = (partialPen ? ((dinfo.ArmorPenetrationInt - localPenAmount) * (dinfo.Amount - localDmgAmount) / dinfo.Amount) : localPenAmount) / dinfo.ArmorPenetrationInt;
+            float sharpPenFactor = (partialPen ? ((dinfo.ArmorPenetrationInt - localPenAmount) * (dinfo.Amount - localDmgAmount) / dinfo.Amount) : localPenAmount) / dinfo.ArmorPenetrationInt;
             if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
             {
-                localPenAmount = projectile.armorPenetrationBlunt * penMulti;
+                localPenAmount = projectile.armorPenetrationBlunt * sharpPenFactor;
+
+                //Fragment damage from large fragments often splits up into multiple attacks with reduced damage, which have the same sharp pen I believe,
+                //therefore the deflected damage should also be with reduced damage, but the same blunt pen.
+                //The damage info's damage amount isn't set anywhere within this class, therefore it is a good gauge on how many times the damage split.
+                localDmgAmount *= dinfo.Amount / (float)projectile.damageAmountBase;
             }
             else if (dinfo.Instigator?.def.thingClass == typeof(Building_TrapDamager))
             {
                 //Temporarily deriving spike trap blunt AP based on their vanilla stats, just so they're not entirely broken
                 //TODO proper integration
                 var trapAP = dinfo.Instigator.GetStatValue(StatDefOf.TrapMeleeDamage, true) * SpikeTrapAPModifierBlunt;
-                localPenAmount = trapAP * penMulti;
+                localPenAmount = trapAP * sharpPenFactor;
             }
             else
             {
                 if (Verb_MeleeAttackCE.LastAttackVerb != null)
                 {
-                    localPenAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationBlunt;
+                    localPenAmount = Verb_MeleeAttackCE.LastAttackVerb.ArmorPenetrationBlunt * sharpPenFactor;
                 }
                 else
                 {
@@ -496,16 +501,9 @@ namespace CombatExtended
                     localPenAmount = 50;
                 }
             }
-            localDmgAmount = Mathf.Pow(localPenAmount * 10000, 1 / 3f) / 10;
 
-            //Fragment damage from large fragments often splits up into multiple attacks with reduced damage, which have the same sharp pen I believe,
-            //therefore the deflected damage should also be with reduced damage, but the same blunt pen.
-            //The damage info's damage amount isn't set anywhere within this class, therefore it is a good gauge on how many times the damage split.
-            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE)
-            {
-                localDmgAmount *= dinfo.Amount / (float)dinfo.Weapon.projectile.damageAmountBase;
-            }
-
+            localDmgAmount *= sharpPenFactor * 0.5f;
+            //localDmgAmount = Mathf.Pow(localPenAmount * 10000, 1 / 3f) / 10;
 
             var newDinfo = new DamageInfo(DamageDefOf.Blunt,
                                           localDmgAmount,
