@@ -51,16 +51,6 @@
 				</li>
 
 				<li Class="PatchOperationConditional">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATR_Tier5Android"]/comps</xpath>
-					<nomatch Class="PatchOperationAdd">
-						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATR_Tier5Android"]</xpath>
-						<value>
-							<comps/>
-						</value>
-					</nomatch>
-				</li>
-
-				<li Class="PatchOperationConditional">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]</xpath>
@@ -75,7 +65,6 @@
 							defName="ATM_Mark2Bishop" or
 							defName="ATM_Mark3Paladin" or
 							defName="ATM_Mark4Jellyman" or
-							defName="ATR_Tier5Android" or
 							defName="ATM_Mark5Titan"
 							]</xpath>
 					<value>
@@ -90,7 +79,6 @@
 							defName="ATM_Mark2Bishop" or
 							defName="ATM_Mark3Paladin" or
 							defName="ATM_Mark4Jellyman" or
-							defName="ATR_Tier5Android" or
 							defName="ATM_Mark5Titan"
 							]/comps</xpath>
 					<value>
@@ -125,7 +113,6 @@
 						<AimingAccuracy>1.0</AimingAccuracy>
 					</value>
 				</li>
-
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior"]/statBases/ArmorRating_Sharp</xpath>
@@ -267,6 +254,7 @@
 						<MeleeParryChance>1</MeleeParryChance>
 						<Suppressability>0.2</Suppressability>
 						<SmokeSensitivity>0</SmokeSensitivity>
+						<ArmorRating_Blunt>1</ArmorRating_Blunt>
 					</value>
 				</li>
 
@@ -274,13 +262,6 @@
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark3Paladin"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>1</ArmorRating_Sharp>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark3Paladin"]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>1</ArmorRating_Blunt>
 					</value>
 				</li>
 
@@ -420,17 +401,15 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]/statBases</xpath>
 					<value>
-						<statBases>
-							<NightVisionEfficiency>0.4</NightVisionEfficiency>
-							<MeleeDodgeChance>1.0</MeleeDodgeChance>
-							<MeleeCritChance>1.0</MeleeCritChance>
-							<MeleeParryChance>1.0</MeleeParryChance>
-							<SmokeSensitivity>0</SmokeSensitivity>
-							<CarryWeight>200</CarryWeight>
-							<CarryBulk>100</CarryBulk>
-						</statBases>
+						<NightVisionEfficiency>0.4</NightVisionEfficiency>
+						<MeleeDodgeChance>1.0</MeleeDodgeChance>
+						<MeleeCritChance>1.0</MeleeCritChance>
+						<MeleeParryChance>1.0</MeleeParryChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+						<CarryWeight>200</CarryWeight>
+						<CarryBulk>100</CarryBulk>
 					</value>
 				</li>
 

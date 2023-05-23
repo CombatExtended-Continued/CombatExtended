@@ -76,7 +76,7 @@
 								<armorPenetrationBlunt>39.493</armorPenetrationBlunt>
 								<explosionRadius>1.9</explosionRadius>
 								<soundExplode>Explosion_EMP</soundExplode>
-								<postExplosionSpawnThingDef>ATR_MicroScytherGenerator</postExplosionSpawnThingDef>
+								<postExplosionSpawnThingDef>ATB_MicroScytherGenerator</postExplosionSpawnThingDef>
 								<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 								<explosionEffect>ExtinguisherExplosion</explosionEffect>
@@ -131,17 +131,17 @@
 							<recipeUsers Inherit="False">
 								<li>ATR_MechanicalAssemblyPod</li>
 							</recipeUsers>
-							<researchPrerequisite>ATR_MilitaryBiomimetics</researchPrerequisite>
+							<researchPrerequisite>ATB_MilitaryBiomimetics</researchPrerequisite>
 						</RecipeDef>
 					</value>
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="ATR_MicroscytherShell"]</xpath>
+					<xpath>Defs/ThingDef[defName="ATB_MicroscytherShell"]</xpath>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="ATR_TrapIED_Microscyther"]/costList</xpath>
+					<xpath>Defs/ThingDef[defName="ATB_TrapIED_Microscyther"]/costList</xpath>
 					<value>
 						<costList>
 							<Swarm_shell_81mm>2</Swarm_shell_81mm>
@@ -149,11 +149,29 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraderKindDef[defName="ATR_Orbital_Mechanized"]/stockGenerators/li[thingDef="ATR_MicroscytherShell"]</xpath>
-				</li>
-
 			</operations>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MH: Mechanical Biomimetics</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>MH: Android Tiers</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationRemove">
+						<xpath>Defs/TraderKindDef[defName="ATR_Orbital_Mechanized"]/stockGenerators/li[thingDef="ATB_MicroscytherShell"]</xpath>
+					</li>
+
+				</operations>
+			</match>
 		</match>
 	</Operation>
 
