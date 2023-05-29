@@ -269,7 +269,116 @@
 					</li>
 
 					<!-- Heavy Laser -->
-					<!-- Dunno what to do about it -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs</xpath>
+						<value>
+
+							<CombatExtended.AmmoSetDef>
+								<defName>AmmoSet_HeavyLaser</defName>
+								<label>heavy laser charge</label>
+								<ammoTypes>
+									<Ammo_LaserChargePack>Bullet_HeavyLaser</Ammo_LaserChargePack>
+								</ammoTypes>
+							</CombatExtended.AmmoSetDef>
+
+							<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+								<defName>Bullet_HeavyLaser</defName>
+								<label>laser shot</label>
+								<projectile Class="CombatExtended.ProjectilePropertiesCE">
+									<damageDef>Bullet</damageDef>
+									<damageAmountBase>17</damageAmountBase>
+									<armorPenetrationSharp>20</armorPenetrationSharp>
+									<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+								</projectile>
+							</ThingDef>
+
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Gun_HeavyLaser"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>8</power>
+									<cooldownTime>1.55</cooldownTime>
+									<chanceFactor>1.5</chanceFactor>
+									<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>5</power>
+									<cooldownTime>2.02</cooldownTime>
+									<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>8</power>
+									<cooldownTime>1.55</cooldownTime>
+									<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="AM_Gun_HeavyLaser"]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+					</li>
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>AM_Gun_HeavyLaser</defName>
+						<statBases>
+							<Mass>3.50</Mass>
+							<Bulk>10.00</Bulk>
+							<SwayFactor>1.35</SwayFactor>
+							<ShotSpread>0.05</ShotSpread>
+							<SightsEfficiency>1.10</SightsEfficiency>
+							<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>0.01</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>True</hasStandardCommand>
+							<defaultProjectile>Bullet_HeavyLaser</defaultProjectile>
+							<warmupTime>1</warmupTime>
+							<range>62</range>
+							<burstShotCount>3</burstShotCount>
+							<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+							<soundCast>AM_HeavyLaser</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>14</muzzleFlashScale>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+							<magazineSize>60</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_HeavyLaser</ammoSet>
+						</AmmoUser>
+						<FireModes>
+							<aiAimMode>AimedShot</aiAimMode>
+							<aiUseBurstMode>True</aiUseBurstMode>
+							<aimedBurstShotCount>2</aimedBurstShotCount>
+						</FireModes>
+						<weaponTags>
+							<li>NoSwitch</li>
+						</weaponTags>
+					</li>
 
 					<!-- Siegemelter Flamethrower -->
 
@@ -328,6 +437,45 @@
 					<!-- Tesla Gun -->
 
 					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_TeslaGun"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>8</power>
+									<cooldownTime>1.55</cooldownTime>
+									<chanceFactor>1.5</chanceFactor>
+									<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>5</power>
+									<cooldownTime>2.02</cooldownTime>
+									<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>8</power>
+									<cooldownTime>1.55</cooldownTime>
+									<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
 						<xpath>Defs/ThingDef[defName="AM_TeslaGun"]/verbs/li/range</xpath>
 						<value>
 							<range>31</range>
@@ -377,7 +525,7 @@
 
 					<!-- Tactical Shotgun -->
 
-					<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 						<defName>AM_Gun_TacticalShotgun</defName>
 						<statBases>
 							<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
@@ -410,7 +558,7 @@
 						<weaponTags>
 							<li>NoSwitch</li>
 						</weaponTags>
-					</Operation>
+					</li>
 
 					<!-- Beam Graser Cannon -->
 
@@ -536,8 +684,47 @@
 
 					<!-- Mini Needle Gun -->
 
-					<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>Gun_Needle</defName>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Gun_MiniNeedle"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>8</power>
+									<cooldownTime>1.55</cooldownTime>
+									<chanceFactor>1.5</chanceFactor>
+									<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>5</power>
+									<cooldownTime>2.02</cooldownTime>
+									<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>8</power>
+									<cooldownTime>1.55</cooldownTime>
+									<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>AM_Gun_MiniNeedle</defName>
 						<statBases>
 							<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
 							<SightsEfficiency>1</SightsEfficiency>
@@ -568,10 +755,76 @@
 						<weaponTags>
 							<li>NoSwitch</li>
 						</weaponTags>
-					</Operation>
+					</li>
 
 					<!-- Mortar -->
-					<!-- Dunno what to do about it -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechanoidMortar"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>5</power>
+									<cooldownTime>2.02</cooldownTime>
+									<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>muzzle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>8</power>
+									<cooldownTime>1.55</cooldownTime>
+									<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>AM_MechanoidMortar</defName>
+						<statBases>
+							<Mass>3.0</Mass>
+							<Bulk>6.0</Bulk>
+							<SwayFactor>1.0</SwayFactor>
+							<ShotSpread>0.1</ShotSpread>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+						</statBases>
+						<Properties>
+							<recoilAmount>3.5</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+							<warmupTime>1</warmupTime>
+							<range>40</range>
+							<minRange>5</minRange>
+							<soundCast>InfernoCannon_Fire</soundCast>
+							<muzzleFlashScale>9</muzzleFlashScale>
+							<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
+							<ignorePartialLoSBlocker>True</ignorePartialLoSBlocker>
+							<targetParams>
+								<canTargetLocations>True</canTargetLocations>
+							</targetParams>
+						</Properties>
+						<AmmoUser>
+							<magazineSize>10</magazineSize>
+							<reloadTime>5.1</reloadTime>
+							<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+						</AmmoUser>
+						<FireModes>
+							<aiAimMode>SuppressFire</aiAimMode>
+						</FireModes>
+						<weaponTags>
+							<li>NoSwitch</li>
+						</weaponTags>
+					</li>
 
 				</operations>
 			</match>
