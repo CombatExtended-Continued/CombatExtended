@@ -318,7 +318,33 @@
 					</tools>
 				</value>
 			</li>
-
+		<!-- Exoskeletons -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="ExoskeletonSuit" or defName="EPIA_ProtectiveExoskeleton"]/stages/li/statOffsets</xpath>
+				<value>
+					<statOffsets>
+						<CarryWeight>25</CarryWeight>
+					</statOffsets>
+				</value>
+			</li>
+			
+		<!-- Tactical Bionic Eye -->
+		
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPIA_TacticalBionicEye"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPIA_TacticalBionicEye"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+				<value>
+					<AimingAccuracy>0.5</AimingAccuracy>
+				</value>
+			</li>
+			
 		</operations>
 	</match>
 	</Operation>
