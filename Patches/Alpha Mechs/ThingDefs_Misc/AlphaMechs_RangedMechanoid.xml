@@ -97,7 +97,7 @@
 
 				<!-- ========== Goliath HCB ========== -->
 
-				<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AM_Gun_GoliathChargeBlaster</defName>
 					<statBases>
 						<Mass>35.00</Mass>
@@ -133,11 +133,11 @@
 						<li>CE_AI_Suppressive</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-				</Operation>
+				</li>
 
 				<!-- ========== Goliath Needle Gun ========== -->
 
-				<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AM_Gun_GoliathNeedle</defName>
 					<statBases>
 						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
@@ -171,9 +171,33 @@
 						<li>CE_AI_Rifle</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-				</Operation>
+				</li>
 
 				<!-- Cryogenic Gun -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingDef ParentName="AM_BaseMechProjectile">
+							<defName>AM_CryoBulletCE</defName>
+							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+							<label>cryogenic pellet</label>
+							<graphicData>
+								<texPath>Things/Projectiles/AM_Cryo</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<flyOverhead>false</flyOverhead>
+								<speed>40</speed>
+								<damageDef>Frostbite</damageDef>
+								<damageAmountBase>2</damageAmountBase>
+								<explosionRadius>1.9</explosionRadius>
+								<soundExplode>AM_Cryogun</soundExplode>
+							</projectile>
+						</ThingDef>
+					</value>
+				</li>
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AM_CryogenicGun</defName>
@@ -208,34 +232,10 @@
 					</weaponTags>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs</xpath>
-					<value>
-						<ThingDef ParentName="AM_BaseMechProjectile">
-							<defName>AM_CryoBulletCE</defName>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<label>cryogenic pellet</label>
-							<graphicData>
-								<texPath>Things/Projectiles/AM_Cryo</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-								<shaderType>TransparentPostLight</shaderType>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<flyOverhead>false</flyOverhead>
-								<speed>40</speed>
-								<damageDef>Frostbite</damageDef>
-								<damageAmountBase>2</damageAmountBase>
-								<explosionRadius>1.9</explosionRadius>
-								<soundExplode>AM_Cryogun</soundExplode>
-							</projectile>
-						</ThingDef>
-					</value>
-				</li>
-
 				<!-- Siege Turret -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>AM_SiegeTurret</defName>
+					<defName>AM_SiegebreakerTurret</defName>
 					<statBases>
 						<Mass>50.00</Mass>
 						<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
@@ -271,7 +271,7 @@
 				<!-- Demolisher Charge Gun -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>AM_DemolisherCharges</defName>
+					<defName>AM_DemolisherChargeBase</defName>
 					<statBases>
 						<Mass>20</Mass>
 						<RangedWeapon_Cooldown>2.13</RangedWeapon_Cooldown>
