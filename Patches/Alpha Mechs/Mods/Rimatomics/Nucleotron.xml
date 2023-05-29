@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Dubs Rimatomics</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Nucleotron"]</xpath>
+						<value>
+							<li Class="CombatExtended.RacePropertiesExtensionCE">
+								<bodyShape>Vehicle</bodyShape>
+							</li>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>
