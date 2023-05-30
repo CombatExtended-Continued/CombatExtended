@@ -162,6 +162,7 @@ Dragons Descent    |
 Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
+Dusk Armory   |
 ED-Shields	|
 Edge of Descension - Monoblades  |
 Eltex Bodysuit  |
