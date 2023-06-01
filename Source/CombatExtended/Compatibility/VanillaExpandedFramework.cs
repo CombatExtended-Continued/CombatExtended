@@ -40,7 +40,7 @@ namespace CombatExtended.Compatibility
             foreach (var interceptor in interceptors)
             {
                 var interceptorComp = interceptor.GetComp<CompShieldField>();
-                if (interceptorComp.ThingsWithinRadius.Contains(launcher)) 
+                if (interceptorComp.ThingsWithinRadius.Contains(launcher))
                 {
                     continue;
                 }
@@ -71,7 +71,7 @@ namespace CombatExtended.Compatibility
                 }
                 var intersectionPoints = //BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptorThing.Position.ToVector3(), (radius ) * (radius));
                     VanillaPsycastExpanded.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.Position.ToVector3(), (radius));
-                if(intersectionPoints== new Vector3[] { Vector3.zero, Vector3.zero })
+                if (intersectionPoints == new Vector3[] { Vector3.zero, Vector3.zero })
                 {
                     continue;
                 }
