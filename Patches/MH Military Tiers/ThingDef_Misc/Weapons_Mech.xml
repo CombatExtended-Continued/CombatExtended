@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MH: Military Tiers</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ==========  Rotary Autocannon  =========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>ATM_RotaryAutocannon</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.04</ShotSpread>
+						<SwayFactor>1.8</SwayFactor>
+						<Bulk>35</Bulk>
+						<Mass>42</Mass>
+						<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.88</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_40x311mmR_AP</defaultProjectile>
+						<warmupTime>1.45</warmupTime>
+						<range>75</range>
+						<soundCast>ATM_AutocannonBlast</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>18</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_40x311mmR</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATM_RotaryAutocannon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>47</power>
+								<cooldownTime>3.65</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>21</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>47</power>
+								<cooldownTime>3.65</cooldownTime>
+								<armorPenetrationBlunt>21</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>65</power>
+								<cooldownTime>2.81</cooldownTime>
+								<armorPenetrationBlunt>30.24</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ATM_RotaryAutocannon"]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>3.0,3.0</DrawSize>
+							<DrawOffset>0.0,0.0</DrawOffset>
+						</li>
+					</value>
+				</li>
+
+				<!-- ==========  Rotary Shrapnelcannon  =========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>ATM_RotaryShrapnelcannon</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.15</ShotSpread>
+						<SwayFactor>1.37</SwayFactor>
+						<Bulk>30</Bulk>
+						<Mass>42</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.72</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_RotaryShrapnelcannonShell</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>31</range>
+						<soundCast>ATM_ShrapnelBlast</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<reloadTime>1.7</reloadTime>
+						<ammoSet>AmmoSet_RotaryShrapnelcannonShell</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATM_RotaryShrapnelcannon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>47</power>
+								<cooldownTime>3.65</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>21</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>47</power>
+								<cooldownTime>3.65</cooldownTime>
+								<armorPenetrationBlunt>21</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>65</power>
+								<cooldownTime>2.81</cooldownTime>
+								<armorPenetrationBlunt>30.24</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ATM_RotaryShrapnelcannon"]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>3.0,3.0</DrawSize>
+							<DrawOffset>0.0,0.0</DrawOffset>
+						</li>
+					</value>
+				</li>
+
+				<!-- ==========  Headhunter Cannon  =========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>ATM_HeadhunterCannon</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.17</SwayFactor>
+						<Bulk>20</Bulk>
+						<Mass>30</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+						<warmupTime>0.7</warmupTime>
+						<range>55</range>
+						<soundCast>ATM_AutocannonBlast</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>20</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATM_HeadhunterCannon"]</xpath>
+					<value>
+						<weaponTags Inherit="False">
+							<li>CE_Sidearm_M7Mech</li>
+						</weaponTags>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATM_HeadhunterCannon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>3.51</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>3.51</cooldownTime>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>3.51</cooldownTime>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ATM_HeadhunterCannon"]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>4.0,4.0</DrawSize>
+							<DrawOffset>0.0,0.0</DrawOffset>
+						</li>
+					</value>
+				</li>
+
+				<!-- ==========  Mech Poleaxe  =========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATM_MechPoleaxe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>spike</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>125</power>
+								<cooldownTime>1.92</cooldownTime>
+								<armorPenetrationBlunt>38.28</armorPenetrationBlunt>
+								<armorPenetrationSharp>47.86</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>axe</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>182</power>
+								<cooldownTime>2.0</cooldownTime>
+								<armorPenetrationBlunt>63</armorPenetrationBlunt>
+								<armorPenetrationSharp>14.00</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>hammer</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>182</power>
+								<cooldownTime>2.0</cooldownTime>
+								<armorPenetrationBlunt>150</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATM_MechPoleaxe"]/weaponTags</xpath>
+					<value>
+						<li>CE_Melee_M7Mech</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATM_MechPoleaxe"]/statBases</xpath>
+					<value>
+						<Bulk>35</Bulk>
+						<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATM_MechPoleaxe"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.0</MeleeCritChance>
+							<MeleeParryChance>1.0</MeleeParryChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ATM_MechPoleaxe"]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>3.5,3.5</DrawSize>
+							<DrawOffset>0.0,0.0</DrawOffset>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
