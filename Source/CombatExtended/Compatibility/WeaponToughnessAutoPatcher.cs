@@ -28,7 +28,9 @@ namespace CombatExtended.Compatibility
                         float weaponThickness = Mathf.Sqrt(def.statBases?.Find(statMod => statMod.stat.defName == CE_StatDefOf.Bulk.defName)?.value ?? 0f);
 
                         if (weaponThickness == 0f)
+                        {
                             continue;
+                        }
 
                         // Tech level improves toughness
                         switch (def.techLevel)
