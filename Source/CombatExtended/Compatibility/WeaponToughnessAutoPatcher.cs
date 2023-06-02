@@ -70,7 +70,7 @@ namespace CombatExtended.Compatibility
                             // Search for a fitting recipe
                             RecipeDef firstRecipeDef = DefDatabase<RecipeDef>.AllDefs
                                 .FirstOrDefault(recipeDef => recipeDef.products?
-                                        .Any(productDef => productDef.thingDef.defName == def.defName) ?? false);
+                                        .Any(productDef => productDef.thingDef?.defName == def.defName ?? false) ?? false);
 
                             IngredientCount biggestIngredientCount = firstRecipeDef?.ingredients?
                                 .MaxBy(ingredientCount => ingredientCount.count);
