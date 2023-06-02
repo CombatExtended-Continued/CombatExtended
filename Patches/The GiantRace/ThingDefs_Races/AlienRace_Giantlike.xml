@@ -10,7 +10,7 @@
 		<operations>
 			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HC_Giant"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HC_Giant"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -19,7 +19,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HC_Giant"]/statBases</xpath>
+			 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HC_Giant"]/statBases</xpath>
 				  <value>
 					<!--Significant size results in ease of powerful strikes and difficulty in parrying their blows-->
 					<MeleeCritChance>1.6</MeleeCritChance>
@@ -34,7 +34,7 @@
 			<!--Very heavy blows-->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HC_Giant"]/tools</xpath> 
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HC_Giant"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -75,21 +75,21 @@
 			<!--Giant size prevents use of loadbearing gear, and reasonably, shields.-->
 			
 			<li Class="PatchOperationReplace">
-                    <xpath>/Defs/ThingDef[@Name="GI_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+                    <xpath>Defs/ThingDef[@Name="GI_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
                     <value>
                         <li>CombatExtended.ITab_Inventory</li>
                     </value>
 			</li>
 
             <li Class="PatchOperationAdd">
-                    <xpath>/Defs/ThingDef[@Name="GI_PawnBase"]/comps</xpath>
+                    <xpath>Defs/ThingDef[@Name="GI_PawnBase"]/comps</xpath>
                     <value>
                         <li Class="CombatExtended.CompProperties_Inventory" />
                     </value>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="GI_PawnBase"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="GI_PawnBase"]/comps</xpath>
 				<value>
 					<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>

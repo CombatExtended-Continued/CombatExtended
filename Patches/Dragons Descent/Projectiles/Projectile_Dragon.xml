@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragons Descent</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Spit Blunt -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DragonSpitBlunt"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DragonSpitBlunt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>26</speed>
+							<damageDef>DraconicFlame</damageDef>
+							<damageAmountBase>30</damageAmountBase>
+							<soundExplode>DragonBreathFire</soundExplode>
+							<preExplosionSpawnThingDef>Filth_Dirt</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+							<explosionRadius>4</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+							<shadowSize>1</shadowSize>
+						</projectile>
+					</value>
+				</li>
+				<!-- Fire Spit (Probably not used) -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DragonSpit"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DragonSpit"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>38</speed>
+							<damageDef>Flame</damageDef>
+							<explosionRadius>4.5</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
+							<damageAmountBase>27</damageAmountBase>
+							<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+							<arcHeightFactor>0.2</arcHeightFactor>
+							<shadowSize>1</shadowSize>
+							<explosionDamageFalloff>false</explosionDamageFalloff>
+							<armorPenetrationBase>20</armorPenetrationBase>
+						</projectile>
+					</value>
+				</li>
+				<!-- Placeholder Spit -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DragonBreath_AOE"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DragonBreath_AOE"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>38</speed>
+							<damageDef>DraconicFlame</damageDef>
+							<explosionRadius>4.5</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
+							<damageAmountBase>27</damageAmountBase>
+							<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+							<arcHeightFactor>0.2</arcHeightFactor>
+							<shadowSize>1</shadowSize>
+						</projectile>
+					</value>
+				</li>
+				<!-- New CE projectile to try to counter DD's animation -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingDef ParentName="BaseBulletCE">
+							<defName>Projectile_RedDragonBreath_Fire_CE</defName>
+							<label>Fire_Breath</label>
+							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+							<!-- Not sure if comps is needed, only kept for the MoteGlow -->
+							<comps>
+								<li Class="CompProperties_Glower">
+									<overlightRadius>1.0</overlightRadius>
+									<glowRadius>1</glowRadius>
+									<glowColor>(255, 161, 0, 0.19)</glowColor>
+								</li>
+							</comps>
+							<graphicData>
+								<texPath>AnimalProjectile/DragonBreath_Fire</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>MoteGlow</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<flyOverhead>false</flyOverhead>
+								<damageDef>DraconicFlame</damageDef>
+								<explosionRadius>3</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
+								<damageAmountBase>8</damageAmountBase>
+								<stoppingPower>3.5</stoppingPower>
+								<ai_IsIncendiary>true</ai_IsIncendiary>
+								<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
+								<preExplosionSpawnChance>.3</preExplosionSpawnChance>
+								<speed>30</speed>
+								<extraDamages>
+									<li>
+										<def>Flame</def>
+										<amount>6</amount>
+										<armorPenetration>4</armorPenetration>
+										<chance>0.3</chance>
+									</li>
+								</extraDamages>
+							</projectile>
+						</ThingDef>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

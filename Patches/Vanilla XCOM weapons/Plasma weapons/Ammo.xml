@@ -1,0 +1,128 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla XCOM Plasma Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<!-- XCOM Plasma Rifle, cannon, vektor and bullpup-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_BeamRifle</defName>
+							<label>plasma</label>
+							<ammoTypes>
+								<Ammo_PlasmaCellRifle>XCOM_Bullet_BeamRifleCE</Ammo_PlasmaCellRifle>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletBlue">
+							<defName>XCOM_Bullet_BeamRifleCE</defName>
+							<label>plasma beam</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>XCOM_Plasma</damageDef>
+								<damageAmountBase>10</damageAmountBase>
+								<armorPenetrationSharp>22.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>44.52</armorPenetrationBlunt>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>13</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<!-- XCOM Plasma Lance and autocannon-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_BeamSniperRifle</defName>
+							<label>heavy plasma</label>
+							<ammoTypes>
+								<Ammo_PlasmaCellHeavy>XCOM_Bullet_BeamSniperRifleCE</Ammo_PlasmaCellHeavy>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletBlue">
+							<defName>XCOM_Bullet_BeamSniperRifleCE</defName>
+							<label>plasma beam</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>XCOM_Plasma</damageDef>
+								<damageAmountBase>20</damageAmountBase>
+								<armorPenetrationSharp>35</armorPenetrationSharp>
+								<armorPenetrationBlunt>70.52</armorPenetrationBlunt>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>20</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<!-- XCOM Storm Gun -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_BeamShotgun</defName>
+							<label>heavy plasma</label>
+							<ammoTypes>
+								<Ammo_PlasmaCellHeavy>XCOM_Bullet_BeamShotgunCE</Ammo_PlasmaCellHeavy>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletBlue">
+							<defName>XCOM_Bullet_BeamShotgunCE</defName>
+							<label>plasma beam</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<spreadMult>17.8</spreadMult>
+								<pelletCount>7</pelletCount>
+								<damageDef>XCOM_Plasma</damageDef>
+								<damageAmountBase>6</damageAmountBase>
+								<armorPenetrationSharp>15</armorPenetrationSharp>
+								<armorPenetrationBlunt>14.22</armorPenetrationBlunt>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>4</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<!-- XCOM Beam Pistol and autopistol-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_BeamPistol</defName>
+							<label>light plasma</label>
+							<ammoTypes>
+								<Ammo_PlasmaCellPistol>XCOM_Bullet_Beam_PistolCE</Ammo_PlasmaCellPistol>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletBlue">
+							<defName>XCOM_Bullet_Beam_PistolCE</defName>
+							<label>plasma beam</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>XCOM_Plasma</damageDef>
+								<damageAmountBase>7</damageAmountBase>
+								<armorPenetrationSharp>17.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>25.67</armorPenetrationBlunt>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>6</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

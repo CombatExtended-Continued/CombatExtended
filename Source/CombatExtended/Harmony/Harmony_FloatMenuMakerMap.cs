@@ -21,34 +21,49 @@ namespace CombatExtended.HarmonyCE
     static class FloatMenuMakerMap_PatchKnowledge
     {
 
-        const string ClassNamePart = "DisplayClass9_19";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
-        const string MethodNamePart = "g__Equip";       //1.0: "m__" to target <>m__0()
+        private static MethodBase knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
+        private static FieldInfo equippingWeapons = AccessTools.Field(typeof(ConceptDefOf), nameof(ConceptDefOf.EquippingWeapons));
 
-        // Target the class containing several KnowledgeDemonstrated, MakeFleckMote, FleckDefOf.FeedbackEquip ..
-        // 1.0: FloatMenuMakerMap.<AddHumanLikeOrders>c__AnonStoreyB.<>m__0(),
-        // 1.1: FloatMenuMakerMap.<>c__DisplayClass5_11.g__Equip|11()()
-        // 1.3: FloatMenuMakerMap.<>c__DisplayClass9_19.g__Equip|25()()
         static MethodBase TargetMethod()
         {
-            List<Type> classes = typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all).ToList();
-            MethodBase target = null; //classes.First().GetMethods().First(); // a bailout so that harmony doesn't choke.
-            foreach (Type clas in classes.Where(c => c.Name.Contains(ClassNamePart)))
+            foreach (var clas in typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all))
             {
-                FieldInfo info = AccessTools.Field(clas, "equipment");
-                if (info != null && info.FieldType == typeof(ThingWithComps))
+                var equipmentField = AccessTools.Field(clas, "equipment");
+                if (equipmentField?.FieldType == typeof(ThingWithComps))
                 {
-                    target = clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains(MethodNamePart));
-                    break;
+                    return clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("Equip"));
                 }
             }
-            return target;
+
+            return null;
         }
 
-        // __instance required, don't need to interface with any properties/fields.
-        // __result isn't apt, target return is void.
-        static void Postfix()
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_AimingSystem, OpportunityType.GoodToKnow);
+            var instructionsList = instructions.ToList();
+            var knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
+            for (var i = 0; i < instructionsList.Count; i++)
+            {
+                yield return instructionsList[i];
+
+                // Use the vanilla call to KnowledgeDemonstrated() with ConceptDefOf.EquippingWeapons as an anchor
+                // so we can insert our own lesson activation about the aiming system after it.
+                if (instructionsList[i].Calls(knowledgeDemonstrated))
+                {
+                    if (instructionsList[i - 1].opcode == OpCodes.Ldc_I4_6 && instructionsList[i - 2].LoadsField(equippingWeapons))
+                    {
+                        var aimingSystem = AccessTools.Field(typeof(CE_ConceptDefOf), nameof(CE_ConceptDefOf.CE_AimingSystem));
+                        var teachOpportunity = AccessTools.Method(
+                                                   typeof(LessonAutoActivator),
+                                                   nameof(LessonAutoActivator.TeachOpportunity),
+                                                   new Type[] { typeof(ConceptDef), typeof(OpportunityType) }
+                                               );
+                        yield return new CodeInstruction(OpCodes.Ldsfld, aimingSystem);
+                        yield return new CodeInstruction(OpCodes.Ldc_I4, (int)OpportunityType.GoodToKnow);
+                        yield return new CodeInstruction(OpCodes.Call, teachOpportunity);
+                    }
+                }
+            }
         }
 
     }
@@ -60,7 +75,7 @@ namespace CombatExtended.HarmonyCE
     {
         static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_Modify_AddHumanlikeOrders).Name + " :: ";
 
-        /* 
+        /*
          * Opted for a postfix as the original Detour had the code inserted generally after other code had run and because we want the target's code
          * to always run unmodified.
          * There are two goals for this postfix, to add menu items for stabalizing a target and to add inventory pickup functions for pawns.
@@ -81,9 +96,9 @@ namespace CombatExtended.HarmonyCE
                 {
                     Pawn patient = (Pawn)curTarget.Thing;
                     if (patient.Downed
-                        //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                        && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                        && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
+                            //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
+                            && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
+                            && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
                         if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
                         {
@@ -92,25 +107,7 @@ namespace CombatExtended.HarmonyCE
                         else
                         {
                             string label = "CE_Stabilize".Translate(patient.LabelCap);
-                            Action action = delegate
-                            {
-                                if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
-                                {
-                                    Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
-                                    return;
-                                }
-                                // Drop medicine from inventory
-                                Medicine medicine = (Medicine)pawn.inventory.innerContainer.OrderByDescending(t => t.GetStatValue(StatDefOf.MedicalPotency)).FirstOrDefault();
-                                Thing medThing;
-                                if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
-                                {
-                                    Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medThing);
-                                    job.count = 1;
-                                    pawn.jobs.TryTakeOrderedJob(job);
-                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
-                                }
-                            };
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, patient), pawn, patient, "ReservedBy"));
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, () => Stabilize(pawn, patient), MenuOptionPriority.Default, null, patient), pawn, patient, "ReservedBy"));
                         }
                     }
                 }
@@ -139,15 +136,7 @@ namespace CombatExtended.HarmonyCE
                         // Pick up x
                         else if (count == 1)
                         {
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUp".Translate(item.Label, item), delegate
-                            {
-                                item.SetForbidden(false, false);
-                                Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
-                                job.count = 1;
-                                pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                                pawn.Notify_HoldTrackerItem(item, 1);
-                                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                            }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpOne".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                         }
                         else
                         {
@@ -157,27 +146,12 @@ namespace CombatExtended.HarmonyCE
                             }
                             else
                             {
-                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), delegate
-                                {
-                                    item.SetForbidden(false, false);
-                                    Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
-                                    job.count = item.stackCount;
-                                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                                    pawn.Notify_HoldTrackerItem(item, item.stackCount);
-                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                                }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), () => PickupAll(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                             }
                             opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label, item), delegate
                             {
                                 int to = Mathf.Min(count, item.stackCount);
-                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, delegate (int selectCount)
-                                {
-                                    item.SetForbidden(false, false);
-                                    Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
-                                    job.count = selectCount;
-                                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                                    pawn.Notify_HoldTrackerItem(item, selectCount);
-                                }, -2147483648);
+                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, (selectCount) => PickupCount(pawn, item, selectCount), -2147483648);
                                 Find.WindowStack.Add(window);
                                 PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
                             }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
@@ -185,6 +159,58 @@ namespace CombatExtended.HarmonyCE
                     }
                 }
             }
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static void Stabilize(Pawn pawn, Pawn patient)
+        {
+            if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
+            {
+                Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
+                return;
+            }
+            // Drop medicine from inventory
+            Medicine medicine = (Medicine)pawn.inventory.innerContainer.OrderByDescending(t => t.GetStatValue(StatDefOf.MedicalPotency)).FirstOrDefault();
+            Thing medThing;
+            if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
+            {
+                Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medThing);
+                job.count = 1;
+                pawn.jobs.TryTakeOrderedJob(job);
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
+            }
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static void Pickup(Pawn pawn, Thing item)
+        {
+            item.SetForbidden(false, false);
+            Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
+            job.count = 1;
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            pawn.Notify_HoldTrackerItem(item, 1);
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static void PickupAll(Pawn pawn, Thing item)
+        {
+            item.SetForbidden(false, false);
+            Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
+            job.count = item.stackCount;
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            pawn.Notify_HoldTrackerItem(item, item.stackCount);
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
+        }
+
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
+        private static void PickupCount(Pawn pawn, Thing item, int selectCount)
+        {
+            item.SetForbidden(false, false);
+            Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
+            job.count = selectCount;
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            pawn.Notify_HoldTrackerItem(item, selectCount);
         }
 
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -227,7 +253,7 @@ namespace CombatExtended.HarmonyCE
 
         /* Dev Notes (Don't need to read this, a short explanation is just before the method below):
          * The IL of the region I'm interested in (As of RimWorld 0.17.6351.26908, generated via Harmony debug mode):
-         * 
+         *
          * L_0b20: br Label #71 //end of previous logic block ("CannotWearBecauseOfMissingBodyParts")
          * // want to insert the new logic here...
          * L_0b25: Label #70    //Make sure this label is on our new logic block and not right here.
@@ -270,14 +296,14 @@ namespace CombatExtended.HarmonyCE
          * L_0b89: ldfld Verse.Pawn pawn
          * L_0b8e: callvirt Verse.Map get_Map()
          * L_0b93: callvirt Boolean get_IsPlayerHome()
-         * 
+         *
          * A couple of routes, opted to allow the called new method to modify the list directly but could have altered the
          * IL structure to store the returned object (or null) to the local variable, branch if not null to the list.add code.
          * The path I went with should be easier to maintain.
-         * 
+         *
          * New method call signature: (Pawn, Apparel, List<FloatMenuOption)
          * In the target method that correspods to arg1, a field of a nested class (discovered dynamically via code inspection), and arg2.
-         * 
+         *
          * Detailed Patch Notes (plan, kept in sync with the code below):
          * *Search Phase:
          * -Locate ldstr "ForceWear"
@@ -299,7 +325,7 @@ namespace CombatExtended.HarmonyCE
          * --Call the new method (expected to absorb 3 items from the stack and add 1 bool back).
          * --Branch false to label remembered in mem2.
          * --Modify the instruction we located, strip the label from it.
-         * 
+         *
          */
 
         /* The goal of this infix is to add a check for if the pawn is too loaded down with stuff (worn/inventory) before allowing them to wear
@@ -331,13 +357,15 @@ namespace CombatExtended.HarmonyCE
                 if (searchPhase == 3)
                 {
                     if (instruction.labels != null)
+                    {
                         branchLabel = instruction.labels;
+                    }
                     break;
                 }
 
                 // -Locate callvirt Void Add(Verse.FloatMenuOption)
                 if (searchPhase == 2 && instruction.opcode == OpCodes.Callvirt && (instruction.operand as MethodInfo) != null && (instruction.operand as MethodInfo).Name == "Add"
-                    && (previous.operand as LocalVariableInfo) != null && (previous.operand as LocalVariableInfo).LocalType == typeof(FloatMenuOption))
+                        && (previous.operand as LocalVariableInfo) != null && (previous.operand as LocalVariableInfo).LocalType == typeof(FloatMenuOption))
                 {
                     searchPhase = 3;
                 }
@@ -359,7 +387,9 @@ namespace CombatExtended.HarmonyCE
 
                 // -Start keeping a previous instruction cache.
                 if (searchPhase > 0 && searchPhase < 3)
+                {
                     previous = instruction;
+                }
             }
             if (!branchLabel.NullOrEmpty())
             {
@@ -392,7 +422,9 @@ namespace CombatExtended.HarmonyCE
                 // patch failure, just dump the data out
                 Log.Error(string.Concat(logPrefix, "Error applying patch to ForceWear, no change."));
                 foreach (CodeInstruction instruction in instructions)
+                {
                     yield return instruction;
+                }
             }
 
         }

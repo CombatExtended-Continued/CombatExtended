@@ -51,7 +51,7 @@ namespace CombatExtended
             {
                 if (enviromentShiftInt < 0)
                 {
-                    enviromentShiftInt = (lightingShift * 3.5f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
+                    enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 3.5f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
                 }
                 return enviromentShiftInt;
             }
@@ -65,7 +65,12 @@ namespace CombatExtended
             {
                 if (visibilityShiftInt < 0)
                 {
-                    visibilityShiftInt = enviromentShift * (shotDist / 50 / sightsEfficiency) * (2 - aimingAccuracy);
+                    float se = sightsEfficiency;
+                    if (se < 0.02f)
+                    {
+                        se = 0.02f;
+                    }
+                    visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
                 }
                 return visibilityShiftInt;
             }
@@ -77,7 +82,7 @@ namespace CombatExtended
         {
             get
             {
-                return targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving;
+                return targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving && (targetPawn.stances.stunner == null || !targetPawn.stances.stunner.Stunned);
             }
         }
         private float leadDistInt = -1f;
@@ -106,8 +111,8 @@ namespace CombatExtended
             get
             {
                 return leadDist * Mathf.Min(accuracyFactor * 0.25f, 2.5f)
-                    + Mathf.Min(lightingShift * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, 2.0f)
-                    + Mathf.Min(smokeDensity * 0.5f, 2.0f);
+                       + Mathf.Min((blindFiring ? 1 : lightingShift) * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, (blindFiring ? 100f : 2.0f))
+                       + Mathf.Min((blindFiring ? 0 : smokeDensity) * 0.5f, 2.0f);
             }
         }
 
@@ -118,7 +123,7 @@ namespace CombatExtended
         {
             get
             {
-                return shotDist * (shotDist / maxRange) * Mathf.Min(accuracyFactor * 0.5f, 0.8f);
+                return shotDist * (shotDist / Math.Max(maxRange, 20)) * Mathf.Min(accuracyFactor * 0.5f, 0.8f);
             }
         }
 
@@ -127,6 +132,8 @@ namespace CombatExtended
         public float spreadDegrees = 0f;
         public Thing cover = null;
         public float smokeDensity = 0f;
+        public bool blindFiring = false;
+        public bool roofed = false;
 
         // Copy-constructor
         public ShiftVecReport(ShiftVecReport report)
@@ -145,6 +152,8 @@ namespace CombatExtended
             spreadDegrees = report.spreadDegrees;
             cover = report.cover;
             smokeDensity = report.smokeDensity;
+            blindFiring = report.blindFiring;
+            roofed = report.roofed;
         }
 
         public ShiftVecReport()
@@ -159,20 +168,20 @@ namespace CombatExtended
 
         public float GetRandDist()
         {
-            float dist = shotDist + UnityEngine.Random.Range(-distShift, distShift);
+            float dist = shotDist + Rand.Range(-distShift, distShift);
             return dist;
         }
 
         public Vector2 GetRandLeadVec()
         {
-            if (globalTarget.IsValid)
+            if (blindFiring)
             {
-                return Vector2.zero;
+                return new Vector2(0, 0);
             }
             Vector3 moveVec = new Vector3();
             if (targetIsMoving)
             {
-                moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3() * (leadDist + UnityEngine.Random.Range(-leadShift, leadShift));
+                moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3() * (leadDist + Rand.Range(-leadShift, leadShift));
             }
             return new Vector2(moveVec.x, moveVec.z);
         }
@@ -180,7 +189,7 @@ namespace CombatExtended
         /// <returns>Angle Vector2 in degrees</returns>
         public Vector2 GetRandSpreadVec()
         {
-            Vector2 vec = UnityEngine.Random.insideUnitCircle * spreadDegrees;
+            Vector2 vec = Rand.InsideUnitCircle * spreadDegrees;
             return vec;
         }
 

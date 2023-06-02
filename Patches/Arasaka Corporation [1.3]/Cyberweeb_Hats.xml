@@ -21,13 +21,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Apparel_Cap_AC" or defName="Apparel_Cap_W_AC"]/apparel/layers</xpath>
-					<value>
-						<li>MiddleHead</li>
-					</value>
-				</li>
-
 				<!-- == GasMask == -->
 				<!-- statBases -->
 				<li Class="PatchOperationReplace">
@@ -35,8 +28,18 @@
 					<value>
 						<Bulk>5</Bulk>
 						<WornBulk>1</WornBulk>
-          					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+          				<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
 					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="Apparel_Hazmat_Mask_AC"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Apparel_Hazmat_Mask_AC"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationAdd">
@@ -96,14 +99,6 @@
         </costList>
         </value>
       </li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Apparel_Helmet_AC"]/apparel/layers</xpath>
-					<value>
-						<li>MiddleHead</li>
-					</value>
-				</li>
-
      <!-- === Goggles === -->
       <li Class="PatchOperationReplace">
         <xpath>Defs/ThingDef[defName="Apparel_Helmet_With_Techgogs_AC"]/statBases/ArmorRating_Sharp</xpath>
@@ -145,7 +140,6 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Apparel_Helmet_With_Techgogs_AC"]/apparel/layers</xpath>
 					<value>
-						<li>MiddleHead</li>
 						<li>StrappedHead</li>
 					</value>
 				</li>

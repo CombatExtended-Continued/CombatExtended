@@ -17,15 +17,30 @@
 			<Ammo_545x39mmSoviet_FMJ>Bullet_545x39mmSoviet_FMJ</Ammo_545x39mmSoviet_FMJ>
 			<Ammo_545x39mmSoviet_AP>Bullet_545x39mmSoviet_AP</Ammo_545x39mmSoviet_AP>
 			<Ammo_545x39mmSoviet_HP>Bullet_545x39mmSoviet_HP</Ammo_545x39mmSoviet_HP>
-		    <Ammo_545x39mmSoviet_Incendiary>Bullet_545x39mmSoviet_Incendiary</Ammo_545x39mmSoviet_Incendiary>
+			<Ammo_545x39mmSoviet_Incendiary>Bullet_545x39mmSoviet_Incendiary</Ammo_545x39mmSoviet_Incendiary>
 			<Ammo_545x39mmSoviet_HE>Bullet_545x39mmSoviet_HE</Ammo_545x39mmSoviet_HE>
-			<Ammo_545x39mmSoviet_Sabot>Bullet_545x39mmSoviet_Sabot</Ammo_545x39mmSoviet_Sabot>				
+			<Ammo_545x39mmSoviet_Sabot>Bullet_545x39mmSoviet_Sabot</Ammo_545x39mmSoviet_Sabot>
 		</ammoTypes>
+		<similarTo>AmmoSet_RifleIntermediate</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_545x39mmSoviet_SB</defName>
+		<label>5.45x39mm Soviet</label>
+		<ammoTypes>
+			<Ammo_545x39mmSoviet_FMJ>Bullet_545x39mmSoviet_FMJ_SB</Ammo_545x39mmSoviet_FMJ>
+			<Ammo_545x39mmSoviet_AP>Bullet_545x39mmSoviet_AP_SB</Ammo_545x39mmSoviet_AP>
+			<Ammo_545x39mmSoviet_HP>Bullet_545x39mmSoviet_HP_SB</Ammo_545x39mmSoviet_HP>
+			<Ammo_545x39mmSoviet_Incendiary>Bullet_545x39mmSoviet_Incendiary_SB</Ammo_545x39mmSoviet_Incendiary>
+			<Ammo_545x39mmSoviet_HE>Bullet_545x39mmSoviet_HE_SB</Ammo_545x39mmSoviet_HE>
+			<Ammo_545x39mmSoviet_Sabot>Bullet_545x39mmSoviet_Sabot_SB</Ammo_545x39mmSoviet_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_RifleIntermediate</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="545x39mmSovietBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="545x39mmSovietBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
 		<statBases>
 			<Mass>0.011</Mass>
@@ -98,7 +113,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
 		<defName>Ammo_545x39mmSoviet_HE</defName>
-		<label>5.45x39mm Soviet cartridge (HE)</label>
+		<label>5.45x39mm Soviet cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -127,7 +142,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base545x39mmSovietBullet" ParentName="BaseBullet" Abstract="True">
+	<ThingDef Name="Base545x39mmSovietBullet" ParentName="BaseBulletCE" Abstract="True">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -144,7 +159,7 @@
 		<label>5.45mm Soviet bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationSharp>5.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>28.04</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -154,7 +169,7 @@
 		<label>5.45mm Soviet bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationSharp>11</armorPenetrationSharp>
 			<armorPenetrationBlunt>28.04</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -174,7 +189,7 @@
 		<label>5.45mm Soviet bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>8</damageAmountBase>
-		  <armorPenetrationSharp>12</armorPenetrationSharp>
+		  <armorPenetrationSharp>11</armorPenetrationSharp>
 		  <armorPenetrationBlunt>28.04</armorPenetrationBlunt>
 		  <secondaryDamage>
 			<li>
@@ -187,10 +202,10 @@
 	  
 	  <ThingDef ParentName="Base545x39mmSovietBullet">
 		<defName>Bullet_545x39mmSoviet_HE</defName>
-		<label>5.45mm Soviet bullet (HE)</label>
+		<label>5.45mm Soviet bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>13</damageAmountBase>
-		  <armorPenetrationSharp>6</armorPenetrationSharp>
+		  <armorPenetrationSharp>5.5</armorPenetrationSharp>
 		  <armorPenetrationBlunt>28.04</armorPenetrationBlunt>
 		  <secondaryDamage>
 				<li>
@@ -206,9 +221,89 @@
 		<label>5.45mm Soviet bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>7</damageAmountBase>
-		  <armorPenetrationSharp>21</armorPenetrationSharp>
+		  <armorPenetrationSharp>19.25</armorPenetrationSharp>
 		  <armorPenetrationBlunt>36.6</armorPenetrationBlunt>
 		  <speed>264</speed>
+		</projectile>
+	  </ThingDef>
+
+	<!-- Short barrel -->	
+
+	<ThingDef ParentName="Base545x39mmSovietBullet">
+		<defName>Bullet_545x39mmSoviet_FMJ_SB</defName>
+		<label>5.45mm Soviet bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>19.56</armorPenetrationBlunt>
+			<speed>147</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base545x39mmSovietBullet">
+		<defName>Bullet_545x39mmSoviet_AP_SB</defName>
+		<label>5.45mm Soviet bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>19.56</armorPenetrationBlunt>
+			<speed>147</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base545x39mmSovietBullet">
+		<defName>Bullet_545x39mmSoviet_HP_SB</defName>
+		<label>5.45mm Soviet bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>19.56</armorPenetrationBlunt>
+			<speed>147</speed>
+		</projectile>
+	</ThingDef>
+
+	  <ThingDef ParentName="Base545x39mmSovietBullet">
+		<defName>Bullet_545x39mmSoviet_Incendiary_SB</defName>
+		<label>5.45mm Soviet bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>7</damageAmountBase>
+		  <armorPenetrationSharp>10</armorPenetrationSharp>
+		  <armorPenetrationBlunt>19.56</armorPenetrationBlunt>
+		  <secondaryDamage>
+			<li>
+			  <def>Flame_Secondary</def>
+			  <amount>4</amount>
+			</li>
+		  </secondaryDamage>
+		  <speed>147</speed>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef ParentName="Base545x39mmSovietBullet">
+		<defName>Bullet_545x39mmSoviet_HE_SB</defName>
+		<label>5.45mm Soviet bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>11</damageAmountBase>
+		  <armorPenetrationSharp>5</armorPenetrationSharp>
+		  <armorPenetrationBlunt>19.56</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>7</amount>
+				</li>
+		  </secondaryDamage>
+		  <speed>147</speed>
+		</projectile>
+	  </ThingDef>
+
+	  <ThingDef ParentName="Base545x39mmSovietBullet">
+		<defName>Bullet_545x39mmSoviet_Sabot_SB</defName>
+		<label>5.45mm Soviet bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>6</damageAmountBase>
+		  <armorPenetrationSharp>17.5</armorPenetrationSharp>
+		  <armorPenetrationBlunt>25.5</armorPenetrationBlunt>
+		  <speed>221</speed>
 		</projectile>
 	  </ThingDef>
 
@@ -263,7 +358,7 @@
 		<products>
 			<Ammo_545x39mmSoviet_AP>500</Ammo_545x39mmSoviet_AP>
 		</products>
-		<workAmount>1200</workAmount>
+		<workAmount>1440</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -329,9 +424,9 @@
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_545x39mmSoviet_HE</defName>
-    <label>make 5.45x39mm Soviet (HE) cartridge x500</label>
-    <description>Craft 500 5.45x39mm Soviet (HE) cartridges.</description>
-    <jobString>Making 5.45x39mm Soviet (HE) cartridges.</jobString>
+    <label>make 5.45x39mm Soviet (AP-HE) cartridge x500</label>
+    <description>Craft 500 5.45x39mm Soviet (AP-HE) cartridges.</description>
+    <jobString>Making 5.45x39mm Soviet (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

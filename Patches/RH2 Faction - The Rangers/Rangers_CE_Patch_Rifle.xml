@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[RH2] Faction: The Rangers</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>	
+
+			<!-- ========== Longgun Melee Tools =========== -->
+			  <li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNGun_AR10_Rifle" or
+					defName="RNGun_T48_Rifle" or 
+					defName="RNGun_BattleRifle_M1Garand" or
+					defName="RNGun_BattleRifle_M1Carbine" or
+					defName="RNGun_HenryRepeatingRifle_Rifle"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>stock</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>barrel</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>5</power>
+					  <cooldownTime>2.02</cooldownTime>
+					  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ========== AR10 =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_AR10_Rifle</defName>
+				<statBases>
+					<WorkToMake>32500</WorkToMake>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.44</SwayFactor>
+					<Bulk>10.25</Bulk>
+					<Mass>4.05</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+				</statBases>
+				<costList>
+					<Steel>55</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+					<Chemfuel>10</Chemfuel>
+				</costList>
+				<Properties>
+					<recoilAmount>2.07</recoilAmount>					
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<range>55</range>
+					<soundCast>RNShot_GenericDMR_II</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			</li>
+
+			<!-- ========== T48 FAL thing =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_T48_Rifle</defName>
+				<statBases>
+					<WorkToMake>28000</WorkToMake>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.52</SwayFactor>
+					<Bulk>10.90</Bulk>
+					<Mass>4.30</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>55</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>2.07</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<warmupTime>1.1</warmupTime>
+					<range>48</range>
+					<soundCast>RNShot_GenericDMR</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			</li>
+
+
+
+				<!-- ========== M1 Garand ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RNGun_BattleRifle_M1Garand</defName>
+					<statBases>
+						<Mass>4.31</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>11.00</Bulk>
+						<WorkToMake>15000</WorkToMake>
+					</statBases>
+					<costList>
+						<WoodLog>15</WoodLog>
+						<Steel>50</Steel>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_3006Springfield_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>55</range>
+						<soundCast>RNShot_GenericDMR</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>8</magazineSize>
+						<reloadTime>4.3</reloadTime>
+						<ammoSet>AmmoSet_3006Springfield</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+					<researchPrerequisite>GasOperation</researchPrerequisite>
+				</li>
+
+				<!-- ========== M1 Carbine ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RNGun_BattleRifle_M1Carbine</defName>
+					<statBases>
+						<Mass>2.40</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.08</ShotSpread>
+						<SwayFactor>1.14</SwayFactor>
+						<Bulk>6.00</Bulk>
+						<WorkToMake>17500</WorkToMake>
+					</statBases>
+					<costList>
+						<WoodLog>10</WoodLog>
+						<Steel>45</Steel>
+						<ComponentIndustrial>3</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_30Carbine_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>37</range>
+						<soundCast>Shot_AssaultRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_30Carbine</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<researchPrerequisite>GasOperation</researchPrerequisite>
+				</li>
+
+				<!-- Henry -->
+                <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+                    <defName>RNGun_HenryRepeatingRifle_Rifle</defName>
+                    <statBases>
+                        <WorkToMake>12000</WorkToMake>
+                        <Mass>3.2</Mass>
+                        <Bulk>12.50</Bulk>
+                        <SwayFactor>1.30</SwayFactor>
+                        <ShotSpread>0.02</ShotSpread>
+                        <SightsEfficiency>1</SightsEfficiency>
+                        <RangedWeapon_Cooldown>0.65</RangedWeapon_Cooldown>
+                    </statBases>
+                    <costList>
+                        <Steel>60</Steel>
+                        <ComponentIndustrial>3</ComponentIndustrial>
+                    </costList>
+                    <Properties>
+                        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                        <hasStandardCommand>True</hasStandardCommand>
+                        <defaultProjectile>Bullet_45Colt_FMJ</defaultProjectile>
+                        <warmupTime>0.9</warmupTime>
+                        <range>48</range>
+                        <soundCast>RNShotModel1866LA</soundCast>
+                        <soundCastTail>GunTail_Heavy</soundCastTail>
+                        <muzzleFlashScale>9</muzzleFlashScale>
+                    </Properties>
+                    <AmmoUser>
+                        <magazineSize>16</magazineSize>
+                        <reloadTime>0.5</reloadTime>
+                        <ammoSet>AmmoSet_45Colt</ammoSet>
+                        <reloadOneAtATime>true</reloadOneAtATime>
+                    </AmmoUser>
+                    <FireModes>
+                        <aiAimMode>AimedShot</aiAimMode>
+                    </FireModes>
+                </li>
+
+		</operations>
+		</match>
+	</Operation>
+	
+	</Patch>

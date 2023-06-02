@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Warcaskets: Adeptus Astartes</li>
+    </mods>
+	<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+    <!-- "Whatever happens, we have got The Emperor's blessing. They have not." -->
+
+    <!-- === Ammo Sets === -->
+    <CombatExtended.AmmoSetDef>
+      <defName>AmmoSet_MeltaCharge</defName>
+      <label>melta charge</label>
+      <ammoTypes>
+        <Ammo_Flamethrower_Prometheum>Bullet_Laser_MeltaCharge</Ammo_Flamethrower_Prometheum>
+      </ammoTypes>
+    </CombatExtended.AmmoSetDef>
+
+    <!-- === Projectiles === -->
+    <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseBulletCE">
+      <defName>Bullet_Laser_MeltaCharge</defName>
+      <label>melta beam</label>
+      <thingClass>CombatExtended.Lasers.LaserBeamCE</thingClass>      
+      <graphicData>
+        <texPath>ThirdParty/Warhammer/MeltaBeam</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+        <shaderType>Transparent</shaderType>
+        <color>(255,255,255)</color>        
+      </graphicData>
+      <altitudeLayer>Projectile</altitudeLayer>
+      <beamGraphic>BeamGraphic</beamGraphic> 
+      <beamWidth>0.4</beamWidth>     
+      <textures>
+        <li>ThirdParty/Warhammer/MeltaBeam</li>
+      </textures>                              
+      <projectile Class="CombatExtended.ProjectilePropertiesCE">
+        <isInstant>true</isInstant>
+        <damageDef>Bullet</damageDef>
+        <damageAmountBase>150</damageAmountBase>
+        <armorPenetrationSharp>500</armorPenetrationSharp>
+        <armorPenetrationBlunt>0.001</armorPenetrationBlunt> <!-- The overall pressure exerted by a laser beam striking something is, unsuprisingly, negligable. -->
+      </projectile>
+      <modExtensions>
+        <li Class="ProjectileImpactFX.EffectProjectileExtension">
+          <explosionMote>true</explosionMote>
+          <explosionMoteSize>0.5</explosionMoteSize>
+          <ImpactMoteDef>Mote_MeltaFlash</ImpactMoteDef>
+          <ImpactMoteSize>2.5</ImpactMoteSize>
+        </li>
+      </modExtensions>         
+    </ThingDef>
+
+		</value>
+	</match>
+	</Operation>
+</Patch>

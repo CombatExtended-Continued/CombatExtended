@@ -13,6 +13,8 @@ namespace CombatExtended
     {
         public static BodyPartGroupDef CoveredByNaturalArmor;
         public static BodyPartGroupDef RightArm;
-	public static BodyPartGroupDef OutsideSquishy;
+        public static BodyPartGroupDef LeftArm;
+        public static BodyPartGroupDef LeftShoulder;
+        public static BodyPartGroupDef OutsideSquishy;
     }
 }

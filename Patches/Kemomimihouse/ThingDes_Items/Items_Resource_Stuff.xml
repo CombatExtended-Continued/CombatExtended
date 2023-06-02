@@ -91,11 +91,26 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="kohimeWool"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.6</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="kohimeWool"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.45</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 				defName="siroWool" or
 				defName="mikoWool" or
 				defName="akameWool" or
-				defName="aomeWool"
+				defName="aomeWool" or
+				defName="kohimeWool"
 				]/statBases/StuffPower_Armor_Heat</xpath>
 				<value>
 					<StuffPower_Armor_Heat>0.20</StuffPower_Armor_Heat>
@@ -220,6 +235,24 @@
 				</nomatch>
 				<match Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="yukiwool"]/stuffProps/categories</xpath>
+					<value>
+						<li>SoftArmor</li>
+					</value>
+				</match>
+			</li>
+			
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="kohimeWool"]/stuffProps/categories</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="kohimeWool"]/stuffProps</xpath>
+					<value>
+						<categories>
+						<li>SoftArmor</li>
+						</categories>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="kohimeWool"]/stuffProps/categories</xpath>
 					<value>
 						<li>SoftArmor</li>
 					</value>

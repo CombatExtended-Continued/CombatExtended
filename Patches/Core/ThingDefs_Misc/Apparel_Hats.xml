@@ -4,23 +4,18 @@
   <!-- ========== Cowboy Hat,  Bowler Hat and Tuque ========== -->
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_CowboyHat" or defName="Apparel_BowlerHat" or defName="Apparel_Tuque"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_CowboyHat" or defName="Apparel_BowlerHat" or defName="Apparel_Tuque" or defName="Apparel_HatHood"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
       <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_Tuque"]/apparel/layers/li[.="Overhead"]</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_Tuque"]/apparel/layers</xpath>
     <value>
-      <li>MiddleHead</li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_CowboyHat" or defName="Apparel_BowlerHat"]/apparel/layers</xpath>
-    <value>
-      <li>MiddleHead</li>
+      <layers>
+        <li>OnHead</li>
+      </layers>
     </value>
   </Operation>
 
@@ -41,8 +36,8 @@
       <Suppressability>-0.25</Suppressability>
     </value>
   </Operation>
-
-  <Operation Class="PatchOperationReplace">
+  
+	<Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_WarMask"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
       <StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
@@ -55,6 +50,13 @@
       <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
     </value>
   </Operation>
+  
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_WarVeil"]/apparel/layers/li[.="Overhead"]</xpath>
+    <value>
+      <li>StrappedHead</li>
+    </value>
+  </Operation> 
 
   <!-- ========== Simple Helmet ========== -->
 
@@ -62,6 +64,8 @@
     <xpath>Defs/ThingDef[defName="Apparel_SimpleHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
       <StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+      <Bulk>3</Bulk>
+      <WornBulk>1</WornBulk>
     </value>
   </Operation>
 
@@ -78,6 +82,7 @@
     <xpath>Defs/ThingDef[defName="Apparel_AdvancedHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
       <Bulk>4</Bulk>
+      <WornBulk>1</WornBulk>
       <ArmorRating_Heat>0.54</ArmorRating_Heat>
     </value>
   </Operation>
@@ -141,27 +146,13 @@
   <Operation Class="PatchOperationRemove">
     <xpath>Defs/ThingDef[defName="Apparel_AdvancedHelmet"]/stuffCategories</xpath>
   </Operation>
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_AdvancedHelmet"]/apparel/layers</xpath>
-    <value>
-      <li>MiddleHead</li>
-    </value>
-  </Operation>
-
-  <!-- ========== Power Armor Helmet ========== -->
-
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/label</xpath>
-    <value>
-      <label>power armor helmet</label>
-    </value>
-  </Operation>
+  
+  <!-- ========== Marine Helmet ========== -->
 
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmet"]/description</xpath>
     <value>
-      <description>A part of power armor set, mostly used by heavy infantry.\n\nIntegrated servo-motors assist the wearer's muscles in holding the weight of the helmet while the integrated combat HUD improves weapon accuracy.</description>
+      <description>A marine armor helmet, with a built-in status computer and layered plasteel-weave plates.\n\nBuilt-in servo-motors assist the wearer's muscles in holding the weight of the helmet while the integrated combat HUD improves weapon accuracy.\n\nArmor like this is often used by rapid-incursion space marines.</description>
     </value>
   </Operation>
 
@@ -212,9 +203,8 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/equippedStatOffsets</xpath>
     <value>
-      <PsychicSensitivity>-0.2</PsychicSensitivity>
       <AimingAccuracy>0.15</AimingAccuracy>
-      <ToxicSensitivity>-0.50</ToxicSensitivity>
+      <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
       <SmokeSensitivity>-1</SmokeSensitivity>
     </value>
   </Operation>
@@ -228,11 +218,41 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/apparel</xpath>
+    <value>
+      <immuneToToxGasExposure>true</immuneToToxGasExposure>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/apparel/layers</xpath>
     <value>
       <li>OnHead</li>
       <li>StrappedHead</li>
-      <li>MiddleHead</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]</xpath>
+    <value>
+      <li Class="CombatExtended.PartialArmorExt">
+		<stats>
+			<li>
+				<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+				<parts>
+					<li>Eye</li>
+					<li>Nose</li>
+				</parts>
+			</li>
+			<li>
+				<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+				<parts>
+					<li>Eye</li>
+					<li>Nose</li>
+				</parts>
+			</li>
+		</stats>
+      </li>
     </value>
   </Operation>
 
@@ -241,7 +261,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetRecon"]/description</xpath>
     <value>
-      <description>A high-tech armored helmet with a built-in status computer and a protective plasteel-weave plate.\n\nArmor like this is often used by imperial scout troops or glitterworld police forces.\n\nIntegrated servo-motors assist the wearer's muscles in holding the weight of the helmet while the integrated combat HUD improves weapon accuracy.</description>
+      <description>A high-tech armored helmet with a built-in status computer and a protective plasteel-weave plate.\n\nBuilt-in servo-motors assist the wearer's muscles in holding the weight of the helmet while the integrated combat HUD improves weapon accuracy.\n\nArmor like this is often used by imperial scout troops or glitterworld police forces.</description>
     </value>
   </Operation>
 
@@ -293,9 +313,8 @@
     <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]</xpath>
     <value>
       <equippedStatOffsets>
-        <PsychicSensitivity>-0.2</PsychicSensitivity>
         <AimingAccuracy>0.15</AimingAccuracy>
-        <ToxicSensitivity>-0.50</ToxicSensitivity>
+        <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
         <SmokeSensitivity>-1</SmokeSensitivity>
       </equippedStatOffsets>
     </value>
@@ -309,13 +328,54 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/apparel</xpath>
+    <value>
+      <immuneToToxGasExposure>true</immuneToToxGasExposure>
+    </value>
+  </Operation>
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/apparel/layers</xpath>
     <value>
       <li>OnHead</li>
       <li>StrappedHead</li>
-      <li>MiddleHead</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]</xpath>
+    <value>
+      <li Class="CombatExtended.PartialArmorExt">
+		<stats>
+			<li>
+				<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+				<parts>
+					<li>Eye</li>
+				</parts>
+			</li>
+			<li>
+				<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+				<parts>
+					<li>Eye</li>
+				</parts>
+			</li>
+			<li>
+				<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+				<parts>
+					<li>Nose</li>
+					<li>Jaw</li>
+				</parts>
+			</li>
+			<li>
+				<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+				<parts>
+					<li>Nose</li>
+					<li>Jaw</li>
+				</parts>
+			</li>
+		</stats>
+      </li>
     </value>
   </Operation>
 

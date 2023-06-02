@@ -42,6 +42,38 @@
 				</value>
 			</li>
 			
+			<!--Celeberty-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Holosuit"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+					<WornBulk>0</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_Holosuit"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.75</ArmorRating_Sharp>
+					<ArmorRating_Electric>0.20</ArmorRating_Electric>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_Holosuit"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>3</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_Holosuit"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Feet</li>
+				</value>
+			</li>
+			
 			<!--Royal Robe-->
 			
 			<li Class="PatchOperationAdd">
@@ -138,7 +170,7 @@
 					<CarryWeight>85</CarryWeight>
 					<CarryBulk>10</CarryBulk>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				</value>
 			</li>
 			
@@ -146,6 +178,44 @@
 				<xpath>Defs/ThingDef[defName="Moyo_GDsuit"]/costList/Moyo_Abyssteel</xpath>
 				<value>
 					<Moyo_Abyssteel>260</Moyo_Abyssteel>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Moyo_GDsuit"]</xpath>
+				<value>
+				  <li Class="CombatExtended.PartialArmorExt">
+					  <stats>
+						  <li>
+							<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+							<parts>
+								<li>Neck</li>
+								<li>Leg</li>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+							<parts>
+								<li>Neck</li>
+								<li>Leg</li>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+					  </stats>
+				  </li>
 				</value>
 			</li>
 			
@@ -188,12 +258,22 @@
 					<Flammability>0</Flammability>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Moyo_GDhelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Moyo_GDhelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Moyo_GDhelmet"]/equippedStatOffsets</xpath>
 				<value>
 					<SmokeSensitivity>-1</SmokeSensitivity>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				</value>
 			</li>
 			
@@ -257,7 +337,7 @@
 					<CarryWeight>60</CarryWeight>
 					<CarryBulk>10</CarryBulk>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<MoveSpeed>0.1</MoveSpeed>
 				</value>
 			</li>
@@ -266,6 +346,44 @@
 				<xpath>Defs/ThingDef[defName="Moyo_GSsuit"]/costList/Moyo_Abyssteel</xpath>
 				<value>
 					<Moyo_Abyssteel>150</Moyo_Abyssteel>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Moyo_GSsuit"]</xpath>
+				<value>
+				  <li Class="CombatExtended.PartialArmorExt">
+					  <stats>
+						  <li>
+							<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+							<parts>
+								<li>Neck</li>
+								<li>Leg</li>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+							<parts>
+								<li>Neck</li>
+								<li>Leg</li>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+					  </stats>
+				  </li>
 				</value>
 			</li>
 			
@@ -308,12 +426,22 @@
 					<Flammability>0</Flammability>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Moyo_GShelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Moyo_GShelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Moyo_GShelmet"]/equippedStatOffsets</xpath>
 				<value>
 					<SmokeSensitivity>-1</SmokeSensitivity>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				</value>
 			</li>
 			

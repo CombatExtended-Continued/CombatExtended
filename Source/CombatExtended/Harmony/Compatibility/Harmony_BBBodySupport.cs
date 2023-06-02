@@ -14,8 +14,8 @@ namespace CombatExtended.HarmonyCE.Compatibility
     {
         static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: ";
         static Assembly ass = AppDomain.CurrentDomain.GetAssemblies().
-                                SingleOrDefault(assembly => assembly.
-                                GetName().Name == "BBBodySupport");
+                              SingleOrDefault(assembly => assembly.
+                                              GetName().Name == "BBBodySupport");
 
         private static bool IsHeadwear(ApparelLayerDef layer)
         {

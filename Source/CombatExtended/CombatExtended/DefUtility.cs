@@ -38,35 +38,45 @@ namespace CombatExtended
         {
             // Process all apparel defs
             foreach (ApparelLayerDef layer in DefDatabase<ApparelLayerDef>.AllDefs)
+            {
                 ProcessApparelLayer(layer);
+            }
 
             // Process all apparel defs
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsApparel))
+            {
                 ProcessApparel(def);
+            }
 
             // Process all defs for isMenuHiddenArray
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(t => t.HasModExtension<ThingDefExtensionCE>()))
+            {
                 ProcessThingDefExtensionCE(def);
+            }
 
             // Process all defs for ammo to find AOE defs
             foreach (AmmoSetDef def in DefDatabase<AmmoSetDef>.AllDefs)
+            {
                 ProcessAmmo(def);
+            }
 
             // Process all weapons
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.HasComp(typeof(CompAmmoUser))))
+            {
                 ProcessWeapons(def);
+            }
 
             // Prepare attachments
             foreach (AttachmentDef def in DefDatabase<AttachmentDef>.AllDefs)
+            {
                 def.ValidateStats();
+            }
 
             // Prepare weaponPlatforms
-            foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)                            
+            foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)
+            {
                 def.PrepareStats();
-
-            // Prepare things
-            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs)
-                ProcessThing(def);
+            }
         }
 
         /// <summary>
@@ -77,7 +87,10 @@ namespace CombatExtended
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsVisibleLayer(this ThingDef def)
         {
-            if (!def.IsApparel) throw new ArgumentException("Argument need to be apparel!");
+            if (!def.IsApparel)
+            {
+                throw new ArgumentException("Argument need to be apparel!");
+            }
             return isVisibleLayerArray[def.index];
         }
 
@@ -126,7 +139,9 @@ namespace CombatExtended
             isMenuHiddenArray[def.index] = value;
 
             if (def.HasModExtension<ThingDefExtensionCE>()) // Check if this def has ThingDefExtensionCE
+            {
                 def.GetModExtension<ThingDefExtensionCE>().MenuHidden = value;
+            }
         }
 
         /// <summary>
@@ -164,7 +179,7 @@ namespace CombatExtended
         /// <summary>
         /// Prepare apparel def by caching isVisibleLayer.
         /// </summary>
-        /// <param name="def">Apparel def</param>        
+        /// <param name="def">Apparel def</param>
         private static void ProcessApparel(ThingDef def)
         {
             ApparelLayerDef layer = def.apparel.LastLayer;
@@ -172,7 +187,9 @@ namespace CombatExtended
              * set isVisibleLayerArray from the layer index since layers are processed first.
              */
             if (layer != null)
+            {
                 isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
+            }
         }
 
         /// <summary>
@@ -188,7 +205,7 @@ namespace CombatExtended
         /// <summary>
         /// Prepare apparellayerdef def by caching isVisibleLayer.
         /// </summary>
-        /// <param name="def">Apparel def</param>        
+        /// <param name="def">Apparel def</param>
         private static void ProcessApparelLayer(ApparelLayerDef layer)
         {
             isVisibleLayerArray[layer.index] = IsVisibleLayer_Internal(layer);
@@ -198,29 +215,31 @@ namespace CombatExtended
         /// Used for rendering of CE custom apparel layers.
         /// </summary>
         /// <param name="layer"></param>
-        /// <returns></returns>        
+        /// <returns></returns>
         private static bool IsVisibleLayer_Internal(ApparelLayerDef layer)
         {
-            /* 
+            /*
              * Belt is not actually a pre-shell layer, but we want to treat it as such in this patch,
-             * to avoid rendering bugs with utility items (e.g: broadshield pack)                        
+             * to avoid rendering bugs with utility items (e.g: broadshield pack)
              */
             return true
-                && layer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder
-                && layer != ApparelLayerDefOf.Belt
-                && !(layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false);
+                   && layer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder
+                   && layer != ApparelLayerDefOf.Belt
+                   && !(layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false);
         }
 
         /// <summary>
         /// Perpare the ThingDefExtensionCE.
         /// </summary>
-        /// <param name="def">ThingDef with </param>        
+        /// <param name="def">ThingDef with </param>
         private static void ProcessThingDefExtensionCE(ThingDef def)
         {
             ThingDefExtensionCE ext = def.GetModExtension<ThingDefExtensionCE>();
 
             if (ext != null)
+            {
                 isMenuHiddenArray[def.index] = ext.MenuHidden;
+            }
         }
 
         /// <summary>
@@ -232,29 +251,60 @@ namespace CombatExtended
             CompProperties_AmmoUser props = (CompProperties_AmmoUser)(def.comps?.First(c => c.compClass == typeof(CompAmmoUser)) ?? null);
 
             if (props?.ammoSet != null)
+            {
                 isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
+            }
 
             isAOEArray[def.index] = isAOEArray[def.index]
-                || (def.weaponTags?.Contains("CE_AI_AOE") ?? false)
-                || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive)) ?? false)
-                || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse)) ?? false)
-                || (def.comps?.Any(c => c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
+                                    || (def.weaponTags?.Contains("CE_AI_AOE") ?? false)
+                                    || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive)) ?? false)
+                                    || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse)) ?? false)
+                                    || (def.comps?.Any(c => c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
 
             float ticksBetweenBurstShots = def.verbs.Max(v => v.ticksBetweenBurstShots);
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.TicksBetweenBurstShots))
-                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots });
+            {
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots
+                });
+            }
 
             float burstShotCount = def.verbs.Max(v => v.burstShotCount);
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.BurstShotCount))
-                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.BurstShotCount, value = burstShotCount });
+            {
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.BurstShotCount, value = burstShotCount
+                });
+            }
 
-            float recoil = def.verbs.Max(v => v is VerbPropertiesCE verbCE ? verbCE.recoilAmount : 0);            
+            float recoil = def.verbs.Max(v => v is VerbPropertiesCE verbCE ? verbCE.recoilAmount : 0);
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.Recoil))
-                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.Recoil, value = recoil });
-                        
+            {
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.Recoil, value = recoil
+                });
+            }
+
             float reloadTime = def.GetCompProperties<CompProperties_AmmoUser>().reloadTime;
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.ReloadTime))
-                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.ReloadTime, value = reloadTime });            
+            {
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.ReloadTime, value = reloadTime
+                });
+            }
+
+            float ammoGenPerMagOverride = def.GetCompProperties<CompProperties_AmmoUser>().AmmoGenPerMagOverride;
+            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.AmmoGenPerMagOverride))
+            {
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.AmmoGenPerMagOverride, value = ammoGenPerMagOverride
+                });
+            }
         }
 
         /// <summary>
@@ -278,9 +328,9 @@ namespace CombatExtended
         private static bool IsAOEAmmoLink(AmmoLink link)
         {
             return link.ammo?.detonateProjectile != null
-                || link.projectile?.thingClass == typeof(ProjectileCE_Explosive)
-                || link.projectile?.thingClass == typeof(Projectile_Explosive)
-                || (link.projectile?.comps?.Any(c => c.compClass == typeof(CompFragments) || c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
+                   || link.projectile?.thingClass == typeof(ProjectileCE_Explosive)
+                   || link.projectile?.thingClass == typeof(Projectile_Explosive)
+                   || (link.projectile?.comps?.Any(c => c.compClass == typeof(CompFragments) || c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
         }
     }
 }

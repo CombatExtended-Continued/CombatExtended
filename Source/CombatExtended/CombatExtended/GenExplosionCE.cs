@@ -15,14 +15,50 @@ namespace CombatExtended
         public const float MinExplosionScale = 0.1f;    //as if 1/1000 of the shell exploded
         public const float MaxExplosionScale = 10f;     //as if 1000 shells exploded
 
-        public static void DoExplosion(IntVec3 center, Map map, float radius, DamageDef damType, Thing instigator, int damAmount = -1, float armorPenetration = -1f, SoundDef explosionSound = null, ThingDef weapon = null, ThingDef projectile = null, Thing intendedTarget = null, ThingDef postExplosionSpawnThingDef = null, float postExplosionSpawnChance = 0f, int postExplosionSpawnThingCount = 1, bool applyDamageToExplosionCellsNeighbors = false, ThingDef preExplosionSpawnThingDef = null, float preExplosionSpawnChance = 0f, int preExplosionSpawnThingCount = 1, float chanceToStartFire = 0f, bool damageFalloff = false, float? direction = null, List<Thing> ignoredThings = null,
+        public static void DoExplosion(
+            IntVec3 center,
+            Map map,
+            float radius,
+            DamageDef damType,
+            Thing instigator,
+            int damAmount = -1,
+            float armorPenetration = -1f,
+            SoundDef explosionSound = null,
+            ThingDef weapon = null,
+            ThingDef projectile = null,
+            Thing intendedTarget = null,
+            ThingDef postExplosionSpawnThingDef = null,
+            float postExplosionSpawnChance = 0f,
+            int postExplosionSpawnThingCount = 1,
+            GasType? postExplosionGasType = null,
+            bool applyDamageToExplosionCellsNeighbors = false,
+            ThingDef preExplosionSpawnThingDef = null,
+            float preExplosionSpawnChance = 0f,
+            int preExplosionSpawnThingCount = 1,
+            float chanceToStartFire = 0f,
+            bool damageFalloff = false,
+            float? direction = null,
+            List<Thing> ignoredThings = null,
+            FloatRange? affectedAngle = null,
+            bool doVisualEffects = true,
+            float propagationSpeed = 1f,
+            float excludeRadius = 0f,
+            bool doSoundEffects = true,
+            ThingDef postExplosionSpawnThingDefWater = null,
+            float screenShakeFactor = 1f,
+
+            // CE parameters
             float height = 0f, float scaleFactor = 1f, bool destroyAfterwards = false, ThingWithComps explosionParentToDestroy = null)
         {
             // Allows destroyed things to be exploded with appropriate scaleFactor
             if (scaleFactor <= 0f)
+            {
                 scaleFactor = 1f;
+            }
             else
+            {
                 scaleFactor = Mathf.Clamp(scaleFactor, MinExplosionScale, MaxExplosionScale);
+            }
 
             if (map == null)
             {
@@ -78,11 +114,21 @@ namespace CombatExtended
             explosion.damageFalloff = damageFalloff;
             explosion.needLOSToCell1 = needLOSToCell;
             explosion.needLOSToCell2 = needLOSToCell2;
+            explosion.postExplosionGasType = postExplosionGasType;
+            explosion.affectedAngle = affectedAngle;
+            explosion.doVisualEffects = doVisualEffects;
+            explosion.propagationSpeed = propagationSpeed;
+            explosion.excludeRadius = excludeRadius;
+            explosion.doSoundEffects = doSoundEffects;
+            explosion.postExplosionSpawnThingDefWater = postExplosionSpawnThingDefWater;
+            explosion.screenShakeFactor = screenShakeFactor;
             explosion.StartExplosionCE(explosionSound, ignoredThings);
 
             // Needed to allow CompExplosive to use stackCount
             if (destroyAfterwards && !explosionParentToDestroy.Destroyed)
+            {
                 explosionParentToDestroy?.Kill();
+            }
         }
 
         //Exact copy (1.1)
@@ -150,10 +196,6 @@ namespace CombatExtended
                     needLOSToCell2 = new IntVec3?(intVec3);
                 }
             }
-        }
-        public static float GetExplosionAP(ProjectileProperties props)
-        {
-            return props.GetDamageAmount(1) * 0.1f;
         }
     }
 }

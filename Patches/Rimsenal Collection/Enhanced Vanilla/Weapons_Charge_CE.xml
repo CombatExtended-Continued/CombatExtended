@@ -184,7 +184,7 @@
 				<Properties>				
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_12x65mmCharged</defaultProjectile>
+					<defaultProjectile>Bullet_12x72mmCharged</defaultProjectile>
 					<warmupTime>2.8</warmupTime>
 					<range>86</range>
 					<soundCast>ChargeLance_Fire</soundCast>
@@ -194,7 +194,7 @@
 				<AmmoUser>
 					<magazineSize>5</magazineSize>
 					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_12x65mmCharged</ammoSet>
+					<ammoSet>AmmoSet_12x72mmCharged</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
@@ -203,6 +203,7 @@
 					<li>CE_AI_Rifle</li>
 					<li>SniperRifle</li>
 					<li>AdvancedGun</li>
+					<li>Bipod_AMR</li>
 				</weaponTags>
 			</li>
 			  
@@ -210,33 +211,36 @@
 			  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_EMPRifle</defName>
 				<statBases>
-					<WorkToMake>93000</WorkToMake>
-					<SightsEfficiency>1.1</SightsEfficiency>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.08</ShotSpread>
 					<SwayFactor>1.32</SwayFactor>
 					<Bulk>9.85</Bulk>
 					<Mass>4.80</Mass>
 					<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
 				</statBases>
-				<costList>
-					<Steel>30</Steel>
-					<Plasteel>20</Plasteel>
-					<ComponentIndustrial>6</ComponentIndustrial>
-					<ComponentSpacer>2</ComponentSpacer>
-					<Chemfuel>15</Chemfuel>
-				</costList>
-				<Properties>				
+				<Properties>
+					<recoilAmount>1.44</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>EMP_Blast</defaultProjectile>
-					<warmupTime>2</warmupTime>
+					<warmupTime>1.1</warmupTime>
 					<range>40</range>
+					<burstShotCount>4</burstShotCount>
+					<ammoConsumedPerShotCount>5</ammoConsumedPerShotCount>
+					<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
 					<soundCast>Shot_ChargeRifle</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
 				</Properties>
+				<AmmoUser>
+					<magazineSize>100</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_LaserEMP_Rimsenal</ammoSet>
+				</AmmoUser>
 				<FireModes>
-					<aiAimMode>AimedShot</aiAimMode>
+				  <aimedBurstShotCount>2</aimedBurstShotCount>
+				  <aiUseBurstMode>True</aiUseBurstMode>
+				  <aiAimMode>AimedShot</aiAimMode>
 				</FireModes>
 				<weaponTags>
 					<li>CE_AI_Rifle</li>
@@ -364,7 +368,7 @@
 				<Properties>					
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+					<defaultProjectile>Bullet_8x50mmCharged</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
 					<range>62</range>
 					<soundCast>Shot_BoltActionRifle</soundCast>
@@ -374,13 +378,14 @@
 				<AmmoUser>
 					<magazineSize>15</magazineSize>
 					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+					<ammoSet>AmmoSet_8x50mmCharged</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
 				</FireModes>
 				<weaponTags>
 					<li>AdvancedGun</li>
+					<li>NoSwitch</li>
 				</weaponTags>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -414,10 +419,10 @@
 						  <capacities>
 							<li>Stab</li>
 						  </capacities>
-						  <power>20</power>
+						  <power>15</power>
 						  <cooldownTime>1.55</cooldownTime>
 						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-						  <armorPenetrationSharp>17.22</armorPenetrationSharp>				
+						  <armorPenetrationSharp>24.01</armorPenetrationSharp>				
 						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 						</li>
 					</tools>

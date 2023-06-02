@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outland - Redburn Pact</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Pact Crossbow -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Outland_PactCrossbow"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Outland_PactCrossbow</defName>
+					<statBases>
+						<Bulk>4</Bulk>
+						<SwayFactor>1.0</SwayFactor>
+						<ShotSpread>0.5</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>2.05</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+						<warmupTime>0.90</warmupTime>
+						<range>20</range>
+						<soundCast>Bow_Small</soundCast>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>MedievalRanged</li>
+						<li>CE_Bow</li>
+					</weaponTags>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

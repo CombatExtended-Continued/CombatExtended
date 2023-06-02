@@ -18,6 +18,7 @@
 			<Ammo_46x30mm_AP>Bullet_46x30mm_AP</Ammo_46x30mm_AP>
 			<Ammo_46x30mm_HP>Bullet_46x30mm_HP</Ammo_46x30mm_HP>
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -81,7 +82,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base46x30mmBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base46x30mmBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -118,7 +119,6 @@
 		<label>4.6x30mm bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationBase>0.145</armorPenetrationBase>
 			<armorPenetrationSharp>3</armorPenetrationSharp>
 			<armorPenetrationBlunt>9.72</armorPenetrationBlunt>
 		</projectile>
@@ -175,7 +175,7 @@
 		<products>
 			<Ammo_46x30mm_AP>500</Ammo_46x30mm_AP>
 		</products>
-		<workAmount>800</workAmount>
+		<workAmount>960</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">

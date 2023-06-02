@@ -81,6 +81,14 @@
 			</tools>
 			</value>
 		</li>
+    
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="KIT_Gun_BayonetMusket"]/weaponTags</xpath>
+      <value>
+        <li>NoSwitch</li>
+      </value>
+    </li>
+
 
 		<!-- ========== Guns ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -105,6 +113,7 @@
           </Properties>
           <AmmoUser>
             <magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
             <reloadTime>8</reloadTime>
             <ammoSet>AmmoSet_FastMusketBall</ammoSet>
           </AmmoUser>
@@ -135,6 +144,7 @@
           </Properties>
           <AmmoUser>
             <magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
             <reloadTime>8</reloadTime>
             <ammoSet>AmmoSet_FastMusketBall</ammoSet>
           </AmmoUser>
@@ -159,7 +169,7 @@
             <defaultProjectile>Bullet_BlunderShot_Ball</defaultProjectile>
             <warmupTime>1.1</warmupTime>
             <range>16</range>
-			<soundCast>Shot_Shotgun</soundCast>
+			<soundCast>Shot_Shotgun_NoRack</soundCast>
 			<soundCastTail>GunTail_Light</soundCastTail>
             <muzzleFlashScale>12</muzzleFlashScale>
 			<ammoConsumedPerShotCount>7</ammoConsumedPerShotCount>
@@ -181,7 +191,7 @@
             <Bulk>14.9</Bulk>
             <SwayFactor>1.92</SwayFactor>
             <ShotSpread>0.30</ShotSpread>
-            <SightsEfficiency>1</SightsEfficiency>
+            <SightsEfficiency>0.85</SightsEfficiency>
             <RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
           </statBases>
           <Properties>

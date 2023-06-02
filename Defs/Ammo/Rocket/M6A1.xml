@@ -12,7 +12,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="M6A1RocketBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="M6A1RocketBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Outdated 60mm rocket-propelled grenade designed for the M1A1 Bazooka.</description>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
@@ -47,7 +47,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseM6A1Rocket" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseM6A1Rocket" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -89,7 +89,7 @@
   
 	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_M6A1_HEAT</defName>
     <label>make M6A1 HEAT rockets x5</label>
     <description>Craft 5 M6A1 HEAT rockets.</description>

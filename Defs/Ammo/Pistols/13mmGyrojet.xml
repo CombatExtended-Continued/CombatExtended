@@ -18,11 +18,12 @@
 			<Ammo_13mmGyrojet_AP>Bullet_13mmGyrojet_AP</Ammo_13mmGyrojet_AP>
 			<Ammo_13mmGyrojet_HP>Bullet_13mmGyrojet_HP</Ammo_13mmGyrojet_HP>			
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="13mmGyrojetBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="13mmGyrojetBase" ParentName="AmmoBase" Abstract="True">
 		<description>Rare pistol rocket that utilizes miniature rockets for propulsion instead of gunpowder.</description>
 		<statBases>
 			<Mass>0.014</Mass>
@@ -81,7 +82,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base13mmGyrojetBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base13mmGyrojetBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -173,7 +174,7 @@
 		<products>
 			<Ammo_13mmGyrojet_AP>500</Ammo_13mmGyrojet_AP>
 		</products>
-		<workAmount>1400</workAmount>
+		<workAmount>1680</workAmount>
 	</RecipeDef>
 	
 	<RecipeDef ParentName="AmmoRecipeBase">

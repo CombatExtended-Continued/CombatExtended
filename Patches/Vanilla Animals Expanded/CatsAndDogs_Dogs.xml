@@ -3,7 +3,7 @@
 
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>Vanilla Animals Expanded — Cats and Dogs</li>
+      <li>Vanilla Animals Expanded</li>
     </mods>
 
     <match Class="PatchOperationSequence">
@@ -11,7 +11,7 @@
         <!-- === Small Dogs === -->
         <li Class="PatchOperationAdd">
           <xpath>
-            /Defs/ThingDef[
+            Defs/ThingDef[
               defName="AEXP_Beagle" or
               defName="AEXP_Chihuahua" or
               defName="AEXP_Corgi" or
@@ -29,40 +29,7 @@
 
         <li Class="PatchOperationReplace">
           <xpath>
-            /Defs/ThingDef[
-              defName="AEXP_Beagle" or
-              defName="AEXP_Chihuahua" or
-              defName="AEXP_Corgi" or
-              defName="AEXP_FrenchBulldog" or
-              defName="AEXP_Pug" or
-              defName="AEXP_Shih-Tzu" or
-              defName="AEXP_WelshTerrier"]/race/baseHealthScale
-          </xpath>
-
-          <value>
-            <baseHealthScale>0.3</baseHealthScale>
-          </value>
-        </li>
-
-        <li Class="PatchOperationReplace">
-          <xpath>
-            /Defs/PawnKindDef[
-              defName="AEXP_Beagle" or
-              defName="AEXP_Chihuahua" or
-              defName="AEXP_Corgi" or
-              defName="AEXP_FrenchBulldog" or
-              defName="AEXP_Pug" or
-              defName="AEXP_Shih-Tzu" or
-              defName="AEXP_WelshTerrier"]/combatPower
-          </xpath>
-
-          <value>
-            <combatPower>12</combatPower>
-          </value>
-        </li>
-        <li Class="PatchOperationReplace">
-          <xpath>
-            /Defs/ThingDef[ 
+            Defs/ThingDef[ 
               defName="AEXP_Beagle" or
               defName="AEXP_Chihuahua" or
               defName="AEXP_Corgi" or
@@ -123,41 +90,17 @@
 
         <!-- === Big Dogs (Labrador) === -->
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/statBases</xpath>
+          <xpath>Defs/ThingDef[defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/statBases</xpath>
 
           <value>
-            <MeleeDodgeChance>0.19</MeleeDodgeChance>
+            <MeleeDodgeChance>0.20</MeleeDodgeChance>
             <MeleeCritChance>0.06</MeleeCritChance>
-            <MeleeParryChance>0.04</MeleeParryChance>
+            <MeleeParryChance>0.05</MeleeParryChance>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/race/baseBodySize</xpath>
-
-          <value>
-            <baseBodySize>0.65</baseBodySize>
-          </value>
-        </li>
-
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/race/baseHealthScale</xpath>
-
-          <value>
-            <baseHealthScale>0.65</baseHealthScale>
-          </value>
-        </li>
-
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/PawnKindDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/combatPower</xpath>
-
-          <value>
-            <combatPower>50</combatPower>
-          </value>
-        </li>
-
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[ defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName="AEXP_GreatDane" or defName="AEXP_Poodle"]/tools</xpath>
 
           <value>
             <tools>
@@ -210,41 +153,17 @@
 
         <!-- === Rottweiler / German Shepherd (Husky) === -->
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/statBases</xpath>
+          <xpath>Defs/ThingDef[defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/statBases</xpath>
 
           <value>
-            <MeleeDodgeChance>0.22</MeleeDodgeChance>
+            <MeleeDodgeChance>0.23</MeleeDodgeChance>
             <MeleeCritChance>0.05</MeleeCritChance>
-            <MeleeParryChance>0.04</MeleeParryChance>
+            <MeleeParryChance>0.05</MeleeParryChance>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/race/baseBodySize</xpath>
-
-          <value>
-            <baseBodySize>0.65</baseBodySize>
-          </value>
-        </li>
-
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/race/baseHealthScale</xpath>
-
-          <value>
-            <baseHealthScale>0.65</baseHealthScale>
-          </value>
-        </li>
-
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/PawnKindDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/combatPower</xpath>
-
-          <value>
-            <combatPower>60</combatPower>
-          </value>
-        </li>
-
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[ defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName="AEXP_Rottweiler" or defName="AEXP_GermanShepherd"]/tools</xpath>
 
           <value>
             <tools>

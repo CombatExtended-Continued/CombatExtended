@@ -14,13 +14,13 @@ namespace CombatExtended.HarmonyCE.Compatibility
     {
         /*
          * IF YOU ARE A MODDER PLEASE READ THIS...
-         * 
-         * In order to make compatiblity with CE easier, we've implemented several empty functions that return a default value. 
+         *
+         * In order to make compatiblity with CE easier, we've implemented several empty functions that return a default value.
          * These are to be patched by either other mods or by CE it self inorder to make the process of changing simple things in CE a bit simpler.
-         * 
-         * <==================================== Example of adding support for customHeadDrawSize form HAR in CE ====================================>                  
+         *
+         * <==================================== Example of adding support for customHeadDrawSize form HAR in CE ====================================>
          */
-        // 
+        //
         //private static Type TypeOf_PartGenerator
         //{
         //    get
@@ -69,8 +69,8 @@ namespace CombatExtended.HarmonyCE.Compatibility
         //    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         //    {
         //        var local = generator.DeclareLocal(TypeOf_ThingDef_AlienRace);  // You must asign after Isinst so you can access stuff from the subclass
-        //        var l1 = generator.DefineLabel();       
-        //      
+        //        var l1 = generator.DefineLabel();
+        //
         //        yield return new CodeInstruction(OpCodes.Ldarg_0);
         //        yield return new CodeInstruction(OpCodes.Isinst, TypeOf_ThingDef_AlienRace);  // We check if the passed def is ThingDef_AlienRace
         //        yield return new CodeInstruction(OpCodes.Stloc_S, local);
@@ -93,7 +93,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
         //    }
         //}
         //
-        //<==================================== Example end ====================================>                  
+        //<==================================== Example end ====================================>
         //
 
         private static Type TypeOf_HarmonyPatches
@@ -105,7 +105,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
         }
 
         [HarmonyPatch]
-        public static class Harmony_AlienPartGenerator_GetPawnHairMesh
+        public static class Harmony_AlienPartGenerator_GetHumanlikeHeadSetForPawnHelper
         {
             public static bool Prepare()
             {
@@ -114,16 +114,16 @@ namespace CombatExtended.HarmonyCE.Compatibility
 
             public static MethodBase TargetMethod()
             {
-                return AccessTools.Method(typeof(Harmony_PawnRenderer), nameof(Harmony_PawnRenderer.GetHeadMesh));
+                return AccessTools.Method(typeof(Harmony_PawnRenderer), nameof(Harmony_PawnRenderer.GetHumanlikeHeadSetForPawnHelper));
             }
 
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
             {
+                // GetHumanlikeHeadSetForPawnHelper() now expects an object rather than a float, so explicitly box lifeStageFactor before forwarding it
                 yield return new CodeInstruction(OpCodes.Ldarg_0);
-                yield return new CodeInstruction(OpCodes.Ldarg_1);
-                yield return new CodeInstruction(OpCodes.Ldarg_2);
-                yield return new CodeInstruction(OpCodes.Ldarg_3);
-                yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(TypeOf_HarmonyPatches, "GetPawnHairMesh"));
+                yield return new CodeInstruction(OpCodes.Box, typeof(float));
+                yield return new CodeInstruction(OpCodes.Ldarg_1); // pawn
+                yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(TypeOf_HarmonyPatches, "GetHumanlikeHeadSetForPawnHelper"));
                 yield return new CodeInstruction(OpCodes.Ret);
             }
         }

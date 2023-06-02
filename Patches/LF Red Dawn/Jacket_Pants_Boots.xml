@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[LF] Red Dawn</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+		<!-- ==================== Jackets ========================== -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_SovietCoat"]/costStuffCount</xpath>
+			<value>
+				<costStuffCount>110</costStuffCount>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_SovietCoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>7.5</StuffEffectMultiplierArmor>	
+				<WornBulk>2</WornBulk>
+				<Bulk>5</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_SovietOfficerJacket"]/costStuffCount</xpath>
+			<value>
+				<costStuffCount>75</costStuffCount>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_SovietOfficerJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>	
+				<Bulk>2</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_SovietOfficerJacket"]/equippedStatOffsets</xpath>
+			<value>
+				<equippedStatOffsets>
+	  				<SocialImpact>0.15</SocialImpact>
+    				</equippedStatOffsets>
+			</value>
+		</li>
+		<!-- ==================== PANTS ========================== -->
+
+ <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RD_AFGHANKACombatPants" 
+		or defName="RD_OfficerPants"
+		or defName="RNApparel_Pants_HelikonPilgrim"
+		or defName="RNApparel_Pants_511StrykeMulticam"
+		or defName="RNApparel_Pants_FjallravenKeb"
+		or defName="RNApparel_Pants_BearGryllsSurvivor"
+		or defName="RNApparel_Pants_GORKA3Pants"
+		or defName="RNApparel_Jeans_Generic"
+		or defName="RNApparel_Pants_ACUUCP"
+		or defName="RNApparel_Pants_BDUDMARPAT"
+		or defName="RNApparel_Pants_CombatsDDPM"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+		  <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>	
+		<Bulk>1</Bulk>
+    </value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RD_AFGHANKACombatPants" 
+		or defName="RD_OfficerPants"
+		or defName="RNApparel_Pants_HelikonPilgrim"
+		or defName="RNApparel_Pants_511StrykeMulticam"
+		or defName="RNApparel_Pants_FjallravenKeb"
+		or defName="RNApparel_Pants_BearGryllsSurvivor"
+		or defName="RNApparel_Pants_GORKA3Pants"
+		or defName="RNApparel_Jeans_Generic"
+		or defName="RNApparel_Pants_ACUUCP"
+		or defName="RNApparel_Pants_BDUDMARPAT"
+		or defName="RNApparel_Pants_CombatsDDPM"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>20</costStuffCount>
+		</value>
+ </li>
+
+ <li Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RD_AFGHANKACombatPants" 
+		or defName="RD_OfficerPants"
+		or defName="RNApparel_Pants_HelikonPilgrim"]/equippedStatOffsets</xpath>
+ </li>
+
+		<!-- ==================== Carriers ========================== -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_Lifchik"]/equippedStatOffsets</xpath>
+			<value>
+				<equippedStatOffsets>
+      					<CarryBulk>25</CarryBulk>
+      					<ReloadSpeed>0.1</ReloadSpeed>
+        				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_LifchikWithPoyasB"]/equippedStatOffsets</xpath>
+			<value>
+				<equippedStatOffsets>
+      					<CarryBulk>25</CarryBulk>
+      					<ReloadSpeed>0.1</ReloadSpeed>
+        				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_ChiCom"
+					or defName="RD_RPGbackpackGunnerAssistant"
+					or defName="RD_RPGbackpackGunner"]/equippedStatOffsets</xpath>
+			<value>
+				<equippedStatOffsets>
+      					<CarryBulk>20</CarryBulk>
+      					<ReloadSpeed>0.1</ReloadSpeed>
+        				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_SovietHarness"]/equippedStatOffsets</xpath>
+			<value>
+				<equippedStatOffsets>
+      					<CarryBulk>15</CarryBulk>
+      					<ReloadSpeed>0.1</ReloadSpeed>
+        				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RD_RDBackpack"]/equippedStatOffsets</xpath>
+			<value>
+				<equippedStatOffsets>
+      					<CarryBulk>25</CarryBulk>
+        				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<!-- ==================== Boots ========================== -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[
+			defName="RDFootwear_SovCombatBoots"
+			or defName="RDFootwear_SovSpetnazBoots"
+			or defName="RDFootwear_SovJackBoots"
+			]/statBases</xpath>
+			<value>
+				<Bulk>2</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[
+			defName="RDFootwear_SovCombatBoots"
+			or defName="RDFootwear_SovSpetnazBoots"
+			or defName="RDFootwear_SovJackBoots"
+			]/equippedStatOffsets/Flammability</xpath>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

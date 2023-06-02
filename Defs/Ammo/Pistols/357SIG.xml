@@ -18,6 +18,7 @@
 			<Ammo_357SIG_AP>Bullet_357SIG_AP</Ammo_357SIG_AP>
 			<Ammo_357SIG_HP>Bullet_357SIG_HP</Ammo_357SIG_HP>
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -81,7 +82,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base357SIGBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base357SIGBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -98,7 +99,7 @@
 		<label>.357 SIG bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationSharp>4.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>13.62</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -108,7 +109,7 @@
 		<label>.357 SIG bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
 			<armorPenetrationBlunt>13.62</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -174,7 +175,7 @@
 		<products>
 			<Ammo_357SIG_AP>500</Ammo_357SIG_AP>
 		</products>
-		<workAmount>1800</workAmount>
+		<workAmount>2160</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">

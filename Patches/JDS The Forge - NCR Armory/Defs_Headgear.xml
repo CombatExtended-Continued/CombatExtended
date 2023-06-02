@@ -31,15 +31,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="JDS_NCR_Pith_Hat" or defName="JDS_NCR_Pith2_Hat" or defName="JDS_NCR_Ranger_Hat"]/apparel</xpath>
-					<value>
-					  <layers>
-						<li>MiddleHead</li>
-					  </layers>
-					</value>
-				</li>
-
 				<!-- ========== Pith Hats w/ Face Wrap ========== -->
 
 				<li Class="PatchOperationAdd">
@@ -69,17 +60,8 @@
 					<value>
 					  <equippedStatOffsets>
 						<SmokeSensitivity>-0.10</SmokeSensitivity>
-						<ToxicSensitivity>-0.10</ToxicSensitivity>
+						<ToxicEnvironmentResistance>0.10</ToxicEnvironmentResistance>
 					  </equippedStatOffsets>	
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]/apparel</xpath>
-					<value>
-					  <layers>
-						<li>MiddleHead</li>
-					  </layers>
 					</value>
 				</li>
 
@@ -107,17 +89,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="JDS_NCR_Beret"]</xpath>
-					<value>
-					<apparel>
-					  <layers>
-						<li>MiddleHead</li>
-					  </layers>
-					</apparel>	
-					</value>
-				</li>
-
 				<!-- ========== Ranger Combat Helmet ========== -->
 
 				<li Class="PatchOperationAdd">
@@ -142,10 +113,20 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/equippedStatOffsets/ToxicResistance</xpath>
 					<value>
-						<ToxicSensitivity>-0.50</ToxicSensitivity>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 						<SmokeSensitivity>-1</SmokeSensitivity>
 					</value>
 				</li>
@@ -156,7 +137,6 @@
 					  <layers>
 						<li>OnHead</li>
 						<li>StrappedHead</li>
-						<li>MiddleHead</li>
 					  </layers>	
 					</value>
 				</li>
@@ -185,10 +165,20 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/equippedStatOffsets/ToxicResistance</xpath>
 					<value>
-						<ToxicSensitivity>-0.50</ToxicSensitivity>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 						<SmokeSensitivity>-1</SmokeSensitivity>
 					</value>
 				</li>
@@ -199,7 +189,6 @@
 					  <layers>
 						<li>OnHead</li>
 						<li>StrappedHead</li>
-						<li>MiddleHead</li>
 					  </layers>	
 					</value>
 				</li>

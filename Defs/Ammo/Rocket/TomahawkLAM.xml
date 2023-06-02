@@ -15,7 +15,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="TomahawkLAMBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="TomahawkLAMBase" ParentName="HeavyAmmoBase" Abstract="True">
 		<description>Long-range, all-weather, jet-powered, surface-launched subsonic cruise missile designed to attack land targets.</description>
 		<statBases>
 			<MaxHitPoints>500</MaxHitPoints>
@@ -52,7 +52,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseTomahawkLAM" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseTomahawkLAM" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -65,6 +65,7 @@
 			<flyOverhead>true</flyOverhead>
 			<dropsCasings>false</dropsCasings>
 			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 	</ThingDef>	
 
@@ -101,6 +102,7 @@
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_TomahawkLAM</defName>
 		<label>make Tomahawk Missile</label>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
 		<description>Craft a single Tomahawk Missile.</description>
 		<jobString>Making Tomahawk Missile.</jobString>
 		<workAmount>607200</workAmount>

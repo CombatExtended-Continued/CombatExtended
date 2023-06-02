@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Empire</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Striker Turret -->
+      <!-- Remove refuelable property -->
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[defName = "VFEE_Turret_StrikerTurret"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+      </li>
+
+      <!-- Replace vanilla thingClass -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "VFEE_Turret_StrikerTurret"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VFEE_Turret_StrikerTurret"]/statBases</xpath>
+          <value>
+            <AimingAccuracy>0.5</AimingAccuracy>
+          </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "VFEE_Turret_StrikerTurret"]/building/turretBurstCooldownTime</xpath>
+        <value>
+          <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <!-- Striker Turret Gun - Identical to the vanilla mini-turret. -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VFEE_Gun_StrikerTurret</defName>
+        <statBases>
+          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.07</ShotSpread>
+          <SwayFactor>0.69</SwayFactor>
+        </statBases>
+        <Properties>
+          <recoilAmount>0.91</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+          <warmupTime>1.3</warmupTime>
+          <range>48</range>
+          <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+          <burstShotCount>10</burstShotCount>
+          <soundCast>GunShotA</soundCast>
+          <soundCastTail>GunTail_Light</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+          <recoilPattern>Mounted</recoilPattern>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>100</magazineSize>
+          <reloadTime>7.8</reloadTime>
+          <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+          <noSnapshot>true</noSnapshot>
+          <noSingleShot>true</noSingleShot>
+        </FireModes>
+      </li>
+
+      <!-- Armored Shuttle Turret -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/statBases</xpath>
+        <value>
+          <ShootingAccuracyTurret>0.99</ShootingAccuracyTurret>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/building/turretGunDef</xpath>
+        <value>
+          <turretGunDef>VFEI_TurretArmoredShuttle_CE</turretGunDef>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/building/turretBurstCooldownTime</xpath>
+        <value>
+          <turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/building</xpath>
+        <value>
+          <turretBurstWarmupTime>2.3</turretBurstWarmupTime>
+        </value>
+      </li>
+
+      <!-- Vanilla Gauntlet Charge Cannnon -->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+
+          <ThingDef ParentName="BaseWeaponTurret">
+            <defName>VFEI_TurretArmoredShuttle_CE</defName>
+            <label>double autocannon</label>
+            <description>A powerful, twin-linked autocannon.</description>
+            <graphicData>
+              <texPath>Shuttle/ImperialArmoredShuttle/ImperialArmoredShuttle_Autocannon</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+              <drawSize>(2,2)</drawSize>
+            </graphicData>
+            <soundInteract>Interact_Rifle</soundInteract>
+            <statBases>
+              <AccuracyTouch>0.4</AccuracyTouch>
+              <AccuracyShort>0.65</AccuracyShort>
+              <AccuracyMedium>0.70</AccuracyMedium>
+              <AccuracyLong>0.60</AccuracyLong>
+              <RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+              <DeteriorationRate>0</DeteriorationRate>
+              <Mass>80</Mass>
+              <Flammability>0</Flammability>
+            </statBases>
+            <verbs>
+              <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_ArmoredShuttleTurret_CE</defaultProjectile>
+                <minRange>8.9</minRange>
+                <warmupTime>2.3</warmupTime>
+                <range>55</range>
+                <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+                <burstShotCount>6</burstShotCount>
+                <soundCast>Shot_Autocannon</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <muzzleFlashScale>12</muzzleFlashScale>
+              </li>
+            </verbs>
+          </ThingDef>
+
+          <ThingDef ParentName="BaseBullet">
+            <defName>Bullet_ArmoredShuttleTurret_CE</defName>
+            <label>autocannon shell</label>
+            <graphicData>
+              <texPath>Things/Projectile/Bullet_Big</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <projectile>
+              <damageDef>Bullet</damageDef>
+              <damageAmountBase>15</damageAmountBase>
+              <speed>170</speed>
+              <armorPenetrationBase>25</armorPenetrationBase>
+            </projectile>
+          </ThingDef>
+
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

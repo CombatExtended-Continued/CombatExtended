@@ -7,6 +7,11 @@ namespace CombatExtended
     public static class AmmoUtility
     {
         /// <summary>
+        /// Multiplier used to scale the armor penetration of a given projectile's explosion
+        /// </summary>
+        private const float ExplosiveArmorPenetrationMultiplier = 0.33f;
+
+        /// <summary>
         ///     Generates a readout text for a projectile with the damage amount, type, secondary explosion and other CE stats for
         ///     display in info-box
         /// </summary>
@@ -18,8 +23,8 @@ namespace CombatExtended
             var props = projectileDef?.projectile as ProjectilePropertiesCE;
             if (props == null)
             {
-                Log.Error("CE tried getting projectile readout with null props");
-                return "";
+                Log.Warning("CE tried getting projectile readout with null props");
+                return "CE_UnpatchedWeaponShort".Translate();
             }
 
             var stringBuilder = new StringBuilder();
@@ -51,12 +56,12 @@ namespace CombatExtended
             if (props.explosionRadius > 0)
             {
                 if (props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Heat
-                    && props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Electric
-                    && props.damageDef != DamageDefOf.Stun
-                    && props.damageDef != DamageDefOf.Extinguish
-                    && props.damageDef != DamageDefOf.Smoke)
+                        && props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Electric
+                        && props.damageDef != DamageDefOf.Stun
+                        && props.damageDef != DamageDefOf.Extinguish
+                        && props.damageDef != DamageDefOf.Smoke)
                 {
-                    stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + GenExplosionCE.GetExplosionAP(props) + " " + "CE_MPa".Translate());
+                    stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.GetExplosionArmorPenetration() + " " + "CE_MPa".Translate());
                 }
             }
             else
@@ -104,6 +109,16 @@ namespace CombatExtended
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// Determine the armor penetration value of a given projectile type's explosion.
+        /// </summary>
+        public static float GetExplosionArmorPenetration(this ProjectileProperties props) => props.damageAmountBase * ExplosiveArmorPenetrationMultiplier;
+
+        /// <summary>
+        /// Determine the armor penetration value of a given explosive type's explosion.
+        /// </summary>
+        public static float GetExplosionArmorPenetration(this CompProperties_ExplosiveCE props) => props.damageAmountBase * ExplosiveArmorPenetrationMultiplier;
+
         public static bool IsShell(ThingDef def)
         {
             var ammo = ThingDefOf.Turret_Mortar.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>();
@@ -112,13 +127,19 @@ namespace CombatExtended
 
         public static bool IsAmmoSystemActive(AmmoDef def)
         {
-            if (Controller.settings.EnableAmmoSystem) return true;
+            if (Controller.settings.EnableAmmoSystem)
+            {
+                return true;
+            }
             return (def != null && def.isMortarAmmo);
         }
 
         public static bool IsAmmoSystemActive(AmmoSetDef ammoSet)
         {
-            if (Controller.settings.EnableAmmoSystem) return true;
+            if (Controller.settings.EnableAmmoSystem)
+            {
+                return true;
+            }
             return (ammoSet != null && ammoSet.isMortarAmmoSet);
         }
     }

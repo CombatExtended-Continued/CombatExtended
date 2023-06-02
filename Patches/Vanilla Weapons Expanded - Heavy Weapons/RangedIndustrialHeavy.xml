@@ -11,7 +11,7 @@
         <!-- === verbClass === -->
         <li Class="PatchOperationReplace">
           <xpath>
-            /Defs/ThingDef[
+            Defs/ThingDef[
               defName = "VWE_Gun_Autocannon" or
               defName = "VWE_Gun_HandheldMortar" or
               defName = "VWE_Gun_HeavyFlamer" or
@@ -24,23 +24,10 @@
           </value>
         </li>
 
-        <!-- === CompOversizedWeapon === -->
-        <li Class="PatchOperationRemove">
-          <xpath>
-            /Defs/ThingDef[
-              defName = "VWE_Gun_Autocannon" or
-              defName = "VWE_Gun_HandheldMortar" or
-              defName = "VWE_Gun_HeavyFlamer" or
-              defName = "VWE_Gun_SwarmMissileLauncher" or
-              defName = "VWE_Gun_UraniumSlugRifle"
-            ]/comps/li[compClass="CompOversizedWeapon.CompOversizedWeapon"]
-          </xpath>
-        </li>
-
         <!-- === Tools === -->
         <li Class="PatchOperationReplace">
           <xpath>
-            /Defs/ThingDef[
+            Defs/ThingDef[
               defName = "VWE_Gun_Autocannon" or
               defName = "VWE_Gun_HandheldMortar" or
               defName = "VWE_Gun_HeavyFlamer" or
@@ -68,7 +55,7 @@
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Gun_Autocannon</defName>
           <statBases>
-            <Mass>65</Mass>
+            <Mass>55</Mass>
             <Bulk>22</Bulk>
             <SwayFactor>8.80</SwayFactor>
             <ShotSpread>0.01</ShotSpread>
@@ -76,10 +63,10 @@
             <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
           </statBases>
           <Properties>
-            <recoilAmount>1.78</recoilAmount>
+            <recoilAmount>1.72</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
-            <defaultProjectile>Bullet_20x110mmHispano_FMJ</defaultProjectile>
+            <defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
             <burstShotCount>10</burstShotCount>
             <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
             <warmupTime>1</warmupTime>
@@ -92,7 +79,7 @@
           <AmmoUser>
             <magazineSize>50</magazineSize>
             <reloadTime>6.5</reloadTime>
-            <ammoSet>AmmoSet_20x110mmHispano</ammoSet>
+            <ammoSet>AmmoSet_20x102mmNATO</ammoSet>
           </AmmoUser>
           <FireModes>
             <aiAimMode>AimedShot</aiAimMode>
@@ -103,14 +90,14 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName = "VWE_Gun_Autocannon"]/recipeMaker/researchPrerequisite</xpath>
+          <xpath>Defs/ThingDef[defName = "VWE_Gun_Autocannon"]/recipeMaker/researchPrerequisite</xpath>
           <value>
             <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
           </value>
         </li>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/ThingDef[defName = "VWE_Gun_Autocannon"]</xpath>
+          <xpath>Defs/ThingDef[defName = "VWE_Gun_Autocannon"]</xpath>
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>1.3,1.3</DrawSize>
@@ -123,7 +110,6 @@
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Gun_HandheldMortar</defName>
           <statBases>
-            <Mass>42</Mass>
             <Bulk>20</Bulk>
             <SwayFactor>1.24</SwayFactor>
             <ShotSpread>0.10</ShotSpread>
@@ -131,6 +117,7 @@
             <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
           </statBases>
           <Properties>
+            <recoilAmount>5.0</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
@@ -149,13 +136,13 @@
           <AmmoUser>
             <magazineSize>1</magazineSize>
             <reloadTime>5.2</reloadTime>
-            <ammoSet>AmmoSet_81mmMortarShell</ammoSet>
+            <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
           </AmmoUser>
           <AllowWithRunAndGun>false</AllowWithRunAndGun>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VWE_Gun_HandheldMortar"]/comps</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Gun_HandheldMortar"]/comps</xpath>
           <value>
             <li Class="CombatExtended.CompProperties_Charges">
               <chargeSpeeds>
@@ -169,7 +156,7 @@
         </li>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/ThingDef[defName="VWE_Gun_HandheldMortar"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Gun_HandheldMortar"]</xpath>
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>1.3,1.3</DrawSize>
@@ -182,17 +169,19 @@
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Gun_UraniumSlugRifle</defName>
           <statBases>
-            <Mass>75</Mass>
+            <Mass>60</Mass>
             <Bulk>22.5</Bulk>
             <SwayFactor>9.85</SwayFactor>
             <ShotSpread>0.01</ShotSpread>
             <SightsEfficiency>2.20</SightsEfficiency>
             <RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
+            <NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
           </statBases>
           <Properties>
+            <recoilAmount>3.0</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
-            <defaultProjectile>Bullet_30x173mmNATO_FMJ</defaultProjectile>
+            <defaultProjectile>Bullet_30x173mmNATO_AP</defaultProjectile>
             <warmupTime>4.6</warmupTime>
             <range>86</range>
             <minRange>9</minRange>
@@ -212,14 +201,14 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName = "VWE_Gun_UraniumSlugRifle"]/recipeMaker/researchPrerequisite</xpath>
+          <xpath>Defs/ThingDef[defName = "VWE_Gun_UraniumSlugRifle"]/recipeMaker/researchPrerequisite</xpath>
           <value>
             <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
           </value>
         </li>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/ThingDef[defName="VWE_Gun_UraniumSlugRifle"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Gun_UraniumSlugRifle"]</xpath>
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>1.4,1.4</DrawSize>
@@ -232,7 +221,6 @@
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Gun_HeavyFlamer</defName>
           <statBases>
-            <Mass>45</Mass>
             <Bulk>18</Bulk>
             <SwayFactor>7.10</SwayFactor>
             <ShotSpread>0.5</ShotSpread>
@@ -271,7 +259,7 @@
         </li>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/ThingDef[defName="VWE_Gun_HeavyFlamer"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Gun_HeavyFlamer"]</xpath>
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>1.3,1.3</DrawSize>
@@ -284,7 +272,7 @@
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Gun_SwarmMissileLauncher</defName>
           <statBases>
-            <Mass>45</Mass>
+            <Mass>40</Mass>
             <Bulk>22</Bulk>
             <SwayFactor>3.54</SwayFactor>
             <ShotSpread>0.10</ShotSpread>
@@ -303,7 +291,7 @@
             <soundCast>InfernoCannon_Fire</soundCast>
             <soundCastTail>GunTail_Heavy</soundCastTail>
             <onlyManualCast>true</onlyManualCast>
-				    <stopBurstWithoutLos>false</stopBurstWithoutLos>
+            <stopBurstWithoutLos>false</stopBurstWithoutLos>
             <muzzleFlashScale>12</muzzleFlashScale>
             <targetParams>
               <canTargetLocations>true</canTargetLocations>
@@ -324,14 +312,14 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName = "VWE_Gun_SwarmMissileLauncher"]/recipeMaker/researchPrerequisite</xpath>
+          <xpath>Defs/ThingDef[defName = "VWE_Gun_SwarmMissileLauncher"]/recipeMaker/researchPrerequisite</xpath>
           <value>
             <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
           </value>
         </li>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/ThingDef[defName="VWE_Gun_SwarmMissileLauncher"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Gun_SwarmMissileLauncher"]</xpath>
           <value>
             <li Class="CombatExtended.GunDrawExtension">
               <DrawSize>1.3,1.3</DrawSize>

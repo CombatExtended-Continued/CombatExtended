@@ -18,6 +18,7 @@
 			<Ammo_25ACP_AP>Bullet_25ACP_AP</Ammo_25ACP_AP>
 			<Ammo_25ACP_HP>Bullet_25ACP_HP</Ammo_25ACP_HP>			
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -81,14 +82,14 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base25ACPBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base25ACPBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>152</speed>
+			<speed>79</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
@@ -97,9 +98,9 @@
 		<defName>Bullet_25ACP_FMJ</defName>
 		<label>.25 ACP bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationSharp>3</armorPenetrationSharp>
-			<armorPenetrationBlunt>17.32</armorPenetrationBlunt>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.58</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -107,9 +108,9 @@
 		<defName>Bullet_25ACP_AP</defName>
 		<label>.25 ACP bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
-			<armorPenetrationBlunt>17.32</armorPenetrationBlunt>
+			<damageAmountBase>3</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.58</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -117,9 +118,9 @@
 		<defName>Bullet_25ACP_HP</defName>
 		<label>.25 ACP bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>15</damageAmountBase>
-			<armorPenetrationSharp>2</armorPenetrationSharp>
-			<armorPenetrationBlunt>17.32</armorPenetrationBlunt>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>1.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.58</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -174,7 +175,7 @@
 		<products>
 			<Ammo_25ACP_AP>500</Ammo_25ACP_AP>
 		</products>
-		<workAmount>800</workAmount>
+		<workAmount>960</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">

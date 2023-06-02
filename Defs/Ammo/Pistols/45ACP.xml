@@ -18,6 +18,22 @@
 			<Ammo_45ACP_AP>Bullet_45ACP_AP</Ammo_45ACP_AP>
 			<Ammo_45ACP_HP>Bullet_45ACP_HP</Ammo_45ACP_HP>
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_45ACP410Bore_SB</defName>
+		<label>.45 ACP/.410 bore</label>
+		<ammoTypes>
+			<Ammo_45ACP_FMJ>Bullet_45ACP_FMJ</Ammo_45ACP_FMJ>
+			<Ammo_45ACP_AP>Bullet_45ACP_AP</Ammo_45ACP_AP>
+			<Ammo_45ACP_HP>Bullet_45ACP_HP</Ammo_45ACP_HP>
+			<Ammo_410Bore_Buck>Bullet_410Bore_Buck_SB</Ammo_410Bore_Buck>
+			<Ammo_410Bore_Slug>Bullet_410Bore_Slug_SB</Ammo_410Bore_Slug>
+			<Ammo_410Bore_Beanbag>Bullet_410Bore_Beanbag_SB</Ammo_410Bore_Beanbag>
+			<Ammo_410Bore_ElectroSlug>Bullet_410Bore_ElectroSlug_SB</Ammo_410Bore_ElectroSlug>
+		</ammoTypes>
+		<similarTo>AmmoSet_RevolverShotgun</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -81,7 +97,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base45ACPBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base45ACPBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -98,7 +114,7 @@
 		<label>.45 ACP bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationSharp>3.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>10.860</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -108,7 +124,7 @@
 		<label>.45 ACP bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationSharp>7</armorPenetrationSharp>
 			<armorPenetrationBlunt>10.860</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -174,7 +190,7 @@
 		<products>
 			<Ammo_45ACP_AP>500</Ammo_45ACP_AP>
 		</products>
-		<workAmount>2200</workAmount>
+		<workAmount>2640</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">

@@ -7,16 +7,30 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="AA_Darkbeast"]</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Darkbeast"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Quadruped</bodyShape>
 						</li>
 					</value>
 				</li>
-				
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AA_Darkbeast"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>1.2</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AA_Darkbeast"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Darkbeast"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Darkbeast"]/statBases</xpath>
 					<value>
 						<NightVisionEfficiency>0.8</NightVisionEfficiency>
 						<MeleeDodgeChance>0.1</MeleeDodgeChance>
@@ -24,8 +38,9 @@
 						<MeleeParryChance>0.24</MeleeParryChance>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Darkbeast"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Darkbeast"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -63,6 +78,7 @@
 						</tools>
 					</value>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>

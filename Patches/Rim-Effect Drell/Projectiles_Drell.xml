@@ -1,0 +1,291 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rim-Effect: Drell</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Viper</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_Viper</Ammo_ME>
+			<Ammo_ME_AP>Bullet_Viper_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_Viper_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_Viper_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_Viper_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_Viper_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_Viper_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Locust</defName>
+		<label>Thermal Clip</label>
+		<ammoTypes>
+			<Ammo_ME>Bullet_Locust</Ammo_ME>
+			<Ammo_ME_AP>Bullet_Locust_AP</Ammo_ME_AP>
+			<Ammo_ME_Cryo>Bullet_Locust_Cryo</Ammo_ME_Cryo>
+			<Ammo_ME_HE>Bullet_Locust_HE</Ammo_ME_HE>
+			<Ammo_ME_FI>Bullet_Locust_FI</Ammo_ME_FI>
+			<Ammo_ME_Ion>Bullet_Locust_Ion</Ammo_ME_Ion>
+			<Ammo_ME_Toxic>Bullet_Locust_Toxic</Ammo_ME_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Viper ================== -->
+
+	<ThingDef Name="BaseViperBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Shot_MassAccelerated_Sniper</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.1</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageDef>Bullet</damageDef>
+		<speed>500</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseViperBullet">
+		<defName>Bullet_Viper</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>36</damageAmountBase>
+		<armorPenetrationSharp>28</armorPenetrationSharp>      
+		<armorPenetrationBlunt>180</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseViperBullet">
+		<defName>Bullet_Viper_AP</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>24</damageAmountBase>
+		<armorPenetrationSharp>56</armorPenetrationSharp>      
+		<armorPenetrationBlunt>180</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="BaseViperBullet">
+		<defName>Bullet_Viper_Cryo</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>34</damageAmountBase>
+			<armorPenetrationSharp>30</armorPenetrationSharp>      
+			<armorPenetrationBlunt>180</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>ME_Cryo</def>
+				<amount>7</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="BaseViperBullet">
+		<defName>Bullet_Viper_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>36</damageAmountBase>
+			<armorPenetrationSharp>28</armorPenetrationSharp>      
+			<armorPenetrationBlunt>180</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bomb_Secondary</def>
+				<amount>20</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="BaseViperBullet">
+		<defName>Bullet_Viper_Toxic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>34</damageAmountBase>
+			<armorPenetrationSharp>28</armorPenetrationSharp>      
+			<armorPenetrationBlunt>180</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>ME_Toxin</def>
+				<amount>7</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="BaseViperBullet">
+		<defName>Bullet_Viper_FI</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>36</damageAmountBase>
+		<armorPenetrationSharp>28</armorPenetrationSharp>      
+		<armorPenetrationBlunt>180</armorPenetrationBlunt>
+		  <secondaryDamage>
+			<li>
+			<def>ME_SickBurn</def>
+			<amount>5</amount>
+			</li>
+			<li>
+			<def>Flame</def>
+			<amount>1</amount>
+			</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="BaseViperBullet">
+    <defName>Bullet_Viper_Ion</defName>
+    <label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>27</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>9</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>30</armorPenetrationSharp>
+      <armorPenetrationBlunt>180</armorPenetrationBlunt>
+      <empShieldBreakChance>1</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+	<!-- ================== Locust ================== -->
+
+  <ThingDef Name="BaseLocustBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+		<texPath>Things/Projectile/Shot_MassAccelerated_Small</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>TransparentPostLight</shaderType>
+		<drawSize>1.1</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>180</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef ParentName="BaseLocustBullet">
+		<defName>Bullet_Locust</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>11</damageAmountBase>
+		<armorPenetrationSharp>10</armorPenetrationSharp>      
+		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseLocustBullet">
+		<defName>Bullet_Locust_AP</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>8</damageAmountBase>
+		<armorPenetrationSharp>20</armorPenetrationSharp>      
+		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="BaseLocustBullet">
+		<defName>Bullet_Locust_HE</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>11</damageAmountBase>
+		<armorPenetrationSharp>10</armorPenetrationSharp>      
+		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		<secondaryDamage>
+			<li>
+			<def>Bomb_Secondary</def>
+			<amount>5</amount>
+			</li>
+		</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="BaseLocustBullet">
+		<defName>Bullet_Locust_Cryo</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>11</damageAmountBase>
+		<armorPenetrationSharp>10</armorPenetrationSharp>      
+		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		<secondaryDamage>
+			<li>
+			<def>ME_Cryo</def>
+			<amount>2</amount>
+			</li>
+		</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="BaseLocustBullet">
+		<defName>Bullet_Locust_Toxic</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>12</damageAmountBase>
+		<armorPenetrationSharp>10</armorPenetrationSharp>      
+		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		  <secondaryDamage>
+			<li>
+			<def>ME_Toxin</def>
+			<amount>2</amount>
+			</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="BaseLocustBullet">
+		<defName>Bullet_Locust_FI</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>11</damageAmountBase>
+		<armorPenetrationSharp>10</armorPenetrationSharp>      
+		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		  <secondaryDamage>
+			<li>
+			<def>ME_SickBurn</def>
+			<amount>2</amount>
+			</li>
+			<li>
+			<def>Flame</def>
+			<amount>1</amount>
+			<chance>0.25</chance>
+			</li>
+		</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseLocustBullet">
+		<defName>Bullet_Locust_Ion</defName>
+		<label>accelerated shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		<damageAmountBase>7</damageAmountBase>
+		<secondaryDamage>
+			<li>
+			<def>EMP</def>
+			<amount>3</amount>
+			</li>
+		</secondaryDamage>
+		<armorPenetrationSharp>12</armorPenetrationSharp>
+		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		<empShieldBreakChance>0.30</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

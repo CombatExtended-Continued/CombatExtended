@@ -2,15 +2,18 @@
 
 namespace CombatExtended
 {
-	public class VisibleAccessoryDefExtension : DefModExtension
-	{
-		public int order = 1;
+    public class VisibleAccessoryDefExtension : DefModExtension
+    {
+        public int order = 1;
 
         private bool validated = false;
 
         public void Validate()
         {
-            if (validated) return;
+            if (validated)
+            {
+                return;
+            }
 
             if (order < 1)
             {
@@ -24,5 +27,5 @@ namespace CombatExtended
             }
             validated = true;
         }
-	}
+    }
 }

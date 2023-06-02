@@ -9,7 +9,7 @@
 				<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
 
 				<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="JE_Bullet_GoldenShower" or
+				<xpath>Defs/ThingDef[defName="JE_Bullet_GoldenShower" or
 				defName="JE_Tears"]</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
@@ -17,7 +17,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="JE_NoitaFireball"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[defName="JE_NoitaFireball"]/thingClass</xpath>
 					<value>
 						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 					</value>
@@ -25,14 +25,14 @@
 
 				<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="JE_FatJorry" or defName="JECom_IsaacJoris" or defName="JE_NoitaJoris"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="JE_FatJorry" or defName="JECom_IsaacJoris" or defName="JE_NoitaJoris"]/statBases</xpath>
 					<value>
 						<AimingAccuracy>0.6</AimingAccuracy>
 					</value>
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="JE_Joku"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="JE_Joku"]/statBases</xpath>
 					<value>
 						<ShootingAccuracyPawn>2.5</ShootingAccuracyPawn>
 						<AimingAccuracy>1</AimingAccuracy>
@@ -41,7 +41,7 @@
 
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="JE_BiblicallyAccurateJoris"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="JE_BiblicallyAccurateJoris"]/statBases</xpath>
 					<value>
 						<ShootingAccuracyPawn>10</ShootingAccuracyPawn>
 						<AimingAccuracy>1</AimingAccuracy>
@@ -50,7 +50,7 @@
 
 				<!-- =============== Now defining Projectiles in CE Procedure ============= -->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="JE_Bullet_GoldenShower"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="JE_Bullet_GoldenShower"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -64,7 +64,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="JE_Tears"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="JE_Tears"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -78,13 +78,15 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="JE_NoitaFireball"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="JE_NoitaFireball"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
 							<damageDef>Flame</damageDef>
 							<damageAmountBase>18</damageAmountBase>
 							<explosionRadius>1.1</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
 							<speed>27</speed>
 							<armorPenetrationSharp>50</armorPenetrationSharp>
 							<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
@@ -96,7 +98,7 @@
 				</li>
 
 <!--				<li Class="PatchOperationReplace">
-					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="FF_FlameBreathAnimated"]/projectile</xpath>
+					<xpath>Defs/VFECore.ExpandableProjectileDef[defName="FF_FlameBreathAnimated"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>40</speed>
@@ -104,6 +106,8 @@
 							<damageDef>Flame</damageDef>
 							<damageAmountBase>16</damageAmountBase>
 							<explosionRadius>2.5</explosionRadius>
+<suppressionFactor>3.0</suppressionFactor>
+<dangerFactor>2.0</dangerFactor>
 							<ai_IsIncendiary>true</ai_IsIncendiary>
 						</projectile>
 					</value>

@@ -469,6 +469,55 @@
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
 
+			<!-- ========== Intervention AMR ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_M200Intervention_AMR</defName>
+				<statBases>
+					<Mass>15.20</Mass>
+					<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>3.32</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>2.06</SwayFactor>
+					<Bulk>12.87</Bulk>
+					<WorkToMake>42500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>110</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_408CheyenneTactical_FMJ</defaultProjectile>
+					<warmupTime>2.4</warmupTime>
+					<range>86</range>
+					<soundCast>RNShotIntervention</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>7</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_408CheyenneTactical</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<weaponTags>
+					<li>Bipod_AMR</li>
+					<li>CE_AI_SR</li>
+				</weaponTags>
+
+				<!-- No additional CE weaponTags needed -->
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
 			<!-- == Shared patches for firearm melee tools == -->
 
 			<li Class="PatchOperationReplace">
@@ -482,7 +531,8 @@
 					defName="RNGun_LeeEnfield_BoltAction" or
 					defName="RNGun_M24A2_Sniper" or
 					defName="RNGun_M40A5_Sniper" or
-					defName="RNGun_SV98_Sniper"
+					defName="RNGun_SV98_Sniper" or
+					defName="RNGun_M200Intervention_AMR"
 				]/tools</xpath>
 				<value>
 					<tools>

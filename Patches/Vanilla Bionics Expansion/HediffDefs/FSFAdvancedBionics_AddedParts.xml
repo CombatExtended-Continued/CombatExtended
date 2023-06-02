@@ -4,26 +4,52 @@
 	<Operation Class="PatchOperationFindMod">
     <mods>
         <li>[FSF] Advanced Bionics Expansion</li>
-		<li>[FSF] Advanced Bionics Expansion Legacy Version</li>
     </mods>
 	<match Class="PatchOperationSequence">
 		<operations>
-		<!--Arms : Power arms now have multiple attacks, I will revise this later to adjust for those properties-->
+		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/HediffDef[defName="FSFAdvBionicPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 			<value>
 				<tools>
 					<li Class="CombatExtended.ToolCE">
-					<label>claw</label>
-					<capacities>
-						<li>Scratch</li>
-					</capacities>
-					<power>25</power>
-					<cooldownTime>0.71</cooldownTime>
-					<armorPenetrationSharp>7.5</armorPenetrationSharp>
-					<armorPenetrationBlunt>6.25</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<label>fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>15</power>
+						<cooldownTime>1.21</cooldownTime>
+						<armorPenetrationSharp>0</armorPenetrationSharp>
+						<armorPenetrationBlunt>30</armorPenetrationBlunt>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+						<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>25</power>
+						<cooldownTime>1.21</cooldownTime>
+						<armorPenetrationSharp>9</armorPenetrationSharp>
+						<armorPenetrationBlunt>6.25</armorPenetrationBlunt>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+						<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.21</cooldownTime>
+						<armorPenetrationSharp>18</armorPenetrationSharp>
+						<armorPenetrationBlunt>4.75</armorPenetrationBlunt>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+						<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
 					</li>
 				</tools>
 			</value>
@@ -34,16 +60,43 @@
 			<value>
 				<tools>
 					<li Class="CombatExtended.ToolCE">
-					<label>claw</label>
-					<capacities>
-						<li>Scratch</li>
-					</capacities>
-					<power>29</power>
-					<cooldownTime>0.59</cooldownTime>
-					<armorPenetrationSharp>21.6</armorPenetrationSharp>
-					<armorPenetrationBlunt>9</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<label>fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>20</power>
+						<cooldownTime>0.71</cooldownTime>
+						<armorPenetrationSharp>0</armorPenetrationSharp>
+						<armorPenetrationBlunt>120</armorPenetrationBlunt>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+						<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>30</power>
+						<cooldownTime>0.71</cooldownTime>
+						<armorPenetrationSharp>24</armorPenetrationSharp>
+						<armorPenetrationBlunt>6.25</armorPenetrationBlunt>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+						<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>15</power>
+						<cooldownTime>1.21</cooldownTime>
+						<armorPenetrationSharp>48</armorPenetrationSharp>
+						<armorPenetrationBlunt>4.75</armorPenetrationBlunt>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+						<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
 					</li>
 				</tools>
 			</value>
@@ -71,12 +124,13 @@
 			<value>
 				<tools>
 					<li Class="CombatExtended.ToolCE">
-					<label>palm</label>
+					<label>fist</label>
 					<capacities>
-						<li>FSFEffectTaser</li>
+						<li>Blunt</li>
 					</capacities>
-					<power>2</power>
-					<cooldownTime>1.84</cooldownTime>
+					<power>7</power>
+					<cooldownTime>0.92</cooldownTime>
+					<armorPenetrationBlunt>2.43</armorPenetrationBlunt>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					<extraMeleeDamages>
 						<li>
@@ -89,20 +143,23 @@
 			</value>
 		</li>
 		
-		<!-- CE disables human bite attacks-->
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/HediffDef[defName="FSFAdvBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationSharp>0.3</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
 		</li>
-		</operations>
-	</match>
-	</Operation>
-	
-	<Operation Class="PatchOperationFindMod">
-    <mods>
-        <li>[FSF] Advanced Bionics Expansion</li>
-    </mods>
-	<match Class="PatchOperationSequence">
-		<operations>
 		
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/HediffDef[defName="FSFAdvBionicFieldArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -155,24 +212,15 @@
 				</tools>
 			</value>
 		</li>
-		
+
 		<!--Implants-->
 		
 		<!--Tone down Speed torso implant dodge chance to be more inline with CE stats (also so it doesn't instantly max out dodge)-->
 		
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="FSFImplantTorsoSpeed"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+			<xpath>Defs/HediffDef[defName="FSFImplantMechanitesSpeed"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
 			<value>
 					<MeleeDodgeChance>1</MeleeDodgeChance>
-			</value>
-		</li>
-		
-		<!--Add carry weight buff to worker frame-->
-		
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/HediffDef[defName="FSFImplantTorsoWorker"]/stages/li/statOffsets</xpath>
-			<value>
-					<CarryWeight>25</CarryWeight>
 			</value>
 		</li>
 		
@@ -198,8 +246,8 @@
 			<xpath>Defs/HediffDef[defName="FSFImplantBrainMeleeCombat"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
 			<value>
 					<MeleeDodgeChance>1.5</MeleeDodgeChance>
-					<MeleeCritChance>0.04</MeleeCritChance>
-					<MeleeParryChance>0.05</MeleeParryChance>
+					<MeleeCritChance>0.40</MeleeCritChance>
+					<MeleeParryChance>0.50</MeleeParryChance>
 			</value>
 		</li>
 		
@@ -247,10 +295,12 @@
 					<li Class="CombatExtended.ToolCE">
 					<label>teeth</label>
 					<capacities>
-						<li>FSFEffectTaser</li>
+						<li>Bite</li>
 					</capacities>
-					<power>2</power>
-					<cooldownTime>1.84</cooldownTime>
+					<power>5</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationSharp>0.3</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					<extraMeleeDamages>
 						<li>
@@ -285,127 +335,5 @@
 	</match>
 	</Operation>
 	
-	<Operation Class="PatchOperationFindMod">
-    <mods>
-        <li>[FSF] Advanced Bionics Expansion Legacy Version</li>
-    </mods>
-	<match Class="PatchOperationSequence">
-		<operations>
-		<!--Subdermal Implants-->
-		
-		<!--3mm Hyperweave/w : 100% heat armor-->
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="FSFImplantSubdermalArmor"]/stages/li/statOffsets</xpath>
-			<value>
-				<statOffsets>
-					<ArmorRating_Blunt>+4.5</ArmorRating_Blunt>
-					<ArmorRating_Heat>+1</ArmorRating_Heat>
-					<ArmorRating_Sharp>+3</ArmorRating_Sharp>
-				</statOffsets>
-			</value>
-		</li>
-		
-		<!--3mm Plasteel/w : 100% heat armor-->
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="FSFImplantSubdermalArmorMkII"]/stages/li/statOffsets</xpath>
-			<value>
-				<statOffsets>
-					<ArmorRating_Blunt>+9</ArmorRating_Blunt>
-					<ArmorRating_Heat>+1</ArmorRating_Heat>
-					<ArmorRating_Sharp>+6</ArmorRating_Sharp>
-				</statOffsets>
-			</value>
-		</li>
-		
-		<!--3mm Plasteel/w : 100% heat armor : 80% EMP armor-->
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="FSFArchotechImplantSubdermalArmor"]/stages/li/statOffsets</xpath>
-			<value>
-				<statOffsets>
-					<ArmorRating_Blunt>+9</ArmorRating_Blunt>
-					<ArmorRating_Heat>+1</ArmorRating_Heat>
-					<ArmorRating_Sharp>+6</ArmorRating_Sharp>
-					<ArmorRating_Electric>+0.80</ArmorRating_Electric>
-				</statOffsets>
-			</value>
-		</li>
-		
-		<!--Tone down adv. Sprinter frame dodge chance to be more inline with CE stats (also so it doesn't instantly max out dodge)-->
-		
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="FSFImplantTorsoMovement"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
-			<value>
-					<MeleeDodgeChance>+2.5</MeleeDodgeChance>
-			</value>
-		</li>
-		
-		<!--Give hazard module smoke immunity-->
-		
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/HediffDef[defName="FSFImplantHazardModule"]/stages/li/statOffsets</xpath>
-			<value>
-					<SmokeSensitivity>-1.0</SmokeSensitivity>
-			</value>
-		</li>
-		
-		<!--AI Chip Implants-->
-		
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="FSFAIChipMelee"]/stages/li/statOffsets</xpath>
-			<value>
-				<statOffsets>
-					<MeleeCritChance>0.15</MeleeCritChance>
-					<MeleeParryChance>0.1875</MeleeParryChance>
-					<MeleeDodgeChance>0.5</MeleeDodgeChance>
-					<MeleeHitChance>15.0</MeleeHitChance>
-					<Suppressability>-0.50</Suppressability>
-				</statOffsets>
-			</value>
-		</li>
-		
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="FSFAIChipShooting"]/stages/li/statOffsets</xpath>
-			<value>
-				<statOffsets>
-					<ShootingAccuracyPawn>+1</ShootingAccuracyPawn>
-					<AimingAccuracy>+0.5</AimingAccuracy>
-					<AimingDelayFactor>-0.25</AimingDelayFactor>
-					<Suppressability>-0.25</Suppressability>
-					<HuntingStealth>+0.25</HuntingStealth>
-				</statOffsets>
-			</value>
-		</li>
-		
-		<!--AI Chip Implants-->
-		
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="FSFAIChipMelee"]/stages/li/statOffsets</xpath>
-			<value>
-				<statOffsets>
-					<MeleeCritChance>0.15</MeleeCritChance>
-					<MeleeParryChance>0.1875</MeleeParryChance>
-					<MeleeDodgeChance>0.5</MeleeDodgeChance>
-					<MeleeHitChance>15.0</MeleeHitChance>
-					<Suppressability>-0.50</Suppressability>
-				</statOffsets>
-			</value>
-		</li>
-		
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/HediffDef[defName="FSFAIChipShooting"]/stages/li/statOffsets</xpath>
-			<value>
-				<statOffsets>
-					<ShootingAccuracyPawn>+1</ShootingAccuracyPawn>
-					<AimingAccuracy>+0.5</AimingAccuracy>
-					<AimingDelayFactor>-0.25</AimingDelayFactor>
-					<Suppressability>-0.25</Suppressability>
-					<HuntingStealth>+0.25</HuntingStealth>
-				</statOffsets>
-			</value>
-		</li>
-		
-		</operations>
-	</match>
-	</Operation>
 </Patch>
 

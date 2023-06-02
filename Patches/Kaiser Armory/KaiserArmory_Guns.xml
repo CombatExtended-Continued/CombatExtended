@@ -3,7 +3,7 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
     <mods>
-		<li>Kaiser Armory [1.3]</li>
+		<li>Kaiser Armory</li>
     </mods>
 		<match Class="PatchOperationSequence">
 		 <operations>
@@ -225,6 +225,7 @@
 			</FireModes>
 			<weaponTags>
 				<li>IndustrialGunAdvanced</li>
+				<li>NoSwitch</li>
 			</weaponTags>
 			<researchPrerequisite>Stage0b_KA</researchPrerequisite>
 		  </li>
@@ -570,26 +571,24 @@
 						<explosionDelay>100</explosionDelay>
 						<dropsCasings>true</dropsCasings>
 						<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+						<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 						<speed>12</speed>
+						  <suppressionFactor>3.0</suppressionFactor>
+						  <dangerFactor>2.0</dangerFactor>
+						  <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 					</projectile>
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/ThingDef[defName="Proj_M1915_KA"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="Proj_M1915_KA"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Proj_M1915_KA"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Proj_M1915_KA"]</xpath>
+					<value>
+					<comps />
+					</value>
+				</nomatch>
 			</li>
 
 		  <!-- M1915 Concussion Grenade -->
@@ -637,20 +636,14 @@
 				<value>CombatExtended.AmmoDef</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Weapon_M1915_KA"]</xpath>
+					<value>
+					<comps />
+					</value>
+				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">

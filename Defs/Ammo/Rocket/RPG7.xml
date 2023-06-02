@@ -22,7 +22,7 @@
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="RPG7GrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="RPG7GrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Rocket-propelled grenade designed for the RPG-7 launcher. After being fired a rocket motor kicks in to propel the grenade further.</description>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
@@ -90,7 +90,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="BaseRPG7Grenade" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="BaseRPG7Grenade" ParentName="BaseExplosiveBullet" Abstract="true">
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
@@ -133,7 +133,7 @@
   <ThingDef ParentName="BaseRPG7Grenade">
     <defName>Bullet_RPG7Grenade_Thermobaric</defName>
     <label>RPG-7 grenade (Thermobaric)</label>
-    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>	<!-- Use "CombatExtended.ProjectileCE_BunkerBuster" for the special bunker buster property -->
     <graphicData>
       <texPath>Things/Projectile/RPG/Thermobaric</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -146,6 +146,9 @@
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <ai_IsIncendiary>true</ai_IsIncendiary>
+      <!-- <fuze_delay>2</fuze_delay>
+      <HP_penetration>true</HP_penetration>
+      <HP_penetration_ratio>300</HP_penetration_ratio> -->
     </projectile>
   </ThingDef>
 
@@ -176,7 +179,7 @@
 
   <!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_RPG7Grenade_HEAT</defName>
     <label>make RPG-7 HEAT grenades x5</label>
     <description>Craft 5 RPG-7 HEAT grenades.</description>
@@ -273,7 +276,7 @@
     </products>
   </RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_RPG7Grenade_Frag</defName>
     <label>make RPG-7 frag grenades x5</label>
     <description>Craft 5 RPG-7 frag grenades.</description>

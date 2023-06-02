@@ -3,7 +3,7 @@
 
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>Censored Armory [1.3]</li>
+      <li>Censored Armory</li>
     </mods>
     <match Class="PatchOperationAdd">
       <xpath>Defs</xpath>
@@ -30,7 +30,7 @@
 
         <!-- ==================== Ammo ========================== -->
 
-        <ThingDef Class="CombatExtended.AmmoDef" Name="30mmRifleGrenadeBase" ParentName="AmmoBase" Abstract="True">
+        <ThingDef Class="CombatExtended.AmmoDef" Name="30mmRifleGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
           <description>A small, low velocity rifle grenade propelled with a blank cartridge.</description>
           <statBases>
             <Mass>0.36</Mass>
@@ -115,7 +115,7 @@
 
         <!-- ================== Projectiles ================== -->
 
-        <ThingDef Name="Base30mmRifleGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+        <ThingDef Name="Base30mmRifleGrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
           <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
           <graphicData>
             <texPath>Things/Projectile/Bullet_Big</texPath>
@@ -162,7 +162,9 @@
           <projectile Class="CombatExtended.ProjectilePropertiesCE">
             <explosionRadius>1.5</explosionRadius>
             <damageDef>Smoke</damageDef>
-            <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+<suppressionFactor>0.0</suppressionFactor>
+<dangerFactor>0.0</dangerFactor>
+            <postExplosionGasType>BlindSmoke</postExplosionGasType>
             <preExplosionSpawnChance>1</preExplosionSpawnChance>
           </projectile>
         </ThingDef>

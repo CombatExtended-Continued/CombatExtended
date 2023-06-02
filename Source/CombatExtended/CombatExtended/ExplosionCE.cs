@@ -32,40 +32,54 @@ namespace CombatExtended
 
             //Sanity check
             if (other == null)
+            {
                 return false;
+            }
 
             var startDiff = (other.startTick == 0 ? Find.TickManager.TicksGame : other.startTick)
-                - (startTick == 0 ? Find.TickManager.TicksGame : startTick);
+                            - (startTick == 0 ? Find.TickManager.TicksGame : startTick);
 
             //Log.Message("StartDiff: " + startDiff);
 
             if (Mathf.Abs(startDiff) > MaxMergeTicks)
+            {
                 return false;
+            }
 
             //Log.Message("DF: " + damageFalloff + ", " + other.damageFalloff);
 
             if (other.damageFalloff != damageFalloff)
+            {
                 return false;
+            }
 
             //Log.Message("DT: " + damType.defName + ", " + other.damType.defName);
 
             if (other.damType != damType)
+            {
                 return false;
+            }
 
             //Log.Message("Sign: " + Mathf.Sign(height - CollisionVertical.WallCollisionHeight) + ", " + Mathf.Sign(other.height - CollisionVertical.WallCollisionHeight));
 
             if (Mathf.Sign(other.height - CollisionVertical.WallCollisionHeight) != Mathf.Sign(height - CollisionVertical.WallCollisionHeight))
+            {
                 return false;
+            }
 
             //Log.Message("PreExp: " + (preExplosionSpawnThingDef != null ? preExplosionSpawnThingDef.defName : "null") + ", " + (other.preExplosionSpawnThingDef != null ? other.preExplosionSpawnThingDef.defName : "null"));
 
             if (preExplosionSpawnThingDef != null && other.preExplosionSpawnThingDef != null && other.preExplosionSpawnThingDef != preExplosionSpawnThingDef)
+            {
                 return false;
+            }
 
             //Log.Message("PostExp: " + (postExplosionSpawnThingDef != null ? postExplosionSpawnThingDef.defName : "null") + ", " + (other.postExplosionSpawnThingDef != null ? other.postExplosionSpawnThingDef.defName : "null"));
 
             if (postExplosionSpawnThingDef != null && other.postExplosionSpawnThingDef != null && other.postExplosionSpawnThingDef != postExplosionSpawnThingDef)
+            {
                 return false;
+            }
 
             Thing newInstigator = null;
 
@@ -76,12 +90,14 @@ namespace CombatExtended
             {
                 //If both were hostile action..
                 if (other.intendedTarget != null && intendedTarget != null
-                    && other.intendedTarget.HostileTo(other.instigator)
-                    && intendedTarget.HostileTo(instigator))
+                        && other.intendedTarget.HostileTo(other.instigator)
+                        && intendedTarget.HostileTo(instigator))
                 {
                     //If both instigators had different factions, the explosions had different intentions -- cannot merge
                     if (instigator.Faction != null && other.instigator.Faction != null && instigator.Faction != other.instigator.Faction)
+                    {
                         return false;
+                    }
                 }
                 else
                 {
@@ -89,18 +105,28 @@ namespace CombatExtended
                     {
                         //Impossible to distinguish for a combat log which pawn initiated the explosion
                         if (instigator is Pawn && other.instigator is Pawn)
+                        {
                             return false;
+                        }
                         else
                         {
                             if (instigator is Pawn)
+                            {
                                 newInstigator = instigator;
+                            }
                             else if (other.instigator is Pawn)
+                            {
                                 newInstigator = other.instigator;
+                            }
 
                             if (instigator is AmmoThing || other.instigator is AmmoThing)
+                            {
                                 newInstigator = instigator is AmmoThing ? other.instigator : instigator;
+                            }
                             else
+                            {
                                 newInstigator = Rand.Value < 0.5f ? instigator : other.instigator;
+                            }
                         }
                     }
                 }
@@ -110,23 +136,31 @@ namespace CombatExtended
 
             //Might be problematic
             if (other.weapon != null && weapon != null && other.weapon != weapon)
+            {
                 return false;
+            }
 
             //Log.Message("Prj: " + (projectile != null ? projectile.defName : "null") + ", " + (other.projectile != null ? other.projectile.defName : "null"));
 
             //Might be problematic
             if (other.projectile != null && projectile != null && other.projectile != projectile)
+            {
                 return false;
+            }
 
             //Log.Message("LOS1: " + needLOSToCell1.ToString() + ", " + other.needLOSToCell1.ToString());
 
             if (other.needLOSToCell1 != needLOSToCell1)
+            {
                 return false;
+            }
 
             //Log.Message("LOS2: " + needLOSToCell2.ToString() + ", " + other.needLOSToCell2.ToString());
 
             if (other.needLOSToCell2 != needLOSToCell2)
+            {
                 return false;
+            }
 
             //Crucial matches
             merged = startDiff <= 0 ? this : other;
@@ -139,28 +173,34 @@ namespace CombatExtended
             //Combine shared ignored things
             var newIgnoredThings = new HashSet<Thing>();
             if (ignoredThings != null && other.ignoredThings != null)
+            {
                 newIgnoredThings.AddRange(ignoredThings.Where(x => other.ignoredThings.Contains(x)));
+            }
 
             //Add instigators if necessary
             if (ignoredThings != null && ignoredThings.Contains(instigator))
+            {
                 newIgnoredThings.Add(instigator);
+            }
             if (other.ignoredThings != null && other.ignoredThings.Contains(other.instigator))
+            {
                 newIgnoredThings.Add(other.instigator);
+            }
 
             merged.ignoredThings = newIgnoredThings.ToList();
 
             //Combine chances such that the same spread of things is observed, while the average is retained to the best of our ability using integer values only
             merged.chanceToStartFire = 1 - (1 - chanceToStartFire) * (1 - other.chanceToStartFire);
             merged.preExplosionSpawnThingCount = Mathf.RoundToInt((preExplosionSpawnThingCount * preExplosionSpawnChance
-                + other.preExplosionSpawnThingCount * other.preExplosionSpawnChance) / (1 - (1 - preExplosionSpawnChance) * (1 - other.preExplosionSpawnChance)));
+                                                 + other.preExplosionSpawnThingCount * other.preExplosionSpawnChance) / (1 - (1 - preExplosionSpawnChance) * (1 - other.preExplosionSpawnChance)));
             merged.preExplosionSpawnChance = 1 - (1 - preExplosionSpawnChance) * (1 - other.preExplosionSpawnChance);
             merged.postExplosionSpawnThingCount = Mathf.RoundToInt((postExplosionSpawnThingCount * postExplosionSpawnChance
-                + other.postExplosionSpawnThingCount * other.postExplosionSpawnChance) / (1 - (1 - postExplosionSpawnChance) * (1 - other.postExplosionSpawnChance)));
+                                                  + other.postExplosionSpawnThingCount * other.postExplosionSpawnChance) / (1 - (1 - postExplosionSpawnChance) * (1 - other.postExplosionSpawnChance)));
             merged.postExplosionSpawnChance = 1 - (1 - postExplosionSpawnChance) * (1 - other.postExplosionSpawnChance);
 
             //Linearly combine damage, since that's how it would be if both explosions ran
             merged.armorPenetration = Mathf.Max(damAmount * PressurePerDamage, armorPenetration)
-                + Mathf.Max(other.damAmount * PressurePerDamage, other.armorPenetration);
+                                      + Mathf.Max(other.damAmount * PressurePerDamage, other.armorPenetration);
             merged.damAmount = damAmount + other.damAmount;
 
             if (!merged.applyDamageToExplosionCellsNeighbors && nonMerged.applyDamageToExplosionCellsNeighbors)
@@ -199,7 +239,7 @@ namespace CombatExtended
                         if (aboveRoofs)
                         {
                             if ((!roofed && GenSight.LineOfSight(Position, intVec, Map, false, null, 0, 0))
-                               || !intVec.Roofed(Map))
+                                    || !intVec.Roofed(Map))
                             {
                                 openCells.Add(intVec);
                             }
@@ -290,7 +330,9 @@ namespace CombatExtended
             }
 
             if (this.ignoredThings.NullOrEmpty())
+            {
                 this.ignoredThings = ignoredThings;
+            }
 
             startTick = Find.TickManager.TicksGame;
             cellsToAffect.Clear();
@@ -304,7 +346,7 @@ namespace CombatExtended
             }
             damType.Worker.ExplosionStart(this, cellsToAffect);
             PlayExplosionSound(explosionSound);
-            FleckMaker.WaterSplash(Position.ToVector3Shifted(), Map, radius * 6f, 20f);
+            FleckMakerCE.WaterSplash(Position.ToVector3Shifted(), Map, radius * 6f, 20f);
             cellsToAffect.Sort((IntVec3 a, IntVec3 b) => GetCellAffectTick(b).CompareTo(GetCellAffectTick(a)));
             RegionTraverser.BreadthFirstTraverse(Position, Map, (Region from, Region to) => true, delegate (Region x)
             {

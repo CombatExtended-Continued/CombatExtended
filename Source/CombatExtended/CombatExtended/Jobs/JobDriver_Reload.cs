@@ -26,8 +26,20 @@ namespace CombatExtended
         private TargetIndex indWeapon => TargetIndex.B;
         private ThingWithComps weapon => TargetThingB as ThingWithComps; //intentionally non-caching.
 
-        private bool weaponEquipped { get { return pawn?.equipment?.Primary == weapon; } }
-        private bool weaponInInventory { get { return pawn?.inventory?.innerContainer.Contains(weapon) ?? false; } }
+        private bool weaponEquipped
+        {
+            get
+            {
+                return pawn?.equipment?.Primary == weapon;
+            }
+        }
+        private bool weaponInInventory
+        {
+            get
+            {
+                return pawn?.inventory?.innerContainer.Contains(weapon) ?? false;
+            }
+        }
 
         /// <summary>
         /// Gets and caches the CompAmmoUser.
@@ -36,7 +48,10 @@ namespace CombatExtended
         {
             get
             {
-                if (_compReloader == null) _compReloader = weapon.TryGetComp<CompAmmoUser>();
+                if (_compReloader == null)
+                {
+                    _compReloader = weapon.TryGetComp<CompAmmoUser>();
+                }
                 return _compReloader;
             }
         }
@@ -53,14 +68,24 @@ namespace CombatExtended
         {
             string text = CE_JobDefOf.ReloadWeapon.reportString;
             string flagSource = "";
-            if (reloadingEquipment) flagSource = "CE_ReloadingEquipment".Translate();
-            if (reloadingInventory) flagSource = "CE_ReloadingInventory".Translate();
+            if (reloadingEquipment)
+            {
+                flagSource = "CE_ReloadingEquipment".Translate();
+            }
+            if (reloadingInventory)
+            {
+                flagSource = "CE_ReloadingInventory".Translate();
+            }
             text = text.Replace("FlagSource", flagSource);
             text = text.Replace("TargetB", weapon.def.label);
             if (Controller.settings.EnableAmmoSystem && initAmmo != null)
+            {
                 text = text.Replace("AmmoType", initAmmo.LabelNoCount);
+            }
             else
+            {
                 text = text.Replace("AmmoType", "CE_ReloadingGenericAmmo".Translate());
+            }
             return text;
         }
 
@@ -72,9 +97,11 @@ namespace CombatExtended
         {
             //if (TargetThingB.DestroyedOrNull() || pawn.equipment == null || pawn.equipment.Primary == null || pawn.equipment.Primary != TargetThingB)
             if ((reloadingEquipment && (pawn?.equipment?.Primary == null || pawn.equipment.Primary != weapon))
-                   || (reloadingInventory && (pawn.inventory == null || !pawn.inventory.innerContainer.Contains(weapon)))
-                || (initEquipment != pawn?.equipment?.Primary))
+                    || (reloadingInventory && (pawn.inventory == null || !pawn.inventory.innerContainer.Contains(weapon)))
+                    || (initEquipment != pawn?.equipment?.Primary))
+            {
                 return true;
+            }
 
             //CompAmmoUser comp = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
             //return comp != null && comp.useAmmo && !comp.hasAmmo;
@@ -138,20 +165,26 @@ namespace CombatExtended
 
             // setup fail states, if something goes wrong with the pawn performing the reload, the weapon, or something else that we want to fail on.
             this.FailOnDespawnedOrNull(indReloader);
-            this.FailOnMentalState(indReloader);
+            if (pawn.MentalStateDef != MentalStateDefOf.Berserk && pawn.MentalStateDef != MentalStateDefOf.BerserkMechanoid)
+            {
+                this.FailOnMentalState(indReloader);
+            }
             this.FailOnDestroyedOrNull(indWeapon);
             this.FailOn(HasNoGunOrAmmo);
 
             // Throw mote
             if (compReloader.ShouldThrowMote && holder.Map != null)     //holder.Map is temporarily null after game load, skip mote if a pawn was reloading when game was saved
             {
-                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), holder.Map, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
+                MoteMakerCE.ThrowText(pawn.Position.ToVector3Shifted(), holder.Map, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
             }
 
-            //Toil of do-nothing		
-            Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
+            //Toil of do-nothing
+            Toil waitToil = new Toil()
+            {
+                actor = pawn
+            }; // actor was always null in testing...
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
-            waitToil.defaultCompleteMode = ToilCompleteMode.Delay;            
+            waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             waitToil.defaultDuration = Mathf.CeilToInt(weapon.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             yield return waitToil.WithProgressBarToilDelay(indReloader);
 
@@ -163,8 +196,8 @@ namespace CombatExtended
             // If reloading one shot at a time and if possible to reload, jump back to do-nothing toil
             System.Func<bool> jumpCondition =
                 () => compReloader.Props.reloadOneAtATime &&
-                      compReloader.CurMagCount < compReloader.MagSize &&
-                      (!compReloader.UseAmmo || compReloader.TryFindAmmoInInventory(out initAmmo));
+                compReloader.CurMagCount < compReloader.MagSize &&
+                (!compReloader.UseAmmo || compReloader.TryFindAmmoInInventory(out initAmmo));
             Toil jumpToil = Toils_Jump.JumpIf(waitToil, jumpCondition);
             yield return jumpToil;
 

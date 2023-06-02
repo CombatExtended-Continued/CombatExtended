@@ -41,13 +41,29 @@ namespace CombatExtended
                     Loadout loadout = enu.Current;
                     yield return new Widgets.DropdownMenuElement<Loadout>
                     {
-                        option = new FloatMenuOption(loadout.LabelCap, delegate ()
+                        option = new FloatMenuOption(loadout.LabelCap, delegate
                         {
-                            pawn.SetLoadout(loadout);
+                            SetLoadout(pawn, loadout);
                         }),
                         payload = loadout
                     };
                 }
+            }
+        }
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private static void SetLoadout(Pawn pawn, Loadout loadout) => pawn.SetLoadout(loadout);
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private static void HoldTrackerClear(Pawn pawn) => pawn.HoldTrackerClear();
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private static void UpdateLoadoutNow(Pawn pawn)
+        {
+            Job job = pawn.thinker?.GetMainTreeThinkNode<JobGiver_UpdateLoadout>()?.TryGiveJob(pawn);
+            if (job != null)
+            {
+                pawn.jobs.StartJob(job, JobCondition.InterruptForced);
             }
         }
 
@@ -100,9 +116,7 @@ namespace CombatExtended
                 Rect forceEquipNow = loadoutRect.RightPartPixels(equipNowWidth + 12);
                 if (Widgets.ButtonText(forceEquipNow, "CE_UpdateLoadoutNow".Translate()))
                 {
-                    Job job = pawn.thinker?.GetMainTreeThinkNode<JobGiver_UpdateLoadout>()?.TryGiveJob(pawn);
-                    if (job != null)                
-                        pawn.jobs.StartJob(job, JobCondition.InterruptForced);                    
+                    UpdateLoadoutNow(pawn);
                 }
             }
 
@@ -115,14 +129,17 @@ namespace CombatExtended
             {
                 if (Widgets.ButtonImage(forcedHoldRect, ClearImage))
                 {
-                    pawn.HoldTrackerClear(); // yes this will also delete records that haven't been picked up and thus not shown to the player...
+                    HoldTrackerClear(pawn); // yes this will also delete records that haven't been picked up and thus not shown to the player...
                 }
                 TooltipHandler.TipRegion(forcedHoldRect, new TipSignal(delegate
                 {
                     string text = "CE_ForcedHold".Translate() + ":\n";
                     foreach (HoldRecord rec in LoadoutManager.GetHoldRecords(pawn))
                     {
-                        if (!rec.pickedUp) continue;
+                        if (!rec.pickedUp)
+                        {
+                            continue;
+                        }
                         text = text + "\n   " + rec.thingDef.LabelCap + " x" + rec.count;
                     }
                     return text;

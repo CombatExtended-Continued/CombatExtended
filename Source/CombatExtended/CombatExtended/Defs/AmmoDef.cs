@@ -46,10 +46,14 @@ namespace CombatExtended
                     });
 
                     if (users != null && !users.Any())
+                    {
                         return users;
+                    }
 
                     if (descriptionHyperlinks.NullOrEmpty())
+                    {
                         descriptionHyperlinks = new List<DefHyperlink>();
+                    }
                     else
                     {
                         if (originalHyperlinks.NullOrEmpty())
@@ -57,7 +61,9 @@ namespace CombatExtended
                             originalHyperlinks = new List<DefHyperlink>();
 
                             foreach (var i in descriptionHyperlinks)
+                            {
                                 originalHyperlinks.Add(i);
+                            }
                         }
                         else
                         {
@@ -75,7 +81,9 @@ namespace CombatExtended
                         descriptionHyperlinks.Add(user);
 
                         if (user.descriptionHyperlinks.NullOrEmpty())
+                        {
                             user.descriptionHyperlinks = new List<DefHyperlink>();
+                        }
 
                         user.descriptionHyperlinks.Add(this);
                     }
@@ -91,7 +99,9 @@ namespace CombatExtended
             get
             {
                 if (ammoSetDefs == null)
+                {
                     ammoSetDefs = Users.Select(x => x.GetCompProperties<CompProperties_AmmoUser>().ammoSet).Distinct().ToList();
+                }
 
                 return ammoSetDefs;
             }
@@ -103,7 +113,9 @@ namespace CombatExtended
             if (ammoClass != null)
             {
                 if (oldDescription.NullOrEmpty())
+                {
                     oldDescription = description;
+                }
 
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.AppendLine(oldDescription);
@@ -114,7 +126,9 @@ namespace CombatExtended
 
                 // Append guns that use this caliber
                 if (!Users.NullOrEmpty())
+                {
                     stringBuilder.AppendLine("\n" + "CE_UsedBy".Translate() + ":");
+                }
 
                 description = stringBuilder.ToString().TrimEndNewlines();
             }
@@ -129,10 +143,12 @@ namespace CombatExtended
                 foreach (var comp in detonateProjectile.comps)
                 {
                     if (!comps.Any(x => x.compClass == comp.compClass)
-                        && (comp.compClass == typeof(CompFragments)
-                            || comp.compClass == typeof(CompExplosive)
-                            || comp.compClass == typeof(CompExplosiveCE)))
+                            && (comp.compClass == typeof(CompFragments)
+                                || comp.compClass == typeof(CompExplosive)
+                                || comp.compClass == typeof(CompExplosiveCE)))
+                    {
                         comps.Add(comp);
+                    }
                 }
             }
         }

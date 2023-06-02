@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using RimWorld;
+using UnityEngine;
+using Verse;
+using CombatExtended.Utilities;
+
+namespace CombatExtended
+{
+    public class VerbShootCE_AdvancedUBGL : Verb_ShootCE
+    {
+        public CompUnderBarrel UBGLComp => EquipmentSource.TryGetComp<CompUnderBarrel>();
+        public override int ShotsPerBurst
+        {
+            get
+            {
+                if (this.CompFireModes.CurrentFireMode == FireMode.AutoFire)
+                {
+                    if (UBGLComp?.usingUnderBarrel ?? false)
+                    {
+                        return UBGLComp.Props.verbPropsUnderBarrel.burstShotCount;
+                    }
+                }
+                return base.ShotsPerBurst;
+            }
+        }
+
+        public bool nonPlayer => Caster.Faction != Faction.OfPlayer;
+
+        public Pawn launcherBoy;
+
+        public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false)
+        {
+            if (UBGLComp.Props.targetHighVal)
+            {
+                if (nonPlayer)
+                {
+                    if (castTarg.Thing is Pawn p && (p != launcherBoy))
+                    {
+                        var pawns = p.Position.PawnsInRange(p.Map, 8).ToList();
+
+                        var launchyBoy = pawns.Find(x => x.equipment?.Primary?.def.weaponTags?.Any(y => UBGLComp.Props.targetTags.Contains(y)) ?? false);
+
+                        if (launchyBoy != null && this.CanHitTargetFrom(Caster.Position, launchyBoy))
+                        {
+                            UBGLComp.SwitchToUB();
+
+                            launcherBoy = launchyBoy;
+
+                            var infoLaunchyBoy = new LocalTargetInfo(launchyBoy);
+
+                            this.OrderForceTarget(infoLaunchyBoy);
+
+                            return false;
+                        }
+                        else
+                        {
+                            UBGLComp.SwithToB();
+                        }
+                    }
+                    else
+                    {
+                        UBGLComp.SwithToB();
+                    }
+                }
+            }
+            return base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire);
+        }
+    }
+}

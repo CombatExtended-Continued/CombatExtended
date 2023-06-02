@@ -14,16 +14,17 @@
 		<defName>AmmoSet_20x128mmOerlikon</defName>
 		<label>20x128mm Oerlikon</label>
 		<ammoTypes>
-      		<Ammo_20x128mmOerlikon_FMJ>Bullet_20x128mmOerlikon_FMJ</Ammo_20x128mmOerlikon_FMJ>		
+			<Ammo_20x128mmOerlikon_AP>Bullet_20x128mmOerlikon_AP</Ammo_20x128mmOerlikon_AP>		
 			<Ammo_20x128mmOerlikon_Incendiary>Bullet_20x128mmOerlikon_Incendiary</Ammo_20x128mmOerlikon_Incendiary>
 			<Ammo_20x128mmOerlikon_HE>Bullet_20x128mmOerlikon_HE</Ammo_20x128mmOerlikon_HE>
 			<Ammo_20x128mmOerlikon_Sabot>Bullet_20x128mmOerlikon_Sabot</Ammo_20x128mmOerlikon_Sabot>	   			
 		</ammoTypes>
+		<similarTo>AmmoSet_Autocannon</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x128mmOerlikonBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x128mmOerlikonBase" ParentName="MediumAmmoBase" Abstract="True">
 		<description>Large caliber cartridge used by autocannons and a handful of anti-tank rifles.</description>
 		<statBases>
 			<Mass>0.353</Mass>
@@ -40,17 +41,17 @@
 	</ThingDef>
 
     <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x128mmOerlikonBase">
-      <defName>Ammo_20x128mmOerlikon_FMJ</defName>
-      <label>20x128mm Oerlikon cartridge (FMJ)</label>
+      <defName>Ammo_20x128mmOerlikon_AP</defName>
+      <label>20x128mm Oerlikon cartridge (AP)</label>
       <graphicData>
-        <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+        <texPath>Things/Ammo/HighCaliber/AP</texPath>
         <graphicClass>Graphic_StackCount</graphicClass>
       </graphicData>
       <statBases>
-        <MarketValue>1.41</MarketValue>
+        <MarketValue>1.42</MarketValue>
       </statBases>
-      <ammoClass>FullMetalJacket</ammoClass>
-      <cookOffProjectile>Bullet_20x128mmOerlikon_FMJ</cookOffProjectile>
+      <ammoClass>ArmorPiercing</ammoClass>
+      <cookOffProjectile>Bullet_20x128mmOerlikon_AP</cookOffProjectile>
     </ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x128mmOerlikonBase">
@@ -69,7 +70,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x128mmOerlikonBase">
 		<defName>Ammo_20x128mmOerlikon_HE</defName>
-		<label>20x128mm Oerlikon cartridge (HE)</label>
+		<label>20x128mm Oerlikon cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -98,7 +99,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base20x128mmOerlikonBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base20x128mmOerlikonBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -111,12 +112,12 @@
 	</ThingDef>
 
   <ThingDef ParentName="Base20x128mmOerlikonBullet">
-    <defName>Bullet_20x128mmOerlikon_FMJ</defName>
-    <label>20x128mm Oerlikon bullet (FMJ)</label>
+    <defName>Bullet_20x128mmOerlikon_AP</defName>
+    <label>20x128mm Oerlikon bullet (AP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>75</damageAmountBase>
-      <armorPenetrationSharp>18</armorPenetrationSharp>
-      <armorPenetrationBlunt>314.28</armorPenetrationBlunt>
+      <damageAmountBase>47</damageAmountBase>
+      <armorPenetrationSharp>36</armorPenetrationSharp>
+      <armorPenetrationBlunt>1280.120</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
 
@@ -138,7 +139,7 @@
 
 	<ThingDef ParentName="Base20x128mmOerlikonBullet">
 		<defName>Bullet_20x128mmOerlikon_HE</defName>
-		<label>20mm Oerlikon bullet (HE)</label>
+		<label>20mm Oerlikon bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>75</damageAmountBase>
 			<armorPenetrationSharp>18</armorPenetrationSharp>
@@ -157,19 +158,19 @@
     <label>20x128mm Oerlikon bullet (Sabot)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
 	    <speed>311</speed>
-      <damageAmountBase>20</damageAmountBase>
-      <armorPenetrationSharp>63</armorPenetrationSharp>
-      <armorPenetrationBlunt>1642.44</armorPenetrationBlunt>
+	    <damageAmountBase>20</damageAmountBase>
+	    <armorPenetrationSharp>63</armorPenetrationSharp>
+	    <armorPenetrationBlunt>1642.44</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
     <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_20x128mmOerlikon_FMJ</defName>
-      <label>make 20x128mm Oerlikon (FMJ) cartridge x200</label>
-      <description>Craft 200 20x128mm Oerlikon (FMJ) cartridges.</description>
-      <jobString>Making 20x128mm Oerlikon (FMJ) cartridges.</jobString>
+      <defName>MakeAmmo_20x128mmOerlikon_AP</defName>
+      <label>make 20x128mm Oerlikon (AP) cartridge x200</label>
+      <description>Craft 200 20x128mm Oerlikon (AP) cartridges.</description>
+      <jobString>Making 20x128mm Oerlikon (AP) cartridges.</jobString>
       <ingredients>
         <li>
           <filter>
@@ -186,9 +187,9 @@
         </thingDefs>
       </fixedIngredientFilter>
       <products>
-        <Ammo_20x128mmOerlikon_FMJ>200</Ammo_20x128mmOerlikon_FMJ>
+        <Ammo_20x128mmOerlikon_AP>200</Ammo_20x128mmOerlikon_AP>
       </products>
-      <workAmount>14200</workAmount>
+      <workAmount>17040</workAmount>
     </RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -228,9 +229,9 @@
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_20x128mmOerlikon_HE</defName>
-		<label>make 20x128mm Oerlikon (HE) cartridge x200</label>
-		<description>Craft 200 20x128mm Oerlikon (HE) cartridges.</description>
-		<jobString>Making 20x128mm Oerlikon (HE) cartridges.</jobString>
+		<label>make 20x128mm Oerlikon (AP-HE) cartridge x200</label>
+		<description>Craft 200 20x128mm Oerlikon (AP-HE) cartridges.</description>
+		<jobString>Making 20x128mm Oerlikon (AP-HE) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>

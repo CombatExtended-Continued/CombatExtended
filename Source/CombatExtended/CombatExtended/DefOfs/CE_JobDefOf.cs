@@ -22,5 +22,7 @@ namespace CombatExtended
         public static JobDef OpportunisticAttack;
         public static JobDef TendSelf;
         public static JobDef ModifyWeapon;
+        public static JobDef GiveAmmo;
+        public static JobDef RepairNaturalArmor;
     }
 }

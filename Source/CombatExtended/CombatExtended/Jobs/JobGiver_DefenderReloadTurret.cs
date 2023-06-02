@@ -18,7 +18,7 @@ namespace CombatExtended
         /// How low can ammo get before we want to reload the turret?
         /// Set arbitrarily, balance if needed.
         /// </summary>
-        private const float ammoReloadThreshold = .5f;
+        public const float AmmoReloadThreshold = .5f;
         public override Job TryGiveJob(Pawn pawn)
         {
             var turret = TryFindTurretWhichNeedsReloading(pawn);
@@ -34,21 +34,26 @@ namespace CombatExtended
             Predicate<Thing> _isTurretThatNeedsReloadingNow = (Thing t) =>
             {
                 var turret = t as Building_Turret;
-                if (turret == null) { return false; }
-                if (!JobGiverUtils_Reload.CanReload(pawn, turret, forced: false, emergency: true)) { return false; }
-                return turret.ShouldReload(ammoReloadThreshold);
+                if (turret == null)
+                {
+                    return false;
+                }
+
+                // Optimization: Check if the turret should be reloaded given its current magazine fullness first,
+                // as CanReload() may trigger a potentially expensive ammo search.
+                return turret.ShouldReload(AmmoReloadThreshold) && JobGiverUtils_Reload.CanReload(pawn, turret, forced: false, emergency: true);
             };
 
             var hopefullyTurret = pawn.Map.GetComponent<TurretTracker>().ClosestTurret(
-                pawn.Position,
-                PathEndMode.Touch,
-                TraverseParms.For(pawn),
-                100f,
-                _isTurretThatNeedsReloadingNow);
+                                      pawn.Position,
+                                      PathEndMode.Touch,
+                                      TraverseParms.For(pawn),
+                                      100f,
+                                      _isTurretThatNeedsReloadingNow);
 
             return hopefullyTurret as Building_TurretGunCE;
         }
 
-    
+
     }
 }

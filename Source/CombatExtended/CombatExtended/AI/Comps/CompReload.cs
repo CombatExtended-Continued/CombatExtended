@@ -17,12 +17,14 @@ namespace CombatExtended.AI
             // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
             CompAmmoUser gun = verb.EquipmentSource.TryGetComp<CompAmmoUser>();
 
-            // check if gun has 
+            // check if gun has
             if (gun == null || !gun.HasMagazine || gun.CurMagCount > 0)
+            {
                 return true;
+            }
 
-            // if out of ammo 
-            if (verb.EquipmentSource == CurrentWeapon && !gun.HasAmmo)
+            // if out of ammo
+            if (verb.EquipmentSource == CurrentWeapon && gun.UseAmmo && !gun.HasAmmo)
             {
                 CompInventory.SwitchToNextViableWeapon(true, useAOE: !SelPawn.Faction.IsPlayer, stopJob: false);
                 return false;

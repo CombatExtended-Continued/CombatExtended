@@ -80,6 +80,9 @@ namespace CombatExtended
             }
         }
 
+        [Compatibility.Multiplayer.SyncMethodAttribute]
+        private static void SetAmmoType(CompAmmoUser user, AmmoDef ammoDef) => user.SelectedAmmo = ammoDef;
+
         private FloatMenu MakeAmmoMenu()
         {
             return new FloatMenu(BuildAmmoOptions());
@@ -89,9 +92,13 @@ namespace CombatExtended
         {
             //Prepare list of others in case only a single gizmo is selected
             if (others == null)
+            {
                 others = new List<Command_Reload>();
+            }
             if (!others.Contains(this))
+            {
                 others.Add(this);
+            }
 
             // Append float menu options for every available ammo type
             List<FloatMenuOption> floatOptionList = new List<FloatMenuOption>();
@@ -118,11 +125,14 @@ namespace CombatExtended
                         var ammoClass = ammoDef.ammoClass;
 
                         // If we have no inventory available (e.g. manned turret), add all possible ammo types to the selection
+                        // Or if we're in god mode. 
                         // Otherwise, iterate through all suitable ammo types and check if they're in our inventory
-                        if (user.CompInventory?.ammoList?.Any(x => x.def == ammoDef) ?? true)
+                        if ((user.CompInventory?.ammoList?.Any(x => x.def == ammoDef) ?? true) || DebugSettings.godMode)
                         {
                             if (!ammoClassAmounts.ContainsKey(ammoClass))
+                            {
                                 ammoClassAmounts.Add(ammoClass, new int[2]);
+                            }
 
                             ammoClassAmounts[ammoClass][0]++;
 
@@ -130,32 +140,42 @@ namespace CombatExtended
 
                             //Increase amount of current ammo of this type by 1
                             if (user.CurrentAmmo == ammoDef)
+                            {
                                 ammoClassAmounts[ammoClass][1]++;
+                            }
 
                             if (user.SelectedAmmo == ammoDef)
                             {
                                 if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.GetMannable() == null && user.CurMagCount < user.MagSize)
+                                {
                                     del += other.action;
+                                }
                             }
                             else
                             {
-                                del += delegate { user.SelectedAmmo = ammoDef; };
+                                del += () => SetAmmoType(user, ammoDef);
 
                                 if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.GetMannable() == null)
+                                {
                                     del += other.action;
+                                }
                             }
 
                             //Add to delegate or create delegate at ammoClass key
                             if (ammoClassActions.ContainsKey(ammoClass))
+                            {
                                 ammoClassActions[ammoClass] += del;
+                            }
                             else
+                            {
                                 ammoClassActions.Add(ammoClass, del);
+                            }
 
                             flag = true;
                         }
                     }
                 }
-                
+
                 //At least one ammo type is available
                 if (flag)
                 {
@@ -166,20 +186,21 @@ namespace CombatExtended
                         //b = number of guns that could use this ammo category
                         //c = name of category (FMJ/AP/HP/..)
                         floatOptionList.Add(new FloatMenuOption(
-                                others.Except(this).Any() ?
-                                "(" + ammoClassAmounts[pair.Key][1] + "/" + ammoClassAmounts[pair.Key][0] + ") " + pair.Key.LabelCap
-                                : pair.Key.LabelCap
-                            , pair.Value));
+                                                others.Except(this).Any() ?
+                                                "(" + ammoClassAmounts[pair.Key][1] + "/" + ammoClassAmounts[pair.Key][0] + ") " + pair.Key.LabelCap
+                                                : pair.Key.LabelCap
+                                                , pair.Value));
                     }
                 }
                 else    //Display when ALL OTHERS have no ammo
+                {
                     floatOptionList.Add(new FloatMenuOption("CE_OutOfAmmo".Translate(), null));
+                }
             }
             #endregion
 
             #region Unloading and reloading
-            var unload = false;
-            Action unloadDel = null;
+            List<CompAmmoUser> usersToUnload = new List<CompAmmoUser>();
 
             var reload = false;
             Action reloadDel = null;
@@ -194,22 +215,34 @@ namespace CombatExtended
 
                     if (user.UseAmmo && user.CurMagCount > 0)
                     {
-                        unload = true;
-                        unloadDel += delegate { user.TryUnload(true); };
+                        usersToUnload.Add(user);
                     }
                 }
             }
 
             // Append unload delegates
-            if (unload)
-                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), unloadDel));
+            if (usersToUnload.Any())
+            {
+                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), () => SyncedTryUnload(usersToUnload)));
+            }
 
             // Append reload delegates
             if (reload)
+            {
                 floatOptionList.Add(new FloatMenuOption("CE_ReloadLabel".Translate(), reloadDel));
+            }
             #endregion
 
             return floatOptionList;
+        }
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private static void SyncedTryUnload(List<CompAmmoUser> ammoUsers)
+        {
+            foreach (var user in ammoUsers)
+            {
+                user.TryUnload(true);
+            }
         }
 
     }

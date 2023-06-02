@@ -16,7 +16,7 @@
     <techLevel>Industrial</techLevel>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
-      <Flammability>0.1</Flammability>
+      <Flammability>0.7</Flammability>
       <WorkToMake>10000</WorkToMake>
       <Beauty>-60</Beauty>
     </statBases>
@@ -83,6 +83,17 @@
     </recipeMaker>
   </ThingDef>
 
+  <ThingDef Name="TurretMannedBuildableBase" ParentName="TurretBase" Abstract="True">
+    <designationCategory>Security</designationCategory>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <comps>
+      <li Class="CompProperties_Mannable">
+        <manWorkType>Violent</manWorkType>
+      </li>
+    </comps>
+  </ThingDef>
+
   <!--=============== Blaster Turret ===============-->
 
   <ThingDef ParentName="TurretAutoBase">
@@ -96,25 +107,26 @@
         <offset>(0,0,0)</offset>
       </shadowData>
     </graphicData>
+    <uiIconPath>UI/Icons/Turrets/ChargeBlaster_uiIcon</uiIconPath>
     <statBases>
       <WorkToBuild>48000</WorkToBuild>
-      <MaxHitPoints>140</MaxHitPoints>
+      <MaxHitPoints>150</MaxHitPoints>
       <Mass>20</Mass>
       <Bulk>25</Bulk>
-      <AimingAccuracy>0.5</AimingAccuracy>
-      <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+      <AimingAccuracy>0.75</AimingAccuracy>
+      <ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
     </statBases>
     <techLevel>Spacer</techLevel>
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>950</basePowerConsumption>
+        <basePowerConsumption>400</basePowerConsumption>
       </li>
     </comps>
     <description>Automatic turret equipped with a charge blaster.</description>
     <costList>
-      <Steel>65</Steel>
-      <Plasteel>30</Plasteel>
+      <Steel>125</Steel>
+      <Plasteel>40</Plasteel>
       <ComponentIndustrial>12</ComponentIndustrial>
     </costList>
     <building>
@@ -128,7 +140,6 @@
     <researchPrerequisites>
       <li>CE_ChargeTurret</li>
     </researchPrerequisites>
-    <specialDisplayRadius>40</specialDisplayRadius>
     <minifiedDef>MinifiedThing</minifiedDef>
   </ThingDef>
 
@@ -145,24 +156,22 @@
         <offset>(0,0,0)</offset>
       </shadowData>
     </graphicData>
+    <uiIconPath>UI/Icons/Turrets/HeavyAutoTurret_uiIcon</uiIconPath>
     <statBases>
       <WorkToBuild>80000</WorkToBuild>
-      <MarketValue>2150</MarketValue>
-      <MaxHitPoints>550</MaxHitPoints>
-      <Flammability>0.05</Flammability>
-      <Mass>80</Mass>
-      <Bulk>100</Bulk>
+      <MaxHitPoints>350</MaxHitPoints>
+      <Flammability>0.5</Flammability>
+      <Mass>60</Mass>
+      <Bulk>80</Bulk>
       <AimingAccuracy>0.5</AimingAccuracy>
       <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
     </statBases>
-    <techLevel>Spacer</techLevel>
-    <description>Plated automatic turret with large caliber machine gun. Very resistant to damage.</description>
+    <description>Plated automatic turret equiped with a high caliber machine gun. Very resistant to damage.</description>
     <costList>
       <Steel>275</Steel>
       <ComponentIndustrial>8</ComponentIndustrial>
     </costList>
     <building>
-      <combatPower>45</combatPower>
       <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>Gun_HeavyTurret</turretGunDef>
     </building>
@@ -170,11 +179,11 @@
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
-    <specialDisplayRadius>40</specialDisplayRadius>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
     <comps>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
-        <basePowerConsumption>700</basePowerConsumption>
+        <basePowerConsumption>300</basePowerConsumption>
       </li>
     </comps>
     <minifiedDef>MinifiedThing</minifiedDef>
@@ -183,114 +192,182 @@
     </researchPrerequisites>
   </ThingDef>
 
-  <!--=============== M240B ===============-->
+  <!--=============== Medium Turret ===============-->
 
-  <ThingDef ParentName="TurretMannedCraftableBase">
-    <defName>Turret_M240B</defName>
-    <label>M240B</label>
+  <ThingDef ParentName="TurretAutoBase">
+    <defName>Turret_Medium</defName>
+    <label>medium auto-turret</label>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <graphicData>
       <texPath>Things/Building/Turrets/MachineGunBase</texPath>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
     </graphicData>
+    <uiIconPath>UI/Icons/Turrets/MediumAutoTurret_uiIcon</uiIconPath>
     <statBases>
-      <Flammability>1.0</Flammability>
-      <WorkToMake>31500</WorkToMake>
-      <Mass>16.5</Mass>
-      <Bulk>20</Bulk>
+      <WorkToBuild>40000</WorkToBuild>
+      <MaxHitPoints>200</MaxHitPoints>
+      <Flammability>0.6</Flammability>
+      <Mass>30</Mass>
+      <Bulk>40</Bulk>
+      <AimingAccuracy>0.5</AimingAccuracy>
+      <ShootingAccuracyTurret>0.75</ShootingAccuracyTurret>
     </statBases>
-    <description>M240B medium machine gun mounted on a tripod.</description>
+    <description>Automatic turret equiped with a full powered cartridge machine gun. Fairly resistant to damage.</description>
     <costList>
-      <Steel>125</Steel>
-      <ComponentIndustrial>4</ComponentIndustrial>
+      <Steel>150</Steel>
+      <ComponentIndustrial>8</ComponentIndustrial>
     </costList>
-    <castEdgeShadows>true</castEdgeShadows>
     <building>
-      <turretGunDef>Gun_M240B</turretGunDef>
       <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Gun_MediumTurret</turretGunDef>
     </building>
     <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>150</basePowerConsumption>
+      </li>
+    </comps>
     <minifiedDef>MinifiedThing</minifiedDef>
-    <recipeMaker>
-      <researchPrerequisite>PrecisionRifling</researchPrerequisite>
-    </recipeMaker>
+    <researchPrerequisites>
+      <li>GunTurrets</li>
+      <li>PrecisionRifling</li>
+    </researchPrerequisites>
   </ThingDef>
 
   <!--=============== KPV ===============-->
 
-  <ThingDef ParentName="TurretMannedCraftableBase">
+  <ThingDef ParentName="TurretMannedBuildableBase">
     <defName>Turret_KPV</defName>
     <label>KPV machine gun</label>
     <constructionSkillPrerequisite>7</constructionSkillPrerequisite>
     <graphicData>
-      <texPath>Things/Building/Turrets/MachineGunBase</texPath>
+      <texPath>Things/Building/Turrets/KPV_base</texPath>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(0.27,0.25,0.6)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
     </graphicData>
+    <uiIconPath>UI/Icons/Turrets/KPV_uiIcon</uiIconPath>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
-      <WorkToMake>50500</WorkToMake>
+      <WorkToBuild>50500</WorkToBuild>
       <Mass>88</Mass>
       <Bulk>100</Bulk>
     </statBases>
     <description>KPV heavy machine gun mounted on a tripod.</description>
     <costList>
       <Steel>275</Steel>
-      <ComponentIndustrial>4</ComponentIndustrial>
+      <ComponentIndustrial>6</ComponentIndustrial>
     </costList>
     <building>
       <turretGunDef>Gun_KPV</turretGunDef>
       <ai_combatDangerous>true</ai_combatDangerous>
+      <turretBurstCooldownTime>0.37</turretBurstCooldownTime>
     </building>
-    <castEdgeShadows>true</castEdgeShadows>
     <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
-    <recipeMaker>
-      <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
-    </recipeMaker>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <researchPrerequisites>
+      <li>CE_TurretHeavyWeapons</li>
+      <li>PrecisionRifling</li>
+    </researchPrerequisites>
     <minifiedDef>MinifiedThing</minifiedDef>
+  </ThingDef>
+
+  <!--=============== M240B ===============-->
+
+  <ThingDef ParentName="TurretMannedBuildableBase">
+    <defName>Turret_M240B</defName>
+    <label>M240B</label>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <graphicData>
+      <texPath>Things/Building/Turrets/M240_base</texPath>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(0.27,0.25,0.45)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>UI/Icons/Turrets/M240B_uiIcon</uiIconPath>
+    <statBases>
+      <WorkToBuild>31500</WorkToBuild>
+      <Mass>16.5</Mass>
+      <Bulk>20</Bulk>
+    </statBases>
+    <description>M240B medium machine gun mounted on a tripod.</description>
+    <costList>
+      <Steel>150</Steel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+    <building>
+      <turretGunDef>Gun_M240B</turretGunDef>
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretBurstCooldownTime>0.36</turretBurstCooldownTime>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <researchPrerequisites>
+      <li>PrecisionRifling</li>
+    </researchPrerequisites>
   </ThingDef>
 
   <!--=============== AGS-30 ===============-->
 
-  <ThingDef ParentName="TurretMannedCraftableBase">
+  <ThingDef ParentName="TurretMannedBuildableBase">
     <defName>Turret_AGSThirty</defName>
     <label>AGS-30</label>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <graphicData>
-      <texPath>Things/Building/Turrets/AGS30Base</texPath>
+      <texPath>Things/Building/Turrets/AGS30_base</texPath>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(0.27,0.25,0.35)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
     </graphicData>
+    <uiIconPath>UI/Icons/Turrets/AGS30_uiIcon</uiIconPath>
     <statBases>
-      <WorkToMake>33500</WorkToMake>
+      <WorkToBuild>33500</WorkToBuild>
       <Mass>16</Mass>
       <Bulk>20</Bulk>
     </statBases>
-    <description>Lightweight automatic grenade launcher.</description>
+    <description>Lightweight automatic grenade launcher mounted on a tripod.</description>
     <costList>
       <Steel>115</Steel>
       <ComponentIndustrial>5</ComponentIndustrial>
     </costList>
-    <castEdgeShadows>true</castEdgeShadows>
-    <specialDisplayRadius>8</specialDisplayRadius>
     <building>
       <turretGunDef>Gun_AGSThirty</turretGunDef>
       <ai_combatDangerous>true</ai_combatDangerous>
+      <turretBurstCooldownTime>0.40</turretBurstCooldownTime>
     </building>
     <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
-    <recipeMaker>
-      <researchPrerequisite>CE_TurretHeavyWeapons</researchPrerequisite>
-    </recipeMaker>
+    <researchPrerequisites>
+      <li>CE_TurretHeavyWeapons</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <minifiedDef>MinifiedThing</minifiedDef>
   </ThingDef>
 
   <!--=============== Flak cannon ===============-->
 
-  <ThingDef ParentName="TurretMannedBase">
+  <ThingDef ParentName="TurretMannedBuildableBase">
     <defName>Turret_Flak</defName>
     <label>90mm flak turret</label>
     <description>Old school anti-aircraft cannon. Ineffective against modern aviation but still popular on rimworlds for use against entrenched enemies and vehicles.</description>
@@ -302,8 +379,10 @@
         <volume>(0.5,0.4,1.05)</volume>
       </shadowData>
     </graphicData>
+    <uiIconPath>UI/Icons/Turrets/FlakTurret_uiIcon</uiIconPath>
     <statBases>
       <MaxHitPoints>500</MaxHitPoints>
+      <Flammability>0.4</Flammability>
       <WorkToBuild>79500</WorkToBuild>
       <Mass>1000</Mass>
       <Bulk>1000</Bulk>
@@ -312,16 +391,26 @@
       <Steel>500</Steel>
       <ComponentIndustrial>5</ComponentIndustrial>
     </costList>
-    <specialDisplayRadius>16</specialDisplayRadius>
+    <costListForDifficulty>
+      <difficultyVar>classicMortars</difficultyVar>
+      <invert>true</invert>
+      <costList>
+        <ComponentIndustrial>5</ComponentIndustrial>
+        <ReinforcedBarrel>1</ReinforcedBarrel>
+        <Steel>350</Steel>
+      </costList>   
+    </costListForDifficulty>       
     <building>
       <turretGunDef>Gun_FlakTurret</turretGunDef>
       <ai_combatDangerous>true</ai_combatDangerous>
       <turretTopDrawSize>4</turretTopDrawSize>
+      <turretBurstCooldownTime>2.5</turretBurstCooldownTime>
     </building>
     <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <size>(3,3)</size>
     <interactionCellOffset>(-1,0,-1)</interactionCellOffset>
     <minifiedDef>MinifiedThing</minifiedDef>

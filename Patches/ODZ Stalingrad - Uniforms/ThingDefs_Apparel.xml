@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>[1.4] Stalingrad - Uniforms</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ======= Webbings ======= -->
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanRiflemanKit" or defName="ODZ_WWII_GermanAssaultKit" or defName="ODZ_WWII_GermanMGKit" or defName="ODZ_WWII_GermanPlatoonLeaderKit" or defName="ODZ_WWII_SovietRiflemanKit" or defName="ODZ_WWII_SovietAssaultKit" or defName="ODZ_WWII_SovietMGKit" or defName="ODZ_WWII_SovietPlatoonLeaderKit"]/apparel/bodyPartGroups</xpath>
+                    <value>
+                        <bodyPartGroups>
+                            <li>Shoulders</li>
+                        </bodyPartGroups>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanRiflemanKit" or defName="ODZ_WWII_GermanAssaultKit" or defName="ODZ_WWII_GermanMGKit" or defName="ODZ_WWII_GermanPlatoonLeaderKit" or defName="ODZ_WWII_SovietRiflemanKit" or defName="ODZ_WWII_SovietAssaultKit" or defName="ODZ_WWII_SovietMGKit" or defName="ODZ_WWII_SovietPlatoonLeaderKit"]/apparel/layers</xpath>
+                    <value>
+                        <layers>
+                            <li>Webbing</li>
+                        </layers>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanRiflemanKit" or defName="ODZ_WWII_GermanAssaultKit" or defName="ODZ_WWII_GermanMGKit" or defName="ODZ_WWII_GermanPlatoonLeaderKit" or defName="ODZ_WWII_SovietRiflemanKit" or defName="ODZ_WWII_SovietAssaultKit" or defName="ODZ_WWII_SovietMGKit" or defName="ODZ_WWII_SovietPlatoonLeaderKit"]/statBases</xpath>
+                    <value>
+                        <Bulk>10</Bulk>
+                        <WornBulk>5</WornBulk>
+                    </value>
+                </li>
+
+                <!-- ===== Rifleman Kit ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanRiflemanKit" or defName="ODZ_WWII_SovietRiflemanKit"]/equippedStatOffsets</xpath>
+                    <value>
+                        <equippedStatOffsets>
+                            <CarryBulk>30</CarryBulk>
+                            <AimingDelayFactor>-0.05</AimingDelayFactor>
+                            <MedicalTendSpeed>0.05</MedicalTendSpeed>
+                            <ReloadSpeed>0.08</ReloadSpeed>
+                        </equippedStatOffsets>
+                    </value>
+                </li>
+
+                <!-- ===== Assault Kit ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanAssaultKit" or defName="ODZ_WWII_SovietAssaultKit"]/equippedStatOffsets</xpath>
+                    <value>
+                        <equippedStatOffsets>
+                            <CarryBulk>27</CarryBulk>
+                            <AimingDelayFactor>-0.08</AimingDelayFactor>
+                            <MedicalTendSpeed>0.05</MedicalTendSpeed>
+                            <ReloadSpeed>0.09</ReloadSpeed>
+                        </equippedStatOffsets>
+                    </value>
+                </li>
+
+                <!-- ===== Machinegunner Kit ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanMGKit" or defName="ODZ_WWII_SovietMGKit"]/equippedStatOffsets</xpath>
+                    <value>
+                        <equippedStatOffsets>
+                            <CarryBulk>25</CarryBulk>
+                            <AimingDelayFactor>-0.10</AimingDelayFactor>
+                            <MedicalTendSpeed>0.05</MedicalTendSpeed>
+                            <ReloadSpeed>0.1</ReloadSpeed>
+                        </equippedStatOffsets>
+                    </value>
+                </li>
+
+                <!-- ===== Platoon Leader Kit ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanPlatoonLeaderKit" or defName="ODZ_WWII_SovietPlatoonLeaderKit"]/equippedStatOffsets</xpath>
+                    <value>
+                        <equippedStatOffsets>
+                            <CarryBulk>30</CarryBulk>
+                            <AimingDelayFactor>-0.06</AimingDelayFactor>
+                            <MedicalTendSpeed>0.05</MedicalTendSpeed>
+                            <ReloadSpeed>0.08</ReloadSpeed>
+                        </equippedStatOffsets>
+                    </value>
+                </li>
+
+                <!-- ======= Headgear ======= -->
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_M24GermanSidecap" or defName="ODZ_WWII_GermanCrusherCap" or defName="ODZ_WWII_SovietPilotka" or defName="ODZ_WWII_SovietM24Cap"]/statBases</xpath>
+                    <value>
+                        <Bulk>1</Bulk>
+                        <WornBulk>0.8</WornBulk>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanM42Stahlhelm" or defName="ODZ_WWII_SovietSSH40Helmet"]/statBases</xpath>
+                    <value>
+                        <Bulk>3</Bulk>
+                        <WornBulk>1</WornBulk>
+                    </value>
+                </li>
+
+                <!-- ===== Helmet ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanM42Stahlhelm" or defName="ODZ_WWII_SovietSSH40Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+                    <value>
+                        <StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+                    </value>
+                </li>
+
+                <!-- ===== Caps ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_M24GermanSidecap" or defName="ODZ_WWII_GermanCrusherCap" or defName="ODZ_WWII_SovietPilotka" or defName="ODZ_WWII_SovietM24Cap"]/statBases/StuffEffectMultiplierArmor</xpath>
+                    <value>
+                        <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+                    </value>
+                </li>
+
+                <!-- ======= Uniforms ======= -->
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_M42GermanUniform" or defName="ODZ_WWII_M42PlatoonLeader" or defName="ODZ_WWII_Obr35SovietUniform" or defName="ODZ_WWII_Obr35PlatoonLeader"]/statBases</xpath>
+                    <value>
+                        <Bulk>4</Bulk>
+                        <WornBulk>2</WornBulk>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_M42GermanUniform" or defName="ODZ_WWII_M42PlatoonLeader" or defName="ODZ_WWII_Obr35SovietUniform" or defName="ODZ_WWII_Obr35PlatoonLeader"]/statBases/StuffEffectMultiplierArmor</xpath>
+                    <value>
+                        <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+                    </value>
+                </li>
+
+                <!-- ======= Coats ======= -->
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanM40GreatCoat" or defName="ODZ_WWII_SovietM41Overcoat"]/statBases</xpath>
+                    <value>
+                        <Bulk>8</Bulk>
+                        <WornBulk>3</WornBulk>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="ODZ_WWII_GermanM40GreatCoat" or defName="ODZ_WWII_SovietM41Overcoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+                    <value>
+                        <StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>

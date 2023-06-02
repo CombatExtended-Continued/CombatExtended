@@ -6,6 +6,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/PawnKindDef[defName="Hound"]/combatPower</xpath>
 				<value>
@@ -25,12 +26,12 @@
 				</value>
 			</li>
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnKindDef[defName="Vespa" or defName="Hound" or defName="Chimera" or defName="Goliath" or defName="Kraken"]</xpath>
+				<xpath>Defs/PawnKindDef[defName="Vespa" or defName="Hound" or defName="Chimera" or defName="Kraken"]</xpath>
 				<value>
 					<li Class="CombatExtended.LoadoutPropertiesExtension">
 						<primaryMagazineCount>
-						  <min>100</min>
-						  <max>100</max>
+						  <min>8</min>
+						  <max>14</max>
 					</primaryMagazineCount>
 				  </li>
 				</value>
@@ -38,15 +39,5 @@
 		</operations>
 		</match>
 	</Operation>
-	<!-- <Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Vespa" or defName="Hound" or defName="Chimera" or defName="Goliath" or defName="Kraken"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-				  <min>100</min>
-				  <max>100</max>
-			</primaryMagazineCount>
-		  </li>
-		</value>
-	</Operation> -->
+
 </Patch>

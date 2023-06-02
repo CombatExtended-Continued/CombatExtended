@@ -33,7 +33,7 @@ namespace CombatExtended
         /// <summary>
         /// Property that converts TargetIndex.B into a Thing object.
         /// </summary>
-		private Pawn takePawn
+        private Pawn takePawn
         {
             get
             {
@@ -49,7 +49,7 @@ namespace CombatExtended
         /// (in which case doesn't have a thing).  See the JobGiver_UpdateLoadout.cs file for how this is set as it's rather non-standard but we
         /// needed a way to store a bool value that could be saved into a Job.
         /// </remarks>
-		private bool doEquip
+        private bool doEquip
         {
             get
             {
@@ -61,7 +61,7 @@ namespace CombatExtended
         /// Generates the Job Report string displayed when clicking on a pawn working on this job.
         /// </summary>
         /// <returns>string of the generated report.</returns>
-		public override string GetReport()
+        public override string GetReport()
         {
             string text = CE_JobDefOf.TakeFromOther.reportString;
             text = text.Replace("FlagC", doEquip ? "CE_TakeFromOther_Equipping".Translate() : "CE_TakeFromOther_Taking".Translate());
@@ -88,7 +88,9 @@ namespace CombatExtended
         {
             IThingHolder holder = container;
             while (holder != null && (holder as Pawn) == null)
+            {
                 holder = holder.ParentHolder;
+            }
             return holder as Pawn;
         }
 
@@ -96,7 +98,7 @@ namespace CombatExtended
         /// Handles the various yield returns that make up an iterated toil sequence.
         /// </summary>
         /// <returns>IEnumberable of Toil containing the sequence of actions the Pawn should take to fulfill the JobDriver's task.</returns>
-		public override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(sourceInd);
             this.FailOnDestroyedOrNull(thingInd);
@@ -120,7 +122,9 @@ namespace CombatExtended
                         {
                             CompInventory compInventory = pawn.TryGetComp<CompInventory>();
                             if (compInventory != null)
+                            {
                                 compInventory.TrySwitchToWeapon((ThingWithComps)targetItem);
+                            }
                         }
                     }
                     else

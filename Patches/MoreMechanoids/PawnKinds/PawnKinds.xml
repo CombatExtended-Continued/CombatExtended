@@ -8,17 +8,26 @@
 
         <match Class="PatchOperationSequence">
             <operations>
+
                 <li Class="PatchOperationAddModExtension">
                     <xpath>Defs/PawnKindDef[defName="Mech_Assaulter" or defName="Mech_Flamebot"]</xpath>
                     <value>
                         <li Class="CombatExtended.LoadoutPropertiesExtension">
                             <primaryMagazineCount>
-                                <min>100</min>
-                                <max>100</max>
+                                <min>4</min>
+                                <max>8</max>
                             </primaryMagazineCount>
                         </li>
                     </value>
                 </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/PawnKindDef[defName="Mech_Assaulter"]/combatPower</xpath>
+                    <value>
+                        <combatPower>400</combatPower>
+                    </value>
+                </li>
+
             </operations>
         </match>
     </Operation>

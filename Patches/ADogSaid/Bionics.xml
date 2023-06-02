@@ -2,82 +2,127 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-		<li>A Dog Said...</li>
+		<li>A Dog Said... Animal Prosthetics</li>
 		</mods>
 
 		<match Class="PatchOperationSequence">
 		<operations>
 
-  <!-- ========== Simple prosthetics ========== -->
+		<!-- ========== Simple prosthetics ========== -->
 
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/HediffDef[defName="SimpleProstheticLegAnimal" or defName="SimpleProstheticArmAnimal"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-        <value>
-            <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>prosthetic leg</label>
-                  <capacities>
-                     <li>Blunt</li>
-                  </capacities>
-                  <power>2</power>
-				  <armorPenetrationBlunt>0.56</armorPenetrationBlunt>				  
-                  <cooldownTime>0.84</cooldownTime>
-               </li>
-            </tools>
-        </value>
-      </li>
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/HediffDef[defName="JawAnimalSimple"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-        <value>
-            <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>prosthetic jaw</label>
-                  <capacities>
-                     <li>BiteBlunt</li>
-                  </capacities>
-                  <power>1</power>
-				  <armorPenetrationBlunt>0.1</armorPenetrationBlunt>				  
-                  <cooldownTime>1</cooldownTime>
-               </li>
-            </tools>
-        </value>
-      </li>
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="SimpleProstheticLegAnimal"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+				   <li Class="CombatExtended.ToolCE">
+					  <label>prosthetic animal leg</label>
+					  <capacities>
+						 <li>Scratch</li>
+					  </capacities>
+					  <power>8</power>
+					  <armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+					  <armorPenetrationSharp>0.15</armorPenetrationSharp>
+					  <cooldownTime>1.8</cooldownTime>
+				   </li>
+				</tools>
+			</value>
+		  </li>
 
-  <!-- ========== Bionics ========== -->
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="SimpleProstheticArmAnimal"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+				   <li Class="CombatExtended.ToolCE">
+					  <label>prosthetic animal arm</label>
+					  <capacities>
+						 <li>Scratch</li>
+					  </capacities>
+					  <power>6</power>
+					  <armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					  <armorPenetrationSharp>0.1</armorPenetrationSharp>
+					  <cooldownTime>1.8</cooldownTime>
+				   </li>
+				</tools>
+			</value>
+		  </li>
 
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/HediffDef[defName="BionicLegAnimal" or defName="BionicArmAnimal"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-        <value>
-            <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic leg</label>
-                  <capacities>
-                     <li>Blunt</li>
-                  </capacities>
-                  <power>7</power>
-				  <armorPenetrationBlunt>2.5</armorPenetrationBlunt>				  
-                  <cooldownTime>0.57</cooldownTime>
-               </li>
-            </tools>
-        </value>
-      </li>
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/HediffDef[defName="JawAnimalBionic"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
-        <value>
-            <tools>
-               <li Class="CombatExtended.ToolCE">
-                  <label>bionic jaw</label>
-                  <capacities>
-                     <li>Bite</li>
-                  </capacities>
-                  <power>20</power>
-				  <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
-				  <armorPenetrationSharp>0.05</armorPenetrationSharp>				  
-                  <cooldownTime>1.49</cooldownTime>
-               </li>
-            </tools>
-        </value>
-      </li>
+		  <li Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="JawAnimalSimple"]</xpath>
+			<value>
+				<comps>
+					<li Class="HediffCompProperties_VerbGiver">
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>simple animal jaw</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>6</power>
+								<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.1</armorPenetrationSharp>
+								<cooldownTime>1.8</cooldownTime>
+							</li>
+						</tools>
+					</li>
+				</comps>
+			</value>
+		  </li>
+
+		<!-- ========== Bionics ========== -->
+
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="BionicLegAnimal"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+				   <li Class="CombatExtended.ToolCE">
+					  <label>bionic animal leg</label>
+					  <capacities>
+						 <li>Scratch</li>
+					  </capacities>
+					  <power>20</power>
+					  <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					  <armorPenetrationSharp>0.5</armorPenetrationSharp>
+					  <cooldownTime>1.4</cooldownTime>
+				   </li>
+				</tools>
+			</value>
+		  </li>
+
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="BionicArmAnimal"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+				   <li Class="CombatExtended.ToolCE">
+					  <label>bionic animal arm</label>
+					  <capacities>
+						 <li>Scratch</li>
+					  </capacities>
+					  <power>15</power>
+					  <armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+					  <armorPenetrationSharp>0.4</armorPenetrationSharp>
+					  <cooldownTime>1.4</cooldownTime>
+				   </li>
+				</tools>
+			</value>
+		  </li>
+
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="JawAnimalBionic"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+				   <li Class="CombatExtended.ToolCE">
+					  <label>bionic animal jaw</label>
+					  <capacities>
+						 <li>Bite</li>
+					  </capacities>
+					  <power>15</power>
+					  <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					  <armorPenetrationSharp>0.25</armorPenetrationSharp>
+					  <cooldownTime>1.6</cooldownTime>
+				   </li>
+				</tools>
+			</value>
+		  </li>
 
 		</operations>
 		</match>

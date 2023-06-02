@@ -17,10 +17,11 @@
 			<Ammo_8x50mmRLebel_FMJ>Bullet_8x50mmRLebel_FMJ</Ammo_8x50mmRLebel_FMJ>
 			<Ammo_8x50mmRLebel_AP>Bullet_8x50mmRLebel_AP</Ammo_8x50mmRLebel_AP>
 			<Ammo_8x50mmRLebel_HP>Bullet_8x50mmRLebel_HP</Ammo_8x50mmRLebel_HP>
-		    <Ammo_8x50mmRLebel_Incendiary>Bullet_8x50mmRLebel_Incendiary</Ammo_8x50mmRLebel_Incendiary>
+			<Ammo_8x50mmRLebel_Incendiary>Bullet_8x50mmRLebel_Incendiary</Ammo_8x50mmRLebel_Incendiary>
 			<Ammo_8x50mmRLebel_HE>Bullet_8x50mmRLebel_HE</Ammo_8x50mmRLebel_HE>
 			<Ammo_8x50mmRLebel_Sabot>Bullet_8x50mmRLebel_Sabot</Ammo_8x50mmRLebel_Sabot>				
 		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
@@ -31,10 +32,10 @@
 		<Mass>0.028</Mass>
 		<Bulk>0.04</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo8x50mmRLebel</li>
 		</thingCategories>
@@ -98,7 +99,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="8x50mmRLebelBase">
     <defName>Ammo_8x50mmRLebel_HE</defName>
-    <label>8x50mmR Lebel cartridge (HE)</label>
+    <label>8x50mmR Lebel cartridge (AP-HE)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -127,7 +128,7 @@
   
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Name="Base8x50mmRLebelBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base8x50mmRLebelBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -144,7 +145,7 @@
 		<label>8mmR Lebel bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>20</damageAmountBase>
-			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
 			<armorPenetrationBlunt>68.22</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -154,7 +155,7 @@
 		<label>8mmR Lebel bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
 			<armorPenetrationBlunt>68.22</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -174,7 +175,7 @@
 		<label>8mmR Lebel bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>13</damageAmountBase>
-		  <armorPenetrationSharp>10</armorPenetrationSharp>
+		  <armorPenetrationSharp>12</armorPenetrationSharp>
 		  <armorPenetrationBlunt>68.22</armorPenetrationBlunt>
 		  <secondaryDamage>
 				<li>
@@ -187,10 +188,10 @@
 	  
 	  <ThingDef ParentName="Base8x50mmRLebelBullet">
 		<defName>Bullet_8x50mmRLebel_HE</defName>
-		<label>8mmR Lebel bullet (HE)</label>
+		<label>8mmR Lebel bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>20</damageAmountBase>
-		  <armorPenetrationSharp>5</armorPenetrationSharp>
+		  <armorPenetrationSharp>6</armorPenetrationSharp>
 		  <armorPenetrationBlunt>68.22</armorPenetrationBlunt>
 		  <secondaryDamage>
 				<li>
@@ -206,7 +207,7 @@
 		<label>8mmR Lebel bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>11</damageAmountBase>
-		  <armorPenetrationSharp>17.5</armorPenetrationSharp>
+		  <armorPenetrationSharp>21</armorPenetrationSharp>
 		  <armorPenetrationBlunt>87.52</armorPenetrationBlunt>
 		  <speed>219</speed>
 		</projectile>
@@ -263,7 +264,7 @@
 		<products>
 			<Ammo_8x50mmRLebel_AP>500</Ammo_8x50mmRLebel_AP>
 		</products>
-	<workAmount>3000</workAmount>		
+	<workAmount>3600</workAmount>		
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -329,9 +330,9 @@
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_8x50mmRLebel_HE</defName>
-    <label>make 8x50mmR Lebel (HE) cartridge x500</label>
-    <description>Craft 500 8x50mmR Lebel (HE) cartridges.</description>
-    <jobString>Making 8x50mmR Lebel (HE) cartridges.</jobString>
+    <label>make 8x50mmR Lebel (AP-HE) cartridge x500</label>
+    <description>Craft 500 8x50mmR Lebel (AP-HE) cartridges.</description>
+    <jobString>Making 8x50mmR Lebel (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

@@ -21,6 +21,7 @@
 			<Ammo_762x54mmR_HE>Bullet_762x54mmR_HE</Ammo_762x54mmR_HE>
 			<Ammo_762x54mmR_Sabot>Bullet_762x54mmR_Sabot</Ammo_762x54mmR_Sabot>				
 		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -98,7 +99,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x54mmRBase">
 		<defName>Ammo_762x54mmR_HE</defName>
-		<label>7.62x54mmR cartridge (HE)</label>
+		<label>7.62x54mmR cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -127,7 +128,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base762x54mmRBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base762x54mmRBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -187,7 +188,7 @@
   
   <ThingDef ParentName="Base762x54mmRBullet">
     <defName>Bullet_762x54mmR_HE</defName>
-    <label>7.62mmR bullet (HE)</label>
+    <label>7.62mmR bullet (AP-HE)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>20</damageAmountBase>
       <armorPenetrationSharp>7</armorPenetrationSharp>
@@ -263,7 +264,7 @@
 		<products>
 			<Ammo_762x54mmR_AP>500</Ammo_762x54mmR_AP>
 		</products>
-		<workAmount>2800</workAmount>
+		<workAmount>3360</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -329,9 +330,9 @@
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_762x54mmR_HE</defName>
-    <label>make 7.62x54mmR (HE) cartridge x500</label>
-    <description>Craft 500 7.62x54mmR (HE) cartridges.</description>
-    <jobString>Making 7.62x54mmR (HE) cartridges.</jobString>
+    <label>make 7.62x54mmR (AP-HE) cartridge x500</label>
+    <description>Craft 500 7.62x54mmR (AP-HE) cartridges.</description>
+    <jobString>Making 7.62x54mmR (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

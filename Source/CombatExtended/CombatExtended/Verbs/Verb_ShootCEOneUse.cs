@@ -38,13 +38,13 @@ namespace CombatExtended
         private void SelfConsume()
         {
             var inventory = ShooterPawn?.TryGetComp<CompInventory>();
-            if (this.EquipmentSource != null && !this.EquipmentSource.Destroyed)
+            if (!this.EquipmentSource?.Destroyed ?? false)
             {
                 this.EquipmentSource.Destroy(DestroyMode.Vanish);
             }
-            if (inventory != null && ShooterPawn?.jobs.curJob.def != CE_JobDefOf.OpportunisticAttack)
+            if (inventory != null && ShooterPawn?.jobs.curJob?.def != CE_JobDefOf.OpportunisticAttack)
             {
-                var newGun = inventory.rangedWeaponList.FirstOrDefault(t => t.def == EquipmentSource.def);
+                var newGun = inventory.rangedWeaponList?.FirstOrDefault(t => t.def == EquipmentSource?.def);
                 if (newGun != null)
                 {
                     inventory.TrySwitchToWeapon(newGun);

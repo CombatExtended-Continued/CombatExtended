@@ -8,7 +8,7 @@
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -16,24 +16,18 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 				
 			<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/comps</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/comps</xpath>
 			<value>
 				<li>
 				  <compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -43,14 +37,14 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/race/baseBodySize</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/race/baseBodySize</xpath>
 				<value>
 					<baseBodySize>0.6</baseBodySize>
 				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/statBases</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/statBases</xpath>
 				<value>
 					<CarryWeight>40</CarryWeight>
 					<CarryBulk>20</CarryBulk>
@@ -61,7 +55,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/tools</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Pawnbold_bold"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">

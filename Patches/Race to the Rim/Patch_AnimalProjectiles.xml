@@ -20,6 +20,8 @@
 								<damageDef>Flame</damageDef>
 								<damageAmountBase>2</damageAmountBase>
 								<explosionRadius>1.1</explosionRadius>
+								<suppressionFactor>3.0</suppressionFactor>
+								<dangerFactor>2.0</dangerFactor>
 								<ai_IsIncendiary>true</ai_IsIncendiary>
 								<soundExplode>Interact_Ignite</soundExplode>
 								<flyOverhead>false</flyOverhead>
@@ -85,7 +87,7 @@
 				<!-- === Projectile Base === -->
 				<li Class="PatchOperationReplace">
 					<xpath>
-						/Defs/ThingDef[
+						Defs/ThingDef[
 							@Name="RttR_BaseAnimalProjectile" or 
 							defName="RttR_FlameBreath" or 
 							defName="RttR_TinyFlameBreath" or 
@@ -105,7 +107,7 @@
 
 				<li Class="PatchOperationAttributeAdd">
 					<xpath>
-						/Defs/ThingDef[
+						Defs/ThingDef[
 							@Name="RttR_BaseAnimalProjectile" or
 							defName="RttR_FlameBreath" or 
 							defName="RttR_TinyFlameBreath" or 
@@ -123,14 +125,14 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="RttR_BaseAnimalProjectile"]/projectile/speed</xpath>
+					<xpath>Defs/ThingDef[@Name="RttR_BaseAnimalProjectile"]/projectile/speed</xpath>
 					<value>
 						<speed>40</speed>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[@Name="RttR_BaseAnimalProjectile"]/projectile/flyOverhead</xpath>
+					<xpath>Defs/ThingDef[@Name="RttR_BaseAnimalProjectile"]/projectile/flyOverhead</xpath>
 					<value>
 						<flyOverhead>false</flyOverhead>
 					</value>

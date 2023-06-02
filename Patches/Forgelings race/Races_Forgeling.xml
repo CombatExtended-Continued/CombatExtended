@@ -35,7 +35,7 @@
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/statBases/ArmorRating_Heat</xpath>
 				<value>
 					<ArmorRating_Heat>0.8</ArmorRating_Heat>
-					<ToxicSensitivity>0.6</ToxicSensitivity>
+					<ToxicResistance>0.4</ToxicResistance>
 					<SmokeSensitivity>0.5</SmokeSensitivity>
 					<MeleeDodgeChance>1</MeleeDodgeChance>
 					<MeleeCritChance>1</MeleeCritChance>
@@ -104,24 +104,17 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<success>Always</success>
 				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/comps</xpath>
 				<value>
 					<li>

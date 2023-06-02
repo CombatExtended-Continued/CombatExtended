@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Android Tiers Reforged</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<CombatExtended.AmmoCategoryDef>
+							<defName>SwarmShell</defName>
+							<label>swarm shell</label>
+							<description>Releases several pre-programmed microscythers on impact.</description>
+							<advanced>true</advanced>
+						</CombatExtended.AmmoCategoryDef>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+							<defName>Swarm_shell_81mm</defName>
+							<label>81mm mortar shell (Swarm)</label>
+							<graphicData>
+								<texPath>Things/Items/Shells/Microscyther_shell</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>60</MarketValue>
+								<Mass>4.1</Mass>
+								<Bulk>11.34</Bulk>
+							</statBases>
+							<ammoClass>SwarmShell</ammoClass>
+							<comps>
+								<li Class="CompProperties_Explosive">
+									<explosiveRadius>2</explosiveRadius>
+									<explosiveDamageType>Smoke</explosiveDamageType>
+									<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+									<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+									<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+									<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+									<explosionEffect>ExtinguisherExplosion</explosionEffect>
+									<wickTicks>
+										<min>10</min>
+										<max>30</max>
+									</wickTicks>
+								</li>
+							</comps>
+						</ThingDef>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingDef ParentName="Base81mmMortarShell">
+							<defName>Bullet_81mmMortarShell_Swarm</defName>
+							<label>81mm mortar shell (Swarm)</label>
+							<graphicData>
+								<texPath>Things/Projectile/Mortar/EMP</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Smoke</damageDef>
+								<suppressionFactor>0.0</suppressionFactor>
+								<dangerFactor>0.0</dangerFactor>
+								<damageAmountBase>0</damageAmountBase>
+								<armorPenetrationSharp>0</armorPenetrationSharp>
+								<armorPenetrationBlunt>39.493</armorPenetrationBlunt>
+								<explosionRadius>1.9</explosionRadius>
+								<soundExplode>Explosion_EMP</soundExplode>
+								<postExplosionSpawnThingDef>ATR_MicroScytherGenerator</postExplosionSpawnThingDef>
+								<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								<explosionEffect>ExtinguisherExplosion</explosionEffect>
+							</projectile>
+						</ThingDef>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+					<value>
+						<Swarm_shell_81mm>Bullet_81mmMortarShell_Swarm</Swarm_shell_81mm>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<RecipeDef ParentName="AmmoRecipeBase">
+							<defName>MakeSwarm_shell_81mm</defName>
+							<label>make 81mm Swarm mortar shell x1</label>
+							<description>Craft 1 81mm Swarm shell.</description>
+							<jobString>Making 81mm Swarm shells.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>50</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>ComponentIndustrial</li>
+										</thingDefs>
+									</filter>
+									<count>4</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Steel</li>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<Swarm_shell_81mm>1</Swarm_shell_81mm>
+							</products>
+							<workAmount>3000</workAmount>
+							<recipeUsers Inherit="False">
+								<li>ATR_MechanicalAssemblyPod</li>
+							</recipeUsers>
+							<researchPrerequisite>ATR_MilitaryBiomimetics</researchPrerequisite>
+						</RecipeDef>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="ATR_MicroscytherShell"]</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATR_TrapIED_Microscyther"]/costList</xpath>
+					<value>
+						<costList>
+							<Swarm_shell_81mm>2</Swarm_shell_81mm>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/TraderKindDef[defName="ATR_Orbital_Mechanized"]/stockGenerators/li[thingDef="ATR_MicroscytherShell"]</xpath>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -30,14 +30,14 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="MusketBallBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="MusketBallBase" ParentName="AmmoBase" Abstract="True">
 		<description>A paper cartridge sealed with wax containing a round projectile and black powder, fired by early, smoothbore firearms.</description>
 		<statBases>
-		<Mass>0.087</Mass>
-		<Bulk>0.12</Bulk>
+			<Mass>0.087</Mass>
+			<Bulk>0.12</Bulk>
 		</statBases>
 		<tradeTags>
-      		  <li>CE_PreIndustrialAmmo</li>
+		  <li>CE_PreIndustrialAmmo</li>
 		  <li>CE_AutoEnableTrade</li>
 		  <li>CE_AutoEnableCrafting_FueledSmithy</li>
 		  <li>CE_AutoEnableCrafting_ElectricSmithy</li>
@@ -56,14 +56,14 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.35</MarketValue>
+			<MarketValue>0.4</MarketValue>
 		</statBases>
 		<ammoClass>MusketBall</ammoClass>
 	</ThingDef>
-	
+
 	<!-- ================== Projectile Base ================== -->
 	
-	<ThingDef Name="MusketBallBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="MusketBallBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -80,10 +80,10 @@
 		<defName>Bullet_FastMusketBall</defName>
 		<label>musket ball</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>90</speed>	
-			<damageAmountBase>26</damageAmountBase>		
+			<speed>90</speed>
+			<damageAmountBase>26</damageAmountBase>
 			<armorPenetrationSharp>5</armorPenetrationSharp>
-			<armorPenetrationBlunt>65.8</armorPenetrationBlunt>				
+			<armorPenetrationBlunt>64.8</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -93,21 +93,22 @@
 		<defName>Bullet_SlowMusketBall</defName>
 		<label>musket ball</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>50</speed>	
-			<damageAmountBase>17</damageAmountBase>		
+			<speed>50</speed>
+			<damageAmountBase>17</damageAmountBase>
 			<armorPenetrationSharp>3.5</armorPenetrationSharp>
-			<armorPenetrationBlunt>20</armorPenetrationBlunt>				
+			<armorPenetrationBlunt>20</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_MusketBall</defName>
-		<label>make musket ball x500</label>
-		<description>Craft 500 musket balls.</description>
+		<label>make musket ball x100</label>
+		<description>Craft 100 musket balls.</description>
 		<jobString>Making musket balls.</jobString>
-    	<workAmount>8800</workAmount>		
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+    	<workAmount>2000</workAmount>
 		<ingredients>
 			<li>
 			<filter>
@@ -115,7 +116,7 @@
 					<li>Steel</li>
 				</thingDefs>
 			</filter>
-			<count>88</count>
+			<count>20</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -124,8 +125,8 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_MusketBall>500</Ammo_MusketBall>
+			<Ammo_MusketBall>100</Ammo_MusketBall>
 		</products>
 	</RecipeDef>
-	
+
 </Defs>

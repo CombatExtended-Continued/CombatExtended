@@ -5,7 +5,7 @@
 		<defName>Ammo83mmPIATGrenades</defName>
 		<label>83mm PIAT Grenade</label>
 		<parent>AmmoGrenades</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="83mmPIATGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="83mmPIATGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Large spigot grenade designed to be fired at tanks.</description>
     <statBases>
 	  <Mass>3.176</Mass>
@@ -79,30 +79,20 @@
       <MarketValue>90.7</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
-    <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>5</damageAmountBase>
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>1.25</explosiveRadius>
-	  </li>
-	  <li Class="CombatExtended.CompProperties_Fragments">
-		<fragments>
-			<Fragment_Large>1</Fragment_Large>
-		</fragments>
-	  </li>
-    </comps>
+    <generateAllowChance>0.5</generateAllowChance>
+	<detonateProjectile>Bullet_83mmPIATGrenade_EMP</detonateProjectile>
   </ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base83mmPIATGrenade" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base83mmPIATGrenade" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<texPath>Things/Projectile/LauncherShot</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>16</speed>
+			<speed>20</speed>
 		</projectile>
 	</ThingDef>
 
@@ -162,7 +152,7 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_83mmPIATGrenade_HEAT</defName>
     <label>make 83mm PIAT HEAT grenades x5</label>
     <description>Craft 5 83mm PIAT HEAT grenades.</description>
@@ -206,7 +196,7 @@
     <workAmount>8000</workAmount>     
   </RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_83mmPIATGrenade_HE</defName>
     <label>make 83mm PIAT HE grenades x5</label>
     <description>Craft 5 83mm PIAT HE grenades.</description>
@@ -250,11 +240,15 @@
     <workAmount>8000</workAmount>       
   </RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_83mmPIATGrenade_EMP</defName>
     <label>make 83mm PIAT EMP grenades x5</label>
     <description>Craft 5 83mm PIAT EMP grenades.</description>
     <jobString>Making 83mm PIAT EMP grenades.</jobString>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>

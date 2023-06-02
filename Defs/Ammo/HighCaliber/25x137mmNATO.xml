@@ -14,16 +14,17 @@
 		<defName>AmmoSet_25x137mmNATO</defName>
 		<label>25x137mm NATO</label>
 		<ammoTypes>
-      		<Ammo_25x137mmNATO_FMJ>Bullet_25x137mmNATO_FMJ</Ammo_25x137mmNATO_FMJ>		
+      		<Ammo_25x137mmNATO_AP>Bullet_25x137mmNATO_AP</Ammo_25x137mmNATO_AP>		
 			<Ammo_25x137mmNATO_Incendiary>Bullet_25x137mmNATO_Incendiary</Ammo_25x137mmNATO_Incendiary>
 			<Ammo_25x137mmNATO_HE>Bullet_25x137mmNATO_HE</Ammo_25x137mmNATO_HE>
 			<Ammo_25x137mmNATO_Sabot>Bullet_25x137mmNATO_Sabot</Ammo_25x137mmNATO_Sabot>
 		</ammoTypes>
+		<similarTo>AmmoSet_Autocannon</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo25x137mmNATOBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo25x137mmNATOBase" ParentName="MediumAmmoBase" Abstract="True">
 		<description>Large caliber cartridge used by autocannons.</description>
 		<statBases>
 			<Mass>0.501</Mass>
@@ -40,17 +41,17 @@
 	</ThingDef>
 
     <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
-      <defName>Ammo_25x137mmNATO_FMJ</defName>
-      <label>25x137mm NATO cartridge (FMJ)</label>
+      <defName>Ammo_25x137mmNATO_AP</defName>
+      <label>25x137mm NATO cartridge (AP)</label>
       <graphicData>
-        <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+        <texPath>Things/Ammo/HighCaliber/AP</texPath>
         <graphicClass>Graphic_StackCount</graphicClass>
       </graphicData>
       <statBases>
-        <MarketValue>2.01</MarketValue>
+        <MarketValue>2.02</MarketValue>
       </statBases>
-      <ammoClass>FullMetalJacket</ammoClass>
-      <cookOffProjectile>Bullet_25x137mmNATO_FMJ</cookOffProjectile>
+      <ammoClass>ArmorPiercing</ammoClass>
+      <cookOffProjectile>Bullet_25x137mmNATO_AP</cookOffProjectile>
     </ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
@@ -69,7 +70,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
 		<defName>Ammo_25x137mmNATO_HE</defName>
-		<label>25x137mm NATO cartridge (HE)</label>
+		<label>25x137mm NATO cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -98,7 +99,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base25x137mmNATOBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base25x137mmNATOBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -111,11 +112,11 @@
 	</ThingDef>
 
   <ThingDef ParentName="Base25x137mmNATOBullet">
-    <defName>Bullet_25x137mmNATO_FMJ</defName>
-    <label>25x137mm NATO bullet (FMJ)</label>
+    <defName>Bullet_25x137mmNATO_AP</defName>
+    <label>25x137mm NATO bullet (AP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>98</damageAmountBase>
-      <armorPenetrationSharp>29</armorPenetrationSharp>
+      <damageAmountBase>62</damageAmountBase>
+      <armorPenetrationSharp>56</armorPenetrationSharp>
       <armorPenetrationBlunt>2238.500</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
@@ -125,7 +126,7 @@
 		<label>25x137mm NATO bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>62</damageAmountBase>
-			<armorPenetrationSharp>57</armorPenetrationSharp>
+			<armorPenetrationSharp>56</armorPenetrationSharp>
 			<armorPenetrationBlunt>2238.500</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
@@ -138,10 +139,10 @@
 
 	<ThingDef ParentName="Base25x137mmNATOBullet">
 		<defName>Bullet_25x137mmNATO_HE</defName>
-		<label>25x137mm NATO bullet (HE)</label>
+		<label>25x137mm NATO bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>98</damageAmountBase>
-			<armorPenetrationSharp>29</armorPenetrationSharp>
+			<armorPenetrationSharp>28</armorPenetrationSharp>
 			<armorPenetrationBlunt>2238.500</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
@@ -157,7 +158,7 @@
 		<label>25x137mm NATO bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>52</damageAmountBase>
-			<armorPenetrationSharp>100</armorPenetrationSharp>
+			<armorPenetrationSharp>98</armorPenetrationSharp>
 			<armorPenetrationBlunt>2870.88</armorPenetrationBlunt>
 			<speed>330</speed>
 		</projectile>
@@ -166,10 +167,10 @@
 	<!-- ==================== Recipes ========================== -->
 
     <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_25x137mmNATO_FMJ</defName>
-      <label>make 25x137mm NATO (FMJ) cartridge x200</label>
-      <description>Craft 200 25x137mm NATO (FMJ) cartridges.</description>
-      <jobString>Making 25x137mm NATO (FMJ) cartridges.</jobString>
+      <defName>MakeAmmo_25x137mmNATO_AP</defName>
+      <label>make 25x137mm NATO (AP) cartridge x200</label>
+      <description>Craft 200 25x137mm NATO (AP) cartridges.</description>
+      <jobString>Making 25x137mm NATO (AP) cartridges.</jobString>
       <ingredients>
         <li>
           <filter>
@@ -186,9 +187,9 @@
         </thingDefs>
       </fixedIngredientFilter>
       <products>
-        <Ammo_25x137mmNATO_FMJ>200</Ammo_25x137mmNATO_FMJ>
+        <Ammo_25x137mmNATO_AP>200</Ammo_25x137mmNATO_AP>
       </products>
-      <workAmount>20200</workAmount>
+      <workAmount>24240</workAmount>
     </RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -228,9 +229,9 @@
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_25x137mmNATO_HE</defName>
-		<label>make 25x137mm NATO (HE) cartridge x200</label>
-		<description>Craft 200 .25x137mm NATO (HE) cartridges.</description>
-		<jobString>Making .25x137mm NATO (HE) cartridges.</jobString>
+		<label>make 25x137mm NATO (AP-HE) cartridge x200</label>
+		<description>Craft 200 .25x137mm NATO (AP-HE) cartridges.</description>
+		<jobString>Making .25x137mm NATO (AP-HE) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>

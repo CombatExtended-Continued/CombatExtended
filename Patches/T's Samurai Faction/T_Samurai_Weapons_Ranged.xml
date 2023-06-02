@@ -147,7 +147,7 @@
             <Properties>
               <verbClass>CombatExtended.Verb_ShootCE</verbClass>
               <hasStandardCommand>True</hasStandardCommand>
-              <defaultProjectile>Bullet_TSF_MortarGrenade</defaultProjectile>
+              <defaultProjectile>Bullet_MortarGrenade</defaultProjectile>
               <warmupTime>1.6</warmupTime>
               <range>37</range>
               <soundCast>Shot_IncendiaryLauncher</soundCast>
@@ -160,7 +160,7 @@
             <AmmoUser>
               <magazineSize>1</magazineSize>
               <reloadTime>8</reloadTime>
-              <ammoSet>AmmoSet_TSF_MortarGrenade</ammoSet>
+              <ammoSet>AmmoSet_MortarGrenade</ammoSet>
             </AmmoUser>
             <FireModes>
               <aiAimMode>AimedShot</aiAimMode>
@@ -188,7 +188,7 @@
               <hasStandardCommand>true</hasStandardCommand>
               <defaultProjectile>Projectile_StreamlinedArrow_Steel</defaultProjectile>
               <warmupTime>1.2</warmupTime>
-              <range>32</range>
+              <range>20</range>
               <soundCast>Bow_Recurve</soundCast>
             </Properties>
             <AmmoUser>
@@ -228,7 +228,7 @@
           </li>
           
           <li Class="PatchOperationRemove">
-            <xpath>/Defs/PawnKindDef[
+            <xpath>Defs/PawnKindDef[
               @Name="TSF_Ninjabase"]/weaponTags</xpath>
           </li>
 
@@ -236,14 +236,13 @@
     
         <!-- == Projectile == -->
         <li Class="PatchOperationReplace">
-            <xpath>/Defs/ThingDef[defName="TSF_Star_Thrown"]/projectile</xpath>
+            <xpath>Defs/ThingDef[defName="TSF_Star_Thrown"]/projectile</xpath>
             <value>
               <projectile Class="CombatExtended.ProjectilePropertiesCE">
                 <damageDef>Cut</damageDef>
                 <damageAmountBase>5</damageAmountBase>
                 <flyOverhead>false</flyOverhead>
                 <speed>30</speed>
-                <gravityFactor>2</gravityFactor>
                 <armorPenetrationSharp>0.16</armorPenetrationSharp>
                 <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
                 <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
@@ -256,35 +255,30 @@
           <!-- == Weapon == -->
 
           <li Class="PatchOperationAttributeSet">
-            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
+            <xpath>Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
             <attribute>ParentName</attribute>
             <value>BaseWeapon</value>
           </li>
           
           <li Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]</xpath> 
+            <xpath>Defs/ThingDef[defName="TSF_Shuriken"]</xpath> 
             <value>
               <thingCategories>
                 <li>WeaponsRanged</li>
               </thingCategories>
             </value>
           </li>
-  
+
           <li Class="PatchOperationRemove">
-            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]/recipeMaker</xpath>
+            <xpath>Defs/ThingDef[defName="TSF_Shuriken"]/recipeMaker</xpath>
           </li>
-  
+
           <li Class="PatchOperationRemove">
-            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]/costStuffCount</xpath>
+            <xpath>Defs/ThingDef[defName="TSF_Shuriken"]/costList</xpath>
           </li>
-  
-          <li Class="PatchOperationRemove">
-            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]/stuffCategories</xpath>
-          </li>
-  
   
           <li Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
+            <xpath>Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
             <value>
               <thingClass>CombatExtended.AmmoThing</thingClass>
               <stackLimit>75</stackLimit>
@@ -293,7 +287,7 @@
           </li>
   
           <li Class="PatchOperationAttributeSet">
-            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
+            <xpath>Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
             <attribute>Class</attribute>
             <value>CombatExtended.AmmoDef</value>
           </li>
@@ -329,7 +323,7 @@
           </li>
   
           <li Class="PatchOperationReplace">
-            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]/tools</xpath>
+            <xpath>Defs/ThingDef[defName="TSF_Shuriken"]/tools</xpath>
             <value>
               <tools>
                 <li Class="CombatExtended.ToolCE">

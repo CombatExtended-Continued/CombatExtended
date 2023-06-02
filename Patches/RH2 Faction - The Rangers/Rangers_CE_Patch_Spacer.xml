@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH2] Faction: The Rangers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!-- ========== Mr Shorty ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_MrShorty_ChargeRifle</defName>
+				<statBases>
+					<SightsEfficiency>1.05</SightsEfficiency>
+					<ShotSpread>0.11</ShotSpread>
+					<SwayFactor>1.3</SwayFactor>
+					<Bulk>6.5</Bulk>
+				</statBases>
+				<costList>
+				  <Steel>45</Steel>
+				  <Plasteel>25</Plasteel>
+				  <ComponentIndustrial>10</ComponentIndustrial>
+				  <Chemfuel>15</Chemfuel>
+				</costList>
+				<Properties>
+					<recoilAmount>1.7</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+					<warmupTime>0.9</warmupTime>
+					<range>36</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+					<soundCast>RN2Shot_GenericCharge</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Regular</recoilPattern>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>2.40</reloadTime>
+					<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+				<researchPrerequisite>ChargedShot</researchPrerequisite>
+				<!-- No additional CE weaponTags needed -->
+			</li>
+
+			<!-- ========== Railgun ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_KBARailgun_BoltAction</defName>
+				<statBases>
+					<Mass>5.05</Mass>
+					<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.20</SightsEfficiency>
+					<ShotSpread>0.03</ShotSpread>
+					<SwayFactor>1.53</SwayFactor>
+					<Bulk>11.00</Bulk>
+					<WorkToMake>40000</WorkToMake>
+				</statBases>
+				<costList>					
+					<Steel>60</Steel>
+					<Plasteel>10</Plasteel>
+					<ComponentIndustrial>2</ComponentIndustrial>
+					<ComponentSpacer>1</ComponentSpacer>
+					<WoodLog>15</WoodLog>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6mmRailgun_Sabot</defaultProjectile>
+					<warmupTime>1.2</warmupTime>
+					<range>62</range>
+					<soundCast>RN2Shot_ChargeSniper</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>12</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_6mmRailgun</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				<researchPrerequisite>ChargedShot</researchPrerequisite>
+			</li>
+			
+			<!-- == Shared patches for firearm melee tools == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="RNGun_MrShorty_ChargeRifle" or
+					defName="RNGun_KBARailgun_BoltAction"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+
+</Patch>

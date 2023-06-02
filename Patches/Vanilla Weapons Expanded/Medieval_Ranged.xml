@@ -10,7 +10,7 @@
 
         <!-- === Tools === -->
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_Bow_Crossbow"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Bow_Crossbow"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -26,7 +26,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName = "VWE_Gun_Flintlock"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName = "VWE_Gun_Flintlock"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -55,7 +55,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName = "VWE_Gun_Musket"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName = "VWE_Gun_Musket"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -112,7 +112,7 @@
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
             <warmupTime>1</warmupTime>
-            <range>26</range>
+            <range>20</range>
             <soundCast>Bow_Large</soundCast>
           </Properties>
           <AmmoUser>
@@ -136,7 +136,7 @@
           - Has to be replaced in vanilla too 
         -->
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_Gun_Flintlock"]/verbs/li/verbClass</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Gun_Flintlock"]/verbs/li/verbClass</xpath>
           <value>
             <verbClass>Verb_Shoot</verbClass>
           </value>
@@ -189,7 +189,7 @@
           - Has to be replaced in vanilla too 
         -->
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_Gun_Musket"]/verbs/li/verbClass</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Gun_Musket"]/verbs/li/verbClass</xpath>
           <value>
             <verbClass>Verb_Shoot</verbClass>
           </value>
@@ -238,7 +238,7 @@
         <!-- === Throwing Knives === -->
         <!-- == Projectile == -->
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_FlyingBlade"]/projectile</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_FlyingBlade"]/projectile</xpath>
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
               <damageDef>RangedStab</damageDef>
@@ -265,13 +265,13 @@
         </li>
 
         <li Class="PatchOperationAttributeSet">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
         </li>
         
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath> 
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath> 
           <value>
             <thingCategories>
               <li>WeaponsRanged</li>
@@ -280,29 +280,32 @@
         </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/recipeMaker</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/recipeMaker</xpath>
         </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/costStuffCount</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/costStuffCount</xpath>
         </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/stuffCategories</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/stuffCategories</xpath>
         </li>
 
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
           <value>
             <thingClass>CombatExtended.AmmoThing</thingClass>
             <stackLimit>75</stackLimit>
             <resourceReadoutPriority>First</resourceReadoutPriority>
+            <smeltProducts>
+              <Steel>1</Steel>
+            </smeltProducts>            
           </value>
         </li>
 
         <li Class="PatchOperationAttributeSet">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
           <attribute>Class</attribute>
           <value>CombatExtended.AmmoDef</value>
         </li>
@@ -312,7 +315,7 @@
           <statBases>
             <SightsEfficiency>0.5</SightsEfficiency>
             <ShotSpread>1.5</ShotSpread>
-	    <SwayFactor>2</SwayFactor>
+	          <SwayFactor>2</SwayFactor>
             <Bulk>0.35</Bulk>
             <Mass>0.15</Mass>
             <RangedWeapon_Cooldown>0.48</RangedWeapon_Cooldown>
@@ -333,7 +336,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Knives"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -378,7 +381,7 @@
                       <li>Steel</li>
                     </thingDefs>
                   </filter>
-                  <count>10</count>
+                  <count>14</count>
                 </li>
               </ingredients>
               <fixedIngredientFilter>
@@ -387,7 +390,7 @@
                 </thingDefs>
               </fixedIngredientFilter>
               <products>
-                <VWE_Throwing_Knives>10</VWE_Throwing_Knives>
+                <VWE_Throwing_Knives>14</VWE_Throwing_Knives>
               </products>
               <recipeUsers>
                 <li>FueledSmithy</li>
@@ -421,7 +424,7 @@
 
         <!-- Tools -->
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_Tool_Whip"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Tool_Whip"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">

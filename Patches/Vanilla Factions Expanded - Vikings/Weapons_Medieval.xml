@@ -20,6 +20,7 @@
                 <li>Poke</li>
               </capacities>
               <power>1</power>
+              <chanceFactor>0.33</chanceFactor>
               <cooldownTime>1.19</cooldownTime>
               <armorPenetrationBlunt>0.2</armorPenetrationBlunt>
               <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
@@ -42,7 +43,6 @@
               </capacities>
               <power>16</power>
               <cooldownTime>1.26</cooldownTime>
-              <chanceFactor>1.33</chanceFactor>
               <armorPenetrationBlunt>0.2</armorPenetrationBlunt>
               <armorPenetrationSharp>0.34</armorPenetrationSharp>
               <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
@@ -80,7 +80,7 @@
       <!-- === Bearded Axe === -->
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/tools</xpath>
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/tools</xpath>
         <value>
           <tools>
             <li Class="CombatExtended.ToolCE">
@@ -90,7 +90,7 @@
               </capacities>
               <power>3</power>
               <cooldownTime>1.66</cooldownTime>
-              <chanceFactor>0.10</chanceFactor>
+              <chanceFactor>0.33</chanceFactor>
               <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
               <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
             </li>
@@ -101,7 +101,6 @@
               </capacities>
               <power>23</power>
               <cooldownTime>2.3</cooldownTime>
-              <chanceFactor>0.30</chanceFactor>
               <armorPenetrationBlunt>4</armorPenetrationBlunt>
               <armorPenetrationSharp>0.78</armorPenetrationSharp>
               <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
@@ -111,7 +110,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/statBases</xpath>
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/statBases</xpath>
         <value>
           <Bulk>4</Bulk>
           <MeleeCounterParryBonus>0.20</MeleeCounterParryBonus>
@@ -119,7 +118,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]</xpath>
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]</xpath>
         <value>
         <equippedStatOffsets>
           <MeleeCritChance>0.03</MeleeCritChance>
@@ -130,7 +129,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/weaponTags</xpath>
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_BeardedAxe"]/weaponTags</xpath>
         <value>
           <li>CE_OneHandedWeapon</li>
         </value>
@@ -139,7 +138,7 @@
       <!-- === Dane Axe === -->
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]/tools</xpath>
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]/tools</xpath>
         <value>
           <tools>
             <li Class="CombatExtended.ToolCE">
@@ -149,7 +148,7 @@
               </capacities>
               <power>4</power>
               <cooldownTime>1.78</cooldownTime>
-              <chanceFactor>0.10</chanceFactor>
+              <chanceFactor>0.33</chanceFactor>
               <armorPenetrationBlunt>1</armorPenetrationBlunt>
               <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
             </li>
@@ -160,7 +159,6 @@
               </capacities>
               <power>31</power>
               <cooldownTime>4.09</cooldownTime>
-              <chanceFactor>0.30</chanceFactor>
               <armorPenetrationBlunt>4.84</armorPenetrationBlunt>
               <armorPenetrationSharp>0.97</armorPenetrationSharp>
               <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
@@ -170,7 +168,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]/statBases</xpath>
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]/statBases</xpath>
         <value>
           <Bulk>8</Bulk>
           <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
@@ -178,7 +176,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]</xpath>
+        <xpath>Defs/ThingDef[defName="VFE_MeleeWeapon_DaneAxe"]</xpath>
         <value>
         <equippedStatOffsets>
           <MeleeCritChance>0.06</MeleeCritChance>
@@ -213,13 +211,20 @@
 				</value>				
 			</li>		
 
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]/weaponTags</xpath>
+        <value>
+          <li>CE_OneHandedWeapon</li>
+        </value>
+      </li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]/statBases</xpath>
 				<value>
 					<statBases>
 						<SightsEfficiency>0.5</SightsEfficiency>
-            					<ShotSpread>1.5</ShotSpread>
-			      			<SwayFactor>2.5</SwayFactor>
+            <ShotSpread>1.5</ShotSpread>
+            <SwayFactor>2.5</SwayFactor>
 						<Bulk>1.25</Bulk>
 						<Mass>0.75</Mass>
 						<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
@@ -254,6 +259,7 @@
 									<li>Blunt</li>
 								</capacities>
 								<power>2</power>
+								<chanceFactor>0.33</chanceFactor>
 								<cooldownTime>1.4</cooldownTime>
 								<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
@@ -265,7 +271,6 @@
 								</capacities>
 								<power>18</power>
 								<cooldownTime>2.18</cooldownTime>
-								<chanceFactor>1.5</chanceFactor>
 								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
 								<armorPenetrationSharp>0.62</armorPenetrationSharp>
 								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
@@ -298,6 +303,13 @@
 					</thingCategories>					
 				</value>				
 			</li>		
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="VFE_Harpoon"]/weaponTags</xpath>
+        <value>
+          <li>CE_OneHandedWeapon</li>
+        </value>
+      </li>
 
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="VFE_Harpoon"]/recipeMaker</xpath>
@@ -345,6 +357,7 @@
                   <li>Blunt</li>
                 </capacities>
                 <power>7</power>
+                <chanceFactor>0.33</chanceFactor>
                 <cooldownTime>1.35</cooldownTime>
                 <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
                 <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
@@ -356,7 +369,6 @@
                 </capacities>
                 <power>15</power>
                 <cooldownTime>1.37</cooldownTime>
-                <chanceFactor>1.5</chanceFactor>
                 <armorPenetrationBlunt>1.69</armorPenetrationBlunt>
                 <armorPenetrationSharp>0.34</armorPenetrationSharp>
                 <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
@@ -381,7 +393,7 @@
           <projectile Class="CombatExtended.ProjectilePropertiesCE">
             <damageDef>Cut</damageDef>			
             <damageAmountBase>16</damageAmountBase>
-            <speed>12</speed>
+            <speed>14</speed>
             <armorPenetrationSharp>1.5</armorPenetrationSharp>
             <armorPenetrationBlunt>3</armorPenetrationBlunt>
             <preExplosionSpawnChance>0.60</preExplosionSpawnChance>
@@ -394,7 +406,7 @@
           <label>thrown harpoon</label>
           <projectile Class="CombatExtended.ProjectilePropertiesCE">
             <damageAmountBase>13</damageAmountBase>
-            <speed>10</speed>
+            <speed>16</speed>
             <armorPenetrationBlunt>4.54</armorPenetrationBlunt>
             <armorPenetrationSharp>1.8</armorPenetrationSharp>
             <secondaryDamage>

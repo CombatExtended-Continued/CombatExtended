@@ -31,8 +31,14 @@ namespace CombatExtended
 
         public override void DrawWornExtras()
         {
-            if (Wearer == null || !Wearer.Spawned) return;
-            if (!drawShield) return;
+            if (Wearer == null || !Wearer.Spawned)
+            {
+                return;
+            }
+            if (!drawShield)
+            {
+                return;
+            }
 
             float num = 0f;
             Vector3 vector = this.Wearer.Drawer.DrawPos;
@@ -55,7 +61,10 @@ namespace CombatExtended
                 {
                     if (this.Wearer.Rotation == Rot4.East)
                     {
-                        if (IsTall) vector.x += 0.1f;
+                        if (IsTall)
+                        {
+                            vector.x += 0.1f;
+                        }
                         vector.z -= IsTall ? -0.05f : 0.2f;
                         num = 22.5f;
                     }
@@ -63,14 +72,17 @@ namespace CombatExtended
                     {
                         if (this.Wearer.Rotation == Rot4.West)
                         {
-                            if (IsTall) vector.x -= 0.1f;
+                            if (IsTall)
+                            {
+                                vector.x -= 0.1f;
+                            }
                             vector.z -= IsTall ? -0.05f : 0.2f;
                             num = 337.5f;
                         }
                     }
                 }
             }
-            Material mat = Graphic.GetColoredVersion(ShaderDatabase.Cutout, DrawColor, DrawColorTwo).MatSingle;
+            Material mat = Graphic.GetColoredVersion(ShaderDatabase.CutoutComplex, DrawColor, DrawColorTwo).MatSingle;
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(vector, Quaternion.AngleAxis(num, Vector3.up), s);
             Graphics.DrawMesh(MeshPool.plane10, matrix, mat, 0);

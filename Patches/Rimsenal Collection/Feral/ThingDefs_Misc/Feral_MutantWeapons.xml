@@ -11,12 +11,12 @@
 		<!-- Melee Tools -->
 
 		  <li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Feral_ScatterCannon" or
+			<xpath>Defs/ThingDef[defName="Feral_ScatterCannon" or
 			defName="Feral_RivetCannon" or
 			defName="Feral_DMG"				
 			]</xpath>
 			<value>
-			  <tools inherit="false">
+			  <tools Inherit="False">
 				<li Class="CombatExtended.ToolCE">
 				  <label>stock</label>
 				  <capacities>
@@ -177,7 +177,7 @@
 				<damageAmountBase>5</damageAmountBase>
 				<explosionRadius>3.2</explosionRadius>			
 				<speed>30</speed>
-				<preExplosionSpawnThingDef>Gas_Smoke</preExplosionSpawnThingDef>				
+				<postExplosionGasType>BlindSmoke</postExplosionGasType>				
 			  </projectile>
 			</value>
 		  </li>
@@ -217,4 +217,4 @@
 		</operations>
 		</match>
 	</Operation>
-</Patch> 			
+</Patch>

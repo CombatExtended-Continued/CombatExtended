@@ -19,7 +19,7 @@
       <!-- === Tools === -->
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VWEL_Gun_LaserPistol" or defName = "VWEL_Gun_SalvagedLaserPistol"]/tools</xpath>
+        <xpath>Defs/ThingDef[defName = "VWEL_Gun_LaserPistol" or defName = "VWEL_Gun_SalvagedLaserPistol"]/tools</xpath>
         <value>
           <tools>
             <li Class="CombatExtended.ToolCE">
@@ -48,7 +48,7 @@
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[
+        <xpath>Defs/ThingDef[
         defName = "VWEL_Gun_LaserSMG" or
         defName = "VWEL_Gun_LaserRifle" or
         defName = "VWEL_Gun_LaserShotgun" or
@@ -95,7 +95,7 @@
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VWEL_Gun_LaserMinigun" or defName = "VWEL_Gun_TeslaGun"]/tools</xpath>
+        <xpath>Defs/ThingDef[defName="VWEL_Gun_LaserMinigun" or defName = "VWEL_Gun_TeslaGun"]/tools</xpath>
         <value>
           <tools>
             <li Class="CombatExtended.ToolCE">
@@ -115,7 +115,7 @@
       <!-- === Remove VWE Overheating Gizmo === -->
 
       <li Class="PatchOperationRemove">
-        <xpath>/Defs/ThingDef[
+        <xpath>Defs/ThingDef[
         defName = "VWEL_Gun_LaserPistol" or 
         defName = "VWEL_Gun_SalvagedLaserPistol" or        
         defName = "VWEL_Gun_LaserSMG" or
@@ -209,7 +209,7 @@
           <Bulk>6.90</Bulk>
           <SwayFactor>0.92</SwayFactor>
           <ShotSpread>0.06</ShotSpread>
-          <SightsEfficiency>0.8</SightsEfficiency>
+          <SightsEfficiency>1.1</SightsEfficiency>
           <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
         </statBases>
         <Properties>
@@ -383,6 +383,7 @@
           <ShotSpread>0.04</ShotSpread>
           <SightsEfficiency>2.48</SightsEfficiency>
           <RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+          <NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
         </statBases>
         <Properties>
           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -402,6 +403,9 @@
         <FireModes>
           <aiAimMode>AimedShot</aiAimMode>     
         </FireModes>
+        <weaponTags>
+          <li>Bipod_DMR</li>
+        </weaponTags>
       </li>
 
       <!-- === Salvaged Laser Sniper Rifle === -->
@@ -414,6 +418,7 @@
           <ShotSpread>0.03</ShotSpread>
           <SightsEfficiency>2.36</SightsEfficiency>
           <RangedWeapon_Cooldown>0.65</RangedWeapon_Cooldown>
+          <NightVisionEfficiency_Weapon>0.3</NightVisionEfficiency_Weapon>
         </statBases>
         <Properties>
           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -433,6 +438,9 @@
         <FireModes>
           <aiAimMode>AimedShot</aiAimMode>     
         </FireModes>
+        <weaponTags>
+          <li>Bipod_DMR</li>
+        </weaponTags>
       </li>
 
       <!-- === Laser Minigun === -->

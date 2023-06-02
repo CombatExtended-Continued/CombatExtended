@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>Reinforced Mechanoid 2</li>
+      </mods>
+
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ===== Weapon Tools ===== -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RM_Gun_ChargeLancePistol"]/tools</xpath>
+               <value>
+                  <tools>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>barrel</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>2.02</cooldownTime>
+                        <armorPenetrationBlunt>1.430</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>stock</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>2.2</cooldownTime>
+                        <armorPenetrationBlunt>0.830</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                     </li>
+                  </tools>
+               </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RM_Gun_ChargePistol"]/tools</xpath>
+               <value>
+                  <tools>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>barrel</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>5</power>
+                        <cooldownTime>3.05</cooldownTime>
+                        <armorPenetrationBlunt>1.130</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>blade</label>
+                        <capacities>
+                           <li>Cut</li>
+                           <li>Stab</li>
+                           <li>Poke</li>
+                        </capacities>
+                        <power>10</power>
+                        <cooldownTime>2.2</cooldownTime>
+                        <armorPenetrationBlunt>2.380</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.52</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                     </li>
+                  </tools>
+               </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RM_Gun_ChargeLanceRifle"]/tools</xpath>
+               <value>
+                  <tools>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>stock</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>8</power>
+                        <cooldownTime>1.55</cooldownTime>
+                        <chanceFactor>1.5</chanceFactor>
+                        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>barrel</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>5</power>
+                        <cooldownTime>2.02</cooldownTime>
+                        <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>muzzle</label>
+                        <capacities>
+                           <li>Poke</li>
+                        </capacities>
+                        <power>8</power>
+                        <cooldownTime>1.55</cooldownTime>
+                        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                     </li>
+                  </tools>
+               </value>
+            </li>
+
+            <!-- ===== Lance Weaponry ===== -->
+
+            <!-- === Charge Lance Pistol === -->
+            <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+               <defName>RM_Gun_ChargeLancePistol</defName>
+               <statBases>
+                  <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+                  <SightsEfficiency>0.8</SightsEfficiency>
+                  <ShotSpread>0.10</ShotSpread>
+                  <SwayFactor>1</SwayFactor>
+                  <Mass>1.75</Mass>
+                  <Bulk>3.5</Bulk>
+               </statBases>
+               <Properties>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>RM_Bullet_5x35mmS</defaultProjectile>
+                  <warmupTime>1.1</warmupTime>
+                  <range>30</range>
+                  <burstShotCount>1</burstShotCount>
+                  <soundCast>ChargeLance_Fire</soundCast>
+                  <soundCastTail>GunTail_Heavy</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+               </Properties>
+               <AmmoUser>
+                  <magazineSize>8</magazineSize>
+                  <reloadTime>3</reloadTime>
+                  <ammoSet>AmmoSet_RM_5x35mmS</ammoSet>
+               </AmmoUser>
+               <FireModes>
+                  <aiAimMode>AimedShot</aiAimMode>
+               </FireModes>
+               <weaponTags>
+                  <li>MechanoidGunSmall</li>
+                  <li>SpacerGun</li>
+                  <li>NoSwitch</li>
+               </weaponTags>
+            </li>
+
+            <!-- === Charge Lance Rifle === -->
+            <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+               <defName>RM_Gun_ChargeLanceRifle</defName>
+               <statBases>
+                  <Mass>7</Mass>
+                  <Bulk>12</Bulk>
+                  <SwayFactor>1</SwayFactor>
+                  <ShotSpread>0.02</ShotSpread>
+                  <SightsEfficiency>1.10</SightsEfficiency>
+                  <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+               </statBases>
+               <Properties>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>RM_Bullet_5x35mmH</defaultProjectile>
+                  <warmupTime>1.6</warmupTime>
+                  <range>65</range>
+                  <burstShotCount>1</burstShotCount>
+                  <soundCast>ChargeLance_Fire</soundCast>
+                  <soundCastTail>GunTail_Heavy</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+               </Properties>
+               <AmmoUser>
+                  <magazineSize>10</magazineSize>
+                  <reloadTime>4</reloadTime>
+                  <ammoSet>AmmoSet_RM_5x35mmH</ammoSet>
+               </AmmoUser>
+               <FireModes>
+                  <aiAimMode>AimedShot</aiAimMode>
+               </FireModes>
+               <weaponTags>
+                  <li>MechanoidGunMedium</li>
+                  <li>SpacerGun</li>
+                  <li>NoSwitch</li>
+               </weaponTags>
+            </li>
+
+            <!-- ===== Charge Weaponry ===== -->
+
+            <!-- === Charge Sidearm === -->
+            <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+               <defName>RM_Gun_ChargePistol</defName>
+               <statBases>
+                  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                  <SightsEfficiency>0.8</SightsEfficiency>
+                  <ShotSpread>0.15</ShotSpread>
+                  <SwayFactor>1.07</SwayFactor>
+                  <Mass>1.50</Mass>
+                  <Bulk>3</Bulk>
+               </statBases>
+               <Properties>
+                  <recoilAmount>0.76</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+                  <warmupTime>0.5</warmupTime>
+                  <range>24</range>
+                  <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+                  <burstShotCount>3</burstShotCount>
+                  <soundCast>Shot_ChargeBlaster</soundCast>
+                  <soundCastTail>GunTail_Heavy</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+               </Properties>
+               <AmmoUser>
+                  <magazineSize>21</magazineSize>
+                  <reloadTime>4.5</reloadTime>
+                  <ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+               </AmmoUser>
+               <FireModes>
+                  <aiAimMode>AimedShot</aiAimMode>
+               </FireModes>
+               <weaponTags>
+                  <li>MechanoidGunSmall</li>
+                  <li>SpacerGun</li>
+                  <li>NoSwitch</li>
+               </weaponTags>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>

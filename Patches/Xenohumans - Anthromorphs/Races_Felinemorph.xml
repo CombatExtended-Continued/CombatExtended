@@ -29,7 +29,6 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <success>Always</success>
           <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Felinemorph"]/tools</xpath>
           <value>
             <tools>
@@ -69,24 +68,17 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Felinemorph"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Felinemorph"]</xpath>
-              <value>
-                <comps />
-              </value>
-            </li>
-          </operations>
-        </li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Felinemorph"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Felinemorph"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
 
         <li Class="PatchOperationAdd">
-          <success>Always</success>
           <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Felinemorph"]/comps</xpath>
           <value>
             <li>
@@ -97,7 +89,7 @@
         </li>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/PawnKindDef[defName="ATK_Villager_Felinemorph"]</xpath>
+          <xpath>Defs/PawnKindDef[defName="ATK_Villager_Felinemorph"]</xpath>
           <value>
             <li Class="CombatExtended.LoadoutPropertiesExtension">
               <primaryMagazineCount>

@@ -21,7 +21,7 @@ namespace CombatExtended
 
         private bool AllowThrowTauntNow(Pawn pawn)
         {
-            if(!Controller.settings.ShowTaunts || pawn == null || !pawn.def.race.Humanlike)
+            if (!Controller.settings.ShowTaunts || pawn == null || !pawn.def.race.Humanlike)
             {
                 return false;
             }
@@ -38,7 +38,9 @@ namespace CombatExtended
         public void TryThrowTaunt(RulePackDef rulePack, Pawn pawn)
         {
             if (!AllowThrowTauntNow(pawn))
+            {
                 return;
+            }
 
             string taunt = GrammarResolver.Resolve(rulePack.RulesPlusIncludes[0].keyword, new GrammarRequest { Includes = { rulePack } });
             if (taunt.NullOrEmpty())
@@ -47,7 +49,7 @@ namespace CombatExtended
             }
             else
             {
-                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), pawn.Map, taunt);
+                MoteMakerCE.ThrowText(pawn.Position.ToVector3Shifted(), pawn.Map, taunt);
             }
             var curTick = Find.TickManager.TicksGame;
             if (!tauntTickTracker.ContainsKey(pawn))
@@ -62,7 +64,10 @@ namespace CombatExtended
 
         public override void MapComponentTick()
         {
-            if ((Find.TickManager.TicksGame + GetHashCode()) % 10 == 0)
+            // Use map.uniqueId as it'll be the same for each player, GetHashCode() is not guaranteed to be the same
+            // for each player (unless it's a custom implementation)
+            // and we want this to be called at the same time for everyone
+            if ((Find.TickManager.TicksGame + map.uniqueID * 3) % 10 == 0)
             {
                 foreach (var entry in tauntTickTracker.Where(kvp => TimedOut(kvp.Key)).ToArray())
                 {

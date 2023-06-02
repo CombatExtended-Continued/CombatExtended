@@ -4,6 +4,7 @@
 <Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Combat Enthusiast's Collection</li>
+      <li>Combat Enthusiast's Collection (Continued)</li>      
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
@@ -220,7 +221,7 @@
       <recoilAmount>1.60</recoilAmount>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_545x39mmSoviet_FMJ</defaultProjectile>
-      <warmupTime>0.6</warmupTime>
+      <warmupTime>0.9</warmupTime>
       <range>31</range>
       <burstShotCount>6</burstShotCount>
       <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
@@ -372,6 +373,7 @@
     </Properties>
     <AmmoUser>
       <magazineSize>1</magazineSize>
+	  <AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
       <reloadTime>0.85</reloadTime>
       <ammoSet>AmmoSet_50BMG</ammoSet>
     </AmmoUser>
@@ -639,6 +641,7 @@
     </FireModes>
     <weaponTags>
       <li>IndustrialGunAdvanced</li>
+	    <li>Bipod_LMG</li>
     </weaponTags>
     <researchPrerequisite>GasOperation</researchPrerequisite>
   </li>
@@ -692,6 +695,7 @@
     <weaponTags>
     <li>CE_MachineGun</li>
     <li>CE_AI_Suppressive</li>
+	  <li>Bipod_SAW</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
   </li>
@@ -791,7 +795,8 @@
     <weaponTags>
       <li>CE_AI_Rifle</li>
       <li>SniperRifle</li>
-      <li>IndustrialGunAdvanced</li>    
+      <li>IndustrialGunAdvanced</li>  
+	    <li>Bipod_AMR</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
   </li>
@@ -812,7 +817,7 @@
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
     <recoilPattern>Mounted</recoilPattern>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_20x110mmHispano_FMJ</defaultProjectile>
+      <defaultProjectile>Bullet_20x110mmHispano_AP</defaultProjectile>
       <warmupTime>1.90</warmupTime>
       <range>86</range>
       <soundCast>CEC_NTW20Shot</soundCast>
@@ -821,6 +826,7 @@
     </Properties>
     <AmmoUser>
       <magazineSize>1</magazineSize>
+      <AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
       <reloadTime>1</reloadTime>
       <ammoSet>AmmoSet_20x110mmHispano</ammoSet>
     </AmmoUser>
@@ -833,6 +839,7 @@
     <weaponTags>
     <li>CE_AI_Rifle</li>
     <li>SniperRifle</li>
+	  <li>Bipod_ATR</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
   </li>
@@ -880,6 +887,7 @@
     <weaponTags>
     <li>CE_AI_Rifle</li>
     <li>SniperRifle</li>
+	  <li>Bipod_DMR</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
   </li>
@@ -927,6 +935,7 @@
     <weaponTags>
     <li>CE_AI_Rifle</li>
     <li>SniperRifle</li>
+	  <li>Bipod_DMR</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
   </li>
@@ -1090,7 +1099,7 @@
   <!-- Tactical Sledgehammer -->
 
   <li Class="PatchOperationReplace">
-  <xpath>/Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/tools</xpath>
+  <xpath>Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -1120,7 +1129,7 @@
   </li>
 
   <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/statBases/Mass</xpath>
+    <xpath>Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]/statBases/Mass</xpath>
     <value>
       <Mass>5.76</Mass>
       <Bulk>9</Bulk>
@@ -1129,7 +1138,7 @@
   </li>
 
   <li Class="PatchOperationAdd">
-    <xpath>/Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]</xpath>
+    <xpath>Defs/ThingDef[defName="CEC_TacticalSledgeHammer"]</xpath>
     <value>
       <equippedStatOffsets>
 		<MeleeCritChance>2.30</MeleeCritChance>

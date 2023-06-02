@@ -25,6 +25,28 @@
 			</value>
 		</li>
 
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_GuardianHelmet"]</xpath>
+			<value>
+			  <li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+				</stats>
+			  </li>
+			</value>
+		</li>
+
 		<!-- Leather Helmet -->
 
 		<li Class="PatchOperationReplace">
@@ -48,6 +70,13 @@
 			<xpath>Defs/ThingDef[defName="VFEV_Apparel_RavagerHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_RavagerHelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+			<value>
+				<AimingAccuracy>-0.4</AimingAccuracy>
 			</value>
 		</li>
 
@@ -127,7 +156,6 @@
 			<value>
 			<li>OnHead</li>
 			<li>StrappedHead</li>
-			<li>MiddleHead</li>
 			</value>
 		</li>
 
@@ -147,15 +175,50 @@
 			</value>
 		</li>
 
+		<li Class="PatchOperationConditional">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoLightHelmet"]/apparel/immuneToToxGasExposure</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoLightHelmet"]/apparel</xpath>
+				<value>
+					<immuneToToxGasExposure>true</immuneToToxGasExposure>
+				</value>
+			</nomatch>
+		</li>
+
 		<li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoLightHelmet"]</xpath>
 			<value>
-			<equippedStatOffsets>
-				<PsychicSensitivity>-0.2</PsychicSensitivity>
-				<AimingAccuracy>0.1</AimingAccuracy>
-				<ToxicSensitivity>-0.50</ToxicSensitivity>
-				<SmokeSensitivity>-1</SmokeSensitivity>
-			</equippedStatOffsets>
+				<equippedStatOffsets>
+					<AimingAccuracy>0.1</AimingAccuracy>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoLightHelmet"]</xpath>
+			<value>
+			  <li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+							<li>Jaw</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+							<li>Jaw</li>
+						</parts>
+					</li>
+				</stats>
+			  </li>
 			</value>
 		</li>
 
@@ -197,15 +260,46 @@
 			</value>
 		</li>
 
+		<li Class="PatchOperationConditional">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]/apparel/immuneToToxGasExposure</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]/apparel</xpath>
+				<value>
+					<immuneToToxGasExposure>true</immuneToToxGasExposure>
+				</value>
+			</nomatch>
+		</li>
+
 		<li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]</xpath>
 			<value>
 				<equippedStatOffsets>
-				<PsychicSensitivity>-0.2</PsychicSensitivity>
-				<AimingAccuracy>0.15</AimingAccuracy>
-				<ToxicSensitivity>-0.50</ToxicSensitivity>
-				<SmokeSensitivity>-1</SmokeSensitivity>
+					<AimingAccuracy>0.15</AimingAccuracy>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+					<SmokeSensitivity>-1</SmokeSensitivity>
 				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="VFEV_Apparel_CryptoHeavyHelmet"]</xpath>
+			<value>
+			  <li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+				</stats>
+			  </li>
 			</value>
 		</li>
 

@@ -14,16 +14,17 @@
     <defName>AmmoSet_20x110mmHispano</defName>
     <label>20x110mm Hispano</label>
     <ammoTypes>
-      <Ammo_20x110mmHispano_FMJ>Bullet_20x110mmHispano_FMJ</Ammo_20x110mmHispano_FMJ>
+      <Ammo_20x110mmHispano_AP>Bullet_20x110mmHispano_AP</Ammo_20x110mmHispano_AP>
       <Ammo_20x110mmHispano_Incendiary>Bullet_20x110mmHispano_Incendiary</Ammo_20x110mmHispano_Incendiary>
       <Ammo_20x110mmHispano_HE>Bullet_20x110mmHispano_HE</Ammo_20x110mmHispano_HE>
-	    <Ammo_20x110mmHispano_Sabot>Bullet_20x110mmHispano_Sabot</Ammo_20x110mmHispano_Sabot>	        
+      <Ammo_20x110mmHispano_Sabot>Bullet_20x110mmHispano_Sabot</Ammo_20x110mmHispano_Sabot>	        
     </ammoTypes>
+    <similarTo>AmmoSet_Autocannon</similarTo>
   </CombatExtended.AmmoSetDef>
   
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x110mmHispanoBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x110mmHispanoBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Large caliber cartridge used by autocannons and a handful of anti-tank rifles.</description>
     <statBases>
     <Mass>0.257</Mass>
@@ -40,17 +41,17 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x110mmHispanoBase">
-    <defName>Ammo_20x110mmHispano_FMJ</defName>
-    <label>20x110mm Hispano cartridge (FMJ)</label>
+    <defName>Ammo_20x110mmHispano_AP</defName>
+    <label>20x110mm Hispano cartridge (AP)</label>
     <graphicData>
-      <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+      <texPath>Things/Ammo/HighCaliber/AP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>1.04</MarketValue>
     </statBases>
-    <ammoClass>FullMetalJacket</ammoClass>
-    <cookOffProjectile>Bullet_20x110mmHispano_FMJ</cookOffProjectile>
+    <ammoClass>ArmorPiercing</ammoClass>
+    <cookOffProjectile>Bullet_20x110mmHispano_AP</cookOffProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x110mmHispanoBase">
@@ -69,7 +70,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x110mmHispanoBase">
     <defName>Ammo_20x110mmHispano_HE</defName>
-    <label>20x110mm Hispano cartridge (HE)</label>
+    <label>20x110mm Hispano cartridge (AP-HE)</label>
     <graphicData>
       <texPath>Things/Ammo/HighCaliber/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -80,7 +81,6 @@
     <ammoClass>ExplosiveAP</ammoClass>
     <cookOffProjectile>Bullet_20x110mmHispano_HE</cookOffProjectile>
   </ThingDef>
-
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x110mmHispanoBase">
     <defName>Ammo_20x110mmHispano_Sabot</defName>
@@ -99,7 +99,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base20x110mmHispanoBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base20x110mmHispanoBullet" ParentName="BaseBulletCE" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/Bullet_Big</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -112,11 +112,11 @@
   </ThingDef>
 
   <ThingDef ParentName="Base20x110mmHispanoBullet">
-    <defName>Bullet_20x110mmHispano_FMJ</defName>
-    <label>20mm Hispano bullet (FMJ)</label>
+    <defName>Bullet_20x110mmHispano_AP</defName>
+    <label>20mm Hispano bullet (AP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>66</damageAmountBase>
-      <armorPenetrationSharp>20</armorPenetrationSharp>
+      <damageAmountBase>41</damageAmountBase>
+      <armorPenetrationSharp>28</armorPenetrationSharp>
       <armorPenetrationBlunt>869.04</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
@@ -126,7 +126,7 @@
     <label>20mm Hispano bullet (AP-I)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>41</damageAmountBase>
-      <armorPenetrationSharp>40</armorPenetrationSharp>
+      <armorPenetrationSharp>28</armorPenetrationSharp>
       <armorPenetrationBlunt>869.04</armorPenetrationBlunt>
       <secondaryDamage>
         <li>
@@ -139,10 +139,10 @@
 
   <ThingDef ParentName="Base20x110mmHispanoBullet">
     <defName>Bullet_20x110mmHispano_HE</defName>
-    <label>20mm Hispano bullet (HE)</label>
+    <label>20mm Hispano bullet (AP-HE)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>66</damageAmountBase>
-      <armorPenetrationSharp>20</armorPenetrationSharp>
+      <armorPenetrationSharp>14</armorPenetrationSharp>
       <armorPenetrationBlunt>869.04</armorPenetrationBlunt>
       <secondaryDamage>
         <li>
@@ -158,18 +158,19 @@
     <label>14.5x114mm bullet (Sabot)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
 	    <speed>254</speed>
-      <damageAmountBase>35</damageAmountBase>
-      <armorPenetrationSharp>70</armorPenetrationSharp>
-      <armorPenetrationBlunt>1113.92</armorPenetrationBlunt>
+	    <damageAmountBase>35</damageAmountBase>
+	    <armorPenetrationSharp>49</armorPenetrationSharp>
+	    <armorPenetrationBlunt>1113.92</armorPenetrationBlunt>
     </projectile>
-  </ThingDef> 
+  </ThingDef>
+
   <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_20x110mmHispano_FMJ</defName>
-    <label>make 20x110mm Hispano (FMJ) cartridge x200</label>
-    <description>Craft 200 20x110mm Hispano (FMJ) cartridges.</description>
-    <jobString>Making 20x110mm Hispano (FMJ) cartridges.</jobString>
+    <defName>MakeAmmo_20x110mmHispano_AP</defName>
+    <label>make 20x110mm Hispano (AP) cartridge x200</label>
+    <description>Craft 200 20x110mm Hispano (AP) cartridges.</description>
+    <jobString>Making 20x110mm Hispano (AP) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -177,7 +178,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>194</count>
+        <count>104</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -186,9 +187,9 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_20x110mmHispano_FMJ>200</Ammo_20x110mmHispano_FMJ>
+      <Ammo_20x110mmHispano_AP>200</Ammo_20x110mmHispano_AP>
     </products>
-    <workAmount>10400</workAmount>
+    <workAmount>12480</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -228,9 +229,9 @@
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_20x110mmHispano_HE</defName>
-    <label>make 20x110mm Hispano (HE) cartridge x200</label>
-    <description>Craft 200 20x110mm Hispano (HE) cartridges.</description>
-    <jobString>Making 20x110mm Hispano (HE) cartridges.</jobString>
+    <label>make 20x110mm Hispano (AP-HE) cartridge x200</label>
+    <description>Craft 200 20x110mm Hispano (AP-HE) cartridges.</description>
+    <jobString>Making 20x110mm Hispano (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

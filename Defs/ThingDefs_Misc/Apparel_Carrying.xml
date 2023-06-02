@@ -23,12 +23,6 @@
     <alwaysHaulable>True</alwaysHaulable>
     <burnableByRecipe>true</burnableByRecipe>
     <tickerType>Never</tickerType>
-    <comps>
-      <li Class="CompProperties_Forbiddable"/>
-      <li>
-        <compClass>CompQuality</compClass>
-      </li>
-    </comps>
     <recipeMaker>
       <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
@@ -40,6 +34,9 @@
       </recipeUsers>
       <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
     </recipeMaker>
+    <apparel>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+    </apparel>    
     <thingCategories>
       <li>Loadout</li>
     </thingCategories>
@@ -47,13 +44,20 @@
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
-    <defName>Apparel_TacVest</defName>
+    <defName>CE_Apparel_TacVest</defName>
     <label>tactical vest</label>
     <description>A loadbearing vest with a number of pouches to store magazines and other equipment.\n\nSpeeds up reloading but is quite bulky to wear.</description>
     <graphicData>
       <texPath>Things/Apparel/TacRigging/CE_TacRigging</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <possessionCount>1</possessionCount>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>ComplexClothing</li>
+        <li>FlakArmor</li>
+      </researchPrerequisites>
+    </recipeMaker>
     <statBases>
       <MaxHitPoints>120</MaxHitPoints>
       <WorkToMake>8000</WorkToMake>
@@ -72,7 +76,6 @@
       <li>Leathery</li>
     </stuffCategories>
     <apparel>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
       </bodyPartGroups>
@@ -87,16 +90,23 @@
       </defaultOutfitTags>
       <wornGraphicPath>Things/Apparel/TacRigging/CE_TacRigging</wornGraphicPath>
     </apparel>
+    <tradeTags>
+      <li>Clothing</li>
+    </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="ApparelCarryGearBase">
-    <defName>Apparel_Backpack</defName>
+  <ThingDef Name="ApparelBackpackBase" ParentName="ApparelCarryGearBase">
+    <defName>CE_Apparel_Backpack</defName>
     <label>backpack</label>
     <description>A comfortable and spacious backpack for storing all kinds of items.</description>
     <graphicData>
       <texPath>Things/Apparel/Backpack/CE_Backpack</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <possessionCount>1</possessionCount>
+    <recipeMaker>
+      <researchPrerequisite>ComplexClothing</researchPrerequisite>
+    </recipeMaker>
     <statBases>
       <MaxHitPoints>120</MaxHitPoints>
       <WorkToMake>8000</WorkToMake>
@@ -114,7 +124,6 @@
     <apparel>
       <countsAsClothingForNudity>false</countsAsClothingForNudity>
       <careIfDamaged>false</careIfDamaged>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
       </bodyPartGroups>
@@ -137,7 +146,7 @@
           <hulk><offset>(0,0)</offset></hulk>
           <fat><offset>(0,0)</offset></fat>
           <male><offset>(0.125,0)</offset></male>
-		      <female><offset>(0.125,0)</offset></female>	
+          <female><offset>(0.125,0)</offset></female>	
         </east>
         <west>
           <offset>(0,-0.05)</offset>
@@ -145,7 +154,7 @@
           <hulk><offset>(0,0)</offset></hulk>
           <fat><offset>(0,0)</offset></fat>
           <male><offset>(-0.125,0)</offset></male>
-		      <female><offset>(-0.125,0)</offset></female>		  
+          <female><offset>(-0.125,0)</offset></female>		  
         </west>
         <north>
           <offset>(0,-0.1)</offset> 
@@ -160,10 +169,52 @@
         <fat>   <scale>(1,1)</scale></fat>
       </wornGraphicData>
     </apparel>
+    <tradeTags>
+      <li>Clothing</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="ApparelBackpackBase">
+    <defName>CE_Apparel_KidBackpack</defName>
+    <label>kid backpack</label>
+    <description>A small backpack sized for a child.</description>
+    <graphicData>
+      <texPath>Things/Apparel/KidBackpack/CE_KidBackpack</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.6,0.6)</drawSize>
+    </graphicData>
+    <statBases>
+      <WorkToMake>4000</WorkToMake>
+      <Mass>0.5</Mass>
+      <Bulk>1.5</Bulk>
+    </statBases>
+    <equippedStatOffsets>
+      <CarryBulk>20</CarryBulk>
+    </equippedStatOffsets>
+    <costStuffCount>20</costStuffCount>
+    <apparel>
+      <developmentalStageFilter>Child</developmentalStageFilter>
+      <tags Inherit="False">
+        <li>IndustrialBasic</li>
+      </tags>
+      <wornGraphicPath>Things/Apparel/KidBackpack/CE_KidBackpack</wornGraphicPath>
+      <wornGraphicData Inherit="False">
+      <renderUtilityAsPack>true</renderUtilityAsPack>
+        <east>
+          <offset>(0.1,-0)</offset>
+        </east>
+        <west>
+          <offset>(-0.1,0)</offset>
+        </west>
+        <north>
+          <offset>(0,0)</offset>
+        </north>
+      </wornGraphicData>
+    </apparel>
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
-    <defName>Apparel_TribalBackpack</defName>
+    <defName>CE_Apparel_TribalBackpack</defName>
     <label>tribal backpack</label>
     <description>Primitive backpack made from animal furs, useful for storing items when travelling.</description>
     <techLevel>Neolithic</techLevel>
@@ -171,6 +222,7 @@
       <texPath>Things/Apparel/TribalPack/CE_Tribalpack</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <possessionCount>1</possessionCount>
     <tradeability>Sellable</tradeability>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
@@ -196,7 +248,6 @@
     <apparel>
       <countsAsClothingForNudity>false</countsAsClothingForNudity>
       <careIfDamaged>false</careIfDamaged>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
       </bodyPartGroups>
@@ -215,7 +266,7 @@
           <hulk><offset>(0.05,0)</offset></hulk>
           <fat><offset>(0,0)</offset></fat>
           <male><offset>(0.2,0)</offset></male>
-		      <female><offset>(0.2,0)</offset></female>	
+          <female><offset>(0.2,0)</offset></female>	
         </east>
         <west>
           <offset>(0,-0.05)</offset>
@@ -223,7 +274,7 @@
           <hulk><offset>(-0.05,0)</offset></hulk>
           <fat><offset>(0,0)</offset></fat>
           <male><offset>(-0.2,0)</offset></male>
-		      <female><offset>(-0.2,0)</offset></female>		  
+          <female><offset>(-0.2,0)</offset></female>		  
         </west>
         <north>
           <offset>(0,-0.1)</offset> 
@@ -254,6 +305,66 @@
         </li>
       </options>
     </colorGenerator>
+    <tradeTags>
+      <li>BasicClothing</li>
+    </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="ApparelCarryGearBase">
+    <defName>CE_Apparel_ExoFrame</defName>
+    <label>powered exoframe</label>
+    <description>A powered exoframe with articulated joints, commonly used in industrial settings by workers handling heavy parts.\n\nIncreases lifting capacity, but is quite bulky to wear.</description>
+    <graphicData>
+      <texPath>Things/Apparel/Exoframe/CE_Exoframe</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <generateCommonality>0.25</generateCommonality>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToMake>40000</WorkToMake>
+      <Mass>15</Mass>
+      <Bulk>35</Bulk>
+      <WornBulk>10</WornBulk>
+      <EquipDelay>5.5</EquipDelay>
+      <ArmorRating_Blunt>2.00</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+    </statBases>
+    <equippedStatOffsets>
+      <CarryWeight>50</CarryWeight>
+    </equippedStatOffsets>
+    <recipeMaker>
+      <researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>		
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Machining</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+    </recipeMaker>
+    <costList>
+      <Plasteel>80</Plasteel>
+      <ComponentIndustrial>5</ComponentIndustrial>
+    </costList>    
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Shoulders</li>
+        <li>Torso</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Shell</li>
+      </layers>
+      <tags>
+        <li>IndustrialMilitaryAdvanced</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+      <wornGraphicPath>Things/Apparel/Exoframe/CE_Exoframe</wornGraphicPath>
+    </apparel>
+    <tradeTags>
+      <li>Clothing</li>
+    </tradeTags>
   </ThingDef>
 
 </Defs>

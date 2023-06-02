@@ -18,6 +18,7 @@
 			<Ammo_455Webley_AP>Bullet_455Webley_AP</Ammo_455Webley_AP>
 			<Ammo_455Webley_HP>Bullet_455Webley_HP</Ammo_455Webley_HP>			
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -81,7 +82,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base455WebleyBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base455WebleyBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -97,8 +98,8 @@
 		<defName>Bullet_455Webley_FMJ</defName>
 		<label>.455 Webley bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
 			<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -108,7 +109,7 @@
 		<label>.455 Webley bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>6</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
 			<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -118,7 +119,7 @@
 		<label>.455 Webley bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
 			<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -174,7 +175,7 @@
 		<products>
 			<Ammo_455Webley_AP>500</Ammo_455Webley_AP>
 		</products>
-		<workAmount>2200</workAmount>
+		<workAmount>3120</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -200,7 +201,7 @@
 		<products>
 			<Ammo_455Webley_HP>500</Ammo_455Webley_HP>
 		</products>
-		<workAmount>2200</workAmount>
+		<workAmount>2600</workAmount>
 	</RecipeDef>
 
 

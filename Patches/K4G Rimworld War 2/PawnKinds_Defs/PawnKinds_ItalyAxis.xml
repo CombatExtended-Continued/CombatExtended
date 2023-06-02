@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>[K4G] RimWorld War 2</li>
+      </mods>
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- === Private === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianPrivateAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianPrivateAxis</defName>
+                     <label>Italian private</label>
+                     <combatPower>50</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalySoldier</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifle</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>3</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>50</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Private Shared === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianPrivateSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianPrivateSharedAxis</defName>
+                     <label>Italian private</label>
+                     <combatPower>50</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalySoldier</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifleSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>3</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>50</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Rifleman === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianRiflemanAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianRiflemanAxis</defName>
+                     <label>Italian rifleman</label>
+                     <combatPower>60</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalySoldier</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifle</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>4</min>
+                              <max>5</max>
+                           </primaryMagazineCount>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>50</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Infantry === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianInfantryAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianInfantryAxis</defName>
+                     <label>Italian infantry</label>
+                     <combatPower>60</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalySoldier</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalySMG</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>4</min>
+                              <max>5</max>
+                           </primaryMagazineCount>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>50</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Medic === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianMedicAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianMedicAxis</defName>
+                     <label>Italian medic</label>
+                     <combatPower>55</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyMedic</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifle</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>3</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>50</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Medic Shared === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianMedicSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianMedicSharedAxis</defName>
+                     <label>Italian medic</label>
+                     <combatPower>55</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyMedic</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifleSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>3</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>50</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Machine Gunner === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianMachineGunnerAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianMachineGunnerAxis</defName>
+                     <label>Italian machine gunner</label>
+                     <combatPower>110</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalySoldier</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyLMG</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>4</min>
+                              <max>5</max>
+                           </primaryMagazineCount>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>100</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                              <li>
+                                 <generateChance>0.1</generateChance>
+                                 <sidearmMoney>
+                                    <min>10</min>
+                                    <max>100</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>CE_FlareLauncher</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>1</min>
+                                    <max>2</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Machine Gunner Shared === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianMachineGunnerSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianMachineGunnerSharedAxis</defName>
+                     <label>Italian machine gunner</label>
+                     <combatPower>110</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalySoldier</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyLMGSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>4</min>
+                              <max>5</max>
+                           </primaryMagazineCount>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>100</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                              <li>
+                                 <generateChance>0.1</generateChance>
+                                 <sidearmMoney>
+                                    <min>10</min>
+                                    <max>100</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>CE_FlareLauncher</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>1</min>
+                                    <max>2</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Sniper Shared === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianSniperSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianSniperSharedAxis</defName>
+                     <label>Italian sniper</label>
+                     <combatPower>110</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalySoldier</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalianSniperRifleSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>3</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>150</min>
+                                 <max>350</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyPistol</li>
+                              </weaponTags>
+                              <magazineCount>
+                                 <min>1</min>
+                                 <max>2</max>
+                              </magazineCount>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>50</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                              <li>
+                                 <generateChance>0.1</generateChance>
+                                 <sidearmMoney>
+                                    <min>10</min>
+                                    <max>100</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>GrenadeSmoke</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>1</min>
+                                    <max>2</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Grenadier === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianGrenadierAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianGrenadierAxis</defName>
+                     <label>Italian grenadier</label>
+                     <combatPower>70</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalySoldier</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyGrenade</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>6</min>
+                              <max>12</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>150</min>
+                                 <max>350</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyPistol</li>
+                              </weaponTags>
+                              <magazineCount>
+                                 <min>1</min>
+                                 <max>2</max>
+                              </magazineCount>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>100</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Anti-Tank Shared === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianAntiTankSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianAntiTankSharedAxis</defName>
+                     <label>Italian anti-tank soldier</label>
+                     <combatPower>150</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalySoldier</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponMoney>1000~1800</weaponMoney>
+                     <weaponTags>
+                        <li>K4GWW2ItalyAntiTankSharedAxis</li>
+                        <li>K4GWW2ItalyAntiTankGrenade</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>2</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>150</min>
+                                 <max>350</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyPistol</li>
+                              </weaponTags>
+                              <magazineCount>
+                                 <min>1</min>
+                                 <max>2</max>
+                              </magazineCount>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.5</generateChance>
+                                 <sidearmMoney>
+                                    <min>100</min>
+                                    <max>200</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyMelee</li>
+                                 </weaponTags>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Officer === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianOfficerAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianOfficerAxis</defName>
+                     <label>Italian officer</label>
+                     <combatPower>65</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficer</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifle</li>
+                        <li>K4GWW2ItalySMG</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>2</min>
+                              <max>3</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistol</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Officer Shared === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianOfficerSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianOfficerSharedAxis</defName>
+                     <label>Italian officer</label>
+                     <combatPower>65</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficer</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifleSharedAxis</li>
+                        <li>K4GWW2ItalySMGSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>2</min>
+                              <max>3</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistolSharedAxis</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Officer B === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianOfficerBAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianOfficerBAxis</defName>
+                     <label>Italian officer</label>
+                     <combatPower>65</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficerB</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifle</li>
+                        <li>K4GWW2ItalySMG</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>2</min>
+                              <max>3</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistol</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Officer B Shared === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianOfficerBSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianOfficerBSharedAxis</defName>
+                     <label>Italian officer</label>
+                     <combatPower>65</combatPower>
+                     <isFighter>true</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficerB</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifleSharedAxis</li>
+                        <li>K4GWW2ItalySMGSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>2</min>
+                              <max>3</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistolSharedAxis</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Logistic Officer === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianLogisticsOfficerAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianLogisticsOfficerAxis</defName>
+                     <label>Italian logistics officer</label>
+                     <combatPower>65</combatPower>
+                     <isFighter>false</isFighter>
+                     <trader>true</trader>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficer</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifle</li>
+                        <li>K4GWW2ItalySMG</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>2</min>
+                              <max>3</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistol</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Logistic Officer Shared === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianLogisticsOfficerSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianLogisticsOfficerSharedAxis</defName>
+                     <label>Italian logistics officer</label>
+                     <combatPower>65</combatPower>
+                     <isFighter>false</isFighter>
+                     <trader>true</trader>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficer</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifleSharedAxis</li>
+                        <li>K4GWW2ItalySMGSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>2</min>
+                              <max>3</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistolSharedAxis</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Logistic Officer B === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianLogisticsOfficerBAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianLogisticsOfficerBAxis</defName>
+                     <label>Italian logistics officer</label>
+                     <combatPower>65</combatPower>
+                     <isFighter>false</isFighter>
+                     <trader>true</trader>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficerB</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifle</li>
+                        <li>K4GWW2ItalySMG</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>2</min>
+                              <max>3</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistol</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Logistic Officer B Shared === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianLogisticsOfficerBSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianLogisticsOfficerBSharedAxis</defName>
+                     <label>Italian logistics officer</label>
+                     <combatPower>65</combatPower>
+                     <isFighter>false</isFighter>
+                     <trader>true</trader>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficerB</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifleSharedAxis</li>
+                        <li>K4GWW2ItalySMGSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>2</min>
+                              <max>3</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistolSharedAxis</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Officer (Faction Leader) === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianLeaderAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianLeaderAxis</defName>
+                     <label>Italian officer</label>
+                     <combatPower>75</combatPower>
+                     <factionLeader>true</factionLeader>
+                     <isFighter>false</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficer</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifle</li>
+                        <li>K4GWW2ItalySMG</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>3</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistol</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Officer Shared (Faction Leader) === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianLeaderSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianLeaderSharedAxis</defName>
+                     <label>Italian officer</label>
+                     <combatPower>75</combatPower>
+                     <factionLeader>true</factionLeader>
+                     <isFighter>false</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficer</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifleSharedAxis</li>
+                        <li>K4GWW2ItalySMGSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>3</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistolSharedAxis</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Officer B (Faction Leader) === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianLeaderBAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianLeaderBAxis</defName>
+                     <label>Italian officer</label>
+                     <combatPower>75</combatPower>
+                     <factionLeader>true</factionLeader>
+                     <isFighter>false</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficerB</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifle</li>
+                        <li>K4GWW2ItalySMG</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>3</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistol</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+            <!-- === Officer B Shared (Faction Leader) === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianLeaderBSharedAxis"]</xpath>
+               <value>
+                  <PawnKindDef ParentName="WW2ItalianSoldierBaseAxis">
+                     <defName>K4G_WW2ItalianLeaderBSharedAxis</defName>
+                     <label>Italian officer</label>
+                     <combatPower>75</combatPower>
+                     <factionLeader>true</factionLeader>
+                     <isFighter>false</isFighter>
+                     <apparelTags>
+                        <li>K4GWW2ItalyOfficerB</li>
+                     </apparelTags>
+                     <apparelRequired>
+                        <li>K4G_Apparel_WW2ItalianRucksack</li>
+                     </apparelRequired>
+                     <weaponTags>
+                        <li>K4GWW2ItalyRifleSharedAxis</li>
+                        <li>K4GWW2ItalySMGSharedAxis</li>
+                     </weaponTags>
+                     <modExtensions>
+                        <li Class="CombatExtended.LoadoutPropertiesExtension">
+                           <primaryMagazineCount>
+                              <min>3</min>
+                              <max>4</max>
+                           </primaryMagazineCount>
+                           <forcedSidearm>
+                              <sidearmMoney>
+                                 <min>100</min>
+                                 <max>200</max>
+                              </sidearmMoney>
+                              <weaponTags>
+                                 <li>K4GWW2ItalyMelee</li>
+                              </weaponTags>
+                           </forcedSidearm>
+                           <sidearms>
+                              <li>
+                                 <generateChance>0.9</generateChance>
+                                 <sidearmMoney>
+                                    <min>150</min>
+                                    <max>350</max>
+                                 </sidearmMoney>
+                                 <weaponTags>
+                                    <li>K4GWW2ItalyPistolSharedAxis</li>
+                                 </weaponTags>
+                                 <magazineCount>
+                                    <min>2</min>
+                                    <max>3</max>
+                                 </magazineCount>
+                              </li>
+                           </sidearms>
+                        </li>
+                     </modExtensions>
+                  </PawnKindDef>
+               </value>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>

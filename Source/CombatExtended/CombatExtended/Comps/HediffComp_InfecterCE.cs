@@ -29,10 +29,16 @@ namespace CombatExtended
         {
             _ticksUntilInfect = -1;
             _infectionModifier *= Pawn.health.immunity.DiseaseContractChanceFactor(HediffDefOf.WoundInfection, parent.Part); // Apply pawn immunity
-            if (Pawn.def.race.Animal) _infectionModifier *= 0.5f;
+            if (Pawn.def.race.Animal)
+            {
+                _infectionModifier *= 0.5f;
+            }
 
             // Adjust for difficulty
-            if (Pawn.Faction == Faction.OfPlayer) _infectionModifier *= Find.Storyteller.difficulty.playerPawnInfectionChanceFactor;
+            if (Pawn.Faction == Faction.OfPlayer)
+            {
+                _infectionModifier *= Find.Storyteller.difficulty.playerPawnInfectionChanceFactor;
+            }
 
             // Find out how long the wound was untreated
             var compTended = parent.TryGetComp<HediffComp_TendDuration>();
@@ -44,7 +50,10 @@ namespace CombatExtended
             }
             var infectChance = Props.infectionChancePerHourUntended * ((float)ticksUntended / GenDate.TicksPerHour); // Calculate base chance from time untreated
 
-            if (IsInternal) infectChance *= InfectionInnerModifier;  // Increase chance of infection for inner organs
+            if (IsInternal)
+            {
+                infectChance *= InfectionInnerModifier;    // Increase chance of infection for inner organs
+            }
 
             infectChance *= parent.Severity / DamageThreshold;
 
@@ -58,8 +67,14 @@ namespace CombatExtended
 
         public override string CompDebugString()
         {
-            if (this._alreadyCausedInfection) return "already caused infection";
-            if (this._ticksUntilInfect <= 0) return "no infection will appear";
+            if (this._alreadyCausedInfection)
+            {
+                return "already caused infection";
+            }
+            if (this._ticksUntilInfect <= 0)
+            {
+                return "no infection will appear";
+            }
             return "infection may appear after: " + _ticksUntilInfect + " ticks (infection chance factor: " + _infectionModifier.ToString() + ")";
         }
 
@@ -74,9 +89,9 @@ namespace CombatExtended
         {
             // Determine time until infection check is made
             if (!_alreadyCausedInfection
-                && !parent.Part.def.IsSolid(parent.Part, Pawn.health.hediffSet.hediffs)
-                && !Pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(parent.Part)
-                && !parent.IsPermanent())
+                    && !parent.Part.def.IsSolid(parent.Part, Pawn.health.hediffSet.hediffs)
+                    && !Pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(parent.Part)
+                    && !parent.IsPermanent())
             {
                 _ticksUntilInfect = InfectionDelayHours.RandomInRange * GenDate.TicksPerHour;
             }
@@ -92,7 +107,10 @@ namespace CombatExtended
             if (!_alreadyCausedInfection && _ticksUntilInfect > 0)
             {
                 _ticksUntilInfect--;
-                if (_ticksUntilInfect == 0) CheckMakeInfection();
+                if (_ticksUntilInfect == 0)
+                {
+                    CheckMakeInfection();
+                }
             }
         }
 

@@ -5,7 +5,7 @@
 		<defName>Ammo762x38mmR</defName>
 		<label>7.62x38mmR</label>
 		<parent>AmmoPistols</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+    	<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -18,6 +18,7 @@
 			<Ammo_762x38mmR_AP>Bullet_762x38mmR_AP</Ammo_762x38mmR_AP>
 			<Ammo_762x38mmR_HP>Bullet_762x38mmR_HP</Ammo_762x38mmR_HP>			
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
@@ -25,13 +26,13 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="762x38mmRBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Uncommon rimmed pistol cartridge with the bullet seated further down the casing.</description>
 		<statBases>
-		<Mass>0.013</Mass>
-		<Bulk>0.01</Bulk>
+			<Mass>0.013</Mass>
+			<Bulk>0.01</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo762x38mmR</li>
 		</thingCategories>
@@ -81,7 +82,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base762x38mmRBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base762x38mmRBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -98,27 +99,27 @@
 		<label>7.62mmR pistol bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>9</damageAmountBase>
-			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
 			<armorPenetrationBlunt>6.74</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="Base762x38mmRBullet">
 		<defName>Bullet_762x38mmR_AP</defName>
-		<label>7.62mm Tokarev bullet (AP)</label>
+		<label>7.62mm pistol bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>6</damageAmountBase>
-			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
 			<armorPenetrationBlunt>6.74</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="Base762x38mmRBullet">
 		<defName>Bullet_762x38mmR_HP</defName>
-		<label>7.62mm Tokarev bullet (HP)</label>
+		<label>7.62mm pistol bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
 			<armorPenetrationBlunt>6.74</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -174,7 +175,7 @@
 		<products>
 			<Ammo_762x38mmR_AP>500</Ammo_762x38mmR_AP>
 		</products>
-		<workAmount>1600</workAmount>
+		<workAmount>1920</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">

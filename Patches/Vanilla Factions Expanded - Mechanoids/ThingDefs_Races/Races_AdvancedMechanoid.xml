@@ -8,15 +8,50 @@
 
     <match Class="PatchOperationSequence">
       <operations>
-	  
-	  <!-- Advanced mechs retain their original heat armor to represent proper sealing of sensitive electronics. Minor improvement to EMP resistance as well-->
-	  
-	  <li Class="PatchOperationAdd">
-      <xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/statBases</xpath>
+
+	<li Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+			</li>
+			<li>
+				<compClass>CombatExtended.CompAmmoGiver</compClass>
+			</li>
+			<li Class="CombatExtended.CompProperties_MechAmmo">
+				<gizmoIconSetMagCount>UI/Buttons/SetMagCount</gizmoIconSetMagCount>
+				<gizmoIconTakeAmmoNow>UI/Buttons/TakeAmmoNow</gizmoIconTakeAmmoNow>
+			</li>
+		</value>
+	</li>
+
+	<!-- Advanced mechs retain some heat armor to represent sealing of sensitive electronics. Minor improvement to EMP resistance as well-->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/statBases/ArmorRating_Heat</xpath>
       <value>
-        <ArmorRating_Electric>0.10</ArmorRating_Electric>
+        <ArmorRating_Heat>0.5</ArmorRating_Heat>
       </value>
-      </li>
+    </li>
+
+	<li Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/statBases</xpath>
+      <value>
+        <SmokeSensitivity>0</SmokeSensitivity>
+        <ArmorRating_Electric>0.10</ArmorRating_Electric>
+        <NightVisionEfficiency>0.85</NightVisionEfficiency>
+      </value>
+    </li>
 
     <!-- ========== VFE Advanced Centipede ========== -->
 
@@ -32,13 +67,13 @@
     <li Class="PatchOperationAdd">
       <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/statBases</xpath>
       <value>
-        <CarryWeight>400</CarryWeight>
-        <CarryBulk>80</CarryBulk>
+        <CarryWeight>260</CarryWeight>
+        <CarryBulk>70</CarryBulk>
         <AimingAccuracy>1.05</AimingAccuracy>
         <ShootingAccuracyPawn>1.05</ShootingAccuracyPawn>
-        <MeleeDodgeChance>0.02</MeleeDodgeChance>
-        <MeleeCritChance>0.15</MeleeCritChance>
-        <MeleeParryChance>0.41</MeleeParryChance>
+        <MeleeDodgeChance>0.03</MeleeDodgeChance>
+        <MeleeCritChance>0.30</MeleeCritChance>
+        <MeleeParryChance>0.52</MeleeParryChance>
         <AimingDelayFactor>1.20</AimingDelayFactor>
         <MaxHitPoints>500</MaxHitPoints>
       </value>
@@ -59,16 +94,9 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/race/baseHealthScale</xpath>
-      <value>
-        <baseHealthScale>2.5</baseHealthScale>
-      </value>
-    </li>
-
-    <li Class="PatchOperationReplace">
       <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/race/baseBodySize</xpath>
       <value>
-        <baseBodySize>2.1</baseBodySize>
+        <baseBodySize>3.0</baseBodySize>
       </value>
     </li>
 
@@ -95,7 +123,7 @@
     <!-- ========== VFE Advanced Scyther/Lancer ========== -->
 
     <li Class="PatchOperationAddModExtension">
-      <xpath>Defs/ThingDef[defName="VFE_VFE_Mech_Scyther" or defName="VFE_Mech_AdvancedLancer"]</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedScyther" or defName="VFE_Mech_AdvancedLancer"]</xpath>
       <value>
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>Humanoid</bodyShape>
@@ -108,11 +136,11 @@
       <value>
         <CarryWeight>50</CarryWeight>
         <CarryBulk>20</CarryBulk>
-        <AimingAccuracy>1.0</AimingAccuracy>
-        <ShootingAccuracyPawn>2.6</ShootingAccuracyPawn>
-        <MeleeDodgeChance>0.26</MeleeDodgeChance>
-        <MeleeCritChance>0.26</MeleeCritChance>
-        <MeleeParryChance>0.15</MeleeParryChance>
+        <AimingAccuracy>1.1</AimingAccuracy>
+        <ShootingAccuracyPawn>1.6</ShootingAccuracyPawn>
+        <MeleeDodgeChance>0.15</MeleeDodgeChance>
+        <MeleeCritChance>0.14</MeleeCritChance>
+        <MeleeParryChance>0.09</MeleeParryChance>
         <MaxHitPoints>200</MaxHitPoints>
       </value>
     </li>
@@ -141,9 +169,9 @@
               <li>Cut</li>
             </capacities>
             <power>43</power>
-            <cooldownTime>1.65</cooldownTime>
+            <cooldownTime>2.07</cooldownTime>
             <linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-            <armorPenetrationSharp>2.07</armorPenetrationSharp>
+            <armorPenetrationSharp>2.16</armorPenetrationSharp>
             <armorPenetrationBlunt>5.4</armorPenetrationBlunt>
             <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
           </li>
@@ -259,22 +287,45 @@
 		<value>
 			<ArmorRating_Sharp>7.5</ArmorRating_Sharp>
 			<ArmorRating_Blunt>18</ArmorRating_Blunt>			
-			<CarryWeight>200</CarryWeight>
-			<CarryBulk>80</CarryBulk>
-			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
-			<MeleeDodgeChance>0.00</MeleeDodgeChance>
+			<CarryWeight>80</CarryWeight>
+			<CarryBulk>40</CarryBulk>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
 			<MeleeCritChance>0.15</MeleeCritChance>
-			<MeleeParryChance>0.41</MeleeParryChance>
-			<AimingDelayFactor>1.25</AimingDelayFactor>
+			<MeleeParryChance>0.15</MeleeParryChance>
 			<MaxHitPoints>200</MaxHitPoints>
 		</value>
+	</li>
+
+	<li Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]/race/baseHealthScale</xpath>
 	</li>
 
 	<li Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]/tools</xpath>
 		<value>
 			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>front left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2.67</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>5</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>front right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2.67</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>5</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
@@ -283,9 +334,9 @@
 					<power>15</power>
 					<cooldownTime>3.51</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>12</armorPenetrationBlunt>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<chanceFactor>0.2</chanceFactor>
 				</li>
 			</tools>
 		</value>
@@ -307,10 +358,8 @@
       <value>
         <CarryWeight>50</CarryWeight>
         <CarryBulk>20</CarryBulk>
-        <AimingAccuracy>1.1</AimingAccuracy>
-        <ShootingAccuracyPawn>2.8</ShootingAccuracyPawn>
-        <MeleeDodgeChance>0.19</MeleeDodgeChance>
-        <MeleeCritChance>0.22</MeleeCritChance>
+        <MeleeDodgeChance>0.13</MeleeDodgeChance>
+        <MeleeCritChance>0.12</MeleeCritChance>
         <MeleeParryChance>0.09</MeleeParryChance>
         <MaxHitPoints>200</MaxHitPoints>
       </value>
@@ -389,11 +438,11 @@
       <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/statBases</xpath>
       <value>
         <CarryWeight>50</CarryWeight>
-        <CarryBulk>20</CarryBulk>
+        <CarryBulk>50</CarryBulk>
         <AimingAccuracy>1.0</AimingAccuracy>
-        <ShootingAccuracyPawn>2.6</ShootingAccuracyPawn>
-        <MeleeDodgeChance>0.19</MeleeDodgeChance>
-        <MeleeCritChance>0.22</MeleeCritChance>
+        <ShootingAccuracyPawn>1.1</ShootingAccuracyPawn>
+        <MeleeDodgeChance>0.07</MeleeDodgeChance>
+        <MeleeCritChance>0.04</MeleeCritChance>
         <MeleeParryChance>0.09</MeleeParryChance>
         <MaxHitPoints>200</MaxHitPoints>
       </value>
@@ -482,12 +531,9 @@
       <value>
         <CarryWeight>400</CarryWeight>
         <CarryBulk>80</CarryBulk>
-        <AimingAccuracy>1.0</AimingAccuracy>
-        <ShootingAccuracyPawn>1</ShootingAccuracyPawn>
-        <MeleeDodgeChance>0.02</MeleeDodgeChance>
-        <MeleeCritChance>0.15</MeleeCritChance>
-        <MeleeParryChance>0.41</MeleeParryChance>
-        <AimingDelayFactor>1.25</AimingDelayFactor>
+        <MeleeDodgeChance>0.04</MeleeDodgeChance>
+        <MeleeCritChance>0.47</MeleeCritChance>
+        <MeleeParryChance>0.52</MeleeParryChance>
         <MaxHitPoints>500</MaxHitPoints>
       </value>
     </li>
@@ -507,20 +553,6 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/race/baseHealthScale</xpath>
-      <value>
-        <baseHealthScale>2.5</baseHealthScale>
-      </value>
-    </li>
-
-    <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/race/baseBodySize</xpath>
-      <value>
-        <baseBodySize>2.0</baseBodySize>
-      </value>
-    </li>
-
-    <li Class="PatchOperationReplace">
       <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/tools</xpath>
       <value>
         <tools>
@@ -534,6 +566,68 @@
             <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
             <armorPenetrationSharp>0</armorPenetrationSharp>
             <armorPenetrationBlunt>15</armorPenetrationBlunt>
+            <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <!-- ==========VFE Advanced Termite ========== -->
+
+    <li Class="PatchOperationAddModExtension">
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]</xpath>
+      <value>
+        <li Class="CombatExtended.RacePropertiesExtensionCE">
+          <bodyShape>QuadrupedLow</bodyShape>
+        </li>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
+      <value>
+        <statBases>
+          <CarryWeight>300</CarryWeight>
+          <CarryBulk>60</CarryBulk>
+          <AimingAccuracy>1.0</AimingAccuracy>
+          <ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+          <MeleeDodgeChance>0.04</MeleeDodgeChance>
+          <MeleeCritChance>0.16</MeleeCritChance>
+          <MeleeParryChance>0.24</MeleeParryChance>
+          <AimingDelayFactor>1.25</AimingDelayFactor>
+          <MaxHitPoints>400</MaxHitPoints>
+          </statBases>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
+      <value>
+        <ArmorRating_Blunt>48</ArmorRating_Blunt>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
+      <value>
+        <ArmorRating_Sharp>22</ArmorRating_Sharp>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>head</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>25</power>
+            <cooldownTime>3.01</cooldownTime>
+            <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+            <armorPenetrationSharp>0</armorPenetrationSharp>
+            <armorPenetrationBlunt>13.5</armorPenetrationBlunt>
             <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
           </li>
         </tools>

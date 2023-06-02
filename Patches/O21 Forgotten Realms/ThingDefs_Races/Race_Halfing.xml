@@ -2,13 +2,13 @@
 <Patch>
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>[O21] Forgotten Realms</li>
+      <li>Forgotten Realms</li>
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]</xpath>
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
               <bodyShape>Humanoid</bodyShape>
@@ -16,24 +16,18 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]</xpath>
-              <value>
-                <comps />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]</xpath>
+            <value>
+              <comps />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]/statBases</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]/statBases</xpath>
           <value>
             <MeleeDodgeChance>1.1</MeleeDodgeChance>
             <MeleeCritChance>0.8</MeleeCritChance>
@@ -44,7 +38,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]/tools</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -83,7 +77,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]/comps</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Halfling"]/comps</xpath>
           <value>
             <li>
               <compClass>CombatExtended.CompPawnGizmo</compClass>

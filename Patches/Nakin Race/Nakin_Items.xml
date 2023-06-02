@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class ="PatchOperationFindMod">
+		<mods>
+		<li>NakinRace</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			<!-- Nakin Leather | values to represent the Race's natural toughness-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Leather_Nakin"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.06</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Leather_Nakin"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+			
+			<!-- Nakin Glasses -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGlasses"]/statBases</xpath>
+					<value>
+						<Bulk>0</Bulk>
+						<WornBulk>0</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGlasses"]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>StrappedHead</li>
+						</layers>
+					</value>
+				</li>			
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGlasses"]/equippedStatOffsets</xpath>
+					<value>
+					  <equippedStatOffsets>
+						<AimingAccuracy>0.3</AimingAccuracy>
+						<ShootingAccuracyPawn>5.0</ShootingAccuracyPawn>
+					  </equippedStatOffsets>
+					</value>
+				  </li>
+				
+				<!-- Nakin Tactical Ballistc Goggles-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGogglesA"]/statBases</xpath>
+					<value>
+						<Bulk>0.5</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGogglesA"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>2</ArmorRating_Sharp>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGogglesA"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGogglesA"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.366</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGogglesA"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>15</DevilstrandCloth>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGogglesA"]/apparel</xpath>
+					<value>
+						<layers>
+							<li>StrappedHead</li>
+						</layers>
+					</value>
+				</li>		
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_NakinGogglesA"]/equippedStatOffsets</xpath>
+					<value>
+					  <equippedStatOffsets>
+						<AimingAccuracy>0.6</AimingAccuracy>
+						<ShootingAccuracyPawn>10.0</ShootingAccuracyPawn>
+					  </equippedStatOffsets>
+					</value>
+				  </li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -10,7 +10,7 @@
 
 			<!-- ========== Bion Base & Stalker ========== -->
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="Bion_Base"]</xpath>
+				<xpath>Defs/ThingDef[@Name="BaseBion"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -19,21 +19,21 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Blunt</xpath>
+				<xpath>Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
 				  <ArmorRating_Blunt>12</ArmorRating_Blunt>			
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Heat</xpath>
+				<xpath>Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Heat</xpath>
 				<value>
 				  <ArmorRating_Heat>0.70</ArmorRating_Heat>			
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 				  <ArmorRating_Sharp>22</ArmorRating_Sharp>	
 				  <NightVisionEfficiency>0.70</NightVisionEfficiency>
@@ -41,7 +41,7 @@
 			</li>			
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bion_Stalker"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>Defs/ThingDef[defName="Bion_Stalker"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 				  <ArmorRating_Sharp>18</ArmorRating_Sharp>	
 				  <NightVisionEfficiency>0.90</NightVisionEfficiency>
@@ -49,28 +49,28 @@
 			</li>	
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bion_Stalker"]/statBases/ArmorRating_Heat</xpath>
+				<xpath>Defs/ThingDef[defName="Bion_Stalker"]/statBases/ArmorRating_Heat</xpath>
 				<value>
 				  <ArmorRating_Heat>0.70</ArmorRating_Heat>			
 				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="Bion_Base" or defName="Bion_Stalker"]/statBases</xpath>
+				<xpath>Defs/ThingDef[defName="Bion_Base" or defName="Bion_Stalker"]/statBases</xpath>
 				<value>
 					<CarryWeight>50</CarryWeight>
 					<CarryBulk>50</CarryBulk>
 					<AimingAccuracy>1.2</AimingAccuracy>
 					<ShootingAccuracyPawn>1.2</ShootingAccuracyPawn>
-					<MeleeDodgeChance>1.1</MeleeDodgeChance>
-					<MeleeCritChance>1.1</MeleeCritChance>
-					<MeleeParryChance>1.1</MeleeParryChance>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
 					<SmokeSensitivity>0</SmokeSensitivity>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Bion_Base" or defName="Bion_Stalker"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="Bion_Base" or defName="Bion_Stalker"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -125,20 +125,14 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-			<operations>
-				<li Class="PatchOperationTest">
+			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[@Name="BaseBion"]/comps</xpath>
-				<success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="BaseBion"]</xpath>
-				<value>
-					<comps />
-				</value>
-				</li>
-			</operations>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="BaseBion"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAdd">
@@ -151,21 +145,14 @@
 				</value>
 			</li>
 			
-			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-			<operations>
-				<li Class="PatchOperationTest">
+			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[@Name="BaseBion"]/damageMultipliers</xpath>
-				<success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="BaseBion"]</xpath>
-				<value>
-					<damageMultipliers />
-				</value>
-				</li>
-			</operations>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="BaseBion"]</xpath>
+					<value>
+						<damageMultipliers />
+					</value>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAdd">

@@ -15,9 +15,9 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="BigCatThingBase"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.36</MeleeDodgeChance>
-			<MeleeCritChance>0.16</MeleeCritChance>
-			<MeleeParryChance>0.06</MeleeParryChance>
+			<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			<MeleeCritChance>0.09</MeleeCritChance>
+			<MeleeParryChance>0.07</MeleeParryChance>
 		</value>
 	</Operation>
 
@@ -50,7 +50,7 @@
 						<li>Scratch</li>
 					</capacities>
 					<power>10</power>
-					<cooldownTime>0.84</cooldownTime>
+					<cooldownTime>0.9</cooldownTime>
 					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
 					<surpriseAttack>
 						<extraMeleeDamages>
@@ -78,6 +78,7 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
+					<chanceFactor>0.7</chanceFactor>
 					<armorPenetrationSharp>0.5</armorPenetrationSharp>
 					<armorPenetrationBlunt>2</armorPenetrationBlunt>
 				</li>
@@ -96,27 +97,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="BigCatThingBase"]/race/baseBodySize</xpath>
-		<value>
-			<baseBodySize>0.9</baseBodySize>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="BigCatThingBase"]/race/baseHealthScale</xpath>
-		<value>
-			<baseHealthScale>0.9</baseHealthScale>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[@Name="BigCatKindBase"]/combatPower</xpath>
-		<value>
-			<combatPower>90</combatPower>
-		</value>
-	</Operation>
-
 	<!-- ========== Lynx ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -131,9 +111,9 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Lynx"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.36</MeleeDodgeChance>
-			<MeleeCritChance>0.07</MeleeCritChance>
-			<MeleeParryChance>0.05</MeleeParryChance>
+			<MeleeDodgeChance>0.21</MeleeDodgeChance>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.04</MeleeParryChance>
 		</value>
 	</Operation>
 
@@ -194,6 +174,7 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
+					<chanceFactor>0.7</chanceFactor>
 					<armorPenetrationSharp>0.09</armorPenetrationSharp>
 					<armorPenetrationBlunt>1.690</armorPenetrationBlunt>
 				</li>
@@ -212,19 +193,4 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Lynx"]/race/baseHealthScale</xpath>
-		<value>
-			<baseHealthScale>0.75</baseHealthScale>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Lynx"]/combatPower</xpath>
-		<value>
-			<combatPower>50</combatPower>
-		</value>
-	</Operation>
-
 </Patch>
-

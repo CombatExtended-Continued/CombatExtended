@@ -23,6 +23,8 @@
 							<armorPenetrationSharp>0.8</armorPenetrationSharp>
 							<cooldownTime>1.29</cooldownTime>
 							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>blade</label>
@@ -34,6 +36,8 @@
 							<armorPenetrationSharp>2.56</armorPenetrationSharp>
 							<cooldownTime>1.29</cooldownTime>
 							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
 						</li>
 					</tools>
 				</value>
@@ -67,6 +71,8 @@
 							<power>5</power>
 							<cooldownTime>1.11</cooldownTime>
 							<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+							<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
 						</li>
 					</tools>
 				</value>
@@ -83,6 +89,8 @@
 							<power>6</power>
 							<cooldownTime>1.11</cooldownTime>
 							<armorPenetrationBlunt>1.988</armorPenetrationBlunt>
+							<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
 						</li>
 					</tools>
 				</value>
@@ -101,6 +109,8 @@
 							<armorPenetrationSharp>0.8</armorPenetrationSharp>
 							<armorPenetrationBlunt>4</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							<soundMeleeHit>Pawn_Melee_PowerClaw_Hit</soundMeleeHit>
+							<soundMeleeMiss>Pawn_Melee_PowerClaw_Miss</soundMeleeMiss>
 						</li>
 					</tools>
 				</value>
@@ -119,18 +129,20 @@
 							<armorPenetrationSharp>0.96</armorPenetrationSharp>
 							<armorPenetrationBlunt>4.75</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							<soundMeleeHit>Pawn_Melee_PowerClaw_Hit</soundMeleeHit>
+							<soundMeleeMiss>Pawn_Melee_PowerClaw_Miss</soundMeleeMiss>
 						</li>
 					</tools>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/HediffDef[defName="TacticalCorneaImplant"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+				<xpath>Defs/HediffDef[defName="TacticalCorneaImplant" or defName="EPIA_TacticalBionicEye"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
 				<value>
 					<MeleeDodgeChance>0.05</MeleeDodgeChance>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/HediffDef[defName="TacticalCorneaImplant"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+				<xpath>Defs/HediffDef[defName="TacticalCorneaImplant" or defName="EPIA_TacticalBionicEye"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
 				<value>
 					<AimingAccuracy>0.5</AimingAccuracy>
 				</value>
@@ -268,6 +280,45 @@
 					</tools>
 				</value>
 			</li>
+
+			<!-- Jaws -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="AdvancedBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>1.25</cooldownTime>
+						<armorPenetrationSharp>0.3</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="BionicJaw" or defName="SilentJaw" or defName="HydraulicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.25</cooldownTime>
+						<armorPenetrationSharp>0.2</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
 		</operations>
 	</match>
 	</Operation>

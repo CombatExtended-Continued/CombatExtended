@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>More Medieval Helms and Armor</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Light Leggings =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Domi_LightLeggings"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Domi_LightLeggings"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Domi_PlateLeggings =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Domi_PlateLeggings"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Domi_PlateLeggings"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

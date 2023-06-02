@@ -2,13 +2,13 @@
 <Patch>
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>[O21] Forgotten Realms</li>
+      <li>Forgotten Realms</li>
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]</xpath>
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
               <bodyShape>Humanoid</bodyShape>
@@ -16,24 +16,18 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]</xpath>
-              <value>
-                <comps />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]</xpath>
+            <value>
+              <comps />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]/statBases</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]/statBases</xpath>
           <value>
             <MeleeDodgeChance>1</MeleeDodgeChance>
             <MeleeCritChance>1</MeleeCritChance>
@@ -42,7 +36,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]/tools</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -81,7 +75,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]/comps</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Firbolg"]/comps</xpath>
           <value>
             <li>
               <compClass>CombatExtended.CompPawnGizmo</compClass>

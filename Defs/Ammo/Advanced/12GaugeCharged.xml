@@ -18,14 +18,15 @@
       <Ammo_12GaugeCharged_Slug>Bullet_12GaugeCharged_Slug</Ammo_12GaugeCharged_Slug>
       <Ammo_12GaugeCharged_Ion>Bullet_12GaugeCharged_Ion</Ammo_12GaugeCharged_Ion>
     </ammoTypes>
+    <similarTo>AmmoSet_ChargedShotgun</similarTo>
   </CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="12GaugeChargedBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="12GaugeChargedBase" ParentName="SpacerAmmoBase" Abstract="True">
     <description>Multi-pellet charge shot cartridge designed for shotgun-type weapons.</description>
     <statBases>
-	  <Mass>0.034</Mass>
+	  <Mass>0.047</Mass>
 	  <Bulk>0.07</Bulk>
     </statBases>
     <tradeTags>
@@ -41,12 +42,11 @@
     <defName>Ammo_12GaugeCharged</defName>
     <label>12 gauge charged shell</label>
     <graphicData>
-      <texPath>Things/Ammo/Charged/Regular</texPath>
+      <texPath>Things/Ammo/Charged/ShotgunRegular</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.8</MarketValue>
-	    <Mass>0.028</Mass>      
+      <MarketValue>4.29</MarketValue>    
     </statBases>
     <ammoClass>BuckShot</ammoClass>
   </ThingDef>
@@ -55,11 +55,12 @@
     <defName>Ammo_12GaugeCharged_Slug</defName>
     <label>12 gauge charged shell (Slug)</label>
     <graphicData>
-      <texPath>Things/Ammo/Charged/Concentrated</texPath>
+      <texPath>Things/Ammo/Charged/ShotgunConc</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.8</MarketValue>       
+      <MarketValue>4.27</MarketValue> 
+	  <Mass>0.043</Mass>  
     </statBases>
     <ammoClass>Slug</ammoClass>
   </ThingDef>
@@ -68,21 +69,21 @@
     <defName>Ammo_12GaugeCharged_Ion</defName>
     <label>12 gauge charged shell (Ion Shot)</label>
     <graphicData>
-      <texPath>Things/Ammo/Charged/Ion</texPath>
+      <texPath>Things/Ammo/Charged/ShotgunIon</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.8</MarketValue>
+      <MarketValue>4.29</MarketValue>
     </statBases>
     <ammoClass>Ionized</ammoClass>
-	<generateAllowChance>0.25</generateAllowChance>
+	<generateAllowChance>0.5</generateAllowChance>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base12GaugeChargedBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base12GaugeChargedBullet" ParentName="BaseBulletCE" Abstract="true">
     <graphicData>
-      <texPath>Things/Projectile/Charge_Small</texPath>
+      <texPath>Things/Projectile/Charged/ChargeShot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -105,13 +106,16 @@
       <armorPenetrationSharp>8</armorPenetrationSharp>      
       <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
       <pelletCount>6</pelletCount>
-      <spreadMult>17.8</spreadMult>
+      <spreadMult>8.9</spreadMult>
     </projectile>
   </ThingDef>
 
   <ThingDef ParentName="Base12GaugeChargedBullet">
     <defName>Bullet_12GaugeCharged_Slug</defName>
     <label>charge shot (Slug)</label>
+    <graphicData>
+      <drawSize>(1.5,1.5)</drawSize>
+    </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>24</damageAmountBase>
       <secondaryDamage>
@@ -127,7 +131,7 @@
 
   <ThingDef ParentName="Base12GaugeChargedBullet">
     <defName>Bullet_12GaugeCharged_Ion</defName>
-    <label>charge shot (Ion slug)</label>
+    <label>charge shot (Ion shot)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>8</damageAmountBase>
       <secondaryDamage>
@@ -166,7 +170,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>8</count>
+        <count>10</count>
       </li>	      
       <li>
         <filter>
@@ -180,14 +184,14 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>Plasteel</li>
-        <li>Steel</li>         
+        <li>Steel</li>
         <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
       <Ammo_12GaugeCharged>200</Ammo_12GaugeCharged>
     </products>
-    <workAmount>20800</workAmount>		    
+    <workAmount>21000</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
@@ -236,9 +240,9 @@
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
     <defName>MakeAmmo_12GaugeCharged_Ion</defName>
-    <label>make 12 gauge Charged (Ion slug) shell x200</label>
-    <description>Craft 200 12 gauge Charged (Ion) shells.</description>
-    <jobString>Making 12 gauge Charged (Ion) shells.</jobString>
+    <label>make 12 gauge Charged (Ion Shot) shell x200</label>
+    <description>Craft 200 12 gauge Charged (Ion Shot) shells.</description>
+    <jobString>Making 12 gauge Charged (Ion Shot) shells.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -254,7 +258,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>8</count>
+        <count>10</count>
       </li>	      
       <li>
         <filter>
@@ -275,7 +279,7 @@
     <products>
       <Ammo_12GaugeCharged_Ion>200</Ammo_12GaugeCharged_Ion>
     </products>
-    <workAmount>20800</workAmount>	    
+    <workAmount>21000</workAmount>	    
   </RecipeDef>
 	
 </Defs>

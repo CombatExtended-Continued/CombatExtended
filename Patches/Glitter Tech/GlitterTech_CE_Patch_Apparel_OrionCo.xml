@@ -8,74 +8,52 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<!-- ========== Orion Combat vest ========== -->
+			<!-- ========== Orion Corporation Helmet ========== -->
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Apparel_OCCombatVest"]/statBases</xpath>
-					<value>
-						<Bulk>5</Bulk>
-						<WornBulk>1</WornBulk>
-					</value>
-				</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_OCHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_OCCombatVest"]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>30</ArmorRating_Blunt>
-					</value>
-				</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_OCHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>22</ArmorRating_Blunt>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_OCCombatVest"]/statBases/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>16</ArmorRating_Sharp>
-					</value>
-				</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_OCHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+				</value>
+			</li>
 
-				<!-- ========== Orion Corporation helmet ========== -->
+			<!-- ========== Orion Unfiorm Shirt and Pants ========== -->
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Apparel_OCHelmet"]/statBases</xpath>
-					<value>
-						<Bulk>4</Bulk>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_OCHelmet"]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>22</ArmorRating_Blunt>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_OCHelmet"]/statBases/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>10</ArmorRating_Sharp>
-					</value>
-				</li>
-
-				<!-- ========== Orion Unfiorm Shirt and pants ========== -->
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-					defName="Apparel_OCShirt" or
-					defName="Apparel_OCPants"
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_OCShirt" or
+				defName="Apparel_OCPants"
 				]/statBases/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
-					</value>
-				</li>
+				<value>
+					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					<Bulk>1</Bulk>
+					<WornBulk>0</WornBulk>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-					defName="Apparel_OCShirt" or
-					defName="Apparel_OCPants"
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_OCShirt" or
+				defName="Apparel_OCPants"
 				]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
-					</value>
-				</li>	
+				<value>
+					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>	
 
 			</operations>
 		</match>

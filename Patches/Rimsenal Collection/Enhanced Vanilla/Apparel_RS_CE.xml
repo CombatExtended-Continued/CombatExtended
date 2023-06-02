@@ -21,14 +21,14 @@
 					<graphicData> <texPath>Things/Apparel/TacVest</texPath>
 					<graphicClass>Graphic_Single</graphicClass> </graphicData>
 					<statBases>
-					  <Mass>7</Mass>
+					  <Mass>6</Mass>
 					  <Bulk>6</Bulk>
-					  <WornBulk>5</WornBulk>
+					  <WornBulk>0</WornBulk>
 					  <WorkToMake>15000</WorkToMake>
 					  <MaxHitPoints>290</MaxHitPoints>
-					  <ArmorRating_Blunt>32</ArmorRating_Blunt>
-					  <ArmorRating_Sharp>10</ArmorRating_Sharp>
-					  <ArmorRating_Heat>0.34</ArmorRating_Heat>
+					  <ArmorRating_Blunt>24</ArmorRating_Blunt>
+					  <ArmorRating_Sharp>12</ArmorRating_Sharp>
+					  <ArmorRating_Heat>0.25</ArmorRating_Heat>
 					  <Insulation_Cold>1</Insulation_Cold>
 					  <EquipDelay>4</EquipDelay>
 					</statBases>
@@ -76,6 +76,30 @@
 				</value>
 			</li>
 			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Apparel_TacArmor"]</xpath>
+				<value>
+				  <li Class="CombatExtended.PartialArmorExt">
+					  <stats>
+						  <li>
+							<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+							<parts>
+								<li>Neck</li>
+								<li>Shoulder</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+							<parts>
+								<li>Neck</li>
+								<li>Shoulder</li>
+							</parts>
+						  </li>
+					  </stats>
+				  </li>
+				</value>
+			</li>
+			
 			<!-- ========== Tactical Helmet =========== -->
 			
 			<li Class="PatchOperationAdd">
@@ -93,7 +117,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>32</ArmorRating_Blunt>
+					<ArmorRating_Blunt>20</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -117,13 +141,6 @@
 			
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/apparel/bodyPartGroups/li[.="Neck"]</xpath>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/apparel/layers</xpath>
-				<value>
-					<li>MiddleHead</li>
-				</value>
 			</li>
 			
 			<!-- ========== Exoframe =========== -->
@@ -184,7 +201,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases/Mass</xpath>
 				<value>
-					<Mass>20</Mass>
+					<Mass>18.5</Mass>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -196,7 +213,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>22.5</ArmorRating_Blunt>
+					<ArmorRating_Blunt>15</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationRemove">
@@ -205,8 +222,8 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/equippedStatOffsets</xpath>
 				<value>
-					<ToxicSensitivity>-0.30</ToxicSensitivity>
-					<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+					<ToxicEnvironmentResistance>0.30</ToxicEnvironmentResistance>
+					<MeleeDodgeChance>-0.25</MeleeDodgeChance>
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
@@ -214,6 +231,100 @@
 				<value>
 					<li>Hands</li>
 					<li>Feet</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]</xpath>
+				<value>
+				  <li Class="CombatExtended.PartialArmorExt">
+					  <stats>
+						  <li>
+							<ArmorRating_Sharp>1.2</ArmorRating_Sharp>
+							<parts>
+								<li>Torso</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>1.2</ArmorRating_Blunt>
+							<parts>
+								<li>Torso</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.96</ArmorRating_Sharp>
+							<parts>
+								<li>Neck</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.96</ArmorRating_Blunt>
+							<parts>
+								<li>Neck</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.96</ArmorRating_Sharp>
+							<parts>
+								<li>Shoulder</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.96</ArmorRating_Blunt>
+							<parts>
+								<li>Shoulder</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+							<parts>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+							<parts>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+							<parts>
+								<li>Leg</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+							<parts>
+								<li>Leg</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.24</ArmorRating_Sharp>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.12</ArmorRating_Blunt>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+							<parts>
+								<li>Foot</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+							<parts>
+								<li>Foot</li>
+							</parts>
+						  </li>
+					  </stats>
+				  </li>
 				</value>
 			</li>
 
@@ -252,10 +363,19 @@
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/equippedStatOffsets/MoveSpeed</xpath>
 			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/equippedStatOffsets</xpath>
 				<value>
-					<ToxicSensitivity>-0.20</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.20</ToxicEnvironmentResistance>
 					<SmokeSensitivity>-1</SmokeSensitivity>	
 					<AimingAccuracy>-0.2</AimingAccuracy>
 					<MeleeHitChance>-1</MeleeHitChance>
@@ -267,7 +387,40 @@
 				<value>
 					<li>OnHead</li>
 					<li>StrappedHead</li>
-					<li>MiddleHead</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]</xpath>
+				<value>
+				  <li Class="CombatExtended.PartialArmorExt">
+					  <stats>
+						<li>
+							<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+							<parts>
+								<li>Eye</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
+							<parts>
+								<li>Eye</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Sharp>0.95</ArmorRating_Sharp>
+							<parts>
+								<li>Nose</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Blunt>0.95</ArmorRating_Blunt>
+							<parts>
+								<li>Nose</li>
+							</parts>
+						</li>
+					  </stats>
+				  </li>
 				</value>
 			</li>
 			

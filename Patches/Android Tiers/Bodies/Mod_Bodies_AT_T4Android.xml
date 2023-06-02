@@ -13,81 +13,25 @@
 				<match Class="PatchOperationSequence">
 					<operations>
 
-
-  <li Class="PatchOperationAdd">
-    <xpath>/Defs/BodyDef[defName = "Android4Tier"]/corePart/parts/li[def = "LeftMechanicalShoulder"]/parts/li[def = "LeftMechanicalArm"]/parts</xpath>
-    <value>
-      <li>
-        <def>MechanicalUpperActuator</def>
-        <coverage>0.1</coverage>
-        <depth>Inside</depth>
-      </li>
-      <li>
-        <def>MechanicalUpperPiston</def>
-        <coverage>0.1</coverage>
-        <depth>Inside</depth>
-      </li>
-    </value>
-  </li>
-
-  <li Class="PatchOperationAdd">
-    <xpath>/Defs/BodyDef[defName = "Android4Tier"]/corePart/parts/li[def = "RightMechanicalShoulder"]/parts/li[def = "RightMechanicalArm"]/parts</xpath>
-    <value>
-      <li>
-        <def>MechanicalUpperActuator</def>
-        <coverage>0.1</coverage>
-        <depth>Inside</depth>
-      </li>
-      <li>
-        <def>MechanicalUpperPiston</def>
-        <coverage>0.1</coverage>
-        <depth>Inside</depth>
-      </li>
-    </value>
-  </li>
-
-  <li Class="PatchOperationAdd">
-    <xpath>/Defs/BodyDef[defName = "Android4Tier"]/corePart/parts/li[def="RightMechanicalLeg" or def="LeftMechanicalLeg"]/parts</xpath>
-    <value>
-      <li>
-        <def>MechanicalLowerActuator</def>
-        <coverage>0.1</coverage>
-        <depth>Inside</depth>
-      </li>
-      <li>
-        <def>MechanicalLowerPiston</def>
-        <coverage>0.1</coverage>
-        <depth>Inside</depth>
-      </li>
-    </value>
-  </li>
-
 					<!--Android4Tier-->
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="Framework"]</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="Framework"]</xpath>
 						<value>
 							<groups>
 								<li>CoveredByNaturalArmor</li>
 							</groups>
 						</value>
 					</li>
-					
-					<li Class="PatchOperationReplace">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="Framework"]/coverage</xpath>
-						<value>
-							<coverage>0.032</coverage>
-						</value>
-					</li>
-					
+
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]</xpath>
 						<value>
 							<groups>
 								<li>CoveredByNaturalArmor</li>
@@ -97,21 +41,21 @@
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="Head"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="Head"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="Head"]/parts/li[def="SmellSensor"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="Head"]/parts/li[def="SmellSensor"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 								<li>LeftShoulder</li>
@@ -119,7 +63,7 @@
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 								<li>LeftArm</li>
@@ -127,42 +71,42 @@
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/parts/li[def="LeftHandMechanicalPinky"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/parts/li[def="LeftHandMechanicalPinky"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/parts/li[def="LeftHandMechanicalMiddleFinger"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/parts/li[def="LeftHandMechanicalMiddleFinger"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/parts/li[def="LeftHandMechanicalIndexFinger"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/parts/li[def="LeftHandMechanicalIndexFinger"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/parts/li[def="LeftHandMechanicalThumb"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder"]/parts/li[def="LeftMechanicalArm"]/parts/li[def="LeftMechanicalHand"]/parts/li[def="LeftHandMechanicalThumb"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 								<li>RightShoulder</li>
@@ -170,7 +114,7 @@
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 								<li>RightArm</li>
@@ -178,144 +122,71 @@
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/parts/li[def="RightHandMechanicalPinky"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/parts/li[def="RightHandMechanicalPinky"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/parts/li[def="RightHandMechanicalMiddleFinger"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/parts/li[def="RightHandMechanicalMiddleFinger"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/parts/li[def="RightHandMechanicalIndexFinger"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/parts/li[def="RightHandMechanicalIndexFinger"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/parts/li[def="RightHandMechanicalThumb"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalShoulder"]/parts/li[def="RightMechanicalArm"]/parts/li[def="RightMechanicalHand"]/parts/li[def="RightHandMechanicalThumb"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalLeg"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalLeg"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalLeg"]/parts/li[def="LeftMechanicalFoot"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalLeg"]/parts/li[def="LeftMechanicalFoot"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalLeg"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalLeg"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalLeg"]/parts/li[def="RightMechanicalFoot"]/groups</xpath>
+						<xpath>Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalLeg"]/parts/li[def="RightMechanicalFoot"]/groups</xpath>
 						<value>
 								<li>CoveredByNaturalArmor</li>
 						</value>
 					</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MStomach"]/coverage</xpath>
-					<value>
-						<coverage>0.05</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MHeart"]/coverage</xpath>
-					<value>
-						<coverage>0.04</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MLeftLung" or def="MRightLung"]/coverage</xpath>
-					<value>
-						<coverage>0.055</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MLeftKidney" or def="MRightKidney"]/coverage</xpath>
-					<value>
-						<coverage>0.03</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MLiver"]/coverage</xpath>
-					<value>
-						<coverage>0.06</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]/coverage</xpath>
-					<value>
-						<coverage>0.055</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="Head"]/parts/li[def="ArtificialBrain"]/coverage</xpath>
-					<value>
-						<coverage>0.2</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="Head"]/parts/li[def="LeftSightSensor" or def="RightSightSensor"]/coverage</xpath>
-					<value>
-						<coverage>0.05</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="Head"]/parts/li[def="RightHearingSensor" or def="LeftHearingSensor"]/coverage</xpath>
-					<value>
-						<coverage>0.05</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="Head"]/parts/li[def="SmellSensor"]/coverage</xpath>
-					<value>
-						<coverage>0.08</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="LeftMechanicalShoulder" or def="RightMechanicalShoulder"]/coverage</xpath>
-					<value>
-						<coverage>0.085</coverage>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/BodyDef[defName="Android4Tier"]/corePart/parts/li[def="RightMechanicalLeg" or def="LeftMechanicalLeg"]/coverage</xpath>
-					<value>
-						<coverage>0.1</coverage>
-					</value>
-				</li>
 
       					<li Class="PatchOperationAdd">
         					<xpath>
-          					/Defs/BodyDef[defName="Android4Tier"]//*[
+          					Defs/BodyDef[defName="Android4Tier"]//*[
           					def="VoiceSynthesizer" or 
           					def="SmellSensor" or 
           					def="LeftSightSensor" or 
@@ -325,6 +196,7 @@
           					<li>OutsideSquishy</li>
         					</value>
       					</li>
+
   <li Class="PatchOperationReplace">
     <xpath>Defs/BodyPartDef[defName="MechanicalThorax"]/hitPoints</xpath>
     <value>

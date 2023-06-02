@@ -8,29 +8,17 @@ using UnityEngine;
 
 namespace CombatExtended
 {
+    [StaticConstructorOnStartup]
     public class GizmoAmmoStatus : Command
     {
-        private static bool initialized;
 
         public CompAmmoUser compAmmo;
         public string prefix = "";
-
-        private static Texture2D FullTex;
-        private static Texture2D EmptyTex;
-        private static new Texture2D BGTex;
+        private static readonly new Texture2D BGTex = ContentFinder<Texture2D>.Get("UI/Widgets/DesButBG", true);
 
         public override float GetWidth(float maxWidth)
         {
             return 120;
-        }
-
-        public GizmoAmmoStatus()
-        {
-            if (!initialized)
-            {
-                InitializeTextures();
-                initialized = true;
-            }
         }
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
@@ -56,16 +44,6 @@ namespace CombatExtended
             }
 
             return new GizmoResult(GizmoState.Clear);
-        }
-
-        private void InitializeTextures()
-        {
-            if (FullTex == null)
-                FullTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.2f, 0.2f, 0.24f));
-            if (EmptyTex == null)
-                EmptyTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
-            if (BGTex == null)
-                BGTex = ContentFinder<Texture2D>.Get("UI/Widgets/DesButBG", true);
         }
     }
 }

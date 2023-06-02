@@ -4,12 +4,13 @@
 	<Operation Class="PatchOperationFindMod">
     <mods>
 		<li>Not Only just a cannon</li>
+		<li>Not Only just a cannon (Continued)</li>
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
 			
 		<li Class="PatchOperationAdd">
-		<xpath>/Defs</xpath>
+		<xpath>Defs</xpath>
 		<value>
 		
 			<ThingCategoryDef>
@@ -31,7 +32,7 @@
 			</CombatExtended.AmmoSetDef>
 
 
-			<ThingDef Class="CombatExtended.AmmoDef" Name="164mmCannonShellBase" ParentName="AmmoBase" Abstract="True">
+			<ThingDef Class="CombatExtended.AmmoDef" Name="164mmCannonShellBase" ParentName="HeavyAmmoBase" Abstract="True">
 			<description>A round shell designed to be fired from a cannon.</description>
 			<thingCategories>
 				<li>Ammo164mmCannonShells</li>
@@ -53,7 +54,7 @@
 			<isMortarAmmo>true</isMortarAmmo>
 			</ThingDef>
 
-			<ThingDef Name="Base164mmCannonShell" ParentName="BaseBullet" Abstract="true">
+			<ThingDef Name="Base164mmCannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
 			<graphicData>
 				<shaderType>TransparentPostLight</shaderType>
 			</graphicData>
@@ -63,6 +64,7 @@
 				<flyOverhead>false</flyOverhead>
 				<dropsCasings>false</dropsCasings>
 				<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 				<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 			</projectile>
 			</ThingDef>
 
@@ -272,9 +274,7 @@
 			</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>PrometheumFlame</damageDef>
-				<damageAmountBase>0</damageAmountBase>
-				<armorPenetrationSharp>0</armorPenetrationSharp>
-				<armorPenetrationBlunt>45.454</armorPenetrationBlunt>
+				<damageAmountBase>35</damageAmountBase>
 				<explosionRadius>2.8</explosionRadius>
 				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 				<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
@@ -344,7 +344,7 @@
 			<isMortarAmmoSet>true</isMortarAmmoSet>
 			</CombatExtended.AmmoSetDef>
 
-			<ThingDef Class="CombatExtended.AmmoDef" Name="164mmCannonShellBaseChamber" ParentName="AmmoBase" Abstract="True">
+			<ThingDef Class="CombatExtended.AmmoDef" Name="164mmCannonShellBaseChamber" ParentName="HeavyAmmoBase" Abstract="True">
 			<description>A metal projectile and powder charge loaded in a mug-shaped chamber to be loaded into a cannon.</description>
 			<thingCategories>
 				<li>Ammo164mmCannonShellsChamber</li>
@@ -600,9 +600,7 @@
 			</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>PrometheumFlame</damageDef>
-				<damageAmountBase>0</damageAmountBase>
-				<armorPenetrationSharp>0</armorPenetrationSharp>
-				<armorPenetrationBlunt>45.454</armorPenetrationBlunt>
+				<damageAmountBase>35</damageAmountBase>
 				<explosionRadius>2.8</explosionRadius>
 				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 				<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
@@ -759,7 +757,7 @@
 					<li>StoneChunks</li>
 				</categories>
 				</fixedIngredientFilter>
-				<recipeUsers Inherit="false">
+				<recipeUsers Inherit="False">
 				<li>TableStonecutter</li>
 				</recipeUsers>		  
 				<products>
@@ -786,7 +784,7 @@
 					<li>StoneChunks</li>
 				</categories>
 				</fixedIngredientFilter>
-				<recipeUsers Inherit="false">
+				<recipeUsers Inherit="False">
 				<li>TableStonecutter</li>
 				</recipeUsers>		  
 				<products>
@@ -865,7 +863,7 @@
 		</li>
 		
 		<li Class="PatchOperationRemove">
-			<xpath>/Defs/ThingDef[
+			<xpath>Defs/ThingDef[
 			defName="CannonBall_Solidshot" or
 			defName="CannonBall_Explosiveshot" or
 			defName="CannonBall_Incendiary" or

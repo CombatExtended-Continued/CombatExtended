@@ -7,6 +7,7 @@
       <li>Shields</li>
     </thingCategories>
     <apparel>
+      <countsAsClothingForNudity>false</countsAsClothingForNudity>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>LeftShoulder</li>
@@ -17,27 +18,30 @@
     </apparel>
     <storedConceptLearnOpportunity>CE_Shields</storedConceptLearnOpportunity>
     <smeltable>true</smeltable>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedShield</unfinishedThingDef>
+    </recipeMaker>	
   </ThingDef>
 
   <ThingDef ParentName="ShieldBase">
-    <defName>Apparel_MeleeShield</defName>
+    <defName>CE_Apparel_MeleeShield</defName>
     <label>melee shield</label>
     <description>Simple shield that can block simple projectiles and hits with melee weapons.</description>
-    <techLevel>Industrial</techLevel>
+    <techLevel>Medieval</techLevel>
     <graphicData>
-      <texPath>Things/Apparel/Shield/Shield</texPath>
+      <texPath>Things/Apparel/Shield/CE_Shield</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>Cutout</shaderType>
+      <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <possessionCount>1</possessionCount>
     <costStuffCount>60</costStuffCount>
     <stuffCategories>
       <li>Steeled</li>
       <li>Woody</li>
-      <!--<li>Leathery</li>-->
     </stuffCategories>
     <recipeMaker>
+      <researchPrerequisite>Smithing</researchPrerequisite>
       <recipeUsers>
-        <!--<li>CraftingSpot</li>-->
         <li>FueledSmithy</li>
         <li>ElectricSmithy</li>
       </recipeUsers>
@@ -60,6 +64,7 @@
       <MeleeParryChance>1.0</MeleeParryChance>
     </equippedStatOffsets>
     <apparel>
+      <developmentalStageFilter>Child, Adult</developmentalStageFilter>
       <tags>
         <li>TribalShield</li>
       </tags>
@@ -75,21 +80,32 @@
         </shieldCoverage>
       </li>
     </modExtensions>
+    <tradeTags>
+      <li>Armor</li>
+    </tradeTags>
   </ThingDef>
 
   <ThingDef ParentName="ShieldBase">
-    <defName>Apparel_BallisticShield</defName>
+    <defName>CE_Apparel_BallisticShield</defName>
     <label>ballistic shield</label>
     <description>A heavy shield designed to protect against gunfire. It can cover most of the wearer's body but restricts use of two-handed weapons. Its heavy weight and bulk make it unwieldy in combat.</description>
     <techLevel>Industrial</techLevel>
     <graphicData>
-      <texPath>Things/Apparel/BallisticShield/BallisticShield</texPath>
+      <texPath>Things/Apparel/BallisticShield/CE_BallisticShield</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
     </graphicData>
+    <possessionCount>1</possessionCount>
     <costStuffCount>90</costStuffCount>
     <stuffCategories>
       <li>Steeled</li>
     </stuffCategories>
+    <recipeMaker>
+        <researchPrerequisite>Machining</researchPrerequisite>		
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+    </recipeMaker>
     <statBases>
       <WorkToMake>19000</WorkToMake>
       <MaxHitPoints>125</MaxHitPoints>
@@ -128,6 +144,9 @@
         <drawAsTall>true</drawAsTall>
       </li>
     </modExtensions>
+    <tradeTags>
+      <li>Armor</li>
+    </tradeTags>
   </ThingDef>
 
 </Defs>

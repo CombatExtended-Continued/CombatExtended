@@ -18,6 +18,7 @@
 			<Ammo_22Short_AP>Bullet_22Short_AP</Ammo_22Short_AP>
 			<Ammo_22Short_HP>Bullet_22Short_HP</Ammo_22Short_HP>
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -25,8 +26,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="22ShortBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Ultra-light cartridge originally designed for self-defense, but now very obsolete.</description>
 		<statBases>
-			<Mass>0.01</Mass>
-			<Bulk>0.004</Bulk>
+			<Mass>0.004</Mass>
+			<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -81,7 +82,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base22ShortBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base22ShortBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -173,7 +174,7 @@
 		<products>
 			<Ammo_22Short_AP>500</Ammo_22Short_AP>
 		</products>
-		<workAmount>400</workAmount>
+		<workAmount>480</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">

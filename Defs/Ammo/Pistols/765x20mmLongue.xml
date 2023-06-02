@@ -18,6 +18,7 @@
 			<Ammo_765x20mmLongue_AP>Bullet_765x20mmLongue_AP</Ammo_765x20mmLongue_AP>
 			<Ammo_765x20mmLongue_HP>Bullet_765x20mmLongue_HP</Ammo_765x20mmLongue_HP>			
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -81,7 +82,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base765x20mmLongueBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base765x20mmLongueBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -95,10 +96,10 @@
 
 	<ThingDef ParentName="Base765x20mmLongueBullet">
 		<defName>Bullet_765x20mmLongue_FMJ</defName>
-		<label>7.63mm Longue bullet (FMJ)</label>
+		<label>7.65x20mm Longue bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>9</damageAmountBase>
-			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
 			<armorPenetrationBlunt>5.880</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -108,7 +109,7 @@
 		<label>7.65x20mm Longue bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>5</damageAmountBase>
-			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
 			<armorPenetrationBlunt>5.880</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -174,7 +175,7 @@
 		<products>
 			<Ammo_765x20mmLongue_AP>500</Ammo_765x20mmLongue_AP>
 		</products>
-		<workAmount>1000</workAmount>
+		<workAmount>1200</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">

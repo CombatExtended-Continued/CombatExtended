@@ -5,7 +5,7 @@
 		<defName>Ammo40x47mmGrenades</defName>
 		<label>40x47mm Grenade</label>
 		<parent>AmmoGrenades</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -16,13 +16,14 @@
     <ammoTypes>
       <Ammo_40x47mmGrenade_HE>Bullet_40x47mmGrenade_HE</Ammo_40x47mmGrenade_HE>
       <Ammo_40x47mmGrenade_EMP>Bullet_40x47mmGrenade_EMP</Ammo_40x47mmGrenade_EMP>
-			<Ammo_40x47mmGrenade_Smoke>Bullet_40x47mmGrenade_Smoke</Ammo_40x47mmGrenade_Smoke>	        
+      <Ammo_40x47mmGrenade_Smoke>Bullet_40x47mmGrenade_Smoke</Ammo_40x47mmGrenade_Smoke>	        
     </ammoTypes>
+    <similarTo>AmmoSet_LauncherGrenade</similarTo>
   </CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="40x47mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="40x47mmGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Low velocity grenade fired from handheld grenade launchers.</description>
     <statBases>
 	  <Mass>0.26</Mass>
@@ -64,18 +65,8 @@
       <MarketValue>4.61</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
-    <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>5</damageAmountBase>
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>0.75</explosiveRadius>
-	  </li>
-	  <li Class="CombatExtended.CompProperties_Fragments">
-		<fragments>
-			<Fragment_Large>1</Fragment_Large>
-        </fragments>
-      </li>
-    </comps>
+    <generateAllowChance>0.5</generateAllowChance>
+	<detonateProjectile>Bullet_40x47mmGrenade_EMP</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x47mmGrenadeBase">
@@ -88,31 +79,22 @@
     <statBases>
       <MarketValue>1.88</MarketValue>
     </statBases>
-    <ammoClass>Smoke</ammoClass><generateAllowChance>0</generateAllowChance>
-    <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>5</damageAmountBase>
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>0.75</explosiveRadius>
-	  </li>
-	  <li Class="CombatExtended.CompProperties_Fragments">
-		<fragments>
-			<Fragment_Large>1</Fragment_Large>
-        </fragments>
-      </li>
-    </comps>
+    <ammoClass>Smoke</ammoClass>
+    <generateAllowChance>0</generateAllowChance>
+	<detonateProjectile>Bullet_40x47mmGrenade_Smoke</detonateProjectile>
   </ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base40x47mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base40x47mmGrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<texPath>Things/Projectile/LauncherShot</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.5,0.5)</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>16</speed>
+			<speed>20</speed>
 		</projectile>
 	</ThingDef>
 
@@ -128,11 +110,11 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-          <Fragment_Small>20</Fragment_Small>
+					<Fragment_Small>20</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
-		</ThingDef>
+	</ThingDef>
 
 	<ThingDef ParentName="Base40x47mmGrenadeBullet">
 		<defName>Bullet_40x47mmGrenade_EMP</defName>
@@ -150,14 +132,16 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2</explosionRadius>
       <damageDef>Smoke</damageDef>
-      <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
+      <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
     </projectile>
   </ThingDef>
 
-	<!-- ==================== Recipes ========================== -->
+  <!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipeBase">
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_40x47mmGrenade_HE</defName>
     <label>make 40x47mm HE grenades x100</label>
     <description>Craft 100 40x47mm HE grenades.</description>
@@ -201,11 +185,15 @@
     <workAmount>9600</workAmount>    
   </RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_40x47mmGrenade_EMP</defName>
     <label>make 40x47mm EMP grenades x100</label>
     <description>Craft 100 40x47mm EMP grenades.</description>
     <jobString>Making 40x47mm EMP grenades.</jobString>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>
@@ -236,7 +224,7 @@
     <workAmount>11800</workAmount>       
   </RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipeBase">
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_40x47mmGrenade_Smoke</defName>
     <label>make 40x47mm smoke grenades x100</label>
     <description>Craft 100 40x47mm smoke grenades.</description>

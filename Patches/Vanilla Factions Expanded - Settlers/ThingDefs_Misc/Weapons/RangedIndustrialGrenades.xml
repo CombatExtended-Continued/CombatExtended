@@ -12,7 +12,6 @@
         <!-- == Projectile == -->
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="VFES_Proj_Dynamite"]/thingClass</xpath>
-
           <value>
             <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
           </value>
@@ -30,7 +29,6 @@
 
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="VFES_Proj_Dynamite"]/projectile</xpath>
-
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
               <damageDef>Bomb</damageDef>
@@ -40,13 +38,16 @@
               <armorPenetrationSharp>0</armorPenetrationSharp>
               <armorPenetrationBlunt>0</armorPenetrationBlunt>
               <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			  <suppressionFactor>3.0</suppressionFactor>
+			  <dangerFactor>2.0</dangerFactor>
+			  <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
             </projectile>
           </value>
         </li>
 
         <!-- == Weapon == -->
         <li Class="PatchOperationAttributeSet">
-          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
+          <xpath>Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
         </li>
@@ -56,8 +57,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
-
+          <xpath>Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
           <value>
             <thingClass>CombatExtended.AmmoThing</thingClass>
             <stackLimit>75</stackLimit>
@@ -65,27 +65,18 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-
-            <li Class="PatchOperationAdd">
-              <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
-              <value>
-                <comps />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName = "VFES_Weapon_GrenadeDynamite"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName = "VFES_Weapon_GrenadeDynamite"]</xpath>
+            <value>
+              <comps />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]/comps</xpath>
-
+          <xpath>Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]/comps</xpath>
           <value>
             <li Class="CombatExtended.CompProperties_ExplosiveCE">
               <explosiveDamageType>Bomb</explosiveDamageType>
@@ -97,15 +88,13 @@
         </li>
 
         <li Class="PatchOperationAttributeSet">
-          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
-
+          <xpath>Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
           <attribute>Class</attribute>
           <value>CombatExtended.AmmoDef</value>
         </li>
 
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VFES_Weapon_GrenadeDynamite</defName>
-
           <statBases>
             <WorkToMake>12000</WorkToMake>
             <MarketValue>5.05</MarketValue>
@@ -114,7 +103,6 @@
             <SightsEfficiency>0.65</SightsEfficiency>
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <label>throw dynamite stick</label>
             <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
@@ -131,7 +119,6 @@
               <canTargetLocations>true</canTargetLocations>
             </targetParams>
           </Properties>
-
           <weaponTags>
             <li>GrenadeDynamite</li>
             <li>CE_Sidearm</li>
@@ -142,7 +129,6 @@
         <!-- == Recipe == -->
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
-
           <value>
             <RecipeDef ParentName="GrenadeRecipeBase">
               <defName>Make_VFES_Weapon_GrenadeDynamite</defName>

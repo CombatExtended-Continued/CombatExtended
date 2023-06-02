@@ -1,17 +1,14 @@
 ﻿using System.Text.RegularExpressions;
-using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using UnityEngine;
 using Verse;
 
 namespace CombatExtended
 {
-	/// <summary>
-	/// Contains a series of LoadoutSlot slots which define what a pawn using this loadout should try to keep in their inventory.
-	/// </summary>
+    /// <summary>
+    /// Contains a series of LoadoutSlot slots which define what a pawn using this loadout should try to keep in their inventory.
+    /// </summary>
     public class Loadout : IExposable, ILoadReferenceable, IComparable
     {
         #region Fields
@@ -36,7 +33,7 @@ namespace CombatExtended
             // create a unique ID.
             uniqueID = LoadoutManager.GetUniqueLoadoutID();
         }
-        
+
         public Loadout(string label)
         {
             this.label = label;
@@ -55,70 +52,110 @@ namespace CombatExtended
             this.label = label;
             this.uniqueID = uniqueID;
         }
-        
+
         /// <summary>
         /// Handles adding any LoadoutGenercDef as LoadoutSlots if they are flagged as basic.
         /// </summary>
         public void AddBasicSlots()
         {
-        	IEnumerable<LoadoutGenericDef> defs = DefDatabase<LoadoutGenericDef>.AllDefs.Where(d => d.isBasic);
-        	foreach (LoadoutGenericDef def in defs)
-        	{
-        		LoadoutSlot slot = new LoadoutSlot(def);
-        		AddSlot(slot);
-        	}
+            IEnumerable<LoadoutGenericDef> defs = DefDatabase<LoadoutGenericDef>.AllDefs.Where(d => d.isBasic);
+            foreach (LoadoutGenericDef def in defs)
+            {
+                LoadoutSlot slot = new LoadoutSlot(def);
+                AddSlot(slot);
+            }
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public float Bulk { get { return _slots.Sum(slot => slot.bulk * slot.count); } }
-        public string LabelCap { get { return label.CapitalizeFirst(); } }
-        public int SlotCount { get { return _slots.Count; } }
-        public List<LoadoutSlot> Slots { get { return _slots; } }
-        public float Weight { get { return _slots.Sum(slot => slot.mass * slot.count); } }
+        public float Bulk
+        {
+            get
+            {
+                return _slots.Sum(slot => slot.bulk * slot.count);
+            }
+        }
+        public string LabelCap
+        {
+            get
+            {
+                return label.CapitalizeFirst();
+            }
+        }
+        public int SlotCount
+        {
+            get
+            {
+                return _slots.Count;
+            }
+        }
+        public List<LoadoutSlot> Slots
+        {
+            get
+            {
+                return _slots;
+            }
+        }
+        public float Weight
+        {
+            get
+            {
+                return _slots.Sum(slot => slot.mass * slot.count);
+            }
+        }
 
         #endregion Properties
 
         #region Methods
-        
+
         // Returns a copy of this loadout slot with a new unique ID and a label based on the original name.
-		// LoadoutSlots need to be copied.     
-		/// <summary>
-		/// Handles copying one Loadout to a new Loadout object.
-		/// </summary>
-		/// <param name="source">Loadout from which to copy properties/fields from.</param>
-		/// <returns>new Loadout with copied properties from 'source'</returns>
-		/// <remarks>
-		/// uniqueID will be different as required.
-		/// label will be different as required, but related to original.
-		/// Slots are copied (not the same object) but have the same properties as source.Slots.
-		/// </remarks>
+        // LoadoutSlots need to be copied.
+        /// <summary>
+        /// Handles copying one Loadout to a new Loadout object.
+        /// </summary>
+        /// <param name="source">Loadout from which to copy properties/fields from.</param>
+        /// <returns>new Loadout with copied properties from 'source'</returns>
+        /// <remarks>
+        /// uniqueID will be different as required.
+        /// label will be different as required, but related to original.
+        /// Slots are copied (not the same object) but have the same properties as source.Slots.
+        /// </remarks>
         static Loadout Copy(Loadout source)
         {
-        	string newName = source.label;
-        	Regex reNum = new Regex(@"^(.*?)\d+$");
-        	if (reNum.IsMatch(newName))
-        		newName = reNum.Replace(newName, @"$1");
-        	newName = LoadoutManager.GetUniqueLabel(newName);
-        	
-        	Loadout dest = new Loadout(newName);
-        	dest.defaultLoadout = source.defaultLoadout;
-        	dest.canBeDeleted = source.canBeDeleted;
-        	dest._slots = new List<LoadoutSlot>();
-        	foreach(LoadoutSlot slot in source.Slots)
-        		dest.AddSlot(slot.Copy());
-        	return dest;
+            Loadout dest = new Loadout(UniqueLabel(source.label));
+            dest.defaultLoadout = source.defaultLoadout;
+            dest.canBeDeleted = source.canBeDeleted;
+            dest._slots = new List<LoadoutSlot>();
+            foreach (LoadoutSlot slot in source.Slots)
+            {
+                dest.AddSlot(slot.Copy());
+            }
+            return dest;
         }
-        
+
+        /// <summary>
+        /// Translates the label into a unique label, adding an appropriate suffix if necessary
+        /// </summary>
+        /// <returns>New unique label</returns>
+        static string UniqueLabel(string label)
+        {
+            Regex reNum = new Regex(@"^(.*?)\d+$");
+            if (reNum.IsMatch(label))
+            {
+                label = reNum.Replace(label, @"$1");
+            }
+            return LoadoutManager.GetUniqueLabel(label);
+        }
+
         /// <summary>
         /// Copies self to a new Loadout.  <see cref="Copy(Loadout)"/>.
         /// </summary>
         /// <returns>new Loadout with copied properties from self.</returns>
         public Loadout Copy()
         {
-        	return Copy(this);
+            return Copy(this);
         }
 
         /// <summary>
@@ -127,11 +164,76 @@ namespace CombatExtended
         /// <param name="slot">LoadoutSlot to add to this Loadout.</param>
         public void AddSlot(LoadoutSlot slot)
         {
-        	LoadoutSlot old = _slots.FirstOrDefault(slot.isSameDef);
+            LoadoutSlot old = _slots.FirstOrDefault(slot.isSameDef);
             if (old != null)
-        		old.count += slot.count;
-        	else
-            	_slots.Add(slot);
+            {
+                old.count += slot.count;
+            }
+            else
+            {
+                _slots.Add(slot);
+            }
+        }
+
+        /// <summary>
+        /// Factory method to create a Loadout object from a serializable LoadoutConfig loaded from a loadout save file
+        /// </summary>
+        /// <remarks>
+        /// Note that the logic should be different to scribing data to/from a save file since
+        /// additional validation related logic must exist and in some cases certain fields should not be serialized
+        /// </remarks>
+        /// <param name="loadoutConfig">The LoadoutConfig config object.</param>
+        /// <returns>A Loadout object</returns>
+        public static Loadout FromConfig(LoadoutConfig loadoutConfig, out List<string> unloadableDefNames)
+        {
+            // Create the new loadout, preventing name clashes if the loadout already exists
+            string uniqueLabel = LoadoutManager.IsUniqueLabel(loadoutConfig.label)
+                                 ? loadoutConfig.label
+                                 : UniqueLabel(loadoutConfig.label);
+
+            Loadout loadout = new Loadout(uniqueLabel);
+
+            unloadableDefNames = new List<string>();
+
+            // Now create each of the slots
+            foreach (LoadoutSlotConfig loadoutSlotConfig in loadoutConfig.slots)
+            {
+                LoadoutSlot loadoutSlot = LoadoutSlot.FromConfig(loadoutSlotConfig);
+                // If the LoadoutSlot could not be loaded then continue loading the others as this most likely means
+                // that the current game does not have the mod loaded that was used to create the initial loadout.
+                if (loadoutSlot == null)
+                {
+                    unloadableDefNames.Add(loadoutSlotConfig.defName);
+                    continue;
+                }
+                loadout.AddSlot(LoadoutSlot.FromConfig(loadoutSlotConfig));
+            }
+
+            return loadout;
+        }
+
+        /// <summary>
+        /// Factory method to create a serializable LoadoutConfig object from this Loadout object
+        /// </summary>
+        /// <remarks>
+        /// Note that the logic should be different to scribing data to/from a save file since
+        /// additional validation related logic must exist and in some cases certain fields should not be serialized
+        /// </remarks>
+        /// <returns>A LoadoutConfig object that can be serialized to a loadout config file.</returns>
+        public LoadoutConfig ToConfig()
+        {
+            List<LoadoutSlotConfig> loadoutSlotConfigList = new List<LoadoutSlotConfig>();
+
+            foreach (LoadoutSlot loadoutSlot in _slots)
+            {
+                loadoutSlotConfigList.Add(loadoutSlot.ToConfig());
+            }
+
+            return new LoadoutConfig
+            {
+                label = label,
+                slots = loadoutSlotConfigList.ToArray()
+            };
         }
 
         /// <summary>
@@ -204,7 +306,9 @@ namespace CombatExtended
 
             // this may have changed the toIndex
             if (fromIndex + 1 < toIndex)
+            {
                 toIndex--;
+            }
 
             // insert at new location
             _slots.Insert(toIndex, temp);
@@ -213,28 +317,39 @@ namespace CombatExtended
 
         #endregion Methods
 
-		#region IComparable implementation
+        #region IComparable implementation
 
-		/// <summary>
-		/// Used when sorting lists of Loadouts.
-		/// </summary>
-		/// <param name="obj">other object to compare to.</param>
-		/// <returns>int -1 indicating this is before obj, 0 indicates this is the same as obj, 1 indicates this is after obj.</returns>
-		public int CompareTo(object obj)
-		{
-			Loadout other = obj as Loadout;
-			if (other == null)
-				throw new ArgumentException("Loadout.CompareTo(obj), obj is not of type Loadout.");
-			
-			// initial case, default comes first.  Currently there aren't more than one default and should never be.
-			if (this.defaultLoadout && other.defaultLoadout) return 0;
-			if (this.defaultLoadout) return -1;
-			if (other.defaultLoadout) return 1;
-			
-			// now we just compare by name of loadout...
-			return this.label.CompareTo(other.label);
-		}
+        /// <summary>
+        /// Used when sorting lists of Loadouts.
+        /// </summary>
+        /// <param name="obj">other object to compare to.</param>
+        /// <returns>int -1 indicating this is before obj, 0 indicates this is the same as obj, 1 indicates this is after obj.</returns>
+        public int CompareTo(object obj)
+        {
+            Loadout other = obj as Loadout;
+            if (other == null)
+            {
+                throw new ArgumentException("Loadout.CompareTo(obj), obj is not of type Loadout.");
+            }
 
-		#endregion
+            // initial case, default comes first.  Currently there aren't more than one default and should never be.
+            if (this.defaultLoadout && other.defaultLoadout)
+            {
+                return 0;
+            }
+            if (this.defaultLoadout)
+            {
+                return -1;
+            }
+            if (other.defaultLoadout)
+            {
+                return 1;
+            }
+
+            // now we just compare by name of loadout...
+            return this.label.CompareTo(other.label);
+        }
+
+        #endregion
     }
 }

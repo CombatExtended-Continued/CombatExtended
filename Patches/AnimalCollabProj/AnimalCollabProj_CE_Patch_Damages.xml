@@ -3,6 +3,7 @@
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>AnimalCollabProj</li>
+			<li>Animal Collab Project Vanilla-Style</li>			
 		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
@@ -27,18 +28,6 @@
 			
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/DamageDef[defName="ScorpionSting"]/additionalHediffs/li[hediff="ScorpionVenom"]</xpath>
-			</li>
-
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/DamageDef[
-					defName="PlatypusSting" or
-					defName="ScorpionSting"
-				]</xpath>
-				<value>
-					<li Class="CombatExtended.DamageDefExtensionCE">
-						<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
-					</li>
-				</value>
 			</li>
 
 		</operations>

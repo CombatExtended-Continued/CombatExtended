@@ -20,7 +20,7 @@ namespace CombatExtended.Harmony
      *  single = single * Mathf.Clamp01(1f - hediffCompTendDuration.tendQuality);
      * To: (Decided to make this a call rather than try and patch with specifics, easier to maintain/tweak)
      *  single = Mathf.Clamp01(chance / Mathf.Pow(hediffCompTendDuration.tendQuality + 0.75f, 2));
-     * 
+     *
      * Plan to make the first change as part of the patch.
      * The second change will remove the original code (so remove single * Mathf.Clamp01 (etc...))
      *  and instead assign single the value from a function call for easier tweaking in the future.

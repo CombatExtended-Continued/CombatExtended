@@ -3,7 +3,7 @@
 	
 	<Operation Class="PatchOperationFindMod">
     <mods>
-		<li>[O21] Outer Rim Galaxies [DevBuild]</li>
+		<li>[O21] Outer Rim Galaxies</li>
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
@@ -108,7 +108,7 @@
 				<xpath>Defs/ThingDef[@Name="CloneArmorPhaseOneCuirassBase"]</xpath>
 				<value>
 				<equippedStatOffsets>
-					<ToxicSensitivity>-0.40</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.40</ToxicEnvironmentResistance>
 					<CarryBulk>25</CarryBulk>
 				</equippedStatOffsets>
 				</value>
@@ -162,7 +162,7 @@
 				<xpath>Defs/ThingDef[@Name="CloneCuirassIIBase"]</xpath>
 				<value>
 				<equippedStatOffsets>
-					<ToxicSensitivity>-0.40</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.40</ToxicEnvironmentResistance>
 					<CarryBulk>30</CarryBulk>
 				</equippedStatOffsets>
 				</value>
@@ -205,13 +205,23 @@
 					<ArmorRating_Heat>0.34</ArmorRating_Heat>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[@Name="CloneArmorPhaseOneHelmetBase"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="CloneArmorPhaseOneHelmetBase"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[@Name="CloneArmorPhaseOneHelmetBase"]</xpath>
 				<value>
 				  <equippedStatOffsets>
 					<AimingAccuracy>0.1</AimingAccuracy>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				  </equippedStatOffsets>
 				</value>
@@ -222,7 +232,6 @@
 				<value>
 				  <li>OnHead</li>
 				  <li>StrappedHead</li>
-				  <li>MiddleHead</li>
 				</value>
 			</li>
 			
@@ -261,13 +270,23 @@
 					<ArmorRating_Heat>0.34</ArmorRating_Heat>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[@Name="CloneHelmetIIBase"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="CloneHelmetIIBase"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[@Name="CloneHelmetIIBase"]</xpath>
 				<value>
 				  <equippedStatOffsets>
 					<AimingAccuracy>0.1</AimingAccuracy>
-					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				  </equippedStatOffsets>
 				</value>
@@ -278,7 +297,6 @@
 				<value>
 				  <li>OnHead</li>
 				  <li>StrappedHead</li>
-				  <li>MiddleHead</li>
 				</value>
 			</li>
 			
