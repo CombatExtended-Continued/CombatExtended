@@ -97,6 +97,7 @@ Animal Equipment	|
 Anthro Race |
 Antinium    |
 Anty the War Ant Race |
+AOC The Cleanup Devil |
 Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
 Arachne Race	|
@@ -161,6 +162,7 @@ Dragons Descent    |
 Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
+Dusk Armory   |
 ED-Shields	|
 Edge of Descension - Monoblades  |
 Eltex Bodysuit  |
@@ -230,8 +232,10 @@ Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
 Heyra the Horned    |
 High Caliber	|
+High Tech Laboratory Facilities	|
 Hive Armory |
 Idhale Race	|
+Impact Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
@@ -276,6 +280,10 @@ Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
 Megafauna	|
+MH: Android Tiers	|
+MH: Android Tiers Core	|
+MH: Mechanical Biomimetics	|
+MH: Military Tiers	|
 Midworld Expanded: Flak Armor  |
 Miho, the Celestial Fox  |
 Mincho, The Mint Choco Slime  |
@@ -312,6 +320,7 @@ Nakin Race  |
 Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
+New Mech: Mini-Miner    |
 NewRatkinPlus |
 Ni'Hal	|
 Nukes   |
@@ -412,6 +421,7 @@ Starship Troopers Aracnids  |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
+The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
@@ -460,6 +470,7 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
+Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |

@@ -7,22 +7,6 @@
 
 			<match Class="PatchOperationSequence">
 				<operations>
-				
-					<!-- Changing the workerClass -->
-				
-					<li Class="PatchOperationReplace">
-					<xpath>Defs/DamageDef[workerClass="DamageWorker_Stab"]/workerClass</xpath>
-						<value>
-							<workerClass>DamageWorker_AddInjury</workerClass>
-						</value>
-					</li>
-					
-					<li Class="PatchOperationReplace">
-					<xpath>Defs/DamageDef[workerClass="DamageWorker_Blunt"]/workerClass</xpath>
-						<value>
-							<workerClass>CombatExtended.DamageWorker_BluntCE</workerClass>
-						</value>
-					</li>
 
 					<li Class="PatchOperationAddModExtension">
 						<xpath>Defs/DamageDef[defName="AA_AcidSpit" or defName="AA_SecondaryAcidBurn" or defName="AA_PermanentBurn"]</xpath>
@@ -71,17 +55,6 @@
 					<xpath>Defs/DamageDef[defName="AA_SwarmlingClaws"]/additionalHediffs/li[hediff="AA_SwarmlingImplantation"]/severityPerDamageDealt</xpath>
 						<value>
 							<severityPerDamageDealt>0.0003</severityPerDamageDealt>
-						</value>
-					</li>
-
-					<!-- Forsaken plague bit -->
-
-					<li Class="PatchOperationAddModExtension">
-						<xpath>Defs/DamageDef[defName="FO_PlaguedBite"]</xpath>
-						<value>
-							<li Class="CombatExtended.DamageDefExtensionCE">
-								<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
-							</li>
 						</value>
 					</li>
 
