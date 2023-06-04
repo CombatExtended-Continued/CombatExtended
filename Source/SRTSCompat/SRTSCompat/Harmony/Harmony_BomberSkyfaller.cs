@@ -29,7 +29,9 @@ namespace CombatExtended.Compatibility.SRTSCompat
         {
             ActiveDropPod srts = (ActiveDropPod)__instance.innerContainer.First();
             if(srts == null)
-                return false;
+            {
+                goto FunctionEnd;
+            }
 
             for (int i = 0; i < (__instance.bombType == BombingType.precise
                 ? __instance.precisionBombingNumBombs : 1); ++i)
@@ -38,7 +40,7 @@ namespace CombatExtended.Compatibility.SRTSCompat
                     .FirstOrDefault(thing => SRTSMod.mod.settings.allowedBombs.Contains(thing.def.defName));
                 if (bombStack == null)
                 {
-                    return false;
+                    goto FunctionEnd;
                 }
 
                 Thing bombThing = srts.Contents.innerContainer.Take(bombStack, 1);
@@ -54,7 +56,7 @@ namespace CombatExtended.Compatibility.SRTSCompat
                 {
                     Log.Error("Combat Extended :: SRTSCompat BomberSkyfaller.DropBomb() - "
                             + "could not get SRTS dropship's targeting radius");
-                    return false;
+                    throw new Exception();
                 }
                 float targetingRadius = (float)(int)targetingRadiusNullable;
 
@@ -64,19 +66,21 @@ namespace CombatExtended.Compatibility.SRTSCompat
                     ThingDef bombProjectileThingDef = (bombThing.def as AmmoDef)?.AmmoSetDefs
                             .Find(ammoSet => ammoSet.ammoTypes?.Any() ?? false)?
                             .ammoTypes
-                            .FirstOrDefault()?
+                            .FirstOrDefault(ammoLink => ammoLink.ammo == bombThing.def)?
                             .projectile;
                     if (bombProjectileThingDef == null)
                     {
-                        continue;
+                        Log.Error("Combat Extended :: SRTSCompat Harmony_BomberSkyfaller_DropBomb Prefix - "
+                                + $"AmmoDef {bombThing.def} doesn't have a projectile");
+                        throw new Exception();
                     }
 
                     ProjectilePropertiesCE bombPropsCE = bombProjectileThingDef.projectile as ProjectilePropertiesCE;
                     if (bombPropsCE == null)
                     {
                         Log.Error("Combat Extended :: SRTSCompat Harmony_BomberSkyfaller_DropBomb Prefix - "
-                                + $"AmmoDef {bombThing.def} doesn't have ProjectilePropsCE");
-                        return false;
+                                + $"AmmoDef {bombThing.def} projectile doesn't have ProjectilePropsCE");
+                        throw new Exception();
                     }
 
                     ProjectileCE bombProjectileCE = ThingMaker.MakeThing(bombProjectileThingDef) as ProjectileCE;
@@ -87,15 +91,19 @@ namespace CombatExtended.Compatibility.SRTSCompat
                     bombProjectileCE.intendedTarget = null;
                     bombProjectileCE.AccuracyFactor = 1f;
 
-                    float maxShotSpeed = targetingRadius / Mathf.Sqrt(2 * shotHeight / bombPropsCE.Gravity);
+                    float freefallTime = Mathf.Sqrt(2 * shotHeight / bombPropsCE.Gravity);
+                    float maxShotSpeed = targetingRadius / freefallTime;
 
                     bombProjectileCE.Launch(launcher: __instance,
                             origin: __instance.DrawPosCell.ToIntVec2.ToVector2(),
                             shotAngle: 0f,
                             shotRotation: Rand.Range(-180f, 180f),
                             shotHeight: shotHeight,
-                            shotSpeed: maxShotSpeed,
+                            shotSpeed: 0f,
                             equipment: __instance);
+                    // Adjust shot speed after because of
+                    // this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+                    bombProjectileCE.shotSpeed = Rand.Range(0f, maxShotSpeed);
                 }
                 else
                 {
@@ -118,6 +126,12 @@ namespace CombatExtended.Compatibility.SRTSCompat
                     Thing t = GenSpawn.Spawn(fallingBombThing, targetCell, __instance.Map);
                     GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(t, bombThing.TryGetComp<CompExplosive>().Props.explosiveDamageType, null);
                 }
+            }
+
+FunctionEnd:
+            if (__instance.bombType == BombingType.precise && __instance.bombCells.Any())
+            {
+                __instance.bombCells.Clear();
             }
             return false;
         }
