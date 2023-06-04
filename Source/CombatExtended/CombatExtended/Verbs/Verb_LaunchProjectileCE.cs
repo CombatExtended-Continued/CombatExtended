@@ -36,9 +36,9 @@ namespace CombatExtended
         protected Vector2 newTargetLoc = new Vector2(0, 0);
         protected Vector2 sourceLoc = new Vector2(0, 0);
 
-        private float shotAngle = 0f;   // Shot angle off the ground in radians.
-        private float shotRotation = 0f;    // Angle rotation towards target.
-        private float distance = 10f;
+        protected float shotAngle = 0f;   // Shot angle off the ground in radians.
+        protected float shotRotation = 0f;    // Angle rotation towards target.
+        protected float distance = 10f;
 
         public CompCharges compCharges = null;
         public CompAmmoUser compAmmo = null;
@@ -680,7 +680,7 @@ namespace CombatExtended
             {
                 report.weatherShift = (1f - target.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
                 report.lightingShift = 1f;
-                report.smokeDensity = (target.Cell.GetGas(target.Map)?.def.gas.accuracyPenalty ?? 0f) * 10f;
+                report.smokeDensity = (/*target.Cell.GetGas(target.Map)?.def.gas.accuracyPenalty*/1f/* ?? 0f*/) * 10f;
             }
             else
             {

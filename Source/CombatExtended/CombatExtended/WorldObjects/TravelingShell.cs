@@ -153,7 +153,7 @@ namespace CombatExtended
             projectile.Position = sourceCell;
             projectile.SpawnSetup(map, false);
             projectile.Launch(launcher, source, shotAngle, shotRotation, shotHeight, shotSpeed);
-            projectile.cameraShakingInit = Rand.Range(0f, 2f);
+            //projectile.cameraShakingInit = Rand.Range(0f, 2f);
         }
 
         private IntVec3 FindRandomImpactCell(Map map) => ShellingUtility.FindRandomImpactCell(map, shellDef);

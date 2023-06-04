@@ -58,7 +58,7 @@ namespace CombatExtended
                 {
                     IntVec3 selectedCell = IntVec3.Invalid;
                     Find.WorldTargeter.StopTargeting();
-                    CameraJumper.TryJumpInternal(new IntVec3((int)map.Size.x / 2, 0, (int)map.Size.z / 2), map);
+                    CameraJumper.TryJumpInternal(new IntVec3((int)map.Size.x / 2, 0, (int)map.Size.z / 2), map,CameraJumper.MovementMode.Pan);
                     Find.Targeter.BeginTargeting(new TargetingParameters()
                     {
                         canTargetLocations = true,
