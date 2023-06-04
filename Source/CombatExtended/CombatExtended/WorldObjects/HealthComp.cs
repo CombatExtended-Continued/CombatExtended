@@ -52,22 +52,33 @@ namespace CombatExtended.WorldObjects
         {
             Health += HealingRatePerTick * WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
         }
-
-        public void ApplyDamage(float amount, Faction attackingFaction)
+        void TryFinishDestroyQuests(Map launcherMap)
+        {            
+            QuestUtility.SendQuestTargetSignals(parent.questTags, "AllEnemiesDefeated", parent.Named("SUBJECT"),new NamedArgument(launcherMap,"MAP"));
+        }
+        public void ApplyDamage(float amount, Faction attackingFaction,Map launcherMap)
         {
             if (Props.destoyedInstantly)
             {
-                parent.Destroy();
+                TryFinishDestroyQuests(launcherMap);
+                TryDestroy();
                 return;
             }            
             Health -= ArmorDamageMultiplier * amount;
-            Notify_DamageTaken(attackingFaction);
+            Notify_DamageTaken(attackingFaction, launcherMap);
         }
-
-        public void Notify_DamageTaken(Faction attackingFaction)
+        void TryDestroy()
+        {
+            if (!parent.Destroyed)
+            {
+                TryDestroy();
+            }
+        }
+        public void Notify_DamageTaken(Faction attackingFaction, Map launcherMap)
         {
             if(health <= 1e-4)
             {
+                TryFinishDestroyQuests(launcherMap);
                 Destroy();
                 return;
             }
@@ -97,7 +108,7 @@ namespace CombatExtended.WorldObjects
                     }
                 }
                 Find.LetterStack.ReceiveLetter("CE_Message_SettlementDestroyed_Label".Translate(), message, LetterDefOf.NeutralEvent);
-                parent.Destroy();
+                TryDestroy();
                 DestroyedSettlement destroyedSettlement = (DestroyedSettlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.DestroyedSettlement);
                 destroyedSettlement.tileInt = tile;
                 if (faction != null)
@@ -127,7 +138,7 @@ namespace CombatExtended.WorldObjects
                 {
                     tracker.Notify_SiteDestroyed();                    
                 }
-                parent.Destroy();                
+                TryDestroy();                
             }           
             if (faction != null && faction.def.humanlikeFaction &&  attackingFaction != null && attackingFaction != faction) // check the projectile faction
             {

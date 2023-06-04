@@ -47,11 +47,11 @@ namespace CombatExtended
                 }
                 return angle + 90f;
             }
-        }       
+        }
 
         public TravelingShell()
-        {                        
-        }        
+        {
+        }
 
         public override void ExposeData()
         {
@@ -61,10 +61,10 @@ namespace CombatExtended
             Scribe_TargetInfo.Look(ref globalTarget, "globalTarget");
             Scribe_TargetInfo.Look(ref globalSource, "globalSource");
             CE_Scriber.Late(this, (id) =>
-            {                
+            {
                 Scribe_References.Look(ref launcher, "launcher" + id);
             });
-        }        
+        }
 
         public override string GetDescription()
         {
@@ -83,9 +83,9 @@ namespace CombatExtended
         }
 
         protected override void Arrived()
-        {            
-            int tile = Tile;               
-            foreach(WorldObject worldObject in Find.World.worldObjects.ObjectsAt(tile))
+        {
+            int tile = Tile;
+            foreach (WorldObject worldObject in Find.World.worldObjects.ObjectsAt(tile))
             {
                 if (TryShell(worldObject))
                 {
@@ -96,11 +96,11 @@ namespace CombatExtended
 
         private bool TryShell(WorldObject worldObject)
         {
-            bool shelled = false;            
+            bool shelled = false;
             if (worldObject is MapParent mapParent && mapParent.HasMap)
             {
                 shelled = true;
-                Map map = mapParent.Map;                
+                Map map = mapParent.Map;
                 IntVec3 targetCell = globalTarget.Cell;
                 if (!globalTarget.Cell.IsValid || !globalTarget.Cell.InBounds(map))
                 {
@@ -131,24 +131,24 @@ namespace CombatExtended
                 if (!shelled)
                 {
                     shelled = true;
-                    healthComp.ApplyDamage((shellDef.projectile as ProjectilePropertiesCE).shellingProps.damage, Faction);
+                    healthComp.ApplyDamage((shellDef.projectile as ProjectilePropertiesCE).shellingProps.damage, Faction, globalSource.Map);
                 }
             }
             return shelled;
-        }        
+        }
 
         private void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 100)
         {
             IntVec3 targetCell = target.Cell;
             Vector2 source = new Vector2(sourceCell.x, sourceCell.z);
-            Vector2 destination = new Vector2(targetCell.x, targetCell.z);                       
+            Vector2 destination = new Vector2(targetCell.x, targetCell.z);
             Vector2 w = (destination - source);
 
             ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(shellDef);
             ProjectilePropertiesCE pprops = projectile.def.projectile as ProjectilePropertiesCE;
             float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
             float shotAngle = ProjectileCE.GetShotAngle(shotSpeed, (destination - source).magnitude, -shotHeight, false, pprops.Gravity);
-            
+
             projectile.canTargetSelf = false;
             projectile.Position = sourceCell;
             projectile.SpawnSetup(map, false);
