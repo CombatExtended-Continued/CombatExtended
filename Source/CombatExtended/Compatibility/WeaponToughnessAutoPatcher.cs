@@ -27,6 +27,11 @@ namespace CombatExtended.Compatibility
                         // Approximate weapon thickness via the bulk of the weapon. Longswords get about 2.83mm, knives get 1mm, spears get about 3.162mm
                         float weaponThickness = Mathf.Sqrt(def.statBases?.Find(statMod => statMod.stat.defName == CE_StatDefOf.Bulk.defName)?.value ?? 0f);
 
+                        if (weaponThickness == 0f)
+                        {
+                            continue;
+                        }
+
                         // Tech level improves toughness
                         switch (def.techLevel)
                         {
@@ -43,7 +48,13 @@ namespace CombatExtended.Compatibility
                         }
 
                         // Blunt weapons get double thickness because edges are easier to damage. Note that ranged weapons are excluded
-                        if (!def.IsRangedWeapon && (!def.tools?.Any(tool => tool.capacities?.Any(capacityDef => DefDatabase<DamageDef>.defsList.Any(damageDef => damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && capacityDef.defName == damageDef.defName)) ?? false) ?? false))
+                        if (!def.IsRangedWeapon
+                                && (!def.tools?
+                                    .Any(tool => tool.capacities?
+                                        .Any(capacityDef => DefDatabase<DamageDef>.defsList
+                                            .Any(damageDef => damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && capacityDef.defName == damageDef.defName))
+                                        ?? false)
+                                    ?? false))
                         {
                             weaponThickness *= 2f;
                         }
@@ -56,26 +67,37 @@ namespace CombatExtended.Compatibility
                         // Non-stuffable weapons get the rating value
                         else
                         {
-                            // C# magic
-                            var largestIngredientCount = DefDatabase<RecipeDef>.AllDefs.ToList().Find(recipeDef => (bool)recipeDef.products?.Any(product => product.thingDef.defName == def.defName))?.ingredients?.MaxBy(ingredientCount => ingredientCount.count);
-                            var largestIngredient = (largestIngredientCount?.IsFixedIngredient ?? false) ? largestIngredientCount.FixedIngredient : largestIngredientCount?.filter?.thingDefs?.MaxBy(thingDef => thingDef.statBases?.Find(statMod => statMod.stat.defName == StatDefOf.ArmorRating_Sharp.GetStatPart<StatPart_Stuff>().stuffPowerStat.defName)?.value);
-                            float? largestIngredientSharpArmor = largestIngredient?.statBases?.Find(statMod => statMod.stat.defName == StatDefOf.ArmorRating_Sharp.GetStatPart<StatPart_Stuff>().stuffPowerStat.defName)?.value * (largestIngredient?.GetModExtension<StuffToughnessMultiplierExtensionCE>()?.toughnessMultiplier ?? 1f);
+                            // Search for a fitting recipe
+                            RecipeDef firstRecipeDef = DefDatabase<RecipeDef>.AllDefs
+                                .FirstOrDefault(recipeDef => recipeDef.products?
+                                        .Any(productDef => productDef.thingDef?.defName == def.defName) ?? false);
 
-                            // For weapons that do not have a recipe
-                            if (largestIngredientSharpArmor == null)
+                            IngredientCount biggestIngredientCount = firstRecipeDef?.ingredients?
+                                .MaxBy(ingredientCount => ingredientCount.count);
+
+                            float strongestIngredientSharpArmor = 0f;
+
+                            // Recipe does exist and has a fixed ingredient
+                            if (biggestIngredientCount?.IsFixedIngredient ?? false)
                             {
-                                // Anything above spacer tech is assumed to be made out of plasteel at least
-                                if (def.techLevel > TechLevel.Industrial)
-                                {
-                                    largestIngredientSharpArmor = 2f;
-                                }
-                                else
-                                {
-                                    largestIngredientSharpArmor = 1f;
-                                }
+                                strongestIngredientSharpArmor = biggestIngredientCount.FixedIngredient.statBases?
+                                    .Find(statMod => statMod.stat.defName == StatDefOf.ArmorRating_Sharp.GetStatPart<StatPart_Stuff>().stuffPowerStat.defName)?
+                                    .value * (biggestIngredientCount.FixedIngredient.GetModExtension<StuffToughnessMultiplierExtensionCE>()?.toughnessMultiplier ?? 1f) ?? 0f;
+                            }
+                            // Recipe may or may not exist
+                            else
+                            {
+                                // Becomes null if the recipe doesn't exist or doesn't have any ingredients
+                                float? nullableSharpArmor = biggestIngredientCount?.filter?.thingDefs?
+                                    .Max(thingDef => thingDef.statBases?
+                                            .Find(statMod => statMod.stat.defName == StatDefOf.ArmorRating_Sharp.GetStatPart<StatPart_Stuff>().stuffPowerStat.defName)?
+                                            .value * (thingDef.GetModExtension<StuffToughnessMultiplierExtensionCE>()?.toughnessMultiplier ?? 1f) ?? 0f);
+
+                                // Fallback to tech level; above industrial is assumed to have items made out of plasteel (hardcoded)
+                                strongestIngredientSharpArmor = nullableSharpArmor ?? (def.techLevel > TechLevel.Industrial ? 2f : 1f);
                             }
 
-                            def.statBases.Add(new StatModifier { stat = CE_StatDefOf.ToughnessRating, value = weaponThickness * (float)largestIngredientSharpArmor });
+                            def.statBases.Add(new StatModifier { stat = CE_StatDefOf.ToughnessRating, value = weaponThickness * strongestIngredientSharpArmor });
                         }
                     }
                 }
