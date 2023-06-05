@@ -34,7 +34,6 @@
 				<compClass>CompEquippable</compClass>
 			</li>
 		</comps>
-		<relicChance>1</relicChance>
 	</ThingDef>
 
 	<!-- ========================== SPECIFICS ============================== -->
@@ -50,14 +49,20 @@
 		</graphicData>
 		<soundInteract>Interact_BeatFire</soundInteract>
 		<statBases>
-			<MarketValue>7.26</MarketValue>
+			<MarketValue>7.0</MarketValue>
 			<SightsEfficiency>0.45</SightsEfficiency>
 			<ShotSpread>1.5</ShotSpread>
 			<SwayFactor>2.5</SwayFactor>
-			<Bulk>7.54</Bulk>
+			<Bulk>4.25</Bulk>
 			<Mass>2.00</Mass>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.36</MeleeCounterParryBonus>
 		</statBases>
+		<equippedStatOffsets>
+			<MeleeCritChance>0.17</MeleeCritChance>
+			<MeleeParryChance>0.5</MeleeParryChance>
+			<MeleeDodgeChance>0.57</MeleeDodgeChance>
+		</equippedStatOffsets>
 		<equippedAngleOffset>30</equippedAngleOffset>
 		<stackLimit>25</stackLimit>
 		<weaponTags>
@@ -68,12 +73,6 @@
 		<weaponClasses>
 			<li>Ranged</li>
 		</weaponClasses>
-		<recipeMaker>
-			<skillRequirements>
-				<Crafting>3</Crafting>
-			</skillRequirements>
-			<displayPriority>500</displayPriority>
-		</recipeMaker>
 		<tradeability>All</tradeability>
 		<verbs>
 			<li Class="CombatExtended.VerbPropertiesCE">
@@ -91,9 +90,9 @@
 				<capacities>
 					<li>Blunt</li>
 				</capacities>
-				<power>7</power>
-				<cooldownTime>1.35</cooldownTime>
-				<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+				<power>5</power>
+				<cooldownTime>1.73</cooldownTime>
+				<armorPenetrationBlunt>1.44</armorPenetrationBlunt>
 				<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
 			</li>
 			<li Class="CombatExtended.ToolCE">
@@ -101,11 +100,11 @@
 				<capacities>
 					<li>Stab</li>
 				</capacities>
-				<power>15</power>
-				<cooldownTime>1.37</cooldownTime>
+				<power>12</power>
+				<cooldownTime>1.49</cooldownTime>
 				<chanceFactor>1.5</chanceFactor>
-				<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
-				<armorPenetrationSharp>0.34</armorPenetrationSharp>
+				<armorPenetrationBlunt>1.44</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.58</armorPenetrationSharp>
 				<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 			</li>
 		</tools>
