@@ -10,7 +10,7 @@ using Verse;
 namespace CombatExtended.WorldObjects
 {
     public class HealthComp : WorldObjectComp, IWorldCompCE
-    {        
+    {
         public const float HEALTH_HEALRATE_DAY = 0.15f;
 
         private int lastTick = -1;
@@ -20,7 +20,7 @@ namespace CombatExtended.WorldObjects
         {
             get => health;
             set => health = Mathf.Clamp01(value);
-        }        
+        }
 
         public float HealingRatePerTick
         {
@@ -29,14 +29,14 @@ namespace CombatExtended.WorldObjects
 
         public float ArmorDamageMultiplier
         {
-            get =>  4f / Mathf.Max((int)parent.Faction.def.techLevel, 1f);
+            get => parent.Faction != null ? 4f / Mathf.Max((int)parent.Faction.def.techLevel, 1f) : 4f;
         }
 
         public WorldObjectCompProperties_Health Props
         {
             get => props as WorldObjectCompProperties_Health;
         }
-    
+
         public HealthComp()
         {
         }
@@ -47,23 +47,23 @@ namespace CombatExtended.WorldObjects
             Scribe_Values.Look(ref health, "health", 1.0f);
             Scribe_Values.Look(ref lastTick, "lastTick", -1);
         }
-        
+
         public void ThrottledCompTick()
         {
             Health += HealingRatePerTick * WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
         }
         void TryFinishDestroyQuests(Map launcherMap)
-        {            
-            QuestUtility.SendQuestTargetSignals(parent.questTags, "AllEnemiesDefeated", parent.Named("SUBJECT"),new NamedArgument(launcherMap,"MAP"));
+        {
+            QuestUtility.SendQuestTargetSignals(parent.questTags, "AllEnemiesDefeated", parent.Named("SUBJECT"), new NamedArgument(launcherMap, "MAP"));
         }
-        public void ApplyDamage(float amount, Faction attackingFaction,Map launcherMap)
+        public void ApplyDamage(float amount, Faction attackingFaction, Map launcherMap)
         {
             if (Props.destoyedInstantly)
             {
                 TryFinishDestroyQuests(launcherMap);
                 TryDestroy();
                 return;
-            }            
+            }
             Health -= ArmorDamageMultiplier * amount;
             Notify_DamageTaken(attackingFaction, launcherMap);
         }
@@ -76,7 +76,7 @@ namespace CombatExtended.WorldObjects
         }
         public void Notify_DamageTaken(Faction attackingFaction, Map launcherMap)
         {
-            if(health <= 1e-4)
+            if (health <= 1e-4)
             {
                 TryFinishDestroyQuests(launcherMap);
                 Destroy();
@@ -119,9 +119,9 @@ namespace CombatExtended.WorldObjects
                 Find.World.worldObjects.Add(destroyedSettlement);
                 if (tracker != null)
                 {
-                    tracker.Notify_SettlementDestroyed();                    
+                    tracker.Notify_SettlementDestroyed();
                 }
-            }            
+            }
             else
             {
                 string message = null;
@@ -131,16 +131,16 @@ namespace CombatExtended.WorldObjects
                 }
                 else
                 {
-                    message = "CE_Message_SiteDestroyed_Faction".Translate().Formatted(parent.Label, faction.Name);                    
+                    message = "CE_Message_SiteDestroyed_Faction".Translate().Formatted(parent.Label, faction.Name);
                 }
                 Messages.Message(message, MessageTypeDefOf.SituationResolved);
                 if (tracker != null && parent is Site)
                 {
-                    tracker.Notify_SiteDestroyed();                    
+                    tracker.Notify_SiteDestroyed();
                 }
-                TryDestroy();                
-            }           
-            if (faction != null && faction.def.humanlikeFaction &&  attackingFaction != null && attackingFaction != faction) // check the projectile faction
+                TryDestroy();
+            }
+            if (faction != null && faction.def.humanlikeFaction && attackingFaction != null && attackingFaction != faction) // check the projectile faction
             {
                 FactionRelation relation = faction.RelationWith(attackingFaction, true);
                 if (relation == null)
@@ -149,7 +149,7 @@ namespace CombatExtended.WorldObjects
                     relation = faction.RelationWith(attackingFaction, true);
                 }
                 faction.TryAffectGoodwillWith(attackingFaction, -100, true, true, HistoryEventDefOf.DestroyedEnemyBase, null);
-            }                        
+            }
         }
     }
 }
