@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using RimWorld.Planet;
+using RimWorld.QuestGen;
 using UnityEngine;
 using Verse;
 
@@ -55,7 +56,14 @@ namespace CombatExtended.WorldObjects
         void TryFinishDestroyQuests(Map launcherMap)
         {
             QuestUtility.SendQuestTargetSignals(parent.questTags, "AllEnemiesDefeated", parent.Named("SUBJECT"), new NamedArgument(launcherMap, "MAP"));
+            foreach (var quest in RelatedQuests)
+            {
+                quest.End(QuestEndOutcome.Fail);
+            }
+            IdeoUtility.Notify_PlayerRaidedSomeone(launcherMap.mapPawns.FreeColonistsSpawned);
         }
+        
+        IEnumerable<Quest> RelatedQuests => Find.QuestManager.QuestsListForReading.Where(x => !x.Historical && x.QuestLookTargets.Contains(parent));
         public void ApplyDamage(float amount, Faction attackingFaction, Map launcherMap)
         {
             if (Props.destoyedInstantly)
@@ -71,7 +79,7 @@ namespace CombatExtended.WorldObjects
         {
             if (!parent.Destroyed)
             {
-                TryDestroy();
+                parent.Destroy();
             }
         }
         public void Notify_DamageTaken(Faction attackingFaction, Map launcherMap)
