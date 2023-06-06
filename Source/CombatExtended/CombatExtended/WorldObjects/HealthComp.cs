@@ -22,7 +22,14 @@ namespace CombatExtended.WorldObjects
             get => health;
             set => health = Mathf.Clamp01(value);
         }
-
+        public float TotalDamageRequired
+        {
+            get => 100 *4 / ArmorDamageMultiplier;
+        }
+        public float DamageRequired
+        {
+            get => TotalDamageRequired * health;
+        }
         public float HealingRatePerTick
         {
             get => parent.Faction != null ? ((int)parent.Faction.def.techLevel) / 4f * HEALTH_HEALRATE_DAY / 60000f : 0f;
@@ -158,6 +165,14 @@ namespace CombatExtended.WorldObjects
                 }
                 faction.TryAffectGoodwillWith(attackingFaction, -100, true, true, HistoryEventDefOf.DestroyedEnemyBase, null);
             }
+        }
+        public override string CompInspectStringExtra()
+        {
+            if (DamageRequired != TotalDamageRequired)
+            {
+                return $"{DamageRequired:0}/{TotalDamageRequired:0} HP";
+            }
+            return base.CompInspectStringExtra();
         }
     }
 }
