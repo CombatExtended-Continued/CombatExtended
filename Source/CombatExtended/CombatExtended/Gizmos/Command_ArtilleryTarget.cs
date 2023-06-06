@@ -89,7 +89,7 @@ namespace CombatExtended
                     {
                         targetFaction.TryMakeInitialRelationsWith(turret.Faction);
                     }
-                    if (!targetFaction.HostileTo(turret.Faction))
+                    if (!targetFaction.HostileTo(turret.Faction) && !targetFaction.Hidden)
                     {
                         Find.WindowStack.Add(
                             new Dialog_MessageBox(

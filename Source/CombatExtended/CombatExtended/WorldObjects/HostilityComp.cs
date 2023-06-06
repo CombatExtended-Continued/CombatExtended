@@ -110,7 +110,7 @@ namespace CombatExtended.WorldObjects
             {
                 return;
             }
-            if (parent.Faction == null || parent.Faction.IsPlayer || parent.Faction.defeated)
+            if (parent.Faction == null || parent.Faction.IsPlayer || parent.Faction.defeated || parent.Faction.Hidden)
             {
                 return;
             }
