@@ -29,6 +29,10 @@ namespace CombatExtended
         /// A bitmap that store flags. The real size of this one is 2048 byte.
         /// </summary>
         internal static FlagArray isMenuHiddenArray = new FlagArray(ushort.MaxValue);
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isRadioArray = new FlagArray(ushort.MaxValue);
 
         /// <summary>
         /// Used to create and initialize def related flags that are often checked but require more than 2 or 3 steps to caculate.
@@ -190,6 +194,18 @@ namespace CombatExtended
             {
                 isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
             }
+            if (def.HasModExtension<ApparelDefExtension>())
+            {
+                ApparelDefExtension extension = def.GetModExtension<ApparelDefExtension>();
+                /*
+                 * wether this apparel is a radio pack
+                 */
+                isRadioArray[def.index] = extension.isRadioPack;
+                if (extension.isRadioPack)
+                {
+                    Log.Message($"{def}");
+                }
+            }
         }
 
         /// <summary>
@@ -331,6 +347,15 @@ namespace CombatExtended
                    || link.projectile?.thingClass == typeof(ProjectileCE_Explosive)
                    || link.projectile?.thingClass == typeof(Projectile_Explosive)
                    || (link.projectile?.comps?.Any(c => c.compClass == typeof(CompFragments) || c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
+        }
+         /// <summary>
+         /// Return wether this ThingDef is an apparel radio pack
+         /// </summary>
+         /// <param name="def"></param>
+         /// <returns>If this ThingDef is an apparel radio pack</returns>
+        public static bool IsRadioPack(this ThingDef def)
+        {
+            return isRadioArray[def.index];
         }
     }
 }

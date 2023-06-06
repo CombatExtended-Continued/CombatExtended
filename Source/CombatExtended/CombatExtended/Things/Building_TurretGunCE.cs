@@ -262,6 +262,10 @@ namespace CombatExtended
         [Compatibility.Multiplayer.SyncMethod]
         public override void OrderAttack(LocalTargetInfo targ)      // Core method
         {
+            if (globalTargetInfo.IsValid)
+            {
+                this.ResetForcedTarget();
+            }
             if (!targ.IsValid)
             {
                 if (this.forcedTarget.IsValid)

@@ -156,7 +156,7 @@ namespace CombatExtended.WorldObjects
                 if (ticksSinceRaided != raidMTBTicks && ticksSinceRaided > raidMTBTicks / 2f && Rand.Chance(RaidPropability / Mathf.Max(raidMTBTicks - ticksSinceRaided, 1)) && raider.TryRaid(attackerMap, revengePoints))
                 {
                     lastRaidTick = GenTicks.TicksGame;
-                    Messages.Message("CE_Message_CounterRaid".Translate(attackerMap.Parent.Label, attackingFaction.Name), MessageTypeDefOf.ThreatBig);
+                    Messages.Message("CE_Message_CounterRaid".Translate(parent.Label, attackingFaction.Name), MessageTypeDefOf.ThreatBig);
                 }
             }
         }
