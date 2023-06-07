@@ -446,7 +446,43 @@
 					<aiAimMode>AimedShot</aiAimMode>
 				</FireModes>
 			</li>
-			 
+			 <!-- ========== Miho_Weapon_Pistol =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Miho_Weapon_Pistol</defName>
+				<statBases>
+					<SightsEfficiency>0.80</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>0.75</SwayFactor>
+					<Bulk>2.2</Bulk>
+					<Mass>0.9</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.9</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_8x22mmNambu_FMJ</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>21</range>
+					<soundCast>Miho_Pistol</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>8</magazineSize>
+					<reloadTime>2</reloadTime>
+					<ammoSet>AmmoSet_8x22mmNambu</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_Pistol"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
 
 			<!-- ========== Melee Attacks =========== -->
 			
@@ -501,7 +537,8 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 				defName="Miho_Weapon_HeavyPistol" or
-				defName="Miho_Weapon_RifleCQB"
+				defName="Miho_Weapon_RifleCQB" or
+				defName="Miho_Weapon_Pistol"
 				]/tools</xpath>
 				<value>
 					<tools>
