@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/HediffDef[defName="AM_ArmorMechBoost"]/stages/li/statOffsets</xpath>
+						<value>
+							<statOffsets>
+								<ArmorRating_Sharp>1</ArmorRating_Sharp>
+								<ArmorRating_Blunt>2</ArmorRating_Blunt>
+							</statOffsets>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

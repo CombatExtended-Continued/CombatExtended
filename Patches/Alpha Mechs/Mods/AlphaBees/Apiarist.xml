@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Alpha Bees</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Apiarist"]</xpath>
+						<value>
+							<li Class="CombatExtended.RacePropertiesExtensionCE">
+								<bodyShape>Birdlike</bodyShape>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Apiarist"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>4</power>
+									<cooldownTime>2</cooldownTime>
+									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+									<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+									<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>
