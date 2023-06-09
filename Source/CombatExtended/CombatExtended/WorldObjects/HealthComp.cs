@@ -15,8 +15,11 @@ namespace CombatExtended.WorldObjects
         public const float HEALTH_HEALRATE_DAY = 0.15f;
 
         private int lastTick = -1;
-
+        private int _configTick = -1;
         private float health = 1.0f;
+        private float negateChance = 0f;
+        private float armorDamageMultiplier = 1f;
+        private bool destroyedInstantly = false;
         public float Health
         {
             get => health;
@@ -24,7 +27,7 @@ namespace CombatExtended.WorldObjects
         }
         public float TotalDamageRequired
         {
-            get => 100 *4 / ArmorDamageMultiplier;
+            get => DestoyedInstantly ? 1f : 100 * ArmorDamageMultiplier;
         }
         public float DamageRequired
         {
@@ -37,14 +40,99 @@ namespace CombatExtended.WorldObjects
 
         public float ArmorDamageMultiplier
         {
-            get => parent.Faction != null ? 4f / Mathf.Max((int)parent.Faction.def.techLevel, 1f) : 4f;
+            get
+            {
+                UpdateCacheValues();
+                return armorDamageMultiplier;
+            }
+            private set => armorDamageMultiplier = value;
+        }
+        public float NegateChance
+        {
+            get
+            {
+                UpdateCacheValues();
+                return negateChance;
+            }
+            private set => negateChance = Mathf.Clamp01(value);
+        }
+        public bool DestoyedInstantly
+        {
+            get
+            {
+                UpdateCacheValues();
+                return destroyedInstantly;
+            }
+            private set => destroyedInstantly = value;
         }
 
         public WorldObjectCompProperties_Health Props
         {
             get => props as WorldObjectCompProperties_Health;
         }
+        public void UpdateCacheValues()
+        {
+            if (_configTick == GenTicks.TicksGame)
+            {
+                return;
+            }
+            _configTick = GenTicks.TicksGame;
 
+            bool techLevelNoImpact = Props.techLevelNoImpact;
+            ArmorDamageMultiplier = 1f;
+            NegateChance = 0f;
+            DestoyedInstantly = Props?.destoyedInstantly ?? false;
+
+            if (Props.healthModifier > 0f)
+            {
+                ArmorDamageMultiplier *= Props.healthModifier;
+            }
+
+            var factionExtension = parent.Faction?.def.GetModExtension<WorldObjectHealthExtension>();
+
+            if (factionExtension != null)
+            {
+                if (factionExtension.healthModifier > 0f)
+                {
+                    ArmorDamageMultiplier *= factionExtension.healthModifier;
+                }
+                if (factionExtension.chanceToNegateDamage >= 0f)
+                {
+                    NegateChance = factionExtension.chanceToNegateDamage;
+                }
+                techLevelNoImpact |= factionExtension.techLevelNoImpact;
+                DestoyedInstantly |= factionExtension.destoyedInstantly;
+
+            }
+
+
+            if (parent is Site site)
+            {
+                foreach (var sitePart in site.parts)
+                {
+                    var sitePartExtension = sitePart?.def?.GetModExtension<WorldObjectHealthExtension>();
+                    if (sitePartExtension != null)
+                    {
+                        if (sitePartExtension.healthModifier > 0f)
+                        {
+                            ArmorDamageMultiplier *= sitePartExtension.healthModifier;
+                        }
+                        if (sitePartExtension.chanceToNegateDamage >= 0f)
+                        {
+                            NegateChance = sitePartExtension.chanceToNegateDamage;
+                        }
+                        techLevelNoImpact |= sitePartExtension.techLevelNoImpact;
+                        DestoyedInstantly |= sitePartExtension.destoyedInstantly;
+                    }
+
+                }
+            }
+
+            if (!techLevelNoImpact)
+            {
+                ArmorDamageMultiplier *= (parent.Faction != null ? Mathf.Max((float)parent.Faction.def.techLevel, 1f) : 1f);
+            }
+        }
         public HealthComp()
         {
         }
@@ -69,17 +157,22 @@ namespace CombatExtended.WorldObjects
             }
             IdeoUtility.Notify_PlayerRaidedSomeone(launcherMap.mapPawns.FreeColonistsSpawned);
         }
-        
+
         IEnumerable<Quest> RelatedQuests => Find.QuestManager.QuestsListForReading.Where(x => !x.Historical && x.QuestLookTargets.Contains(parent));
         public void ApplyDamage(float amount, Faction attackingFaction, Map launcherMap)
         {
-            if (Props.destoyedInstantly)
+            if (Rand.Chance(NegateChance))
+            {
+                Log.Message($"Shell negated with chance {negateChance}");
+                return;
+            }
+            if (DestoyedInstantly)
             {
                 TryFinishDestroyQuests(launcherMap);
                 TryDestroy();
                 return;
             }
-            Health -= ArmorDamageMultiplier * amount;
+            Health -= amount / ArmorDamageMultiplier;
             Notify_DamageTaken(attackingFaction, launcherMap);
         }
         void TryDestroy()
@@ -168,7 +261,7 @@ namespace CombatExtended.WorldObjects
         }
         public override string CompInspectStringExtra()
         {
-            if (DamageRequired != TotalDamageRequired)
+            if (DamageRequired != TotalDamageRequired || Prefs.DevMode)
             {
                 return $"{DamageRequired:0}/{TotalDamageRequired:0} HP";
             }
