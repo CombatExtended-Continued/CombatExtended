@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- ========== Patch mech raid delay and Centipede spawn weight ========== -->
+    <Operation Class="PatchOperationAddModExtension" MayRequire="Ludeon.Rimworld.Royalty">
+      <xpath>Defs/FactionDef[defName="Empire"]</xpath>
+      <value>
+        <li Class="CombatExtended.WorldObjectHealthExtension">
+          <healthModifier>0.8</healthModifier>
+          <chanceToNegateDamage>0.1</chanceToNegateDamage>
+        </li>
+      </value>
+    </Operation>
+</Patch>
