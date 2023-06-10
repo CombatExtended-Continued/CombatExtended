@@ -13,5 +13,6 @@ namespace CombatExtended
     {
         public static RulePackDef AttackMote;
         public static RulePackDef SuppressedMote;
+        public static RulePackDef DamageEvent_ShellingExplosion;
     }
 }

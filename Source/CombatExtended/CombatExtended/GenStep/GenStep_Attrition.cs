@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -105,42 +106,9 @@ namespace CombatExtended
                     Thing thing = things[i];
                     if (!thing.def.useHitPoints)
                     {
-                        if(thing is Pawn p && Rand.Chance(0.4f))//Copied from HealthUtility.DamageUntilDowned and modified
+                        if(thing is Pawn p/* && Rand.Chance(0.4f)*/)//Copied from HealthUtility.DamageUntilDowned and modified
                         {
-                            HediffSet hediffSet = p.health.hediffSet;
-
-                            IEnumerable<BodyPartRecord> source = from x in HealthUtility.HittablePartsViolence(hediffSet)
-                                                                 where !p.health.hediffSet.hediffs.Any((Hediff y) => y.Part == x && y.CurStage != null && y.CurStage.partEfficiencyOffset < 0f)
-                                                                 select x; 
-                            if(source.Any())
-                            {
-                                BodyPartRecord bodyPartRecord = source.RandomElementByWeight((BodyPartRecord x) => x.coverageAbs);
-                                int num2 = Mathf.RoundToInt(hediffSet.GetPartHealth(bodyPartRecord));
-                                float statValue = p.GetStatValue(StatDefOf.IncomingDamageFactor, true, -1);
-                                if (statValue > 0f)
-                                {
-                                    num2 = (int)((float)num2 / statValue);
-                                }
-                                num2 -= 3;
-                                if (num2 >= 8)
-                                {
-                                    DamageDef damageDef;
-                                    if (bodyPartRecord.depth == BodyPartDepth.Outside)
-                                    {
-                                            damageDef = HealthUtility.RandomViolenceDamageType();
-                                    }
-                                    else
-                                    {
-                                        damageDef = DamageDefOf.Blunt;
-                                    }
-                                    int num3 = Rand.RangeInclusive(Mathf.RoundToInt((float)num2 * 0.65f), num2);
-                                    HediffDef hediffDefFromDamage = HealthUtility.GetHediffDefFromDamage(damageDef, p, bodyPartRecord);
-                                    DamageInfo dinfo = new DamageInfo(damageDef, (float)num3, 999f, -1f, null, bodyPartRecord, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true);
-                                    dinfo.SetAllowDamagePropagation(false);
-                                    p.TakeDamage(dinfo);
-
-                                }
-                            }
+                            DamagePawn(p);                           
                         }
                         continue;
                     }                                                         
@@ -194,7 +162,56 @@ namespace CombatExtended
             ShadowCastingUtility.CastWeighted(map, origin, processor, radius, SHADOW_CARRYLIMIT, out int count);            
             return true;
         }    
-
+        void DamagePawn(Pawn pawn)
+        {
+            int hitsCount = Rand.Range(0, 8);
+            for (int i = 0; i < hitsCount; i++)
+            {
+                if(pawn.Map == null)
+                {
+                    break;
+                }
+                var frag = GenSpawn.Spawn(Rand.Chance(0.3f)? CE_ThingDefOf.Fragment_Large : CE_ThingDefOf.Fragment_Small, pawn.Position, pawn.Map) as ProjectileCE;
+                frag.Impact(pawn);
+            }
+            //Flame dmg
+            if (Rand.Chance(0.2f))
+            {
+                hitsCount = Rand.Range(3, 9);
+                for (int i = 0; i < hitsCount; i++)
+                {
+                    BattleLogEntry_DamageTaken battleLogEntry_DamageTaken = new BattleLogEntry_DamageTaken(pawn, RulePackDefOf.DamageEvent_Fire, null);
+                    Find.BattleLog.Add(battleLogEntry_DamageTaken);
+                    int num = GenMath.RoundRandom(Mathf.Clamp(0.0125f + 0.0036f * Rand.Range(011f, 0.5f), 0.0125f, 0.05f) * 150f);
+                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Flame, (float)num, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true);
+                    dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                    pawn.TakeDamage(dinfo).AssociateWithLog(battleLogEntry_DamageTaken);
+                    Apparel apparel;
+                    if (pawn.apparel != null && pawn.apparel.WornApparel.TryRandomElement(out apparel))
+                    {
+                        apparel.TakeDamage(new DamageInfo(DamageDefOf.Flame, (float)num, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true));
+                        return;
+                    }
+                }
+            }
+            //Explosion dmg
+            if (Rand.Chance(0.04f))
+            {
+                BattleLogEntry_DamageTaken battleLogEntry_DamageTaken = new BattleLogEntry_DamageTaken(pawn, CE_RulePackDefOf.DamageEvent_ShellingExplosion, null);
+                Find.BattleLog.Add(battleLogEntry_DamageTaken);
+                var num = Rand.Range(50f, 150f);
+                DamageInfo dinfo = new DamageInfo(DamageDefOf.Bomb, (float)num, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true);
+                dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+                pawn.TakeDamage(dinfo).AssociateWithLog(battleLogEntry_DamageTaken);
+            }
+            ResetVisualDamageEffects(pawn);
+        }
+        public static void ResetVisualDamageEffects(Pawn pawn)
+        {
+            var draw = pawn.drawer;
+            (new Traverse(draw).Field("jitterer").GetValue() as JitterHandler)?.ProcessPostTickVisuals(10000);
+            draw.renderer.graphics.flasher.lastDamageTick = -9999;
+        }
         private int GetRandomDamage() => (int) CE_Utility.RandomGaussian(MAP_SHELLMINDAMAGE, MAP_SHELLMAXDAMAGE);
         private int GetRandomRadius() => Mathf.CeilToInt(CE_Utility.RandomGaussian(MAP_SHELLMINRADIUS, MAP_SHELLMAXRADIUS));
     }
