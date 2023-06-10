@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -104,6 +105,43 @@ namespace CombatExtended
                     Thing thing = things[i];
                     if (!thing.def.useHitPoints)
                     {
+                        if(thing is Pawn p && Rand.Chance(0.4f))//Copied from HealthUtility.DamageUntilDowned and modified
+                        {
+                            HediffSet hediffSet = p.health.hediffSet;
+
+                            IEnumerable<BodyPartRecord> source = from x in HealthUtility.HittablePartsViolence(hediffSet)
+                                                                 where !p.health.hediffSet.hediffs.Any((Hediff y) => y.Part == x && y.CurStage != null && y.CurStage.partEfficiencyOffset < 0f)
+                                                                 select x; 
+                            if(source.Any())
+                            {
+                                BodyPartRecord bodyPartRecord = source.RandomElementByWeight((BodyPartRecord x) => x.coverageAbs);
+                                int num2 = Mathf.RoundToInt(hediffSet.GetPartHealth(bodyPartRecord));
+                                float statValue = p.GetStatValue(StatDefOf.IncomingDamageFactor, true, -1);
+                                if (statValue > 0f)
+                                {
+                                    num2 = (int)((float)num2 / statValue);
+                                }
+                                num2 -= 3;
+                                if (num2 >= 8)
+                                {
+                                    DamageDef damageDef;
+                                    if (bodyPartRecord.depth == BodyPartDepth.Outside)
+                                    {
+                                            damageDef = HealthUtility.RandomViolenceDamageType();
+                                    }
+                                    else
+                                    {
+                                        damageDef = DamageDefOf.Blunt;
+                                    }
+                                    int num3 = Rand.RangeInclusive(Mathf.RoundToInt((float)num2 * 0.65f), num2);
+                                    HediffDef hediffDefFromDamage = HealthUtility.GetHediffDefFromDamage(damageDef, p, bodyPartRecord);
+                                    DamageInfo dinfo = new DamageInfo(damageDef, (float)num3, 999f, -1f, null, bodyPartRecord, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true);
+                                    dinfo.SetAllowDamagePropagation(false);
+                                    p.TakeDamage(dinfo);
+
+                                }
+                            }
+                        }
                         continue;
                     }                                                         
                     thing.hitPointsInt -= damageCell * (thing.IsPlant() ? 3 : 1);
@@ -120,7 +158,7 @@ namespace CombatExtended
                         }
                     }
                     else
-                    {                        
+                    {  
                         thing.DeSpawn(DestroyMode.Vanish);
                         thing.Destroy(DestroyMode.Vanish);
                         if(thing.def.category == ThingCategory.Plant && (thing.def.plant?.IsTree ?? false))
