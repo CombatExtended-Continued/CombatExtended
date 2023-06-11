@@ -35,7 +35,30 @@ namespace CombatExtended.WorldObjects
         private int cooldownTicks = -1;
 
         public HostilityComp comp;
-       
+        public bool AbleToShellResponse
+        {
+            get
+            {
+                var res = (comp.props as WorldObjectCompProperties_Hostility).AbleToShellingResponse;
+                if (res.HasValue)
+                {
+                    return res.Value;
+                }
+                if (comp.parent is Site site)
+                {
+                    foreach (var sitePart in site.parts)
+                    {
+                        res = sitePart.def.GetModExtension<WorldObjectHostilityExtension>()?.AbleToShellingResponse;
+                        if (res.HasValue)
+                        {
+                            return res.Value;
+                        }
+                    }
+                }
+                return !comp.AvailableProjectiles.NullOrEmpty();
+            }
+        }
+
         public List<ShellingResponseDef.ShellingResponsePart_Projectile> AvailableProjectiles
         {
             get => comp.AvailableProjectiles;
@@ -78,7 +101,7 @@ namespace CombatExtended.WorldObjects
 
         public bool TryStartShelling(GlobalTargetInfo targetInfo, float points, Faction targetFaction = null)
         {            
-            if (Shooting || targetInfo.Tile < 0 || points <= 0 || comp.AvailableProjectiles.NullOrEmpty())
+            if (Shooting || targetInfo.Tile < 0 || points <= 0 || !AbleToShellResponse)
             {
                 return false;
             }

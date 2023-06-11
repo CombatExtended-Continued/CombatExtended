@@ -20,7 +20,31 @@ namespace CombatExtended.WorldObjects
 
         private float points = -1;
 
-        public HostilityComp comp;        
+        public HostilityComp comp;
+        public bool AbleToRaidResponse
+        {
+            get
+            {
+                var res = (comp.props as WorldObjectCompProperties_Hostility).AbleToRaidResponse;
+                if (res.HasValue)
+                {
+                    return res.Value;
+                }
+                if (comp.parent is Site site)
+                {
+                    foreach (var sitePart in site.parts)
+                    {
+                        res = sitePart.def.GetModExtension<WorldObjectHostilityExtension>()?.AbleToRaidResponse;
+                        if (res.HasValue)
+                        {
+                            return res.Value;
+                        }
+                    }
+                }
+                FactionStrengthTracker tracker = comp.parent.Faction.GetStrengthTracker();
+                return tracker?.CanRaid ?? false;
+            }
+        }
 
         public HostilityRaider()
         {
@@ -47,16 +71,16 @@ namespace CombatExtended.WorldObjects
         // Move this to a queue based system
         public bool TryRaid(Map targetMap, float points)
         {
-            FactionStrengthTracker tracker =  comp.parent.Faction.GetStrengthTracker();
-            if (tracker != null && !tracker.CanRaid)
+            if (!AbleToRaidResponse)
             {
                 return false;
             }
+
             if (points <= 0)
             {
                 return false;
             }
-            this.points = points;                                   
+            this.points = points;
             ticksToRaid = Rand.Range(3000, 15000);
 
             string factionName = $"<color=red>{comp.parent.Faction.Name}</color>";
@@ -72,7 +96,7 @@ namespace CombatExtended.WorldObjects
             parms.raidStrategy = RaidStrategyDefOf.ImmediateAttack;
             if (comp.parent.Faction.def.techLevel >= TechLevel.Industrial)
             {
-                
+
                 if (Rand.Chance(Mathf.Min(points / 10000, 0.5f)))
                 {
                     parms.raidArrivalMode = PawnsArrivalModeDefOf.CenterDrop;
@@ -84,14 +108,14 @@ namespace CombatExtended.WorldObjects
                 else
                 {
                     parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeDrop;
-                }                
+                }
             }
             else
             {
                 parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
-            }                               
+            }
             return true;
-        }      
+        }
 
         public void ExposeData()
         {
