@@ -14,6 +14,7 @@ namespace CombatExtended
 
         private const float PenetrationRandVariation = 0.05f;    // Armor penetration will be randomized by +- this amount
         private const float SoftArmorMinDamageFactor = 0.2f;    // Soft body armor will always take at least original damage * this number from sharp attacks
+        private const float HardArmorDamageFactor = 0.5f;       // Hard body armor final health damage multiplier
         private const float SpikeTrapAPModifierBlunt = 0.65f;
         private const float BulletImpactForceMultiplier = 0.2f; //Bullet has less mass => less impluse comparing to melee => less Blunt penetration
 
@@ -339,6 +340,7 @@ namespace CombatExtended
                     else
                     {
                         armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+                        armorDamage *= HardArmorDamageFactor;
                     }
 
                     TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);
