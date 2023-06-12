@@ -9,7 +9,6 @@
 			<operations>
 
 			<!-- Baseball Bat -->	
-
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="IMW_BaseballBat"]/tools</xpath>
 				<value>
@@ -59,7 +58,6 @@
 			</li>
 
 			<!-- Machete -->
-
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="IMW_Machete"]/tools</xpath>
 				<value>
@@ -106,13 +104,11 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="IMW_Machete"]</xpath>
+				<xpath>Defs/ThingDef[defName="IMW_Machete"]/equippedStatOffsets</xpath>
 				<value>
-					<equippedStatOffsets>
-						<MeleeCritChance>0.5</MeleeCritChance>
-						<MeleeParryChance>0.15</MeleeParryChance>
-						<MeleeDodgeChance>0.05</MeleeDodgeChance>	
-					</equippedStatOffsets>	
+					<MeleeCritChance>0.5</MeleeCritChance>
+					<MeleeParryChance>0.15</MeleeParryChance>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
 				</value>	
 			</li>
 
@@ -176,7 +172,7 @@
 				</value>
 			</li>
 
-			<!-- Hammer -->
+			<!-- Claw Hammer -->
 			<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="IMW_ClawHammer"]/tools</xpath>
 			<value>
@@ -279,6 +275,61 @@
 				</value>
 			</li>
 
+			<!-- Spiked Baseball Bat -->	
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="IMW_SpikedBat"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.46</cooldownTime>
+							<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>18</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Stab</def>
+								<amount>6</amount>
+							</li>
+							</extraMeleeDamages>							
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>6.0</armorPenetrationBlunt>
+							<chanceFactor>2</chanceFactor>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_SpikedBat"]/statBases</xpath>
+				<value>
+					<Bulk>7.5</Bulk>
+					<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_SpikedBat"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>	
+					</equippedStatOffsets>	
+				</value>	
+			</li>
+
 			<!-- Knuckleduster -->			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="IMW_Knuckleduster"]/tools</xpath>
@@ -290,7 +341,7 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>2</power>
-							<cooldownTime>1.5</cooldownTime>
+							<cooldownTime>1.46</cooldownTime>
 							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
 						</li>
@@ -301,7 +352,7 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="IMW_Knuckleduster"]/statBases</xpath>
 				<value>
-					<Bulk>0.6</Bulk>
+					<Bulk>0.25</Bulk>
 					<MeleeCounterParryBonus>0.01</MeleeCounterParryBonus>
 				</value>
 			</li>
@@ -321,6 +372,215 @@
 				<xpath>Defs/ThingDef[defName="IMW_Knuckleduster"]/weaponTags</xpath>
 				<value>
 					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+			<!-- Boxing Glove -->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="IMW_BoxingGlove"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>14</amount>
+									<chance>0.3</chance>
+								</li>
+							</extraMeleeDamages>							
+							<cooldownTime>1.85</cooldownTime>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_BoxingGlove"]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<MeleeCounterParryBonus>0.01</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_BoxingGlove"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.01</MeleeCritChance>
+						<MeleeParryChance>0.05</MeleeParryChance>
+						<MeleeDodgeChance>0</MeleeDodgeChance>
+					</equippedStatOffsets>              
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_BoxingGlove"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+			<!-- Pocket Knife -->	
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="IMW_PocketKnife"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>1</power>
+							<chanceFactor>0.33</chanceFactor>
+							<cooldownTime>0.4</cooldownTime>
+							<armorPenetrationBlunt>0.007</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.06</cooldownTime>
+							<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.12</cooldownTime>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.05</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_PocketKnife"]/statBases</xpath>
+				<value>
+					<Bulk>0.1</Bulk>
+					<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_PocketKnife"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.01</MeleeParryChance>
+						<MeleeDodgeChance>0.04</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_PocketKnife"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+			<!-- Sock Mace -->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="IMW_SockMace"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>heavy end</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>6</amount>
+									<chance>0.2</chance>
+								</li>
+							</extraMeleeDamages>							
+							<cooldownTime>3.16</cooldownTime>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_SockMace"]/statBases</xpath>
+				<value>
+					<Bulk>0.2</Bulk>
+					<MeleeCounterParryBonus>0</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_SockMace"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.28</MeleeCritChance>
+						<MeleeParryChance>0</MeleeParryChance>
+						<MeleeDodgeChance>0.12</MeleeDodgeChance>
+					</equippedStatOffsets>              
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_SockMace"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+			<!-- Brief Case -->			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="IMW_Briefcase"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>case</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>							
+							<cooldownTime>3.46</cooldownTime>
+							<armorPenetrationBlunt>0.85</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="IMW_Briefcase"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+					<MeleeCounterParryBonus>0</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="IMW_Briefcase"]/equippedStatOffsets/CarryingCapacity</xpath>
+				<value>
+					<CarryBulk>15</CarryBulk>				
+					<MeleeCritChance>0.28</MeleeCritChance>
+					<MeleeParryChance>0.3</MeleeParryChance>
+					<MeleeDodgeChance>0.12</MeleeDodgeChance>              
 				</value>
 			</li>
 
