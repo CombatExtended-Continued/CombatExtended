@@ -30,7 +30,7 @@ namespace CombatExtended.Compatibility
         private static bool CheckIntercept(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             List<CompShieldField> interceptors;
-            if(!CompShieldField.listerShieldGensByMaps.TryGetValue(projectile.Map,out interceptors))
+            if (!CompShieldField.listerShieldGensByMaps.TryGetValue(projectile.Map, out interceptors))
             {
                 return false;
             }
