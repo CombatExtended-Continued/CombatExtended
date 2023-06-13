@@ -80,7 +80,7 @@ namespace CombatExtended.Compatibility.SRTSCompat
             List<CodeInstruction> codes = instructions.ToList();
             for (int i = 0; i < codes.Count(); ++i)
             {
-                if(!found && i > 1
+                if (!found && i > 1
                         && codes[i - 2].opcode == OpCodes.Ldc_I4_0
                         && codes[i - 1].StoresField(explosivesChangedField))
                 {
@@ -113,11 +113,11 @@ namespace CombatExtended.Compatibility.SRTSCompat
                     yield return callIns;
                     yield return CodeInstruction.StoreField(typeof(Dialog_AllowedBombs), "explosivesSearched");
 
-                    while(i < codes.Count() && !codes[i].labels.Any(label => label == skipToLabel))
+                    while (i < codes.Count() && !codes[i].labels.Any(label => label == skipToLabel))
                     {
                         ++i;
                     }
-                    if(codes.Count() == i)
+                    if (codes.Count() == i)
                     {
                         Log.Error("Combat Extended :: SRTSCompat Dialog_AllowedBombs.DoWindowContents(Rect) - "
                                 + "we skipped over the entire code without finding the skip label. "
@@ -125,7 +125,7 @@ namespace CombatExtended.Compatibility.SRTSCompat
                     }
                 }
 
-SkipTranspile:
+            SkipTranspile:
                 yield return codes[i];
             }
         }

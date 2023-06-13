@@ -28,7 +28,7 @@ namespace CombatExtended.Compatibility.SRTSCompat
         public static bool Prefix(BomberSkyfaller __instance)
         {
             ActiveDropPod srts = (ActiveDropPod)__instance.innerContainer.First();
-            if(srts == null)
+            if (srts == null)
             {
                 goto FunctionEnd;
             }
@@ -128,7 +128,7 @@ namespace CombatExtended.Compatibility.SRTSCompat
                 }
             }
 
-FunctionEnd:
+        FunctionEnd:
             if (__instance.bombType == BombingType.precise && __instance.bombCells.Any())
             {
                 __instance.bombCells.Clear();
