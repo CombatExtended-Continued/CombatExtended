@@ -32,7 +32,7 @@ namespace CombatExtended
 
         public override AlertReport GetReport()
         {
-            if(GenTicks.TicksGame - _ticks < 15000)
+            if (GenTicks.TicksGame - _ticks < 15000)
             {
                 return _report;
             }
@@ -44,9 +44,9 @@ namespace CombatExtended
             foreach (Faction faction in Find.World.factionManager.AllFactions)
             {
                 FactionStrengthTracker tracker = faction.GetStrengthTracker();
-                if(tracker != null && (tracker.StrengthPointsMultiplier != 1.0f || !tracker.CanRaid))
+                if (tracker != null && (tracker.StrengthPointsMultiplier != 1.0f || !tracker.CanRaid))
                 {
-                    if(i > 0)
+                    if (i > 0)
                     {
                         builder.AppendInNewLine("\t");
                     }

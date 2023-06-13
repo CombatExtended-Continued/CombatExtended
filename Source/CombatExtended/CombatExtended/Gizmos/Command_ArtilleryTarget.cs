@@ -9,7 +9,7 @@ using Verse;
 namespace CombatExtended
 {
     public class Command_ArtilleryTarget : Command
-    {     
+    {
         public Building_TurretGunCE turret;
 
         public List<Command_ArtilleryTarget> others = null;
@@ -22,70 +22,70 @@ namespace CombatExtended
         {
             var order = other as Command_ArtilleryTarget;
             if (others == null)
-            {                
+            {
                 others = new List<Command_ArtilleryTarget>();
                 others.Add(this);
             }
             others.Add(order);
-        }        
+        }
 
         public override void ProcessInput(Event ev)
-        {            
+        {
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(turret));
-            Find.WorldSelector.ClearSelection();            
+            Find.WorldSelector.ClearSelection();
 
             if (turret == null)
             {
                 Log.Error("Command_ArtilleryTarget without turret");
                 return;
             }
-            if(!turret.Active || (SelectedTurrets?.Any(t => t.Destroyed || !t.Active || !t.def.building.IsMortar) ?? false))
+            if (!turret.Active || (SelectedTurrets?.Any(t => t.Destroyed || !t.Active || !t.def.building.IsMortar) ?? false))
             {
                 Log.Error("Command_ArtilleryTarget selected turrets collection is invalid");
                 return;
             }
             int tile = turret.Map.Tile;
-            int radius = (int) turret.MaxWorldRange;            
+            int radius = (int)turret.MaxWorldRange;
             Find.WorldTargeter.BeginTargeting((targetInfo) =>
-            {                
+            {
                 if (!targetInfo.HasWorldObject || targetInfo.Tile == tile)
                 {
                     return false;
-                }                
-                IEnumerable<Building_TurretGunCE> turrets = SelectedTurrets;                
-                Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;                
+                }
+                IEnumerable<Building_TurretGunCE> turrets = SelectedTurrets;
+                Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;
                 if (map != null)
                 {
                     IntVec3 selectedCell = IntVec3.Invalid;
                     Find.WorldTargeter.StopTargeting();
-                    CameraJumper.TryJumpInternal(new IntVec3((int)map.Size.x / 2, 0, (int)map.Size.z / 2), map,CameraJumper.MovementMode.Pan);
+                    CameraJumper.TryJumpInternal(new IntVec3((int)map.Size.x / 2, 0, (int)map.Size.z / 2), map, CameraJumper.MovementMode.Pan);
                     Find.Targeter.BeginTargeting(new TargetingParameters()
                     {
                         canTargetLocations = true,
                         canTargetBuildings = true,
                         canTargetHumans = true
-                    }, (target)=>
+                    }, (target) =>
                     {
                         targetInfo.mapInt = map;
                         targetInfo.tileInt = map.Tile;
                         targetInfo.cellInt = target.cellInt;
-                        targetInfo.thingInt = target.thingInt;                        
+                        targetInfo.thingInt = target.thingInt;
                         TryAttack(turrets, targetInfo, target);
-                    }, highlightAction: (target)=>
+                    }, highlightAction: (target) =>
                     {
                         GenDraw.DrawTargetHighlight(target);
                     }, targetValidator: (target) =>
                     {
                         RoofDef roof = map.roofGrid.RoofAt(target.Cell);
                         return roof == null || roof == RoofDefOf.RoofConstructed;
-                    });                                                
+                    });
                     return false;
                 }
-                if(targetInfo.WorldObject.Faction != null)
+                if (targetInfo.WorldObject.Faction != null)
                 {
                     Faction targetFaction = targetInfo.WorldObject.Faction;
                     FactionRelation relation = targetFaction.RelationWith(turret.Faction, true);
-                    if(relation == null)
+                    if (relation == null)
                     {
                         targetFaction.TryMakeInitialRelationsWith(turret.Faction);
                     }
@@ -109,7 +109,7 @@ namespace CombatExtended
                     }
                 }
                 return TryAttack(turrets, targetInfo, LocalTargetInfo.Invalid);
-            }, true, closeWorldTabWhenFinished: true, onUpdate: ()=>
+            }, true, closeWorldTabWhenFinished: true, onUpdate: () =>
             {
                 if (others != null)
                 {
@@ -118,10 +118,10 @@ namespace CombatExtended
                         if (t.MaxWorldRange != radius)
                         {
                             GenDraw.DrawWorldRadiusRing(tile, (int)t.MaxWorldRange);
-                        }                        
+                        }
                     }
                 }
-                GenDraw.DrawWorldRadiusRing(tile, radius);                
+                GenDraw.DrawWorldRadiusRing(tile, radius);
             }, extraLabelGetter: (targetInfo) =>
             {
                 int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(tile, targetInfo.Tile, true);
@@ -133,7 +133,7 @@ namespace CombatExtended
                     foreach (var t in SelectedTurrets)
                     {
                         count++;
-                        if(t.MaxWorldRange >= distanceToTarget)
+                        if (t.MaxWorldRange >= distanceToTarget)
                         {
                             inRangeCount++;
                         }
@@ -155,10 +155,10 @@ namespace CombatExtended
                     return distanceMessage + "\n" + "CE_ArtilleryTarget_InvalidTarget".Translate();
                 }
                 string extra = "";
-                if(targetInfo.WorldObject is Settlement settlement)
+                if (targetInfo.WorldObject is Settlement settlement)
                 {
                     extra = $" {settlement.Name}";
-                    if(settlement.Faction != null && !settlement.Faction.name.NullOrEmpty())
+                    if (settlement.Faction != null && !settlement.Faction.name.NullOrEmpty())
                     {
                         extra += $" ({settlement.Faction.name})";
                     }
@@ -169,7 +169,7 @@ namespace CombatExtended
         }
 
         private bool TryAttack(IEnumerable<Building_TurretGunCE> turrets, GlobalTargetInfo targetInfo, LocalTargetInfo localTargetInfo)
-        {           
+        {
             bool attackStarted = false;
             foreach (var t in turrets)
             {
@@ -178,7 +178,7 @@ namespace CombatExtended
                     attackStarted = attackStarted || true;
                 }
             }
-            return attackStarted;                       
+            return attackStarted;
         }
     }
 }

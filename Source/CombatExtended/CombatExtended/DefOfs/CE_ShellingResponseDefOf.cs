@@ -20,8 +20,8 @@ namespace CombatExtended
         public static ShellingResponseDef CE_ShellingPreset_Spacer;
 
         public static ShellingResponseDef CE_ShellingPreset_Ultra;
-        
-        public static ShellingResponseDef CE_ShellingPreset_Archotech;        
+
+        public static ShellingResponseDef CE_ShellingPreset_Archotech;
     }
 }
 

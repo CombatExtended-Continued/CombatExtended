@@ -214,8 +214,10 @@ namespace CombatExtended
         /// <param name="def">Thing def</param>        
         private static void ProcessThing(ThingDef def)
         {
-            if (def.useHitPoints)            
-                isFlamableArray[def.index] = def.IsFlamable();            
+            if (def.useHitPoints)
+            {
+                isFlamableArray[def.index] = def.IsFlamable();
+            }
         }
 
         /// <summary>
@@ -348,11 +350,11 @@ namespace CombatExtended
                    || link.projectile?.thingClass == typeof(Projectile_Explosive)
                    || (link.projectile?.comps?.Any(c => c.compClass == typeof(CompFragments) || c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
         }
-         /// <summary>
-         /// Return wether this ThingDef is an apparel radio pack
-         /// </summary>
-         /// <param name="def"></param>
-         /// <returns>If this ThingDef is an apparel radio pack</returns>
+        /// <summary>
+        /// Return wether this ThingDef is an apparel radio pack
+        /// </summary>
+        /// <param name="def"></param>
+        /// <returns>If this ThingDef is an apparel radio pack</returns>
         public static bool IsRadioPack(this ThingDef def)
         {
             return isRadioArray[def.index];

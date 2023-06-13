@@ -10,7 +10,7 @@ namespace CombatExtended
 
         public static ShellingResponseDef GetShellingResponseDef(this FactionDef factionDef)
         {
-            if(factionDef == null)
+            if (factionDef == null)
             {
                 return CE_ShellingResponseDefOf.CE_ShellingPreset_Undefined;
             }
@@ -18,7 +18,7 @@ namespace CombatExtended
             if (factionDef.HasModExtension<FactionDefExtensionCE>())
             {
                 extension = factionDef.GetModExtension<FactionDefExtensionCE>();
-                if(extension.shellingResponse != null)
+                if (extension.shellingResponse != null)
                 {
                     return extension.shellingResponse;
                 }
@@ -43,7 +43,7 @@ namespace CombatExtended
                     return CE_ShellingResponseDefOf.CE_ShellingPreset_Archotech;
             }
             throw new NotImplementedException($"CE: GetShellingResponseDef() {factionDef.label} tech level {factionDef.techLevel} has no preset!");
-        }       
+        }
     }
 }
 

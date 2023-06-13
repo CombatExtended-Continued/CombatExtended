@@ -7,12 +7,12 @@ using Verse;
 
 namespace CombatExtended
 {
-    public static class CE_Scriber 
+    public static class CE_Scriber
     {
         private static List<ScribingAction> queuedLate = new List<ScribingAction>();
         private static int idCounter = 13;
 
-        private static string curId;        
+        private static string curId;
 
         private struct ScribingAction
         {
@@ -27,9 +27,9 @@ namespace CombatExtended
                 this.postLoadAction = postLoadAction;
                 this.owner = owner;
                 this.id = id;
-            }            
+            }
         }
-       
+
         public static void Late(Object owner, Action<string> scribingAction, Action<string> postLoadAction = null)
         {
             string loadingId = null;
@@ -39,7 +39,7 @@ namespace CombatExtended
             }
             Scribe_Values.Look(ref loadingId, "loadingId");
             if (Scribe.mode != LoadSaveMode.Saving)
-            {                
+            {
                 ScribingAction r = new ScribingAction(owner, loadingId, scribingAction, postLoadAction);
                 queuedLate.Add(r);
             }
@@ -47,10 +47,10 @@ namespace CombatExtended
             {
                 curId = loadingId;
                 try
-                {                    
+                {
                     scribingAction.Invoke(loadingId);
                 }
-                catch(Exception er)
+                catch (Exception er)
                 {
                     Log.Error($"CE: Error while scribing {owner} (Late) {er}");
                 }
@@ -71,7 +71,7 @@ namespace CombatExtended
                         queuedLate[i].scribingAction.Invoke(queuedLate[i].id);
                         curId = null;
                     }
-                    catch(Exception er)
+                    catch (Exception er)
                     {
                         Log.Error($"CE: Error while scribing {queuedLate[i].owner} (ExecuteLateScribe) {er}");
                     }
@@ -80,7 +80,7 @@ namespace CombatExtended
         }
 
         public static void Reset()
-        {           
+        {
             for (int i = 0; i < queuedLate.Count; i++)
             {
                 if (queuedLate[i].postLoadAction != null)
@@ -91,7 +91,7 @@ namespace CombatExtended
                         queuedLate[i].postLoadAction.Invoke(queuedLate[i].id);
                         curId = null;
                     }
-                    catch(Exception er)
+                    catch (Exception er)
                     {
                         Log.Error($"CE: Error while scribing {queuedLate[i].owner} (reset) {er}");
                     }

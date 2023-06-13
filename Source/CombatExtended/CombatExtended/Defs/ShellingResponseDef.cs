@@ -10,7 +10,7 @@ namespace CombatExtended
     {
         public float defaultShellingPropability = 0.0f;
         public float defaultRaidPropability = 0.0f;
-        public float defaultRaidMTBDays = 0.0f;        
+        public float defaultRaidMTBDays = 0.0f;
 
         /// <summary>
         /// The list of projectiles that can be used in response when shelled
@@ -23,10 +23,16 @@ namespace CombatExtended
 
         public override void PostLoad()
         {
-            if (projectiles == null)            
-                projectiles = new List<ShellingResponsePart_Projectile>();            
-            if (worldObjects == null)           
-                worldObjects = new List<ShellingResponsePart_WorldObject>();                
+            if (projectiles == null)
+            {
+                projectiles = new List<ShellingResponsePart_Projectile>();
+            }
+
+            if (worldObjects == null)
+            {
+                worldObjects = new List<ShellingResponsePart_WorldObject>();
+            }
+
             base.PostLoad();
         }
 
@@ -36,8 +42,8 @@ namespace CombatExtended
         public class ShellingResponsePart_WorldObject
         {
             public WorldObjectDef worldObject;
-            
-            public float shellingPropability;                        
+
+            public float shellingPropability;
             public float raidPropability;
             public float raidMTBDays;
         }
