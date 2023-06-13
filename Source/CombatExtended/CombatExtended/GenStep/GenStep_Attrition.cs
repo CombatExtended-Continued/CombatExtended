@@ -106,8 +106,8 @@ namespace CombatExtended
                      Thing thing = things[i];
                      if (!thing.def.useHitPoints)
                      {
-                         if (thing is Pawn p/* && Rand.Chance(0.4f)*/)//Copied from HealthUtility.DamageUntilDowned and modified
-                        {
+                         if (thing is Pawn p)//Copied from HealthUtility.DamageUntilDowned and modified
+                         {
                              DamagePawn(p);
                          }
                          continue;

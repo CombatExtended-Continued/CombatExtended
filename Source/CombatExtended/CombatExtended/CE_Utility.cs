@@ -623,7 +623,7 @@ namespace CombatExtended
         public static IntVec3 ExitCell(this Ray ray, Map map)
         {
             Vector3 mapSize = map.Size.ToVector3();
-            mapSize.y = Mathf.Max(mapSize.x, mapSize.z);            
+            mapSize.y = Mathf.Max(mapSize.x, mapSize.z);
             Bounds mapBounds = new Bounds(mapSize.Yto0() / 2f, mapSize);
             mapBounds.IntersectRay(ray, out float dist);
             Vector3 exitCell = ray.GetPoint(dist);
