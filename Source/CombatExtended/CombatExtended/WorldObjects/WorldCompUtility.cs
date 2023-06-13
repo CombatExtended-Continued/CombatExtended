@@ -11,7 +11,7 @@ namespace CombatExtended.WorldObjects
         {
             for (int i = 0; i < worldObject.comps.Count; i++)
             {
-                if(worldObject.comps[i] is IWorldCompCE throttleable)
+                if (worldObject.comps[i] is IWorldCompCE throttleable)
                 {
                     yield return throttleable;
                 }

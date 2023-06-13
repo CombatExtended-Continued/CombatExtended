@@ -15,7 +15,7 @@ namespace CombatExtended
         private static Map map;
         private static ThingDef shellDef;
         private static ProjectilePropertiesCE props;
-        private static DamageDef projectileDamageDef;        
+        private static DamageDef projectileDamageDef;
 
         public static IntVec3 FindRandomImpactCell(Map map, ThingDef shellDef = null)
         {
@@ -35,25 +35,25 @@ namespace CombatExtended
                     if (result.IsValid)
                     {
                         return result;
-                    }                    
+                    }
                 }
                 stopwatch.Stop();
             }
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
                 result = GetRandomImpactCell();
-            }            
-            map = null;            
+            }
+            map = null;
             return result;
         }
 
         private static IntVec3 GetRandomPlayerHomeImpactCell()
-        {                     
-            if(projectileDamageDef == CE_DamageDefOf.Bomb)
+        {
+            if (projectileDamageDef == CE_DamageDefOf.Bomb)
             {
-                if(Rand.Chance(props.damageAmountBase / 5000f) && map.areaManager.Home.innerGrid.trueCountInt > 0) // make more powerful shells land near the player base
+                if (Rand.Chance(props.damageAmountBase / 5000f) && map.areaManager.Home.innerGrid.trueCountInt > 0) // make more powerful shells land near the player base
                 {
-                    return GetRandomImpectCell(map.areaManager.Home.innerGrid);                    
+                    return GetRandomImpectCell(map.areaManager.Home.innerGrid);
                 }
                 else if (Rand.Chance(0.05f) && map.zoneManager.zoneGrid.Length > 0)
                 {
@@ -61,21 +61,21 @@ namespace CombatExtended
                     if (!zones.EnumerableNullOrEmpty())
                     {
                         return GetRandomImpectCell(zones.RandomElement().cells);
-                    }                    
+                    }
                 }
             }
-            else if(projectileDamageDef == CE_DamageDefOf.PrometheumFlame)
+            else if (projectileDamageDef == CE_DamageDefOf.PrometheumFlame)
             {
                 if (Rand.Chance(0.05f))
                 {
-                    foreach(var zone in map.zoneManager.zoneGrid.InRandomOrder())
+                    foreach (var zone in map.zoneManager.zoneGrid.InRandomOrder())
                     {
                         if (zone is Zone_Growing growing && !growing.cells.NullOrEmpty())
                         {
                             return GetRandomImpectCell(zone.cells);
                         }
                     }
-                }               
+                }
             }
             return IntVec3.Invalid;
         }
@@ -84,30 +84,30 @@ namespace CombatExtended
         private static IntVec3 GetRandomImpectCell(BoolGrid grid)
         {
             potentialCells.Clear();
-            int processedCount = 0;            
-            int startIndex = ((!grid.minPossibleTrueIndexDirty) ? grid.minPossibleTrueIndexCached : 0);            
-            for (int i = startIndex; i < grid.arr.Length && processedCount < grid.trueCountInt / 2; i += (int) Rand.Range(1, 32))
-            {                
+            int processedCount = 0;
+            int startIndex = ((!grid.minPossibleTrueIndexDirty) ? grid.minPossibleTrueIndexCached : 0);
+            for (int i = startIndex; i < grid.arr.Length && processedCount < grid.trueCountInt / 2; i += (int)Rand.Range(1, 32))
+            {
                 if (grid.arr[i])
-                {                    
+                {
                     IntVec3 cell = CellIndicesUtility.IndexToCell(i, grid.mapSizeX);
                     if (Valid(cell))
                     {
                         processedCount++;
                         potentialCells.Add(cell);
-                    }                       
+                    }
                 }
-            }            
+            }
             return potentialCells.RandomElementWithFallback(IntVec3.Invalid);
         }
 
         private static IntVec3 GetRandomImpectCell(List<IntVec3> cells)
-        {           
+        {
             int i = 0;
-            while(i++ < cells.Count / 2)
+            while (i++ < cells.Count / 2)
             {
-                IntVec3 cell = cells[Rand.Range(0, (int) 1e5) % cells.Count];
-                if(Valid(cell))
+                IntVec3 cell = cells[Rand.Range(0, (int)1e5) % cells.Count];
+                if (Valid(cell))
                 {
                     return cell;
                 }

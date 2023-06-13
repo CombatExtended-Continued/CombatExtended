@@ -46,6 +46,6 @@ namespace CombatExtended
         public float aimHeightOffset = 0;
 
         public float empShieldBreakChance = 1f;
-        public float Gravity => CE_Utility.GravityConst * gravityFactor;        
+        public float Gravity => CE_Utility.GravityConst * gravityFactor;
     }
 }

@@ -111,7 +111,7 @@ namespace CombatExtended
         public Thing equipment;
 
         public ThingDef equipmentDef;
-        public Thing launcher;        
+        public Thing launcher;
         public LocalTargetInfo intendedTarget;
         public float minCollisionDistance;
         public bool canTargetSelf;
@@ -435,7 +435,7 @@ namespace CombatExtended
                 launcher = null;
             }
             CE_Scriber.Late(this, (id) =>
-            {                
+            {
                 Scribe_References.Look<Thing>(ref launcher, "launcher_" + id);
             });
             Scribe_TargetInfo.Look(ref globalSourceInfo, "globalSourceInfo");
@@ -446,7 +446,7 @@ namespace CombatExtended
             Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
             Scribe_References.Look<Thing>(ref launcher, "launcher");
             Scribe_References.Look<Thing>(ref equipment, "equipment");
-            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);            
+            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
             //Here be new variables
@@ -1077,8 +1077,8 @@ namespace CombatExtended
             {
                 if (globalTargetInfo.IsValid)
                 {
-                    TravelingShell shell = (TravelingShell) WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
-                    if(launcher?.Faction != null)
+                    TravelingShell shell = (TravelingShell)WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
+                    if (launcher?.Faction != null)
                     {
                         shell.SetFaction(launcher.Faction);
                     }
@@ -1091,17 +1091,17 @@ namespace CombatExtended
                     shell.globalSource.tileInt = Map.Tile;
                     shell.globalSource.mapInt = Map;
                     shell.globalSource.worldObjectInt = Map.Parent;
-                    shell.shellDef = def;                    
+                    shell.shellDef = def;
                     shell.globalTarget = globalTargetInfo;
                     if (!shell.TryTravel(Map.Tile, globalTargetInfo.Tile))
                     {
                         Log.Error($"CE: Travling shell {this.def} failed to launch!");
                         shell.Destroy();
-                    }                    
+                    }
                 }
                 Destroy();
                 return;
-            }            
+            }
             if (CheckForCollisionBetween())
             {
                 return;

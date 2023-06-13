@@ -13,7 +13,7 @@ namespace CombatExtended.HarmonyCE
             public static void Postfix(WorldObject __instance)
             {
                 try
-                { 
+                {
                     if (!__instance.Spawned)
                     {
                         return;
@@ -31,7 +31,7 @@ namespace CombatExtended.HarmonyCE
         public static class Harmony_WorldObject_Destroy
         {
             public static void Prefix(WorldObject __instance)
-            {               
+            {
                 try
                 {
                     if (!__instance.Spawned)

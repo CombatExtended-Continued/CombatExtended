@@ -6,7 +6,7 @@ namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(Game), nameof(Game.ExposeData))]
     public static class Harmony_Game_ExposeData
-    {        
+    {
         public static void Postfix()
         {
             try
@@ -22,7 +22,7 @@ namespace CombatExtended.HarmonyCE
 
     [HarmonyPatch(typeof(Game), nameof(Game.LoadGame))]
     public static class Harmony_Game_LoadGame
-    {        
+    {
         public static void Postfix()
         {
             try

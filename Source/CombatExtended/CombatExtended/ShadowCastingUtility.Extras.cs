@@ -8,8 +8,8 @@ using System.Collections.Generic;
 
 namespace CombatExtended
 {
-	public static partial class ShadowCastingUtility
-	{
+    public static partial class ShadowCastingUtility
+    {
         private static readonly IntVec3 _offsetH = new IntVec3(1, 0, 0);
         private static readonly IntVec3 _offsetV = new IntVec3(0, 0, 1);
 
@@ -62,7 +62,7 @@ namespace CombatExtended
         {
             CastVisibility(map, source, action, radius);
             cellCount = ShadowCastingUtility.cellsScanned;
-        }       
+        }
 
         private static void Cast(Map map, Action<float, float, int, int> castingAction, Action<IntVec3, int> action, IntVec3 source, int radius)
         {
@@ -123,46 +123,46 @@ namespace CombatExtended
         public static void CastWeighted(Map map, IntVec3 source, Vector3 direction, Action<IntVec3, int> action, float radius, float baseWidth, int carryLimit, out int cellCount)
         {
             ShadowCastingUtility.carryLimit = carryLimit;
-            CastWeighted(map, source, direction, action, radius, baseWidth);            
+            CastWeighted(map, source, direction, action, radius, baseWidth);
             cellCount = cellsScanned;
             ShadowCastingUtility.carryLimit = VISIBILITY_CARRY_MAX;
-        }          
+        }
 
         private static void Cast(Map map, Action<float, float, int, int> castingAction, Action<IntVec3, int> setAction, IntVec3 source, IntVec3 target, float baseWidth)
         {
             if (target.DistanceTo(source) < 2)
             {
                 return;
-            }            
-            ShadowCastingUtility.map = map;            
+            }
+            ShadowCastingUtility.map = map;
             ShadowCastingUtility.source = source;
             ShadowCastingUtility.setAction = setAction;
             ShadowCastingUtility.cellsScanned = 0;
             //
             // get which quartor the target is in.
-            int quartor = GetQurator(target - source);            
+            int quartor = GetQurator(target - source);
             Vector3 relTarget = _transformationInverseFuncsV3[quartor]((target - source).ToVector3());
             Vector3 relStart = relTarget + new Vector3(0, 0, -baseWidth / 2f);
             Vector3 relEnd = relTarget + new Vector3(0, 0, baseWidth / 2f);
             int maxDepth = (int)(source.DistanceTo(target));
             float startSlope = GetSlope(relStart);
-            float endSlope = GetSlope(relEnd);                       
-            if(startSlope < -1)
-            {                                  
+            float endSlope = GetSlope(relEnd);
+            if (startSlope < -1)
+            {
                 float slope = Mathf.Max(startSlope + 2, 0);
                 castingAction(slope, 1, GetNextQuartor(quartor), maxDepth);
                 startSlope = -1;
             }
             if (endSlope > 1)
-            {                
-                float slope = Mathf.Min(endSlope - 2, 0);                
+            {
+                float slope = Mathf.Min(endSlope - 2, 0);
                 castingAction(-1, slope, GetPreviousQuartor(quartor), maxDepth);
                 endSlope = 1;
             }
             castingAction(startSlope, endSlope, quartor, maxDepth);
-            ShadowCastingUtility.map = null;            
+            ShadowCastingUtility.map = null;
             ShadowCastingUtility.source = IntVec3.Invalid;
-        }        
+        }
     }
 }
 

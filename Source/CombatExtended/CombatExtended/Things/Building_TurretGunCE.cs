@@ -53,14 +53,14 @@ namespace CombatExtended
         private int ticksUntilAutoReload = 0;
         private bool everSpawned = false;
         private GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
-        
+
         #endregion
 
         #region Properties
         // Core properties
         public bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
         public CompEquippable GunCompEq => Gun.TryGetComp<CompEquippable>();
-        public override LocalTargetInfo CurrentTarget => currentTargetInt;        
+        public override LocalTargetInfo CurrentTarget => currentTargetInt;
         private bool WarmingUp => burstWarmupTicksLeft > 0;
         public override Verb AttackVerb => Gun == null ? null : GunCompEq.verbTracker.PrimaryVerb;
         public bool IsMannable => mannableComp != null;
@@ -147,7 +147,7 @@ namespace CombatExtended
                 return compFireModes;
             }
         }
-        private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE) compAmmo?.CurAmmoProjectile?.projectile ?? null;
+        private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
         public float MaxWorldRange => ProjectileProps?.shellingProps.range ?? -1f;
         public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
         public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
@@ -231,7 +231,7 @@ namespace CombatExtended
             Map.GetComponent<TurretTracker>().Unregister(this);
             base.DeSpawn(mode);
             ResetCurrentTarget();
-        }        
+        }
 
         public override void ExposeData()           // Added new variables, removed bool loaded (not used in CE)
         {
@@ -249,8 +249,8 @@ namespace CombatExtended
             Scribe_TargetInfo.Look(ref this.currentTargetInt, "currentTarget");
             Scribe_Values.Look<bool>(ref this.holdFire, "holdFire", false, false);
             Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
-            
-            Scribe_TargetInfo.Look(ref globalTargetInfo, "globalSourceInfo");          
+
+            Scribe_TargetInfo.Look(ref globalTargetInfo, "globalSourceInfo");
             BackCompatibility.PostExposeData(this);
         }
 
@@ -371,7 +371,7 @@ namespace CombatExtended
             {
                 ResetCurrentTarget();
                 return;
-            }            
+            }
             //Copied and modified from Verb_LaunchProjectileCE.Available
             if (!isReloading && (Projectile == null || (CompAmmo != null && !CompAmmo.CanBeFiredNow)))
             {
@@ -483,7 +483,7 @@ namespace CombatExtended
         public void BeginBurst()                     // Added handling for ticksUntilAutoReload
         {
             ticksUntilAutoReload = minTicksBeforeAutoReload;
-            if(AttackVerb is Verb_ShootMortarCE shootMortar)
+            if (AttackVerb is Verb_ShootMortarCE shootMortar)
             {
                 if (globalTargetInfo.IsValid)
                 {
@@ -492,7 +492,7 @@ namespace CombatExtended
                     sourceInfo.tileInt = Map.Tile;
                     sourceInfo.cellInt = Position;
                     sourceInfo.mapInt = Map;
-                    sourceInfo.thingInt = IsMannable ? ((Thing) mannableComp.ManningPawn) : ((Thing) this);                    
+                    sourceInfo.thingInt = IsMannable ? ((Thing)mannableComp.ManningPawn) : ((Thing)this);
                     shootMortar.TryStartShelling(sourceInfo, globalTargetInfo);
                 }
                 else
@@ -502,9 +502,9 @@ namespace CombatExtended
                 }
             }
             else
-            {                
+            {
                 AttackVerb.TryStartCastOn(CurrentTarget, false, true);
-            }            
+            }
             OnAttackedTarget(CurrentTarget);
         }
 
@@ -618,7 +618,7 @@ namespace CombatExtended
             ResetForcedTarget();
             int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(Map.Tile, targetInfo.Tile, true, maxDist: (int)(this.MaxWorldRange * 1.5f));
             if (distanceToTarget > MaxWorldRange)
-            {                
+            {
                 return false;
             }
             if (!Active)
@@ -632,7 +632,7 @@ namespace CombatExtended
             else
             {
                 TryOrderAttackWorldTile(targetInfo, null);
-            }            
+            }
             return true;
         }
 
@@ -640,7 +640,7 @@ namespace CombatExtended
         {
             int startingTile = Map.Tile;
             int destinationTile = targetInf.Tile;
-            
+
             Vector3 direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
             Vector3 shotPos = DrawPos.Yto0();
             Vector3 mapSize = Map.Size.ToVector3();
@@ -653,20 +653,20 @@ namespace CombatExtended
             Vector3 exitCell = ray.GetPoint(dist);
             exitCell.x = Mathf.Clamp(exitCell.x, 0, mapSize.x - 1);
             exitCell.z = Mathf.Clamp(exitCell.z, 0, mapSize.z - 1);
-            exitCell.y = 0;            
+            exitCell.y = 0;
 
             if (cell.HasValue)
             {
                 targetInf.cellInt = cell.Value;
             }
-            this.globalTargetInfo = targetInf;            
+            this.globalTargetInfo = targetInf;
             this.forcedTarget = new LocalTargetInfo(exitCell.ToIntVec3());
             this.currentTargetInt = this.forcedTarget;
-            this.TryStartShootSomething(false);            
+            this.TryStartShootSomething(false);
         }
 
         public override IEnumerable<Gizmo> GetGizmos()              // Modified
-         {
+        {
             foreach (Gizmo gizmo in base.GetGizmos())
             {
                 yield return gizmo;
@@ -682,10 +682,10 @@ namespace CombatExtended
                     }
 
                     yield return com;
-                }                
+                }
             }
             if (IsMortar && Active && Faction.IsPlayerSafe() && (compAmmo?.UseAmmo ?? false) && ProjectileProps?.shellingProps != null)
-            {                
+            {
                 Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
                 {
                     defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
@@ -693,9 +693,9 @@ namespace CombatExtended
                     turret = this,
                     icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
                     hotKey = KeyBindingDefOf.Misc5
-                };                
+                };
                 yield return wt;
-            }            
+            }
             // Don't show CONTROL gizmos on enemy turrets (even with dev mode enabled)
             if (PlayerControlled)
             {
@@ -779,11 +779,11 @@ namespace CombatExtended
             this.targetingWorldMap = false;
             this.forcedTarget = LocalTargetInfo.Invalid;
             this.globalTargetInfo = GlobalTargetInfo.Invalid;
-            this.burstWarmupTicksLeft = 0;            
+            this.burstWarmupTicksLeft = 0;
             if (this.burstCooldownTicksLeft <= 0)
             {
-                this.TryStartShootSomething(false);                
-            }          
+                this.TryStartShootSomething(false);
+            }
         }
 
         public void ResetCurrentTarget()               // Core method

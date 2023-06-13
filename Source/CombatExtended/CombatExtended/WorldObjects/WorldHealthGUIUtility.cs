@@ -16,8 +16,8 @@ namespace CombatExtended.WorldObjects
             WorldObjectTrackerCE tracker = Find.World.GetComponent<WorldObjectTrackerCE>();
             visibleObjects.Clear();
             visibleObjects.AddRange(tracker.TrackedObjects.Where(w => Visible(w)));
-            for(int i = 0;i < visibleObjects.Count; i++)
-            {                
+            for (int i = 0; i < visibleObjects.Count; i++)
+            {
                 DrawHealthBar(visibleObjects[i]);
             }
         }
@@ -26,7 +26,7 @@ namespace CombatExtended.WorldObjects
 
         private static void DrawHealthBar(WorldObject worldObject)
         {
-            if (worldObject is MapParent mapParent && mapParent.HasMap && mapParent.Map != null && Find.Maps.Contains(mapParent.Map)) 
+            if (worldObject is MapParent mapParent && mapParent.HasMap && mapParent.Map != null && Find.Maps.Contains(mapParent.Map))
             {
                 return;
             }
@@ -37,7 +37,7 @@ namespace CombatExtended.WorldObjects
             }
             Vector2 position = worldObject.ScreenPos();
             Rect rect = new Rect(new Vector2(position.x - 15, position.y + 18), new Vector2(30, 5));
-            Color color;           
+            Color color;
             color = Color.red;
             RocketGUI.GUIUtility.ExecuteSafeGUIAction(() =>
             {
@@ -52,7 +52,7 @@ namespace CombatExtended.WorldObjects
         {
             if (health > 0.5f)
             {
-                 return Color.green;
+                return Color.green;
             }
             else if (health > 0.20f)
             {

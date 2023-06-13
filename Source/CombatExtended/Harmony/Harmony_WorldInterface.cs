@@ -21,7 +21,7 @@ namespace CombatExtended.HarmonyCE
                         WorldHealthGUIUtility.OnGUIWorldObjectHealth();
                     }
                 }
-                catch(Exception er)
+                catch (Exception er)
                 {
                     Log.Error($"CE: Harmony_WorldInterface {er}");
                 }

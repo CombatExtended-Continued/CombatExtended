@@ -10,7 +10,7 @@ namespace CombatExtended
         /// <summary>
         /// The range in tiles
         /// </summary>
-        public float range = 30;        
+        public float range = 30;
         /// <summary>
         /// Damage done to tile
         /// </summary>

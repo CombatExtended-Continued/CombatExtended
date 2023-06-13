@@ -32,7 +32,7 @@ namespace CombatExtended.HarmonyCE
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         {
             List<CodeInstruction> codes = instructions.ToList();
-            bool finished = false; ;
+            bool finished = false;
             Label l1 = generator.DefineLabel();
 
             for (int i = 0; i < codes.Count; i++)
@@ -55,7 +55,7 @@ namespace CombatExtended.HarmonyCE
                 }
                 yield return code;
             }
-        }       
+        }
 
         // Functions like a prefix.  If this has something to do return false. if nothing to do return true.
         static bool CheckReload(Verb __instance, LocalTargetInfo castTarg, LocalTargetInfo destTarg)

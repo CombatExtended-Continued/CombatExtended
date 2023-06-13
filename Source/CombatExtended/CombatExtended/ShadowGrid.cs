@@ -20,7 +20,7 @@ namespace CombatExtended
         public ShadowGrid(Map map) : base(map)
         {
             this.sigGrid = new short[map.Size.x][];
-            this.visGrid = new float[map.Size.x][];            
+            this.visGrid = new float[map.Size.x][];
             this.sizeX = map.Size.x;
             this.sizeZ = map.Size.z;
             for (int i = 0; i < map.Size.x; i++)
@@ -47,7 +47,7 @@ namespace CombatExtended
             this.signature++;
             this.lastTick = GenTicks.TicksGame;
         }
-        
+
         public void Set(int i, int j, float visibility) => Set(new IntVec3(i, 0, j), visibility);
         public void Set(IntVec3 cell, float visibility)
         {
@@ -65,7 +65,7 @@ namespace CombatExtended
 
         public bool TryGet(int i, int j, out float visibility) => TryGet(new IntVec3(i, 0, j), out visibility);
         public bool TryGet(IntVec3 cell, out float visibility)
-        {            
+        {
             if (!cell.InBounds(map) || this.sigGrid[cell.x][cell.z] != signature)
             {
                 visibility = 0f;
@@ -73,7 +73,7 @@ namespace CombatExtended
             }
             visibility = this.visGrid[cell.x][cell.z];
             return true;
-        }                
+        }
     }
 }
 

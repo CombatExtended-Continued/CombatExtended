@@ -8,12 +8,12 @@ using Verse;
 namespace CombatExtended
 {
     public abstract class TravelingThing : WorldObject
-    {        
+    {
         private int startingTile;
         private int destinationTile;
         private int distanceInTiles;
 
-        private float tilesPerTick;                
+        private float tilesPerTick;
         private float distance;
         private float distanceTraveled;
 
@@ -26,7 +26,7 @@ namespace CombatExtended
         protected virtual Vector3 End
         {
             get => _end.HasValue ? _end.Value : (_end = Find.WorldGrid.GetTileCenter(destinationTile)).Value;
-        }        
+        }
 
         public virtual float TilesPerTick
         {
@@ -42,31 +42,31 @@ namespace CombatExtended
         }
 
         public float TraveledPtc => this.distanceTraveled / this.distanceInTiles;
-        public override Vector3 DrawPos => Vector3.Slerp(Start, End, TraveledPtc);        
+        public override Vector3 DrawPos => Vector3.Slerp(Start, End, TraveledPtc);
 
         public TravelingThing()
-        {            
-        }        
+        {
+        }
 
         public virtual bool TryTravel(int startingTile, int destinationTile)
         {
-            if(startingTile <= -1 || destinationTile <= -1 || startingTile == destinationTile)
+            if (startingTile <= -1 || destinationTile <= -1 || startingTile == destinationTile)
             {
                 Log.Warning($"CE: TryTravel in thing {this} got {startingTile} {destinationTile}");
                 return false;
             }
             this.startingTile = this.Tile = startingTile;
             this.destinationTile = destinationTile;
-            this.tilesPerTick = TilesPerTick;            
-            
+            this.tilesPerTick = TilesPerTick;
+
             Vector3 start = Find.WorldGrid.GetTileCenter(startingTile);
-            Vector3 end = Find.WorldGrid.GetTileCenter(destinationTile);               
+            Vector3 end = Find.WorldGrid.GetTileCenter(destinationTile);
 
             this.distance = GenMath.SphericalDistance(start.normalized, end.normalized);
-            this.distanceInTiles = (int) Find.World.grid.ApproxDistanceInTiles(this.distance);            
+            this.distanceInTiles = (int)Find.World.grid.ApproxDistanceInTiles(this.distance);
             return true;
         }
-               
+
         protected abstract void Arrived();
 
         public override void Tick()
@@ -81,13 +81,14 @@ namespace CombatExtended
                     Arrived();
                     Destroy();
                 }
-            }catch(Exception er)
+            }
+            catch (Exception er)
             {
                 Log.Error($"CE: TravelingThing {this} threw an exception {er}");
                 Log.Warning($"CE: TravelingThing {this} is being destroyed to prevent further errors");
                 Destroy();
             }
-        }        
+        }
 
         public override void ExposeData()
         {
@@ -97,7 +98,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref tilesPerTick, "tilesPerTick");
             Scribe_Values.Look(ref distanceInTiles, "distanceInTiles");
             Scribe_Values.Look(ref distance, "distance");
-            Scribe_Values.Look(ref distanceTraveled, "distanceTraveled");            
-        }       
+            Scribe_Values.Look(ref distanceTraveled, "distanceTraveled");
+        }
     }
 }

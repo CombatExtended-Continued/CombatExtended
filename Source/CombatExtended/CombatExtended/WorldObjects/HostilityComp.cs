@@ -34,10 +34,10 @@ namespace CombatExtended.WorldObjects
         {
             get
             {
-               UpdateCachedConfig();
-               return _raidPropability;
+                UpdateCachedConfig();
+                return _raidPropability;
             }
-        }        
+        }
         public float RaidMTBDays
         {
             get
@@ -45,7 +45,7 @@ namespace CombatExtended.WorldObjects
                 UpdateCachedConfig();
                 return _raidMTBDays;
             }
-        }        
+        }
         public float ShellingPropability
         {
             get
@@ -53,7 +53,7 @@ namespace CombatExtended.WorldObjects
                 UpdateCachedConfig();
                 return _shellingPropability;
             }
-        }        
+        }
         public List<ShellingResponseDef.ShellingResponsePart_Projectile> AvailableProjectiles
         {
             get
@@ -82,7 +82,7 @@ namespace CombatExtended.WorldObjects
             Scribe_Deep.Look(ref raider, "raider");
             if (Scribe.mode != LoadSaveMode.Saving)
             {
-                if(raider == null)
+                if (raider == null)
                 {
                     raider = new HostilityRaider();
                 }
@@ -99,14 +99,14 @@ namespace CombatExtended.WorldObjects
         {
             sheller.ThrottledTick();
             raider.ThrottledTick();
-        }       
+        }
 
         public void TryHostilityResponse(Faction attackingFaction, GlobalTargetInfo sourceInfo)
         {
 
             this.UpdateCachedConfig();
             this.Notify_Shelled(attackingFaction, sourceInfo);
-            if(parent is MapParent mapParent && mapParent.HasMap && mapParent.Map != null)
+            if (parent is MapParent mapParent && mapParent.HasMap && mapParent.Map != null)
             {
                 return;
             }
@@ -115,14 +115,14 @@ namespace CombatExtended.WorldObjects
                 return;
             }
             Map attackerMap = sourceInfo.Map;
-            if(attackerMap == null)
+            if (attackerMap == null)
             {
                 MapParent attackerMapParent = Find.World.worldObjects.MapParentAt(sourceInfo.Tile);
-                if(attackerMapParent != null && attackerMapParent.HasMap && attackerMapParent.Map != null && Find.Maps.Contains(attackerMapParent.Map))
+                if (attackerMapParent != null && attackerMapParent.HasMap && attackerMapParent.Map != null && Find.Maps.Contains(attackerMapParent.Map))
                 {
                     attackerMap = attackerMapParent.Map;
-                }               
-            }            
+                }
+            }
             float revengePoints;
             if (attackerMap != null)
             {
@@ -146,7 +146,7 @@ namespace CombatExtended.WorldObjects
             }
 #endif
             if (!sheller.Shooting && Rand.Chance(ShellingPropability))
-            {                
+            {
                 sheller.TryStartShelling(sourceInfo, revengePoints, attackingFaction);
             }
             if (attackerMap != null)
@@ -178,27 +178,27 @@ namespace CombatExtended.WorldObjects
                 }
                 faction.TryAffectGoodwillWith(attackingFaction, -75, true, true, HistoryEventDefOf.AttackedSettlement, sourceInfo);
             }
-        }        
+        }
 
         private void UpdateCachedConfig()
         {
-            if(_configTick == GenTicks.TicksGame)
+            if (_configTick == GenTicks.TicksGame)
             {
                 return;
-            }            
-            ShellingResponseDef shellingResponseDef = parent.Faction.GetShellingResponseDef();            
+            }
+            ShellingResponseDef shellingResponseDef = parent.Faction.GetShellingResponseDef();
             ShellingResponseDef.ShellingResponsePart_WorldObject objectConfig;
             if ((objectConfig = shellingResponseDef.worldObjects?.FirstOrDefault(w => w.worldObject == parent.def) ?? null) == null)
             {
                 _raidPropability = shellingResponseDef.defaultRaidPropability;
                 _raidMTBDays = shellingResponseDef.defaultRaidMTBDays;
-                _shellingPropability = shellingResponseDef.defaultShellingPropability;                             
+                _shellingPropability = shellingResponseDef.defaultShellingPropability;
             }
             else
             {
                 _raidPropability = objectConfig.raidPropability;
                 _raidMTBDays = objectConfig.raidMTBDays;
-                _shellingPropability = objectConfig.shellingPropability;                
+                _shellingPropability = objectConfig.shellingPropability;
             }
             _configTick = GenTicks.TicksGame;
             _availableProjectiles = shellingResponseDef.projectiles;

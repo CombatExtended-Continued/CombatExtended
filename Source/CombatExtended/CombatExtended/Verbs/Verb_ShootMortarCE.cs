@@ -38,11 +38,11 @@ namespace CombatExtended
         private int destinationTile;
         private int globalDistance;
         private Vector3 direction;
-        private int numShotsFired;        
+        private int numShotsFired;
 
         public override void ExposeData()
         {
-            base.ExposeData();            
+            base.ExposeData();
             Scribe_Values.Look(ref startingTile, "startingTile");
             Scribe_Values.Look(ref destinationTile, "destinationTile");
             Scribe_Values.Look(ref globalDistance, "globalDistance");
@@ -51,26 +51,26 @@ namespace CombatExtended
             Scribe_Values.Look(ref shiftedGlobalCell, "shiftedGlobalCell");
             Scribe_TargetInfo.Look(ref globalTargetInfo, "globalTargetInfo");
             Scribe_TargetInfo.Look(ref globalSourceInfo, "globalSourceInfo");
-            Scribe_TargetInfo.Look(ref mokeTargetInfo, "mokeTargetInfo");            
-        }        
+            Scribe_TargetInfo.Look(ref mokeTargetInfo, "mokeTargetInfo");
+        }
 
         public bool TryStartShelling(GlobalTargetInfo sourceInfo, GlobalTargetInfo targetInfo)
         {
             this.globalTargetInfo = targetInfo;
             this.globalSourceInfo = sourceInfo;
-            this.mokeTargetInfo = GetLocalTargetFor(targetInfo);            
+            this.mokeTargetInfo = GetLocalTargetFor(targetInfo);
             if (!TryStartCastOn(mokeTargetInfo, true, true, false))
             {
                 this.globalTargetInfo = this.globalSourceInfo = GlobalTargetInfo.Invalid;
                 this.mokeTargetInfo = LocalTargetInfo.Invalid;
                 return false;
-            }            
+            }
             return true;
-        }       
+        }
 
         public override ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)
         {
-            ShiftVecReport report = base.ShiftVecReportFor(target);            
+            ShiftVecReport report = base.ShiftVecReportFor(target);
             report.circularMissRadius = this.GetMissRadiusForDist(report.shotDist);
 
             // Check for marker
@@ -103,11 +103,11 @@ namespace CombatExtended
 
         public override ShiftVecReport ShiftVecReportFor(GlobalTargetInfo target)
         {
-            if(!target.IsMapTarget || globalTargetInfo.Map == null)
+            if (!target.IsMapTarget || globalTargetInfo.Map == null)
             {
                 return null;
             }
-            ShiftVecReport report = base.ShiftVecReportFor(target);            
+            ShiftVecReport report = base.ShiftVecReportFor(target);
             report.circularMissRadius = GetGlobalMissRadiusForDist(report.shotDist);
             report.weatherShift = (1f - globalTargetInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - globalSourceInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
 
@@ -119,16 +119,16 @@ namespace CombatExtended
             else if (target.Cell.InBounds(caster.Map))
             {
                 marker = (ArtilleryMarker)target.Cell.GetFirstThing(target.Map, ThingDef.Named(ArtilleryMarker.MarkerDef));
-            }            
+            }
             if (marker != null)
             {
                 this.targetHasMarker = true;
                 report.circularMissRadius *= 0.5f;
                 report.smokeDensity *= 0.5f;
                 report.weatherShift *= 0.25f;
-                report.lightingShift *= 0.25f;                
+                report.lightingShift *= 0.25f;
                 report.aimingAccuracy = marker.aimingAccuracy;
-                report.sightsEfficiency = marker.sightsEfficiency;                
+                report.sightsEfficiency = marker.sightsEfficiency;
             }
             else
             {
@@ -139,14 +139,14 @@ namespace CombatExtended
 
 
         protected virtual LocalTargetInfo GetLocalTargetFor(GlobalTargetInfo targetInfo)
-        {            
+        {
             this.startingTile = caster.Map.Tile;
             this.destinationTile = targetInfo.Tile;
             this.direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
             this.globalDistance = (int)CE_Utility.DistanceBetweenTiles(targetInfo.Tile, caster.Map.Tile);
-            
+
             var shellingRay = new Ray(caster.DrawPos, direction);
-            var exitCell = shellingRay.ExitCell(caster.Map);                             
+            var exitCell = shellingRay.ExitCell(caster.Map);
             return new LocalTargetInfo(exitCell);
         }
 
@@ -158,10 +158,10 @@ namespace CombatExtended
                 Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
                 return false;
             }
-            bool instant = false;                       
+            bool instant = false;
             if (Projectile.projectile is ProjectilePropertiesCE pprop)
             {
-                instant = pprop.isInstant;               
+                instant = pprop.isInstant;
             }
 
             ShiftVecReport reportGlobal = ShiftVecReportFor(globalTargetInfo);
@@ -169,9 +169,9 @@ namespace CombatExtended
             shiftedGlobalCell = globalTargetInfo.Cell;
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
-            {                
+            {
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
-                GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);                
+                GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
                 ShiftGlobalTarget(reportGlobal);
                 ShiftTarget(report, pelletMechanicsOnly, instant);
 
@@ -182,7 +182,7 @@ namespace CombatExtended
                 projectile.globalTargetInfo.mapInt = globalTargetInfo.Map;
                 projectile.globalTargetInfo.tileInt = globalTargetInfo.Tile;
                 //New aiming algorithm
-                projectile.canTargetSelf = false;                
+                projectile.canTargetSelf = false;
                 projectile.intendedTarget = globalTargetInfo.Thing ?? currentTarget;
                 projectile.globalSourceInfo = globalSourceInfo;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
@@ -194,7 +194,7 @@ namespace CombatExtended
                                     shotRotation,
                                     ShotHeight,
                                     shotSpeed,
-                                    EquipmentSource);                
+                                    EquipmentSource);
                 pelletMechanicsOnly = true;
             }
 
@@ -215,15 +215,15 @@ namespace CombatExtended
                     CompReloadable.UsedOnce();
                 }
             }
-            return true;            
+            return true;
         }
 
         public override bool TryCastShot()
-        {                        
+        {
             if (!globalTargetInfo.IsValid)
-            {                
-                return base.TryCastShot();                
-            }            
+            {
+                return base.TryCastShot();
+            }
             if (CompAmmo != null)
             {
                 if (!CompAmmo.TryReduceAmmoCount(VerbPropsCE.ammoConsumedPerShotCount))
@@ -236,7 +236,7 @@ namespace CombatExtended
                 return this.OnCastSuccessful();
             }
             return false;
-        }        
+        }
 
         protected virtual float GetMissRadiusForDist(float targDist)
         {
@@ -256,7 +256,7 @@ namespace CombatExtended
 
         protected virtual float GetGlobalMissRadiusForDist(float targDist)
         {
-            float maxRange = this.projectilePropsCE.shellingProps.range * 5f;          
+            float maxRange = this.projectilePropsCE.shellingProps.range * 5f;
             float rangePercent = targDist / maxRange;
             float missRadiusFactor = rangePercent <= 0.5f ? 1 - rangePercent : 0.5f + ((rangePercent - 0.5f) / 2);
             return VerbPropsCE.circularError * missRadiusFactor;
@@ -264,7 +264,7 @@ namespace CombatExtended
 
         private void ShiftGlobalTarget(ShiftVecReport report)
         {
-            if(report == null || !shiftedGlobalCell.IsValid)
+            if (report == null || !shiftedGlobalCell.IsValid)
             {
                 return;
             }
@@ -272,15 +272,15 @@ namespace CombatExtended
             report.shotDist = Mathf.Max(report.shotDist, report.maxRange * minDistFactor);
             float shotDist = report.shotDist;
             var target = new Vector2(shiftedGlobalCell.x, shiftedGlobalCell.z);
-            var direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;            
-                                  
-            var estimatedTargDist = report.GetRandDist();           
+            var direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
+
+            var estimatedTargDist = report.GetRandDist();
             var spreadVec = UnityEngine.Random.insideUnitCircle * Mathf.Clamp(report.spreadDegrees * Mathf.PI / 360f, -1f, 1f) * (estimatedTargDist - report.shotDist);
             var ray = new Ray2D(target, -1 * direction);
             var missVec = report.GetRandCircularVec();
-            var shiftedTarg  = ray.GetPoint((estimatedTargDist - shotDist)) + missVec + spreadVec;
-            
-            shiftedGlobalCell = new IntVec3((int)shiftedTarg.x, 0, (int)shiftedTarg.y);            
+            var shiftedTarg = ray.GetPoint((estimatedTargDist - shotDist)) + missVec + spreadVec;
+
+            shiftedGlobalCell = new IntVec3((int)shiftedTarg.x, 0, (int)shiftedTarg.y);
         }
 
         //private void CanHitFlyOverRoofTarget(IntVec3 source, IntVec3 destination)

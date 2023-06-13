@@ -18,7 +18,7 @@ namespace CombatExtended.HarmonyCE
             public static void Prefix(Faction __instance)
             {
                 FactionStrengthTracker tracker = __instance.GetStrengthTracker();
-                if(tracker != null)
+                if (tracker != null)
                 {
                     tracker.Notify_LeaderKilled();
                 }

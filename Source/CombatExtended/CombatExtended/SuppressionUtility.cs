@@ -21,7 +21,7 @@ namespace CombatExtended
 
         private static LightingTracker lightingTracker;
 
-        private static DangerTracker dangerTracker;        
+        private static DangerTracker dangerTracker;
 
         private static List<CompProjectileInterceptor> interceptors;
 
@@ -94,7 +94,7 @@ namespace CombatExtended
             interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
             lightingTracker = pawn.Map.GetLightingTracker();
             dangerTracker = pawn.Map.GetDangerTracker();
-            
+
             float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
             if (bestRating <= 0)
             {

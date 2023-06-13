@@ -20,7 +20,7 @@ namespace CombatExtended
 
         private static int carryLimit = VISIBILITY_CARRY_MAX;
 
-        private static readonly Func<IntVec3, IntVec3>[] _transformationFuncs;        
+        private static readonly Func<IntVec3, IntVec3>[] _transformationFuncs;
         private static readonly Func<IntVec3, IntVec3>[] _transformationInverseFuncs;
         private static readonly Func<Vector3, Vector3>[] _transformationFuncsV3;
         private static readonly Func<Vector3, Vector3>[] _transformationInverseFuncsV3;
@@ -30,12 +30,12 @@ namespace CombatExtended
 
         private static IntVec3 source;
         private static List<VisibleRow> rowQueue = new List<VisibleRow>();
-        private static Map map;        
+        private static Map map;
         private static Action<IntVec3, int> setAction;
 
         static ShadowCastingUtility()
         {
-            _transformationFuncs = new Func<IntVec3, IntVec3>[4];            
+            _transformationFuncs = new Func<IntVec3, IntVec3>[4];
             _transformationFuncs[0] = (cell) =>
             {
                 return cell;
@@ -51,7 +51,7 @@ namespace CombatExtended
             _transformationFuncs[3] = (cell) =>
             {
                 return new IntVec3(-1 * cell.z, 0, cell.x);
-            };           
+            };
             _transformationInverseFuncs = new Func<IntVec3, IntVec3>[4];
             _transformationInverseFuncs[0] = (cell) =>
             {
@@ -110,18 +110,18 @@ namespace CombatExtended
             public float startSlope;
             public float endSlope;
 
-            public int visibilityCarry;            
+            public int visibilityCarry;
             public int depth;
             public int quartor;
-            public int maxDepth;            
+            public int maxDepth;
 
             public IEnumerable<Vector3> Tiles()
             {
                 int min = (int)Mathf.Floor(this.startSlope * this.depth + 0.5f);
                 int max = (int)Mathf.Ceil(this.endSlope * this.depth - 0.5f);
-                
+
                 for (int i = min; i <= max; i++)
-                {                    
+                {
                     yield return new Vector3(depth, 0, i);
                 }
             }
@@ -155,7 +155,7 @@ namespace CombatExtended
                     return row;
                 }
             }
-        }       
+        }
 
         private static bool IsValid(Vector3 point) => point.y >= 0;
         private static float GetSlope(Vector3 point) => (2f * point.z - 1.0f) / (2f * point.x);
@@ -180,34 +180,34 @@ namespace CombatExtended
         }
 
         private static void TryWeightedScan(VisibleRow start)
-        {            
+        {
             rowQueue.Clear();
             rowQueue.Add(start);
-            
+
             while (rowQueue.Count > 0)
-            {                
-                VisibleRow nextRow;                
+            {
+                VisibleRow nextRow;
                 VisibleRow row = rowQueue.Pop();
-                                
+
                 if (row.depth > row.maxDepth || row.visibilityCarry <= 1e-5f)
                 {
                     continue;
                 }
-                var lastCell = InvalidOffset;                
+                var lastCell = InvalidOffset;
                 var lastIsWall = false;
                 var lastIsCover = false;
 
                 foreach (Vector3 offset in row.Tiles())
-                {                                        
+                {
                     var cell = source + row.Transform(offset.ToIntVec3());
                     var isWall = !cell.InBounds(map) || !cell.CanBeSeenOver(map);
-                    var isCover = !isWall && cell.GetCover(map)?.def.Fillage == FillCategory.Partial;                    
-                    
+                    var isCover = !isWall && cell.GetCover(map)?.def.Fillage == FillCategory.Partial;
+
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
-                    {                        
+                    {
                         setAction(cell, row.visibilityCarry);
                     }
-                    if(isCover && row.visibilityCarry >= carryLimit)
+                    if (isCover && row.visibilityCarry >= carryLimit)
                     {
                         isCover = false;
                         isWall = true;
@@ -241,13 +241,13 @@ namespace CombatExtended
                                 nextRow.visibilityCarry += 1;
                             }
                             rowQueue.Add(nextRow);
-                        }                        
-                    }                    
-                    cellsScanned++;                    
-                    lastCell = offset;                                      
+                        }
+                    }
+                    cellsScanned++;
+                    lastCell = offset;
                     lastIsWall = isWall;
                     lastIsCover = isCover;
-                }                
+                }
                 if (lastCell.y >= 0 && !lastIsWall)
                 {
                     nextRow = row.Next();
@@ -255,7 +255,7 @@ namespace CombatExtended
                     {
                         nextRow.visibilityCarry += 1;
                     }
-                    rowQueue.Add(nextRow);                    
+                    rowQueue.Add(nextRow);
                 }
             }
         }
@@ -268,25 +268,25 @@ namespace CombatExtended
             {
                 VisibleRow nextRow;
                 VisibleRow row = rowQueue.Pop();
-                
+
                 if (row.depth > row.maxDepth)
                 {
                     continue;
                 }
                 var lastCell = InvalidOffset;
                 var lastIsWall = false;
-                
+
                 foreach (Vector3 offset in row.Tiles())
                 {
                     var cell = source + row.Transform(offset.ToIntVec3());
-                    var isWall = !cell.InBounds(map) || !cell.CanBeSeenOverFast(map);                    
+                    var isWall = !cell.InBounds(map) || !cell.CanBeSeenOverFast(map);
 
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
                     {
                         setAction(cell, 1);
                     }
                     if (IsValid(lastCell)) // check so it's a valid offsets
-                    {                        
+                    {
                         if (!isWall && lastIsWall)
                         {
                             row.startSlope = GetSlope(offset);
@@ -294,16 +294,16 @@ namespace CombatExtended
                         else if (isWall && !lastIsWall)
                         {
                             nextRow = row.Next();
-                            nextRow.endSlope = GetSlope(offset);                               
+                            nextRow.endSlope = GetSlope(offset);
                             rowQueue.Add(nextRow);
-                        }                        
-                    }                    
-                    cellsScanned++;                    
+                        }
+                    }
+                    cellsScanned++;
                     lastCell = offset;
                     lastIsWall = isWall;
                 }
                 if (lastCell.y >= 0 && !lastIsWall)
-                {                                    
+                {
                     rowQueue.Add(row.Next());
                 }
             }
@@ -313,7 +313,7 @@ namespace CombatExtended
         private static void TryCastWeighted(float startSlope, float endSlope, int quartor, int maxDepth) => TryCast(TryWeightedScan, startSlope, endSlope, quartor, maxDepth);
 
         private static void TryCast(Action<VisibleRow> castAction, float startSlope, float endSlope, int quartor, int maxDepth)
-        {            
+        {
             if (endSlope > 1.0f || startSlope < -1 || startSlope > endSlope)
             {
                 throw new InvalidOperationException($"CE: Scan quartor {quartor} endSlope and start slop must be between (-1, 1) but got start:{startSlope}\tend:{endSlope}");
@@ -325,7 +325,7 @@ namespace CombatExtended
             arc.maxDepth = maxDepth;
             arc.quartor = quartor;
             castAction(arc);
-        }                         
+        }
     }
 }
 

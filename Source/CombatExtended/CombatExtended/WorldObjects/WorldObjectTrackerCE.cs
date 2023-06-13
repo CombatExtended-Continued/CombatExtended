@@ -15,11 +15,11 @@ namespace CombatExtended.WorldObjects
         public const int THROTTLED_TICK_INTERVAL = 15;
 
         private class TrackedObject
-        {            
+        {
             public readonly WorldObject worldObject;
             public readonly List<IWorldCompCE> compsCE;
 
-            public bool IsValid => !compsCE.NullOrEmpty() && worldObject != null && !worldObject.destroyed;             
+            public bool IsValid => !compsCE.NullOrEmpty() && worldObject != null && !worldObject.destroyed;
 
             public TrackedObject(RimWorld.Planet.WorldObject worldObject, List<IWorldCompCE> compsCE)
             {
@@ -33,7 +33,7 @@ namespace CombatExtended.WorldObjects
                 {
                     return;
                 }
-                for(int i = 0; i < compsCE.Count; i++)
+                for (int i = 0; i < compsCE.Count; i++)
                 {
                     compsCE[i].ThrottledCompTick();
                 }
@@ -41,7 +41,7 @@ namespace CombatExtended.WorldObjects
         }
 
         private int cleanUpIndex = 0;
-        private int updateIndex = 0;        
+        private int updateIndex = 0;
 
         private List<TrackedObject>[] trackedObjects = new List<TrackedObject>[THROTTLED_TICK_INTERVAL];
 
@@ -52,13 +52,13 @@ namespace CombatExtended.WorldObjects
                 for (int i = 0; i < THROTTLED_TICK_INTERVAL; i++)
                 {
                     List<TrackedObject> items = trackedObjects[i];
-                    for(int j = 0;j < items.Count; j++)
+                    for (int j = 0; j < items.Count; j++)
                     {
                         if (!items[j].IsValid)
                         {
                             continue;
                         }
-                        yield return items[j].worldObject;                        
+                        yield return items[j].worldObject;
                     }
                 }
             }
@@ -66,7 +66,7 @@ namespace CombatExtended.WorldObjects
 
         public WorldObjectTrackerCE(World world) : base(world)
         {
-            for(int i = 0; i < THROTTLED_TICK_INTERVAL; i++)
+            for (int i = 0; i < THROTTLED_TICK_INTERVAL; i++)
             {
                 trackedObjects[i] = new List<TrackedObject>();
             }
@@ -108,7 +108,7 @@ namespace CombatExtended.WorldObjects
             if (compsCE.NullOrEmpty())
             {
                 return;
-            }            
+            }
             int minCountIndex = 0;
             int minCount = trackedObjects[0].Count;
             for (int i = 0; i < THROTTLED_TICK_INTERVAL; i++)
@@ -123,7 +123,7 @@ namespace CombatExtended.WorldObjects
                     minCount = trackedObjects[i].Count;
                 }
             }
-            TrackedObject element = new TrackedObject(worldObject, compsCE);            
+            TrackedObject element = new TrackedObject(worldObject, compsCE);
             trackedObjects[minCountIndex].Add(element);
         }
 
@@ -133,7 +133,7 @@ namespace CombatExtended.WorldObjects
             {
                 trackedObjects[i].RemoveAll(u => !u.IsValid || u.worldObject == worldObject);
             }
-        }        
+        }
     }
 }
 

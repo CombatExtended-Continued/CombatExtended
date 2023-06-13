@@ -101,7 +101,7 @@ namespace CombatExtended
                     );
                     Find.BattleLog.Add(logEntry);
                 }
-                if(launcher == null && hitThing is Pawn hitPawn1)
+                if (launcher == null && hitThing is Pawn hitPawn1)
                 {
                     logEntry =
                         new BattleLogEntry_DamageTaken(

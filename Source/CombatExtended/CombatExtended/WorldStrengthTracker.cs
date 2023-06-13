@@ -12,7 +12,7 @@ namespace CombatExtended
         private bool initialized = false;
         private List<FactionStrengthTracker> trackers = new List<FactionStrengthTracker>();
 
-        public WorldStrengthTracker(World world) : base(world) 
+        public WorldStrengthTracker(World world) : base(world)
         {
         }
 
@@ -23,7 +23,7 @@ namespace CombatExtended
             {
                 Rebuild();
             }
-            if(GenTicks.TicksGame % 30000 == 0)
+            if (GenTicks.TicksGame % 30000 == 0)
             {
                 Rebuild();
             }
@@ -36,7 +36,7 @@ namespace CombatExtended
             {
                 Scribe_Collections.Look(ref trackers, "trackers", LookMode.Deep);
             }
-            catch(Exception er)
+            catch (Exception er)
             {
                 Log.Error($"CE: WorldStrengthTracker failed to scribe, rebuilding.");
                 Log.Error($"CE: {er}");
@@ -47,11 +47,11 @@ namespace CombatExtended
 
         public FactionStrengthTracker GetFactionTracker(Faction faction)
         {
-            if(faction == null)
+            if (faction == null)
             {
                 return null;
             }
-            if(faction.defeated || faction.IsPlayer)
+            if (faction.defeated || faction.IsPlayer)
             {
                 return null;
             }
@@ -77,13 +77,13 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                if(trackers.Any(s => s.Faction == faction))
+                if (trackers.Any(s => s.Faction == faction))
                 {
                     continue;
                 }
                 FactionStrengthTracker tracker = new FactionStrengthTracker(faction);
                 trackers.Add(tracker);
-            }            
+            }
         }
     }
 }
