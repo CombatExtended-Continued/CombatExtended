@@ -30,7 +30,7 @@ namespace CombatExtended.WorldObjects
 
         #region ResponseConfigParameters        
 
-        public float RaidPropability
+        public virtual float RaidPropability
         {
             get
             {
@@ -38,7 +38,7 @@ namespace CombatExtended.WorldObjects
                 return _raidPropability;
             }
         }
-        public float RaidMTBDays
+        public virtual float RaidMTBDays
         {
             get
             {
@@ -46,7 +46,7 @@ namespace CombatExtended.WorldObjects
                 return _raidMTBDays;
             }
         }
-        public float ShellingPropability
+        public virtual float ShellingPropability
         {
             get
             {
@@ -54,7 +54,7 @@ namespace CombatExtended.WorldObjects
                 return _shellingPropability;
             }
         }
-        public List<ShellingResponseDef.ShellingResponsePart_Projectile> AvailableProjectiles
+        public virtual List<ShellingResponseDef.ShellingResponsePart_Projectile> AvailableProjectiles
         {
             get
             {
@@ -95,13 +95,13 @@ namespace CombatExtended.WorldObjects
             }
         }
 
-        public void ThrottledCompTick()
+        public virtual void ThrottledCompTick()
         {
             sheller.ThrottledTick();
             raider.ThrottledTick();
         }
 
-        public void TryHostilityResponse(Faction attackingFaction, GlobalTargetInfo sourceInfo)
+        public virtual void TryHostilityResponse(Faction attackingFaction, GlobalTargetInfo sourceInfo)
         {
 
             this.UpdateCachedConfig();
@@ -161,11 +161,11 @@ namespace CombatExtended.WorldObjects
             }
         }
 
-        public void Notify_Destoyed(Faction attackingFaction, GlobalTargetInfo sourceInfo)
+        public virtual void Notify_Destoyed(Faction attackingFaction, GlobalTargetInfo sourceInfo)
         {
         }
 
-        public void Notify_Shelled(Faction attackingFaction, GlobalTargetInfo sourceInfo)
+        public virtual void Notify_Shelled(Faction attackingFaction, GlobalTargetInfo sourceInfo)
         {
             Faction faction = parent.Faction;
             if (faction != null && attackingFaction != null && attackingFaction != faction) // check the projectile faction
@@ -180,7 +180,7 @@ namespace CombatExtended.WorldObjects
             }
         }
 
-        private void UpdateCachedConfig()
+        protected virtual void UpdateCachedConfig()
         {
             if (_configTick == GenTicks.TicksGame)
             {

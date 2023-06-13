@@ -21,7 +21,7 @@ namespace CombatExtended.WorldObjects
         private float points = -1;
 
         public HostilityComp comp;
-        public bool AbleToRaidResponse
+        public virtual bool AbleToRaidResponse
         {
             get
             {
@@ -60,7 +60,7 @@ namespace CombatExtended.WorldObjects
         {
         }
 
-        public void ThrottledTick()
+        public virtual void ThrottledTick()
         {
             if (ticksToRaid > 0 || points < 0)
             {
@@ -79,7 +79,7 @@ namespace CombatExtended.WorldObjects
 
         // TODO
         // Move this to a queue based system
-        public bool TryRaid(Map targetMap, float points)
+        public virtual bool TryRaid(Map targetMap, float points)
         {
             if (!AbleToRaidResponse)
             {

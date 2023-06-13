@@ -35,7 +35,7 @@ namespace CombatExtended.WorldObjects
         private int cooldownTicks = -1;
 
         public HostilityComp comp;
-        public bool AbleToShellResponse
+        public virtual bool AbleToShellResponse
         {
             get
             {
@@ -69,16 +69,16 @@ namespace CombatExtended.WorldObjects
             }
         }
 
-        public List<ShellingResponseDef.ShellingResponsePart_Projectile> AvailableProjectiles
+        public virtual List<ShellingResponseDef.ShellingResponsePart_Projectile> AvailableProjectiles
         {
             get => comp.AvailableProjectiles;
         }
-        public bool Shooting
+        public virtual bool Shooting
         {
             get => budget > 0 && GenTicks.TicksGame - startedAt < SHELLER_EXPIRYTICKS;
         }
 
-        public void ExposeData()
+        public virtual void ExposeData()
         {
             Scribe_Values.Look(ref budget, "budget", 0);
             Scribe_Values.Look(ref startedAt, "startedAt", -1);
@@ -90,7 +90,7 @@ namespace CombatExtended.WorldObjects
             Scribe_TargetInfo.Look(ref target, "target");
         }
 
-        public void ThrottledTick()
+        public virtual void ThrottledTick()
         {
             if (cooldownTicks > 0)
             {
@@ -144,7 +144,7 @@ namespace CombatExtended.WorldObjects
             shooter = null;
         }
 
-        private void CastShot()
+        protected virtual void CastShot()
         {
             float distance = Find.WorldGrid.TraversalDistanceBetween(target.Tile, comp.parent.Tile, true);
             ShellingResponseDef.ShellingResponsePart_Projectile responseProjectile = AvailableProjectiles
@@ -211,7 +211,7 @@ namespace CombatExtended.WorldObjects
         }
 
 
-        private void TrySendWarning()
+        protected virtual void TrySendWarning()
         {
             if (GenTicks.TicksGame - lastMessageSentAt > SHELLER_MESSAGE_TICKSCOOLDOWN || lastMessageSentAt == -1)
             {

@@ -25,52 +25,52 @@ namespace CombatExtended.WorldObjects
             get => health;
             set => health = Mathf.Clamp01(value);
         }
-        public float TotalDamageRequired
+        public virtual float TotalDamageRequired
         {
             get => DestoyedInstantly ? 1f : 100 * ArmorDamageMultiplier;
         }
-        public float DamageRequired
+        public virtual float DamageRequired
         {
             get => TotalDamageRequired * health;
         }
-        public float HealingRatePerTick
+        public virtual float HealingRatePerTick
         {
             get => parent.Faction != null ? ((int)parent.Faction.def.techLevel) / 4f * HEALTH_HEALRATE_DAY / 60000f : 0f;
         }
 
-        public float ArmorDamageMultiplier
+        public virtual float ArmorDamageMultiplier
         {
             get
             {
                 UpdateCacheValues();
                 return armorDamageMultiplier;
             }
-            private set => armorDamageMultiplier = value;
+            protected set => armorDamageMultiplier = value;
         }
-        public float NegateChance
+        public virtual float NegateChance
         {
             get
             {
                 UpdateCacheValues();
                 return negateChance;
             }
-            private set => negateChance = Mathf.Clamp01(value);
+            protected set => negateChance = Mathf.Clamp01(value);
         }
-        public bool DestoyedInstantly
+        public virtual bool DestoyedInstantly
         {
             get
             {
                 UpdateCacheValues();
                 return destroyedInstantly;
             }
-            private set => destroyedInstantly = value;
+            protected set => destroyedInstantly = value;
         }
 
         public WorldObjectCompProperties_Health Props
         {
             get => props as WorldObjectCompProperties_Health;
         }
-        public void UpdateCacheValues()
+        public virtual void UpdateCacheValues()
         {
             if (_configTick == GenTicks.TicksGame)
             {
@@ -144,11 +144,11 @@ namespace CombatExtended.WorldObjects
             Scribe_Values.Look(ref lastTick, "lastTick", -1);
         }
 
-        public void ThrottledCompTick()
+        public virtual void ThrottledCompTick()
         {
             Health += HealingRatePerTick * WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
         }
-        void TryFinishDestroyQuests(Map launcherMap)
+        protected virtual void TryFinishDestroyQuests(Map launcherMap)
         {
             QuestUtility.SendQuestTargetSignals(parent.questTags, "AllEnemiesDefeated", parent.Named("SUBJECT"), new NamedArgument(launcherMap, "MAP"));
             foreach (var quest in RelatedQuests)
@@ -163,7 +163,6 @@ namespace CombatExtended.WorldObjects
         {
             if (Rand.Chance(NegateChance))
             {
-                Log.Message($"Shell negated with chance {negateChance}");
                 return;
             }
             if (DestoyedInstantly)
@@ -182,7 +181,7 @@ namespace CombatExtended.WorldObjects
                 parent.Destroy();
             }
         }
-        public void Notify_DamageTaken(Faction attackingFaction, Map launcherMap)
+        public virtual void Notify_DamageTaken(Faction attackingFaction, Map launcherMap)
         {
             if (health <= 1e-4)
             {
@@ -192,7 +191,7 @@ namespace CombatExtended.WorldObjects
             }
         }
 
-        public void Destroy(Faction attackingFaction = null)
+        public virtual void Destroy(Faction attackingFaction = null)
         {
             int tile = parent.Tile;
             Faction faction = parent.Faction;
