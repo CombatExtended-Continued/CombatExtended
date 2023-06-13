@@ -99,7 +99,7 @@ namespace CombatExtended.Compatibility.SRTSCompat
                             shotAngle: 0f,
                             shotRotation: Rand.Range(-180f, 180f),
                             shotHeight: shotHeight,
-                            shotSpeed: 0f,
+                            shotSpeed: Rand.Range(0f, maxShotSpeed),
                             equipment: __instance);
                     // Adjust shot speed after because of
                     // this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
