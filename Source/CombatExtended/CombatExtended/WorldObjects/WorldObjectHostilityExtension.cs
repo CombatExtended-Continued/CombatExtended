@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace CombatExtended.WorldObjects
+namespace CombatExtended
 {
     public class WorldObjectHostilityExtension : DefModExtension
     {

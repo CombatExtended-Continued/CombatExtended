@@ -39,11 +39,11 @@ namespace CombatExtended.WorldObjects
         {
             get
             {
-                var res = (comp.props as WorldObjectCompProperties_Hostility).AbleToShellingResponse;
-                if (res.HasValue)
+                if (comp.AvailableProjectiles.NullOrEmpty())
                 {
-                    return res.Value;
+                    return false;
                 }
+                bool? res = null;
                 if (comp.parent is Site site)
                 {
                     foreach (var sitePart in site.parts)
@@ -55,7 +55,17 @@ namespace CombatExtended.WorldObjects
                         }
                     }
                 }
-                return !comp.AvailableProjectiles.NullOrEmpty();
+                res = comp.parent.Faction?.def.GetModExtension<WorldObjectHostilityExtension>()?.AbleToShellingResponse;
+                if (res.HasValue)
+                {
+                    return res.Value;
+                }
+                res = (comp.props as WorldObjectCompProperties_Hostility).AbleToShellingResponse;
+                if (res.HasValue)
+                {
+                    return res.Value;
+                }
+                return true;
             }
         }
 

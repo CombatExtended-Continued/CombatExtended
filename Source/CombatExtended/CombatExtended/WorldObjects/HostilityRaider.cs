@@ -25,11 +25,12 @@ namespace CombatExtended.WorldObjects
         {
             get
             {
-                var res = (comp.props as WorldObjectCompProperties_Hostility).AbleToRaidResponse;
-                if (res.HasValue)
+                FactionStrengthTracker tracker = comp.parent.Faction.GetStrengthTracker();
+                if (tracker == null || !tracker.CanRaid)
                 {
-                    return res.Value;
+                    return false;
                 }
+                bool? res = null;
                 if (comp.parent is Site site)
                 {
                     foreach (var sitePart in site.parts)
@@ -41,7 +42,16 @@ namespace CombatExtended.WorldObjects
                         }
                     }
                 }
-                FactionStrengthTracker tracker = comp.parent.Faction.GetStrengthTracker();
+                res = comp.parent.Faction?.def.GetModExtension<WorldObjectHostilityExtension>()?.AbleToRaidResponse;
+                if (res.HasValue)
+                {
+                    return res.Value;
+                }
+                res = (comp.props as WorldObjectCompProperties_Hostility).AbleToRaidResponse;
+                if (res.HasValue)
+                {
+                    return res.Value;
+                }
                 return tracker?.CanRaid ?? false;
             }
         }
