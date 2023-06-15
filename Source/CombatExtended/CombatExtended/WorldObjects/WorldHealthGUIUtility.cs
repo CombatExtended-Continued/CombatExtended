@@ -22,7 +22,7 @@ namespace CombatExtended.WorldObjects
             }
         }
 
-        private static bool Visible(WorldObject worldObject) => !worldObject.HiddenBehindTerrainNow();
+        private static bool Visible(WorldObject worldObject) => !worldObject.HiddenBehindTerrainNow() && ((worldObject.GetComponent<HealthComp>()?.Health ?? 1f) < 1f);
 
         private static void DrawHealthBar(WorldObject worldObject)
         {
