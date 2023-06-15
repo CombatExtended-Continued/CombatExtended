@@ -194,7 +194,7 @@ namespace CombatExtended.WorldObjects
 
         public virtual void Notify_PreDestroyed(Faction attackingFaction, GlobalTargetInfo sourceInfo)
         {
-            foreach (var turret in Find.Maps.SelectMany(x => x.GetComponent<TurretTracker>().Turrets).Where(x=>x.Faction == attackingFaction && x is Building_TurretGunCE).Cast<Building_TurretGunCE>().Where(x=>(x.globalTargetInfo.WorldObject?.tileInt ?? -2) == parent.tileInt))
+            foreach (var turret in Find.Maps.SelectMany(x => x.GetComponent<TurretTracker>().Turrets).Where(x => x.Faction == attackingFaction && x is Building_TurretGunCE).Cast<Building_TurretGunCE>().Where(x => (x.globalTargetInfo.WorldObject?.tileInt ?? -2) == parent.tileInt))
             {
                 turret.ResetForcedTarget();
                 turret.ResetForcedTarget();
