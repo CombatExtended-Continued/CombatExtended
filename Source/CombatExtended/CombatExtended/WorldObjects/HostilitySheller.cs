@@ -216,7 +216,8 @@ namespace CombatExtended.WorldObjects
             if (GenTicks.TicksGame - lastMessageSentAt > SHELLER_MESSAGE_TICKSCOOLDOWN || lastMessageSentAt == -1)
             {
                 lastMessageSentAt = GenTicks.TicksGame;
-                Messages.Message("CE_Message_CounterShelling".Translate(comp.parent.Label, comp.parent.Faction.Name), MessageTypeDefOf.ThreatBig);
+                var letter = LetterMaker.MakeLetter("CE_CounterShellingLabel".Translate(), "CE_Message_CounterShelling".Translate(comp.parent.Label, comp.parent.Faction.Name), CE_LetterDefOf.CE_ThreatBig, comp.parent, comp.parent.Faction);
+                Find.LetterStack.ReceiveLetter(letter);
             }
         }
 

@@ -93,8 +93,8 @@ namespace CombatExtended.WorldObjects
             this.points = points;
             ticksToRaid = Rand.Range(3000, 15000);
 
-            string factionName = $"<color=red>{comp.parent.Faction.Name}</color>";
-            string objectName = $"<color=blue>{comp.parent.Label}</color>";
+            string factionName = comp.parent.Faction.Name;
+            string objectName = comp.parent.Label;
 
             StorytellerComp storytellerComp = Find.Storyteller.storytellerComps.First((StorytellerComp x) => x is StorytellerComp_OnOffCycle || x is StorytellerComp_RandomMain);
             parms = storytellerComp.GenerateParms(IncidentCategoryDefOf.ThreatBig, Find.CurrentMap);
