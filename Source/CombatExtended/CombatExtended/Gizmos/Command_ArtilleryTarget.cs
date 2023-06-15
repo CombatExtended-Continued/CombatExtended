@@ -81,6 +81,11 @@ namespace CombatExtended
                     });
                     return false;
                 }
+                if (targetInfo.WorldObject.Destroyed || targetInfo.WorldObject is DestroyedSettlement || targetInfo.WorldObject.def == WorldObjectDefOf.DestroyedSettlement)
+                {
+                    Messages.Message("CE_ArtilleryTarget_AlreadyDestroyed".Translate(), MessageTypeDefOf.CautionInput);
+                    return false;
+                }
                 if (targetInfo.WorldObject.Faction != null)
                 {
                     Faction targetFaction = targetInfo.WorldObject.Faction;

@@ -186,11 +186,20 @@ namespace CombatExtended.WorldObjects
             if (health <= 1e-4)
             {
                 TryFinishDestroyQuests(launcherMap);
+                Notify_PreDestroyed(attackingFaction, new GlobalTargetInfo(launcherMap.Parent));
                 Destroy();
                 return;
             }
         }
 
+        public virtual void Notify_PreDestroyed(Faction attackingFaction, GlobalTargetInfo sourceInfo)
+        {
+            foreach (var turret in Find.Maps.SelectMany(x => x.GetComponent<TurretTracker>().Turrets).Where(x=>x.Faction == attackingFaction && x is Building_TurretGunCE).Cast<Building_TurretGunCE>().Where(x=>(x.globalTargetInfo.WorldObject?.tileInt ?? -2) == parent.tileInt))
+            {
+                turret.ResetForcedTarget();
+                turret.ResetForcedTarget();
+            }
+        }
         public virtual void Destroy(Faction attackingFaction = null)
         {
             int tile = parent.Tile;

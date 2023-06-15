@@ -52,7 +52,7 @@ namespace CombatExtended
         public bool isReloading = false;
         private int ticksUntilAutoReload = 0;
         private bool everSpawned = false;
-        private GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
+        public GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
 
         #endregion
 
