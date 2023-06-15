@@ -29,7 +29,11 @@ namespace CombatExtended.Compatibility
         }
         private static bool CheckIntercept(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
-            IEnumerable<ThingWithComps> interceptors = projectile.Map.listerThings.AllThings.Where(x => (x as ThingWithComps)?.TryGetComp<CompShieldField>() != null).Cast<ThingWithComps>();
+            List<CompShieldField> interceptors;
+            if (!CompShieldField.listerShieldGensByMaps.TryGetValue(projectile.Map, out interceptors))
+            {
+                return false;
+            }
             if (!interceptors.Any())
             {
                 return false;
@@ -39,12 +43,16 @@ namespace CombatExtended.Compatibility
             var newExactPos = projectile.ExactPosition;
             foreach (var interceptor in interceptors)
             {
-                var interceptorComp = interceptor.GetComp<CompShieldField>();
+                var interceptorComp = interceptor;
+                if (!interceptorComp.active)
+                {
+                    continue;
+                }
                 if (interceptorComp.ThingsWithinRadius.Contains(launcher))
                 {
                     continue;
                 }
-                Vector3 shieldPosition = interceptor.Position.ToVector3ShiftedWithAltitude(0.5f);
+                Vector3 shieldPosition = interceptor.parent.Position.ToVector3ShiftedWithAltitude(0.5f);
                 float radius = interceptorComp.ShieldRadius;
                 float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
                 if ((lastExactPos - shieldPosition).sqrMagnitude < radius * radius)
@@ -70,7 +78,7 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
                 var intersectionPoints = //BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptorThing.Position.ToVector3(), (radius ) * (radius));
-                    VanillaPsycastExpanded.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.Position.ToVector3(), (radius));
+                    VanillaPsycastExpanded.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.parent.Position.ToVector3(), (radius));
                 if (intersectionPoints == new Vector3[] { Vector3.zero, Vector3.zero })
                 {
                     continue;
