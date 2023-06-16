@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using CombatExtended.WorldObjects;
+using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
@@ -16,6 +19,19 @@ namespace CombatExtended
         public static string TileIndexTip(World world, int tile)
         {
             return $"Tile index: {tile}";
+        }
+
+        [DebugOutput("CE", name = "Not patched WorldObjecDefs")]
+        public static void NotPatchedWorldObjectDefs()
+        {
+            var notPatched = DefDatabase<WorldObjectDef>.AllDefsListForReading.Where(x => !x.comps.Any(comp => comp is WorldObjectCompProperties_Health) || !x.comps.Any(comp => comp is WorldObjectCompProperties_Hostility));
+            TableDataGetter<WorldObjectDef>[] array = new TableDataGetter<WorldObjectDef>[5];
+            array[0] = new TableDataGetter<WorldObjectDef>("ModName", (WorldObjectDef d) => $"{d.modContentPack?.Name}");
+            array[1] = new TableDataGetter<WorldObjectDef>("def", (WorldObjectDef d) => $"{d.defName}");
+            array[2] = new TableDataGetter<WorldObjectDef>("label", (WorldObjectDef d) => $"{d.label}");
+            array[3] = new TableDataGetter<WorldObjectDef>("HostilityPatched", (WorldObjectDef d) => d.comps.Any(comp => comp is WorldObjectCompProperties_Hostility));
+            array[4] = new TableDataGetter<WorldObjectDef>("HealthPatched", (WorldObjectDef d) => d.comps.Any(comp => comp is WorldObjectCompProperties_Health));
+            DebugTables.MakeTablesDialog<WorldObjectDef>(notPatched, array);
         }
     }
 }
