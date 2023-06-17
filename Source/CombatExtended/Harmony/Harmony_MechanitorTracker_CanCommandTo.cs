@@ -11,7 +11,7 @@ namespace CombatExtended.HarmonyCE
         {
             if (___pawn != null)
             {
-                __result = (float)___pawn.Position.DistanceToSquared(target.Cell) < 1927.21;
+                __result = (float)___pawn.Position.DistanceToSquared(target.Cell) < 1936;
             }
         }
     }
