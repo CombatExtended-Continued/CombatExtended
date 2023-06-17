@@ -120,7 +120,7 @@ namespace CombatExtended.WorldObjects
                 TrySendWarning();
             }
             this.targetFaction = targetFaction;
-            if(comp.parent.Faction.def.humanlikeFaction)
+            if (comp.parent.Faction.def.humanlikeFaction)
             {
                 shooter = comp.parent.Faction.GetRandomWorldPawn();
             }
