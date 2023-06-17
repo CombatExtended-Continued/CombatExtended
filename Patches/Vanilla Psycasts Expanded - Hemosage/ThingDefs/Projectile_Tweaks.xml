@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Psycasts Expanded - Hemosage</li>
+        </mods>
+
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="VPEH_BloodShard"]/defaultArmorPenetration</xpath>
+                    <value>
+                        <defaultArmorPenetration>3</defaultArmorPenetration>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="VPEH_SanguineSpear"]/defaultArmorPenetration</xpath>
+                    <value>
+                        <defaultArmorPenetration>6</defaultArmorPenetration>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="VPEH_SanguineSpear"]/projectile/speed</xpath>
+                    <value>
+                        <speed>30</speed>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>
