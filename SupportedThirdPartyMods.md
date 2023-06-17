@@ -470,6 +470,7 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
+Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Phytokin  |
