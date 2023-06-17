@@ -225,14 +225,6 @@ namespace CombatExtended.WorldObjects
                 }
                 Find.LetterStack.ReceiveLetter("CE_Message_SettlementDestroyed_Label".Translate(), message, LetterDefOf.NeutralEvent);
                 TryDestroy();
-                DestroyedSettlement destroyedSettlement = (DestroyedSettlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.DestroyedSettlement);
-                destroyedSettlement.tileInt = tile;
-                if (faction != null)
-                {
-                    destroyedSettlement.SetFaction(faction);
-                }
-                destroyedSettlement.SpawnSetup();
-                Find.World.worldObjects.Add(destroyedSettlement);
                 if (tracker != null)
                 {
                     tracker.Notify_SettlementDestroyed();

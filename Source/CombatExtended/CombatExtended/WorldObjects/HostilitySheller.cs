@@ -120,7 +120,10 @@ namespace CombatExtended.WorldObjects
                 TrySendWarning();
             }
             this.targetFaction = targetFaction;
-            shooter = comp.parent.Faction.GetRandomWorldPawn();
+            if(comp.parent.Faction.def.humanlikeFaction)
+            {
+                shooter = comp.parent.Faction.GetRandomWorldPawn();
+            }
             target = targetInfo;
             ticksToNextShot = GetTicksToCooldown();
             budget = (int)(Mathf.CeilToInt(points) * SHELLING_FACTOR);
