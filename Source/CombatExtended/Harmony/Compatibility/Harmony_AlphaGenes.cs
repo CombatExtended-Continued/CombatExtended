@@ -45,11 +45,11 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 {
                     if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 1225f)
                     {
-                        yield return new CodeInstruction(OpCodes.Ldc_R4, 59f * 59f); //Your value here
+                        yield return new CodeInstruction(OpCodes.Ldc_R4, 3469.21f); //Your value here
                     }
                     else if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 225f)
                     {
-                        yield return new CodeInstruction(OpCodes.Ldc_R4, 29f * 29f); //Your value here
+                        yield return new CodeInstruction(OpCodes.Ldc_R4, 835.21f); //Your value here
                     }
                     else
                     {
@@ -78,11 +78,11 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 {
                     if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 35f)
                     {
-                        yield return new CodeInstruction(OpCodes.Ldc_R4, 59f); //Your value here
+                        yield return new CodeInstruction(OpCodes.Ldc_R4, 58.9f); //Your value here
                     }
                     else if (instruction.opcode == OpCodes.Ldc_R4 && ((float)instruction.operand) == 15f)
                     {
-                        yield return new CodeInstruction(OpCodes.Ldc_R4, 29f); //Your value here
+                        yield return new CodeInstruction(OpCodes.Ldc_R4, 28.9f); //Your value here
                     }
                     else
                     {
