@@ -12,7 +12,7 @@ namespace CombatExtended.HarmonyCE
         {
             if (___pawn != null && ___pawn.Spawned && __instance.AnySelectedDraftedMechs)
             {
-                GenDraw.DrawRadiusRing(___pawn.Position, 44f, Color.white, (IntVec3 c) => ___pawn.mechanitor.CanCommandTo(c));
+                GenDraw.DrawRadiusRing(___pawn.Position, 43.9f, Color.white, /*(IntVec3 c) => ___pawn.mechanitor.CanCommandTo(c)*/null); //Radii ending in .9 line up with the radial pattern used, predicate check isn't needed
             }
             return false;
         }
