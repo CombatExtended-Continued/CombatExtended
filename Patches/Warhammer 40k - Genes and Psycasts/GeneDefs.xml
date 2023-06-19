@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>Warhammer 40k - Genes and Psycasts</li>
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
+        <!-- Progenoid Glands -->
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/GeneDef[defName="BEWH_ProgenoidGlands"]</xpath>
+          <value>
+            <statOffsets>
+              <SmokeSensitivity>-1</SmokeSensitivity>
+            </statOffsets>
+          </value>
+        </li>
+
+        <!-- Multi-Lung -->
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/GeneDef[defName="BEWH_MultiLung"]/statOffsets</xpath>
+          <value>
+            <SmokeSensitivity>-1</SmokeSensitivity>
+          </value>
+        </li>
+
+        <!-- Occulobe -->
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/GeneDef[defName="BEWH_Occulobe"]</xpath>
+          <value>
+            <statOffsets>
+              <NightVisionEfficiency>0.8</NightVisionEfficiency>
+            </statOffsets>  
+          </value>
+        </li>
 
         <!-- Ossmodula -->
 
@@ -15,6 +47,7 @@
             <ArmorRating_Blunt>6</ArmorRating_Blunt>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_Ossmodula"]/statOffsets/ArmorRating_Sharp</xpath>
           <value>
@@ -48,14 +81,18 @@
           <xpath>Defs/GeneDef[defName="BEWH_Custodes"]/statOffsets/ArmorRating_Blunt</xpath>
           <value>
             <ArmorRating_Blunt>24.5</ArmorRating_Blunt>
+            <NightVisionEfficiency>0.8</NightVisionEfficiency>
+            <SmokeSensitivity>-1</SmokeSensitivity>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_Custodes"]/statOffsets/ArmorRating_Sharp</xpath>
           <value>
-            <ArmorRating_Sharp>6.5</ArmorRating_Sharp>
+            <ArmorRating_Sharp>8</ArmorRating_Sharp>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_Custodes"]/statOffsets/CarryingCapacity</xpath>
           <value>
@@ -69,14 +106,18 @@
           <xpath>Defs/GeneDef[defName="BEWH_Primarch"]/statOffsets/ArmorRating_Blunt</xpath>
           <value>
             <ArmorRating_Blunt>33.75</ArmorRating_Blunt>
+            <NightVisionEfficiency>0.8</NightVisionEfficiency>
+            <SmokeSensitivity>-1</SmokeSensitivity>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_Primarch"]/statOffsets/ArmorRating_Sharp</xpath>
           <value>
-            <ArmorRating_Sharp>9</ArmorRating_Sharp>
+            <ArmorRating_Sharp>11</ArmorRating_Sharp>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_Primarch"]/statOffsets/CarryingCapacity</xpath>
           <value>
@@ -89,13 +130,14 @@
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_NurgleMark"]/statOffsets/ArmorRating_Blunt</xpath>
           <value>
-            <ArmorRating_Blunt>12</ArmorRating_Blunt>
+            <ArmorRating_Blunt>4</ArmorRating_Blunt>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_NurgleMark"]/statOffsets/ArmorRating_Sharp</xpath>
           <value>
-            <ArmorRating_Sharp>3.25</ArmorRating_Sharp>
+            <ArmorRating_Sharp>2</ArmorRating_Sharp>
           </value>
         </li>
 
@@ -104,13 +146,14 @@
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_UndividedMark"]/statOffsets/ArmorRating_Blunt</xpath>
           <value>
-            <ArmorRating_Blunt>3</ArmorRating_Blunt>
+            <ArmorRating_Blunt>2</ArmorRating_Blunt>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_UndividedMark"]/statOffsets/ArmorRating_Sharp</xpath>
           <value>
-            <ArmorRating_Sharp>1</ArmorRating_Sharp>
+            <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
           </value>
         </li>
 
@@ -122,6 +165,7 @@
             <ArmorRating_Blunt>17</ArmorRating_Blunt>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/GeneDef[defName="BEWH_DaemonHide"]/statOffsets/ArmorRating_Sharp</xpath>
           <value>
