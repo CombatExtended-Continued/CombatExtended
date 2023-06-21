@@ -18,6 +18,8 @@ namespace CombatExtended.Compatibility.SRTSCompat
             new Type[] { typeof(Thing), typeof(CompExplosive), typeof(Map), typeof(string) })]
     public static class Harmony_FallingBomb_Thing_CompExplosive_Map_string
     {
+        // Adds an additional null check for def.projectileWhenLoaded of
+        // this.projectile = def.projectileWhenLoaded.projectile;
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions,
                 ILGenerator il)
         {

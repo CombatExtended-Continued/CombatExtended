@@ -24,7 +24,8 @@ namespace CombatExtended.Compatibility.SRTSCompat
 
         private static float shotHeight = 5f;
 
-        // Yes, this is a destructive prefix, though with most of the original SRTS code
+        // A destructive prefix so as to force SRTS bombers to use our projectile system,
+        // unless the bomb isn't an AmmoThing, if so, fall back to SRTS's bombing system.
         public static bool Prefix(BomberSkyfaller __instance)
         {
             ActiveDropPod srts = (ActiveDropPod)__instance.innerContainer.First();

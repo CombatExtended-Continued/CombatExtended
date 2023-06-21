@@ -411,6 +411,7 @@ Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
+SRTS Expanded	|
 Stalingrad – Uniforms   |
 Steamworld Uniforms |
 Star Crafters Armory  |
