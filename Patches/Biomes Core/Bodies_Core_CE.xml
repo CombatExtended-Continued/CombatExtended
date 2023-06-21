@@ -290,13 +290,28 @@
 							
 						  <li Class="PatchOperationAdd">
 							<xpath>
-								Defs/BodyDef[defName="BiomesCore_Snail"]//*[
-								def="Shell"]/groups
+							  Defs/BodyDef[defName="BiomesCore_Snail"]//*[
+							  def="RWBLeftEyeStalk" or 
+							  def="RWBRightEyeStalk" or 
+							  def="Eye"]/groups
+							</xpath>
+							<value>
+							  <li>OutsideSquishy</li>
+							</value>
+						  </li>
+
+						  <li Class="PatchOperationAdd">
+							<xpath>
+							  Defs/BodyDef[defName="BiomesCore_Snail"]//*[
+							  def="Shell" or
+							  def="RWBSnailFoot" or
+							  def="RWBSnailMouth" or
+							  def="Head"]/groups
 							</xpath>
 							<value>
 							  <li>CoveredByNaturalArmor</li>
 							</value>
-						  </li>								
+						  </li>
 
 				</operations>
 			</match>
