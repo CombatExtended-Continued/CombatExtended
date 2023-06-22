@@ -72,6 +72,7 @@ Alpha Animals |
 Alpha Biomes |
 Alpha Genes |
 Alpha Genes - Insectoid Mutations |
+Alpha Mechs |
 Alpha Memes |
 Alpha Ships |
 Altered Carbon |
@@ -411,6 +412,7 @@ Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
+SRTS Expanded	|
 Stalingrad – Uniforms   |
 Steamworld Uniforms |
 Star Crafters Armory  |
@@ -469,6 +471,7 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
+Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Phytokin  |

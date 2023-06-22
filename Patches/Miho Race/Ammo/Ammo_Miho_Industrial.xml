@@ -634,7 +634,275 @@
 				</products>
 				<workAmount>3730</workAmount>
 			</RecipeDef>
-	
+			
+
+			<!-- ==================== AmmoSet ========================== -->
+
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_Miho57x93mmGrenade</defName>
+				<label>57x93mm Grenade</label>
+				<ammoTypes>
+					<Ammo_Miho57x93mmGrenade_HE>Bullet_Miho57x93mmGrenade_HE</Ammo_Miho57x93mmGrenade_HE>
+					<Ammo_Miho57x93mmGrenade_HEDP>Bullet_Miho57x93mmGrenade_HEDP</Ammo_Miho57x93mmGrenade_HEDP>
+					<Ammo_Miho57x93mmGrenade_EMP>Bullet_Miho57x93mmGrenade_EMP</Ammo_Miho57x93mmGrenade_EMP>
+				</ammoTypes>
+			</CombatExtended.AmmoSetDef>
+			<ThingCategoryDef>
+				<defName>AmmoMiho57x93mmGrenade</defName>
+				<label>57x93mm mihoic Grenade</label>
+				<parent>AmmoGrenades</parent>
+				<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+			</ThingCategoryDef>
+			<!-- ==================== Ammo ========================== -->
+
+			<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoMiho57x93mmGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
+				<description>High velocity grenade fired from mounted and crew-served grenade launchers.</description>
+				<statBases>
+					<Mass>1.6</Mass>
+					<Bulk>0.72</Bulk>
+				</statBases>
+				<tradeTags>
+					<li>CE_AutoEnableTrade</li>
+					<li>CE_AutoEnableCrafting_TableMachining</li>
+				</tradeTags>
+				<thingCategories>
+					<li>AmmoMiho57x93mmGrenade</li>
+				</thingCategories>
+				<stackLimit>150</stackLimit>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho57x93mmGrenadeBase">
+				<defName>Ammo_Miho57x93mmGrenade_HE</defName>
+				<label>57x93mm Mihoic Grenade (HE)</label>
+				<graphicData>
+					<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>10.13</MarketValue>
+				</statBases>
+				<ammoClass>GrenadeHE</ammoClass>
+				<cookOffProjectile>Bullet_Miho57x93mmGrenade_HE</cookOffProjectile>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho57x93mmGrenadeBase">
+				<defName>Ammo_Miho57x93mmGrenade_HEDP</defName>
+				<label>57x93mm Mihoic Grenade (HEDP)</label>
+				<graphicData>
+					<texPath>Things/Ammo/GrenadeLauncher/DP</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>10.13</MarketValue>
+				</statBases>
+				<ammoClass>GrenadeHEDP</ammoClass>
+				<cookOffProjectile>Bullet_Miho57x93mmGrenade_HEDP</cookOffProjectile>
+			</ThingDef>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho57x93mmGrenadeBase">
+				<defName>Ammo_Miho57x93mmGrenade_EMP</defName>
+				<label>57x93mm Mihoic Grenade (EMP)</label>
+				<graphicData>
+					<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>16.1</MarketValue>
+				</statBases>
+				<ammoClass>GrenadeEMP</ammoClass>
+				<cookOffProjectile>Bullet_Miho57x93mmGrenade_EMP</cookOffProjectile>
+			</ThingDef>
+			<!-- ================== Projectiles ================== -->
+
+			<ThingDef Name="BaseMiho57x93mmGrenadeBullett" ParentName="BaseExplosiveBullet" Abstract="true">
+				<graphicData>
+					<texPath>Things/Projectile/LauncherShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>(0.5,0.5)</drawSize>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>60</speed>
+				</projectile>
+			</ThingDef>
+
+			<ThingDef ParentName="BaseMiho57x93mmGrenadeBullett">
+				<defName>Bullet_Miho57x93mmGrenade_HE</defName>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				<label>57x93mm Mihoic Grenade (HE)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bomb</damageDef>
+					<damageAmountBase>42</damageAmountBase>
+					<explosionRadius>1.5</explosionRadius>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				</projectile>
+				<comps>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+				
+			</ThingDef>
+
+			<ThingDef ParentName="BaseMiho57x93mmGrenadeBullett">
+				<defName>Bullet_Miho57x93mmGrenade_HEDP</defName>
+				<thingClass>CombatExtended.BulletCE</thingClass>
+				<label>57x93mm Mihoic Grenade (HEDP)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>96</damageAmountBase>
+					<armorPenetrationSharp>76</armorPenetrationSharp>
+					<armorPenetrationBlunt>12.734</armorPenetrationBlunt>
+				</projectile>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>42</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>0.5</explosiveRadius>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+						<Fragment_Small>25</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+			
+			<ThingDef ParentName="BaseMiho57x93mmGrenadeBullett">
+				<defName>Bullet_Miho57x93mmGrenade_EMP</defName>
+				<label>57x93mm Mihoic Grenade (EMP)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<explosionRadius>2.5</explosionRadius>
+					<damageDef>EMP</damageDef>
+					<damageAmountBase>42</damageAmountBase>
+				</projectile>
+			</ThingDef>
+			<!-- ==================== Recipes ========================== -->
+
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_Miho57x93mmGrenade_HE</defName>
+				<label>make 57x93mm Miho (HE) Grenade x50</label>
+				<description>Craft 50 57x93mm Miho (HE) Grenade.</description>
+				<jobString>Making 57x93mm Miho (HE) Grenade.</jobString>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</filter>
+						<count>160</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>FSX</li>
+							</thingDefs>
+						</filter>
+						<count>12</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+						<li>FSX</li>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_Miho57x93mmGrenade_HE>100</Ammo_Miho57x93mmGrenade_HE>
+				</products>
+				<workAmount>22000</workAmount>
+			</RecipeDef>
+			
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_Miho57x93mmGrenade_HEDP</defName>
+				<label>make 57x93mm Miho (HEDP) Grenade x50</label>
+				<description>Craft 50 57x93mm Miho (HEDP) Grenade.</description>
+				<jobString>Making 57x93mm Miho (HEDP) Grenade.</jobString>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</filter>
+						<count>160</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>FSX</li>
+							</thingDefs>
+						</filter>
+						<count>12</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</filter>
+						<count>2</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+						<li>FSX</li>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_Miho57x93mmGrenade_HEDP>50</Ammo_Miho57x93mmGrenade_HEDP>
+				</products>
+				<workAmount>17200</workAmount>
+			</RecipeDef>
+			
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_Miho57x93mmGrenade_EMP</defName>
+				<label>make 57x93mm Miho (EMP) Grenade x50</label>
+				<description>Craft 50 57x93mm Miho (EMP) Grenade.</description>
+				<jobString>Making 57x93mm Miho (EMP) Grenade.</jobString>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</filter>
+						<count>160</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>ComponentIndustrial</li>
+							</thingDefs>
+						</filter>
+						<count>15</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_Miho57x93mmGrenade_EMP>50</Ammo_Miho57x93mmGrenade_EMP>
+				</products>
+				<workAmount>25000</workAmount>
+			</RecipeDef>
+			
 			</value>
 		</match>	
 	  </Operation>
