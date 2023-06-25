@@ -20,6 +20,7 @@ namespace CombatExtended.WorldObjects
         private float negateChance = 0f;
         private float armorDamageMultiplier = 1f;
         private bool destroyedInstantly = false;
+        private Queue<WorldDamageInfo> recentShells = new Queue<WorldDamageInfo>();
         public float Health
         {
             get => health;
@@ -146,7 +147,23 @@ namespace CombatExtended.WorldObjects
 
         public virtual void ThrottledCompTick()
         {
+            float oldHealth = Health;
             Health += HealingRatePerTick * WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
+            if (Health != oldHealth)
+            {
+                var decrease = Health - oldHealth;
+                while (recentShells.Any() && decrease > 0f)
+                {
+                    var oldestShell = recentShells.Peek();
+                    var value = Mathf.Min(decrease, oldestShell.Value);
+                    oldestShell.Value -= value;
+                    decrease -= value;
+                    if (oldestShell.Value <= 0f)
+                    {
+                        recentShells.Dequeue();
+                    }
+                }
+            }
         }
         protected virtual void TryFinishDestroyQuests(Map launcherMap)
         {
@@ -171,7 +188,9 @@ namespace CombatExtended.WorldObjects
                 TryDestroy();
                 return;
             }
-            Health -= CalculateDamage(shellDef.GetProjectile()) / ArmorDamageMultiplier;
+            var damage = CalculateDamage(shellDef.GetProjectile()) / ArmorDamageMultiplier;
+            Health -= damage;
+            recentShells.Enqueue(new WorldDamageInfo() { Value = damage, ShellDef = shellDef });
             Notify_DamageTaken(attackingFaction, launcherMap);
         }
         protected virtual float CalculateDamage(ThingDef projectile)
@@ -347,9 +366,20 @@ namespace CombatExtended.WorldObjects
         {
             if (DamageRequired != TotalDamageRequired || Prefs.DevMode)
             {
-                return $"{DamageRequired:0}/{TotalDamageRequired:0} HP";
+                StringBuilder builder = new StringBuilder($"{DamageRequired:0}/{TotalDamageRequired:0} HP");
+                if (Prefs.DevMode)
+                {
+                    builder.Append('\n');
+                    builder.Append(string.Join("\n", recentShells.Select(x => $"{x.ShellDef.defName} = {x.Value}")));
+                }
+                return builder.ToString();
             }
             return base.CompInspectStringExtra();
+        }
+        public class WorldDamageInfo
+        {
+            public float Value { get; set; }
+            public ThingDef ShellDef { get; set; }
         }
     }
 }
