@@ -823,6 +823,13 @@ namespace CombatExtended
         public virtual bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ, out string report)
         {
             report = "";
+            if(caster is Building_TurretGunCE turret)
+            {
+                if (turret.targetingWorldMap && turret.globalTargetInfo.IsValid)
+                {
+                    return true;
+                }
+            }
             if (caster?.Map == null || !targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
             {
                 report = "Out of bounds";

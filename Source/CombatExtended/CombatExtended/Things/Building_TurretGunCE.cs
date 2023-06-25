@@ -45,7 +45,7 @@ namespace CombatExtended
         public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
 
         // New fields
-        private bool targetingWorldMap = false;
+        public bool targetingWorldMap = false;
         private CompAmmoUser compAmmo = null;
         private CompFireModes compFireModes = null;
         private CompChangeableProjectile compChangeable = null;
@@ -379,13 +379,13 @@ namespace CombatExtended
                 TryOrderReload();
                 return;
             }
-            bool isValid = currentTargetInt.IsValid;
+            bool isValid = currentTargetInt.IsValid || globalTargetInfo.IsValid;
             currentTargetInt = forcedTarget.IsValid ? forcedTarget : TryFindNewTarget();
-            if (!isValid && currentTargetInt.IsValid)
+            if (!isValid && (currentTargetInt.IsValid || targetingWorldMap))
             {
                 SoundDefOf.TurretAcquireTarget.PlayOneShot(new TargetInfo(Position, Map, false));
             }
-            if (!currentTargetInt.IsValid)
+            if (!targetingWorldMap && !currentTargetInt.IsValid)
             {
                 ResetCurrentTarget();
                 return;
@@ -402,6 +402,7 @@ namespace CombatExtended
             }
             if (targetingWorldMap && (!globalTargetInfo.IsValid || globalTargetInfo.WorldObject is DestroyedSettlement))
             {
+                ResetForcedTarget();
                 ResetCurrentTarget();
                 return;
             }
