@@ -100,7 +100,7 @@ namespace CombatExtended
 
     public class CompArmorDurability : ThingComp
     {
-        public MechArmorDurabilityExt durabilityProps => this.parent.def.GetModExtension<MechArmorDurabilityExt>();
+        public CompProperties_ArmorDurability durabilityProps => props as CompProperties_ArmorDurability;
 
         public float maxDurability => durabilityProps.Durability;
 
@@ -135,22 +135,34 @@ namespace CombatExtended
             base.PostPostMake();
         }
 
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            regens = durabilityProps.Regenerates;
+            base.PostSpawnSetup(respawningAfterLoad);
+        }
+
         public override void PostExposeData()
         {
-            Scribe_Values.Look<bool>(ref regens, "regens", false);
+            Scribe_Values.Look(ref curDurability, "curDurability");
+            Scribe_Values.Look(ref timer, "timer");
             base.PostExposeData();
+        }
+
+        public override string CompInspectStringExtra()
+        {
+            return "Armor durability: " + curDurability.ToString() + "/" + maxDurability.ToString() + " (" + curDurabilityPercent.ToStringPercent() + ")";
         }
 
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(dinfo, out absorbed);
-            if (curDurability < 0)
-            {
-                curDurability = 0;
-            }
-            else
+            if (curDurability > 0)
             {
                 curDurability -= dinfo.Amount;
+                if (curDurability < 0)
+                {
+                    curDurability = 0;
+                }
             }
         }
 
@@ -221,8 +233,12 @@ namespace CombatExtended
         }
     }
 
-    public class MechArmorDurabilityExt : DefModExtension
+    public class CompProperties_ArmorDurability : CompProperties
     {
+        public CompProperties_ArmorDurability()
+        {
+            compClass = typeof(CompArmorDurability);
+        }
         public float Durability;
 
         public bool Regenerates;
@@ -242,6 +258,16 @@ namespace CombatExtended
         public bool CanOverHeal;
 
         public float MaxOverHeal;
+
+        public float MinArmorValueSharp = -1;
+
+        public float MinArmorValueBlunt = -1;
+
+        public float MinArmorValueHeat = -1;
+
+        public float MinArmorValueElectric = -1;
+
+        public float MinArmorPct = 0.25f;
     }
 
     public class JobDriver_RepairNaturalArmor : JobDriver

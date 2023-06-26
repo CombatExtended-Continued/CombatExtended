@@ -23,8 +23,8 @@ namespace CombatExtended
             var props = projectileDef?.projectile as ProjectilePropertiesCE;
             if (props == null)
             {
-                Log.Error("CE tried getting projectile readout with null props");
-                return "";
+                Log.Warning("CE tried getting projectile readout with null props");
+                return "CE_UnpatchedWeaponShort".Translate();
             }
 
             var stringBuilder = new StringBuilder();

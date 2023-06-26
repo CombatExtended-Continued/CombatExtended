@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Races Expanded - Waster</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="VRE_PollutionAccuracy"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<label>inactive</label>
+								<minSeverity>0.01</minSeverity>
+							</li>
+							<li>
+								<label>minor</label>
+								<minSeverity>0.02</minSeverity>
+								<statFactors>
+									<ShootingAccuracyPawn>1.1</ShootingAccuracyPawn>
+									<AimingAccuracy>1.1</AimingAccuracy>
+								</statFactors>
+							</li>
+							<li>
+								<label>moderate</label>
+								<minSeverity>0.20</minSeverity>
+								<statFactors>
+									<ShootingAccuracyPawn>1.15</ShootingAccuracyPawn>
+									<AimingAccuracy>1.2</AimingAccuracy>
+								</statFactors>
+							</li>
+							<li>
+								<label>extreme</label>
+								<minSeverity>0.50</minSeverity>
+								<statFactors>
+									<ShootingAccuracyPawn>1.2</ShootingAccuracyPawn>
+									<AimingAccuracy>1.3</AimingAccuracy>
+								</statFactors>
+							</li>
+						</stages>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
