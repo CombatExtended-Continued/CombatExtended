@@ -20,7 +20,7 @@ namespace CombatExtended.WorldObjects
         private float negateChance = 0f;
         private float armorDamageMultiplier = 1f;
         private bool destroyedInstantly = false;
-        private Queue<WorldDamageInfo> recentShells = new Queue<WorldDamageInfo>();
+        public List<WorldDamageInfo> recentShells = new List<WorldDamageInfo>();
         public float Health
         {
             get => health;
@@ -143,6 +143,7 @@ namespace CombatExtended.WorldObjects
             base.PostExposeData();
             Scribe_Values.Look(ref health, "health", 1.0f);
             Scribe_Values.Look(ref lastTick, "lastTick", -1);
+            Scribe_Collections.Look<WorldDamageInfo>(ref recentShells, nameof(recentShells), lookMode: LookMode.Deep);
         }
 
         public virtual void ThrottledCompTick()
@@ -154,13 +155,13 @@ namespace CombatExtended.WorldObjects
                 var decrease = Health - oldHealth;
                 while (recentShells.Any() && decrease > 0f)
                 {
-                    var oldestShell = recentShells.Peek();
+                    var oldestShell = recentShells.First();
                     var value = Mathf.Min(decrease, oldestShell.Value);
                     oldestShell.Value -= value;
                     decrease -= value;
                     if (oldestShell.Value <= 0f)
                     {
-                        recentShells.Dequeue();
+                        recentShells.Remove(oldestShell);
                     }
                 }
             }
@@ -190,7 +191,7 @@ namespace CombatExtended.WorldObjects
             }
             var damage = CalculateDamage(shellDef.GetProjectile()) / ArmorDamageMultiplier;
             Health -= damage;
-            recentShells.Enqueue(new WorldDamageInfo() { Value = damage, ShellDef = shellDef });
+            recentShells.Add(new WorldDamageInfo() { Value = damage, ShellDef = shellDef });
             Notify_DamageTaken(attackingFaction, launcherMap);
         }
         protected virtual float CalculateDamage(ThingDef projectile)
@@ -254,7 +255,7 @@ namespace CombatExtended.WorldObjects
             }
             return result;
         }
-        static float DamageAtRadius(ThingDef projectile, int radius)
+        internal static float DamageAtRadius(ThingDef projectile, int radius)
         {
             if (!projectile.projectile.explosionDamageFalloff)
             {
@@ -376,10 +377,18 @@ namespace CombatExtended.WorldObjects
             }
             return base.CompInspectStringExtra();
         }
-        public class WorldDamageInfo
+        public class WorldDamageInfo : IExposable
         {
-            public float Value { get; set; }
-            public ThingDef ShellDef { get; set; }
+            private float value;
+            private ThingDef shellDef;
+            public float Value { get => value; set => this.value = value; }
+            public ThingDef ShellDef { get => shellDef; set => shellDef = value; }
+
+            public void ExposeData()
+            {
+                Scribe_Defs.Look(ref shellDef, nameof(ShellDef));
+                Scribe_Values.Look(ref value, nameof(Value));
+            }
         }
     }
 }
