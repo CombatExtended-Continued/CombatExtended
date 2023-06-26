@@ -106,7 +106,7 @@ Archotech Expanded Prosthetics  |
 Archotech PowerArmor    |
 Archotech Weaponry    |
 Archotech+ (Continued)  |
-Arasaka Corporation [1.3]	|
+Arasaka Corporation	|
 Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
 Aspero Race |
