@@ -199,7 +199,7 @@ Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
-Feles - Felines of the Rim [1.3]    |
+Feles - Felines of the Rim [1.4]    |
 Fell Tribes	|
 Ferrex Race	|
 FFGermanShepherd    |
