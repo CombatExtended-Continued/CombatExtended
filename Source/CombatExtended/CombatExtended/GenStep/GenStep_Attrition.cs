@@ -31,7 +31,6 @@ namespace CombatExtended
             public IntVec3 location;
         }
 
-        private int siteCount;
         private Map map;
         private WorldObjects.HealthComp healthComp;
 
@@ -52,33 +51,25 @@ namespace CombatExtended
             {
                 try
                 {
-                    siteCount = (int)((1 - healthComp.Health) / WORLD_SHELLDAMAGE);
-                    if (siteCount > 0)
+                    foreach (var shell in healthComp.recentShells)
                     {
-                        siteCount = Mathf.Max(siteCount, MAP_MINSITECOUNT);
-                        int m = siteCount * MAP_GENLIMITER;
-                        int radius = GetRandomRadius();
+                        int radius = (int)shell.ShellDef.projectile.explosionRadius;
                         bool burn = Rand.Chance(MAP_BURNCHANCE);
-                        int dmg = GetRandomDamage();
-                        while (m-- > 0 && damagedSites.Count < siteCount)
+                        int dmg = shell.ShellDef.projectile.damageAmountBase;
+                        IntVec3 cell = new IntVec3((int)CE_Utility.RandomGaussian(1, map.Size.x - 1), 0, (int)CE_Utility.RandomGaussian(1, map.Size.z - 1));
+                        RoofDef roof = cell.GetRoof(map);
+                        if (roof != RoofDefOf.RoofRockThick && TryExplode(cell, shell.ShellDef) && !damagedSites.Any(d => d.location.DistanceToSquared(cell) < SITE_MINDIST))
                         {
-                            IntVec3 cell = new IntVec3((int)CE_Utility.RandomGaussian(1, map.Size.x - 1), 0, (int)CE_Utility.RandomGaussian(1, map.Size.z - 1));
-                            RoofDef roof = cell.GetRoof(map);
-                            if (roof != RoofDefOf.RoofRockThick && TryExplode(cell, dmg, radius) && !damagedSites.Any(d => d.location.DistanceToSquared(cell) < SITE_MINDIST))
+                            DamagedSite site = new DamagedSite()
                             {
-                                DamagedSite site = new DamagedSite()
-                                {
-                                    location = cell,
-                                    damage = dmg,
-                                    radius = radius
-                                };
-                                burn = Rand.Chance(MAP_BURNCHANCE);
-                                dmg = GetRandomDamage();
-                                radius = GetRandomRadius();
-                                damagedSites.Add(site);
-                            }
+                                location = cell,
+                                damage = dmg,
+                                radius = radius
+                            };
+                            damagedSites.Add(site);
                         }
                     }
+
                 }
                 catch (Exception er)
                 {
@@ -90,77 +81,117 @@ namespace CombatExtended
             this.healthComp = null;
         }
 
-        private bool TryExplode(IntVec3 origin, int damageBase, int radius)
+        private bool TryExplode(IntVec3 origin, ThingDef shellDef)
         {
+            var radius = (int)shellDef.GetProjectile().projectile.explosionRadius;
+            //var damageBase = shellDef.GetProjectile().projectile.damageAmountBase;
             Action<IntVec3, int> processor = (cell, carry) =>
              {
                  if (!cell.InBounds(map) || cell.DistanceTo(origin) > radius)
                  {
                      return;
                  }
-                 List<Thing> things = cell.GetThingList(map);
-                 var filthMade = false;
-                 var damageCell = (int)(damageBase * (SHADOW_CARRYLIMIT - carry) / SHADOW_CARRYLIMIT);
-                 for (int i = 0; i < things.Count; i++)
+                 List<IntVec3> cellsToAffect = new List<IntVec3>() { cell };
+                 for (int i = 0; i < radius; i++)
                  {
-                     Thing thing = things[i];
-                     if (!thing.def.useHitPoints)
+                     AddCellsNeighbors(cellsToAffect);
+                 }
+                 foreach (var cellToAffect in cellsToAffect)
+                 {
+                     List<Thing> things = cellToAffect.GetThingList(map);
+                     var filthMade = false;
+                     var damageCell = (int)(WorldObjects.HealthComp.DamageAtRadius(shellDef, (int)origin.DistanceTo(cellToAffect)) * (SHADOW_CARRYLIMIT - carry) / SHADOW_CARRYLIMIT);
+                     for (int i = 0; i < things.Count; i++)
                      {
-                         if (thing is Pawn p)//Copied from HealthUtility.DamageUntilDowned and modified
+                         Thing thing = things[i];
+                         if (!thing.def.useHitPoints)
                          {
-                             DamagePawn(p);
+                             if (thing is Pawn p)//Copied from HealthUtility.DamageUntilDowned and modified
+                             {
+                                 DamagePawn(p);
+                             }
+                             continue;
                          }
-                         continue;
-                     }
-                     thing.hitPointsInt -= damageCell * (thing.IsPlant() ? 3 : 1);
-                     if (thing.hitPointsInt > 0)
-                     {
-                         if (!filthMade && Rand.Chance(0.5f))
+                         thing.hitPointsInt -= damageCell * (thing.IsPlant() ? 3 : 1);
+                         if (thing.hitPointsInt > 0)
                          {
-                             ScatterDebrisUtility.ScatterFilthAroundThing(thing, map, ThingDefOf.Filth_RubbleBuilding);
-                             filthMade = true;
-                         }
-                         if (Rand.Chance(0.1f))
-                         {
-                             FireUtility.TryStartFireIn(cell, map, Rand.Range(0.5f, 1.5f));
-                         }
-                     }
-                     else
-                     {
-                         thing.DeSpawn(DestroyMode.Vanish);
-                         thing.Destroy(DestroyMode.Vanish);
-                         if (thing.def.category == ThingCategory.Plant && (thing.def.plant?.IsTree ?? false))
-                         {
-                             Thing burntTree = ThingMaker.MakeThing(ThingDefOf.BurnedTree);
-                             burntTree.positionInt = cell;
-                             burntTree.SpawnSetup(map, false);
                              if (!filthMade && Rand.Chance(0.5f))
                              {
-                                 ScatterDebrisUtility.ScatterFilthAroundThing(burntTree, map, ThingDefOf.Filth_Ash);
+                                 ScatterDebrisUtility.ScatterFilthAroundThing(thing, map, ThingDefOf.Filth_RubbleBuilding);
+                                 filthMade = true;
+                             }
+                             if (Rand.Chance(0.1f))
+                             {
+                                 FireUtility.TryStartFireIn(cellToAffect, map, Rand.Range(0.5f, 1.5f));
+                             }
+                         }
+                         else
+                         {
+                             thing.DeSpawn(DestroyMode.Vanish);
+                             thing.Destroy(DestroyMode.Vanish);
+                             if (thing.def.category == ThingCategory.Plant && (thing.def.plant?.IsTree ?? false))
+                             {
+                                 Thing burntTree = ThingMaker.MakeThing(ThingDefOf.BurnedTree);
+                                 burntTree.positionInt = cellToAffect;
+                                 burntTree.SpawnSetup(map, false);
+                                 if (!filthMade && Rand.Chance(0.5f))
+                                 {
+                                     ScatterDebrisUtility.ScatterFilthAroundThing(burntTree, map, ThingDefOf.Filth_Ash);
+                                     filthMade = true;
+                                 }
+                             }
+                             if (thing.def.MakeFog)
+                             {
+                                 map.fogGrid.Notify_FogBlockerRemoved(cellToAffect);
+                             }
+                             ThingDef filth = thing.def.filthLeaving ?? (Rand.Chance(0.5f) ? ThingDefOf.Filth_Ash : ThingDefOf.Filth_RubbleBuilding);
+                             if (!filthMade && FilthMaker.TryMakeFilth(cellToAffect, map, filth, Rand.Range(1, 3), FilthSourceFlags.Any))
+                             {
                                  filthMade = true;
                              }
                          }
-                         if (thing.def.MakeFog)
-                         {
-                             map.fogGrid.Notify_FogBlockerRemoved(cell);
-                         }
-                         ThingDef filth = thing.def.filthLeaving ?? (Rand.Chance(0.5f) ? ThingDefOf.Filth_Ash : ThingDefOf.Filth_RubbleBuilding);
-                         if (!filthMade && FilthMaker.TryMakeFilth(cell, map, filth, Rand.Range(1, 3), FilthSourceFlags.Any))
-                         {
-                             filthMade = true;
-                         }
                      }
-                 }
-                 map.snowGrid.SetDepth(cell, 0);
-                 map.roofGrid.SetRoof(cell, null);
-                 if (Rand.Chance(0.33f) && map.terrainGrid.CanRemoveTopLayerAt(cell))
-                 {
-                     map.terrainGrid.RemoveTopLayer(cell, false);
+                     map.snowGrid.SetDepth(cellToAffect, 0);
+                     map.roofGrid.SetRoof(cellToAffect, null);
+                     if (Rand.Chance(0.33f) && map.terrainGrid.CanRemoveTopLayerAt(cellToAffect))
+                     {
+                         map.terrainGrid.RemoveTopLayer(cellToAffect, false);
+                     }
                  }
              };
             processor(origin, 0);
             ShadowCastingUtility.CastWeighted(map, origin, processor, radius, SHADOW_CARRYLIMIT, out int count);
             return true;
+        }
+        private HashSet<IntVec3> addedCellsAffectedOnlyByDamage = new HashSet<IntVec3>();
+        private void AddCellsNeighbors(List<IntVec3> cells)
+        {
+            Explosion.tmpCells.Clear();
+            this.addedCellsAffectedOnlyByDamage.Clear();
+            for (int i = 0; i < cells.Count; i++)
+            {
+                Explosion.tmpCells.Add(cells[i]);
+            }
+            for (int j = 0; j < cells.Count; j++)
+            {
+                if (cells[j].Walkable(map))
+                {
+                    for (int k = 0; k < GenAdj.AdjacentCells.Length; k++)
+                    {
+                        IntVec3 intVec = cells[j] + GenAdj.AdjacentCells[k];
+                        if (intVec.InBounds(map) && Explosion.tmpCells.Add(intVec))
+                        {
+                            this.addedCellsAffectedOnlyByDamage.Add(intVec);
+                        }
+                    }
+                }
+            }
+            cells.Clear();
+            foreach (IntVec3 item in Explosion.tmpCells)
+            {
+                cells.Add(item);
+            }
+            Explosion.tmpCells.Clear();
         }
         void DamagePawn(Pawn pawn)
         {
