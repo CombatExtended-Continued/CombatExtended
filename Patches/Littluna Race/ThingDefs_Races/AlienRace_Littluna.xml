@@ -4,7 +4,7 @@
 	<operations>
 	  <li Class="PatchOperationFindMod">
 			
-		<mods><li>[1.3]Littluna Race</li></mods>
+		<mods><li>[1.4]Littluna Race</li></mods>
 			
 		<match Class="PatchOperationSequence">
 		<operations>
@@ -16,26 +16,22 @@
                     </value>
 			</li>
 
-            <li Class="PatchOperationAdd">
-                    <xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/comps</xpath>
-                    <value>
-                        <li Class="CombatExtended.CompProperties_Inventory" />
-						<li Class="CombatExtended.CompProperties_TacticalManager" />
-                    </value>
-			</li>
-			
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]</xpath>
 				<value>
+				<comps>
 					<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
 					</li>
 					<li Class="CombatExtended.CompProperties_Suppressable" />
+					<li Class="CombatExtended.CompProperties_Inventory" />
+					<li Class="CombatExtended.CompProperties_TacticalManager" />					
+				</comps>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Littluna"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Littluna_Race_Base"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -45,7 +41,7 @@
 
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Littluna"]/statBases</xpath>
+			 <xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Littluna_Race_Base"]/statBases</xpath>
 				  <value>
 					<Suppressability>1</Suppressability>
 					<SmokeSensitivity>1.2</SmokeSensitivity>
@@ -53,7 +49,7 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Littluna"]/tools</xpath> 
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Littluna_Race_Base"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -92,7 +88,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Littluna"]/alienRace/raceRestriction/whiteApparelList</xpath>
+			 <xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Littluna_Race_Base"]/alienRace/raceRestriction/whiteApparelList</xpath>
 				  <value>
 					<li>CE_Apparel_TacVest</li>
 					<li>CE_Apparel_Backpack</li>

@@ -106,7 +106,7 @@ Archotech Expanded Prosthetics  |
 Archotech PowerArmor    |
 Archotech Weaponry    |
 Archotech+ (Continued)  |
-Arasaka Corporation [1.3]	|
+Arasaka Corporation	|
 Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
 Aspero Race |
@@ -199,7 +199,7 @@ Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
-Feles - Felines of the Rim [1.3]    |
+Feles - Felines of the Rim [1.4]    |
 Fell Tribes	|
 Ferrex Race	|
 FFGermanShepherd    |
