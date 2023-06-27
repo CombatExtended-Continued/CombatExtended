@@ -4,6 +4,9 @@ using Verse;
 
 namespace CombatExtended
 {
+    /// <summary>
+    /// Game component responsible for clearing game-specific caches - things that would become irrelevant when loading or starting a new game.
+    /// </summary>
     public class CacheClearComponent : GameComponent
     {
         #region Fields
@@ -31,6 +34,10 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Used to register an action for clearing game-specific caches.
+        /// </summary>
+        /// <param name="action">An action that will clear cached data, it will be called from <see cref="FinalizeInit"/>.</param>
         public static void AddClearCacheAction(Action action)
         {
             clearCacheActions.Add(action);
