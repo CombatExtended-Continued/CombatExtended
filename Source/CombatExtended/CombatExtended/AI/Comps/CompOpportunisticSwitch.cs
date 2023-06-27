@@ -33,6 +33,11 @@ namespace CombatExtended.AI
 
         private static Dictionary<Faction, int> factionLastFlare = new Dictionary<Faction, int>();
 
+        static CompOpportunisticSwitch()
+        {
+            CacheClearComponent.AddClearCacheAction(() => factionLastFlare.Clear());
+        }
+
         public override int Priority => 500;
 
         public LightingTracker LightingTracker
