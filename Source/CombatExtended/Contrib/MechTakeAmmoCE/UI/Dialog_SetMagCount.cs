@@ -46,6 +46,12 @@ namespace CombatExtended
         }
         public override void DoWindowContents(Rect inRect)
         {
+            if (!mechAmmo.parent.Spawned || mechAmmo.ParentPawn.Dead)
+            {
+                Close();
+                return;
+            }
+
             float curY = 0;
             string Maglabel = "MTA_MagazinePrefix".Translate(mechAmmo.AmmoUser.Props.magazineSize);
             DrawLabel(inRect, ref curY, Maglabel);
