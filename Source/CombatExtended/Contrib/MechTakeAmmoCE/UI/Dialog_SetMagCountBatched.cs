@@ -101,7 +101,7 @@ namespace CombatExtended
             Widgets.Label(new Rect(rect.x + BotAreaWidth + Margin, curY, rect.width - BotAreaWidth * 4, BotAreaHeight), label);
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth * 4, curY, BotAreaWidth, BotAreaHeight), "-", true, true, true, null))
             {
-                count--;
+                count -= GenUI.CurrentAdjustmentMultiplier();
             }
             Text.Font = GameFont.Tiny;
             Text.Anchor = TextAnchor.MiddleCenter;
@@ -109,7 +109,7 @@ namespace CombatExtended
             Text.Anchor = TextAnchor.UpperLeft;
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth, curY, BotAreaWidth, BotAreaHeight), "+", true, true, true, null))
             {
-                count++;
+                count += GenUI.CurrentAdjustmentMultiplier();
             }
 
             count = count < 0 ? 0 : count;
