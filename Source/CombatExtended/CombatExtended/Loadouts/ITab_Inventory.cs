@@ -258,7 +258,7 @@ namespace CombatExtended
             }
             if (CanControlColonist)
             {
-                if ((thing.def.IsNutritionGivingIngestible || thing.def.IsNonMedicalDrug) && thing.IngestibleNow && base.SelPawn.WillEat_NewTemp(thing) && (!SelPawnForGear.IsTeetotaler() || !thing.def.IsNonMedicalDrug))
+                if (FoodUtility.WillIngestFromInventoryNow(base.SelPawn, thing))
                 {
                     Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
                     TooltipHandler.TipRegion(rect3, "ConsumeThing".Translate(thing.LabelNoCount, thing));
@@ -429,14 +429,49 @@ namespace CombatExtended
                             SoundDefOf.Tick_High.PlayOneShotOnCamera();
                             SyncedInterfaceIngest(thing);
                         };
+
                         string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? (string)"ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
-                        if (SelPawnForGear.IsTeetotaler() && thing.def.IsNonMedicalDrug)
+                        // Display a warning if the food will lower pawn's mood
+                        if (FoodUtility.MoodFromIngesting(SelPawnForGear, thing, thing.def) < 0)
                         {
-                            floatOptionList.Add(new FloatMenuOption(label + ": " + TraitDefOf.DrugDesire.degreeDatas.Where(x => x.degree == -1).First()?.label, null));
+                            label = $"{label}: ({"WarningFoodDisliked".Translate()})";
                         }
-                        else
+
+                        FloatMenuOption floatMenuOption = null;
+
+                        // Handle drug related ideology stuff
+                        if (ModsConfig.IdeologyActive && thing.def.IsDrug)
                         {
-                            floatOptionList.Add(new FloatMenuOption(label, eatFood));
+                            if (!new HistoryEvent(HistoryEventDefOf.IngestedDrug, SelPawnForGear.Named(HistoryEventArgsNames.Doer)).Notify_PawnAboutToDo(out floatMenuOption, label) && !PawnUtility.CanTakeDrugForDependency(SelPawnForGear, thing.def))
+                            {
+                                floatOptionList.Add(floatMenuOption);
+                            }
+                            else if (thing.def.ingestible.drugCategory == DrugCategory.Medical && !new HistoryEvent(HistoryEventDefOf.IngestedRecreationalDrug, SelPawnForGear.Named(HistoryEventArgsNames.Doer)).Notify_PawnAboutToDo(out floatMenuOption, label) && !PawnUtility.CanTakeDrugForDependency(SelPawnForGear, thing.def))
+                            {
+                                floatOptionList.Add(floatMenuOption);
+                            }
+                            else if (thing.def.ingestible.drugCategory == DrugCategory.Hard && !new HistoryEvent(HistoryEventDefOf.IngestedHardDrug, SelPawnForGear.Named(HistoryEventArgsNames.Doer)).Notify_PawnAboutToDo(out floatMenuOption, label))
+                            {
+                                floatOptionList.Add(floatMenuOption);
+                            }
+                        }
+
+                        if (floatMenuOption == null)
+                        {
+                            // Handle teetotaler trait with drugs, considering dependency genes
+                            if (thing.def.IsNonMedicalDrug && !SelPawnForGear.CanTakeDrug(thing.def))
+                            {
+                                floatOptionList.Add(new FloatMenuOption(label + ": " + TraitDefOf.DrugDesire.DataAtDegree(-1).GetLabelCapFor(SelPawnForGear), null));
+                            }
+                            // Royal traits and inappropriate food, always allowed if pawn is starving, ascetic, or will gain joy from ingesting
+                            else if (FoodUtility.InappropriateForTitle(thing.def, SelPawnForGear, true))
+                            {
+                                floatOptionList.Add(new FloatMenuOption(label + ": " + "FoodBelowTitleRequirements".Translate(SelPawnForGear.royalty.MostSeniorTitle.def.GetLabelFor(SelPawnForGear).CapitalizeFirst()).CapitalizeFirst(), null));
+                            }
+                            else
+                            {
+                                floatOptionList.Add(new FloatMenuOption(label, eatFood));
+                            }
                         }
                     }
                     // Drop, and drop&haul options
