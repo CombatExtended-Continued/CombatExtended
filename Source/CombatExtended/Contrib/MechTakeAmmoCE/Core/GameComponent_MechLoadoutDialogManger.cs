@@ -25,10 +25,10 @@ namespace CombatExtended
             if (_compMechAmmoQueue.Count > 0)
             {
                 List<CompMechAmmo> compMechAmmoList = new List<CompMechAmmo>(_compMechAmmoQueue);
-                ThingDef euipmentDef = compMechAmmoList[0].ParentPawn?.equipment?.Primary?.def;
+                HashSet<AmmoLink> ammoTypes = new HashSet<AmmoLink>(compMechAmmoList[0].AmmoUser.Props.ammoSet.ammoTypes);
                 foreach (var compMechAmmo in compMechAmmoList)
                 {
-                    if (compMechAmmo.ParentPawn?.equipment?.Primary?.def != euipmentDef)
+                    if (!ammoTypes.SetEquals(compMechAmmo.AmmoUser.Props.ammoSet.ammoTypes))
                     {
                         Messages.Message("MTA_CannotSetLoadoutForMultipleEquipment".Translate(), MessageTypeDefOf.RejectInput);
                         _compMechAmmoQueue.Clear();
