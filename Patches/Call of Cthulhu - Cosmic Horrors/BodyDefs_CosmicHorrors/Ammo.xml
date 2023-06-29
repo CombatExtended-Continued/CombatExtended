@@ -1,95 +1,134 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Cthulhu - Cosmic Horrors</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
 
-  <Operation Class="PatchOperationFindMod">
-    <mods>
-      <li>Vanilla Weapons Expanded - Coilguns</li>
-    </mods>
-    <match Class="PatchOperationSequence">
-      <operations>
+						<ThingCategoryDef>
+							<defName>AmmoMiGoCastingWeapon</defName>
+							<label>MiGo Casting Weapon</label>
+							<parent>AmmoAdvanced</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+						</ThingCategoryDef>
 
-      <!-- === 
-      Coilguns do less damage than some conventional rounds, but have
-      far superior penetration, making them superior against thick
-      armor. 
-      === -->
+						<!-- ==================== AmmoSet ========================== -->
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_MiGoCastingWeapon</defName>
+							<label>MiGo Casting Weapon ammo</label>
+							<ammoTypes>
+								<Ammo_MiGoCastingWeapon>Bullet_MiGoCastingWeapon</Ammo_MiGoCastingWeapon>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
 
-    <li Class="PatchOperationAdd">
-      <xpath>Defs</xpath>
-      <value>
+						<!-- ==================== Ammo ========================== -->
+						<ThingDef Class="CombatExtended.AmmoDef" Name="MiGoCastingWeaponBase" ParentName="AmmoBase" Abstract="True">
+							<description>MiGo Casting Weapon ammo</description>
+							<statBases>
+								<Mass>0.01</Mass>
+								<Bulk>0.02</Bulk>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade_Sellable</li>
+							</tradeTags>
+							<thingCategories>
+								<li>AmmoMiGoCastingWeapon</li>
+							</thingCategories>
+						</ThingDef>
 
-      <!-- === Ammo Sets === -->
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="MiGoCastingWeaponBase">
+							<defName>Ammo_MiGoCastingWeapon</defName>
+							<label>MiGo Casting Weapon cartridge</label>
+							<graphicData>
+								<texPath>Item/Weapon/MiGoCasterWeapon</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>0.95</MarketValue>
+							</statBases>
+							<ammoClass>FullMetalJacket</ammoClass>
+						</ThingDef>
 
-      <CombatExtended.AmmoSetDef>
-        <defName>AmmoSet_6mmRailgun_GaussRifle</defName>
-        <label>6mm Railgun</label>
-        <ammoTypes>
-          <Ammo_6mmRailgun_Sabot>Bullet_CoilGun_Rifle</Ammo_6mmRailgun_Sabot>
-        </ammoTypes>
-      </CombatExtended.AmmoSetDef>
+						<!-- ================== Projectiles ================== -->
+						<ThingDef Class="CombatExtended.AmmoDef" Name="BaseMiGoCastingWeapon" ParentName="BaseBulletCE" Abstract="true">
+							<graphicData>
+								<texPath>Things/Projectile/Charge_Small</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+								<drawSize>(10,10)</drawSize>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<speed>120</speed>
+							</projectile>
+						</ThingDef>
 
-      <CombatExtended.AmmoSetDef>
-        <defName>AmmoSet_6mmRailgun_GaussMagnum</defName>
-        <label>6mm Railgun</label>
-        <ammoTypes>
-          <Ammo_6mmRailgun_Sabot>Bullet_CoilGun_Magnum</Ammo_6mmRailgun_Sabot>
-        </ammoTypes>
-      </CombatExtended.AmmoSetDef>
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMiGoCastingWeapon">
+							<defName>Bullet_MiGoCastingWeapon</defName>
+							<label>Rhombohedral Energy blast</label>
+							<thingClass>CombatExtended.BulletCE</thingClass>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>27</damageAmountBase>
+								<armorPenetrationSharp>15</armorPenetrationSharp>
+								<armorPenetrationBlunt>30.6</armorPenetrationBlunt>
+								<damageDef>Bullet</damageDef>
+								<speed>120</speed>
+							</projectile>
+						</ThingDef>
 
-      <CombatExtended.AmmoSetDef>
-        <defName>AmmoSet_8mmRailgun_GaussLance</defName>
-        <label>8mm Railgun</label>
-        <ammoTypes>
-          <Ammo_8mmRailgun_Sabot>Bullet_CoilGun_Lance</Ammo_8mmRailgun_Sabot>
-        </ammoTypes>
-      </CombatExtended.AmmoSetDef>
+            <!-- ================== Recipes ================== -->
+						<RecipeDef ParentName="ChargeAmmoRecipeBase">
+							<defName>MakeAmmo_MiGoCastingWeapon</defName>
+							<label>make MiGo Casting Weapon cartridge x50</label>
+							<description>Craft 50 MiGo Casting Weapon cartridges.</description>
+							<jobString>Making MiGo Casting Weapon cartridge.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Plasteel</li>
+										</thingDefs>
+									</filter>
+									<count>1</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>2</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>ComponentIndustrial</li>
+										</thingDefs>
+									</filter>
+									<count>1</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Plasteel</li>
+									<li>Steel</li>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<Ammo_MiGoCastingWeapon>50</Ammo_MiGoCastingWeapon>
+							</products>
+							<workAmount>2600</workAmount>
+						</RecipeDef>
 
-      <!-- === Projectiles === -->
-
-      <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
-        <defName>Bullet_CoilGun_Magnum</defName>
-        <label>gauss magnum shot</label>                     
-        <projectile Class="CombatExtended.ProjectilePropertiesCE">
-          <isInstant>true</isInstant>
-          <damageFalloff>False</damageFalloff>
-          <damageDef>Bullet</damageDef>
-          <damageAmountBase>15</damageAmountBase>
-          <armorPenetrationSharp>23</armorPenetrationSharp>
-          <armorPenetrationBlunt>142.5</armorPenetrationBlunt>
-        </projectile>       
-      </ThingDef>
-
-      <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
-        <defName>Bullet_CoilGun_Rifle</defName>
-        <label>gauss rifle shot</label>                       
-        <projectile Class="CombatExtended.ProjectilePropertiesCE">
-          <isInstant>true</isInstant>
-          <damageFalloff>False</damageFalloff>
-          <damageDef>Bullet</damageDef>
-          <damageAmountBase>16</damageAmountBase>
-          <armorPenetrationSharp>36.5</armorPenetrationSharp>
-          <armorPenetrationBlunt>235.5</armorPenetrationBlunt>
-        </projectile>      
-      </ThingDef>
-
-      <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
-        <defName>Bullet_CoilGun_Lance</defName>
-        <label>gauss lance shot</label>                     
-        <projectile Class="CombatExtended.ProjectilePropertiesCE">
-          <isInstant>true</isInstant>
-          <damageFalloff>False</damageFalloff>
-          <damageDef>Bullet</damageDef>
-          <damageAmountBase>21</damageAmountBase>
-          <armorPenetrationSharp>46.4</armorPenetrationSharp>
-          <armorPenetrationBlunt>312</armorPenetrationBlunt>
-        </projectile>        
-      </ThingDef>
-
-        </value>
-      </li>
-
-      </operations>
-    </match>
-  </Operation>
-
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
 </Patch>
