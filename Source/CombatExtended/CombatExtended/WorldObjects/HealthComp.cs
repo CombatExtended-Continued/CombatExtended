@@ -209,6 +209,10 @@ namespace CombatExtended.WorldObjects
             result /= 3500f;
             //Crit/Miss imitation
             result *= Rand.Range(0.4f, 1.5f);
+            if(projectile.projectile is ProjectilePropertiesCE projectileProperties && projectileProperties.shellingProps.damage > 0f)
+            {
+                result *= projectileProperties.shellingProps.damage;
+            }
             return result;
         }
         protected virtual float EMPPotentialDamage(ThingDef projectile, float modifier = 0.03f)
