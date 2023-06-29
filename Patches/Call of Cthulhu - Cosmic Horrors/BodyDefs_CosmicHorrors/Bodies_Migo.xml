@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Natural Armor -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="ROM_MiGoBody"]//*[
+            def="Body" or 
+            def="Pronotum" or 
+            def="ROM_SporeHead"]
+          </xpath>
+          <value>
+            <groups />
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>
+          /Defs/BodyDef[defName="ROM_MiGoBody"]//*[
+          def="Body" or 
+          def="Pronotum" or 
+          def="ROM_SporeHead" or 
+          def="InsectLeg"]/groups
+        </xpath>
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

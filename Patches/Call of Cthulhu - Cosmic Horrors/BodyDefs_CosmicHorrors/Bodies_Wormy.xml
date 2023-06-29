@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <!-- === Worm === -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="ROM_ChthonianBody"]//*[
+            def="ROM_ChthonianFirstRing" or 
+            def="ROM_ChthonianThirdRing" or 
+            def="ROM_ChthonianFourthRing" or 
+            def="ROM_ChthonianFifthRing" or 
+            def="ROM_ChthonianSixthRing"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="ROM_ChthonianBody"]//*[
+            def="ROM_ChthonianFirstRing" or 
+            def="ROM_ChthonianSecondRing" or 
+            def="ROM_ChthonianThirdRing" or 
+            def="ROM_ChthonianFourthRing" or 
+            def="ROM_ChthonianFifthRing" or 
+            def="Head" or 
+            def="ROM_ChthonianSixthRing"]/groups
+          </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

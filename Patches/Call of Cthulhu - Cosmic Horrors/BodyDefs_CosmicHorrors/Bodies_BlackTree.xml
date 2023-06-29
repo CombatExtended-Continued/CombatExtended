@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Natural Armor -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="ROM_DarkYoungBody"]//*[
+            def="Body"]
+          </xpath>
+          <value>
+            <groups />
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>
+          /Defs/BodyDef[defName="ROM_DarkYoungBody"]//*[
+          def="Body" or 
+          def="ROM_TentacleFirst" or 
+          def="ROM_TentacleSecond" or 
+          def="ROM_TentacleThird" or
+          def="ROM_TentacleFourth" or
+          def="ROM_TentacleFifth" or
+          def="ROM_TentacleSixth" or
+          def="ROM_TentacleSeventh" or
+          def="ROM_LegFirst" or
+          def="ROM_LegSecond" or
+          def="ROM_LegThird"]/groups
+        </xpath>
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

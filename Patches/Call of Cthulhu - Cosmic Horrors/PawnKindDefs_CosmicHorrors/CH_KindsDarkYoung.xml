@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="ROM_DarkYoung"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ROM_DarkYoung"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.1</MeleeDodgeChance>
+          <MeleeCritChance>0.48</MeleeCritChance>
+          <MeleeParryChance>0.25</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_DarkYoung"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>hooves</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>16</power>
+              <cooldownTime>1.55</cooldownTime>
+              <linkedBodyPartsGroup>ROM_Hooves</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>15.6</armorPenetrationBlunt>
+              <chanceFactor>0.2</chanceFactor>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>tentacles</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>21</power>
+              <cooldownTime>1.45</cooldownTime>
+              <linkedBodyPartsGroup>ROM_Tentacles</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>14.8</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>coiling tentacles</label>
+              <capacities>
+                <li>ROM_ConstrictMonstrous</li>
+              </capacities>
+              <power>16</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>ROM_Tentacles</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>28.8</armorPenetrationBlunt>
+              <chanceFactor>0.5</chanceFactor>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>maw</label>
+              <capacities>
+                <li>ToxicBite</li>
+              </capacities>
+              <power>28</power>
+              <cooldownTime>1.75</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>7</armorPenetrationSharp>
+              <armorPenetrationBlunt>18.6</armorPenetrationBlunt>
+              <chanceFactor>0.4</chanceFactor>
+            </li>
+          </tools>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

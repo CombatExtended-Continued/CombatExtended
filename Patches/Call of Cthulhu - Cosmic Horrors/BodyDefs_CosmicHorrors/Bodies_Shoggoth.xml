@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Natural Armor -->
+        <li Class="PatchOperationAdd">
+          <xpath>
+            /Defs/BodyDef[defName="ROM_ShoggothBody"]//*[
+            def="Body" or 
+            def="Leg"]
+          </xpath>
+          <value>
+            <groups />
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>
+          /Defs/BodyDef[defName="ROM_ShoggothBody"]//*[
+          def="Body" or 
+          def="ROM_Tentacle" or 
+          def="Shoulder" or 
+          def="Arm" or
+          def="Hand" or
+          def="Paws" or
+          def="Leg"]/groups
+        </xpath>
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="ROM_MiGo"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Birdlike</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ROM_MiGo"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.8</MeleeDodgeChance>
+          <MeleeCritChance>0.22</MeleeCritChance>
+          <MeleeParryChance>0.8</MeleeParryChance>
+          <SmokeSensitivity>0.5</SmokeSensitivity>
+          <AimingAccuracy>1.0</AimingAccuracy>
+          <ShootingAccuracyPawn>2</ShootingAccuracyPawn>
+          <Suppressability>0.2</Suppressability>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_MiGo"]/race/baseHealthScale</xpath>
+        <value>
+          <baseHealthScale>0.9</baseHealthScale>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_MiGo"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>legs</label>
+              <capacities>
+                <li>ROM_ScratchMonstrous</li>
+              </capacities>
+              <power>9</power>
+              <cooldownTime>0.55</cooldownTime>
+              <linkedBodyPartsGroup>Legs</linkedBodyPartsGroup>
+              <armorPenetrationSharp>1</armorPenetrationSharp>
+              <armorPenetrationBlunt>2</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>overwhelming mind</label>
+              <capacities>
+                <li>ROM_Psychic</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>ROM_Mind</linkedBodyPartsGroup>
+              <armorPenetrationSharp>65</armorPenetrationSharp>
+              <armorPenetrationBlunt>85.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>body</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>12</power>
+              <cooldownTime>1.85</cooldownTime>
+              <linkedBodyPartsGroup>ROM_Wings</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>8</armorPenetrationBlunt>
+              <chanceFactor>0.2</chanceFactor>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/PawnKindDef[defName="ROM_MiGoCaster"]</xpath>
+        <value>
+          <li Class="CombatExtended.LoadoutPropertiesExtension">
+            <primaryMagazineCount>
+              <min>3</min>
+              <max>5</max>
+            </primaryMagazineCount>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/PawnKindDef[defName="ROM_MiGoCaster"]/aiAvoidCover</xpath>
+        <value>
+          <aiAvoidCover>false</aiAvoidCover>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/PawnKindDef[defName="ROM_MiGo"]/combatPower</xpath>
+        <value>
+          <combatPower>55</combatPower>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/PawnKindDef[defName="ROM_MiGoCaster"]/combatPower</xpath>
+        <value>
+          <combatPower>120</combatPower>
+        </value>
+      </li>
+      <li Class="PatchOperationSequence">
+        <success>Always</success>
+        <operations>
+          <li Class="PatchOperationTest">
+            <xpath>Defs/ThingDef[defName="ROM_MiGo"]/comps</xpath>
+            <success>Invert</success>
+          </li>
+          <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="ROM_MiGo"]</xpath>
+            <value>
+              <comps />
+            </value>
+          </li>
+        </operations>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="ROM_MiGo"]/comps</xpath>
+        <value>
+          <li>
+            <compClass>CombatExtended.CompPawnGizmo</compClass>
+          </li>
+          <li Class="CombatExtended.CompProperties_Suppressable" />
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

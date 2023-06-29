@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="ROM_Shoggoth"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>QuadrupedLow</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ROM_Shoggoth"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.12</MeleeDodgeChance>
+          <MeleeCritChance>0.68</MeleeCritChance>
+          <SmokeSensitivity>0</SmokeSensitivity>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothColossal"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.12</MeleeDodgeChance>
+          <MeleeCritChance>1</MeleeCritChance>
+          <SmokeSensitivity>0</SmokeSensitivity>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothTiny"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.35</MeleeDodgeChance>
+          <MeleeCritChance>0.38</MeleeCritChance>
+          <SmokeSensitivity>0</SmokeSensitivity>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothTiny"]</xpath>
+        <value>
+          <race>
+            <baseHealthScale>3</baseHealthScale>
+          </race>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_Shoggoth"]/race/baseHealthScale</xpath>
+        <value>
+          <baseHealthScale>5</baseHealthScale>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothColossal"]</xpath>
+        <value>
+          <race>
+            <baseHealthScale>10</baseHealthScale>
+          </race>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothTiny"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>0.6</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothTiny"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>1</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_Shoggoth"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>8</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_Shoggoth"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>20</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothColossal"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>16</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothColossal"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>38</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_Shoggoth"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>tentacles</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>28</power>
+              <cooldownTime>1.75</cooldownTime>
+              <linkedBodyPartsGroup>ROM_Tentacles</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>29.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>20.8</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>20.8</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>maw</label>
+              <capacities>
+                <li>ToxicBite</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>10</armorPenetrationSharp>
+              <armorPenetrationBlunt>23.6</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothTiny"]/tools</xpath>
+        <value>
+          <tools Inherit="False">
+            <li Class="CombatExtended.ToolCE">
+              <label>tentacles</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>15</power>
+              <cooldownTime>1.85</cooldownTime>
+              <linkedBodyPartsGroup>ROM_Tentacles</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>11</power>
+              <cooldownTime>1.55</cooldownTime>
+              <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+              <chanceFactor>0.25</chanceFactor>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>11</power>
+              <cooldownTime>1.55</cooldownTime>
+              <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+              <chanceFactor>0.25</chanceFactor>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>maw</label>
+              <capacities>
+                <li>ToxicBite</li>
+              </capacities>
+              <power>21</power>
+              <cooldownTime>2.08</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>2</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+              <chanceFactor>0.5</chanceFactor>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_ShoggothColossal"]/tools</xpath>
+        <value>
+          <tools Inherit="False">
+            <li Class="CombatExtended.ToolCE">
+              <label>tentacles</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>38</power>
+              <cooldownTime>2.38</cooldownTime>
+              <linkedBodyPartsGroup>ROM_Tentacles</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>64.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>25</power>
+              <cooldownTime>1.85</cooldownTime>
+              <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>30.6</armorPenetrationBlunt>
+              <chanceFactor>0.25</chanceFactor>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>ROM_BluntMonstrous</li>
+              </capacities>
+              <power>25</power>
+              <cooldownTime>1.85</cooldownTime>
+              <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>30.6</armorPenetrationBlunt>
+              <chanceFactor>0.25</chanceFactor>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>maw</label>
+              <capacities>
+                <li>ToxicBite</li>
+              </capacities>
+              <power>50</power>
+              <cooldownTime>2.68</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>24</armorPenetrationSharp>
+              <armorPenetrationBlunt>52.8</armorPenetrationBlunt>
+              <chanceFactor>0.5</chanceFactor>
+            </li>
+          </tools>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

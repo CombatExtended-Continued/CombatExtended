@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOne"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Humanoid</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOne"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.24</MeleeDodgeChance>
+          <MeleeCritChance>0.25</MeleeCritChance>
+          <MeleeParryChance>0.28</MeleeParryChance>
+          <SmokeSensitivity>0.25</SmokeSensitivity>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOne"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>0.24</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOne"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>0.24</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOne"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>ROM_ScratchMonstrous</li>
+              </capacities>
+              <power>16</power>
+              <cooldownTime>1.2</cooldownTime>
+              <linkedBodyPartsGroup>ROM_LeftClaws</linkedBodyPartsGroup>
+              <armorPenetrationSharp>6</armorPenetrationSharp>
+              <armorPenetrationBlunt>13.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>ROM_ScratchMonstrous</li>
+              </capacities>
+              <power>16</power>
+              <cooldownTime>1.2</cooldownTime>
+              <linkedBodyPartsGroup>ROM_RightClaws</linkedBodyPartsGroup>
+              <armorPenetrationSharp>6</armorPenetrationSharp>
+              <armorPenetrationBlunt>13.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>24</power>
+              <cooldownTime>1.75</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>10</armorPenetrationSharp>
+              <armorPenetrationBlunt>24.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>1</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>15.6</armorPenetrationBlunt>
+              <chanceFactor>0.2</chanceFactor>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOneGreat"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Humanoid</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/PawnKindDef[defName="ROM_DeepOneGreat"]/combatPower</xpath>
+        <value>
+          <combatPower>180</combatPower>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOneGreat"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.2</MeleeDodgeChance>
+          <MeleeCritChance>0.48</MeleeCritChance>
+          <MeleeParryChance>0.45</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOneGreat"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOneGreat"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>3</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ROM_DeepOneGreat"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>ROM_ScratchMonstrous</li>
+              </capacities>
+              <power>28</power>
+              <cooldownTime>1.25</cooldownTime>
+              <linkedBodyPartsGroup>ROM_LeftClaws</linkedBodyPartsGroup>
+              <armorPenetrationSharp>13</armorPenetrationSharp>
+              <armorPenetrationBlunt>30.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>ROM_ScratchMonstrous</li>
+              </capacities>
+              <power>28</power>
+              <cooldownTime>1.25</cooldownTime>
+              <linkedBodyPartsGroup>ROM_RightClaws</linkedBodyPartsGroup>
+              <armorPenetrationSharp>13</armorPenetrationSharp>
+              <armorPenetrationBlunt>30.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>40</power>
+              <cooldownTime>2</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>20</armorPenetrationSharp>
+              <armorPenetrationBlunt>50.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>20</armorPenetrationBlunt>
+              <chanceFactor>0.2</chanceFactor>
+            </li>
+          </tools>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>
