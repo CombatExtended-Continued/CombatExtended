@@ -823,7 +823,7 @@ namespace CombatExtended
         public virtual bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ, out string report)
         {
             report = "";
-            if(caster is Building_TurretGunCE turret)
+            if (caster is Building_TurretGunCE turret)
             {
                 if (turret.targetingWorldMap && turret.globalTargetInfo.IsValid)
                 {
