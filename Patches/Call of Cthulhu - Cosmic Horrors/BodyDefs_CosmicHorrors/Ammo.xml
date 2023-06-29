@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Coilguns</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- === 
+      Coilguns do less damage than some conventional rounds, but have
+      far superior penetration, making them superior against thick
+      armor. 
+      === -->
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+
+      <!-- === Ammo Sets === -->
+
+      <CombatExtended.AmmoSetDef>
+        <defName>AmmoSet_6mmRailgun_GaussRifle</defName>
+        <label>6mm Railgun</label>
+        <ammoTypes>
+          <Ammo_6mmRailgun_Sabot>Bullet_CoilGun_Rifle</Ammo_6mmRailgun_Sabot>
+        </ammoTypes>
+      </CombatExtended.AmmoSetDef>
+
+      <CombatExtended.AmmoSetDef>
+        <defName>AmmoSet_6mmRailgun_GaussMagnum</defName>
+        <label>6mm Railgun</label>
+        <ammoTypes>
+          <Ammo_6mmRailgun_Sabot>Bullet_CoilGun_Magnum</Ammo_6mmRailgun_Sabot>
+        </ammoTypes>
+      </CombatExtended.AmmoSetDef>
+
+      <CombatExtended.AmmoSetDef>
+        <defName>AmmoSet_8mmRailgun_GaussLance</defName>
+        <label>8mm Railgun</label>
+        <ammoTypes>
+          <Ammo_8mmRailgun_Sabot>Bullet_CoilGun_Lance</Ammo_8mmRailgun_Sabot>
+        </ammoTypes>
+      </CombatExtended.AmmoSetDef>
+
+      <!-- === Projectiles === -->
+
+      <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+        <defName>Bullet_CoilGun_Magnum</defName>
+        <label>gauss magnum shot</label>                     
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+          <isInstant>true</isInstant>
+          <damageFalloff>False</damageFalloff>
+          <damageDef>Bullet</damageDef>
+          <damageAmountBase>15</damageAmountBase>
+          <armorPenetrationSharp>23</armorPenetrationSharp>
+          <armorPenetrationBlunt>142.5</armorPenetrationBlunt>
+        </projectile>       
+      </ThingDef>
+
+      <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+        <defName>Bullet_CoilGun_Rifle</defName>
+        <label>gauss rifle shot</label>                       
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+          <isInstant>true</isInstant>
+          <damageFalloff>False</damageFalloff>
+          <damageDef>Bullet</damageDef>
+          <damageAmountBase>16</damageAmountBase>
+          <armorPenetrationSharp>36.5</armorPenetrationSharp>
+          <armorPenetrationBlunt>235.5</armorPenetrationBlunt>
+        </projectile>      
+      </ThingDef>
+
+      <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+        <defName>Bullet_CoilGun_Lance</defName>
+        <label>gauss lance shot</label>                     
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+          <isInstant>true</isInstant>
+          <damageFalloff>False</damageFalloff>
+          <damageDef>Bullet</damageDef>
+          <damageAmountBase>21</damageAmountBase>
+          <armorPenetrationSharp>46.4</armorPenetrationSharp>
+          <armorPenetrationBlunt>312</armorPenetrationBlunt>
+        </projectile>        
+      </ThingDef>
+
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
