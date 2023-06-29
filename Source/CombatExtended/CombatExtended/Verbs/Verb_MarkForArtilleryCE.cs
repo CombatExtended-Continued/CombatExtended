@@ -74,7 +74,7 @@ namespace CombatExtended
 
             if (!CasterIsPawn)
             {
-                return _conditionsMet = false;
+                return _conditionsMet = true;
             }
             if (ShooterPawn.apparel?.WornApparel.Any(a => a.def.IsRadioPack()) ?? false)
             {
