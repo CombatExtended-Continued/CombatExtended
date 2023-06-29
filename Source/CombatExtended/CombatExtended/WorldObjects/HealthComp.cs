@@ -203,6 +203,10 @@ namespace CombatExtended.WorldObjects
                 {
                     empModifier = Mathf.Pow(3.3f, (int)parent.Faction.def.techLevel) / 1800f / ((int)parent.Faction.def.techLevel - 2f);
                 }
+                if (parent.Faction.def.pawnGroupMakers.SelectMany(x => x.options).All(k => k.kind.RaceProps.IsMechanoid))
+                {
+                    empModifier = 1f;
+                }
             }
             var result = FragmentsPotentialDamage(projectile) + ExplosionPotentialDamage(projectile) + FirePotentialDamage(projectile) + EMPPotentialDamage(projectile, empModifier);
             //Damage calculated as in-map damage, needs to be converted into world object damage. 3500f experimentally obtained
@@ -372,7 +376,7 @@ namespace CombatExtended.WorldObjects
             if (DamageRequired != TotalDamageRequired || Prefs.DevMode)
             {
                 StringBuilder builder = new StringBuilder($"{DamageRequired:0}/{TotalDamageRequired:0} HP");
-                if (Prefs.DevMode)
+                if (Prefs.DevMode && recentShells.Any())
                 {
                     builder.Append('\n');
                     builder.Append(string.Join("\n", recentShells.Select(x => $"{x.ShellDef.defName} = {x.Value}")));
