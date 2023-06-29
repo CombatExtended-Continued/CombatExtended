@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CombatExtended.WorldObjects;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -54,7 +55,6 @@ namespace CombatExtended
                     foreach (var shell in healthComp.recentShells)
                     {
                         int radius = (int)shell.ShellDef.projectile.explosionRadius;
-                        bool burn = Rand.Chance(MAP_BURNCHANCE);
                         int dmg = shell.ShellDef.projectile.damageAmountBase;
                         IntVec3 cell = new IntVec3((int)CE_Utility.RandomGaussian(1, map.Size.x - 1), 0, (int)CE_Utility.RandomGaussian(1, map.Size.z - 1));
                         RoofDef roof = cell.GetRoof(map);
@@ -85,31 +85,29 @@ namespace CombatExtended
         {
             var radius = (int)shellDef.GetProjectile().projectile.explosionRadius;
             //var damageBase = shellDef.GetProjectile().projectile.damageAmountBase;
-            Action<IntVec3, int> processor = (cell, carry) =>
+            Action<IntVec3, int> processor = (centerCell, carry) =>
              {
-                 if (!cell.InBounds(map) || cell.DistanceTo(origin) > radius)
+                 if (!centerCell.InBounds(map))
                  {
                      return;
                  }
-                 List<IntVec3> cellsToAffect = new List<IntVec3>() { cell };
+                 ProcessFragmentsComp(shellDef);
+                 DamageToPawns(shellDef);
+                 List<IntVec3> cellsToAffect = new List<IntVec3>() { centerCell };
                  for (int i = 0; i < radius; i++)
                  {
                      AddCellsNeighbors(cellsToAffect);
                  }
                  foreach (var cellToAffect in cellsToAffect)
                  {
-                     List<Thing> things = cellToAffect.GetThingList(map);
+                     List<Thing> things = cellToAffect.GetThingList(map).Except(map.mapPawns.AllPawns).ToList();
                      var filthMade = false;
-                     var damageCell = (int)(WorldObjects.HealthComp.DamageAtRadius(shellDef, (int)origin.DistanceTo(cellToAffect)) * (SHADOW_CARRYLIMIT - carry) / SHADOW_CARRYLIMIT);
+                     var damageCell = (int)(WorldObjects.HealthComp.DamageAtRadius(shellDef, (int)centerCell.DistanceTo(cellToAffect)) * (SHADOW_CARRYLIMIT - carry) / SHADOW_CARRYLIMIT);
                      for (int i = 0; i < things.Count; i++)
                      {
                          Thing thing = things[i];
                          if (!thing.def.useHitPoints)
                          {
-                             if (thing is Pawn p)//Copied from HealthUtility.DamageUntilDowned and modified
-                             {
-                                 DamagePawn(p);
-                             }
                              continue;
                          }
                          thing.hitPointsInt -= damageCell * (thing.IsPlant() ? 3 : 1);
@@ -160,9 +158,36 @@ namespace CombatExtended
                  }
              };
             processor(origin, 0);
-            ShadowCastingUtility.CastWeighted(map, origin, processor, radius, SHADOW_CARRYLIMIT, out int count);
+            //ShadowCastingUtility.CastWeighted(map, origin, processor, radius, SHADOW_CARRYLIMIT, out int count);
             return true;
         }
+
+        private void DamageToPawns(ThingDef shellDef)
+        {
+            var projDef = shellDef.GetProjectile();
+            if (Rand.Chance(0.05f))
+            {
+                int countAffectedPawns = Rand.Range(1, Math.Min(map.mapPawns.AllPawnsSpawnedCount, (int)projDef.projectile.explosionRadius));
+                for (int affectNum = 0; affectNum < countAffectedPawns; affectNum++)
+                {
+                    if (map.mapPawns.AllPawnsSpawned.Where(x => !x.Faction.IsPlayerSafe()).ToList().TryRandomElementByWeight((x => x.Faction.HostileTo(Faction.OfPlayer) ? 1f : 0.2f), out Pawn pawn))
+                    {
+                        DamagePawn(pawn, projDef);
+                    }
+                }
+            }
+        }
+        private void DamagePawn(Pawn pawn, ThingDef projDef)
+        {
+            BattleLogEntry_DamageTaken battleLogEntry_DamageTaken = new BattleLogEntry_DamageTaken(pawn, CE_RulePackDefOf.DamageEvent_ShellingExplosion, null);
+            Find.BattleLog.Add(battleLogEntry_DamageTaken);
+            var num = HealthComp.DamageAtRadius(projDef, Rand.Range(0, (int)projDef.projectile.explosionRadius));
+            DamageInfo dinfo = new DamageInfo(projDef.projectile.damageDef, (float)num, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true);
+            dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
+            pawn.TakeDamage(dinfo).AssociateWithLog(battleLogEntry_DamageTaken);
+            ResetVisualDamageEffects(pawn);
+        }
+
         private HashSet<IntVec3> addedCellsAffectedOnlyByDamage = new HashSet<IntVec3>();
         private void AddCellsNeighbors(List<IntVec3> cells)
         {
@@ -192,6 +217,36 @@ namespace CombatExtended
                 cells.Add(item);
             }
             Explosion.tmpCells.Clear();
+        }
+        void ProcessFragmentsComp(ThingDef shellDef)
+        {
+            var projDef = shellDef.GetProjectile();
+            if (projDef.HasComp(typeof(CompFragments)))
+            {
+                var frags = projDef.GetCompProperties<CompProperties_Fragments>();
+                if (Rand.Chance(0.33f))
+                {
+                    int countAffectedPawns = Rand.Range(1, Math.Min(map.mapPawns.AllPawnsSpawnedCount, 5));
+                    for (int affectNum = 0; affectNum < countAffectedPawns; affectNum++)
+                    {
+                        if (map.mapPawns.AllPawnsSpawned.Where(x => !x.Faction.IsPlayerSafe()).ToList().TryRandomElementByWeight((x => x.Faction.HostileTo(Faction.OfPlayer) ? 1f : 0.2f), out Pawn pawn))
+                        {
+                            var hitsCount = Rand.Range(3, 9);
+                            for (int i = 0; i < hitsCount; i++)
+                            {
+                                if (pawn.Map == null)
+                                {
+                                    break;
+                                }
+                                var frag = GenSpawn.Spawn(frags.fragments.RandomElementByWeight(x => x.count).thingDef, pawn.Position, pawn.Map) as ProjectileCE;
+                                frag.Impact(pawn);
+                            }
+                            ResetVisualDamageEffects(pawn);
+                        }
+                    }
+                }
+
+            }
         }
         void DamagePawn(Pawn pawn)
         {
