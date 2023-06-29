@@ -40,13 +40,23 @@ namespace CombatExtended.HarmonyCE
                     });
                     return false;
                 }
+            }
+            return true;
+        }
+    }
+    [HarmonyPatch(typeof(Command), nameof(Command.GizmoOnGUIInt))]
+    public static class Harmony_Command_GizmoOnGUIInt
+    {
+        public static void Prefix(Command __instance)
+        {
+            if (__instance is Command_VerbTarget command)
+            {
                 if (command.verb is Verb_MarkForArtillery mark && !mark.MarkingConditionsMet())
                 {
                     command.disabled = true;
                     command.disabledReason = "CE_MarkingUnavailableReason".Translate();
                 }
             }
-            return true;
         }
     }
 }
