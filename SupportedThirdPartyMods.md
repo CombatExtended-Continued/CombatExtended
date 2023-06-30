@@ -129,6 +129,7 @@ Black Widows	|
 Bori Race	|
 British Weapon Set	|
 Bulgarian Imperial Uniforms |
+Call of Cthulhu - Cosmic Horrors  |
 Call of Duty: Zombies Pack |
 Call of Duty: Mystery Box |
 Call of Duty: Pack A Punch |
@@ -223,7 +224,9 @@ Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 Glitter Weaponry	|
 GouRIMet	|
+Grimworld: Autoguns	|
 Grimworld: Lasguns	|
+Grimworld: Melee	|
 Gulden Mod  |
 Half Dragons    |
 Halo - Rimworld Auxiliary Combat Armory	|
