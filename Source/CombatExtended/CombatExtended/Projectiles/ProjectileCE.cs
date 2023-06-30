@@ -690,6 +690,7 @@ namespace CombatExtended
 
                     // Ensure we reset hit points for Biotech's new shields if broken by EMP
                     interceptorComp.currentHitPoints = 0;
+                    interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
                 }
             }
 
