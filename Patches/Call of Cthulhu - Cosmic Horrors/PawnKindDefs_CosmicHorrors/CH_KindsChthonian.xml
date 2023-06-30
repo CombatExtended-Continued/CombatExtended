@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Call of Cthulhu - Cosmic Horrors</li>
 		</mods>
+
 		<match Class="PatchOperationSequence">
 			<operations>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="ROM_Chthonian"]</xpath>
+					<xpath>Defs/ThingDef[defName="ROM_Chthonian"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Birdlike</bodyShape>
@@ -17,7 +19,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="ROM_Chthonian"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="ROM_Chthonian"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.01</MeleeDodgeChance>
 						<MeleeCritChance>0.9</MeleeCritChance>
@@ -29,7 +31,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="ROM_Chthonian"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="ROM_Chthonian"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -80,7 +82,7 @@
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="ROM_ChthonianLarva"]</xpath>
+					<xpath>Defs/ThingDef[defName="ROM_ChthonianLarva"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>QuadrupedLow</bodyShape>
@@ -89,7 +91,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="ROM_ChthonianLarva"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="ROM_ChthonianLarva"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.08</MeleeDodgeChance>
 						<MeleeCritChance>0.24</MeleeCritChance>
@@ -99,21 +101,21 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="ROM_ChthonianLarva"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>Defs/ThingDef[defName="ROM_ChthonianLarva"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="ROM_ChthonianLarva"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>Defs/ThingDef[defName="ROM_ChthonianLarva"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>3</ArmorRating_Blunt>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="ROM_ChthonianLarva"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="ROM_ChthonianLarva"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -158,4 +160,5 @@
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
