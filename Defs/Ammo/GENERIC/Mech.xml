@@ -44,9 +44,9 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="MechChargedAmmo" ParentName="SpacerAmmoBase" Abstract="True">
     <description>Charged shot ammo used by mechanoid weaponry.</description>
     <statBases>
-      <Mass>0.013</Mass>
-      <Bulk>0.01</Bulk>
-      <MarketValue>0.45</MarketValue>
+      <Mass>0.058</Mass>
+      <Bulk>0.04</Bulk>
+      <MarketValue>3.39</MarketValue>
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade_Sellable</li>
@@ -59,7 +59,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="MechChargedAmmo">
     <defName>Ammo_MechCharged</defName>
-    <label>mech charged cartridge</label>
+    <label>Mech Charged cartridge</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/MediumMech</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -73,7 +73,8 @@
     <description>Large shell used by mechanoid cannons and heavy weapons.</description>
     <statBases>
       <Mass>0.85</Mass>
-      <Bulk>3.87</Bulk>  
+      <Bulk>3.87</Bulk>
+      <MarketValue>10.38</MarketValue>
     </statBases>
     <tradeTags>
       <li>CE_AutoEnableTrade_Sellable</li>
@@ -105,5 +106,101 @@
       </li>
     </comps>    
   </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_MechCharged</defName>
+    <label>make Mech Charged cartridge x200</label>
+    <description>Craft 200 Mech Charged cartridges.</description>
+    <jobString>Making Mech Charged cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_12x64mmCharged>200</Ammo_12x64mmCharged>
+    </products>
+    <skillRequirements>
+      <Crafting>8</Crafting>
+    </skillRequirements>
+    <workAmount>36080</workAmount>  <!-- 10% more work -->
+  </RecipeDef>
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_MechShell</defName>
+    <label>make Mech Shell x5</label>
+    <description>Craft 5 Mech Shells.</description>
+    <jobString>Making Mech Shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Prometheum</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_80x256mmFuel_Incendiary>5</Ammo_80x256mmFuel_Incendiary>
+    </products>
+    <skillRequirements>
+      <Crafting>8</Crafting>
+    </skillRequirements>
+    <workAmount>3730</workAmount>  <!-- 10% more work -->
+  </RecipeDef>
 
 </Defs>
