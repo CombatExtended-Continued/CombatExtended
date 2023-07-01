@@ -179,12 +179,10 @@ namespace CombatExtended
                             foreach (string curTag in craftingTags)
                             {
                                 ThingDef bench;
-                                ThingDef bench2;
                                 ThingDef benchVFE = null;
                                 if (curTag == enableCraftingTag)
                                 {
                                     bench = CE_ThingDefOf.AmmoBench;
-                                    bench2 = CE_ThingDefOf.Electric_AmmoBench;
                                 }
                                 else
                                 {
@@ -196,8 +194,7 @@ namespace CombatExtended
                                     }
                                     var benchName = curTag.Remove(0, enableCraftingTag.Length + 1);
                                     bench = DefDatabase<ThingDef>.GetNamed(benchName, false);
-                                    bench2 = DefDatabase<ThingDef>.GetNamed(benchName, false);
-                                    if (bench == null && bench2 == null)
+                                    if (bench == null)
                                     {
                                         Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
                                         continue;
@@ -229,7 +226,6 @@ namespace CombatExtended
                                     }
                                 }
                                 ToggleRecipeOnBench(recipe, bench, ammoEnabled);
-                                ToggleRecipeOnBench(recipe, bench2, ammoEnabled);
                                 if (benchVFE != null)
                                 {
                                     ToggleRecipeOnBench(recipe, benchVFE, ammoEnabled);

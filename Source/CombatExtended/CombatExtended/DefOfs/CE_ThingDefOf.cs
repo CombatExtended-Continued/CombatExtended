@@ -30,8 +30,6 @@ namespace CombatExtended
 
         public static ThingDef AmmoBench;
 
-        public static ThingDef Electric_AmmoBench;
-
         public static ThingDef FilthPrometheum;
 
         public static ThingDef Gas_BlackSmoke;

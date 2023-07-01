@@ -72,23 +72,11 @@
 			<HintPath>..\..\Assemblies\0CombatExtendedLoader.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="0Harmony">
-		  <HintPath>..\..\..\..\SCPRW\1.4\Assemblies\0Harmony.dll</HintPath>
-		</Reference>
-		<Reference Include="Assembly-CSharp">
-		  <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-		</Reference>
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="Rimatomics">
 			<HintPath>..\packages\Rimatomics-reference.dll</HintPath>
 			<Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine">
-		  <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.CoreModule">
-		  <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
 		</Reference>
 		<Reference Include="VanillaPsycastsExpanded">
 		  <HintPath>..\packages\VanillaPsycastsExpanded.dll</HintPath>
@@ -136,7 +124,8 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.3704" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.3704" GeneratePathProperty="true" />
+		<PackageReference Include="Lib.Harmony" Version="2.2.2" ExcludeAssets="runtime" />
 	</ItemGroup>
 	<ItemGroup>
 		<Publicize Include="Assembly-CSharp" />
