@@ -175,11 +175,9 @@
 				</ThingDef>
 
 				<!-- ================== Projectiles ================== -->
-				<ThingDef Name="BaseImpactShellCE" ParentName="BaseBullet" Abstract="true">
-					<thingClass>CombatExtended.BulletCE</thingClass>
+				<ThingDef Name="BaseImpactShellCE" ParentName="BaseBulletCE" Abstract="true">
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<dropsCasings>true</dropsCasings>
-						<!--<speed>53</speed>-->
 					</projectile>
 				</ThingDef>
 
@@ -192,6 +190,7 @@
 					</graphicData>
 					<label>Impact Shells (Small)</label>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
 						<speed>90</speed>
 						<damageAmountBase>18</damageAmountBase>
 						<armorPenetrationSharp>6</armorPenetrationSharp>
