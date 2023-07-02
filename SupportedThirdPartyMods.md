@@ -170,6 +170,7 @@ Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auronya   |
 Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
 Erin's Chocobos |
@@ -182,6 +183,7 @@ Erin's Lizard Doggo |
 Erin's Miqo'te  |
 Erin's Mountain Animals |
 Erin's Sephyr   |
+Erin's Shisune   |
 Erin's Viera    |
 EvolvedOrgansRedux |
 Exotic Arsenal |
