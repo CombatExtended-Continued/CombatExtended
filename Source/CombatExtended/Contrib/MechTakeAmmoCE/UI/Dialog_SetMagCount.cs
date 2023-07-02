@@ -35,7 +35,7 @@ namespace CombatExtended
             {
                 return;
             }
-            
+
             Vector2 initialSize = this.InitialSize;
             initialSize.y = (mechAmmo.AmmoUser.Props.ammoSet.ammoTypes.Count + 4) * (BotAreaHeight + Margin);
             this.windowRect = new Rect(((float)UI.screenWidth - initialSize.x) / 2f, ((float)UI.screenHeight - initialSize.y) / 2f, initialSize.x, initialSize.y);

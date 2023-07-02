@@ -48,7 +48,7 @@ namespace CombatExtended
             {
                 return;
             }
-            
+
             Vector2 initialSize = this.InitialSize;
             Maglabel = "MTA_MagazinePrefix".Translate(_mechMagazineSize);
             Text.Font = GameFont.Small;
