@@ -73,14 +73,14 @@ namespace CombatExtended
             Widgets.Label(new Rect(rect.x + BotAreaWidth + Margin, curY + BotAreaHeight / 4, rect.width - BotAreaWidth * 4, BotAreaHeight), label);
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth * 4, curY, BotAreaWidth, BotAreaHeight), "-", true, true, true, null))
             {
-                count--;
+                count -= GenUI.CurrentAdjustmentMultiplier();
             }
             Text.Anchor = TextAnchor.UpperCenter;
             Widgets.Label(new Rect(rect.x + rect.width - BotAreaWidth * 3, curY + BotAreaHeight / 4, BotAreaWidth * 2, BotAreaHeight), count.ToString());
             Text.Anchor = TextAnchor.UpperLeft;
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth, curY, BotAreaWidth, BotAreaHeight), "+", true, true, true, null))
             {
-                count++;
+                count += GenUI.CurrentAdjustmentMultiplier();
             }
 
             count = count < 0 ? 0 : count;
