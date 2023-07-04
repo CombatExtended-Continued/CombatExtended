@@ -242,7 +242,7 @@ namespace CombatExtended
             Rect rect = new Rect(0f, y, width, _thingRowHeight);
             Widgets.InfoCardButton(rect.width - 24f, y, thing.GetInnerIfMinified());
             rect.width -= 24f;
-            if ((CanControl || (SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal) || (showDropButtonIfPrisoner && SelPawnForGear.IsPrisonerOfColony)) && !SelPawnForGear.RaceProps.IsMechanoid)
+            if ((CanControl || (SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal) || (showDropButtonIfPrisoner && SelPawnForGear.IsPrisonerOfColony)) && !SelPawnForGear.IsItemMechanoidWeapon(thing))
             {
                 var dropForbidden = SelPawnForGear.IsItemQuestLocked(thing);
                 Color color = dropForbidden ? Color.grey : Color.white;
@@ -446,7 +446,7 @@ namespace CombatExtended
                         floatOptionList.Add(new FloatMenuOption("CE_CannotDropThingHaul".Translate() + ": " + "DropThingLocked".Translate(), null));
                     }
                     // Don't display drop option for mechanoids
-                    else if (!SelPawnForGear.RaceProps.IsMechanoid)
+                    else if (!SelPawnForGear.IsItemMechanoidWeapon(eq))
                     {
                         floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), new Action(delegate
                         {
