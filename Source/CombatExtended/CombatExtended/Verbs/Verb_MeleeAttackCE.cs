@@ -392,7 +392,7 @@ namespace CombatExtended
                     bodyRegion = BodyPartHeight.Middle;
                 }
                 //specific part hits
-                if (CompMeleeTargettingGizmo?.SkillReqBP ?? false && CompMeleeTargettingGizmo.targetBodyPart != null)
+                if ((CompMeleeTargettingGizmo?.SkillReqBP ?? false) && CompMeleeTargettingGizmo.targetBodyPart != null)
                 {
 
                     // 50f might be too little, since it'd mean no hits are possible for some bodyparts at certain pawn level
