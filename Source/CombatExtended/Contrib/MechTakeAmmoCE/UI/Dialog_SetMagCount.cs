@@ -31,6 +31,11 @@ namespace CombatExtended
 
         public override void PreOpen()
         {
+            if (mechAmmo == null)
+            {
+                return;
+            }
+
             Vector2 initialSize = this.InitialSize;
             initialSize.y = (mechAmmo.AmmoUser.Props.ammoSet.ammoTypes.Count + 4) * (BotAreaHeight + Margin);
             this.windowRect = new Rect(((float)UI.screenWidth - initialSize.x) / 2f, ((float)UI.screenHeight - initialSize.y) / 2f, initialSize.x, initialSize.y);
@@ -46,6 +51,12 @@ namespace CombatExtended
         }
         public override void DoWindowContents(Rect inRect)
         {
+            if (mechAmmo == null || !mechAmmo.parent.Spawned || mechAmmo.ParentPawn.Dead)
+            {
+                Close();
+                return;
+            }
+
             float curY = 0;
             string Maglabel = "MTA_MagazinePrefix".Translate(mechAmmo.AmmoUser.Props.magazineSize);
             DrawLabel(inRect, ref curY, Maglabel);
