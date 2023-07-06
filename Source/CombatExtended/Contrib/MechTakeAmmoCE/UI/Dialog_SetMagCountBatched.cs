@@ -15,8 +15,9 @@ namespace CombatExtended
     public class Dialog_SetMagCountBatched : Window
     {
         private readonly List<CompMechAmmo> _mechAmmoList;
-        private readonly CompMechAmmo _mechAmmoShown;
         private readonly Dictionary<AmmoDef, int> _tmpLoadouts;
+        private readonly List<AmmoLink> _mechAmmoTypes;
+        private readonly int _mechMagazineSize;
 
         private const float BotAreaWidth = 30f;
         private const float BotAreaHeight = 30f;
@@ -30,22 +31,29 @@ namespace CombatExtended
             if (mechAmmoList == null || mechAmmoList.Count == 0)
             {
                 Log.Error("null or empty CompMechAmmo list for Dialog_SetMagCount");
+                _mechAmmoList = new List<CompMechAmmo>(); // Prevent potential issues later on, just in case
                 return;
             }
             _mechAmmoList = mechAmmoList;
-            _mechAmmoShown = mechAmmoList[0];
+            _mechAmmoTypes = mechAmmoList[0].AmmoUser.Props.ammoSet.ammoTypes;
+            _mechMagazineSize = _mechAmmoList[0].AmmoUser.Props.magazineSize;
             // copy the loadouts from the _mechAmmoShown
-            _tmpLoadouts = new Dictionary<AmmoDef, int>(_mechAmmoShown.Loadouts);
+            _tmpLoadouts = new Dictionary<AmmoDef, int>(mechAmmoList[0].Loadouts);
 
         }
 
         public override void PreOpen()
         {
+            if (_mechAmmoList.Count == 0)
+            {
+                return;
+            }
+
             Vector2 initialSize = this.InitialSize;
-            Maglabel = "MTA_MagazinePrefix".Translate(_mechAmmoShown.AmmoUser.Props.magazineSize);
+            Maglabel = "MTA_MagazinePrefix".Translate(_mechMagazineSize);
             Text.Font = GameFont.Small;
             headerHeight = Text.CalcHeight(Maglabel, initialSize.x);
-            initialSize.y = (_mechAmmoShown.AmmoUser.Props.ammoSet.ammoTypes.Count + 3) * (BotAreaHeight) + headerHeight;
+            initialSize.y = (_mechAmmoTypes.Count + 3) * (BotAreaHeight) + headerHeight;
             this.windowRect = new Rect(((float)UI.screenWidth - initialSize.x) / 2f, ((float)UI.screenHeight - initialSize.y) / 2f, initialSize.x, initialSize.y);
             this.windowRect = this.windowRect.Rounded();
         }
@@ -59,13 +67,20 @@ namespace CombatExtended
         }
         public override void DoWindowContents(Rect inRect)
         {
+            _mechAmmoList.RemoveAll(m => !m.parent.Spawned || m.ParentPawn.Dead);
+            if (_mechAmmoList.Count == 0)
+            {
+                Close();
+                return;
+            }
+
             Text.Font = GameFont.Small;
             float curY = 0;
 
             Text.Anchor = TextAnchor.UpperCenter;
             Widgets.Label(inRect, Maglabel);
             curY += headerHeight + Margin;
-            foreach (var ammoType in _mechAmmoShown.AmmoUser.Props.ammoSet.ammoTypes)
+            foreach (var ammoType in _mechAmmoTypes)
             {
                 int value = 0;
                 _tmpLoadouts.TryGetValue(ammoType.ammo, out value);
@@ -101,15 +116,15 @@ namespace CombatExtended
             Widgets.Label(new Rect(rect.x + BotAreaWidth + Margin, curY, rect.width - BotAreaWidth * 4, BotAreaHeight), label);
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth * 4, curY, BotAreaWidth, BotAreaHeight), "-", true, true, true, null))
             {
-                count--;
+                count -= GenUI.CurrentAdjustmentMultiplier();
             }
             Text.Font = GameFont.Tiny;
             Text.Anchor = TextAnchor.MiddleCenter;
-            Widgets.Label(new Rect(rect.x + rect.width - BotAreaWidth * 3, curY, BotAreaWidth * 2, BotAreaHeight), count.ToString() + " (" + (count * _mechAmmoShown.AmmoUser.Props.magazineSize).ToString() + ")");
+            Widgets.Label(new Rect(rect.x + rect.width - BotAreaWidth * 3, curY, BotAreaWidth * 2, BotAreaHeight), count.ToString() + " (" + (count * _mechMagazineSize).ToString() + ")");
             Text.Anchor = TextAnchor.UpperLeft;
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth, curY, BotAreaWidth, BotAreaHeight), "+", true, true, true, null))
             {
-                count++;
+                count += GenUI.CurrentAdjustmentMultiplier();
             }
 
             count = count < 0 ? 0 : count;

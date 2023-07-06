@@ -31,6 +31,11 @@ namespace CombatExtended
 
         public override void PreOpen()
         {
+            if (mechAmmo == null)
+            {
+                return;
+            }
+
             Vector2 initialSize = this.InitialSize;
             initialSize.y = (mechAmmo.AmmoUser.Props.ammoSet.ammoTypes.Count + 4) * (BotAreaHeight + Margin);
             this.windowRect = new Rect(((float)UI.screenWidth - initialSize.x) / 2f, ((float)UI.screenHeight - initialSize.y) / 2f, initialSize.x, initialSize.y);
@@ -46,6 +51,12 @@ namespace CombatExtended
         }
         public override void DoWindowContents(Rect inRect)
         {
+            if (mechAmmo == null || !mechAmmo.parent.Spawned || mechAmmo.ParentPawn.Dead)
+            {
+                Close();
+                return;
+            }
+
             float curY = 0;
             string Maglabel = "MTA_MagazinePrefix".Translate(mechAmmo.AmmoUser.Props.magazineSize);
             DrawLabel(inRect, ref curY, Maglabel);
@@ -73,14 +84,14 @@ namespace CombatExtended
             Widgets.Label(new Rect(rect.x + BotAreaWidth + Margin, curY + BotAreaHeight / 4, rect.width - BotAreaWidth * 4, BotAreaHeight), label);
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth * 4, curY, BotAreaWidth, BotAreaHeight), "-", true, true, true, null))
             {
-                count--;
+                count -= GenUI.CurrentAdjustmentMultiplier();
             }
             Text.Anchor = TextAnchor.UpperCenter;
             Widgets.Label(new Rect(rect.x + rect.width - BotAreaWidth * 3, curY + BotAreaHeight / 4, BotAreaWidth * 2, BotAreaHeight), count.ToString());
             Text.Anchor = TextAnchor.UpperLeft;
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth, curY, BotAreaWidth, BotAreaHeight), "+", true, true, true, null))
             {
-                count++;
+                count += GenUI.CurrentAdjustmentMultiplier();
             }
 
             count = count < 0 ? 0 : count;

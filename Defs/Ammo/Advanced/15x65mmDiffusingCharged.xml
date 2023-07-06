@@ -14,7 +14,7 @@
     <defName>AmmoSet_15x65mmDiffusingCharged</defName>
     <label>15x65mm Diffusing Charged</label>
     <ammoTypes>
-      <Ammo_15x65mmDiffusingCharged_Buck>Bullet_15x65mmDiffusingCharged_Buck</Ammo_15x65mmDiffusingCharged_Buck>
+      <Ammo_15x65mmDiffusingCharged>Bullet_15x65mmDiffusingCharged</Ammo_15x65mmDiffusingCharged>
     </ammoTypes>
     <similarTo>AmmoSet_MechCharged</similarTo>
   </CombatExtended.AmmoSetDef>
@@ -36,7 +36,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="15x65mmDiffusingChargedBase">
-    <defName>Ammo_15x65mmDiffusingCharged_Buck</defName>
+    <defName>Ammo_15x65mmDiffusingCharged</defName>
     <label>15x65mm Diffusing Charged cartridge</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/ShotgunMech</texPath>
@@ -46,7 +46,7 @@
       <MarketValue>6.35</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
     <ammoClass>BuckShot</ammoClass>
-    <cookOffProjectile>Bullet_15x65mmDiffusingCharged_Buck</cookOffProjectile>
+    <cookOffProjectile>Bullet_15x65mmDiffusingCharged</cookOffProjectile>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
@@ -54,13 +54,13 @@
 	<ThingDef Name="Base15x65mmDiffusingChargedBullet" ParentName="BaseBulletCE" Abstract="true">
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>116</speed>
+			<speed>119</speed>
 			<casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="Base15x65mmDiffusingChargedBullet">
-		<defName>Bullet_15x65mmDiffusingCharged_Buck</defName>
+		<defName>Bullet_15x65mmDiffusingCharged</defName>
 		<label>diffusing charged shot</label>
 		<graphicData>
 			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
@@ -82,5 +82,52 @@
 	</ThingDef>
   
 	<!-- ==================== Recipes ========================== -->
-	
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_15x65mmDiffusingCharged</defName>
+    <label>make 15x65mm Diffusing Charged cartridge x200</label>
+    <description>Craft 200 15x65mm Diffusing Charged cartridges.</description>
+    <jobString>Making 15x65mm Diffusing Charged cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>60</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>14</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>22</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_12x64mmCharged>200</Ammo_12x64mmCharged>
+    </products>
+    <skillRequirements>
+      <Crafting>8</Crafting>
+    </skillRequirements>
+    <workAmount>42460</workAmount>  <!-- 10% more work -->
+  </RecipeDef>
+
 </Defs>

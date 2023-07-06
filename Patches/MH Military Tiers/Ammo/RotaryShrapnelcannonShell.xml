@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MH: Military Tiers</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<ThingCategoryDef>
+							<defName>AmmoRotaryShrapnelcannonShell</defName>
+							<label>Rotary Shrapnelcannon shell</label>
+							<parent>AmmoShotguns</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
+						</ThingCategoryDef>
+
+						<!-- ==================== AmmoSet ========================== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_RotaryShrapnelcannonShell</defName>
+							<label>Rotary Shrapnelcannon shell</label>
+							<ammoTypes>
+								<Ammo_RotaryShrapnelcannonShell>Bullet_RotaryShrapnelcannonShell</Ammo_RotaryShrapnelcannonShell>
+							</ammoTypes>
+							<similarTo>AmmoSet_Shotgun</similarTo>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ==================== Ammo ========================== -->
+
+						<ThingDef Class="CombatExtended.AmmoDef" Name="RotaryShrapnelcannonShellBase" ParentName="HeavyAmmoBase" Abstract="True">
+							<description>Very large caliber buckshot shell designed specifically for the mech-operated Rotary Shrapnelcannon.</description>
+							<statBases>
+								<Mass>1.072</Mass>
+								<Bulk>5.9</Bulk>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade</li>
+								<li>CE_AutoEnableCrafting_TableMachining</li>
+							</tradeTags>
+							<thingCategories>
+								<li>AmmoRotaryShrapnelcannonShell</li>
+							</thingCategories>
+							<stackLimit>25</stackLimit>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="RotaryShrapnelcannonShellBase">
+							<defName>Ammo_RotaryShrapnelcannonShell</defName>
+							<label>Shrapnelcannon shell (Buck)</label>
+							<graphicData>
+								<texPath>ThirdParty/Android Tiers/ShrapnelcannonShell</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>4.37</MarketValue>
+							</statBases>
+							<ammoClass>BuckShot</ammoClass>
+						</ThingDef>
+
+						<!-- ================== Projectiles ================== -->
+
+						<ThingDef ParentName="Base12GaugeBullet">
+							<defName>Bullet_RotaryShrapnelcannonShell</defName>
+							<label>Shrapnelcannon buckshot pellet</label>
+							<graphicData>
+								<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>117</speed>
+								<damageAmountBase>57</damageAmountBase>
+								<damageDef>Fragment</damageDef>
+								<pelletCount>6</pelletCount>
+								<armorPenetrationSharp>12</armorPenetrationSharp>
+								<armorPenetrationBlunt>526.34</armorPenetrationBlunt>
+								<spreadMult>7.9</spreadMult>
+							</projectile>
+						</ThingDef>
+
+						<RecipeDef ParentName="AmmoRecipeBase">
+							<defName>MakeAmmo_RotaryShrapnelcannonShell</defName>
+							<label>make Shrapnelcannon (Buck) shell x10</label>
+							<description>Craft 10 Shrapnelcannon (Buck) shells.</description>
+							<jobString>Making Shrapnelcannon (Buck) shells.</jobString>
+							<workAmount>2200</workAmount>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>22</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<Ammo_RotaryShrapnelcannonShell>10</Ammo_RotaryShrapnelcannonShell>
+							</products>
+						</RecipeDef>
+
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MH: Android Tiers Core</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="ATR_CombatAssistant"]/stages/li/statOffsets</xpath>
+					<value>
+						<Suppressability>-0.25</Suppressability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_CombatAssistant"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+						<AimingAccuracy>0.4</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_CombatAssistant"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+					<value>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+						<MeleeCritChance>0.2</MeleeCritChance>
+						<MeleeParryChance>0.2</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_PlatingPlasteel"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>4</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_PlatingPlasteel"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_CompositePlating"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>4</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.1</ArmorRating_Heat>
+						<ArmorRating_Electric>0.1</ArmorRating_Electric>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_CompositePlating"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="ATR_HydraulicFrame"]/stages/li/statOffsets</xpath>
+					<value>
+						<CarryWeight>10</CarryWeight>
+						<CarryBulk>20</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_MobilityFrame"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+					<value>
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="ATR_SuppressorFrame"]/stages/li/statOffsets</xpath>
+					<value>
+						<Suppressability>1</Suppressability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_MiningArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>drill</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.25</cooldownTime>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_AgriArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>scythe</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.25</cooldownTime>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_PacificationArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>charged fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.0</cooldownTime>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>10</amount>
+									</li>
+									<li>
+										<def>EMP</def>
+										<amount>5</amount>
+									</li>
+								</extraMeleeDamages>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_ScalpelArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>scalpel</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.5</cooldownTime>
+								<armorPenetrationSharp>1.0</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>scalpel</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.0</cooldownTime>
+								<armorPenetrationSharp>8</armorPenetrationSharp>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_RendingArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>carver</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>25</power>
+								<cooldownTime>1.25</cooldownTime>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>carver</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>0.75</cooldownTime>
+								<armorPenetrationSharp>20</armorPenetrationSharp>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>carver</label>
+								<capacities>
+									<li>Demolish</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>2.0</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_MakeshiftMechArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ATR_AdvancedArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.25</cooldownTime>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

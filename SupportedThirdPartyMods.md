@@ -72,6 +72,7 @@ Alpha Animals |
 Alpha Biomes |
 Alpha Genes |
 Alpha Genes - Insectoid Mutations |
+Alpha Mechs |
 Alpha Memes |
 Alpha Ships |
 Altered Carbon |
@@ -96,6 +97,7 @@ Animal Equipment	|
 Anthro Race |
 Antinium    |
 Anty the War Ant Race |
+AOC The Cleanup Devil |
 Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
 Arachne Race	|
@@ -104,7 +106,7 @@ Archotech Expanded Prosthetics  |
 Archotech PowerArmor    |
 Archotech Weaponry    |
 Archotech+ (Continued)  |
-Arasaka Corporation [1.3]	|
+Arasaka Corporation	|
 Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
 Aspero Race |
@@ -127,6 +129,7 @@ Black Widows	|
 Bori Race	|
 British Weapon Set	|
 Bulgarian Imperial Uniforms |
+Call of Cthulhu - Cosmic Horrors  |
 Call of Duty: Zombies Pack |
 Call of Duty: Mystery Box |
 Call of Duty: Pack A Punch |
@@ -160,12 +163,14 @@ Dragons Descent    |
 Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
+Dusk Armory   |
 ED-Shields	|
 Edge of Descension - Monoblades  |
 Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auronya   |
 Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
 Erin's Chocobos |
@@ -178,6 +183,7 @@ Erin's Lizard Doggo |
 Erin's Miqo'te  |
 Erin's Mountain Animals |
 Erin's Sephyr   |
+Erin's Shisune   |
 Erin's Viera    |
 EvolvedOrgansRedux |
 Exotic Arsenal |
@@ -196,7 +202,7 @@ Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
-Feles - Felines of the Rim [1.3]    |
+Feles - Felines of the Rim [1.4]    |
 Fell Tribes	|
 Ferrex Race	|
 FFGermanShepherd    |
@@ -220,7 +226,9 @@ Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 Glitter Weaponry	|
 GouRIMet	|
+Grimworld: Autoguns	|
 Grimworld: Lasguns	|
+Grimworld: Melee	|
 Gulden Mod  |
 Half Dragons    |
 Halo - Rimworld Auxiliary Combat Armory	|
@@ -229,8 +237,10 @@ Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
 Heyra the Horned    |
 High Caliber	|
+High Tech Laboratory Facilities	|
 Hive Armory |
 Idhale Race	|
+Impact Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
@@ -275,6 +285,10 @@ Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
 Megafauna	|
+MH: Android Tiers	|
+MH: Android Tiers Core	|
+MH: Mechanical Biomimetics	|
+MH: Military Tiers	|
 Midworld Expanded: Flak Armor  |
 Miho, the Celestial Fox  |
 Mincho, The Mint Choco Slime  |
@@ -289,6 +303,7 @@ Moa |
 Moonjelly Race  |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
+More Medieval Helms and Armor	|
 More Persona Traits	|
 More Practical Traits	|
 More Psycasts   |
@@ -310,6 +325,7 @@ Nakin Race  |
 Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
+New Mech: Mini-Miner    |
 NewRatkinPlus |
 Ni'Hal	|
 Nukes   |
@@ -401,6 +417,7 @@ Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
+SRTS Expanded	|
 Stalingrad – Uniforms   |
 Steamworld Uniforms |
 Star Crafters Armory  |
@@ -410,6 +427,7 @@ Starship Troopers Aracnids  |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
+The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
@@ -458,9 +476,13 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
+Vanilla Psycasts Expanded - Hemosage  |
+Vanilla Races Expanded - Android  |
+Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
-Vanilla Races Expanded - Saurid  |
 Vanilla Races Expanded - Phytokin  |
+Vanilla Races Expanded - Sanguophage  |
+Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |

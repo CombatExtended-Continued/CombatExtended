@@ -68,6 +68,9 @@
     </comps>
     <recipeMaker>
       <researchPrerequisite>CE_Launchers</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>4</Crafting>
+      </skillRequirements>
     </recipeMaker>
     <tools>
       <li Class="CombatExtended.ToolCE">
@@ -210,6 +213,9 @@
     <description>Craft 5 disposable rocket launchers.</description>
     <jobString>Making disposable rocket launchers.</jobString>
     <workAmount>32500</workAmount>
+    <skillRequirements>
+      <Crafting>4</Crafting>
+    </skillRequirements>    
     <ingredients>
       <li>
         <filter>
@@ -255,6 +261,9 @@
     <description>Craft one disposable rocket launcher.</description>
     <jobString>Making disposable rocket launcher.</jobString>
     <workAmount>8125</workAmount>
+    <skillRequirements>
+      <Crafting>4</Crafting>
+    </skillRequirements>
     <ingredients>
       <li>
         <filter>
@@ -319,10 +328,6 @@
     <techLevel>Spacer</techLevel>
     <tradeability>None</tradeability>
     <destroyOnDrop>true</destroyOnDrop>
-    <weaponTags>
-      <li>MechanoidGunIndirect</li>
-      <li>NoSwitch</li>
-    </weaponTags>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
         <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
@@ -360,6 +365,10 @@
         <aiUseBurstMode>FALSE</aiUseBurstMode>
       </li>
     </comps>
+    <weaponTags>
+      <li>MechanoidGunIndirect</li>
+      <li>NoSwitch</li>
+    </weaponTags>
     <tools>
       <li Class="CombatExtended.ToolCE">
         <label>barrel</label>
@@ -438,6 +447,9 @@
     </comps>
     <recipeMaker>
       <researchPrerequisite>Gunsmithing</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>4</Crafting>
+      </skillRequirements>
     </recipeMaker>
     <weaponTags Inherit="False">
       <li>CE_FlareLauncher</li>
@@ -473,6 +485,83 @@
         <DrawOffset>0.0,0.0</DrawOffset>
       </li>
     -->
+    </modExtensions>
+  </ThingDef>
+
+  <!-- ==================== Minigun (Mechanoid) ==================== -->
+
+  <ThingDef ParentName="BaseGun">
+    <defName>CE_MechanoidMinigun</defName>
+    <label>minigun</label>
+    <description>A multi-barrel machine gun. It looks menacing with its long barrels and once it starts firing it fires very fast. Where most self-loading guns are powered by the energy from the gunpowder, the minigun uses an electric motor powered by the mechanoid it's mounted on to rapidly cycle cartridges through the weapon.</description>
+    <relicChance>0</relicChance>
+    <graphicData>
+      <texPath>Things/Weapons/MechanoidMinigun</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.01</ShotSpread>
+      <SwayFactor>1.25</SwayFactor>
+      <Bulk>12.0</Bulk>
+      <Mass>30.0</Mass>
+      <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+      <MarketValue>1250</MarketValue>
+    </statBases>
+    <techLevel>Spacer</techLevel>
+    <tradeability>None</tradeability>
+    <destroyOnDrop>true</destroyOnDrop>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <recoilAmount>0.55</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+        <warmupTime>2.3</warmupTime>
+        <range>68</range>
+        <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+        <burstShotCount>50</burstShotCount>
+        <soundCast>Shot_Minigun</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>250</magazineSize>
+        <reloadTime>9.2</reloadTime>
+        <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+      </li>
+      <li Class="CombatExtended.CompProperties_FireModes">
+        <aiAimMode>Snapshot</aiAimMode>
+        <aimedBurstShotCount>25</aimedBurstShotCount>
+      </li>
+    </comps>
+    <weaponTags>
+      <li>MechanoidMinigun</li>
+      <li>NoSwitch</li>
+    </weaponTags>
+    <tools>
+      <li Class="CombatExtended.ToolCE">
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2.44</cooldownTime>
+        <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+      </li>
+    </tools>
+    <modExtensions>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.4,1.4</DrawSize>
+        <DrawOffset>0.0,0.0</DrawOffset>
+      </li>
+      <li Class="CombatExtended.ThingDefExtensionCE">
+        <MenuHidden>True</MenuHidden>
+      </li>
     </modExtensions>
   </ThingDef>
 

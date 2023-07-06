@@ -85,22 +85,6 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseBullet" Abstract="True">
-		<category>Projectile</category>
-		<tickerType>Normal</tickerType>
-		<altitudeLayer>Projectile</altitudeLayer>
-		<thingClass>CombatExtended.BulletCE</thingClass>
-		<label>bullet</label>
-		<useHitPoints>False</useHitPoints>
-		<neverMultiSelect>True</neverMultiSelect>
-		<graphicData>
-			<shaderType>Transparent</shaderType>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionDamageFalloff>true</explosionDamageFalloff>
-		</projectile>
-	</ThingDef>
-
 	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseBulletCE" ParentName="BaseBullet" Abstract="True">
 		<thingClass>CombatExtended.BulletCE</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -140,14 +124,23 @@
 
 	<RecipeDef Name="AdvancedAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
 		<researchPrerequisite>CE_AdvancedAmmo</researchPrerequisite>
+		<skillRequirements>
+			<Crafting>6</Crafting>
+		</skillRequirements>
 	</RecipeDef>
 
 	<RecipeDef Name="LauncherAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
 		<researchPrerequisite>CE_Launchers</researchPrerequisite>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
 	</RecipeDef>
 
 	<RecipeDef Name="ChargeAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
 		<researchPrerequisite>ChargedShot</researchPrerequisite>
+		<skillRequirements>
+			<Crafting>7</Crafting>
+		</skillRequirements>
 	</RecipeDef>
 
 	<RecipeDef Name="AmmoRecipeNeolithicBase" Abstract="true">
