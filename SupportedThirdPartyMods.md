@@ -185,6 +185,7 @@ Erin's Mountain Animals |
 Erin's Sephyr   |
 Erin's Shisune   |
 Erin's Viera    |
+ESCP - Trolls   |
 EvolvedOrgansRedux |
 Exotic Arsenal |
 Expanded Materials - Metals |
@@ -316,7 +317,6 @@ MorrowRim - Ashlands Swamp  |
 MorrowRim - Bloodmoon  |
 MorrowRim - Colovian Fur Helm	|
 MorrowRim - Just the Animals	|
-MorrowRim - Trolls	|
 Moyo - From the Depth   |
 Moyo - Light in the Abyss   |
 Moyo - The Cartel Arrives   |
