@@ -35,31 +35,39 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="AnimalThingBase"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="AnimalThingBase"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="AnimalThingBase"]</xpath>
+		<xpath>Defs/ThingDef[@Name="AnimalThingBase"]/comps</xpath>
 		<value>
-			<comps>
-				<li Class="CombatExtended.CompProperties_ArmorDurability">
-					<Durability>500</Durability>
-					<Regenerates>true</Regenerates>
-					<RegenInterval>600</RegenInterval>
-					<RegenValue>5</RegenValue>
-<!-- 					<Repairable>true</Repairable>
-					<RepairIngredients>
-						<Steel>5</Steel>
-						<Plasteel>5</Plasteel>
-					</RepairIngredients>
-					<RepairTime>240</RepairTime>
-					<RepairValue>200</RepairValue>
-					<CanOverHeal>true</CanOverHeal>
-					<MaxOverHeal>500</MaxOverHeal> -->
-					<MinArmorPct>0.75</MinArmorPct>
-<!-- 					<MinArmorValueSharp>14</MinArmorValueSharp>
-					<MinArmorValueBlunt>30</MinArmorValueBlunt>
-					<MinArmorValueHeat>0.2</MinArmorValueHeat>
-					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
-				</li>
-			</comps>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>500</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+<!-- 				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>50</MaxOverHeal> -->
+				<MinArmorPct>0.75</MinArmorPct>
+<!-- 				<MinArmorValueSharp>14</MinArmorValueSharp>
+				<MinArmorValueBlunt>30</MinArmorValueBlunt>
+				<MinArmorValueHeat>0.2</MinArmorValueHeat>
+				<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+			</li>
 		</value>
 	</Operation>
 
