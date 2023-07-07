@@ -120,6 +120,8 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Biomes! Caverns	|
+Biomes! Core	|
 Biotech Expansion - Mammalia  |
 Biotech Expansion - Mythic  |
 Biotech Mech Stuff Elongated - Mechanoid Upgrades V2  |
