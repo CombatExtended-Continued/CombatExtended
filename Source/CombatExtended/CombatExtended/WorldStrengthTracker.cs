@@ -66,7 +66,7 @@ namespace CombatExtended
 
         public void Rebuild()
         {
-            trackers.RemoveAll(t => t.Faction.defeated);
+            trackers.RemoveAll(t => t.Faction?.defeated ?? true);
             foreach (Faction faction in world.factionManager.AllFactions)
             {
                 if (faction.IsPlayer)
