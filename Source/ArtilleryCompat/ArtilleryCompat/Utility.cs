@@ -11,7 +11,7 @@ namespace CombatExtended.Compatibility.Artillery
     {
         public static List<ActiveArtilleryStrike> HarmfulStrikes(List<ActiveArtilleryStrike> artilleryStrikes)
         {
-            return artilleryStrikes.Where(s => (s.shellDef.projectile?.damageDef?.harmsHealth ?? false) || ((s.shellDef is AmmoDef) && ((AmmoDef)s.shellDef).detonateProjectile.projectile.damageDef.harmsHealth)).ToList();
+            return artilleryStrikes.Where(s => s.shellDef.GetProjectileProperties()?.damageDef.harmsHealth == true).ToList();
         }
 
         public static ProjectileProperties GetProjectileProperties(this ThingDef thingDef)

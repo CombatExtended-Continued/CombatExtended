@@ -674,7 +674,7 @@ namespace CombatExtended
 
             var projectileProperties = def.projectile as ProjectilePropertiesCE;
             var areWeLucky = Rand.Chance(projectileProperties?.empShieldBreakChance ?? 0);
-            if (areWeLucky)
+            if (areWeLucky && interceptorComp.Props.disarmedByEmpForTicks > 0)
             {
                 // If the chance check for this EMP projectile succeeds, break the shield using the appropriate damage type
                 // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
@@ -690,6 +690,7 @@ namespace CombatExtended
 
                     // Ensure we reset hit points for Biotech's new shields if broken by EMP
                     interceptorComp.currentHitPoints = 0;
+                    interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
                 }
             }
 

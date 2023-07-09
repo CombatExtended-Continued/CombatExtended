@@ -532,7 +532,19 @@
 					<AimingAccuracy>1.0</AimingAccuracy>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="Turret_ShardSentry" or 
+					defName="Turret_SuvTurret" or
+					defName="Turret_WaveEmitter" or
+					defName="RocketTurret"
+				]/statBases</xpath>
+				<value>
+				  <NightVisionEfficiency>0.5</NightVisionEfficiency>
+				</value>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[
 				defName="Gun_SuvTurret" or 
