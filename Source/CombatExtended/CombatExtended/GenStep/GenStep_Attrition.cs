@@ -99,7 +99,7 @@ namespace CombatExtended
                 }
 
                 var filthMade = false;
-                var damageCell = (int)HealthComp.DamageAtRadius(shellDef, (int)centerCell.DistanceTo(cellToAffect));
+                var damageCell = (int)WorldObjectDamageWorker.DamageAtRadius(shellDef, (int)centerCell.DistanceTo(cellToAffect));
                 for (int i = 0; i < things.Count; i++)
                 {
                     Thing thing = things[i];
@@ -175,7 +175,7 @@ namespace CombatExtended
         {
             BattleLogEntry_DamageTaken battleLogEntry_DamageTaken = new BattleLogEntry_DamageTaken(pawn, CE_RulePackDefOf.DamageEvent_ShellingExplosion, null);
             Find.BattleLog.Add(battleLogEntry_DamageTaken);
-            var num = HealthComp.DamageAtRadius(projDef, Rand.Range(0, (int)projDef.projectile.explosionRadius));
+            var num = WorldObjectDamageWorker.DamageAtRadius(projDef, Rand.Range(0, (int)projDef.projectile.explosionRadius));
             DamageInfo dinfo = new DamageInfo(projDef.projectile.damageDef, (float)num, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true);
             dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
             pawn.TakeDamage(dinfo).AssociateWithLog(battleLogEntry_DamageTaken);

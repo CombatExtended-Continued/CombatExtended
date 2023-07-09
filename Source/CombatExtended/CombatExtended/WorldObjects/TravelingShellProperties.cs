@@ -1,4 +1,6 @@
 ﻿using System;
+using Verse;
+
 namespace CombatExtended
 {
     public class TravelingShellProperties
@@ -15,5 +17,20 @@ namespace CombatExtended
         /// Damage done to tile
         /// </summary>
         public float damage;
+
+        public Type workerClass = typeof(WorldObjectDamageWorker);
+        public WorldObjectDamageWorker Worker
+        {
+            get
+            {
+                if (workerInt == null)
+                {
+                    workerInt = (WorldObjectDamageWorker)Activator.CreateInstance(workerClass);
+                }
+                return workerInt;
+            }
+        }
+        [Unsaved]
+        private WorldObjectDamageWorker workerInt;
     }
 }

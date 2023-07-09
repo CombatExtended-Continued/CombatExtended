@@ -2,6 +2,7 @@
 using RimWorld.Planet;
 using RimWorld;
 using System.Collections.Generic;
+using Verse;
 
 namespace CombatExtended.WorldObjects
 {
@@ -17,6 +18,7 @@ namespace CombatExtended.WorldObjects
                 }
             }
         }
+        public static WorldObjectDamageWorker GetWorldObjectDamageWorker(this ThingDef shellDef) => (shellDef?.GetProjectile()?.projectile as ProjectilePropertiesCE)?.shellingProps?.Worker ?? new WorldObjectDamageWorker();
     }
 }
 
