@@ -106,7 +106,7 @@ Archotech Expanded Prosthetics  |
 Archotech PowerArmor    |
 Archotech Weaponry    |
 Archotech+ (Continued)  |
-Arasaka Corporation [1.3]	|
+Arasaka Corporation	|
 Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
 Aspero Race |
@@ -120,6 +120,8 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Biomes! Caverns	|
+Biomes! Core	|
 Biotech Expansion - Mammalia  |
 Biotech Expansion - Mythic  |
 Biotech Mech Stuff Elongated - Mechanoid Upgrades V2  |
@@ -129,6 +131,7 @@ Black Widows	|
 Bori Race	|
 British Weapon Set	|
 Bulgarian Imperial Uniforms |
+Call of Cthulhu - Cosmic Horrors  |
 Call of Duty: Zombies Pack |
 Call of Duty: Mystery Box |
 Call of Duty: Pack A Punch |
@@ -169,6 +172,7 @@ Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auronya   |
 Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
 Erin's Chocobos |
@@ -181,7 +185,9 @@ Erin's Lizard Doggo |
 Erin's Miqo'te  |
 Erin's Mountain Animals |
 Erin's Sephyr   |
+Erin's Shisune   |
 Erin's Viera    |
+ESCP - Trolls   |
 EvolvedOrgansRedux |
 Exotic Arsenal |
 Expanded Materials - Metals |
@@ -199,7 +205,7 @@ Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
-Feles - Felines of the Rim [1.3]    |
+Feles - Felines of the Rim [1.4]    |
 Fell Tribes	|
 Ferrex Race	|
 FFGermanShepherd    |
@@ -223,7 +229,9 @@ Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 Glitter Weaponry	|
 GouRIMet	|
+Grimworld: Autoguns	|
 Grimworld: Lasguns	|
+Grimworld: Melee	|
 Gulden Mod  |
 Half Dragons    |
 Halo - Rimworld Auxiliary Combat Armory	|
@@ -311,7 +319,6 @@ MorrowRim - Ashlands Swamp  |
 MorrowRim - Bloodmoon  |
 MorrowRim - Colovian Fur Helm	|
 MorrowRim - Just the Animals	|
-MorrowRim - Trolls	|
 Moyo - From the Depth   |
 Moyo - Light in the Abyss   |
 Moyo - The Cartel Arrives   |
@@ -473,6 +480,7 @@ Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Races Expanded - Android  |
+Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |

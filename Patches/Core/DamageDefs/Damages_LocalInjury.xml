@@ -66,14 +66,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/DamageDef[defName="Bomb"]/defaultDamage</xpath>
 		<value>
-			<defaultDamage>635</defaultDamage>
+			<defaultDamage>156</defaultDamage>
 		</value>
 	</Operation>
   
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/DamageDef[defName="Bomb"]/defaultArmorPenetration</xpath>
 		<value>
-			<defaultArmorPenetration>210</defaultArmorPenetration>
+			<defaultArmorPenetration>52</defaultArmorPenetration>
 		</value>
 	</Operation>
 
@@ -119,6 +119,15 @@
 		<xpath>Defs/DamageDef[defName="EMP"]</xpath>
 		<value>
 			<armorCategory>Electric</armorCategory>
+		</value>
+	</Operation>
+
+	<!-- ========== Add heat armor to Frostbite damage ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="Frostbite"]</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
 		</value>
 	</Operation>
 
