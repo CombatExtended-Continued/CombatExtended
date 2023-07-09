@@ -11,7 +11,7 @@ namespace CombatExtended
 {
     public class GenStep_Attrition : GenStep
     {
-        
+
 
         //private struct DamagedSite
         //{

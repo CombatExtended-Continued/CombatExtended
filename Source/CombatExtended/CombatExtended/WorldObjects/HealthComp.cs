@@ -193,8 +193,8 @@ namespace CombatExtended.WorldObjects
             recentShells.Add(new WorldDamageInfo() { Value = damage, ShellDef = shellDef });
             Notify_DamageTaken(attackingFaction, launcherMap);
         }
-       
-        
+
+
         void TryDestroy()
         {
             if (!parent.Destroyed)
