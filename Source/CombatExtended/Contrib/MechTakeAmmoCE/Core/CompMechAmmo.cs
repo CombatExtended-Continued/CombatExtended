@@ -9,6 +9,7 @@ using RimWorld;
 using UnityEngine;
 
 using CombatExtended;
+using CombatExtended.Compatibility;
 using Verse.AI;
 
 namespace CombatExtended
@@ -172,6 +173,7 @@ namespace CombatExtended
             Current.Game.GetComponent<GameComponent_MechLoadoutDialogManger>()?.RegisterCompMechAmmo(this);
         }
 
+        [Multiplayer.SyncMethod]
         public void TakeAmmoNow()
         {
             this.TryMakeAmmoJob(true);
