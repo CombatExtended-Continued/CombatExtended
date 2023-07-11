@@ -286,8 +286,8 @@ Mechanoid Master Blaser |
 Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical System Expansion	|
 Medieval Overhaul   |
-Medieval Tailor   |
 Medieval Quest Rewards  |
+Medieval Tailor   |
 Megafauna	|
 MH: Android Tiers	|
 MH: Android Tiers Core	|
