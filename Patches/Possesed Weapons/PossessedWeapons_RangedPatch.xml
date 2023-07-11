@@ -1342,8 +1342,7 @@
 					</ThingDef>
 				</value>
 			</li>
-			
-			
+
 			<!--=============================== Acolyte Staff ================================-->
 			<li Class="PatchOperationFindMod">
 				<mods>
@@ -1352,26 +1351,27 @@
 				<match Class="PatchOperationSequence">
 					<operations>
 					
-						<li Class="PatchOperationReplace">
+						<li Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/statBases</xpath>
 							<value>
 								<Bulk>10.00</Bulk>
 							</value>
-					
+						</li>
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/warmupTime</xpath>
 							<value>
 								<warmupTime>3.2</warmupTime>
 							</value>
 						</li>
-						
+
 						 <li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/range</xpath>
 							<value>
 								<range>30</range>
 							</value>
 						</li>
-						
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/burstShotCount</xpath>
 							<value>
@@ -1385,7 +1385,7 @@
 								<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 							</value>
 						</li>
-						
+
 						<li Class="PatchOperationReplace">
                <xpath>Defs/ThingDef[defName="BotchJob_ArchmageStaff"]/tools</xpath>
                <value>
@@ -1403,20 +1403,22 @@
                   </tools>
                </value>
             </li>
-					
+
 						<!--=============================== Possessed Acolyte Staff ================================-->
-						<li Class="PatchOperationReplace">
+						<li Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases</xpath>
 							<value>
 								<Bulk>10.00</Bulk>
 							</value>
-							
+						</li>
+
 						<li Class="PatchOperationReplace">
 						<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases/RangedWeapon_Cooldown</xpath>
 							<value>
 								<RangedWeapon_Cooldown>1.53</RangedWeapon_Cooldown>
 							</value>
-							</li>
+						</li>
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/warmupTime</xpath>
 							<value>
