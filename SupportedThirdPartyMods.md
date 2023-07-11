@@ -286,6 +286,7 @@ Mechanoid Master Blaser |
 Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical System Expansion	|
 Medieval Overhaul   |
+Medieval Tailor   |
 Medieval Quest Rewards  |
 Megafauna	|
 MH: Android Tiers	|
@@ -345,6 +346,7 @@ Paniel the Automata |
 Pawnbold Race   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
+Possessed Weapons	|
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
