@@ -287,6 +287,7 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
+Medieval Tailor   |
 Megafauna	|
 MH: Android Tiers	|
 MH: Android Tiers Core	|
@@ -345,6 +346,7 @@ Paniel the Automata |
 Pawnbold Race   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
+Possessed Weapons	|
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
