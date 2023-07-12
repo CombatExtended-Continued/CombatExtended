@@ -38,6 +38,6 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 __instance?.parent?.pawn?.equipment.Primary?.TryGetComp<CompAmmoUser>()?.TryUnload();
             }
         }
-        
+
     }
 }
