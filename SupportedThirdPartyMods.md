@@ -406,6 +406,7 @@ Risk of Rain: UES Contact Light Armory (Continued) |
 Rockmen race    |
 Royal Warcaskets   |
 Saclean Race    |
+Sanguinary Animals   |
 Save Our Ship 2	|
 SCP |
 SCP - Clothing Only	|

@@ -18,7 +18,7 @@
 			<Ammo_2Bore_AP>Bullet_2Bore_AP</Ammo_2Bore_AP>
 			<Ammo_2Bore_Incendiary>Bullet_2Bore_Incendiary</Ammo_2Bore_Incendiary>
 			<Ammo_2Bore_HE>Bullet_2Bore_HE</Ammo_2Bore_HE>
-			<Ammo_2Bore_Sabot>Bullet_2Bore_Sabot</Ammo_2Bore_Sabot>	   			
+			<Ammo_2Bore_Sabot>Bullet_2Bore_Sabot</Ammo_2Bore_Sabot>
 		</ammoTypes>
 		<similarTo>AmmoSet_AntiMateriel</similarTo>
 	</CombatExtended.AmmoSetDef>
@@ -38,7 +38,7 @@
 		<thingCategories>
 			<li>Ammo2Bore</li>
 		</thingCategories>
-    <stackLimit>500</stackLimit>
+		<stackLimit>500</stackLimit>
 	</ThingDef>
 	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
@@ -69,48 +69,48 @@
 		<cookOffProjectile>Bullet_2Bore_AP</cookOffProjectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
-    <defName>Ammo_2Bore_Incendiary</defName>
-    <label>2-Bore cartridge (AP-I)</label>
-    <graphicData>
-      <texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>2.64</MarketValue>
-    </statBases>
-    <ammoClass>IncendiaryAP</ammoClass>
-    <cookOffProjectile>Bullet_2Bore_Incendiary</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
+		<defName>Ammo_2Bore_Incendiary</defName>
+		<label>2-Bore cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.64</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_2Bore_Incendiary</cookOffProjectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
-    <defName>Ammo_2Bore_HE</defName>
-    <label>2-Bore cartridge (AP-HE)</label>
-    <graphicData>
-      <texPath>Things/Ammo/HighCaliber/HE</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>3.95</MarketValue>
-    </statBases>
-    <ammoClass>ExplosiveAP</ammoClass>
-    <cookOffProjectile>Bullet_2Bore_HE</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
+		<defName>Ammo_2Bore_HE</defName>
+		<label>2-Bore cartridge (AP-HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>3.95</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_2Bore_HE</cookOffProjectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
-    <defName>Ammo_2Bore_Sabot</defName>
-    <label>2-Bore cartridge (Sabot)</label>
-    <graphicData>
-      <texPath>Things/Ammo/HighCaliber/Sabot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>2.14</MarketValue>
-	    <Mass>0.38</Mass>
-    </statBases>
-    <ammoClass>Sabot</ammoClass>
-    <cookOffProjectile>Bullet_2Bore_Sabot</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
+		<defName>Ammo_2Bore_Sabot</defName>
+		<label>2-Bore cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.14</MarketValue>
+			<Mass>0.38</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_2Bore_Sabot</cookOffProjectile>
+	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
@@ -123,6 +123,8 @@
 			<damageDef>Bullet</damageDef>
 			<speed>88</speed>
 			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_RifleAmmoCasings_HighCal</casingMoteDefname>
+			<casingFilthDefname>Filth_RifleAmmoCasings_HighCal</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 	
@@ -146,48 +148,48 @@
 		</projectile>
 	</ThingDef>
 
-  <ThingDef ParentName="Base2BoreBullet">
-    <defName>Bullet_2Bore_Incendiary</defName>
-    <label>2-Bore bullet (AP-I)</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>36</damageAmountBase>
-      <armorPenetrationSharp>24</armorPenetrationSharp>
-      <armorPenetrationBlunt>345.26</armorPenetrationBlunt>
-      <secondaryDamage>
-        <li>
-          <def>Flame_Secondary</def>
-          <amount>22</amount>
-        </li>
-      </secondaryDamage>
-    </projectile>
-  </ThingDef>
+	<ThingDef ParentName="Base2BoreBullet">
+		<defName>Bullet_2Bore_Incendiary</defName>
+		<label>2-Bore bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>36</damageAmountBase>
+			<armorPenetrationSharp>24</armorPenetrationSharp>
+			<armorPenetrationBlunt>345.26</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>22</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
   
-  <ThingDef ParentName="Base2BoreBullet">
-    <defName>Bullet_2Bore_HE</defName>
-    <label>2-Bore bullet (AP-HE)</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>57</damageAmountBase>
-      <armorPenetrationSharp>12</armorPenetrationSharp>
-      <armorPenetrationBlunt>345.26</armorPenetrationBlunt>
-      <secondaryDamage>
-        <li>
-          <def>Bomb_Secondary</def>
-          <amount>34</amount>
-        </li>
-      </secondaryDamage>
-    </projectile>
-  </ThingDef>
+	<ThingDef ParentName="Base2BoreBullet">
+		<defName>Bullet_2Bore_HE</defName>
+		<label>2-Bore bullet (AP-HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>57</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>345.26</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>34</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
 
-  <ThingDef ParentName="Base2BoreBullet">
-    <defName>Bullet_2Bore_Sabot</defName>
-    <label>2-Bore bullet (Sabot)</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-	    <speed>119</speed>
-	    <damageAmountBase>30</damageAmountBase>
-	    <armorPenetrationSharp>44</armorPenetrationSharp>
-	    <armorPenetrationBlunt>734.84</armorPenetrationBlunt>
-    </projectile>
-  </ThingDef>
+	<ThingDef ParentName="Base2BoreBullet">
+		<defName>Bullet_2Bore_Sabot</defName>
+		<label>2-Bore bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>119</speed>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationSharp>44</armorPenetrationSharp>
+			<armorPenetrationBlunt>734.84</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -243,118 +245,118 @@
 		<workAmount>23040</workAmount>
 	</RecipeDef>
 
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_2Bore_Incendiary</defName>
-    <label>make 2-Bore (AP-I) cartridge x200</label>
-    <description>Craft 200 2-Bore (AP-I) cartridges.</description>
-    <jobString>Making 2-Bore (AP-I) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>192</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Prometheum</li>
-          </thingDefs>
-        </filter>
-        <count>23</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Prometheum</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_2Bore_Incendiary>200</Ammo_2Bore_Incendiary>
-    </products>
-    <workAmount>28400</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_2Bore_Incendiary</defName>
+		<label>make 2-Bore (AP-I) cartridge x200</label>
+		<description>Craft 200 2-Bore (AP-I) cartridges.</description>
+		<jobString>Making 2-Bore (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>192</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>23</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_2Bore_Incendiary>200</Ammo_2Bore_Incendiary>
+		</products>
+		<workAmount>28400</workAmount>
+	</RecipeDef>
 
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_2Bore_HE</defName>
-    <label>make 2-Bore (AP-HE) cartridge x200</label>
-    <description>Craft 200 2-Bore (AP-HE) cartridges.</description>
-    <jobString>Making 2-Bore (AP-HE) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>192</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>43</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_2Bore_HE>200</Ammo_2Bore_HE>
-    </products>
-    <workAmount>36400</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_2Bore_HE</defName>
+		<label>make 2-Bore (AP-HE) cartridge x200</label>
+		<description>Craft 200 2-Bore (AP-HE) cartridges.</description>
+		<jobString>Making 2-Bore (AP-HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>192</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>43</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_2Bore_HE>200</Ammo_2Bore_HE>
+		</products>
+		<workAmount>36400</workAmount>
+	</RecipeDef>
 
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_2Bore_Sabot</defName>
-    <label>make 2-Bore (Sabot) cartridge x200</label>
-    <description>Craft 200 2-Bore (Sabot) cartridges.</description>
-    <jobString>Making 2-Bore (Sabot) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>100</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Uranium</li>
-          </thingDefs>
-        </filter>
-        <count>26</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Chemfuel</li>
-          </thingDefs>
-        </filter>
-        <count>26</count>
-      </li>	  
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-		    <li>Chemfuel</li>	  
-        <li>Steel</li>
-		    <li>Uranium</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_2Bore_Sabot>200</Ammo_2Bore_Sabot>
-    </products>
-    <workAmount>25600</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_2Bore_Sabot</defName>
+		<label>make 2-Bore (Sabot) cartridge x200</label>
+		<description>Craft 200 2-Bore (Sabot) cartridges.</description>
+		<jobString>Making 2-Bore (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>100</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Chemfuel</li>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_2Bore_Sabot>200</Ammo_2Bore_Sabot>
+		</products>
+		<workAmount>25600</workAmount>
+	</RecipeDef>
 
 </Defs>

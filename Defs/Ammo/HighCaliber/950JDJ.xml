@@ -18,7 +18,7 @@
 			<Ammo_950JDJ_AP>Bullet_950JDJ_AP</Ammo_950JDJ_AP>
 			<Ammo_50JDJ_Incendiary>Bullet_50JDJ_Incendiary</Ammo_50JDJ_Incendiary>
 			<Ammo_50JDJ_HE>Bullet_50JDJ_HE</Ammo_50JDJ_HE>
-			<Ammo_50JDJ_Sabot>Bullet_50JDJ_Sabot</Ammo_50JDJ_Sabot>				
+			<Ammo_50JDJ_Sabot>Bullet_50JDJ_Sabot</Ammo_50JDJ_Sabot>
 		</ammoTypes>
 		<similarTo>AmmoSet_AntiMateriel</similarTo>
 	</CombatExtended.AmmoSetDef>
@@ -28,13 +28,13 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo950JDJBase" ParentName="MediumAmmoBase" Abstract="True">
 		<description>A ridiculously large and powerful caliber sporting cartridge.</description>
 		<statBases>
-		<Mass>0.319</Mass>
-		<Bulk>0.18</Bulk>
+			<Mass>0.319</Mass>
+			<Bulk>0.18</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo950JDJ</li>
 		</thingCategories>
@@ -122,6 +122,8 @@
 			<damageDef>Bullet</damageDef>
 			<speed>132</speed>
 			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_RifleAmmoCasings_HighCal</casingMoteDefname>
+			<casingFilthDefname>Filth_RifleAmmoCasings_HighCal</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 	
@@ -154,8 +156,8 @@
 			<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
-				<def>Flame_Secondary</def>
-				<amount>29</amount>
+					<def>Flame_Secondary</def>
+					<amount>29</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -170,8 +172,8 @@
 			<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
-				<def>Bomb_Secondary</def>
-				<amount>45</amount>
+					<def>Bomb_Secondary</def>
+					<amount>45</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -248,31 +250,31 @@
 		<description>Craft 200 .950 JDJ (AP-I) cartridges.</description>
 		<jobString>Making .950 JDJ (AP-I) cartridges.</jobString>
 		<ingredients>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-			</filter>
-			<count>130</count>
-		</li>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Prometheum</li>
-			</thingDefs>
-			</filter>
-			<count>24</count>
-		</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>130</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
-		<thingDefs>
-			<li>Steel</li>
-			<li>Prometheum</li>
-		</thingDefs>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-		<Ammo_50JDJ_Incendiary>200</Ammo_50JDJ_Incendiary>
+			<Ammo_50JDJ_Incendiary>200</Ammo_50JDJ_Incendiary>
 		</products>
 		<workAmount>22600</workAmount>
 	</RecipeDef>
@@ -283,31 +285,31 @@
 		<description>Craft 200 .950 JDJ (AP-HE) cartridges.</description>
 		<jobString>Making .950 JDJ (AP-HE) cartridges.</jobString>
 		<ingredients>
-		<li>
-		<filter>
-		<thingDefs>
-			<li>Steel</li>
-		</thingDefs>
-		</filter>
-		<count>130</count>
-		</li>
-		<li>
-		<filter>
-		<thingDefs>
-			<li>FSX</li>
-		</thingDefs>
-		</filter>
-		<count>43</count>
-		</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>130</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>43</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
-		<thingDefs>
-		<li>Steel</li>
-		<li>FSX</li>
-		</thingDefs>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-		<Ammo_50JDJ_HE>200</Ammo_50JDJ_HE>
+			<Ammo_50JDJ_HE>200</Ammo_50JDJ_HE>
 		</products>
 		<workAmount>30200</workAmount>
 	</RecipeDef>
@@ -318,40 +320,40 @@
 		<description>Craft 200 .950 JDJ (Sabot) cartridges.</description>
 		<jobString>Making .950 JDJ (Sabot) cartridges.</jobString>
 		<ingredients>
-		<li>
-		<filter>
-		<thingDefs>
-			<li>Steel</li>
-		</thingDefs>
-		</filter>
-		<count>36</count>
-		</li>
-		<li>
-		<filter>
-		<thingDefs>
-			<li>Uranium</li>
-		</thingDefs>
-		</filter>
-		<count>27</count>
-		</li>
-		<li>
-		<filter>
-		<thingDefs>
-			<li>Chemfuel</li>
-		</thingDefs>
-		</filter>
-		<count>27</count>
-		</li>	  
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>36</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>27</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>27</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
-		<thingDefs>
-		<li>Chemfuel</li>	  
-		<li>Steel</li>
-		<li>Uranium</li>
-		</thingDefs>
+			<thingDefs>
+				<li>Chemfuel</li>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-		<Ammo_50JDJ_Sabot>200</Ammo_50JDJ_Sabot>
+			<Ammo_50JDJ_Sabot>200</Ammo_50JDJ_Sabot>
 		</products>
 		<workAmount>19800</workAmount>
 	</RecipeDef>

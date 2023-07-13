@@ -14,7 +14,7 @@
 		<defName>AmmoSet_30x165mm</defName>
 		<label>30x165mm</label>
 		<ammoTypes>
-		    <Ammo_30x165mm_AP>Bullet_30x165mm_AP</Ammo_30x165mm_AP>
+			<Ammo_30x165mm_AP>Bullet_30x165mm_AP</Ammo_30x165mm_AP>
 			<Ammo_30x165mm_Incendiary>Bullet_30x165mm_Incendiary</Ammo_30x165mm_Incendiary>
 			<Ammo_30x165mm_HE>Bullet_30x165mm_HE</Ammo_30x165mm_HE>
 			<Ammo_30x165mm_Sabot>Bullet_30x165mm_Sabot</Ammo_30x165mm_Sabot>
@@ -40,19 +40,19 @@
 		<stackLimit>500</stackLimit>
 	</ThingDef>
 
-    <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x165mmBase">
-      <defName>Ammo_30x165mm_AP</defName>
-      <label>30x165mm cartridge (AP)</label>
-      <graphicData>
-        <texPath>Things/Ammo/HighCaliber/AP</texPath>
-        <graphicClass>Graphic_StackCount</graphicClass>
-      </graphicData>
-      <statBases>
-        <MarketValue>3.36</MarketValue>
-      </statBases>
-      <ammoClass>ArmorPiercing</ammoClass>
-      <cookOffProjectile>Bullet_30x165mm_AP</cookOffProjectile>
-    </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x165mmBase">
+		<defName>Ammo_30x165mm_AP</defName>
+		<label>30x165mm cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>3.36</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_30x165mm_AP</cookOffProjectile>
+	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x165mmBase">
 		<defName>Ammo_30x165mm_Incendiary</defName>
@@ -108,18 +108,20 @@
 			<damageDef>Bullet</damageDef>
 			<speed>165</speed>
 			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_RifleAmmoCasings_HighCal</casingMoteDefname>
+			<casingFilthDefname>Filth_RifleAmmoCasings_HighCal</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
-  <ThingDef ParentName="Base30x165mmBullet">
-    <defName>Bullet_30x165mm_AP</defName>
-    <label>30x165mm bullet (AP)</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>74</damageAmountBase>
-      <armorPenetrationSharp>57</armorPenetrationSharp>
-      <armorPenetrationBlunt>3159</armorPenetrationBlunt>
-    </projectile>
-  </ThingDef>
+	<ThingDef ParentName="Base30x165mmBullet">
+		<defName>Bullet_30x165mm_AP</defName>
+		<label>30x165mm bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>74</damageAmountBase>
+			<armorPenetrationSharp>57</armorPenetrationSharp>
+			<armorPenetrationBlunt>3159</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
 
 	<ThingDef ParentName="Base30x165mmBullet">
 		<defName>Bullet_30x165mm_Incendiary</defName>
@@ -166,31 +168,31 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-    <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_30x165mm_AP</defName>
-      <label>make 30x165mm (AP) cartridge x100</label>
-      <description>Craft 100 30x165mm (AP) cartridges.</description>
-      <jobString>Making 30x165mm (AP) cartridges.</jobString>
-      <ingredients>
-        <li>
-          <filter>
-            <thingDefs>
-              <li>Steel</li>
-            </thingDefs>
-          </filter>
-          <count>168</count>
-        </li>
-      </ingredients>
-      <fixedIngredientFilter>
-        <thingDefs>
-          <li>Steel</li>
-        </thingDefs>
-      </fixedIngredientFilter>
-      <products>
-        <Ammo_30x165mm_AP>100</Ammo_30x165mm_AP>
-      </products>
-      <workAmount>20160</workAmount>
-    </RecipeDef>
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_30x165mm_AP</defName>
+		<label>make 30x165mm (AP) cartridge x100</label>
+		<description>Craft 100 30x165mm (AP) cartridges.</description>
+		<jobString>Making 30x165mm (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>168</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30x165mm_AP>100</Ammo_30x165mm_AP>
+		</products>
+		<workAmount>20160</workAmount>
+	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_30x165mm_Incendiary</defName>
