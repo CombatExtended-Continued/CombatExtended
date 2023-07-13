@@ -106,6 +106,10 @@ namespace CombatExtended.WorldObjects
                 ticksToNextShot -= WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
                 return;
             }
+            if (comp.parent is MapParent mapParent && mapParent.HasMap)
+            {
+                return;
+            }
             CastShot();
         }
 
