@@ -2,15 +2,15 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Sergals Gnolls Lions and Frogs</li>
+		<li>Sergals Gnolls Lions and Frogs</li>
 		</mods>
 		<match Class="PatchOperationSequence">
-			<operations>
+		<operations>
 			
-				<!-- Spawn backpacks for selected Sergal NME pawntypes -->
+			<!-- Spawn backpacks for selected Sergal NME pawntypes -->
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/PawnKindDef[
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
 					defName="SergalColonistNME" or
 					defName="SergalCommandoNME" or
 					defName="SergalCommandoEliteNME" or
@@ -19,33 +19,33 @@
 					defName="SergalRecruitNME" or
 					defName="SergalSecurityGuardNME" or
 					defName="SergalTraderNME"
-				]					</xpath>
-					<value>
-						<apparelRequired>
-							<li>CE_Apparel_Backpack</li>
-						</apparelRequired>
-					</value>
-				</li>
+				]</xpath>
+				<value>
+					<apparelRequired>
+						<li>CE_Apparel_Backpack</li>
+					</apparelRequired>
+				</value>
+			</li>
 			
-				<!-- Spawn different combinations of primary ammo, secondary weapon and ammo for various Sergal NME pawntypes -->
+			<!-- Spawn different combinations of primary ammo, secondary weapon and ammo for various Sergal NME pawntypes -->
 			
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
 					defName="SergalRefugeeNME" or
 					defName="SergalSlaveNME"
-				]					</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-								<min>2</min>
-								<max>4</max>
-							</primaryMagazineCount>
-						</li>
-					</value>
-				</li>
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>4</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
 			
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
 					defName="SergalColonistNME" or
 					defName="SergalCommandoNME" or
 					defName="SergalCommandoEliteNME" or
@@ -54,30 +54,30 @@
 					defName="SergalRecruitNME" or
 					defName="SergalSecurityGuardNME" or
 					defName="SergalTraderNME"
-				]					</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-								<min>6</min>
-								<max>8</max>
-							</primaryMagazineCount>
-							<sidearms>
-								<li>
-									<generateChance>1</generateChance>
-									<magazineCount>
-										<min>2</min>
-										<max>3</max>
-									</magazineCount>
-									<weaponTags>
-										<li>CE_Sidearm</li>
-									</weaponTags>
-								</li>
-							</sidearms>
-						</li>
-					</value>
-				</li>
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>6</min>
+							<max>8</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>1</generateChance>
+								<magazineCount>
+									<min>2</min>
+									<max>3</max>
+								</magazineCount>	
+								<weaponTags>
+									<li>CE_Sidearm</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
 
-			</operations>
+		</operations>
 		</match>
 	</Operation>
 </Patch>

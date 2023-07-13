@@ -2,41 +2,41 @@
 <Patch>
 	
 	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>[O21] Outer Rim Galaxies</li>
-		</mods>
+    <mods>
+		<li>[O21] Outer Rim Galaxies</li>
+    </mods>
 		<match Class="PatchOperationSequence">
-			<operations>
+		<operations>
 			
-				<li Class="PatchOperationConditional">
-					<xpath>Defs/PawnKindDef[@Name="BaseConfederacyDroidPawn"]</xpath>
-					<match Class="PatchOperationSequence">
-						<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/PawnKindDef[@Name="BaseConfederacyDroidPawn"]</xpath>
+				<match Class="PatchOperationSequence">
+					<operations>
 					
-							<li Class="PatchOperationAddModExtension">
-								<xpath>Defs/PawnKindDef[@Name="BaseConfederacyDroidPawn"]</xpath>
-								<value>
-									<li Class="CombatExtended.LoadoutPropertiesExtension">
-										<primaryMagazineCount>
-											<min>5</min>
-											<max>12</max>
-										</primaryMagazineCount>
-									</li>
-								</value>
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/PawnKindDef[@Name="BaseConfederacyDroidPawn"]</xpath>
+						<value>
+							<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>5</min>
+								<max>12</max>
+							</primaryMagazineCount>
 							</li>
+						</value>
+					</li>
 					
-						</operations>
-					</match>
-				</li>
+					</operations>
+				</match>
+			</li>
 			
 			
-				<li Class="PatchOperationConditional">
-					<xpath>Defs/PawnKindDef[@Name="O21_OR_CloneP2Base"]</xpath>
-					<match Class="PatchOperationSequence">
-						<operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/PawnKindDef[@Name="O21_OR_CloneP2Base"]</xpath>
+				<match Class="PatchOperationSequence">
+					<operations>
 					
-							<li Class="PatchOperationAddModExtension">
-								<xpath>Defs/PawnKindDef[
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/PawnKindDef[
 							defName="O21_OR_CloneP2Trader" or
 							defName="O21_OR_CloneP2Trooper" or
 							defName="O21_OR_CloneP2Heavy" or
@@ -47,22 +47,22 @@
 							defName="O21_OR_CloneP2Pilot" or
 							defName="O21_OR_CloneP2Captain" or
 							defName="O21_OR_CloneP2Commander"
-						]								</xpath>
-								<value>
-									<li Class="CombatExtended.LoadoutPropertiesExtension">
-										<primaryMagazineCount>
-											<min>5</min>
-											<max>12</max>
-										</primaryMagazineCount>
-									</li>
-								</value>
+						]</xpath>
+						<value>
+							<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>5</min>
+								<max>12</max>
+							</primaryMagazineCount>
 							</li>
+						</value>
+					</li>
 					
-						</operations>
-					</match>
-				</li>
+					</operations>
+				</match>
+			</li>
 			
-			</operations>
+		</operations>
 		</match>
 	</Operation>
 	

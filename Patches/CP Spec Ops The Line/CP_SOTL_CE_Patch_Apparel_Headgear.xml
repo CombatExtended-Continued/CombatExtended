@@ -2,51 +2,51 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>[CP] Spec Ops: The Line</li>
+		<li>[CP] Spec Ops: The Line</li>
 		</mods>
 		<match Class="PatchOperationSequence">
-			<operations>
+		<operations>
 
-				<!-- ========== Shemagh scarf (Walker) & Shemagh mask (Walker) ========== -->
+			<!-- ========== Shemagh scarf (Walker) & Shemagh mask (Walker) ========== -->
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
 					defName="RHApparel_Shemagh_Scarf_Delta" or 
 					defName="RHApparel_Shemagh_Mask_Delta"
-				]/statBases/StuffEffectMultiplierArmor					</xpath>
-					<value>
-						<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
-						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
-					</value>
-				</li>
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
 
-				<!-- ========== Baseball Cap Backwards (Delta), Baseball Cap (Lugo), Boonie Hat A-TACS AU (Delta) ========== -->
+			<!-- ========== Baseball Cap Backwards (Delta), Baseball Cap (Lugo), Boonie Hat A-TACS AU (Delta) ========== -->
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
 					defName="RHApparel_BackwardsCap_ATACSAU_Delta" or
 					defName="RHApparel_LugoCap" or
 					defName="RHApparel_ATACSAUBoonie_Delta"
-				]/statBases					</xpath>
-					<value>
-						<Bulk>1</Bulk>
-						<WornBulk>1</WornBulk>
-					</value>
-				</li>
+				]/statBases</xpath>
+				<value>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
 					defName="RHApparel_BackwardsCap_ATACSAU_Delta" or
 					defName="RHApparel_LugoCap" or
 					defName="RHApparel_ATACSAUBoonie_Delta"
-				]/statBases/StuffEffectMultiplierArmor					</xpath>
-					<value>
-						<!-- Equivalent to vanilla fabric hats -->
-						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
-					</value>
-				</li>
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<!-- Equivalent to vanilla fabric hats -->
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				</value>
+			</li>
 
-			</operations>
+		</operations>
 		</match>
 	</Operation>
 </Patch>

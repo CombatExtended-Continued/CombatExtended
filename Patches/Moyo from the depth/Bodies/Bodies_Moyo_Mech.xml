@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>Moyo-From the depth</li>
-		</mods>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Moyo-From the depth</li>
+    </mods>
 
-		<match Class="PatchOperationSequence">
-			<operations>
-				<!-- === Scorpion === -->
-				<li Class="PatchOperationAdd">
-					<xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Scorpion === -->
+        <li Class="PatchOperationAdd">
+          <xpath>
             Defs/BodyDef[defName="Moyo_Hexapod"]//*[
             def="Hexapod_TentacleJoint"]
-					</xpath>
+          </xpath>
 
-					<value>
-						<groups/>
-					</value>
-				</li>
+          <value>
+            <groups/>
+          </value>
+        </li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>
+        <li Class="PatchOperationAdd">
+          <xpath>
             Defs/BodyDef[defName="Moyo_Hexapod"]//*[
             def="HexapodHeadShell" or 
             def="Hexapod_TentacleJoint" or 
             def="Hexapod_Tentacle"
 			]/groups
-					</xpath>
+          </xpath>
 
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
 		
-				<!-- === Scorpion === -->
-				<li Class="PatchOperationAdd">
-					<xpath>
+		<!-- === Scorpion === -->
+        <li Class="PatchOperationAdd">
+          <xpath>
             Defs/BodyDef[defName="Moyo_Pressurepod"]//*[
             def="PressurePod_Seg1" or 
             def="pressurepod_ArmJoint" or 
@@ -45,15 +45,15 @@
 			def="PressurePod_Seg3" or 
 			def="PressurePod_Seg4" or 
 			def="PressurePod_Seg5"]
-					</xpath>
+          </xpath>
 
-					<value>
-						<groups/>
-					</value>
-				</li>
+          <value>
+            <groups/>
+          </value>
+        </li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>
+        <li Class="PatchOperationAdd">
+          <xpath>
             Defs/BodyDef[defName="Moyo_Pressurepod"]//*[
             def="PressurePod_Seg1" or 
             def="pressurepod_ArmJoint" or 
@@ -64,14 +64,14 @@
 			def="PressurePod_Seg5" or 
             def="MechanicalHead" or 
             def="pressurepod_club"]/groups
-					</xpath>
+          </xpath>
 
-					<value>
-						<li>CoveredByNaturalArmor</li>
-					</value>
-				</li>
-			</operations>
-		</match>
-	</Operation>
+          <value>
+            <li>CoveredByNaturalArmor</li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
 
 </Patch>

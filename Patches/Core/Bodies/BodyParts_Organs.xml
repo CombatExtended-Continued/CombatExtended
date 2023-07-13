@@ -1,64 +1,65 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- ========== Modify bleed rates ========== -->
+  <!-- ========== Modify bleed rates ========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/BodyPartDef[defName="Heart"]/bleedRate</xpath>
-		<value>
-			<bleedRate>18.75</bleedRate>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BodyPartDef[defName="Heart"]/bleedRate</xpath>
+    <value>
+      <bleedRate>18.75</bleedRate>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/BodyPartDef[defName="Heart" or defName="Lung"]/hitPoints</xpath>
-		<value>
-			<hitPoints>20</hitPoints>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BodyPartDef[defName="Heart" or defName="Lung"]/hitPoints</xpath>
+    <value>
+      <hitPoints>20</hitPoints>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyPartDef[defName="Lung"]</xpath>
-		<value>
-			<bleedRate>10.875</bleedRate>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/BodyPartDef[defName="Lung"]</xpath>
+    <value>
+      <bleedRate>10.875</bleedRate>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyPartDef[defName="Kidney"]</xpath>
-		<value>
-			<bleedRate>6.75</bleedRate>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/BodyPartDef[defName="Kidney"]</xpath>
+    <value>
+      <bleedRate>6.75</bleedRate>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyPartDef[defName="Liver"]</xpath>
-		<value>
-			<bleedRate>14.625</bleedRate>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/BodyPartDef[defName="Liver"]</xpath>
+    <value>
+      <bleedRate>14.625</bleedRate>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/BodyPartDef[defName="Stomach"]/hitPoints</xpath>
-		<value>
-			<hitPoints>25</hitPoints>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BodyPartDef[defName="Stomach"]/hitPoints</xpath>
+    <value>
+      <hitPoints>25</hitPoints>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyPartDef[defName="Stomach"]</xpath>
-		<value>
-			<bleedRate>4.5</bleedRate>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/BodyPartDef[defName="Stomach"]</xpath>
+    <value>
+      <bleedRate>4.5</bleedRate>
+    </value>
+  </Operation>
 
-	<!-- ========== Modify old injury chance ========== -->
+  <!-- ========== Modify old injury chance ========== -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyPartDef[defName="Heart" or defName="Lung" or defName="Kidney" or defName="Liver" or defName="Stomach"]</xpath>
-		<value>
-			<permanentInjuryChanceFactor>5</permanentInjuryChanceFactor>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/BodyPartDef[defName="Heart" or defName="Lung" or defName="Kidney" or defName="Liver" or defName="Stomach"]</xpath>
+    <value>
+      <permanentInjuryChanceFactor>5</permanentInjuryChanceFactor>
+    </value>
+  </Operation>
 
 </Patch>
+

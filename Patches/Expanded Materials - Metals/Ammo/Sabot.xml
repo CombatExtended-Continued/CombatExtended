@@ -2,15 +2,15 @@
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>Expanded Materials - Metals</li>
-			<li>[LITE]Expanded Materials - Metals</li>
-		</mods>
+	    <mods>
+		<li>Expanded Materials - Metals</li>
+		<li>[LITE]Expanded Materials - Metals</li>
+	    </mods>
 		<match Class="PatchOperationSequence">
-			<operations>
+		<operations>		
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/RecipeDef[
+		    <li Class="PatchOperationReplace">
+			<xpath>Defs/RecipeDef[
 			    defName="MakeAmmo_127x55mmAR_Sabot" or
 			    defName="MakeAmmo_3006Springfield_Sabot" or
 			    defName="MakeAmmo_300AACBlackout_Sabot" or
@@ -41,19 +41,19 @@
 			    defName="MakeAmmo_25x137mmNATO_Sabot" or
 			    defName="MakeAmmo_30x173mmNATO_Sabot" or
 			    defName="MakeAmmo_40x311mmR_Sabot"]/ingredients/li[3]/filter
-					</xpath>
-					<value>
-						<filter>
-							<thingDefs>
-								<li>VMEu_Tungsten</li>
-								<li>Uranium</li>
-							</thingDefs>
-						</filter>
-					</value>
-				</li>
+			</xpath>
+			<value>
+			    <filter>
+				<thingDefs>
+				    <li>VMEu_Tungsten</li>
+				    <li>Uranium</li>
+				</thingDefs>
+			    </filter>
+			</value>
+		    </li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/RecipeDef[
+		    <li Class="PatchOperationReplace">
+			<xpath>Defs/RecipeDef[
 			    defName="MakeAmmo_127x55mmAR_Sabot" or
 			    defName="MakeAmmo_3006Springfield_Sabot" or
 			    defName="MakeAmmo_300AACBlackout_Sabot" or
@@ -84,21 +84,21 @@
 			    defName="MakeAmmo_25x137mmNATO_Sabot" or
 			    defName="MakeAmmo_30x173mmNATO_Sabot" or
 			    defName="MakeAmmo_40x311mmR_Sabot"]/fixedIngredientFilter
-					</xpath>
-					<value>
-						<fixedIngredientFilter>
-							<thingDefs>
-								<li>VMEu_Bronze</li>
-								<li>Steel</li>
-								<li>VMEu_Tungsten</li>
-								<li>Uranium</li>
-							</thingDefs>
-						</fixedIngredientFilter>
-					</value>
-				</li>
+			</xpath>
+			<value>
+			    <fixedIngredientFilter>
+				<thingDefs>
+				    <li>VMEu_Bronze</li>
+				    <li>Steel</li>
+				    <li>VMEu_Tungsten</li>
+				    <li>Uranium</li>
+				</thingDefs>
+			    </fixedIngredientFilter>
+			</value>
+		    </li>
 
 
-			</operations>
+		</operations>
 		</match>
 	</Operation>
 </Patch>

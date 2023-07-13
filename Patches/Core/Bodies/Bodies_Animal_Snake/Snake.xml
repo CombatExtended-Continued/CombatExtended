@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- ==================== Snake ==================== -->
+  <!-- ==================== Snake ==================== -->
 
-	<!-- ========== Add groups entry if it doesn't exist already ========== -->
+  <!-- ========== Add groups entry if it doesn't exist already ========== -->
 
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="Snake"]/corePart/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/BodyDef[defName="Snake"]/corePart</xpath>
 			<value>
-				<groups/>
+				<groups />
 			</value>
 		</nomatch>
 	</Operation>
@@ -20,7 +20,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/BodyDef[defName="Snake"]/corePart/parts/li[def="SnakeHead"]</xpath>
 			<value>
-				<groups/>
+				<groups />
 			</value>
 		</nomatch>
 	</Operation>
@@ -30,32 +30,32 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/BodyDef[defName="Snake"]/corePart/parts/li[def="SnakeHead"]/parts/li[def="SnakeMouth"]</xpath>
 			<value>
-				<groups/>
+				<groups />
 			</value>
 		</nomatch>
 	</Operation>
 
-	<!-- ========== Add armor coverage ========== -->
+  <!-- ========== Add armor coverage ========== -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="Snake"]/corePart/groups</xpath>
-		<value>
-			<li>CoveredByNaturalArmor</li>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/BodyDef[defName="Snake"]/corePart/groups</xpath>
+    <value>
+      <li>CoveredByNaturalArmor</li>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="Snake"]/corePart/parts/li[def="SnakeHead"]/groups</xpath>
-		<value>
-			<li>CoveredByNaturalArmor</li>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/BodyDef[defName="Snake"]/corePart/parts/li[def="SnakeHead"]/groups</xpath>
+    <value>
+      <li>CoveredByNaturalArmor</li>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="Snake"]/corePart/parts/li[def="SnakeHead"]/parts/li[def="SnakeMouth"]/groups</xpath>
-		<value>
-			<li>CoveredByNaturalArmor</li>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/BodyDef[defName="Snake"]/corePart/parts/li[def="SnakeHead"]/parts/li[def="SnakeMouth"]/groups</xpath>
+    <value>
+      <li>CoveredByNaturalArmor</li>
+    </value>
+  </Operation>
 
 </Patch>

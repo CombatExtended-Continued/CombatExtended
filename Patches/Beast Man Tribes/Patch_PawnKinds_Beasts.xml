@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Patch>
+<Patch>	
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Beast Man Tribes</li>
@@ -10,7 +10,7 @@
 				<!-- Tribal raid points-->
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="BearMan_Penitent" 
+    						<xpath>Defs/PawnKindDef[defName="BearMan_Penitent" 
 							or defName="CamelMan_Penitent"
 							or defName="ElephantMan_Penitent"
 							or defName="ElkMan_Penitent"
@@ -19,10 +19,10 @@
 							or defName="LynxMan_Penitent"
 							or defName="PigMan_Penitent"
 							or defName="RaccoonMan_Penitent"
-							or defName="WolfMan_Penitent"]/weaponMoney					</xpath>
-					<value>
-						<weaponMoney>50~150</weaponMoney>
-					</value>
+							or defName="WolfMan_Penitent"]/weaponMoney</xpath>
+    					<value>
+      						<weaponMoney>50~150</weaponMoney>
+    					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
@@ -35,14 +35,14 @@
 							or defName="LynxMan_Penitent"
 							or defName="PigMan_Penitent"
 							or defName="RaccoonMan_Penitent"
-							or defName="WolfMan_Penitent"]/combatPower					</xpath>
+							or defName="WolfMan_Penitent"]/combatPower</xpath>
 					<value>
 						<combatPower>16</combatPower>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="BearMan_Warrior" 
+    					<xpath>Defs/PawnKindDef[defName="BearMan_Warrior" 
 							or defName="CamelMan_Warrior"
 							or defName="ElephantMan_Warrior"
 							or defName="ElkMan_Warrior"
@@ -51,14 +51,14 @@
 							or defName="LynxMan_Warrior"
 							or defName="PigMan_Warrior"
 							or defName="RaccoonMan_Warrior"
-							or defName="WolfMan_Warrior"]/weaponMoney					</xpath>
-					<value>
-						<weaponMoney>80~150</weaponMoney>
-					</value>
+							or defName="WolfMan_Warrior"]/weaponMoney</xpath>
+    					<value>
+      						<weaponMoney>80~150</weaponMoney>
+   					 </value>
 				</li>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[defName="BearMan_Warrior" 
+  				<li Class="PatchOperationAddModExtension">
+    				<xpath>Defs/PawnKindDef[defName="BearMan_Warrior" 
 							or defName="CamelMan_Warrior"
 							or defName="ElephantMan_Warrior"
 							or defName="ElkMan_Warrior"
@@ -67,20 +67,20 @@
 							or defName="LynxMan_Warrior"
 							or defName="PigMan_Warrior"
 							or defName="RaccoonMan_Warrior"
-							or defName="WolfMan_Warrior"]					</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<shieldMoney>
-								<min>100</min>
-								<max>150</max>
-							</shieldMoney>
-							<shieldTags>
-								<li>TribalShield</li>
-							</shieldTags>
-							<shieldChance>0.9</shieldChance>
-						</li>
-					</value>
-				</li>
+							or defName="WolfMan_Warrior"]</xpath>
+    				<value>
+      					<li Class="CombatExtended.LoadoutPropertiesExtension">
+        					<shieldMoney>
+          						<min>100</min>
+          						<max>150</max>
+        					</shieldMoney>
+        					<shieldTags>
+          						<li>TribalShield</li>
+        					</shieldTags>
+        					<shieldChance>0.9</shieldChance>
+      					</li>
+    				</value>
+ 				 </li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/PawnKindDef[defName="BearMan_Warrior" 
@@ -92,14 +92,14 @@
 							or defName="LynxMan_Warrior"
 							or defName="PigMan_Warrior"
 							or defName="RaccoonMan_Warrior"
-							or defName="WolfMan_Warrior"]/combatPower					</xpath>
+							or defName="WolfMan_Warrior"]/combatPower</xpath>
 					<value>
 						<combatPower>24</combatPower>
 					</value>
 				</li>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[defName="BearMan_Archer"
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="BearMan_Archer"
 		or defName="CamelMan_Archer"
 		or defName="ElephantMan_Archer"
 		or defName="ElkMan_Archer"
@@ -108,38 +108,38 @@
 		or defName="LynxMan_Archer"
 		or defName="PigMan_Archer"
 		or defName="RaccoonMan_Archer"
-		or defName="WolfMan_Archer"]					</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-								<min>20</min>
-								<max>40</max>
-							</primaryMagazineCount>
-							<shieldMoney>
-								<min>100</min>
-								<max>130</max>
-							</shieldMoney>
-							<shieldTags>
-								<li>TribalShield</li>
-							</shieldTags>
-							<shieldChance>0.6</shieldChance>
-							<sidearms>
-								<li>
-									<sidearmMoney>
-										<min>80</min>
-										<max>160</max>
-									</sidearmMoney>
-									<weaponTags>
-										<li>CE_Sidearm_Tribal</li>
-									</weaponTags>
-								</li>
-							</sidearms>
-						</li>
-					</value>
-				</li>
+		or defName="WolfMan_Archer"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>20</min>
+          <max>40</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>100</min>
+          <max>130</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.6</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>80</min>
+              <max>160</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>          
+        </sidearms>
+      </li>
+    </value>
+  </li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="BearMan_Archer"
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="BearMan_Archer"
 		or defName="CamelMan_Archer"
 		or defName="ElephantMan_Archer"
 		or defName="ElkMan_Archer"
@@ -148,14 +148,14 @@
 		or defName="LynxMan_Archer"
 		or defName="PigMan_Archer"
 		or defName="RaccoonMan_Archer"
-		or defName="WolfMan_Archer"]/combatPower					</xpath>
-					<value>
-						<combatPower>30</combatPower>
-					</value>
-				</li>
+		or defName="WolfMan_Archer"]/combatPower</xpath>
+    <value>
+      <combatPower>30</combatPower>
+    </value>
+  </li>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[defName="BearMan_Hunter"
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="BearMan_Hunter"
 		or defName="CamelMan_Hunter"
 		or defName="ElephantMan_Hunter"
 		or defName="ElkMan_Hunter"
@@ -164,38 +164,38 @@
 		or defName="LynxMan_Hunter"
 		or defName="PigMan_Hunter"
 		or defName="RaccoonMan_Hunter"
-		or defName="WolfMan_Hunter"]					</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-								<min>25</min>
-								<max>50</max>
-							</primaryMagazineCount>
-							<shieldMoney>
-								<min>100</min>
-								<max>140</max>
-							</shieldMoney>
-							<shieldTags>
-								<li>TribalShield</li>
-							</shieldTags>
-							<shieldChance>0.6</shieldChance>
-							<sidearms>
-								<li>
-									<sidearmMoney>
-										<min>80</min>
-										<max>240</max>
-									</sidearmMoney>
-									<weaponTags>
-										<li>CE_Sidearm_Tribal</li>
-									</weaponTags>
-								</li>
-							</sidearms>
-						</li>
-					</value>
-				</li>
+		or defName="WolfMan_Hunter"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>25</min>
+          <max>50</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>100</min>
+          <max>140</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.6</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>80</min>
+              <max>240</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>
+        </sidearms>
+      </li>
+    </value>
+  </li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="BearMan_Hunter"
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="BearMan_Hunter"
 		or defName="CamelMan_Hunter"
 		or defName="ElephantMan_Hunter"
 		or defName="ElkMan_Hunter"
@@ -204,14 +204,14 @@
 		or defName="LynxMan_Hunter"
 		or defName="PigMan_Hunter"
 		or defName="RaccoonMan_Hunter"
-		or defName="WolfMan_Hunter"]/combatPower					</xpath>
-					<value>
-						<combatPower>45</combatPower>
-					</value>
-				</li>
+		or defName="WolfMan_Hunter"]/combatPower</xpath>
+    <value>
+      <combatPower>45</combatPower>
+    </value>
+  </li>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[defName="BearMan_HeavyArcher"
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="BearMan_HeavyArcher"
 		or defName="CamelMan_HeavyArcher"
 		or defName="ElephantMan_HeavyArcher"
 		or defName="ElkMan_HeavyArcher"
@@ -220,38 +220,38 @@
 		or defName="LynxMan_HeavyArcher"
 		or defName="PigMan_HeavyArcher"
 		or defName="RaccoonMan_HeavyArcher"
-		or defName="WolfMan_HeavyArcher"]					</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-								<min>20</min>
-								<max>40</max>
-							</primaryMagazineCount>
-							<shieldMoney>
-								<min>100</min>
-								<max>160</max>
-							</shieldMoney>
-							<shieldTags>
-								<li>TribalShield</li>
-							</shieldTags>
-							<shieldChance>0.6</shieldChance>
-							<sidearms>
-								<li>
-									<sidearmMoney>
-										<min>80</min>
-										<max>300</max>
-									</sidearmMoney>
-									<weaponTags>
-										<li>CE_Sidearm_Tribal</li>
-									</weaponTags>
-								</li>
-							</sidearms>
-						</li>
-					</value>
-				</li>
+		or defName="WolfMan_HeavyArcher"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>20</min>
+          <max>40</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>100</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.6</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>80</min>
+              <max>300</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>
+        </sidearms>
+      </li>
+    </value>
+  </li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="BearMan_HeavyArcher"
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="BearMan_HeavyArcher"
 		or defName="CamelMan_HeavyArcher"
 		or defName="ElephantMan_HeavyArcher"
 		or defName="ElkMan_HeavyArcher"
@@ -260,14 +260,14 @@
 		or defName="LynxMan_HeavyArcher"
 		or defName="PigMan_HeavyArcher"
 		or defName="RaccoonMan_HeavyArcher"
-		or defName="WolfMan_HeavyArcher"]/combatPower					</xpath>
-					<value>
-						<combatPower>60</combatPower>
-					</value>
-				</li>
+		or defName="WolfMan_HeavyArcher"]/combatPower</xpath>
+    <value>
+      <combatPower>60</combatPower>
+    </value>
+  </li>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[defName="BearMan_Berserker"
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="BearMan_Berserker"
 		or defName="CamelMan_Berserker"
 		or defName="ElephantMan_Berserker"
 		or defName="ElkMan_Berserker"
@@ -276,23 +276,23 @@
 		or defName="LynxMan_Berserker"
 		or defName="PigMan_Berserker"
 		or defName="RaccoonMan_Berserker"
-		or defName="WolfMan_Berserker"]					</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<shieldMoney>
-								<min>120</min>
-								<max>160</max>
-							</shieldMoney>
-							<shieldTags>
-								<li>TribalShield</li>
-							</shieldTags>
-							<shieldChance>0.9</shieldChance>
-						</li>
-					</value>
-				</li>
+		or defName="WolfMan_Berserker"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <shieldMoney>
+          <min>120</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.9</shieldChance>
+      </li>
+    </value>
+  </li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="BearMan_Berserker"
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="BearMan_Berserker"
 		or defName="CamelMan_Berserker"
 		or defName="ElephantMan_Berserker"
 		or defName="ElkMan_Berserker"
@@ -301,14 +301,14 @@
 		or defName="LynxMan_Berserker"
 		or defName="PigMan_Berserker"
 		or defName="RaccoonMan_Berserker"
-		or defName="WolfMan_Berserker"]/combatPower					</xpath>
-					<value>
-						<combatPower>60</combatPower>
-					</value>
-				</li>
+		or defName="WolfMan_Berserker"]/combatPower</xpath>
+    <value>
+      <combatPower>60</combatPower>
+    </value>
+  </li>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[defName="BearMan_ChiefMelee"
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="BearMan_ChiefMelee"
 		or defName="CamelMan_ChiefMelee"
 		or defName="ElephantMan_ChiefMelee"
 		or defName="ElkMan_ChiefMelee"
@@ -317,27 +317,27 @@
 		or defName="LynxMan_ChiefMelee"
 		or defName="PigMan_ChiefMelee"
 		or defName="RaccoonMan_ChiefMelee"
-		or defName="WolfMan_ChiefMelee"]					</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-								<min>3</min>
-								<max>6</max>
-							</primaryMagazineCount>
-							<shieldMoney>
-								<min>120</min>
-								<max>160</max>
-							</shieldMoney>
-							<shieldTags>
-								<li>TribalShield</li>
-							</shieldTags>
-							<shieldChance>0.9</shieldChance>
-						</li>
-					</value>
-				</li>
+		or defName="WolfMan_ChiefMelee"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>3</min>
+          <max>6</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>120</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.9</shieldChance>
+      </li>
+    </value>
+  </li>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/PawnKindDef[defName="BearMan_ChiefRanged"
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="BearMan_ChiefRanged"
 		or defName="CamelMan_ChiefRanged"
 		or defName="ElephantMan_ChiefRanged"
 		or defName="ElkMan_ChiefRanged"
@@ -346,38 +346,38 @@
 		or defName="LynxMan_ChiefRanged"
 		or defName="PigMan_ChiefRanged"
 		or defName="RaccoonMan_ChiefRanged"
-		or defName="WolfMan_ChiefRanged"]					</xpath>
-					<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-								<min>30</min>
-								<max>60</max>
-							</primaryMagazineCount>
-							<shieldMoney>
-								<min>120</min>
-								<max>160</max>
-							</shieldMoney>
-							<shieldTags>
-								<li>TribalShield</li>
-							</shieldTags>
-							<shieldChance>0.9</shieldChance>
-							<sidearms>
-								<li>
-									<sidearmMoney>
-										<min>100</min>
-										<max>600</max>
-									</sidearmMoney>
-									<weaponTags>
-										<li>CE_Sidearm_Tribal</li>
-									</weaponTags>
-								</li>
-							</sidearms>
-						</li>
-					</value>
-				</li>
+		or defName="WolfMan_ChiefRanged"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>30</min>
+          <max>60</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>120</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.9</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>100</min>
+              <max>600</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>
+        </sidearms>
+      </li>
+    </value>
+  </li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="BearMan_ChiefRanged"
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="BearMan_ChiefRanged"
 		or defName="CamelMan_ChiefRanged"
 		or defName="ElephantMan_ChiefRanged"
 		or defName="ElkMan_ChiefRanged"
@@ -386,14 +386,14 @@
 		or defName="LynxMan_ChiefRanged"
 		or defName="PigMan_ChiefRanged"
 		or defName="RaccoonMan_ChiefRanged"
-		or defName="WolfMan_ChiefRanged"]/weaponTags/li[.="NeolithicRangedChief"]					</xpath>
-					<value>
-						<li>Gun</li>
-					</value>
-				</li>
+		or defName="WolfMan_ChiefRanged"]/weaponTags/li[.="NeolithicRangedChief"]</xpath>
+    <value>
+      <li>Gun</li>
+    </value>
+  </li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="BearMan_ChiefRanged"
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="BearMan_ChiefRanged"
 		or defName="CamelMan_ChiefRanged"
 		or defName="ElephantMan_ChiefRanged"
 		or defName="ElkMan_ChiefRanged"
@@ -412,14 +412,14 @@
 		or defName="LynxMan_ChiefMelee"
 		or defName="PigMan_ChiefMelee"
 		or defName="RaccoonMan_ChiefMelee"
-		or defName="WolfMan_ChiefMelee"]/weaponMoney					</xpath>
-					<value>
-						<weaponMoney>
-							<min>230</min>
-							<max>300</max>
-						</weaponMoney>
-					</value>
-				</li>
+		or defName="WolfMan_ChiefMelee"]/weaponMoney</xpath>
+    <value>
+      <weaponMoney>
+        <min>230</min>
+        <max>300</max>
+      </weaponMoney>
+    </value>
+  </li>
 
 
 
