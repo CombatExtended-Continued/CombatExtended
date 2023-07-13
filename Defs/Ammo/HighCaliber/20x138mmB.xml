@@ -99,25 +99,37 @@
 
 	<!-- ================== Projectiles ================== -->
 
- 	<ThingDef ParentName="Base145x114mmBullet">
+	<ThingDef Name="Base20x138mmBBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>165</speed>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_RifleAmmoCasings_HighCal</casingMoteDefname>
+			<casingFilthDefname>Filth_RifleAmmoCasings_HighCal</casingFilthDefname>
+		</projectile>
+	</ThingDef>
+
+ 	<ThingDef ParentName="Base20x138mmBBullet">
 		<defName>Bullet_20x138mmB_AP</defName>
 		<label>20x138mmB bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>43</damageAmountBase>
 		  <armorPenetrationSharp>34</armorPenetrationSharp>
 		  <armorPenetrationBlunt>972</armorPenetrationBlunt>
-		  <speed>165</speed>
 		</projectile>
 	</ThingDef>
 
- 	<ThingDef ParentName="Base145x114mmBullet">
+ 	<ThingDef ParentName="Base20x138mmBBullet">
 		<defName>Bullet_20x138mmB_Incendiary</defName>
 		<label>20x138mmB bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>43</damageAmountBase>
 		  <armorPenetrationSharp>34</armorPenetrationSharp>
 		  <armorPenetrationBlunt>972</armorPenetrationBlunt>
-		  <speed>180</speed>
 		  <secondaryDamage>
 		  	<li>
 		  		<def>Flame_Secondary</def>
@@ -127,14 +139,13 @@
 		</projectile>
 	</ThingDef>
 
- 	<ThingDef ParentName="Base145x114mmBullet">
+ 	<ThingDef ParentName="Base20x138mmBBullet">
 		<defName>Bullet_20x138mmB_HE</defName>
 		<label>20x138mmB bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>68</damageAmountBase>
 			<armorPenetrationSharp>17</armorPenetrationSharp>
 			<armorPenetrationBlunt>972</armorPenetrationBlunt>
-			<speed>180</speed>
 			<secondaryDamage>
 				<li>
 					<def>Bomb_Secondary</def>
@@ -144,7 +155,7 @@
 		</projectile>
 	</ThingDef>
 
-  <ThingDef ParentName="Base145x114mmBullet">
+  <ThingDef ParentName="Base20x138mmBBullet">
     <defName>Bullet_20x138mmB_Sabot</defName>
     <label>20x138mmB bullet (Sabot)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
