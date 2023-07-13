@@ -120,8 +120,6 @@
 							<defaultProjectile>Bullet_CoilLance</defaultProjectile>
 							<warmupTime>2.4</warmupTime>
 							<range>62</range>
-							<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-							<burstShotCount>3</burstShotCount>
 							<soundCast>AM_Gauss</soundCast>
 							<soundCastTail>GunTail_Medium</soundCastTail>
 							<muzzleFlashScale>9</muzzleFlashScale>
@@ -247,36 +245,36 @@
 						<xpath>Defs</xpath>
 						<value>
 
-						<CombatExtended.AmmoSetDef>
-							<defName>AmmoSet_5x100mmCaselessAcidic</defName>
-							<label>5x100mm Caseless (Acidic)</label>
-							<ammoTypes>
-								<Ammo_5x100mmCaseless_Sabot>Bullet_5x100mmCaseless_Acidic</Ammo_5x100mmCaseless_Sabot>
-							</ammoTypes>
-							<similarTo>AmmoSet_Rifle</similarTo>
-						</CombatExtended.AmmoSetDef>
+							<CombatExtended.AmmoSetDef>
+								<defName>AmmoSet_5x100mmCaselessAcidic</defName>
+								<label>5x100mm Caseless (Acidic)</label>
+								<ammoTypes>
+									<Ammo_5x100mmCaseless_Sabot>Bullet_5x100mmCaseless_Acidic</Ammo_5x100mmCaseless_Sabot>
+								</ammoTypes>
+								<similarTo>AmmoSet_Rifle</similarTo>
+							</CombatExtended.AmmoSetDef>
 
-						  <ThingDef ParentName="Base5x100mmCaselessBullet">
-							<defName>Bullet_5x100mmCaseless_Acidic</defName>
-							<label>5x100 Caseless bullet (Acidic)</label>
-							<graphicData>
-								<texPath>Things/Projectile/ToxicNeedleShot</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<damageAmountBase>11</damageAmountBase>
-								<armorPenetrationSharp>20</armorPenetrationSharp>
-								<armorPenetrationBlunt>108</armorPenetrationBlunt>
-								<secondaryDamage>
-									<li>
-										<def>AM_AcidSpit</def>
-										<amount>15</amount>
-									</li>
-								</secondaryDamage>
-								<speed>204</speed>
-							</projectile>
-						  </ThingDef>
+							<ThingDef ParentName="Base5x100mmCaselessBullet">
+								<defName>Bullet_5x100mmCaseless_Acidic</defName>
+								<label>5x100 Caseless bullet (Acidic)</label>
+								<graphicData>
+									<texPath>Things/Projectile/ToxicNeedleShot</texPath>
+									<graphicClass>Graphic_Single</graphicClass>
+								</graphicData>
+								<projectile Class="CombatExtended.ProjectilePropertiesCE">
+									<damageDef>Bullet</damageDef>
+									<damageAmountBase>11</damageAmountBase>
+									<armorPenetrationSharp>20</armorPenetrationSharp>
+									<armorPenetrationBlunt>108</armorPenetrationBlunt>
+									<secondaryDamage>
+										<li>
+											<def>AM_AcidSpit</def>
+											<amount>15</amount>
+										</li>
+									</secondaryDamage>
+									<speed>204</speed>
+								</projectile>
+							</ThingDef>
 
 						</value>
 					</li>
@@ -615,7 +613,7 @@
 						</Properties>
 						<AmmoUser>
 							<magazineSize>15</magazineSize>
-							<reloadTime>4</reloadTime>
+							<reloadTime>4.9</reloadTime>
 							<ammoSet>AmmoSet_410Bore</ammoSet>
 						</AmmoUser>
 						<FireModes>

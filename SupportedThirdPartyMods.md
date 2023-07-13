@@ -120,6 +120,8 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Biomes! Caverns	|
+Biomes! Core	|
 Biotech Expansion - Mammalia  |
 Biotech Expansion - Mythic  |
 Biotech Mech Stuff Elongated - Mechanoid Upgrades V2  |
@@ -185,6 +187,7 @@ Erin's Mountain Animals |
 Erin's Sephyr   |
 Erin's Shisune   |
 Erin's Viera    |
+ESCP - Trolls   |
 EvolvedOrgansRedux |
 Exotic Arsenal |
 Expanded Materials - Metals |
@@ -284,6 +287,7 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
+Medieval Tailor   |
 Megafauna	|
 MH: Android Tiers	|
 MH: Android Tiers Core	|
@@ -316,7 +320,6 @@ MorrowRim - Ashlands Swamp  |
 MorrowRim - Bloodmoon  |
 MorrowRim - Colovian Fur Helm	|
 MorrowRim - Just the Animals	|
-MorrowRim - Trolls	|
 Moyo - From the Depth   |
 Moyo - Light in the Abyss   |
 Moyo - The Cartel Arrives   |
@@ -343,6 +346,7 @@ Paniel the Automata |
 Pawnbold Race   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
+Possessed Weapons	|
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
@@ -402,6 +406,7 @@ Risk of Rain: UES Contact Light Armory (Continued) |
 Rockmen race    |
 Royal Warcaskets   |
 Saclean Race    |
+Sanguinary Animals   |
 Save Our Ship 2	|
 SCP |
 SCP - Clothing Only	|

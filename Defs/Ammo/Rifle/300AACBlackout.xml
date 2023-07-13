@@ -19,7 +19,7 @@
 			<Ammo_300AACBlackout_HP>Bullet_300AACBlackout_HP</Ammo_300AACBlackout_HP>
 			<Ammo_300AACBlackout_Incendiary>Bullet_300AACBlackout_Incendiary</Ammo_300AACBlackout_Incendiary>
 			<Ammo_300AACBlackout_HE>Bullet_300AACBlackout_HE</Ammo_300AACBlackout_HE>
-			<Ammo_300AACBlackout_Sabot>Bullet_300AACBlackout_Sabot</Ammo_300AACBlackout_Sabot>			
+			<Ammo_300AACBlackout_Sabot>Bullet_300AACBlackout_Sabot</Ammo_300AACBlackout_Sabot>
 		</ammoTypes>
 		<similarTo>AmmoSet_RifleIntermediate</similarTo>
 	</CombatExtended.AmmoSetDef>
@@ -105,7 +105,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.16</MarketValue>
+			<MarketValue>0.14</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_300AACBlackout_HE</cookOffProjectile>
@@ -170,48 +170,48 @@
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef ParentName="Base300AACBlackoutBullet">
+	<ThingDef ParentName="Base300AACBlackoutBullet">
 		<defName>Bullet_300AACBlackout_Incendiary</defName>
 		<label>.300 AAC Blackout bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>10</damageAmountBase>
-		  <armorPenetrationSharp>11</armorPenetrationSharp>
-		  <armorPenetrationBlunt>36.46</armorPenetrationBlunt>
-		  <secondaryDamage>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>11</armorPenetrationSharp>
+			<armorPenetrationBlunt>36.46</armorPenetrationBlunt>
+			<secondaryDamage>
 				<li>
-			  	<def>Flame_Secondary</def>
-			  	<amount>6</amount>
+					<def>Flame_Secondary</def>
+					<amount>6</amount>
 				</li>
-		  </secondaryDamage>
+			</secondaryDamage>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 	  
-	  <ThingDef ParentName="Base300AACBlackoutBullet">
+	<ThingDef ParentName="Base300AACBlackoutBullet">
 		<defName>Bullet_300AACBlackout_HE</defName>
 		<label>.300 AAC Blackout bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>16</damageAmountBase>
-		  <armorPenetrationSharp>5.5</armorPenetrationSharp>
-		  <armorPenetrationBlunt>36.46</armorPenetrationBlunt>
-		  <secondaryDamage>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>5.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>36.46</armorPenetrationBlunt>
+			<secondaryDamage>
 				<li>
-			  	<def>Bomb_Secondary</def>
-			  	<amount>10</amount>
+					<def>Bomb_Secondary</def>
+					<amount>10</amount>
 				</li>
-		  </secondaryDamage>
+			</secondaryDamage>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 
-	  <ThingDef ParentName="Base300AACBlackoutBullet">
+	<ThingDef ParentName="Base300AACBlackoutBullet">
 		<defName>Bullet_300AACBlackout_Sabot</defName>
 		<label>.300 AAC Blackout bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>8</damageAmountBase>
-		  <armorPenetrationSharp>19.25</armorPenetrationSharp>
-		  <armorPenetrationBlunt>46.74</armorPenetrationBlunt>
-		  <speed>180</speed>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>19.25</armorPenetrationSharp>
+			<armorPenetrationBlunt>46.74</armorPenetrationBlunt>
+			<speed>180</speed>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 	  
 	<!-- ==================== Recipes ========================== -->
 
@@ -293,118 +293,118 @@
 		<workAmount>1400</workAmount>
 	</RecipeDef>
 
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_300AACBlackout_Incendiary</defName>
-    <label>make .300 AAC Blackout (AP-I) cartridge x500</label>
-    <description>Craft 500 .300 AAC Blackout (AP-I) cartridges.</description>
-    <jobString>Making .300 AAC Blackout (AP-I) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>14</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Prometheum</li>
-          </thingDefs>
-        </filter>
-        <count>2</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Prometheum</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_300AACBlackout_Incendiary>500</Ammo_300AACBlackout_Incendiary>
-    </products>
-    <workAmount>2200</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_300AACBlackout_Incendiary</defName>
+		<label>make .300 AAC Blackout (AP-I) cartridge x500</label>
+		<description>Craft 500 .300 AAC Blackout (AP-I) cartridges.</description>
+		<jobString>Making .300 AAC Blackout (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_300AACBlackout_Incendiary>500</Ammo_300AACBlackout_Incendiary>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
   
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_300AACBlackout_HE</defName>
-    <label>make .300 AAC Blackout (AP-HE) cartridge x500</label>
-    <description>Craft 500 .300 AAC Blackout (AP-HE) cartridges.</description>
-    <jobString>Making .300 AAC Blackout (AP-HE) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>14</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>5</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_300AACBlackout_HE>500</Ammo_300AACBlackout_HE>
-    </products>
-    <workAmount>3400</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_300AACBlackout_HE</defName>
+		<label>make .300 AAC Blackout (AP-HE) cartridge x500</label>
+		<description>Craft 500 .300 AAC Blackout (AP-HE) cartridges.</description>
+		<jobString>Making .300 AAC Blackout (AP-HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_300AACBlackout_HE>500</Ammo_300AACBlackout_HE>
+		</products>
+		<workAmount>3400</workAmount>
+	</RecipeDef>
   
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_300AACBlackout_Sabot</defName>
-    <label>make .300 AAC Blackout (Sabot) cartridge x500</label>
-    <description>Craft 500 .300 AAC Blackout (Sabot) cartridges.</description>
-    <jobString>Making .300 AAC Blackout (Sabot) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>6</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Uranium</li>
-          </thingDefs>
-        </filter>
-        <count>3</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Chemfuel</li>
-          </thingDefs>
-        </filter>
-        <count>3</count>
-      </li>		  
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Uranium</li>
-        <li>Chemfuel</li>		
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_300AACBlackout_Sabot>500</Ammo_300AACBlackout_Sabot>
-    </products>
-    <workAmount>2400</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_300AACBlackout_Sabot</defName>
+		<label>make .300 AAC Blackout (Sabot) cartridge x500</label>
+		<description>Craft 500 .300 AAC Blackout (Sabot) cartridges.</description>
+		<jobString>Making .300 AAC Blackout (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_300AACBlackout_Sabot>500</Ammo_300AACBlackout_Sabot>
+		</products>
+		<workAmount>2400</workAmount>
+	</RecipeDef>
 
 </Defs>

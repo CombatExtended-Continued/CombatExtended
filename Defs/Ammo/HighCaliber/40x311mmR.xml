@@ -62,7 +62,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>11.38</MarketValue>
+			<MarketValue>11.49</MarketValue>
 		</statBases>
 		<ammoClass>IncendiaryAP</ammoClass>
 		<cookOffProjectile>Bullet_40x311mmR_Incendiary</cookOffProjectile>
@@ -76,7 +76,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>17.32</MarketValue>
+			<MarketValue>15.0</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_40x311mmR_HE</cookOffProjectile>
@@ -91,7 +91,7 @@
 		</graphicData>
 		<statBases>
 			<Mass>1.763</Mass>
-			<MarketValue>9.8</MarketValue>
+			<MarketValue>9.58</MarketValue>
 		</statBases>
 		<ammoClass>Sabot</ammoClass>
 		<cookOffProjectile>Bullet_40x311mmR_Sabot</cookOffProjectile>
@@ -108,6 +108,8 @@
 			<damageDef>Bullet</damageDef>
 			<speed>158</speed>
 			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_RifleAmmoCasings_HighCal</casingMoteDefname>
+			<casingFilthDefname>Filth_RifleAmmoCasings_HighCal</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
@@ -115,9 +117,9 @@
 		<defName>Bullet_40x311mmR_AP</defName>
 		<label>40x311mmR bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<damageAmountBase>105</damageAmountBase>
-		<armorPenetrationSharp>100</armorPenetrationSharp>
-		<armorPenetrationBlunt>6502.5</armorPenetrationBlunt>
+			<damageAmountBase>105</damageAmountBase>
+			<armorPenetrationSharp>100</armorPenetrationSharp>
+			<armorPenetrationBlunt>6502.5</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -166,31 +168,31 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-    <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_40x311mmR_AP</defName>
-      <label>make 40x311mmR (AP) cartridge x50</label>
-      <description>Craft 50 40x311mmR (AP) cartridges.</description>
-      <jobString>Making 40x311mmR (AP) cartridges.</jobString>
-      <ingredients>
-        <li>
-          <filter>
-            <thingDefs>
-              <li>Steel</li>
-            </thingDefs>
-          </filter>
-          <count>216</count>
-        </li>
-      </ingredients>
-      <fixedIngredientFilter>
-        <thingDefs>
-          <li>Steel</li>
-        </thingDefs>
-      </fixedIngredientFilter>
-      <products>
-        <Ammo_40x311mmR_AP>50</Ammo_40x311mmR_AP>
-      </products>
-      <workAmount>25920</workAmount>
-    </RecipeDef>
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_40x311mmR_AP</defName>
+		<label>make 40x311mmR (AP) cartridge x50</label>
+		<description>Craft 50 40x311mmR (AP) cartridges.</description>
+		<jobString>Making 40x311mmR (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>216</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x311mmR_AP>50</Ammo_40x311mmR_AP>
+		</products>
+		<workAmount>25920</workAmount>
+	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_40x311mmR_Incendiary</defName>

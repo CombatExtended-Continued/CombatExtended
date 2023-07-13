@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <Operation Class="PatchOperationFindMod">
-    <mods>
-      <li>ↁ House Sanguin</li>
-    </mods>
-	<match Class="PatchOperationFindMod">
+	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Medieval Overhaul</li>
+			<li>ↁ House Sanguin</li>
 		</mods>
-    	<match Class="PatchOperationSequence">
-      		<operations>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Medieval Overhaul</li>
+			</mods>
+			<match Class="PatchOperationSequence">
+				<operations>
 
-      		<!-- === Blood Wine === -->
-      			<li Class="PatchOperationAdd">
-       				<xpath>Defs/ThingDef[defName="DevDesigner_BloodWine"]/statBases</xpath>
-        			<value>
-         				<Bulk>1.5</Bulk>
-        			</value>
-      			</li>
+					<!-- === Blood Wine === -->
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_BloodWine"]/statBases</xpath>
+						<value>
+							<Bulk>1.5</Bulk>
+						</value>
+					</li>
 				
-         	</operations>
+				</operations>
+			</match>
 		</match>
-   	 </match>
-  </Operation>
+	</Operation>
 
 </Patch>

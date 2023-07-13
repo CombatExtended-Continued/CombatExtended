@@ -19,19 +19,19 @@
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag" or defName="Weapon_GrenadeMolotov" or defName="Weapon_GrenadeEMP"]</xpath>
 		<value>
 			<tools>
-			  <li Class="CombatExtended.ToolCE">
-				<label>Body</label>
-				<capacities>
-				  <li>Blunt</li>
-				</capacities>
-				<power>2</power>
-				<cooldownTime>1.75</cooldownTime>
-				<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
-				<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
-			  </li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Body</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.75</cooldownTime>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
 			</tools>
 			<tradeTags Inherit="False">
-			  <li>CE_MediumAmmo</li>
+				<li>CE_MediumAmmo</li>
 			</tradeTags>
 			<allowedArchonexusCount>5</allowedArchonexusCount>
 		</value>
@@ -81,9 +81,9 @@
 		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
 		<value>
 			<graphicData>
-                <texPath>Things/Projectile/Grenades/Frag</texPath>
-                <graphicClass>Graphic_Single</graphicClass>
-            </graphicData>
+				<texPath>Things/Projectile/Grenades/Frag</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
 		</value>
 	</Operation>
 
@@ -96,7 +96,7 @@
 				<damageAmountBase>56</damageAmountBase>
 				<explosionDelay>60</explosionDelay>
 				<dropsCasings>true</dropsCasings>
-				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
 				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<speed>12</speed>
@@ -112,7 +112,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
 			<value>
-				<comps />
+				<comps/>
 			</value>
 		</nomatch>
 	</Operation>
@@ -167,11 +167,11 @@
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
 		<value>
 			<comps>
-			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>56</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>1.5</explosiveRadius>
-			  </li>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>56</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.5</explosiveRadius>
+				</li>
 			</comps>
 		</value>
 	</Operation>
@@ -179,11 +179,11 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
 		<value>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Small>40</Fragment_Small>
-			</fragments>
-		  </li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>40</Fragment_Small>
+				</fragments>
+			</li>
 		</value>
 	</Operation>
 
@@ -192,7 +192,7 @@
 		<statBases>
 			<Mass>0.4</Mass>
 			<Bulk>0.87</Bulk>
-			<MarketValue>12.22</MarketValue>
+			<MarketValue>11.22</MarketValue>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<SightsEfficiency>0.65</SightsEfficiency>
 		</statBases>
@@ -297,13 +297,13 @@
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
 		<value>
 			<comps>
-			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>1</damageAmountBase>
-				<explosiveDamageType>Flame</explosiveDamageType>
-				<explosiveRadius>1</explosiveRadius>
-				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-				<preExplosionSpawnChance>0.8</preExplosionSpawnChance>
-			  </li>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>1</damageAmountBase>
+					<explosiveDamageType>Flame</explosiveDamageType>
+					<explosiveRadius>1</explosiveRadius>
+					<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+					<preExplosionSpawnChance>0.8</preExplosionSpawnChance>
+				</li>
 			</comps>
 		</value>
 	</Operation>
@@ -369,7 +369,7 @@
 				<damageAmountBase>56</damageAmountBase>
 				<explosionDelay>60</explosionDelay>
 				<dropsCasings>true</dropsCasings>
-				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
 				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				<speed>12</speed>
 				<screenShakeFactor>0</screenShakeFactor>
@@ -426,11 +426,11 @@
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeEMP"]/comps</xpath>
 		<value>
 			<comps>
-			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>56</damageAmountBase>
-				<explosiveDamageType>EMP</explosiveDamageType>
-				<explosiveRadius>3</explosiveRadius>
-			  </li>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>56</damageAmountBase>
+					<explosiveDamageType>EMP</explosiveDamageType>
+					<explosiveRadius>3</explosiveRadius>
+				</li>
 			</comps>
 		</value>
 	</Operation>

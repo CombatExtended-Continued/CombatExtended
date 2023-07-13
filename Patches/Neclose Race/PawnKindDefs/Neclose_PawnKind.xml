@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-  <Operation Class="PatchOperationSequence">
-	<operations>
-	  <li Class="PatchOperationFindMod">
-			
-		<mods><li>[1.4]Neclose Race</li></mods>
-			
-		<match Class="PatchOperationSequence">
+	<Operation Class="PatchOperationSequence">
 		<operations>
+			<li Class="PatchOperationFindMod">
 			
-			<!--combatPower-->
+				<mods><li>[1.4]Neclose Race</li></mods>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[@Name="HAR_Neclose_KindBase"]/combatPower</xpath>
-				<value>
-					<combatPower>200</combatPower>
-				</value>
+				<match Class="PatchOperationSequence">
+					<operations>
+			
+						<!--combatPower-->
+			
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/PawnKindDef[@Name="HAR_Neclose_KindBase"]/combatPower</xpath>
+							<value>
+								<combatPower>200</combatPower>
+							</value>
+						</li>
+			
+					</operations>
+				</match>
 			</li>
-			
 		</operations>
-		</match>	
-	  </li>
-	</operations>	
-  </Operation>
+	</Operation>
 </Patch>

@@ -5,7 +5,7 @@
 		<defName>Ammo4570Gov</defName>
 		<label>.45-70 Government</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
@@ -45,7 +45,7 @@
 		<defName>Ammo_4570Gov_FMJ</defName>
 		<label>.45-70 Government cartridge (FMJ)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<texPath>Things/Ammo/Rifle/Clip/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -59,7 +59,7 @@
 		<defName>Ammo_4570Gov_AP</defName>
 		<label>.45-70 Government cartridge (AP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<texPath>Things/Ammo/Rifle/Clip/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -73,7 +73,7 @@
 		<defName>Ammo_4570Gov_HP</defName>
 		<label>.45-70 Government cartridge (HP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<texPath>Things/Ammo/Rifle/Clip/HP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -87,7 +87,7 @@
 		<defName>Ammo_4570Gov_Incendiary</defName>
 		<label>.45-70 Government cartridge (AP-I)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<texPath>Things/Ammo/Rifle/Clip/Incendiary</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -101,11 +101,11 @@
 		<defName>Ammo_4570Gov_HE</defName>
 		<label>.45-70 Government cartridge (AP-HE)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<texPath>Things/Ammo/Rifle/Clip/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.36</MarketValue>
+			<MarketValue>0.31</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_4570Gov_HE</cookOffProjectile>
@@ -115,7 +115,7 @@
 		<defName>Ammo_4570Gov_Sabot</defName>
 		<label>.45-70 Government cartridge (Sabot)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<texPath>Things/Ammo/Rifle/Clip/Sabot</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -170,48 +170,48 @@
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef ParentName="Base4570GovBullet">
+	<ThingDef ParentName="Base4570GovBullet">
 		<defName>Bullet_4570Gov_Incendiary</defName>
 		<label>.45-70 bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>15</damageAmountBase>
-		  <armorPenetrationSharp>12</armorPenetrationSharp>
-		  <armorPenetrationBlunt>77.4</armorPenetrationBlunt>
-		  <secondaryDamage>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>77.4</armorPenetrationBlunt>
+			<secondaryDamage>
 				<li>
-			  	<def>Flame_Secondary</def>
-			  	<amount>9</amount>
+					<def>Flame_Secondary</def>
+					<amount>9</amount>
 				</li>
-		  </secondaryDamage>
+			</secondaryDamage>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 	  
-	  <ThingDef ParentName="Base4570GovBullet">
+	<ThingDef ParentName="Base4570GovBullet">
 		<defName>Bullet_4570Gov_HE</defName>
 		<label>.45-70 bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>24</damageAmountBase>
-		  <armorPenetrationSharp>6</armorPenetrationSharp>
-		  <armorPenetrationBlunt>77.4</armorPenetrationBlunt>
-		  <secondaryDamage>
+			<damageAmountBase>24</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>77.4</armorPenetrationBlunt>
+			<secondaryDamage>
 				<li>
-			  	<def>Bomb_Secondary</def>
-			  	<amount>14</amount>
+					<def>Bomb_Secondary</def>
+					<amount>14</amount>
 				</li>
-		  </secondaryDamage>
+			</secondaryDamage>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 
-	  <ThingDef ParentName="Base4570GovBullet">
+	<ThingDef ParentName="Base4570GovBullet">
 		<defName>Bullet_4570Gov_Sabot</defName>
 		<label>.45-70 bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>13</damageAmountBase>
-		  <armorPenetrationSharp>21</armorPenetrationSharp>
-		  <armorPenetrationBlunt>99.54</armorPenetrationBlunt>
-		  <speed>171</speed>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>21</armorPenetrationSharp>
+			<armorPenetrationBlunt>99.54</armorPenetrationBlunt>
+			<speed>171</speed>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -238,7 +238,7 @@
 		<products>
 			<Ammo_4570Gov_FMJ>500</Ammo_4570Gov_FMJ>
 		</products>
-	    <workAmount>3800</workAmount>			
+		<workAmount>3800</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -264,7 +264,7 @@
 		<products>
 			<Ammo_4570Gov_AP>500</Ammo_4570Gov_AP>
 		</products>
-	    <workAmount>4560</workAmount>			
+		<workAmount>4560</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -290,121 +290,121 @@
 		<products>
 			<Ammo_4570Gov_HP>500</Ammo_4570Gov_HP>
 		</products>
-	    <workAmount>3800</workAmount>	
+		<workAmount>3800</workAmount>
 	</RecipeDef>
 
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_4570Gov_Incendiary</defName>
-    <label>make .45-70 Government (AP-I) cartridge x500</label>
-    <description>Craft 500 .45-70 Government (AP-I) cartridges.</description>
-    <jobString>Making .45-70 Government (AP-I) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>38</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Prometheum</li>
-          </thingDefs>
-        </filter>
-        <count>5</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Prometheum</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_4570Gov_Incendiary>500</Ammo_4570Gov_Incendiary>
-    </products>
-    <workAmount>5800</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_4570Gov_Incendiary</defName>
+		<label>make .45-70 Government (AP-I) cartridge x500</label>
+		<description>Craft 500 .45-70 Government (AP-I) cartridges.</description>
+		<jobString>Making .45-70 Government (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>38</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_4570Gov_Incendiary>500</Ammo_4570Gov_Incendiary>
+		</products>
+		<workAmount>5800</workAmount>
+	</RecipeDef>
   
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_4570Gov_HE</defName>
-    <label>make .45-70 Government (AP-HE) cartridge x500</label>
-    <description>Craft 500 .45-70 Government (AP-HE) cartridges.</description>
-    <jobString>Making .45-70 Government (AP-HE) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>38</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>10</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_4570Gov_HE>500</Ammo_4570Gov_HE>
-    </products>
-    <workAmount>7800</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_4570Gov_HE</defName>
+		<label>make .45-70 Government (AP-HE) cartridge x500</label>
+		<description>Craft 500 .45-70 Government (AP-HE) cartridges.</description>
+		<jobString>Making .45-70 Government (AP-HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>38</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_4570Gov_HE>500</Ammo_4570Gov_HE>
+		</products>
+		<workAmount>7800</workAmount>
+	</RecipeDef>
   
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_4570Gov_Sabot</defName>
-    <label>make .45-70 Government (Sabot) cartridge x500</label>
-    <description>Craft 500 .45-70 Government (Sabot) cartridges.</description>
-    <jobString>Making .45-70 Government (Sabot) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>18</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Uranium</li>
-          </thingDefs>
-        </filter>
-        <count>6</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Chemfuel</li>
-          </thingDefs>
-        </filter>
-        <count>6</count>
-      </li>		  
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Uranium</li>
-        <li>Chemfuel</li>		
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_4570Gov_Sabot>500</Ammo_4570Gov_Sabot>
-    </products>
-    <workAmount>5400</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_4570Gov_Sabot</defName>
+		<label>make .45-70 Government (Sabot) cartridge x500</label>
+		<description>Craft 500 .45-70 Government (Sabot) cartridges.</description>
+		<jobString>Making .45-70 Government (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_4570Gov_Sabot>500</Ammo_4570Gov_Sabot>
+		</products>
+		<workAmount>5400</workAmount>
+	</RecipeDef>
 	
 </Defs>

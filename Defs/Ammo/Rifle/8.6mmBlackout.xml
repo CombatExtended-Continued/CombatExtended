@@ -19,7 +19,7 @@
 			<Ammo_86x43mmBlackout_HP>Bullet_86x43mmBlackout_HP</Ammo_86x43mmBlackout_HP>
 			<Ammo_86x43mmBlackout_Incendiary>Bullet_86x43mmBlackout_Incendiary</Ammo_86x43mmBlackout_Incendiary>
 			<Ammo_86x43mmBlackout_HE>Bullet_86x43mmBlackout_HE</Ammo_86x43mmBlackout_HE>
-			<Ammo_86x43mmBlackout_Sabot>Bullet_86x43mmBlackout_Sabot</Ammo_86x43mmBlackout_Sabot>			
+			<Ammo_86x43mmBlackout_Sabot>Bullet_86x43mmBlackout_Sabot</Ammo_86x43mmBlackout_Sabot>
 		</ammoTypes>
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
@@ -45,7 +45,7 @@
 		<defName>Ammo_86x43mmBlackout_FMJ</defName>
 		<label>8.6mm Blackout cartridge (FMJ)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<texPath>Things/Ammo/Rifle/Battlerifle/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -59,7 +59,7 @@
 		<defName>Ammo_86x43mmBlackout_AP</defName>
 		<label>8.6mm Blackout cartridge (AP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<texPath>Things/Ammo/Rifle/Battlerifle/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -73,7 +73,7 @@
 		<defName>Ammo_86x43mmBlackout_HP</defName>
 		<label>8.6mm Blackout cartridge (HP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<texPath>Things/Ammo/Rifle/Battlerifle/HP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -87,7 +87,7 @@
 		<defName>Ammo_86x43mmBlackout_Incendiary</defName>
 		<label>8.6mm Blackout cartridge (AP-I)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<texPath>Things/Ammo/Rifle/Battlerifle/Incendiary</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -101,11 +101,11 @@
 		<defName>Ammo_86x43mmBlackout_HE</defName>
 		<label>8.6mm Blackout cartridge (AP-HE)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<texPath>Things/Ammo/Rifle/Battlerifle/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.28</MarketValue>
+			<MarketValue>0.24</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_86x43mmBlackout_HE</cookOffProjectile>
@@ -115,7 +115,7 @@
 		<defName>Ammo_86x43mmBlackout_Sabot</defName>
 		<label>8.6mm Blackout cartridge (Sabot)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<texPath>Things/Ammo/Rifle/Battlerifle/Sabot</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -170,48 +170,48 @@
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef ParentName="Base86x43mmBlackoutBullet">
+	<ThingDef ParentName="Base86x43mmBlackoutBullet">
 		<defName>Bullet_86x43mmBlackout_Incendiary</defName>
 		<label>8.6mm Blackout bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>13</damageAmountBase>
-		  <armorPenetrationSharp>12</armorPenetrationSharp>
-		  <armorPenetrationBlunt>79.22</armorPenetrationBlunt>
-		  <secondaryDamage>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+			<secondaryDamage>
 				<li>
-			  	<def>Flame_Secondary</def>
-			  	<amount>8</amount>
+					<def>Flame_Secondary</def>
+					<amount>8</amount>
 				</li>
-		  </secondaryDamage>
+			</secondaryDamage>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 	  
-	  <ThingDef ParentName="Base86x43mmBlackoutBullet">
+	<ThingDef ParentName="Base86x43mmBlackoutBullet">
 		<defName>Bullet_86x43mmBlackout_HE</defName>
 		<label>8.6mm Blackout bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>21</damageAmountBase>
-		  <armorPenetrationSharp>6</armorPenetrationSharp>
-		  <armorPenetrationBlunt>79.22</armorPenetrationBlunt>
-		  <secondaryDamage>
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+			<secondaryDamage>
 				<li>
-			  	<def>Bomb_Secondary</def>
-			  	<amount>12</amount>
+					<def>Bomb_Secondary</def>
+					<amount>12</amount>
 				</li>
-		  </secondaryDamage>
+			</secondaryDamage>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 
-	  <ThingDef ParentName="Base86x43mmBlackoutBullet">
+	<ThingDef ParentName="Base86x43mmBlackoutBullet">
 		<defName>Bullet_86x43mmBlackout_Sabot</defName>
 		<label>8.6mm Blackout bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>11</damageAmountBase>
-		  <armorPenetrationSharp>21</armorPenetrationSharp>
-		  <armorPenetrationBlunt>101.58</armorPenetrationBlunt>
-		  <speed>167</speed>
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>21</armorPenetrationSharp>
+			<armorPenetrationBlunt>101.58</armorPenetrationBlunt>
+			<speed>167</speed>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 	  
 	<!-- ==================== Recipes ========================== -->
 
@@ -293,118 +293,118 @@
 		<workAmount>2800</workAmount>
 	</RecipeDef>
 
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_86x43mmBlackout_Incendiary</defName>
-    <label>make 8.6mm Blackout (AP-I) cartridge x500</label>
-    <description>Craft 500 8.6mm Blackout (AP-I) cartridges.</description>
-    <jobString>Making 8.6mm Blackout (AP-I) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>28</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Prometheum</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Prometheum</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_86x43mmBlackout_Incendiary>500</Ammo_86x43mmBlackout_Incendiary>
-    </products>
-    <workAmount>4400</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_86x43mmBlackout_Incendiary</defName>
+		<label>make 8.6mm Blackout (AP-I) cartridge x500</label>
+		<description>Craft 500 8.6mm Blackout (AP-I) cartridges.</description>
+		<jobString>Making 8.6mm Blackout (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>28</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_86x43mmBlackout_Incendiary>500</Ammo_86x43mmBlackout_Incendiary>
+		</products>
+		<workAmount>4400</workAmount>
+	</RecipeDef>
   
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_86x43mmBlackout_HE</defName>
-    <label>make 8.6mm Blackout (AP-HE) cartridge x500</label>
-    <description>Craft 500 8.6mm Blackout (AP-HE) cartridges.</description>
-    <jobString>Making 8.6mm Blackout (AP-HE) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>28</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_86x43mmBlackout_HE>500</Ammo_86x43mmBlackout_HE>
-    </products>
-    <workAmount>6000</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_86x43mmBlackout_HE</defName>
+		<label>make 8.6mm Blackout (AP-HE) cartridge x500</label>
+		<description>Craft 500 8.6mm Blackout (AP-HE) cartridges.</description>
+		<jobString>Making 8.6mm Blackout (AP-HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>28</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_86x43mmBlackout_HE>500</Ammo_86x43mmBlackout_HE>
+		</products>
+		<workAmount>6000</workAmount>
+	</RecipeDef>
   
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_86x43mmBlackout_Sabot</defName>
-    <label>make 8.6mm Blackout (Sabot) cartridge x500</label>
-    <description>Craft 500 8.6mm Blackout (Sabot) cartridges.</description>
-    <jobString>Making 8.6mm Blackout (Sabot) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>14</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Uranium</li>
-          </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Chemfuel</li>
-          </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>		  
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Uranium</li>
-        <li>Chemfuel</li>		
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_86x43mmBlackout_Sabot>500</Ammo_86x43mmBlackout_Sabot>
-    </products>
-    <workAmount>3800</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_86x43mmBlackout_Sabot</defName>
+		<label>make 8.6mm Blackout (Sabot) cartridge x500</label>
+		<description>Craft 500 8.6mm Blackout (Sabot) cartridges.</description>
+		<jobString>Making 8.6mm Blackout (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_86x43mmBlackout_Sabot>500</Ammo_86x43mmBlackout_Sabot>
+		</products>
+		<workAmount>3800</workAmount>
+	</RecipeDef>
 
 </Defs>

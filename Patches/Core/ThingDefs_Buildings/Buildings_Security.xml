@@ -12,12 +12,12 @@
 
 	<!-- ========== Mini-turret ========== -->
   
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/description</xpath>
-    <value>
-      <description>A portable automatic turret. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/description</xpath>
+		<value>
+			<description>A portable automatic turret. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/thingClass</xpath>
@@ -77,7 +77,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]</xpath>
 			<value>
-				<tradeTags />
+				<tradeTags/>
 			</value>
 		</nomatch>
 	</Operation>
@@ -117,6 +117,7 @@
 		<xpath>Defs/ThingDef[defName="Turret_Sniper"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
+			<NightVisionEfficiency>0.5</NightVisionEfficiency>
 		</value>
 	</Operation>
 
@@ -126,7 +127,7 @@
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>500</basePowerConsumption>
-			</li>	
+			</li>
 		</value>
 	</Operation>
 
@@ -193,7 +194,7 @@
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>500</basePowerConsumption>
-			</li>	
+			</li>
 		</value>
 	</Operation>
 
@@ -241,14 +242,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_FoamTurret"]/comps/li[@Class="CompProperties_Refuelable"]/fuelMultiplier</xpath>
 		<value>
-			<fuelMultiplier>0.20</fuelMultiplier>	
+			<fuelMultiplier>0.20</fuelMultiplier>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_FoamTurret"]/comps/li[@Class="CompProperties_Refuelable"]/fuelFilter/thingDefs/li</xpath>
 		<value>
-			<li>Ammo_30x64mmFuel_Foam</li>	
+			<li>Ammo_30x64mmFuel_Foam</li>
 		</value>
 	</Operation>
 
@@ -327,7 +328,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/statBases/AccuracyTouch 
 			| Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/statBases/AccuracyShort
 			| Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/statBases/AccuracyMedium
-			| Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/statBases/AccuracyLong</xpath>
+			| Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/statBases/AccuracyLong		</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
@@ -335,7 +336,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Gun_RocketswarmLauncher"]</xpath>
 			<value>
-				<comps />
+				<comps/>
 			</value>
 		</nomatch>
 	</Operation>
@@ -349,14 +350,14 @@
 					<li>30</li>
 					<li>40</li>
 					<li>50</li>
-					<li>60</li>			
+					<li>60</li>
 				</chargeSpeeds>
 			</li>
 			<li Class="CombatExtended.CompProperties_AmmoUser">
 				<magazineSize>12</magazineSize>
 				<reloadTime>6.5</reloadTime>
 				<ammoSet>AmmoSet_50mmRocket</ammoSet>
-			</li>								
+			</li>
 		</value>
 	</Operation>
 
@@ -405,19 +406,19 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Artillery_Mortar"]/comps</xpath>
 		<value>
-			  <li Class="CombatExtended.CompProperties_Charges">
-			    <chargeSpeeds>
-			      <li>30</li>
-			      <li>50</li>
-			      <li>70</li>
-			      <li>90</li>
-			    </chargeSpeeds>
-			  </li>
-			  <li Class="CombatExtended.CompProperties_AmmoUser">
-			    <magazineSize>1</magazineSize>
-			    <reloadTime>5</reloadTime>
-			    <ammoSet>AmmoSet_81mmMortarShell</ammoSet>
-			  </li>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+			</li>
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>1</magazineSize>
+				<reloadTime>5</reloadTime>
+				<ammoSet>AmmoSet_81mmMortarShell</ammoSet>
+			</li>
 		</value>
 	</Operation>
 
@@ -432,23 +433,23 @@
 		<xpath>Defs/ThingDef[defName="Artillery_Mortar"]/verbs</xpath>
 		<value>
 			<verbs>
-			  <li Class="CombatExtended.VerbPropertiesCE">
-			    <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
-			    <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-			    <hasStandardCommand>true</hasStandardCommand>
-			    <defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
-			    <warmupTime>5.5</warmupTime>
-			    <minRange>32</minRange>
-			    <range>700</range>
-			    <burstShotCount>1</burstShotCount>
-			    <soundCast>Mortar_LaunchA</soundCast>
-			    <muzzleFlashScale>16</muzzleFlashScale>
-			    <circularError>1</circularError>
-			    <indirectFirePenalty>0.2</indirectFirePenalty>
-			    <targetParams>
-			      <canTargetLocations>true</canTargetLocations>
-			    </targetParams>
-			  </li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+					<warmupTime>5.5</warmupTime>
+					<minRange>32</minRange>
+					<range>700</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>Mortar_LaunchA</soundCast>
+					<muzzleFlashScale>16</muzzleFlashScale>
+					<circularError>1</circularError>
+					<indirectFirePenalty>0.2</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
 			</verbs>
 		</value>
 	</Operation>
@@ -507,7 +508,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Turret_Mortar"]</xpath>
 			<value>
-				<tradeTags />
+				<tradeTags/>
 			</value>
 		</nomatch>
 	</Operation>
@@ -551,13 +552,13 @@
 				<damageAmountBase>270</damageAmountBase>
 				<explosiveRadius>4.5</explosiveRadius>
 				<startWickOnDamageTaken>
-				  <li>Bullet</li>
-				  <li>Arrow</li>
-				  <li>ArrowHighVelocity</li>
+					<li>Bullet</li>
+					<li>Arrow</li>
+					<li>ArrowHighVelocity</li>
 				</startWickOnDamageTaken>
 				<wickTicks>
-				  <min>5</min>
-				  <max>30</max>
+					<min>5</min>
+					<max>30</max>
 				</wickTicks>
 			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
@@ -579,13 +580,13 @@
 				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 				<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
 				<startWickOnDamageTaken>
-				  <li>Bullet</li>
-				  <li>Arrow</li>
-				  <li>ArrowHighVelocity</li>
+					<li>Bullet</li>
+					<li>Arrow</li>
+					<li>ArrowHighVelocity</li>
 				</startWickOnDamageTaken>
 				<wickTicks>
-				  <min>5</min>
-				  <max>20</max>
+					<min>5</min>
+					<max>20</max>
 				</wickTicks>
 			</li>
 		</value>

@@ -5,7 +5,7 @@
 		<defName>Ammo44-40Winchester</defName>
 		<label>.44-40 Winchester</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -19,7 +19,7 @@
 			<Ammo_44-40Winchester_HP>Bullet_44-40Winchester_HP</Ammo_44-40Winchester_HP>
 			<Ammo_44-40Winchester_Incendiary>Bullet_44-40Winchester_Incendiary</Ammo_44-40Winchester_Incendiary>
 			<Ammo_44-40Winchester_HE>Bullet_44-40Winchester_HE</Ammo_44-40Winchester_HE>
-			<Ammo_44-40Winchester_Sabot>Bullet_44-40Winchester_Sabot</Ammo_44-40Winchester_Sabot>				
+			<Ammo_44-40Winchester_Sabot>Bullet_44-40Winchester_Sabot</Ammo_44-40Winchester_Sabot>
 		</ammoTypes>
 		<similarTo>AmmoSet_RifleIntermediate</similarTo>
 	</CombatExtended.AmmoSetDef>
@@ -29,8 +29,8 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="44-40WinchesterBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Ancient mid-late 19th century bullet traditionally loaded with 40 grains of blackpowder, typically used in repeating arms.</description>
 		<statBases>
-		<Mass>0.024</Mass>
-		<Bulk>0.02</Bulk>
+			<Mass>0.024</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -45,7 +45,7 @@
 		<defName>Ammo_44-40Winchester_FMJ</defName>
 		<label>.44-40 Winchester cartridge (FMJ)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<texPath>Things/Ammo/Rifle/Clip/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -60,7 +60,7 @@
 		<defName>Ammo_44-40Winchester_AP</defName>
 		<label>.44-40 Winchester cartridge (AP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<texPath>Things/Ammo/Rifle/Clip/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -74,7 +74,7 @@
 		<defName>Ammo_44-40Winchester_HP</defName>
 		<label>.44-40 Winchester cartridge (HP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<texPath>Things/Ammo/Rifle/Clip/HP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -84,48 +84,48 @@
 		<cookOffProjectile>Bullet_44-40Winchester_HP</cookOffProjectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="44-40WinchesterBase">
-    <defName>Ammo_44-40Winchester_Incendiary</defName>
-    <label>.44-40 Winchester cartridge (AP-I)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.16</MarketValue>
-    </statBases>
-    <ammoClass>IncendiaryAP</ammoClass>
-    <cookOffProjectile>Bullet_44-40Winchester_Incendiary</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="44-40WinchesterBase">
+		<defName>Ammo_44-40Winchester_Incendiary</defName>
+		<label>.44-40 Winchester cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.16</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_44-40Winchester_Incendiary</cookOffProjectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="44-40WinchesterBase">
-    <defName>Ammo_44-40Winchester_HE</defName>
-    <label>.44-40 Winchester cartridge (AP-HE)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/HE</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.25</MarketValue>
-    </statBases>
-    <ammoClass>ExplosiveAP</ammoClass>
-    <cookOffProjectile>Bullet_44-40Winchester_HE</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="44-40WinchesterBase">
+		<defName>Ammo_44-40Winchester_HE</defName>
+		<label>.44-40 Winchester cartridge (AP-HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.22</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_44-40Winchester_HE</cookOffProjectile>
+	</ThingDef>
  
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="44-40WinchesterBase">
-    <defName>Ammo_44-40Winchester_Sabot</defName>
-    <label>.44-40 Winchester cartridge (Sabot)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Sabot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.12</MarketValue>
-	  <Mass>0.018</Mass>
-    </statBases>
-    <ammoClass>Sabot</ammoClass>
-    <cookOffProjectile>Bullet_44-40Winchester_Sabot</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="44-40WinchesterBase">
+		<defName>Ammo_44-40Winchester_Sabot</defName>
+		<label>.44-40 Winchester cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Clip/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.12</MarketValue>
+			<Mass>0.018</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_44-40Winchester_Sabot</cookOffProjectile>
+	</ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
 	
@@ -172,48 +172,48 @@
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef ParentName="Base44-40WinchesterBullet">
+	<ThingDef ParentName="Base44-40WinchesterBullet">
 		<defName>Bullet_44-40Winchester_Incendiary</defName>
 		<label>.44-40 Winchester bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>9</damageAmountBase>
-		  <armorPenetrationSharp>10</armorPenetrationSharp>
-		  <armorPenetrationBlunt>18.68</armorPenetrationBlunt>
-		  <secondaryDamage>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.68</armorPenetrationBlunt>
+			<secondaryDamage>
 				<li>
-			  	<def>Flame_Secondary</def>
-			  	<amount>6</amount>
+					<def>Flame_Secondary</def>
+					<amount>6</amount>
 				</li>
-		  </secondaryDamage>
+			</secondaryDamage>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 	  
-	  <ThingDef ParentName="Base44-40WinchesterBullet">
+	<ThingDef ParentName="Base44-40WinchesterBullet">
 		<defName>Bullet_44-40Winchester_HE</defName>
 		<label>.44-40 Winchester bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>14</damageAmountBase>
-		  <armorPenetrationSharp>5</armorPenetrationSharp>
-		  <armorPenetrationBlunt>18.68</armorPenetrationBlunt>
-		  <secondaryDamage>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.68</armorPenetrationBlunt>
+			<secondaryDamage>
 				<li>
-			  	<def>Bomb_Secondary</def>
-			  	<amount>8</amount>
+					<def>Bomb_Secondary</def>
+					<amount>8</amount>
 				</li>
-		  </secondaryDamage>
+			</secondaryDamage>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 
-	  <ThingDef ParentName="Base44-40WinchesterBullet">
+	<ThingDef ParentName="Base44-40WinchesterBullet">
 		<defName>Bullet_44-40Winchester_Sabot</defName>
 		<label>.44-40 Winchester bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageAmountBase>7</damageAmountBase>
-		  <armorPenetrationSharp>17.5</armorPenetrationSharp>
-		  <armorPenetrationBlunt>23.94</armorPenetrationBlunt>
-		  <speed>117</speed>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>17.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>23.94</armorPenetrationBlunt>
+			<speed>117</speed>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
   
 	<!-- ==================== Recipes ========================== -->
 
@@ -240,7 +240,7 @@
 		<products>
 			<Ammo_44-40Winchester_FMJ>500</Ammo_44-40Winchester_FMJ>
 		</products>
-    	<workAmount>2600</workAmount>
+		<workAmount>2600</workAmount>
 	</RecipeDef>
 
 
@@ -267,7 +267,7 @@
 		<products>
 			<Ammo_44-40Winchester_AP>500</Ammo_44-40Winchester_AP>
 		</products>
-	    <workAmount>3120</workAmount>			
+		<workAmount>3120</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -293,121 +293,121 @@
 		<products>
 			<Ammo_44-40Winchester_HP>500</Ammo_44-40Winchester_HP>
 		</products>
-	    <workAmount>2600</workAmount>	
+		<workAmount>2600</workAmount>
 	</RecipeDef>
 
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_44-40Winchester_Incendiary</defName>
-    <label>make .44-40 Winchester  (AP-I) cartridge x500</label>
-    <description>Craft 500 .44-40 Winchester  (AP-I) cartridges.</description>
-    <jobString>Making .44-40 Winchester  (AP-I) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>26</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Prometheum</li>
-          </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Prometheum</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_44-40Winchester_Incendiary>500</Ammo_44-40Winchester_Incendiary>
-    </products>
-    <workAmount>4200</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_44-40Winchester_Incendiary</defName>
+		<label>make .44-40 Winchester  (AP-I) cartridge x500</label>
+		<description>Craft 500 .44-40 Winchester  (AP-I) cartridges.</description>
+		<jobString>Making .44-40 Winchester  (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_44-40Winchester_Incendiary>500</Ammo_44-40Winchester_Incendiary>
+		</products>
+		<workAmount>4200</workAmount>
+	</RecipeDef>
   
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_44-40Winchester_HE</defName>
-    <label>make .44-40 Winchester  (AP-HE) cartridge x500</label>
-    <description>Craft 500 .44-40 Winchester  (AP-HE) cartridges.</description>
-    <jobString>Making .44-40 Winchester  (AP-HE) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>26</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>7</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_44-40Winchester_HE>500</Ammo_44-40Winchester_HE>
-    </products>
-    <workAmount>5400</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_44-40Winchester_HE</defName>
+		<label>make .44-40 Winchester  (AP-HE) cartridge x500</label>
+		<description>Craft 500 .44-40 Winchester  (AP-HE) cartridges.</description>
+		<jobString>Making .44-40 Winchester  (AP-HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_44-40Winchester_HE>500</Ammo_44-40Winchester_HE>
+		</products>
+		<workAmount>5400</workAmount>
+	</RecipeDef>
   
-  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_44-40Winchester_Sabot</defName>
-    <label>make .44-40 Winchester  (Sabot) cartridge x500</label>
-    <description>Craft 500 .44-40 Winchester  (Sabot) cartridges.</description>
-    <jobString>Making .44-40 Winchester  (Sabot) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>12</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Uranium</li>
-          </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Chemfuel</li>
-          </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>		  
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>Uranium</li>
-        <li>Chemfuel</li>		
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_44-40Winchester_Sabot>500</Ammo_44-40Winchester_Sabot>
-    </products>
-    <workAmount>3600</workAmount>
-  </RecipeDef>
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_44-40Winchester_Sabot</defName>
+		<label>make .44-40 Winchester  (Sabot) cartridge x500</label>
+		<description>Craft 500 .44-40 Winchester  (Sabot) cartridges.</description>
+		<jobString>Making .44-40 Winchester  (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_44-40Winchester_Sabot>500</Ammo_44-40Winchester_Sabot>
+		</products>
+		<workAmount>3600</workAmount>
+	</RecipeDef>
 	
 </Defs>
