@@ -2,26 +2,26 @@
 
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-        <mods>
-            <li>Medieval Overhaul</li>
-        </mods>
+		<mods>
+			<li>Medieval Overhaul</li>
+		</mods>
 		<match Class="PatchOperationSequence">
-            <operations>
+			<operations>
 
-			<!--disabled very stupid raid type-->
-                <li Class="PatchOperationReplace">
-                    <xpath>Defs/FactionDef[@Name = "DankPyon_NobleHouseFactionBase"]/pawnGroupMakers/li[2]/commonality</xpath>
-                    <value>
-                        <commonality>0</commonality>
-                    </value>
-                </li>	
+				<!--disabled very stupid raid type-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/FactionDef[@Name = "DankPyon_NobleHouseFactionBase"]/pawnGroupMakers/li[2]/commonality</xpath>
+					<value>
+						<commonality>0</commonality>
+					</value>
+				</li>
 		
-            <!--Give Shields-->
+				<!--Give Shields-->
 
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[
 						defName="DankPyon_Medieval_Mercenary" or
-						defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
+						defName="DankPyon_Medieval_MercenaryHeavy"]					</xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<shieldMoney>
@@ -49,7 +49,7 @@
 							<shieldTags>
 								<li>KiteShield</li>
 								<li>HeaterShield</li>
-                                <li>Buckler</li>
+								<li>Buckler</li>
 							</shieldTags>
 							<shieldChance>0.65</shieldChance>
 						</li>
@@ -91,8 +91,8 @@
 					</value>
 				</li>-->
 
-            <!--Give ammo to crosbowman-->
-                <li Class="PatchOperationAddModExtension">
+				<!--Give ammo to crosbowman-->
+				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
@@ -162,30 +162,30 @@
 					<xpath>Defs/PawnKindDef[
 						defName="DankPyon_Medieval_Arbalester" or
 						defName="DankPyon_Medieval_Bowman" or
-						defName="DankPyon_BrigandMarksman"]</xpath>
+						defName="DankPyon_BrigandMarksman"]					</xpath>
 					<value>
 						<apparelRequired>
 							<li>CE_Apparel_TribalBackpack</li>
 							<li>DankPyon_Apparel_Quiver</li>
 						</apparelRequired>
 					</value>
-				</li>		
+				</li>
 				
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester" or defName="DankPyon_BrigandMarksman"]/weaponTags</xpath>
-						<value>
-							<li>CE_XBow</li>
-						</value>
-                </li>
+					<value>
+						<li>CE_XBow</li>
+					</value>
+				</li>
 				
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Bowman" or defName="DankPyon_BrigandMarksman"]/weaponTags</xpath>
-						<value>
-							<li>CE_Bow</li>
-						</value>
-                </li>
+					<value>
+						<li>CE_Bow</li>
+					</value>
+				</li>
 				
-            </operations>
-		</match>  
+			</operations>
+		</match>
 	</Operation>
 </Patch>

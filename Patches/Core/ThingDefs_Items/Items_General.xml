@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <!-- ========== Resource RawPlant ========== -->
+	<!-- ========== Resource RawPlant ========== -->
 
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[@Name="OrganicProductBase"]/statBases</xpath>
-    <value>
-      <Bulk>0.05</Bulk>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="OrganicProductBase"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
 
-  <!-- ============= Chemfuel and Neutroamine =========== -->
+	<!-- ============= Chemfuel and Neutroamine =========== -->
 
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Chemfuel" or defName="Neutroamine"]/statBases</xpath>
-    <value>
-      <Bulk>0.05</Bulk>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Chemfuel" or defName="Neutroamine"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
 
-  <!-- ========== Resource Exotic ========== -->
+	<!-- ========== Resource Exotic ========== -->
 
-  <!-- Thrumbo Horn -->
+	<!-- Thrumbo Horn -->
 
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/ThingDef[defName="ThrumboHorn"]/tools</xpath>
-  </Operation>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="ThrumboHorn"]/tools</xpath>
+	</Operation>
 
-  <Operation Class="PatchOperationAttributeSet">
-    <xpath>Defs/ThingDef[defName="ThrumboHorn"]</xpath>
-    <attribute>ParentName</attribute>
-    <value>ResourceBase</value>
-  </Operation>
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="ThrumboHorn"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="ThrumboHorn"]/statBases/Mass</xpath>
-    <value>
-      <Mass>50</Mass>
-      <Bulk>25</Bulk>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ThrumboHorn"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+			<Bulk>25</Bulk>
+		</value>
+	</Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="ThrumboHorn"]/description</xpath>
-    <value>
-      <description>A thrumbo's horn. Its rarity makes it priceless in most markets.</description>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ThrumboHorn"]/description</xpath>
+		<value>
+			<description>A thrumbo's horn. Its rarity makes it priceless in most markets.</description>
+		</value>
+	</Operation>
 
-  <!-- Elephant Tusk -->
+	<!-- Elephant Tusk -->
 
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/ThingDef[defName="ElephantTusk"]/tools</xpath>
-  </Operation>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="ElephantTusk"]/tools</xpath>
+	</Operation>
 
-  <Operation Class="PatchOperationAttributeSet">
-    <xpath>Defs/ThingDef[defName="ElephantTusk"]</xpath>
-    <attribute>ParentName</attribute>
-    <value>ResourceBase</value>
-  </Operation>
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="ElephantTusk"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="ElephantTusk"]/statBases/Mass</xpath>
-    <value>
-      <Mass>40</Mass>
-      <Bulk>20</Bulk>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ElephantTusk"]/statBases/Mass</xpath>
+		<value>
+			<Mass>40</Mass>
+			<Bulk>20</Bulk>
+		</value>
+	</Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="ElephantTusk"]/description</xpath>
-    <value>
-      <description>An elephant's tusk. Fetches a good price among exotic traders.</description>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ElephantTusk"]/description</xpath>
+		<value>
+			<description>An elephant's tusk. Fetches a good price among exotic traders.</description>
+		</value>
+	</Operation>
 
-  <!-- Reinforced Barrel -->
+	<!-- Reinforced Barrel -->
 
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="ReinforcedBarrel"]/statBases</xpath>
-    <value>
-      <Bulk>8</Bulk>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ReinforcedBarrel"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+		</value>
+	</Operation>
 
-  <!-- Ensure chunks have stuffProps so they can be used in recipes (like "make stone sling bullets") whithout throwing "not a stuff" error -->
+	<!-- Ensure chunks have stuffProps so they can be used in recipes (like "make stone sling bullets") whithout throwing "not a stuff" error -->
 
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[@Name="ChunkBase"]/stuffProps</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[@Name="ChunkBase"]</xpath>
 			<value>
-				<stuffProps />
+				<stuffProps/>
 			</value>
 		</nomatch>
 	</Operation>
