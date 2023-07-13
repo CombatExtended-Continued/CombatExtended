@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <!-- ========== Give faction bases appropriate stats. ========== -->
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/FactionDef[defName="AncientsHostile" or defName="Ancients"]</xpath>
-    <value>
-      <li Class="CombatExtended.WorldObjectHealthExtension">
-        <techLevelNoImpact>true</techLevelNoImpact>
-        <healthModifier>0.5</healthModifier>
-      </li>
-    </value>
-  </Operation>
+	<!-- ========== Give faction bases appropriate stats. ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/FactionDef[defName="AncientsHostile" or defName="Ancients"]</xpath>
+		<value>
+			<li Class="CombatExtended.WorldObjectHealthExtension">
+				<techLevelNoImpact>true</techLevelNoImpact>
+				<healthModifier>0.5</healthModifier>
+			</li>
+		</value>
+	</Operation>
 
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/FactionDef[defName="AncientsHostile" or defName="Ancients"]</xpath>
-    <value>
-      <li Class="CombatExtended.WorldObjectHostilityExtension">
-        <AbleToRaidResponse>false</AbleToRaidResponse>
-        <AbleToShellingResponse>false</AbleToShellingResponse>
-      </li>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/FactionDef[defName="AncientsHostile" or defName="Ancients"]</xpath>
+		<value>
+			<li Class="CombatExtended.WorldObjectHostilityExtension">
+				<AbleToRaidResponse>false</AbleToRaidResponse>
+				<AbleToShellingResponse>false</AbleToShellingResponse>
+			</li>
+		</value>
+	</Operation>
 
 </Patch>
