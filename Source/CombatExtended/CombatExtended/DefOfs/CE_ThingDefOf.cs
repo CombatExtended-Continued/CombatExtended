@@ -18,7 +18,7 @@ namespace CombatExtended
 
         public static ThingDef Mote_HunkerIcon;
 
-        public static FleckDef Mote_EmptyCasing;
+        public static FleckDef Fleck_EmptyCasing;
 
         public static ThingDef Filth_RifleAmmoCasings;
 

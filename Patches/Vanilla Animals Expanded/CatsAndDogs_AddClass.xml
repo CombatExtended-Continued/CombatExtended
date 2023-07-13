@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <Operation Class="PatchOperationFindMod">
-    <mods>
-      <li>Vanilla Animals Expanded</li>
-    </mods>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Animals Expanded</li>
+		</mods>
 
-    <match Class="PatchOperationSequence">
-      <operations>
-        <!-- === Quadruped === -->
-        <li Class="PatchOperationAddModExtension">
-          <xpath>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- === Quadruped === -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>
             Defs/ThingDef[
               defName="AEXP_Rottweiler" or
               defName="AEXP_GermanShepherd" or
@@ -33,16 +33,16 @@
               defName="AEXP_CatSiamese" or
               defName="AEXP_CatSomali" or
               defName="AEXP_CatSphynx"]
-          </xpath>
+					</xpath>
 
-          <value>
-            <li Class="CombatExtended.RacePropertiesExtensionCE">
-              <bodyShape>Quadruped</bodyShape>
-            </li>
-          </value>
-        </li>
-      </operations>
-    </match>
-  </Operation>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
 
 </Patch>

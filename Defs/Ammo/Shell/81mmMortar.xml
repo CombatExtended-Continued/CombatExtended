@@ -64,17 +64,6 @@
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_81mmMortarShell_HE</detonateProjectile>
-		<comps>
-			<!-- Vanilla values -->
-			<li Class="CompProperties_Explosive">
-				<explosiveRadius>2.9</explosiveRadius>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<explodeOnKilled>True</explodeOnKilled>
-				<wickTicks>30~60</wickTicks>
-			</li>
-		</comps>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
@@ -90,17 +79,7 @@
 			<Bulk>9.0</Bulk>
 		</statBases>
 		<ammoClass>GrenadeIncendiary</ammoClass>
-		<comps>
-			<!-- Vanilla values -->
-			<li Class="CompProperties_Explosive">
-				<explosiveRadius>2.9</explosiveRadius>
-				<explosiveDamageType>Flame</explosiveDamageType>
-				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<explodeOnKilled>True</explodeOnKilled>
-				<wickTicks>30~60</wickTicks>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_81mmMortarShell_Incendiary</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
@@ -116,17 +95,7 @@
 			<Bulk>8.17</Bulk>
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
-		<comps>
-			<!-- Vanilla values -->
-			<li Class="CompProperties_Explosive">
-				<explosiveRadius>11.9</explosiveRadius>
-				<explosiveDamageType>EMP</explosiveDamageType>
-				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<explodeOnKilled>True</explodeOnKilled>
-				<wickTicks>30~60</wickTicks>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_81mmMortarShell_EMP</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
@@ -142,21 +111,7 @@
 			<Bulk>10.01</Bulk>
 		</statBases>
 		<ammoClass>FoamFuel</ammoClass>
-		<comps>
-			<!-- Vanilla values -->
-			<li Class="CompProperties_Explosive">
-				<explosiveRadius>5</explosiveRadius>
-				<explosiveDamageType>Extinguish</explosiveDamageType>
-				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-				<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
-				<postExplosionSpawnChance>1</postExplosionSpawnChance>
-				<postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				<explosionEffect>ExtinguisherExplosion</explosionEffect>
-				<explodeOnKilled>True</explodeOnKilled>
-				<wickTicks>30~60</wickTicks>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_81mmMortarShell_Firefoam</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
@@ -172,18 +127,7 @@
 			<Bulk>10.01</Bulk>
 		</statBases>
 		<ammoClass>Smoke</ammoClass>
-		<comps>
-			<!-- Vanilla values -->
-			<li Class="CompProperties_Explosive">
-				<explosiveRadius>6</explosiveRadius>
-				<explosiveDamageType>Smoke</explosiveDamageType>
-				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-				<postExplosionGasType>BlindSmoke</postExplosionGasType>
-				<preExplosionSpawnChance>1</preExplosionSpawnChance>
-				<explodeOnKilled>True</explodeOnKilled>
-				<wickTicks>30~60</wickTicks>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_81mmMortarShell_Smoke</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
@@ -235,15 +179,7 @@
 			<Bulk>10.01</Bulk>
 		</statBases>
 		<ammoClass>Toxic</ammoClass>
-		<comps>
-			<!-- Vanilla values -->
-			<li Class="CompProperties_Explosive">
-				<explosiveDamageType>ToxGas</explosiveDamageType>
-				<explosiveRadius>11</explosiveRadius>
-				<postExplosionGasType>ToxGas</postExplosionGasType>
-				<wickTicks>30~60</wickTicks>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_81mmMortarShell_Tox</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -384,8 +320,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>800</damageAmountBase>
+			<damageDef>BombSuper</damageDef>
 			<explosionRadius>50</explosionRadius>
 			<explosionChanceToStartFire>0.22</explosionChanceToStartFire>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
