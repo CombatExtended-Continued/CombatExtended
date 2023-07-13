@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- ========== Give faction bases appropriate stats. ========== -->
+	<!-- ========== Give faction bases appropriate stats ========== -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/FactionDef[defName="AncientsHostile" or defName="Ancients"]</xpath>
 		<value>
@@ -18,6 +18,16 @@
 			<li Class="CombatExtended.WorldObjectHostilityExtension">
 				<AbleToRaidResponse>false</AbleToRaidResponse>
 				<AbleToShellingResponse>false</AbleToShellingResponse>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Custom shelling response for mechs ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/FactionDef[defName="Mechanoid"]</xpath>
+		<value>
+			<li Class="CombatExtended.FactionDefExtensionCE">
+				<shellingResponse>CE_ShellingPreset_Mech</shellingResponse>
 			</li>
 		</value>
 	</Operation>
