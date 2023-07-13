@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <Operation Class="PatchOperationFindMod">
-    <mods>
-      <li>Androids Expanded</li>
-      <li>Androids Expanded (Continued)</li>
-    </mods>
-    <match Class="PatchOperationSequence">
-      <operations>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Androids Expanded</li>
+			<li>Androids Expanded (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-        <!-- === Droid === -->
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="DroidBody"]//*[def="DroidNeck"]</xpath>
-          <value>
-            <groups/>
-          </value>
-        </li>
+				<!-- === Droid === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="DroidBody"]//*[def="DroidNeck"]</xpath>
+					<value>
+						<groups/>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>  
+				<li Class="PatchOperationAdd">
+					<xpath>
             Defs/BodyDef[defName="DroidBody"]//*[
               def="Chasis" or 
               def="Head" or 
@@ -44,55 +44,55 @@
               def="RightDroidLeg" or
               def="RightDroidFoot"
 			      ]/groups
-          </xpath>
+					</xpath>
 
-          <value>
-            <li>CoveredByNaturalArmor</li>
-          </value>
-        </li>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="DroidBody"]//*[def="LeftDroidShoulder"]/groups
-          </xpath>
-          <value>
-            <li>LeftShoulder</li>
-          </value>
-        </li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="DroidBody"]//*[def="LeftDroidShoulder"]/groups
+					</xpath>
+					<value>
+						<li>LeftShoulder</li>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="DroidBody"]//*[def="LeftDroidArm"]/groups
-          </xpath>
-          <value>
-            <li>LeftArm</li>
-          </value>
-        </li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="DroidBody"]//*[def="LeftDroidArm"]/groups
+					</xpath>
+					<value>
+						<li>LeftArm</li>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidShoulder"]/groups
-          </xpath>
-          <value>
-            <li>RightShoulder</li>
-          </value>
-        </li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidShoulder"]/groups
+					</xpath>
+					<value>
+						<li>RightShoulder</li>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidArm"]/groups
-          </xpath>
-          <value>
-            <li>RightArm</li>
-          </value>
-        </li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidArm"]/groups
+					</xpath>
+					<value>
+						<li>RightArm</li>
+					</value>
+				</li>
 
-        <!-- === Wardroid === -->
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="WardroidBody"]//*[def="DroidNeck"]</xpath>
-          <value>
-            <groups/>
-          </value>
-        </li>
+				<!-- === Wardroid === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="WardroidBody"]//*[def="DroidNeck"]</xpath>
+					<value>
+						<groups/>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath> 
+				<li Class="PatchOperationAdd">
+					<xpath>
             Defs/BodyDef[
               defName="WardroidBody"]//*[ 
                 def="Chasis" or 
@@ -133,50 +133,50 @@
                 def="RightDroidLeg" or 
                 def="RightDroidFoot"
 			      ]/groups
-          </xpath>
-          <value>
-            <li>CoveredByNaturalArmor</li>
-          </value>
-        </li>
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="WardroidBody"]//*[def="LeftDroidShoulder"]/groups</xpath>
-          <value>
-            <li>LeftShoulder</li>
-          </value>
-        </li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="WardroidBody"]//*[def="LeftDroidShoulder"]/groups</xpath>
+					<value>
+						<li>LeftShoulder</li>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="WardroidBody"]//*[def="LeftDroidArm"]/groups</xpath>
-          <value>
-            <li>LeftArm</li>
-          </value>
-        </li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="WardroidBody"]//*[def="LeftDroidArm"]/groups</xpath>
+					<value>
+						<li>LeftArm</li>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="WardroidBody"]//*[def="RightDroidShoulder"]/groups</xpath>
-          <value>
-            <li>RightShoulder</li>
-          </value>
-        </li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="WardroidBody"]//*[def="RightDroidShoulder"]/groups</xpath>
+					<value>
+						<li>RightShoulder</li>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidArm"]/groups</xpath>
-          <value>
-            <li>RightArm</li>
-          </value>
-        </li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="DroidBody"]//*[def="RightDroidArm"]/groups</xpath>
+					<value>
+						<li>RightArm</li>
+					</value>
+				</li>
 
-        <!-- === Drone Body === -->
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/BodyDef[defName="DroneBody"]//*[def="DroneNeck"]</xpath>
-          <value>
-            <groups/>
-          </value>
-        </li>
+				<!-- === Drone Body === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="DroneBody"]//*[def="DroneNeck"]</xpath>
+					<value>
+						<groups/>
+					</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>
+				<li Class="PatchOperationAdd">
+					<xpath>
             Defs/BodyDef[
               defName="DroneBody"]//*[
                 def="DroneShell" or 
@@ -190,14 +190,14 @@
                 def="RightDroneLeg" or 
                 def="RightDroneFoot"
 			      ]/groups
-          </xpath>
-          <value>
-            <li>CoveredByNaturalArmor</li>
-          </value>
-        </li>
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
 
-      </operations>
-    </match>
-  </Operation>
+			</operations>
+		</match>
+	</Operation>
 
 </Patch>
