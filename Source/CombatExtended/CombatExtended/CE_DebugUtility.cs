@@ -33,5 +33,19 @@ namespace CombatExtended
             array[4] = new TableDataGetter<WorldObjectDef>("HealthPatched", (WorldObjectDef d) => d.comps.Any(comp => comp is WorldObjectCompProperties_Health));
             DebugTables.MakeTablesDialog<WorldObjectDef>(notPatched, array);
         }
+        [DebugAction("CE", actionType = DebugActionType.ToolWorld)]
+        public static void Heal()
+        {
+            int tileID = GenWorld.MouseTile(false);
+            foreach (WorldObject worldObject in Find.WorldObjects.ObjectsAt(tileID).ToList<WorldObject>())
+            {
+                HealthComp comp;
+                if ((comp = worldObject.GetComponent<HealthComp>()) != null)
+                {
+                    comp.Health = 1;
+                    comp.recentShells.Clear();
+                }
+            }
+        }
     }
 }

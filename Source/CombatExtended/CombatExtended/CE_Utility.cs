@@ -41,7 +41,7 @@ namespace CombatExtended
             while (S >= 1.0f);
             float std = u * Mathf.Sqrt(-2.0f * Mathf.Log(S) / S);
             float mean = (minValue + maxValue) / 2.0f;
-            float sigma = (maxValue - mean) / 3.0f;
+            float sigma = (maxValue - mean) / 5.0f;
             return Mathf.Clamp(std * sigma + mean, minValue, maxValue);
         }
 

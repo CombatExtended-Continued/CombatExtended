@@ -121,7 +121,7 @@ namespace CombatExtended
             stopwatch.Start();
             while (stopwatch.ElapsedTicks / Stopwatch.Frequency < 0.005f)
             {
-                IntVec3 cell = new IntVec3(Rand.Range(5, map.cellIndices.mapSizeX - 5), 0, Rand.Range(5, map.cellIndices.mapSizeZ - 5));
+                IntVec3 cell = new IntVec3((int)CE_Utility.RandomGaussian(1, map.Size.x - 1), 0, (int)CE_Utility.RandomGaussian(1, map.Size.z - 1));
                 if (Valid(cell))
                 {
                     return cell;
