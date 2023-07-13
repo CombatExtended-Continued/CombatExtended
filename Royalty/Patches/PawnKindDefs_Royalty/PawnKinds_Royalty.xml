@@ -144,16 +144,48 @@
   	<value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
 		<shieldMoney>
-		  <min>300</min>
-		  <max>800</max>
+		  <min>400</min>
+		  <max>1000</max>
 		</shieldMoney>
 		<shieldTags>
 		  <li>OutlanderShield</li>
 		</shieldTags>
-		<shieldChance>0.5</shieldChance>			
+		<shieldChance>0.75</shieldChance>
       </li>
   	</value>
   </Operation>
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]</xpath>
+  	<value>
+      <apparelMoney>2500~3750</apparelMoney>
+  	</value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+  	<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]/apparelRequired</xpath>
+  	<value>
+      <li>CE_Apparel_PlateHelmet</li>
+  	</value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]</xpath>
+      <value>
+        <specificApparelRequirements>
+          <li>
+            <bodyPartGroup>Torso</bodyPartGroup>
+            <apparelLayer>Shell</apparelLayer>
+            <stuff>Plasteel</stuff>
+          </li>
+          <li>
+            <bodyPartGroup>FullHead</bodyPartGroup>
+            <apparelLayer>Overhead</apparelLayer>
+            <stuff>Plasteel</stuff>
+          </li>
+        </specificApparelRequirements>
+      </value>
+   </Operation>
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]/weaponTags</xpath>
