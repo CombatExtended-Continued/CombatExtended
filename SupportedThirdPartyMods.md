@@ -347,6 +347,8 @@ Pawnbold Race   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
 Possessed Weapons	|
+pphhyy's Demigryphs   |
+pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
@@ -406,7 +408,6 @@ Risk of Rain: UES Contact Light Armory (Continued) |
 Rockmen race    |
 Royal Warcaskets   |
 Saclean Race    |
-Sanguinary Animals   |
 Save Our Ship 2	|
 SCP |
 SCP - Clothing Only	|
