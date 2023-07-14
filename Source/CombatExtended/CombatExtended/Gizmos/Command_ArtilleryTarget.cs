@@ -48,7 +48,7 @@ namespace CombatExtended
             int radius = (int)turret.MaxWorldRange;
             Find.WorldTargeter.BeginTargeting((targetInfo) =>
             {
-                if (!targetInfo.HasWorldObject || targetInfo.Tile == tile)
+                if (!targetInfo.HasWorldObject || targetInfo.Tile == tile || targetInfo.WorldObject.GetComponent<WorldObjects.HealthComp>() == null)
                 {
                     return false;
                 }
