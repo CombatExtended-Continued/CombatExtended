@@ -347,6 +347,8 @@ Pawnbold Race   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
 Possessed Weapons	|
+pphhyy's Demigryphs   |
+pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
