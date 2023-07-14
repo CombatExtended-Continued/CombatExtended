@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	
+
+  <!--__________ Small Arms __________-->
+
+  <!-- TT33 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RO2_TT33_Pistol</defName>
+		<statBases>
+      <Mass>0.85</Mass>
+      <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.17</ShotSpread>
+      <SwayFactor>1.07</SwayFactor>
+      <Bulk>1.7</Bulk>
+      <WorkToMake>5000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>25</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x25mmTokarev_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Autopistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_762x25mmTokarev</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+    <weaponTags>
+      <li>CE_Sidearm</li>
+      <li>CE_OneHandedWeapon</li>
+      <li>TT33</li>
+      <li>SovietPistol</li>	
+    </weaponTags>
+	</Operation>
+	
+  <!-- Nagant Revolver-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RO2_Nagant_Pistol</defName>
+		<statBases>
+      <WorkToMake>5000</WorkToMake>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.18</ShotSpread>
+      <SwayFactor>1.2</SwayFactor>
+      <Bulk>2.2</Bulk>
+      <Mass>0.82</Mass>
+      <RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>25</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_762x38mmR_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>16</range>
+      <soundCast>Shot_Revolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+      <reloadTime>4.6</reloadTime>
+      <ammoSet>AmmoSet_762x38mmR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+    <weaponTags>
+      <li>CE_Sidearm</li>
+      <li>CE_OneHandedWeapon</li>
+      <li>Nagant</li>
+      <li>SovietPistol</li>	
+    </weaponTags>
+	</Operation>
+	
+  
+  <!--__________ Submachine guns __________-->
+  
+  <!-- PPS42 -->
+  
+  <!-- PPSH41 -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>RO2_PPSH41_SMG</defName>
+    <statBases>
+      <Mass>3.63</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.00</SightsEfficiency>
+      <ShotSpread>0.12</ShotSpread>
+      <SwayFactor>1.21</SwayFactor>
+      <Bulk>9.43</Bulk>
+      <WorkToMake>27500</WorkToMake>
+    </statBases>
+    <costList>
+      <WoodLog>10</WoodLog>
+      <Steel>40</Steel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <recoilAmount>1.22</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_762x25mmTokarev_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>23</range>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+      <soundCast>Shot_MachinePistol</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+
+    <AmmoUser>
+      <magazineSize>35</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_762x25mmTokarev</ammoSet>
+    </AmmoUser>
+
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>Snapshot</aiAimMode>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+    </FireModes>
+  </Operation>
+
+  <!--__________ Automatic rifles __________-->
+
+  <!-- AVT40 -->
+  
+  <!--__________ Semi automatic rifles __________-->
+
+  <!-- SVT40 -->
+  
+  <!--SVT40 Scoped-->
+
+  <!--__________ Bolt action rifles __________-->
+
+  <!--Mosin nagant-->
+  
+  <!--Mosin nagant Scoped-->
+  
+  <!--__________ Light Machine Guns __________-->
+
+  <!-- DP28 -->
+
+  <!--Anti Tank rifle-->
+
+  <!-- PTRD -->
+	
+	<!--__________ MELEE TOOLS __________-->
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[
+		defName="RO2_TT33_Pistol" or
+		defName="RO2_Nagant_Pistol"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef
+    defName="RO2_PPS42_SMG" or
+		defName="RO2_PPSH41_SMG" or
+    defName="RO2_AVT40_AR" or
+		defName="RO2_SVT40_Rifle" or
+		defName="RO2_SVT40_Scoped" or
+		defName="RO2_Mosin_Rifle" or
+		defName="RO2_Mosin_Scoped" or
+		defName="RO2_DP28_LMG" or
+		defName="RO2_PTRD_ATR"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+		
+</Patch>
+
+
+

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+    <!--__________ Small Arms __________-->
+		
+    <!-- P38 -->
+
+    <!-- Mauser C96 -->
+    
+    <!--__________ Submachine guns __________-->
+
+    <!-- MP40 -->
+
+    <!--__________ Assualt rifles __________-->
+
+    <!-- MKB42 -->
+		
+		<!--__________ Semi automatic rifles __________-->
+
+    <!--Gewehr 41-->
+		
+		<!--Gewehr 41 Scoped-->
+
+		<!--__________ Bolt action rifles __________-->
+
+    <!--Kar98-->
+
+    <!--Kar98 Scoped-->
+ 
+    <!--__________ Light Machine Guns __________-->
+
+    <!-- MG34 -->
+
+    <!-- MG42 -->
+
+		<!--Anti Tank rifle-->
+
+    <!-- ~~PzB 39~~ captured PTRS-->
+		
+	<!--__________ MELEE TOOLS __________-->
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[
+		defName="RO2_P38_Pistol" or
+		defName="RO2_MauserC96_Pistol"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[
+    defName="RO2_MP40_SMG" or
+		defName="RO2_MKB42_AR" or
+		defName="RO2_G41_Rifle" or
+		defName="RO2_G41_Scoped" or
+		defName="RO2_Kar98K_Rifle" or
+		defName="RO2_Kar98K_Scoped" or
+		defName="RO2_MG34_LMG" or
+		defName="RO2_MG42_LMG" or
+		defName="RO2_PzB_ATR"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+	
+</Patch>
