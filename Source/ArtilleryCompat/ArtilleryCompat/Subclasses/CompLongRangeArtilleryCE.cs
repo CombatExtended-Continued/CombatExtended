@@ -11,10 +11,14 @@ using System;
 
 namespace CombatExtended.Compatibility.Artillery
 {
-    [Obsolete]
+    //[Obsolete]
     public class CompLongRangeArtilleryCE : CompLongRangeArtillery
     {
-        
+        public override void Initialize(CompProperties props)
+        {
+            base.Initialize(props);
+            Log.Warning($"Used an obsolete CompLongRangeArtilleryCE into {parent.def.defName}");
+        }
         public override void CompTick()
         {
             
