@@ -169,6 +169,18 @@ namespace CombatExtended.WorldObjects
         protected virtual void TryFinishDestroyQuests(Map launcherMap)
         {
             QuestUtility.SendQuestTargetSignals(parent.questTags, "AllEnemiesDefeated", parent.Named("SUBJECT"), new NamedArgument(launcherMap, "MAP"));
+            int num;
+            List<Quest> quests = Find.QuestManager.QuestsListForReading;
+            for (int i = 0; i < quests.Count; i = num + 1)
+            {
+                Quest quest = quests[i];
+                if (!quest.Historical && quest.QuestLookTargets.Contains(this.parent))
+                {
+                    Find.SignalManager.SendSignal(new Signal($"Quest{quest.id}.conditionCauser.Destroyed", new NamedArgument(launcherMap, "MAP")));
+                }
+                num = i;
+            }
+
             foreach (var quest in RelatedQuests)
             {
                 quest.End(QuestEndOutcome.Fail);
