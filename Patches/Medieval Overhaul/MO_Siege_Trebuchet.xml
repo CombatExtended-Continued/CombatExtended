@@ -131,6 +131,34 @@
 								</li>
 							</comps>
 						</ThingDef>
+						
+						<RecipeDef ParentName="MakeStoneBlocksBase">
+							<defName>MakeAmmo_Catapult_BoulderBulk</defName>
+							<label>cut stone chunk into boulder x5</label>
+							<workAmount>8000</workAmount>
+							<description>Cuts a stone chunk down to size to be thrown by a siege engine.</description>
+							<ingredients>
+								<li>
+									<filter>
+										<categories>
+											<li>StoneChunks</li>
+										</categories>
+									</filter>
+									<count>5</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<categories>
+									<li>StoneChunks</li>
+								</categories>
+							</fixedIngredientFilter>
+							<recipeUsers Inherit="False">
+								<li>TableStonecutter</li>
+							</recipeUsers>
+							<products>
+								<Ammo_Catapult_Boulder>5</Ammo_Catapult_Boulder>
+							</products>
+						</RecipeDef>
 
 						<RecipeDef ParentName="MakeStoneBlocksBase">
 							<defName>MakeAmmo_CatapultBullet_TarBoulder</defName>
