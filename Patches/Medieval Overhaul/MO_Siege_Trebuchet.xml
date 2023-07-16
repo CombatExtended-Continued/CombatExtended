@@ -169,19 +169,24 @@
 						</RecipeDef>
 
 						<RecipeDef ParentName="MakeStoneBlocksBase">
-							<defName>MakeAmmo_CatapultBullet_TarBoulder</defName>
-							<label>tar stone boulder</label>
-							<description>Cuts a stone chunk down to size and cover in tar to be thrown by a siege engine.</description>
-							<workAmount>2000</workAmount>
+							<defName>MakeAmmo_Catapult_TarBoulder</defName>
+							<label>tar a stone boulder</label>
+							<description>Cuts a stone chunk down to size and covers in tar to be thrown by a siege engine.</description>
+							<workAmount>400</workAmount>
+							<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+							<workSkill>Crafting</workSkill>
+							<workSkillLearnFactor>0.25</workSkillLearnFactor>
+							<effectWorking>Smith</effectWorking>
+							<soundWorking>Recipe_Smith</soundWorking>
 							<researchPrerequisites>
 								<li>DankPyon_Tar</li>
 							</researchPrerequisites>
 							<ingredients>
 								<li>
 									<filter>
-										<categories>
-											<li>StoneChunks</li>
-										</categories>
+										<thingDefs>
+											<li>Ammo_Catapult_Boulder</li>
+										</thingDefs>
 									</filter>
 									<count>1</count>
 								</li>
@@ -195,12 +200,12 @@
 								</li>
 							</ingredients>
 							<fixedIngredientFilter>
-								<categories>
-									<li>StoneChunks</li>
-								</categories>
+								<thingDefs>
+									<li>Ammo_Catapult_Boulder</li>
+								</thingDefs>
 							</fixedIngredientFilter>
 							<recipeUsers Inherit="False">
-								<li>TableStonecutter</li>
+								<li>DankPyon_Workbench</li>
 							</recipeUsers>
 							<products>
 								<Ammo_Catapult_TarBoulder>1</Ammo_Catapult_TarBoulder>
@@ -208,19 +213,24 @@
 						</RecipeDef>
 				
 						<RecipeDef ParentName="MakeStoneBlocksBase">
-							<defName>MakeAmmo_CatapultBullet_TarBoulderBulk</defName>
-							<label>tar stone boulder x5</label>
-							<description>Cuts a stone chunk down to size and cover in tar to be thrown by a siege engine.</description>
-							<workAmount>10000</workAmount>
+							<defName>MakeAmmo_Catapult_TarBoulderBulk</defName>
+							<label>tar a stone boulder x5</label>
+							<description>Cuts a stone chunk down to size and covers in tar to be thrown by a siege engine.</description>
+							<workAmount>2000</workAmount>
+							<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+							<workSkill>Crafting</workSkill>
+							<workSkillLearnFactor>0.25</workSkillLearnFactor>
+							<effectWorking>Smith</effectWorking>
+							<soundWorking>Recipe_Smith</soundWorking>
 							<researchPrerequisites>
 								<li>DankPyon_Tar</li>
 							</researchPrerequisites>
 							<ingredients>
 								<li>
 									<filter>
-										<categories>
-											<li>StoneChunks</li>
-										</categories>
+										<thingDefs>
+											<li>Ammo_Catapult_Boulder</li>
+										</thingDefs>
 									</filter>
 									<count>5</count>
 								</li>
@@ -234,12 +244,12 @@
 								</li>
 							</ingredients>
 							<fixedIngredientFilter>
-								<categories>
-									<li>StoneChunks</li>
-								</categories>
+								<thingDefs>
+									<li>Ammo_Catapult_Boulder</li>
+								</thingDefs>
 							</fixedIngredientFilter>
 							<recipeUsers Inherit="False">
-								<li>TableStonecutter</li>
+								<li>DankPyon_Workbench</li>
 							</recipeUsers>
 							<products>
 								<Ammo_Catapult_TarBoulder>5</Ammo_Catapult_TarBoulder>
