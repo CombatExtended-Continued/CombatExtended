@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		<mods><li>Paniel the Automata</li></mods>
+		<mods>
+			<li>Paniel the Automata</li>
+		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<!-- ==========  Shovel  =========== -->
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PN_Shovel"]/tools</xpath>
 					<value>
@@ -42,7 +44,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Shovel"]/statBases</xpath>
 					<value>
@@ -50,14 +52,14 @@
 						<Bulk>5.5</Bulk>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Shovel"]/weaponTags</xpath>
 					<value>
 						<li>CE_OneHandedWeapon</li>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Shovel"]/equippedStatOffsets</xpath>
 					<value>
@@ -66,9 +68,9 @@
 						<MeleeDodgeChance>0.2</MeleeDodgeChance>
 					</value>
 				</li>
-		
+
 				<!-- ==========  PN_Chainsword  =========== -->
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PN_Chainsword"]/tools</xpath>
 					<value>
@@ -109,7 +111,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Chainsword"]/statBases</xpath>
 					<value>
@@ -117,7 +119,7 @@
 						<Bulk>6.5</Bulk>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Chainsword"]/equippedStatOffsets</xpath>
 					<value>
@@ -126,17 +128,16 @@
 						<MeleeDodgeChance>1.07</MeleeDodgeChance>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Chainsword"]/weaponTags</xpath>
 					<value>
 						<li>CE_OneHandedWeapon</li>
 					</value>
 				</li>
-		
-		
+
 				<!-- ==========  Sword  =========== -->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Chainlongsword"]/statBases</xpath>
 					<value>
@@ -144,7 +145,7 @@
 						<Bulk>13.5</Bulk>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Chainlongsword"]</xpath>
 					<value>
@@ -155,7 +156,7 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PN_Chainlongsword"]/tools</xpath>
 					<value>
@@ -198,9 +199,9 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<!-- ==========  Hammer  =========== -->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_WarHammer"]/statBases</xpath>
 					<value>
@@ -208,7 +209,7 @@
 						<Bulk>14.5</Bulk>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_WarHammer"]</xpath>
 					<value>
@@ -219,7 +220,7 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PN_WarHammer"]/tools</xpath>
 					<value>
@@ -248,13 +249,13 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<!-- ========== Rifle =========== -->
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="PN_Rifle"]/verbs</xpath>
 				</li>
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_Rifle</defName>
 					<statBases>
@@ -271,7 +272,7 @@
 						<ComponentIndustrial>1</ComponentIndustrial>
 						<WoodLog>10</WoodLog>
 					</costList>
-			
+
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
@@ -282,7 +283,7 @@
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>7</magazineSize>
 						<reloadTime>0.65</reloadTime>
@@ -293,13 +294,13 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<!-- ========== Revolver =========== -->
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="PN_Revolver"]/verbs</xpath>
 				</li>
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_Revolver</defName>
 					<statBases>
@@ -316,7 +317,7 @@
 						<ComponentIndustrial>4</ComponentIndustrial>
 						<WoodLog>5</WoodLog>
 					</costList>
-			
+
 					<Properties>
 						<recoilAmount>3.71</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -330,7 +331,7 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>6</magazineSize>
 						<reloadTime>5.1</reloadTime>
@@ -342,9 +343,9 @@
 						<aiAimMode>Snapshot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<!-- ========== Machinegun =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_Machinegun</defName>
 					<statBases>
@@ -361,7 +362,7 @@
 						<ComponentIndustrial>5</ComponentIndustrial>
 						<WoodLog>15</WoodLog>
 					</costList>
-			
+
 					<Properties>
 						<recoilAmount>1.24</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -376,7 +377,7 @@
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>80</magazineSize>
 						<reloadTime>7.8</reloadTime>
@@ -388,16 +389,16 @@
 						<aiAimMode>SuppressFire</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Machinegun"]/weaponTags</xpath>
 					<value>
 						<li>Bipod_LMG</li>
 					</value>
 				</li>
-		
+
 				<!-- ========== Portable Cannon =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_Cannon</defName>
 					<statBases>
@@ -414,7 +415,7 @@
 						<ComponentIndustrial>3</ComponentIndustrial>
 						<WoodLog>25</WoodLog>
 					</costList>
-			
+
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
@@ -425,7 +426,7 @@
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<muzzleFlashScale>14</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>1</magazineSize>
 						<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
@@ -436,20 +437,20 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_Cannon"]/weaponTags</xpath>
 					<value>
 						<li>Bipod_ATR</li>
 					</value>
 				</li>
-		
+
 				<!-- ========== Dual Royal Pistol =========== -->
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="PN_TwinPistol"]/verbs</xpath>
 				</li>
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_TwinPistol</defName>
 					<statBases>
@@ -460,7 +461,7 @@
 						<Mass>4.6</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<recoilAmount>1.25</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -474,7 +475,7 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>36</magazineSize>
 						<reloadTime>5.5</reloadTime>
@@ -485,9 +486,9 @@
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 					</FireModes>
 				</li>
-		
+
 				<!-- ========== Royal Rifle =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_RoyalRifle</defName>
 					<statBases>
@@ -498,7 +499,7 @@
 						<Mass>4.60</Mass>
 						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<recoilAmount>2.28</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -512,7 +513,7 @@
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>12</magazineSize>
 						<reloadTime>0.65</reloadTime>
@@ -525,9 +526,9 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<!-- ========== Royal Machinegun =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_RoyalMachinegun</defName>
 					<statBases>
@@ -538,7 +539,7 @@
 						<Mass>10.00</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<recoilAmount>0.96</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -553,7 +554,7 @@
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>120</magazineSize>
 						<reloadTime>7.8</reloadTime>
@@ -565,16 +566,16 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PN_RoyalMachinegun"]/weaponTags</xpath>
 					<value>
 						<li>Bipod_LMG</li>
 					</value>
 				</li>
-		
+
 				<!-- ========== Royal Cannon =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_RoyalHeavySlug</defName>
 					<statBases>
@@ -585,7 +586,7 @@
 						<Mass>4.6</Mass>
 						<RangedWeapon_Cooldown>0.83</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
@@ -596,7 +597,7 @@
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>14</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>5</magazineSize>
 						<reloadTime>0.95</reloadTime>
@@ -607,13 +608,13 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<!-- ========== Royal Launcher =========== -->
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="PN_RoyalLSW"]/verbs</xpath>
 				</li>
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_RoyalLSW</defName>
 					<statBases>
@@ -624,7 +625,7 @@
 						<Mass>5.70</Mass>
 						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<recoilAmount>1.89</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -636,7 +637,7 @@
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>6</magazineSize>
 						<reloadTime>5.5</reloadTime>
@@ -646,7 +647,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>PN_PrototypeRailGun</defName>
 					<statBases>
@@ -696,18 +697,18 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<!-- ========== Melee Attacks =========== -->
-		
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="PN_Rifle" or 
-			defName="PN_Machinegun" or 
-			defName="PN_Cannon" or 
-			defName="PN_RoyalRifle" or
-			defName="PN_RoyalHeavySlug" or
-			defName="PN_RoyalMachinegun" or
-			defName="PN_RoyalLSW"
-			]/tools					</xpath>
+					<xpath>Defs/ThingDef[defName="PN_Rifle" or
+						defName="PN_Machinegun" or
+						defName="PN_Cannon" or
+						defName="PN_RoyalRifle" or
+						defName="PN_RoyalHeavySlug" or
+						defName="PN_RoyalMachinegun" or
+						defName="PN_RoyalLSW"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -744,10 +745,10 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PN_Revolver" or
-			defName="PN_TwinPistol"]/tools					</xpath>
+						defName="PN_TwinPistol"]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -774,7 +775,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PN_TwinPistol"]/tools</xpath>
 					<value>
@@ -823,13 +824,11 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-		
+
 				<!-- ========== Cost Adjustments =========== -->
-		
-		
-		
+
 				<!-- ========== Royalty Equipment =========== -->
-		
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="PN_RoyalSaber_Bladelink"]</xpath>
 					<match Class="PatchOperationSequence">
@@ -888,7 +887,7 @@
 									</tools>
 								</value>
 							</li>
-				
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/ThingDef[defName="PN_RoyalSaber_Bladelink"]/statBases</xpath>
 								<value>
@@ -907,7 +906,7 @@
 									</equippedStatOffsets>
 								</value>
 							</li>
-				
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/ThingDef[defName="PN_Chainsword_Bladelink"]/tools</xpath>
 								<value>
@@ -947,7 +946,7 @@
 									</tools>
 								</value>
 							</li>
-				
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs</xpath>
 								<value>
@@ -957,7 +956,7 @@
 									</DamageDef>
 								</value>
 							</li>
-				
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/ThingDef[defName="PN_Chainsword_Bladelink"]/statBases</xpath>
 								<value>
@@ -976,7 +975,7 @@
 									</equippedStatOffsets>
 								</value>
 							</li>
-				
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/ThingDef[defName="PN_RoyalHammer_Bladelink"]/tools</xpath>
 								<value>
@@ -1012,7 +1011,7 @@
 									</tools>
 								</value>
 							</li>
-				
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/ThingDef[defName="PN_RoyalHammer_Bladelink"]/statBases</xpath>
 								<value>
@@ -1031,7 +1030,7 @@
 									</equippedStatOffsets>
 								</value>
 							</li>
-				
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/ThingDef[defName="PN_StormLance_Bladelink"]/tools</xpath>
 								<value>
@@ -1082,7 +1081,7 @@
 									</tools>
 								</value>
 							</li>
-				
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/ThingDef[defName="PN_StormLance_Bladelink"]/statBases</xpath>
 								<value>
@@ -1101,11 +1100,11 @@
 									</equippedStatOffsets>
 								</value>
 							</li>
-				
+
 						</operations>
 					</match>
 				</li>
-		
+
 			</operations>
 		</match>
 	</Operation>

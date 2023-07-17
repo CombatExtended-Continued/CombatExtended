@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -6,7 +6,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-	
+
 				<!-- ========== Turn our horse boys into horse *boys* ========== -->
 				<!-- ========== To be human is to be a tall brick 	  ========== -->
 				<li Class="PatchOperationAddModExtension">
@@ -23,7 +23,7 @@
 
 				<!-- ========== Gives Gun Gizmos to Equium HUD thing ========== -->
 				<!-- ========== Also Makes Em Suppressable		   ========== -->
-	
+
 				<li Class="PatchOperationAdd">
 					<!-- === Shouldn't need to change this at all		  === -->
 					<!-- === Unless you changed the name of your BasePawn === -->
@@ -33,10 +33,10 @@
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable"/>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
 					</value>
 				</li>
-	
+
 				<!-- === Patch Equium default melee attacks === -->
 				<!-- === For the most part, it adds the CE melee handler thing 	=== -->
 				<!-- === And also defines armor penetration, which allows them	=== -->
@@ -98,7 +98,7 @@
 				<!-- === Again, no need to change 'em  === -->
 				<!-- === Unless you changed it         === -->
 				<!-- === then change 'em			   === -->
-	
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="BaseEquium"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 					<value>
@@ -107,16 +107,16 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-	
+
 					<xpath>Defs/ThingDef[@Name="BaseEquium"]/comps</xpath>
 					<value>
-						<li Class="CombatExtended.CompProperties_Inventory"/>
+						<li Class="CombatExtended.CompProperties_Inventory" />
 					</value>
 				</li>
 			</operations>
 		</match>
 	</Operation>
-	
+
 	<!-- === Congratulations! Your alien is Combat Ready!	 === -->
 	<!-- === If your alien comes with extra guns and gear,	 === -->
 	<!-- === Congratulations! You're not even close to done! === -->

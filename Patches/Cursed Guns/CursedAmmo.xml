@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -6,7 +6,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-	
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_40x46mmGrenade"]/ammoTypes</xpath>
 					<value>
@@ -17,15 +17,14 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-			
+
 						<CombatExtended.AmmoCategoryDef>
 							<defName>GrenadeRubber</defName>
 							<label>Rubberised slug</label>
 							<description>A rubber slug with a metal core inside. Less lethal than usual ammunition, but can still maim or kill someone.</description>
 							<advanced>true</advanced>
 						</CombatExtended.AmmoCategoryDef>
-			
-			
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
 							<defName>Ammo_40x46mmGrenade_Rubber</defName>
 							<label>40x46mm grenade (Rubber)</label>
@@ -39,7 +38,7 @@
 							<ammoClass>GrenadeRubber</ammoClass>
 							<cookOffProjectile>Bullet_40x46mmGrenade_Rubber</cookOffProjectile>
 						</ThingDef>
-			
+
 						<ThingDef ParentName="Base12GaugeBullet">
 							<defName>Bullet_40x46mmGrenade_Rubber</defName>
 							<label>Rubberised slug</label>
@@ -56,7 +55,7 @@
 								<spreadMult>2</spreadMult>
 							</projectile>
 						</ThingDef>
-			
+
 					</value>
 				</li>
 
@@ -103,14 +102,14 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-		
+
 						<CombatExtended.AmmoCategoryDef>
 							<defName>KniperBlade</defName>
 							<label>Blade</label>
 							<description>A ballistic knife blade.</description>
 							<advanced>false</advanced>
 						</CombatExtended.AmmoCategoryDef>
-	
+
 						<ThingCategoryDef>
 							<defName>KniperBlade</defName>
 							<label>Blade</label>
@@ -125,7 +124,7 @@
 								<Ammo_kniper_blade>Projectile_kniper_blade</Ammo_kniper_blade>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-  
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
 							<defName>Ammo_kniper_blade</defName>
 							<label>kniper blade</label>
@@ -141,7 +140,7 @@
 							</graphicData>
 							<ammoClass>KniperBlade</ammoClass>
 						</ThingDef>
-  
+
 						<ThingDef ParentName="BaseArrowProjectile">
 							<defName>Projectile_kniper_blade</defName>
 							<label>Blade</label>
@@ -186,10 +185,10 @@
 								<Ammo_kniper_blade>10</Ammo_kniper_blade>
 							</products>
 						</RecipeDef>
-		
+
 					</value>
 				</li>
-	
+
 			</operations>
 		</match>
 	</Operation>

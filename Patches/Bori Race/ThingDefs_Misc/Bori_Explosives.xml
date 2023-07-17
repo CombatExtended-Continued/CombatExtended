@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Patch>
 	<Operation Class="PatchOperationFindMod">
@@ -15,17 +15,15 @@
 					<attribute>ParentName</attribute>
 					<value>BaseWeapon</value>
 				</li>
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/recipeMaker</xpath>
 				</li>
-
 
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/costList</xpath>
 				</li>
 
-		
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/verbs</xpath>
 				</li>
@@ -38,9 +36,9 @@
 						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 					</value>
 				</li>
-		
+
 				<!-- ========== Projectile ========== -->
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]/projectile</xpath>
 					<value>
@@ -60,7 +58,7 @@
 						</projectile>
 					</value>
 				</li>
-		
+
 				<!-- ========== Check Comp ========== -->
 
 				<li Class="PatchOperationConditional">
@@ -68,13 +66,13 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
 
 				<!-- ========== Add Fragmentation ========== -->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]/comps</xpath>
 					<value>
@@ -108,7 +106,7 @@
 					<attribute>Class</attribute>
 					<value>CombatExtended.AmmoDef</value>
 				</li>
-		
+
 				<!-- Weapon Check Comps -->
 
 				<li Class="PatchOperationConditional">
@@ -116,13 +114,13 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
 
 				<!-- Weapon Values -->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/comps</xpath>
 					<value>
@@ -170,7 +168,7 @@
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>
-	  
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
@@ -217,7 +215,6 @@
 					</value>
 				</li>
 
-			
 			</operations>
 		</match>
 	</Operation>

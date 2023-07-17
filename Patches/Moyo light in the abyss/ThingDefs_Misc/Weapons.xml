@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		<mods><li>Moyo-Light in the Abyss</li></mods>
+		<mods>
+			<li>Moyo-Light in the Abyss</li>
+		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<!-- ==========  Moyo Knife : Same as normal variant =========== -->
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RedMoyo_Knife"]/tools</xpath>
 					<value>
@@ -49,7 +51,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RedMoyo_Knife"]/statBases</xpath>
 					<value>
@@ -57,7 +59,7 @@
 						<Bulk>1.5</Bulk>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RedMoyo_Knife"]</xpath>
 					<value>
@@ -68,16 +70,16 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-		
+
 				<!-- ==========  Moyo Clamp : No melee bonuses but high power =========== -->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RedMoyo_KineticClamp"]/statBases</xpath>
 					<value>
 						<Bulk>9.5</Bulk>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RedMoyo_KineticClamp"]/tools</xpath>
 					<value>
@@ -106,9 +108,9 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<!-- ==========  Alloy Harpoon  =========== -->
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RedMoyo_AlloyHarpoon"]/tools</xpath>
 					<value>
@@ -139,7 +141,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RedMoyo_AlloyHarpoon"]/statBases</xpath>
 					<value>
@@ -147,7 +149,7 @@
 						<Bulk>10</Bulk>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RedMoyo_AlloyHarpoon"]</xpath>
 					<value>
@@ -158,9 +160,9 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-		
+
 				<!-- ==========  Plasma Harpoon  =========== -->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RedMoyo_PlasmaHarpoon"]/statBases</xpath>
 					<value>
@@ -168,7 +170,7 @@
 						<Bulk>10</Bulk>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RedMoyo_PlasmaHarpoon"]</xpath>
 					<value>
@@ -179,7 +181,7 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RedMoyo_PlasmaHarpoon"]/tools</xpath>
 					<value>
@@ -218,9 +220,9 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<!-- ==========  Plasma Tachi - Producable, longer and heavier plasmasword =========== -->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaTachi"]/statBases</xpath>
 					<value>
@@ -228,7 +230,7 @@
 						<Bulk>10.50</Bulk>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaTachi"]</xpath>
 					<value>
@@ -239,7 +241,7 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaTachi"]/tools</xpath>
 					<value>
@@ -295,9 +297,9 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<!-- ========== Pistol =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>RedMoyo_Pistol</defName>
 					<statBases>
@@ -308,7 +310,7 @@
 						<Mass>1.20</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
@@ -319,7 +321,7 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>20</magazineSize>
 						<reloadTime>4</reloadTime>
@@ -329,9 +331,9 @@
 						<aiAimMode>Snapshot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<!-- ========== Police Pistol =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>RedMoyo_PistolPolice</defName>
 					<statBases>
@@ -342,7 +344,7 @@
 						<Mass>1.20</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
@@ -353,7 +355,7 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>18</magazineSize>
 						<reloadTime>4</reloadTime>
@@ -363,9 +365,9 @@
 						<aiAimMode>Snapshot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<!-- ========== Charge SMG =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>RedMoyo_SMG</defName>
 					<statBases>
@@ -376,7 +378,7 @@
 						<Mass>3.00</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<recoilAmount>1.46</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -390,7 +392,7 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>35</magazineSize>
 						<reloadTime>4</reloadTime>
@@ -402,9 +404,9 @@
 						<aiAimMode>Snapshot</aiAimMode>
 					</FireModes>
 				</li>
-		
+
 				<!-- ========== Civil Rifle =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>RedMoyo_CivilAR</defName>
 					<statBases>
@@ -415,7 +417,7 @@
 						<Mass>7.25</Mass>
 						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<recoilAmount>1.39</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -429,7 +431,7 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>18</magazineSize>
 						<reloadTime>4</reloadTime>
@@ -444,9 +446,9 @@
 						<li>CE_AI_AR</li>
 					</weaponTags>
 				</li>
-		
+
 				<!-- ========== Military Rifle =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>RedMoyo_MilitaryAR</defName>
 					<statBases>
@@ -457,7 +459,7 @@
 						<Mass>3.5</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<recoilAmount>1.39</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -471,7 +473,7 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>24</magazineSize>
 						<reloadTime>4</reloadTime>
@@ -487,9 +489,9 @@
 						<li>NoSwitch</li>
 					</weaponTags>
 				</li>
-		
+
 				<!-- ========== Precision Rifle =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>RedMoyo_MilitarySR</defName>
 					<statBases>
@@ -500,7 +502,7 @@
 						<Mass>6.2</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<recoilAmount>1.00</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -514,7 +516,7 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>24</magazineSize>
 						<reloadTime>4</reloadTime>
@@ -530,9 +532,9 @@
 						<li>Bipod_DMR</li>
 					</weaponTags>
 				</li>
-		
+
 				<!-- ========== Accelerator =========== -->
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>RedMoyo_MilitaryHeavyRifle</defName>
 					<statBases>
@@ -543,7 +545,7 @@
 						<Mass>6.2</Mass>
 						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 					</statBases>
-			
+
 					<Properties>
 						<recoilAmount>2.25</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -557,7 +559,7 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-			
+
 					<AmmoUser>
 						<magazineSize>9</magazineSize>
 						<reloadTime>5.1</reloadTime>
@@ -570,14 +572,14 @@
 					</FireModes>
 				</li>
 				<!-- ========== Melee Attacks =========== -->
-		
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RedMoyo_Pistol" or 
-			defName="RedMoyo_SMG" or 
-			defName="RedMoyo_MilitarySR" or 
-			defName="RedMoyo_CivilAR" or 
-			defName="RedMoyo_MilitaryHeavyRifle"
-			]/tools					</xpath>
+					<xpath>Defs/ThingDef[defName="RedMoyo_Pistol" or
+						defName="RedMoyo_SMG" or
+						defName="RedMoyo_MilitarySR" or
+						defName="RedMoyo_CivilAR" or
+						defName="RedMoyo_MilitaryHeavyRifle"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -614,7 +616,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RedMoyo_PistolPolice"]/tools</xpath>
 					<value>
@@ -643,7 +645,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RedMoyo_MilitaryAR"]/tools</xpath>
 					<value>
@@ -684,7 +686,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 			</operations>
 		</match>
 	</Operation>

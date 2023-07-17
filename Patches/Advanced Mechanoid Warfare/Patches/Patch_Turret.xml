@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -7,7 +7,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!--
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="AAMW_Turret_AutoMortarBase"]/thingClass</xpath>
@@ -24,16 +24,15 @@
 				</value>
 			</li>
 			-->
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="AMW_Turret_AutoMortar"]</xpath>
 				</li>
-			
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-					
+
 						<ThingDef ParentName="AMW_Turret_AutoMortarBase">
 							<defName>AMW_Turret_AutoMortar</defName>
 							<label>automated mortar complex</label>
@@ -46,7 +45,7 @@
 							<uiIconPath>Things/Buildings/Turrets/AMW_AutoArtillery</uiIconPath>
 							<uiIconScale>0.9</uiIconScale>
 						</ThingDef>
-					
+
 					</value>
 				</li>
 
@@ -72,7 +71,7 @@
 						</targetParams>
 					</Properties>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName = "AMW_Gun_AAComplex"]</xpath>
 					<value>
@@ -91,12 +90,12 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="AMW_Turret_AutoCannon" or
-				defName="AMW_Turret_HeavyTurret" or
-				defName="AMW_Turret_CryoTurret" or
-				defName="AMW_Turret_RocketTurret" or
-				defName="AMW_Turret_LotusTurret"
-				]/fillPercent					</xpath>
+						defName="AMW_Turret_AutoCannon" or
+						defName="AMW_Turret_HeavyTurret" or
+						defName="AMW_Turret_CryoTurret" or
+						defName="AMW_Turret_RocketTurret" or
+						defName="AMW_Turret_LotusTurret"
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
 					</value>
@@ -358,5 +357,5 @@
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

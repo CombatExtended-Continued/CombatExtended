@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -17,7 +17,7 @@
 					<parent>AmmoAdvanced</parent>
 					<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
 				</ThingCategoryDef>
-	
+
 				<!-- ==================== AmmoSet ========================== -->
 
 				<CombatExtended.AmmoSetDef>
@@ -39,7 +39,7 @@
 						<Ammo_SWPlasmaGasCartridge_Ion>Bullet_SWPlasmaGasCartridge_Ion</Ammo_SWPlasmaGasCartridge_Ion>
 					</ammoTypes>
 				</CombatExtended.AmmoSetDef>
-		  
+
 				<CombatExtended.AmmoSetDef>
 					<defName>AmmoSet_SWPlasmaGasCartridgeJawa</defName>
 					<label>Plasma Gas Cartridges</label>
@@ -47,7 +47,7 @@
 						<Ammo_SWPlasmaGasCartridge_Ion>Bullet_SWPlasmaGasCartridge_Ion</Ammo_SWPlasmaGasCartridge_Ion>
 					</ammoTypes>
 				</CombatExtended.AmmoSetDef>
-		  
+
 				<CombatExtended.AmmoSetDef>
 					<defName>AmmoSet_Nym</defName>
 					<label>12 Gauge</label>
@@ -57,7 +57,6 @@
 						<Ammo_12Gauge_ElectroSlug>Bullet_12Gauge_ElectroSlug</Ammo_12Gauge_ElectroSlug>
 					</ammoTypes>
 				</CombatExtended.AmmoSetDef>
-		  
 
 				<CombatExtended.AmmoSetDef>
 					<defName>AmmoSet_SWBigPlasmaGasCartridge</defName>
@@ -128,7 +127,7 @@
 					<ammoClass>Ionized</ammoClass>
 					<generateAllowChance>0</generateAllowChance>
 				</ThingDef>
-			
+
 				<!-- ================== Projectiles ================== -->
 
 				<ThingDef Name="BaseSWPlasmaGasCartridgeBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
@@ -202,7 +201,7 @@
 						<gravityFactor>0.5</gravityFactor>
 					</projectile>
 				</ThingDef>
-		  
+
 				<ThingDef ParentName="BaseSWPlasmaGasCartridgeBullet">
 					<defName>Bullet_SWBigPlasmaGasCartridge</defName>
 					<label>Big Blaster Bolt</label>
@@ -253,12 +252,12 @@
 						<gravityFactor>0.5</gravityFactor>
 					</projectile>
 				</ThingDef>
-		  
+
 				<!-- ==================== Recipes ========================== -->
 
 				<RecipeDef ParentName="ChargeAmmoRecipeBase">
 					<defName>MakeAmmo_SWPlasmaGasCartridge</defName>
-					<label>make Plasma Gas Cartridges  x100</label>
+					<label>make Plasma Gas Cartridges x100</label>
 					<description>Craft 100 Plasma Gas Cartridges .</description>
 					<jobString>Making Plasma Gas Cartridges .</jobString>
 					<ingredients>
@@ -292,7 +291,7 @@
 
 				<RecipeDef ParentName="ChargeAmmoRecipeBase">
 					<defName>MakeAmmo_SWPlasmaGasCartridge_AP</defName>
-					<label>make Plasma Gas Cartridges (Conc.)  x100</label>
+					<label>make Plasma Gas Cartridges (Conc.) x100</label>
 					<description>Craft 100 Plasma Gas Cartridges (Conc.) .</description>
 					<jobString>Making Plasma Gas Cartridges (Conc.) .</jobString>
 					<ingredients>
@@ -332,10 +331,9 @@
 					</products>
 				</RecipeDef>
 
-
 				<RecipeDef ParentName="ChargeAmmoRecipeBase">
 					<defName>MakeAmmo_SWPlasmaGasCartridge_Ion</defName>
-					<label>make Plasma Gas Cartridges (Ion)  x100</label>
+					<label>make Plasma Gas Cartridges (Ion) x100</label>
 					<description>Craft 100 SWPlasmaGas Cartridges (Ion) .</description>
 					<jobString>Making Plasma Gas Cartridges (Ion) .</jobString>
 					<ingredients>
@@ -366,13 +364,12 @@
 						<Ammo_SWPlasmaGasCartridge_Ion>100</Ammo_SWPlasmaGasCartridge_Ion>
 					</products>
 				</RecipeDef>
-		  
-		
+
 			</value>
 		</match>
 	</Operation>
 	<!-- Projectile Ammo Fix -->
-  
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>[JDS] Star Wars BlasTech Industries</li>
@@ -384,7 +381,7 @@
 			</mods>
 			<nomatch Class="PatchOperationSequence">
 				<operations>
-        
+
 					<!-- Both are used by Blastech Industries -->
 					<li Class="PatchOperationReplace">
 						<xpath>Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridgeBlue"]/graphicData</xpath>
@@ -404,17 +401,17 @@
 							</graphicData>
 						</value>
 					</li>
-        
+
 					<!-- Unused projectiles get a dummy texture -->
 					<li Class="PatchOperationReplace">
 						<xpath>
-            Defs/ThingDef[
-              defName = "Bullet_SWPlasmaGasCartridge_AP" or
-              defName = "Bullet_SWPlasmaGasCartridge_Ion" or
-              defName = "Bullet_SWBigPlasmaGasCartridge" or
-              defName = "Bullet_SWBigPlasmaGasCartridge_AP" or
-              defName = "Bullet_SWBigPlasmaGasCartridge_Ion"
-            ]/graphicData						</xpath>
+							Defs/ThingDef[
+							defName = "Bullet_SWPlasmaGasCartridge_AP" or
+							defName = "Bullet_SWPlasmaGasCartridge_Ion" or
+							defName = "Bullet_SWBigPlasmaGasCartridge" or
+							defName = "Bullet_SWBigPlasmaGasCartridge_AP" or
+							defName = "Bullet_SWBigPlasmaGasCartridge_Ion"
+							]/graphicData </xpath>
 						<value>
 							<graphicData>
 								<texPath>Things/Projectile/Yellow_Bullet_Laser</texPath>
@@ -422,12 +419,12 @@
 							</graphicData>
 						</value>
 					</li>
-        
+
 				</operations>
 			</nomatch>
 		</match>
 	</Operation>
-  
+
 	<!-- Projectile Ammo Fix -->
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -440,7 +437,7 @@
 			</mods>
 			<nomatch Class="PatchOperationSequence">
 				<operations>
-        
+
 					<!-- Both are used by Blastech Industries -->
 					<li Class="PatchOperationReplace">
 						<xpath>Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridgeBlue"]/graphicData</xpath>
@@ -460,17 +457,17 @@
 							</graphicData>
 						</value>
 					</li>
-        
+
 					<!-- Unused projectiles get a dummy texture -->
 					<li Class="PatchOperationReplace">
 						<xpath>
-            Defs/ThingDef[
-              defName = "Bullet_SWPlasmaGasCartridge_AP" or
-              defName = "Bullet_SWPlasmaGasCartridge_Ion" or
-              defName = "Bullet_SWBigPlasmaGasCartridge" or
-              defName = "Bullet_SWBigPlasmaGasCartridge_AP" or
-              defName = "Bullet_SWBigPlasmaGasCartridge_Ion"
-            ]/graphicData						</xpath>
+							Defs/ThingDef[
+							defName = "Bullet_SWPlasmaGasCartridge_AP" or
+							defName = "Bullet_SWPlasmaGasCartridge_Ion" or
+							defName = "Bullet_SWBigPlasmaGasCartridge" or
+							defName = "Bullet_SWBigPlasmaGasCartridge_AP" or
+							defName = "Bullet_SWBigPlasmaGasCartridge_Ion"
+							]/graphicData </xpath>
 						<value>
 							<graphicData>
 								<texPath>Things/Projectile/Yellow_Bullet_Laser</texPath>
@@ -478,7 +475,7 @@
 							</graphicData>
 						</value>
 					</li>
-        
+
 				</operations>
 			</nomatch>
 		</match>
@@ -490,11 +487,11 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-		 
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-		  
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_SWPlasmaGasCartridgeYellow</defName>
 							<label>Plasma Gas Cartridges</label>
@@ -504,7 +501,7 @@
 								<Ammo_SWPlasmaGasCartridge_Ion>Bullet_SWPlasmaGasCartridge_Ion</Ammo_SWPlasmaGasCartridge_Ion>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-		  
+
 						<ThingDef ParentName="BaseSWPlasmaGasCartridgeBullet">
 							<defName>Bullet_SWPlasmaGasCartridgeYellow</defName>
 							<label>Blaster Bolt</label>
@@ -518,12 +515,12 @@
 								<armorPenetrationSharp>16</armorPenetrationSharp>
 							</projectile>
 						</ThingDef>
-		  
+
 					</value>
 				</li>
-		  
+
 			</operations>
 		</match>
 	</Operation>
-  
+
 </Patch>

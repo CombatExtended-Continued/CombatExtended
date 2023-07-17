@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>[1.4]Idhale Race</li></mods>
-			
+
+				<mods>
+					<li>[1.4]Idhale Race</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-		
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[@Name="HAR_Idhale_BaseNRPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 							<value>
@@ -19,21 +21,21 @@
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="HAR_Idhale_BaseNRPawn"]/comps</xpath>
 							<value>
-								<li Class="CombatExtended.CompProperties_Inventory"/>
-								<li Class="CombatExtended.CompProperties_TacticalManager"/>
+								<li Class="CombatExtended.CompProperties_Inventory" />
+								<li Class="CombatExtended.CompProperties_TacticalManager" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="HAR_Idhale_BaseNRPawn"]/comps</xpath>
 							<value>
 								<li>
 									<compClass>CombatExtended.CompPawnGizmo</compClass>
 								</li>
-								<li Class="CombatExtended.CompProperties_Suppressable"/>
+								<li Class="CombatExtended.CompProperties_Suppressable" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Idhale_Base"]</xpath>
 							<value>
@@ -43,7 +45,6 @@
 							</value>
 						</li>
 
-			
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Idhale_Base"]/statBases</xpath>
 							<value>
@@ -52,21 +53,21 @@
 								<ArmorRating_Electric>10</ArmorRating_Electric>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Idhale_Base"]/statBases/ArmorRating_Sharp</xpath>
 							<value>
 								<ArmorRating_Sharp>1000</ArmorRating_Sharp>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Idhale_Base"]/statBases/ArmorRating_Blunt</xpath>
 							<value>
 								<ArmorRating_Blunt>100000</ArmorRating_Blunt>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Idhale_Base"]/tools</xpath>
 							<value>
@@ -105,7 +106,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Idhale_Base"]/alienRace/raceRestriction/whiteApparelList</xpath>
 							<value>
@@ -118,8 +119,7 @@
 								<li>CE_Apparel_ImprovGasMask</li>
 							</value>
 						</li>
-			
-			
+
 					</operations>
 				</match>
 			</li>

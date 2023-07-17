@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Outer Rim - Tatooine (Continued)</li>
@@ -11,7 +11,7 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-			
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
 							<defName>Bullet_Ion_Energy</defName>
 							<label>Ion Energy</label>
@@ -29,7 +29,7 @@
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 							</projectile>
 						</ThingDef>
-			  
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_Tusken</defName>
 							<label>12 Gauge</label>
@@ -37,15 +37,15 @@
 								<Ammo_12Gauge_Slug>Bullet_12Gauge_Slug</Ammo_12Gauge_Slug>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-				
+
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-		defName="O21_JawaIonBlaster" or
-		defName="O21_TuskenCycler"
-		]/tools					</xpath>
+						defName="O21_JawaIonBlaster" or
+						defName="O21_TuskenCycler"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -82,7 +82,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>O21_JawaIonBlaster</defName>
 					<statBases>
@@ -118,7 +118,7 @@
 				</AmmoUser>
 				-->
 				</li>
-		
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>O21_TuskenCycler</defName>
 					<statBases>
@@ -151,8 +151,7 @@
 						<ammoSet>AmmoSet_Tusken</ammoSet>
 					</AmmoUser>
 				</li>
-		
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="O21_Gaderffii"]/tools</xpath>
 					<value>
@@ -182,7 +181,7 @@
 						</tools>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="O21_Gaderffii"]/statBases</xpath>
 					<value>
@@ -190,7 +189,7 @@
 						<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="O21_Gaderffii"]</xpath>
 					<value>
@@ -201,10 +200,9 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-		
-		
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

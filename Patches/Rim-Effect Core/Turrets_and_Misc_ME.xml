@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Rim-Effect: Core</li>
 		</mods>
-		
+
 		<match Class="PatchOperationSequence">
 			<operations>
 
 				<!-- Remove refuelable property -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-			defName = "RE_Turret_MassAccelerator" or 		
-			defName = "RE_Turret_HeavyMassAccelerator"]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						defName = "RE_Turret_MassAccelerator" or
+						defName = "RE_Turret_HeavyMassAccelerator"]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
 
 				<!-- Replace vanilla thingClass -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-			defName = "RE_Turret_MassAccelerator"]/thingClass					</xpath>
+						defName = "RE_Turret_MassAccelerator"]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
@@ -48,19 +48,19 @@
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-			defName = "RE_Turret_MassAccelerator" or 
-			defName = "RE_Turret_HeavyMassAccelerator"		  
-		]/statBases					</xpath>
+						defName = "RE_Turret_MassAccelerator" or
+						defName = "RE_Turret_HeavyMassAccelerator"
+						]/statBases </xpath>
 					<value>
 						<AimingAccuracy>0.25</AimingAccuracy>
 					</value>
 				</li>
-  
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-			defName = "RE_Turret_MassAccelerator" or 
-			defName = "RE_Turret_HeavyMassAccelerator"		  
-		]/statBases/ShootingAccuracyTurret					</xpath>
+						defName = "RE_Turret_MassAccelerator" or
+						defName = "RE_Turret_HeavyMassAccelerator"
+						]/statBases/ShootingAccuracyTurret </xpath>
 					<value>
 						<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
 					</value>
@@ -68,9 +68,9 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-			defName = "RE_Turret_MassAccelerator" or 
-			defName = "RE_Turret_HeavyMassAccelerator"		 
-      ]/building/turretBurstCooldownTime					</xpath>
+						defName = "RE_Turret_MassAccelerator" or
+						defName = "RE_Turret_HeavyMassAccelerator"
+						]/building/turretBurstCooldownTime </xpath>
 					<value>
 						<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
 					</value>

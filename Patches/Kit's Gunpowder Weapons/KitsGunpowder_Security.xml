@@ -1,47 +1,47 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Kit's Gunpowder Weapons</li>
 		</mods>
-			
+
 		<match Class="PatchOperationSequence">
 			<operations>
 
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[			
-			defName = "KIT_Turret_Organ" or
-			defName = "KIT_Turret_12Pounder"or
-			defName = "KIT_Turret_Bombard"			
-		]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+					<xpath>Defs/ThingDef[
+						defName = "KIT_Turret_Organ" or
+						defName = "KIT_Turret_12Pounder"or
+						defName = "KIT_Turret_Bombard"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-			defName = "KIT_Turret_Organ" or
-			defName = "KIT_Turret_12Pounder" or
-			defName = "KIT_Turret_Bombard"				 			
-		]/thingClass					</xpath>
+						defName = "KIT_Turret_Organ" or
+						defName = "KIT_Turret_12Pounder" or
+						defName = "KIT_Turret_Bombard"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[	
-			defName = "KIT_Turret_Organ" or
-			defName = "KIT_Turret_12Pounder"or
-			defName = "KIT_Turret_Bombard"
-		]/fillPercent					</xpath>
+					<xpath>Defs/ThingDef[
+						defName = "KIT_Turret_Organ" or
+						defName = "KIT_Turret_12Pounder"or
+						defName = "KIT_Turret_Bombard"
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
 					</value>
 				</li>
-	  
+
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[			
-			defName = "KIT_Turret_Bombard"			
-		]/placeWorkers/li["PlaceWorker_ShowTurretRadius"]					</xpath>
+					<xpath>Defs/ThingDef[
+						defName = "KIT_Turret_Bombard"
+						]/placeWorkers/li["PlaceWorker_ShowTurretRadius"] </xpath>
 				</li>
 
 				<!-- ========== 12 Pounder ========== -->
@@ -169,7 +169,7 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName = "KIT_Gun_Bombard"]/weaponTags</xpath>
 					<value>

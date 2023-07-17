@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -31,7 +31,7 @@
 						<AimingAccuracy>0.75</AimingAccuracy>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RM_Turret_AncientImmolatorTurret"]/statBases/Mass</xpath>
 					<value>
@@ -101,7 +101,7 @@
 						<AimingAccuracy>0.25</AimingAccuracy>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RM_Turret_AutoMortarCannon"]/statBases/Mass</xpath>
 					<value>
@@ -119,7 +119,7 @@
 						<fillPercent>0.85</fillPercent>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]</xpath>
 					<value>
@@ -128,15 +128,15 @@
 						</statBases>
 					</value>
 				</li>
-			
+
 				<!--Test for comps and add if not present-->
-			
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 					<match Class="PatchOperationAdd">
@@ -159,15 +159,15 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<!--Test for tags and add if not present-->
-			
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]/weaponTags</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]</xpath>
 						<value>
-							<weaponTags/>
+							<weaponTags />
 						</value>
 					</nomatch>
 					<match Class="PatchOperationAdd">
@@ -231,7 +231,7 @@
 						<AimingAccuracy>2</AimingAccuracy>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RM_Turret_AncientChargeRailgun"]/statBases/Mass</xpath>
 					<value>
@@ -249,7 +249,7 @@
 						<fillPercent>0.99</fillPercent>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>RM_Gun_AncientChargeRailgun</defName>
 					<statBases>

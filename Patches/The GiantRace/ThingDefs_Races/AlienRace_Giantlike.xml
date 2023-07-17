@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>The GiantRace</li></mods>
-			
+
+				<mods>
+					<li>The GiantRace</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HC_Giant"]</xpath>
 							<value>
@@ -17,7 +19,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HC_Giant"]/statBases</xpath>
 							<value>
@@ -30,9 +32,9 @@
 								<CarryBulk>25</CarryBulk>
 							</value>
 						</li>
-			
+
 						<!--Very heavy blows-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HC_Giant"]/tools</xpath>
 							<value>
@@ -71,9 +73,9 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<!--Giant size prevents use of loadbearing gear, and reasonably, shields.-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[@Name="GI_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 							<value>
@@ -84,17 +86,17 @@
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="GI_PawnBase"]/comps</xpath>
 							<value>
-								<li Class="CombatExtended.CompProperties_Inventory"/>
+								<li Class="CombatExtended.CompProperties_Inventory" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="GI_PawnBase"]/comps</xpath>
 							<value>
 								<li>
 									<compClass>CombatExtended.CompPawnGizmo</compClass>
 								</li>
-								<li Class="CombatExtended.CompProperties_Suppressable"/>
+								<li Class="CombatExtended.CompProperties_Suppressable" />
 							</value>
 						</li>
 					</operations>

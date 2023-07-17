@@ -5,31 +5,31 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
-				]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						defName="ADE_Turret_HMGT" or
+						defName="ADE_Turret_HST" or
+						defName="ADE_Turret_GLT"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
-				]/thingClass					</xpath>
+						defName="ADE_Turret_HMGT" or
+						defName="ADE_Turret_HST" or
+						defName="ADE_Turret_GLT"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
-				]/fillPercent					</xpath>
+						defName="ADE_Turret_HMGT" or
+						defName="ADE_Turret_HST" or
+						defName="ADE_Turret_GLT"
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
 					</value>
@@ -37,10 +37,10 @@
 				<!-- adding power requirement -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
-				]/comps					</xpath>
+						defName="ADE_Turret_HMGT" or
+						defName="ADE_Turret_HST" or
+						defName="ADE_Turret_GLT"
+						]/comps </xpath>
 					<value>
 						<li Class="CompProperties_Power">
 							<compClass>CompPowerTrader</compClass>
@@ -50,10 +50,10 @@
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
-				]/statBases/ShootingAccuracyTurret					</xpath>
+						defName="ADE_Turret_HMGT" or
+						defName="ADE_Turret_HST" or
+						defName="ADE_Turret_GLT"
+						]/statBases/ShootingAccuracyTurret </xpath>
 					<value>
 						<AimingAccuracy>1</AimingAccuracy>
 						<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
@@ -175,7 +175,6 @@
 						<noSnapshot>true</noSnapshot>
 					</FireModes>
 				</li>
-
 
 			</operations>
 		</match>

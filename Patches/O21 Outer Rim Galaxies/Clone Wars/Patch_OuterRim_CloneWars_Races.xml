@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>[O21] Outer Rim Galaxies</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_CloneTrooper"]</xpath>
 					<match Class="PatchOperationSequence">
 						<operations>
-			
+
 							<li Class="PatchOperationAddModExtension">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="O21_OR_BaseHumanoidDroid"]</xpath>
 								<value>
@@ -21,63 +21,63 @@
 									</li>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/HediffDef[defName="O21_OR_CloneConditioning"]/stages/li[1]/statOffsets</xpath>
 								<value>
 									<Suppressability>-0.025</Suppressability>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/HediffDef[defName="O21_OR_CloneConditioning"]/stages/li[2]/statOffsets</xpath>
 								<value>
 									<Suppressability>-0.05</Suppressability>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/HediffDef[defName="O21_OR_CloneConditioning"]/stages/li[3]/statOffsets</xpath>
 								<value>
 									<Suppressability>-0.075</Suppressability>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/HediffDef[defName="O21_OR_CloneConditioning"]/stages/li[4]/statOffsets</xpath>
 								<value>
 									<Suppressability>-0.1</Suppressability>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/HediffDef[defName="O21_OR_CloneConditioning"]/stages/li[5]/statOffsets</xpath>
 								<value>
 									<Suppressability>-0.125</Suppressability>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/HediffDef[defName="O21_OR_CloneConditioning"]/stages/li[6]/statOffsets</xpath>
 								<value>
 									<Suppressability>-0.15</Suppressability>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/HediffDef[defName="O21_OR_CloneConditioning"]/stages/li[7]/statOffsets</xpath>
 								<value>
 									<Suppressability>-0.175</Suppressability>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/HediffDef[defName="O21_OR_CloneConditioning"]/stages/li[8]/statOffsets</xpath>
 								<value>
 									<Suppressability>-0.2</Suppressability>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="O21_OR_BaseHumanoidDroid"]/statBases</xpath>
 								<value>
@@ -89,17 +89,17 @@
 									<SmokeSensitivity>0</SmokeSensitivity>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationConditional">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="O21_OR_BaseHumanoidDroid"]/comps</xpath>
 								<nomatch Class="PatchOperationAdd">
 									<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="O21_OR_BaseHumanoidDroid"]</xpath>
 									<value>
-										<comps/>
+										<comps />
 									</value>
 								</nomatch>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="O21_OR_BaseHumanoidDroid"]/comps</xpath>
 								<value>
@@ -108,7 +108,7 @@
 									</li>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_BattleDroid" or defName="O21_OR_SuperTacticalDroid" or defName="O21_OR_TacticalDroid"]/tools</xpath>
 								<value>
@@ -147,14 +147,14 @@
 									</tools>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_BattleDroid"]/statBases/MoveSpeed</xpath>
 								<value>
 									<MoveSpeed>4.4</MoveSpeed>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_MagnaGuardDroid"]/statBases</xpath>
 								<value>
@@ -165,7 +165,7 @@
 									<MeleeDodgeChance>1</MeleeDodgeChance>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_MagnaGuardDroid"]/tools</xpath>
 								<value>
@@ -204,7 +204,7 @@
 									</tools>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_CommandoDroid"]/statBases</xpath>
 								<value>
@@ -213,7 +213,7 @@
 									<MeleeDodgeChance>1.2</MeleeDodgeChance>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_CommandoDroid"]/tools</xpath>
 								<value>
@@ -252,7 +252,7 @@
 									</tools>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_SuperBattleDroid"]/tools</xpath>
 								<value>
@@ -280,7 +280,7 @@
 									</tools>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_DestroyerDroid"]/tools</xpath>
 								<value>
@@ -308,13 +308,13 @@
 									</tools>
 								</value>
 							</li>
-			
+
 						</operations>
 					</match>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

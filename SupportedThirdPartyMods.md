@@ -80,10 +80,9 @@ Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Ancient Humans   |
-Android Tiers	|
 Android Tiers Reforged	|
 Android Tiers SM7 Overhaul (Continued)  |
-Android - TX Series   |
+Android - TX Series (Continued)  |
 Androids	|
 Androids Expanded	|
 Anima Animals  |
@@ -305,6 +304,7 @@ Misc. Robots	|
 Misc. Turrets   |
 Moa |
 Moonjelly Race  |
+More Archotech Garbage Continued  |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Medieval Helms and Armor	|
@@ -347,6 +347,8 @@ Pawnbold Race   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
 Possessed Weapons	|
+pphhyy's Demigryphs   |
+pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
@@ -456,7 +458,6 @@ Vanilla Animals Expanded |
 Vanilla Animals Expanded - Caves |
 Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
-Vanilla Animals Expanded - Vehicles |
 Vanilla Animals Expanded - Waste Animals |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |

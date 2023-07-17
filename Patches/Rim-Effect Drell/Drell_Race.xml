@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -16,7 +16,7 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<!-- Melee Tool & Basestats Defs -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RE_Drell"]/statBases</xpath>
@@ -26,7 +26,7 @@
 						<MeleeParryChance>1</MeleeParryChance>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RE_Drell"]/tools</xpath>
 					<value>
@@ -65,25 +65,25 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<!-- Checking if "RE_Drell" has a <comps> node and adding it if it doesn't exist -->
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RE_Drell"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RE_Drell"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RE_Drell"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable"/>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
 					</value>
 				</li>
 

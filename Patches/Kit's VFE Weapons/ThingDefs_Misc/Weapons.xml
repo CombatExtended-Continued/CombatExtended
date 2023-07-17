@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-		
+
 		<operations>
 			<li Class="PatchOperationFindMod">
 				<mods>
@@ -10,9 +10,9 @@
 				</mods>
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<!-- ==========  Hammer  =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoHammer"]/tools</xpath>
 							<value>
@@ -39,7 +39,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoHammer"]/statBases</xpath>
 							<value>
@@ -47,7 +47,7 @@
 								<Bulk>3.5</Bulk>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoHammer"]</xpath>
 							<value>
@@ -58,9 +58,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<!-- ==========  Knife  =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoKnife"]/tools</xpath>
 							<value>
@@ -91,7 +91,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoKnife"]/statBases</xpath>
 							<value>
@@ -99,7 +99,7 @@
 								<Bulk>1.5</Bulk>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoKnife"]</xpath>
 							<value>
@@ -110,10 +110,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
-			
+
 						<!-- ========== Glaive  =========== -->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoSpear"]/statBases</xpath>
 							<value>
@@ -121,7 +120,7 @@
 								<Bulk>12.50</Bulk>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoSpear"]</xpath>
 							<value>
@@ -132,7 +131,7 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoSpear"]/tools</xpath>
 							<value>
@@ -164,9 +163,9 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<!-- ==========  Sword  =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoSword"]/tools</xpath>
 							<value>
@@ -197,7 +196,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoSword"]/statBases</xpath>
 							<value>
@@ -205,7 +204,7 @@
 								<Bulk>1.5</Bulk>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="KIT_CryptoSword"]</xpath>
 							<value>
@@ -216,9 +215,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<!-- ========== Pistol =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>KIT_Gun_PlasmaPistol</defName>
 							<statBases>
@@ -229,7 +228,7 @@
 								<Mass>2.65</Mass>
 								<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -240,7 +239,7 @@
 								<soundCastTail>GunTail_Medium</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>12</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -250,16 +249,16 @@
 								<aiAimMode>Snapshot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="KIT_Gun_PlasmaPistol"]/weaponTags</xpath>
 							<value>
 								<li>CE_OneHandedWeapon</li>
 							</value>
 						</li>
-			
+
 						<!-- ========== SMG =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>KIT_Gun_PlasmaSMG</defName>
 							<statBases>
@@ -270,7 +269,7 @@
 								<Mass>3.00</Mass>
 								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<recoilAmount>0.76</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -284,7 +283,7 @@
 								<soundCastTail>GunTail_Medium</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>35</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -296,9 +295,9 @@
 								<aiAimMode>Snapshot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Rifle =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>KIT_Gun_PlasmaRifle</defName>
 							<statBases>
@@ -309,7 +308,7 @@
 								<Mass>4.21</Mass>
 								<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -320,7 +319,7 @@
 								<soundCastTail>GunTail_Medium</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>27</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -330,9 +329,9 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Sniper Rifle =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>KIT_Gun_PlasmaSniper</defName>
 							<statBases>
@@ -343,7 +342,7 @@
 								<Mass>4.79</Mass>
 								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -355,7 +354,7 @@
 								<soundCastTail>GunTail_Heavy</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>20</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -365,14 +364,14 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Melee Attacks =========== -->
-			
+
 						<li Class="PatchOperationReplace">
-							<xpath>Defs/ThingDef[defName="KIT_Gun_PlasmaSniper" or 
-				defName="KIT_Gun_PlasmaSMG" or 
-				defName="KIT_Gun_PlasmaRifle"
-				]/tools							</xpath>
+							<xpath>Defs/ThingDef[defName="KIT_Gun_PlasmaSniper" or
+								defName="KIT_Gun_PlasmaSMG" or
+								defName="KIT_Gun_PlasmaRifle"
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -409,7 +408,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="KIT_Gun_PlasmaPistol"]/tools</xpath>
 							<value>
@@ -438,7 +437,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>
