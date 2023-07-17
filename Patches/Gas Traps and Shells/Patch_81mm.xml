@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -6,7 +6,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<!-- Add Shell Recipes -->
 
 				<li Class="PatchOperationAdd">
@@ -319,7 +319,7 @@
 						</RecipeDef>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
@@ -367,7 +367,7 @@
 						</RecipeDef>
 					</value>
 				</li>
-		
+
 				<!-- Add Shells to AmmoSet -->
 
 				<li Class="PatchOperationAdd">
@@ -383,73 +383,73 @@
 						<Shell_GasAcid>Bullet_Shell_GasAcid</Shell_GasAcid>
 					</value>
 				</li>
-		
+
 				<!-- Add CE Ammo.Def to Shells & Ammo-->
-		
+
 				<li Class="PatchOperationAttributeAdd">
 					<xpath>Defs/ThingDef[
-					defName="Shell_GasToxic" or
-					defName="Shell_GasRage" or
-					defName="Shell_GasTear" or
-					defName="Shell_GasSleep" or
-					defName="Shell_GasFear" or
-					defName="Shell_GasAcid" or
-					defName="Shell_GasAntiBug" or 
-					defName="Shell_MechVirus"  or 
-					defName="Bullet_Shell_GasToxic" or
-					defName="Bullet_Shell_GasRage" or
-					defName="Bullet_Shell_GasTear" or
-					defName="Bullet_Shell_GasSleep" or
-					defName="Bullet_Shell_GasFear" or
-					defName="Bullet_Shell_GasAcid" or
-					defName="Bullet_Shell_MechVirus" or 
-					defName="Bullet_Shell_GasAntiBug"]					</xpath>
+						defName="Shell_GasToxic" or
+						defName="Shell_GasRage" or
+						defName="Shell_GasTear" or
+						defName="Shell_GasSleep" or
+						defName="Shell_GasFear" or
+						defName="Shell_GasAcid" or
+						defName="Shell_GasAntiBug" or
+						defName="Shell_MechVirus" or
+						defName="Bullet_Shell_GasToxic" or
+						defName="Bullet_Shell_GasRage" or
+						defName="Bullet_Shell_GasTear" or
+						defName="Bullet_Shell_GasSleep" or
+						defName="Bullet_Shell_GasFear" or
+						defName="Bullet_Shell_GasAcid" or
+						defName="Bullet_Shell_MechVirus" or
+						defName="Bullet_Shell_GasAntiBug"] </xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.AmmoDef</value>
 				</li>
-			
+
 				<!-- Add New Shell Base-->
-			
+
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[
-					defName="Shell_GasToxic" or
-					defName="Shell_GasRage" or
-					defName="Shell_GasTear" or
-					defName="Shell_GasSleep" or
-					defName="Shell_GasFear" or
-					defName="Shell_GasAcid" or
-					defName="Shell_GasAntiBug" or 
-					defName="Shell_MechVirus"]					</xpath>
+						defName="Shell_GasToxic" or
+						defName="Shell_GasRage" or
+						defName="Shell_GasTear" or
+						defName="Shell_GasSleep" or
+						defName="Shell_GasFear" or
+						defName="Shell_GasAcid" or
+						defName="Shell_GasAntiBug" or
+						defName="Shell_MechVirus"] </xpath>
 					<attribute>ParentName</attribute>
 					<value>81mmMortarShellBaseCraftableBase</value>
 				</li>
 
 				<!-- Remove Stuff -->
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-					defName="Shell_GasToxic" or
-					defName="Shell_GasRage" or
-					defName="Shell_GasTear" or
-					defName="Shell_GasSleep" or
-					defName="Shell_GasFear" or
-					defName="Shell_GasAcid" or
-					defName="Shell_GasAntiBug" or 
-					defName="Shell_MechVirus"]/projectileWhenLoaded					</xpath>
+						defName="Shell_GasToxic" or
+						defName="Shell_GasRage" or
+						defName="Shell_GasTear" or
+						defName="Shell_GasSleep" or
+						defName="Shell_GasFear" or
+						defName="Shell_GasAcid" or
+						defName="Shell_GasAntiBug" or
+						defName="Shell_MechVirus"]/projectileWhenLoaded </xpath>
 				</li>
 
 				<!-- Add Shell Mass-->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-					defName="Shell_GasToxic" or
-					defName="Shell_GasRage" or
-					defName="Shell_GasTear" or
-					defName="Shell_GasSleep" or
-					defName="Shell_GasFear" or
-					defName="Shell_GasAcid" or
-					defName="Shell_GasAntiBug" or 
-					defName="Shell_MechVirus"]					</xpath>
+						defName="Shell_GasToxic" or
+						defName="Shell_GasRage" or
+						defName="Shell_GasTear" or
+						defName="Shell_GasSleep" or
+						defName="Shell_GasFear" or
+						defName="Shell_GasAcid" or
+						defName="Shell_GasAntiBug" or
+						defName="Shell_MechVirus"] </xpath>
 					<value>
 						<statBases>
 							<Mass>4.3</Mass>
@@ -457,9 +457,9 @@
 						</statBases>
 					</value>
 				</li>
-		
+
 				<!-- Add Shell Ammo Type-->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Shell_GasToxic"]</xpath>
 					<value>
@@ -503,14 +503,14 @@
 						<ammoClass>MechVirus</ammoClass>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Shell_GasAntiBug"]</xpath>
 					<value>
 						<ammoClass>AntiBug</ammoClass>
 					</value>
 				</li>
-		
+
 				<!-- Add CE Explosives Comps to Shells -->
 
 				<li Class="PatchOperationReplace">
@@ -627,7 +627,7 @@
 						</comps>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Shell_MechVirus"]/comps</xpath>
 					<value>
@@ -647,7 +647,7 @@
 						</comps>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Shell_GasAntiBug"]/comps</xpath>
 					<value>
@@ -667,52 +667,52 @@
 						</comps>
 					</value>
 				</li>
-			
+
 				<!-- Add New Bullet Base-->
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[
-					defName="Bullet_Shell_GasToxic" or
-					defName="Bullet_Shell_GasRage" or
-					defName="Bullet_Shell_GasTear" or
-					defName="Bullet_Shell_GasSleep" or
-					defName="Bullet_Shell_GasFear" or
-					defName="Bullet_Shell_GasAcid" or
-					defName="Bullet_Shell_MechVirus" or 
-					defName="Bullet_Shell_GasAntiBug"]					</xpath>
+						defName="Bullet_Shell_GasToxic" or
+						defName="Bullet_Shell_GasRage" or
+						defName="Bullet_Shell_GasTear" or
+						defName="Bullet_Shell_GasSleep" or
+						defName="Bullet_Shell_GasFear" or
+						defName="Bullet_Shell_GasAcid" or
+						defName="Bullet_Shell_MechVirus" or
+						defName="Bullet_Shell_GasAntiBug"] </xpath>
 					<attribute>ParentName</attribute>
 					<value>Base81mmMortarShell</value>
 				</li>
-			
+
 				<!-- Projectiles -->
 				<li Class="PatchOperationAttributeAdd">
 					<xpath>Defs/ThingDef[
-					defName="Bullet_Shell_GasToxic" or
-					defName="Bullet_Shell_GasRage" or
-					defName="Bullet_Shell_GasTear" or
-					defName="Bullet_Shell_GasSleep" or
-					defName="Bullet_Shell_GasFear" or
-					defName="Bullet_Shell_GasAcid" or
-					defName="Bullet_Shell_MechVirus" or 
-					defName="Bullet_Shell_GasAntiBug"]/projectile					</xpath>
+						defName="Bullet_Shell_GasToxic" or
+						defName="Bullet_Shell_GasRage" or
+						defName="Bullet_Shell_GasTear" or
+						defName="Bullet_Shell_GasSleep" or
+						defName="Bullet_Shell_GasFear" or
+						defName="Bullet_Shell_GasAcid" or
+						defName="Bullet_Shell_MechVirus" or
+						defName="Bullet_Shell_GasAntiBug"]/projectile </xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.ProjectilePropertiesCE</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="Bullet_Shell_GasToxic" or
-					defName="Bullet_Shell_GasRage" or
-					defName="Bullet_Shell_GasTear" or
-					defName="Bullet_Shell_GasSleep" or
-					defName="Bullet_Shell_GasFear" or
-					defName="Bullet_Shell_GasAcid" or
-					defName="Bullet_Shell_MechVirus" or 
-					defName="Bullet_Shell_GasAntiBug"]/thingClass					</xpath>
+						defName="Bullet_Shell_GasToxic" or
+						defName="Bullet_Shell_GasRage" or
+						defName="Bullet_Shell_GasTear" or
+						defName="Bullet_Shell_GasSleep" or
+						defName="Bullet_Shell_GasFear" or
+						defName="Bullet_Shell_GasAcid" or
+						defName="Bullet_Shell_MechVirus" or
+						defName="Bullet_Shell_GasAntiBug"]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 					</value>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>

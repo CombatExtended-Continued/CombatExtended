@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -31,7 +31,7 @@
 						<AimingAccuracy>0.5</AimingAccuracy>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeBlasterCannon"]/statBases/Mass</xpath>
 					<value>
@@ -56,7 +56,7 @@
 						<turretBurstCooldownTime>2.0</turretBurstCooldownTime>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>VFE_Gun_ChargeBlasterCannon</defName>
 					<statBases>
@@ -84,7 +84,7 @@
 						<noSingleShot>true</noSingleShot>
 					</FireModes>
 				</li>
-			
+
 				<!-- ========== Ship Charge Lance ========== -->
 
 				<li Class="PatchOperationReplace">
@@ -107,7 +107,7 @@
 						<AimingAccuracy>1</AimingAccuracy>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeLanceCannon"]/statBases/Mass</xpath>
 					<value>
@@ -132,7 +132,7 @@
 						<turretBurstCooldownTime>1</turretBurstCooldownTime>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>VFE_Gun_ChargeLanceCannon</defName>
 					<statBases>
@@ -160,7 +160,7 @@
 						<noSnapshot>true</noSnapshot>
 					</FireModes>
 				</li>
-			
+
 				<!-- ========== Auto Inferno Cannon ========== -->
 
 				<li Class="PatchOperationReplace">
@@ -183,7 +183,7 @@
 						<AimingAccuracy>0.5</AimingAccuracy>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFE_Turret_InfernoLauncherArtillery"]/statBases/Mass</xpath>
 					<value>
@@ -208,7 +208,7 @@
 						<turretBurstCooldownTime>12.0</turretBurstCooldownTime>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>VFE_Gun_InfernoArtillery</defName>
 					<statBases>
@@ -240,7 +240,7 @@
 						<noSnapshot>true</noSnapshot>
 					</FireModes>
 				</li>
-			
+
 				<!-- ========== Auto Mortar ========== -->
 
 				<li Class="PatchOperationReplace">
@@ -263,7 +263,7 @@
 						<AimingAccuracy>0.25</AimingAccuracy>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFE_Turret_AutoMortarCannon"]/statBases/Mass</xpath>
 					<value>
@@ -281,7 +281,7 @@
 						<fillPercent>0.85</fillPercent>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName = "VFE_Gun_AutoMortarCannon"]</xpath>
 					<value>
@@ -290,15 +290,15 @@
 						</statBases>
 					</value>
 				</li>
-			
+
 				<!--Test for comps and add if not present-->
-			
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 					<match Class="PatchOperationAdd">
@@ -321,15 +321,15 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<!--Test for tags and add if not present-->
-			
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]/weaponTags</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="VFE_Gun_AutoMortarCannon"]</xpath>
 						<value>
-							<weaponTags/>
+							<weaponTags />
 						</value>
 					</nomatch>
 					<match Class="PatchOperationAdd">
@@ -370,7 +370,7 @@
 						</verbs>
 					</value>
 				</li>
-			
+
 				<!-- ========== Ship Charge Railgun ========== -->
 
 				<li Class="PatchOperationReplace">
@@ -393,7 +393,7 @@
 						<AimingAccuracy>2</AimingAccuracy>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFE_Turret_ChargeRailgun"]/statBases/Mass</xpath>
 					<value>
@@ -418,7 +418,7 @@
 						<turretBurstCooldownTime>18.0</turretBurstCooldownTime>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>VFE_Gun_ChargeRailgun</defName>
 					<statBases>
@@ -446,7 +446,7 @@
 						<noSnapshot>true</noSnapshot>
 					</FireModes>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>

@@ -1,19 +1,21 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Moyo-Light in the Abyss</li></mods>
-			
+
+				<mods>
+					<li>Moyo-Light in the Abyss</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
 						<!--Ammo-->
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				@Name="RedMoyoBasePawnKind"
-				]							</xpath>
+								@Name="RedMoyoBasePawnKind"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -23,11 +25,11 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				@Name="RedMoyoPolice"
-				]							</xpath>
+								@Name="RedMoyoPolice"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -37,11 +39,11 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				@Name="RedMoyoSoliderStandard"
-				]							</xpath>
+								@Name="RedMoyoSoliderStandard"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -51,19 +53,19 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<!--Backpack-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/PawnKindDef[
-				@ParentName="RedMoyoPolice" or
-				@ParentName="RedMoyoSoliderStandard"
-				]/apparelRequired							</xpath>
+								@ParentName="RedMoyoPolice" or
+								@ParentName="RedMoyoSoliderStandard"
+								]/apparelRequired </xpath>
 							<value>
 								<li>CE_Apparel_Backpack</li>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

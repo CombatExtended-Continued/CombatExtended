@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Rabbie The Moonrabbit race</li></mods>
-			
+
+				<mods>
+					<li>Rabbie The Moonrabbit race</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts</xpath>
 							<value>
@@ -29,7 +31,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts/li[thingDef="Apparel_FlakVest"]</xpath>
 							<value>
@@ -41,7 +43,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ScenarioDef[defName="RB_Scenario"]/scenario/parts/li[thingDef="Apparel_AdvancedHelmet"]</xpath>
 							<value>
@@ -52,7 +54,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationConditional">
 							<xpath>Defs/FactionDef[@Name="RB_PlayerFactionBase"]/apparelStuffFilter</xpath>
 							<match Class="PatchOperationConditional">
@@ -92,7 +94,7 @@
 								</value>
 							</nomatch>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>[1.4]Xenoorca Race</li></mods>
-			
+
+				<mods>
+					<li>[1.4]Xenoorca Race</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-		
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[@Name="HAR_Xenoorca_BaseNRPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 							<value>
@@ -19,21 +21,21 @@
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="HAR_Xenoorca_BaseNRPawn"]/comps</xpath>
 							<value>
-								<li Class="CombatExtended.CompProperties_Inventory"/>
-								<li Class="CombatExtended.CompProperties_TacticalManager"/>
+								<li Class="CombatExtended.CompProperties_Inventory" />
+								<li Class="CombatExtended.CompProperties_TacticalManager" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="HAR_Xenoorca_BaseNRPawn"]/comps</xpath>
 							<value>
 								<li>
 									<compClass>CombatExtended.CompPawnGizmo</compClass>
 								</li>
-								<li Class="CombatExtended.CompProperties_Suppressable"/>
+								<li Class="CombatExtended.CompProperties_Suppressable" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Xenoorca"]</xpath>
 							<value>
@@ -43,7 +45,6 @@
 							</value>
 						</li>
 
-			
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Xenoorca"]/statBases</xpath>
 							<value>
@@ -53,28 +54,28 @@
 								<MeleeParryChance>1.06</MeleeParryChance>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Xenoorca"]/statBases/MeleeDodgeChance</xpath>
 							<value>
 								<MeleeDodgeChance>1.30</MeleeDodgeChance>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Xenoorca"]/statBases/ArmorRating_Sharp</xpath>
 							<value>
 								<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Xenoorca"]/statBases/ArmorRating_Blunt</xpath>
 							<value>
 								<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Xenoorca"]/tools</xpath>
 							<value>
@@ -113,7 +114,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Xenoorca"]/alienRace/raceRestriction/whiteApparelList</xpath>
 							<value>
@@ -126,8 +127,7 @@
 								<li>CE_Apparel_ImprovGasMask</li>
 							</value>
 						</li>
-			
-			
+
 					</operations>
 				</match>
 			</li>

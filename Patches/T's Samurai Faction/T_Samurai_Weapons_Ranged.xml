@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -7,13 +7,13 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-    
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-            defName="TSF_Tanegashima_Short" or
-            defName="TSF_Tanegashima_Matchlock" or
-            defName="TSF_Hand_Mortar"
-            ]/tools					</xpath>
+						defName="TSF_Tanegashima_Short" or
+						defName="TSF_Tanegashima_Matchlock" or
+						defName="TSF_Hand_Mortar"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -194,7 +194,7 @@
 					<AmmoUser>
 						<ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
 					</AmmoUser>
-					<FireModes/>
+					<FireModes />
 					<weaponTags>
 						<li>CE_Bow</li>
 					</weaponTags>
@@ -233,7 +233,7 @@
           </li>
 
 -->
-    
+
 				<!-- == Projectile == -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="TSF_Star_Thrown"]/projectile</xpath>
@@ -251,7 +251,6 @@
 					</value>
 				</li>
 
-
 				<!-- == Weapon == -->
 
 				<li Class="PatchOperationAttributeSet">
@@ -259,7 +258,7 @@
 					<attribute>ParentName</attribute>
 					<value>BaseWeapon</value>
 				</li>
-          
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
 					<value>
@@ -276,7 +275,7 @@
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="TSF_Shuriken"]/costList</xpath>
 				</li>
-  
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
 					<value>
@@ -285,13 +284,13 @@
 						<resourceReadoutPriority>First</resourceReadoutPriority>
 					</value>
 				</li>
-  
+
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.AmmoDef</value>
 				</li>
-  
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>TSF_Shuriken</defName>
 					<statBases>
@@ -321,7 +320,7 @@
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>
-  
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="TSF_Shuriken"]/tools</xpath>
 					<value>

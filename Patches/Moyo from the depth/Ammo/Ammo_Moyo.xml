@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Moyo-From the depth</li></mods>
-			
+
+				<mods>
+					<li>Moyo-From the depth</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<!-- ==================== Boltcaster ========================== -->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
@@ -23,7 +25,7 @@
 										<Ammo_MoyoBallista>Bullet_MoyoBallista</Ammo_MoyoBallista>
 									</ammoTypes>
 								</CombatExtended.AmmoSetDef>
-					
+
 								<CombatExtended.AmmoCategoryDef>
 									<defName>MoyoBolt</defName>
 									<label>Charged Ion Bolt</label>
@@ -146,9 +148,9 @@
 								</RecipeDef>
 							</value>
 						</li>
-			
+
 						<!-- ==================== Cryoblaster ========================== -->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
@@ -161,7 +163,7 @@
 										<Ammo_MoyoCryocell>Bullet_MoyoCryocell</Ammo_MoyoCryocell>
 									</ammoTypes>
 								</CombatExtended.AmmoSetDef>
-					
+
 								<CombatExtended.AmmoSetDef>
 									<defName>AmmoSet_CryoRifle</defName>
 									<label>Moyo Cryocell</label>
@@ -169,7 +171,7 @@
 										<Ammo_MoyoCryocell>Bullet_MoyoCryocannon</Ammo_MoyoCryocell>
 									</ammoTypes>
 								</CombatExtended.AmmoSetDef>
-					
+
 								<CombatExtended.AmmoCategoryDef>
 									<defName>MoyoCryo</defName>
 									<label>Cryo Cell</label>
@@ -212,7 +214,7 @@
 								</ThingDef>
 
 								<!-- ================== Projectiles ================== -->
-					
+
 								<ThingDef ParentName="BaseFlamethrowerBullet">
 									<defName>Bullet_MoyoCryocell</defName>
 									<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -233,7 +235,7 @@
 										<gravityFactor>1.5</gravityFactor>
 									</projectile>
 								</ThingDef>
-					
+
 								<ThingDef ParentName="BaseFlamethrowerBullet">
 									<defName>Bullet_MoyoCryocannon</defName>
 									<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -301,8 +303,7 @@
 								</RecipeDef>
 							</value>
 						</li>
-			
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/DamageDef[defName="Moyo_Cryo"]</xpath>
 							<value>
@@ -312,16 +313,16 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/DamageDef[defName="Moyo_Cryo"]/armorCategory</xpath>
 							<value>
 								<armorCategory>Heat</armorCategory>
 							</value>
 						</li>
-			
+
 						<!-- ==================== Abysteel Nail ========================== -->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
@@ -334,7 +335,7 @@
 										<Ammo_Abyssnail>Bullet_Abyssnail</Ammo_Abyssnail>
 									</ammoTypes>
 								</CombatExtended.AmmoSetDef>
-					
+
 								<CombatExtended.AmmoCategoryDef>
 									<defName>MoyoNail</defName>
 									<label>Nail</label>
@@ -415,11 +416,11 @@
 								</RecipeDef>
 							</value>
 						</li>
-			
+
 						<!-- ==================== Moyo Specific Ammosets ========================== -->
-			
+
 						<!--6x18 Moyo-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
@@ -434,11 +435,11 @@
 								</CombatExtended.AmmoSetDef>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
-				
+
 								<ThingDef ParentName="Base6x18mmChargedBullet">
 									<defName>Bullet_6x18mmMoyo</defName>
 									<label>6x18mm Charged bullet</label>
@@ -458,7 +459,7 @@
 										<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
 									</projectile>
 								</ThingDef>
-					
+
 								<ThingDef ParentName="Base6x18mmChargedBullet">
 									<defName>Bullet_6x18mmMoyo_AP</defName>
 									<label>6x18mm Charged bullet (Conc.)</label>
@@ -478,7 +479,7 @@
 										<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
 									</projectile>
 								</ThingDef>
-					
+
 								<ThingDef ParentName="Base6x18mmChargedBullet">
 									<defName>Bullet_6x18mmMoyo_Ion</defName>
 									<label>6x18mm Charged bullet (Ion)</label>
@@ -499,12 +500,12 @@
 										<empShieldBreakChance>1</empShieldBreakChance>
 									</projectile>
 								</ThingDef>
-					
+
 							</value>
 						</li>
-			
+
 						<!--6x24 Moyo-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
@@ -519,11 +520,11 @@
 								</CombatExtended.AmmoSetDef>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
-				
+
 								<ThingDef ParentName="Base6x24mmChargedBullet">
 									<defName>Bullet_6x24mmMoyo</defName>
 									<label>6x24mm Charged bullet</label>
@@ -543,7 +544,7 @@
 										<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
 									</projectile>
 								</ThingDef>
-					
+
 								<ThingDef ParentName="Base6x24mmChargedBullet">
 									<defName>Bullet_6x24mmMoyo_AP</defName>
 									<label>6x24mm Charged bullet (Conc.)</label>
@@ -563,7 +564,7 @@
 										<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
 									</projectile>
 								</ThingDef>
-					
+
 								<ThingDef ParentName="Base6x24mmChargedBullet">
 									<defName>Bullet_6x24mmMoyo_Ion</defName>
 									<label>6x24mm Charged bullet (Ion)</label>
@@ -584,10 +585,10 @@
 										<empShieldBreakChance>0.2</empShieldBreakChance>
 									</projectile>
 								</ThingDef>
-					
+
 							</value>
 						</li>
-			
+
 						<!--6x24 Warped : Removed
 			
 			<li Class="PatchOperationAdd">
@@ -675,10 +676,9 @@
 				</value>
 			</li>
 			-->
-			
-			
+
 						<!--8x35 Moyo-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
@@ -693,11 +693,11 @@
 								</CombatExtended.AmmoSetDef>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
-				
+
 								<ThingDef ParentName="Base8x35mmChargedBullet">
 									<defName>Bullet_8x35mmMoyo</defName>
 									<label>8x35mm Charged bullet</label>
@@ -758,12 +758,12 @@
 										<empShieldBreakChance>0.2</empShieldBreakChance>
 									</projectile>
 								</ThingDef>
-				  
+
 							</value>
 						</li>
-			
+
 						<!--8x50 Moyo-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
@@ -778,11 +778,11 @@
 								</CombatExtended.AmmoSetDef>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs</xpath>
 							<value>
-				
+
 								<ThingDef ParentName="Base8x50mmChargedBullet">
 									<defName>Bullet_8x50mmMoyo</defName>
 									<label>8x50mm Charged bullet</label>
@@ -843,10 +843,10 @@
 										<empShieldBreakChance>1</empShieldBreakChance>
 									</projectile>
 								</ThingDef>
-				  
+
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

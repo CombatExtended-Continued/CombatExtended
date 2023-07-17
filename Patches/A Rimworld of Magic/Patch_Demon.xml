@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -7,26 +7,24 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
-					
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[
-				defName="TM_LesserDemonR" or
-				defName="TM_DemonR"
-				]					</xpath>
+						defName="TM_LesserDemonR" or
+						defName="TM_DemonR"
+						] </xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
 						</li>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-				defName="TM_LesserDemonR" or
-				defName="TM_DemonR"
-				]/statBases					</xpath>
+						defName="TM_LesserDemonR" or
+						defName="TM_DemonR"
+						]/statBases </xpath>
 					<value>
 						<CarryWeight>50</CarryWeight>
 						<CarryBulk>20</CarryBulk>
@@ -39,27 +37,27 @@
 						<SmokeSensitivity>0</SmokeSensitivity>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="TM_LesserDemonR" or
-				defName="TM_DemonR"
-				]/statBases/ArmorRating_Blunt					</xpath>
+						defName="TM_LesserDemonR" or
+						defName="TM_DemonR"
+						]/statBases/ArmorRating_Blunt </xpath>
 					<value>
 						<ArmorRating_Blunt>15</ArmorRating_Blunt>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="TM_LesserDemonR" or
-				defName="TM_DemonR"
-				]/statBases/ArmorRating_Sharp					</xpath>
+						defName="TM_LesserDemonR" or
+						defName="TM_DemonR"
+						]/statBases/ArmorRating_Sharp </xpath>
 					<value>
 						<ArmorRating_Sharp>12</ArmorRating_Sharp>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="TM_LesserDemonR"]/tools</xpath>
 					<value>
@@ -100,7 +98,7 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="TM_DemonR"]/tools</xpath>
 					<value>
@@ -141,10 +139,9 @@
 						</tools>
 					</value>
 				</li>
-			
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

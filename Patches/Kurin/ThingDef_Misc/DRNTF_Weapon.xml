@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Kurin, The Three Tailed Fox</li></mods>
-			
+
+				<mods>
+					<li>Kurin, The Three Tailed Fox</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
 						<!--========= Rifle : K2 as a Basis =========-->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Kurin_Gun_Assault_Rifle</defName>
 							<statBases>
@@ -20,7 +22,7 @@
 								<Mass>3.26</Mass>
 								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<recoilAmount>1.50</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -34,7 +36,7 @@
 								<soundCastTail>GunTail_Medium</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>30</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -45,7 +47,7 @@
 								<aiUseBurstMode>TRUE</aiUseBurstMode>
 							</FireModes>
 						</li>
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Kurin_Gun_Sniper_Rifle</defName>
 							<statBases>
@@ -56,7 +58,7 @@
 								<Mass>3.78</Mass>
 								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<recoilAmount>1.39</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -70,7 +72,7 @@
 								<soundCastTail>GunTail_Medium</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>30</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -81,10 +83,10 @@
 								<aiUseBurstMode>TRUE</aiUseBurstMode>
 							</FireModes>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
-							<xpath>Defs/ThingDef[defName="Kurin_Gun_Assault_Rifle" or 
-				defName="Kurin_Gun_Sniper_Rifle"]/tools							</xpath>
+							<xpath>Defs/ThingDef[defName="Kurin_Gun_Assault_Rifle" or
+								defName="Kurin_Gun_Sniper_Rifle"]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -121,9 +123,9 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<!--========= Ceremonial Sword : Changed to Zweihandler Clone =========-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Kurin_MeleeWeapon_Ceremonial_Sword"]/tools</xpath>
 							<value>
@@ -165,7 +167,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Kurin_MeleeWeapon_Ceremonial_Sword"]/statBases</xpath>
 							<value>
@@ -177,14 +179,14 @@
 								</statBases>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Kurin_MeleeWeapon_Ceremonial_Sword"]/costStuffCount</xpath>
 							<value>
 								<costStuffCount>150</costStuffCount>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kurin_MeleeWeapon_Ceremonial_Sword"]</xpath>
 							<value>
@@ -195,9 +197,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<!--========= Surigum : Changed to Dagger, thrown property removed =========-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kurin_Gun_Surigum"]</xpath>
 							<value>
@@ -208,7 +210,7 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Kurin_Gun_Surigum"]/statBases</xpath>
 							<value>
@@ -220,7 +222,7 @@
 								</statBases>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Kurin_Gun_Surigum"]/tools</xpath>
 							<value>
@@ -261,11 +263,11 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationRemove">
 							<xpath>Defs/ThingDef[defName="Kurin_Gun_Surigum"]/verbs</xpath>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

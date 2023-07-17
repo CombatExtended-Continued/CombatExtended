@@ -1,16 +1,17 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Rakkle the rattle snake Race mod</li>
+
+				<mods>
+					<li>Rakkle the rattle snake Race mod</li>
 					<li>Rakkle 1.3 (unofficial update)</li>
 				</mods>
-			
+
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[@Name="RS_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 							<value>
@@ -21,20 +22,20 @@
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="RS_PawnBase"]/comps</xpath>
 							<value>
-								<li Class="CombatExtended.CompProperties_Inventory"/>
+								<li Class="CombatExtended.CompProperties_Inventory" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="RS_PawnBase"]/comps</xpath>
 							<value>
 								<li>
 									<compClass>CombatExtended.CompPawnGizmo</compClass>
 								</li>
-								<li Class="CombatExtended.CompProperties_Suppressable"/>
+								<li Class="CombatExtended.CompProperties_Suppressable" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]</xpath>
 							<value>
@@ -43,7 +44,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]/statBases</xpath>
 							<value>
@@ -53,9 +54,9 @@
 								<SmokeSensitivity>1</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Powerful Bite, slightly faster regular attacks-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]/tools</xpath>
 							<value>
@@ -104,7 +105,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/HediffDef[defName="Hediff_VenomGlands"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 							<value>
@@ -125,16 +126,15 @@
 							</value>
 						</li>
 
-			
 						<!--Venom immunity to make social fights less lethal-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/HediffDef[defName="Hediff_FoodpoisoningImmunity"]/comps/li[@Class="MoharHediffs.HediffCompProperties_HediffNullifier"]/hediffToNullify</xpath>
 							<value>
 								<li>VenomBuildup</li>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

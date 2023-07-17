@@ -1,19 +1,21 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Bori race</li></mods>
-			
+
+				<mods>
+					<li>Bori race</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
 						<!--Ammo-->
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				@Name="BoriCivBase"
-				]							</xpath>
+								@Name="BoriCivBase"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -23,12 +25,12 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				defName="Bori_Soldier_Light" or
-				defName="Bori_Soldier"
-				]							</xpath>
+								defName="Bori_Soldier_Light" or
+								defName="Bori_Soldier"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -38,13 +40,13 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				defName="Bori_Soldier_Elite" or
-				defName="Bori_Soldier" or
-				defName="Bori_Soldier_MachineGun"
-				]							</xpath>
+								defName="Bori_Soldier_Elite" or
+								defName="Bori_Soldier" or
+								defName="Bori_Soldier_MachineGun"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -67,8 +69,8 @@
 
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				defName="Bori_Soldier_Boom"
-				]							</xpath>
+								defName="Bori_Soldier_Boom"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -78,13 +80,13 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				defName="Bori_Space_Soldier" or
-				defName="Bori_0_Sniper" or
-				defName="Bori_0_SMG"
-				]							</xpath>
+								defName="Bori_Space_Soldier" or
+								defName="Bori_0_Sniper" or
+								defName="Bori_0_SMG"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -94,11 +96,11 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				defName="Bori_Soldier_Boom"
-				]							</xpath>
+								defName="Bori_Soldier_Boom"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -108,27 +110,27 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<!--Backpack-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/PawnKindDef[
-				defName="Bori_Soldier_Light" or
-				defName="Bori_Soldier" or
-				defName="Bori_Soldier_Elite" or
-				defName="Bori_Soldier_MachineGun" or
-				defName="Bori_Assult" or
-				defName="Bori_Assult_Rocketeer" or
-				defName="Bori_Soldier_Boom" or
-				defName="Bori_Space_Soldier" or
-				defName="Bori_0_Sniper" or
-				defName="Bori_0_SMG"
-				]/apparelRequired							</xpath>
+								defName="Bori_Soldier_Light" or
+								defName="Bori_Soldier" or
+								defName="Bori_Soldier_Elite" or
+								defName="Bori_Soldier_MachineGun" or
+								defName="Bori_Assult" or
+								defName="Bori_Assult_Rocketeer" or
+								defName="Bori_Soldier_Boom" or
+								defName="Bori_Space_Soldier" or
+								defName="Bori_0_Sniper" or
+								defName="Bori_0_SMG"
+								]/apparelRequired </xpath>
 							<value>
 								<li>CE_Apparel_Backpack</li>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-		
+
 		<operations>
 			<li Class="PatchOperationFindMod">
-				<mods><li>Epona Race</li></mods>
+				<mods>
+					<li>Epona Race</li>
+				</mods>
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<!-- ========== Shock =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Epona_PegasusShock</defName>
 							<statBases>
@@ -41,9 +43,9 @@
 							<weaponTags>
 							</weaponTags>
 						</li>
-			
+
 						<!-- ========== Shard =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Epona_PegasusShards</defName>
 							<statBases>
@@ -81,9 +83,9 @@
 								<aiUseBurstMode>FALSE</aiUseBurstMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Plasma =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Epona_PegasusMolten</defName>
 							<statBases>
@@ -117,11 +119,11 @@
 								<reloadTime>5.2</reloadTime>
 								<ammoSet>AmmoSet_Epona_Molten</ammoSet>
 							</AmmoUser>
-							<FireModes/>
+							<FireModes />
 						</li>
-			
+
 						<!-- ========== Lance =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Epona_LancePlasma</defName>
 							<statBases>
@@ -160,9 +162,9 @@
 								<noSingleShot>true</noSingleShot>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Hippogryph Railgun =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Epona_HippogryphRailgun</defName>
 							<statBases>
@@ -195,9 +197,9 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Nightmare =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Epona_NightmareShock</defName>
 							<statBases>
@@ -231,16 +233,16 @@
 								<aiUseBurstMode>FALSE</aiUseBurstMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Melee Attacks =========== -->
-			
+
 						<li Class="PatchOperationReplace">
-							<xpath>Defs/ThingDef[defName="Epona_PegasusShock" or 
-				defName="Epona_PegasusShards" or 
-				defName="Epona_PegasusMolten" or 
-				defName="Epona_HippogryphRailgun" or 
-				defName="Epona_NightmareShock"
-				]/tools							</xpath>
+							<xpath>Defs/ThingDef[defName="Epona_PegasusShock" or
+								defName="Epona_PegasusShards" or
+								defName="Epona_PegasusMolten" or
+								defName="Epona_HippogryphRailgun" or
+								defName="Epona_NightmareShock"
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -277,10 +279,10 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Epona_LancePlasma"
-				]/tools							</xpath>
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -298,8 +300,7 @@
 								</tools>
 							</value>
 						</li>
-			
-			
+
 					</operations>
 				</match>
 			</li>

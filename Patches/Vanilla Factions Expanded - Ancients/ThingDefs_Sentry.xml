@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -11,17 +11,17 @@
 				<!-- Remove refuelable property -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-			defName = "VFEA_Turret_AncientSecurityTurret" or		
-			defName = "VFEA_Turret_AncientPointDefense"
-		]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						defName = "VFEA_Turret_AncientSecurityTurret" or
+						defName = "VFEA_Turret_AncientPointDefense"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
 
 				<!-- Replace vanilla thingClass -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-			defName = "VFEA_Turret_AncientSecurityTurret" or		
-			@Name = "AncientPointDefenseTurretBase"	        		
-		]/thingClass					</xpath>
+						defName = "VFEA_Turret_AncientSecurityTurret" or
+						@Name = "AncientPointDefenseTurretBase"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
@@ -44,9 +44,9 @@
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-			defName = "VFEA_Turret_AncientSecurityTurret" or		
-			defName = "VFEA_Turret_AncientPointDefense"		  
-		]/statBases					</xpath>
+						defName = "VFEA_Turret_AncientSecurityTurret" or
+						defName = "VFEA_Turret_AncientPointDefense"
+						]/statBases </xpath>
 					<value>
 						<AimingAccuracy>0.75</AimingAccuracy>
 					</value>
@@ -68,9 +68,9 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName = "VFEA_Turret_AncientSecurityTurret" or		
-				defName = "VFEA_Turret_AncientPointDefense"	 
-	      ]/building/turretBurstCooldownTime					</xpath>
+						defName = "VFEA_Turret_AncientSecurityTurret" or
+						defName = "VFEA_Turret_AncientPointDefense"
+						]/building/turretBurstCooldownTime </xpath>
 					<value>
 						<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
 					</value>

@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>[O21] Outer Rim Galaxies</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="O21_OR_ChissRifle"]</xpath>
 					<match Class="PatchOperationSequence">
 						<operations>
-			
+
 							<li Class="PatchOperationReplace">
-								<xpath>Defs/ThingDef[	
-				defName="O21_OR_ChissRifle" or
-				defName="O21_OR_ChissCarbine"
-				]/tools								</xpath>
+								<xpath>Defs/ThingDef[
+									defName="O21_OR_ChissRifle" or
+									defName="O21_OR_ChissCarbine"
+									]/tools </xpath>
 								<value>
 									<tools>
 										<li Class="CombatExtended.ToolCE">
@@ -54,11 +54,11 @@
 									</tools>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/ThingDef[
-				defName="O21_OR_ChissPistol"
-				]/tools								</xpath>
+									defName="O21_OR_ChissPistol"
+									]/tools </xpath>
 								<value>
 									<tools>
 										<li Class="CombatExtended.ToolCE">
@@ -85,7 +85,7 @@
 									</tools>
 								</value>
 							</li>
-			
+
 							<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 								<defName>O21_OR_ChissRifle</defName>
 								<statBases>
@@ -120,7 +120,7 @@
 									<ammoSet>AmmoSet_PlasmaGasCartridgeChiss</ammoSet>
 								</AmmoUser>
 							</li>
-			
+
 							<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 								<defName>O21_OR_ChissPistol</defName>
 								<statBases>
@@ -141,14 +141,14 @@
 									<soundCastTail>GunTail_Medium</soundCastTail>
 									<muzzleFlashScale>9</muzzleFlashScale>
 								</Properties>
-								<FireModes/>
+								<FireModes />
 								<AmmoUser>
 									<magazineSize>15</magazineSize>
 									<reloadTime>3</reloadTime>
 									<ammoSet>AmmoSet_PlasmaGasCartridgeChiss</ammoSet>
 								</AmmoUser>
 							</li>
-			
+
 							<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 								<defName>O21_OR_ChissCarbine</defName>
 								<statBases>
@@ -183,13 +183,13 @@
 									<ammoSet>AmmoSet_PlasmaGasCartridgeChiss</ammoSet>
 								</AmmoUser>
 							</li>
-			
+
 						</operations>
 					</match>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

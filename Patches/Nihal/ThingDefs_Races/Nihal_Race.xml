@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Patch>
 	<Operation Class="PatchOperationFindMod">
@@ -9,7 +9,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<!-- ========== Got one ========== -->
-	
+
 				<!-- ========== Turn our Fish boys into Fish *boys* ========== -->
 				<!-- ========== To be human is to be a tall brick ========== -->
 				<li Class="PatchOperationAddModExtension">
@@ -34,21 +34,21 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
-	
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable"/>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
 					</value>
 				</li>
-	
+
 				<!-- === Patch Nihal default melee attacks === -->
 				<!-- === For the most part, it adds the CE melee handler thing 	=== -->
 				<!-- === And also defines armor penetration, which allows them	=== -->
@@ -132,7 +132,7 @@
 				<!-- === Again, no need to change 'em  === -->
 				<!-- === Unless you changed it         === -->
 				<!-- === then change 'em			   === -->
-	
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="BaseNiHal"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 					<value>
@@ -143,10 +143,10 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name="BaseNiHal"]/comps</xpath>
 					<value>
-						<li Class="CombatExtended.CompProperties_Inventory"/>
+						<li Class="CombatExtended.CompProperties_Inventory" />
 					</value>
 				</li>
-		
+
 			</operations>
 		</match>
 	</Operation>
@@ -154,4 +154,3 @@
 	<!-- === If your alien comes with extra guns and gear,	 === -->
 	<!-- === Congratulations! You're not even close to done! === -->
 </Patch>
-

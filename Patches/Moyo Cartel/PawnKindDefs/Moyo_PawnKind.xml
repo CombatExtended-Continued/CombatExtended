@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -8,14 +8,14 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<!--Ammo-->
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[
-				defName="Moyo_CartelTech" or
-				defName="Moyo_CartelSmuggler" or
-				defName="Moyo_CartelLabourer" or
-				defName="Moyo_CartelTrooper"
-				]					</xpath>
+						defName="Moyo_CartelTech" or
+						defName="Moyo_CartelSmuggler" or
+						defName="Moyo_CartelLabourer" or
+						defName="Moyo_CartelTrooper"
+						] </xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
@@ -25,7 +25,7 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[@Name="CartelSoldierLight"]</xpath>
 					<value>
@@ -37,7 +37,7 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[@Name="CartelSoldierLight"]</xpath>
 					<value>
@@ -49,7 +49,7 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[@Name="CartelSniper"]</xpath>
 					<value>
@@ -75,21 +75,21 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<!--Backpack-->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/PawnKindDef[
-				@Name="CartelSoldierLight" or
-				@Name="CartelSniper" or
-				defName="Moyo_CartelTrooper" or
-				defName="Moyo_CartelSmuggler"
-				]/apparelRequired					</xpath>
+						@Name="CartelSoldierLight" or
+						@Name="CartelSniper" or
+						defName="Moyo_CartelTrooper" or
+						defName="Moyo_CartelSmuggler"
+						]/apparelRequired </xpath>
 					<value>
 						<li>CE_Apparel_Backpack</li>
 					</value>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>

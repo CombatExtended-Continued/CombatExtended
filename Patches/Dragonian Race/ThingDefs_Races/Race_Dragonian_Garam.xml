@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -8,13 +8,12 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-			
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 					<match Class="PatchOperationAdd">
@@ -23,17 +22,17 @@
 						</value>
 					</match>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable"/>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]</xpath>
 					<value>
@@ -42,9 +41,9 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<!-- 5.2 Speed/0.8 Size/60 kg -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases</xpath>
 					<value>
@@ -55,39 +54,39 @@
 						<SmokeSensitivity>0.6</SmokeSensitivity>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases/MeleeDodgeChance</xpath>
 					<value>
 						<MeleeDodgeChance>1.18</MeleeDodgeChance>
 					</value>
 				</li>
-			
+
 				<!--4mm Wool (skin+scales), their vanilla armor is thrumbo level-->
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>2.7</ArmorRating_Sharp>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>3.4</ArmorRating_Blunt>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/statBases/ArmorRating_Heat</xpath>
 					<value>
 						<ArmorRating_Heat>0.6</ArmorRating_Heat>
 					</value>
 				</li>
-			
+
 				<!--Their vanilla melee is very strong (18 verus 8.2 for humanlike)-->
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/tools</xpath>
 					<value>
@@ -128,7 +127,7 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[@Name="DR_RaceBase"]/raceAddonSettings/apparelRestrictionSetting/allAllow_Exceptions</xpath>
 					<value>
@@ -141,9 +140,9 @@
 						<li>CE_Apparel_ImprovGasMask</li>
 					</value>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>
