@@ -80,10 +80,9 @@ Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Ancient Humans   |
-Android Tiers	|
 Android Tiers Reforged	|
 Android Tiers SM7 Overhaul (Continued)  |
-Android - TX Series   |
+Android - TX Series (Continued)  |
 Androids	|
 Androids Expanded	|
 Anima Animals  |
@@ -459,7 +458,6 @@ Vanilla Animals Expanded |
 Vanilla Animals Expanded - Caves |
 Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
-Vanilla Animals Expanded - Vehicles |
 Vanilla Animals Expanded - Waste Animals |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
