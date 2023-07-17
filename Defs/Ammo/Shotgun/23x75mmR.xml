@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -7,7 +7,7 @@
 		<parent>AmmoShotguns</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -21,7 +21,7 @@
 		</ammoTypes>
 		<similarTo>AmmoSet_Shotgun</similarTo>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="23x75mmRBase" ParentName="AmmoBase" Abstract="True">
@@ -39,7 +39,7 @@
 		</thingCategories>
 		<stackLimit>5000</stackLimit>
 	</ThingDef>
-  
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
 		<defName>Ammo_23x75mmR_Buck</defName>
 		<label>23x75mmR shell (Buck)</label>
@@ -84,7 +84,7 @@
 		<ammoClass>Beanbag</ammoClass>
 		<cookOffProjectile>Bullet_23x75mmR_Beanbag</cookOffProjectile>
 	</ThingDef>
-  
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
 		<defName>Ammo_23x75mmR_ElectroSlug</defName>
 		<label>23x75mmR shell (EMP)</label>
@@ -100,7 +100,7 @@
 		<generateAllowChance>0.5</generateAllowChance>
 		<cookOffProjectile>Bullet_23x75mmR_ElectroSlug</cookOffProjectile>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Name="Base23x75mmRBullet" ParentName="BaseBulletCE" Abstract="true">
@@ -112,7 +112,7 @@
 			<casingFilthDefname>Filth_ShotgunAmmoCasings</casingFilthDefname>
 		</projectile>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="Base23x75mmRBullet">
 		<defName>Bullet_23x75mmR_Buck</defName>
 		<label>buckshot pellet</label>
@@ -163,7 +163,7 @@
 			<casingFilthDefname>Filth_ShotgunAmmoCasings_White</casingFilthDefname>
 		</projectile>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="Base23x75mmRBullet">
 		<defName>Bullet_23x75mmR_ElectroSlug</defName>
 		<label>EMP slug</label>
@@ -182,9 +182,9 @@
 			<casingFilthDefname>Filth_ShotgunAmmoCasings_Black</casingFilthDefname>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
-	
+
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_23x75mmR_Buck</defName>
 		<label>make 23x75mmR (Buck) shell x200</label>
@@ -271,7 +271,7 @@
 		</products>
 		<workAmount>5300</workAmount>
 	</RecipeDef>
-  
+
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_23x75mmR_ElectroSlug</defName>
 		<label>make 23x75mmR (EMP) shell x200</label>
@@ -310,5 +310,5 @@
 		</skillRequirements>
 		<workAmount>12000</workAmount>
 	</RecipeDef>
-	
+
 </Defs>
