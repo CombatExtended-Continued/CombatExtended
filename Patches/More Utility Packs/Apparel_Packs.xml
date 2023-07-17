@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -12,10 +12,10 @@
 
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[
-			defName="SGC_Apparel_RoboticRig" or
-			defName="SGC_Apparel_TraumaKit" or
-			defName="SGC_Apparel_FieldMortar"
-			]/comps/li/compClass[.="CompQuality"]					</xpath>
+						defName="SGC_Apparel_RoboticRig" or
+						defName="SGC_Apparel_TraumaKit" or
+						defName="SGC_Apparel_FieldMortar"
+						]/comps/li/compClass[.="CompQuality"] </xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="SGC_Apparel_RoboticRig" or defName="SGC_Apparel_TraumaKit" or defName="SGC_Apparel_FieldMortar"]/comps</xpath>
 						<value>
@@ -86,12 +86,12 @@
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-			defName="SGC_Apparel_RoboticRig" or
-			defName="SGC_Apparel_TraumaKit" or
-			defName="SGC_Apparel_SurvivalPack" or
-			defName="SGC_Apparel_RescueFrame" or
-			defName="SGC_Apparel_FieldMortar"			
-			]/apparel/layers					</xpath>
+						defName="SGC_Apparel_RoboticRig" or
+						defName="SGC_Apparel_TraumaKit" or
+						defName="SGC_Apparel_SurvivalPack" or
+						defName="SGC_Apparel_RescueFrame" or
+						defName="SGC_Apparel_FieldMortar"
+						]/apparel/layers </xpath>
 					<value>
 						<li>Backpack</li>
 					</value>
@@ -99,9 +99,9 @@
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[
-			defName="SGC_Apparel_Forklift" or
-			defName="SGC_Apparel_SurvivalPack"		
-			]/apparel/layers					</xpath>
+						defName="SGC_Apparel_Forklift" or
+						defName="SGC_Apparel_SurvivalPack"
+						]/apparel/layers </xpath>
 					<value>
 						<li>Backpack</li>
 					</value>
@@ -143,7 +143,7 @@
 				</li>
 
 				<!-- Survival Pack -->
-	
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_SurvivalPack"]/statBases</xpath>
 					<value>
@@ -283,4 +283,3 @@
 	</Operation>
 
 </Patch>
-

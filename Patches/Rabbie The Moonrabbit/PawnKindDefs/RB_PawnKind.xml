@@ -1,40 +1,41 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Rabbie The Moonrabbit race</li></mods>
-			
+
+				<mods>
+					<li>Rabbie The Moonrabbit race</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-		
+
 						<!--Backpack-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/PawnKindDef[
-				defName="RB_Wanderer" or
-				defName="RB_SubOfficer" or
-				defName="RB_EliteOfficer" or
-				defName="RB_FSniper" or
-				defName="RB_FMachinegunner"
-				]/apparelRequired							</xpath>
+								defName="RB_Wanderer" or
+								defName="RB_SubOfficer" or
+								defName="RB_EliteOfficer" or
+								defName="RB_FSniper" or
+								defName="RB_FMachinegunner"
+								]/apparelRequired </xpath>
 							<value>
 								<li>CE_Apparel_Backpack</li>
 							</value>
 						</li>
-			
-			
+
 						<!--Regular-->
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="RB_EnergySupply" or
-				defName="RB_Technician" or
-				defName="RB_Worker" or
-				defName="RB_Wanderer" or
-				defName="RB_SubOfficer" or
-				defName="RB_EliteOfficer"
-				]							</xpath>
+								defName="RB_Technician" or
+								defName="RB_Worker" or
+								defName="RB_Wanderer" or
+								defName="RB_SubOfficer" or
+								defName="RB_EliteOfficer"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -56,9 +57,9 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<!--Military-->
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="RB_FRifle"]</xpath>
 							<value>
@@ -82,7 +83,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="RB_FSniper"]</xpath>
 							<value>
@@ -116,7 +117,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="RB_FMachinegunner"]</xpath>
 							<value>
@@ -140,9 +141,9 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<!--Replace minigun with MG Catergory-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/PawnKindDef[defName="RB_FMachinegunner"]/weaponTags</xpath>
 							<value>
@@ -151,7 +152,7 @@
 								</weaponTags>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/PawnKindDef[defName="RB_FMachinegunner"]/weaponMoney</xpath>
 							<value>
@@ -161,7 +162,7 @@
 								</weaponMoney>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="RB_FSapper"]</xpath>
 							<value>
@@ -194,9 +195,9 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<!--Advanced-->
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="RB_RGunner"]</xpath>
 							<value>
@@ -220,7 +221,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

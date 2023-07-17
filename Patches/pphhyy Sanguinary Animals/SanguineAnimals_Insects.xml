@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>pphhyy Sanguinary Animals</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<!-- ========== Megaspider ========== -->
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="pphhyy_BloodScarab"]/statBases/MoveSpeed</xpath>
+						<value>
+							<MoveSpeed>4.4</MoveSpeed>
+							<MeleeDodgeChance>0.07</MeleeDodgeChance>
+							<MeleeCritChance>0.31</MeleeCritChance>
+							<MeleeParryChance>0.17</MeleeParryChance>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="pphhyy_BloodScarab"]/race/body</xpath>
+						<value>
+							<body>BeetleLike</body>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="pphhyy_BloodScarab"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>mandibles</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>24</power>
+									<cooldownTime>1.33</cooldownTime>
+									<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+									<armorPenetrationSharp>40</armorPenetrationSharp>
+									<armorPenetrationBlunt>20</armorPenetrationBlunt>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>mandibles</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>43</power>
+									<cooldownTime>2.48</cooldownTime>
+									<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+									<armorPenetrationSharp>1.5</armorPenetrationSharp>
+									<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>24</power>
+									<cooldownTime>1.33</cooldownTime>
+									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+									<chanceFactor>0.2</chanceFactor>
+									<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="pphhyy_BloodScarab"]/statBases/ArmorRating_Blunt</xpath>
+						<value>
+							<ArmorRating_Blunt>10</ArmorRating_Blunt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="pphhyy_BloodScarab"]/statBases/ArmorRating_Sharp</xpath>
+						<value>
+							<ArmorRating_Sharp>4</ArmorRating_Sharp>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="pphhyy_BloodScarab"]/race/baseHealthScale</xpath>
+						<value>
+							<baseHealthScale>1.8</baseHealthScale>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

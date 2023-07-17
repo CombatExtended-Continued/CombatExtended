@@ -7,19 +7,19 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					@Name="FedHarvester" or
-					@Name="Harmonizer"
-				]/thingClass					</xpath>
+						@Name="FedHarvester" or
+						@Name="Harmonizer"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
 				</li>
-			
+
 				<!-- ==========  Harvester Cannon  =========== -->
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_FedHarvester</defName>
 					<statBases>
@@ -52,9 +52,9 @@
 						<aiUseBurstMode>TRUE</aiUseBurstMode>
 					</FireModes>
 				</li>
-			
+
 				<!-- ==========  Plasma Bombard  =========== -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName = "Gun_PB"]</xpath>
 					<value>
@@ -70,7 +70,7 @@
 						</comps>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName = "Gun_PB"]/verbs</xpath>
 					<value>
@@ -96,7 +96,7 @@
 						</verbs>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Gun_PB"]</xpath>
 					<value>
@@ -106,7 +106,7 @@
 						</weaponTags>
 					</value>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>

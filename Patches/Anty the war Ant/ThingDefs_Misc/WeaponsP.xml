@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-		
+
 		<operations>
 			<li Class="PatchOperationFindMod">
-				<mods><li>Anty the war ant race</li></mods>
+				<mods>
+					<li>Anty the war ant race</li>
+				</mods>
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<!-- ========== Launcher =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>AT_hydroheliumion_A</defName>
 							<statBases>
@@ -19,7 +21,7 @@
 								<Bulk>10.03</Bulk>
 								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -34,7 +36,7 @@
 									<canTargetLocations>true</canTargetLocations>
 								</targetParams>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>120</magazineSize>
 								<reloadTime>7.8</reloadTime>
@@ -43,9 +45,9 @@
 							<FireModes>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Line Rifle =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="AT_hydroheliumion_B"]</xpath>
 							<value>
@@ -143,9 +145,9 @@
 								</ThingDef>
 							</value>
 						</li>
-			
+
 						<!-- ========== Cluster =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>AT_hydroheliumion_C</defName>
 							<statBases>
@@ -155,7 +157,7 @@
 								<Bulk>11.03</Bulk>
 								<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -170,7 +172,7 @@
 									<canTargetLocations>true</canTargetLocations>
 								</targetParams>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>200</magazineSize>
 								<reloadTime>5.1</reloadTime>
@@ -179,13 +181,13 @@
 							<FireModes>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Melee Attacks =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="AT_hydroheliumion_A" or
-				defName="AT_hydroheliumion_C"
-				]/tools							</xpath>
+								defName="AT_hydroheliumion_C"
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -222,16 +224,16 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<!-- ========== Melee Attacks =========== -->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_RedHalberd"]/statBases</xpath>
 							<value>
 								<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_RedHalberd"]</xpath>
 							<value>
@@ -242,7 +244,7 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="AT_RedHalberd"]/tools</xpath>
 							<value>
@@ -327,7 +329,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

@@ -4,7 +4,8 @@
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Rimsenal - Enhanced Vanilla Pack</li><li>Rimsenal - Augmented Vanilla Pack</li>
+			<li>Rimsenal - Enhanced Vanilla Pack</li>
+			<li>Rimsenal - Augmented Vanilla Pack</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
@@ -48,35 +49,34 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<!-- ========== Stats =========== -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-				defName="Gun_SmartPistol" or 
-				defName="Gun_SmartRifle" or 
-				defName="Gun_SMG" or 
-				defName="SmartMG" or 
-				defName="Gun_SmartSniperRifle"
-				]/statBases					</xpath>
+						defName="Gun_SmartPistol" or
+						defName="Gun_SmartRifle" or
+						defName="Gun_SMG" or
+						defName="SmartMG" or
+						defName="Gun_SmartSniperRifle"
+						]/statBases </xpath>
 					<value>
 						<NightVisionEfficiency_Weapon>1</NightVisionEfficiency_Weapon>
 					</value>
 				</li>
-			  
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-				defName="Gun_SmartPistol" or 
-				defName="Gun_SmartRifle" or 
-				defName="Gun_SMG" or 
-				defName="SmartMG" or 
-				defName="Gun_SmartSniperRifle"
-				]/equippedStatOffsets					</xpath>
+						defName="Gun_SmartPistol" or
+						defName="Gun_SmartRifle" or
+						defName="Gun_SMG" or
+						defName="SmartMG" or
+						defName="Gun_SmartSniperRifle"
+						]/equippedStatOffsets </xpath>
 					<value>
 						<AimingAccuracy>0.5</AimingAccuracy>
 					</value>
 				</li>
-			  
-			
+
 				<!-- ========== Smart Rifle =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_SmartRifle</defName>
@@ -119,7 +119,7 @@
 						<li>AdvancedGun</li>
 					</weaponTags>
 				</li>
-			
+
 				<!-- ========== Smart Pistol =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_SmartPistol</defName>
@@ -185,7 +185,7 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<!-- ========== Smart SMG =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_SMG</defName>
@@ -226,7 +226,7 @@
 						<li>AdvancedGun</li>
 					</weaponTags>
 				</li>
-			
+
 				<!-- ========== Smart MG =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>SmartMG</defName>
@@ -271,7 +271,7 @@
 						<li>AdvancedGun</li>
 					</weaponTags>
 				</li>
-			  
+
 				<!-- ========== Smart Sniper Rifle =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_SmartSniperRifle</defName>
@@ -307,9 +307,9 @@
 						<li>AdvancedGun</li>
 					</weaponTags>
 				</li>
-			  
+
 			</operations>
 		</match>
 	</Operation>
-			
+
 </Patch>

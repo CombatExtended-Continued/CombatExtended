@@ -1,20 +1,22 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Rabbie The Moonrabbit race</li></mods>
-			
+
+				<mods>
+					<li>Rabbie The Moonrabbit race</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<li Class="PatchOperationConditional">
 							<xpath>Defs/ThingDef[@Name="RB_PawnBase"]/comps</xpath>
 							<nomatch Class="PatchOperationAdd">
 								<xpath>Defs/ThingDef[@Name="RB_PawnBase"]</xpath>
 								<value>
-									<comps/>
+									<comps />
 								</value>
 							</nomatch>
 							<match Class="PatchOperationAdd">
@@ -23,17 +25,17 @@
 								</value>
 							</match>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="RB_PawnBase"]/comps</xpath>
 							<value>
 								<li>
 									<compClass>CombatExtended.CompPawnGizmo</compClass>
 								</li>
-								<li Class="CombatExtended.CompProperties_Suppressable"/>
+								<li Class="CombatExtended.CompProperties_Suppressable" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]</xpath>
 							<value>
@@ -42,9 +44,9 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<!--Better shooting, Worse melee-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/statBases</xpath>
 							<value>
@@ -58,9 +60,9 @@
 								<SmokeSensitivity>1</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Base has no headbut, only bite-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/tools</xpath>
 							<value>
@@ -100,8 +102,7 @@
 								</tools>
 							</value>
 						</li>
-			
-			
+
 					</operations>
 				</match>
 			</li>

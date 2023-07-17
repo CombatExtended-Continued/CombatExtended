@@ -1,81 +1,83 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>More Practical Traits</li></mods>
-			
+
+				<mods>
+					<li>More Practical Traits</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<!-- ========== V ========== -->
-			
+
 						<!--Show Moe-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="VanyaTA01mhgg"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
 							<value>
 								<ArmorRating_Sharp>12</ArmorRating_Sharp>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="VanyaTA01mhgg"]/degreeDatas/li/statOffsets/ArmorRating_Blunt</xpath>
 							<value>
 								<ArmorRating_Blunt>18</ArmorRating_Blunt>
 							</value>
 						</li>
-			
+
 						<!--Coordinator-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="VanyaTB01tzz"]/degreeDatas/li/statFactors</xpath>
 							<value>
 								<SmokeSensitivity>0.95</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Delicate-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="VanyaTC01rrwg"]/degreeDatas/li/statOffsets/ArmorRating_Blunt</xpath>
 							<value>
 								<ArmorRating_Blunt>17.4</ArmorRating_Blunt>
 							</value>
 						</li>
-			
+
 						<!--Range Telepathy-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="VanyaTC03fwgz"]/degreeDatas/li/statFactors/ShootingAccuracyPawn</xpath>
 							<value>
 								<AimingAccuracy>1.5</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<!--Gaoshi's Blessing-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="VanyaTE01gsdzf"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<SmokeSensitivity>-0.125</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Bear-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="VanyaTS01by"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<SmokeSensitivity>-0.275</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!-- ========== Sun ========== -->
-			
+
 						<!--Cover Fire-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTA01hlzy"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -85,43 +87,43 @@
 								<Suppressability>-0.1</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Excellent nursing-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTA10zyhl"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<Suppressability>-0.10</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Brave-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTA14yg"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<Suppressability>-0.50</Suppressability>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTA14yg"]/degreeDatas/li/label</xpath>
 							<value>
 								<label>&lt;color=#33ff00&gt;Valiant&lt;/color&gt;</label>
 							</value>
 						</li>
-			
+
 						<!--Strong-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTA15qz"]/degreeDatas/li/statFactors</xpath>
 							<value>
 								<CarryWeight>1.8</CarryWeight>
 							</value>
 						</li>
-			
+
 						<!--Lumberjack-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTA18fmg"]/degreeDatas/li/statOffsets</xpath>
 							<value>
@@ -129,9 +131,9 @@
 								<CarryBulk>8</CarryBulk>
 							</value>
 						</li>
-			
+
 						<!--Handyman-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTA19zg"]/degreeDatas/li/statOffsets</xpath>
 							<value>
@@ -139,9 +141,9 @@
 								<CarryBulk>6</CarryBulk>
 							</value>
 						</li>
-			
+
 						<!--Hunter-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTA24lr"]/degreeDatas/li/statFactors/ShootingAccuracyPawn</xpath>
 							<value>
@@ -149,18 +151,18 @@
 								<AimingAccuracy>1.10</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<!--Ranger-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTB01jb"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<Suppressability>-0.15</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Impregnable defense-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTB02tb"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
 							<value>
@@ -168,25 +170,25 @@
 								<Suppressability>-0.25</Suppressability>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTB02tb"]/degreeDatas/li/statOffsets/ArmorRating_Blunt</xpath>
 							<value>
 								<ArmorRating_Blunt>4.8</ArmorRating_Blunt>
 							</value>
 						</li>
-			
+
 						<!--Seasoned-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTB05ll"]/degreeDatas/li/statFactors</xpath>
 							<value>
 								<Suppressability>0.90</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Cool Headed-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTB06lc"]/degreeDatas/li/statFactors</xpath>
 							<value>
@@ -194,16 +196,16 @@
 								<Suppressability>0.95</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Assassin-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTB22ck"]/degreeDatas/li/statFactors</xpath>
 							<value>
 								<MeleeCritChance>1.3</MeleeCritChance>
 							</value>
 						</li>
-			
+
 						<!--Executioner-->
 
 						<li Class="PatchOperationAdd">
@@ -215,7 +217,7 @@
 						</li>
 
 						<!--Martial Arts-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTB25wx"]/degreeDatas/li</xpath>
 							<value>
@@ -224,9 +226,9 @@
 								</statOffsets>
 							</value>
 						</li>
-			
+
 						<!--Clone-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTB27qhr"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -234,16 +236,16 @@
 								<AimingAccuracy>0.4</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTB27qhr"]/degreeDatas/li/statOffsets/MeleeDodgeChance</xpath>
 							<value>
 								<MeleeDodgeChance>0.7</MeleeDodgeChance>
 							</value>
 						</li>
-			
+
 						<!--Drilling Expert-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTC02wjj"]/degreeDatas/li/statOffsets</xpath>
 							<value>
@@ -251,27 +253,27 @@
 								<CarryBulk>5</CarryBulk>
 							</value>
 						</li>
-			
+
 						<!--Sower of life-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTC04smcbz"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<SmokeSensitivity>-0.25</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Professional doctor-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTC07yl"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<Suppressability>-0.10</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Speeding-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTC10cgs"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -279,18 +281,18 @@
 								<AimingAccuracy>-0.2</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<!--Peerless immunity-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTC11bdbq"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<SmokeSensitivity>-0.50</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Arms Dealer-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTC12jhsr"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -298,23 +300,23 @@
 								<AimingAccuracy>0.25</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<!--Punisher-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTC13cjz"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
 							<value>
 								<ArmorRating_Sharp>5.6</ArmorRating_Sharp>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTC13cjz"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<Suppressability>-0.25</Suppressability>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTC13cjz"]/degreeDatas/li/statFactors</xpath>
 							<value>
@@ -323,36 +325,36 @@
 								<AimingAccuracy>1.175</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<!--New Type-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTC17xrl"]/degreeDatas/li/statFactors</xpath>
 							<value>
 								<AimingAccuracy>1.225</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<!--Yandere-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTD01bj"]/degreeDatas/li/statFactors</xpath>
 							<value>
 								<Suppressability>0</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Mukuchi-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTD02sw"]/degreeDatas/li/statFactors</xpath>
 							<value>
 								<Suppressability>0.5</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Cass's handbook-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTE03csdsc"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -360,9 +362,9 @@
 								<AimingAccuracy>-0.2</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<!--Oxana's thoughts-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTE04aksndgw"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -370,18 +372,18 @@
 								<AimingAccuracy>0.2</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<!--Kevin's ideas-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTE05kwdxd"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<SmokeSensitivity>-0.15</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Red moon-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTF01hy"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -390,16 +392,16 @@
 								<Suppressability>-0.25</Suppressability>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTF01hy"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
 							<value>
 								<ArmorRating_Sharp>7.2</ArmorRating_Sharp>
 							</value>
 						</li>
-			
+
 						<!--Warrior of the sun-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTF02tyqs"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
 							<value>
@@ -407,14 +409,14 @@
 								<Suppressability>-0.25</Suppressability>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTF02tyqs"]/degreeDatas/li/statOffsets/ArmorRating_Blunt</xpath>
 							<value>
 								<ArmorRating_Blunt>12</ArmorRating_Blunt>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTF02tyqs"]/degreeDatas/li/statFactors</xpath>
 							<value>
@@ -422,23 +424,23 @@
 								<MeleeParryChance>1.5</MeleeParryChance>
 							</value>
 						</li>
-			
+
 						<!--Doomsday Boxer-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTF03mrqw"]/degreeDatas/li/statOffsets/MeleeDodgeChance</xpath>
 							<value>
 								<MeleeDodgeChance>0.6</MeleeDodgeChance>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTF03mrqw"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
 							<value>
 								<ArmorRating_Sharp>7.2</ArmorRating_Sharp>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTF03mrqw"]/degreeDatas/li/statOffsets</xpath>
 							<value>
@@ -449,23 +451,23 @@
 								<SmokeSensitivity>-0.3</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Swordmaster of Squin-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTF04skjs"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
 							<value>
 								<ArmorRating_Sharp>8.4</ArmorRating_Sharp>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTF04skjs"]/degreeDatas/li/statOffsets</xpath>
 							<value>
 								<Suppressability>-0.25</Suppressability>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTF04skjs"]/degreeDatas/li/statFactors</xpath>
 							<value>
@@ -473,23 +475,23 @@
 								<MeleeParryChance>1.15</MeleeParryChance>
 							</value>
 						</li>
-			
+
 						<!--Diligent fighter-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTS01yz"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
 							<value>
 								<ArmorRating_Sharp>6</ArmorRating_Sharp>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTS01yz"]/degreeDatas/li/statOffsets/ArmorRating_Blunt</xpath>
 							<value>
 								<ArmorRating_Blunt>8.8</ArmorRating_Blunt>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTS01yz"]/degreeDatas/li/statOffsets/MeleeDodgeChance</xpath>
 							<value>
@@ -499,16 +501,16 @@
 								<Suppressability>-0.75</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Ranged reaper-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTS02ss"]/degreeDatas/li/statOffsets/ArmorRating_Sharp</xpath>
 							<value>
 								<ArmorRating_Sharp>8.8</ArmorRating_Sharp>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTS02ss"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -518,9 +520,9 @@
 								<Suppressability>-0.50</Suppressability>
 							</value>
 						</li>
-			
+
 						<!--Child of nature-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTS04zrzz"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -528,16 +530,16 @@
 								<AimingAccuracy>-0.35</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTS04zrzz"]/degreeDatas/li/statFactors</xpath>
 							<value>
 								<AimingAccuracy>1.35</AimingAccuracy>
 							</value>
 						</li>
-			
+
 						<!--Whirlwind-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTS05jf"]/degreeDatas/li/statOffsets/ShootingAccuracyPawn</xpath>
 							<value>
@@ -546,9 +548,9 @@
 								<SmokeSensitivity>-0.2</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--The prophet-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/TraitDef[defName="PTS06fkzs"]/degreeDatas/li/statOffsets/MeleeDodgeChance</xpath>
 							<value>
@@ -558,9 +560,9 @@
 								<SmokeSensitivity>-0.325</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--The Master-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTS07ds"]/degreeDatas/li/statOffsets</xpath>
 							<value>
@@ -568,7 +570,7 @@
 								<SmokeSensitivity>-0.25</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/TraitDef[defName="PTS07ds"]/degreeDatas/li/statFactors</xpath>
 							<value>

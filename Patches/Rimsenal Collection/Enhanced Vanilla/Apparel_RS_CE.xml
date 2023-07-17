@@ -1,14 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Rimsenal - Enhanced Vanilla Pack</li><li>Rimsenal - Augmented Vanilla Pack</li>
+			<li>Rimsenal - Enhanced Vanilla Pack</li>
+			<li>Rimsenal - Augmented Vanilla Pack</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!-- ========== Tactical "Armor" =========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Apparel_TacVest" and techLevel="Spacer"]</xpath>
@@ -18,8 +19,10 @@
 							<label>tactical armor</label>
 							<description>An ergonomically designed body armor. This type of armor increase wearer's combat efficiency.</description>
 							<techLevel>Spacer</techLevel>
-							<graphicData><texPath>Things/Apparel/TacVest</texPath>
-								<graphicClass>Graphic_Single</graphicClass></graphicData>
+							<graphicData>
+								<texPath>Things/Apparel/TacVest</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
 							<statBases>
 								<Mass>6</Mass>
 								<Bulk>6</Bulk>
@@ -75,7 +78,7 @@
 						</ThingDef>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="Apparel_TacArmor"]</xpath>
 					<value>
@@ -99,9 +102,9 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<!-- ========== Tactical Helmet =========== -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/statBases</xpath>
 					<value>
@@ -138,11 +141,11 @@
 						<Plasteel>25</Plasteel>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Apparel_TacHelmet"]/apparel/bodyPartGroups/li[.="Neck"]</xpath>
 				</li>
-			
+
 				<!-- ========== Exoframe =========== -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Apparel_Exoframe"]/statBases</xpath>
@@ -182,9 +185,9 @@
 						<CarryBulk>10</CarryBulk>
 					</value>
 				</li>
-			
+
 				<!-- ========== Protective Gear =========== -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]/statBases</xpath>
 					<value>
@@ -233,7 +236,7 @@
 						<li>Feet</li>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="Apparel_ProtectiveGear"]</xpath>
 					<value>
@@ -381,7 +384,7 @@
 						<MeleeHitChance>-1</MeleeHitChance>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]/apparel/layers</xpath>
 					<value>
@@ -389,7 +392,7 @@
 						<li>StrappedHead</li>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="Apparel_ProtectiveHelmet"]</xpath>
 					<value>
@@ -423,7 +426,7 @@
 						</li>
 					</value>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>

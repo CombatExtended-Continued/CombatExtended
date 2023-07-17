@@ -1,30 +1,32 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Moyo-From the depth</li></mods>
-			
+
+				<mods>
+					<li>Moyo-From the depth</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
 						<!--Ammo-->
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				defName="Moyo_TopCivilan" or
-				defName="Moyo_MiddleCivilan" or
-				defName="Moyo_BottomCivilan" or
-				defName="Moyo_Resercher" or
-				defName="Moyo_TopSmuggler" or
-				defName="Moyo_MiddleSmuggler" or
-				@Name="MoyoSoldierLight" or
-				@Name="MoyoSoliderStandard" or
-				defName="Moyo_leader" or
-				@Name="MoyoGuardian" or
-				@Name="MoyoGuardianAssault" or
-				@Name="MoyoGeneral"
-				]							</xpath>
+								defName="Moyo_TopCivilan" or
+								defName="Moyo_MiddleCivilan" or
+								defName="Moyo_BottomCivilan" or
+								defName="Moyo_Resercher" or
+								defName="Moyo_TopSmuggler" or
+								defName="Moyo_MiddleSmuggler" or
+								@Name="MoyoSoldierLight" or
+								@Name="MoyoSoliderStandard" or
+								defName="Moyo_leader" or
+								@Name="MoyoGuardian" or
+								@Name="MoyoGuardianAssault" or
+								@Name="MoyoGeneral"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -34,7 +36,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[@Name="MoyoSoldierHeavy"]</xpath>
 							<value>
@@ -60,27 +62,27 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<!--Backpack-->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/PawnKindDef[
-				@Name="MoyoSoldierLight" or
-				@Name="MoyoSoliderStandard" or
-				@Name="MoyoSoldierHeavy" or
-				@Name="MoyoSoldierAssult" or
-				@Name="MoyoGuardian" or
-				@Name="MoyoGuardianAssault" or
-				@Name="MoyoGeneral" or
-				defName="Moyo_Engineer" or
-				defName="Moyo_Resercher" or
-				defName="Moyo_MiddleSmuggler"
-				]/apparelRequired							</xpath>
+								@Name="MoyoSoldierLight" or
+								@Name="MoyoSoliderStandard" or
+								@Name="MoyoSoldierHeavy" or
+								@Name="MoyoSoldierAssult" or
+								@Name="MoyoGuardian" or
+								@Name="MoyoGuardianAssault" or
+								@Name="MoyoGeneral" or
+								defName="Moyo_Engineer" or
+								defName="Moyo_Resercher" or
+								defName="Moyo_MiddleSmuggler"
+								]/apparelRequired </xpath>
 							<value>
 								<li>CE_Apparel_Backpack</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="CE_Apparel_Backpack"]/apparel/tags</xpath>
 							<value>
@@ -94,14 +96,14 @@
 								<li>Moyo_Industrial</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="CE_Apparel_TribalBackpack"]/apparel/tags</xpath>
 							<value>
 								<li>Moyo_Neolithic</li>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

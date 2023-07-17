@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -18,10 +18,10 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/PawnKindDef[
-					defName="RH_FOX_Infiltrator" or
-					defName="RH_FOX_QRF" or
-					defName="RH_FOX_CyborgNinja"
-				]/inventoryOptions/subOptionsChooseOne/li/countRange					</xpath>
+						defName="RH_FOX_Infiltrator" or
+						defName="RH_FOX_QRF" or
+						defName="RH_FOX_CyborgNinja"
+						]/inventoryOptions/subOptionsChooseOne/li/countRange </xpath>
 					<value>
 						<countRange>
 							<min>0</min>
@@ -31,7 +31,7 @@
 				</li>
 
 				<!-- ========== FOX / FOXHOUND QRF Operator pawns should spawn with ammo appropriate to their primary weapon, as well as a sidearm (and its own ammo) ========== -->
-			
+
 				<!-- First remove redundant MK23 from pawn's existing primary weaponTags -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/PawnKindDef[defName="RH_FOX_QRF"]/weaponTags/li[.="RN_MK23_Loud"]</xpath>

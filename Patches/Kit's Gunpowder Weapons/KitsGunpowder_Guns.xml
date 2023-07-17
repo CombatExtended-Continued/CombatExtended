@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Patch>
 	<Operation Class="PatchOperationFindMod">
@@ -11,10 +11,10 @@
 				<!-- ========== Tools ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="KIT_Gun_Arquebus" or
-				defName="KIT_Gun_Blunderbuss" or
-				defName="KIT_Gun_HandMortar"
-				]/tools					</xpath>
+						defName="KIT_Gun_Arquebus" or
+						defName="KIT_Gun_Blunderbuss" or
+						defName="KIT_Gun_HandMortar"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -81,14 +81,13 @@
 						</tools>
 					</value>
 				</li>
-    
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="KIT_Gun_BayonetMusket"]/weaponTags</xpath>
 					<value>
 						<li>NoSwitch</li>
 					</value>
 				</li>
-
 
 				<!-- ========== Guns ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">

@@ -7,19 +7,19 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!-- ========== Remove EMP Device  =========== -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="AD_EMB"]</xpath>
 				</li>
-			
+
 				<!-- ========== Melee Tools  =========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-			defName="AD_CruciblePistol" or
-			defName="AD_FedPistol" or
-			defName="AD_AuxPistol"
-			]/tools					</xpath>
+						defName="AD_CruciblePistol" or
+						defName="AD_FedPistol" or
+						defName="AD_AuxPistol"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -49,18 +49,18 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-			defName="AD_HeatProjector" or
-			defName="AD_FedHeatCannon" or
-			defName="AD_CruciblePresicionRifle" or
-			defName="AD_FedSniperRifle" or			
-			defName="AD_CrucibleRifle" or
-			defName="AD_FedRifle" or	
-			defName="AD_PlasmaCaliver" or
-			defName="AD_FedPlasmaCaster" or 	
-			defName="AD_CrucibleCarbine" or	
-			defName="Gun_MCrucibleRifle" or	
-			defName="AD_Sentinel"				
-			]/tools					</xpath>
+						defName="AD_HeatProjector" or
+						defName="AD_FedHeatCannon" or
+						defName="AD_CruciblePresicionRifle" or
+						defName="AD_FedSniperRifle" or
+						defName="AD_CrucibleRifle" or
+						defName="AD_FedRifle" or
+						defName="AD_PlasmaCaliver" or
+						defName="AD_FedPlasmaCaster" or
+						defName="AD_CrucibleCarbine" or
+						defName="Gun_MCrucibleRifle" or
+						defName="AD_Sentinel"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -97,9 +97,9 @@
 						</tools>
 					</value>
 				</li>
-	
+
 				<!-- Aux Weapons -->
-	
+
 				<!-- ==========  Aux Plasma Rifle  =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AD_Sentinel</defName>
@@ -126,7 +126,7 @@
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 					</FireModes>
 				</li>
-			
+
 				<!-- ==========  Aux Pistol  =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AD_AuxPistol</defName>
@@ -154,7 +154,7 @@
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 					</FireModes>
 				</li>
-			
+
 				<!-- ==========  Makeshift Crucible Rifle  =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_MCrucibleRifle</defName>
@@ -178,7 +178,7 @@
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-					<FireModes/>
+					<FireModes />
 				</li>
 
 				<!-- ==========  AD Crucible Rifle  =========== -->
@@ -242,7 +242,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-			
+
 				<!-- ==========  AD Crucible Pistol  =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AD_CruciblePistol</defName>
@@ -275,7 +275,7 @@
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 					</FireModes>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AD_FedPistol</defName>
 					<statBases>
@@ -307,7 +307,7 @@
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 					</FireModes>
 				</li>
-			
+
 				<!-- ==========  AD Heat Cannon  =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AD_HeatProjector</defName>
@@ -370,7 +370,7 @@
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 					</FireModes>
 				</li>
-			
+
 				<!-- ==========  AD Crucible Precision Rifle  =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AD_CruciblePresicionRifle</defName>
@@ -421,7 +421,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-			
+
 				<!-- ==========  AD Plasma Caster  =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AD_PlasmaCaliver</defName>
@@ -450,7 +450,7 @@
 							<canTargetLocations>true</canTargetLocations>
 						</targetParams>
 					</Properties>
-					<FireModes/>
+					<FireModes />
 				</li>
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -480,9 +480,9 @@
 							<canTargetLocations>true</canTargetLocations>
 						</targetParams>
 					</Properties>
-					<FireModes/>
+					<FireModes />
 				</li>
-			
+
 				<!-- ==========  AD Crucible Carbine  =========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>AD_CrucibleCarbine</defName>
@@ -512,7 +512,7 @@
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 					</FireModes>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>

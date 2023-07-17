@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -7,18 +7,18 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!-- Pylon -->
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="DefensePylon" or
-					defName="DefensePylon_I" or
-					defName="DefensePylon_II" or
-					defName="DefensePylon_III" or
-					defName="TM_TechnoTurret_Base" or
-					defName="TM_60mmMortar_Base"
-					]/fillPercent					</xpath>
+						defName="DefensePylon" or
+						defName="DefensePylon_I" or
+						defName="DefensePylon_II" or
+						defName="DefensePylon_III" or
+						defName="TM_TechnoTurret_Base" or
+						defName="TM_60mmMortar_Base"
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
 					</value>
@@ -26,15 +26,15 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="TM_LightningTotem" or
-					defName="TM_HealingTotem" or
-					defName="TM_EarthTotem"
-					]/fillPercent					</xpath>
+						defName="TM_LightningTotem" or
+						defName="TM_HealingTotem" or
+						defName="TM_EarthTotem"
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.50</fillPercent>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Bullet_DefensePylon"]/projectile</xpath>
 					<value>
@@ -48,15 +48,14 @@
 						</projectile>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Bullet_DefensePylon"]</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
 					</value>
 				</li>
-				
-				
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Launcher_DefensePylon</defName>
 					<statBases>
@@ -86,7 +85,7 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-				
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Launcher_DefensePylon_I</defName>
 					<statBases>
@@ -119,7 +118,7 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-				
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Launcher_DefensePylon_II</defName>
 					<statBases>
@@ -152,7 +151,7 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-				
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Launcher_DefensePylon_III</defName>
 					<statBases>
@@ -185,10 +184,9 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-				
-				
+
 				<!-- Mark IV -->
-				
+
 				<!--
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Bullet_Mark-IV"]/projectile</xpath>
@@ -209,7 +207,7 @@
 						<thingClass>CombatExtended.BulletCE</thingClass>
 					</value>
 				</li>-->
-				
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_Mark-IV</defName>
 					<statBases>
@@ -242,7 +240,7 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-				
+
 				<!--
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Bullet_Shell_TechnoTurretExplosive"]/projectile</xpath>
@@ -283,12 +281,9 @@
 					</value>
 				</li>
 				-->
-				
-				
-				
-				
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

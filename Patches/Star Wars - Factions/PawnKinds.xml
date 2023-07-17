@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -9,17 +9,16 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[
-			defName="PJ_RebVillager" or
-			defName="PJ_RebCouncilman" or
-			defName="PJ_RebSoldier" or
-			defName="PJ_RebLAVSoldier" or
-			defName="PJ_RebNadeSoldier" or
-			defName="PJ_RebPilot" or
-			defName="PJ_RebMerc"
-			]					</xpath>
+						defName="PJ_RebVillager" or
+						defName="PJ_RebCouncilman" or
+						defName="PJ_RebSoldier" or
+						defName="PJ_RebLAVSoldier" or
+						defName="PJ_RebNadeSoldier" or
+						defName="PJ_RebPilot" or
+						defName="PJ_RebMerc"
+						] </xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
@@ -32,15 +31,15 @@
 
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[
-			defName="PJ_ImpInspector" or
-			defName="PJ_ImpTaxOfficer" or
-			defName="PJ_ImpSoldier" or
-			defName="PJ_ImpTrader" or
-			defName="PJ_Stormtrooper" or
-			defName="PJ_StormtrooperSO" or
-			defName="PJ_ImpCommander" or
-			defName="PJ_ScoutTrooper"
-			]					</xpath>
+						defName="PJ_ImpInspector" or
+						defName="PJ_ImpTaxOfficer" or
+						defName="PJ_ImpSoldier" or
+						defName="PJ_ImpTrader" or
+						defName="PJ_Stormtrooper" or
+						defName="PJ_StormtrooperSO" or
+						defName="PJ_ImpCommander" or
+						defName="PJ_ScoutTrooper"
+						] </xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
@@ -53,11 +52,11 @@
 
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[
-			defName="PJ_ScumSoldier" or
-			defName="PJ_Ruffian" or
-			defName="PJ_ScumBoss" or
-			defName="PJ_BountyHunter" 
-			]					</xpath>
+						defName="PJ_ScumSoldier" or
+						defName="PJ_Ruffian" or
+						defName="PJ_ScumBoss" or
+						defName="PJ_BountyHunter"
+						] </xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
@@ -67,7 +66,7 @@
 						</li>
 					</value>
 				</li>
-		  
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CE_Apparel_Backpack"]/apparel/tags</xpath>
 					<value>
@@ -76,14 +75,13 @@
 						<li>PJ_Scum</li>
 					</value>
 				</li>
-			
-			
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="PJ_ImperialCredit"]/statBases</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="PJ_ImperialCredit"]</xpath>
 						<value>
-							<statBases/>
+							<statBases />
 						</value>
 					</nomatch>
 					<match Class="PatchOperationAdd">
@@ -93,16 +91,14 @@
 					</match>
 				</li>
 
-
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PJ_ImperialCredit"]/statBases</xpath>
 					<value>
 						<Bulk>0.001</Bulk>
 					</value>
 				</li>
-			  
+
 			</operations>
 		</match>
 	</Operation>
 </Patch>
-

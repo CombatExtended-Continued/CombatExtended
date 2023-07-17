@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
+
 				<mods>
 					<li>Jernalk's Skeletal Legion (continued)</li>
 					<li>Jernalk's Skeletal Legion</li>
 				</mods>
-			
+
 				<match Class="PatchOperationSequence">
 					<operations>
-		  
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/PawnKindDef[
-			defName="SL_Peon" or
-			defName="SL_Archer" or
-			defName="SL_Runner"
-			]/combatPower							</xpath>
+								defName="SL_Peon" or
+								defName="SL_Archer" or
+								defName="SL_Runner"
+								]/combatPower </xpath>
 							<value>
 								<combatPower>28</combatPower>
 							</value>
 						</li>
-		  
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="SL_Peon"]</xpath>
 							<value>
@@ -38,7 +38,7 @@
 								</li>
 							</value>
 						</li>
-		  
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="SL_Archer"]</xpath>
 							<value>
@@ -69,16 +69,16 @@
 								</li>
 							</value>
 						</li>
-		  
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/PawnKindDef[
-			defName="SL_Hero"
-			]/combatPower							</xpath>
+								defName="SL_Hero"
+								]/combatPower </xpath>
 							<value>
 								<combatPower>90</combatPower>
 							</value>
 						</li>
-		  
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="SL_Hero"]</xpath>
 							<value>

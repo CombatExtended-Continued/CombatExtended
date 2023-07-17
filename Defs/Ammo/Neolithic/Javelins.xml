@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -10,9 +10,9 @@
 			<Pila>Pilum_Fired</Pila>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef ParentName="BaseProjectileNeolithic" Name="BasePilumProjectile" Abstract="true">
@@ -25,12 +25,12 @@
 			<gravityFactor>1.5</gravityFactor>
 		</projectile>
 	</ThingDef>
-	
+
 	<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
 	[r / (1 - x)];
 		x = preExplosionSpawnChance,
 		r = resource cost. -->
-	
+
 	<ThingDef ParentName="BasePilumProjectile">
 		<defName>Pilum_Thrown</defName>
 		<label>pilum (thrown)</label>
@@ -43,7 +43,7 @@
 			<preExplosionSpawnThingDef>Pila</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="BasePilumProjectile">
 		<defName>Pilum_Fired</defName>
 		<label>pilum (fired)</label>
@@ -56,7 +56,7 @@
 			<preExplosionSpawnThingDef>Pila</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
 		<defName>MakeAmmo_Pilum</defName>
@@ -105,5 +105,5 @@
 		</products>
 		<displayPriority>500</displayPriority>
 	</RecipeDef>
-	
+
 </Defs>

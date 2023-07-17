@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Paniel the Automata</li></mods>
-			
+
+				<mods>
+					<li>Paniel the Automata</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="PN_Artillery_Base_Core"]/thingClass</xpath>
 							<value>
@@ -47,9 +49,9 @@
 								<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
 							</value>
 						</li>
-			
+
 						<!-- ==========  Paniel Cannon  =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>PN_Artillery_Turret</defName>
 							<statBases>
@@ -83,20 +85,20 @@
 								<reloadOneAtATime>true</reloadOneAtATime>
 								<ammoSet>AmmoSet_PanielHowitzerShell</ammoSet>
 							</AmmoUser>
-			
+
 						</li>
-			
+
 						<li Class="PatchOperationRemove">
 							<xpath>Defs/ThingDef[defName="PN_Artillery_Turret" ]/building/fixedStorageSettings</xpath>
 						</li>
 						<li Class="PatchOperationRemove">
 							<xpath>Defs/ThingDef[defName="PN_Artillery_Turret" ]/building/defaultStorageSettings</xpath>
 						</li>
-			
+
 						<li Class="PatchOperationRemove">
 							<xpath>Defs/ThingDef[defName="PN_Artillery_Turret" ]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName = "PN_Artillery_Turret"]/comps</xpath>
 							<value>
@@ -110,7 +112,7 @@
 								</li>
 							</value>
 						</li>
-			 
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="PN_Railgun_Base_Core"]/thingClass</xpath>
 							<value>
@@ -149,9 +151,9 @@
 								<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
 							</value>
 						</li>
-			
+
 						<!-- ==========  Paniel Cannon  =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>PN_Railgun_Turret</defName>
 							<statBases>
@@ -188,18 +190,18 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<li Class="PatchOperationRemove">
 							<xpath>Defs/ThingDef[defName="PN_Railgun_Turret"]/building/fixedStorageSettings</xpath>
 						</li>
 						<li Class="PatchOperationRemove">
 							<xpath>Defs/ThingDef[defName="PN_Railgun_Turret"]/building/defaultStorageSettings</xpath>
 						</li>
-			
+
 						<li Class="PatchOperationRemove">
 							<xpath>Defs/ThingDef[defName="PN_Railgun_Turret" ]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

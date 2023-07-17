@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -9,32 +9,32 @@
 			<operations>
 
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[			
-			defName = "VFES_Turret_HMGComplex" or
-			defName = "VFES_Turret_ChargeComplex" or
-			defName = "VFES_Turret_Ballista"			
-		]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+					<xpath>Defs/ThingDef[
+						defName = "VFES_Turret_HMGComplex" or
+						defName = "VFES_Turret_ChargeComplex" or
+						defName = "VFES_Turret_Ballista"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-			defName = "VFES_Turret_HMGComplex" or
-			defName = "VFES_Turret_ChargeComplex" or			
-			defName = "VFES_Turret_Artillery" or
-			defName = "VFES_Turret_Catapult" or
-			defName = "VFES_Turret_Ballista"			 			
-		]/thingClass					</xpath>
+						defName = "VFES_Turret_HMGComplex" or
+						defName = "VFES_Turret_ChargeComplex" or
+						defName = "VFES_Turret_Artillery" or
+						defName = "VFES_Turret_Catapult" or
+						defName = "VFES_Turret_Ballista"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[	
-			defName = "VFES_Turret_HMGComplex" or
-			defName = "VFES_Turret_ChargeComplex" or
-			defName = "VFES_Turret_Ballista"
-		]/fillPercent					</xpath>
+					<xpath>Defs/ThingDef[
+						defName = "VFES_Turret_HMGComplex" or
+						defName = "VFES_Turret_ChargeComplex" or
+						defName = "VFES_Turret_Ballista"
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
 					</value>
@@ -174,14 +174,14 @@
 						<turretBurstWarmupTime>1</turretBurstWarmupTime>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFES_Turret_Catapult"]/building/turretBurstCooldownTime</xpath>
 					<value>
 						<turretBurstCooldownTime>1</turretBurstCooldownTime>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="VFES_Turret_Catapult"]/inspectorTabs</xpath>
 				</li>
@@ -194,7 +194,7 @@
 						<SightsEfficiency>0.5</SightsEfficiency>
 					</value>
 				</li>
-	  
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName = "VFES_Artillery_Catapult"]/comps</xpath>
 					<value>
@@ -271,7 +271,7 @@
 						<turretBurstWarmupTime>1</turretBurstWarmupTime>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFES_Turret_Artillery"]/building/turretBurstCooldownTime</xpath>
 					<value>
@@ -291,7 +291,7 @@
 						<SightsEfficiency>0.5</SightsEfficiency>
 					</value>
 				</li>
-	  
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName = "VFES_Artillery_Weapon"]/comps</xpath>
 					<value>
@@ -334,7 +334,7 @@
 						</verbs>
 					</value>
 				</li>
-	
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName = "VFES_Artillery_Weapon"]/weaponTags</xpath>
 					<value>
@@ -347,4 +347,5 @@
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

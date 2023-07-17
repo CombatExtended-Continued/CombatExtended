@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-		
+
 		<operations>
 			<li Class="PatchOperationFindMod">
-				<mods><li>Androids</li><li>Androids for RW 1.4</li></mods>
+				<mods>
+					<li>Androids</li>
+					<li>Androids for RW 1.4</li>
+				</mods>
 				<match Class="PatchOperationSequence">
 					<operations>
 						<!-- ==========  Core Blaster =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Gun_ChjCoreLauncher</defName>
 							<statBases>
@@ -19,7 +22,7 @@
 								<Mass>22.5</Mass>
 								<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<recoilAmount>2.31</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -37,7 +40,7 @@
 									<canTargetLocations>true</canTargetLocations>
 								</targetParams>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>18</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -48,7 +51,7 @@
 								<aiUseBurstMode>TRUE</aiUseBurstMode>
 							</FireModes>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Gun_ChjCoreLauncher"]/tools</xpath>
 							<value>
@@ -87,10 +90,10 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<!-- ==========  Rebel Guns  =========== -->
 						<!--Early access to charge guns, but low spec-->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>ChjAndroidGun_RebelRifle</defName>
 							<statBases>
@@ -101,7 +104,7 @@
 								<Mass>4.60</Mass>
 								<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -112,7 +115,7 @@
 								<soundCastTail>GunTail_Medium</soundCastTail>
 								<muzzleFlashScale>12</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>18</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -121,7 +124,7 @@
 							<FireModes>
 							</FireModes>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="ChjAndroidGun_RebelRifle"]/tools</xpath>
 							<value>
@@ -160,7 +163,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>ChjAndroidGun_Rebelpistol</defName>
 							<statBases>
@@ -171,7 +174,7 @@
 								<Mass>1.20</Mass>
 								<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -182,7 +185,7 @@
 								<soundCastTail>GunTail_Medium</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>6</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -191,7 +194,7 @@
 							<FireModes>
 							</FireModes>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="ChjAndroidGun_Rebelpistol"]/tools</xpath>
 							<value>
@@ -220,7 +223,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Patch>
 	<Operation Class="PatchOperationFindMod">
@@ -11,38 +11,37 @@
 				<!-- ========== Remove Recipe Maker & Verbs ========== -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="YP_BaegYa" or
-			defName="JI_Dunder" or
-			defName="GD_Bobcat" or
-			defName="TE_Grief" or
-			@Name="BaseRSGrenade"
-			]/recipeMaker					</xpath>
+						defName="JI_Dunder" or
+						defName="GD_Bobcat" or
+						defName="TE_Grief" or
+						@Name="BaseRSGrenade"
+						]/recipeMaker </xpath>
 				</li>
-
 
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="YP_BaegYa" or
-			defName="JI_Dunder" or
-			defName="GD_Bobcat" or
-			defName="TE_Grief"
-			]/costList					</xpath>
+						defName="JI_Dunder" or
+						defName="GD_Bobcat" or
+						defName="TE_Grief"
+						]/costList </xpath>
 				</li>
 
 				<!-- Without this mod, Grief and Bobcat don't work, and it logs at ForcedMissRadius error.-->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="YP_BaegYa" or
-			defName="JI_Dunder" or 
-			defName="GD_Bobcat" or 
-			defName="TE_Grief"
-			]/verbs					</xpath>
+						defName="JI_Dunder" or
+						defName="GD_Bobcat" or
+						defName="TE_Grief"
+						]/verbs </xpath>
 				</li>
 
 				<!-- Change TickerType.-->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="YP_BaegYa" or
-			defName="JI_Dunder" or 
-			defName="GD_Bobcat" or 
-			defName="TE_Grief"
-			]					</xpath>
+						defName="JI_Dunder" or
+						defName="GD_Bobcat" or
+						defName="TE_Grief"
+						] </xpath>
 					<value>
 						<tickerType>Normal</tickerType>
 					</value>
@@ -52,17 +51,17 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Proj_BaegYa" or
-			defName="Proj_Dunder" or
-			defName="Proj_Bobcat" or
-			defName="Proj_Grief"			
-			]/thingClass					</xpath>
+						defName="Proj_Dunder" or
+						defName="Proj_Bobcat" or
+						defName="Proj_Grief"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 					</value>
 				</li>
-		
+
 				<!-- ========== Projectile ========== -->
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Proj_BaegYa"]/projectile</xpath>
 					<value>
@@ -79,7 +78,7 @@
 						</projectile>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Proj_Dunder"]/projectile</xpath>
 					<value>
@@ -96,7 +95,7 @@
 						</projectile>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Proj_Bobcat"]/projectile</xpath>
 					<value>
@@ -113,7 +112,7 @@
 						</projectile>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Proj_Grief"]/projectile</xpath>
 					<value>
@@ -137,7 +136,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="Proj_BaegYa"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
@@ -147,7 +146,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="Proj_Dunder"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
@@ -157,7 +156,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="Proj_Bobcat"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
@@ -167,13 +166,13 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="Proj_Grief"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
 
 				<!-- ========== Add Fragmentation ========== -->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Proj_BaegYa"]/comps</xpath>
 					<value>
@@ -217,15 +216,15 @@
 						</li>
 					</value>
 				</li>
-		
+
 				<!-- Weapon Stack and Appearance -->
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="YP_BaegYa" or
-			defName="JI_Dunder" or
-			defName="GD_Bobcat" or
-			defName="TE_Grief"
-			]/graphicData					</xpath>
+						defName="JI_Dunder" or
+						defName="GD_Bobcat" or
+						defName="TE_Grief"
+						]/graphicData </xpath>
 					<value>
 						<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
 					</value>
@@ -233,10 +232,10 @@
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="YP_BaegYa" or
-			defName="JI_Dunder" or
-			defName="GD_Bobcat" or
-			defName="TE_Grief"
-			]					</xpath>
+						defName="JI_Dunder" or
+						defName="GD_Bobcat" or
+						defName="TE_Grief"
+						] </xpath>
 					<value>
 						<thingClass>CombatExtended.AmmoThing</thingClass>
 						<stackLimit>75</stackLimit>
@@ -246,14 +245,14 @@
 
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="YP_BaegYa" or
-			defName="JI_Dunder" or
-			defName="GD_Bobcat" or
-			defName="TE_Grief"
-			]					</xpath>
+						defName="JI_Dunder" or
+						defName="GD_Bobcat" or
+						defName="TE_Grief"
+						] </xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.AmmoDef</value>
 				</li>
-		
+
 				<!-- Weapon Check Comps -->
 
 				<li Class="PatchOperationConditional">
@@ -261,7 +260,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="YP_BaegYa"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
@@ -271,7 +270,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="JI_Dunder"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
@@ -281,7 +280,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="GD_Bobcat"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
@@ -291,13 +290,13 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="TE_Grief"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
-		
+
 				<!-- Weapon Values -->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="YP_BaegYa"]/comps</xpath>
 					<value>
@@ -392,7 +391,7 @@
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>
-	 
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="GD_Bobcat"]/comps</xpath>
 					<value>
@@ -554,7 +553,6 @@
 							</recipeUsers>
 						</RecipeDef>
 
-
 						<!-- JI Dunder Satchel Charge -->
 						<RecipeDef ParentName="RSExplosive_RecipeBase">
 							<defName>Craft_10_Dunder</defName>
@@ -600,7 +598,6 @@
 							</recipeUsers>
 						</RecipeDef>
 
-
 						<!-- GD Bobcat Micro Grenades -->
 						<RecipeDef ParentName="RSExplosive_RecipeBase">
 							<defName>Craft_10_Bobcat</defName>
@@ -642,7 +639,6 @@
 								<li>GDTable</li>
 							</recipeUsers>
 						</RecipeDef>
-
 
 						<!-- TE Grief Impact Grenades -->
 						<RecipeDef ParentName="RSExplosive_RecipeBase">
@@ -691,7 +687,7 @@
 
 					</value>
 				</li>
- 
+
 			</operations>
 		</match>
 	</Operation>
