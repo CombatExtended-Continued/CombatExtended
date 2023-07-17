@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>[O21] Outer Rim Galaxies</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-					
+
 						<ThingCategoryDef>
 							<defName>AmmoPlasmaGasCartridge</defName>
 							<label>Plasma Gas Cartridges</label>
 							<parent>AmmoAdvanced</parent>
 							<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
 						</ThingCategoryDef>
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" Name="PlasmaGasCartridgeBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
 							<description>Plasma gas ammo used by advanced blaster designs.</description>
 							<statBases>
@@ -34,7 +34,7 @@
 							</thingCategories>
 							<stackLimit>500</stackLimit>
 						</ThingDef>
-				
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="PlasmaGasCartridgeBase">
 							<defName>Ammo_PlasmaGasCartridge</defName>
 							<label>Plasma Gas Cartridges</label>
@@ -48,7 +48,7 @@
 							<ammoClass>Charged</ammoClass>
 							<generateAllowChance>1</generateAllowChance>
 						</ThingDef>
-				
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="PlasmaGasCartridgeBase">
 							<defName>Ammo_PlasmaGasCartridge_AP</defName>
 							<label>Plasma Gas Cartridges (Imp)</label>
@@ -62,7 +62,7 @@
 							<ammoClass>ChargedAP</ammoClass>
 							<generateAllowChance>0.5</generateAllowChance>
 						</ThingDef>
-				
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="PlasmaGasCartridgeBase">
 							<defName>Ammo_PlasmaGasCartridge_Ion</defName>
 							<label>Plasma Gas Cartridges (Stun)</label>
@@ -76,10 +76,10 @@
 							<ammoClass>Ionized</ammoClass>
 							<generateAllowChance>0</generateAllowChance>
 						</ThingDef>
-					
+
 						<RecipeDef ParentName="ChargeAmmoRecipeBase">
 							<defName>MakeAmmo_PlasmaGasCartridge</defName>
-							<label>make Plasma Gas Cartridges  x500</label>
+							<label>make Plasma Gas Cartridges x500</label>
 							<description>Craft 100 Plasma Gas Cartridges .</description>
 							<jobString>Making Plasma Gas Cartridges .</jobString>
 							<ingredients>
@@ -126,7 +126,7 @@
 
 						<RecipeDef ParentName="ChargeAmmoRecipeBase">
 							<defName>MakeAmmo_PlasmaGasCartridge_AP</defName>
-							<label>make Plasma Gas Cartridges (Conc.)  x500</label>
+							<label>make Plasma Gas Cartridges (Conc.) x500</label>
 							<description>Craft 100 Plasma Gas Cartridges (Conc.) .</description>
 							<jobString>Making Plasma Gas Cartridges (Conc.) .</jobString>
 							<ingredients>
@@ -171,10 +171,9 @@
 							<researchPrerequisite>O21_OR_WeaponFabrication</researchPrerequisite>
 						</RecipeDef>
 
-
 						<RecipeDef ParentName="ChargeAmmoRecipeBase">
 							<defName>MakeAmmo_PlasmaGasCartridge_Ion</defName>
-							<label>make Plasma Gas Cartridges (Ion)  x500</label>
+							<label>make Plasma Gas Cartridges (Ion) x500</label>
 							<description>Craft 100 PlasmaGas Cartridges (Ion) .</description>
 							<jobString>Making Plasma Gas Cartridges (Ion) .</jobString>
 							<ingredients>
@@ -218,7 +217,7 @@
 							</products>
 							<researchPrerequisite>O21_OR_WeaponFabrication</researchPrerequisite>
 						</RecipeDef>
-					
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_PlasmaGasCartridgeRed</defName>
 							<label>Plasma Gas Cartridges</label>
@@ -228,7 +227,7 @@
 								<Ammo_PlasmaGasCartridge_Ion>Bullet_OR_Blaster_Ion</Ammo_PlasmaGasCartridge_Ion>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_PlasmaGasCartridgeBlue</defName>
 							<label>Plasma Gas Cartridges</label>
@@ -238,7 +237,7 @@
 								<Ammo_PlasmaGasCartridge_Ion>Bullet_OR_Blaster_Ion</Ammo_PlasmaGasCartridge_Ion>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-				  
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_PlasmaGasCartridgeChiss</defName>
 							<label>Plasma Gas Cartridges</label>
@@ -248,7 +247,7 @@
 								<Ammo_PlasmaGasCartridge_Ion>Bullet_OR_Blaster_Ion</Ammo_PlasmaGasCartridge_Ion>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-				  
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_PlasmaGasCartridgeJawa</defName>
 							<label>Plasma Gas Cartridges</label>
@@ -256,7 +255,7 @@
 								<Ammo_PlasmaGasCartridge_Ion>Bullet_OR_Blaster_Ion</Ammo_PlasmaGasCartridge_Ion>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-				  
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_PlasmaGasCartridgeAnaxesTurret</defName>
 							<label>Plasma Gas Cartridges</label>
@@ -264,7 +263,7 @@
 								<Ammo_PlasmaGasCartridge>Bullet_OR_Blaster_AnaxesTurret_Red</Ammo_PlasmaGasCartridge>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-				  
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_PlasmaGasCartridgePTowerTurret</defName>
 							<label>Plasma Gas Cartridges</label>
@@ -272,9 +271,9 @@
 								<Ammo_PlasmaGasCartridge>Bullet_OR_Blaster_PTowerTurret_Red</Ammo_PlasmaGasCartridge>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<!-- Ultra tech weapons should be able to pierce spacer armor so I gave them high AP-->
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_Blue</defName>
 							<label>blaster bolt</label>
@@ -291,7 +290,7 @@
 								<armorPenetrationSharp>20</armorPenetrationSharp>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_AP_Blue</defName>
 							<label>blaster bolt</label>
@@ -308,7 +307,7 @@
 								<armorPenetrationSharp>30</armorPenetrationSharp>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_Red</defName>
 							<label>blaster bolt</label>
@@ -325,7 +324,7 @@
 								<armorPenetrationSharp>20</armorPenetrationSharp>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_AP_Red</defName>
 							<label>blaster bolt</label>
@@ -342,7 +341,7 @@
 								<armorPenetrationSharp>30</armorPenetrationSharp>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_Ion</defName>
 							<label>blaster bolt</label>
@@ -360,7 +359,7 @@
 								<dropsCasings>false</dropsCasings>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_AnaxesTurret_Red</defName>
 							<label>blaster bolt</label>
@@ -390,7 +389,7 @@
 								</li>
 							</comps>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_PTowerTurret_Red</defName>
 							<label>blaster bolt</label>
@@ -407,7 +406,7 @@
 								<armorPenetrationSharp>75</armorPenetrationSharp>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_Droid_Red</defName>
 							<label>blaster bolt</label>
@@ -424,7 +423,7 @@
 								<armorPenetrationSharp>25</armorPenetrationSharp>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_Blue_Chiss</defName>
 							<label>maser bolt</label>
@@ -447,7 +446,7 @@
 								</secondaryDamage>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_Blaster_Blue_ChissAP</defName>
 							<label>maser bolt</label>
@@ -470,7 +469,7 @@
 								</secondaryDamage>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base556x45mmNATOBullet">
 							<defName>Bullet_OR_WristRocket</defName>
 							<label>wrist rocket</label>
@@ -494,20 +493,19 @@
 								</li>
 							</comps>
 						</ThingDef>
-					
+
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/DamageDef[defName="O21_OR_Blaster"]/armorCategory</xpath>
 					<value>
 						<armorCategory>Sharp</armorCategory>
 					</value>
 				</li>
-			
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

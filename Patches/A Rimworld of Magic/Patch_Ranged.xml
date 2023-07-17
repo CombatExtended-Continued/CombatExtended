@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -7,16 +7,15 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="TM_LightningWand" or
-				defName="TM_IceWand" or
-				defName="TM_DefenderStaff" or
-				defName="TM_BlazingPowerStaff" or
-				defName="TM_FireWand"
-				]/tools					</xpath>
+						defName="TM_LightningWand" or
+						defName="TM_IceWand" or
+						defName="TM_DefenderStaff" or
+						defName="TM_BlazingPowerStaff" or
+						defName="TM_FireWand"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -32,13 +31,13 @@
 						</tools>
 					</value>
 				</li>
-						
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="Seer_FireRing" or
-				defName="Seer_IceRing" or
-				defName="Seer_LightningRing"
-				]/tools					</xpath>
+						defName="Seer_FireRing" or
+						defName="Seer_IceRing" or
+						defName="Seer_LightningRing"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -53,7 +52,7 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Projectile_IceWand"]</xpath>
 				</li>
@@ -81,7 +80,7 @@
 						</ThingDef>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Projectile_FireWand"]</xpath>
 				</li>
@@ -112,7 +111,7 @@
 						</ThingDef>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Projectile_LightningWand"]</xpath>
 				</li>
@@ -143,7 +142,7 @@
 						</ThingDef>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>TM_IceWand</defName>
 					<statBases>
@@ -169,7 +168,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Seer_IceRing</defName>
 					<statBases>
@@ -246,7 +245,6 @@
 					</FireModes>
 				</li>
 
-
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>TM_FireWand</defName>
 					<statBases>
@@ -274,7 +272,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Seer_FireRing</defName>
 					<statBases>
@@ -301,11 +299,11 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Projectile_BlazingPower"]</xpath>
 				</li>
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="TM_DefenderStaff" or defName="TM_BlazingPowerStaff"]/verbs/li[verbClass="TorannMagic.Weapon.Verb_BlazingPower"]</xpath>
 				</li>
@@ -335,7 +333,7 @@
 						</ThingDef>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>TM_DefenderStaff</defName>
 					<statBases>
@@ -364,7 +362,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>TM_BlazingPowerStaff</defName>
 					<statBases>
@@ -393,9 +391,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-			
-			
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>TM_ElephantBow</defName>
 					<statBases>
@@ -442,7 +438,7 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>TM_ThrumBow</defName>
 					<statBases>
@@ -487,12 +483,12 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
 						<!-- ==================== AmmoSets ========================== -->
-					
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_GreatArrowRoMThrumbo</defName>
 							<label>great arrows</label>
@@ -504,9 +500,9 @@
 								<Ammo_GreatArrow_Flame>Projectile_GreatArrowRoMThrumbo_Flame</Ammo_GreatArrow_Flame>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<!-- ================== Projectiles ================== -->
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
 							<defName>Projectile_GreatArrowRoMThrumbo_Stone</defName>
 							<label>great arrow (stone)</label>
@@ -557,7 +553,7 @@
 								<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
 							<defName>Projectile_GreatArrowRoMThrumbo_Venom</defName>
 							<label>great arrow (venom)</label>
@@ -581,7 +577,7 @@
 								<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
 							<defName>Projectile_GreatArrowRoMThrumbo_Flame</defName>
 							<label>great arrow (flame)</label>
@@ -604,12 +600,12 @@
 								</secondaryDamage>
 							</projectile>
 						</ThingDef>
-					
+
 					</value>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

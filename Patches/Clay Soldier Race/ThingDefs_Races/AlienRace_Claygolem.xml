@@ -1,20 +1,22 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Clay Soldier Race</li></mods>
-			
+
+				<mods>
+					<li>Clay Soldier Race</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<li Class="PatchOperationConditional">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]/comps</xpath>
 							<nomatch Class="PatchOperationAdd">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]</xpath>
 								<value>
-									<comps/>
+									<comps />
 								</value>
 							</nomatch>
 							<match Class="PatchOperationAdd">
@@ -23,17 +25,17 @@
 								</value>
 							</match>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]/comps</xpath>
 							<value>
-								<li Class="CombatExtended.CompProperties_Inventory"/>
+								<li Class="CombatExtended.CompProperties_Inventory" />
 								<li>
 									<compClass>CombatExtended.CompPawnGizmo</compClass>
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]</xpath>
 							<value>
@@ -43,7 +45,6 @@
 							</value>
 						</li>
 
-			
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]/statBases</xpath>
 							<value>
@@ -53,9 +54,9 @@
 								<SmokeSensitivity>0</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Human-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Claymanman"]/tools</xpath>
 							<value>
@@ -94,17 +95,17 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<!-- ========== Add loadout update behavior ========== -->
 
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThinkTreeDef[defName="CL_Golem"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalColonist"]/subNodes</xpath>
 							<value>
-								<li Class="CombatExtended.JobGiver_UpdateLoadout"/>
-								<li Class="CombatExtended.JobGiver_CheckReload"/>
+								<li Class="CombatExtended.JobGiver_UpdateLoadout" />
+								<li Class="CombatExtended.JobGiver_CheckReload" />
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

@@ -7,8 +7,6 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-			
-
 				<!-- ========== Shard Sentry ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_ShardSentry</defName>
@@ -124,7 +122,7 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-		
+
 				<!-- ========== Portable MMG ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_NestMMG</defName>
@@ -162,7 +160,7 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-		
+
 				<!-- ========== AGS ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_AGS</defName>
@@ -201,7 +199,7 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-		
+
 				<!-- ========== Fake Rifle ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_FakeRifle</defName>
@@ -237,7 +235,7 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-		
+
 				<!-- ========== Suv Turret ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_SuvTurret</defName>
@@ -273,12 +271,12 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-	 
+
 				<!-- ========== Nest Missile ========== -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName = "Turret_NestMissile"]/inspectorTabs</xpath>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_NestMissile</defName>
 					<statBases>
@@ -314,12 +312,12 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-		
+
 				<!-- ========== Molten Cannon ========== -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="MoltenShell"]</xpath>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Artillery_MC"]</xpath>
 					<value>
@@ -370,7 +368,7 @@
 						</ThingDef>
 					</value>
 				</li>
-			
+
 				<!-- ========== Rocket Turret ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_RocketTurret</defName>
@@ -410,21 +408,21 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-			
+
 				<!-- ========== Cannon ========== -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName = "Turret_RSCannon"]/inspectorTabs</xpath>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="Turret_RSCannon"					
-				]/building/turretBurstCooldownTime					</xpath>
+						defName="Turret_RSCannon"
+						]/building/turretBurstCooldownTime </xpath>
 					<value>
 						<turretBurstCooldownTime>5</turretBurstCooldownTime>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Artillery_RSCannon</defName>
 					<statBases>
@@ -460,17 +458,17 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-		
+
 				<!-- ========== Common to all Defensive Turrets ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					@Name="BaseMCBuilding" or
-					@Name="NestMissile" or
-					@Name="NestHMG" or
-					@Name="NestAGS" or
-					@Name="NestMMG"	or
-					defName="Turret_RSCannon"					
-				]/thingClass					</xpath>
+						@Name="BaseMCBuilding" or
+						@Name="NestMissile" or
+						@Name="NestHMG" or
+						@Name="NestAGS" or
+						@Name="NestMMG" or
+						defName="Turret_RSCannon"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
@@ -478,35 +476,34 @@
 
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-					defName="Turret_NestHMG" or
-					defName="Turret_NestAGS" or				
-					defName="RocketTurret"or				
-					defName="Turret_RSCannon"
-				]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						defName="Turret_NestHMG" or
+						defName="Turret_NestAGS" or
+						defName="RocketTurret"or
+						defName="Turret_RSCannon"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
- 
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-					defName="Turret_NestHMG" or
-					defName="Turret_NestAGS" or
-					defName="Turret_NestMMG" or
-					defName="Turret_RSCannon"		
-				]/statBases					</xpath>
+						defName="Turret_NestHMG" or
+						defName="Turret_NestAGS" or
+						defName="Turret_NestMMG" or
+						defName="Turret_RSCannon"
+						]/statBases </xpath>
 					<value>
 						<AimingAccuracy>0.5</AimingAccuracy>
 					</value>
 				</li>
-			
 
 				<!--========== Common to all Sentry Turrets ========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					@Name="ShardSentry" or 
-					@Name="SuvTurret" or
-					@Name="WaveEmitter" or
-					defName="RSDummy" or
-					defName="Turret_Smartmine"
-				]/thingClass					</xpath>
+						@Name="ShardSentry" or
+						@Name="SuvTurret" or
+						@Name="WaveEmitter" or
+						defName="RSDummy" or
+						defName="Turret_Smartmine"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
@@ -514,20 +511,20 @@
 
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-					defName="Turret_ShardSentry" or 
-					defName="Turret_SuvTurret" or
-					defName="Turret_Smartmine"
-				]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						defName="Turret_ShardSentry" or
+						defName="Turret_SuvTurret" or
+						defName="Turret_Smartmine"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
- 
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-					defName="Turret_ShardSentry" or 
-					defName="Turret_SuvTurret" or
-					defName="Turret_WaveEmitter" or
-					defName="RSDummy" or
-					defName="Turret_Smartmine"
-				]/statBases					</xpath>
+						defName="Turret_ShardSentry" or
+						defName="Turret_SuvTurret" or
+						defName="Turret_WaveEmitter" or
+						defName="RSDummy" or
+						defName="Turret_Smartmine"
+						]/statBases </xpath>
 					<value>
 						<AimingAccuracy>1.0</AimingAccuracy>
 					</value>
@@ -535,11 +532,11 @@
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-					defName="Turret_ShardSentry" or 
-					defName="Turret_SuvTurret" or
-					defName="Turret_WaveEmitter" or
-					defName="RocketTurret"
-				]/statBases					</xpath>
+						defName="Turret_ShardSentry" or
+						defName="Turret_SuvTurret" or
+						defName="Turret_WaveEmitter" or
+						defName="RocketTurret"
+						]/statBases </xpath>
 					<value>
 						<NightVisionEfficiency>0.5</NightVisionEfficiency>
 					</value>
@@ -547,30 +544,30 @@
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-				defName="Gun_SuvTurret" or 
-				defName="Gun_RocketTurret" or 
-				defName="Gun_WaveEmitter" or 
-				defName="Gun_ShardSentry"
-				]/statBases					</xpath>
+						defName="Gun_SuvTurret" or
+						defName="Gun_RocketTurret" or
+						defName="Gun_WaveEmitter" or
+						defName="Gun_ShardSentry"
+						]/statBases </xpath>
 					<value>
 						<NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
 					</value>
 				</li>
-		 	
+
 				<!--========== fillpercent replacement ========== -->
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					@Name="NestMissile" or
-					@Name="NestHMG" or
-					@Name="NestAGS" or
-					@Name="NestMMG" or
-					@Name="ShardSentry" or
-					@Name="SuvTurret" or
-					@Name="WaveEmitter" or
-					defName="RSDummy" or
-					defName="Turret_RSCannon"
-				]/fillPercent					</xpath>
+						@Name="NestMissile" or
+						@Name="NestHMG" or
+						@Name="NestAGS" or
+						@Name="NestMMG" or
+						@Name="ShardSentry" or
+						@Name="SuvTurret" or
+						@Name="WaveEmitter" or
+						defName="RSDummy" or
+						defName="Turret_RSCannon"
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
 					</value>
@@ -582,7 +579,7 @@
 						<fillPercent>0.85</fillPercent>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Missile_HE"]</xpath>
 				</li>
@@ -593,7 +590,7 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				@Name = "BaseMCBuilding"]/thingClass					</xpath>
+						@Name = "BaseMCBuilding"]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
@@ -630,7 +627,7 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<!-- ========== Smart Mine ========== -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_Smartmine</defName>

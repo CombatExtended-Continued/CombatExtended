@@ -5,23 +5,23 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-					defName="ZXT_Turret_Pulsemachinegunturret" or
-					defName="ZXT_Turret_Sniperpulseturret" or
-					defName="ZXT_Turret_Armoredpowerpulseturret" or
-					defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
-				]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						defName="ZXT_Turret_Pulsemachinegunturret" or
+						defName="ZXT_Turret_Sniperpulseturret" or
+						defName="ZXT_Turret_Armoredpowerpulseturret" or
+						defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="ZXT_Turret_Pulsemachinegunturret" or
-					defName="ZXT_Turret_Sniperpulseturret" or
-					defName="ZXT_Turret_Armoredpowerpulseturret" or
-					defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
-				]/thingClass					</xpath>
+						defName="ZXT_Turret_Pulsemachinegunturret" or
+						defName="ZXT_Turret_Sniperpulseturret" or
+						defName="ZXT_Turret_Armoredpowerpulseturret" or
+						defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
@@ -29,52 +29,52 @@
 				<!-- Same label??? wth? -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="ZXT_Turret_Sniperpulseturret"
-				]/label					</xpath>
+						defName="ZXT_Turret_Sniperpulseturret"
+						]/label </xpath>
 					<value>
 						<label>Armored Gauss Lance</label>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="ZXT_Turret_Pulsemachinegunturret" or
-					defName="ZXT_Turret_Sniperpulseturret" or
-					defName="ZXT_Turret_Armoredpowerpulseturret" or
-					defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
-				]/fillPercent					</xpath>
+						defName="ZXT_Turret_Pulsemachinegunturret" or
+						defName="ZXT_Turret_Sniperpulseturret" or
+						defName="ZXT_Turret_Armoredpowerpulseturret" or
+						defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
 					</value>
 				</li>
-			
+
 				<!-- Increasing power requirement -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="ZXT_Turret_Pulsemachinegunturret" or
-					defName="ZXT_Turret_Sniperpulseturret" or
-					defName="ZXT_Turret_Armoredpowerpulseturret"
-				]/comps/li[@Class = "CompProperties_Power"]/basePowerConsumption					</xpath>
+						defName="ZXT_Turret_Pulsemachinegunturret" or
+						defName="ZXT_Turret_Sniperpulseturret" or
+						defName="ZXT_Turret_Armoredpowerpulseturret"
+						]/comps/li[@Class = "CompProperties_Power"]/basePowerConsumption </xpath>
 					<value>
 						<basePowerConsumption>1050</basePowerConsumption>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
-				]/comps/li[@Class = "CompProperties_Power"]/basePowerConsumption					</xpath>
+						defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+						]/comps/li[@Class = "CompProperties_Power"]/basePowerConsumption </xpath>
 					<value>
 						<basePowerConsumption>1450</basePowerConsumption>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="ZXT_Turret_Pulsemachinegunturret" or
-					defName="ZXT_Turret_Sniperpulseturret" or
-					defName="ZXT_Turret_Armoredpowerpulseturret" or
-					defName="ZXT_Turret_Advancedrotarypulsemachinegunturret" 
-				]/statBases/ShootingAccuracyTurret					</xpath>
+						defName="ZXT_Turret_Pulsemachinegunturret" or
+						defName="ZXT_Turret_Sniperpulseturret" or
+						defName="ZXT_Turret_Armoredpowerpulseturret" or
+						defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+						]/statBases/ShootingAccuracyTurret </xpath>
 					<value>
 						<AimingAccuracy>1</AimingAccuracy>
 						<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
@@ -118,7 +118,6 @@
 					</FireModes>
 				</li>
 
-
 				<!-- ========== Charged SNiper Pulse Turret ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -160,7 +159,6 @@
 						<noSingleShot>true</noSingleShot>
 					</FireModes>
 				</li>
-
 
 				<!-- ========== Armored Pulse Turrets, one caliber higher PLUS========== -->
 

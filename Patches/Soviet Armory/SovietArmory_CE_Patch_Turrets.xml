@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -6,7 +6,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!-- ========== Mounted AGS-17 Plamya ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -69,7 +69,7 @@
 						</costList>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Turret_AGS"]/specialDisplayRadius</xpath>
 					<value>
@@ -121,7 +121,7 @@
 						<li>TurretGun</li>
 					</weaponTags>
 				</li>
-	
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Turret_NSV"]/statBases/WorkToBuild</xpath>
 					<value>
@@ -138,7 +138,7 @@
 						</costList>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Turret_NSV"]/specialDisplayRadius</xpath>
 					<value>
@@ -150,26 +150,26 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="Turret_AGS" or
-					defName="Turret_NSV"
-				]/thingClass					</xpath>
+						defName="Turret_AGS" or
+						defName="Turret_NSV"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-					defName="Turret_AGS" or
-					defName="Turret_NSV"
-				]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						defName="Turret_AGS" or
+						defName="Turret_NSV"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="Turret_AGS" or
-					defName="Turret_NSV"
-				]/fillPercent					</xpath>
+						defName="Turret_AGS" or
+						defName="Turret_NSV"
+						]/fillPercent </xpath>
 					<value>
 						<!-- Needs to be at least 0.85 in order to shoot out from CE embrasures -->
 						<fillPercent>0.85</fillPercent>

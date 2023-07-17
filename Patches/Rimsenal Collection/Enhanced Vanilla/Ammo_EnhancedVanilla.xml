@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Rimsenal - Enhanced Vanilla Pack</li><li>Rimsenal - Augmented Vanilla Pack</li>
+			<li>Rimsenal - Enhanced Vanilla Pack</li>
+			<li>Rimsenal - Augmented Vanilla Pack</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
@@ -31,7 +32,7 @@
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 							</projectile>
 						</ThingDef>
-		
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_LaserEMP_Rimsenal</defName>
 							<label>Charge Pack (EMP)</label>
@@ -65,12 +66,12 @@
 						</ThingDef>
 
 						<!-- ================== Projectiles ================== -->
-		
+
 						<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
 		[r / (1 - x)];
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
-		
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
 							<defName>Axe_Thrown</defName>
 							<label>axe</label>
@@ -97,7 +98,7 @@
 							<parent>AmmoNeolithic</parent>
 							<iconPath>UI/Icons/ThingCategories/CaliberArrow</iconPath>
 						</ThingCategoryDef>
-		
+
 						<!-- ==================== AmmoSet ========================== -->
 
 						<CombatExtended.AmmoSetDef>
@@ -107,7 +108,7 @@
 								<Ammo_CompoundArrow_Broadhead>Projectile_CompoundArrow_Broadhead</Ammo_CompoundArrow_Broadhead>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-		
+
 						<!-- ==================== Ammo ========================== -->
 
 						<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoCompoundArrowBase" ParentName="NeolithicAmmoBase" Abstract="True">
@@ -141,7 +142,6 @@
 							<ammoClass>SteelArrow</ammoClass>
 						</ThingDef>
 
-		
 						<!-- ================== Projectiles ================== -->
 
 						<!-- The amount of arrows usable over the ammo lifetime for each resource cost is equal to
@@ -166,7 +166,7 @@
 								<preExplosionSpawnThingDef>Ammo_CompoundArrow_Broadhead</preExplosionSpawnThingDef>
 							</projectile>
 						</ThingDef>
-	
+
 						<!-- ==================== Recipes ========================== -->
 
 						<RecipeDef ParentName="AmmoRecipeNeolithicBase">

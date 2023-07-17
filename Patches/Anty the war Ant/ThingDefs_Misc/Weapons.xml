@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-		
+
 		<operations>
 			<li Class="PatchOperationFindMod">
-				<mods><li>Anty the war ant race</li></mods>
+				<mods>
+					<li>Anty the war ant race</li>
+				</mods>
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<!-- ==========  Halberd  =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="AT_Halberd"]/tools</xpath>
 							<value>
@@ -51,7 +53,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_Halberd"]/statBases</xpath>
 							<value>
@@ -59,7 +61,7 @@
 								<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_Halberd"]</xpath>
 							<value>
@@ -70,9 +72,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<!-- ==========  Hammer  =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="AT_Hammer"]/tools</xpath>
 							<value>
@@ -90,7 +92,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_Hammer"]/statBases</xpath>
 							<value>
@@ -98,7 +100,7 @@
 								<MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_Hammer"]</xpath>
 							<value>
@@ -109,9 +111,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<!-- ==========  Sickle  =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="AT_Sickle"]/tools</xpath>
 							<value>
@@ -141,7 +143,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_Sickle"]/statBases</xpath>
 							<value>
@@ -149,7 +151,7 @@
 								<Bulk>3.5</Bulk>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_Sickle"]</xpath>
 							<value>
@@ -160,16 +162,16 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_Sickle"]/weaponTags</xpath>
 							<value>
 								<li>CE_OneHandedWeapon</li>
 							</value>
 						</li>
-			
+
 						<!-- ========== Base Rifle =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>AT_AcidRifle</defName>
 							<statBases>
@@ -179,7 +181,7 @@
 								<Bulk>10.03</Bulk>
 								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<recoilAmount>1.14</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -193,7 +195,7 @@
 								<soundCastTail>GunTail_Heavy</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>18</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -205,9 +207,9 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Assault Rifle =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>AT_AcidAssaultRifle</defName>
 							<statBases>
@@ -217,7 +219,7 @@
 								<Bulk>10.03</Bulk>
 								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<recoilAmount>0.96</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -231,7 +233,7 @@
 								<soundCastTail>GunTail_Heavy</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>30</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -243,9 +245,9 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Line Rifle =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>AT_AcidLineRifle</defName>
 							<statBases>
@@ -255,7 +257,7 @@
 								<Bulk>9.73</Bulk>
 								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<recoilAmount>0.96</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -269,7 +271,7 @@
 								<soundCastTail>GunTail_Heavy</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>30</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -281,7 +283,7 @@
 								<aiAimMode>Snapshot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="AT_AcidLineRifle"]/weaponTags</xpath>
 							<value>
@@ -289,9 +291,8 @@
 							</value>
 						</li>
 
-			
 						<!-- ========== Launcher =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>AT_AcidLauncher</defName>
 							<statBases>
@@ -301,7 +302,7 @@
 								<Bulk>10.03</Bulk>
 								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -316,7 +317,7 @@
 									<canTargetLocations>true</canTargetLocations>
 								</targetParams>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>120</magazineSize>
 								<reloadTime>7.8</reloadTime>
@@ -325,9 +326,9 @@
 							<FireModes>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Glue Launcher =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>AT_Combatglue</defName>
 							<statBases>
@@ -338,7 +339,7 @@
 								<Mass>5.3</Mass>
 								<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<recoilAmount>2.93</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -353,7 +354,7 @@
 									<canTargetLocations>true</canTargetLocations>
 								</targetParams>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>6</magazineSize>
 								<reloadTime>4</reloadTime>
@@ -362,9 +363,9 @@
 							<FireModes>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== LMG =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>AT_LMG</defName>
 							<statBases>
@@ -375,7 +376,7 @@
 								<Mass>7.40</Mass>
 								<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<recoilAmount>1.22</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -393,7 +394,7 @@
 								</targetParams>
 								<recoilPattern>Mounted</recoilPattern>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>100</magazineSize>
 								<reloadTime>7.8</reloadTime>
@@ -405,9 +406,9 @@
 								<aiAimMode>SuppressFire</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Crossbow =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>AT_AcidCross</defName>
 							<statBases>
@@ -434,18 +435,17 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
-			
+
 						<!-- ========== Melee Attacks =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="AT_AcidRifle" or
-				defName="AT_AcidAssaultRifle" or
-				defName="AT_AcidLauncher" or
-				defName="AT_LMG" or
-				defName="AT_Combatglue" or
-				defName="AT_AcidCross"
-				]/tools							</xpath>
+								defName="AT_AcidAssaultRifle" or
+								defName="AT_AcidLauncher" or
+								defName="AT_LMG" or
+								defName="AT_Combatglue" or
+								defName="AT_AcidCross"
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -482,10 +482,10 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="AT_AcidLineRifle"
-				]/tools							</xpath>
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -525,7 +525,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

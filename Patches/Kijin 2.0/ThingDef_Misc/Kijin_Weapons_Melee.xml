@@ -1,17 +1,19 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Kijin Race 2.0</li></mods>
-			
+
+				<mods>
+					<li>Kijin Race 2.0</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
 						<!--========= Melee =========-->
-			
+
 						<!--Polearm counts as Glaive-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Kijin_Polearm"]/tools</xpath>
 							<value>
@@ -53,7 +55,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kijin_Polearm"]/statBases</xpath>
 							<value>
@@ -61,7 +63,7 @@
 								<Bulk>10</Bulk>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kijin_Polearm"]</xpath>
 							<value>
@@ -72,9 +74,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<!--Mace with 2kg mass-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Kijin_Mace"]/tools</xpath>
 							<value>
@@ -103,7 +105,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kijin_Mace"]/statBases</xpath>
 							<value>
@@ -111,7 +113,7 @@
 								<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kijin_Mace"]</xpath>
 							<value>
@@ -122,9 +124,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<!--30kg, 12.5m/s swing, top heavy-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Kijin_100tHammer"]/tools</xpath>
 							<value>
@@ -143,7 +145,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kijin_100tHammer"]/statBases</xpath>
 							<value>
@@ -151,7 +153,7 @@
 								<MeleeCounterParryBonus>0.07</MeleeCounterParryBonus>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kijin_100tHammer"]</xpath>
 							<value>
@@ -163,9 +165,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<!--Dagger : Double Parry length, two handed-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Kijin_PoisonDagger"]/tools</xpath>
 							<value>
@@ -185,7 +187,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kijin_PoisonDagger"]/statBases</xpath>
 							<value>
@@ -193,7 +195,7 @@
 								<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Kijin_PoisonDagger"]</xpath>
 							<value>
@@ -204,9 +206,9 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-			
+
 						<!--Fireblade : Royalty Only-->
-			
+
 						<li Class="PatchOperationConditional">
 							<xpath>Defs/ThingDef[defName="Kijin_FlameSword"]</xpath>
 							<match Class="PatchOperationSequence">
@@ -230,7 +232,7 @@
 											</tools>
 										</value>
 									</li>
-					
+
 									<li Class="PatchOperationAdd">
 										<xpath>Defs</xpath>
 										<value>
@@ -240,14 +242,14 @@
 											</DamageDef>
 										</value>
 									</li>
-					
+
 									<li Class="PatchOperationReplace">
 										<xpath>Defs/ManeuverDef[defName="Kijin_Sword"]/verb/verbClass</xpath>
 										<value>
 											<verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
 										</value>
 									</li>
-					
+
 									<li Class="PatchOperationAdd">
 										<xpath>Defs/ThingDef[defName="Kijin_FlameSword"]/statBases</xpath>
 										<value>
@@ -266,11 +268,11 @@
 											</equippedStatOffsets>
 										</value>
 									</li>
-					
+
 								</operations>
 							</match>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

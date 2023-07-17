@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Vanilla Genetics Expanded</li>
 		</mods>
-		
+
 		<match Class="PatchOperationSequence">
 			<operations>
-	
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="GR_ArchotechCentipede"]</xpath>
 					<value>
@@ -16,7 +16,7 @@
 						</li>
 					</value>
 				</li>
-						
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="GR_ArchotechCentipede"]/statBases</xpath>
 					<value>
@@ -42,14 +42,16 @@
 						<ArmorRating_Sharp>50</ArmorRating_Sharp>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="GR_ArchotechCentipede"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
 								<label>head</label>
-								<capacities><li>Blunt</li></capacities>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
 								<power>160</power>
 								<cooldownTime>2</cooldownTime>
 								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>

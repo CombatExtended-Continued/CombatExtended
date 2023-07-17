@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -6,7 +6,6 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-
 
 				<!-- ========== Gun Complex ========== -->
 
@@ -592,10 +591,10 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="VulcanCannon" or
-					defName="VulcanCannonManned" or
-					defName="ChargeCannon"
-					]/passability					</xpath>
+						defName="VulcanCannon" or
+						defName="VulcanCannonManned" or
+						defName="ChargeCannon"
+						]/passability </xpath>
 					<value>
 						<!-- Turrets must be passable to allow reloading -->
 						<passability>PassThroughOnly</passability>
@@ -604,10 +603,10 @@
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-					defName="VulcanCannon" or
-					defName="VulcanCannonManned" or
-					defName="ChargeCannon"
-					]					</xpath>
+						defName="VulcanCannon" or
+						defName="VulcanCannonManned" or
+						defName="ChargeCannon"
+						] </xpath>
 					<value>
 						<!-- Workaround to replace passability=Impassable -->
 						<pathCost>200</pathCost>
@@ -719,21 +718,21 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="GunComplex" or
-					defName="RocketComplex" or
-					defName="MilitaryTurretGun" or
-					defName="MilitaryTurretGunManned" or
-					defName="ShredderTurretGun" or
-					defName="ShredderTurretGunManned" or
-					defName="PrecisionTurretGun" or
-					defName="PrecisionTurretGunManned" or
-					defName="BlastTurretGun" or
-					defName="BlastTurretGunManned" or
-					defName="VulcanCannon" or
-					defName="VulcanCannonManned" or
-					defName="ChargeCannon" or
-					defName="Turret_DevastatorMortarBomb"
-				]/thingClass					</xpath>
+						defName="GunComplex" or
+						defName="RocketComplex" or
+						defName="MilitaryTurretGun" or
+						defName="MilitaryTurretGunManned" or
+						defName="ShredderTurretGun" or
+						defName="ShredderTurretGunManned" or
+						defName="PrecisionTurretGun" or
+						defName="PrecisionTurretGunManned" or
+						defName="BlastTurretGun" or
+						defName="BlastTurretGunManned" or
+						defName="VulcanCannon" or
+						defName="VulcanCannonManned" or
+						defName="ChargeCannon" or
+						defName="Turret_DevastatorMortarBomb"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
@@ -741,15 +740,15 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="MilitaryTurretGun" or
-					defName="MilitaryTurretGunManned" or
-					defName="ShredderTurretGun" or
-					defName="ShredderTurretGunManned" or
-					defName="PrecisionTurretGun" or
-					defName="PrecisionTurretGunManned" or
-					defName="BlastTurretGun" or
-					defName="BlastTurretGunManned"
-				]/fillPercent					</xpath>
+						defName="MilitaryTurretGun" or
+						defName="MilitaryTurretGunManned" or
+						defName="ShredderTurretGun" or
+						defName="ShredderTurretGunManned" or
+						defName="PrecisionTurretGun" or
+						defName="PrecisionTurretGunManned" or
+						defName="BlastTurretGun" or
+						defName="BlastTurretGunManned"
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
 					</value>
@@ -757,39 +756,39 @@
 
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-					defName="GunComplex" or
-					defName="RocketComplex" or
-					defName="MilitaryTurretGun" or
-					defName="MilitaryTurretGunManned" or
-					defName="ShredderTurretGun" or
-					defName="ShredderTurretGunManned" or
-					defName="PrecisionTurretGun" or
-					defName="PrecisionTurretGunManned" or
-					defName="BlastTurretGun" or
-					defName="BlastTurretGunManned" or
-					defName="VulcanCannon" or
-					defName="VulcanCannonManned" or
-					defName="ChargeCannon" or
-					defName="Turret_DevastatorMortarBomb"
-				]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						defName="GunComplex" or
+						defName="RocketComplex" or
+						defName="MilitaryTurretGun" or
+						defName="MilitaryTurretGunManned" or
+						defName="ShredderTurretGun" or
+						defName="ShredderTurretGunManned" or
+						defName="PrecisionTurretGun" or
+						defName="PrecisionTurretGunManned" or
+						defName="BlastTurretGun" or
+						defName="BlastTurretGunManned" or
+						defName="VulcanCannon" or
+						defName="VulcanCannonManned" or
+						defName="ChargeCannon" or
+						defName="Turret_DevastatorMortarBomb"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="GunComplex" or
-					defName="RocketComplex" or
-					defName="MilitaryTurretGun" or
-					defName="MilitaryTurretGunManned" or
-					defName="ShredderTurretGun" or
-					defName="ShredderTurretGunManned" or
-					defName="PrecisionTurretGun" or
-					defName="PrecisionTurretGunManned" or
-					defName="BlastTurretGun" or
-					defName="BlastTurretGunManned" or
-					defName="VulcanCannon" or
-					defName="VulcanCannonManned" or
-					defName="ChargeCannon"
-				]/statBases/ShootingAccuracyTurret					</xpath>
+						defName="GunComplex" or
+						defName="RocketComplex" or
+						defName="MilitaryTurretGun" or
+						defName="MilitaryTurretGunManned" or
+						defName="ShredderTurretGun" or
+						defName="ShredderTurretGunManned" or
+						defName="PrecisionTurretGun" or
+						defName="PrecisionTurretGunManned" or
+						defName="BlastTurretGun" or
+						defName="BlastTurretGunManned" or
+						defName="VulcanCannon" or
+						defName="VulcanCannonManned" or
+						defName="ChargeCannon"
+						]/statBases/ShootingAccuracyTurret </xpath>
 					<value>
 						<AimingAccuracy>1</AimingAccuracy>
 						<ShootingAccuracyTurret>1</ShootingAccuracyTurret>

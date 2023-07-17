@@ -1,31 +1,33 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Moyo-Light in the Abyss</li></mods>
-			
+
+				<mods>
+					<li>Moyo-Light in the Abyss</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-		
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_RedMoyo"]/comps</xpath>
 							<value>
-								<li Class="CombatExtended.CompProperties_Inventory"/>
+								<li Class="CombatExtended.CompProperties_Inventory" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_RedMoyo"]/comps</xpath>
 							<value>
 								<li>
 									<compClass>CombatExtended.CompPawnGizmo</compClass>
 								</li>
-								<li Class="CombatExtended.CompProperties_Suppressable"/>
+								<li Class="CombatExtended.CompProperties_Suppressable" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_RedMoyo"]</xpath>
 							<value>
@@ -35,7 +37,6 @@
 							</value>
 						</li>
 
-			
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_RedMoyo"]/statBases</xpath>
 							<value>
@@ -46,9 +47,9 @@
 								<SmokeSensitivity>0.9</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<!--Base has no headbut, only bite-->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_RedMoyo"]/tools</xpath>
 							<value>
@@ -99,8 +100,7 @@
 								</tools>
 							</value>
 						</li>
-			
-			
+
 					</operations>
 				</match>
 			</li>

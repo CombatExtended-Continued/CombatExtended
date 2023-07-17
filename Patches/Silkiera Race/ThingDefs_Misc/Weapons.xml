@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-		
+
 		<operations>
 			<li Class="PatchOperationFindMod">
-				<mods><li>[1.4]Silkiera Race</li></mods>
+				<mods>
+					<li>[1.4]Silkiera Race</li>
+				</mods>
 				<match Class="PatchOperationSequence">
 					<operations>
-				
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_a"]/tools</xpath>
 							<value>
@@ -49,7 +51,7 @@
 								</tools>
 							</value>
 						</li>
-				
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_a"]/statBases</xpath>
 							<value>
@@ -57,7 +59,7 @@
 								<Bulk>10</Bulk>
 							</value>
 						</li>
-				
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_a"]/equippedStatOffsets</xpath>
 							<value>
@@ -66,7 +68,7 @@
 								<MeleeDodgeChance>0.67</MeleeDodgeChance>
 							</value>
 						</li>
-				
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="HAR_SK_Weapon_b"]/tools</xpath>
 							<value>
@@ -125,12 +127,12 @@
 								<MeleeDodgeChance>0.9</MeleeDodgeChance>
 							</value>
 						</li>
-				
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[
-					defName="Gun_AssaultRifle_SK" or 
-					defName="Gun_IncendiaryLauncher_SK"
-					]/tools							</xpath>
+								defName="Gun_AssaultRifle_SK" or
+								defName="Gun_IncendiaryLauncher_SK"
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -167,7 +169,7 @@
 								</tools>
 							</value>
 						</li>
-				
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Gun_AssaultRifle_SK</defName>
 							<statBases>
@@ -209,7 +211,7 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-				
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Gun_IncendiaryLauncher_SK</defName>
 							<statBases>
@@ -252,9 +254,9 @@
 							</FireModes>
 							<AllowWithRunAndGun>false</AllowWithRunAndGun>
 						</li>
-				
+
 						<!--Bottle-->
-				
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="HAR_SK_Meal_c"]/tools</xpath>
 							<value>
@@ -300,7 +302,7 @@
 								</equippedStatOffsets>
 							</value>
 						</li>
-				
+
 					</operations>
 				</match>
 			</li>

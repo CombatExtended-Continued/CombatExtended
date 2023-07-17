@@ -47,7 +47,6 @@
 					</FireModes>
 				</li>
 
-
 				<!-- ========== Heavy Laser Turret ========== -->
 
 				<!-- Replace the custom verb with the a common vanilla one, since custom verbs are not patchable -->
@@ -104,7 +103,6 @@
 					</FireModes>
 				</li>
 
-
 				<!-- ========== HAAC ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -148,7 +146,7 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="RSTurretLLTBase" or @Name="RSTurretHLTBase" or @Name="RSTurretHAACBase"
-				]/thingClass					</xpath>
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
@@ -156,7 +154,7 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="RSTurretLLTBase" or @Name="RSTurretHLTBase" or @Name="RSTurretHAACBase"
-				]/fillPercent					</xpath>
+						]/fillPercent </xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
 					</value>
@@ -164,12 +162,12 @@
 
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
-				]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
-				]/statBases					</xpath>
+						]/statBases </xpath>
 					<value>
 						<AimingAccuracy>1</AimingAccuracy>
 					</value>
@@ -177,7 +175,7 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
-                ]/statBases/ShootingAccuracyTurret					</xpath>
+						]/statBases/ShootingAccuracyTurret </xpath>
 					<value>
 						<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
 					</value>

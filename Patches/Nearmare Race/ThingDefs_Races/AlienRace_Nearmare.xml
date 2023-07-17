@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>[1.4]Nearmare Race</li></mods>
-			
+
+				<mods>
+					<li>[1.4]Nearmare Race</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
-		
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[@Name="HAR_Nearmaere_BasePawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 							<value>
@@ -19,21 +21,21 @@
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="HAR_Nearmaere_BasePawn"]/comps</xpath>
 							<value>
-								<li Class="CombatExtended.CompProperties_Inventory"/>
-								<li Class="CombatExtended.CompProperties_TacticalManager"/>
+								<li Class="CombatExtended.CompProperties_Inventory" />
+								<li Class="CombatExtended.CompProperties_TacticalManager" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="HAR_Nearmaere_BasePawn"]/comps</xpath>
 							<value>
 								<li>
 									<compClass>CombatExtended.CompPawnGizmo</compClass>
 								</li>
-								<li Class="CombatExtended.CompProperties_Suppressable"/>
+								<li Class="CombatExtended.CompProperties_Suppressable" />
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Nearmaere_Base"]</xpath>
 							<value>
@@ -43,7 +45,6 @@
 							</value>
 						</li>
 
-			
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Nearmaere_Base"]/statBases</xpath>
 							<value>
@@ -51,7 +52,7 @@
 								<SmokeSensitivity>1.2</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Nearmaere_Base"]/tools</xpath>
 							<value>
@@ -90,7 +91,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Nearmaere_Base"]/alienRace/raceRestriction/whiteApparelList</xpath>
 							<value>
@@ -103,8 +104,7 @@
 								<li>CE_Apparel_ImprovGasMask</li>
 							</value>
 						</li>
-			
-			
+
 					</operations>
 				</match>
 			</li>

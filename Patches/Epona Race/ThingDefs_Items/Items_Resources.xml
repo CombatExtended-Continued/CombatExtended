@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-		
+
 		<operations>
 			<li Class="PatchOperationFindMod">
-				<mods><li>Epona Race</li></mods>
+				<mods>
+					<li>Epona Race</li>
+				</mods>
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<!-- ==========  Giant Sheep Wool  =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/statBases/StuffPower_Armor_Sharp</xpath>
 							<value>
 								<StuffPower_Armor_Sharp>0.45</StuffPower_Armor_Sharp>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/statBases/StuffPower_Armor_Blunt</xpath>
 							<value>
 								<StuffPower_Armor_Blunt>0.18</StuffPower_Armor_Blunt>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/statBases/StuffPower_Armor_Heat</xpath>
 							<value>
@@ -33,7 +35,7 @@
 								<WornBulk>0.5</WornBulk>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationConditional">
 							<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/stuffProps/categories</xpath>
 							<nomatch Class="PatchOperationAdd">
@@ -51,8 +53,7 @@
 								</value>
 							</match>
 						</li>
-			
-			
+
 					</operations>
 				</match>
 			</li>

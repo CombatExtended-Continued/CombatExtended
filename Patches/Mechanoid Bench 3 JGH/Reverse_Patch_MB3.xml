@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -63,14 +63,14 @@
 						<xpath>Defs/ThingDef[defName="MechanoidBench_Bench"]/recipes/li[5]</xpath>
 					</match>
 				</li>
-                
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/RecipeDef[defName="MechanoidBench_MakeChargeBlaster" or defName="MechanoidBench_MakeInfernoCannon" or defName="MechanoidBench_MakeNeedleGun"]</xpath>
 					<match Class="PatchOperationRemove">
 						<xpath>Defs/RecipeDef[defName="MechanoidBench_MakeChargeBlaster" or defName="MechanoidBench_MakeInfernoCannon" or defName="MechanoidBench_MakeNeedleGun"]</xpath>
 					</match>
 				</li>
-                
+
 				<!-- Redundant ResearchProjectDef -->
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/RecipeDef[defName="MechanoidBench_MakeChargeBlaster" or defName="MechanoidBench_MakeInfernoCannon" or defName="MechanoidBench_MakeNeedleGun"]/researchPrerequisite</xpath>
