@@ -61,7 +61,7 @@ namespace CombatExtended
                     fragSpeedFactor * projectile.def.projectile.speed,
                     projectile
                 );
-                
+
                 projectile.castShadow = (Rand.Value < fragShadowChance); // moved after Launch due to it assigning shadow
 
                 fragSpawnedInTick++;
