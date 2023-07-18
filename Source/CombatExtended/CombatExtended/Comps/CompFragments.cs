@@ -48,7 +48,6 @@ namespace CombatExtended
 
                 projectile.canTargetSelf = canTargetSelf;
                 projectile.minCollisionDistance = minCollisionDistance;
-                projectile.castShadow = (Rand.Value < fragShadowChance);
                 projectile.logMisses = false;
                 float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);
 
@@ -62,6 +61,8 @@ namespace CombatExtended
                     fragSpeedFactor * projectile.def.projectile.speed,
                     projectile
                 );
+                
+                projectile.castShadow = (Rand.Value < fragShadowChance); // moved after Launch due to it assigning shadow
 
                 fragSpawnedInTick++;
                 if (fragSpawnedInTick >= fragPerTick)
