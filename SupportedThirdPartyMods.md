@@ -366,6 +366,7 @@ Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
+Recon Mechanoid |
 ReGrowth: Extinct Animals |
 Reinforced Mechanoid 2 |
 Remote Detonator	|
@@ -426,11 +427,11 @@ Spartan Foundry	|
 Spidercamp's Horses     |
 SRTS Expanded	|
 Stalingrad – Uniforms   |
-Steamworld Uniforms |
 Star Crafters Armory  |
 Star Wars - Droids |
 Star Wars - Factions |
 Starship Troopers Aracnids  |
+Steamworld Uniforms |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
