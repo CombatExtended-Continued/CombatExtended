@@ -3,21 +3,14 @@
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Alpha Animals</li>
+			<li>Vanilla Animals Expanded — Waste Animals</li>
 		</mods>
 
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="BaseInsect2"]/statBases</xpath>
-					<value>
-						<NightVisionEfficiency>0.5</NightVisionEfficiency>
-					</value>
-				</li>
-
 				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[@Name="AA_AlphaBaseInsect" or @Name="BaseInsect2"]</xpath>
+					<xpath>Defs/ThingDef[@Name="VAEWaste_BaseInsect"]</xpath>
 					<value>
 						<li Class="CombatExtended.PartialArmorExt">
 							<stats>
@@ -41,7 +34,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="AA_AlphaBaseInsect" or @Name="BaseInsect2"]/statBases</xpath>
+					<xpath>Defs/ThingDef[@Name="VAEWaste_BaseInsect"]/statBases</xpath>
 					<value>
 						<PartialArmorBody>0</PartialArmorBody>
 					</value>
@@ -50,4 +43,5 @@
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
