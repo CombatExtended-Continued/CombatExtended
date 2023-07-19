@@ -140,6 +140,72 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autohauler"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autohauler"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autominer"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autominer"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autobroadcaster"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autobroadcaster"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Autobroadcaster"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>750</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>2500</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>100</MaxOverHeal>
+							<MinArmorPct>0.75</MinArmorPct>
+							<!-- <MinArmorValueSharp>12</MinArmorValueSharp>
+							<MinArmorValueBlunt>27</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
+					</value>
+				</li>
+
 				<!-- ========== VFE Combat, Riot and Raider Mechs ========== -->
 
 				<li Class="PatchOperationAddModExtension">
@@ -281,6 +347,108 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Turret"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Turret"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Pyro"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Pyro"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Riot" or defName="VFE_Mechanoids_Turret" or defName="VFE_Mechanoids_Pyro"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2500</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>2500</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>250</MaxOverHeal>
+							<MinArmorPct>0.75</MinArmorPct>
+							<!-- <MinArmorValueSharp>12</MinArmorValueSharp>
+							<MinArmorValueBlunt>27</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Raider"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Raider"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Raider"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2750</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>2500</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>275</MaxOverHeal>
+							<MinArmorPct>0.75</MinArmorPct>
+							<!-- <MinArmorValueSharp>12</MinArmorValueSharp>
+							<MinArmorValueBlunt>27</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
+					</value>
+				</li>
+
 				<!-- ========== VFE Strider ========== -->
 
 				<li Class="PatchOperationAddModExtension">
@@ -334,6 +502,42 @@
 								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 							</li>
 						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>3500</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>2500</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>350</MaxOverHeal>
+							<MinArmorPct>0.75</MinArmorPct>
+							<!-- <MinArmorValueSharp>12</MinArmorValueSharp>
+							<MinArmorValueBlunt>27</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
 					</value>
 				</li>
 
@@ -407,6 +611,42 @@
 								<armorPenetrationBlunt>0.825</armorPenetrationBlunt>
 							</li>
 						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_AutoMedic"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mechanoids_AutoMedic"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFE_Mechanoids_AutoMedic"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2500</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>2500</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>250</MaxOverHeal>
+							<MinArmorPct>0.75</MinArmorPct>
+							<!-- <MinArmorValueSharp>12</MinArmorValueSharp>
+							<MinArmorValueBlunt>27</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
 					</value>
 				</li>
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>RimWorld - Witcher Monster Hunt</li>
@@ -23,13 +24,6 @@
 						<MeleeDodgeChance>0.18</MeleeDodgeChance>
 						<MeleeCritChance>0.07</MeleeCritChance>
 						<MeleeParryChance>0.08</MeleeParryChance>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/statBases/MoveSpeed</xpath>
-					<value>
-						<MoveSpeed>4</MoveSpeed>
 					</value>
 				</li>
 
@@ -64,19 +58,48 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>375</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<!-- <Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>37</MaxOverHeal> -->
+							<MinArmorPct>0.5</MinArmorPct>
+							<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+							<MinArmorValueBlunt>22</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWarrior"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>QuadrupedLow</bodyShape>
 						</li>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWarrior"]/statBases/MoveSpeed</xpath>
-					<value>
-						<MoveSpeed>4.5</MoveSpeed>
 					</value>
 				</li>
 
@@ -134,6 +157,42 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>750</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<!-- <Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>75</MaxOverHeal> -->
+							<MinArmorPct>0.5</MinArmorPct>
+							<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+							<MinArmorValueBlunt>22</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]</xpath>
 					<value>
@@ -149,13 +208,6 @@
 						<MeleeDodgeChance>0.01</MeleeDodgeChance>
 						<MeleeCritChance>0.65</MeleeCritChance>
 						<MeleeParryChance>0.3</MeleeParryChance>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]/statBases/MoveSpeed</xpath>
-					<value>
-						<MoveSpeed>3.5</MoveSpeed>
 					</value>
 				</li>
 
@@ -203,7 +255,44 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2500</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<!-- <Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>250</MaxOverHeal> -->
+							<MinArmorPct>0.5</MinArmorPct>
+							<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+							<MinArmorValueBlunt>22</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
