@@ -74,6 +74,7 @@ Alpha Genes |
 Alpha Genes - Insectoid Mutations |
 Alpha Mechs |
 Alpha Memes |
+Alpha Mythology |
 Alpha Ships |
 Altered Carbon |
 Ancient Blade Cyborg  |
@@ -271,7 +272,6 @@ Let's Have a Cat!	|
 Littluna Race |
 Logann Race	|
 Logistics_Mechanoid |
-Magical Menagerie	|
 Magic Wands |
 Makeshift Melee Weapons |
 Marilyn the Mincho Worshipper Witch |
