@@ -34,7 +34,33 @@
 										</parts>
 									</li>
 								</stats>
-							</li> 
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[@Name="AG_BaseInsect"]</xpath>
+						<value>
+							<li Class="CombatExtended.PartialArmorExt">
+								<stats>
+									<li>
+										<useStatic>false</useStatic>
+										<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+										<parts>
+											<li>AG_LeftPincer</li>
+											<li>AG_RightPincer</li>
+										</parts>
+									</li>
+									<li>
+										<useStatic>false</useStatic>
+										<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+										<parts>
+											<li>AG_LeftPincer</li>
+											<li>AG_RightPincer</li>
+										</parts>
+									</li>
+								</stats>
+							</li>
 						</value>
 					</li>
 
@@ -175,6 +201,42 @@
 						</value>
 					</li>
 
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>1125</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>600</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<!-- <Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>112</MaxOverHeal> -->
+								<MinArmorPct>0.5</MinArmorPct>
+								<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+								<MinArmorValueBlunt>22</MinArmorValueBlunt>
+								<MinArmorValueHeat>0.2</MinArmorValueHeat>
+								<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+							</li>
+						</value>
+					</li>
+
 					<!-- ======= AG_ScorpionLike Body ======= -->
 
 					<li Class="PatchOperationConditional">
@@ -243,6 +305,24 @@
 						</nomatch>
 						<match Class="PatchOperationAdd">
 							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/groups</xpath>
+							<value>
+								<li>CoveredByNaturalArmor</li>
+							</value>
+						</match>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/parts/li[def="AA_InsectMouth"]/groups</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/parts/li[def="AA_InsectMouth"]</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+						</nomatch>
+						<match Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/parts/li[def="AA_InsectMouth"]/groups</xpath>
 							<value>
 								<li>CoveredByNaturalArmor</li>
 							</value>
