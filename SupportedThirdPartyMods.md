@@ -120,6 +120,7 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Big and Small	|
 Biomes! Caverns	|
 Biomes! Core	|
 Biotech Expansion - Mammalia  |
@@ -455,6 +456,7 @@ T's Conversion Staff |
 T's Samurai Faction |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
+Vampires, Demons, and the Undead  |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Caves |
 Vanilla Animals Expanded - Endangered |
