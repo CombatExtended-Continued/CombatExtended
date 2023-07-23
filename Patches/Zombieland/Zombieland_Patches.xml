@@ -88,9 +88,9 @@
 				<!-- ===== Zombie Spitter ===== -->
 
 				<li Class="PatchOperationConditional">
-					<xpath>Defs/BodyDef[defName="ZombieSpitter"]/corePart/groups</xpath>
+					<xpath>Defs/BodyDef[defName="ZombieSpitterBody"]/corePart/groups</xpath>
 					<nomatch Class="PatchOperationAdd">
-						<xpath>Defs/BodyDef[defName="ZombieSpitter"]/corePart</xpath>
+						<xpath>Defs/BodyDef[defName="ZombieSpitterBody"]/corePart</xpath>
 						<value>
 							<groups>
 								<li>CoveredByNaturalArmor</li>
@@ -98,7 +98,7 @@
 						</value>
 					</nomatch>
 					<match Class="PatchOperationAdd">
-						<xpath>Defs/BodyDef[defName="ZombieSpitter"]/corePart/groups</xpath>
+						<xpath>Defs/BodyDef[defName="ZombieSpitterBody"]/corePart/groups</xpath>
 						<value>
 							<li>CoveredByNaturalArmor</li>
 						</value>
@@ -180,6 +180,13 @@
 								<armorPenetrationSharp>0.5</armorPenetrationSharp>
 							</li>
 						</tools>
+					</value>
+				</li>
+-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Chainsaw"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
 					</value>
 				</li>
 
