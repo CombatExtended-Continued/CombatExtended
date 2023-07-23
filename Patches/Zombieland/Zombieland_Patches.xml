@@ -8,6 +8,8 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+				<!-- ===== Zombies ===== -->
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="Zombie"]</xpath>
 					<value>
@@ -80,6 +82,111 @@
 								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 							</li>
 						</tools>
+					</value>
+				</li>
+
+				<!-- ===== Zombie Spitter ===== -->
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="ZombieSpitterBody"]/corePart/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="ZombieSpitterBody"]/corePart</xpath>
+						<value>
+							<groups>
+								<li>CoveredByNaturalArmor</li>
+							</groups>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="ZombieSpitterBody"]/corePart/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ZombieSpitter"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>QuadrupedLow</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ZombieSpitter"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ZombieSpitter"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="ZombieSpitter"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="ZombieSpitter"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ZombieSpitter"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2000</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<!-- <Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>75</MaxOverHeal> -->
+							<MinArmorPct>0.5</MinArmorPct>
+							<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+							<MinArmorValueBlunt>22</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
+					</value>
+				</li>
+
+				<!-- ===== Misc Stuff ===== -->
+<<
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Chainsaw"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>0.25</cooldownTime>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Chainsaw"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
 					</value>
 				</li>
 
