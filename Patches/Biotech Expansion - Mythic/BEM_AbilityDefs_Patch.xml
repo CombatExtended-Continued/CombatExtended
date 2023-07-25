@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Biotech Expansion - Mythic</li>
@@ -7,27 +8,27 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-                <li Class="PatchOperationAdd">
-                    <xpath>Defs/ThingDef[defName="BTEMy_BrilliantBlast"]</xpath>
-                    <value>
-                        <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-                    </value>
-                </li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BTEMy_BrilliantBlast"]</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
 
-                <li Class="PatchOperationReplace">
-                    <xpath>Defs/ThingDef[defName="BTEMy_BrilliantBlast"]/projectile</xpath>
-                    <value>
-                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
-                            <explosionRadius>3</explosionRadius>
-                            <damageDef>Bomb</damageDef>
-                            <damageAmountBase>56</damageAmountBase>
-                            <explosionDelay>0</explosionDelay>
-                            <dropsCasings>false</dropsCasings>
-                            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-                            <speed>80</speed>
-                        </projectile>
-                    </value>
-                </li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BTEMy_BrilliantBlast"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>3</explosionRadius>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>56</damageAmountBase>
+							<explosionDelay>0</explosionDelay>
+							<dropsCasings>false</dropsCasings>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<speed>80</speed>
+						</projectile>
+					</value>
+				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BTEMy_Punish"]/projectile</xpath>
@@ -59,4 +60,5 @@
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
