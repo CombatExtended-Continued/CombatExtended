@@ -78,6 +78,10 @@ namespace CombatExtended.WorldObjects
                 return;
             }
             _configTick = GenTicks.TicksGame;
+            if (recentShells == null)
+            {
+                recentShells = new List<WorldDamageInfo>();
+            }
 
             bool techLevelNoImpact = Props.techLevelNoImpact;
             ArmorDamageMultiplier = 1f;
