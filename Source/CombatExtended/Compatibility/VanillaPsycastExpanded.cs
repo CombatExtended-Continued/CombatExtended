@@ -67,7 +67,7 @@ namespace CombatExtended.Compatibility
                 var newExactPos = projectile.ExactPosition;
                 if (interceptor.GetType() == typeof(Hediff_Overshield))
                 {
-                    var result = interceptor.pawn.Position == cell || PreventTryColideWithPawn(projectile, interceptor.pawn, newExactPos);
+                    var result = interceptor.pawn != launcher && (interceptor.pawn.Position == cell || PreventTryColideWithPawn(projectile, interceptor.pawn, newExactPos));
                     if (result)
                     {
                         projectile.ExactPosition = IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.DrawPos, interceptor.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
