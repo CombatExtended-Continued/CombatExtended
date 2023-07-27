@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Recon Mechanoid</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Melee Tools -->
+				<li Class="PatchOperationReplace">
+					<xpath>
+						Defs/ThingDef[
+						defName="Gun_ReconSMG" or
+						defName="Gun_MechScoutGun" or
+						defName="Gun_ReconBlaster" or
+						defName="Gun_ScoutLancer"
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Recon SMG -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_ReconSMG</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.19</ShotSpread>
+						<SwayFactor>0.98</SwayFactor>
+						<Bulk>3</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.79</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>20.9</range>
+						<burstShotCount>4</burstShotCount>
+						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+						<soundCast>Shot_Slugthrower</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_45ACP</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_BROOM</li>
+					</weaponTags>
+				</li>
+
+				<!-- Recon Blaster  -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_ReconBlaster</defName>
+					<statBases>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<ShotSpread>0.15</ShotSpread>
+						<SwayFactor>0.78</SwayFactor>
+						<Bulk>4.50</Bulk>
+						<Mass>2.0</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.42</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+						<burstShotCount>4</burstShotCount>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<warmupTime>0.5</warmupTime>
+						<range>28</range>
+						<soundCast>Shot_ChargeBlaster</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>28</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<!-- Scout Gun -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_MechScoutGun</defName>
+					<statBases>
+						<Mass>3.26</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>1.35</SwayFactor>
+						<Bulk>5</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.54</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>46</range>
+						<soundCast>Shot_Slugthrower</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_AR</li>
+					</weaponTags>
+				</li>
+
+				<!-- Scout Lancer -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_ScoutLancer</defName>
+					<statBases>
+						<Mass>3.26</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>1.35</SwayFactor>
+						<Bulk>5</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.54</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>52</range>
+						<soundCast>Shot_ChargeBlaster</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_AR</li>
+					</weaponTags>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

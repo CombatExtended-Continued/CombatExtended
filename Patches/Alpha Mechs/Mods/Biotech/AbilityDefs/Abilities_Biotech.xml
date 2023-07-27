@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/AbilityDef[defName="AM_Detonate"]/comps/li[@Class="AlphaMechs.CompProperties_Detonate"]/damageAmount</xpath>
+						<value>
+							<damageAmount>94</damageAmount>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/AbilityDef[defName="AM_LongjumpMech"]/verbProperties/range</xpath>
+						<value>
+							<range>22.9</range>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

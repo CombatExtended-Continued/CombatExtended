@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>MorrowRim - Bloodmoon</li>
@@ -131,7 +132,113 @@
 						</ThingDef>
 					</value>
 				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- ==================== AmmoSet ========================== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_3006Springfield_BloodMoon</defName>
+							<label>.30-06 Springfield</label>
+							<ammoTypes>
+								<Ammo_3006Springfield_FMJ>Bullet_3006Springfield_FMJ_BloodMoon</Ammo_3006Springfield_FMJ>
+								<Ammo_3006Springfield_AP>Bullet_3006Springfield_AP_BloodMoon</Ammo_3006Springfield_AP>
+								<Ammo_3006Springfield_HP>Bullet_3006Springfield_HP_BloodMoon</Ammo_3006Springfield_HP>
+								<Ammo_3006Springfield_Incendiary>Bullet_3006Springfield_Incendiary_BloodMoon</Ammo_3006Springfield_Incendiary>
+								<Ammo_3006Springfield_HE>Bullet_3006Springfield_HE_BloodMoon</Ammo_3006Springfield_HE>
+								<Ammo_3006Springfield_Sabot>Bullet_3006Springfield_Sabot_BloodMoon</Ammo_3006Springfield_Sabot>
+							</ammoTypes>
+							<similarTo>AmmoSet_Rifle</similarTo>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ================== Projectiles ================== -->
+
+						<ThingDef ParentName="Base3006SpringfieldBullet">
+							<defName>Bullet_3006Springfield_FMJ_BloodMoon</defName>
+							<label>.30-06 Springfield cartridge (FMJ)</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>MorrowRim_BulletHunters</damageDef>
+								<damageAmountBase>21</damageAmountBase>
+								<armorPenetrationSharp>8</armorPenetrationSharp>
+								<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="Base3006SpringfieldBullet">
+							<defName>Bullet_3006Springfield_AP_BloodMoon</defName>
+							<label>.30-06 Springfield cartridge (AP)</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>MorrowRim_BulletHunters</damageDef>
+								<damageAmountBase>13</damageAmountBase>
+								<armorPenetrationSharp>16</armorPenetrationSharp>
+								<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="Base3006SpringfieldBullet">
+							<defName>Bullet_3006Springfield_HP_BloodMoon</defName>
+							<label>.30-06 Springfield cartridge (HP)</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>MorrowRim_BulletHunters</damageDef>
+								<damageAmountBase>26</damageAmountBase>
+								<armorPenetrationSharp>4</armorPenetrationSharp>
+								<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="Base3006SpringfieldBullet">
+							<defName>Bullet_3006Springfield_Incendiary_BloodMoon</defName>
+							<label>.30-06 Springfield bullet (AP-I)</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>MorrowRim_BulletHunters</damageDef>
+								<damageAmountBase>13</damageAmountBase>
+								<armorPenetrationSharp>16</armorPenetrationSharp>
+								<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>8</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="Base3006SpringfieldBullet">
+							<defName>Bullet_3006Springfield_HE_BloodMoon</defName>
+							<label>.30-06 Springfield bullet (AP-HE)</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>MorrowRim_BulletHunters</damageDef>
+								<damageAmountBase>21</damageAmountBase>
+								<armorPenetrationSharp>8</armorPenetrationSharp>
+								<armorPenetrationBlunt>79.22</armorPenetrationBlunt>
+								<secondaryDamage>
+									<li>
+										<def>Bomb_Secondary</def>
+										<amount>12</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="Base3006SpringfieldBullet">
+							<defName>Bullet_3006Springfield_Sabot_BloodMoon</defName>
+							<label>.30-06 Springfield bullet (Sabot)</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>MorrowRim_BulletHunters</damageDef>
+								<damageAmountBase>11</damageAmountBase>
+								<armorPenetrationSharp>28</armorPenetrationSharp>
+								<armorPenetrationBlunt>101.58</armorPenetrationBlunt>
+								<speed>221</speed>
+							</projectile>
+						</ThingDef>
+
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
