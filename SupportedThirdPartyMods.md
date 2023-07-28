@@ -120,7 +120,10 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
-Big and Small	|
+Big and Small Genes	|
+Big and Small - Medieval Factions	|
+Big and Small - Medieval Overhaul Factions	|
+Big and Small Races	|
 Biomes! Caverns	|
 Biomes! Core	|
 Biotech Expansion - Mammalia  |
