@@ -157,7 +157,7 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>4</explosionRadius>
 			<damageDef>Stun</damageDef>
-			<damageAmountBase>55</damageAmountBase>
+			<damageAmountBase>10</damageAmountBase>
 			<explosionDelay>30</explosionDelay>
 			<soundExplode>Explosion_Stun</soundExplode>
 			<dropsCasings>true</dropsCasings>
@@ -169,6 +169,14 @@
 			<dangerFactor>1.5</dangerFactor>
 			<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>1</damageAmountBase>
+				<explosiveDamageType>Flashbang</explosiveDamageType>
+				<explosiveRadius>4</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
@@ -218,7 +226,7 @@
 		</verbs>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>25</damageAmountBase>
+				<damageAmountBase>5</damageAmountBase>
 				<explosiveDamageType>Stun</explosiveDamageType>
 				<explosiveRadius>4</explosiveRadius>
 				<explosionSound>Explosion_Stun</explosionSound>
