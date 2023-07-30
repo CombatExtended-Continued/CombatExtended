@@ -119,6 +119,17 @@ namespace CombatExtended.WorldObjects
             {
                 return false;
             }
+            budget = (int)(Mathf.CeilToInt(points) * SHELLING_FACTOR);
+            FactionStrengthTracker tracker = comp.parent.Faction.GetStrengthTracker();
+            if (tracker != null)
+            {
+                budget = (int)(budget * Mathf.Max(tracker.StrengthPointsMultiplier, 0.5f));
+            }
+            if (RandomAvailableShell(targetInfo) == null)
+            {
+                Stop();
+                return false;
+            }
             if (targetFaction != null && targetFaction.IsPlayer)
             {
                 TrySendWarning();
@@ -130,12 +141,6 @@ namespace CombatExtended.WorldObjects
             }
             target = targetInfo;
             ticksToNextShot = GetTicksToCooldown();
-            budget = (int)(Mathf.CeilToInt(points) * SHELLING_FACTOR);
-            FactionStrengthTracker tracker = comp.parent.Faction.GetStrengthTracker();
-            if (tracker != null)
-            {
-                budget = (int)(budget * Mathf.Max(tracker.StrengthPointsMultiplier, 0.5f));
-            }
             startedAt = GenTicks.TicksGame;
             shotsFired = 0;
             return true;
@@ -153,10 +158,7 @@ namespace CombatExtended.WorldObjects
 
         protected virtual void CastShot()
         {
-            float distance = Find.WorldGrid.TraversalDistanceBetween(target.Tile, comp.parent.Tile, true);
-            ShellingResponseDef.ShellingResponsePart_Projectile responseProjectile = AvailableProjectiles
-                .Where(p => (budget - p.points) > 0 && p.projectile.projectile is ProjectilePropertiesCE propEC && propEC.shellingProps.range >= distance * 0.5f)
-                .RandomElementByWeightWithFallback(p => p.weight, null);
+            ShellingResponseDef.ShellingResponsePart_Projectile responseProjectile = RandomAvailableShell(target);
 
             shotsFired++;
             if (responseProjectile == null)
@@ -227,6 +229,10 @@ namespace CombatExtended.WorldObjects
                 Find.LetterStack.ReceiveLetter(letter);
             }
         }
+        private ShellingResponseDef.ShellingResponsePart_Projectile RandomAvailableShell(GlobalTargetInfo target) =>
+            AvailableProjectiles
+                .Where(p => (budget - p.points) > 0 && p.projectile.projectile is ProjectilePropertiesCE propEC && propEC.shellingProps.range >= Find.WorldGrid.TraversalDistanceBetween(target.Tile, comp.parent.Tile, true) * 0.5f)
+                .RandomElementByWeightWithFallback(p => p.weight, null);
 
         private int GetTicksToCooldown() => Rand.Range(SHELLER_MINCOOLDOWNTICKS, Mathf.Clamp(7 - (int)comp.parent.Faction.def.techLevel, 1, SHELLER_MAXCOOLDOWNTICKS_TECHMULMAX) * SHELLER_MAXCOOLDOWNTICKS);
 
