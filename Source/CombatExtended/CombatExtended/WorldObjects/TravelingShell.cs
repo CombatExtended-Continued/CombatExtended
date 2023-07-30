@@ -18,7 +18,19 @@ namespace CombatExtended
         public ThingDef equipmentDef;
         public ThingDef shellDef;
         public Thing launcher;
-
+        private Texture2D expandingIcon;
+        public override Texture2D ExpandingIcon
+        {
+            get
+            {
+                if(expandingIcon == null)
+                {
+                    var iconPath = (shellDef?.projectile as ProjectilePropertiesCE)?.shellingProps?.iconPath;
+                    expandingIcon = iconPath.NullOrEmpty() ? base.ExpandingIcon : ContentFinder<Texture2D>.Get(iconPath, true);
+                }
+                return expandingIcon;
+            }
+        }
         public override string Label
         {
             get => shellDef.label;

@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended
@@ -17,6 +18,11 @@ namespace CombatExtended
         /// Damage done to tile
         /// </summary>
         public float damage;
+
+        /// <summary>
+        /// Path to icon. Used default if not specified
+        /// </summary>
+        public string iconPath;
 
         public Type workerClass = typeof(WorldObjectDamageWorker);
         public WorldObjectDamageWorker Worker
