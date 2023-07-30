@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -8,7 +8,7 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
-				
+
 				<!-- === Tools === -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BMad_ShrinkRay" or defName="BMad_GrowthRay"]/tools</xpath>
@@ -48,7 +48,7 @@
 						</tools>
 					</value>
 				</li>
-				
+
 				<!-- Mod Extensions -->
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="BMad_ShrinkRay" or defName="BMad_GrowthRay"]</xpath>
@@ -59,7 +59,7 @@
 						</li>
 					</value>
 				</li>
-				
+
 				<!-- === Shrink Ray === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>BMad_ShrinkRay</defName>
@@ -98,14 +98,14 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
-				
+
 				<!-- === Growth Ray === -->
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="BMad_GrowthRay"]</xpath>
 					<attribute>ParentName</attribute>
 					<value>BaseHumanMakeableGun</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="BMad_GrowthRay"]</xpath>
 					<value>
@@ -122,7 +122,7 @@
 						</recipeMaker>
 					</value>
 				</li>
-					
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>BMad_GrowthRay</defName>
 					<statBases>
@@ -163,7 +163,6 @@
 
 			</operations>
 		</match>
-		
 	</Operation>
-	
+
 </Patch>

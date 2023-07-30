@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -8,22 +8,22 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
-				
+
 				<!-- ====== Giant Javelin ====== -->
-				
+
 				<!-- == Weapon == -->
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
 					<attribute>ParentName</attribute>
 					<value>BaseWeapon</value>
 				</li>
-				
+
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.AmmoDef</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
 					<value>
@@ -34,13 +34,13 @@
 						<burnableByRecipe>true</burnableByRecipe>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.AmmoDef</value>
 				</li>
-	
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>BS_JotunJavelin</defName>
 					<statBases>
@@ -65,7 +65,7 @@
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
 					<value>
@@ -111,7 +111,7 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseWeaponAndAmmoNeolithic">
 							<defName>BS_OgreThrowinRock</defName>
 							<label>Throwing Chunks</label>
@@ -165,7 +165,7 @@
 							</tools>
 							<ammoClass>Javelin</ammoClass>
 						</ThingDef>
-						
+
 						<ThingDef ParentName="BasePilumProjectile">
 							<defName>Rock_GiantThrown</defName>
 							<label>rock (thrown)</label>
@@ -186,20 +186,19 @@
 								<preExplosionSpawnThingDef>Filth_RubbleRock</preExplosionSpawnThingDef>
 							</projectile>
 						</ThingDef>
-						
+
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/RecipeDef[defName="BS_OgreThrowinRockRecipe"]/workAmount</xpath>
 					<value>
 						<workAmount>1600</workAmount>
 					</value>
 				</li>
-				
+
 			</operations>
-			
 		</match>
 	</Operation>
-	
+
 </Patch>

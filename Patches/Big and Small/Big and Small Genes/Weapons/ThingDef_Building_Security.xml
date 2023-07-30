@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -8,7 +8,7 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
-				
+
 				<!-- === Shrink Turret === -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/description</xpath>
@@ -45,7 +45,7 @@
 						<Bulk>15</Bulk>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/costList</xpath>
 					<value>
@@ -57,7 +57,7 @@
 						</costList>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
 				</li>
@@ -110,7 +110,6 @@
 					</FireModes>
 				</li>
 
-
 				<!-- === Growth Turret === -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BMAD_GrowthTurret"]/description</xpath>
@@ -118,7 +117,7 @@
 						<description>A portable automatic turret with growth ray attached. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BMAD_Gun_GrowthTurret"]/verbs</xpath>
 					<value>
@@ -140,7 +139,7 @@
 						</verbs>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="BMAD_Gun_GrowthTurret"]</xpath>
 					<value>
@@ -155,20 +154,18 @@
 								<noSnapshot>true</noSnapshot>
 								<noSingleShot>true</noSingleShot>
 							</li>
-							<li Class="CompProperties_Forbiddable"/>
+							<li Class="CompProperties_Forbiddable" />
 							<li>
 								<compClass>CompEquippable</compClass>
 							</li>
-							<li Class="CompProperties_Styleable"/>
-				
+							<li Class="CompProperties_Styleable" />
+
 						</comps>
 					</value>
 				</li>
-				
-				
+
 			</operations>
 		</match>
-		
 	</Operation>
-	
+
 </Patch>

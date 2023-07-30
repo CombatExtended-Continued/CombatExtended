@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -8,11 +8,11 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
-				
+
 				<!-- === Tools === -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
-					<value>				
+					<value>
 						<ThingDef ParentName="BasePilumProjectile">
 							<defName>Projectile_GiantThrown</defName>
 							<label>giant javelin (thrown)</label>
@@ -29,7 +29,7 @@
 								<preExplosionSpawnThingDef>BS_JotunJavelin</preExplosionSpawnThingDef>
 							</projectile>
 						</ThingDef>
-						
+
 						<!-- ==================== Recipes ========================== -->
 						<RecipeDef ParentName="AmmoRecipeNeolithicBase">
 							<defName>MakeAmmo_BS_JotunJavelin</defName>
@@ -78,16 +78,15 @@
 							</products>
 							<displayPriority>500</displayPriority>
 						</RecipeDef>
-						
+
 					</value>
 				</li>
-				
-				
+
 				<!-- === Shrink Ray Ammo === -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-						
+
 						<!-- === Ammo Set === -->
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_ShrinkRay</defName>
@@ -96,7 +95,7 @@
 								<Ammo_LaserChargePack>Projectile_ShrinkRay</Ammo_LaserChargePack>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-				
+
 						<!-- === Projectile === -->
 						<ThingDef ParentName="BaseBulletCE">
 							<defName>Projectile_ShrinkRay</defName>
@@ -116,7 +115,7 @@
 								<speed>70</speed>
 							</projectile>
 						</ThingDef>
-						
+
 						<!-- === Damage Def === -->
 						<DamageDef>
 							<defName>ShrinkRay</defName>
@@ -150,15 +149,15 @@
 							<hasForcefulImpact>true</hasForcefulImpact>
 							<corpseDamageFactor>0.1</corpseDamageFactor>
 						</DamageDef>
-						
+
 					</value>
 				</li>
-				
+
 				<!-- === Growth Ray Ammo === -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-						
+
 						<!-- === Ammo Set === -->
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_GrowthRay</defName>
@@ -167,7 +166,7 @@
 								<Ammo_LaserChargePack>Projectile_GrowthRay</Ammo_LaserChargePack>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-				
+
 						<!-- === Projectile === -->
 						<ThingDef ParentName="BaseBulletCE">
 							<defName>Projectile_GrowthRay</defName>
@@ -187,7 +186,7 @@
 								<speed>70</speed>
 							</projectile>
 						</ThingDef>
-						
+
 						<!-- === Damage Def === -->
 						<DamageDef>
 							<defName>GrowthRay</defName>
@@ -221,14 +220,12 @@
 							<hasForcefulImpact>true</hasForcefulImpact>
 							<corpseDamageFactor>0.1</corpseDamageFactor>
 						</DamageDef>
-						
+
 					</value>
 				</li>
-				
 
 			</operations>
 		</match>
-		
 	</Operation>
-	
+
 </Patch>
