@@ -23,7 +23,7 @@ namespace CombatExtended
         {
             get
             {
-                if(expandingIcon == null)
+                if (expandingIcon == null)
                 {
                     var iconPath = (shellDef?.projectile as ProjectilePropertiesCE)?.shellingProps?.iconPath;
                     expandingIcon = iconPath.NullOrEmpty() ? base.ExpandingIcon : ContentFinder<Texture2D>.Get(iconPath, true);
