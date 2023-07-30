@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Vehicles Expanded</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_556x45mmNATO_FMJ</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>1.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>200</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>55</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret"]/fireModes/li/shotsPerBurst</xpath>
+					<value>
+						<shotsPerBurst>10</shotsPerBurst>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Bullet_556x45mmNATO_FMJ</li>
+							<li>Bullet_556x45mmNATO_AP</li>
+							<li>Bullet_556x45mmNATO_HP</li>
+							<li>Bullet_556x45mmNATO_Incendiary</li>
+							<li>Bullet_556x45mmNATO_HE</li>
+							<li>Bullet_556x45mmNATO_Sabot</li>
+						</thingDefs>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
