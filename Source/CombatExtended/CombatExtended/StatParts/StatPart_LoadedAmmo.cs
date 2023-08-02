@@ -51,8 +51,7 @@ namespace CombatExtended
 
                     return num != 0f;
                 }
-
-                
+   
                 if (ammoUser != null && ammoUser.CurrentAmmo != null)
                 {
                     num = ammoUser.CurrentAmmo.GetStatValueAbstract(parentStat) * ammoUser.CurMagCount;
@@ -62,8 +61,7 @@ namespace CombatExtended
                         num *= ammoUser.Props.loadedAmmoBulkFactor;
                     }
                 }
-
-                
+    
             }
             return num != 0f;
         }
