@@ -30,20 +30,23 @@ namespace CombatExtended
                 var launcher = req.Thing.TryGetComp<CompUnderBarrel>();
                 if (launcher != null)
                 {
-                    if (launcher.UnderBarrelLoadedAmmo != null)
+                    if (ammoUser != null && ammoUser.CurrentAmmo != null)
                     {
-                        num = launcher.UnderBarrelLoadedAmmo.GetStatValueAbstract(parentStat) * launcher.UnderBarrelMagCount;
-
-                    }
-
-                    if (launcher.mainGunLoadedAmmo != null)
-                    {
-                        num += launcher.mainGunLoadedAmmo.GetStatValueAbstract(parentStat) * launcher.mainGunMagCount;
+                        num = ammoUser.CurrentAmmo.GetStatValueAbstract(parentStat) * ammoUser.CurMagCount;
 
                         if (parentStat == CE_StatDefOf.Bulk)
                         {
                             num *= ammoUser.Props.loadedAmmoBulkFactor;
                         }
+                    }
+
+                    if (launcher.usingUnderBarrel)
+                    {
+                        num += (launcher.mainGunLoadedAmmo?.GetStatValueAbstract(parentStat) ?? 0) * launcher.mainGunMagCount;
+                    }
+                    else
+                    {
+                        num += (launcher.UnderBarrelLoadedAmmo?.GetStatValueAbstract(parentStat) ?? 0) * launcher.UnderBarrelMagCount;
                     }
 
                     return num != 0f;
