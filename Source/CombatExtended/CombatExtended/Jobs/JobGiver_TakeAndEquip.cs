@@ -490,7 +490,7 @@ namespace CombatExtended
                                                 {
                                                     Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, th);
                                                     int maxAmmoToPickup = (primaryAmmoUserWithInventoryCheck.MagSizeOverride > 0) ? primaryAmmoUserWithInventoryCheck.MagSizeOverride * 4 : primaryAmmoUserWithInventoryCheck.MagSize * 4;
-                                                    job.count = Mathf.Min(numToCarry, maxAmmoToPickup);
+                                                    job.count = (maxAmmoToPickup > 0) ? Mathf.Min(numToCarry, maxAmmoToPickup) : numToCarry / 4;
                                                     return job;
                                                 }
                                             }
