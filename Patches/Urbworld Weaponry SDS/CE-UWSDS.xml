@@ -1,16 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Urbworld Weaponry SDS</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
 
   <!-- Reload sounds, Night vision -->
 
-  <Operation Class="PatchOperationReplace">
+  <li Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Gun_SemiSmart_Carbine"]/soundInteract</xpath>
       <value>
     	  <soundInteract>SSR_Warden_Int</soundInteract>
       </value>
-  </Operation>
+  </li>
 
-  <Operation Class="PatchOperationAdd">
+  <li Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Gun_SemiSmart_Pistol" 
                           or defName="Gun_SemiSmart_SMG"
                           or defName="Gun_SemiSmart_Carbine"
@@ -19,9 +26,9 @@
       <value>
   	    <NightVisionEfficiency_Weapon>0.75</NightVisionEfficiency_Weapon>
       </value>
-  </Operation>
+  </li>
 
-  <Operation Class="PatchOperationAdd">
+  <li Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Gun_SemiSmart_LMG" 
                           or defName="Gun_SemiSmart_Rifle"
                           or defName="Gun_SemiSmart_Sniper"
@@ -31,11 +38,11 @@
       <value>
   	    <NightVisionEfficiency_Weapon>0.9</NightVisionEfficiency_Weapon>
       </value>
-  </Operation>
+  </li>
 
   <!-- ==== Tools ==== -->
 
-  <Operation Class="PatchOperationReplace">
+  <li Class="PatchOperationReplace">
     <xpath>/Defs/ThingDef[@Name="SSR_Basegun"]/tools</xpath>
       <value>
         <tools>
@@ -72,9 +79,9 @@
           </li>
         </tools>
       </value>
-  </Operation>
+  </li>
 
-  <Operation Class="PatchOperationReplace">
+  <li Class="PatchOperationReplace">
     <xpath>/Defs/ThingDef[defName="Gun_SemiSmart_Pistol"]/tools</xpath>
       <value>
         <tools>
@@ -101,11 +108,11 @@
           </li>
         </tools>
       </value>
-  </Operation>
+  </li>
 
   <!-- ==== Guardian ==== -->
 
-  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_SemiSmart_Pistol</defName>
     <statBases>
       <WorkToMake>9000</WorkToMake>
@@ -150,11 +157,11 @@
       <aiUseBurstMode>FALSE</aiUseBurstMode>
       <aiAimMode>Snapshot</aiAimMode>
     </FireModes>
-  </Operation>
+  </li>
 
   <!-- ==== Vanguard ==== -->
 
-  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_SemiSmart_SMG</defName>
     <statBases>
       <WorkToMake>29000</WorkToMake>
@@ -202,11 +209,11 @@
       <li>CE_OneHandedWeapon</li>
       <li>CE_AI_AssaultWeapon</li>
     </weaponTags>
-  </Operation>
+  </li>
 
   <!-- ==== Warden ==== -->
 
-  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_SemiSmart_Carbine</defName>
     <statBases>
       <WorkToMake>32000</WorkToMake>
@@ -252,11 +259,11 @@
       <li>CE_OneHandedWeapon</li>
       <li>CE_AI_AssaultWeapon</li>
     </weaponTags>
-  </Operation>
+  </li>
 
   <!-- ==== Watchman ==== -->
 
-  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_SemiSmart_Rifle</defName>
     <statBases>
       <WorkToMake>62500</WorkToMake>
@@ -305,10 +312,10 @@
     <weaponTags>
       <li>CE_AI_AssaultWeapon</li>
     </weaponTags>
-  </Operation>
+  </li>
 
   <!-- ==== Enforcer ==== -->
-  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_SemiSmart_BattleRifle</defName>
     <statBases>
       <WorkToMake>52000</WorkToMake>
@@ -357,10 +364,10 @@
     <weaponTags>
       <li>CE_AI_AssaultWeapon</li>
     </weaponTags>
-  </Operation>
+  </li>
 
   <!-- ==== Sentinel ==== -->
-  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_SemiSmart_LMG</defName>
     <statBases>
       <WorkToMake>65000</WorkToMake>
@@ -411,10 +418,11 @@
     <weaponTags>
       <li>CE_MachineGun</li>
     </weaponTags>
-  </Operation>
+  </li>
 
   <!-- ==== Panopticon ==== -->
-  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_SemiSmart_Sniper</defName>
     <statBases>
       <WorkToMake>60000</WorkToMake>
@@ -457,14 +465,15 @@
     <FireModes>
       <aiAimMode>AimedShot</aiAimMode>
     </FireModes>
-  </Operation>
+  </li>
 
-  <Operation Class="PatchOperationRemove">
+  <li Class="PatchOperationRemove">
 	  <xpath>Defs/ThingDef[defName="Gun_SemiSmart_Barricade"]/equippedStatOffsets/MoveSpeed</xpath>
-  </Operation>
+  </li>
 
   <!-- ==== Barricade ==== -->
-  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_SemiSmart_Barricade</defName>
     <statBases>
       <WorkToMake>80500</WorkToMake>
@@ -514,6 +523,10 @@
     <weaponTags>
       <li>CE_AI_Suppressive</li>
     </weaponTags>
-  </Operation>
+  </li>
   
-</Patch>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch> 
