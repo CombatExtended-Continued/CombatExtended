@@ -52,9 +52,31 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/fireModes/li/shotsPerBurst</xpath>
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/fireModes</xpath>
 					<value>
-						<shotsPerBurst>5</shotsPerBurst>
+						<fireModes>
+							<li>
+								<shotsPerBurst>1</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Single</label>
+								<texPath>UI/Gizmos/FireRate_Single</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>2</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Burst</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>5</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Auto</label>
+								<texPath>UI/Gizmos/FireRate_Auto</texPath>
+							</li>
+						</fireModes>
 					</value>
 				</li>
 
