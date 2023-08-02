@@ -14,8 +14,8 @@
 		<defName>AmmoSet_40x365mmBofors</defName>
 		<label>40x365mm Bofors</label>
 		<ammoTypes>
-			<Ammo_40x365mmBofors_HE>Bullet_40x365mmBofors_HE</Ammo_40x365mmBofors_HE>
 			<Ammo_40x365mmBofors_AP>Bullet_40x365mmBofors_AP</Ammo_40x365mmBofors_AP>
+			<Ammo_40x365mmBofors_HE>Bullet_40x365mmBofors_HE</Ammo_40x365mmBofors_HE>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -38,20 +38,6 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x365mmBoforsBase">
-		<defName>Ammo_40x365mmBofors_HE</defName>
-		<label>40x365mm Bofors cartridge (HE)</label>
-		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/Bofors/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>15.78</MarketValue>
-		</statBases>
-		<ammoClass>ExplosiveAP</ammoClass>
-		<cookOffProjectile>Bullet_40x365mmBofors_HE</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x365mmBoforsBase">
 		<defName>Ammo_40x365mmBofors_AP</defName>
 		<label>40x365mm Bofors cartridge (AP)</label>
 		<graphicData>
@@ -63,6 +49,20 @@
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_40x365mmBofors_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x365mmBoforsBase">
+		<defName>Ammo_40x365mmBofors_HE</defName>
+		<label>40x365mm Bofors cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Bofors/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>14.93</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<cookOffProjectile>Bullet_40x365mmBofors_HE</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -118,44 +118,6 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_40x365mmBofors_HE</defName>
-		<label>make 40x365mm Bofors (HE) cartridge x25</label>
-		<description>Craft 25 40x365mm Bofors (HE) cartridges.</description>
-		<jobString>Making 40x365mm Bofors (HE) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>108</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>33</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_40x365mmBofors_HE>25</Ammo_40x365mmBofors_HE>
-		</products>
-		<skillRequirements>
-			<Crafting>4</Crafting>
-		</skillRequirements>
-		<workAmount>24000</workAmount>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_40x365mmBofors_AP</defName>
 		<label>make 40x365mm Bofors (AP) cartridge x25</label>
 		<description>Craft 25 40x365mm Bofors (AP) cartridges.</description>
@@ -181,7 +143,54 @@
 		<skillRequirements>
 			<Crafting>4</Crafting>
 		</skillRequirements>
-		<workAmount>10800</workAmount>
+		<workAmount>12960</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_40x365mmBofors_HE</defName>
+		<label>make 40x365mm Bofors (HE) cartridge x25</label>
+		<description>Craft 25 40x365mm Bofors (HE) cartridges.</description>
+		<jobString>Making 40x365mm Bofors (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>108</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x365mmBofors_HE>25</Ammo_40x365mmBofors_HE>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>16800</workAmount>
 	</RecipeDef>
 
 </Defs>

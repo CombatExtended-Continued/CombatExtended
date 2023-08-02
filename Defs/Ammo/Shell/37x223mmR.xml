@@ -14,8 +14,8 @@
 		<defName>AmmoSet_37x223mmR</defName>
 		<label>37x223mmR</label>
 		<ammoTypes>
-			<Ammo_37x223mmR_HE>Bullet_37x223mmR_HE</Ammo_37x223mmR_HE>
 			<Ammo_37x223mmR_AP>Bullet_37x223mmR_AP</Ammo_37x223mmR_AP>
+			<Ammo_37x223mmR_HE>Bullet_37x223mmR_HE</Ammo_37x223mmR_HE>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -40,21 +40,6 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo37x223mmRBase">
-		<defName>Ammo_37x223mmR_HE</defName>
-		<label>37x223mmR cartridge (HE)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Cannon/HE</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>9.94</MarketValue>
-			<Mass>1.18</Mass>
-		</statBases>
-		<ammoClass>ExplosiveAP</ammoClass>
-		<cookOffProjectile>Bullet_37x223mmR_HE</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo37x223mmRBase">
 		<defName>Ammo_37x223mmR_AP</defName>
 		<label>37x223mmR cartridge (AP)</label>
 		<graphicData>
@@ -67,6 +52,21 @@
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_37x223mmR_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo37x223mmRBase">
+		<defName>Ammo_37x223mmR_HE</defName>
+		<label>37x223mmR cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>8.87</MarketValue>
+			<Mass>1.18</Mass>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<cookOffProjectile>Bullet_37x223mmR_HE</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -122,6 +122,35 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_37x223mmR_AP</defName>
+		<label>make 37x223mmR (AP) cartridge x25</label>
+		<description>Craft 25 37x223mmR (AP) cartridges.</description>
+		<jobString>Making 37x223mmR (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>74</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_37x223mmR_AP>25</Ammo_37x223mmR_AP>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>8880</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_37x223mmR_HE</defName>
 		<label>make 37x223mmR (HE) cartridge x25</label>
 		<description>Craft 25 37x223mmR (HE) cartridges.</description>
@@ -138,15 +167,24 @@
 			<li>
 				<filter>
 					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>16</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
+				<li>ComponentIndustrial</li>
 				<li>FSX</li>
 			</thingDefs>
 		</fixedIngredientFilter>
@@ -156,36 +194,7 @@
 		<skillRequirements>
 			<Crafting>4</Crafting>
 		</skillRequirements>
-		<workAmount>12600</workAmount>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_37x223mmR_AP</defName>
-		<label>make 37x223mmR (AP) cartridge x25</label>
-		<description>Craft 25 37x223mmR (AP) cartridges.</description>
-		<jobString>Making 37x223mmR (AP) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>66</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_37x223mmR_AP>25</Ammo_37x223mmR_AP>
-		</products>
-		<skillRequirements>
-			<Crafting>4</Crafting>
-		</skillRequirements>
-		<workAmount>10800</workAmount>
+		<workAmount>9000</workAmount>
 	</RecipeDef>
 
 </Defs>
