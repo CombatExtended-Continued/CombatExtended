@@ -76,22 +76,8 @@
 			<damageDef>Bullet</damageDef>
 			<speed>181</speed>
 			<dropsCasings>true</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="Base40x365mmBoforsBullet">
-		<defName>Bullet_40x365mmBofors_HE</defName>
-		<label>40x365mm Bofors bullet (HE)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>195</damageAmountBase>
-			<armorPenetrationSharp>33</armorPenetrationSharp>
-			<armorPenetrationBlunt>10007.440</armorPenetrationBlunt>
-			<secondaryDamage>
-				<li>
-					<def>Bomb_Secondary</def>
-					<amount>117</amount>
-				</li>
-			</secondaryDamage>
+			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
+			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
@@ -103,6 +89,30 @@
 			<armorPenetrationSharp>65</armorPenetrationSharp>
 			<armorPenetrationBlunt>10007.440</armorPenetrationBlunt>
 		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_40x365mmBofors_HE</defName>
+		<label>40x365mm Bofors bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<speed>181</speed>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>64</damageAmountBase>
+			<explosionRadius>1.5</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
+			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>4</Fragment_Large>
+					<Fragment_Small>25</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
