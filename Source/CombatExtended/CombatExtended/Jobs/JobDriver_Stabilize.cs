@@ -88,7 +88,7 @@ namespace CombatExtended
                         break;
                     }
                 }
-                
+
             };
 
             stabilizeToil.defaultCompleteMode = ToilCompleteMode.Instant;
