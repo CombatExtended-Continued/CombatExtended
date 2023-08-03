@@ -22,6 +22,9 @@ namespace CombatExtended
 
         public static ThingDef Filth_RifleAmmoCasings;
 
+        public static ThingDef Filth_StabilizeMedicineIndustrial;
+        public static ThingDef Filth_StabilizeMedicineHerbal;
+
         public static ThingDef FSX;
 
         public static ThingDef Flare;
