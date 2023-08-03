@@ -16,6 +16,7 @@
 		<ammoTypes>
 			<Ammo_40x365mmBofors_AP>Bullet_40x365mmBofors_AP</Ammo_40x365mmBofors_AP>
 			<Ammo_40x365mmBofors_HE>Bullet_40x365mmBofors_HE</Ammo_40x365mmBofors_HE>
+			<Ammo_40x365mmBofors_Sabot>Bullet_40x365mmBofors_Sabot</Ammo_40x365mmBofors_Sabot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -24,7 +25,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo40x365mmBoforsBase" ParentName="HeavyAmmoBase" Abstract="True">
 		<description>Large caliber cartridge used by autocannons and anti-aircraft cannons.</description>
 		<statBases>
-			<Mass>2.15</Mass>
+			<Mass>2.5</Mass>
 			<Bulk>4.69</Bulk>
 		</statBases>
 		<tradeTags>
@@ -45,7 +46,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>8.64</MarketValue>
+			<MarketValue>10.08</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_40x365mmBofors_AP</cookOffProjectile>
@@ -59,10 +60,25 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>14.93</MarketValue>
+			<MarketValue>16.36</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<cookOffProjectile>Bullet_40x365mmBofors_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x365mmBoforsBase">
+		<defName>Ammo_40x365mmBofors_Sabot</defName>
+		<label>40x365mm Bofors cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Bofors/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>2.088</Mass>
+			<MarketValue>11.12</MarketValue>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_40x365mmBofors_Sabot</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -89,7 +105,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>122</damageAmountBase>
 			<armorPenetrationSharp>100</armorPenetrationSharp>
-			<armorPenetrationBlunt>10007.440</armorPenetrationBlunt>
+			<armorPenetrationBlunt>10007.44</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -111,6 +127,18 @@
 		</comps>
 	</ThingDef>
 
+	<ThingDef ParentName="Base40x365mmBoforsBullet">
+		<defName>Bullet_40x365mmBofors_Sabot</defName>
+		<label>40x365mm Bofors bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>117</damageAmountBase>
+			<armorPenetrationSharp>175</armorPenetrationSharp>
+			<armorPenetrationBlunt>12861.7</armorPenetrationBlunt>
+			<speed>245</speed>
+		</projectile>
+	</ThingDef>
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -125,7 +153,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>108</count>
+				<count>126</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -139,7 +167,7 @@
 		<skillRequirements>
 			<Crafting>4</Crafting>
 		</skillRequirements>
-		<workAmount>12960</workAmount>
+		<workAmount>15120</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -154,7 +182,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>108</count>
+				<count>126</count>
 			</li>
 			<li>
 				<filter>
@@ -186,7 +214,54 @@
 		<skillRequirements>
 			<Crafting>4</Crafting>
 		</skillRequirements>
-		<workAmount>16800</workAmount>
+		<workAmount>18600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_40x365mmBofors_Sabot</defName>
+		<label>make 40x365mm Bofors (Sabot) cartridge x25</label>
+		<description>Craft 25 40x365mm Bofors (Sabot) cartridges.</description>
+		<jobString>Making 40x365mm Bofors (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>78</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x365mmBofors_Sabot>25</Ammo_40x365mmBofors_Sabot>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>16200</workAmount>
 	</RecipeDef>
 
 </Defs>
