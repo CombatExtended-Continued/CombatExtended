@@ -16,6 +16,7 @@
 		<ammoTypes>
 			<Ammo_40x365mmBofors_AP>Bullet_40x365mmBofors_AP</Ammo_40x365mmBofors_AP>
 			<Ammo_40x365mmBofors_HE>Bullet_40x365mmBofors_HE</Ammo_40x365mmBofors_HE>
+			<Ammo_40x365mmBofors_HE_TFuzed>Bullet_40x365mmBofors_HE_TFuzed</Ammo_40x365mmBofors_HE_TFuzed>
 			<Ammo_40x365mmBofors_Sabot>Bullet_40x365mmBofors_Sabot</Ammo_40x365mmBofors_Sabot>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
@@ -61,6 +62,20 @@
 		</graphicData>
 		<statBases>
 			<MarketValue>16.36</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<cookOffProjectile>Bullet_40x365mmBofors_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x365mmBoforsBase">
+		<defName>Ammo_40x365mmBofors_HE_TFuzed</defName>
+		<label>40x365mm Bofors cartridge (HE Time Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Bofors/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>17.66</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<cookOffProjectile>Bullet_40x365mmBofors_HE</cookOffProjectile>
@@ -216,6 +231,54 @@
 			<Crafting>4</Crafting>
 		</skillRequirements>
 		<workAmount>18600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_40x365mmBofors_HE_TFuzed</defName>
+		<label>make 40x365mm Bofors airburst cartridge x25</label>
+		<description>Craft 25 40x365mm Bofors airburst cartridges.</description>
+		<jobString>Making 40x365mm Bofors airburst cartridges.</jobString>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>126</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x365mmBofors_HE_TFuzed>25</Ammo_40x365mmBofors_HE_TFuzed>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>20400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
