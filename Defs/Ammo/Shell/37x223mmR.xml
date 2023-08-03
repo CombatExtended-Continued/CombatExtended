@@ -71,7 +71,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base37x223mmRBullet" ParentName="BaseBulletCE" Abstract="true">
+	<ThingDef Name="Base37x223mmRBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -89,6 +89,7 @@
 		<defName>Bullet_37x223mmR_AP</defName>
 		<label>37x223mmR shell (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
 			<damageAmountBase>82</damageAmountBase>
 			<armorPenetrationSharp>71</armorPenetrationSharp>
 			<armorPenetrationBlunt>3398.44</armorPenetrationBlunt>
@@ -99,15 +100,10 @@
 		<defName>Bullet_37x223mmR_HE</defName>
 		<label>37x223mmR shell (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<flyOverhead>false</flyOverhead>
 			<speed>150</speed>
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>33</damageAmountBase>
 			<explosionRadius>1</explosionRadius>
-			<soundExplode>MortarBomb_Explode</soundExplode>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
-			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">

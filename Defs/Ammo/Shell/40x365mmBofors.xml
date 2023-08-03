@@ -67,14 +67,15 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base40x365mmBoforsBullet" ParentName="BaseBulletCE" Abstract="true">
+	<ThingDef Name="Base40x365mmBoforsBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
 			<speed>181</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
@@ -85,8 +86,9 @@
 		<defName>Bullet_40x365mmBofors_AP</defName>
 		<label>40x365mm Bofors bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
 			<damageAmountBase>122</damageAmountBase>
-			<armorPenetrationSharp>65</armorPenetrationSharp>
+			<armorPenetrationSharp>100</armorPenetrationSharp>
 			<armorPenetrationBlunt>10007.440</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
@@ -95,15 +97,9 @@
 		<defName>Bullet_40x365mmBofors_HE</defName>
 		<label>40x365mm Bofors bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<flyOverhead>false</flyOverhead>
-			<speed>181</speed>
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>64</damageAmountBase>
 			<explosionRadius>1.5</explosionRadius>
-			<soundExplode>MortarBomb_Explode</soundExplode>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
-			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
