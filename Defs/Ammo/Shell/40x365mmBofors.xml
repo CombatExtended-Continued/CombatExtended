@@ -143,6 +143,29 @@
 		</comps>
 	</ThingDef>
 
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_40x365mmBofors_HE_TFuzed</defName>
+		<label>40x365mm Bofors bullet (HE Time-Fuzed)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>64</damageAmountBase>
+			<explosionRadius>1.5</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>2</aimHeightOffset>
+			<armingDelay>2</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>3</Fragment_Large>
+					<Fragment_Small>6</Fragment_Small>
+				</fragments>
+				<fragAngleRange>-89~-5</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+
 	<ThingDef ParentName="Base40x365mmBoforsBullet">
 		<defName>Bullet_40x365mmBofors_Sabot</defName>
 		<label>40x365mm Bofors bullet (Sabot)</label>
@@ -235,9 +258,9 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_40x365mmBofors_HE_TFuzed</defName>
-		<label>make 40x365mm Bofors airburst cartridge x25</label>
-		<description>Craft 25 40x365mm Bofors airburst cartridges.</description>
-		<jobString>Making 40x365mm Bofors airburst cartridges.</jobString>
+		<label>make 40x365mm Bofors Time-Fuzed cartridge x25</label>
+		<description>Craft 25 40x365mm Bofors Time-Fuzed cartridges.</description>
+		<jobString>Making 40x365mm Bofors Time-Fuzed cartridges.</jobString>
 		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
 		<ingredients>
 			<li>
