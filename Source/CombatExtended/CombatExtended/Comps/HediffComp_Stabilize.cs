@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
@@ -109,11 +106,31 @@ namespace CombatExtended
             get
             {
                 if (bleedModifier < 1 && !parent.IsPermanent() && !parent.IsTended())
-                {
-                    return new TextureAndColor(StabilizedIcon, Color.white);
+                { //Change icon color with stabilization quality: brown - bad, yellow - good. 
+                    Color color = Color.Lerp(HediffComp_TendDuration.UntendedColor, new ColorInt(255, 212, 136).ToColor, Mathf.Clamp01(1-bleedModifier));
+                    return new TextureAndColor(StabilizedIcon, color);
                 }
                 return TextureAndColor.None;
             }
+        }
+
+        public override string CompDescriptionExtra
+        {
+            get
+            {
+                if (bleedModifier < 1 && !parent.IsPermanent() && !parent.IsTended())
+                { //Add info about stabilization duration and effectiveness to hediff description
+                    string stabilizedDesc = "\n\n" + "CE_StabilizeHediffDescription".Translate(Mathf.Max(bleedModifier, 0).ToStringPercent("0.#"), StabilizationHoursLeft().ToString("0.00"));
+                    return stabilizedDesc;
+                }
+                return null;
+            }
+        }
+
+        public double StabilizationHoursLeft()
+        {
+            double HoursLeft = ((1 - bleedModifier) / 0.01 * 60 / 2500);
+            return HoursLeft;
         }
 
         public override string CompDebugString()
