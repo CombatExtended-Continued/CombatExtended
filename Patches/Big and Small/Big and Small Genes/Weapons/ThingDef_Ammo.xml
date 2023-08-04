@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small Genes</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingDef ParentName="BasePilumProjectile">
+							<defName>Projectile_GiantThrown</defName>
+							<label>giant javelin (thrown)</label>
+							<graphicData>
+								<texPath>Item/GiantJavelin_Projectile</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>37</damageAmountBase>
+								<speed>30</speed>
+								<armorPenetrationBlunt>486</armorPenetrationBlunt>
+								<armorPenetrationSharp>9</armorPenetrationSharp>
+								<preExplosionSpawnChance>0.9</preExplosionSpawnChance>
+								<preExplosionSpawnThingDef>BS_JotunJavelin</preExplosionSpawnThingDef>
+							</projectile>
+						</ThingDef>
+
+						<!-- ==================== Recipes ========================== -->
+						<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+							<defName>MakeAmmo_BS_JotunJavelin</defName>
+							<label>make giant javeln</label>
+							<description>Craft a giant javelin.</description>
+							<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+							<workSkill>Crafting</workSkill>
+							<skillRequirements>
+								<Crafting>3</Crafting>
+							</skillRequirements>
+							<recipeUsers>
+								<li>ElectricSmithy</li>
+								<li>FueledSmithy</li>
+								<li>CraftingSpot</li>
+							</recipeUsers>
+							<effectWorking>Smelt</effectWorking>
+							<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+							<workAmount>18000</workAmount>
+							<jobString>Making pila.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>WoodLog</li>
+										</thingDefs>
+									</filter>
+									<count>140</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>80</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>WoodLog</li>
+									<li>Steel</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<BS_JotunJavelin>1</BS_JotunJavelin>
+							</products>
+							<displayPriority>500</displayPriority>
+						</RecipeDef>
+
+					</value>
+				</li>
+
+				<!-- === Shrink Ray Ammo === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- === Ammo Set === -->
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_ShrinkRay</defName>
+							<label>Shrink Ray Power Cell</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>Projectile_ShrinkRay</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- === Projectile === -->
+						<ThingDef ParentName="BaseBulletCE">
+							<defName>Projectile_ShrinkRay</defName>
+							<label>shrink ray</label>
+							<graphicData>
+								<texPath>Things/Projectile/ChargeLanceShot</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+								<drawSize>1.5</drawSize>
+								<color>(180, 180, 255)</color>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>ShrinkRay</damageDef>
+								<damageAmountBase>1</damageAmountBase><!-- -2 -->
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt><!-- -0.5 -->
+								<armorPenetrationSharp>0.5</armorPenetrationSharp><!-- -0.2 -->
+								<speed>70</speed>
+							</projectile>
+						</ThingDef>
+
+						<!-- === Damage Def === -->
+						<DamageDef>
+							<defName>ShrinkRay</defName>
+							<label>vaporize</label>
+							<workerClass>DamageWorker_Vaporize</workerClass>
+							<externalViolence>true</externalViolence>
+							<deathMessage>{0} has been vaporized by extreme heat.</deathMessage>
+							<hediff>Burn</hediff>
+							<additionalHediffs>
+								<li>
+									<hediff>BS_Affliction_ShrinkRay</hediff>
+									<severityPerDamageDealt>0.12</severityPerDamageDealt>
+								</li>
+							</additionalHediffs>
+							<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+							<defaultDamage>800</defaultDamage>
+							<defaultStoppingPower>1.5</defaultStoppingPower>
+							<defaultArmorPenetration>1</defaultArmorPenetration>
+							<buildingDamageFactorImpassable>4</buildingDamageFactorImpassable>
+							<buildingDamageFactorPassable>2</buildingDamageFactorPassable>
+							<plantDamageFactor>2</plantDamageFactor>
+							<explosionHeatEnergyPerCell>20</explosionHeatEnergyPerCell>
+							<explosionCellFleck>Fleck_Vaporize</explosionCellFleck>
+							<armorCategory>Sharp</armorCategory>
+							<minDamageToFragment>15</minDamageToFragment>
+							<makesAnimalsFlee>true</makesAnimalsFlee>
+							<explosionColorCenter>(1, 1, 1)</explosionColorCenter>
+							<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+							<soundExplosion>Explosion_Vaporize</soundExplosion>
+							<expolosionPropagationSpeed>0.3</expolosionPropagationSpeed>
+							<hasForcefulImpact>true</hasForcefulImpact>
+							<corpseDamageFactor>0.1</corpseDamageFactor>
+						</DamageDef>
+
+					</value>
+				</li>
+
+				<!-- === Growth Ray Ammo === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- === Ammo Set === -->
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_GrowthRay</defName>
+							<label>Growth Ray Power Cell</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>Projectile_GrowthRay</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- === Projectile === -->
+						<ThingDef ParentName="BaseBulletCE">
+							<defName>Projectile_GrowthRay</defName>
+							<label>growth ray</label>
+							<graphicData>
+								<texPath>Things/Projectile/ChargeLanceShot</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+								<drawSize>1.5</drawSize>
+								<color>(255, 180, 255)</color>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>GrowthRay</damageDef>
+								<damageAmountBase>1</damageAmountBase><!-- -2 -->
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt><!-- -0.5 -->
+								<armorPenetrationSharp>0.5</armorPenetrationSharp><!-- -0.2 -->
+								<speed>70</speed>
+							</projectile>
+						</ThingDef>
+
+						<!-- === Damage Def === -->
+						<DamageDef>
+							<defName>GrowthRay</defName>
+							<label>vaporize</label>
+							<workerClass>DamageWorker_Vaporize</workerClass>
+							<externalViolence>true</externalViolence>
+							<deathMessage>{0} has been vaporized by extreme heat.</deathMessage>
+							<hediff>Burn</hediff>
+							<additionalHediffs>
+								<li>
+									<hediff>BS_Affliction_GrowthRay</hediff>
+									<severityPerDamageDealt>0.12</severityPerDamageDealt>
+								</li>
+							</additionalHediffs>
+							<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+							<defaultDamage>800</defaultDamage>
+							<defaultStoppingPower>1.5</defaultStoppingPower>
+							<defaultArmorPenetration>1</defaultArmorPenetration>
+							<buildingDamageFactorImpassable>4</buildingDamageFactorImpassable>
+							<buildingDamageFactorPassable>2</buildingDamageFactorPassable>
+							<plantDamageFactor>2</plantDamageFactor>
+							<explosionHeatEnergyPerCell>20</explosionHeatEnergyPerCell>
+							<explosionCellFleck>Fleck_Vaporize</explosionCellFleck>
+							<armorCategory>Sharp</armorCategory>
+							<minDamageToFragment>15</minDamageToFragment>
+							<makesAnimalsFlee>true</makesAnimalsFlee>
+							<explosionColorCenter>(1, 1, 1)</explosionColorCenter>
+							<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+							<soundExplosion>Explosion_Vaporize</soundExplosion>
+							<expolosionPropagationSpeed>0.3</expolosionPropagationSpeed>
+							<hasForcefulImpact>true</hasForcefulImpact>
+							<corpseDamageFactor>0.1</corpseDamageFactor>
+						</DamageDef>
+
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

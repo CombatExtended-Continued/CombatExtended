@@ -120,6 +120,10 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Big and Small Genes	|
+Big and Small - Medieval Factions	|
+Big and Small - Medieval Overhaul Factions	|
+Big and Small Races	|
 Biomes! Caverns	|
 Biomes! Core	|
 Biotech Expansion - Mammalia  |
@@ -457,6 +461,7 @@ Urbworld Weaponry: Caseless |
 Urbworld Weaponry SDS |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
+Vampires, Demons, and the Undead  |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Caves |
 Vanilla Animals Expanded - Endangered |
