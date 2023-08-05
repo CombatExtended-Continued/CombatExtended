@@ -61,6 +61,7 @@ Mod |
 [SYR] Harpy	|
 [SYR] Naga	|
 [SYR] Thrumkin	|
+[UEM] More Mechanitor Mechs	|
 [XND] Vanilla-Friendly Animal Surgery (Continued)
 ↁ Elves |
 ↁ House Sanguin |
