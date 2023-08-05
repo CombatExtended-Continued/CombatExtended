@@ -57,14 +57,6 @@
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
 		<detonateProjectile>Bullet_90mmCannonShell_HEAT</detonateProjectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>258</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>1</explosiveRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="90mmCannonShellBase">
@@ -78,25 +70,12 @@
 			<MarketValue>104.83</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>285</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>2.5</explosiveRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-			<li Class="CombatExtended.CompProperties_Fragments">
-				<fragments>
-					<Fragment_Large>53</Fragment_Large>
-					<Fragment_Small>96</Fragment_Small>
-				</fragments>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_90mmCannonShell_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="90mmCannonShellBase">
 		<defName>Ammo_90mmCannonShell_HE_TFuzed</defName>
-		<label>90mm cannon shell (HE Time Fuzed)</label>
+		<label>90mm cannon shell (HE Time-Fuzed)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Flak/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -105,20 +84,7 @@
 			<MarketValue>124.33</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHETF</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>285</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>2.5</explosiveRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-			<li Class="CombatExtended.CompProperties_Fragments">
-				<fragments>
-					<Fragment_Large>53</Fragment_Large>
-					<Fragment_Small>96</Fragment_Small>
-				</fragments>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_90mmCannonShell_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="90mmCannonShellBase">
@@ -132,18 +98,7 @@
 			<MarketValue>160.66</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>142</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>5</explosiveRadius>
-			</li>
-			<li Class="CombatExtended.CompProperties_Fragments">
-				<fragments>
-					<Fragment_Large>22</Fragment_Large>
-				</fragments>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_90mmCannonShell_EMP</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -186,7 +141,7 @@
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>22</Fragment_Large>
-					<Fragment_Small>36</Fragment_Small>
+					<Fragment_Small>9</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -212,8 +167,8 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Large>53</Fragment_Large>
-					<Fragment_Small>96</Fragment_Small>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>24</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -221,7 +176,7 @@
 
 	<ThingDef ParentName="Base90mmCannonShell">
 		<defName>Bullet_90mmCannonShell_HE_TFuzed</defName>
-		<label>90mm cannon shell (HE Time Fuse)</label>
+		<label>90mm cannon shell (HE Time-Fuzed)</label>
 		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/Cannon/HE</texPath>
@@ -241,8 +196,8 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Large>53</Fragment_Large>
-					<Fragment_Small>96</Fragment_Small>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>24</Fragment_Small>
 				</fragments>
 				<fragAngleRange>-89~-10</fragAngleRange>
 			</li>
@@ -364,9 +319,9 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_90mmCannonShell_HE_TFuzed</defName>
-		<label>make 90mm HE airburst cannon shells x5</label>
-		<description>Craft 5 90mm HE airburst cannon shells.</description>
-		<jobString>Making 90mm HE airburst cannon shells.</jobString>
+		<label>make 90mm HE Time-Fuzed cannon shells x5</label>
+		<description>Craft 5 90mm HE Time-Fuzed cannon shells.</description>
+		<jobString>Making 90mm HE Time-Fuzed cannon shells.</jobString>
 		<workAmount>26400</workAmount>
 		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
 		<ingredients>
