@@ -10,14 +10,14 @@
 					<operations>
 
 						<!-- ========== Ammoset =========== -->
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_8x22mmNambu"]/ammoTypes</xpath>
 							<value>
 								<Ammo_8x22mmNambu_Miho>Bullet_8x22mmNambu_Miho</Ammo_8x22mmNambu_Miho>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_65x50mmSRArisaka"]/ammoTypes</xpath>
 							<value>
@@ -31,18 +31,18 @@
 								<Ammo_77x58mmArisaka_Miho>Bullet_77x58mmArisaka_Miho</Ammo_77x58mmArisaka_Miho>
 							</value>
 						</li>
-			
+
 						<!-- ========== Remove other verbs =========== -->
-			
+
 						<li Class="PatchOperationRemove">
 							<xpath>Defs/ThingDef[
-				defName="Miho_Weapon_Shotgun" or 
-				defName="Miho_Weapon_ShotgunPsychic"
-				]/verbs/li[@Class="TorgueMiho.Verb_Properties_ShotGun"]							</xpath>
+								defName="Miho_Weapon_Shotgun" or
+								defName="Miho_Weapon_ShotgunPsychic"
+								]/verbs/li[@Class="TorgueMiho.Verb_Properties_ShotGun"] </xpath>
 						</li>
-			
+
 						<!-- ========== SMG =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_RifleCQB</defName>
 							<statBases>
@@ -82,9 +82,9 @@
 								<aiAimMode>Snapshot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Rifle =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_RifleDefence</defName>
 							<statBases>
@@ -124,9 +124,9 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== MG =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_RifleMachinegun</defName>
 							<statBases>
@@ -171,7 +171,7 @@
 						</li>
 
 						<!-- ========== Rifle Old =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_RifleOld</defName>
 							<statBases>
@@ -206,9 +206,9 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Rifle Grenade =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_RifleGrenade</defName>
 							<statBases>
@@ -247,9 +247,9 @@
 								<aiAimMode>SuppressFire</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Shotgun =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_Shotgun</defName>
 							<statBases>
@@ -287,9 +287,8 @@
 							</FireModes>
 						</li>
 
-
 						<!-- ========== Heavy 'Pistol' =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_HeavyPistol</defName>
 							<statBases>
@@ -324,16 +323,16 @@
 								<aiAimMode>Snapshot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="Miho_Weapon_HeavyPistol"]/weaponTags</xpath>
 							<value>
 								<li>CE_OneHandedWeapon</li>
 							</value>
 						</li>
-			
+
 						<!-- ========== Plamsa Rifle =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_RiflePlasma</defName>
 							<statBases>
@@ -369,9 +368,9 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Plamsa Sniper =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_SniperPlasma</defName>
 							<statBases>
@@ -410,9 +409,9 @@
 								<aiAimMode>AimedShot</aiAimMode>
 							</FireModes>
 						</li>
-			
+
 						<!-- ========== Shotgun =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Miho_Weapon_ShotgunPsychic</defName>
 							<statBases>
@@ -485,18 +484,18 @@
 						</li>
 
 						<!-- ========== Melee Attacks =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[
-				defName="Miho_Weapon_RifleDefence" or 
-				defName="Miho_Weapon_RifleMachinegun" or 
-				defName="Miho_Weapon_RifleOld" or
-				defName="Miho_Weapon_RifleGrenade" or 
-				defName="Miho_Weapon_Shotgun" or 
-				defName="Miho_Weapon_RiflePlasma" or 
-				defName="Miho_Weapon_ShotgunPsychic" or 
-				defName="Miho_Weapon_SniperPlasma"
-				]/tools							</xpath>
+								defName="Miho_Weapon_RifleDefence" or
+								defName="Miho_Weapon_RifleMachinegun" or
+								defName="Miho_Weapon_RifleOld" or
+								defName="Miho_Weapon_RifleGrenade" or
+								defName="Miho_Weapon_Shotgun" or
+								defName="Miho_Weapon_RiflePlasma" or
+								defName="Miho_Weapon_ShotgunPsychic" or
+								defName="Miho_Weapon_SniperPlasma"
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -533,13 +532,13 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[
-				defName="Miho_Weapon_HeavyPistol" or
-				defName="Miho_Weapon_RifleCQB" or
-				defName="Miho_Weapon_Pistol"
-				]/tools							</xpath>
+								defName="Miho_Weapon_HeavyPistol" or
+								defName="Miho_Weapon_RifleCQB" or
+								defName="Miho_Weapon_Pistol"
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">

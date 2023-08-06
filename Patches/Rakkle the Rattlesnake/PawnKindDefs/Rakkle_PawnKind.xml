@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
-				<mods><li>Rakkle the rattle snake Race mod</li>
-					<li>Rakkle 1.3 (unofficial update)</li></mods>
-			
+
+				<mods>
+					<li>Rakkle the rattle snake Race mod</li>
+					<li>Rakkle 1.3 (unofficial update)</li>
+				</mods>
+
 				<match Class="PatchOperationSequence">
 					<operations>
 						<!--Regular-->
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[@Name="FRUBasePawnKind"]</xpath>
 							<value>
@@ -34,9 +36,9 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<!--Cradle-->
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="CRD_Kidnapper"]</xpath>
 							<value>
@@ -60,7 +62,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="CRD_Gunner"]</xpath>
 							<value>
@@ -84,7 +86,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="CRD_Sapper"]</xpath>
 							<value>
@@ -109,7 +111,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="CRD_HeavyGunner"]</xpath>
 							<value>
@@ -146,12 +148,12 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[
-				defName="CradleLeader" or
-				defName="CRD_EliteGunner"
-				]							</xpath>
+								defName="CradleLeader" or
+								defName="CRD_EliteGunner"
+								] </xpath>
 							<value>
 								<li Class="CombatExtended.LoadoutPropertiesExtension">
 									<primaryMagazineCount>
@@ -173,7 +175,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="CRD_Slasher"]</xpath>
 							<value>
@@ -189,7 +191,7 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/PawnKindDef[defName="CRD_EliteSlasher"]</xpath>
 							<value>
@@ -205,11 +207,11 @@
 								</li>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/PawnKindDef[
-				defName="CradleLeader"
-				]/weaponTags							</xpath>
+								defName="CradleLeader"
+								]/weaponTags </xpath>
 							<value>
 								<li>SpacerGun</li>
 							</value>
@@ -217,13 +219,13 @@
 
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/PawnKindDef[
-				defName="CRD_EliteGunner"
-				]/weaponTags							</xpath>
+								defName="CRD_EliteGunner"
+								]/weaponTags </xpath>
 							<value>
 								<li>SpacerGun</li>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

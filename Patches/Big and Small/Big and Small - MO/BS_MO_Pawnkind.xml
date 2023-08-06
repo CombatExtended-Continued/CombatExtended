@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small - Medieval Overhaul Factions</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--Give ammo to crosbowman-->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="BS_Crossbowman"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>12</min>
+								<max>20</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>100</min>
+									<max>200</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>NeolithicMeleeBasic</li>
+									<li>MedievalMeleeDecent</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+				<!-- Tribal Backpacks -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[
+						defName="BS_Crossbowman"]
+					</xpath>
+					<value>
+						<apparelRequired>
+							<li>CE_Apparel_TribalBackpack</li>
+							<li>DankPyon_Apparel_Quiver</li>
+						</apparelRequired>
+					</value>
+				</li>
+
+				<!-- Weapon Tags -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[defName="BS_Crossbowman"]/weaponTags</xpath>
+					<value>
+						<li>CE_XBow</li>
+					</value>
+				</li>
+
+				<!-- Force no Shield -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[defName="BS_Jotun_Knight"]</xpath>
+					<value>
+						<modExtensions Inherit="False">
+							<li Class="CombatExtended.LoadoutPropertiesExtension">
+								<shieldMoney>
+									<min>1</min>
+									<max>1</max>
+								</shieldMoney>
+								<shieldTags>
+									<li>HeaterShield</li>
+									<li>KiteShield</li>
+								</shieldTags>
+								<shieldChance>0.01</shieldChance>
+							</li>
+						</modExtensions>
+					</value>
+				</li>
+
+				<!-- More Javelins for Giant-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[defName="BS_Jotun_Raider_Ranged" or defName="BS_Heavy_Jotun_Spearman"]</xpath>
+					<value>
+						<modExtensions Inherit="False">
+							<li Class="CombatExtended.LoadoutPropertiesExtension">
+								<primaryMagazineCount>
+									<min>4</min>
+									<max>10</max>
+								</primaryMagazineCount>
+								<forcedSidearm>
+									<sidearmMoney>
+										<min>100</min>
+										<max>600</max>
+									</sidearmMoney>
+									<weaponTags>
+										<li>NeolithicMeleeGiant</li>
+									</weaponTags>
+								</forcedSidearm>
+							</li>
+						</modExtensions>
+					</value>
+				</li>
+
+				<!-- Tribal Backpacks -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[
+						defName="BS_Jotun_Raider_Ranged" or defName="BS_Heavy_Jotun_Spearman"] </xpath>
+					<value>
+						<apparelRequired>
+							<li>CE_Apparel_TribalBackpack</li>
+						</apparelRequired>
+					</value>
+				</li>
+
+				<!-- Balancing -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[
+						defName="BS_Jotun_Raider" or
+						defName="BS_Jotun_Raider_Ranged" or
+						defName="BS_Medium_Jotun_Raider"]/combatPower</xpath>
+					<value>
+						<combatPower>80</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[
+						defName="BS_Heavy_Jotun" or
+						defName="BS_Heavy_Jotun_Spearman"]/combatPower</xpath>
+					<value>
+						<combatPower>120</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="BS_Jotun_Knight"]/combatPower</xpath>
+					<value>
+						<combatPower>150</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="BS_Jotun_Lord"]/combatPower</xpath>
+					<value>
+						<combatPower>200</combatPower>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

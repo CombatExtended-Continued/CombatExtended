@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -7,9 +7,9 @@
 		<parent>AmmoRockets</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="M6A3RocketBase" ParentName="MediumAmmoBase" Abstract="True">
@@ -44,7 +44,7 @@
 		<ammoClass>RocketHEAT</ammoClass>
 		<detonateProjectile>Bullet_M6A3_HEAT</detonateProjectile>
 	</ThingDef>
-  
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="M6A3RocketBase">
 		<defName>Ammo_M6A3_Incendiary</defName>
 		<label>M6A3 Rocket (Incendiary)</label>
@@ -63,12 +63,12 @@
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>1</Fragment_Large>
-					<Fragment_Small>43</Fragment_Small>
+					<Fragment_Small>11</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
 	</ThingDef>
-	
+
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Name="BaseM6A3Rocket" ParentName="BaseExplosiveBullet" Abstract="true">
@@ -110,7 +110,7 @@
 			</li>
 		</comps>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="BaseM6A3Rocket">
 		<defName>Bullet_M6A3_Incendiary</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -151,7 +151,7 @@
 			</li>
 		</comps>
 	</ThingDef> -->
-  
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="LauncherAmmoRecipeBase">
@@ -197,7 +197,7 @@
 			<Ammo_M6A3_HEAT>5</Ammo_M6A3_HEAT>
 		</products>
 	</RecipeDef>
-  
+
 	<RecipeDef ParentName="LauncherAmmoRecipeBase">
 		<defName>MakeAmmo_M6A3_Incendiary</defName>
 		<label>make M6A3 Incendiary rockets x5</label>
@@ -241,5 +241,5 @@
 			<Ammo_M6A3_Incendiary>5</Ammo_M6A3_Incendiary>
 		</products>
 	</RecipeDef>
-	
+
 </Defs>

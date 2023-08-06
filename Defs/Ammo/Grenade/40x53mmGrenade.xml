@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -7,7 +7,7 @@
 		<parent>AmmoGrenades</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -22,7 +22,7 @@
 		</ammoTypes>
 		<similarTo>AmmoSet_LauncherGrenade</similarTo>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="40x53mmGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
@@ -55,10 +55,10 @@
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_40x53mmGrenade_HE</detonateProjectile>
 	</ThingDef>
-  
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmGrenadeBase">
 		<defName>Ammo_40x53mmGrenade_HE_TFuzed</defName>
-		<label>40x53mm grenade (HE Time Fuzed)</label>
+		<label>40x53mm grenade (HE Time-Fuzed)</label>
 		<graphicData>
 			<texPath>Things/Ammo/GrenadeLauncher/AIR</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -143,16 +143,16 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Small>35</Fragment_Small>
+					<Fragment_Small>36</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
 	</ThingDef>
-	
+
 	<ThingDef ParentName="Base40x53mmGrenadeBullet">
 		<defName>Bullet_40x53mmGrenade_HE_TFuzed</defName>
 		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
-		<label>40x53mm grenade (HE-Airburst)</label>
+		<label>40x53mm grenade (HE Time-Fuzed)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>1.0</explosionRadius>
 			<damageDef>Bomb</damageDef>
@@ -164,7 +164,7 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Small>35</Fragment_Small>
+					<Fragment_Small>36</Fragment_Small>
 				</fragments>
 				<fragAngleRange>-89~-5</fragAngleRange>
 			</li>
@@ -190,7 +190,7 @@
 			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Small>17</Fragment_Small>
+					<Fragment_Small>16</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -264,12 +264,12 @@
 		</products>
 		<workAmount>11600</workAmount>
 	</RecipeDef>
-  
+
 	<RecipeDef ParentName="LauncherAmmoRecipeBase">
 		<defName>MakeAmmo_40x53mmGrenade_HE_TFuzed</defName>
-		<label>make 40x53mm HE Airburst grenades x100</label>
-		<description>Craft 100 40x53mm HE Airburst grenades.</description>
-		<jobString>Making 40x53mm HE Airburst grenades.</jobString>
+		<label>make 40x53mm HE Time-Fuzed grenades x100</label>
+		<description>Craft 100 40x53mm HE Time-Fuzed grenades.</description>
+		<jobString>Making 40x53mm HE Time-Fuzed grenades.</jobString>
 		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
 		<ingredients>
 			<li>

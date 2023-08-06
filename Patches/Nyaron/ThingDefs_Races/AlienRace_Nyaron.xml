@@ -1,22 +1,24 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		
-		<mods><li>Nyaron race</li></mods>
-		
+
+		<mods>
+			<li>Nyaron race</li>
+		</mods>
+
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name="BaseNyaronPawn"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable"/>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Nyaron"]</xpath>
 					<value>
@@ -25,9 +27,9 @@
 						</li>
 					</value>
 				</li>
-		
+
 				<!--Better shooting, Worse melee-->
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Nyaron"]/statBases</xpath>
 					<value>
@@ -41,9 +43,9 @@
 						<ReloadSpeed>1.25</ReloadSpeed>
 					</value>
 				</li>
-		
+
 				<!--Base has no headbut, only bite-->
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Nyaron"]/tools</xpath>
 					<value>
@@ -95,8 +97,7 @@
 						</tools>
 					</value>
 				</li>
-		
-		
+
 			</operations>
 		</match>
 	</Operation>

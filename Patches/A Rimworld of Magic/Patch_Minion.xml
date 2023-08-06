@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -7,24 +7,24 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!-- Looks like an alpha animals needle roll so I gave it the same body shape -->
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[
-				defName="TM_MinionR" or
-				defName="TM_GreaterMinionR"
-				]					</xpath>
+						defName="TM_MinionR" or
+						defName="TM_GreaterMinionR"
+						] </xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>QuadrupedLow</bodyShape>
 						</li>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-				defName="TM_MinionR"
-				]/statBases					</xpath>
+						defName="TM_MinionR"
+						]/statBases </xpath>
 					<value>
 						<CarryWeight>30</CarryWeight>
 						<CarryBulk>20</CarryBulk>
@@ -37,11 +37,11 @@
 						<SmokeSensitivity>0.5</SmokeSensitivity>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-				defName="TM_GreaterMinionR"
-				]/statBases					</xpath>
+						defName="TM_GreaterMinionR"
+						]/statBases </xpath>
 					<value>
 						<CarryWeight>50</CarryWeight>
 						<CarryBulk>30</CarryBulk>
@@ -54,43 +54,43 @@
 						<SmokeSensitivity>0.5</SmokeSensitivity>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="TM_MinionR"
-				]/statBases/ArmorRating_Blunt					</xpath>
+						defName="TM_MinionR"
+						]/statBases/ArmorRating_Blunt </xpath>
 					<value>
 						<ArmorRating_Blunt>1.1</ArmorRating_Blunt>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="TM_MinionR"
-				]/statBases/ArmorRating_Sharp					</xpath>
+						defName="TM_MinionR"
+						]/statBases/ArmorRating_Sharp </xpath>
 					<value>
 						<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="TM_GreaterMinionR"
-				]/statBases/ArmorRating_Blunt					</xpath>
+						defName="TM_GreaterMinionR"
+						]/statBases/ArmorRating_Blunt </xpath>
 					<value>
 						<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="TM_GreaterMinionR"
-				]/statBases/ArmorRating_Sharp					</xpath>
+						defName="TM_GreaterMinionR"
+						]/statBases/ArmorRating_Sharp </xpath>
 					<value>
 						<ArmorRating_Sharp>1</ArmorRating_Sharp>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="TM_MinionR"]/tools</xpath>
 					<value>
@@ -120,7 +120,7 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="TM_GreaterMinionR"]/tools</xpath>
 					<value>
@@ -150,11 +150,9 @@
 						</tools>
 					</value>
 				</li>
-			
-			
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

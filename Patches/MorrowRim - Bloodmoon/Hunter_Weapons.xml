@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>MorrowRim - Bloodmoon</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-				
 
 				<!-- ========== hunt Spear ========== -->
 
@@ -82,7 +82,7 @@
 					<AmmoUser>
 						<ammoSet>AmmoSet_HuntardArrow</ammoSet>
 					</AmmoUser>
-					<FireModes/>
+					<FireModes />
 					<AllowWithRunAndGun>true</AllowWithRunAndGun>
 				</li>
 
@@ -102,7 +102,74 @@
 					</value>
 				</li>
 
+				<!-- ========== Hunter Gun ========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>MorrowRim_Gun_Hunters</defName>
+					<statBases>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.8</ShotSpread>
+						<SwayFactor>2</SwayFactor>
+						<Bulk>5.00</Bulk>
+						<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_3006Springfield_FMJ</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>55</range>
+						<soundCast>Shot_BoltActionRifle</soundCast>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadTime>4.3</reloadTime>
+						<ammoSet>AmmoSet_3006Springfield_BloodMoon</ammoSet>
+					</AmmoUser>
+					<FireModes />
+					<AllowWithRunAndGun>true</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MorrowRim_Gun_Hunters"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

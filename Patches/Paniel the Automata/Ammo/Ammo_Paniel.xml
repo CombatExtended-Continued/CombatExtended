@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-			
-		<mods><li>Paniel the Automata</li></mods>
-			
+
+		<mods>
+			<li>Paniel the Automata</li>
+		</mods>
+
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!-- ==================== Shells ========================== -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
@@ -34,7 +36,7 @@
 							</ammoTypes>
 							<isMortarAmmoSet>true</isMortarAmmoSet>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_PanielLSWMulti</defName>
 							<label>Paniel Multi-Launcher munitions</label>
@@ -50,7 +52,7 @@
 							</ammoTypes>
 							<isMortarAmmoSet>false</isMortarAmmoSet>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_PanielRailShell</defName>
 							<label>Paniel Railgun shells</label>
@@ -99,7 +101,7 @@
 							<ammoClass>GrenadeIncendiary</ammoClass>
 							<detonateProjectile>Bullet_PanielHowitzerShell_Incendiary</detonateProjectile>
 						</ThingDef>
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
 							<defName>Ammo_PanielHowitzerShell_EMP</defName>
 							<label>Paniel Howitzer shell (EMP)</label>
@@ -136,7 +138,7 @@
 							<ammoClass>Smoke</ammoClass>
 							<detonateProjectile>Bullet_PanielHowitzerShell_Smoke</detonateProjectile>
 						</ThingDef>
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
 							<defName>Ammo_PanielHowitzerShell_Firefoam</defName>
 							<label>Paniel Howitzer shell (Foam)</label>
@@ -155,7 +157,7 @@
 							<ammoClass>FoamFuel</ammoClass>
 							<detonateProjectile>Bullet_PanielHowitzerShell_Firefoam</detonateProjectile>
 						</ThingDef>
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
 							<defName>Ammo_PanielHowitzerShell_AP</defName>
 							<label>Paniel Howitzer shell (AP)</label>
@@ -174,7 +176,7 @@
 							<ammoClass>GrenadeHE</ammoClass>
 							<detonateProjectile>Bullet_PanielHowitzerShell_AP</detonateProjectile>
 						</ThingDef>
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
 							<defName>Ammo_PanielHowitzerShell_Anti</defName>
 							<label>Paniel Howitzer shell (Anti)</label>
@@ -194,7 +196,7 @@
 							<ammoClass>Antigrain</ammoClass>
 							<detonateProjectile>Bullet_PanielHowitzerShell_Anti</detonateProjectile>
 						</ThingDef>
-					
+
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
 							<defName>Ammo_PanielRailShell</defName>
 							<label>Paniel Railgun shell</label>
@@ -308,7 +310,7 @@
 								</li>
 							</comps>
 						</ThingDef>
-					  
+
 						<ThingDef ParentName="Base105mmHowitzerShell">
 							<defName>Bullet_PanielHowitzerShell_Firefoam</defName>
 							<label>Paniel Howitzer shell (Foam)</label>
@@ -331,7 +333,7 @@
 								</li>
 							</comps>
 						</ThingDef>
-					  
+
 						<ThingDef ParentName="Base105mmHowitzerShell">
 							<defName>Bullet_PanielHowitzerShell_AP</defName>
 							<label>Paniel Howitzer shell (AP)</label>
@@ -355,7 +357,7 @@
 								</li>
 							</comps>
 						</ThingDef>
-					  
+
 						<ThingDef ParentName="Base105mmHowitzerShell">
 							<defName>Bullet_PanielHowitzerShell_Anti</defName>
 							<label>Paniel Howitzer shell (AP)</label>
@@ -379,7 +381,7 @@
 						</ThingDef>
 
 						<!-- ==================== Cluster ========================== -->
-					
+
 						<ThingDef ParentName="Base60mmMortarShell">
 							<defName>Bullet_60mmMortarPaniel_HE</defName>
 							<label>60mm mortar shell (HE)</label>
@@ -503,9 +505,9 @@
 								<explosionEffect>ExtinguisherExplosion</explosionEffect>
 							</projectile>
 						</ThingDef>
-					
+
 						<!-- ==================== Railgun Projectile ========================== -->
-					
+
 						<ThingDef ParentName="Base90mmCannonShell">
 							<defName>Bullet_PanielRail</defName>
 							<label>Prototype Railgun Shot</label>
@@ -530,9 +532,9 @@
 								</li>
 							</comps>
 						</ThingDef>
-					
+
 						<!-- ==================== Recipes ========================== -->
-					
+
 						<RecipeDef ParentName="AmmoRecipeBase">
 							<defName>MakeAmmo_PanielHowitzerShell_HE</defName>
 							<label>make Paniel HE Howitzer shells x2</label>
@@ -724,7 +726,7 @@
 								<Ammo_PanielHowitzerShell_Smoke>2</Ammo_PanielHowitzerShell_Smoke>
 							</products>
 						</RecipeDef>
-					
+
 						<RecipeDef ParentName="AmmoRecipeBase">
 							<defName>MakeAmmo_PanielHowitzerShell_Firefoam</defName>
 							<label>make Paniel Firefoam Howitzer shells x2</label>
@@ -772,7 +774,7 @@
 								<Ammo_PanielHowitzerShell_Firefoam>2</Ammo_PanielHowitzerShell_Firefoam>
 							</products>
 						</RecipeDef>
-					
+
 						<RecipeDef ParentName="AmmoRecipeBase">
 							<defName>MakeAmmo_PanielHowitzerShell_Anti</defName>
 							<label>make Paniel Antigrain Howitzer shell</label>
@@ -811,7 +813,7 @@
 								<Ammo_PanielHowitzerShell_Anti>1</Ammo_PanielHowitzerShell_Anti>
 							</products>
 						</RecipeDef>
-					
+
 						<RecipeDef ParentName="AmmoRecipeBase">
 							<defName>MakeAmmo_PanielHowitzerShell_AP</defName>
 							<label>make Paniel AP Howitzer shells x2</label>
@@ -859,7 +861,7 @@
 								<Ammo_PanielHowitzerShell_AP>2</Ammo_PanielHowitzerShell_AP>
 							</products>
 						</RecipeDef>
-					
+
 						<RecipeDef ParentName="AmmoRecipeBase">
 							<defName>MakeAmmo_PanielRailShell</defName>
 							<label>make Paniel Railgun Shell</label>
@@ -909,7 +911,7 @@
 						</RecipeDef>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[@ParentName="PN_ShellBase"]</xpath>
 				</li>

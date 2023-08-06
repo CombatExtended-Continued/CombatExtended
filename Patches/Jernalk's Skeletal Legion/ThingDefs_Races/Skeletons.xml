@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationFindMod">
-			
+
 				<mods>
 					<li>Jernalk's Skeletal Legion (continued)</li>
 					<li>Jernalk's Skeletal Legion</li>
 				</mods>
-			
+
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<li Class="PatchOperationAddModExtension">
 							<xpath>Defs/ThingDef[@Name="BaseSkeleton"]</xpath>
 							<value>
@@ -21,7 +21,6 @@
 							</value>
 						</li>
 
-			
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[@Name="BaseSkeleton"]/statBases</xpath>
 							<value>
@@ -29,13 +28,13 @@
 								<SmokeSensitivity>0</SmokeSensitivity>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[
-				defName="SL_Runner" or
-				defName="SL_Peon" or
-				defName="SL_Archer"
-				]/tools							</xpath>
+								defName="SL_Runner" or
+								defName="SL_Peon" or
+								defName="SL_Archer"
+								]/tools </xpath>
 							<value>
 								<tools>
 									<li Class="CombatExtended.ToolCE">
@@ -72,7 +71,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="SL_Runner"]/statBases</xpath>
 							<value>
@@ -81,7 +80,7 @@
 								<MeleeDodgeChance>1.2</MeleeDodgeChance>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="SL_Runner"]/statBases/ArmorRating_Sharp</xpath>
 							<value>
@@ -89,47 +88,47 @@
 								<ArmorRating_Electric>0.60</ArmorRating_Electric>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="SL_Runner"]/statBases/ArmorRating_Blunt</xpath>
 							<value>
 								<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[
-				defName="SL_Peon" or
-				defName="SL_Archer"
-				]/statBases							</xpath>
+								defName="SL_Peon" or
+								defName="SL_Archer"
+								]/statBases </xpath>
 							<value>
 								<MeleeCritChance>1</MeleeCritChance>
 								<MeleeParryChance>1</MeleeParryChance>
 								<MeleeDodgeChance>1</MeleeDodgeChance>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[
-				defName="SL_Peon" or
-				defName="SL_Archer"
-				]/statBases/ArmorRating_Sharp							</xpath>
+								defName="SL_Peon" or
+								defName="SL_Archer"
+								]/statBases/ArmorRating_Sharp </xpath>
 							<value>
 								<ArmorRating_Sharp>0.32</ArmorRating_Sharp>
 								<ArmorRating_Electric>0.60</ArmorRating_Electric>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[
-				defName="SL_Peon" or
-				defName="SL_Archer"
-				]/statBases/ArmorRating_Blunt							</xpath>
+								defName="SL_Peon" or
+								defName="SL_Archer"
+								]/statBases/ArmorRating_Blunt </xpath>
 							<value>
 								<ArmorRating_Blunt>0.26</ArmorRating_Blunt>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="SL_Hero"]/tools</xpath>
 							<value>
@@ -168,7 +167,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="SL_Hero"]/statBases</xpath>
 							<value>
@@ -177,7 +176,7 @@
 								<MeleeDodgeChance>1.25</MeleeDodgeChance>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="SL_Hero"]/statBases/ArmorRating_Sharp</xpath>
 							<value>
@@ -185,15 +184,14 @@
 								<ArmorRating_Electric>1</ArmorRating_Electric>
 							</value>
 						</li>
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="SL_Hero"]/statBases/ArmorRating_Blunt</xpath>
 							<value>
 								<ArmorRating_Blunt>3</ArmorRating_Blunt>
 							</value>
 						</li>
-			
-			
+
 					</operations>
 				</match>
 			</li>

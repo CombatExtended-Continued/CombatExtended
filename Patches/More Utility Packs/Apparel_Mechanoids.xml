@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -8,7 +8,7 @@
 			<mods>
 				<li>Vanilla Factions Expanded - Mechanoids</li>
 			</mods>
-				
+
 			<match Class="PatchOperationSequence">
 				<operations>
 
@@ -16,9 +16,9 @@
 
 					<li Class="PatchOperationConditional">
 						<xpath>Defs/ThingDef[
-					defName="SGC_Apparel_CombatMechPack" or
-					defName="SGC_Apparel_INDMechPack"
-					]/comps/li/compClass[.="CompQuality"]						</xpath>
+							defName="SGC_Apparel_CombatMechPack" or
+							defName="SGC_Apparel_INDMechPack"
+							]/comps/li/compClass[.="CompQuality"] </xpath>
 						<nomatch Class="PatchOperationAdd">
 							<xpath>Defs/ThingDef[defName="SGC_Apparel_CombatMechPack" or defName="SGC_Apparel_INDMechPack"]/comps</xpath>
 							<value>
@@ -31,9 +31,9 @@
 
 					<li Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[
-					defName="SGC_Apparel_CombatMechPack" or
-					defName="SGC_Apparel_INDMechPack"				
-					]/apparel/layers						</xpath>
+							defName="SGC_Apparel_CombatMechPack" or
+							defName="SGC_Apparel_INDMechPack"
+							]/apparel/layers </xpath>
 						<value>
 							<li>Backpack</li>
 						</value>

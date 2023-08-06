@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Urbworld Weaponry SDS</li>
+		</mods>
+
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+				<ThingCategoryDef>
+					<defName>Ammo18mmSmart</defName>
+					<label>18mm Semi-smart rocket</label>
+					<parent>AmmoPistols</parent>
+					<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+				</ThingCategoryDef>
+
+				<!-- ==================== AmmoSet ========================== -->
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_18mmSmart</defName>
+					<label>18mm Semi-smart rocket</label>
+					<ammoTypes>
+						<Ammo_18mmSmart_FMJ>Bullet_18mmSmart_FMJ</Ammo_18mmSmart_FMJ>
+						<Ammo_18mmSmart_AP>Bullet_18mmSmart_AP</Ammo_18mmSmart_AP>
+						<Ammo_18mmSmart_Sabot>Bullet_18mmSmart_Sabot</Ammo_18mmSmart_Sabot>
+						<Ammo_18mmSmart_HE>Bullet_18mmSmart_HE</Ammo_18mmSmart_HE>
+						<Ammo_18mmSmart_Incendiary>Bullet_18mmSmart_Incendiary</Ammo_18mmSmart_Incendiary>
+						<Ammo_18mmSmart_EMP>Bullet_18mmSmart_EMP</Ammo_18mmSmart_EMP>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ==================== Ammo ========================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" Name="18mmSmartBase" ParentName="AmmoBase" Abstract="True">
+					<description>Rare urbworld ammunition that guides itself using micro rocket propulsion. An electric igniter fires the cartridge as well as flash-programs the bullet with flight data. An antiquted design that introduces more problems than it solves.</description>
+					<statBases>
+						<Mass>0.0051</Mass>
+						<Bulk>0.09</Bulk>
+					</statBases>
+					<tradeTags>
+						<li>CE_AutoEnableTrade</li>
+						<li>CE_AutoEnableCrafting</li>
+					</tradeTags>
+					<thingCategories>
+						<li>Ammo18mmSmart</li>
+					</thingCategories>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="18mmSmartBase">
+					<defName>Ammo_18mmSmart_FMJ</defName>
+					<label>18mm Smart rocket (FMJ)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Pistol/FMJ</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>0.55</MarketValue>
+					</statBases>
+					<ammoClass>FullMetalJacket</ammoClass>
+					<cookOffProjectile>Bullet_18mmSmart_FMJ</cookOffProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="18mmSmartBase">
+					<defName>Ammo_18mmSmart_AP</defName>
+					<label>18mm Smart rocket (AP)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Pistol/AP</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>0.55</MarketValue>
+					</statBases>
+					<ammoClass>ArmorPiercing</ammoClass>
+					<cookOffProjectile>Bullet_18mmSmart_AP</cookOffProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="18mmSmartBase">
+					<defName>Ammo_18mmSmart_Sabot</defName>
+					<label>18mm Smart rocket (Sabot)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Rifle/Sabot</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>0.69</MarketValue>
+					</statBases>
+					<ammoClass>Sabot</ammoClass>
+					<cookOffProjectile>Bullet_18mmSmart_Sabot</cookOffProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="18mmSmartBase">
+					<defName>Ammo_18mmSmart_HE</defName>
+					<label>18mm Smart rocket (HE)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Rifle/HE</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>1.03</MarketValue>
+					</statBases>
+					<ammoClass>ExplosiveAP</ammoClass>
+					<cookOffProjectile>Bullet_18mmSmart_HE</cookOffProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="18mmSmartBase">
+					<defName>Ammo_18mmSmart_Incendiary</defName>
+					<label>18mm Smart rocket (Incendiary)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>0.96</MarketValue>
+					</statBases>
+					<ammoClass>IncendiaryFuel</ammoClass>
+					<cookOffProjectile>Bullet_18mmSmart_Incendiary</cookOffProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="18mmSmartBase">
+					<defName>Ammo_18mmSmart_EMP</defName>
+					<label>18mm Smart rocket (EMP)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Shotgun/EMP</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>1.1</MarketValue>
+					</statBases>
+					<ammoClass>ElectroSlug</ammoClass>
+					<cookOffProjectile>Bullet_18mmSmart_EMP</cookOffProjectile>
+				</ThingDef>
+
+				<!-- ================== Projectiles ================== -->
+
+				<ThingDef Name="Base18mmSmartBullet" ParentName="BaseBulletCE" Abstract="true">
+					<graphicData>
+						<texPath>Projectiles/SSR_Rocket_Small</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<speed>110</speed> <!--40-->
+						<dropsCasings>true</dropsCasings>
+						<casingMoteDefname>Mote_SDSShell</casingMoteDefname>
+						<casingFilthDefname>Filth_SDSCasings</casingFilthDefname>
+						<gravityFactor>75</gravityFactor> <!--15-->
+						<soundAmbient>SSR_Loop_Multi</soundAmbient>
+						<screenShakeFactor>0</screenShakeFactor>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base18mmSmartBullet">
+					<defName>Bullet_18mmSmart_FMJ</defName>
+					<label>18mm Smart rocket (FMJ)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageAmountBase>28</damageAmountBase>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<armorPenetrationBlunt>84.7</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base18mmSmartBullet">
+					<defName>Bullet_18mmSmart_AP</defName>
+					<label>18mm Smart rocket (AP)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageAmountBase>22</damageAmountBase>
+						<armorPenetrationSharp>12</armorPenetrationSharp>
+						<armorPenetrationBlunt>84.7</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base18mmSmartBullet">
+					<defName>Bullet_18mmSmart_Sabot</defName>
+					<label>18mm Smart rocket (Sabot)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageAmountBase>21</damageAmountBase>
+						<speed>165</speed>
+						<armorPenetrationSharp>21</armorPenetrationSharp>
+						<armorPenetrationBlunt>190.58</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base18mmSmartBullet">
+					<defName>Bullet_18mmSmart_HE</defName>
+					<label>18mm Smart rocket (HE)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageAmountBase>17</damageAmountBase>
+						<armorPenetrationSharp>4.125</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.799</armorPenetrationBlunt>
+						<secondaryDamage>
+							<li>
+								<def>Bomb_Secondary</def>
+								<amount>14</amount>
+							</li>
+						</secondaryDamage>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base18mmSmartBullet">
+					<defName>Bullet_18mmSmart_Incendiary</defName>
+					<label>18mm Smart rocket (Incendiary)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>PrometheumFlame</damageDef>
+						<damageAmountBase>3</damageAmountBase>
+						<armorPenetrationSharp>0</armorPenetrationSharp>
+						<armorPenetrationBlunt>0</armorPenetrationBlunt>
+						<explosionRadius>1</explosionRadius>
+						<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+						<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
+						<ai_IsIncendiary>true</ai_IsIncendiary>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base18mmSmartBullet">
+					<defName>Bullet_18mmSmart_EMP</defName>
+					<label>18mm Smart rocket (EMP)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>EMP</damageDef>
+						<damageAmountBase>8</damageAmountBase>
+						<explosionRadius>1</explosionRadius>
+					</projectile>
+				</ThingDef>
+
+				<!-- ==================== Recipes ========================== -->
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_18mmSmart_FMJ</defName>
+					<label>make 18mm Smart (FMJ) rocket x200</label>
+					<description>Craft 500 18mm Smart (FMJ) rockets.</description>
+					<jobString>Making 18mm Smart (FMJ) rockets.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>22</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Prometheum</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>Prometheum</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_18mmSmart_FMJ>200</Ammo_18mmSmart_FMJ>
+					</products>
+					<workAmount>3400</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_18mmSmart_AP</defName>
+					<label>make 18mm Smart (AP) rocket x200</label>
+					<description>Craft 500 18mm Smart (AP) rockets.</description>
+					<jobString>Making 18mm Smart (AP) rockets.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>22</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Prometheum</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>Prometheum</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_18mmSmart_AP>200</Ammo_18mmSmart_AP>
+					</products>
+					<workAmount>4080</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+					<defName>MakeAmmo_18mmSmart_Sabot</defName>
+					<label>make 18mm Smart (Sabot) rocket x200</label>
+					<description>Craft 500 18mm Smart (Sabot) rockets.</description>
+					<jobString>Making 18mm Smart (Sabot) rockets.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>10</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Prometheum</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Uranium</li>
+								</thingDefs>
+							</filter>
+							<count>6</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Chemfuel</li>
+								</thingDefs>
+							</filter>
+							<count>6</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>Prometheum</li>
+							<li>ComponentIndustrial</li>
+							<li>Uranium</li>
+							<li>Chemfuel</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_18mmSmart_Sabot>200</Ammo_18mmSmart_Sabot>
+					</products>
+					<workAmount>5800</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+					<defName>MakeAmmo_18mmSmart_HE</defName>
+					<label>make 18mm Smart (HE) rocket x200</label>
+					<description>Craft 500 18mm Smart (HE) rockets.</description>
+					<jobString>Making 18mm Smart (HE) rockets.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>28</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Prometheum</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>8</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>Prometheum</li>
+							<li>ComponentIndustrial</li>
+							<li>FSX</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_18mmSmart_HE>200</Ammo_18mmSmart_HE>
+					</products>
+					<workAmount>8640</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+					<defName>MakeAmmo_18mmSmart_Incendiary</defName>
+					<label>make 18mm Smart (Incendiary) rocket x200</label>
+					<description>Craft 500 18mm Smart (Incendiary) rockets.</description>
+					<jobString>Making 18mm Smart (Incendiary) rockets.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>28</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>4</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Prometheum</li>
+								</thingDefs>
+							</filter>
+							<count>3</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>Prometheum</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_18mmSmart_Incendiary>200</Ammo_18mmSmart_Incendiary>
+					</products>
+					<workAmount>5600</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+					<defName>MakeAmmo_18mmSmart_EMP</defName>
+					<label>make 18mm Smart (EMP) rocket x200</label>
+					<description>Craft 500 18mm Smart (EMP) rockets.</description>
+					<jobString>Making 18mm Smart (EMP) rockets.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>28</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>5</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Prometheum</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>Prometheum</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_18mmSmart_EMP>200</Ammo_18mmSmart_EMP>
+					</products>
+					<workAmount>5800</workAmount>
+				</RecipeDef>
+
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

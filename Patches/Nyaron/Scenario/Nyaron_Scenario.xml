@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		
-		<mods><li>Nyaron race</li></mods>
-		
+
+		<mods>
+			<li>Nyaron race</li>
+		</mods>
+
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ScenarioDef[defName="NyaronStart"]/scenario/parts</xpath>
 					<value>
@@ -17,7 +19,7 @@
 						</li>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ScenarioDef[defName="NyaronStart_butler"]/scenario/parts</xpath>
 					<value>
@@ -33,11 +35,9 @@
 						</li>
 					</value>
 				</li>
-		
-		
-		
+
 				<!--Add material filter to faction for MIB type events-->
-		
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/FactionDef[@Name="NyaronFactionBase"]/apparelStuffFilter</xpath>
 					<match Class="PatchOperationConditional">
@@ -77,7 +77,7 @@
 						</value>
 					</nomatch>
 				</li>
-		
+
 			</operations>
 		</match>
 	</Operation>

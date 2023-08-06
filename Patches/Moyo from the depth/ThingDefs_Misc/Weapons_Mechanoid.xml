@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationSequence">
-		
+
 		<operations>
 			<li Class="PatchOperationFindMod">
-				<mods><li>Moyo-From the depth</li></mods>
+				<mods>
+					<li>Moyo-From the depth</li>
+				</mods>
 				<match Class="PatchOperationSequence">
 					<operations>
-			
+
 						<!-- ========== Cryopod Cryorifle =========== -->
-			
+
 						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 							<defName>Moyo_CryoRifle</defName>
 							<statBases>
@@ -20,7 +22,7 @@
 								<Mass>22</Mass>
 								<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
 							</statBases>
-				
+
 							<Properties>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -35,7 +37,7 @@
 									<canTargetLocations>true</canTargetLocations>
 								</targetParams>
 							</Properties>
-				
+
 							<AmmoUser>
 								<magazineSize>100</magazineSize>
 								<reloadTime>9.8</reloadTime>
@@ -48,9 +50,9 @@
 								<li>NoSwitch</li>
 							</weaponTags>
 						</li>
-			
+
 						<!-- ========== Melee Attacks =========== -->
-			
+
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[defName="Moyo_CryoRifle"]/tools</xpath>
 							<value>
@@ -68,7 +70,7 @@
 								</tools>
 							</value>
 						</li>
-			
+
 					</operations>
 				</match>
 			</li>

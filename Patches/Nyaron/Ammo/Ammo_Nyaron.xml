@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-			
-		<mods><li>Nyaron race</li></mods>
-			
+
+		<mods>
+			<li>Nyaron race</li>
+		</mods>
+
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!-- ==================== Nyaron Pulse Ammo ========================== -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
@@ -21,7 +23,7 @@
 								<Ammo_NyaronCell>Bullet_NyaronCellBall</Ammo_NyaronCell>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_NyaronCellBullet</defName>
 							<label>Energy Ball</label>
@@ -29,7 +31,7 @@
 								<Ammo_NyaronCell>Bullet_NyaronCellBullet</Ammo_NyaronCell>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_NyaronCellLaser</defName>
 							<label>Energy Ball</label>
@@ -37,7 +39,7 @@
 								<Ammo_NyaronCell>Bullet_NyaronCellLaser</Ammo_NyaronCell>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<CombatExtended.AmmoCategoryDef>
 							<defName>NyaronCell</defName>
 							<label>Cell</label>
@@ -88,7 +90,7 @@
 								<armorPenetrationBlunt>60</armorPenetrationBlunt>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="Base6x24mmChargedBullet">
 							<defName>Bullet_NyaronCellBullet</defName>
 							<label>nyaron shock bullet</label>
@@ -105,7 +107,7 @@
 								<armorPenetrationBlunt>45</armorPenetrationBlunt>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletBlue">
 							<defName>Bullet_NyaronCellLaser</defName>
 							<label>pulse beam</label>
@@ -164,14 +166,14 @@
 						</RecipeDef>
 					</value>
 				</li>
-			
+
 				<!-- ==================== Nyaron Super Bow ========================== -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
 						<!-- ==================== AmmoSets ========================== -->
-					
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_GreatArrowNyaron</defName>
 							<label>great arrows</label>
@@ -183,9 +185,9 @@
 								<Ammo_GreatArrow_Flame>Projectile_GreatArrowNyaron_Flame</Ammo_GreatArrow_Flame>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<!-- ================== Projectiles ================== -->
-					
+
 						<ThingDef ParentName="BaseGreatArrowProjectile">
 							<defName>Projectile_GreatArrowNyaron_Stone</defName>
 							<label>great arrow (stone)</label>
@@ -236,7 +238,7 @@
 								<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="BaseGreatArrowProjectile">
 							<defName>Projectile_GreatArrowNyaron_Venom</defName>
 							<label>great arrow (venom)</label>
@@ -260,7 +262,7 @@
 								<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
 							</projectile>
 						</ThingDef>
-					
+
 						<ThingDef ParentName="BaseGreatArrowProjectile">
 							<defName>Projectile_GreatArrowNyaron_Flame</defName>
 							<label>great arrow (flame)</label>
@@ -283,16 +285,16 @@
 								</secondaryDamage>
 							</projectile>
 						</ThingDef>
-					
+
 					</value>
 				</li>
-			
+
 				<!-- ==================== Nyaron Flak Ammo ========================== -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
-				
+
 						<CombatExtended.AmmoSetDef>
 							<defName>AmmoSet_NyaronFlakGrenade</defName>
 							<label>NyaronFlak Grenades</label>
@@ -300,9 +302,8 @@
 								<Ammo_NyaronFlakGrenade_HE>Bullet_NyaronFlakGrenade_HE</Ammo_NyaronFlakGrenade_HE>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
-					
+
 						<!-- ==================== Ammo ========================== -->
-					
 
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
 							<defName>Ammo_NyaronFlakGrenade_HE</defName>
@@ -321,9 +322,8 @@
 							<detonateProjectile>Bullet_NyaronFlakGrenade_HE</detonateProjectile>
 						</ThingDef>
 
-
 						<!-- ================== Projectiles ================== -->
-						
+
 						<ThingDef ParentName="Base20x42mmGrenadeBullet">
 							<defName>Bullet_NyaronFlakGrenade_HE</defName>
 							<label>nyaron grenade (HE)</label>
@@ -396,7 +396,7 @@
 						</RecipeDef>
 					</value>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>

@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>[O21] Outer Rim Galaxies</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="O21_OR_ThermalDetProj"]/thingClass</xpath>
 					<value>
 						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="O21_OR_ThermalDetProj"]/projectile</xpath>
 					<value>
@@ -35,11 +35,11 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="O21_OR_ThermalDetProj"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="O21_OR_ThermalDetProj"]/comps</xpath>
 					<value>
@@ -50,9 +50,9 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<!-- Grenade -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="O21_OR_ThermalDetonator"]</xpath>
 					<value>
@@ -61,13 +61,13 @@
 						<resourceReadoutPriority>First</resourceReadoutPriority>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="O21_OR_ThermalDetonator"]</xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.AmmoDef</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="O21_OR_ThermalDetonator"]/comps</xpath>
 					<value>
@@ -78,7 +78,7 @@
 						</li>
 					</value>
 				</li>
-			
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>O21_OR_ThermalDetonator</defName>
 					<statBases>
@@ -109,7 +109,7 @@
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="O21_OR_ThermalDetonatorBelt"]/costList</xpath>
 					<value>
@@ -151,7 +151,7 @@
 						</verbs>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="O21_OR_VibroBlade"]/tools</xpath>
 					<value>
@@ -192,7 +192,7 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="O21_OR_VibroBlade"]/statBases</xpath>
 					<value>
@@ -241,7 +241,7 @@
 						</tools>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="O21_OR_VibroDagger"]/statBases</xpath>
 					<value>
@@ -260,7 +260,6 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-			
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="O21_OR_VibroAxe"]/tools</xpath>
@@ -321,7 +320,7 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="O21_OR_VibroDoubleBlade"]/tools</xpath>
 					<value>
@@ -383,7 +382,6 @@
 					</value>
 				</li>
 
-
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="O21_OR_VibroCleaver"]/tools</xpath>
 					<value>
@@ -443,7 +441,7 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="O21_OR_VibroGlaive"]/tools</xpath>
 					<value>
@@ -503,16 +501,16 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-			
+
 				<!-- Lightsaber patch from fully functional lightsaber mod -->
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name="O21_OR_BaseLightsaber"]/statBases</xpath>
 					<value>
 						<Bulk>1.5</Bulk>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name="O21_OR_BaseLightsaber"]</xpath>
 					<value>
@@ -523,13 +521,13 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberStandardBase"]/tools/li</xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.ToolCE</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberStandardBase"]/tools/li[label="hilt"]</xpath>
 					<value>
@@ -550,13 +548,13 @@
 						<armorPenetrationSharp>0.88</armorPenetrationSharp>
 					</value>
 				</li>
-			  
+
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberDoubleBase"]/tools/li</xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.ToolCE</value>
 				</li>
-			  
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name="O21_OR_LightsaberDoubleBase"]/tools/li[label="hilt"]</xpath>
 					<value>
@@ -577,9 +575,9 @@
 						<armorPenetrationSharp>0.88</armorPenetrationSharp>
 					</value>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

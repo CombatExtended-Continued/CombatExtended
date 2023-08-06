@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>[O21] Outer Rim Galaxies</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid"]</xpath>
 					<match Class="PatchOperationSequence">
 						<operations>
-				
+
 							<li Class="PatchOperationAddModExtension">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid"]</xpath>
 								<value>
@@ -21,7 +21,7 @@
 									</li>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAddModExtension">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK50Droid"]</xpath>
 								<value>
@@ -30,7 +30,7 @@
 									</li>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAddModExtension">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK51Droid"]</xpath>
 								<value>
@@ -39,7 +39,7 @@
 									</li>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid" or defName="O21_OR_HK50Droid" or defName="O21_OR_HK51Droid"]/statBases</xpath>
 								<value>
@@ -51,13 +51,13 @@
 									<SmokeSensitivity>1</SmokeSensitivity>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationConditional">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid"]/comps</xpath>
 								<nomatch Class="PatchOperationAdd">
 									<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid"]</xpath>
 									<value>
-										<comps/>
+										<comps />
 									</value>
 								</nomatch>
 							</li>
@@ -67,7 +67,7 @@
 								<nomatch Class="PatchOperationAdd">
 									<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK50Droid"]</xpath>
 									<value>
-										<comps/>
+										<comps />
 									</value>
 								</nomatch>
 							</li>
@@ -77,11 +77,11 @@
 								<nomatch Class="PatchOperationAdd">
 									<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK51Droid"]</xpath>
 									<value>
-										<comps/>
+										<comps />
 									</value>
 								</nomatch>
 							</li>
-			
+
 							<li Class="PatchOperationAdd">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid" or defName="O21_OR_HK50Droid" or defName="O21_OR_HK51Droid"]/comps</xpath>
 								<value>
@@ -90,7 +90,7 @@
 									</li>
 								</value>
 							</li>
-			
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid" or defName="O21_OR_HK50Droid" or defName="O21_OR_HK51Droid"]/tools</xpath>
 								<value>
@@ -129,13 +129,13 @@
 									</tools>
 								</value>
 							</li>
-			
+
 						</operations>
 					</match>
 				</li>
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

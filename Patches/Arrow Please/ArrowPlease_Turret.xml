@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -7,33 +7,33 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-		
+
 				<!--=============== Base turrets ===============-->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-				defName="Turret_Ballista" or
-				defName="Turret_Triplecrossbow" or
-				@Name="Turret_CatapultBase" or
-				@Name="Turret_TrebuchetBase"
-				]/thingClass					</xpath>
+						defName="Turret_Ballista" or
+						defName="Turret_Triplecrossbow" or
+						@Name="Turret_CatapultBase" or
+						@Name="Turret_TrebuchetBase"
+						]/thingClass </xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-				defName="Turret_Ballista" or
-				defName="Turret_Triplecrossbow"
-				]/comps/li[@Class = "CompProperties_Refuelable"]					</xpath>
+						defName="Turret_Ballista" or
+						defName="Turret_Triplecrossbow"
+						]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
 				</li>
 
 				<!-- Remove duplicate mannable comp. -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
-				@Name="Turret_CatapultBase" or
-				@Name="Turret_TrebuchetBase"
-				]/comps/li[@Class = "CompProperties_Mannable"]					</xpath>
+						@Name="Turret_CatapultBase" or
+						@Name="Turret_TrebuchetBase"
+						]/comps/li[@Class = "CompProperties_Mannable"] </xpath>
 				</li>
 
 				<!--=============== Ballista ===============-->
@@ -71,7 +71,7 @@
 						<noSingleShot>true</noSingleShot>
 					</FireModes>
 				</li>
-			
+
 				<!--=============== Triple Crossbow ===============-->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Turret_TriplecrossbowGun</defName>
@@ -122,7 +122,7 @@
 						</statBases>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[@Name = "BaseCatapultWeapon"]/comps</xpath>
 					<value>
@@ -182,14 +182,14 @@
 						<turretBurstWarmupTime>1</turretBurstWarmupTime>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="Turret_CatapultBase"]/building/turretBurstCooldownTime</xpath>
 					<value>
 						<turretBurstCooldownTime>1</turretBurstCooldownTime>
 					</value>
 				</li>
-		
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[@Name="Turret_CatapultBase"]/inspectorTabs</xpath>
 				</li>

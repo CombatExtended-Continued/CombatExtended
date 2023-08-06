@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationFindMod">
+
+				<mods>
+					<li>Gloomy Dragonian race</li>
+				</mods>
+
+				<match Class="PatchOperationSequence">
+					<operations>
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="DR_BattleMace"]/tools</xpath>
+							<value>
+								<tools>
+									<li Class="CombatExtended.ToolCE">
+										<label>handle</label>
+										<capacities>
+											<li>Poke</li>
+										</capacities>
+										<power>5</power>
+										<cooldownTime>1.37</cooldownTime>
+										<armorPenetrationBlunt>0.87</armorPenetrationBlunt>
+										<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+									</li>
+									<li Class="CombatExtended.ToolCE">
+										<label>head</label>
+										<capacities>
+											<li>Blunt</li>
+											<li>Demolish</li>
+										</capacities>
+										<power>32</power>
+										<extraMeleeDamages>
+											<li>
+												<def>EMP</def>
+												<amount>15</amount>
+											</li>
+										</extraMeleeDamages>
+										<cooldownTime>2.57</cooldownTime>
+										<armorPenetrationBlunt>11.5</armorPenetrationBlunt>
+										<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+									</li>
+								</tools>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="DR_BattleMace"]/statBases</xpath>
+							<value>
+								<Bulk>8</Bulk>
+								<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
+							</value>
+						</li>
+
+						<li Class="PatchOperationConditional">
+							<xpath>Defs/ThingDef[defName = "DR_BattleMace"]/equippedStatOffsets</xpath>
+							<nomatch Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName = "DR_BattleMace"]</xpath>
+								<value>
+									<equippedStatOffsets />
+								</value>
+							</nomatch>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="DR_BattleMace"]/equippedStatOffsets</xpath>
+							<value>
+								<MeleeCritChance>1.50</MeleeCritChance>
+								<MeleeParryChance>0.30</MeleeParryChance>
+								<MeleeDodgeChance>0.30</MeleeDodgeChance>
+							</value>
+						</li>
+
+					</operations>
+				</match>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>

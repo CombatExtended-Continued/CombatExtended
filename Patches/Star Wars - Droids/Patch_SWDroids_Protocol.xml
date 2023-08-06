@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Star Wars - Protocol Droids (Continued)</li>
@@ -13,7 +13,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="3PO_Protocol"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
@@ -23,55 +23,53 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="TC_Protocol"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
-			
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[
-				defName="TC_Protocol" or
-				defName="3PO_Protocol"
-				]					</xpath>
+						defName="TC_Protocol" or
+						defName="3PO_Protocol"
+						] </xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
 						</li>
 					</value>
 				</li>
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[
-				defName="TC_Protocol" or
-				defName="3PO_Protocol"
-				]/comps					</xpath>
+						defName="TC_Protocol" or
+						defName="3PO_Protocol"
+						]/comps </xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable"/>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
 					</value>
 				</li>
-			
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[
-				defName="TC_Protocol" or
-				defName="3PO_Protocol"
-				]/statBases					</xpath>
+						defName="TC_Protocol" or
+						defName="3PO_Protocol"
+						]/statBases </xpath>
 					<value>
 						<MeleeCritChance>1</MeleeCritChance>
 						<MeleeParryChance>0</MeleeParryChance>
 						<SmokeSensitivity>0</SmokeSensitivity>
 					</value>
 				</li>
-			
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[
-				defName="TC_Protocol" or
-				defName="3PO_Protocol"
-				]/tools					</xpath>
+						defName="TC_Protocol" or
+						defName="3PO_Protocol"
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -108,21 +106,19 @@
 						</tools>
 					</value>
 				</li>
-			
-			
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/BodyDef[defName="Protocol_Droid_Body"]//*[def="SW_Droid_Hull" or def="SW_Protocol_Head" or def="SW_Droid_Shoulder" or def="SW_Droid_Arm" or def="SW_Droid_Hand" or def="SW_Droid_Leg" or def="SW_Droid_Foot"]/groups</xpath>
 					<value>
 						<li>CoveredByNaturalArmor</li>
 					</value>
 				</li>
-			
-			
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[
-				defName="TC_Protocol" or
-				defName="3PO_Protocol"
-				]/statBases/ArmorRating_Blunt					</xpath>
+						defName="TC_Protocol" or
+						defName="3PO_Protocol"
+						]/statBases/ArmorRating_Blunt </xpath>
 					<value>
 						<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
 					</value>
@@ -130,27 +126,25 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[
-				defName="TC_Protocol" or
-				defName="3PO_Protocol"
-				]/statBases/ArmorRating_Sharp					</xpath>
+						defName="TC_Protocol" or
+						defName="3PO_Protocol"
+						]/statBases/ArmorRating_Sharp </xpath>
 					<value>
 						<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[
-				defName="TC_Protocol" or
-				defName="3PO_Protocol"
-				]/statBases/ArmorRating_Heat					</xpath>
+						defName="TC_Protocol" or
+						defName="3PO_Protocol"
+						]/statBases/ArmorRating_Heat </xpath>
 					<value>
 						<ArmorRating_Heat>0</ArmorRating_Heat>
 					</value>
 				</li>
-			
-			
-			
+
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

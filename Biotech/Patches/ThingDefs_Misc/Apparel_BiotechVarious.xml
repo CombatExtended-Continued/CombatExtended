@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<!-- ========== Mechlord Suit ========== -->
@@ -97,9 +97,17 @@
 	</Operation>
 
 	<!-- ========== Bandolier ========== -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_Bandolier"]/statBases</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Bandolier"]/costStuffCount</xpath>
 		<value>
+			<costStuffCount>45</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Bandolier"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>75</MaxHitPoints>
 			<Bulk>3</Bulk>
 			<WornBulk>1</WornBulk>
 		</value>
@@ -119,6 +127,15 @@
 		<xpath>Defs/ThingDef[defName="Apparel_Bandolier"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Bandolier"]/thingCategories</xpath>
+		<value>
+			<thingCategories>
+				<li>Loadout</li>
+			</thingCategories>
 		</value>
 	</Operation>
 
