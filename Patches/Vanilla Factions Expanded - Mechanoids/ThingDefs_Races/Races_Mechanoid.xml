@@ -35,6 +35,37 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="VFE_Mechanoid"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+									<parts>
+										<li>SightSensor</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+									<parts>
+										<li>SightSensor</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="VFE_Mechanoid"]/statBases</xpath>
+					<value>
+						<PartialArmorBody>0</PartialArmorBody>
+					</value>
+				</li>
+
 				<!--Consistency with vanilla mechs-->
 
 				<li Class="PatchOperationReplace">
