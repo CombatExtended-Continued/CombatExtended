@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small Races</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--Red Bandana-->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_Nisse_Cap"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_Nisse_Cap"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

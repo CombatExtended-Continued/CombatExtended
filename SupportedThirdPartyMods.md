@@ -61,6 +61,7 @@ Mod |
 [SYR] Harpy	|
 [SYR] Naga	|
 [SYR] Thrumkin	|
+[UEM] More Mechanitor Mechs	|
 [XND] Vanilla-Friendly Animal Surgery (Continued)
 ↁ Elves |
 ↁ House Sanguin |
@@ -74,6 +75,7 @@ Alpha Genes |
 Alpha Genes - Insectoid Mutations |
 Alpha Mechs |
 Alpha Memes |
+Alpha Mythology |
 Alpha Ships |
 Altered Carbon |
 Ancient Blade Cyborg  |
@@ -119,6 +121,10 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Big and Small Genes	|
+Big and Small - Medieval Factions	|
+Big and Small - Medieval Overhaul Factions	|
+Big and Small Races	|
 Biomes! Caverns	|
 Biomes! Core	|
 Biotech Expansion - Mammalia  |
@@ -271,7 +277,6 @@ Let's Have a Cat!	|
 Littluna Race |
 Logann Race	|
 Logistics_Mechanoid |
-Magical Menagerie	|
 Magic Wands |
 Makeshift Melee Weapons |
 Marilyn the Mincho Worshipper Witch |
@@ -366,6 +371,7 @@ Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
+Recon Mechanoid |
 ReGrowth: Extinct Animals |
 Reinforced Mechanoid 2 |
 Remote Detonator	|
@@ -426,11 +432,11 @@ Spartan Foundry	|
 Spidercamp's Horses     |
 SRTS Expanded	|
 Stalingrad – Uniforms   |
-Steamworld Uniforms |
 Star Crafters Armory  |
 Star Wars - Droids |
 Star Wars - Factions |
 Starship Troopers Aracnids  |
+Steamworld Uniforms |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
@@ -452,8 +458,11 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
+Urbworld Weaponry: Caseless |
+Urbworld Weaponry SDS |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
+Vampires, Demons, and the Undead  |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Caves |
 Vanilla Animals Expanded - Endangered |
@@ -481,6 +490,7 @@ Vanilla Ideology Expanded – Dryads  |
 Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Genetics Expanded   |
+Vanilla Plants Expanded - Mushrooms  |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Races Expanded - Android  |

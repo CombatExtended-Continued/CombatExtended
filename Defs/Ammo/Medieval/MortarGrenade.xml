@@ -26,7 +26,7 @@
 		</graphicData>
 		<statBases>
 			<Mass>0.95</Mass>
-			<Bulk>0.5</Bulk>
+			<Bulk>0.51</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -36,7 +36,7 @@
 		<thingCategories>
 			<li>MortarGrenade</li>
 		</thingCategories>
-		<stackLimit>100</stackLimit>
+		<stackLimit>150</stackLimit>
 		<cookOffFlashScale>20</cookOffFlashScale>
 		<techLevel>Medieval</techLevel>
 	</ThingDef>
@@ -49,7 +49,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>2.96</MarketValue>
+			<MarketValue>18.54</MarketValue>
 		</statBases>
 		<ammoClass>BurstingShell</ammoClass>
 		<detonateProjectile>Bullet_MortarGrenade</detonateProjectile>
@@ -68,13 +68,13 @@
 			<explosionRadius>1.0</explosionRadius>
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>30</damageAmountBase>
-			<speed>21</speed>
+			<speed>25</speed>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Small>12</Fragment_Small>
+					<Fragment_Medium>6</Fragment_Medium>
 				</fragments>
 			</li>
 		</comps>
@@ -84,8 +84,8 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_MortarGrenade</defName>
-		<label>Make Mortar Grenade x6</label>
-		<description>Craft 6 Mortar Grenades</description>
+		<label>Make Mortar Grenade x5</label>
+		<description>Craft 5 Mortar Grenades</description>
 		<jobString>Making Mortar Grenades</jobString>
 		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
 		<ingredients>
@@ -95,7 +95,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>15</count>
+				<count>10</count>
 			</li>
 			<li>
 				<filter>
@@ -103,7 +103,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>8</count>
+				<count>1</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -113,9 +113,9 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_MortarGrenade>6</Ammo_MortarGrenade>
+			<Ammo_MortarGrenade>5</Ammo_MortarGrenade>
 		</products>
-		<workAmount>8000</workAmount>
+		<workAmount>2600</workAmount>
 	</RecipeDef>
 
 </Defs>

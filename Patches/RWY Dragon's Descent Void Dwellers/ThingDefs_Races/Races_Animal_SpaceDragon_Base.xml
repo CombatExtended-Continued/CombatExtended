@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!-- I took 3 months off of RimWorld and I've forgotten how to do patches. Great. -->
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>[RWY]Dragon's Descent: Void Dwellers</li>
 		</mods>
+
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<!-- ======== BaseDragon (Dragon Base) ======== -->
 				<!-- ====== ModExtension ====== -->
 				<li Class="PatchOperationAddModExtension">
@@ -20,8 +22,8 @@
 
 				<!-- ======== Void Base ======== -->
 				<!-- ====== statBases ====== -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="VoidDDDragonRaceBase"]/statBases</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase"]/statBases/MeleeDodgeChance</xpath>
 					<value>
 						<MeleeDodgeChance>0.24</MeleeDodgeChance>
 						<MeleeCritChance>2</MeleeCritChance>
@@ -31,20 +33,23 @@
 						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="VoidDDDragonRaceBase" or @Name="NebulaDragonRaceBase" or @Name="AurelionDragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="NebulaDragonRaceBase" or @Name="StarDragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>50</ArmorRating_Blunt>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="VoidDDDragonRaceBase" or @Name="NebulaDragonRaceBase" or @Name="AurelionDragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="NebulaDragonRaceBase" or @Name="StarDragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>20</ArmorRating_Sharp>
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="NebulaDragonRaceBase"]/statBases</xpath>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="NebulaDragonRaceBase"]/statBases/MeleeDodgeChance</xpath>
 					<value>
 						<MeleeDodgeChance>0.57</MeleeDodgeChance>
 						<MeleeCritChance>1.1</MeleeCritChance>
@@ -54,8 +59,9 @@
 						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="AurelionDragonRaceBase"]/statBases</xpath>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="StarDragonRaceBase"]/statBases/MeleeDodgeChance</xpath>
 					<value>
 						<MeleeDodgeChance>0.66</MeleeDodgeChance>
 						<MeleeCritChance>1.56</MeleeCritChance>

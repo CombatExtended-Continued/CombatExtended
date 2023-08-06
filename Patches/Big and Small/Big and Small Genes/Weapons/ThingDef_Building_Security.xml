@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small Genes</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Shrink Turret === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/description</xpath>
+					<value>
+						<description>A portable automatic turret with shrink ray attached. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.25</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/statBases/ShootingAccuracyTurret</xpath>
+					<value>
+						<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/statBases/Mass</xpath>
+					<value>
+						<Mass>25</Mass>
+						<Bulk>15</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/costList</xpath>
+					<value>
+						<costList>
+							<Steel>150</Steel>
+							<Plasteel>30</Plasteel>
+							<ComponentIndustrial>7</ComponentIndustrial>
+							<ComponentSpacer>4</ComponentSpacer>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMAD_ShrinkTurret"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>BMAD_Gun_ShrinkTurret</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>0.69</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.91</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_ShrinkRay</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>19</range>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<burstShotCount>3</burstShotCount>
+						<soundCast>Resurrect_Resolve</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>50</magazineSize>
+						<reloadTime>7.8</reloadTime>
+						<ammoSet>AmmoSet_ShrinkRay</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li>
+
+				<!-- === Growth Turret === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMAD_GrowthTurret"]/description</xpath>
+					<value>
+						<description>A portable automatic turret with growth ray attached. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMAD_Gun_GrowthTurret"]/verbs</xpath>
+					<value>
+						<verbs Inherit="False">
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>0.91</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_GrowthRay</defaultProjectile>
+								<warmupTime>1.3</warmupTime>
+								<range>19</range>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<burstShotCount>3</burstShotCount>
+								<soundCast>Resurrect_Resolve</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<recoilPattern>Mounted</recoilPattern>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMAD_Gun_GrowthTurret"]</xpath>
+					<value>
+						<comps Inherit="False">
+							<li Class="CombatExtended.CompProperties_AmmoUser">
+								<magazineSize>50</magazineSize>
+								<reloadTime>7.8</reloadTime>
+								<ammoSet>AmmoSet_GrowthRay</ammoSet>
+							</li>
+							<li Class="CombatExtended.CompProperties_FireModes">
+								<aiAimMode>AimedShot</aiAimMode>
+								<noSnapshot>true</noSnapshot>
+								<noSingleShot>true</noSingleShot>
+							</li>
+							<li Class="CompProperties_Forbiddable" />
+							<li>
+								<compClass>CompEquippable</compClass>
+							</li>
+							<li Class="CompProperties_Styleable" />
+
+						</comps>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
