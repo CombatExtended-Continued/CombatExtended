@@ -54,6 +54,12 @@ namespace CombatExtended
 
             // need to generate a list as that's how new defs are taken by DefDatabase.
             List<LoadoutGenericDef> defs = new List<LoadoutGenericDef>();
+            // Store all hashes already taken to prevent duplicates.
+            // For Multiplayer, all defs need a short hash to be properly synced.
+            HashSet<ushort> takenHashes = new HashSet<ushort>();
+            // Vanilla code takes the type of the def when generating hashes.
+            // As of right now it's unused, but may as well pass it to the method.
+            Type type = typeof(LoadoutGenericDef);
 
 
             LoadoutGenericDef generic = new LoadoutGenericDef();
@@ -66,6 +72,7 @@ namespace CombatExtended
                 return td != null && td.IsNutritionGivingIngestible && td.ingestible != null && td.ingestible.preferability >= FoodPreferability.MealAwful && td.GetCompProperties<CompProperties_Rottable>()?.daysToRotStart <= 5 && !td.IsDrug;
             };
             generic.isBasic = true;
+            ShortHashGiver.GiveShortHash(generic, type, takenHashes);
 
             defs.Add(generic);
             //Log.Message(string.Concat("Combat Extended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
@@ -84,6 +91,7 @@ namespace CombatExtended
             generic.defaultCount = Convert.ToInt32(Math.Floor(targetNutrition / everything.Where(td => generic.lambda(td)).Average(td => td.ingestible.CachedNutrition)));
             //generic.defaultCount = 1;
             generic.isBasic = false; // doesn't need to be in loadouts by default as animal interaction talks to HoldTracker now.
+            ShortHashGiver.GiveShortHash(generic, type, takenHashes);
             //TODO: Test pawns fetching raw food if no meal is available, if so then add a patch to have that talk to HoldTracker too.
 
             defs.Add(generic);
@@ -98,6 +106,7 @@ namespace CombatExtended
             generic.thingRequestGroup = ThingRequestGroup.Drug;
             generic._lambda = td => td != null && td.IsDrug;
             generic.isBasic = true;
+            ShortHashGiver.GiveShortHash(generic, type, takenHashes);
 
             defs.Add(generic);
             //Log.Message(string.Concat("Combat Extended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
@@ -112,6 +121,7 @@ namespace CombatExtended
             generic.thingRequestGroup = ThingRequestGroup.Medicine;
             generic._lambda = td => td != null && td.IsMedicine;
             generic.isBasic = true;
+            ShortHashGiver.GiveShortHash(generic, type, takenHashes);
             defs.Add(generic);
             // now for the guns and ammo...
 
@@ -139,12 +149,15 @@ namespace CombatExtended
                 //generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Contains(td);
                 generic.thingRequestGroup = ThingRequestGroup.HaulableEver;
                 generic._lambda = td => td != null && td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
+                ShortHashGiver.GiveShortHash(generic, type, takenHashes);
                 defs.Add(generic);
                 //Log.Message(string.Concat("Combat Extended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
             }
 
             // finally we add all the defs generated to the DefDatabase.
             DefDatabase<LoadoutGenericDef>.Add(defs);
+            // fill defsByShortHash for LoadoutGenericDef, used by Multiplayer to quickly lookup defs
+            DefDatabase<LoadoutGenericDef>.InitializeShortHashDictionary();
         }
 
         #endregion Constructors

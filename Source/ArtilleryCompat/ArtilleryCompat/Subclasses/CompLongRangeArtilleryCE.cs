@@ -220,10 +220,17 @@ namespace CombatExtended.Compatibility.Artillery
             }
         }
 
-
         public new void SetTargetedTile(GlobalTargetInfo t)
         {
+            // Hide the world before syncing the method, as otherwise it'll get delayed
             CameraJumper.TryHideWorld();
+            SyncedSetTargetedTile(t);
+        }
+
+        // There's issue where MP doesn't recognize this comp, so making a static SyncMethod is the simplest fix for that.
+        [Multiplayer.SyncMethod(syncContext = 2)] // SyncContext.MapSelected = 2
+        private static void SyncedSetTargetedTile(GlobalTargetInfo t)
+        {
             var compList = SelectedComps.ToList();
             for (int i = 0; i < compList.Count; i++)
             {
@@ -239,8 +246,28 @@ namespace CombatExtended.Compatibility.Artillery
 
         public new void ResetForcedTarget()
         {
-            targetedTile = GlobalTargetInfo.Invalid;
-            ResetWarmupTicks();
+            if (Multiplayer.InMultiplayer)
+            {
+                SyncedResetForcedTarget(parent);
+            }
+            // Non-MP call, skips call to GetComp
+            else
+            {
+                targetedTile = GlobalTargetInfo.Invalid;
+                ResetWarmupTicks();
+            }
+        }
+
+        // There's issue where MP doesn't recognize this comp, so making a static SyncMethod is the simplest fix for that.
+        [Multiplayer.SyncMethod]
+        private static void SyncedResetForcedTarget(ThingWithComps turret)
+        {
+            var comp = turret.GetComp<CompLongRangeArtilleryCE>();
+            if (comp != null)
+            {
+                comp.targetedTile = GlobalTargetInfo.Invalid;
+                comp.ResetWarmupTicks();
+            }
         }
 
         private new ArtilleryStrikeArrivalAction CurrentArrivalAction
