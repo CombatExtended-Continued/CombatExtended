@@ -13,6 +13,11 @@ namespace CombatExtended
         private const int SCAN_COOLDOWN = 300;
         private const int MAX_SCAN_RADIUS = 150;
 
+        static WorkGiver_ModifyWeapon()
+        {
+            CacheClearComponent.AddClearCacheAction(() => _throttleByPawn.Clear());
+        }
+
         /// <summary>
         /// Return the priority for a potential weapon to modify.
         /// </summary>

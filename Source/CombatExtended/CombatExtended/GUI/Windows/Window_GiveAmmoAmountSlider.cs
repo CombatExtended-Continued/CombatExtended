@@ -54,13 +54,7 @@ namespace CombatExtended
         {
             if (finalized)
             {
-                sourceComp.ammoAmountToGive = this.ammoToGiveAmount;
-
-                var jobdef = CE_JobDefOf.GiveAmmo;
-
-                var job = new Job { def = jobdef, targetA = dad, targetB = sourceAmmo };
-
-                selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                sourceComp.GiveAmmo(selPawn, sourceAmmo, this.ammoToGiveAmount);
             }
 
             base.Close(doCloseSound);

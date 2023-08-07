@@ -8,10 +8,10 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<!-- === Tools === -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFE_Gun_Plasmacutter"]/tools</xpath>
-
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -41,7 +41,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFE_Gun_PlasmaScattergun" or defName="VFE_Gun_Plasmapiercer" or defName="VFE_Gun_PlasmabeamRifle"]/tools</xpath>
-
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -82,7 +81,6 @@
 				<!-- === Plasma Saw === -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFE_Plasmasaw"]/statBases/Mass</xpath>
-
 					<value>
 						<Mass>2.8</Mass>
 						<Bulk>6.5</Bulk>
@@ -92,7 +90,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFE_Plasmasaw"]/tools</xpath>
-
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -119,7 +116,6 @@
 				<!-- === Plasma Cutter === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>VFE_Gun_Plasmacutter</defName>
-
 					<statBases>
 						<WorkToMake>18000</WorkToMake>
 						<Mass>2</Mass>
@@ -129,7 +125,6 @@
 						<SightsEfficiency>1</SightsEfficiency>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>
-
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>True</hasStandardCommand>
@@ -142,13 +137,11 @@
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-
 					<AmmoUser>
 						<magazineSize>50</magazineSize>
 						<reloadTime>4</reloadTime>
 						<ammoSet>AmmoSet_VFEI_PlasmaCutter</ammoSet>
 					</AmmoUser>
-
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
@@ -157,7 +150,6 @@
 				<!-- === Plasma Scattergun === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>VFE_Gun_PlasmaScattergun</defName>
-
 					<statBases>
 						<WorkToMake>26000</WorkToMake>
 						<Mass>4.11</Mass>
@@ -167,7 +159,6 @@
 						<SightsEfficiency>1</SightsEfficiency>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>
-
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>True</hasStandardCommand>
@@ -180,13 +171,11 @@
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-
 					<AmmoUser>
 						<magazineSize>50</magazineSize>
 						<reloadTime>4</reloadTime>
 						<ammoSet>AmmoSet_VFEI_PlasmaScatter</ammoSet>
 					</AmmoUser>
-
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
@@ -195,7 +184,6 @@
 				<!-- === Plasma Beam Rifle === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>VFE_Gun_PlasmabeamRifle</defName>
-
 					<statBases>
 						<WorkToMake>36800</WorkToMake>
 						<Mass>4.36</Mass>
@@ -206,7 +194,6 @@
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 						<NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
 					</statBases>
-
 					<Properties>
 						<recoilAmount>1.31</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -220,13 +207,11 @@
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-
 					<AmmoUser>
 						<magazineSize>50</magazineSize>
 						<reloadTime>4</reloadTime>
 						<ammoSet>AmmoSet_VFEI_PlasmaRifle</ammoSet>
 					</AmmoUser>
-
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 						<aiUseBurstMode>True</aiUseBurstMode>
@@ -237,7 +222,6 @@
 				<!-- === Plasma Piercer === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>VFE_Gun_Plasmapiercer</defName>
-
 					<statBases>
 						<WorkToMake>36800</WorkToMake>
 						<Mass>5.20</Mass>
@@ -247,7 +231,6 @@
 						<SightsEfficiency>1</SightsEfficiency>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>
-
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>True</hasStandardCommand>
@@ -258,17 +241,16 @@
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
-
 					<AmmoUser>
 						<magazineSize>20</magazineSize>
 						<reloadTime>4</reloadTime>
 						<ammoSet>AmmoSet_VFEI_PlasmaPiercer</ammoSet>
 					</AmmoUser>
-
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
