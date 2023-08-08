@@ -38,9 +38,5 @@ namespace CombatExtended
 
         public static ThingDef Gun_BinocularsRadio;
 
-        public static ThingDef Fragment_Large;
-
-        public static ThingDef Fragment_Small;
-
     }
 }
