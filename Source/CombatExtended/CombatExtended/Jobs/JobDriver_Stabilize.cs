@@ -31,20 +31,22 @@ namespace CombatExtended
         }
 
         public void MakeMedicineFilth(Medicine medicine)
-        {//create trash after stabilizing for certain medicine types
-            if (this.pawn.Position.Walkable(this.pawn.Map))
+        {
+            var medExt = medicine.def.GetModExtension<MedicineFilthExtension>() ?? new MedicineFilthExtension();
+
+            if (medExt.filthDefName != null && Rand.Chance(medExt.filthSpawnChance))
             {
-                float medicalPotency = medicine.GetStatValue(StatDefOf.MedicalPotency, true, -1);
-                if (medicalPotency == ThingDefOf.MedicineHerbal.GetStatValueAbstract(StatDefOf.MedicalPotency, null))
+                int filthQuantity = medExt.filthSpawnQuantity.RandomInRange;
+                List<IntVec3> list = GenAdj.AdjacentCells8WayRandomized();
+                for (int i = 0; i < filthQuantity; i++)
                 {
-                    FilthMaker.TryMakeFilth(this.pawn.Position, this.pawn.Map, CE_ThingDefOf.Filth_StabilizeMedicineHerbal);
-                }
-                else if (medicalPotency == ThingDefOf.MedicineIndustrial.GetStatValueAbstract(StatDefOf.MedicalPotency, null))
-                {
-                    FilthMaker.TryMakeFilth(this.pawn.Position, this.pawn.Map, CE_ThingDefOf.Filth_StabilizeMedicineIndustrial);
+                    IntVec3 cell = this.pawn.Position + list[i];
+                    if (cell.InBounds(this.pawn.Map))
+                    {
+                        FilthMaker.TryMakeFilth(cell, this.pawn.Map, medExt.filthDefName);
+                    }
                 }
             }
-
         }
 
         public override IEnumerable<Toil> MakeNewToils()

@@ -106,8 +106,8 @@ namespace CombatExtended
             get
             {
                 if (bleedModifier < 1 && !parent.IsPermanent() && !parent.IsTended())
-                { //Change icon color with stabilization quality: brown - bad, yellow - good. 
-                    Color color = Color.Lerp(HediffComp_TendDuration.UntendedColor, new ColorInt(255, 212, 136).ToColor, Mathf.Clamp01(1 - bleedModifier));
+                { //Change icon color with stabilization quality: brown - bad, white - good like in vanilla disease tends. 
+                    Color color = Color.Lerp(HediffComp_TendDuration.UntendedColor, Color.white, Mathf.Clamp01(1 - bleedModifier));
                     return new TextureAndColor(StabilizedIcon, color);
                 }
                 return TextureAndColor.None;
