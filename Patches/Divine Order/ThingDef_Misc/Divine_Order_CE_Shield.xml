@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
@@ -8,7 +8,7 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!--Replace ThingClass-->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderShield"]/thingClass</xpath>
@@ -16,7 +16,7 @@
 						<thingClass>CombatExtended.Apparel_Shield</thingClass>
 					</value>
 				</li>
-				
+
 				<!--Replace Parent-->
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderShield"]</xpath>
@@ -51,7 +51,7 @@
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderShield"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
 				</li>
-				
+
 				<!--Add CE Shield Stuff-->
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderShield"]</xpath>
@@ -102,10 +102,9 @@
 						<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
 					</value>
 				</li>
-				
+
 			</operations>
 		</match>
-			
 	</Operation>
-	
+
 </Patch>
