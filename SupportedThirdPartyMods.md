@@ -163,6 +163,7 @@ Devilstrand Colour Bundle   |
 Dinosauria |
 Dishonored Assassin Coat |
 Dishonored Assassin Mask |
+Divine Order |
 DOOM - Faction (Continued) |
 DMWands |
 Dragonian Race	|
