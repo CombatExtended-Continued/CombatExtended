@@ -99,9 +99,29 @@
 					</value>
 				</li>
 
+				<!--Breast Plate-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderBreastplate"]/statBases</xpath>
+					<value>
+						<Bulk>25</Bulk>
+						<WornBulk>10</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderBreastplate"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3.2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderBreastplate"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+
 				<!-- Plate Armor -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPlateArmor"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPlateArmor" or defName="BotchJob_CrusaderArmor"]/statBases</xpath>
 					<value>
 						<Bulk>100</Bulk>
 						<WornBulk>10</WornBulk>
@@ -109,7 +129,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPlateArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPlateArmor" or defName="BotchJob_CrusaderArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
 					</value>
@@ -123,14 +143,22 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPlateArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPlateArmor" or defName="BotchJob_CrusaderArmor"]/equippedStatOffsets/MoveSpeed</xpath>
 					<value>
 						<MeleeDodgeChance>-0.15</MeleeDodgeChance>
 					</value>
 				</li>
 
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPlateArmor" or defName="BotchJob_CrusaderArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPlateArmor"]</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPlateArmor" or defName="BotchJob_CrusaderArmor"]</xpath>
 					<value>
 						<li Class="CombatExtended.PartialArmorExt">
 							<stats>
@@ -187,67 +215,18 @@
 					</value>
 				</li>
 
-				<!--Breast Plate-->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderBreastplate"]/statBases</xpath>
-					<value>
-						<Bulk>25</Bulk>
-						<WornBulk>10</WornBulk>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderBreastplate"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>3.2</StuffEffectMultiplierArmor>
-					</value>
-				</li>
-
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderBreastplate"]/equippedStatOffsets/MoveSpeed</xpath>
-				</li>
-
 				<!-- Elite Armor -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="BotchJob_CrusaderArmor"]/statBases</xpath>
 					<value>
-						<Bulk>100</Bulk>
-						<WornBulk>10</WornBulk>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_CrusaderArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_CrusaderArmor"]/statBases/Mass</xpath>
-					<value>
-						<Mass>15</Mass>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_CrusaderArmor"]/equippedStatOffsets/MoveSpeed</xpath>
-					<value>
-						<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+						<ArmorRating_Sharp>1</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="BotchJob_CrusaderArmor"]/statBases</xpath>
 					<value>
-						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BotchJob_CrusaderArmor"]/statBases</xpath>
-					<value>
-						<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
+						<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
 					</value>
 				</li>
 
