@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Table of contents
-
-     	BotchJob_PossessedDragonfireGreatbow
-		BotchJob_PossessedLightningJavelin
-		BotchJob_PossessedArchmageStaff
-		BotchJob_PossessedAutomatonCrossbow
-		BotchJob_PossessedVerdantBow
-		BotchJob_PossessedGildedArquebus
-		BotchJob_PossessedShroudedDagger
-		BotchJob_PossessedAcolyteStaff
-		
-		BotchJob_DragonfireGreatbow
-		BotchJob_LightningJavelin
-		BotchJob_ArchmageStaff
-		BotchJob_AutomatonCrossbow
-		BotchJob_VerdantBow
-		BotchJob_GildedArquebus
-		BotchJob_ShroudedDagger
-		BotchJob_AcolyteStaff
-		
-		
--->
-
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Possessed Weapons</li>
@@ -58,7 +36,7 @@
 					<AmmoUser>
 						<ammoSet>AmmoSet_LesserDragonFireArrow</ammoSet>
 					</AmmoUser>
-					<FireModes />
+					<FireModes/>
 					<weaponTags>
 						<li>BotchJob_DragonfireGreatbow</li>
 					</weaponTags>
@@ -106,7 +84,7 @@
 					<AmmoUser>
 						<ammoSet>AmmoSet_DragonFireArrow</ammoSet>
 					</AmmoUser>
-					<FireModes />
+					<FireModes/>
 					<weaponTags>
 						<li>BotchJob_PossessedDragonfireGreatbow</li>
 					</weaponTags>
@@ -130,72 +108,6 @@
 								<armorPenetrationBlunt>0.79</armorPenetrationBlunt>
 							</li>
 						</tools>
-					</value>
-				</li>
-
-				<!-- Dragonfire Ammo Sets -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs</xpath>
-					<value>
-
-						<CombatExtended.AmmoSetDef>
-							<defName>AmmoSet_LesserDragonFireArrow</defName>
-							<label>great arrows</label>
-							<ammoTypes>
-								<Ammo_GreatArrow_Stone>Projectile_LesserDragonFireArrow</Ammo_GreatArrow_Stone>
-								<Ammo_GreatArrow_Steel>Projectile_LesserDragonFireArrow</Ammo_GreatArrow_Steel>
-								<Ammo_GreatArrow_Venom>Projectile_LesserDragonFireArrow</Ammo_GreatArrow_Venom>
-								<Ammo_GreatArrow_Flame>Projectile_LesserDragonFireArrow</Ammo_GreatArrow_Flame>
-							</ammoTypes>
-						</CombatExtended.AmmoSetDef>
-
-						<CombatExtended.AmmoSetDef>
-							<defName>AmmoSet_DragonFireArrow</defName>
-							<label>great arrows</label>
-							<ammoTypes>
-								<Ammo_GreatArrow_Stone>Projectile_DragonFireArrow</Ammo_GreatArrow_Stone>
-								<Ammo_GreatArrow_Steel>Projectile_DragonFireArrow</Ammo_GreatArrow_Steel>
-								<Ammo_GreatArrow_Venom>Projectile_DragonFireArrow</Ammo_GreatArrow_Venom>
-								<Ammo_GreatArrow_Flame>Projectile_DragonFireArrow</Ammo_GreatArrow_Flame>
-							</ammoTypes>
-						</CombatExtended.AmmoSetDef>
-
-						<ThingDef ParentName="BaseGreatArrowProjectile">
-							<defName>Projectile_LesserDragonFireArrow</defName>
-							<label>dragon fire arrow</label>
-							<graphicData>
-								<texPath>Things/Projectile/DragonfireArrow</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>30</speed>
-								<damageDef>BotchJob_LesserDragonfireArrow</damageDef>
-								<damageAmountBase>7</damageAmountBase>
-								<explosionRadius>2</explosionRadius>
-								<ai_IsIncendiary>true</ai_IsIncendiary>
-								<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-								<preExplosionSpawnChance>0.33</preExplosionSpawnChance>
-							</projectile>
-						</ThingDef>
-
-						<ThingDef ParentName="BaseGreatArrowProjectile">
-							<defName>Projectile_DragonFireArrow</defName>
-							<label>dragon fire arrow</label>
-							<graphicData>
-								<texPath>Things/Projectile/DragonfireArrow</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>30</speed>
-								<damageDef>BotchJob_DragonfireArrow</damageDef>
-								<damageAmountBase>15</damageAmountBase>
-								<explosionRadius>3</explosionRadius>
-								<ai_IsIncendiary>true</ai_IsIncendiary>
-								<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-								<preExplosionSpawnChance>0.33</preExplosionSpawnChance>
-							</projectile>
-						</ThingDef>
-
 					</value>
 				</li>
 
@@ -256,11 +168,15 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BotchJob_ShroudedDagger"]/equippedStatOffsets</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_LightningJavelin"]</xpath>
 					<value>
-						<MeleeCritChance>0.17</MeleeCritChance>
-						<MeleeDodgeChance>0.6</MeleeDodgeChance>
-						<MeleeParryChance>0.5</MeleeParryChance>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.17</MeleeCritChance>
+							<MeleeDodgeChance>0.6</MeleeDodgeChance>
+							<MeleeParryChance>0.5</MeleeParryChance>
+							<RestRateMultiplier>-0.2</RestRateMultiplier>
+							<MoveSpeed>0.2</MoveSpeed>
+						</equippedStatOffsets>
 					</value>
 				</li>
 
@@ -755,7 +671,7 @@
 					<AmmoUser>
 						<ammoSet>AmmoSet_VerdantArrow</ammoSet>
 					</AmmoUser>
-					<FireModes />
+					<FireModes/>
 					<weaponTags>
 						<li>BotchJob_VerdantBow</li>
 					</weaponTags>
@@ -821,7 +737,7 @@
 					<AmmoUser>
 						<ammoSet>AmmoSet_VerdantArrow</ammoSet>
 					</AmmoUser>
-					<FireModes />
+					<FireModes/>
 					<weaponTags>
 						<li>BotchJob_VerdantBow</li>
 					</weaponTags>
@@ -858,102 +774,6 @@
 								<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
 							</li>
 						</tools>
-					</value>
-				</li>
-
-				<!-- Ammo for Verdant Bow -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs</xpath>
-					<value>
-
-						<!-- Verdant Bow -->
-						<CombatExtended.AmmoSetDef>
-							<defName>AmmoSet_VerdantArrow</defName>
-							<label>verdant arrows</label>
-							<ammoTypes>
-								<Ammo_Arrow_Stone>Projectile_VerdantArrow_Stone</Ammo_Arrow_Stone>
-								<Ammo_Arrow_Steel>Projectile_VerdantArrow_Steel</Ammo_Arrow_Steel>
-								<Ammo_Arrow_Plasteel>Projectile_VerdantArrow_Plasteel</Ammo_Arrow_Plasteel>
-								<Ammo_Arrow_Venom>Projectile_VerdantArrow_Venom</Ammo_Arrow_Venom>
-							</ammoTypes>
-						</CombatExtended.AmmoSetDef>
-
-						<CombatExtended.AmmoSetDef>
-							<defName>AmmoSet_VerdantMOArrow</defName>
-							<label>verdant arrows</label>
-							<ammoTypes>
-								<Ammo_Arrow_Stone>Projectile_VerdantArrow_Stone</Ammo_Arrow_Stone>
-								<Ammo_Arrow_Steel>Projectile_VerdantArrow_Steel</Ammo_Arrow_Steel>
-								<Ammo_Arrow_Venom>Projectile_VerdantArrow_Venom</Ammo_Arrow_Venom>
-							</ammoTypes>
-						</CombatExtended.AmmoSetDef>
-
-						<ThingDef ParentName="BaseStreamlinedArrowProjectile">
-							<defName>Projectile_VerdantArrow_Stone</defName>
-							<label>verdant arrow (stone)</label>
-							<graphicData>
-								<texPath>Things/Projectile/VerdantBowArrow</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>40</speed>
-								<damageAmountBase>9</damageAmountBase>
-								<armorPenetrationSharp>0.6</armorPenetrationSharp>
-								<armorPenetrationBlunt>1.9</armorPenetrationBlunt>
-								<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
-								<preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
-							</projectile>
-						</ThingDef>
-
-						<ThingDef ParentName="BaseStreamlinedArrowProjectile">
-							<defName>Projectile_VerdantArrow_Steel</defName>
-							<label>verdant arrow (steel)</label>
-							<graphicData>
-								<texPath>Things/Projectile/VerdantBowArrow</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageAmountBase>10</damageAmountBase>
-								<armorPenetrationSharp>1.5</armorPenetrationSharp>
-								<armorPenetrationBlunt>6.4</armorPenetrationBlunt>
-								<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
-								<preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
-							</projectile>
-						</ThingDef>
-
-						<ThingDef ParentName="BaseStreamlinedArrowProjectile">
-							<defName>Projectile_VerdantArrow_Plasteel</defName>
-							<label>verdant arrow (plasteel)</label>
-							<graphicData>
-								<texPath>Things/Projectile/VerdantBowArrow</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>50</speed>
-								<damageAmountBase>9</damageAmountBase>
-								<armorPenetrationSharp>2</armorPenetrationSharp>
-								<armorPenetrationBlunt>5.54</armorPenetrationBlunt>
-								<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
-								<preExplosionSpawnThingDef>Ammo_Arrow_Plasteel</preExplosionSpawnThingDef>
-							</projectile>
-						</ThingDef>
-
-						<ThingDef ParentName="BaseStreamlinedArrowProjectile">
-							<defName>Projectile_VerdantArrow_Venom</defName>
-							<label>verdant arrow (venom)</label>
-							<graphicData>
-								<texPath>Things/Projectile/VerdantBowArrow</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>ArrowVenom</damageDef>
-								<damageAmountBase>10</damageAmountBase>
-								<armorPenetrationSharp>1.5</armorPenetrationSharp>
-								<armorPenetrationBlunt>6.4</armorPenetrationBlunt>
-								<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
-								<preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
-							</projectile>
-						</ThingDef>
 					</value>
 				</li>
 
@@ -1465,8 +1285,158 @@
 						</operations>
 					</match>
 				</li>
+				
+				<!--=============================== Ghostly Flintlock ================================-->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>BotchJob_PossessedGhostlyFlintlock</defName>
+					<statBases>
+						<SightsEfficiency>0.6</SightsEfficiency>
+						<ShotSpread>0.42</ShotSpread>
+						<SwayFactor>1.58</SwayFactor>
+						<Mass>1.25</Mass>
+						<Bulk>3.50</Bulk>
+						<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>3.59</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_GhostFlintlock_MusketBall</defaultProjectile>
+						<warmupTime>0.9</warmupTime>
+						<range>12</range>
+						<soundCast>Shot_CE_Musket</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+						<reloadTime>5.9</reloadTime>
+						<ammoSet>AmmoSet_GhostFlintlock_MusketBall</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>6</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>BotchJob_PossessedGhostlyFlintlock</li>
+						<li>CE_AI_BROOM</li>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedGhostlyFlintlock"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>Crystal blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationSharp>1.3</armorPenetrationSharp>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!--=============================== Possessed Earthen Gauntlet ================================-->	
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>BotchJob_PossessedEarthenGauntlet</defName>
+					<statBases>
+						<SightsEfficiency>0.3</SightsEfficiency>
+						<ShotSpread>0.42</ShotSpread>
+						<SwayFactor>1.58</SwayFactor>
+						<Mass>3.5</Mass>
+						<Bulk>3</Bulk>
+						<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>3.59</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_EarthenGauntlet_RockBlast</defaultProjectile>
+						<warmupTime>4</warmupTime>
+						<range>18</range>
+						<soundCast>Interact_BeatFire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>BotchJob_PossessedEarthenGauntlet</li>
+					</weaponTags>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedEarthenGauntlet"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Demolish</li>
+								</capacities>
+								<power>41</power>
+								<cooldownTime>4</cooldownTime>
+								<armorPenetrationBlunt>30</armorPenetrationBlunt>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>310</amount>
+										<chance>0.5</chance>
+									</li>
+								</extraMeleeDamages>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedEarthenGauntlet"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedEarthenGauntlet"]</xpath>
+					<value>
+						<equippedStatOffsets>
+						<MeleeCritChance>1.5</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.83</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
 
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

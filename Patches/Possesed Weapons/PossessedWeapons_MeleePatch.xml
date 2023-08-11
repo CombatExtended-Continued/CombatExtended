@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Table of contents
-
-        BotchJob_PossessedScourgeBlade
-		BotchJob_PossessedGlacialCleaver
-		BotchJob_PossessedSanctifiedSword
-		BotchJob_PossessedVolcanicMaul
-		BotchJob_PossessedCraghammer
-		BotchJob_PossessedDragonfireGreatbow
-		BotchJob_PossessedLightningJavelin
-		BotchJob_PossessedArchmageStaff
-		BotchJob_PossessedAutomatonCrossbow
-		BotchJob_PossessedVerdantBow
-		BotchJob_PossessedGildedArquebus
-		BotchJob_PossessedShroudedDagger
-		BotchJob_PossessedAcolyteStaff
-		
-		BotchJob_ScourgeBlade
-		BotchJob_GlacialCleaver
-		BotchJob_SanctifiedSword
-		BotchJob_VolcanicMaul
-		BotchJob_Craghammer
-		BotchJob_DragonfireGreatbow
-		BotchJob_LightningJavelin
-		BotchJob_ArchmageStaff
-		BotchJob_AutomatonCrossbow
-		BotchJob_VerdantBow
-		BotchJob_GildedArquebus
-		BotchJob_ShroudedDagger
-		BotchJob_AcolyteStaff
-		
-		
--->
-
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Possessed Weapons</li>
@@ -106,7 +74,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="BotchJob_ScourgeBlade"]</xpath>
 						<value>
-							<weaponTags />
+							<weaponTags/>
 						</value>
 					</nomatch>
 				</li>
@@ -606,7 +574,55 @@
 					</value>
 				</li>
 
+				<!--=============================== Possessed Bloodstained Scythe ================================-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedBloodstainedScythe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.16</cooldownTime>
+								<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>BotchJob_BloodCut</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>4</cooldownTime>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+								<armorPenetrationBlunt>4.6</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedBloodstainedScythe"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.71</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedBloodstainedScythe"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.19</MeleeCritChance>
+							<MeleeParryChance>1.5</MeleeParryChance>
+							<MeleeDodgeChance>0.83</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
