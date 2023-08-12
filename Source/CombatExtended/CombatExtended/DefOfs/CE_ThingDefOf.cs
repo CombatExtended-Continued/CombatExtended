@@ -37,5 +37,10 @@ namespace CombatExtended
         public static ThingDef Mech_CentipedeBlaster;
 
         public static ThingDef Gun_BinocularsRadio;
+
+        public static ThingDef Fragment_Large;
+
+        public static ThingDef Fragment_Small;
+
     }
 }

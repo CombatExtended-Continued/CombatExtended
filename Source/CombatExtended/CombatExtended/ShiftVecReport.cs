@@ -5,12 +5,15 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using RimWorld.Planet;
 
 namespace CombatExtended
 {
     public class ShiftVecReport
     {
         public LocalTargetInfo target = null;
+        public GlobalTargetInfo globalTarget = GlobalTargetInfo.Invalid;
+
         public Pawn targetPawn
         {
             get

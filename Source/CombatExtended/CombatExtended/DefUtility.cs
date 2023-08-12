@@ -19,10 +19,20 @@ namespace CombatExtended
         /// </summary>
         internal static FlagArray isAOEArray = new FlagArray(ushort.MaxValue);
 
+
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isFlamableArray = new FlagArray(ushort.MaxValue);
+
         // <summary>
         /// A bitmap that store flags. The real size of this one is 2048 byte.
         /// </summary>
         internal static FlagArray isMenuHiddenArray = new FlagArray(ushort.MaxValue);
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isRadioArray = new FlagArray(ushort.MaxValue);
 
         /// <summary>
         /// Used to create and initialize def related flags that are often checked but require more than 2 or 3 steps to caculate.
@@ -110,6 +120,18 @@ namespace CombatExtended
             return isMenuHiddenArray[def.index];
         }
 
+
+        /// <summary>
+        /// Check is this ThingDef is MenuHidden. This replace the old removed menuHidden field.
+        /// </summary>
+        /// <param name="def">Thing def</param>
+        /// <returns>Is menu hidden</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsFlamable(this ThingDef def)
+        {
+            return isFlamableArray[def.index];
+        }
+
         /// <summary>
         /// Used to update is menuhidden value.
         /// </summary>
@@ -171,6 +193,30 @@ namespace CombatExtended
             if (layer != null)
             {
                 isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
+            }
+            if (def.HasModExtension<ApparelDefExtension>())
+            {
+                ApparelDefExtension extension = def.GetModExtension<ApparelDefExtension>();
+                /*
+                 * wether this apparel is a radio pack
+                 */
+                isRadioArray[def.index] = extension.isRadioPack;
+                if (extension.isRadioPack)
+                {
+                    Log.Message($"{def}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Process general attributes of things
+        /// </summary>
+        /// <param name="def">Thing def</param>        
+        private static void ProcessThing(ThingDef def)
+        {
+            if (def.useHitPoints)
+            {
+                isFlamableArray[def.index] = def.IsFlamable();
             }
         }
 
@@ -306,6 +352,15 @@ namespace CombatExtended
                    || link.projectile?.thingClass == typeof(ProjectileCE_Explosive)
                    || link.projectile?.thingClass == typeof(Projectile_Explosive)
                    || (link.projectile?.comps?.Any(c => c.compClass == typeof(CompFragments) || c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
+        }
+        /// <summary>
+        /// Return wether this ThingDef is an apparel radio pack
+        /// </summary>
+        /// <param name="def"></param>
+        /// <returns>If this ThingDef is an apparel radio pack</returns>
+        public static bool IsRadioPack(this ThingDef def)
+        {
+            return isRadioArray[def.index];
         }
     }
 }
