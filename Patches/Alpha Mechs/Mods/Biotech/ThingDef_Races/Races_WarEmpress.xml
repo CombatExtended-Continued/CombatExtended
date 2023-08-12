@@ -93,6 +93,42 @@
 						</value>
 					</li>
 
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AM_WarEmpress"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>5750</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>575</MaxOverHeal>
+								<MinArmorPct>0.5</MinArmorPct>
+								<MinArmorValueSharp>14</MinArmorValueSharp>
+								<MinArmorValueBlunt>35</MinArmorValueBlunt>
+								<!-- <MinArmorValueHeat>0.2</MinArmorValueHeat>
+								<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+							</li>
+						</value>
+					</li>
+
 					<li Class="PatchOperationReplace">
 						<xpath>Defs/PawnKindDef[defName="AM_WarEmpress"]/combatPower</xpath>
 						<value>

@@ -25,6 +25,7 @@ namespace CombatExtended
         public bool damageFalloff = true; // Damage falloff for *instant* projectiles.
         public float armorPenetrationSharp;
         public float armorPenetrationBlunt;
+        public bool castShadow = true;
 
         public float suppressionFactor = 1;
         public float airborneSuppressionFactor = 1;

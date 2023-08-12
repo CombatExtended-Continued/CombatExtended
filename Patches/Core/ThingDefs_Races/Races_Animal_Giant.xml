@@ -7,8 +7,8 @@
 		<xpath>Defs/ThingDef[defName="Elephant"]/statBases/MoveSpeed</xpath>
 		<value>
 			<MoveSpeed>5</MoveSpeed>
-			<MeleeDodgeChance>0.1</MeleeDodgeChance>
-			<MeleeCritChance>0.88</MeleeCritChance>
+			<MeleeDodgeChance>0.08</MeleeDodgeChance>
+			<MeleeCritChance>0.79</MeleeCritChance>
 			<MeleeParryChance>0.51</MeleeParryChance>
 			<ArmorRating_Blunt>0.205</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
@@ -78,8 +78,8 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Megasloth"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.06</MeleeDodgeChance>
-			<MeleeCritChance>0.41</MeleeCritChance>
+			<MeleeDodgeChance>0.09</MeleeDodgeChance>
+			<MeleeCritChance>0.67</MeleeCritChance>
 			<MeleeParryChance>0.48</MeleeParryChance>
 		</value>
 	</Operation>
@@ -150,9 +150,9 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Thrumbo"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.09</MeleeDodgeChance>
-			<MeleeCritChance>0.76</MeleeCritChance>
-			<MeleeParryChance>0.45</MeleeParryChance>
+			<MeleeDodgeChance>0.1</MeleeDodgeChance>
+			<MeleeCritChance>0.82</MeleeCritChance>
+			<MeleeParryChance>0.48</MeleeParryChance>
 			<Flammability>0.6</Flammability>
 		</value>
 	</Operation>
@@ -256,6 +256,42 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Thrumbo"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Thrumbo"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Thrumbo"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>3000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<!-- <Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>300</MaxOverHeal> -->
+				<MinArmorPct>0.75</MinArmorPct>
+				<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+				<MinArmorValueBlunt>22</MinArmorValueBlunt>
+				<MinArmorValueHeat>0.2</MinArmorValueHeat>
+				<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
 			</li>
 		</value>
 	</Operation>

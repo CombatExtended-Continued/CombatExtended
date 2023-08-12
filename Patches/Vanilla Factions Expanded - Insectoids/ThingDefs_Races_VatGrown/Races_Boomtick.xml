@@ -8,9 +8,9 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatgrownBoomtick"]/statBases/MoveSpeed</xpath>
-
 					<value>
 						<MoveSpeed>4.35</MoveSpeed>
 						<MeleeDodgeChance>0.11</MeleeDodgeChance>
@@ -21,7 +21,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatgrownBoomtick"]/statBases/ArmorRating_Blunt</xpath>
-
 					<value>
 						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
 					</value>
@@ -29,7 +28,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatgrownBoomtick"]/statBases/ArmorRating_Sharp</xpath>
-
 					<value>
 						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
 					</value>
@@ -37,7 +35,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatgrownBoomtick"]/race/baseHealthScale</xpath>
-
 					<value>
 						<baseHealthScale>0.4</baseHealthScale>
 					</value>
@@ -45,7 +42,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatgrownBoomtick"]/tools</xpath>
-
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -73,6 +69,43 @@
 						</tools>
 					</value>
 				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFEI_VatgrownBoomtick"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFEI_VatgrownBoomtick"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEI_VatgrownBoomtick"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>312</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<!-- <Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>31</MaxOverHeal> -->
+							<MinArmorPct>0.5</MinArmorPct>
+							<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+							<MinArmorValueBlunt>22</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>

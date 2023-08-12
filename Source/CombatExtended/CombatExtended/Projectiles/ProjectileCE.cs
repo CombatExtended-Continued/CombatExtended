@@ -618,10 +618,10 @@ namespace CombatExtended
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
-            this.shotSpeed = shotSpeed;
-            if (!globalTargetInfo.IsValid)
+            this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            if (def.projectile is ProjectilePropertiesCE props)
             {
-                this.shotSpeed = Math.Max(this.shotSpeed, def.projectile.speed);
+                this.castShadow = props.castShadow;
             }
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;

@@ -8,9 +8,9 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/statBases/MoveSpeed</xpath>
-
 					<value>
 						<MoveSpeed>2.8</MoveSpeed>
 						<MeleeDodgeChance>0.03</MeleeDodgeChance>
@@ -21,7 +21,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/statBases/ArmorRating_Blunt</xpath>
-
 					<value>
 						<ArmorRating_Blunt>14</ArmorRating_Blunt>
 					</value>
@@ -29,7 +28,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/statBases/ArmorRating_Sharp</xpath>
-
 					<value>
 						<ArmorRating_Sharp>4.65</ArmorRating_Sharp>
 					</value>
@@ -37,7 +35,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/race/body</xpath>
-
 					<value>
 						<body>CE_ArmoredBeetleLikeWithClaw</body>
 					</value>
@@ -45,7 +42,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/race/baseHealthScale</xpath>
-
 					<value>
 						<baseHealthScale>3.45</baseHealthScale>
 					</value>
@@ -53,7 +49,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/tools</xpath>
-
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -108,6 +103,43 @@
 						</tools>
 					</value>
 				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFEI_VatGrownMegapede"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEI_VatGrownMegapede"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>1312</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<!-- <Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>131</MaxOverHeal> -->
+							<MinArmorPct>0.5</MinArmorPct>
+							<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+							<MinArmorValueBlunt>22</MinArmorValueBlunt>
+							<MinArmorValueHeat>0.2</MinArmorValueHeat>
+							<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>

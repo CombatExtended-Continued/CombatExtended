@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="BaseInsect2"]/statBases</xpath>
+					<value>
+						<NightVisionEfficiency>0.5</NightVisionEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="AA_AlphaBaseInsect" or @Name="BaseInsect2"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+									<parts>
+										<li>InsectLeg</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+									<parts>
+										<li>InsectLeg</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AA_AlphaBaseInsect" or @Name="BaseInsect2"]/statBases</xpath>
+					<value>
+						<PartialArmorBody>0</PartialArmorBody>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

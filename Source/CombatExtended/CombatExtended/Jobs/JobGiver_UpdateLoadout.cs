@@ -35,6 +35,15 @@ namespace CombatExtended
 
         #endregion
 
+        #region Constructors
+
+        static JobGiver_UpdateLoadout()
+        {
+            CacheClearComponent.AddClearCacheAction(() => _throttle.Clear());
+        }
+
+        #endregion
+
         #region Methods
         /// <summary>
         /// Gets a priority value of how important it is for a pawn to do pickup/drop activities.
