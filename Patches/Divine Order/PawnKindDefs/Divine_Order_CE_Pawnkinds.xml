@@ -74,14 +74,13 @@
 						</li>
 					</value>
 				</li>
-
+				
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/PawnKindDef[
 						defName="BotchJob_DivineOrderScout" or
 						defName="BotchJob_DivineOrderSharpshooter" or
 						defName="BotchJob_DivineOrderInquisitor" or
-						defName="BotchJob_DivineOrderMerchant" or
-						defName="BotchJob_DivineOrderHerald"]
+						defName="BotchJob_DivineOrderMerchant"]
 					</xpath>
 					<value>
 						<apparelRequired>
@@ -109,6 +108,26 @@
 							</li>
 						</value>
 					</match>
+				</li>
+
+				<li Class="PatchOperationFindMod">
+					<mods>
+						<li>Medieval Fantasy Themed Quest Rewards</li>
+					</mods>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderHerald"]/apparelRequired</xpath>
+						<value>
+							<li>CE_Apparel_TribalBackpack</li>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderHerald"]</xpath>
+						<value>
+							<apparelRequired>
+								<li>CE_Apparel_TribalBackpack</li>
+							</apparelRequired>
+						</value>
+					</nomatch>
 				</li>
 
 			</operations>
