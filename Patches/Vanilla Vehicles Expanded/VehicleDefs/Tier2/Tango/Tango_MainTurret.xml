@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Vehicles Expanded</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_20x102mmNATO_AP</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>2.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>50</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>78</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/fireModes</xpath>
+					<value>
+						<fireModes>
+							<li>
+								<shotsPerBurst>1</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Single</label>
+								<texPath>UI/Gizmos/FireRate_Single</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>2</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Burst</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>5</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Auto</label>
+								<texPath>UI/Gizmos/FireRate_Auto</texPath>
+							</li>
+						</fireModes>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_20x102mmNATO_AP</li>
+							<li>Ammo_20x102mmNATO_Incendiary</li>
+							<li>Ammo_20x102mmNATO_HE</li>
+							<li>Ammo_20x102mmNATO_Sabot</li>
+						</thingDefs>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
