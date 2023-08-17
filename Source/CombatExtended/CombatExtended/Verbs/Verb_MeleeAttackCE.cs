@@ -267,7 +267,12 @@ namespace CombatExtended
             {
                 MoteMakerCE.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
             }
-            soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, targetThing.MapHeld));
+
+            // targetThing may be destroyed at this point
+            if (targetThing != null && targetThing.Spawned)
+            {
+                soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, targetThing.MapHeld));
+            }
 
             // The caster could be dead at this point due to a successful riposte from the defender,
             // so check for that as appropriate.
