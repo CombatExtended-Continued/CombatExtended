@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -100,6 +100,9 @@ namespace CombatExtended
                     ammoDefs.UnionWith(propsGL.propsUnderBarrel.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }
             }
+
+            ammoDefs.UnionWith(Compatibility.Patches.GetUsedAmmo());
+
             /*
             bool canCraft = (AmmoCraftingStation != null);
 

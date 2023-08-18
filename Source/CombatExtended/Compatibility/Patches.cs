@@ -6,9 +6,11 @@ using System.Text;
 
 namespace CombatExtended.Compatibility
 {
-    class Patches
+    public class Patches
     {
         private List<IPatch> patches;
+
+        public static List<Func<IEnumerable<ThingDef>>> UsedAmmoCallbacks = new List<Func<IEnumerable<ThingDef>>>();
         public Patches()
         {
             patches = new List<IPatch>();
@@ -62,6 +64,14 @@ namespace CombatExtended.Compatibility
                 if (patch.CanInstall())
                 {
                     patch.Install();
+                }
+            }
+        }
+
+        public static IEnumerable<ThingDef> GetUsedAmmo() {
+            foreach (var cb in UsedAmmoCallbacks) {
+                foreach (ThingDef td in cb()) {
+                    yield return td;
                 }
             }
         }
