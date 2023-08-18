@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -840,7 +840,8 @@ namespace CombatExtended
             }
 
             Vector2 factors;
-            if (Compatibility.Patches.GetCollisionBodyFactors(pawn, out factors)) {
+            if (Compatibility.Patches.GetCollisionBodyFactors(pawn, out factors))
+            {
                 return factors;
             }
 

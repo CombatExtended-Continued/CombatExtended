@@ -71,9 +71,12 @@ namespace CombatExtended.Compatibility
             }
         }
 
-        public static IEnumerable<ThingDef> GetUsedAmmo() {
-            foreach (var cb in UsedAmmoCallbacks) {
-                foreach (ThingDef td in cb()) {
+        public static IEnumerable<ThingDef> GetUsedAmmo()
+        {
+            foreach (var cb in UsedAmmoCallbacks)
+            {
+                foreach (ThingDef td in cb())
+                {
                     yield return td;
                 }
             }
@@ -95,7 +98,8 @@ namespace CombatExtended.Compatibility
 
         private static bool _gcbfactive = false;
 
-        public static void RegisterCollisionBodyFactorCallback(Func<Pawn, Tuple<bool, Vector2>> f) {
+        public static void RegisterCollisionBodyFactorCallback(Func<Pawn, Tuple<bool, Vector2>> f)
+        {
             CollisionBodyFactorCallbacks.Add(f);
             _gcbfactive = true;
         }

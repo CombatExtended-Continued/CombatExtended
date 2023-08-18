@@ -33,21 +33,27 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
         }
 
-        public static Def LookupAmmosetCE(string defName) {
+        public static Def LookupAmmosetCE(string defName)
+        {
             return DefDatabase<AmmoSetDef>.AllDefs.Where(x => x.defName == defName).First();
         }
 
-        public static IEnumerable<ThingDef> _GetUsedAmmo() {
-            foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs) {
-                foreach(ThingDef td in vtd?.ammunition?.AllowedThingDefs) {
-                    if (td is AmmoDef ad) {
+        public static IEnumerable<ThingDef> _GetUsedAmmo()
+        {
+            foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
+            {
+                foreach (ThingDef td in vtd?.ammunition?.AllowedThingDefs)
+                {
+                    if (td is AmmoDef ad)
+                    {
                         yield return td;
                     }
                 }
             }
         }
 
-        public static Vector2 ProjectileAngleCE(float speed, float range, Thing shooter, LocalTargetInfo target, Vector3 shotOrigin, bool flyOverhead, float gravity, float sway, float spread, float recoil) {
+        public static Vector2 ProjectileAngleCE(float speed, float range, Thing shooter, LocalTargetInfo target, Vector3 shotOrigin, bool flyOverhead, float gravity, float sway, float spread, float recoil)
+        {
             // TODO: Handle cover
             var bounds = CE_Utility.GetBoundsFor(target.Thing);
             float dheight = (bounds.max.y + bounds.min.y) / 2 - shotOrigin.y;
@@ -75,15 +81,19 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                                                 float shotHeight,
                                                 float shotSpeed)
         {
-            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef) {
-                foreach (var al in ammosetDef.ammoTypes) {
-                    if (al.ammo == ammoDef) {
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            {
+                foreach (var al in ammosetDef.ammoTypes)
+                {
+                    if (al.ammo == ammoDef)
+                    {
                         projectileDef = al.projectile;
                         break;
                     }
                 }
             }
-            else {
+            else
+            {
                 projectileDef = projectileDef.GetProjectile();
             }
             var p = ThingMaker.MakeThing(projectileDef, null);

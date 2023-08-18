@@ -40,7 +40,8 @@ namespace CombatExtended
         }
         */
 
-        static AmmoInjector() {
+        static AmmoInjector()
+        {
             Inject();
             AddRemoveCaliberFromGunRecipes();
         }
