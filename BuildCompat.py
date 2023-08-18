@@ -5,6 +5,8 @@ from subprocess import Popen
 import re
 import sys
 
+tm = '-m' in sys.argv
+
 parallel = '-j' in sys.argv
 
 PROJECT_PATTERN = re.compile(r'''Project.".[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{12}.". = '''
@@ -32,6 +34,7 @@ with open("Source/CombatExtended.sln") as f:
         match = PROJECT_PATTERN.match(line)
         if match:
             name, csproj = match.groups()
+            if tm and name not in sys.argv: continue
             csproj = csproj.replace('\\', '/').split('/')
             csproj = FilePath("Source").descendant(csproj)
             print(f"Building {name}")
