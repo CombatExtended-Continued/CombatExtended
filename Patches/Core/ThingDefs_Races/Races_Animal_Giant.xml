@@ -73,6 +73,29 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Elephant"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Elephant"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Elephant"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1900</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- ========== Megasloth ========== -->
 
 	<Operation Class="PatchOperationAdd">
@@ -141,6 +164,29 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Megasloth"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Megasloth"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Megasloth"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1900</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
 			</li>
 		</value>
 	</Operation>
@@ -265,7 +311,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Thrumbo"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -278,20 +324,7 @@
 				<Regenerates>true</Regenerates>
 				<RegenInterval>600</RegenInterval>
 				<RegenValue>5</RegenValue>
-				<!-- <Repairable>true</Repairable>
-				<RepairIngredients>
-					<Steel>5</Steel>
-					<Plasteel>5</Plasteel>
-				</RepairIngredients>
-				<RepairTime>300</RepairTime>
-				<RepairValue>200</RepairValue>
-				<CanOverHeal>true</CanOverHeal>
-				<MaxOverHeal>300</MaxOverHeal> -->
 				<MinArmorPct>0.75</MinArmorPct>
-				<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
-				<MinArmorValueBlunt>22</MinArmorValueBlunt>
-				<MinArmorValueHeat>0.2</MinArmorValueHeat>
-				<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
 			</li>
 		</value>
 	</Operation>
