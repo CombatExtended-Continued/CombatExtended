@@ -28,7 +28,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
         {
             VehicleTurret.ProjectileAngleCE = ProjectileCE.GetShotAngle;
             VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
-            global::CombatExtended.Compatibility.Vehicles.CollisionBodyFactorCallbacks.Add(_GetCollisionBodyFactors);
+            global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
         }
 
 
