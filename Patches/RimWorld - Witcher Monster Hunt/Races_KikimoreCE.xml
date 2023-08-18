@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>RimWorld - Witcher Monster Hunt</li>
@@ -7,6 +8,37 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="WMH_InsectoidMonsterBase"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+									<parts>
+										<li>InsectLeg</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+									<parts>
+										<li>InsectLeg</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="WMH_InsectoidMonsterBase"]/statBases</xpath>
+					<value>
+						<PartialArmorBody>0</PartialArmorBody>
+					</value>
+				</li>
 
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]</xpath>
@@ -23,13 +55,6 @@
 						<MeleeDodgeChance>0.18</MeleeDodgeChance>
 						<MeleeCritChance>0.07</MeleeCritChance>
 						<MeleeParryChance>0.08</MeleeParryChance>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/statBases/MoveSpeed</xpath>
-					<value>
-						<MoveSpeed>4</MoveSpeed>
 					</value>
 				</li>
 
@@ -64,19 +89,35 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>375</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWarrior"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>QuadrupedLow</bodyShape>
 						</li>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWarrior"]/statBases/MoveSpeed</xpath>
-					<value>
-						<MoveSpeed>4.5</MoveSpeed>
 					</value>
 				</li>
 
@@ -134,6 +175,29 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WMAux_KikimoreWorker"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>750</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]</xpath>
 					<value>
@@ -149,13 +213,6 @@
 						<MeleeDodgeChance>0.01</MeleeDodgeChance>
 						<MeleeCritChance>0.65</MeleeCritChance>
 						<MeleeParryChance>0.3</MeleeParryChance>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]/statBases/MoveSpeed</xpath>
-					<value>
-						<MoveSpeed>3.5</MoveSpeed>
 					</value>
 				</li>
 
@@ -203,7 +260,31 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WMH_KikimoreQueen"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2500</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

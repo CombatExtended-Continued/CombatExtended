@@ -9,6 +9,7 @@
 			<mods>
 				<li>Biotech</li>
 			</mods>
+
 			<match Class="PatchOperationSequence">
 				<operations>
 					<!-- ========== Termite ========== -->
@@ -67,6 +68,40 @@
 									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 								</li>
 							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Termite_PlayerControlled"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="VFE_Mech_Termite_PlayerControlled"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Termite_PlayerControlled"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>1880</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>188</MaxOverHeal>
+								<MinArmorPct>0.5</MinArmorPct>
+								<MinArmorValueSharp>10</MinArmorValueSharp>
+								<MinArmorValueBlunt>22</MinArmorValueBlunt>
+							</li>
 						</value>
 					</li>
 
@@ -153,6 +188,38 @@
 						</value>
 					</li>
 
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Knight_PlayerControlled"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="VFE_Mech_Knight_PlayerControlled"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Knight_PlayerControlled"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>860</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>86</MaxOverHeal>
+								<MinArmorPct>0.75</MinArmorPct>
+							</li>
+						</value>
+					</li>
+
 					<!-- ========== Inquisitor ========== -->
 
 					<li Class="PatchOperationAddModExtension">
@@ -234,6 +301,40 @@
 									<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
 								</li>
 							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Inquisitor_PlayerControlled"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="VFE_Mech_Inquisitor_PlayerControlled"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Inquisitor_PlayerControlled"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>1200</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>120</MaxOverHeal>
+								<MinArmorPct>0.5</MinArmorPct>
+								<MinArmorValueSharp>5</MinArmorValueSharp>
+								<MinArmorValueBlunt>7.5</MinArmorValueBlunt>
+							</li>
 						</value>
 					</li>
 

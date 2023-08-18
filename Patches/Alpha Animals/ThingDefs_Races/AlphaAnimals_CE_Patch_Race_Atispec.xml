@@ -146,6 +146,29 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AA_Atispec"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_Atispec"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AA_Atispec"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>6750</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>

@@ -75,6 +75,29 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Queen"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Queen"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Queen"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>3000</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 				<!-- === Royal Megaspider === -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_RoyalMegaspider"]/statBases/MoveSpeed</xpath>
@@ -145,6 +168,132 @@
 								<armorPenetrationBlunt>6.48</armorPenetrationBlunt>
 							</li>
 						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_RoyalMegaspider"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFEI_Insectoid_RoyalMegaspider"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_RoyalMegaspider"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>1075</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
+				<!-- === Gigalocust === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/statBases/MoveSpeed</xpath>
+					<value>
+						<MoveSpeed>4.8</MoveSpeed>
+						<MeleeDodgeChance>0.07</MeleeDodgeChance>
+						<MeleeCritChance>0.41</MeleeCritChance>
+						<MeleeParryChance>0.19</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>28</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>11</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>2.1</baseHealthScale>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head claw</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>29</power>
+								<cooldownTime>1.4</cooldownTime>
+								<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>40</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head claw</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>52</power>
+								<cooldownTime>2.6</cooldownTime>
+								<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>2.17</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>6.48</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>950</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="VFEI_Insectoid_Gigalocust"]/combatPower</xpath>
+					<value>
+						<combatPower>300</combatPower>
 					</value>
 				</li>
 
@@ -244,90 +393,33 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Megapede"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Megapede"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Megapede"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>1325</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/PawnKindDef[defName="VFEI_Insectoid_Megapede"]/combatPower</xpath>
 					<value>
 						<combatPower>250</combatPower>
-					</value>
-				</li>
-
-				<!-- === Gigalocust === -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/statBases/MoveSpeed</xpath>
-					<value>
-						<MoveSpeed>4.8</MoveSpeed>
-						<MeleeDodgeChance>0.07</MeleeDodgeChance>
-						<MeleeCritChance>0.41</MeleeCritChance>
-						<MeleeParryChance>0.19</MeleeParryChance>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>28</ArmorRating_Blunt>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/statBases/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>11</ArmorRating_Sharp>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/race/baseHealthScale</xpath>
-					<value>
-						<baseHealthScale>2.1</baseHealthScale>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VFEI_Insectoid_Gigalocust"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>head claw</label>
-								<capacities>
-									<li>Stab</li>
-								</capacities>
-								<power>29</power>
-								<cooldownTime>1.4</cooldownTime>
-								<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
-								<armorPenetrationSharp>40</armorPenetrationSharp>
-								<armorPenetrationBlunt>20</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head claw</label>
-								<capacities>
-									<li>Cut</li>
-								</capacities>
-								<power>52</power>
-								<cooldownTime>2.6</cooldownTime>
-								<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
-								<armorPenetrationSharp>2.5</armorPenetrationSharp>
-								<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>17</power>
-								<cooldownTime>2.17</cooldownTime>
-								<chanceFactor>0.10</chanceFactor>
-								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>6.48</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="VFEI_Insectoid_Gigalocust"]/combatPower</xpath>
-					<value>
-						<combatPower>300</combatPower>
 					</value>
 				</li>
 

@@ -61,6 +61,7 @@ Mod |
 [SYR] Harpy	|
 [SYR] Naga	|
 [SYR] Thrumkin	|
+[UEM] More Mechanitor Mechs	|
 [XND] Vanilla-Friendly Animal Surgery (Continued)
 ↁ Elves |
 ↁ House Sanguin |
@@ -100,6 +101,7 @@ Anty the War Ant Race |
 AOC The Cleanup Devil |
 Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
+Appliances Expanded	|
 Arachne Race	|
 Archotech Expanded  |
 Archotech Expanded Prosthetics  |
@@ -120,6 +122,10 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Big and Small Genes	|
+Big and Small - Medieval Factions	|
+Big and Small - Medieval Overhaul Factions	|
+Big and Small Races	|
 Biomes! Caverns	|
 Biomes! Core	|
 Biotech Expansion - Mammalia  |
@@ -453,8 +459,11 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
+Urbworld Weaponry: Caseless |
+Urbworld Weaponry SDS |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
+Vampires, Demons, and the Undead  |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Caves |
 Vanilla Animals Expanded - Endangered |

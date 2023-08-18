@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Alpha Animals</li>
@@ -7,13 +8,6 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="BaseInsect2"]/statBases</xpath>
-					<value>
-						<NightVisionEfficiency>0.5</NightVisionEfficiency>
-					</value>
-				</li>
 
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="AA_BlackScarab"]</xpath>
@@ -89,6 +83,29 @@
 								<chanceFactor>0.1</chanceFactor>
 							</li>
 						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AA_BlackScarab"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_BlackScarab"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AA_BlackScarab"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>187</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
 					</value>
 				</li>
 
@@ -190,6 +207,29 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AA_BlackSpelopede"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_BlackSpelopede"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AA_BlackSpelopede"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>600</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="AA_BlackSpider"]</xpath>
 					<value>
@@ -288,7 +328,31 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AA_BlackSpider"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_BlackSpider"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AA_BlackSpider"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>900</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

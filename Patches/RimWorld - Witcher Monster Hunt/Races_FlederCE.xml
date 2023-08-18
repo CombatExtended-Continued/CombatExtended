@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>RimWorld - Witcher Monster Hunt</li>
@@ -23,13 +24,6 @@
 						<MeleeDodgeChance>0.35</MeleeDodgeChance>
 						<MeleeCritChance>0.36</MeleeCritChance>
 						<MeleeParryChance>0.2</MeleeParryChance>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="WMH_Fleder"]/statBases/MoveSpeed</xpath>
-					<value>
-						<MoveSpeed>5.8</MoveSpeed>
 					</value>
 				</li>
 
@@ -99,7 +93,31 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="WMH_Fleder"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="WMH_Fleder"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WMH_Fleder"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2800</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>400</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.75</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

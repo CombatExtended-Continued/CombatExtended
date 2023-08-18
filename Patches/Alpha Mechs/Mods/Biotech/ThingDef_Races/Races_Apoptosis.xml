@@ -106,6 +106,40 @@
 						</value>
 					</li>
 
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AM_Apoptosis"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>5250</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>525</MaxOverHeal>
+								<MinArmorPct>0.5</MinArmorPct>
+								<MinArmorValueSharp>14</MinArmorValueSharp>
+								<MinArmorValueBlunt>35</MinArmorValueBlunt>
+							</li>
+						</value>
+					</li>
+
 					<li Class="PatchOperationReplace">
 						<xpath>Defs/PawnKindDef[defName="AM_Apoptosis"]/combatPower</xpath>
 						<value>

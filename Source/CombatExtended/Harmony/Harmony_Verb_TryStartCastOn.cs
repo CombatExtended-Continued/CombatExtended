@@ -32,7 +32,7 @@ namespace CombatExtended.HarmonyCE
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         {
             List<CodeInstruction> codes = instructions.ToList();
-            bool finished = false; ;
+            bool finished = false;
             Label l1 = generator.DefineLabel();
 
             for (int i = 0; i < codes.Count; i++)

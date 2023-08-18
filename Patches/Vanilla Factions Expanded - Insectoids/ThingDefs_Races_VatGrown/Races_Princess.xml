@@ -8,9 +8,9 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownPrincess"]/statBases/MoveSpeed</xpath>
-
 					<value>
 						<MoveSpeed>2.1</MoveSpeed>
 						<MeleeDodgeChance>0.03</MeleeDodgeChance>
@@ -21,7 +21,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownPrincess"]/statBases/ArmorRating_Blunt</xpath>
-
 					<value>
 						<ArmorRating_Blunt>15</ArmorRating_Blunt>
 					</value>
@@ -29,7 +28,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownPrincess"]/statBases/ArmorRating_Sharp</xpath>
-
 					<value>
 						<ArmorRating_Sharp>6</ArmorRating_Sharp>
 					</value>
@@ -37,7 +35,6 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFEI_VatGrownPrincess"]/tools</xpath>
-
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -65,6 +62,30 @@
 						</tools>
 					</value>
 				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFEI_VatGrownPrincess"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFEI_VatGrownPrincess"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEI_VatGrownPrincess"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>1900</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>

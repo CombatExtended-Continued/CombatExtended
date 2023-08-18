@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RWY]Dragon's Descent: Void Dwellers</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Void Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Void_Breath"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Void_Breath"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>36</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Void_Bomb</damageDef>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<explosionRadius>3.3</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Nebula Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Nebula_Breath"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Nebula_Breath"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>44</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>NebulaFlame</damageDef>
+							<damageAmountBase>19</damageAmountBase>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<explosionRadius>2.1</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Arururulion Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Aurelion_Breath"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Aurelion_Breath"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>58</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Void_Arururu</damageDef>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<explosionRadius>3.3</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Stardust Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Stardust_Breath"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Stardust_Breath"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>42</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>EMP</damageDef>
+							<damageAmountBase>9</damageAmountBase>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<explosionRadius>3.3</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Molten Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Molten_Breath"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_Molten_Breath"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>48</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Void_Molten</damageDef>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<explosionRadius>4.1</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Surge Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Surge_Breath"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Surge_Breath"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>48</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>DD_Void_Surge</damageDef>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<explosionRadius>1.5</explosionRadius>
+							<damageAmountBase>1</damageAmountBase>
+							<armorPenetrationBase>20.0</armorPenetrationBase>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Mind Flay Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Mind_Flay"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Mind_Flay"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>48</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>DD_Mind_Flay</damageDef>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<damageAmountBase>1</damageAmountBase>
+							<armorPenetrationBase>20.0</armorPenetrationBase>
+							<explosionRadius>2</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Hellfire Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Hellfire"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Hellfire"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>34</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>DD_Hellfire</damageDef>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<ai_IsIncendiary>false</ai_IsIncendiary>
+							<explosionRadius>3</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Eclipse Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Eclipse"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Eclipse"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>88</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>DD_Eclipse</damageDef>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<explosionRadius>2</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Rend Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Rend"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Rend"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>34</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>DD_Rend</damageDef>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<explosionRadius>5</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- Constrain Breath -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Constrain"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Projectile_DD_Constrain"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>48</speed>
+							<flyOverhead>false</flyOverhead>
+							<damageDef>DD_Constrain</damageDef>
+							<soundExplode>DD_Void_DarkExplosion</soundExplode>
+							<damageAmountBase>1</damageAmountBase>
+							<armorPenetrationBase>20.0</armorPenetrationBase>
+							<explosionRadius>2.5</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

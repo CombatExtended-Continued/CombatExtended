@@ -6,8 +6,9 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="YorkshireTerrier"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.17</MeleeDodgeChance>
+			<MeleeDodgeChance>0.18</MeleeDodgeChance>
 			<MeleeCritChance>0.01</MeleeCritChance>
+			<MeleeParryChance>0.01</MeleeParryChance>
 		</value>
 	</Operation>
 
@@ -135,6 +136,29 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Husky"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Husky"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Husky"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>477</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Husky"]</xpath>
 		<value>
@@ -207,6 +231,29 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="LabradorRetriever"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="LabradorRetriever"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="LabradorRetriever"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>437</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="LabradorRetriever"]</xpath>
 		<value>
@@ -223,6 +270,7 @@
 		<value>
 			<MeleeDodgeChance>0.23</MeleeDodgeChance>
 			<MeleeCritChance>0.02</MeleeCritChance>
+			<MeleeParryChance>0.01</MeleeParryChance>
 		</value>
 	</Operation>
 

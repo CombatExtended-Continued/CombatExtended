@@ -95,6 +95,7 @@
 			<MarketValue>673.94</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
+		<detonateProjectile>Bullet_155mmHowitzerShell_EMP</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="155mmHowitzerShellBase">
@@ -128,6 +129,10 @@
 			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 			<gravityFactor>5</gravityFactor>
+			<shellingProps>
+				<tilesPerTick>0.12</tilesPerTick>
+				<range>60</range>
+			</shellingProps>
 		</projectile>
 	</ThingDef>
 
@@ -145,12 +150,15 @@
 			<explosionRadius>5.5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<shellingProps>
+				<damage>0.33</damage>
+			</shellingProps>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>40</Fragment_Large>
-					<Fragment_Small>60</Fragment_Small>
+					<Fragment_Small>80</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -171,6 +179,9 @@
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
 			<soundExplode>MortarIncendiary_Explode</soundExplode>
+			<shellingProps>
+				<damage>0.33</damage>
+			</shellingProps>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -194,6 +205,9 @@
 			<damageAmountBase>452</damageAmountBase>
 			<flyOverhead>true</flyOverhead>
 			<explosionRadius>9.5</explosionRadius>
+			<shellingProps>
+				<damage>0.23</damage>
+			</shellingProps>
 		</projectile>
 	</ThingDef>
 
@@ -255,7 +269,7 @@
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>40</Fragment_Large>
-					<Fragment_Small>60</Fragment_Small>
+					<Fragment_Small>80</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>

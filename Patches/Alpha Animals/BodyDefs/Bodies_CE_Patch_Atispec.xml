@@ -101,6 +101,24 @@
 				</li>
 
 				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="AA_Atispec"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/parts/li[def="AA_InsectMouth"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="AA_Atispec"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/parts/li[def="AA_InsectMouth"]</xpath>
+						<value>
+							<groups>
+								<li>CoveredByNaturalArmor</li>
+							</groups>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="AA_Atispec"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/parts/li[def="AA_InsectMouth"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
 					<xpath>Defs/BodyDef[defName="AA_Atispec"]/corePart/parts/li[def="AA_Abdomen"]/parts/li[def="AA_InsectSting"]/groups</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="AA_Atispec"]/corePart/parts/li[def="AA_Abdomen"]/parts/li[def="AA_InsectSting"]</xpath>

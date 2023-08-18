@@ -38,7 +38,7 @@ namespace CombatExtended.HarmonyCE
                     string obstructReport;
                     if (verbCE.CanHitTarget(target, out obstructReport))
                     {
-                        ShiftVecReport report = verbCE.ShiftVecReportFor(target);
+                        ShiftVecReport report = verbCE.ShiftVecReportFor(new LocalTargetInfo(target));
                         stringBuilder.Append(report.GetTextReadout());
                     }
                     else

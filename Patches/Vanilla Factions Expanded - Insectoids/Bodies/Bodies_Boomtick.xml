@@ -8,16 +8,34 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<!-- === Boomtick === -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="VFEI_Boomtick"]//*[def="Shell" or def="Elytra" or def="Pronotum"]</xpath>
-
+					<xpath>
+						Defs/BodyDef[defName="VFEI_Boomtick"]//*[
+						def="Shell" or
+						def="Elytra" or
+						def="Pronotum"]
+					</xpath>
 					<value>
-						<groups>
-							<li>CoveredByNaturalArmor</li>
-						</groups>
+						<groups />
 					</value>
 				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="VFEI_Boomtick"]//*[
+						def="Shell" or
+						def="Elytra" or
+						def="Pronotum" or
+						def="InsectMouth" or
+						def="InsectHead"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>

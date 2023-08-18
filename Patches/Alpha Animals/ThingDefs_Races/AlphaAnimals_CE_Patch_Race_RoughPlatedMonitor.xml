@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Alpha Animals</li>
@@ -23,6 +24,7 @@
 						<ArmorRating_Blunt>3.4</ArmorRating_Blunt>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AA_RoughPlatedMonitor"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
@@ -92,7 +94,6 @@
 								<chanceFactor>0.9</chanceFactor>
 								<armorPenetrationSharp>0.7</armorPenetrationSharp>
 								<armorPenetrationBlunt>2</armorPenetrationBlunt>
-
 							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>head</label>
@@ -109,7 +110,32 @@
 						</tools>
 					</value>
 				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AA_RoughPlatedMonitor"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_RoughPlatedMonitor"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AA_RoughPlatedMonitor"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>1000</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.75</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

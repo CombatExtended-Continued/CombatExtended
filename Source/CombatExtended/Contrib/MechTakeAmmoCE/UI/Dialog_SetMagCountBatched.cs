@@ -8,6 +8,7 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 using CombatExtended;
+using CombatExtended.Compatibility;
 
 
 namespace CombatExtended
@@ -93,18 +94,24 @@ namespace CombatExtended
             curY += Margin;
             if (Widgets.ButtonText(new Rect(inRect.x, curY, inRect.width, BotAreaHeight), "OK".Translate(), true, true, true, null))
             {
-                //set the loadouts for all the comps
-                foreach (var compMechAmmo in _mechAmmoList)
-                {
-                    //copy the loadouts from the _tmpLoadouts
-                    foreach (var ammoDef in _tmpLoadouts.Keys)
-                    {
-                        compMechAmmo.Loadouts.SetOrAdd(ammoDef, _tmpLoadouts[ammoDef]);
-                    }
-                    compMechAmmo.TakeAmmoNow();
-                }
+                SetMagCount(_mechAmmoList, _tmpLoadouts);
                 Close(true);
 
+            }
+        }
+
+        [Multiplayer.SyncMethod]
+        private static void SetMagCount(List<CompMechAmmo> mechAmmoList, Dictionary<AmmoDef, int> tmpLoadouts)
+        {
+            //set the loadouts for all the comps
+            foreach (var compMechAmmo in mechAmmoList)
+            {
+                //copy the loadouts from the _tmpLoadouts
+                foreach ((AmmoDef ammoDef, int amount) in tmpLoadouts)
+                {
+                    compMechAmmo.Loadouts.SetOrAdd(ammoDef, amount);
+                }
+                compMechAmmo.TakeAmmoNow();
             }
         }
 

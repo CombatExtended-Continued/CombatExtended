@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Alpha Animals</li>
@@ -68,12 +69,10 @@
 					</value>
 				</li>
 
-				<!-- Add Low Bleed Hediff -->
-
 				<li Class="PatchOperationConditional">
-					<xpath>Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
+					<xpath>Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="AA_Gallatross"]</xpath>
+						<xpath>Defs/ThingDef[defName="AA_GallatrossMoribund"]</xpath>
 						<value>
 							<comps />
 						</value>
@@ -81,7 +80,32 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
+					<xpath>Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>11500</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.75</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
+				<!-- Add Low Bleed Hediff -->
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_GallatrossMoribund"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
 					<value>
 						<li Class="AnimalBehaviours.CompProperties_InitialHediff">
 							<hediffname>AA_LowBleed</hediffname>
@@ -93,4 +117,5 @@
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

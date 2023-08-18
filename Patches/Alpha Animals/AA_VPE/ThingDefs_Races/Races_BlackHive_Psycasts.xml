@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Alpha Animals</li>
@@ -87,6 +88,29 @@
 									<chanceFactor>0.1</chanceFactor>
 								</li>
 							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AA_BlackScarab_Temporary"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AA_BlackScarab_Temporary"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_BlackScarab_Temporary"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>187</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>600</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<MinArmorPct>0.5</MinArmorPct>
+							</li>
 						</value>
 					</li>
 
@@ -210,6 +234,29 @@
 						</value>
 					</li>
 
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AA_BlackSpelopede_Temporary"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AA_BlackSpelopede_Temporary"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_BlackSpelopede_Temporary"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>600</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>600</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<MinArmorPct>0.5</MinArmorPct>
+							</li>
+						</value>
+					</li>
+
 					<li Class="PatchOperationAddModExtension">
 						<xpath>Defs/ThingDef[defName="AA_BlackSpider_Temporary"]</xpath>
 						<value>
@@ -330,6 +377,29 @@
 						</value>
 					</li>
 
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AA_BlackSpider_Temporary"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AA_BlackSpider_Temporary"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_BlackSpider_Temporary"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>900</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>600</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<MinArmorPct>0.5</MinArmorPct>
+							</li>
+						</value>
+					</li>
+
 					<li Class="PatchOperationAddModExtension">
 						<xpath>Defs/ThingDef[defName="AA_MammothWorm_Temporary"]</xpath>
 						<value>
@@ -405,8 +475,32 @@
 						</value>
 					</li>
 
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AA_MammothWorm_Temporary"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AA_MammothWorm_Temporary"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_MammothWorm_Temporary"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>1500</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>600</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<MinArmorPct>0.5</MinArmorPct>
+							</li>
+						</value>
+					</li>
+
 				</operations>
 			</match>
 		</match>
 	</Operation>
+
 </Patch>
