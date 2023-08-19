@@ -12,7 +12,7 @@
 
 				<!--=============================== Dragonfire Greatbow ================================-->
 
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<!--li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>BotchJob_DragonfireGreatbow</defName>
 					<statBases>
 						<SightsEfficiency>0.6</SightsEfficiency>
@@ -57,7 +57,7 @@
 							</li>
 						</tools>
 					</value>
-				</li>
+				</li-->
 
 				<!-- Possessed Dragonfire Bow -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -112,7 +112,7 @@
 				</li>
 
 				<!--=============================== Lightning Javelin ================================-->
-				<li Class="PatchOperationAttributeSet">
+				<!--li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="BotchJob_LightningJavelin"]</xpath>
 					<attribute>ParentName</attribute>
 					<value>BaseWeapon</value>
@@ -214,7 +214,7 @@
 							</li>
 						</tools>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Lightning Javelin ================================-->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -301,8 +301,8 @@
 								<damageDef>EMP</damageDef>
 								<armorPenetrationBlunt>10</armorPenetrationBlunt>
 								<armorPenetrationSharp>8.34</armorPenetrationSharp>
-								<preExplosionSpawnChance>1</preExplosionSpawnChance>
-								<preExplosionSpawnThingDef>BotchJob_LightningJavelin</preExplosionSpawnThingDef>
+								<!--preExplosionSpawnChance>1</preExplosionSpawnChance>
+								<preExplosionSpawnThingDef>BotchJob_LightningJavelin</preExplosionSpawnThingDef-->
 							</projectile>
 							<comps>
 								<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -316,7 +316,7 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
+				<!--li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
 						<ThingDef ParentName="BasePilumProjectile">
@@ -346,10 +346,10 @@
 							</comps>
 						</ThingDef>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Archmage Staff ================================-->
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<!--li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>BotchJob_ArchmageStaff</defName>
 					<statBases>
 						<SightsEfficiency>0.3</SightsEfficiency>
@@ -400,7 +400,7 @@
 							</li>
 						</tools>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Archmage Staff ================================-->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -487,7 +487,7 @@
 
 				<!--=============================== Automaton Crossbow ================================-->
 
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<!--li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>BotchJob_AutomatonCrossbow</defName>
 					<statBases>
 						<SightsEfficiency>1</SightsEfficiency>
@@ -523,10 +523,10 @@
 					<weaponTags>
 						<li>BotchJob_AutomatonCrossbow</li>
 					</weaponTags>
-				</li>
+				</li-->
 
 				<!-- Patch to Make it Utilize Heavy Crossbow Ammo from MO when loaded -->
-				<li Class="PatchOperationFindMod">
+				<!--li Class="PatchOperationFindMod">
 					<mods>
 						<li>Medieval Overhaul</li>
 					</mods>
@@ -563,7 +563,7 @@
 							</li>
 						</tools>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Automaton Crossbow ================================-->
 
@@ -647,7 +647,7 @@
 
 				<!--=============================== Verdant Bow ================================-->
 
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<!--li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>BotchJob_VerdantBow</defName>
 					<statBases>
 						<SightsEfficiency>0.8</SightsEfficiency>
@@ -676,10 +676,10 @@
 						<li>BotchJob_VerdantBow</li>
 					</weaponTags>
 					<AllowWithRunAndGun>false</AllowWithRunAndGun>
-				</li>
+				</li-->
 
 				<!-- Patch to Make it Utilize Heavy Crossbow Ammo from MO when loaded -->
-				<li Class="PatchOperationFindMod">
+				<!--li Class="PatchOperationFindMod">
 					<mods>
 						<li>Medieval Overhaul</li>
 					</mods>
@@ -693,9 +693,9 @@
 							</comps>
 						</value>
 					</match>
-				</li>
+				</li-->
 
-				<li Class="PatchOperationReplace">
+				<!--li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BotchJob_VerdantBow"]/tools</xpath>
 					<value>
 						<tools>
@@ -709,12 +709,12 @@
 							</li>
 						</tools>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Verdant Bow ================================-->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>BotchJob_VerdantBow</defName>
+					<defName>BotchJob_PossessedVerdantBow</defName>
 					<statBases>
 						<SightsEfficiency>1</SightsEfficiency>
 						<ShotSpread>0.8</ShotSpread>
@@ -739,7 +739,7 @@
 					</AmmoUser>
 					<FireModes/>
 					<weaponTags>
-						<li>BotchJob_VerdantBow</li>
+						<li>BotchJob_PossessedVerdantBow</li>
 					</weaponTags>
 					<AllowWithRunAndGun>false</AllowWithRunAndGun>
 				</li>
@@ -750,7 +750,7 @@
 						<li>Medieval Overhaul</li>
 					</mods>
 					<match Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="BotchJob_VerdantBow"]/comps</xpath>
+						<xpath>Defs/ThingDef[defName="BotchJob_PossessedVerdantBow"]/comps</xpath>
 						<value>
 							<comps>
 								<li Class="CombatExtended.CompProperties_AmmoUser">
@@ -762,7 +762,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_VerdantBow"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedVerdantBow"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -779,7 +779,7 @@
 
 				<!--=============================== Gilded Arquebus ================================-->
 
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<!--li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>BotchJob_GildedArquebus</defName>
 					<statBases>
 						<SightsEfficiency>0.8</SightsEfficiency>
@@ -813,7 +813,7 @@
 						<li>BotchJob_GildedArquebus</li>
 					</weaponTags>
 					<AllowWithRunAndGun>false</AllowWithRunAndGun>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Gilded Arquebus ================================-->
 
@@ -854,7 +854,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_GildedArquebus" or defName="BotchJob_PossessedGildedArquebus"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedGildedArquebus"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -894,7 +894,7 @@
 				</li>
 
 				<!--=============================== Shrouded Dagger ================================-->
-				<li Class="PatchOperationAttributeSet">
+				<!--li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[defName="BotchJob_ShroudedDagger"]</xpath>
 					<attribute>ParentName</attribute>
 					<value>BaseWeapon</value>
@@ -1021,7 +1021,7 @@
 							</projectile>
 						</ThingDef>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Shrouded Dagger ================================-->
 				<li Class="PatchOperationAttributeSet">
@@ -1153,8 +1153,8 @@
 								<damageDef>RangedStab</damageDef>
 								<armorPenetrationBlunt>4.52</armorPenetrationBlunt>
 								<armorPenetrationSharp>7.52</armorPenetrationSharp>
-								<preExplosionSpawnChance>1</preExplosionSpawnChance>
-								<preExplosionSpawnThingDef>BotchJob_ShroudedDagger</preExplosionSpawnThingDef>
+								<!--preExplosionSpawnChance>1</preExplosionSpawnChance>
+								<preExplosionSpawnThingDef>BotchJob_ShroudedDagger</preExplosionSpawnThingDef-->
 							</projectile>
 						</ThingDef>
 					</value>
@@ -1168,7 +1168,7 @@
 					<match Class="PatchOperationSequence">
 						<operations>
 
-							<li Class="PatchOperationAdd">
+							<!--li Class="PatchOperationAdd">
 								<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/statBases</xpath>
 								<value>
 									<Bulk>10.00</Bulk>
@@ -1204,7 +1204,7 @@
 							</li>
 
 							<li Class="PatchOperationReplace">
-								<xpath>Defs/ThingDef[defName="BotchJob_ArchmageStaff"]/tools</xpath>
+								<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/tools</xpath>
 								<value>
 									<tools>
 										<li Class="CombatExtended.ToolCE">
@@ -1219,7 +1219,7 @@
 										</li>
 									</tools>
 								</value>
-							</li>
+							</li-->
 
 							<!--=============================== Possessed Acolyte Staff ================================-->
 							<li Class="PatchOperationAdd">
@@ -1265,7 +1265,7 @@
 							</li>
 
 							<li Class="PatchOperationReplace">
-								<xpath>Defs/ThingDef[defName="BotchJob_ArchmageStaff"]/tools</xpath>
+								<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/tools</xpath>
 								<value>
 									<tools>
 										<li Class="CombatExtended.ToolCE">
