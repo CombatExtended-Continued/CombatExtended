@@ -57,17 +57,17 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             // TODO: Handle cover
             var bounds = CE_Utility.GetBoundsFor(target.Thing);
             float dheight = (bounds.max.y + bounds.min.y) / 2 - shotOrigin.y;
-            float sa = ProjectileCE.GetShotAngle(speed, range, dheight, flyOverhead, gravity);
+            float shotAngle = ProjectileCE.GetShotAngle(speed, range, dheight, flyOverhead, gravity);
 
-            float tr = 0;
+            float dTurretRotation = 0;
             float ticks = (float)(Find.TickManager.TicksAbs + shooter.thingIDNumber);
-            tr += sway * (float)Mathf.Sin(ticks * 0.022f);
-            sa += Mathf.Deg2Rad * 0.25f * sway * (float)Mathf.Sin(ticks * 0.0165f);
-            double an = Rand.Value * Math.PI * 2;
-            double ra = Rand.Value * spread;
-            sa += (float)(ra * Math.Sin(an) + recoil);
-            tr += (float)(ra * Math.Cos(an));
-            return new Vector2(tr, sa);
+            dTurretRotation += sway * (float)Mathf.Sin(ticks * 0.022f);
+            shotAngle += Mathf.Deg2Rad * 0.25f * sway * (float)Mathf.Sin(ticks * 0.0165f);
+            double spreadDirection = Rand.Value * Math.PI * 2;
+            double randomSpread = Rand.Value * spread;
+            shotAngle += (float)(randomSpread * Math.Sin(spreadDirection) + recoil);
+            dTurretRotation += (float)(randomSpread * Math.Cos(spreadDirection));
+            return new Vector2(dTurretRotation, shotAngle);
         }
 
         public static object LaunchProjectileCE(ThingDef projectileDef,
