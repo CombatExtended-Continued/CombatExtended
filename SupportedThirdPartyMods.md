@@ -87,8 +87,7 @@ Android Tiers SM7 Overhaul (Continued)  |
 Android - TX Series (Continued)  |
 Androids	|
 Androids Expanded	|
-Anima Animals  |
-Anima Animals - Community Pack  |
+Anima Animals Combined  |
 Anima Bionics   |
 Anima Gear  |
 AnimalCollabProj	|
