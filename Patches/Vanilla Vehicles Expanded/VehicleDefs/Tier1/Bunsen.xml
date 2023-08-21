@@ -10,10 +10,56 @@
 			<operations>
 
 				<!-- Turret -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_Flamethrower_Prometheum</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.0</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>1.0</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/maxRange</xpath>
 					<value>
-						<maxRange>42</maxRange>
+						<maxRange>40</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Flamethrower</ammoSet>
+							<shotHeight>2.0</shotHeight>
+							<speed>20</speed>
+							<sway>0.25</sway>
+							<spread>2.0</spread>
+						</li>
 					</value>
 				</li>
 

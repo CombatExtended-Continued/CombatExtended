@@ -31,6 +31,10 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]/chargePerAmmoCount</xpath>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]/genericAmmo</xpath>
 					<value>
@@ -52,6 +56,19 @@
 							<li>Ammo_57x307mmR_AP</li>
 							<li>Ammo_57x307mmR_HE</li>
 						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_57x307mmR</ammoSet>
+							<shotHeight>2.5</shotHeight>
+							<speed>92</speed>
+							<sway>0.82</sway>
+							<spread>0.01</spread>
+						</li>
 					</value>
 				</li>
 
