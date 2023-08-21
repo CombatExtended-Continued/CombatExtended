@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ReGrowth: Core</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Moa === -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RG_Moa"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.20</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.06</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RG_Moa"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claws</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>1.42</cooldownTime>
+								<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.08</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>beak</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.89</cooldownTime>
+								<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+								<chanceFactor>0.5</chanceFactor>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.250</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.78</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Neutrolope ========== -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="RG_Neutrolope"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RG_Neutrolope"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						<MeleeCritChance>0.07</MeleeCritChance>
+						<MeleeParryChance>0.16</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RG_Neutrolope"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.0</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.2</cooldownTime>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.2</cooldownTime>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontLeftLeg_2</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.2</cooldownTime>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.2</cooldownTime>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontRightLeg_2</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>0.8</cooldownTime>
+								<chanceFactor>0.5</chanceFactor>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

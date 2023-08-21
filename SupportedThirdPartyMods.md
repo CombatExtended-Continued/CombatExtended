@@ -373,7 +373,9 @@ Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
 Recon Mechanoid |
+ReGrowth: Core |
 ReGrowth: Extinct Animals |
+ReGrowth: Mutated Animals Pack  |
 Reinforced Mechanoid 2 |
 Remote Detonator	|
 Revia Race |
