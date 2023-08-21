@@ -37,7 +37,8 @@
 						<li Class="PatchOperationRemove">
 							<xpath>Defs/ThingDef[
 								defName="Miho_Weapon_Shotgun" or
-								defName="Miho_Weapon_ShotgunPsychic"
+								defName="Miho_Weapon_ShotgunPsychic" or
+								defName="Miho_Weapon_HeavyPistolFlechette"
 								]/verbs/li[@Class="TorgueMiho.Verb_Properties_ShotGun"] </xpath>
 						</li>
 
@@ -294,41 +295,92 @@
 							<statBases>
 								<SightsEfficiency>0.80</SightsEfficiency>
 								<ShotSpread>0.15</ShotSpread>
-								<SwayFactor>0.75</SwayFactor>
+								<SwayFactor>1.75</SwayFactor>
 								<Bulk>4.7</Bulk>
 								<Mass>3</Mass>
-								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+								<RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
 							</statBases>
 							<Properties>
 								<recoilAmount>2.71</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
 								<defaultProjectile>Bullet_10mmMihogrenade</defaultProjectile>
-								<warmupTime>0.5</warmupTime>
-								<burstShotCount>6</burstShotCount>
-								<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
-								<range>21</range>
+								<warmupTime>1.1</warmupTime>
+								<range>35</range>
 								<soundCast>Miho_Pistol</soundCast>
 								<soundCastTail>GunTail_Medium</soundCastTail>
 								<muzzleFlashScale>9</muzzleFlashScale>
 							</Properties>
 							<AmmoUser>
-								<magazineSize>18</magazineSize>
-								<reloadTime>4.5</reloadTime>
 								<ammoSet>AmmoSet_10mmMihogrenade</ammoSet>
+								<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
 							</AmmoUser>
 							<FireModes>
-								<aimedBurstShotCount>3</aimedBurstShotCount>
 								<aiUseBurstMode>FALSE</aiUseBurstMode>
 								<aiAimMode>Snapshot</aiAimMode>
 							</FireModes>
 						</li>
-
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/ThingDef[defName="Miho_Weapon_HeavyPistol"]/weaponTags</xpath>
-							<value>
-								<li>CE_OneHandedWeapon</li>
-							</value>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>Miho_Weapon_HeavyPistolFlechette</defName>
+							<statBases>
+								<SightsEfficiency>0.80</SightsEfficiency>
+								<ShotSpread>0.15</ShotSpread>
+								<SwayFactor>1.75</SwayFactor>
+								<Bulk>4.7</Bulk>
+								<Mass>3</Mass>
+								<RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
+							</statBases>
+							<Properties>
+								<recoilAmount>2.71</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_10mmMihogrenade</defaultProjectile>
+								<warmupTime>1.1</warmupTime>
+								<range>35</range>
+								<soundCast>Miho_Pistol</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</Properties>
+							<AmmoUser>
+								<ammoSet>AmmoSet_10mmMihogrenadeFlechette</ammoSet>
+								<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+							</AmmoUser>
+							<FireModes>
+								<aiUseBurstMode>FALSE</aiUseBurstMode>
+								<aiAimMode>Snapshot</aiAimMode>
+							</FireModes>
+						</li>
+						
+						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+							<defName>Miho_Weapon_HeavyPistolHardkill</defName>
+							<statBases>
+								<SightsEfficiency>0.80</SightsEfficiency>
+								<ShotSpread>0.15</ShotSpread>
+								<SwayFactor>1.75</SwayFactor>
+								<Bulk>4.7</Bulk>
+								<Mass>3</Mass>
+								<RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
+							</statBases>
+							<Properties>
+								<recoilAmount>2.71</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_10mmMihogrenade</defaultProjectile>
+								<warmupTime>1.1</warmupTime>
+								<range>35</range>
+								<soundCast>Miho_Pistol</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</Properties>
+							<AmmoUser>
+								<ammoSet>AmmoSet_10mmMihogrenadeBarrier</ammoSet>
+								<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+							</AmmoUser>
+							<FireModes>
+								<aiUseBurstMode>FALSE</aiUseBurstMode>
+								<aiAimMode>Snapshot</aiAimMode>
+							</FireModes>
 						</li>
 
 						<!-- ========== Plamsa Rifle =========== -->
@@ -536,6 +588,8 @@
 						<li Class="PatchOperationReplace">
 							<xpath>Defs/ThingDef[
 								defName="Miho_Weapon_HeavyPistol" or
+								defName="Miho_Weapon_HeavyPistolFlechette" or
+								defName="Miho_Weapon_HeavyPistolHardkill" or
 								defName="Miho_Weapon_RifleCQB" or
 								defName="Miho_Weapon_Pistol"
 								]/tools </xpath>
