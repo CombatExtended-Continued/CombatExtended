@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Table of contents
-
-        BotchJob_PossessedScourgeBlade
-		BotchJob_PossessedGlacialCleaver
-		BotchJob_PossessedSanctifiedSword
-		BotchJob_PossessedVolcanicMaul
-		BotchJob_PossessedCraghammer
-		BotchJob_PossessedDragonfireGreatbow
-		BotchJob_PossessedLightningJavelin
-		BotchJob_PossessedArchmageStaff
-		BotchJob_PossessedAutomatonCrossbow
-		BotchJob_PossessedVerdantBow
-		BotchJob_PossessedGildedArquebus
-		BotchJob_PossessedShroudedDagger
-		BotchJob_PossessedAcolyteStaff
-		
-		BotchJob_ScourgeBlade
-		BotchJob_GlacialCleaver
-		BotchJob_SanctifiedSword
-		BotchJob_VolcanicMaul
-		BotchJob_Craghammer
-		BotchJob_DragonfireGreatbow
-		BotchJob_LightningJavelin
-		BotchJob_ArchmageStaff
-		BotchJob_AutomatonCrossbow
-		BotchJob_VerdantBow
-		BotchJob_GildedArquebus
-		BotchJob_ShroudedDagger
-		BotchJob_AcolyteStaff
-		
-		
--->
-
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Possessed Weapons</li>
@@ -44,7 +12,7 @@
 
 				<!--=============================== Scourge Blade ================================-->
 
-				<li Class="PatchOperationReplace">
+				<!--li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BotchJob_ScourgeBlade"]/tools</xpath>
 					<value>
 						<tools>
@@ -116,7 +84,7 @@
 					<value>
 						<li>CE_OneHandedWeapon</li>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Scourge Blade ================================-->
 				<li Class="PatchOperationReplace">
@@ -177,7 +145,7 @@
 				</li>
 
 				<!--=============================== Glacial Cleaver ================================-->
-				<li Class="PatchOperationReplace">
+				<!--li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BotchJob_GlacialCleaver"]/tools</xpath>
 					<value>
 						<tools>
@@ -229,7 +197,7 @@
 						<MeleeParryChance>0.1</MeleeParryChance>
 						<MeleeDodgeChance>0.20</MeleeDodgeChance>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Glaciar Cleaver ================================-->
 				<li Class="PatchOperationReplace">
@@ -287,7 +255,7 @@
 				</li>
 
 				<!--=============================== Sanctified Sword ================================-->
-				<li Class="PatchOperationReplace">
+				<!--li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BotchJob_SanctifiedSword"]/tools</xpath>
 					<value>
 						<tools>
@@ -342,7 +310,7 @@
 						<MeleeParryChance>0.6</MeleeParryChance>
 						<MeleeDodgeChance>0.4</MeleeDodgeChance>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Sanctified Sword ================================-->
 				<li Class="PatchOperationReplace">
@@ -403,7 +371,7 @@
 				</li>
 
 				<!--=============================== Volcanic Maul ================================-->
-				<li Class="PatchOperationReplace">
+				<!--li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BotchJob_VolcanicMaul"]/tools</xpath>
 					<value>
 						<tools>
@@ -456,7 +424,7 @@
 							<MeleeDodgeChance>0.3</MeleeDodgeChance>
 						</equippedStatOffsets>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Volcanic Sword ================================-->
 				<li Class="PatchOperationReplace">
@@ -513,7 +481,7 @@
 				</li>
 
 				<!--=============================== Craghammer ================================-->
-				<li Class="PatchOperationReplace">
+				<!--li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="BotchJob_Craghammer"]/tools</xpath>
 					<value>
 						<tools>
@@ -557,7 +525,7 @@
 						<MeleeParryChance>0.3</MeleeParryChance>
 						<MeleeDodgeChance>0.3</MeleeDodgeChance>
 					</value>
-				</li>
+				</li-->
 
 				<!--=============================== Possessed Sanctified Sword ================================-->
 				<li Class="PatchOperationReplace">
@@ -606,7 +574,55 @@
 					</value>
 				</li>
 
+				<!--=============================== Possessed Bloodstained Scythe ================================-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedBloodstainedScythe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.16</cooldownTime>
+								<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>BotchJob_BloodCut</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>4</cooldownTime>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+								<armorPenetrationBlunt>4.6</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedBloodstainedScythe"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.71</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedBloodstainedScythe"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.19</MeleeCritChance>
+							<MeleeParryChance>1.5</MeleeParryChance>
+							<MeleeDodgeChance>0.83</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
