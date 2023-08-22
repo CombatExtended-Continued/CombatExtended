@@ -171,6 +171,9 @@ namespace CombatExtended
                 casterPawn.skills.Learn(SkillDefOf.Melee, HitXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
             }
 
+            //init target info for sfx here, where we're sure the target still exists.
+            TargetInfo targInfo = new TargetInfo(targetThing.PositionHeld, targetThing.MapHeld);
+
             // Hit calculations
             bool result;
             string moteText = "";
@@ -268,10 +271,9 @@ namespace CombatExtended
                 MoteMakerCE.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
             }
 
-            // targetThing may be destroyed at this point
-            if (targetThing != null && targetThing.Spawned)
+            if (targInfo.Map != null)
             {
-                soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, targetThing.MapHeld));
+                soundDef.PlayOneShot(targInfo);
             }
 
             // The caster could be dead at this point due to a successful riposte from the defender,
