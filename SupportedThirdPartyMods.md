@@ -192,6 +192,7 @@ Erin's Mountain Animals |
 Erin's Sephyr   |
 Erin's Shisune   |
 Erin's Viera    |
+ESCP - Spriggan   |
 ESCP - Trolls   |
 EvolvedOrgansRedux |
 Exotic Arsenal |
