@@ -240,8 +240,23 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationRemove">
+				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="ESCP_Spriggan_Burnt"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>ESCP_SprigganFireball</defaultProjectile>
+								<warmupTime>1.8</warmupTime>
+								<range>19.9</range>
+								<minRange>2</minRange>
+								<soundCast>ESCP_Spriggan_Fireball</soundCast>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<label>spriggan fireball</label>
+							</li>
+						</verbs>
+					</value>
 				</li>
 
 				<!-- Spriggan Earth Mother -->
@@ -573,6 +588,7 @@
 
 			</operations>
 		</match>
+
 	</Operation>
 
 </Patch>
