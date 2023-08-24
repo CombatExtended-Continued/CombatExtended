@@ -44,9 +44,41 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>200</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/maxRange</xpath>
 					<value>
 						<maxRange>40</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/fireModes</xpath>
+					<value>
+						<fireModes>
+							<li>
+								<shotsPerBurst>10</shotsPerBurst>
+								<ticksBetweenShots>1</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Fire Spew</label>
+								<texPath>UI/Gizmos/FireRate_Single</texPath>
+							</li>
+						</fireModes>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/ammunition/thingDefs</xpath>
+					<value>
+						<thingDefs>
+							<li>Ammo_Flamethrower_Napalm</li>
+							<li>Ammo_Flamethrower_Prometheum</li>
+						</thingDefs>
 					</value>
 				</li>
 
@@ -56,7 +88,7 @@
 						<li Class="Vehicles.CETurretDataDefModExtension">
 							<ammoSet>AmmoSet_Flamethrower</ammoSet>
 							<shotHeight>2.0</shotHeight>
-							<speed>20</speed>
+							<speed>80</speed>
 							<sway>0.25</sway>
 							<spread>2.0</spread>
 						</li>
