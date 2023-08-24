@@ -199,6 +199,10 @@ namespace CombatExtended.WorldObjects
             shell.globalSource.worldObjectInt = comp.parent;
             shell.shellDef = projectileDef;
             shell.globalTarget = target;
+            if (shell.launcher == null)
+            {
+                Log.Warning($"CE: Launcher of shell {projectileDef} is null, this may cause targeting issues");
+            }
             if (!shell.TryTravel(comp.parent.Tile, target.Tile))
             {
                 Stop();
