@@ -62,11 +62,18 @@
 					<value>
 						<fireModes>
 							<li>
-								<shotsPerBurst>10</shotsPerBurst>
-								<ticksBetweenShots>1</ticksBetweenShots>
+								<shotsPerBurst>5</shotsPerBurst>
+								<ticksBetweenShots>3</ticksBetweenShots>
 								<ticksBetweenBursts>60</ticksBetweenBursts>
-								<label>Fire Spew</label>
-								<texPath>UI/Gizmos/FireRate_Single</texPath>
+								<label>Burst</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>10</shotsPerBurst>
+								<ticksBetweenShots>3</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Auto</label>
+								<texPath>UI/Gizmos/FireRate_Auto</texPath>
 							</li>
 						</fireModes>
 					</value>
@@ -79,6 +86,35 @@
 							<li>Ammo_Flamethrower_Napalm</li>
 							<li>Ammo_Flamethrower_Prometheum</li>
 						</thingDefs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/comps/li[@Class="Vehicles.CompProperties_FueledTravel"]/fuelCapacity</xpath>
+					<value>
+						<fuelCapacity>120</fuelCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/comps/li[@Class="Vehicles.CompProperties_VehicleTurrets"]</xpath>
+					<value>
+						<li Class="Vehicles.CompProperties_VehicleTurrets">
+							<turrets>
+								<li>
+									<turretDef>VVE_Bunsen_MainTurret</turretDef>
+									<renderProperties>
+										<north>(-0.05, 0.2)</north>
+										<south>(-0.02, 0.2)</south>
+										<east>(-0.02, 0.4)</east>
+									</renderProperties>
+									<gizmoLabel>Main Turret</gizmoLabel>
+									<angleRestricted />
+									<aimPieOffset>(0, 1.5)</aimPieOffset>
+									<key>mainTurret</key>
+								</li>
+							</turrets>
+						</li>
 					</value>
 				</li>
 
