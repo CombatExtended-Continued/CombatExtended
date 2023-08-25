@@ -138,6 +138,10 @@ namespace CombatExtended.WorldObjects
             if (comp.parent.Faction.def.humanlikeFaction)
             {
                 shooter = comp.parent.Faction.GetRandomWorldPawn();
+                if (shooter == null)
+                {
+                    Log.Error($"CE: shooter for HostilitySheller from {comp.parent} is null");
+                }
             }
             target = targetInfo;
             ticksToNextShot = GetTicksToCooldown();
@@ -193,12 +197,20 @@ namespace CombatExtended.WorldObjects
             shell.tileInt = comp.parent.Tile;
             shell.SpawnSetup();
             Find.World.worldObjects.Add(shell);
+            if (shooter == null && comp.parent.Faction.def.humanlikeFaction)
+            {
+                shooter = comp.parent.Faction.GetRandomWorldPawn();
+            }
             shell.launcher = shooter;
             shell.equipmentDef = null;
             shell.globalSource = new GlobalTargetInfo(comp.parent);
             shell.globalSource.worldObjectInt = comp.parent;
             shell.shellDef = projectileDef;
             shell.globalTarget = target;
+            if (shell.launcher == null)
+            {
+                Log.Warning($"CE: Launcher of shell {projectileDef} is null, this may cause targeting issues");
+            }
             if (!shell.TryTravel(comp.parent.Tile, target.Tile))
             {
                 Stop();

@@ -130,7 +130,7 @@ namespace CombatExtended
                     sourceCell,
                     targetCell,
                     map: map,
-                    shotSpeed: 120f);
+                    shotSpeed: 55f);
             }
             WorldObjects.HostilityComp hostility = worldObject.GetComponent<WorldObjects.HostilityComp>();
             WorldObjects.HealthComp healthComp = worldObject.GetComponent<WorldObjects.HealthComp>();
@@ -149,7 +149,7 @@ namespace CombatExtended
             return shelled;
         }
 
-        private void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 100)
+        private void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 200)
         {
             IntVec3 targetCell = target.Cell;
             Vector2 source = new Vector2(sourceCell.x, sourceCell.z);
