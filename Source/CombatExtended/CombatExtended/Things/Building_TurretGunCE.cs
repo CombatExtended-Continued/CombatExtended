@@ -692,7 +692,7 @@ namespace CombatExtended
                     defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
                     defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
                     turret = this,
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
+                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/AttackWorldTile", true),
                     hotKey = KeyBindingDefOf.Misc5
                 };
                 yield return wt;
