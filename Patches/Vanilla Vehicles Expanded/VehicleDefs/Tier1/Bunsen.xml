@@ -89,15 +89,22 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/comps/li[@Class="Vehicles.CompProperties_FueledTravel"]/fuelCapacity</xpath>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]</xpath>
 					<value>
-						<fuelCapacity>120</fuelCapacity>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_Flamethrower</ammoSet>
+							<shotHeight>2.0</shotHeight>
+							<speed>20</speed>
+							<sway>0.25</sway>
+							<spread>2.0</spread>
+						</li>
 					</value>
 				</li>
 
+				<!-- Vehicle -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]/comps/li[@Class="Vehicles.CompProperties_VehicleTurrets"]</xpath>
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Bunsen"]/comps/li[@Class="Vehicles.CompProperties_VehicleTurrets"]</xpath>
 					<value>
 						<li Class="Vehicles.CompProperties_VehicleTurrets">
 							<turrets>
@@ -118,20 +125,13 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret"]</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Bunsen"]/comps/li[@Class="Vehicles.CompProperties_FueledTravel"]/fuelCapacity</xpath>
 					<value>
-						<li Class="Vehicles.CETurretDataDefModExtension">
-							<ammoSet>AmmoSet_Flamethrower</ammoSet>
-							<shotHeight>2.0</shotHeight>
-							<speed>20</speed>
-							<sway>0.25</sway>
-							<spread>2.0</spread>
-						</li>
+						<fuelCapacity>120</fuelCapacity>
 					</value>
 				</li>
 
-				<!-- Vehicle -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Bunsen"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
