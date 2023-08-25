@@ -199,7 +199,6 @@ namespace CombatExtended.WorldObjects
             Find.World.worldObjects.Add(shell);
             if (shooter == null && comp.parent.Faction.def.humanlikeFaction)
             {
-                Log.Warning("CE: Shooter of HostilitySheller from " + comp.parent.ID + ", " + comp.parent.Faction.name + " is null, regenerating");
                 shooter = comp.parent.Faction.GetRandomWorldPawn();
             }
             shell.launcher = shooter;
