@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -878,7 +878,13 @@ namespace CombatExtended
                 return new Vector2(1, 1);
             }
 
-            var factors = BoundsInjector.ForPawn(pawn);
+            Vector2 factors;
+            if (Compatibility.Patches.GetCollisionBodyFactors(pawn, out factors))
+            {
+                return factors;
+            }
+
+            factors = BoundsInjector.ForPawn(pawn);
 
             if (pawn.GetPosture() != PawnPosture.Standing || pawn.Downed)
             {

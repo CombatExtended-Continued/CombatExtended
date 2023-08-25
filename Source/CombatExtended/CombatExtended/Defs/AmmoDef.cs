@@ -24,6 +24,9 @@ namespace CombatExtended
         // mortar ammo should still availabe when the ammo system is off        
         public bool isMortarAmmo = false;
 
+        public int ammoCount = 1;
+        public ThingDef partialUnloadAmmoDef = null;
+
         public List<string> ammoTags;
 
         private List<DefHyperlink> originalHyperlinks;
@@ -131,6 +134,18 @@ namespace CombatExtended
                 }
 
                 description = stringBuilder.ToString().TrimEndNewlines();
+            }
+        }
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (string s in base.ConfigErrors())
+            {
+                yield return s;
+            }
+            if (HasComp(typeof(CompReloadable)) && stackLimit > 1)
+            {
+                yield return "has compreloadable and a stack limit higher than 1. this is not recommended.";
             }
         }
 

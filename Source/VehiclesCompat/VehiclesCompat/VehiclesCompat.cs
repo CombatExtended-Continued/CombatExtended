@@ -26,13 +26,53 @@ namespace CombatExtended.Compatibility.VehiclesCompat
         }
         public void PostLoad(ModContentPack content, ISettingsCE _)
         {
-            VehicleTurret.ProjectileAngleCE = ProjectileCE.GetShotAngle;
+            VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
+            VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
             VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
-            global::CombatExtended.Compatibility.Vehicles.CollisionBodyFactorCallbacks.Add(_GetCollisionBodyFactors);
+            global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
+            global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
         }
 
+        public static Def LookupAmmosetCE(string defName)
+        {
+            return DefDatabase<AmmoSetDef>.AllDefs.Where(x => x.defName == defName).First();
+        }
+
+        public static IEnumerable<ThingDef> _GetUsedAmmo()
+        {
+            foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
+            {
+                foreach (ThingDef td in vtd?.ammunition?.AllowedThingDefs)
+                {
+                    if (td is AmmoDef ad)
+                    {
+                        yield return td;
+                    }
+                }
+            }
+        }
+
+        public static Vector2 ProjectileAngleCE(float speed, float range, Thing shooter, LocalTargetInfo target, Vector3 shotOrigin, bool flyOverhead, float gravity, float sway, float spread, float recoil)
+        {
+            // TODO: Handle cover
+            var bounds = CE_Utility.GetBoundsFor(target.Thing);
+            float dheight = (bounds.max.y + bounds.min.y) / 2 - shotOrigin.y;
+            float shotAngle = ProjectileCE.GetShotAngle(speed, range, dheight, flyOverhead, gravity);
+
+            float dTurretRotation = 0;
+            float ticks = (float)(Find.TickManager.TicksAbs + shooter.thingIDNumber);
+            dTurretRotation += sway * (float)Mathf.Sin(ticks * 0.022f);
+            shotAngle += Mathf.Deg2Rad * 0.25f * sway * (float)Mathf.Sin(ticks * 0.0165f);
+            double spreadDirection = Rand.Value * Math.PI * 2;
+            double randomSpread = Rand.Value * spread;
+            shotAngle += (float)(randomSpread * Math.Sin(spreadDirection) + recoil);
+            dTurretRotation += (float)(randomSpread * Math.Cos(spreadDirection));
+            return new Vector2(dTurretRotation, shotAngle);
+        }
 
         public static object LaunchProjectileCE(ThingDef projectileDef,
+                                                ThingDef _ammoDef,
+                                                Def _ammosetDef,
                                                 Vector2 origin,
                                                 LocalTargetInfo target,
                                                 VehiclePawn vehicle,
@@ -41,18 +81,30 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                                                 float shotHeight,
                                                 float shotSpeed)
         {
-            projectileDef = projectileDef.GetProjectile();
-            ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(projectileDef, null);
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            {
+                foreach (var al in ammosetDef.ammoTypes)
+                {
+                    if (al.ammo == ammoDef)
+                    {
+                        projectileDef = al.projectile;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                projectileDef = projectileDef.GetProjectile();
+            }
+            var p = ThingMaker.MakeThing(projectileDef, null);
+            ProjectileCE projectile = (ProjectileCE)p;
             GenSpawn.Spawn(projectile, vehicle.Position, vehicle.Map);
-
             projectile.ExactPosition = origin;
             projectile.canTargetSelf = false;
             projectile.minCollisionDistance = 1;
             projectile.intendedTarget = target;
             projectile.mount = null;
             projectile.AccuracyFactor = 1;
-
-
             projectile.Launch(
                 vehicle,
                 origin,
