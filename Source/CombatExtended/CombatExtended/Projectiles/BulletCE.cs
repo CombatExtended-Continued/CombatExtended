@@ -17,6 +17,9 @@ namespace CombatExtended
         private static RulePackDef cookOffDamageEvent = null;
 
         public static RulePackDef CookOff => cookOffDamageEvent ?? (cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff"));
+        private static RulePackDef shellingDamageEvent = null;
+
+        public static RulePackDef Shelling => shellingDamageEvent ?? (shellingDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_Shelling"));
 
         public virtual float PenetrationAmount
         {
@@ -53,7 +56,7 @@ namespace CombatExtended
             Map map = base.Map;
             LogEntry_DamageResult logEntry = null;
 
-            if (!cookOff && (logMisses || hitThing is Pawn || hitThing is Building_Turret))
+            if (!cookOff && launcher != null && (logMisses || hitThing is Pawn || hitThing is Building_Turret))
             {
                 LogImpact(hitThing, out logEntry);
             }
@@ -98,12 +101,23 @@ namespace CombatExtended
                     );
                     Find.BattleLog.Add(logEntry);
                 }
-
+                if (launcher == null && hitThing is Pawn hitPawn1)
+                {
+                    logEntry =
+                        new BattleLogEntry_DamageTaken(
+                        hitPawn1,
+                        Shelling
+                    );
+                    Find.BattleLog.Add(logEntry);
+                }
                 try
                 {
                     // Apply primary damage
-                    hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry);
-
+                    var result = hitThing.TakeDamage(dinfo);
+                    if (launcher != null)
+                    {
+                        result.AssociateWithLog(logEntry);
+                    }
                     // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
                     // The !(hitThing is Pawn) already excludes non-pawn cookoff projectiles from being logged, as logEntry == null
                     if (!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())

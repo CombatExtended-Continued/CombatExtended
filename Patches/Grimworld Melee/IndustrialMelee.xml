@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Grimworld: Melee</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === One-handed Tags === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "MeleeWeapon_TrenchShovel" and "MeleeWeapon_Chainshortsword"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!-- ========== Chainsword ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.33</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>45</power>
+								<cooldownTime>2.0</cooldownTime>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>18.55</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword"]/statBases</xpath>
+					<value>
+						<Bulk>15.50</Bulk>
+						<MeleeCounterParryBonus>1.38</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainsword"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.86</MeleeCritChance>
+							<MeleeParryChance>0.69</MeleeParryChance>
+							<MeleeDodgeChance>0.37</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- ========== Short Chainsword ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainshortsword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.45</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.0</cooldownTime>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>18.55</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainshortsword"]/statBases</xpath>
+					<value>
+						<Bulk>9.50</Bulk>
+						<MeleeCounterParryBonus>0.76</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_Chainshortsword"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.56</MeleeCritChance>
+							<MeleeParryChance>0.45</MeleeParryChance>
+							<MeleeDodgeChance>0.41</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- ========== Trench Shovel ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_TrenchShovel"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.37</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.0</cooldownTime>
+								<armorPenetrationBlunt>9.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_TrenchShovel"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<MeleeCounterParryBonus>0.38</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_TrenchShovel"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.46</MeleeCritChance>
+							<MeleeParryChance>0.35</MeleeParryChance>
+							<MeleeDodgeChance>0.50</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

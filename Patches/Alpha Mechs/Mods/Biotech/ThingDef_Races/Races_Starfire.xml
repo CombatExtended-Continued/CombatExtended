@@ -39,13 +39,15 @@
 					<li Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="AM_Starfire"]/statBases</xpath>
 						<value>
+							<ArmorRating_Heat>0.5</ArmorRating_Heat>
+							<CarryWeight>200</CarryWeight>
+							<CarryBulk>300</CarryBulk>
 							<AimingAccuracy>1.0</AimingAccuracy>
-							<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+							<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
 							<MeleeDodgeChance>0.01</MeleeDodgeChance>
 							<MeleeCritChance>0.07</MeleeCritChance>
 							<MeleeParryChance>0.24</MeleeParryChance>
-							<CarryWeight>200</CarryWeight>
-							<CarryBulk>300</CarryBulk>
+							<MaxHitPoints>600</MaxHitPoints>
 						</value>
 					</li>
 
@@ -65,6 +67,40 @@
 									<armorPenetrationBlunt>20</armorPenetrationBlunt>
 								</li>
 							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AM_Starfire"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AM_Starfire"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Starfire"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>4500</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>450</MaxOverHeal>
+								<MinArmorPct>0.5</MinArmorPct>
+								<MinArmorValueSharp>16</MinArmorValueSharp>
+								<MinArmorValueBlunt>40</MinArmorValueBlunt>
+							</li>
 						</value>
 					</li>
 

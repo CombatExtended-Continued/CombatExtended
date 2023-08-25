@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small - Medieval Factions</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--Red Bandana-->
+
+				<!--Give ammo to crosbowman-->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="BS_Crossbowman"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>12</min>
+								<max>20</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>100</min>
+									<max>200</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>NeolithicMeleeBasic</li>
+									<li>MedievalMeleeDecent</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+				<!-- Tribal Backpacks -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[
+						defName="BS_Crossbowman"] </xpath>
+					<value>
+						<apparelRequired>
+							<li>CE_Apparel_TribalBackpack</li>
+							<li>DankPyon_Apparel_Quiver</li>
+						</apparelRequired>
+					</value>
+				</li>
+
+				<!-- Weapon Tags -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[defName="BS_Crossbowman"]/weaponTags</xpath>
+					<value>
+						<li>CE_XBow</li>
+					</value>
+				</li>
+
+				<!-- More Javelins for Giant-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[defName="BS_Jotun_Javelin" or defName="BS_Jotun_NiflJavelin"]</xpath>
+					<value>
+						<modExtensions Inherit="False">
+							<li Class="CombatExtended.LoadoutPropertiesExtension">
+								<primaryMagazineCount>
+									<min>2</min>
+									<max>4</max>
+								</primaryMagazineCount>
+								<shieldMoney>
+									<min>100</min>
+									<max>350</max>
+								</shieldMoney>
+								<shieldTags>
+									<li>KiteShield</li>
+									<li>HeaterShield</li>
+								</shieldTags>
+								<shieldChance>0.6</shieldChance>
+								<forcedSidearm>
+									<sidearmMoney>
+										<min>100</min>
+										<max>600</max>
+									</sidearmMoney>
+									<weaponTags>
+										<li>NeolithicMeleeGiant</li>
+									</weaponTags>
+								</forcedSidearm>
+							</li>
+						</modExtensions>
+					</value>
+				</li>
+
+				<!-- More Javelins for Giant-->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="BS_Jotun_Hunter"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>2</min>
+								<max>4</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>50</min>
+									<max>150</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>RangedNeolithicGiant</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

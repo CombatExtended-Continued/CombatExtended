@@ -40,6 +40,7 @@
 					<li Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/statBases</xpath>
 						<value>
+							<ArmorRating_Heat>0.75</ArmorRating_Heat>
 							<CarryWeight>100</CarryWeight>
 							<CarryBulk>50</CarryBulk>
 							<AimingAccuracy>1.0</AimingAccuracy>
@@ -90,6 +91,40 @@
 									<chanceFactor>0.2</chanceFactor>
 								</li>
 							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AM_WarEmpress"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>5750</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>575</MaxOverHeal>
+								<MinArmorPct>0.5</MinArmorPct>
+								<MinArmorValueSharp>14</MinArmorValueSharp>
+								<MinArmorValueBlunt>35</MinArmorValueBlunt>
+							</li>
 						</value>
 					</li>
 

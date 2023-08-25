@@ -88,6 +88,7 @@ namespace CombatExtended
         private bool debugDrawInterceptChecks = false;
         private bool debugDisplayDangerBuildup = false;
         private bool debugDisplayCellCoverRating = false;
+        private bool debugDisplayAttritionInfo = false;
 
         public bool DebuggingMode => debuggingMode;
         public bool DebugVerbose => debugVerbose;
@@ -101,6 +102,7 @@ namespace CombatExtended
         public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
         public bool DebugDisplayDangerBuildup => debugDisplayDangerBuildup && debuggingMode;
         public bool DebugDisplayCellCoverRating => debugDisplayCellCoverRating && debuggingMode;
+        public bool DebugDisplayAttritionInfo => debugDisplayAttritionInfo && debuggingMode;
         #endregion
 
         #region Autopatcher
@@ -162,6 +164,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
             Scribe_Values.Look(ref debugDisplayDangerBuildup, "debugDisplayDangerBuildup", false);
             Scribe_Values.Look(ref debugDisplayCellCoverRating, "debugDisplayCellCoverRating", false);
+            Scribe_Values.Look(ref debugDisplayAttritionInfo, "debugDisplayAttritionInfo", false);
 #endif
             Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
 
@@ -302,6 +305,7 @@ namespace CombatExtended
             {
                 list.GapLine();
                 list.CheckboxLabeled("Verbose", ref debugVerbose, "Enable logging for internel states and many other things.");
+                list.CheckboxLabeled("Display result of GenStep_Attrition", ref debugDisplayAttritionInfo);
                 list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
                 list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
                 list.CheckboxLabeled("Draw debug things in range", ref debugGenClosetPawn);

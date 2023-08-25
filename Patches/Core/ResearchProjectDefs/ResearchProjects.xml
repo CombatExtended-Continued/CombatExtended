@@ -1,21 +1,41 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-    <Operation Class="PatchOperationAdd">
-        <xpath>Defs/ResearchProjectDef[defName="Gunsmithing"]</xpath>
-        <value>
-          <hiddenPrerequisites>
-            <li>CE_Gunpowder</li>
-          </hiddenPrerequisites>
-        </value>
-    </Operation>
+	<!-- Greatbow adjustments -->
 
-    <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ResearchProjectDef[defName="Gunsmithing"]/description</xpath>
-        <value>
-          <description>Craft simple manually-operated guns like revolvers, pump shotguns, bolt-action and lever-action rifles.</description>
-        </value>
-    </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ResearchProjectDef[defName="Greatbow"]/techLevel</xpath>
+		<value>
+			<techLevel>Neolithic</techLevel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ResearchProjectDef[defName="Greatbow"]/baseCost</xpath>
+		<value>
+			<baseCost>400</baseCost>
+		</value>
+	</Operation>
+
+	<!-- Gunsmithing adjustments -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ResearchProjectDef[defName="Gunsmithing"]</xpath>
+		<value>
+			<hiddenPrerequisites>
+				<li>CE_Gunpowder</li>
+			</hiddenPrerequisites>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ResearchProjectDef[defName="Gunsmithing"]/description</xpath>
+		<value>
+			<description>Craft simple manually-operated guns like revolvers, pump shotguns, bolt-action and lever-action rifles.</description>
+		</value>
+	</Operation>
+
+	<!-- Turret tech adjustments -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ResearchProjectDef[defName="HeavyTurrets"]/researchViewX</xpath>
@@ -31,7 +51,6 @@
 		</value>
 	</Operation>
 
-	<!-- Make Uranium Slug & Auto Turret require 'CE_HeavyTurret' -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ResearchProjectDef[defName="HeavyTurrets"]/prerequisites</xpath>
 		<value>
@@ -47,6 +66,7 @@
 	</Operation>
 
 	<!-- Add CE's Simple Launchers to the Rocketswarm turret' research project -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ResearchProjectDef[defName="RocketswarmLauncher"]/hiddenPrerequisites</xpath>
 		<value>
@@ -55,6 +75,7 @@
 	</Operation>
 
 	<!-- Reduce Uranium Slug & Auto Turret cost, since they have a new prerequisite -->
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ResearchProjectDef[defName="HeavyTurrets"]/baseCost</xpath>
 		<value>
@@ -70,4 +91,3 @@
 	</Operation>
 
 </Patch>
-

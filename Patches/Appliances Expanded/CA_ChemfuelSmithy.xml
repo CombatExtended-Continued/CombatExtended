@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Appliances Expanded</li>
+		</mods>
+
+		<!-- Patches for the smithy and large smithy if VFE: Production is loaded -->
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[contains(tradeTags, "CE_AutoEnableCrafting_FueledSmithy")]/tradeTags</xpath>
+			<value>
+				<li>CE_AutoEnableCrafting_CA_ChemfuelSmithy</li>
+				<!-- Reduces patch complexity since MayRequire is allowed on li items -->
+				<li MayRequire="vanillaexpanded.vfeproduction">CE_AutoEnableCrafting_CE_FueledSmithyLarge</li>
+			</value>
+		</match>
+
+	</Operation>
+
+</Patch>

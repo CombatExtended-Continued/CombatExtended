@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +9,7 @@ using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using RimWorld.Planet;
 
 namespace CombatExtended
 {
@@ -22,6 +23,26 @@ namespace CombatExtended
             {
                 return Find.CameraDriver?.CurrentRealPosition.y ?? -1;
             }
+        }
+
+        #endregion
+
+        #region Math
+
+        public static float RandomGaussian(float minValue = 0.0f, float maxValue = 1.0f)
+        {
+            float u, v, S;
+            do
+            {
+                u = 2.0f * UnityEngine.Random.value - 1.0f;
+                v = 2.0f * UnityEngine.Random.value - 1.0f;
+                S = u * u + v * v;
+            }
+            while (S >= 1.0f);
+            float std = u * Mathf.Sqrt(-2.0f * Mathf.Log(S) / S);
+            float mean = (minValue + maxValue) / 2.0f;
+            float sigma = (maxValue - mean) / 5.0f;
+            return Mathf.Clamp(std * sigma + mean, minValue, maxValue);
         }
 
         #endregion
@@ -594,6 +615,24 @@ namespace CombatExtended
             return Mathf.Abs((destination.y - origin.y) * target.x - (destination.x - origin.x) * target.y + destination.x * origin.y - destination.y * origin.x) / (destination - origin).magnitude;
         }
 
+        public static float DistanceBetweenTiles(int firstTile, int endTile, int maxCells = 500)
+        {
+            return Find.WorldGrid.TraversalDistanceBetween(firstTile, endTile, true, maxDist: maxCells);
+        }
+
+        public static IntVec3 ExitCell(this Ray ray, Map map)
+        {
+            Vector3 mapSize = map.Size.ToVector3();
+            mapSize.y = Mathf.Max(mapSize.x, mapSize.z);
+            Bounds mapBounds = new Bounds(mapSize.Yto0() / 2f, mapSize);
+            mapBounds.IntersectRay(ray, out float dist);
+            Vector3 exitCell = ray.GetPoint(dist);
+            exitCell.x = Mathf.Clamp(exitCell.x, 0, mapSize.x - 1);
+            exitCell.z = Mathf.Clamp(exitCell.z, 0, mapSize.z - 1);
+            exitCell.y = 0;
+            return exitCell.ToIntVec3();
+        }
+
         /// <summary>
         /// Attempts to find a turret operator. Accepts any Thing as input and does a sanity check to make sure it is an actual turret.
         /// </summary>
@@ -839,7 +878,13 @@ namespace CombatExtended
                 return new Vector2(1, 1);
             }
 
-            var factors = BoundsInjector.ForPawn(pawn);
+            Vector2 factors;
+            if (Compatibility.Patches.GetCollisionBodyFactors(pawn, out factors))
+            {
+                return factors;
+            }
+
+            factors = BoundsInjector.ForPawn(pawn);
 
             if (pawn.GetPosture() != PawnPosture.Standing || pawn.Downed)
             {
@@ -1161,5 +1206,50 @@ namespace CombatExtended
                 }
             }
         }
+
+        private static readonly List<PawnKindDef> _validPawnKinds = new List<PawnKindDef>();
+
+        public static Pawn GetRandomWorldPawn(this Faction faction, bool capableOfCombat = true)
+        {
+            Pawn pawn = Find.World.worldPawns.AllPawnsAlive.Where(p => p.Faction == faction && (!capableOfCombat || p.kindDef.isFighter || p.kindDef.isGoodBreacher)).RandomElementWithFallback();
+            if (pawn != null)
+            {
+                return pawn;
+            }
+            Log.Warning($"CE: Couldn't find world pawns for faction {faction}. CE had to create a new one..");
+            _validPawnKinds.Clear();
+            foreach (PawnGroupMaker group in capableOfCombat ? faction.def.pawnGroupMakers.Where((PawnGroupMaker x) => x.kindDef == PawnGroupKindDefOf.Combat) : faction.def.pawnGroupMakers)
+            {
+                foreach (PawnGenOption option in group.options)
+                {
+                    _validPawnKinds.Add(option.kind);
+                }
+            }
+            if (faction.def.fixedLeaderKinds != null)
+            {
+                _validPawnKinds.AddRange(faction.def.fixedLeaderKinds);
+            }
+            if (_validPawnKinds.TryRandomElement(out var result))
+            {
+                PawnGenerationRequest request = new PawnGenerationRequest(result, faction, PawnGenerationContext.NonPlayer, -1, faction.def.leaderForceGenerateNewPawn);
+                Gender gender = faction.ideos.PrimaryIdeo.SupremeGender;
+                if (gender != 0)
+                {
+                    request.FixedGender = gender;
+                }
+                pawn = PawnGenerator.GeneratePawn(request);
+                if (pawn.RaceProps.IsFlesh)
+                {
+                    pawn.relations.everSeenByPlayer = true;
+                }
+                if (!Find.WorldPawns.Contains(pawn))
+                {
+                    Find.WorldPawns.PassToWorld(pawn, PawnDiscardDecideMode.KeepForever);
+                }
+            }
+            return pawn;
+        }
+
+        public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
     }
 }

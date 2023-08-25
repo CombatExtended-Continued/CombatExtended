@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Core</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- beetle -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_BeetleLike"]//*[
+						def="Shell" or
+						def="Pronotum" or
+						def="InsectLeg"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_BeetleLike"]//*[
+						def="Shell" or
+						def="Pronotum" or
+						def="InsectHead" or
+						def="InsectMouth" or
+						def="InsectLeg"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_BeetleLikeWithStinger"]//*[
+						def="Shell" or
+						def="Pronotum" or
+						def="InsectLeg"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_BeetleLikeWithStinger"]//*[
+						def="Shell" or
+						def="Pronotum" or
+						def="InsectHead" or
+						def="InsectMouth" or
+						def="InsectLeg" or
+						def="BMT_Stinger"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+				<!-- spidew -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_GiantSpider"]//*[
+						def="Body" or
+						def="BMT_Cephalothorax" or
+						def="Pronotum" or
+						def="InsectNostril" or
+						def="Eye" or
+						def="BMT_SpiderAbdomen"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_GiantSpider"]//*[
+						def="InsectMouth" or
+						def="InsectNostril" or
+						def="Eye"]/groups
+					</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_GiantSpider"]//*[
+						def="Body" or
+						def="BMT_Cephalothorax" or
+						def="Pronotum" or
+						def="InsectHead" or
+						def="BMT_SpiderAbdomen" or
+						def="BMT_Spinneret"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<!-- disgusting larvae -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_LarvaLike"]//*[
+						def="SnakeBody" or
+						def="Pronotum"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_LarvaLike"]//*[
+						def="SnakeBody" or
+						def="Pronotum" or
+						def="InsectHead" or
+						def="InsectMouth"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<!-- cruel mantid -->
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="BMT_MantisLike"]/corePart/parts/li[def="InsectLeg"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="BMT_MantisLike"]/corePart/parts/li[def="InsectLeg"]</xpath>
+						<value>
+							<groups>
+								<li>CoveredByNaturalArmor</li>
+							</groups>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="BMT_MantisLike"]/corePart/parts/li[def="InsectLeg"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_MantisLike"]//*[
+						def="Shell" or
+						def="Pronotum"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_MantisLike"]//*[
+						def="Shell" or
+						def="Pronotum" or
+						def="InsectHead" or
+						def="InsectMouth"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<!-- some weird dinobird -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]//*[
+						def="Body" or
+						def="BMT_Osteoderm" or
+						def="Neck" or
+						def="Nose" or
+						def="Ear" or
+						def="Eye" or
+						def="Leg" or
+						def="BMT_Tail"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]//*[
+						def="Nose" or
+						def="Eye"]/groups
+					</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_QuadrupedWithWingsBeakAndTailWeapon"]//*[
+						def="Body" or
+						def="BMT_Osteoderm" or
+						def="Neck" or
+						def="Head" or
+						def="Ear" or
+						def="Paw" or
+						def="BMT_DinoBeak" or
+						def="Leg" or
+						def="BMT_Tail" or
+						def="BMT_TailWeapon"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<!-- scorpion -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_Scorpion"]//*[
+						def="Shell" or
+						def="BMT_Cephalothorax" or
+						def="BMT_SpiderAbdomen"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_Scorpion"]//*[
+						def="Shell" or
+						def="BMT_Stinger" or
+						def="InsectHead" or
+						def="InsectMouth" or
+						def="BMT_Cephalothorax" or
+						def="BMT_SpiderAbdomen" or
+						def="FrontClaw"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="BiomesCore_Slug"]/corePart/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="BiomesCore_Slug"]/corePart</xpath>
+						<value>
+							<groups>
+								<li>CoveredByNaturalArmor</li>
+							</groups>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="BiomesCore_Slug"]/corePart/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="BiomesCore_Slug"]/corePart/parts/li[def="SnakeHead"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="BiomesCore_Slug"]/corePart/parts/li[def="SnakeHead"]</xpath>
+						<value>
+							<groups>
+								<li>CoveredByNaturalArmor</li>
+							</groups>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="BiomesCore_Slug"]/corePart/parts/li[def="SnakeHead"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BiomesCore_Snail"]//*[
+						def="RWBLeftEyeStalk" or
+						def="RWBRightEyeStalk" or
+						def="Eye"]/groups
+					</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BiomesCore_Snail"]//*[
+						def="Shell" or
+						def="RWBSnailFoot" or
+						def="RWBSnailMouth" or
+						def="Head"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

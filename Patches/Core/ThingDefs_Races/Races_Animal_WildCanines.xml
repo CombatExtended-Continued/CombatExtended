@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<!-- ========== Warg ========== -->
@@ -24,9 +24,9 @@
 		<value>
 			<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
-			<MeleeDodgeChance>0.21</MeleeDodgeChance>
+			<MeleeDodgeChance>0.23</MeleeDodgeChance>
 			<MeleeCritChance>0.20</MeleeCritChance>
-			<MeleeParryChance>0.09</MeleeParryChance>
+			<MeleeParryChance>0.11</MeleeParryChance>
 		</value>
 	</Operation>
 
@@ -111,6 +111,29 @@
 		<xpath>Defs/ThingDef[defName="Warg"]/race/wildness</xpath>
 		<value>
 			<wildness>0.3</wildness>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Warg"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Warg"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Warg"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>700</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
@@ -214,6 +237,29 @@
 		<xpath>Defs/ThingDef[@Name="ThingBaseWolf"]/race/wildness</xpath>
 		<value>
 			<wildness>0.65</wildness>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="ThingBaseWolf"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="ThingBaseWolf"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="ThingBaseWolf"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>460</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 

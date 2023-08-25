@@ -70,19 +70,16 @@ namespace CombatExtended
                 return null;
             }
             IntVec3 coverPosition;
-
             //Try to find cover position to move up to
             if (!GetCoverPositionFrom(pawn, comp.SuppressorLoc, maxCoverDist, out coverPosition))
             {
                 return null;
             }
-
             //Sanity check
             if (pawn.Position.Equals(coverPosition))
             {
                 return null;
             }
-
             //Tell pawn to move to position
             var job = JobMaker.MakeJob(CE_JobDefOf.RunForCover, coverPosition);
             job.locomotionUrgency = LocomotionUrgency.Sprint;
@@ -97,8 +94,8 @@ namespace CombatExtended
             interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
             lightingTracker = pawn.Map.GetLightingTracker();
             dangerTracker = pawn.Map.GetDangerTracker();
-            float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
 
+            float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
             if (bestRating <= 0)
             {
                 // Go through each cell in radius around the pawn

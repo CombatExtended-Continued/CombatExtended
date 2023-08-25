@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -48,7 +48,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>157.92</MarketValue>
+			<MarketValue>149.17</MarketValue>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
 		<detonateProjectile>Bullet_120mmCannonShell_HEAT</detonateProjectile>
@@ -62,7 +62,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>188.92</MarketValue>
+			<MarketValue>172.67</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_120mmCannonShell_HE</detonateProjectile>
@@ -76,11 +76,10 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>229</speed>
-			<soundExplode>MortarBomb_Explode</soundExplode>
 			<flyOverhead>false</flyOverhead>
 			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
- 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
+			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
+			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
@@ -99,18 +98,18 @@
 			<armorPenetrationBlunt>62.411</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>208</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>1.5</explosiveRadius>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		  </li>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>18</Fragment_Large>
-			  <Fragment_Small>81</Fragment_Small>
-			</fragments>
-		  </li>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>208</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>18</Fragment_Large>
+					<Fragment_Small>21</Fragment_Small>
+				</fragments>
+			</li>
 		</comps>
 	</ThingDef>
 
@@ -133,7 +132,7 @@
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>30</Fragment_Large>
-					<Fragment_Small>323</Fragment_Small>
+					<Fragment_Small>80</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -183,6 +182,9 @@
 		<products>
 			<Ammo_120mmCannonShell_HEAT>2</Ammo_120mmCannonShell_HEAT>
 		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -227,6 +229,9 @@
 		<products>
 			<Ammo_120mmCannonShell_HE>2</Ammo_120mmCannonShell_HE>
 		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
 	</RecipeDef>
 
 </Defs>
