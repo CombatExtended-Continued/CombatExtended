@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,8 @@ namespace CombatExtended
      *
      * Call Inject() on game start and whenever ammo system setting is changed.
      */
-    internal static class AmmoInjector
+    [StaticConstructorOnStartup]
+    public static class AmmoInjector
     {
 
         public const string destroyWithAmmoDisabledTag = "CE_AmmoInjector";               // The trade tag which automatically deleted this ammo with the ammo system disabled
@@ -38,6 +39,12 @@ namespace CombatExtended
             }
         }
         */
+
+        static AmmoInjector()
+        {
+            Inject();
+            AddRemoveCaliberFromGunRecipes();
+        }
 
         public static void Inject()
         {
@@ -94,6 +101,9 @@ namespace CombatExtended
                     ammoDefs.UnionWith(propsGL.propsUnderBarrel.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }
             }
+
+            ammoDefs.UnionWith(Compatibility.Patches.GetUsedAmmo());
+
             /*
             bool canCraft = (AmmoCraftingStation != null);
 
