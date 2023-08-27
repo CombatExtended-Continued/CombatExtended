@@ -480,6 +480,7 @@ Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
 Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Classical   |
+Vanilla Factions Expanded - Deserters  |
 Vanilla Factions Expanded - Empire  |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Mechanoids	|
