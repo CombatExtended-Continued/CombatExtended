@@ -51,15 +51,25 @@
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion" or defName="VFED_Gun_Kontarion" or defName="VFED_Turret_Onager"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+					<xpath>Defs/ThingDef[@Name="VFED_ImperialTurretBase"]/placeWorkers/li[.="PlaceWorker_ShowTurretRadius"]</xpath>
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion" or defName="VFED_Gun_Kontarion" or defName="VFED_Turret_Onager"]/comps/li[@Class="CompProperties_BoxRefuel"]</xpath>
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/comps/li[@Class="CompProperties_Refuelable"]
+						| Defs/ThingDef[defName="VFED_Turret_Palintone"]/comps/li[@Class="CompProperties_Refuelable"]
+						| Defs/ThingDef[defName="VFED_Turret_Onager"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion" or defName="VFED_Gun_Kontarion" or defName="VFED_Turret_Onager"]/modExtensions/li[@Class="TurretExtension_Barrels"]</xpath>
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]
+						| Defs/ThingDef[defName="VFED_Turret_Palintone"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]
+						| Defs/ThingDef[defName="VFED_Turret_Onager"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/modExtensions/li[@Class="VFED.TurretExtension_Barrels"]
+						| Defs/ThingDef[defName="VFED_Turret_Palintone"]/modExtensions/li[@Class="VFED.TurretExtension_Barrels"]
+						| Defs/ThingDef[defName="VFED_Turret_Onager"]/modExtensions/li[@Class="VFED.TurretExtension_Barrels"]</xpath>
 				</li>
 
 				<!-- Kontarion -->
@@ -103,12 +113,12 @@
 					<statBases>
 						<SightsEfficiency>2.36</SightsEfficiency>
 						<ShotSpread>0.01</ShotSpread>
-						<SwayFactor>2.0</SwayFactor>
+						<SwayFactor>1.0</SwayFactor>
 						<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
 						<Mass>150</Mass>
 					</statBases>
 					<Properties>
-						<recoilAmount>4.15</recoilAmount>
+						<recoilAmount>1.0</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_40x311mmR_AP</defaultProjectile>
@@ -173,12 +183,12 @@
 					<statBases>
 						<SightsEfficiency>1</SightsEfficiency>
 						<ShotSpread>0.01</ShotSpread>
-						<SwayFactor>1.8</SwayFactor>
+						<SwayFactor>1.0</SwayFactor>
 						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 						<Mass>150</Mass>
 					</statBases>
 					<Properties>
-						<recoilAmount>1.50</recoilAmount>
+						<recoilAmount>1.0</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
@@ -280,7 +290,7 @@
 					<value>
 						<verbs>
 							<li Class="CombatExtended.VerbPropertiesCE">
-								<recoilAmount>1.73</recoilAmount>
+								<recoilAmount>1.0</recoilAmount>
 								<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 								<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 								<hasStandardCommand>true</hasStandardCommand>
@@ -307,21 +317,21 @@
 				<!-- Striker -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="VFED_Turret_StrikerTurret"]/statBases</xpath>
 					<value>
 						<AimingAccuracy>0.25</AimingAccuracy>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases/ShootingAccuracyTurret</xpath>
+					<xpath>Defs/ThingDef[defName="VFED_Turret_StrikerTurret"]/statBases/ShootingAccuracyTurret</xpath>
 					<value>
 						<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/building/turretBurstCooldownTime</xpath>
+					<xpath>Defs/ThingDef[defName="VFED_Turret_StrikerTurret"]/building/turretBurstCooldownTime</xpath>
 					<value>
 						<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 					</value>
