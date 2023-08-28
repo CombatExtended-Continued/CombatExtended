@@ -523,10 +523,14 @@ VGP Fabrics |
 VGP Garden Drinks UF    |
 Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
+Warbanner Mod    |
 WarCasket Expanded  |
 WarCasket Gundam Addon  |
 Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
+Warhammer - Dryad    |
+Warhammer 40k - Factions    |
+Warhammer 40k - Genes    |
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
