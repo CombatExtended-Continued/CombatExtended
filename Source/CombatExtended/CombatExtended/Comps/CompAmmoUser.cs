@@ -582,21 +582,22 @@ namespace CombatExtended
             {
                 doDrop = true;    // Inventory was null so no place to shift the ammo besides the ground.
             }
-            Log.Message(doDrop.ToString());
             if (doDrop)
             {
-                Log.Message(ammoThing.stackCount.ToString());
                 // NOTE: If we get here from ThingContainer.TryAdd() it will have modified the ammoThing.stackCount to what it couldn't take.
-                //Thing outThing;
+
                 if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out droppedAmmo, turret.Faction != Faction.OfPlayer))
                 {
                     Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
                                               "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
                 }
-                if (!GenThing.TryDropAndSetForbidden(remainderThing, Position, Map, ThingPlaceMode.Near, out _, turret.Faction != Faction.OfPlayer))
+                if (remainderThing != null)
                 {
-                    Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
-                                              "Unable to drop ", remainderThing.LabelCap, " on the ground, thing was destroyed."));
+                    if (!GenThing.TryDropAndSetForbidden(remainderThing, Position, Map, ThingPlaceMode.Near, out _, turret.Faction != Faction.OfPlayer))
+                    {
+                        Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
+                                                  "Unable to drop ", remainderThing.LabelCap, " on the ground, thing was destroyed."));
+                    }
                 }
             }
             // don't forget to set the clip to empty...
