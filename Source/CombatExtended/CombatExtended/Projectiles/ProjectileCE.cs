@@ -140,7 +140,7 @@ namespace CombatExtended
         ///
         /// If lastHeightTick equals FlightTicks, it returns a locally stored value heightInt which is the product of previous calculation.
         /// </summary>
-        public float Height
+        public virtual float Height
         {
             get
             {
