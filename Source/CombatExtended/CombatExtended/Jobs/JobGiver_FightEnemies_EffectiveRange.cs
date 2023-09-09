@@ -43,7 +43,7 @@ namespace CombatExtended
             //changes range based on weapon weapontags
             #region getting appropiate value
             var tags = verb.EquipmentSource.def.weaponTags;
-            if ( (tags.Contains("CE_AI_AR") && tags.Any(x => !x.ToLower().Contains("bipod"))))
+            if ((tags.Contains("CE_AI_AR") && tags.Any(x => !x.ToLower().Contains("bipod"))))
             {
                 AIRange = Mathf.Floor((AIRange * 0.7f));
             }
