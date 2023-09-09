@@ -47,7 +47,7 @@ namespace CombatExtended
             {
                 AIRange = Mathf.Floor((AIRange * 0.7f));
             }
-            else if (tags.Contains("CE_AI_MG"))
+            else if (tags.Contains("CE_AI_LMG"))
             {
                 AIRange = Mathf.Floor((AIRange * 0.85f));
             }
