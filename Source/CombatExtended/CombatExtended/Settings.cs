@@ -28,6 +28,7 @@ namespace CombatExtended
         private bool showTacticalVests = true;
         private bool genericammo = false;
         private bool partialstats = true;
+        private bool aieffectiverange = true;
 
         private bool showExtraTooltips = false;
 
@@ -57,6 +58,8 @@ namespace CombatExtended
         public bool ShowExtraStats => showExtraStats;
 
         public bool ShowTutorialPopup = true;
+
+        public bool AIEffectiveRange => aieffectiverange;
 
         // Ammo settings
         private bool enableAmmoSystem = true;
@@ -193,6 +196,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
             Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
 
+            Scribe_Values.Look(ref aieffectiverange, "aiEffectiveRange", false);
+
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
@@ -218,6 +223,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_AIEffectiveRange_Title".Translate(), ref aieffectiverange, "CE_Settings_AIEffectiveRange".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
