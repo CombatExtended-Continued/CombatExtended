@@ -759,13 +759,21 @@ namespace CombatExtended
             drawOffset = Vector3.zero;
             angleOffset = 0f;
             float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount;
-            recoil = recoil * recoil * Mathf.Clamp(RecoilMagicNumber / weaponDef.verbs[0].ticksBetweenBurstShots, 1, RecoilMagicNumber);
-
+            recoil = Math.Min(recoil * recoil, 20) * Mathf.Clamp(RecoilMagicNumber / weaponDef.verbs[0].ticksBetweenBurstShots, 1, RecoilMagicNumber);
             float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
+            RecoilAdjustExtension RecoilAdjustExtension = weaponDef.GetModExtension<RecoilAdjustExtension>();
+
+            if (RecoilAdjustExtension != null)
+            {
+                recoil *= RecoilAdjustExtension.recoilModifier;
+                recoilRelaxation = RecoilAdjustExtension.recoilTick > 0 ? RecoilAdjustExtension.recoilTick : recoilRelaxation;
+            }
+
             if (recoil <= 0f || shootVerb == null)
             {
                 return;
             }
+
             Rand.PushState(shootVerb.LastShotTick);
             try
             {
