@@ -752,15 +752,17 @@ namespace CombatExtended
         new CurvePoint(2f, 4f)
     };
 
-        const float recoilMagicNumber = 20;
+        const float RecoilMagicNumber = 20;
 
         public static void Recoil(ThingDef weaponDef, Verb shootVerb, out Vector3 drawOffset, out float angleOffset, float aimAngle)
         {
             drawOffset = Vector3.zero;
             angleOffset = 0f;
-            float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount * Math.Min(recoilMagicNumber, recoilMagicNumber / weaponDef.verbs[0].ticksBetweenBurstShots);
-            float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) / 2f;
-            if (!(recoil > 0f) || shootVerb == null)
+            float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount;
+            recoil = recoil * recoil * Mathf.Clamp(RecoilMagicNumber / weaponDef.verbs[0].ticksBetweenBurstShots, 1, RecoilMagicNumber);
+
+            float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
+            if (recoil <= 0f || shootVerb == null)
             {
                 return;
             }
@@ -776,6 +778,8 @@ namespace CombatExtended
                     angleOffset = (float)Rand.Sign * RecoilCurveRotation.Evaluate(num2) * num3;
                     drawOffset = drawOffset.RotatedBy(aimAngle);
                     aimAngle += angleOffset;
+
+                    Log.Message(recoil.ToString() + " " + recoilRelaxation.ToString());
                 }
             }
             finally
