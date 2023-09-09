@@ -733,6 +733,59 @@ namespace CombatExtended
         }
         */
 
+        /// <summary>
+        /// A copy of the same function in Rimworld.EquipmentUtility, except changing requirement to Verb.
+        /// </summary>
+        /// 
+        private static readonly SimpleCurve RecoilCurveAxisX = new SimpleCurve
+    {
+        new CurvePoint(0f, 0f),
+        new CurvePoint(1f, 0.02f),
+        new CurvePoint(2f, 0.03f)
+    };
+
+        private static readonly SimpleCurve RecoilCurveAxisY = new SimpleCurve
+    {
+        new CurvePoint(0f, 0f),
+        new CurvePoint(1f, 0.05f),
+        new CurvePoint(2f, 0.075f)
+    };
+
+        private static readonly SimpleCurve RecoilCurveRotation = new SimpleCurve
+    {
+        new CurvePoint(0f, 0f),
+        new CurvePoint(1f, 3f),
+        new CurvePoint(2f, 4f)
+    };
+
+        public static void Recoil(ThingDef weaponDef, Verb shootVerb, out Vector3 drawOffset, out float angleOffset, float aimAngle)
+        {
+            drawOffset = Vector3.zero;
+            angleOffset = 0f;
+            float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount * 10;
+            if (!(recoil > 0f) || shootVerb == null)
+            {
+                return;
+            }
+            Rand.PushState(shootVerb.LastShotTick);
+            try
+            {
+                int num = Find.TickManager.TicksGame - shootVerb.LastShotTick;
+                if ((float)num < weaponDef.verbs[0].ticksBetweenBurstShots)
+                {
+                    float num2 = Mathf.Clamp01((float)num / weaponDef.verbs[0].ticksBetweenBurstShots);
+                    float num3 = Mathf.Lerp(recoil, 0f, num2);
+                    drawOffset = new Vector3((float)Rand.Sign * RecoilCurveAxisX.Evaluate(num2), 0f, 0f - RecoilCurveAxisY.Evaluate(num2)) * num3;
+                    angleOffset = (float)Rand.Sign * RecoilCurveRotation.Evaluate(num2) * num3;
+                    drawOffset = drawOffset.RotatedBy(aimAngle);
+                }
+            }
+            finally
+            {
+                Log.Message(drawOffset.ToString() + " " + angleOffset.ToString());
+                Rand.PopState();
+            }
+        }
         #endregion Misc
 
         #region MoteThrower
