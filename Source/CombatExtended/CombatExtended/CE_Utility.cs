@@ -777,6 +777,7 @@ namespace CombatExtended
                     float num3 = Mathf.Lerp(recoil, 0f, num2);
                     drawOffset = new Vector3((float)Rand.Sign * RecoilCurveAxisX.Evaluate(num2), 0f, 0f - RecoilCurveAxisY.Evaluate(num2)) * num3;
                     angleOffset = (float)Rand.Sign * RecoilCurveRotation.Evaluate(num2) * num3;
+                    aimAngle += angleOffset;
                     drawOffset = drawOffset.RotatedBy(aimAngle);
                 }
             }
