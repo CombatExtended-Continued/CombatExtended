@@ -737,12 +737,6 @@ namespace CombatExtended
         /// A copy of the same function in Rimworld.EquipmentUtility, except changing requirement to Verb.
         /// </summary>
         /// 
-        private static readonly SimpleCurve RecoilCurveAxisX = new SimpleCurve
-    {
-        new CurvePoint(0f, 0f),
-        new CurvePoint(1f, 0.02f),
-        new CurvePoint(2f, 0.03f)
-    };
 
         private static readonly SimpleCurve RecoilCurveAxisY = new SimpleCurve
     {
@@ -758,11 +752,14 @@ namespace CombatExtended
         new CurvePoint(2f, 4f)
     };
 
+        const float recoilMagicNumber = 20;
+
         public static void Recoil(ThingDef weaponDef, Verb shootVerb, out Vector3 drawOffset, out float angleOffset, float aimAngle)
         {
             drawOffset = Vector3.zero;
             angleOffset = 0f;
-            float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount * 10;
+            float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount * Math.Min(recoilMagicNumber, recoilMagicNumber / weaponDef.verbs[0].ticksBetweenBurstShots);
+            float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) / 2f;
             if (!(recoil > 0f) || shootVerb == null)
             {
                 return;
@@ -771,19 +768,18 @@ namespace CombatExtended
             try
             {
                 int num = Find.TickManager.TicksGame - shootVerb.LastShotTick;
-                if ((float)num < weaponDef.verbs[0].ticksBetweenBurstShots)
+                if ((float)num < recoilRelaxation)
                 {
-                    float num2 = Mathf.Clamp01((float)num / weaponDef.verbs[0].ticksBetweenBurstShots);
+                    float num2 = Mathf.Clamp01((float)num / recoilRelaxation);
                     float num3 = Mathf.Lerp(recoil, 0f, num2);
-                    drawOffset = new Vector3((float)Rand.Sign * RecoilCurveAxisX.Evaluate(num2), 0f, 0f - RecoilCurveAxisY.Evaluate(num2)) * num3;
+                    drawOffset = new Vector3(0f, 0f, 0f - RecoilCurveAxisY.Evaluate(num2)) * num3;
                     angleOffset = (float)Rand.Sign * RecoilCurveRotation.Evaluate(num2) * num3;
-                    aimAngle += angleOffset;
                     drawOffset = drawOffset.RotatedBy(aimAngle);
+                    aimAngle += angleOffset;
                 }
             }
             finally
             {
-                Log.Message(drawOffset.ToString() + " " + angleOffset.ToString());
                 Rand.PopState();
             }
         }
