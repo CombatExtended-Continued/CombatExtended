@@ -753,7 +753,7 @@ namespace CombatExtended
     };
 
         const float RecoilMagicNumber = 2.6f;
-        const float MuzzleRiseMagicNumber = 0.04f;
+        const float MuzzleRiseMagicNumber = 0.1f;
 
         public static void Recoil(ThingDef weaponDef, Verb shootVerb, out Vector3 drawOffset, out float angleOffset, float aimAngle, bool handheld)
         {
@@ -774,7 +774,7 @@ namespace CombatExtended
             Rand.PushState(shootVerb.LastShotTick);
             try
             {
-                float muzzleJumpModifier = recoil;
+                float muzzleJumpModifier = 10 * (float)Math.Log10(recoil) + 3;
                 GunDrawExtension recoilAdjustExtension = weaponDef.GetModExtension<GunDrawExtension>();
                 if (recoilAdjustExtension != null)
                 {
@@ -795,7 +795,6 @@ namespace CombatExtended
                     else
                     {
                         recoil /= 1.3f;
-                        muzzleJumpModifier /= 1.5f;
                     }
                     if (recoil > 15)
                     {
@@ -812,7 +811,6 @@ namespace CombatExtended
                     angleOffset = (handheld ? -1 : Rand.Sign) * RecoilCurveRotation.Evaluate(num2) * num3 * MuzzleRiseMagicNumber * muzzleJumpModifier;
                     drawOffset = drawOffset.RotatedBy(aimAngle);
                     aimAngle += angleOffset;
-                    Log.Message(recoil.ToString());
                 }
             }
             finally
