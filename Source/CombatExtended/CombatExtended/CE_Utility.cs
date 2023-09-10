@@ -752,14 +752,14 @@ namespace CombatExtended
         new CurvePoint(2f, 4f)
     };
 
-        const float RecoilMagicNumber = 2;
+        const float RecoilMagicNumber = 2.6f;
 
         public static void Recoil(ThingDef weaponDef, Verb shootVerb, out Vector3 drawOffset, out float angleOffset, float aimAngle)
         {
             drawOffset = Vector3.zero;
             angleOffset = 0f;
             float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount;
-            recoil = Math.Min(recoil * recoil, 20) * RecoilMagicNumber * Mathf.Clamp(weaponDef.verbs[0].ticksBetweenBurstShots, 1, 10);
+            recoil = Math.Min(recoil * recoil, 20) * RecoilMagicNumber * Mathf.Clamp((float)Math.Log10(weaponDef.verbs[0].ticksBetweenBurstShots), 0.1f, 10);
             float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
             RecoilAdjustExtension RecoilAdjustExtension = weaponDef.GetModExtension<RecoilAdjustExtension>();
 
@@ -767,6 +767,7 @@ namespace CombatExtended
             {
                 recoil *= RecoilAdjustExtension.recoilModifier;
                 recoilRelaxation = RecoilAdjustExtension.recoilTick > 0 ? RecoilAdjustExtension.recoilTick : recoilRelaxation;
+                recoil = RecoilAdjustExtension.recoilScale > 0 ? RecoilAdjustExtension.recoilScale : recoil;
             }
 
             //Prevents recoil for something with absurd ROF, it's too fast for any meaningful recoil animation
@@ -788,7 +789,7 @@ namespace CombatExtended
                     drawOffset = drawOffset.RotatedBy(aimAngle);
                     aimAngle += angleOffset;
 
-                    Log.Message(recoil.ToString() + " " + recoilRelaxation.ToString());
+                    Log.Message(recoil.ToString() + " " + Mathf.Clamp((float)Math.Log10(weaponDef.verbs[0].ticksBetweenBurstShots), 0.1f, 10).ToString());
                 }
             }
             finally
