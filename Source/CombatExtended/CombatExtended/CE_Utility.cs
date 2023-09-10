@@ -786,9 +786,9 @@ namespace CombatExtended
                     recoilRelaxation = recoilAdjustExtension.recoilTick > 0 ? recoilAdjustExtension.recoilTick : recoilRelaxation;
                     recoil = recoilAdjustExtension.recoilScale > 0 ? recoilAdjustExtension.recoilScale : recoil;
                     muzzleJumpModifier *= recoilAdjustExtension.muzzleJumpModifier > 0 ? recoilAdjustExtension.muzzleJumpModifier : 1;
-                    if (recoil <= 0) { return; }
                 }
 
+                if (recoil <= 0) { return; }
 
                 if (handheld)
                 {
