@@ -576,7 +576,10 @@ namespace CombatExtended
         {
             Vector3 drawOffset = Vector3.zero;
             float angleOffset = 0f;
-            CE_Utility.Recoil(def.building.turretGunDef, AttackVerb, out drawOffset, out angleOffset, top.CurRotation, false);
+            if (Controller.settings.RecoilAnim)
+            {
+                CE_Utility.Recoil(def.building.turretGunDef, AttackVerb, out drawOffset, out angleOffset, top.CurRotation, false);
+            }
             top.DrawTurret(drawOffset, angleOffset);
             base.Draw();
         }

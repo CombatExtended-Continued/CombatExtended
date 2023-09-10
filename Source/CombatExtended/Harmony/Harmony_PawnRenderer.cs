@@ -404,6 +404,10 @@ namespace CombatExtended.HarmonyCE
 
             private static Pawn pawn;
 
+            private static Vector3 recoilOffset = new Vector3();
+
+            private static float muzzleJump = 0;
+
             private static readonly Matrix4x4 TBot5 = Matrix4x4.Translate(new Vector3(0, -0.006f, 0));
 
             private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.004f, 0));
@@ -416,25 +420,16 @@ namespace CombatExtended.HarmonyCE
 
             private static void RecoilCE(Thing eq, Vector3 position, float aimAngle, float num, CompEquippable compEquippable)
             {
-                if (compEquippable.PrimaryVerb.verbProps is VerbPropertiesCE)
-                {
-                    //CE_Utility.Recoil(eq.def, compEquippable.PrimaryVerb, out var drawOffset, out var angleOffset, aimAngle);
-                    //drawLoc += drawOffset;
-                    //num += angleOffset;
-                }
-            }
-
-            private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle)
-            {
-                CompEquippable compEquippable = eq.TryGetComp<CompEquippable>();
-                Vector3 recoilOffset = new Vector3();
-                float muzzleJump = 0;
-                if (compEquippable.PrimaryVerb.verbProps is VerbPropertiesCE)
+                if (Controller.settings.RecoilAnim && compEquippable.PrimaryVerb.verbProps is VerbPropertiesCE)
                 {
                     CE_Utility.Recoil(eq.def, compEquippable.PrimaryVerb, out var drawOffset, out var angleOffset, aimAngle, true);
                     recoilOffset = drawOffset;
                     muzzleJump = angleOffset;
                 }
+            }
+
+            private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle)
+            {
                 GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension() { DrawSize = eq.def.graphicData.drawSize };
                 if (drawData.DrawSize == Vector2.one) { drawData.DrawSize = eq.def.graphicData.drawSize; }
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
@@ -462,7 +457,6 @@ namespace CombatExtended.HarmonyCE
             internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 var codes = instructions.ToList();
-                /*
                 var recoil_opcodes = new CodeInstruction[]
                 {
                     new CodeInstruction(OpCodes.Ldarg_1),
@@ -488,7 +482,6 @@ namespace CombatExtended.HarmonyCE
                     }
                 }
                 codes.InsertRange(index, recoil_opcodes);
-                */
                 codes[codes.Count - 2].operand =
                     AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
                 codes.InsertRange(codes.Count - 2, new[]
