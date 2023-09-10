@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -49,7 +49,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>61.1</MarketValue>
+			<MarketValue>58.1</MarketValue>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
 		<detonateProjectile>Bullet_762x385mmRCannonShell_HEAT</detonateProjectile>
@@ -63,7 +63,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>59.04</MarketValue>
+			<MarketValue>56.54</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_762x385mmRCannonShell_HE</detonateProjectile>
@@ -80,18 +80,7 @@
 			<MarketValue>87.70</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>99</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>2</explosiveRadius>
-		  </li>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>22</Fragment_Large>
-			</fragments>
-		  </li>
-		</comps>
+		<detonateProjectile>Bullet_762x385mmRCannonShell_EMP</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -102,11 +91,10 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>134</speed>
-			<soundExplode>MortarBomb_Explode</soundExplode>
 			<flyOverhead>false</flyOverhead>
 			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
- 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
+			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
+			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
@@ -133,8 +121,8 @@
 			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Large>12</Fragment_Large>
-					<Fragment_Small>36</Fragment_Small>
+					<Fragment_Large>11</Fragment_Large>
+					<Fragment_Small>7</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -159,7 +147,7 @@
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>21</Fragment_Large>
-					<Fragment_Small>47</Fragment_Small>
+					<Fragment_Small>12</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -224,6 +212,9 @@
 		<products>
 			<Ammo_762x385mmRCannonShell_HEAT>5</Ammo_762x385mmRCannonShell_HEAT>
 		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -304,6 +295,9 @@
 		<products>
 			<Ammo_762x385mmRCannonShell_EMP>5</Ammo_762x385mmRCannonShell_EMP>
 		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
 	</RecipeDef>
 
 </Defs>

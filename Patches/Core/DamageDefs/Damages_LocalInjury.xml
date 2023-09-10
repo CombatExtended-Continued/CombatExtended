@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<!-- ========== Add DefModExtension ========== -->
@@ -36,8 +36,8 @@
 
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/DamageDef[defName="Bullet"]</xpath>
-			<attribute>Name</attribute>
-			<value>Bullet</value>
+		<attribute>Name</attribute>
+		<value>Bullet</value>
 	</Operation>
 
 	<!-- ========== Change Bomb hediff ========== -->
@@ -62,18 +62,18 @@
 			<minDamageToFragment>4</minDamageToFragment>
 		</value>
 	</Operation>
-  
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/DamageDef[defName="Bomb"]/defaultDamage</xpath>
 		<value>
-			<defaultDamage>635</defaultDamage>
+			<defaultDamage>156</defaultDamage>
 		</value>
 	</Operation>
-  
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/DamageDef[defName="Bomb"]/defaultArmorPenetration</xpath>
 		<value>
-			<defaultArmorPenetration>210</defaultArmorPenetration>
+			<defaultArmorPenetration>52</defaultArmorPenetration>
 		</value>
 	</Operation>
 
@@ -83,7 +83,7 @@
 			<defaultDamage>800</defaultDamage>
 		</value>
 	</Operation>
-  
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/DamageDef[defName="BombSuper"]/defaultArmorPenetration</xpath>
 		<value>
@@ -111,7 +111,7 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/DamageDef[@Name="BluntBase"]/*[self::bluntStunDuration or self::bluntStunChancePerDamagePctOfCorePartToHeadCurve or self::bluntStunChancePerDamagePctOfCorePartToBodyCurve]</xpath>
-	</Operation>	
+	</Operation>
 
 	<!-- ========== Add electric armor to EMP damage ========== -->
 
@@ -119,6 +119,15 @@
 		<xpath>Defs/DamageDef[defName="EMP"]</xpath>
 		<value>
 			<armorCategory>Electric</armorCategory>
+		</value>
+	</Operation>
+
+	<!-- ========== Add heat armor to Frostbite damage ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="Frostbite"]</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
 		</value>
 	</Operation>
 
@@ -145,7 +154,7 @@
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/DamageDef[defName="ScratchToxic"]/additionalHediffs/li[hediff="ToxicBuildup"]</xpath>
 	</Operation>
-  
+
 	<!-- ========== Fix harm layers for stab attacks ========== -->
 
 	<Operation Class="PatchOperationAdd">
@@ -154,12 +163,12 @@
 			<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/DamageDef[defName="RangedStab"]</xpath>
 		<value>
 			<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
 		</value>
 	</Operation>
-  
+
 </Patch>

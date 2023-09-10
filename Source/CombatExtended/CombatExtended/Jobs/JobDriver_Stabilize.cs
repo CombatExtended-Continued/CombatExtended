@@ -1,11 +1,8 @@
-﻿using System;
+﻿using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using RimWorld;
 using Verse;
 using Verse.AI;
-using UnityEngine;
 
 namespace CombatExtended
 {
@@ -33,6 +30,25 @@ namespace CombatExtended
             return pawn.Reserve(TargetA, job) && pawn.Reserve(TargetB, job);
         }
 
+        public void MakeMedicineFilth(Medicine medicine)
+        {
+            var medExt = medicine.def.GetModExtension<MedicineFilthExtension>() ?? new MedicineFilthExtension();
+
+            if (medExt.filthDefName != null && Rand.Chance(medExt.filthSpawnChance))
+            {
+                int filthQuantity = medExt.filthSpawnQuantity.RandomInRange;
+                List<IntVec3> list = GenAdj.AdjacentCells8WayRandomized();
+                for (int i = 0; i < filthQuantity; i++)
+                {
+                    IntVec3 cell = this.pawn.Position + list[i];
+                    if (cell.InBounds(this.pawn.Map))
+                    {
+                        FilthMaker.TryMakeFilth(cell, this.pawn.Map, medExt.filthDefName);
+                    }
+                }
+            }
+        }
+
         public override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOn(() => Patient == null || Medicine == null);
@@ -46,6 +62,7 @@ namespace CombatExtended
                     return JobCondition.Ongoing;
                 }
                 Medicine.Destroy();
+                MakeMedicineFilth(Medicine);
                 return JobCondition.Incompletable;
             });
 
@@ -73,7 +90,9 @@ namespace CombatExtended
                         break;
                     }
                 }
+
             };
+
             stabilizeToil.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return stabilizeToil;
             yield return Toils_Jump.Jump(waitToil);

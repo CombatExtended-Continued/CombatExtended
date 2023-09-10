@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Caverns</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Proj_BMT_ThrumbungusShroom"]</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Proj_BMT_ThrumbungusShroom"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>ToxGas</damageDef>
+							<explosionRadius>1.1</explosionRadius>
+							<damageAmountBase>1</damageAmountBase>
+							<explosionDelay>100</explosionDelay>
+							<flyOverhead>false</flyOverhead>
+							<soundExplode>Explosion_Smoke</soundExplode>
+							<postExplosionGasType>RotStink</postExplosionGasType>
+							<postExplosionSpawnChance>1</postExplosionSpawnChance>
+							<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- == Grenade == -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_ThrumbungusShroom"]</xpath>
+					<value>
+						<thingClass>CombatExtended.AmmoThing</thingClass>
+						<resourceReadoutPriority>First</resourceReadoutPriority>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="BMT_ThrumbungusShroom"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.AmmoDef</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>BMT_ThrumbungusShroom</defName>
+					<statBases>
+						<Mass>1</Mass>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<label>throw toxic shroom</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Proj_BMT_ThrumbungusShroom</defaultProjectile>
+						<range>12</range>
+						<warmupTime>1.8</warmupTime>
+						<soundCast>ThrowGrenade</soundCast>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_ThrumbungusShroom"]</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Body</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.75</cooldownTime>
+								<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

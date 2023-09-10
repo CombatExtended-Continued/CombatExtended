@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<!-- ========== Base Bear ========== -->
@@ -22,9 +22,9 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="BaseBear"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.17</MeleeDodgeChance>
-			<MeleeCritChance>0.21</MeleeCritChance>
-			<MeleeParryChance>0.17</MeleeParryChance>
+			<MeleeDodgeChance>0.16</MeleeDodgeChance>
+			<MeleeCritChance>0.23</MeleeCritChance>
+			<MeleeParryChance>0.18</MeleeParryChance>
 		</value>
 	</Operation>
 
@@ -36,6 +36,29 @@
 		<xpath>Defs/ThingDef[@Name="BaseBear"]/race/wildness</xpath>
 		<value>
 			<wildness>0.6</wildness>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="BaseBear"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="BaseBear"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseBear"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1162</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 

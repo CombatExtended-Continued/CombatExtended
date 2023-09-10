@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CombatExtended.Compatibility;
 using RimWorld;
 using Verse;
 using UnityEngine;
@@ -114,6 +115,7 @@ namespace CombatExtended
 
         public bool usingUnderBarrel;
 
+        [Multiplayer.SyncMethod]
         public void SwitchToUB()
         {
             if (!Props.oneAmmoHolder)
@@ -141,6 +143,7 @@ namespace CombatExtended
             usingUnderBarrel = true;
         }
 
+        [Multiplayer.SyncMethod]
         public void SwithToB()
         {
             if (!Props.oneAmmoHolder)

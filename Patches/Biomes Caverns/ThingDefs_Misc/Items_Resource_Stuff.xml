@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Caverns</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ======== bulk  ======== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_AmbrosyxShroom"]/statBases</xpath>
+					<value>
+						<Bulk>0.05</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_GlowGoo"]/statBases</xpath>
+					<value>
+						<Bulk>0.05</Bulk>
+					</value>
+				</li>
+
+				<!-- ======== Red, Crystal and Mushroom Wood ======== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_MushroomLog"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>0.99</cooldownTime>
+								<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="BMT_MushroomLog"]</xpath>
+					<value>
+						<li Class="CombatExtended.StuffToughnessMultiplierExtensionCE">
+							<toughnessMultiplier>4</toughnessMultiplier>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_MushroomLog"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.2</MeleeCritChance>
+							<MeleeParryChance>1</MeleeParryChance>
+							<MeleeDodgeChance>0.13</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_MushroomLog"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<Bulk>0.07</Bulk>
+						<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+						<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_MushroomLog"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_MushroomLog"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

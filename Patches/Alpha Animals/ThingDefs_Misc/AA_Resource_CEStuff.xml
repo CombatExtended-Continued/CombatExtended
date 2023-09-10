@@ -1,57 +1,57 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-		    <li>Alpha Animals</li>
+			<li>Alpha Animals</li>
 		</mods>
 		<match Class="PatchOperationSequence">
-		<operations>
+			<operations>
 
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[@Name="AA_MeatMealBase"]/statBases</xpath>
-			<value>
-				<Bulk>1</Bulk>
-			</value>
-		</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AA_MeatMealBase"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+					</value>
+				</li>
 
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="AA_CactipineQuill"]/statBases</xpath>
-			<value>
-				<Bulk>0.1</Bulk>
-			</value>
-		</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AA_CactipineQuill"]/statBases</xpath>
+					<value>
+						<Bulk>0.1</Bulk>
+					</value>
+				</li>
 
-		<!-- ======== Red Wood ======== -->
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="GU_RedWood"]/tools</xpath>
-			<value>
-				<tools>
-					<li Class="CombatExtended.ToolCE">
-						<capacities>
-							<li>Blunt</li>
-						</capacities>
-						<power>2</power>
-						<cooldownTime>0.99</cooldownTime>
-						<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
-					</li>
-				</tools>
-			</value>
-		</li>
+				<!-- ======== Red Wood ======== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GU_RedWood"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>0.99</cooldownTime>
+								<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
 
 				<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="GU_RedWood"]/equippedStatOffsets</xpath>
-					<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="GU_RedWood"]</xpath>
-						<value>
-							<equippedStatOffsets>
-								<MeleeCritChance>0.2</MeleeCritChance>
-								<MeleeParryChance>1</MeleeParryChance>
-								<MeleeDodgeChance>0.13</MeleeDodgeChance>
-							</equippedStatOffsets>
-						</value>
-					</nomatch>
-					<match Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="GU_RedWood"]/equippedStatOffsets</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="GU_RedWood"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.2</MeleeCritChance>
+								<MeleeParryChance>1</MeleeParryChance>
+								<MeleeDodgeChance>0.13</MeleeDodgeChance>
+							</equippedStatOffsets>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="GU_RedWood"]/equippedStatOffsets</xpath>
 						<value>
 							<equippedStatOffsets>
 								<MeleeCritChance>0.2</MeleeCritChance>
@@ -62,11 +62,10 @@
 					</match>
 				</li>
 
-
 				<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="GU_RedWood"]/statBases/Bulk</xpath>
+					<xpath>Defs/ThingDef[defName="GU_RedWood"]/statBases/Bulk</xpath>
 					<nomatch Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="GU_RedWood"]/statBases</xpath>
+						<xpath>Defs/ThingDef[defName="GU_RedWood"]/statBases</xpath>
 						<value>
 							<statBases>
 								<Bulk>0.07</Bulk>
@@ -85,7 +84,7 @@
 						</value>
 					</nomatch>
 					<match Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="GU_RedWood"]/statBases</xpath>
+						<xpath>Defs/ThingDef[defName="GU_RedWood"]/statBases</xpath>
 						<value>
 							<statBases>
 								<Bulk>0.07</Bulk>
@@ -106,16 +105,16 @@
 				</li>
 
 				<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="GU_RedWood"]/stuffProps/statFactors/Mass</xpath>
+					<xpath>Defs/ThingDef[defName="GU_RedWood"]/stuffProps/statFactors/Mass</xpath>
 					<nomatch Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="GU_RedWood"]/stuffProps/statFactors</xpath>
+						<xpath>Defs/ThingDef[defName="GU_RedWood"]/stuffProps/statFactors</xpath>
 						<value>
 							<Mass>0.3</Mass>
 							<MeleePenetrationFactor>0.3</MeleePenetrationFactor>
 						</value>
 					</nomatch>
 					<match Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="GU_RedWood"]/stuffProps/Mass</xpath>
+						<xpath>Defs/ThingDef[defName="GU_RedWood"]/stuffProps/Mass</xpath>
 						<value>
 							<Mass>0.3</Mass>
 						</value>
@@ -131,7 +130,7 @@
 					</value>
 				</li>
 
-		</operations>
+			</operations>
 		</match>
 	</Operation>
 </Patch>

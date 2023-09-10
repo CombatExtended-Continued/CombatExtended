@@ -95,6 +95,10 @@ namespace CombatExtended.HarmonyCE
     {
         public static void Postfix(ThingDef __instance, ref IEnumerable<StatDrawEntry> __result, StatRequest req)
         {
+            if (__instance.GetModExtension<ApparelDefExtension>()?.isRadioPack ?? false)
+            {
+                __result = __result.Concat(new StatDrawEntry(StatCategoryDefOf.BasicsNonPawn, "CE_Long_Range_Radio".Translate(), "CE_Yes".Translate(), "CE_Long_Range_Radio_Desc".Translate(), 899));
+            }
             var turretGunDef = __instance.building?.turretGunDef ?? null;
 
             if (turretGunDef != null)

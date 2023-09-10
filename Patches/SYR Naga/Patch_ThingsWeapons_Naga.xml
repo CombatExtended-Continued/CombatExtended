@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<!-- Naga Weapons -->
 	<Operation Class="PatchOperationFindMod">
-			<mods>
-				<li>[SYR] Naga</li>
-			</mods>
+		<mods>
+			<li>[SYR] Naga</li>
+		</mods>
 		<match Class="PatchOperationSequence">
-		<operations>
+			<operations>
 
 				<!-- ========== Naga Revolver ========== -->
 
@@ -91,7 +91,6 @@
 						<ammoSet>AmmoSet_6x18mmCharged_NagaSMG</ammoSet>
 					</AmmoUser>
 
-
 					<FireModes>
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 						<aiAimMode>Snapshot</aiAimMode>
@@ -100,7 +99,7 @@
 					<weaponTags>
 						<li>SimpleNagaGun</li>
 					</weaponTags>
-					
+
 					<AllowWithRunAndGun>true</AllowWithRunAndGun>
 				</li>
 
@@ -147,9 +146,9 @@
 					<weaponTags>
 						<li>SimpleNagaGun</li>
 					</weaponTags>
-					
+
 					<AllowWithRunAndGun>true</AllowWithRunAndGun>
-				</li>			
+				</li>
 
 				<!-- ========== Naga Rifle ========== -->
 
@@ -188,7 +187,6 @@
 						<ammoSet>AmmoSet_5x35mmCharged_NagaRifle</ammoSet>
 					</AmmoUser>
 
-
 					<FireModes>
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
 						<aiAimMode>AimedShot</aiAimMode>
@@ -197,10 +195,10 @@
 					<weaponTags>
 						<li>AdvancedNagaGun</li>
 					</weaponTags>
-					
+
 					<AllowWithRunAndGun>true</AllowWithRunAndGun>
 				</li>
-				
+
 				<!-- ========== Naga Sniper Rifle ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -244,7 +242,7 @@
 					<weaponTags>
 						<li>NagaSniper</li>
 					</weaponTags>
-					
+
 					<AllowWithRunAndGun>false</AllowWithRunAndGun>
 				</li>
 
@@ -254,7 +252,7 @@
 						defName="Gun_NagaShotgun" or
 						defName="Gun_NagaRifle" or
 						defName="Gun_NagaSniper"
-					]/tools</xpath>
+						]/tools </xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -291,36 +289,36 @@
 						</tools>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Gun_NagaRevolver"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
-							  <label>grip</label>
-							  <capacities>
-								<li>Blunt</li>
-							  </capacities>
-							  <power>2</power>
-							  <cooldownTime>1.54</cooldownTime>
-							  <chanceFactor>1.5</chanceFactor>
-							  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-							  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
 							</li>
 							<li Class="CombatExtended.ToolCE">
-							  <label>muzzle</label>
-							  <capacities>
-								<li>Poke</li>
-							  </capacities>
-							  <power>2</power>
-							  <cooldownTime>1.54</cooldownTime>
-							  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-							  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 							</li>
 						</tools>
 					</value>
 				</li>
-		</operations>
+			</operations>
 		</match>
 	</Operation>
 </Patch>

@@ -35,11 +35,13 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="AM_Fireworm"]/statBases</xpath>
 					<value>
+						<ArmorRating_Heat>0.5</ArmorRating_Heat>
 						<AimingAccuracy>1.0</AimingAccuracy>
 						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 						<MeleeDodgeChance>0.01</MeleeDodgeChance>
 						<MeleeCritChance>0.19</MeleeCritChance>
 						<MeleeParryChance>0.19</MeleeParryChance>
+						<MaxHitPoints>350</MaxHitPoints>
 					</value>
 				</li>
 
@@ -59,6 +61,40 @@
 								<armorPenetrationBlunt>12</armorPenetrationBlunt>
 							</li>
 						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AM_Fireworm"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Fireworm"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AM_Fireworm"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2900</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>290</MaxOverHeal>
+							<MinArmorPct>0.5</MinArmorPct>
+							<MinArmorValueSharp>8</MinArmorValueSharp>
+							<MinArmorValueBlunt>16</MinArmorValueBlunt>
+						</li>
 					</value>
 				</li>
 

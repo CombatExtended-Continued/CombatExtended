@@ -1,48 +1,45 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
-    <mods>
-		<li>[RWY]Advanced Mechanoid Warfare</li>
-    </mods>
+		<mods>
+			<li>[RWY]Advanced Mechanoid Warfare</li>
+		</mods>
 		<match Class="PatchOperationSequence">
-		<operations>
-			
-			
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="BreacherGrenade"]/thingClass</xpath>
-				<value>
-					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="BreacherGrenade"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					  <explosionRadius>2.5</explosionRadius>
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
-					  <damageDef>Bomb</damageDef>
-					  <damageAmountBase>33</damageAmountBase> <!-- 70mm Mech Grenade damage / 4 -->
-					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-					  <speed>20</speed>
-					  <dropsCasings>false</dropsCasings>
-					</projectile>
-					<comps>
-					  <li Class="CombatExtended.CompProperties_Fragments">
-						<fragments>
-							<Fragment_Small>10</Fragment_Small>
-						</fragments>
-					  </li>
-					</comps>
-				</value>
-			</li>
-			
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Weapon_BreacherAMW</defName>
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BreacherGrenade"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BreacherGrenade"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>2.5</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>33</damageAmountBase><!-- 70mm Mech Grenade damage / 4 -->
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<speed>20</speed>
+							<dropsCasings>false</dropsCasings>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Fragment_Small>10</Fragment_Small>
+								</fragments>
+							</li>
+						</comps>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Weapon_BreacherAMW</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -74,34 +71,33 @@
 						<li>CE_AI_Launcher</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_PlasmaSpit"]/thingClass</xpath>
-				<value>
-					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_PlasmaSpit"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					  <damageDef>Bomb</damageDef>
-					  <damageAmountBase>309</damageAmountBase>
-					  <explosionRadius>3.2</explosionRadius>
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
-					  <speed>75</speed>
-					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-					  <dropsCasings>false</dropsCasings>
-					</projectile>
-				</value>
-			</li>
-			
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_PlasmaSpitInternal</defName>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_PlasmaSpit"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_PlasmaSpit"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>309</damageAmountBase>
+							<explosionRadius>3.2</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+							<speed>75</speed>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<dropsCasings>false</dropsCasings>
+						</projectile>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_PlasmaSpitInternal</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -130,49 +126,47 @@
 						<li>CE_AI_Launcher</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_KineticWing"]/thingClass</xpath>
-				<value>
-					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_KineticWing"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					  <damageDef>Bullet</damageDef>
-					  <damageAmountBase>50</damageAmountBase>
-					  <!--<soundExplode>MortarBomb_Explode</soundExplode>-->
-					  <armorPenetrationSharp>30</armorPenetrationSharp>
-					  <armorPenetrationBlunt>38.005</armorPenetrationBlunt>
-					  <flyOverhead>true</flyOverhead>
-					  <gravityFactor>20</gravityFactor>
-					  <speed>105</speed>
-					  <dropsCasings>false</dropsCasings>
-					</projectile>
-					<comps>
-					  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-						<damageAmountBase>64</damageAmountBase>
-						<explosiveDamageType>Bomb</explosiveDamageType>
-						<explosiveRadius>1.5</explosiveRadius>
-						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-					  </li>
-					  <li Class="CombatExtended.CompProperties_Fragments">
-						<fragments>
-							<Fragment_Small>10</Fragment_Small>
-						</fragments>
-					  </li>
-					</comps>
-				</value>
-			</li>
-			
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_KineticWingInternal</defName>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_KineticWing"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_KineticWing"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bullet</damageDef>
+							<damageAmountBase>50</damageAmountBase>
+							<!--<soundExplode>MortarBomb_Explode</soundExplode>-->
+							<armorPenetrationSharp>30</armorPenetrationSharp>
+							<armorPenetrationBlunt>38.005</armorPenetrationBlunt>
+							<flyOverhead>true</flyOverhead>
+							<gravityFactor>20</gravityFactor>
+							<speed>105</speed>
+							<dropsCasings>false</dropsCasings>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_ExplosiveCE">
+								<damageAmountBase>64</damageAmountBase>
+								<explosiveDamageType>Bomb</explosiveDamageType>
+								<explosiveRadius>1.5</explosiveRadius>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							</li>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Fragment_Small>10</Fragment_Small>
+								</fragments>
+							</li>
+						</comps>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_KineticWingInternal</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -206,44 +200,42 @@
 						<li>CE_AI_Launcher</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_PlasmaRocket"]/thingClass</xpath>
-				<value>
-					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_PlasmaRocket"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					  <damageDef>NovaBomb</damageDef>
-					  <damageAmountBase>45</damageAmountBase>
-					  <armorPenetrationSharp>0</armorPenetrationSharp>
-					  <armorPenetrationBlunt>30</armorPenetrationBlunt>
-					  <explosionRadius>1.5</explosionRadius>
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
-					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-					  <flyOverhead>false</flyOverhead>
-					  <speed>50</speed>
-					</projectile>
-					<comps>
-					  <li Class="CombatExtended.CompProperties_Fragments">
-						<fragments>
-							<Fragment_Small>10</Fragment_Small>
-						</fragments>
-					  </li>
-					</comps>
-				</value>
-			</li>
-			
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_PRInternal</defName>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_PlasmaRocket"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_PlasmaRocket"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>NovaBomb</damageDef>
+							<damageAmountBase>45</damageAmountBase>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+							<explosionRadius>1.5</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<flyOverhead>false</flyOverhead>
+							<speed>50</speed>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Fragment_Small>10</Fragment_Small>
+								</fragments>
+							</li>
+						</comps>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_PRInternal</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -276,11 +268,10 @@
 						<li>CE_AI_Launcher</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_NomadRifle</defName>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_NomadRifle</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -313,35 +304,34 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_CryoLiquid"]/thingClass</xpath>
-				<value>
-					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_CryoLiquid"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					  <damageDef>CryoFlame</damageDef>
-					  <damageAmountBase>4</damageAmountBase>
-					  <armorPenetrationSharp>0</armorPenetrationSharp>
-					  <armorPenetrationBlunt>20</armorPenetrationBlunt>
-					  <explosionRadius>1.2</explosionRadius>
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
-					  <speed>40</speed>
-					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-					</projectile>
-				</value>
-			</li>
-			
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_CryoInternal</defName>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_CryoLiquid"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_CryoLiquid"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>CryoFlame</damageDef>
+							<damageAmountBase>4</damageAmountBase>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							<explosionRadius>1.2</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+							<speed>40</speed>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_CryoInternal</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -374,12 +364,10 @@
 						<li>CE_AI_Launcher</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_Shreder</defName>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Shreder</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -412,10 +400,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_StalkerRifle</defName>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_StalkerRifle</defName>
 					<statBases>
 						<SightsEfficiency>2.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -448,18 +436,18 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="Gun_UWMEmp"]</xpath>
-			</li>
-			
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="Gun_UWMFire"]</xpath>
-			</li>
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_UWMCharge</defName>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Gun_UWMEmp"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Gun_UWMFire"]</xpath>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_UWMCharge</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -492,43 +480,41 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_ChargeCannon"]/thingClass</xpath>
-				<value>
-					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_ChargeCannon"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					  <explosionRadius>3.4</explosionRadius >
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
-					  <damageDef>Bomb</damageDef>
-					  <damageAmountBase>60</damageAmountBase>
-					  <armorPenetrationBlunt>48</armorPenetrationBlunt>
-					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-					  <speed>75</speed>
-					</projectile>
-					<comps>
-					  <li Class="CombatExtended.CompProperties_Fragments">
-						<fragments>
-						  <Fragment_Small>26</Fragment_Small>
-						</fragments>
-					  </li>
-					</comps>
-					
-				</value>
-			</li>
-			
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_ChargeCannonAWM</defName>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_ChargeCannon"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_ChargeCannon"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>3.4</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>60</damageAmountBase>
+							<armorPenetrationBlunt>48</armorPenetrationBlunt>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<speed>75</speed>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Fragment_Small>26</Fragment_Small>
+								</fragments>
+							</li>
+						</comps>
+
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_ChargeCannonAWM</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -561,11 +547,10 @@
 						<li>CE_AI_Launcher</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_IonLense</defName>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_IonLense</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -598,11 +583,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_Vaporizer</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Vaporizer</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -633,10 +617,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_BladeCannon</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_BladeCannon</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -659,24 +643,23 @@
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
-			</li>
-			
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_SupShard"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					  <damageDef>Bullet</damageDef>
-					  <damageAmountBase>5</damageAmountBase>
-					  <armorPenetrationSharp>12</armorPenetrationSharp>
-					  <armorPenetrationBlunt>8</armorPenetrationBlunt>
-					  <speed>40</speed>
-					</projectile>
-				</value>
-			</li>
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_VortexLaser</defName>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_SupShard"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bullet</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<speed>40</speed>
+						</projectile>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_VortexLaser</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -709,10 +692,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_AnarGattling</defName>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_AnarGattling</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -745,11 +728,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_Headhunter</defName>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_Headhunter</defName>
 					<statBases>
 						<SightsEfficiency>2.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -782,11 +764,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_SNomadRifle</defName>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_SNomadRifle</defName>
 					<statBases>
 						<SightsEfficiency>0.9</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -819,10 +800,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_IonPistol</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_IonPistol</defName>
 					<statBases>
 						<SightsEfficiency>0.9</SightsEfficiency>
 						<ShotSpread>0.21</ShotSpread>
@@ -855,10 +836,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_SShreder</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_SShreder</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -891,10 +872,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_SMG</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_SMG</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.09</ShotSpread>
@@ -927,10 +908,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_SlugRifle</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_SlugRifle</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.16</ShotSpread>
@@ -963,10 +944,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_SStalkerRifle</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_SStalkerRifle</defName>
 					<statBases>
 						<SightsEfficiency>1.5</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -999,10 +980,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_SChargeCannonAWM</defName>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_SChargeCannonAWM</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
@@ -1033,10 +1014,10 @@
 						<li>CE_AI_Launcher</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_GaussCannon</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_GaussCannon</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.03</ShotSpread>
@@ -1066,10 +1047,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_HeavyRifle</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_HeavyRifle</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.06</ShotSpread>
@@ -1101,10 +1082,10 @@
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>AMW_Gun_GrenadeShotgun</defName>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AMW_Gun_GrenadeShotgun</defName>
 					<statBases>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.16</ShotSpread>
@@ -1136,10 +1117,10 @@
 						<li>CE_AI_Launcher</li>
 						<li>NoSwitch</li>
 					</weaponTags>
-			</li>
+				</li>
 
-		</operations>
+			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>

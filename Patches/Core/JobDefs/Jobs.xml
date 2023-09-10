@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <Operation Class="PatchOperationReplace">
-  	<xpath>Defs/JobDef[defName="UnloadYourInventory"]/driverClass</xpath>
-  	<value>
-  		<driverClass>CombatExtended.JobDriver_UnloadYourInventory</driverClass>
-  	</value>
-  </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/JobDef[defName="UnloadYourInventory"]/driverClass</xpath>
+		<value>
+			<driverClass>CombatExtended.JobDriver_UnloadYourInventory</driverClass>
+		</value>
+	</Operation>
 
-  <Operation Class="PatchOperationReplace">
-  	<xpath>Defs/JobDef[defName="Hunt"]/driverClass</xpath>
-  	<value>
-  		<driverClass>CombatExtended.JobDriver_Hunt</driverClass>
-  	</value>
-  </Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/JobDef[defName="Hunt"]/driverClass</xpath>
+		<value>
+			<driverClass>CombatExtended.JobDriver_Hunt</driverClass>
+		</value>
+	</Operation>
 
-  <!-- Mark crouch jobs -->
+	<!-- Mark crouch jobs -->
 
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/JobDef[defName="AttackStatic" or defName="Wait_Combat" or defName="ManTurret" or defName="UseVerbOnThing" or defName="FleeAndCower"]</xpath>
-    <value>
-      <li Class="CombatExtended.JobDefExtensionCE">
-        <isCrouchJob>true</isCrouchJob>
-      </li>
-    </value>
-  </Operation>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/JobDef[defName="AttackStatic" or defName="Wait_Combat" or defName="ManTurret" or defName="UseVerbOnThing" or defName="FleeAndCower"]</xpath>
+		<value>
+			<li Class="CombatExtended.JobDefExtensionCE">
+				<isCrouchJob>true</isCrouchJob>
+			</li>
+		</value>
+	</Operation>
+
 </Patch>
-

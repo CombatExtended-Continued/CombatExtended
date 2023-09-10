@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
 		<defName>AmmoMusketBall</defName>
 		<label>Musket ball</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<!-- High Velocity -->
@@ -27,7 +27,7 @@
 			<Ammo_MusketBall>Bullet_SlowMusketBall</Ammo_MusketBall>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="MusketBallBase" ParentName="AmmoBase" Abstract="True">
@@ -37,10 +37,10 @@
 			<Bulk>0.12</Bulk>
 		</statBases>
 		<tradeTags>
-		  <li>CE_PreIndustrialAmmo</li>
-		  <li>CE_AutoEnableTrade</li>
-		  <li>CE_AutoEnableCrafting_FueledSmithy</li>
-		  <li>CE_AutoEnableCrafting_ElectricSmithy</li>
+			<li>CE_PreIndustrialAmmo</li>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FueledSmithy</li>
+			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
 		</tradeTags>
 		<thingCategories>
 			<li>AmmoMusketBall</li>
@@ -62,7 +62,7 @@
 	</ThingDef>
 
 	<!-- ================== Projectile Base ================== -->
-	
+
 	<ThingDef Name="MusketBallBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_big</texPath>
@@ -108,15 +108,15 @@
 		<description>Craft 100 musket balls.</description>
 		<jobString>Making musket balls.</jobString>
 		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
-    	<workAmount>2000</workAmount>
+		<workAmount>2000</workAmount>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-					<li>Steel</li>
-				</thingDefs>
-			</filter>
-			<count>20</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>

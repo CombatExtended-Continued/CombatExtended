@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Caverns</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Buffing -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="BMT_BloodSuck"]/additionalHediffs/li[hediff="BloodLoss"]/severityPerDamageDealt</xpath>
+					<value>
+						<severityPerDamageDealt>0.03</severityPerDamageDealt>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

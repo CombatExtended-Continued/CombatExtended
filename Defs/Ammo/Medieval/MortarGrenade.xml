@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 	<ThingCategoryDef>
 		<defName>MortarGrenade</defName>
@@ -13,20 +13,20 @@
 		<defName>AmmoSet_MortarGrenade</defName>
 		<label>Mortar Grenades</label>
 		<ammoTypes>
-			<Ammo_MortarGrenade>Bullet_MortarGrenade</Ammo_MortarGrenade>      
+			<Ammo_MortarGrenade>Bullet_MortarGrenade</Ammo_MortarGrenade>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" Name="HandMortarBombBase" ParentName="AmmoBase" Abstract="True">
 		<description>Low velocity grenade fired from a hand mortar.</description>
 		<graphicData>
 			<drawSize>0.80</drawSize>
-		</graphicData>  
+		</graphicData>
 		<statBases>
 			<Mass>0.95</Mass>
-			<Bulk>0.5</Bulk>
+			<Bulk>0.51</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -36,11 +36,11 @@
 		<thingCategories>
 			<li>MortarGrenade</li>
 		</thingCategories>
-		<stackLimit>100</stackLimit>
+		<stackLimit>150</stackLimit>
 		<cookOffFlashScale>20</cookOffFlashScale>
 		<techLevel>Medieval</techLevel>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HandMortarBombBase">
 		<defName>Ammo_MortarGrenade</defName>
 		<label>mortar grenade</label>
@@ -49,7 +49,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>2.96</MarketValue>
+			<MarketValue>5.07</MarketValue>
 		</statBases>
 		<ammoClass>BurstingShell</ammoClass>
 		<detonateProjectile>Bullet_MortarGrenade</detonateProjectile>
@@ -57,26 +57,25 @@
 
 	<!-- ================== Projectiles ================== -->
 
-
 	<ThingDef ParentName="Base40x46mmGrenadeBullet">
 		<defName>Bullet_MortarGrenade</defName>
 		<label>Mortar Grenade</label>
 		<graphicData>
 			<texPath>Things/Projectile/Grenades/BallGrenade</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>		
+		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>1.0</explosionRadius>
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>30</damageAmountBase>
-			<speed>21</speed>
+			<speed>25</speed>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Small>12</Fragment_Small>
-			</fragments>
+				<fragments>
+					<Fragment_Medium>6</Fragment_Medium>
+				</fragments>
 			</li>
 		</comps>
 	</ThingDef>
@@ -85,38 +84,38 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_MortarGrenade</defName>
-		<label>Make Mortar Grenade x6</label>
-		<description>Craft 6 Mortar Grenades</description>
+		<label>Make Mortar Grenade x25</label>
+		<description>Craft 25 Mortar Grenades</description>
 		<jobString>Making Mortar Grenades</jobString>
 		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
 		<ingredients>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>Steel</li>
-				</thingDefs>
-			</filter>
-			<count>15</count>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>48</count>
 			</li>
 			<li>
-			<filter>
-				<thingDefs>
-				<li>FSX</li>
-				</thingDefs>
-			</filter>
-			<count>8</count>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-			<li>Steel</li>
-			<li>FSX</li>
+				<li>Steel</li>
+				<li>FSX</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_MortarGrenade>6</Ammo_MortarGrenade>
+			<Ammo_MortarGrenade>25</Ammo_MortarGrenade>
 		</products>
-		<workAmount>8000</workAmount>
+		<workAmount>6400</workAmount>
 	</RecipeDef>
-				
+
 </Defs>

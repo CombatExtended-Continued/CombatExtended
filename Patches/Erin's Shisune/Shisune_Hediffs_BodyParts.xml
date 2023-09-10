@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Erin's Shisune</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="ERN_Fangs"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fangs</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>1.5</cooldownTime>
+								<armorPenetrationBlunt>0.15</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

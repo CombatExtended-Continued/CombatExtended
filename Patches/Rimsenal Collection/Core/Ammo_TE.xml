@@ -1,132 +1,132 @@
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
-    <mods>
-		<li>Rimsenal - Core</li>
-    </mods>
+		<mods>
+			<li>Rimsenal - Core</li>
+		</mods>
 		<match Class="PatchOperationSequence">
-		 <operations>		
-		
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/DamageDef[defName="KineticImpact"]/defaultDamage</xpath>
-			<value>
-				<defaultDamage>25</defaultDamage>
-				<defaultArmorPenetration>50</defaultArmorPenetration>
-			</value>
-		</li>
+			<operations>
 
-		<li Class="PatchOperationAdd">
-			<xpath>Defs</xpath>
-			<value>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="KineticImpact"]/defaultDamage</xpath>
+					<value>
+						<defaultDamage>25</defaultDamage>
+						<defaultArmorPenetration>50</defaultArmorPenetration>
+					</value>
+				</li>
 
-<!-- TE Universal Power Cell -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
 
-	<ThingCategoryDef>
-		<defName>AmmoTEUniversalPowerCell</defName>
-		<label>TE Universal Power Cell</label>
-		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
-	</ThingCategoryDef>
+						<!-- TE Universal Power Cell -->
 
-	<!-- ==================== Ammo ========================== -->
-	
-	<ThingDef Class="CombatExtended.AmmoDef" Name="TEPowerCoreBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>A power cell used by the Tisiphone Enterprise kinetic force family of weaponry weaponry.</description>
-		<statBases>
-			<Mass>0.005</Mass>
-			<Bulk>0.01</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoTEPowerCore</li>
-		</thingCategories>
-	</ThingDef>
+						<ThingCategoryDef>
+							<defName>AmmoTEUniversalPowerCell</defName>
+							<label>TE Universal Power Cell</label>
+							<parent>AmmoRifles</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+						</ThingCategoryDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TEPowerCoreBase">
-		<defName>Ammo_TEPowerCell</defName>
-		<label>TE Universal Power Cell (KE)</label>
-		<graphicData>
-			<texPath>ThirdParty/Rimsenal/TE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>1.5</MarketValue>
-		</statBases>
-		<ammoClass>KineticEnergy</ammoClass>
-	</ThingDef>
+						<!-- ==================== Ammo ========================== -->
 
-	<!-- ==================== Recipe: TE Universal Power Cell ========================== -->
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_TEPowerCell</defName>
-		<label>make TE Universal Power Cell x500</label>
-		<description>Craft 500 TE Universal Power Cell.</description>
-		<jobString>Making TE Universal Power Cell.</jobString>
-		<ingredients>
-		  <li>
-			<filter>
-			  <thingDefs>
-				<li>Plasteel</li>
-			  </thingDefs>
-			</filter>
-			<count>18</count>
-		  </li>
-		  <li>
-			<filter>
-			  <thingDefs>
-				<li>Steel</li>
-			  </thingDefs>
-			</filter>
-			<count>10</count>
-		  </li>	  
-		  <li>
-			<filter>
-			  <thingDefs>
-				<li>ComponentIndustrial</li>
-			  </thingDefs>
-			</filter>
-			<count>18</count>
-		  </li>
-		</ingredients>
-		<fixedIngredientFilter>
-		  <thingDefs>
-			<li>Plasteel</li>
-			<li>Steel</li>		
-			<li>ComponentIndustrial</li>
-		  </thingDefs>
-		</fixedIngredientFilter>
-		<researchPrerequisite>KineticTech</researchPrerequisite>
-		<recipeUsers Inherit="False">
-			<li>TETable</li>
-		</recipeUsers>		
-		<products>
-			<Ammo_TEPowerCell>500</Ammo_TEPowerCell>
-		</products>
-	<workAmount>19000</workAmount>
-	</RecipeDef>
+						<ThingDef Class="CombatExtended.AmmoDef" Name="TEPowerCoreBase" ParentName="SmallAmmoBase" Abstract="True">
+							<description>A power cell used by the Tisiphone Enterprise kinetic force family of weaponry weaponry.</description>
+							<statBases>
+								<Mass>0.005</Mass>
+								<Bulk>0.01</Bulk>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade</li>
+								<li>CE_AutoEnableCrafting</li>
+							</tradeTags>
+							<thingCategories>
+								<li>AmmoTEPowerCore</li>
+							</thingCategories>
+						</ThingDef>
 
-	<!-- ==================== TE Power Core ========================== -->
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="TEPowerCoreBase">
+							<defName>Ammo_TEPowerCell</defName>
+							<label>TE Universal Power Cell (KE)</label>
+							<graphicData>
+								<texPath>ThirdParty/Rimsenal/TE</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>1.5</MarketValue>
+							</statBases>
+							<ammoClass>KineticEnergy</ammoClass>
+						</ThingDef>
 
-	<ThingCategoryDef>
-		<defName>AmmoTEPowerCore</defName>
-		<label>TE Power Core</label>
-		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
-	</ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+						<!-- ==================== Recipe: TE Universal Power Cell ========================== -->
+						<RecipeDef ParentName="AmmoRecipeBase">
+							<defName>MakeAmmo_TEPowerCell</defName>
+							<label>make TE Universal Power Cell x500</label>
+							<description>Craft 500 TE Universal Power Cell.</description>
+							<jobString>Making TE Universal Power Cell.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Plasteel</li>
+										</thingDefs>
+									</filter>
+									<count>18</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>10</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>ComponentIndustrial</li>
+										</thingDefs>
+									</filter>
+									<count>18</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Plasteel</li>
+									<li>Steel</li>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<researchPrerequisite>KineticTech</researchPrerequisite>
+							<recipeUsers Inherit="False">
+								<li>TETable</li>
+							</recipeUsers>
+							<products>
+								<Ammo_TEPowerCell>500</Ammo_TEPowerCell>
+							</products>
+							<workAmount>19000</workAmount>
+						</RecipeDef>
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_TEPowerCore</defName>
-		<label>TE Power Core</label>
-		<ammoTypes>
-			<Ammo_TEPowerCell>Bullet_TEPowerCore_KE</Ammo_TEPowerCell>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
+						<!-- ==================== TE Power Core ========================== -->
 
-	<!-- ================== Projectiles ==================
+						<ThingCategoryDef>
+							<defName>AmmoTEPowerCore</defName>
+							<label>TE Power Core</label>
+							<parent>AmmoRifles</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+						</ThingCategoryDef>
+
+						<!-- ==================== AmmoSet ========================== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_TEPowerCore</defName>
+							<label>TE Power Core</label>
+							<ammoTypes>
+								<Ammo_TEPowerCell>Bullet_TEPowerCore_KE</Ammo_TEPowerCell>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ================== Projectiles ==================
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_TEPowerCore_KE</defName>
@@ -151,152 +151,150 @@
 		  </li>
 		</comps>
 	</ThingDef> -->
-	
-	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletPurple">
-		<defName>Bullet_TEPowerCore_KE</defName>
-		<label>TE energy blast (KE)</label>
-		<graphicData>
-			<texPath>Things/Projectile/ImpactL</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>		
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>KineticImpact</damageDef>
-			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>16</damageAmountBase>
-			<armorPenetrationBlunt>2000</armorPenetrationBlunt>
-		</projectile>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>1</damageAmountBase>
-			<explosiveDamageType>KineticImpact</explosiveDamageType>
-			<explosiveRadius>0.5</explosiveRadius>
-			<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
-		  </li>
-		</comps>
-	</ThingDef>
 
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletPurple">
+							<defName>Bullet_TEPowerCore_KE</defName>
+							<label>TE energy blast (KE)</label>
+							<graphicData>
+								<texPath>Things/Projectile/ImpactL</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>KineticImpact</damageDef>
+								<dropsCasings>false</dropsCasings>
+								<damageAmountBase>16</damageAmountBase>
+								<armorPenetrationBlunt>2000</armorPenetrationBlunt>
+							</projectile>
+							<comps>
+								<li Class="CombatExtended.CompProperties_ExplosiveCE">
+									<damageAmountBase>1</damageAmountBase>
+									<explosiveDamageType>KineticImpact</explosiveDamageType>
+									<explosiveRadius>0.5</explosiveRadius>
+									<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+								</li>
+							</comps>
+						</ThingDef>
 
-	<!-- ==================== TE Power Charge ========================== -->
+						<!-- ==================== TE Power Charge ========================== -->
 
-	<ThingCategoryDef>
-		<defName>AmmoTEPowerCharge</defName>
-		<label>TE Power Charge</label>
-		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
-	</ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+						<ThingCategoryDef>
+							<defName>AmmoTEPowerCharge</defName>
+							<label>TE Power Charge</label>
+							<parent>AmmoRifles</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+						</ThingCategoryDef>
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_TEPowerCharge</defName>
-		<label>TE Power Charge</label>
-		<ammoTypes>
-			<Ammo_TEPowerCell>Bullet_TEPowerCharge_KE</Ammo_TEPowerCell>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-	
-	<!-- ================== Projectiles ================== -->
+						<!-- ==================== AmmoSet ========================== -->
 
-	<ThingDef ParentName="Base556x45mmNATOBullet">
-		<defName>Bullet_TEPowerCharge_KE</defName>
-		<label>TE energy blast (KE)</label>
-		<graphicData>
-			<texPath>Things/Projectile/ImpactM</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>		
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>KineticImpact</damageDef>
-			<speed>61</speed>
-			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>30</damageAmountBase>
-			<armorPenetrationBlunt>24</armorPenetrationBlunt>
-		</projectile>
-	</ThingDef>
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_TEPowerCharge</defName>
+							<label>TE Power Charge</label>
+							<ammoTypes>
+								<Ammo_TEPowerCell>Bullet_TEPowerCharge_KE</Ammo_TEPowerCell>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
 
-	<!-- ==================== TE Energy Canister ========================== -->
+						<!-- ================== Projectiles ================== -->
 
-	<ThingCategoryDef>
-		<defName>AmmoTEEnergyCanister</defName>
-		<label>TE Energy Canister</label>
-		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
-	</ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+						<ThingDef ParentName="Base556x45mmNATOBullet">
+							<defName>Bullet_TEPowerCharge_KE</defName>
+							<label>TE energy blast (KE)</label>
+							<graphicData>
+								<texPath>Things/Projectile/ImpactM</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>KineticImpact</damageDef>
+								<speed>61</speed>
+								<dropsCasings>false</dropsCasings>
+								<damageAmountBase>30</damageAmountBase>
+								<armorPenetrationBlunt>24</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_TEEnergyCanister</defName>
-		<label>TE Energy Canister</label>
-		<ammoTypes>
-			<Ammo_TEPowerCell>Bullet_TEEnergyCanister_KE</Ammo_TEPowerCell>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
+						<!-- ==================== TE Energy Canister ========================== -->
 
-	<!-- ================== Projectiles ================== -->
+						<ThingCategoryDef>
+							<defName>AmmoTEEnergyCanister</defName>
+							<label>TE Energy Canister</label>
+							<parent>AmmoRifles</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+						</ThingCategoryDef>
 
-	<ThingDef ParentName="Base30x29mmGrenadeBullet">
-		<defName>Bullet_TEEnergyCanister_KE</defName>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<label>TE energy blast (KE)</label>
-		<graphicData>
-			<texPath>Things/Projectile/ImpactB</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>		
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>KineticImpact</damageDef>
-			<speed>54</speed>
-		</projectile>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<explosiveDamageType>KineticImpact</explosiveDamageType>
-			<explosiveRadius>1.5</explosiveRadius>
-			<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
-		  </li>
-		</comps>
-	</ThingDef>
+						<!-- ==================== AmmoSet ========================== -->
 
-	<!-- ==================== TE Concentrated Power Charge ========================== -->
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_TEEnergyCanister</defName>
+							<label>TE Energy Canister</label>
+							<ammoTypes>
+								<Ammo_TEPowerCell>Bullet_TEEnergyCanister_KE</Ammo_TEPowerCell>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
 
-	<ThingCategoryDef>
-		<defName>AmmoTEConcentratedPowerCharge</defName>
-		<label>TE Concentrated Power Charge</label>
-		<parent>AmmoRifles</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
-	</ThingCategoryDef>
-	
-	<!-- ==================== AmmoSet ========================== -->
+						<!-- ================== Projectiles ================== -->
 
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_TEConcentratedPowerCharge</defName>
-		<label>TE Concentrated Power Charge</label>
-		<ammoTypes>
-			<Ammo_TEPowerCell>Bullet_TEConcentratedPowerCharge_KE</Ammo_TEPowerCell>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
+						<ThingDef ParentName="Base30x29mmGrenadeBullet">
+							<defName>Bullet_TEEnergyCanister_KE</defName>
+							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+							<label>TE energy blast (KE)</label>
+							<graphicData>
+								<texPath>Things/Projectile/ImpactB</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>KineticImpact</damageDef>
+								<speed>54</speed>
+							</projectile>
+							<comps>
+								<li Class="CombatExtended.CompProperties_ExplosiveCE">
+									<explosiveDamageType>KineticImpact</explosiveDamageType>
+									<explosiveRadius>1.5</explosiveRadius>
+									<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+								</li>
+							</comps>
+						</ThingDef>
 
-	<!-- ================== Projectiles ================== -->
+						<!-- ==================== TE Concentrated Power Charge ========================== -->
 
-	<ThingDef ParentName="Base556x45mmNATOBullet">
-		<defName>Bullet_TEConcentratedPowerCharge_KE</defName>
-		<label>TE energy blast (KE)</label>
-		<graphicData>
-			<texPath>Things/Projectile/ImpactL</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>		
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>KineticImpact</damageDef>
-			<speed>83</speed>
-			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>40</damageAmountBase>
-			<armorPenetrationBlunt>54</armorPenetrationBlunt>
-		</projectile>
-	</ThingDef>
+						<ThingCategoryDef>
+							<defName>AmmoTEConcentratedPowerCharge</defName>
+							<label>TE Concentrated Power Charge</label>
+							<parent>AmmoRifles</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+						</ThingCategoryDef>
 
-		</value>
-		</li>
+						<!-- ==================== AmmoSet ========================== -->
 
-		</operations>
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_TEConcentratedPowerCharge</defName>
+							<label>TE Concentrated Power Charge</label>
+							<ammoTypes>
+								<Ammo_TEPowerCell>Bullet_TEConcentratedPowerCharge_KE</Ammo_TEPowerCell>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ================== Projectiles ================== -->
+
+						<ThingDef ParentName="Base556x45mmNATOBullet">
+							<defName>Bullet_TEConcentratedPowerCharge_KE</defName>
+							<label>TE energy blast (KE)</label>
+							<graphicData>
+								<texPath>Things/Projectile/ImpactL</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>KineticImpact</damageDef>
+								<speed>83</speed>
+								<dropsCasings>false</dropsCasings>
+								<damageAmountBase>40</damageAmountBase>
+								<armorPenetrationBlunt>54</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+					</value>
+				</li>
+
+			</operations>
 		</match>
 	</Operation>
 </Patch>
-			

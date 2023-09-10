@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<!-- ========== Cover-Seeking Behavior ========== -->
-  
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/PawnKindDef[defName="Mech_Tesseron" or defName="Mech_Apocriton"]</xpath>
 		<value>
@@ -45,8 +45,8 @@
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>4</min>
-					<max>5</max>
+					<min>3</min>
+					<max>4</max>
 				</primaryMagazineCount>
 			</li>
 		</value>
@@ -57,8 +57,8 @@
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>10</min>
-					<max>12</max>
+					<min>9</min>
+					<max>10</max>
 				</primaryMagazineCount>
 			</li>
 		</value>
@@ -95,6 +95,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Tesseron"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>0.25</ArmorRating_Heat>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Legionary"]/statBases/EnergyShieldRechargeRate</xpath>
 		<value>
@@ -116,6 +123,38 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Legionary" or defName="Mech_Tesseron"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Legionary" or defName="Mech_Tesseron"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Legionary" or defName="Mech_Tesseron"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>100</MaxOverHeal>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- ========== Scorcher ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -130,6 +169,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_Scorcher"]/statBases</xpath>
 		<value>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
 			<CarryBulk>30</CarryBulk>
 			<MeleeDodgeChance>0.13</MeleeDodgeChance>
 			<MeleeCritChance>0.12</MeleeCritChance>
@@ -178,6 +218,38 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Scorcher"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Scorcher"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Scorcher"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>850</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>85</MaxOverHeal>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- ========== Apocriton ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -192,6 +264,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/statBases</xpath>
 		<value>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
 			<CarryWeight>60</CarryWeight>
 			<CarryBulk>30</CarryBulk>
 			<MeleeDodgeChance>0.07</MeleeDodgeChance>
@@ -245,6 +318,40 @@
 					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Apocriton"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>3100</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>310</MaxOverHeal>
+				<MinArmorPct>0.5</MinArmorPct>
+				<MinArmorValueSharp>14</MinArmorValueSharp>
+				<MinArmorValueBlunt>35</MinArmorValueBlunt>
+			</li>
 		</value>
 	</Operation>
 

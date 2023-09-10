@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Caverns</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_Pillbug"]/statBases/MoveSpeed</xpath>
+
+					<value>
+						<MoveSpeed>2.3</MoveSpeed>
+						<MeleeDodgeChance>0.11</MeleeDodgeChance>
+						<MeleeCritChance>0.01</MeleeCritChance>
+						<MeleeParryChance>0.0</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_Pillbug"]/race/baseHealthScale</xpath>
+
+					<value>
+						<baseHealthScale>0.3</baseHealthScale>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_Pillbug"]/tools</xpath>
+
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.12</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.51</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>mandibles</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.15</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

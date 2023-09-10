@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/QuestScriptDef[defName="ProblemCauser"]/questNameRules/rulesStrings/li[2]</xpath>
+		<value>
+			<li>questName(siteFaction==Mechanoid)->Mech cluster with a [problemCauserLabel]</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/QuestScriptDef[defName="ProblemCauser"]/questDescriptionRules/rulesStrings/li[2]</xpath>
+		<value>
+			<li>questDescription(siteFaction==Mechanoid)->A mechanoid cluster has landed not far from [map_definite]. [allSitePartsDescriptions]\n\nThe mech cluster will remain until you send a team there to attack and destroy it.</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/QuestScriptDef[defName="ProblemCauser"]/root[@Class="QuestNode_Sequence"]/nodes/li[@Class="QuestNode_RandomNode"]/nodes</xpath>
+		<value>
+			<nodes>
+				<li Class="QuestNode_Sequence">
+					<nodes>
+						<li Class="QuestNode_Set">
+							<name>siteFaction</name>
+							<value>Pirate</value>
+						</li>
+						<li Class="QuestNode_Set">
+							<name>sitePartsTags</name>
+							<value>
+								<li>
+									<tag>QuestConditionCauser</tag>
+								</li>
+								<li>
+									<tag>Outpost</tag>
+								</li>
+							</value>
+						</li>
+					</nodes>
+					<selectionWeight>$selectionWeightPirate</selectionWeight>
+				</li>
+				<li Class="QuestNode_Sequence">
+					<nodes>
+						<li Class="QuestNode_Set">
+							<name>siteFaction</name>
+							<value>Mechanoid</value>
+						</li>
+						<li Class="QuestNode_Set">
+							<name>sitePartsTags</name>
+							<value>
+								<li>
+									<tag>QuestConditionCauser</tag>
+								</li>
+								<li>
+									<tag>MechClusterForceNoConditionCauser</tag>
+								</li>
+							</value>
+						</li>
+					</nodes>
+					<selectionWeight>$selectionWeightMechanoid</selectionWeight>
+				</li>
+			</nodes>
+		</value>
+	</Operation>
+
+</Patch>

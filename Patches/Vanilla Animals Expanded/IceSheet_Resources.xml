@@ -1,40 +1,40 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-  <Operation Class="PatchOperationFindMod">
-    <mods>
-      <li>Vanilla Animals Expanded</li>
-    </mods>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Animals Expanded</li>
+		</mods>
 
-    <match Class="PatchOperationSequence">
-      <operations>
-      
-        <!-- === Walrus Tusk === -->
-        <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="AEXP_WalrusTusk"]/tools</xpath>
-        </li>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-        <li Class="PatchOperationAttributeSet">
-          <xpath>Defs/ThingDef[defName="AEXP_WalrusTusk"]</xpath>
-          <attribute>ParentName</attribute>
-          <value>ResourceBase</value>
-        </li>
+				<!-- === Walrus Tusk === -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="AEXP_WalrusTusk"]/tools</xpath>
+				</li>
 
-        <!-- === Pinniped Leather === -->
-        <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="AEXP_Leather_Pinniped"]/statBases/StuffPower_Armor_Sharp</xpath>
-        </li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="AEXP_WalrusTusk"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>ResourceBase</value>
+				</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/ThingDef[defName="AEXP_Leather_Pinniped"]/statBases</xpath>
+				<!-- === Pinniped Leather === -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="AEXP_Leather_Pinniped"]/statBases/StuffPower_Armor_Sharp</xpath>
+				</li>
 
-          <value>
-            <StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
-            <StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
-          </value>
-        </li>
-      </operations>
-    </match>
-  </Operation>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AEXP_Leather_Pinniped"]/statBases</xpath>
+
+					<value>
+						<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
+						<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
 
 </Patch>
