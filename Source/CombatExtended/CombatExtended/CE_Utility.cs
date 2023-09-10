@@ -759,6 +759,10 @@ namespace CombatExtended
         {
             drawOffset = Vector3.zero;
             angleOffset = 0f;
+            if (shootVerb == null || shootVerb.IsMeleeAttack)
+            {
+                return;
+            }
             float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount;
 
             float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
@@ -766,7 +770,7 @@ namespace CombatExtended
             recoil = Math.Min(recoil * recoil, 20) * RecoilMagicNumber * Mathf.Clamp((float)Math.Log10(recoilRelaxation), 0.1f, 10);
 
             //Prevents recoil for something with absurd ROF, it's too fast for any meaningful recoil animation
-            if (recoil <= 0f || shootVerb == null || recoilRelaxation < 2)
+            if (recoilRelaxation < 2)
             {
                 return;
             }
@@ -782,6 +786,7 @@ namespace CombatExtended
                     recoilRelaxation = recoilAdjustExtension.recoilTick > 0 ? recoilAdjustExtension.recoilTick : recoilRelaxation;
                     recoil = recoilAdjustExtension.recoilScale > 0 ? recoilAdjustExtension.recoilScale : recoil;
                     muzzleJumpModifier *= recoilAdjustExtension.muzzleJumpModifier > 0 ? recoilAdjustExtension.muzzleJumpModifier : 1;
+                    if (recoil <= 0) { return; }
                 }
 
 
