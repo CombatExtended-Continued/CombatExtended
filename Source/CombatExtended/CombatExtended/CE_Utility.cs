@@ -697,22 +697,28 @@ namespace CombatExtended
         #endregion Misc
 
         #region MoteThrower
-        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float size = 1f)
+        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f)
         {
             if (!Controller.settings.ShowCasings || !loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
             }
-
+            if (recoilAmount <= 0)
+            {
+                recoilAmount = 1; //avoid division errors in case of guns without recoil
+            }
             Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
             creationData.airTimeLeft = 1.5f;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
-            creationData.rotation = Rand.Range(-3f, 4f);
             creationData.spawnPosition = loc;
-            creationData.velocitySpeed = Rand.Range(0.7f, 0.5f);
-            creationData.velocityAngle = Rand.Range(160, 200);
-            creationData.rotationRate = (float)Rand.Range(-300, 300);
+            creationData.velocitySpeed = Rand.Range(0.6f, 0.4f) * recoilAmount;
+            int randomAngle = Rand.Range(-20, 20);
+            //shotRotation goes from -270 to +90, while fleck angle uses 0 to 360 degrees (0 deg being North for both cases), so a conversion is used
+            //+90 makes casings fly to gun's right side
+            creationData.velocityAngle = shotRotation>0? 360 - shotRotation +90 + randomAngle : 0 - shotRotation + 90 + randomAngle;
+            creationData.rotation = creationData.velocityAngle + Rand.Range(-3f, 4f);
+            creationData.rotationRate = (float)Rand.Range(-150, 150) / recoilAmount;
             map.flecks.CreateFleck(creationData);
             Rand.PopState();
         }
