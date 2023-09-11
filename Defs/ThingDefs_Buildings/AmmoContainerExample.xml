@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <!--
+	<!--
 	
-===Ammo container example def
+		===Ammo container example def
 	
 	<ThingDef ParentName="BuildingBase">
 		<defName>BDsAmmoContainerTest</defName>
 		<label>ammo container test</label>
 		<description>An ammo crate with magical autoloaders.</description>
 
-===Thing class, ticker type and drawer type are mandatory===
+		===Thing class, ticker type and drawer type are mandatory===
 
 		<thingClass>CombatExtended.Building_AmmoContainerCE</thingClass>
 		<tickerType>Normal</tickerType>
 		<drawerType>MapMeshAndRealTime</drawerType>
 
-===This Ammo user is the container's ammo capacity and reload time===
+		===This Ammo user is the container's ammo capacity and reload time===
 
 		<comps>
 			<li Class="CombatExtended.CompProperties_AmmoUser">
@@ -24,7 +24,7 @@
 				<ammoSet>AmmoSet_145x114mm</ammoSet>
 			</li>
 			
-===If CompMannable and CompPowerTrader are present, they'll be taken into account too, same goes for CompInitiatable and CompCanBeDormant===
+		===If CompMannable and CompPowerTrader are present, they'll be taken into account too, same goes for CompInitiatable and CompCanBeDormant===
 			
 			<li Class="CompProperties_Mannable">
 				<manWorkType>Hauling</manWorkType>
@@ -35,7 +35,7 @@
 			</li>
 		</comps>
     
-===Different graphics can be applied at empty, half full (above 0) and full (above 75%) if this mod extension exists===
+		===Different graphics can be applied at empty, half full (above 0) and full (above 75%) if this mod extension exists===
     
     <modExtensions>
 			<li Class="CombatExtended.ModExtension_AmmoContainerGraphics">
@@ -53,7 +53,9 @@
 				</fullGraphic>
         
         <halfFullGraphic>
-===This is left deliberately empty, The code should fall back to default graphic if the current situation's graphics is left blank===
+
+		===This is left deliberately empty, The code should fall back to default graphic if the current situation's graphics is left blank===
+
         </halfFullGraphic>
         
 				<emptyGraphic>
@@ -71,7 +73,7 @@
 			</li>
 		</modExtensions>
 
-===Generic stuffs here===
+		===Generic stuffs here===
 
 		<graphicData>
 			<texPath>Things/Building/Misc/ToolCabinet</texPath>
@@ -105,7 +107,7 @@
 			<Mass>20</Mass>
 			<Flammability>0.5</Flammability>
 			
-===Look at this reload speed. this controls how fast/slow autoloader loads===
+		===Look at this reload speed. this controls how fast/slow autoloader loads===
 			
 			<ReloadSpeed>0.5</ReloadSpeed>
 		</statBases>
@@ -116,4 +118,5 @@
 		</thingCategories>
 	</ThingDef>
 	-->
+
 </Defs>
