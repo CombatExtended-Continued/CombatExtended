@@ -112,22 +112,26 @@
 		</modExtensions>
 	</JobDef>
 
-  <JobDef>
-    <defName>TendSelf</defName>
-    <driverClass>JobDriver_TendPatient</driverClass>
-    <reportString>tending to TargetA.</reportString>
-    <casualInterruptible>false</casualInterruptible>
-    <modExtensions>
-      <li Class="CombatExtended.JobDefExtensionCE">
-        <isCrouchJob>true</isCrouchJob>
-      </li>
-    </modExtensions>
-  </JobDef>
-
 	<JobDef>
 		<defName>RepairNaturalArmor</defName>
 		<driverClass>CombatExtended.JobDriver_RepairNaturalArmor</driverClass>
 		<reportString>Fixing TargetA 's natural armor.</reportString>
 	</JobDef>
 
+    <JobDef>
+    <defName>ReloadAmmoContainer</defName>
+    <driverClass>CombatExtended.JobDriver_ReloadAmmoContainer</driverClass>
+    <reportString>Reloading TargetA with TargetB.</reportString>
+    <modExtensions>
+      <li Class="CombatExtended.JobDefExtensionCE">
+        <isCrouchJob>true</isCrouchJob>
+      </li>
+    </modExtensions>
+  </JobDef>
+  
+    <JobDef>
+    <defName>GiveAmmo</defName>
+    <driverClass>CombatExtended.JobDriver_GiveAmmo</driverClass>
+    <reportString>Giving TargetB to TargetA.</reportString>
+  </JobDef>
 </Defs>
