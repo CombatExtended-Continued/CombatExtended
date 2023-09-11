@@ -374,7 +374,7 @@ namespace CombatExtended
 
             yield return toil;
 
-            var toilWait = Toils_General.Wait(natArmor.durabilityProps.RepairTime, TargetIndex.A).WithProgressBarToilDelay(TargetIndex.A);
+            var toilWait = Toils_General.WaitWith(TargetIndex.A, natArmor.durabilityProps.RepairTime, true, true, true, face: TargetIndex.A);
 
             toilWait.AddFinishAction(
                 delegate
