@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Archotech Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<ThingCategoryDef>
+					<defName>AmmoArchoChargePack</defName>
+					<label>Archo charge pack</label>
+					<parent>AmmoAdvanced</parent>
+					<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+				</ThingCategoryDef>
+
+				<!-- ==================== Ammo ========================== -->
+				<ThingDef Class="CombatExtended.AmmoDef" Name="ArchoChargePackBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+					<description>A universal charge pack for various Archo weapons.</description>
+					<statBases>
+						<Mass>0.008</Mass>
+						<Bulk>0.01</Bulk>
+					</statBases>
+					<tradeTags>
+						<li>CE_AutoEnableTrade</li>
+						<li>Artifact</li>
+					</tradeTags>
+					<thingCategories>
+						<li>AmmoArchoChargePack</li>
+					</thingCategories>
+					<stackLimit>5000</stackLimit>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="ArchoChargePackBase">
+					<defName>Ammo_ArchoChargePack</defName>
+					<label>Archo charge pack</label>
+					<graphicData>
+						<texPath>ThirdParty/ArchotechWeaponry/Ammo/Archotech</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>0.29</MarketValue>
+					</statBases>
+					<ammoClass>Charged</ammoClass>
+					<thingSetMakerTags>
+						<li>RewardStandardHighFreq</li>
+					</thingSetMakerTags>
+				</ThingDef>
+
+				<!-- ==================== AmmoSet-NL ========================== -->
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoPistol_CE_NL</defName>
+					<label>Archo charge(Non Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechPistol_CE_NL</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoSniper_CE_NL</defName>
+					<label>Archo charge(Non Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechSniper_CE_NL</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoRifle_CE_NL</defName>
+					<label>Archo charge(Non Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechRifle_CE_NL</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoMG_CE_NL</defName>
+					<label>Archo charge(Non Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechMG_CE_NL</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoShotgun_CE_NL</defName>
+					<label>Archo charge(Non Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechShotgun_CE_NL</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoBow_CE_NL</defName>
+					<label>Archo charge(Non Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechBow_CE_NL</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoCrossbow_CE_NL</defName>
+					<label>Archo charge(Non Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechCrossbow_CE_NL</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ==================== AmmoSet-L ========================== -->
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoPistol_CE_L</defName>
+					<label>Archo charge(Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechPistol_CE_L</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoSniper_CE_L</defName>
+					<label>Archo charge(Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechSniper_CE_L</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoRifle_CE_L</defName>
+					<label>Archo charge(Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechRifle_CE_L</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoMG_CE_L</defName>
+					<label>Archo charge(Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechMG_CE_L</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoShotgun_CE_L</defName>
+					<label>Archo charge(Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechShotgun_CE_L</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoBow_CE_L</defName>
+					<label>Archo charge(Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechBow_CE_L</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ArchoCrossbow_CE_L</defName>
+					<label>Archo charge(Lethal)</label>
+					<ammoTypes>
+						<Ammo_ArchoChargePack>AW_Bullet_ArchotechCrossbow_CE_L</Ammo_ArchoChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ================== Projectiles ================== -->
+				<ThingDef ParentName="Base10x18mmChargedBullet">
+					<defName>AW_Bullet_ArchotechPistol_CE_NL</defName>
+					<label>archotech pistol bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoNL</damageDef>
+						<damageAmountBase>3</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>7</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>19.5</armorPenetrationSharp>
+						<armorPenetrationBlunt>22.56</armorPenetrationBlunt>
+						<empShieldBreakChance>1</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base10x18mmChargedBullet">
+					<defName>AW_Bullet_ArchotechPistol_CE_L</defName>
+					<label>archotech pistol bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoL</damageDef>
+						<damageAmountBase>11</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>7</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>19.5</armorPenetrationSharp>
+						<armorPenetrationBlunt>22.56</armorPenetrationBlunt>
+						<empShieldBreakChance>1</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base12x72mmChargedBullet">
+					<defName>AW_Bullet_ArchotechSniper_CE_NL</defName>
+					<label>archotech sniper bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoNL</damageDef>
+						<damageAmountBase>5</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>18</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>45</armorPenetrationSharp>
+						<armorPenetrationBlunt>324</armorPenetrationBlunt>
+						<empShieldBreakChance>1</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base12x72mmChargedBullet">
+					<defName>AW_Bullet_ArchotechSniper_CE_L</defName>
+					<label>archotech sniper bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoL</damageDef>
+						<damageAmountBase>31</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>18</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>45</armorPenetrationSharp>
+						<armorPenetrationBlunt>324</armorPenetrationBlunt>
+						<empShieldBreakChance>1</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base8x35mmChargedBullet">
+					<defName>AW_Bullet_ArchotechRifle_CE_NL</defName>
+					<label>archotech rifle bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoNL</damageDef>
+						<damageAmountBase>4</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>9</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>24</armorPenetrationSharp>
+						<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+						<empShieldBreakChance>0.33</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base8x35mmChargedBullet">
+					<defName>AW_Bullet_ArchotechRifle_CE_L</defName>
+					<label>archotech rifle bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoL</damageDef>
+						<damageAmountBase>15</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>9</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>24</armorPenetrationSharp>
+						<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+						<empShieldBreakChance>0.33</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base8x50mmChargedBullet">
+					<defName>AW_Bullet_ArchotechMG_CE_NL</defName>
+					<label>archotech MG bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoNL</damageDef>
+						<damageAmountBase>4</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>11</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>27</armorPenetrationSharp>
+						<armorPenetrationBlunt>120</armorPenetrationBlunt>
+						<empShieldBreakChance>1</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base8x50mmChargedBullet">
+					<defName>AW_Bullet_ArchotechMG_CE_L</defName>
+					<label>archotech MG bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoL</damageDef>
+						<damageAmountBase>19</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>11</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>27</armorPenetrationSharp>
+						<armorPenetrationBlunt>120</armorPenetrationBlunt>
+						<empShieldBreakChance>1</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base15x65mmDiffusingChargedBullet">
+					<defName>AW_Bullet_ArchotechShotgun_CE_NL</defName>
+					<label>archotech bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoNL</damageDef>
+						<damageAmountBase>2</damageAmountBase>
+						<pelletCount>5</pelletCount>
+						<secondaryDamage>
+							<li>
+								<def>Bomb_Secondary</def>
+								<amount>7</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>8</armorPenetrationSharp>
+						<armorPenetrationBlunt>50.46</armorPenetrationBlunt>
+						<spreadMult>8.9</spreadMult>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base15x65mmDiffusingChargedBullet">
+					<defName>AW_Bullet_ArchotechShotgun_CE_L</defName>
+					<label>archotech bullet</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoL</damageDef>
+						<damageAmountBase>22</damageAmountBase>
+						<pelletCount>5</pelletCount>
+						<secondaryDamage>
+							<li>
+								<def>Bomb_Secondary</def>
+								<amount>7</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>8</armorPenetrationSharp>
+						<armorPenetrationBlunt>50.46</armorPenetrationBlunt>
+						<spreadMult>8.9</spreadMult>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base8x35mmChargedBullet">
+					<defName>AW_Bullet_ArchotechBow_CE_NL</defName>
+					<label>archotech bow arrow</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech_Voidarrow</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoNL</damageDef>
+						<damageAmountBase>5</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>9</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>24</armorPenetrationSharp>
+						<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+						<empShieldBreakChance>0.33</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base8x35mmChargedBullet">
+					<defName>AW_Bullet_ArchotechBow_CE_L</defName>
+					<label>archotech bow arrow</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech_Voidarrow</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoL</damageDef>
+						<damageAmountBase>20</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>9</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>24</armorPenetrationSharp>
+						<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+						<empShieldBreakChance>0.33</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base8x35mmChargedBullet">
+					<defName>AW_Bullet_ArchotechCrossbow_CE_NL</defName>
+					<label>archotech crossbow bolt</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech_voidbolt</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoNL</damageDef>
+						<damageAmountBase>5</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>9</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>24</armorPenetrationSharp>
+						<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+						<empShieldBreakChance>0.33</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base8x35mmChargedBullet">
+					<defName>AW_Bullet_ArchotechCrossbow_CE_L</defName>
+					<label>archotech crossbow bolt</label>
+					<graphicData>
+						<texPath>Things/Projectile/Shot_Archotech_voidbolt</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>CE_ArchoL</damageDef>
+						<damageAmountBase>25</damageAmountBase>
+						<secondaryDamage>
+							<li>
+								<def>EMP</def>
+								<amount>9</amount>
+							</li>
+						</secondaryDamage>
+						<armorPenetrationSharp>24</armorPenetrationSharp>
+						<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+						<empShieldBreakChance>0.33</empShieldBreakChance>
+					</projectile>
+				</ThingDef>
+
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

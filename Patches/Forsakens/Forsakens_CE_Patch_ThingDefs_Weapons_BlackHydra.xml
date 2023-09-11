@@ -8,7 +8,7 @@
 			<operations>
 
 				<!-- ========== Forsaken Black Hydra ========== -->
- 
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>ForsakenHydra</defName>
 					<statBases>
@@ -41,10 +41,10 @@
 							<canTargetLocations>true</canTargetLocations>
 						</targetParams>
 					</Properties>
-    					<AmmoUser>
-      						<magazineSize>1</magazineSize>
-      						<reloadTime>6</reloadTime>
-   					 </AmmoUser>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>6</reloadTime>
+					</AmmoUser>
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
@@ -52,7 +52,7 @@
 					<weaponTags>
 						<li>ForsakenGun</li>
 					</weaponTags>
-					
+
 					<AllowWithRunAndGun>false</AllowWithRunAndGun>
 				</li>
 
@@ -77,7 +77,7 @@
 				<!-- Patch Hydra Blast projectile to be CE compatible, with armor penetration and blast damage stats similar to vanilla CE M6 HEAT rockets
 				
 				Note that the lightning strike effect has been removed, as the Forsaken.Linking Class required is incompatible with CombatExtended.AmmoDef -->
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Bullet_HydraBlast"]</xpath>
 					<value>
@@ -96,16 +96,16 @@
 								<speed>90</speed>
 								<ai_IsIncendiary>true</ai_IsIncendiary>
 							</projectile>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>120</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>3</explosiveRadius>
-      			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
-		  </li>
-		</comps>
+							<comps>
+								<li Class="CombatExtended.CompProperties_ExplosiveCE">
+									<damageAmountBase>120</damageAmountBase>
+									<explosiveDamageType>Bomb</explosiveDamageType>
+									<explosiveRadius>3</explosiveRadius>
+									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+									<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+									<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+								</li>
+							</comps>
 						</ThingDef>
 					</value>
 				</li>

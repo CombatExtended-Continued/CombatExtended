@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Impact Weaponry</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Royalty</li>
+			</mods>
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DV_ChainswordBladelink"]/statBases</xpath>
+						<value>
+							<Bulk>15</Bulk>
+							<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+							<ToughnessRating>24</ToughnessRating>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DV_ChainswordBladelink"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.11</MeleeCritChance>
+								<MeleeParryChance>0.47</MeleeParryChance>
+								<MeleeDodgeChance>0.15</MeleeDodgeChance>
+							</equippedStatOffsets>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName = "DV_ChainswordBladelink"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>handle</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>12</power>
+									<cooldownTime>1.6</cooldownTime>
+									<armorPenetrationBlunt>2</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+									<chanceFactor>0.33</chanceFactor>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>teeth</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>25</power>
+									<cooldownTime>2.8</cooldownTime>
+									<chanceFactor>0.60</chanceFactor>
+									<armorPenetrationBlunt>11.5</armorPenetrationBlunt>
+									<armorPenetrationSharp>12</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+									<extraMeleeDamages>
+										<li>
+											<def>Shred</def>
+											<amount>10</amount>
+											<chance>0.4</chance>
+										</li>
+									</extraMeleeDamages>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>point</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>25</power>
+									<cooldownTime>2.8</cooldownTime>
+									<chanceFactor>0.30</chanceFactor>
+									<armorPenetrationBlunt>17</armorPenetrationBlunt>
+									<armorPenetrationSharp>18</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+									<extraMeleeDamages>
+										<li>
+											<def>Shred</def>
+											<amount>10</amount>
+											<chance>0.5</chance>
+										</li>
+									</extraMeleeDamages>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

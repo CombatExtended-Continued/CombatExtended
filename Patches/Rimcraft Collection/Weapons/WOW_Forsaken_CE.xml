@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -7,7 +7,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<!-- You can find the spreadsheet here https://drive.google.com/open?id=1JZAjvzealI189OofkxwUCif3yA4-u6yP3DilsmIEQJA -->
-				<!-- T1 Meat cleaver -->			
+				<!-- T1 Meat cleaver -->
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Cleaver"]/tools</xpath>
@@ -50,7 +50,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Cleaver"]/statBases/Mass</xpath>
 					<value>
-						<Mass>1</Mass>						
+						<Mass>1</Mass>
 					</value>
 				</li>
 
@@ -64,7 +64,7 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Cleaver"]/weaponTags</xpath>
 					<value>
@@ -72,7 +72,7 @@
 					</value>
 				</li>
 
-				<!-- T1 drik -->			
+				<!-- T1 drik -->
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Dirk"]/tools</xpath>
@@ -126,7 +126,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Dirk"]/statBases/Mass</xpath>
 					<value>
-						<Mass>0.7</Mass>						
+						<Mass>0.7</Mass>
 					</value>
 				</li>
 
@@ -140,7 +140,7 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Dirk"]/weaponTags</xpath>
 					<value>
@@ -148,72 +148,71 @@
 					</value>
 				</li>
 
-	<!-- ========== T2 Sword ========== -->
+				<!-- ========== T2 Sword ========== -->
 
 				<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Blade"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>3</power>
-					<cooldownTime>1.69</cooldownTime>
-					<chanceFactor>0.10</chanceFactor>
-					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Blade"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.69</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.69</cooldownTime>
+								<chanceFactor>0.60</chanceFactor>
+								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.25</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>31</power>
+								<cooldownTime>1.44</cooldownTime>
+								<chanceFactor>0.30</chanceFactor>
+								<armorPenetrationBlunt>3.392</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.55</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
 				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>18</power>
-					<cooldownTime>1.69</cooldownTime>
-					<chanceFactor>0.60</chanceFactor>
-					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
-					<armorPenetrationSharp>1.25</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Blade"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+					</value>
 				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>edge</label>
-					<capacities>
-						<li>Cut</li>
-					</capacities>
-					<power>31</power>
-					<cooldownTime>1.44</cooldownTime>
-					<chanceFactor>0.30</chanceFactor>
-					<armorPenetrationBlunt>3.392</armorPenetrationBlunt>
-					<armorPenetrationSharp>0.55</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Blade"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.63</MeleeCritChance>
+							<MeleeParryChance>0.75</MeleeParryChance>
+							<MeleeDodgeChance>0.4</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
 				</li>
-			</tools>
-		</value>
-	</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Blade"]/statBases</xpath>
-		<value>
-      		<Bulk>6</Bulk>
-      		<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
-		</value>
-	</li>
-
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Blade"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.63</MeleeCritChance>
-				<MeleeParryChance>0.75</MeleeParryChance>
-				<MeleeDodgeChance>0.4</MeleeDodgeChance>	
-			</equippedStatOffsets>
-		</value>
-	</li>
-
-
-				<!-- T3 Greatsword -->	
+				<!-- T3 Greatsword -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Greatsword"]/tools</xpath>
 					<value>
@@ -274,33 +273,33 @@
 					</value>
 				</li>
 
-				<!-- T2 Halberd -->			
+				<!-- T2 Halberd -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Halberd"]/tools</xpath>
 					<value>
 						<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>shaft</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>6</power>
-							<cooldownTime>1.35</cooldownTime>
-							<chanceFactor>0.15</chanceFactor>
-							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>shaft</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>3</power>
-							<cooldownTime>1.78</cooldownTime>
-							<chanceFactor>0.05</chanceFactor>
-							<armorPenetrationBlunt>1</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-						</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.35</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.78</cooldownTime>
+								<chanceFactor>0.05</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>point</label>
 								<capacities>
@@ -331,7 +330,7 @@
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Halberd"]/statBases</xpath>
 					<value>
 						<Bulk>10</Bulk>
-    						<MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
+						<MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
 					</value>
 				</li>
 
@@ -339,14 +338,14 @@
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_Halberd"]</xpath>
 					<value>
 						<equippedStatOffsets>
-				<MeleeCritChance>0.24</MeleeCritChance>
-				<MeleeParryChance>1.08</MeleeParryChance>
-				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+							<MeleeCritChance>0.24</MeleeCritChance>
+							<MeleeParryChance>1.08</MeleeParryChance>
+							<MeleeDodgeChance>0.9</MeleeDodgeChance>
 						</equippedStatOffsets>
 					</value>
 				</li>
 
-				<!-- T2 blade -->	
+				<!-- T2 blade -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="WoWM_Forsaken_CrescentBlade"]/tools</xpath>
 					<value>
@@ -413,7 +412,6 @@
 						<li>CE_OneHandedWeapon</li>
 					</value>
 				</li>
-
 
 			</operations>
 		</match>

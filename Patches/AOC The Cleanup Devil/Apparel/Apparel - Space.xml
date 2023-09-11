@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AOC The Cleanup Devil</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--========= SpaceSuit and Royal =========-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelBase"]/statBases</xpath>
+					<value>
+						<Bulk>100</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelBase"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>700</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelBase"]/statBases/Mass</xpath>
+					<value>
+						<Mass>50</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelBase"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>30</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelBase"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>100</CarryWeight>
+						<CarryBulk>10</CarryBulk>
+						<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelBase"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelBase"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<!--========= Space Suit Helmet and Royal Helmet=========-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+						<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]/statBases/Mass</xpath>
+					<value>
+						<Mass>4.8</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>300</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>13</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>30</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]/equippedStatOffsets</xpath>
+					<value>
+						<AimingAccuracy>0.2</AimingAccuracy>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]/apparel/layers</xpath>
+					<value>
+						<li>OnHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="AOC_SpaceApparelHelmetBase"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Eye</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Eye</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Nose</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Nose</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

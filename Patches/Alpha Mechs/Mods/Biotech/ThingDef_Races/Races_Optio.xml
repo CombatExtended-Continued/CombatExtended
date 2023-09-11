@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Optio"]</xpath>
+						<value>
+							<li Class="CombatExtended.RacePropertiesExtensionCE">
+								<bodyShape>Humanoid</bodyShape>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Optio"]/statBases/ArmorRating_Blunt</xpath>
+						<value>
+							<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Optio"]/statBases/ArmorRating_Sharp</xpath>
+						<value>
+							<ArmorRating_Sharp>5</ArmorRating_Sharp>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Optio"]/statBases/EnergyShieldRechargeRate</xpath>
+						<value>
+							<EnergyShieldRechargeRate>1.125</EnergyShieldRechargeRate>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Optio"]/statBases/EnergyShieldEnergyMax</xpath>
+						<value>
+							<EnergyShieldEnergyMax>7.5</EnergyShieldEnergyMax>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Optio"]/comps/li[@Class="CompProperties_ProjectileInterceptor"]/hitPoints</xpath>
+						<value>
+							<hitPoints>375</hitPoints>
+						</value>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Optio"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AM_Mech_Optio"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Optio"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>860</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>86</MaxOverHeal>
+								<MinArmorPct>0.75</MinArmorPct>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/PawnKindDef[defName="AM_Mech_Optio"]/combatPower</xpath>
+						<value>
+							<combatPower>220</combatPower>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/PawnKindDef[defName="AM_Mech_Optio"]</xpath>
+						<value>
+							<li Class="CombatExtended.LoadoutPropertiesExtension">
+								<primaryMagazineCount>
+									<min>2</min>
+									<max>3</max>
+								</primaryMagazineCount>
+							</li>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

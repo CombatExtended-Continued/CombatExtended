@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationFindMod">
+
+				<mods>
+					<li>Gloomy Dragonian race</li>
+				</mods>
+
+				<match Class="PatchOperationSequence">
+					<operations>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="WoolDragonian"]/statBases</xpath>
+							<value>
+								<Bulk>0.3</Bulk>
+								<WornBulk>0.3</WornBulk>
+								<StuffPower_Armor_Electric>0.10</StuffPower_Armor_Electric>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="WoolDragonian"]/statBases/StuffPower_Armor_Sharp</xpath>
+							<value>
+								<StuffPower_Armor_Sharp>0.675</StuffPower_Armor_Sharp>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="WoolDragonian"]/statBases/StuffPower_Armor_Blunt</xpath>
+							<value>
+								<StuffPower_Armor_Blunt>0.85</StuffPower_Armor_Blunt>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName="WoolDragonian"]/statBases/StuffPower_Armor_Heat</xpath>
+							<value>
+								<StuffPower_Armor_Heat>0.15</StuffPower_Armor_Heat>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="WoolDragonian"]/stuffProps/statFactors</xpath>
+							<value>
+								<Mass>0.90</Mass>
+							</value>
+						</li>
+
+						<li Class="PatchOperationConditional">
+							<xpath>Defs/ThingDef[defName="WoolDragonian"]/stuffProps/categories</xpath>
+							<nomatch Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="WoolDragonian"]/stuffProps</xpath>
+								<value>
+									<categories>
+										<li>SoftArmor</li>
+									</categories>
+								</value>
+							</nomatch>
+							<match Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="WoolDragonian"]/stuffProps/categories</xpath>
+								<value>
+									<li>SoftArmor</li>
+								</value>
+							</match>
+						</li>
+
+					</operations>
+				</match>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>

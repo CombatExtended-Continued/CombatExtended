@@ -6,21 +6,21 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<li Class="PatchOperationFindMod">
 					<mods>
 						<li>Rimefeller</li>
 					</mods>
-					
-					<!-- If Rimefeller is also installed, have the PASGT helmets require Synthamide for crafting -->					
+
+					<!-- If Rimefeller is also installed, have the PASGT helmets require Synthamide for crafting -->
 					<match Class="PatchOperationSequence">
 						<operations>
-						
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/ThingDef[
 									defName="RNApparel_PASGTDCUHelmet" or
 									defName="RNApparel_PASGTM81Helmet"
-								]/costList</xpath>
+									]/costList </xpath>
 								<value>
 									<costList>
 										<Synthamide>10</Synthamide>
@@ -29,16 +29,16 @@
 							</li>
 						</operations>
 					</match>
-					
-					<!-- Otherwise, default to Devilstrand -->		
+
+					<!-- Otherwise, default to Devilstrand -->
 					<nomatch Class="PatchOperationSequence">
 						<operations>
-						
+
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/ThingDef[
 									defName="RNApparel_PASGTDCUHelmet" or
 									defName="RNApparel_PASGTM81Helmet"
-								]/costList</xpath>
+									]/costList </xpath>
 								<value>
 									<costList>
 										<DevilstrandCloth>10</DevilstrandCloth>
@@ -46,11 +46,11 @@
 								</value>
 							</li>
 						</operations>
-						
+
 					</nomatch>
-					
+
 				</li>
-				
+
 			</operations>
 		</match>
 	</Operation>

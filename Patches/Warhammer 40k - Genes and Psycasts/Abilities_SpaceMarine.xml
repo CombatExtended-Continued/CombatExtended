@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40k - Genes and Psycasts</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ============== Betcher's Spit ================ -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="BEWH_BetchersSpit"]/verbProperties/range</xpath>
+					<value>
+						<range>32</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BEWH_SpitProjectile"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AcidBurn</damageDef>
+							<speed>48</speed>
+							<damageAmountBase>18</damageAmountBase>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<shadowSize>0</shadowSize>
+							<filth>Filth_SpentAcid</filth>
+							<filthCount>1</filthCount>
+							<arcHeightFactor>0.4</arcHeightFactor>
+						</projectile>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

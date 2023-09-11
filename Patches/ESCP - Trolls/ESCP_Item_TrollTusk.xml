@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ESCP - Trolls</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ESCP_GrahlTusk -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="ESCP_GrahlTusk"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>ResourceBase</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ESCP_GrahlTusk"]/description</xpath>
+					<value>
+						<description>A grahl's tusk. It is very durable and valuable. While somewhat unwieldy as a melee weapon, it can still be deadly. Traders and collectors might pay a high price for this.</description>
+					</value>
+				</li>
+
+				<!-- ESCP_UderfrykteTusk -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="ESCP_UderfrykteTusk"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>ResourceBase</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ESCP_UderfrykteTusk"]/description</xpath>
+					<value>
+						<description>An udyrfrykte 's tusk. It is very durable and valuable, and works reasonably well as a weapon.</description>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

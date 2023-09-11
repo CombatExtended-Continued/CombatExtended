@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[@Name="AM_MediumMechanoid"]/statBases/ArmorRating_Blunt</xpath>
+						<value>
+							<ArmorRating_Blunt>5</ArmorRating_Blunt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[@Name="AM_MediumMechanoid"]/statBases/ArmorRating_Sharp</xpath>
+						<value>
+							<ArmorRating_Sharp>3</ArmorRating_Sharp>
+							<MaxHitPoints>300</MaxHitPoints>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RimWorld;
 using Verse;
 using System.Xml;
+using CombatExtended.Compatibility;
 using UnityEngine;
 using Verse.AI;
 
@@ -100,7 +101,7 @@ namespace CombatExtended
 
     public class CompArmorDurability : ThingComp
     {
-        public MechArmorDurabilityExt durabilityProps => this.parent.def.GetModExtension<MechArmorDurabilityExt>();
+        public CompProperties_ArmorDurability durabilityProps => props as CompProperties_ArmorDurability;
 
         public float maxDurability => durabilityProps.Durability;
 
@@ -135,22 +136,34 @@ namespace CombatExtended
             base.PostPostMake();
         }
 
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            regens = durabilityProps.Regenerates;
+            base.PostSpawnSetup(respawningAfterLoad);
+        }
+
         public override void PostExposeData()
         {
-            Scribe_Values.Look<bool>(ref regens, "regens", false);
+            Scribe_Values.Look(ref curDurability, "curDurability");
+            Scribe_Values.Look(ref timer, "timer");
             base.PostExposeData();
+        }
+
+        public override string CompInspectStringExtra()
+        {
+            return "Armor durability: " + curDurability.ToString() + "/" + maxDurability.ToString() + " (" + curDurabilityPercent.ToStringPercent() + ")";
         }
 
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(dinfo, out absorbed);
-            if (curDurability < 0)
-            {
-                curDurability = 0;
-            }
-            else
+            if (curDurability > 0)
             {
                 curDurability -= dinfo.Amount;
+                if (curDurability < 0)
+                {
+                    curDurability = 0;
+                }
             }
         }
 
@@ -158,56 +171,45 @@ namespace CombatExtended
         {
             if (durabilityProps.Repairable)
             {
-                var ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count);
-                var ingredientsB = new List<Thing>();
-                bool ingredientsBBool = false;
+                var firstIngredientProvidedOrNotNeeded = true;
+                var secondIngredientProvidedOrNotNeeded = true;
 
-                //The system supports only 2 ingredients at max
-                if (durabilityProps.RepairIngredients.Count > 1)
+                List<Thing> ingredientsA = null;
+                List<Thing> ingredientsB = null;
+
+                // Only check for ingredients if there's any required
+                if (!durabilityProps.RepairIngredients.NullOrEmpty())
                 {
-                    ingredientsB = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.Last().thingDef && x.stackCount >= durabilityProps.RepairIngredients.Last().count);
-                    ingredientsBBool = ingredientsB.Any();
+                    ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count);
+                    firstIngredientProvidedOrNotNeeded = ingredientsA.Any();
+
+                    //The system supports only 2 ingredients at max
+                    if (firstIngredientProvidedOrNotNeeded && durabilityProps.RepairIngredients.Count > 1)
+                    {
+                        ingredientsB = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.Last().thingDef && x.stackCount >= durabilityProps.RepairIngredients.Last().count);
+                        secondIngredientProvidedOrNotNeeded = ingredientsB.Any();
+                    }
                 }
 
-
-                if (!ingredientsA.NullOrEmpty() && curDurability < maxDurability + durabilityProps.MaxOverHeal)
+                if (curDurability < maxDurability + durabilityProps.MaxOverHeal && firstIngredientProvidedOrNotNeeded && secondIngredientProvidedOrNotNeeded)
                 {
-                    if (ingredientsBBool)
+                    yield return new FloatMenuOption("Fix natural armor", delegate
                     {
-                        yield return new FloatMenuOption("Fix natural armor", delegate
-                        {
-                            selPawn.jobs.StartJob(new Job
-                                                  (
-                                                      CE_JobDefOf.RepairNaturalArmor,
-                                                      this.parent,
-                                                      ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
-                                                  )
-                            {
-                                targetC = ingredientsB.MinBy(x => x.Position.DistanceTo(selPawn.Position)
-                                                            )
-                            }
-                            ,
-                            JobCondition.InterruptForced
-                                                 )
-                            ;
-                        });
+                        Thing firstIngredient = null;
+                        Thing secondIngredient = null;
 
-                    }
-                    else
-                    {
-                        yield return new FloatMenuOption("Fix natural armor", delegate
+                        // If ingredients are required, pick them. Otherwise just leave the variables as null.
+                        if (!ingredientsA.NullOrEmpty())
                         {
-                            selPawn.jobs.StartJob(new Job
-                                                  (
-                                                      CE_JobDefOf.RepairNaturalArmor,
-                                                      this.parent,
-                                                      ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
-                                                  ),
-                                                  JobCondition.InterruptForced
-                                                 )
-                            ;
-                        });
-                    }
+                            firstIngredient = ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position));
+                        }
+                        if (!ingredientsB.NullOrEmpty())
+                        {
+                            secondIngredient = ingredientsB.MinBy(x => x.Position.DistanceTo(selPawn.Position));
+                        }
+
+                        StartJob(selPawn, firstIngredient, secondIngredient);
+                    });
                 }
                 else if (this.curDurability >= maxDurability + durabilityProps.MaxOverHeal)
                 {
@@ -219,10 +221,34 @@ namespace CombatExtended
                 }
             }
         }
+
+        [Multiplayer.SyncMethod]
+        private void StartJob(Pawn selPawn, Thing firstIngredient = null, Thing secondIngredient = null)
+        {
+            var job = JobMaker.MakeJob(CE_JobDefOf.RepairNaturalArmor);
+            job.targetA = this.parent;
+
+            // Set the ingredients as targets if they were given
+            if (firstIngredient != null)
+            {
+                job.targetB = firstIngredient;
+            }
+
+            if (secondIngredient != null)
+            {
+                job.targetC = secondIngredient;
+            }
+
+            selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+        }
     }
 
-    public class MechArmorDurabilityExt : DefModExtension
+    public class CompProperties_ArmorDurability : CompProperties
     {
+        public CompProperties_ArmorDurability()
+        {
+            compClass = typeof(CompArmorDurability);
+        }
         public float Durability;
 
         public bool Regenerates;
@@ -242,6 +268,16 @@ namespace CombatExtended
         public bool CanOverHeal;
 
         public float MaxOverHeal;
+
+        public float MinArmorValueSharp = -1;
+
+        public float MinArmorValueBlunt = -1;
+
+        public float MinArmorValueHeat = -1;
+
+        public float MinArmorValueElectric = -1;
+
+        public float MinArmorPct = 0.25f;
     }
 
     public class JobDriver_RepairNaturalArmor : JobDriver
@@ -251,14 +287,15 @@ namespace CombatExtended
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             bool canReachTargetC = TargetC.Thing == null;
+            var natArmor = (TargetA.Thing as ThingWithComps).TryGetComp<CompArmorDurability>();
 
             if (!canReachTargetC)
             {
-                canReachTargetC = actor.CanReserveAndReach(TargetC, PathEndMode.ClosestTouch, Danger.Some, 1, 1);
+                canReachTargetC = actor.CanReserveAndReach(TargetC, PathEndMode.ClosestTouch, Danger.Some, 1, natArmor.durabilityProps.RepairIngredients.Last().count);
             }
 
             bool canReachTargetsAB = actor.CanReserveAndReach(TargetA, PathEndMode.ClosestTouch, Danger.Some, 1, 1)
-                                     && actor.CanReserveAndReach(TargetB, PathEndMode.ClosestTouch, Danger.Some, 1, 1);
+                                     && actor.CanReserveAndReach(TargetB, PathEndMode.ClosestTouch, Danger.Some, 1, natArmor.durabilityProps.RepairIngredients.First().count);
             return canReachTargetsAB
                    && (canReachTargetC)
                    ;
@@ -267,37 +304,51 @@ namespace CombatExtended
         public override IEnumerable<Toil> MakeNewToils()
         {
             var natArmor = (TargetA.Thing as ThingWithComps).TryGetComp<CompArmorDurability>();
+            var targetB = TargetThingB;
+            var targetC = TargetThingC;
+            var countB = -1;
+            var countC = -1;
 
-            pawn.Reserve(TargetB, this.job, 1, 1);
-
-            pawn.Reserve(TargetC, this.job, 1, 1);
-
-            var TargetThingC = TargetC.Thing;
-            yield return Toils_Goto.Goto(TargetIndex.B, PathEndMode.ClosestTouch);
-            yield return Toils_General.Do(
-                             delegate
+            // Reserve ingredients if needed
+            if (targetB != null)
             {
-                //left in code for explanation as to why it was replaced. This caused an error to apear every time it was called
-                //yield return Toils_Haul.TakeToInventory(TargetIndex.B, natArmor.durabilityProps.RepairIngredients.First().count);
-                int ingrCount = natArmor.durabilityProps.RepairIngredients.First().count;
-                if (ingrCount < TargetThingB.stackCount)
+                countB = natArmor.durabilityProps.RepairIngredients.First().count;
+                if (countB > 0)
                 {
-                    TargetThingB.stackCount -= ingrCount;
+                    pawn.Reserve(TargetB, this.job, 1, countB);
                 }
-                else if (ingrCount == TargetThingB.stackCount)
+            }
+            if (targetC != null)
+            {
+                countC = natArmor.durabilityProps.RepairIngredients.Last().count;
+                if (countC > 0)
                 {
-                    TargetThingB.Destroy();
+                    pawn.Reserve(TargetC, this.job, 1, countC);
                 }
-                else
-                {
-                    Log.Error("Ingredient stack count lower than needed. This shouldn't be possible to happen. Returning.");
-                }
-                var newthing = ThingMaker.MakeThing(natArmor.durabilityProps.RepairIngredients.First().thingDef);
-                newthing.stackCount = ingrCount;
-                pawn.inventory.TryAddItemNotForSale(newthing);
+            }
 
-            });
-            if (TargetThingC != null)
+            if (targetB != null && countB > 0)
+            {
+                yield return Toils_Goto.Goto(TargetIndex.B, PathEndMode.ClosestTouch);
+                yield return Toils_General.Do(
+                                 delegate
+                {
+                    //left in code for explanation as to why it was replaced. This caused an error to apear every time it was called
+                    //yield return Toils_Haul.TakeToInventory(TargetIndex.B, natArmor.durabilityProps.RepairIngredients.First().count);
+                    if (countB <= targetB.stackCount)
+                    {
+                        var newthing = targetB.SplitOff(countB);
+                        newthing.stackCount = countB;
+                        pawn.inventory.TryAddItemNotForSale(newthing);
+                    }
+                    else
+                    {
+                        Log.Error("Ingredient stack count lower than needed. This shouldn't be possible to happen. Returning.");
+                    }
+
+                });
+            }
+            if (targetC != null && countC > 0)
             {
                 yield return Toils_Goto.GotoCell(TargetC.Cell, PathEndMode.ClosestTouch);
 
@@ -305,22 +356,16 @@ namespace CombatExtended
                                  delegate
                 {
                     //yield return Toils_Haul.TakeToInventory(TargetIndex.C, natArmor.durabilityProps.RepairIngredients.Last().count);
-                    int ingrCount2 = natArmor.durabilityProps.RepairIngredients.Last().count;
-                    if (ingrCount2 < TargetThingC.stackCount)
+                    if (countC <= targetC.stackCount)
                     {
-                        TargetThingC.stackCount -= ingrCount2;
-                    }
-                    else if (ingrCount2 == TargetThingC.stackCount)
-                    {
-                        TargetThingC.Destroy();
+                        var newthing2 = targetC.SplitOff(countC);
+                        newthing2.stackCount = countC;
+                        pawn.inventory.TryAddItemNotForSale(newthing2);
                     }
                     else
                     {
                         Log.Error("Ingredient stack count lower than needed. This shouldn't be possible to happen. Returning.");
                     }
-                    var newthing2 = ThingMaker.MakeThing(natArmor.durabilityProps.RepairIngredients.Last().thingDef);
-                    newthing2.stackCount = ingrCount2;
-                    pawn.inventory.TryAddItemNotForSale(newthing2);
                 });
             }
             var toil = Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch);
@@ -334,33 +379,58 @@ namespace CombatExtended
             toilWait.AddFinishAction(
                 delegate
             {
-                pawn.inventory.innerContainer.Where(x => x.def == TargetThingB.def).First().Destroy();
-                if (TargetThingC != null)
-                {
-                    pawn.inventory.innerContainer.Where(x => x.def == TargetThingC.def).First().Destroy();
-                }
-                natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                if (natArmor.durabilityProps.CanOverHeal)
-                {
-                    if (natArmor.curDurability > natArmor.durabilityProps.MaxOverHeal + natArmor.maxDurability)
-                    {
-                        natArmor.curDurability = natArmor.maxDurability + natArmor.durabilityProps.MaxOverHeal;
-                    }
-                    else
-                    {
-                        natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                    }
+                var failed = false;
+                Thing first = null;
+                Thing second = null;
 
-                }
-                else
+                // If ingredients are required, try to get them from inventory
+                if (targetB != null && countB > 0)
                 {
-                    if (natArmor.curDurability > natArmor.maxDurability)
+                    first = pawn.inventory.innerContainer.FirstOrDefault(x => x.def == targetB.def && x.stackCount >= countB);
+                    if (first == null)
                     {
-                        natArmor.curDurability = natArmor.maxDurability;
+                        failed = true;
+                    }
+                }
+                if (!failed && targetC != null && countC > 0)
+                {
+                    second = pawn.inventory.innerContainer.FirstOrDefault(x => x.def == targetC.def && x.stackCount >= countC);
+                    if (second == null)
+                    {
+                        failed = true;
+                    }
+                }
+
+                // Only finish the job if the pawn had the ingredients
+                if (!failed)
+                {
+                    // Split off from the original stack (to avoid destroying the whole stack), and destroy what we took from it.
+                    first?.SplitOff(countB).Destroy();
+                    second?.SplitOff(countC).Destroy();
+
+                    natArmor.curDurability += natArmor.durabilityProps.RepairValue;
+                    if (natArmor.durabilityProps.CanOverHeal)
+                    {
+                        if (natArmor.curDurability > natArmor.durabilityProps.MaxOverHeal + natArmor.maxDurability)
+                        {
+                            natArmor.curDurability = natArmor.maxDurability + natArmor.durabilityProps.MaxOverHeal;
+                        }
+                        else
+                        {
+                            natArmor.curDurability += natArmor.durabilityProps.RepairValue;
+                        }
+
                     }
                     else
                     {
-                        natArmor.curDurability += natArmor.durabilityProps.RepairValue;
+                        if (natArmor.curDurability > natArmor.maxDurability)
+                        {
+                            natArmor.curDurability = natArmor.maxDurability;
+                        }
+                        else
+                        {
+                            natArmor.curDurability += natArmor.durabilityProps.RepairValue;
+                        }
                     }
                 }
 

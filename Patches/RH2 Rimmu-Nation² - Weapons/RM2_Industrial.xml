@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -8,7 +8,7 @@
 			<operations>
 				<!-- You can find the spreadsheet here https://drive.google.com/open?id=1JZAjvzealI189OofkxwUCif3yA4-u6yP3DilsmIEQJA -->
 
-				<!-- Chainsaw -->			
+				<!-- Chainsaw -->
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RHMelee_ECHO_Chainsaw"]/tools</xpath>
@@ -16,7 +16,7 @@
 						<tools>
 							<li Class="CombatExtended.ToolCE">
 								<capacities>
-			  						<li>RHMelee_GenericChainsawStab</li>
+									<li>RHMelee_GenericChainsawStab</li>
 								</capacities>
 								<power>12</power>
 								<cooldownTime>0.5</cooldownTime>
@@ -48,17 +48,17 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RHMelee_ECHO_Chainsaw"]/equippedStatOffsets</xpath>
 					<value>
-							<MeleeCritChance>0.33</MeleeCritChance>
-							<MeleeParryChance>0.2</MeleeParryChance>
-							<MeleeDodgeChance>0.2</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.2</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
 					</value>
 				</li>
 
-					<!-- Bat -->	
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Baseball_Bat"]/tools</xpath>
-		<value>
-			<tools>
+				<!-- Bat -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Baseball_Bat"]/tools</xpath>
+					<value>
+						<tools>
 							<li Class="CombatExtended.ToolCE">
 								<label>handle</label>
 								<capacities>
@@ -80,14 +80,14 @@
 								<chanceFactor>2</chanceFactor>
 								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 							</li>
-			</tools>
-		</value>
-	</li>
+						</tools>
+					</value>
+				</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_BrooklynSmasher_Bat"]/tools</xpath>
-		<value>
-			<tools>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNMeleeWeapon_BrooklynSmasher_Bat"]/tools</xpath>
+					<value>
+						<tools>
 							<li Class="CombatExtended.ToolCE">
 								<label>handle</label>
 								<capacities>
@@ -109,37 +109,37 @@
 								<chanceFactor>2</chanceFactor>
 								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 							</li>
-			</tools>
-		</value>
-	</li>
+						</tools>
+					</value>
+				</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Baseball_Bat"]/statBases</xpath>
-		<value>
-      			<Bulk>7.5</Bulk>
-			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
-		</value>
-	</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Baseball_Bat"]/statBases</xpath>
+					<value>
+						<Bulk>7.5</Bulk>
+						<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+					</value>
+				</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_BrooklynSmasher_Bat"]/statBases</xpath>
-		<value>
-      			<Bulk>7.5</Bulk>
-			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
-		</value>
-	</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNMeleeWeapon_BrooklynSmasher_Bat"]/statBases</xpath>
+					<value>
+						<Bulk>7.5</Bulk>
+						<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+					</value>
+				</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Baseball_Bat" 
-				or defName="RNMeleeWeapon_BrooklynSmasher_Bat"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.5</MeleeCritChance>
-				<MeleeParryChance>0.15</MeleeParryChance>
-				<MeleeDodgeChance>0.05</MeleeDodgeChance>	
-			</equippedStatOffsets>	
-		</value>	
-	</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Baseball_Bat"
+						or defName="RNMeleeWeapon_BrooklynSmasher_Bat"] </xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.5</MeleeCritChance>
+							<MeleeParryChance>0.15</MeleeParryChance>
+							<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
 
 			</operations>
 		</match>

@@ -1,0 +1,1399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ESCP - Trolls</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Tier 1 Trolls -->
+				<!-- Barren Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollBarren"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollBarren"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollBarren"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Forest Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollForest"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollForest"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollForest"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Pygmy Troll -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollPygmy"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollPygmy"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>1.45</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>1.45</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.85</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollPygmy"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Swamp Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollSwamp"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollSwamp"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollSwamp"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Fungal Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollFungal"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollFungal"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollFungal"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Boom Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollBoom"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollBoom"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollBoom"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Coastal Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollCoastal"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollCoastal"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.7</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>14</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.95</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollCoastal"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Tier 2 Trolls -->
+				<!-- Frost Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollFrost"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+						<MeleeCritChance>0.58</MeleeCritChance>
+						<MeleeParryChance>0.66</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollFrost"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.9</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollFrost"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Hill Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollHill"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+						<MeleeCritChance>0.58</MeleeCritChance>
+						<MeleeParryChance>0.66</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollHill"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.9</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollHill"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- River Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollRiver"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+						<MeleeCritChance>0.58</MeleeCritChance>
+						<MeleeParryChance>0.66</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollRiver"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.9</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollRiver"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Cave Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollCave"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+						<MeleeCritChance>0.58</MeleeCritChance>
+						<MeleeParryChance>0.66</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollCave"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.9</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollCave"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Anima Troll -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollAnima"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+						<MeleeCritChance>0.58</MeleeCritChance>
+						<MeleeParryChance>0.66</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollAnima"]</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.4</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.9</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollAnima"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Tier 3 Trolls -->
+				<!-- Grahl Troll -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollGrahl"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>31</power>
+								<cooldownTime>1.65</cooldownTime>
+								<chanceFactor>0.7</chanceFactor>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>2.25</cooldownTime>
+								<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>18</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>25</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>31</power>
+								<cooldownTime>1.65</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>1.9</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.5</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollGrahl"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollGrahl"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.22</MeleeDodgeChance>
+						<MeleeCritChance>0.58</MeleeCritChance>
+						<MeleeParryChance>0.99</MeleeParryChance>
+					</value>
+				</li>
+				<!-- Udyrfrykte Troll -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollUdyrfrykte"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.45</cooldownTime>
+								<chanceFactor>0.7</chanceFactor>
+								<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>19</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>18</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>16</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+									<li>Blunt</li>
+								</capacities>
+								<power>26</power>
+								<cooldownTime>1.45</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+								<chanceFactor>0.7</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>17</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>1.6</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<chanceFactor>0.5</chanceFactor>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>14</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.8</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollUdyrfrykte"]/race</xpath>
+					<value>
+						<baseHealthScale>2</baseHealthScale>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollUdyrfrykte"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ESCP_TrollUdyrfrykte"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.22</MeleeDodgeChance>
+						<MeleeCritChance>0.58</MeleeCritChance>
+						<MeleeParryChance>0.99</MeleeParryChance>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

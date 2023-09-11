@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -14,7 +14,7 @@
 		<defName>AmmoSet_25x137mmNATO</defName>
 		<label>25x137mm NATO</label>
 		<ammoTypes>
-      		<Ammo_25x137mmNATO_AP>Bullet_25x137mmNATO_AP</Ammo_25x137mmNATO_AP>		
+			<Ammo_25x137mmNATO_AP>Bullet_25x137mmNATO_AP</Ammo_25x137mmNATO_AP>
 			<Ammo_25x137mmNATO_Incendiary>Bullet_25x137mmNATO_Incendiary</Ammo_25x137mmNATO_Incendiary>
 			<Ammo_25x137mmNATO_HE>Bullet_25x137mmNATO_HE</Ammo_25x137mmNATO_HE>
 			<Ammo_25x137mmNATO_Sabot>Bullet_25x137mmNATO_Sabot</Ammo_25x137mmNATO_Sabot>
@@ -40,19 +40,19 @@
 		<stackLimit>250</stackLimit>
 	</ThingDef>
 
-    <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
-      <defName>Ammo_25x137mmNATO_AP</defName>
-      <label>25x137mm NATO cartridge (AP)</label>
-      <graphicData>
-        <texPath>Things/Ammo/HighCaliber/AP</texPath>
-        <graphicClass>Graphic_StackCount</graphicClass>
-      </graphicData>
-      <statBases>
-        <MarketValue>2.02</MarketValue>
-      </statBases>
-      <ammoClass>ArmorPiercing</ammoClass>
-      <cookOffProjectile>Bullet_25x137mmNATO_AP</cookOffProjectile>
-    </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
+		<defName>Ammo_25x137mmNATO_AP</defName>
+		<label>25x137mm NATO cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.02</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_25x137mmNATO_AP</cookOffProjectile>
+	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
 		<defName>Ammo_25x137mmNATO_Incendiary</defName>
@@ -76,7 +76,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>3.82</MarketValue>
+			<MarketValue>3.38</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_25x137mmNATO_HE</cookOffProjectile>
@@ -106,20 +106,22 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>220</speed>
+			<speed>192</speed>
 			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_RifleAmmoCasings_HighCal</casingMoteDefname>
+			<casingFilthDefname>Filth_RifleAmmoCasings_HighCal</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
-  <ThingDef ParentName="Base25x137mmNATOBullet">
-    <defName>Bullet_25x137mmNATO_AP</defName>
-    <label>25x137mm NATO bullet (AP)</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>62</damageAmountBase>
-      <armorPenetrationSharp>56</armorPenetrationSharp>
-      <armorPenetrationBlunt>2238.500</armorPenetrationBlunt>
-    </projectile>
-  </ThingDef>
+	<ThingDef ParentName="Base25x137mmNATOBullet">
+		<defName>Bullet_25x137mmNATO_AP</defName>
+		<label>25x137mm NATO bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>62</damageAmountBase>
+			<armorPenetrationSharp>56</armorPenetrationSharp>
+			<armorPenetrationBlunt>2238.500</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
 
 	<ThingDef ParentName="Base25x137mmNATOBullet">
 		<defName>Bullet_25x137mmNATO_Incendiary</defName>
@@ -160,37 +162,37 @@
 			<damageAmountBase>52</damageAmountBase>
 			<armorPenetrationSharp>98</armorPenetrationSharp>
 			<armorPenetrationBlunt>2870.88</armorPenetrationBlunt>
-			<speed>330</speed>
+			<speed>259</speed>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-    <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_25x137mmNATO_AP</defName>
-      <label>make 25x137mm NATO (AP) cartridge x200</label>
-      <description>Craft 200 25x137mm NATO (AP) cartridges.</description>
-      <jobString>Making 25x137mm NATO (AP) cartridges.</jobString>
-      <ingredients>
-        <li>
-          <filter>
-            <thingDefs>
-              <li>Steel</li>
-            </thingDefs>
-          </filter>
-          <count>202</count>
-        </li>
-      </ingredients>
-      <fixedIngredientFilter>
-        <thingDefs>
-          <li>Steel</li>
-        </thingDefs>
-      </fixedIngredientFilter>
-      <products>
-        <Ammo_25x137mmNATO_AP>200</Ammo_25x137mmNATO_AP>
-      </products>
-      <workAmount>24240</workAmount>
-    </RecipeDef>
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_25x137mmNATO_AP</defName>
+		<label>make 25x137mm NATO (AP) cartridge x200</label>
+		<description>Craft 200 25x137mm NATO (AP) cartridges.</description>
+		<jobString>Making 25x137mm NATO (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>202</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25x137mmNATO_AP>200</Ammo_25x137mmNATO_AP>
+		</products>
+		<workAmount>24240</workAmount>
+	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_25x137mmNATO_Incendiary</defName>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Recon Mechanoid</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[
+						defName="Mech_Recon" or
+						defName="Mech_ReconBlaster" or
+						defName="Mech_Scout" or
+						defName="Mech_ScoutBlaster"
+						]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="Mech_Recon" or
+						defName="Mech_ReconBlaster" or
+						defName="Mech_Scout" or
+						defName="Mech_ScoutBlaster"
+						]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>3</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="Mech_Recon" or
+						defName="Mech_ReconBlaster" or
+						defName="Mech_Scout" or
+						defName="Mech_ScoutBlaster"
+						]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>2</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="Mech_Recon" or
+						defName="Mech_ReconBlaster" or
+						defName="Mech_Scout" or
+						defName="Mech_ScoutBlaster"
+						]/statBases</xpath>
+					<value>
+						<AimingAccuracy>1.0</AimingAccuracy>
+						<ShootingAccuracyPawn>1.1</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.15</MeleeDodgeChance>
+						<MeleeCritChance>0.075</MeleeCritChance>
+						<MeleeParryChance>0.075</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="Mech_Recon" or
+						defName="Mech_ReconBlaster" or
+						defName="Mech_Scout" or
+						defName="Mech_ScoutBlaster"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.11</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

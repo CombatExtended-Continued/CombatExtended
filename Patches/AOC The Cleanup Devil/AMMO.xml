@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AOC The Cleanup Devil</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- AOCPOWERCELL -->
+
+						<ThingCategoryDef>
+							<defName>AmmoAOCPowerCell</defName>
+							<label>AOCPOWERCELL</label>
+							<parent>AmmoRifles</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+						</ThingCategoryDef>
+
+						<!-- ==================== Ammo AOCPOWERCELL ========================== -->
+
+						<ThingDef Class="CombatExtended.AmmoDef" Name="AOCPowerCellBase" ParentName="SmallAmmoBase" Abstract="True">
+							<description>A power cell.</description>
+							<statBases>
+								<Mass>0.5</Mass>
+								<Bulk>0.1</Bulk>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade</li>
+								<li>CE_AutoEnableCrafting</li>
+							</tradeTags>
+							<thingCategories>
+								<li>AmmoAOCPowerCell</li>
+							</thingCategories>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="AOCPowerCellBase">
+							<defName>Ammo_AOCPowerCell</defName>
+							<label>(AOC) Power cell</label>
+							<graphicData>
+								<texPath>Things/Ammo/Charged/MediumMech</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>1.5</MarketValue>
+							</statBases>
+							<ammoClass>Charged</ammoClass>
+						</ThingDef>
+
+						<!-- ==================== AmmoSet ========================== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_AOCPowerCell</defName>
+							<label>AOC POWER CELL</label>
+							<ammoTypes>
+								<Ammo_AOCPowerCell>Bullet_SuviBusterProjectile</Ammo_AOCPowerCell>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ==================== Recipe: AOCELL===================== -->
+						<RecipeDef ParentName="AmmoRecipeBase">
+							<defName>MakeAmmo_AOCPowerCell</defName>
+							<label>make AOC PowerCell Power Cell x500</label>
+							<description>Craft 500 AOC PowerCell Power Cell.</description>
+							<jobString>Making TE Universal Power Cell.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Chemfuel</li>
+										</thingDefs>
+									</filter>
+									<count>15</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>10</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>ComponentIndustrial</li>
+										</thingDefs>
+									</filter>
+									<count>8</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Chemfuel</li>
+									<li>Steel</li>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<Ammo_AOCPowerCell>500</Ammo_AOCPowerCell>
+							</products>
+							<workAmount>19000</workAmount>
+						</RecipeDef>
+
+						<!--SuvisniperProjectile-->
+
+						<ThingDef ParentName="Base40x365mmBoforsBullet">
+							<defName>Bullet_SuviBusterProjectile</defName>
+							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+							<label>energy bolt</label>
+							<graphicData>
+								<texPath>Things/Projectile/Bullet_SuviBuster</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Flame</damageDef>
+								<speed>90</speed>
+								<dropsCasings>false</dropsCasings>
+								<damageAmountBase>20</damageAmountBase>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+								<armorPenetrationSharp>20</armorPenetrationSharp>
+								<explosionRadius>1</explosionRadius>
+							</projectile>
+						</ThingDef>
+
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

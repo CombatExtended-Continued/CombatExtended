@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<Operation Class="PatchOperationReplace">
@@ -17,5 +17,13 @@
 		</value>
 	</Operation>
 
-</Patch>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ApparelLayerDef[defName="EyeCover"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelLayerExtension">
+				<IsHeadwear>true</IsHeadwear>
+			</li>
+		</value>
+	</Operation>
 
+</Patch>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40k - Genes and Psycasts</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Chaos Cultist & Imperial Trader -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[@Name="ChaosCultistBasePawn" or defName="BEWH_ImperiumTrader"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>4</min>
+								<max>6</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+				<!-- Chaos Cultist -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[@Name="ChaosCultistBasePawn"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>4</min>
+								<max>6</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+				<!-- Daemon Prince -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[@Name="DaemonPrincePawnBase"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>6</min>
+								<max>12</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+				<!-- Space Marines -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[@Name="ChaosMarineBasePawn" or @Name="SpaceMarineBasePawn"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>6</min>
+								<max>10</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+
+	</Operation>
+
+</Patch>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AOC The Cleanup Devil</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--PooPoo-->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="PooPoo"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PooPoo"]/statBases</xpath>
+					<value>
+						<NightVisionEfficiency>0.75</NightVisionEfficiency>
+						<MeleeDodgeChance>0.69</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.09</MeleeParryChance>
+						<ArmorRating_Sharp>1</ArmorRating_Sharp>
+						<ArmorRating_Blunt>1</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="PooPoo"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.2</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.2</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>razorfangs</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>1.46</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<chanceFactor>2</chanceFactor>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.3</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>3.2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>1.225</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!--Fckrat-->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="FCKrat"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="FCKrat"]/statBases</xpath>
+					<value>
+						<NightVisionEfficiency>0.75</NightVisionEfficiency>
+						<MeleeDodgeChance>0.69</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.09</MeleeParryChance>
+						<ArmorRating_Sharp>1</ArmorRating_Sharp>
+						<ArmorRating_Blunt>1</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="FCKrat"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>razorfangs</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>1.46</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<chanceFactor>2</chanceFactor>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.3</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>3.2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>1.225</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

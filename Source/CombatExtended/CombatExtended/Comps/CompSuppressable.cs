@@ -16,6 +16,7 @@ namespace CombatExtended
 
         //private const float minSuppressionDist = 5f;       // Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
         private const float maxSuppression = 1050f;          // Cap to prevent suppression from building indefinitely
+        private const float SuppressionMultiplier = 2f;      // By how much any received suppression will be multiplied
         private const int TicksForDecayStart = 30;           // How long since last suppression before decay starts
         private const float SuppressionDecayRate = 4f;       // How much suppression decays per tick
         private const int TicksPerMote = 150;                // How many ticks between throwing a mote
@@ -180,7 +181,7 @@ namespace CombatExtended
             }
 
             // Add suppression to global suppression counter
-            var suppressAmount = amount * pawn.GetStatValue(CE_StatDefOf.Suppressability);
+            var suppressAmount = amount * pawn.GetStatValue(CE_StatDefOf.Suppressability) * SuppressionMultiplier;
             currentSuppression += suppressAmount;
             if (Controller.settings.DebugShowSuppressionBuildup)
             {

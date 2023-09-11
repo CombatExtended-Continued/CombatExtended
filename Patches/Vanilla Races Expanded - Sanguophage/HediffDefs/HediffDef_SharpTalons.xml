@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Races Expanded - Sanguophage</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="VRE_SharpTalons"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>sharp talons</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.5</cooldownTime>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

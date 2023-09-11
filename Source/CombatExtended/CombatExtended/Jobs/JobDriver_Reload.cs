@@ -165,7 +165,10 @@ namespace CombatExtended
 
             // setup fail states, if something goes wrong with the pawn performing the reload, the weapon, or something else that we want to fail on.
             this.FailOnDespawnedOrNull(indReloader);
-            this.FailOnMentalState(indReloader);
+            if (pawn.MentalStateDef != MentalStateDefOf.Berserk && pawn.MentalStateDef != MentalStateDefOf.BerserkMechanoid)
+            {
+                this.FailOnMentalState(indReloader);
+            }
             this.FailOnDestroyedOrNull(indWeapon);
             this.FailOn(HasNoGunOrAmmo);
 

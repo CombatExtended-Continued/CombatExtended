@@ -6,22 +6,22 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			<!-- Copied Values from Expanded Materials - Metals patch since it Project RimFactory merges it -->
-			<!-- Combining the Bulk Values -->
+				<!-- Copied Values from Expanded Materials - Metals patch since it Project RimFactory merges it -->
+				<!-- Combining the Bulk Values -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PRF_Iron" or defName="PRF_Copper" or defName="PRF_StainlessSteel"]/statBases</xpath>
 					<value>
 						<Bulk>0.03</Bulk>
 					</value>
 				</li>
-				
-			<!-- Iron -->
+
+				<!-- Iron -->
 				<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="PRF_Iron"]/stuffProps/categories</xpath>
-				<value>
-					<li>Metallic_Weapon</li>
-					<li>Steeled</li>
-				  </value>
+					<xpath>Defs/ThingDef[defName="PRF_Iron"]/stuffProps/categories</xpath>
+					<value>
+						<li>Metallic_Weapon</li>
+						<li>Steeled</li>
+					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PRF_Iron"]/statBases/StuffPower_Armor_Sharp</xpath>
@@ -35,7 +35,7 @@
 						<StuffPower_Armor_Blunt>1.2</StuffPower_Armor_Blunt>
 					</value>
 				</li>
-				
+
 				<!-- Copper -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PRF_Copper"]/statBases/StuffPower_Armor_Sharp</xpath>
@@ -45,18 +45,18 @@
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PRF_Copper"]/statBases/StuffPower_Armor_Blunt</xpath>
-						<value>
-							<StuffPower_Armor_Blunt>0.32</StuffPower_Armor_Blunt>
-						</value>
+					<value>
+						<StuffPower_Armor_Blunt>0.32</StuffPower_Armor_Blunt>
+					</value>
 				</li>
-				
+
 				<!-- Stainless Steel -->
 				<li Class="PatchOperationAdd">
-				  <xpath>Defs/ThingDef[defName="PRF_StainlessSteel"]/stuffProps/categories</xpath>
-				  <value>
-					<li>Metallic_Weapon</li>
-					<li>Steeled</li>
-				  </value>
+					<xpath>Defs/ThingDef[defName="PRF_StainlessSteel"]/stuffProps/categories</xpath>
+					<value>
+						<li>Metallic_Weapon</li>
+						<li>Steeled</li>
+					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PRF_StainlessSteel"]/stuffProps/statFactors</xpath>
@@ -72,9 +72,9 @@
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="PRF_StainlessSteel"]/statBases/StuffPower_Armor_Blunt</xpath>
-						<value>
-							<StuffPower_Armor_Blunt>1.7</StuffPower_Armor_Blunt>
-						</value>
+					<value>
+						<StuffPower_Armor_Blunt>1.7</StuffPower_Armor_Blunt>
+					</value>
 				</li>
 			</operations>
 		</match>

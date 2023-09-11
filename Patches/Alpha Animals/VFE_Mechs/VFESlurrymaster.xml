@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Alpha Animals</li>
 		</mods>
+
 		<match Class="PatchOperationFindMod">
 			<mods>
 				<li>Vanilla Factions Expanded - Mechanoids</li>
 			</mods>
 
-				<match Class="PatchOperationSequence">
-					<operations>
+			<match Class="PatchOperationSequence">
+				<operations>
 
 					<li Class="PatchOperationAddModExtension">
 						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]</xpath>
@@ -24,7 +26,7 @@
 					<li Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]/statBases</xpath>
 						<value>
-							<MeleeDodgeChance>0.17</MeleeDodgeChance>
+							<MeleeDodgeChance>0.12</MeleeDodgeChance>
 							<MeleeCritChance>0.1</MeleeCritChance>
 							<MeleeParryChance>0.17</MeleeParryChance>
 						</value>
@@ -33,13 +35,14 @@
 					<li Class="PatchOperationReplace">
 						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]/statBases/ArmorRating_Blunt</xpath>
 						<value>
-							<ArmorRating_Blunt>25</ArmorRating_Blunt>
+							<ArmorRating_Blunt>22</ArmorRating_Blunt>
 						</value>
 					</li>
+
 					<li Class="PatchOperationReplace">
 						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]/statBases/ArmorRating_Sharp</xpath>
 						<value>
-							<ArmorRating_Sharp>11</ArmorRating_Sharp>
+							<ArmorRating_Sharp>10</ArmorRating_Sharp>
 						</value>
 					</li>
 
@@ -61,9 +64,43 @@
 						</value>
 					</li>
 
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Mech_Slurrymaster"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>4500</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>450</MaxOverHeal>
+								<MinArmorPct>0.5</MinArmorPct>
+								<MinArmorValueSharp>6</MinArmorValueSharp>
+								<MinArmorValueBlunt>12</MinArmorValueBlunt>
+							</li>
+						</value>
+					</li>
+
 				</operations>
-			</match>					
-		</match>			
+			</match>
+		</match>
 	</Operation>
 
 </Patch>

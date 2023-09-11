@@ -14,7 +14,9 @@ namespace CombatExtended
 
         private const float PenetrationRandVariation = 0.05f;    // Armor penetration will be randomized by +- this amount
         private const float SoftArmorMinDamageFactor = 0.2f;    // Soft body armor will always take at least original damage * this number from sharp attacks
+        private const float HardArmorDamageFactor = 0.5f;       // Hard body armor final health damage multiplier
         private const float SpikeTrapAPModifierBlunt = 0.65f;
+        private const float BulletImpactForceMultiplier = 0.2f; //Bullet has less mass => less impluse comparing to melee => less Blunt penetration
 
         #endregion
 
@@ -101,30 +103,87 @@ namespace CombatExtended
                             }
                         }
                     }
+
                     // Try to penetrate the shield
                     if (blockedByShield && !TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, shield))
                     {
-                        shieldAbsorbed = true;
-                        armorDeflected = true;
-                        dinfo.SetAmount(0);
-
-                        // Apply secondary damage to shield
-                        if (dinfo.Weapon?.projectile is ProjectilePropertiesCE props && !props.secondaryDamage.NullOrEmpty())
+                        //Deflected by sharp armor, check for blunt armor
+                        if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
                         {
-                            foreach (var sec in props.secondaryDamage)
+                            if (deflectionComp != null)
                             {
-                                if (shield.Destroyed || !Rand.Chance(sec.chance))
-                                {
-                                    break;
-                                }
-                                var secDinfo = sec.GetDinfo();
-                                var pen = secDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
-                                var dmg = (float)secDinfo.Amount;
-                                TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.armorRatingStat), ref pen, ref dmg, shield);
+                                deflectionComp.deflectedSharp = true;
                             }
                         }
+                        // Hit was deflected, convert damage type
+                        dinfo = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount);
+                        //Applies multiplier to bullet.
+                        penAmount *= dinfo.Weapon?.IsMeleeWeapon ?? false ? 1.0f : BulletImpactForceMultiplier;
+                        //Check if converted blunt damage could penetrate the shield
+                        if (!TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount))
+                        {
+                            shieldAbsorbed = true;
+                            armorDeflected = true;
+                            dinfo.SetAmount(0);
+                            // Apply secondary damage to shield
+                            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE props && !props.secondaryDamage.NullOrEmpty())
+                            {
+                                foreach (var sec in props.secondaryDamage)
+                                {
+                                    if (shield.Destroyed)
+                                    {
+                                        break;
+                                    }
+                                    if (!Rand.Chance(sec.chance))
+                                    {
+                                        continue;
+                                    }
+                                    var secDinfo = sec.GetDinfo();
+                                    var pen = secDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
+                                    var dmg = (float)secDinfo.Amount;
+                                    TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.armorRatingStat), ref pen, ref dmg, shield);
+                                }
+                            }
 
-                        return dinfo;
+                            return dinfo;
+                        }
+                        //Blunt damage penetrated the shield, apply the damage to left arm
+                        //Could add a check for having weapon equipped, if not, pawns should be able to hold the shield with both arms, increasing their defence
+                        else
+                        {
+                            shieldAbsorbed = true;
+                            //Priority: Left Arm > Right Arm > Left Shoulder
+                            //It seems that losing left shoulder makes shield unequippable, so no need to add a null check (for now)
+                            //FirstOrFallback returns null when nothing satisfies, effectively brings the program into the if statement
+                            BodyPartRecord PartToHit = pawn.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside, tag: BodyPartTagDefOf.ManipulationLimbCore).FirstOrFallback(x => x.IsInGroup(CE_BodyPartGroupDefOf.LeftArm) || x.IsInGroup(CE_BodyPartGroupDefOf.RightArm));
+                            if (PartToHit == null)
+                            {
+                                PartToHit = pawn.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside, tag: BodyPartTagDefOf.ManipulationLimbSegment).First(x => x.IsInGroup(CE_BodyPartGroupDefOf.LeftShoulder));
+                            }
+                            dinfo.SetHitPart(PartToHit);
+                            dinfo.SetAmount(dmgAmount);
+                            // Apply secondary damage to shield
+                            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE props && !props.secondaryDamage.NullOrEmpty())
+                            {
+                                foreach (var sec in props.secondaryDamage)
+                                {
+                                    if (shield.Destroyed)
+                                    {
+                                        break;
+                                    }
+                                    if (!Rand.Chance(sec.chance))
+                                    {
+                                        continue;
+                                    }
+                                    var secDinfo = sec.GetDinfo();
+                                    var pen = secDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
+                                    var dmg = (float)secDinfo.Amount;
+                                    TryPenetrateArmor(secDinfo.Def, shield.GetStatValue(secDinfo.Def.armorCategory.armorRatingStat), ref pen, ref dmg, shield);
+                                }
+                            }
+                            return dinfo;
+                        }
+
                     }
                 }
 
@@ -217,7 +276,6 @@ namespace CombatExtended
                     return dinfo;
                 }
             }
-
             // Applies blunt damage from partial penetrations.
             if (isSharp && (dinfo.Amount > dmgAmount))
             {
@@ -282,6 +340,7 @@ namespace CombatExtended
                     else
                     {
                         armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+                        armorDamage *= HardArmorDamageFactor;
                     }
 
                     TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);

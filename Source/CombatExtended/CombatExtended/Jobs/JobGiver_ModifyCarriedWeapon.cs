@@ -11,6 +11,11 @@ namespace CombatExtended
         private const int THROTTLE_COOLDOWN = 450;
         private static Dictionary<int, int> _throttle = new Dictionary<int, int>();
 
+        static JobGiver_ModifyCarriedWeapon()
+        {
+            CacheClearComponent.AddClearCacheAction(() => _throttle.Clear());
+        }
+
         public override float GetPriority(Pawn pawn)
         {
             // throttle it a bit

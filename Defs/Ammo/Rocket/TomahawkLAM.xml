@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<!-- Tomahawk LAM missile has only one type of warhead for CE:FT, no subcategory for variants required -->
@@ -41,7 +41,7 @@
 			<drawSize>4,4</drawSize>
 		</graphicData>
 		<statBases>
-			<MarketValue>14026</MarketValue>
+			<MarketValue>12046</MarketValue>
 			<Mass>1440</Mass>
 			<Bulk>3830.29</Bulk>
 		</statBases>
@@ -57,17 +57,17 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>50</speed>
+			<speed>63</speed>
 			<soundHitThickRoof>Explosion_GiantBomb</soundHitThickRoof>
 			<soundExplode>Explosion_GiantBomb</soundExplode>
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>RocketPropelledLoop_Big</soundAmbient>
 			<flyOverhead>true</flyOverhead>
 			<dropsCasings>false</dropsCasings>
-			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
- 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
+			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
+			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
-	</ThingDef>	
+	</ThingDef>
 
 	<ThingDef ParentName="BaseTomahawkLAM">
 		<defName>Bullet_TomahawkLAM</defName>
@@ -79,20 +79,18 @@
 			<drawSize>2,4</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>19.5</explosionRadius >
+			<explosionRadius>19.5</explosionRadius>
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>5653</damageAmountBase>
 			<soundExplode>Explosion_GiantBomb</soundExplode>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>			
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Large>300</Fragment_Large>
-					<!-- Reduced from calculated value of 3729 for performance reasons -->
-					<Fragment_Small>500</Fragment_Small>
-					<!-- Reduced from calculated value of 39576 for performance reasons -->
-				</fragments>				
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>80</Fragment_Small>
+				</fragments>
 			</li>
 		</comps>
 	</ThingDef>

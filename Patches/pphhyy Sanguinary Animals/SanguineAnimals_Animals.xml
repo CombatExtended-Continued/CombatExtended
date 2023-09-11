@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>pphhyy Sanguinary Animals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Sanguine Deer ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_SanguineDeer"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.12</MeleeDodgeChance>
+						<MeleeCritChance>0.18</MeleeCritChance>
+						<MeleeParryChance>0.19</MeleeParryChance>
+						<NightVisionEfficiency>1</NightVisionEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_SanguineDeer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.19</cooldownTime>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.19</cooldownTime>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontLeftLeg_2</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.19</cooldownTime>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.19</cooldownTime>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>FrontRightLeg_2</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>razorfangs</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.46</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<chanceFactor>2</chanceFactor>
+								<armorPenetrationSharp>1.6</armorPenetrationSharp>
+								<armorPenetrationBlunt>8.863</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>3.2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>1.225</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="pphhyy_SanguineDeer"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- ========== Varghulf ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_Vargulf"]/statBases/MoveSpeed</xpath>
+					<value>
+						<MoveSpeed>6</MoveSpeed>
+						<MeleeDodgeChance>0.14</MeleeDodgeChance>
+						<MeleeCritChance>0.24</MeleeCritChance>
+						<MeleeParryChance>0.19</MeleeParryChance>
+						<NightVisionEfficiency>1</NightVisionEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_Vargulf"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.17</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>21</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.54</armorPenetrationSharp>
+								<armorPenetrationBlunt>8.47</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.17</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>21</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.54</armorPenetrationSharp>
+								<armorPenetrationBlunt>8.47</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>1.62</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>21</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<chanceFactor>0.5</chanceFactor>
+								<armorPenetrationSharp>2.18</armorPenetrationSharp>
+								<armorPenetrationBlunt>14.52</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>2.2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>4.24</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

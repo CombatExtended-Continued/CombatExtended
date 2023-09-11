@@ -28,7 +28,15 @@ namespace CombatExtended.HarmonyCE
                     var sourceLoc = new Vector2();
                     sourceLoc.Set(u.x, u.z);
                     var targetLocation = new Vector2();
-                    targetLocation.Set(target.Thing.TrueCenter().x, target.Thing.TrueCenter().z);
+
+                    if (target.HasThing)
+                    {
+                        targetLocation.Set(target.Thing.TrueCenter().x, target.Thing.TrueCenter().z);
+                    }
+                    else
+                    {
+                        targetLocation.Set(target.Cell.ToIntVec2.x, target.Cell.ToIntVec2.z);
+                    }
 
                     var w = (targetLocation - sourceLoc);
                     float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;

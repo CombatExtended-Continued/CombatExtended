@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<!-- Mech Master Helmet -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm"]/statBases</xpath>
+						<value>
+							<Bulk>5</Bulk>
+							<WornBulk>1</WornBulk>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm"]/statBases/Flammability</xpath>
+						<value>
+							<Flammability>0</Flammability>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm"]/statBases/Mass</xpath>
+						<value>
+							<Mass>4.8</Mass>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm"]/statBases/MaxHitPoints</xpath>
+						<value>
+							<MaxHitPoints>350</MaxHitPoints>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm"]/statBases/ArmorRating_Sharp</xpath>
+						<value>
+							<ArmorRating_Sharp>16</ArmorRating_Sharp>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm"]/statBases/ArmorRating_Blunt</xpath>
+						<value>
+							<ArmorRating_Blunt>36</ArmorRating_Blunt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm"]/costList/Plasteel</xpath>
+						<value>
+							<Plasteel>200</Plasteel>
+							<DevilstrandCloth>20</DevilstrandCloth>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm"]/equippedStatOffsets</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+							<SmokeSensitivity>-1</SmokeSensitivity>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm"]</xpath>
+						<value>
+							<li Class="CombatExtended.ApparelDefExtension">
+								<isRadioPack>true</isRadioPack>
+							</li>
+						</value>
+					</li>
+
+					<!-- Mech Breaker Helmet -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerHelm"]/statBases</xpath>
+						<value>
+							<Bulk>6</Bulk>
+							<WornBulk>2</WornBulk>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerHelm"]/statBases/Flammability</xpath>
+						<value>
+							<Flammability>0</Flammability>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerHelm"]/statBases/Mass</xpath>
+						<value>
+							<Mass>6</Mass>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerHelm"]/statBases/MaxHitPoints</xpath>
+						<value>
+							<MaxHitPoints>350</MaxHitPoints>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerHelm"]/statBases/ArmorRating_Sharp</xpath>
+						<value>
+							<ArmorRating_Sharp>20</ArmorRating_Sharp>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerHelm"]/statBases/ArmorRating_Blunt</xpath>
+						<value>
+							<ArmorRating_Blunt>50</ArmorRating_Blunt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerHelm"]/costList/Plasteel</xpath>
+						<value>
+							<Plasteel>60</Plasteel>
+							<DevilstrandCloth>25</DevilstrandCloth>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerHelm"]/equippedStatOffsets</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+							<SmokeSensitivity>-1</SmokeSensitivity>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerHelm"]</xpath>
+						<value>
+							<li Class="CombatExtended.ApparelDefExtension">
+								<isRadioPack>true</isRadioPack>
+							</li>
+						</value>
+					</li>
+
+					<!-- Mech Master Armor -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderSuit"]/statBases</xpath>
+						<value>
+							<Bulk>100</Bulk>
+							<WornBulk>15</WornBulk>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderSuit"]/statBases/ArmorRating_Sharp</xpath>
+						<value>
+							<ArmorRating_Sharp>20.5</ArmorRating_Sharp>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderSuit"]/statBases/ArmorRating_Blunt</xpath>
+						<value>
+							<ArmorRating_Blunt>46</ArmorRating_Blunt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderSuit"]/equippedStatOffsets/MoveSpeed</xpath>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechCommanderSuit"]/costList/Plasteel</xpath>
+						<value>
+							<Plasteel>200</Plasteel>
+							<DevilstrandCloth>40</DevilstrandCloth>
+						</value>
+					</li>
+
+					<!-- Mech Breaker Armor -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerArmor"]/statBases</xpath>
+						<value>
+							<Bulk>100</Bulk>
+							<WornBulk>20</WornBulk>
+							<Mass>80</Mass>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerArmor"]/statBases/ArmorRating_Sharp</xpath>
+						<value>
+							<ArmorRating_Sharp>26</ArmorRating_Sharp>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerArmor"]/statBases/ArmorRating_Blunt</xpath>
+						<value>
+							<ArmorRating_Blunt>60</ArmorRating_Blunt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerArmor"]/statBases/EnergyShieldRechargeRate</xpath>
+						<value>
+							<EnergyShieldRechargeRate>0.03</EnergyShieldRechargeRate>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerArmor"]/statBases/EnergyShieldEnergyMax</xpath>
+						<value>
+							<EnergyShieldEnergyMax>0.6</EnergyShieldEnergyMax>
+						</value>
+					</li>
+
+					<li Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerArmor"]/equippedStatOffsets</xpath>
+						<value>
+							<CarryWeight>100</CarryWeight>
+							<CarryBulk>20</CarryBulk>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+							<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerArmor"]/costList/Plasteel</xpath>
+						<value>
+							<Plasteel>270</Plasteel>
+							<DevilstrandCloth>40</DevilstrandCloth>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_MechBreakerArmor"]/costList/Uranium</xpath>
+						<value>
+							<Uranium>80</Uranium>
+						</value>
+					</li>
+
+					<!-- Prestige Gear -->
+
+					<li Class="PatchOperationFindMod">
+						<mods>
+							<li>Royalty</li>
+						</mods>
+
+						<match Class="PatchOperationSequence">
+							<operations>
+
+								<!-- Prestige Mechlord -->
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_ArmorHelmetMechlordHelmet_Prestige"]/statBases/MaxHitPoints</xpath>
+									<value>
+										<MaxHitPoints>270</MaxHitPoints>
+										<Mass>3.0</Mass>
+										<ArmorRating_Sharp>12</ArmorRating_Sharp>
+										<ArmorRating_Blunt>26</ArmorRating_Blunt>
+										<Flammability>0.25</Flammability>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_ArmorHelmetMechlordHelmet_Prestige"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+									<value>
+										<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+										<SmokeSensitivity>-1</SmokeSensitivity>
+									</value>
+								</li>
+
+								<li Class="PatchOperationRemove">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_ArmorHelmetMechlordHelmet_Prestige"]/equippedStatOffsets/MeleeHitChance</xpath>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_ArmorHelmetMechlordHelmet_Prestige"]/costList/Plasteel</xpath>
+									<value>
+										<Plasteel>170</Plasteel>
+										<DevilstrandCloth>15</DevilstrandCloth>
+									</value>
+								</li>
+
+								<li Class="PatchOperationAddModExtension">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_ArmorHelmetMechlordHelmet_Prestige"]</xpath>
+									<value>
+										<li Class="CombatExtended.ApparelDefExtension">
+											<isRadioPack>true</isRadioPack>
+										</li>
+									</value>
+								</li>
+
+								<li Class="PatchOperationAdd">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_MechlordSuit_Prestige"]/statBases</xpath>
+									<value>
+										<Bulk>90</Bulk>
+										<WornBulk>13</WornBulk>
+										<Mass>40</Mass>
+										<MaxHitPoints>450</MaxHitPoints>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_MechlordSuit_Prestige"]/statBases/ArmorRating_Sharp</xpath>
+									<value>
+										<ArmorRating_Sharp>16</ArmorRating_Sharp>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_MechlordSuit_Prestige"]/statBases/ArmorRating_Blunt</xpath>
+									<value>
+										<ArmorRating_Blunt>34</ArmorRating_Blunt>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_MechlordSuit_Prestige"]/costList/Plasteel</xpath>
+									<value>
+										<Plasteel>170</Plasteel>
+										<DevilstrandCloth>40</DevilstrandCloth>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_MechlordSuit_Prestige"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+									<value>
+										<CarryWeight>65</CarryWeight>
+										<CarryBulk>10</CarryBulk>
+									</value>
+								</li>
+
+								<li Class="PatchOperationRemove">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_MechlordSuit_Prestige"]/equippedStatOffsets/MeleeHitChance</xpath>
+								</li>
+
+								<li Class="PatchOperationAdd">
+									<xpath>Defs/ThingDef[defName="AM_Apparel_MechlordSuit_Prestige"]</xpath>
+									<value>
+										<modExtensions Inherit="False">
+											<li Class="CombatExtended.PartialArmorExt">
+												<stats>
+													<li>
+														<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+														<parts>
+															<li>Neck</li>
+															<li>Hand</li>
+														</parts>
+													</li>
+													<li>
+														<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+														<parts>
+															<li>Neck</li>
+															<li>Hand</li>
+														</parts>
+													</li>
+													<li>
+														<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+														<parts>
+															<li>Leg</li>
+														</parts>
+													</li>
+													<li>
+														<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+														<parts>
+															<li>Leg</li>
+														</parts>
+													</li>
+													<li>
+														<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+														<parts>
+															<li>Arm</li>
+														</parts>
+													</li>
+													<li>
+														<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+														<parts>
+															<li>Arm</li>
+														</parts>
+													</li>
+												</stats>
+											</li>
+										</modExtensions>
+									</value>
+								</li>
+
+								<!-- Prestige Mech Master -->
+
+								<li Class="PatchOperationAdd">
+									<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm_Prestige"]/statBases</xpath>
+									<value>
+										<Bulk>5</Bulk>
+										<WornBulk>1</WornBulk>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm_Prestige"]/statBases/Flammability</xpath>
+									<value>
+										<Flammability>0</Flammability>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm_Prestige"]/statBases/Mass</xpath>
+									<value>
+										<Mass>4.8</Mass>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm_Prestige"]/statBases/MaxHitPoints</xpath>
+									<value>
+										<MaxHitPoints>350</MaxHitPoints>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm_Prestige"]/statBases/ArmorRating_Sharp</xpath>
+									<value>
+										<ArmorRating_Sharp>16</ArmorRating_Sharp>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm_Prestige"]/statBases/ArmorRating_Blunt</xpath>
+									<value>
+										<ArmorRating_Blunt>36</ArmorRating_Blunt>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm_Prestige"]/costList/Plasteel</xpath>
+									<value>
+										<Plasteel>220</Plasteel>
+										<DevilstrandCloth>20</DevilstrandCloth>
+									</value>
+								</li>
+
+								<li Class="PatchOperationAdd">
+									<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm_Prestige"]/equippedStatOffsets</xpath>
+									<value>
+										<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+										<SmokeSensitivity>-1</SmokeSensitivity>
+									</value>
+								</li>
+
+								<li Class="PatchOperationAddModExtension">
+									<xpath>Defs/ThingDef[defName="AM_MechCommanderHelm_Prestige"]</xpath>
+									<value>
+										<li Class="CombatExtended.ApparelDefExtension">
+											<isRadioPack>true</isRadioPack>
+										</li>
+									</value>
+								</li>
+
+								<li Class="PatchOperationAdd">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechCommanderSuit"]/statBases</xpath>
+									<value>
+										<Bulk>100</Bulk>
+										<WornBulk>15</WornBulk>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechCommanderSuit"]/statBases/ArmorRating_Sharp</xpath>
+									<value>
+										<ArmorRating_Sharp>20.5</ArmorRating_Sharp>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechCommanderSuit"]/statBases/ArmorRating_Blunt</xpath>
+									<value>
+										<ArmorRating_Blunt>46</ArmorRating_Blunt>
+									</value>
+								</li>
+
+								<li Class="PatchOperationRemove">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechCommanderSuit"]/equippedStatOffsets/MoveSpeed</xpath>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechCommanderSuit"]/costList/Plasteel</xpath>
+									<value>
+										<Plasteel>220</Plasteel>
+										<DevilstrandCloth>40</DevilstrandCloth>
+									</value>
+								</li>
+
+								<!-- Prestige Mech Breaker -->
+
+								<li Class="PatchOperationAdd">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerHelm"]/statBases</xpath>
+									<value>
+										<Bulk>6</Bulk>
+										<WornBulk>2</WornBulk>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerHelm"]/statBases/Flammability</xpath>
+									<value>
+										<Flammability>0</Flammability>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerHelm"]/statBases/Mass</xpath>
+									<value>
+										<Mass>6</Mass>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerHelm"]/statBases/MaxHitPoints</xpath>
+									<value>
+										<MaxHitPoints>350</MaxHitPoints>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerHelm"]/statBases/ArmorRating_Sharp</xpath>
+									<value>
+										<ArmorRating_Sharp>20</ArmorRating_Sharp>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerHelm"]/statBases/ArmorRating_Blunt</xpath>
+									<value>
+										<ArmorRating_Blunt>50</ArmorRating_Blunt>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerHelm"]/costList/Plasteel</xpath>
+									<value>
+										<Plasteel>80</Plasteel>
+										<DevilstrandCloth>25</DevilstrandCloth>
+									</value>
+								</li>
+
+								<li Class="PatchOperationAdd">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerHelm"]/equippedStatOffsets</xpath>
+									<value>
+										<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+										<SmokeSensitivity>-1</SmokeSensitivity>
+									</value>
+								</li>
+
+								<li Class="PatchOperationAddModExtension">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerHelm"]</xpath>
+									<value>
+										<li Class="CombatExtended.ApparelDefExtension">
+											<isRadioPack>true</isRadioPack>
+										</li>
+									</value>
+								</li>
+
+								<li Class="PatchOperationAdd">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerArmor"]/statBases</xpath>
+									<value>
+										<Bulk>100</Bulk>
+										<WornBulk>20</WornBulk>
+										<Mass>80</Mass>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerArmor"]/statBases/ArmorRating_Sharp</xpath>
+									<value>
+										<ArmorRating_Sharp>26</ArmorRating_Sharp>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerArmor"]/statBases/ArmorRating_Blunt</xpath>
+									<value>
+										<ArmorRating_Blunt>60</ArmorRating_Blunt>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerArmor"]/statBases/EnergyShieldRechargeRate</xpath>
+									<value>
+										<EnergyShieldRechargeRate>0.03</EnergyShieldRechargeRate>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerArmor"]/statBases/EnergyShieldEnergyMax</xpath>
+									<value>
+										<EnergyShieldEnergyMax>0.6</EnergyShieldEnergyMax>
+									</value>
+								</li>
+
+								<li Class="PatchOperationRemove">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+								</li>
+
+								<li Class="PatchOperationAdd">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerArmor"]/equippedStatOffsets</xpath>
+									<value>
+										<CarryWeight>100</CarryWeight>
+										<CarryBulk>20</CarryBulk>
+										<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+										<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerArmor"]/costList/Plasteel</xpath>
+									<value>
+										<Plasteel>290</Plasteel>
+										<DevilstrandCloth>40</DevilstrandCloth>
+									</value>
+								</li>
+
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/ThingDef[defName="AM_PrestigeMechBreakerArmor"]/costList/Uranium</xpath>
+									<value>
+										<Uranium>80</Uranium>
+									</value>
+								</li>
+
+							</operations>
+						</match>
+					</li>
+
+					<!-- Packs -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+							defName="AM_BeamcasterPack" or
+							defName="AM_VoidlinkPack" or
+							defName="AM_CryptoPack"
+							]/apparel/bodyPartGroups </xpath>
+						<value>
+							<li>Shoulders</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+							defName="AM_BeamcasterPack" or
+							defName="AM_VoidlinkPack" or
+							defName="AM_CryptoPack"
+							]/apparel/layers </xpath>
+						<value>
+							<li>Backpack</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>
+							Defs/ThingDef[
+							defName="AM_BeamcasterPack" or
+							defName="AM_VoidlinkPack" or
+							defName="AM_CryptoPack"
+							]/statBases
+						</xpath>
+						<value>
+							<Bulk>10</Bulk>
+							<WornBulk>2</WornBulk>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>
+							Defs/ThingDef[
+							defName="AM_BeamcasterPack" or
+							defName="AM_VoidlinkPack" or
+							defName="AM_CryptoPack"]
+						</xpath>
+						<value>
+							<li Class="CombatExtended.ApparelDefExtension">
+								<isRadioPack>true</isRadioPack>
+							</li>
+						</value>
+					</li>
+
+					<!-- Mech Shield -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Apparel_ExpandedHeavyShield"]/statBases</xpath>
+						<value>
+							<Bulk>5</Bulk>
+							<WornBulk>2.5</WornBulk>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Apparel_ExpandedHeavyShield"]/statBases/EnergyShieldRechargeRate</xpath>
+						<value>
+							<EnergyShieldRechargeRate>0.0195</EnergyShieldRechargeRate>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Apparel_ExpandedHeavyShield"]/statBases/EnergyShieldEnergyMax</xpath>
+						<value>
+							<EnergyShieldEnergyMax>6</EnergyShieldEnergyMax>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

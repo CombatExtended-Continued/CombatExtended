@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medievel Tailor</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Shirt -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_SimpleShirt" or defName="AMT_Apparel_OldShirt" or defName="AMT_Apparel_Doublet" or defName="AMT_Apparel_PaddedLeatherVest" or defName="AMT_Apparel_Jerkin" or defName="AMT_Apparel_CommonerTunic" or defName="AMT_Apparel_FancyTunic" or defName="AMT_Apparel_RoyalTunic" or defName="AMT_Apparel_BarMaidDress"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_SimpleShirt" or defName="AMT_Apparel_OldShirt" or defName="AMT_Apparel_Doublet" or defName="AMT_Apparel_PaddedLeatherVest" or defName="AMT_Apparel_CommonerTunic" or defName="AMT_Apparel_FancyTunic" or defName="AMT_Apparel_RoyalTunic" or defName="AMT_Apparel_BarMaidDress"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Arms</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_SimpleShirt" or defName="AMT_Apparel_OldShirt" or defName="AMT_Apparel_Doublet" or defName="AMT_Apparel_PaddedLeatherVest" or defName="AMT_Apparel_Jerkin" or defName="AMT_Apparel_CommonerTunic" or defName="AMT_Apparel_FancyTunic" or defName="AMT_Apparel_RoyalTunic" or defName="AMT_Apparel_BarMaidDress"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- Short Coat -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_ShortCoat"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_ShortCoat"]/statBases/Mass</xpath>
+					<value>
+						<Mass>2</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_ShortCoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- Rags -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Rags"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Rags"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- Pants -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Trousers" or defName="AMT_Apparel_RoyalHose"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Trousers" or defName="AMT_Apparel_RoyalHose"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- Hats -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Headgear_Chaperon" or defName="AMT_Headgear_ForesterHat" or defName="AMT_Headgear_ForesterHatF" or defName="Df_Headgear_MerchantHat" or defName="AMT_Headgear_Cap" or defName="AMT_Headgear_PiousCap"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Headgear_Chaperon" or defName="AMT_Headgear_ForesterHat" or defName="AMT_Headgear_ForesterHatF" or defName="Df_Headgear_MerchantHat" or defName="AMT_Headgear_Cap" or defName="AMT_Headgear_PiousCap"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="AMT_Headgear_Chaperon" or defName="AMT_Headgear_ForesterHat" or defName="AMT_Headgear_Cap"]/equippedStatOffsets/PainShockThreshold</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Headgear_ForesterHatF"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<AimingAccuracy>.1</AimingAccuracy>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- Shoes and Boots -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Handwear_TownGloves" or defName="AMT_Handwear_HuntingGloves" or defName="AMT_Handwear_NobleGloves" or defName="AMT_Handwear_VambraceLeather" or defName="AMT_Handwear_VambraceSplinted" or defName="AMT_Handwear_HandShackles"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Handwear_HuntingGloves"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<AimingAccuracy>0.2</AimingAccuracy>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Handwear_BlacksmithGloves"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Handwear_TownGloves" or defName="AMT_Handwear_HuntingGloves" or defName="AMT_Handwear_BlacksmithGloves" or defName="AMT_Handwear_NobleGloves" or defName="AMT_Handwear_VambraceLeather" or defName="AMT_Handwear_VambraceSplinted" or defName="AMT_Handwear_HandShackles"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Handwear_VambraceLeather" or defName="AMT_Handwear_VambraceSplinted"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Handwear_VambraceSplinted"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1.25</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Handwear_VambraceSplinted"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- Shoes and Boots -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Footwear_Peasantshoes" or defName="AMT_Footwear_Nobleshoes" or defName="AMT_Footwear_Townboots" or defName="AMT_Footwear_Travelboots" or defName="AMT_Footwear_Nobleboots" or defName="AMT_Footwear_Shackles"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Footwear_Peasantshoes" or defName="AMT_Footwear_Nobleshoes"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Footwear_Townboots" or defName="AMT_Footwear_Travelboots" or defName="AMT_Footwear_Nobleboots"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Footwear_Shackles"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

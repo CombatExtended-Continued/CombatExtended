@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Mechanitor ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Mechanitor"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Sanguophage ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="SanguophageBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>200</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>OutlanderShield</li>
+				</shieldTags>
+				<shieldChance>0.5</shieldChance>
+				<minAmmoCount>20</minAmmoCount>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>10</min>
+							<max>100</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="SanguophageThrall"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>200</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>OutlanderShield</li>
+				</shieldTags>
+				<shieldChance>0.9</shieldChance>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>200</min>
+							<max>400</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

@@ -9,6 +9,7 @@ using Verse.Sound;
 using CombatExtended.Compatibility;
 using CombatExtended.Lasers;
 using ProjectileImpactFX;
+using RimWorld.Planet;
 using CombatExtended.Utilities;
 
 namespace CombatExtended
@@ -117,6 +118,9 @@ namespace CombatExtended
         public bool castShadow = true;
         public bool logMisses = true;
 
+        public GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
+        public GlobalTargetInfo globalSourceInfo = GlobalTargetInfo.Invalid;
+
         #region Vanilla
         public bool landed;
         public int ticksToImpact;
@@ -136,7 +140,7 @@ namespace CombatExtended
         ///
         /// If lastHeightTick equals FlightTicks, it returns a locally stored value heightInt which is the product of previous calculation.
         /// </summary>
-        public float Height
+        public virtual float Height
         {
             get
             {
@@ -430,15 +434,21 @@ namespace CombatExtended
             {
                 launcher = null;
             }
+            CE_Scriber.Late(this, (id) =>
+            {
+                Scribe_References.Look<Thing>(ref launcher, "launcher_" + id);
+            });
+            Scribe_TargetInfo.Look(ref globalSourceInfo, "globalSourceInfo");
+            Scribe_TargetInfo.Look(ref globalTargetInfo, "globalTargetInfo");
+            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
 
             Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
             Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
-            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
             Scribe_References.Look<Thing>(ref launcher, "launcher");
             Scribe_References.Look<Thing>(ref equipment, "equipment");
+            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
-
             //Here be new variables
             Scribe_Values.Look(ref shotAngle, "shotAngle", 0f, true);
             Scribe_Values.Look(ref shotRotation, "shotRotation", 0f, true);
@@ -448,16 +458,9 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
 
+            //To fix landed grenades sl problem
+            Scribe_Values.Look(ref impactPosition, "impactPosition");
             // To insure saves don't get affected..
-            Thing target = null;
-            if (Scribe.mode != LoadSaveMode.Saving)
-            {
-                Scribe_References.Look<Thing>(ref target, "intendedTarget");
-                if (target != null)
-                {
-                    intendedTarget = new LocalTargetInfo(target);
-                }
-            }
         }
         #endregion
 
@@ -616,6 +619,10 @@ namespace CombatExtended
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
             this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            if (def.projectile is ProjectilePropertiesCE props)
+            {
+                this.castShadow = props.castShadow;
+            }
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
         }
@@ -681,7 +688,7 @@ namespace CombatExtended
 
             var projectileProperties = def.projectile as ProjectilePropertiesCE;
             var areWeLucky = Rand.Chance(projectileProperties?.empShieldBreakChance ?? 0);
-            if (areWeLucky)
+            if (areWeLucky && interceptorComp.Props.disarmedByEmpForTicks > 0)
             {
                 // If the chance check for this EMP projectile succeeds, break the shield using the appropriate damage type
                 // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
@@ -697,6 +704,7 @@ namespace CombatExtended
 
                     // Ensure we reset hit points for Biotech's new shields if broken by EMP
                     interceptorComp.currentHitPoints = 0;
+                    interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
                 }
             }
 
@@ -918,6 +926,10 @@ namespace CombatExtended
         /// <returns>True if impact occured, false otherwise</returns>
         private bool TryCollideWith(Thing thing)
         {
+            if (globalTargetInfo.IsValid)
+            {
+                return false;
+            }
             if (thing == launcher && !canTargetSelf)
             {
                 return false;
@@ -1064,7 +1076,30 @@ namespace CombatExtended
             ticksToImpact--;
             if (!ExactPosition.InBounds(Map))
             {
-                Position = LastPos.ToIntVec3();
+                if (globalTargetInfo.IsValid)
+                {
+                    TravelingShell shell = (TravelingShell)WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
+                    if (launcher?.Faction != null)
+                    {
+                        shell.SetFaction(launcher.Faction);
+                    }
+                    shell.tileInt = Map.Tile;
+                    shell.SpawnSetup();
+                    Find.World.worldObjects.Add(shell);
+                    shell.launcher = launcher;
+                    shell.equipmentDef = equipmentDef;
+                    shell.globalSource = new GlobalTargetInfo(OriginIV3, Map);
+                    shell.globalSource.tileInt = Map.Tile;
+                    shell.globalSource.mapInt = Map;
+                    shell.globalSource.worldObjectInt = Map.Parent;
+                    shell.shellDef = def;
+                    shell.globalTarget = globalTargetInfo;
+                    if (!shell.TryTravel(Map.Tile, globalTargetInfo.Tile))
+                    {
+                        Log.Error($"CE: Travling shell {this.def} failed to launch!");
+                        shell.Destroy();
+                    }
+                }
                 Destroy();
                 return;
             }
@@ -1073,6 +1108,10 @@ namespace CombatExtended
                 return;
             }
             Position = ExactPosition.ToIntVec3();
+            if (globalTargetInfo.IsValid)
+            {
+                return;
+            }
             if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal && def.projectile.soundImpactAnticipate != null)
             {
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
@@ -1200,6 +1239,10 @@ namespace CombatExtended
 
         public virtual void Impact(Thing hitThing)
         {
+            //if(cameraShakingInit > 0f && Find.CameraDriver != null)
+            //{
+            //    Find.CameraDriver.shaker.DoShake(cameraShakingInit);
+            //}
             if (def.HasModExtension<EffectProjectileExtension>())
             {
                 def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,

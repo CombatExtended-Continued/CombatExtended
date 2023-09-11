@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AOC The Cleanup Devil</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--Melee-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="AOC"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.26</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.26</cooldownTime>
+								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>4.49</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!--Gizmo-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="AOC"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
+					</value>
+				</li>
+
+				<!--Arm Groups-->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="AOC"]/corePart/parts/li[def="Shoulder"]/parts/li[customLabel="left arm"]/groups</xpath>
+					<value>
+						<li>LeftArm</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="AOC"]/corePart/parts/li[def="Shoulder"]/parts/li[customLabel="right arm"]/groups</xpath>
+					<value>
+						<li>RightArm</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="AOC"]/corePart/parts/li[customLabel="left shoulder"]/groups</xpath>
+					<value>
+						<li>LeftShoulder</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="AOC"]/corePart/parts/li[customLabel="right shoulder"]/groups</xpath>
+					<value>
+						<li>RightShoulder</li>
+					</value>
+				</li>
+
+				<!--Natural Armor-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="AOC"]//*[
+						def="Torso" or
+						def="Neck" or
+						def="Head" or
+						def="AOCTail" or
+						def="Nose" or
+						def="Jaw" or
+						def="Ear" or
+						def="Shoulder" or
+						def="Arm" or
+						def="Hand" or
+						def="Finger" or
+						def="Leg" or
+						def="Foot" or
+						def="Toe"]/groups
+					</xpath>
+
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

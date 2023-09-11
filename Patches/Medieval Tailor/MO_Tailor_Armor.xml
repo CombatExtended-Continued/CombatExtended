@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medievel Tailor</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Gambeson -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Gambeson" or defName="AMT_Apparel_LongGambeson"]/statBases</xpath>
+					<value>
+						<Bulk>15</Bulk>
+						<WornBulk>6</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Gambeson" or defName="AMT_Apparel_LongGambeson"]/statBases/Mass</xpath>
+					<value>
+						<Mass>3</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Gambeson"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Arms</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_LongGambeson"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Shoulders</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Gambeson" or defName="AMT_Apparel_LongGambeson"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MH: Mechanical Biomimetics</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--Bodytype-->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ATB_MicroScyther"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>QuadrupedLow</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ATB_DroneTORT" or
+						defName="ATB_DroneMineralUnit" or
+						defName="ATB_DroneNutritionUnit" or
+						defName="ATB_DroneWatchdog"
+						] </xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ATB_DroneChemUnit"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Birdlike</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Micro Scyther-->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATB_MicroScyther"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.26</MeleeDodgeChance>
+						<MeleeCritChance>0.03</MeleeCritChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_MicroScyther"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left wing</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>0.54</cooldownTime>
+								<linkedBodyPartsGroup>ATB_MechanicalLeftWing</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.303</armorPenetrationBlunt>
+								<armorPenetrationSharp>1</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right wing</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>0.54</cooldownTime>
+								<linkedBodyPartsGroup>ATB_MechanicalRightWing</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.303</armorPenetrationBlunt>
+								<armorPenetrationSharp>1</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.05</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+								<chanceFactor>0.1</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!--Chemical Processing Unit-->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATB_DroneChemUnit"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.15</MeleeDodgeChance>
+						<MeleeCritChance>0.0</MeleeCritChance>
+						<SmokeSensitivity>0.05</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneChemUnit"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.65</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Mineral unit -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATB_DroneMineralUnit"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.08</MeleeDodgeChance>
+						<MeleeCritChance>0.13</MeleeCritChance>
+						<MeleeParryChance>0.18</MeleeParryChance>
+						<SmokeSensitivity>0.05</SmokeSensitivity>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>30</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneMineralUnit"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>2.12</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Nutrition unit -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATB_DroneNutritionUnit"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.23</MeleeDodgeChance>
+						<MeleeCritChance>0.28</MeleeCritChance>
+						<MeleeParryChance>0.09</MeleeParryChance>
+						<SmokeSensitivity>0.05</SmokeSensitivity>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>30</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneNutritionUnit"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>2.12</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- TORT unit -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.17</MeleeDodgeChance>
+						<MeleeCritChance>0.23</MeleeCritChance>
+						<MeleeParryChance>0.1</MeleeParryChance>
+						<SmokeSensitivity>0.05</SmokeSensitivity>
+						<CarryWeight>100</CarryWeight>
+						<CarryBulk>50</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>2.12</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>12</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>36</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!-- Watchdog unit -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATB_DroneWatchdog"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.16</MeleeDodgeChance>
+						<MeleeCritChance>0.21</MeleeCritChance>
+						<MeleeParryChance>0.1</MeleeParryChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>30</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneWatchdog"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>4</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneWatchdog"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATB_DroneWatchdog"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>26</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.475</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>26</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>1</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.475</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>2.5</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>32</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
+								<armorPenetrationBlunt>12.8</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.5</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

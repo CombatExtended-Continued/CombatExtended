@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AOC The Cleanup Devil</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Give ammo to pawns ========== -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[
+						defName="AOC_Freeter" or
+						defName="AOC_Audit_Team_Leader" or
+						defName="AOC_Hunter" or
+						defName="AOC_Trash_Girl"
+						] </xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>3</min>
+								<max>5</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[
+						defName="AOC_Hammer" or
+						defName="AOC_Firefighter" or
+						defName="AOC_Doom_Guard" or
+						defName="AOC_Audit_Team" or
+						defName="AOC_Commander" or
+						defName="AOC_Anvil" or
+						defName="AOC_assult"
+						] </xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>5</min>
+								<max>7</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="AOC_Doom_Punisher"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>4</min>
+								<max>6</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

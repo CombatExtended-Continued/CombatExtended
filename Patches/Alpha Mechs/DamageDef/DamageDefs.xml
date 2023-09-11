@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Acid Spit ========== -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/DamageDef[defName="AM_AcidSpit"]</xpath>
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<isAmbientDamage>true</isAmbientDamage>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

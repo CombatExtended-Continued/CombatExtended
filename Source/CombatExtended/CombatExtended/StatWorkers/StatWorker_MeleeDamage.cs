@@ -51,24 +51,34 @@ namespace CombatExtended
                                                    (100 * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
                                                    (100 * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
             stringBuilder.AppendLine("");
-
-            foreach (ToolCE tool in tools)
+            foreach (Tool tool in tools)
             {
-                var adjustedToolDamage = GetAdjustedDamage(tool, req.Thing);
-                var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => tool.capacities.Contains(d.requiredCapacity));
-                var maneuverString = "(";
-                foreach (var maneuver in maneuvers)
+                if (tool is ToolCE toolCE)
                 {
-                    maneuverString += maneuver.ToString() + "/";
+                    var adjustedToolDamage = GetAdjustedDamage(toolCE, req.Thing);
+                    var maneuvers = DefDatabase<ManeuverDef>.AllDefsListForReading.Where(d => toolCE.capacities.Contains(d.requiredCapacity));
+                    var maneuverString = "(";
+                    foreach (var maneuver in maneuvers)
+                    {
+                        maneuverString += maneuver.ToString() + "/";
+                    }
+                    maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
+                    stringBuilder.AppendLine("  " + "Tool".Translate() + ": " + toolCE.ToString() + " " + maneuverString);
+                    stringBuilder.AppendLine("    " + "CE_DescBaseDamage".Translate() + ": " + toolCE.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                    stringBuilder.AppendLine("    " + "CE_AdjustedForWeapon".Translate() + ": " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+                    stringBuilder.AppendLine(string.Format("    " + "StatsReport_FinalValue".Translate() + ": {0} - {1}",
+                                                           (adjustedToolDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                           (adjustedToolDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                    stringBuilder.AppendLine();
                 }
-                maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
-                stringBuilder.AppendLine("  " + "Tool".Translate() + ": " + tool.ToString() + " " + maneuverString);
-                stringBuilder.AppendLine("    " + "CE_DescBaseDamage".Translate() + ": " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine("    " + "CE_AdjustedForWeapon".Translate() + ": " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
-                stringBuilder.AppendLine(string.Format("    " + "StatsReport_FinalValue".Translate() + ": {0} - {1}",
-                                                       (adjustedToolDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                                                       (adjustedToolDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
-                stringBuilder.AppendLine();
+                else
+                {
+                    if (DebugSettings.godMode)
+                    {
+                        Log.Error($"Trying to get stat MeleeDamage from {req.Def.defName} which has no support for Combat Extended.");
+                    }
+                    stringBuilder.AppendLine("CE_UnpatchedWeapon".Translate());
+                }
             }
             return stringBuilder.ToString();
         }
@@ -96,8 +106,11 @@ namespace CombatExtended
             }
             if (tools.Any(x => !(x is ToolCE)))
             {
-                Log.Error($"Trying to get stat MeleeDamage from {optionalReq.Def.defName} which has no support for Combat Extended.");
-                return "";
+                if (DebugSettings.godMode)
+                {
+                    Log.Error($"Trying to get stat MeleeDamage from {optionalReq.Def.defName} which has no support for Combat Extended.");
+                }
+                return "CE_UnpatchedWeaponShort".Translate();
             }
 
             float lowestDamage = Int32.MaxValue;

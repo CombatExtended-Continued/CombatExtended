@@ -62,6 +62,23 @@ namespace CombatExtended
                 return (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
             }
         }
+
+        public int CurAmmoCount
+        {
+            get
+            {
+                return currentAmmoInt.ammoCount;
+            }
+        }
+
+        public int MagAmmoCount
+        {
+            get
+            {
+                return MagSize / CurAmmoCount;
+            }
+        }
+
         public int MagSizeOverride
         {
             get
@@ -534,29 +551,55 @@ namespace CombatExtended
 
             // Add remaining ammo back to inventory
             Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
-            ammoThing.stackCount = curMagCountInt;
-            bool doDrop = false;
+            ammoThing.stackCount = curMagCountInt / CurAmmoCount;
 
+            Thing remainderThing = null;
+            int remainder = curMagCountInt % CurAmmoCount;
+            if (remainder > 0)
+            {
+                if (currentAmmoInt.HasComp(typeof(CompReloadable)))
+                {
+                    remainderThing = ThingMaker.MakeThing(currentAmmoInt);
+                    remainderThing.TryGetComp<CompReloadable>().remainingCharges = remainder;
+                }
+                else if (currentAmmoInt.partialUnloadAmmoDef != null)
+                {
+                    remainderThing = ThingMaker.MakeThing(currentAmmoInt.partialUnloadAmmoDef);
+                    remainderThing.stackCount = remainder;
+                }
+            }
+
+            bool doDrop = false;
             if (CompInventory != null)
             {
-                doDrop = (curMagCountInt != CompInventory.container.TryAdd(ammoThing, ammoThing.stackCount));    // TryAdd should report how many ammoThing.stackCount it stored.
+                doDrop = (curMagCountInt / CurAmmoCount) != CompInventory.container.TryAdd(ammoThing, ammoThing.stackCount);    // TryAdd should report how many ammoThing.stackCount it stored.
+                if (remainderThing != null)
+                {
+                    CompInventory.container.TryAdd(remainderThing, remainder);
+                }
             }
             else
             {
                 doDrop = true;    // Inventory was null so no place to shift the ammo besides the ground.
             }
-
             if (doDrop)
             {
                 // NOTE: If we get here from ThingContainer.TryAdd() it will have modified the ammoThing.stackCount to what it couldn't take.
-                //Thing outThing;
+
                 if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out droppedAmmo, turret.Faction != Faction.OfPlayer))
                 {
                     Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
                                               "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
                 }
+                if (remainderThing != null)
+                {
+                    if (!GenThing.TryDropAndSetForbidden(remainderThing, Position, Map, ThingPlaceMode.Near, out _, turret.Faction != Faction.OfPlayer))
+                    {
+                        Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
+                                                  "Unable to drop ", remainderThing.LabelCap, " on the ground, thing was destroyed."));
+                    }
+                }
             }
-
             // don't forget to set the clip to empty...
             CurMagCount = 0;
 
@@ -696,18 +739,19 @@ namespace CombatExtended
                 }
                 currentAmmoInt = (AmmoDef)ammoThing.def;
 
+                CompReloadable compReloadable = ammoThing.TryGetComp<CompReloadable>();
                 // If there's more ammo in inventory than the weapon can hold, or if there's greater than 1 bullet in inventory if reloading one at a time
-                if ((Props.reloadOneAtATime ? 1 : MagSize) < ammoThing.stackCount)
+                if ((Props.reloadOneAtATime ? 1 : MagAmmoCount) < ammoThing.stackCount)
                 {
                     if (Props.reloadOneAtATime)
                     {
-                        newMagCount = curMagCountInt + 1;
+                        newMagCount = curMagCountInt + (compReloadable?.remainingCharges ?? CurAmmoCount);
                         ammoThing.stackCount--;
                     }
                     else
                     {
                         newMagCount = MagSize;
-                        ammoThing.stackCount -= MagSize;
+                        ammoThing.stackCount -= MagAmmoCount;
                     }
                 }
                 // If there's less ammo in inventory than the weapon can hold, or if there's only one bullet left if reloading one at a time
@@ -718,7 +762,7 @@ namespace CombatExtended
                     {
                         newAmmoCount += curMagCountInt;
                     }
-                    newMagCount = Props.reloadOneAtATime ? curMagCountInt + 1 : newAmmoCount;
+                    newMagCount = Props.reloadOneAtATime ? curMagCountInt + (compReloadable?.remainingCharges ?? CurAmmoCount) : newAmmoCount;
                     if (ammoFromInventory)
                     {
                         CompInventory.container.Remove(ammoThing);

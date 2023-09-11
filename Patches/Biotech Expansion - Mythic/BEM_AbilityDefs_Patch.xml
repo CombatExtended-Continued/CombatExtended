@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech Expansion - Mythic</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BTEMy_BrilliantBlast"]</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BTEMy_BrilliantBlast"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>3</explosionRadius>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>56</damageAmountBase>
+							<explosionDelay>0</explosionDelay>
+							<dropsCasings>false</dropsCasings>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<speed>80</speed>
+						</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BTEMy_Punish"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>RangedStab</damageDef>
+							<speed>120</speed>
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationSharp>6</armorPenetrationSharp>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="BTEMy_Punish"]/verbProperties/range</xpath>
+					<value>
+						<range>21</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="BTEMy_BrilliantBlast"]/verbProperties/range</xpath>
+					<value>
+						<range>36</range>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

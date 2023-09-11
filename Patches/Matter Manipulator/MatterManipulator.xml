@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Matter Manipulator</li>
+		</mods>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Matter_Manipulator_Archotech" or
+				defName="Matter_Manipulator_Standard" or
+				defName="Matter_Manipulator_Prototype"]/tools </xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.54</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.54</cooldownTime>
+						<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</match>
+	</Operation>
+</Patch>

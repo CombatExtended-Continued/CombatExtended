@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MH: Military Tiers</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark2Body"]/corePart/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark2Body"]/corePart/parts/li[def="ATR_MechanicalThorax"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark2Body"]/corePart/parts/li[def="ATR_MechanicalThorax"]/parts/li[def="ATR_Framework"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark2Body"]/corePart/parts/li[def="ATR_MechanicalThorax"]/parts/li[def="ATR_MechanicalHead"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark2Body"]/corePart/parts/li[def="ATR_MechanicalThorax"]/parts/li[def="ATR_MechanicalHead"]/parts/li[def="ATR_VoiceSynthesizer"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark2Body"]/corePart/parts/li[def="ATR_MechanicalThorax"]/parts/li[def="ATR_MechanicalHead"]/parts/li[def="ATR_MechanicalAudioSensor"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark2Body"]/corePart/parts/li[def="ATR_MechanicalThorax"]/parts/li[def="ATR_MechanicalHead"]/parts/li[def="ATR_SmellSensor"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark2Body"]/corePart/parts/li[def="ATR_MechanicalThorax"]/parts/li[def="ATM_MechanicalLimb"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark2Body"]/corePart/parts/li[def="ATR_MechanicalThorax"]/parts/li[def="ATM_MechanicalLimb"]/parts/li[def="ATM_MechanicalManipulator"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="ATM_Mark2Body"]//*[
+						def="ATR_VoiceSynthesizer" or
+						def="ATR_SmellSensor" or
+						def="ATR_MechanicalVisualSensor"]/groups
+					</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

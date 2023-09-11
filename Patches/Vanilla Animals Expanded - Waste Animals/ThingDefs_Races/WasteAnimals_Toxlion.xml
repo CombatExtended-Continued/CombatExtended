@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Animals Expanded — Waste Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxlion"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxlion"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.19</MeleeDodgeChance>
+						<MeleeCritChance>0.18</MeleeCritChance>
+						<MeleeParryChance>0.17</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxlion"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>VAEWaste_FluClaws</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1</cooldownTime>
+								<chanceFactor>0.3</chanceFactor>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>16</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.06</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.22</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>VAEWaste_FluClaws</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1</cooldownTime>
+								<chanceFactor>0.3</chanceFactor>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>16</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationSharp>0.06</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.22</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>VAEWaste_FluBite</li>
+								</capacities>
+								<power>13</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>16</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<chanceFactor>0.3</chanceFactor>
+								<armorPenetrationSharp>1.66</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.35</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.5</cooldownTime>
+								<chanceFactor>0.7</chanceFactor>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>1.66</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.35</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

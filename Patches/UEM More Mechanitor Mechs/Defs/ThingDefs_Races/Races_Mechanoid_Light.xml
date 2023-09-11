@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[UEM] More Mechanitor Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Gastromech ========== -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="Mech_Gastromech"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Mech_Gastromech"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>chef knife</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>2.07</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.6</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>chef knife</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.33</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>8</armorPenetrationSharp>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>spatula</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>RightSpatula</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>3.715</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Decorator ========== -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="Mech_Decorator"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Mech_Decorator"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Left Pick</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.33</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>1.0</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>Right Pick</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.33</cooldownTime>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>1.0</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Scavoid ========== -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="Mech_Scavoid"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Mech_Scavoid"]/tools</xpath>
+					<value>
+						<tools Inherit="False">
+							<li Class="CombatExtended.ToolCE">
+								<label>Leg Spikes</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.33</cooldownTime>
+								<linkedBodyPartsGroup>SmallLegSpike</linkedBodyPartsGroup>
+								<armorPenetrationSharp>6</armorPenetrationSharp>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>Leg Spikes</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>2.07</cooldownTime>
+								<linkedBodyPartsGroup>SmallLegSpike</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.6</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ↁ House Sanguin</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>RimFantasy - Medieval Overhaul Edition</li>
+			</mods>
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<!-- === Blood Longsword === -->
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodLongsword"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>handle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>4</power>
+									<cooldownTime>1.78</cooldownTime>
+									<chanceFactor>0.10</chanceFactor>
+									<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>point</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>20</power>
+									<cooldownTime>1.80</cooldownTime>
+									<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+									<armorPenetrationSharp>2.25</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>edge</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>44</power>
+									<cooldownTime>1.68</cooldownTime>
+									<armorPenetrationBlunt>3.44</armorPenetrationBlunt>
+									<armorPenetrationSharp>0.86</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodLongsword"]/statBases</xpath>
+						<value>
+							<Bulk>8</Bulk>
+							<MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodLongsword"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.5</MeleeCritChance>
+								<MeleeParryChance>0.6</MeleeParryChance>
+								<MeleeDodgeChance>0.4</MeleeDodgeChance>
+							</equippedStatOffsets>
+						</value>
+					</li>
+
+					<!-- === Blood Executioner's Greatsword === -->
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodExecutionerGreatsword"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>handle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>5</power>
+									<cooldownTime>1.99</cooldownTime>
+									<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+									<chanceFactor>0.15</chanceFactor>
+									<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>point</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>60</power>
+									<cooldownTime>1.99</cooldownTime>
+									<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+									<armorPenetrationSharp>0.87</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>edge</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>49</power>
+									<cooldownTime>3.18</cooldownTime>
+									<armorPenetrationBlunt>3.888</armorPenetrationBlunt>
+									<armorPenetrationSharp>0.48</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodExecutionerGreatsword"]/statBases</xpath>
+						<value>
+							<Bulk>8</Bulk>
+							<MeleeCounterParryBonus>0.65</MeleeCounterParryBonus>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodExecutionerGreatsword"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.08</MeleeCritChance>
+								<MeleeParryChance>0.54</MeleeParryChance>
+								<MeleeDodgeChance>0.45</MeleeDodgeChance>
+							</equippedStatOffsets>
+						</value>
+					</li>
+
+					<!-- === Blood Arming Sword === -->
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodSword"]/statBases</xpath>
+						<value>
+							<Bulk>6</Bulk>
+							<MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodSword"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.46</MeleeCritChance>
+								<MeleeParryChance>0.60</MeleeParryChance>
+								<MeleeDodgeChance>0.34</MeleeDodgeChance>
+							</equippedStatOffsets>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodSword"]/weaponTags</xpath>
+						<value>
+							<li>CE_OneHandedWeapon</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_BloodSword"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>handle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>3</power>
+									<cooldownTime>1.59</cooldownTime>
+									<chanceFactor>0.05</chanceFactor>
+									<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>point</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>22</power>
+									<cooldownTime>1.46</cooldownTime>
+									<chanceFactor>0.50</chanceFactor>
+									<armorPenetrationBlunt>0.62</armorPenetrationBlunt>
+									<armorPenetrationSharp>1.48</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>edge</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>25</power>
+									<cooldownTime>1.63</cooldownTime>
+									<chanceFactor>0.45</chanceFactor>
+									<armorPenetrationBlunt>1.08</armorPenetrationBlunt>
+									<armorPenetrationSharp>0.63</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<!-- === Void Longsword === -->
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_VoidLongsword"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>handle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>4</power>
+									<cooldownTime>1.78</cooldownTime>
+									<chanceFactor>0.10</chanceFactor>
+									<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>point</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>20</power>
+									<cooldownTime>1.80</cooldownTime>
+									<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+									<armorPenetrationSharp>2.25</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>edge</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>44</power>
+									<cooldownTime>1.68</cooldownTime>
+									<armorPenetrationBlunt>3.44</armorPenetrationBlunt>
+									<armorPenetrationSharp>0.86</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_VoidLongsword"]/statBases</xpath>
+						<value>
+							<Bulk>8</Bulk>
+							<MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="DevDesigner_Blood_MeleeWeapon_VoidLongsword"]/equippedStatOffsets</xpath>
+						<value>
+							<MeleeCritChance>0.5</MeleeCritChance>
+							<MeleeParryChance>0.6</MeleeParryChance>
+							<MeleeDodgeChance>0.4</MeleeDodgeChance>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+</Patch>

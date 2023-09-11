@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Divine Order</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Divine Order Horse ========== -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderHorse"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderHorse"]/statBases/MoveSpeed</xpath>
+					<value>
+						<MoveSpeed>6</MoveSpeed>
+						<MeleeDodgeChance>0.15</MeleeDodgeChance>
+						<MeleeCritChance>0.39</MeleeCritChance>
+						<MeleeParryChance>0.24</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderHorse"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>1.37</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>3.938</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>1.37</cooldownTime>
+								<linkedBodyPartsGroup>FrontLeftLeg_2</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>3.938</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>1.37</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>3.938</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right hoof</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>1.37</cooldownTime>
+								<linkedBodyPartsGroup>FrontRightLeg_2</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>3.938</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.97</cooldownTime>
+								<chanceFactor>0.5</chanceFactor>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>2.12</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

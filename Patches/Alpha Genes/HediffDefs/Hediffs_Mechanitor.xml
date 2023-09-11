@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Genes</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ======= Reactive Armour ======= -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AG_MechRepairBoost"]/stages/li/statOffsets</xpath>
+					<value>
+						<statOffsets>
+							<ArmorRating_Blunt>2</ArmorRating_Blunt>
+							<ArmorRating_Sharp>1</ArmorRating_Sharp>
+						</statOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

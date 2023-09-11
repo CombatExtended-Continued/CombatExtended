@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Lux"]</xpath>
+						<value>
+							<li Class="CombatExtended.RacePropertiesExtensionCE">
+								<bodyShape>Humanoid</bodyShape>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Lux"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>left fist</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>5</power>
+									<cooldownTime>1.11</cooldownTime>
+									<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+									<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>right fist</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>5</power>
+									<cooldownTime>1.11</cooldownTime>
+									<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+									<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>5</power>
+									<cooldownTime>1.85</cooldownTime>
+									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+									<chanceFactor>0.2</chanceFactor>
+									<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Lux"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AM_Mech_Lux"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Lux"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>1000</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>100</MaxOverHeal>
+								<MinArmorPct>0.75</MinArmorPct>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/PawnKindDef[defName="AM_Mech_Lux"]/combatPower</xpath>
+						<value>
+							<combatPower>300</combatPower>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/PawnKindDef[defName="AM_Mech_Lux"]</xpath>
+						<value>
+							<li Class="CombatExtended.LoadoutPropertiesExtension">
+								<primaryMagazineCount>
+									<min>3</min>
+									<max>4</max>
+								</primaryMagazineCount>
+							</li>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MH: Military Tiers</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark4Body"]/corePart/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark4Body"]/corePart/parts/li[def="ATM_MechaniteTorso"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATM_Mark4Body"]/corePart/parts/li[def="ATM_MechaniteTorso"]/parts/li[def="ATM_MechaniteHead"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="ATM_Mark4Body"]//*[
+						def="ATR_VoiceSynthesizer" or
+						def="ATR_SmellSensor" or
+						def="ATR_MechanicalVisualSensor"]/groups
+					</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

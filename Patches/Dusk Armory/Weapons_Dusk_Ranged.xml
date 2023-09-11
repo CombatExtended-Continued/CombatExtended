@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dusk Armory</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--===== TOOLS FOR THE TOOL GOD =====-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DF_Dusk_Enforcer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "DF_Dusk_Carbine" or
+						defName = "DF_Dusk_Launcher" or
+						defName = "DF_Dusk_MAG" or
+						defName = "DF_Dusk_SMG" or
+						defName = "DF_Dusk_Striker"]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!--===== Dusk Carbine =====-->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DF_Dusk_Carbine</defName>
+					<statBases>
+						<Mass>3.16</Mass>
+						<Bulk>9.93</Bulk>
+						<SwayFactor>1.33</SwayFactor>
+						<ShotSpread>0.07</ShotSpread>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_9x39mmSoviet_FMJ</defaultProjectile>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+						<warmupTime>1.1</warmupTime>
+						<range>55</range>
+						<soundCast>DF_Shot_Dusk_Carbine</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilAmount>1.53</recoilAmount>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x39mmSoviet</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+					</weaponTags>
+				</li>
+
+				<!--===== Dusk Enforcer =====-->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DF_Dusk_Enforcer</defName>
+					<statBases>
+						<Mass>1.29</Mass>
+						<Bulk>2.31</Bulk>
+						<SwayFactor>1.27</SwayFactor>
+						<ShotSpread>0.18</ShotSpread>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.42</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_500SWMagnum_FMJ</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>16</range>
+						<soundCast>DF_Shot_Dusk_Enforcer</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_500SWMagnum</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_Sidearm</li>
+						<li>CE_AI_Pistol</li>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!--===== Dusk Launcher =====-->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DF_Dusk_Launcher</defName>
+					<statBases>
+						<Mass>7.9</Mass>
+						<Bulk>9.9</Bulk>
+						<SwayFactor>1.8</SwayFactor>
+						<ShotSpread>0.15</ShotSpread>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.43</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>45</range>
+						<soundCast>DF_Shot_Dusk_Launcher</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>CE_AI_Launcher</li>
+						<li>EliteGun</li>
+					</weaponTags>
+				</li>
+
+				<!--===== Dusk MAG =====-->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DF_Dusk_MAG</defName>
+					<statBases>
+						<Mass>9.11</Mass>
+						<Bulk>14.6</Bulk>
+						<SwayFactor>1.53</SwayFactor>
+						<ShotSpread>0.05</ShotSpread>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Silver>65</Silver>
+						<Plasteel>65</Plasteel>
+						<ComponentIndustrial>3</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_127x55mm_FMJ</defaultProjectile>
+						<burstShotCount>10</burstShotCount>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<warmupTime>1.3</warmupTime>
+						<range>68</range>
+						<soundCast>DF_Shot_Dusk_MAG</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilAmount>1.32</recoilAmount>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>250</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_127x55mm</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_MachineGun</li>
+						<li>CE_AI_Suppressive</li>
+					</weaponTags>
+				</li>
+
+				<!--===== Dusk SMG =====-->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DF_Dusk_SMG</defName>
+					<statBases>
+						<Mass>2.4</Mass>
+						<Bulk>4.4</Bulk>
+						<SwayFactor>0.94</SwayFactor>
+						<ShotSpread>0.14</ShotSpread>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Silver>35</Silver>
+						<Plasteel>35</Plasteel>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_50AE_FMJ</defaultProjectile>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<warmupTime>0.6</warmupTime>
+						<range>25</range>
+						<soundCast>DF_Shot_Dusk_SMG</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilAmount>2.08</recoilAmount>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>80</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_50AE</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_AssaultWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!--===== Dusk Striker =====-->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DF_Dusk_Striker</defName>
+					<statBases>
+						<Mass>3.40</Mass>
+						<Bulk>6.6</Bulk>
+						<SwayFactor>1.26</SwayFactor>
+						<ShotSpread>0.15</ShotSpread>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Silver>60</Silver>
+						<Plasteel>60</Plasteel>
+						<ComponentIndustrial>3</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>20</range>
+						<soundCast>DF_Shot_Dusk_Striker</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<reloadTime>0.85</reloadTime>
+						<ammoSet>AmmoSet_12Gauge</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_AssaultWeapon</li>
+					</weaponTags>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

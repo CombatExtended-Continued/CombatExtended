@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medievel Tailor</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Basically Parka -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Wintercoat"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Wintercoat"]/statBases/Mass</xpath>
+					<value>
+						<Mass>3</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Wintercoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- Headstuff -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AMT_Headgear_Cowl" or defName="AMT_Apparel_Cloak" or defName="AMT_Apparel_WinterCloak"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Headgear_Cowl" or defName="AMT_Apparel_Cloak" or defName="AMT_Apparel_WinterCloak"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_WinterCloak"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!--Remove Pain Threshold -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="AMT_Apparel_Cloak" or defName="AMT_Apparel_WinterCloak"]/equippedStatOffsets/PainShockThreshold</xpath>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

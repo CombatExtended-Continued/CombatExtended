@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Vanilla Races Expanded - Sanguophage</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Sanguinarius"]</xpath>
+						<value>
+							<li Class="CombatExtended.RacePropertiesExtensionCE">
+								<bodyShape>Quadruped</bodyShape>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Sanguinarius"]/statBases</xpath>
+						<value>
+							<ArmorRating_Sharp>7</ArmorRating_Sharp>
+							<ArmorRating_Blunt>15</ArmorRating_Blunt>
+							<CarryWeight>80</CarryWeight>
+							<CarryBulk>40</CarryBulk>
+							<MeleeDodgeChance>0.04</MeleeDodgeChance>
+							<MeleeCritChance>0.13</MeleeCritChance>
+							<MeleeParryChance>0.15</MeleeParryChance>
+							<MaxHitPoints>200</MaxHitPoints>
+						</value>
+					</li>
+
+					<li Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Sanguinarius"]/race/baseHealthScale</xpath>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Sanguinarius"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>front left leg</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>13</power>
+									<cooldownTime>2.67</cooldownTime>
+									<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+									<armorPenetrationBlunt>5</armorPenetrationBlunt>
+									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>front right leg</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>13</power>
+									<cooldownTime>2.67</cooldownTime>
+									<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+									<armorPenetrationBlunt>5</armorPenetrationBlunt>
+									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>15</power>
+									<cooldownTime>3.51</cooldownTime>
+									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+									<armorPenetrationBlunt>12</armorPenetrationBlunt>
+									<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									<chanceFactor>0.2</chanceFactor>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Sanguinarius"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AM_Mech_Sanguinarius"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Sanguinarius"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>1000</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>100</MaxOverHeal>
+								<MinArmorPct>0.75</MinArmorPct>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Gun_BloodBelcher"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>barrel</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>10</power>
+									<cooldownTime>2.44</cooldownTime>
+									<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

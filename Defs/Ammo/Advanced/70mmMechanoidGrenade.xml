@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -33,7 +33,7 @@
 		<stackLimit>25</stackLimit>
 		<tradeTags>
 			<li>CE_AutoEnableTrade_Sellable</li>
-		</tradeTags>		
+		</tradeTags>
 		<cookOffFlashScale>25</cookOffFlashScale>
 	</ThingDef>
 
@@ -45,8 +45,8 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-		<MarketValue>18.34</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
-		</statBases>		
+			<MarketValue>18.34</MarketValue><!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_70mmMechanoidGrenade_HE</detonateProjectile>
 	</ThingDef>
@@ -59,22 +59,10 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-		<MarketValue>39.32</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
-		</statBases>		
+			<MarketValue>39.32</MarketValue><!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>5</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>2.5</explosiveRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-			<li Class="CombatExtended.CompProperties_Fragments">
-				<fragments>
-					<Fragment_Large>1</Fragment_Large>
-				</fragments>
-			</li>
-		</comps>
+		<detonateProjectile>Bullet_70mmMechanoidGrenade_EMP</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -86,7 +74,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>20</speed>
+			<speed>32</speed>
 		</projectile>
 	</ThingDef>
 
@@ -98,13 +86,13 @@
 			<damageAmountBase>132</damageAmountBase>
 			<explosionRadius>2.5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
-      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>3</Fragment_Large>
-					<Fragment_Small>76</Fragment_Small>
+					<Fragment_Small>19</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -119,5 +107,92 @@
 			<damageAmountBase>132</damageAmountBase>
 		</projectile>
 	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_70mmMechanoidGrenade_HE</defName>
+		<label>make 70mm Mechanoid HE Grenade x5</label>
+		<description>Craft 5 70mm Mechanoid HE Grenades.</description>
+		<jobString>Making 70mm Mechanoid HE Grenades.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>FSX</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_70mmMechanoidGrenade_HE>5</Ammo_70mmMechanoidGrenade_HE>
+		</products>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workAmount>6820</workAmount><!-- 10% more work -->
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_70mmMechanoidGrenade_EMP</defName>
+		<label>make 70mm Mechanoid EMP Grenade x5</label>
+		<description>Craft 5 70mm Mechanoid EMP Grenades.</description>
+		<jobString>Making 70mm Mechanoid EMP Grenades.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>11</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_70mmMechanoidGrenade_EMP>5</Ammo_70mmMechanoidGrenade_EMP>
+		</products>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workAmount>9240</workAmount><!-- 10% more work -->
+	</RecipeDef>
 
 </Defs>

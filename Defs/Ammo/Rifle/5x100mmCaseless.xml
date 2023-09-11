@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -7,7 +7,7 @@
 		<parent>AmmoRifles</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberRailgunRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -43,7 +43,7 @@
 			<li>Ammo5x100mmCaseless</li>
 		</thingCategories>
 	</ThingDef>
-	
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="5x100mmCaselessBase">
 		<defName>Ammo_5x100mmCaseless_Sabot</defName>
 		<label>5x100mm Caseless cartridge (Sabot)</label>
@@ -58,9 +58,9 @@
 		<ammoClass>Sabot</ammoClass>
 		<cookOffProjectile>Bullet_5x100mmCaseless_Sabot</cookOffProjectile>
 	</ThingDef>
-		
+
 	<!-- ================== Projectiles ================== -->
-	
+
 	<ThingDef Name="Base5x100mmCaselessBullet" ParentName="BaseBulletCE" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Needle</texPath>
@@ -68,19 +68,19 @@
 		</graphicData>
 	</ThingDef>
 
-	  <ThingDef ParentName="Base5x100mmCaselessBullet">
+	<ThingDef ParentName="Base5x100mmCaselessBullet">
 		<defName>Bullet_5x100mmCaseless_Sabot</defName>
 		<label>5x100 Caseless bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageDef>Bullet</damageDef>
-		  <damageAmountBase>10</damageAmountBase>
-		  <armorPenetrationSharp>18</armorPenetrationSharp>
-		  <armorPenetrationBlunt>75</armorPenetrationBlunt>
-		  <speed>200</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>75</armorPenetrationBlunt>
+			<speed>178</speed>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 
-	  <ThingDef ParentName="Base5x100mmCaselessBullet" MayRequire="Ludeon.RimWorld.Biotech">
+	<ThingDef ParentName="Base5x100mmCaselessBullet" MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>Bullet_5x100mmCaseless_Toxic</defName>
 		<label>5x100 Caseless bullet (Toxic)</label>
 		<graphicData>
@@ -88,58 +88,58 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageDef>BulletToxic</damageDef>
-		  <damageAmountBase>11</damageAmountBase>
-		  <armorPenetrationSharp>20</armorPenetrationSharp>
-		  <armorPenetrationBlunt>108</armorPenetrationBlunt>
-		  <speed>240</speed>
+			<damageDef>BulletToxic</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>108</armorPenetrationBlunt>
+			<speed>204</speed>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
-  
-	  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-	    <defName>MakeAmmo_5x100mmCaseless_Sabot</defName>
-	    <label>make 5x100mm Caseless (Sabot) cartridge x500</label>
-	    <description>Craft 500 5x100mm Caseless (Sabot) cartridges.</description>
-	    <jobString>Making 5x100mm Caseless (Sabot) cartridges.</jobString>
-	    <ingredients>
-	      <li>
-		<filter>
-		  <thingDefs>
-		    <li>Steel</li>
-		  </thingDefs>
-		</filter>
-		<count>10</count>
-	      </li>
-	      <li>
-		<filter>
-		  <thingDefs>
-		    <li>Uranium</li>
-		  </thingDefs>
-		</filter>
-		<count>4</count>
-	      </li>
-	      <li>
-		<filter>
-		  <thingDefs>
-		    <li>Chemfuel</li>
-		  </thingDefs>
-		</filter>
-		<count>4</count>
-	      </li>
-	    </ingredients>
-	    <fixedIngredientFilter>
-	      <thingDefs>
-		<li>Steel</li>
-		<li>Uranium</li>
-		<li>Chemfuel</li>
-	      </thingDefs>
-	    </fixedIngredientFilter>
-	    <products>
-	      <Ammo_5x100mmCaseless_Sabot>500</Ammo_5x100mmCaseless_Sabot>
-	    </products>
-	    <workAmount>3400</workAmount>
-	  </RecipeDef>
-	
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_5x100mmCaseless_Sabot</defName>
+		<label>make 5x100mm Caseless (Sabot) cartridge x500</label>
+		<description>Craft 500 5x100mm Caseless (Sabot) cartridges.</description>
+		<jobString>Making 5x100mm Caseless (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_5x100mmCaseless_Sabot>500</Ammo_5x100mmCaseless_Sabot>
+		</products>
+		<workAmount>3400</workAmount>
+	</RecipeDef>
+
 </Defs>

@@ -9,7 +9,7 @@ using Verse.Sound;
 
 namespace CombatExtended.Compatibility
 {
-    static class BlockerRegistry
+    public static class BlockerRegistry
     {
         private static bool enabled = false;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;

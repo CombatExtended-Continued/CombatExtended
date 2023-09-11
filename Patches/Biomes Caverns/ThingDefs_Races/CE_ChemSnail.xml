@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Caverns</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="BMT_ChemSnail"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Serpentine</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_ChemSnail"]/tradeTags</xpath>
+					<value>
+						<li>CE_AnimalBoom</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_ChemSnail"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ShearableRenameable">
+							<compClass>CombatExtended.CompShearableRenameable</compClass>
+							<growthLabel>Secretion level</growthLabel>
+							<shearIntervalDays>10</shearIntervalDays>
+							<woolAmount>6</woolAmount>
+							<woolDef>FSX</woolDef>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_ChemSnail"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.2</MeleeParryChance>
+						<ArmorRating_Blunt>4</ArmorRating_Blunt>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_ChemSnail"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.97</cooldownTime>
+								<chanceFactor>0.2</chanceFactor>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

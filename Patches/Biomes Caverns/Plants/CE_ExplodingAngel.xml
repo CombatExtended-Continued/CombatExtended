@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Caverns</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_ExplodingAngel"]/comps</xpath>
+					<value>
+						<comps>
+							<li Class="BiomesCore.CompProperties_PlantProximityExplosive">
+								<explosiveRadius>3.9</explosiveRadius>
+								<explosiveDamageType>Bomb</explosiveDamageType>
+								<proxiGroup>Pawn</proxiGroup>
+								<minBodySize>0.9</minBodySize>
+								<proxiRadius>3.9</proxiRadius>
+								<growthProgress>0.6</growthProgress>
+								<growthAfterExplosion>0.4</growthAfterExplosion>
+								<explodeOnKilled>true</explodeOnKilled>
+								<chanceToStartFire>0.5</chanceToStartFire>
+								<detonateOnDamageTaken>
+									<li>Bullet</li>
+									<li>Arrow</li>
+									<li>ArrowHighVelocity</li>
+								</detonateOnDamageTaken>
+							</li>
+						</comps>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

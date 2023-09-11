@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Mechs</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Guttersnipe"]</xpath>
+						<value>
+							<li Class="CombatExtended.RacePropertiesExtensionCE">
+								<bodyShape>Vehicle</bodyShape>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Guttersnipe"]/statBases</xpath>
+						<value>
+							<MeleeDodgeChance>0.1</MeleeDodgeChance>
+							<MeleeCritChance>0.05</MeleeCritChance>
+							<MeleeParryChance>0.05</MeleeParryChance>
+							<MaxHitPoints>200</MaxHitPoints>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Guttersnipe"]/statBases/ArmorRating_Blunt</xpath>
+						<value>
+							<ArmorRating_Blunt>8</ArmorRating_Blunt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Guttersnipe"]/statBases/ArmorRating_Sharp</xpath>
+						<value>
+							<ArmorRating_Sharp>4</ArmorRating_Sharp>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Guttersnipe"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>20</power>
+									<cooldownTime>2.07</cooldownTime>
+									<linkedBodyPartsGroup>AM_CircularSaw</linkedBodyPartsGroup>
+									<armorPenetrationSharp>1.16</armorPenetrationSharp>
+									<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+									<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>12</power>
+									<cooldownTime>1.33</cooldownTime>
+									<linkedBodyPartsGroup>AM_CircularSaw</linkedBodyPartsGroup>
+									<armorPenetrationSharp>10</armorPenetrationSharp>
+									<armorPenetrationBlunt>5</armorPenetrationBlunt>
+									<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Guttersnipe"]/comps</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="AM_Mech_Guttersnipe"]</xpath>
+							<value>
+								<comps />
+							</value>
+						</nomatch>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Mech_Guttersnipe"]/comps</xpath>
+						<value>
+							<li Class="CombatExtended.CompProperties_ArmorDurability">
+								<Durability>1600</Durability>
+								<Regenerates>true</Regenerates>
+								<RegenInterval>1250</RegenInterval>
+								<RegenValue>5</RegenValue>
+								<Repairable>true</Repairable>
+								<RepairIngredients>
+									<Steel>5</Steel>
+									<Plasteel>5</Plasteel>
+								</RepairIngredients>
+								<RepairTime>300</RepairTime>
+								<RepairValue>200</RepairValue>
+								<CanOverHeal>true</CanOverHeal>
+								<MaxOverHeal>160</MaxOverHeal>
+								<MinArmorPct>0.75</MinArmorPct>
+							</li>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

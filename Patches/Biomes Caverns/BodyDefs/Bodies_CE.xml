@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Caverns</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ====== Moff ====== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_MothLike"]//*[
+						def="Shell" or
+						def="Pronotum" or
+						def="InsectHead" or
+						def="InsectMouth" or
+						def="InsectLeg"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<!-- ====== beetle ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BeetleLikeWithHorn"]//*[
+						def="Shell" or
+						def="Elytra" or
+						def="Pronotum" or
+						def="InsectNostril" or
+						def="Antenna" or
+						def="Eye" or
+						def="InsectLeg"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BeetleLikeWithHorn"]//*[
+						def="InsectMouth" or
+						def="Eye"]/groups
+					</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BeetleLikeWithHorn"]//*[
+						def="Body" or
+						def="Elytra" or
+						def="Pronotum" or
+						def="InsectHead" or
+						def="InsectNostril" or
+						def="Horn" or
+						def="InsectMouth" or
+						def="InsectLeg"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+				<!-- ====== freaky bipeds ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="HunchedBipedWithTail"]//*[
+						def="Body" or
+						def="Tail" or
+						def="Neck" or
+						def="Leg"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="HunchedBipedWithTail"]//*[
+						def="Body" or
+						def="Tail" or
+						def="Neck" or
+						def="Head" or
+						def="Leg" or
+						def="Foot"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<!-- ====== baffling bats ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_BatBird"]//*[
+						def="Body" or
+						def="Shoulder" or
+						def="Neck" or
+						def="Nose" or
+						def="Ear" or
+						def="Eye" or
+						def="Leg"]
+					</xpath>
+					<value>
+						<groups />
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_BatBird"]//*[
+						def="AnimalJaw" or
+						def="Nose" or
+						def="Eye"]/groups
+					</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="BMT_BatBird"]//*[
+						def="Body" or
+						def="Shoulder" or
+						def="Neck" or
+						def="Head" or
+						def="Ear" or
+						def="Nose" or
+						def="Paw" or
+						def="AnimalJaw" or
+						def="Leg"]/groups
+					</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

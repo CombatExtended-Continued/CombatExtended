@@ -397,6 +397,16 @@ namespace CombatExtended
                    || (thing.def.IsWeapon && pawn.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanUnequip(thing, pawn));
         }
 
+        public static bool IsItemMechanoidWeapon(this Pawn pawn, Thing thing)
+        {
+            if (pawn == null || thing == null)
+            {
+                return false;
+            }
+
+            return pawn.RaceProps.IsMechanoid && thing.def.IsWeapon;
+        }
+
         #endregion Methods
     }
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Animals Expanded — Waste Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VAEWaste_AcidBolt"]</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAEWaste_AcidBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>VAEWaste_AcidBolt</damageDef>
+							<damageAmountBase>10</damageAmountBase>
+							<speed>40</speed>
+							<armorPenetrationSharp>2.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxiguana"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.6</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxiguana"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>VAEWaste_AcidBolt</defaultProjectile>
+								<warmupTime>2</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>2</minRange>
+								<range>25</range>
+								<soundCast>VAEWaste_PoisonBolt</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>acid spit</label>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

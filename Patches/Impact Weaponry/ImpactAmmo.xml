@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Impact Weaponry</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+				<ThingCategoryDef>
+					<defName>Impact_Rounds</defName>
+					<label>Impact Shells</label>
+					<parent>AmmoAdvanced</parent>
+					<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+				</ThingCategoryDef>
+
+				<!-- ==================== AmmoSets ========================== -->
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ImpactShellsSmall</defName>
+					<label>Impact Shells (Small)</label>
+					<ammoTypes>
+						<Ammo_ImpactShellsSmall>Bullet_ImpactShellsSmall</Ammo_ImpactShellsSmall>
+					</ammoTypes>
+					<similarTo>AmmoSet_AntiMateriel</similarTo>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ImpactShellsBig</defName>
+					<label>Impact Shells (Big)</label>
+					<ammoTypes>
+						<Ammo_ImpactShellsBig>Bullet_ImpactShellsBig</Ammo_ImpactShellsBig>
+					</ammoTypes>
+					<similarTo>AmmoSet_AntiMateriel</similarTo>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ImpactShellsShell</defName>
+					<label>Impact Shells (Shell)</label>
+					<ammoTypes>
+						<Ammo_ImpactShellsShell>Bullet_ImpactShellsShell</Ammo_ImpactShellsShell>
+					</ammoTypes>
+					<similarTo>AmmoSet_AntiMateriel</similarTo>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ImpactShellsSniper</defName>
+					<label>Impact Shells (Sniper)</label>
+					<ammoTypes>
+						<Ammo_ImpactShellsSniper>Bullet_ImpactShellsSniper</Ammo_ImpactShellsSniper>
+					</ammoTypes>
+					<similarTo>AmmoSet_AntiMateriel</similarTo>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ImpactShellsBolter</defName>
+					<label>Impact Shells (Bolter)</label>
+					<ammoTypes>
+						<Ammo_ImpactShellsBolter>Bullet_ImpactShellsBolter</Ammo_ImpactShellsBolter>
+					</ammoTypes>
+					<similarTo>AmmoSet_AntiMateriel</similarTo>
+				</CombatExtended.AmmoSetDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_ImpactShellsSlugger</defName>
+					<label>Impact Shells (Slugger)</label>
+					<ammoTypes>
+						<Ammo_ImpactShellsSlugger>Bullet_ImpactShellsSlugger</Ammo_ImpactShellsSlugger>
+					</ammoTypes>
+					<similarTo>AmmoSet_AntiMateriel</similarTo>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ==================== Ammo ========================== -->
+				<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoImpactBase" ParentName="SmallAmmoBase" Abstract="True">
+					<description>A Large caliber, gryojet-stabilized projectile with an explosive charge.</description>
+					<tradeTags>
+						<li>CE_AutoEnableTrade</li>
+						<li>CE_AutoEnableCrafting</li>
+					</tradeTags>
+					<thingCategories>
+						<li>Impact_Rounds</li>
+					</thingCategories>
+					<stackLimit>5000</stackLimit>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
+					<defName>Ammo_ImpactShellsSmall</defName>
+					<label>Impact Shells (Small)</label>
+					<statBases>
+						<Mass>0.151</Mass>
+						<Bulk>0.06</Bulk>
+					</statBases>
+					<graphicData>
+						<texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<ammoClass>GrenadeHE</ammoClass>
+					<detonateProjectile>Bullet_ImpactShellsSmall</detonateProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
+					<defName>Ammo_ImpactShellsBig</defName>
+					<label>Impact Shells (Big)</label>
+					<statBases>
+						<Mass>0.201</Mass>
+						<Bulk>0.09</Bulk>
+					</statBases>
+					<graphicData>
+						<texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<ammoClass>GrenadeHE</ammoClass>
+					<detonateProjectile>Bullet_ImpactShellsBig</detonateProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
+					<defName>Ammo_ImpactShellsShell</defName>
+					<label>Impact Shells (Shell)</label>
+					<statBases>
+						<Mass>0.251</Mass>
+						<Bulk>0.12</Bulk>
+					</statBases>
+					<graphicData>
+						<texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<ammoClass>GrenadeHE</ammoClass>
+					<detonateProjectile>Bullet_ImpactShellsShell</detonateProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
+					<defName>Ammo_ImpactShellsSniper</defName>
+					<label>Impact Shells (Sniper)</label>
+					<statBases>
+						<Mass>0.221</Mass>
+						<Bulk>0.10</Bulk>
+					</statBases>
+					<graphicData>
+						<texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<ammoClass>GrenadeHE</ammoClass>
+					<detonateProjectile>Bullet_ImpactShellsSniper</detonateProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
+					<defName>Ammo_ImpactShellsBolter</defName>
+					<label>Impact Shells (Bolter)</label>
+					<statBases>
+						<Mass>0.251</Mass>
+						<Bulk>0.12</Bulk>
+					</statBases>
+					<graphicData>
+						<texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<ammoClass>GrenadeHE</ammoClass>
+					<detonateProjectile>Bullet_ImpactShellsBolter</detonateProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoImpactBase">
+					<defName>Ammo_ImpactShellsSlugger</defName>
+					<label>Impact Shells (Slugger)</label>
+					<statBases>
+						<Mass>0.61</Mass>
+						<Bulk>0.18</Bulk>
+					</statBases>
+					<graphicData>
+						<texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<ammoClass>GrenadeHE</ammoClass>
+					<detonateProjectile>Bullet_ImpactShellsSlugger</detonateProjectile>
+				</ThingDef>
+
+				<!-- ================== Projectiles ================== -->
+				<ThingDef Name="BaseImpactShellCE" ParentName="BaseBulletCE" Abstract="true">
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<dropsCasings>true</dropsCasings>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="BaseImpactShellCE">
+					<defName>Bullet_ImpactShellsSmall</defName>
+					<graphicData>
+						<texPath>Things/ImpactBullet</texPath>
+						<shaderType>TransparentPostLight</shaderType>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<label>Impact Shells (Small)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<speed>90</speed>
+						<damageAmountBase>18</damageAmountBase>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.131</armorPenetrationBlunt>
+						<casingMoteDefname>Mote_BolterCasing</casingMoteDefname>
+					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>15</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>0.6</explosiveRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>
+				</ThingDef>
+
+				<ThingDef ParentName="BaseImpactShellCE">
+					<defName>Bullet_ImpactShellsBig</defName>
+					<graphicData>
+						<texPath>Things/ImpactBulletBig</texPath>
+						<shaderType>TransparentPostLight</shaderType>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<label>Impact Shells (Big)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>37</damageAmountBase>
+						<armorPenetrationSharp>14</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.931</armorPenetrationBlunt>
+						<speed>86</speed>
+						<casingMoteDefname>Mote_BolterCasing</casingMoteDefname>
+					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveRadius>1.5</explosiveRadius>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<damageAmountBase>17</damageAmountBase>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>
+				</ThingDef>
+
+				<ThingDef ParentName="BaseImpactShellCE">
+					<defName>Bullet_ImpactShellsShell</defName>
+					<graphicData>
+						<texPath>Things/ImpactBulletShell</texPath>
+						<shaderType>TransparentPostLight</shaderType>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<label>Impact Shells (Shell)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageAmountBase>64</damageAmountBase>
+						<armorPenetrationSharp>20</armorPenetrationSharp>
+						<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
+						<speed>81</speed>
+						<damageDef>Bullet</damageDef>
+					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveRadius>2.2</explosiveRadius>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<damageAmountBase>18</damageAmountBase>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>
+				</ThingDef>
+
+				<ThingDef ParentName="BaseImpactShellCE">
+					<defName>Bullet_ImpactShellsSniper</defName>
+					<graphicData>
+						<texPath>Things/ImpactBulletSniper</texPath>
+						<shaderType>TransparentPostLight</shaderType>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<label>Impact Shells (Sniper)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>88</speed>
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>56</damageAmountBase>
+						<armorPenetrationSharp>18</armorPenetrationSharp>
+						<armorPenetrationBlunt>4.801</armorPenetrationBlunt>
+					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<explosiveRadius>1.6</explosiveRadius>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<damageAmountBase>24</damageAmountBase>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>
+				</ThingDef>
+
+				<ThingDef ParentName="BaseImpactShellCE">
+					<defName>Bullet_ImpactShellsBolter</defName>
+					<graphicData>
+						<texPath>Things/ImpactBolterShell</texPath>
+						<shaderType>TransparentPostLight</shaderType>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<label>Impact Shells (Bolter)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>88</speed>
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>24</damageAmountBase>
+						<armorPenetrationSharp>8</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.831</armorPenetrationBlunt>
+						<casingMoteDefname>Mote_BolterCasing</casingMoteDefname>
+					</projectile>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>18</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>1.8</explosiveRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</li>
+					</comps>
+				</ThingDef>
+
+				<ThingDef ParentName="BaseImpactShellCE">
+					<defName>Bullet_ImpactShellsSlugger</defName>
+					<graphicData>
+						<texPath>Things/ImpactBulletSlugger</texPath>
+						<shaderType>TransparentPostLight</shaderType>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<label>Impact Shells (Slugger)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>86</speed>
+						<pelletCount>3</pelletCount>
+						<explosionRadius>0.4</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>16</damageAmountBase>
+						<spreadMult>9.9</spreadMult>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
+					</projectile>
+				</ThingDef>
+
+				<!-- ==================== Recipes ========================== -->
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_ImpactShellsSmall</defName>
+					<label>make Impact Shells (Small) x200</label>
+					<description>Craft Impact Shells (Small).</description>
+					<jobString>Making Impact Shells (Small).</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>31</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>7</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>FSX</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_ImpactShellsSmall>200</Ammo_ImpactShellsSmall>
+					</products>
+					<workAmount>10400</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_ImpactShellsBig</defName>
+					<label>make Impact Shells (Big) x200</label>
+					<description>Craft Impact Shells (Big).</description>
+					<jobString>Making Impact Shells (Big).</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>35</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>10</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>FSX</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_ImpactShellsBig>200</Ammo_ImpactShellsBig>
+					</products>
+					<workAmount>10400</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_ImpactShellsShell</defName>
+					<label>make Impact Shells (Shell) x200</label>
+					<description>Craft Impact Shells (Shell).</description>
+					<jobString>Making Impact Shells (Shell).</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>45</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>12</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>FSX</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_ImpactShellsShell>200</Ammo_ImpactShellsShell>
+					</products>
+					<workAmount>10400</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_ImpactShellsSniper</defName>
+					<label>make Impact Shells (Sniper) x200</label>
+					<description>Craft Impact Shells (Sniper).</description>
+					<jobString>Making Impact Shells (Sniper).</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>42</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>10</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>FSX</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_ImpactShellsSniper>200</Ammo_ImpactShellsSniper>
+					</products>
+					<workAmount>10400</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_ImpactShellsBolter</defName>
+					<label>make Impact Shells (Bolter) x200</label>
+					<description>Craft Impact Shells (Bolter).</description>
+					<jobString>Making Impact Shells (Bolter).</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>45</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>12</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>FSX</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_ImpactShellsBolter>200</Ammo_ImpactShellsBolter>
+					</products>
+					<workAmount>10400</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_ImpactShellsSlugger</defName>
+					<label>make Impact Shells (Slugger) x200</label>
+					<description>Craft Impact Shells (Slugger).</description>
+					<jobString>Making Impact Shells (Slugger).</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>55</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>15</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>4</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>FSX</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_ImpactShellsSlugger>200</Ammo_ImpactShellsSlugger>
+					</products>
+					<workAmount>10400</workAmount>
+				</RecipeDef>
+
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

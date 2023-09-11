@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AOC The Cleanup Devil</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Traders ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="Base_Neolithic_Standard_AOC"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>FSX</thingDef>
+							<countRange>
+								<min>15</min>
+								<max>50</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>Prometheum</thingDef>
+							<countRange>
+								<min>15</min>
+								<max>50</max>
+							</countRange>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="AOC_Trash_Trader"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>FSX</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>25</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>Prometheum</thingDef>
+							<countRange>
+								<min>0</min>
+								<max>25</max>
+							</countRange>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="Orbital_AOC"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_Ammo</tradeTag>
+							<countRange>
+								<min>400</min>
+								<max>1000</max>
+							</countRange>
+							<thingDefCountRange>
+								<min>2</min>
+								<max>4</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_MediumAmmo</tradeTag>
+							<countRange>
+								<min>60</min>
+								<max>120</max>
+							</countRange>
+							<thingDefCountRange>
+								<min>4</min>
+								<max>7</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_HeavyAmmo</tradeTag>
+							<countRange>
+								<min>15</min>
+								<max>50</max>
+							</countRange>
+							<thingDefCountRange>
+								<min>2</min>
+								<max>4</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>FSX</thingDef>
+							<countRange>
+								<min>50</min>
+								<max>100</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>Prometheum</thingDef>
+							<countRange>
+								<min>50</min>
+								<max>100</max>
+							</countRange>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

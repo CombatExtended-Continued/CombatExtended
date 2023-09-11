@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Possessed Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--=============================== Melee ================================-->
+
+				<!--=============================== Scourge Blade ================================-->
+
+				<!--li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_ScourgeBlade"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>1.69</cooldownTime>
+								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>BotchJob_ToxicCut</li>
+								</capacities>
+								<power>40</power>
+								<cooldownTime>2.06</cooldownTime>
+								<armorPenetrationBlunt>3.2</armorPenetrationBlunt>
+								<armorPenetrationSharp>16</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>BotchJob_ToxicStab</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>0.99</cooldownTime>
+								<armorPenetrationBlunt>3.24</armorPenetrationBlunt>
+								<armorPenetrationSharp>32.4</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_ScourgeBlade"]/statBases</xpath>
+					<value>
+						<Bulk>8.5</Bulk>
+						<MeleeCounterParryBonus>0.80</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_ScourgeBlade"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>1.00</MeleeCritChance>
+						<MeleeParryChance>0.60</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="BotchJob_ScourgeBlade"]/weaponTags</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="BotchJob_ScourgeBlade"]</xpath>
+						<value>
+							<weaponTags />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_ScourgeBlade"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li-->
+
+				<!--=============================== Possessed Scourge Blade ================================-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedScourgeBlade"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>1.52</cooldownTime>
+								<armorPenetrationBlunt>0.97</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>BotchJob_ToxicCut</li>
+								</capacities>
+								<power>40</power>
+								<cooldownTime>1.85</cooldownTime>
+								<armorPenetrationBlunt>3.87</armorPenetrationBlunt>
+								<armorPenetrationSharp>19.36</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>BotchJob_ToxicStab</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>0.89</cooldownTime>
+								<armorPenetrationBlunt>3.92</armorPenetrationBlunt>
+								<armorPenetrationSharp>39.2</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedScourgeBlade"]/statBases</xpath>
+					<value>
+						<Bulk>8.5</Bulk>
+						<MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedScourgeBlade"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>1.00</MeleeCritChance>
+						<MeleeParryChance>0.69</MeleeParryChance>
+						<MeleeDodgeChance>0.46</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<!--=============================== Glacial Cleaver ================================-->
+				<!--li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_GlacialCleaver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>9</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>0.99</cooldownTime>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>BotchJob_FrostCut</li>
+								</capacities>
+								<power>46</power>
+								<extraMeleeDamages>
+									<li>
+										<def>Frostbite</def>
+										<amount>8</amount>
+										<chance>0.3</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>1.92</cooldownTime>
+								<armorPenetrationBlunt>6.48</armorPenetrationBlunt>
+								<armorPenetrationSharp>19.24</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_GlacialCleaver"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.13</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_GlacialCleaver"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>1</MeleeCritChance>
+						<MeleeParryChance>0.1</MeleeParryChance>
+						<MeleeDodgeChance>0.20</MeleeDodgeChance>
+					</value>
+				</li-->
+
+				<!--=============================== Possessed Glaciar Cleaver ================================-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedGlacialCleaver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>9</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>0.89</cooldownTime>
+								<armorPenetrationBlunt>7.26</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>BotchJob_FrostCut</li>
+								</capacities>
+								<power>46</power>
+								<extraMeleeDamages>
+									<li>
+										<def>Frostbite</def>
+										<amount>9</amount>
+										<chance>0.3</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>1.73</cooldownTime>
+								<armorPenetrationBlunt>7.84</armorPenetrationBlunt>
+								<armorPenetrationSharp>23.28</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedGlacialCleaver"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedGlacialCleaver"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>1</MeleeCritChance>
+						<MeleeParryChance>0.12</MeleeParryChance>
+						<MeleeDodgeChance>0.23</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<!--=============================== Sanctified Sword ================================-->
+				<!--li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_SanctifiedSword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>1.6</cooldownTime>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>40</power>
+								<cooldownTime>2.4</cooldownTime>
+								<armorPenetrationBlunt>2.88</armorPenetrationBlunt>
+								<armorPenetrationSharp>18</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>2.4</cooldownTime>
+								<armorPenetrationBlunt>1.28</armorPenetrationBlunt>
+								<armorPenetrationSharp>25</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_SanctifiedSword"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_SanctifiedSword"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>1</MeleeCritChance>
+						<MeleeParryChance>0.6</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>
+					</value>
+				</li-->
+
+				<!--=============================== Possessed Sanctified Sword ================================-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedSanctifiedSword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>1.44</cooldownTime>
+								<armorPenetrationBlunt>0.61</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>40</power>
+								<cooldownTime>2.16</cooldownTime>
+								<armorPenetrationBlunt>3.48</armorPenetrationBlunt>
+								<armorPenetrationSharp>21.78</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>2.16</cooldownTime>
+								<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+								<armorPenetrationSharp>30.25</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedSanctifiedSword"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.92</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedSanctifiedSword"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>1</MeleeCritChance>
+						<MeleeParryChance>0.69</MeleeParryChance>
+						<MeleeDodgeChance>0.46</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<!--=============================== Volcanic Maul ================================-->
+				<!--li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_VolcanicMaul"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>13</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>2.67</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>93</power>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>8</amount>
+										<chance>0.3</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>3.47</cooldownTime>
+								<armorPenetrationBlunt>45</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_VolcanicMaul"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_VolcanicMaul"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.5</MeleeCritChance>
+							<MeleeParryChance>0.3</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li-->
+
+				<!--=============================== Possessed Volcanic Sword ================================-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedVolcanicMaul"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>13</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>2.4</cooldownTime>
+								<armorPenetrationBlunt>6.05</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>93</power>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>8</amount>
+										<chance>0.3</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>3.12</cooldownTime>
+								<armorPenetrationBlunt>54.45</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedVolcanicMaul"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.46</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedVolcanicMaul"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>1.5</MeleeCritChance>
+						<MeleeParryChance>0.35</MeleeParryChance>
+						<MeleeDodgeChance>0.35</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<!--=============================== Craghammer ================================-->
+				<!--li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_Craghammer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>11</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>2.52</cooldownTime>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Demolish</li>
+								</capacities>
+								<power>76</power>
+								<cooldownTime>3.28</cooldownTime>
+								<armorPenetrationBlunt>36</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_Craghammer"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_Craghammer"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>1.5</MeleeCritChance>
+						<MeleeParryChance>0.3</MeleeParryChance>
+						<MeleeDodgeChance>0.3</MeleeDodgeChance>
+					</value>
+				</li-->
+
+				<!--=============================== Possessed Sanctified Sword ================================-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedCraghammer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>11</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>2.27</cooldownTime>
+								<armorPenetrationBlunt>4.84</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Demolish</li>
+								</capacities>
+								<power>76</power>
+								<cooldownTime>2.95</cooldownTime>
+								<armorPenetrationBlunt>43.56</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedCraghammer"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.46</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedCraghammer"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>1.5</MeleeCritChance>
+						<MeleeParryChance>0.35</MeleeParryChance>
+						<MeleeDodgeChance>0.35</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<!--=============================== Possessed Bloodstained Scythe ================================-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedBloodstainedScythe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.16</cooldownTime>
+								<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>BotchJob_BloodCut</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>4</cooldownTime>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+								<armorPenetrationBlunt>4.6</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedBloodstainedScythe"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.71</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedBloodstainedScythe"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.19</MeleeCritChance>
+							<MeleeParryChance>1.5</MeleeParryChance>
+							<MeleeDodgeChance>0.83</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

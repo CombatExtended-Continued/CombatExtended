@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -8,7 +8,7 @@
 		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
 	</ThingCategoryDef>
 
-  <!-- ==================== AmmoSet ========================== -->
+	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_CannonBall</defName>
@@ -17,7 +17,7 @@
 			<Ammo_CannonBall_Round>Bullet_CannonBall_Round</Ammo_CannonBall_Round>
 			<Ammo_CannonBall_Bursting>Bullet_CannonBall_Bursting</Ammo_CannonBall_Bursting>
 			<Ammo_CannonBall_Incendiary>Bullet_CannonBall_Incendiary</Ammo_CannonBall_Incendiary>
-			<Ammo_CannonBall_Grape>Bullet_CannonBall_Grape</Ammo_CannonBall_Grape>									
+			<Ammo_CannonBall_Grape>Bullet_CannonBall_Grape</Ammo_CannonBall_Grape>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -27,7 +27,7 @@
 		<label>Cannon Ball</label>
 		<ammoTypes>
 			<Ammo_CannonBall_Bursting>Bullet_CannonBall_Bursting_Mortar</Ammo_CannonBall_Bursting>
-			<Ammo_CannonBall_Incendiary>Bullet_CannonBall_Incendiary_Mortar</Ammo_CannonBall_Incendiary>									
+			<Ammo_CannonBall_Incendiary>Bullet_CannonBall_Incendiary_Mortar</Ammo_CannonBall_Incendiary>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -39,8 +39,8 @@
 		</thingCategories>
 		<stackLimit>25</stackLimit>
 		<graphicData>
-		<drawSize>1.50</drawSize>
-		</graphicData>  		
+			<drawSize>1.50</drawSize>
+		</graphicData>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting_FueledSmithy</li>
@@ -77,7 +77,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>57.78</MarketValue>
+			<MarketValue>32.45</MarketValue>
 		</statBases>
 		<ammoClass>BurstingShell</ammoClass>
 		<cookOffProjectile>Bullet_CannonBall_Bursting</cookOffProjectile>
@@ -92,7 +92,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>41.72</MarketValue>
+			<MarketValue>28.72</MarketValue>
 		</statBases>
 		<ammoClass>FireShell</ammoClass>
 		<cookOffProjectile>Bullet_CannonBall_Incendiary</cookOffProjectile>
@@ -115,17 +115,17 @@
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Name="BaseCannonBall" ParentName="BaseExplosiveBullet" Abstract="true">
-	<graphicData>
-		<texPath>Things/Projectile/Bullet_Big</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<drawSize>2,2</drawSize>
-	</graphicData>	
-	<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<speed>91</speed>
-		<soundExplode>MortarBomb_Explode</soundExplode>
-		<flyOverhead>false</flyOverhead>
-		<dropsCasings>false</dropsCasings>
-	</projectile>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>2,2</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>99</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCannonBall">
@@ -146,22 +146,22 @@
 		<label>bursting shell</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>91</speed>
+			<speed>99</speed>
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>142</damageAmountBase>
+			<damageAmountBase>82</damageAmountBase>
 			<armorPenetrationSharp>0</armorPenetrationSharp>
 			<armorPenetrationBlunt>0</armorPenetrationBlunt>
-			<explosionRadius>2.5</explosionRadius>
+			<explosionRadius>2.0</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
-		<li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>17</Fragment_Large>
-				<Fragment_Small>22</Fragment_Small>
-			</fragments>
-		</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>9</Fragment_Large>
+					<Fragment_Small>19</Fragment_Small>
+				</fragments>
+			</li>
 		</comps>
 	</ThingDef>
 
@@ -170,7 +170,7 @@
 		<label>flaming shell</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>91</speed>
+			<speed>99</speed>
 			<damageDef>PrometheumFlame</damageDef>
 			<damageAmountBase>6</damageAmountBase>
 			<explosionRadius>4.5</explosionRadius>
@@ -181,20 +181,20 @@
 	</ThingDef>
 
 	<!-- Different parent, because it doesn't work with 'BaseCannonBall' for some reason. -->
-	<ThingDef ParentName="Base12GaugeChargedBullet"> 
+	<ThingDef ParentName="Base12GaugeChargedBullet">
 		<defName>Bullet_CannonBall_Grape</defName>
 		<label>grape shot</label>
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>1,1</drawSize>
-		</graphicData>			
+		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>63</damageAmountBase>
 			<armorPenetrationSharp>8.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>420.68</armorPenetrationBlunt>
 			<pelletCount>27</pelletCount>
-			<spreadMult>17.8</spreadMult>
+			<spreadMult>26.7</spreadMult>
 		</projectile>
 	</ThingDef>
 
@@ -225,18 +225,18 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>142</damageAmountBase>
-			<explosionRadius>2.5</explosionRadius>
+			<damageAmountBase>82</damageAmountBase>
+			<explosionRadius>2.0</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
-		<li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>17</Fragment_Large>
-				<Fragment_Small>22</Fragment_Small>
-			</fragments>
-		</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>9</Fragment_Large>
+					<Fragment_Small>19</Fragment_Small>
+				</fragments>
+			</li>
 		</comps>
 	</ThingDef>
 
@@ -268,14 +268,14 @@
 		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
 		<workAmount>6600</workAmount>
 		<ingredients>
-		<li>
-			<filter>
-				<thingDefs>
-					<li>Steel</li>
-				</thingDefs>
-			</filter>
-			<count>66</count>
-		</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>66</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
@@ -294,33 +294,33 @@
 		<jobString>Making bursting shells cannon balls.</jobString>
 		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
 		<ingredients>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-			</filter>
-			<count>66</count>
-		</li>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>FSX</li>
-			</thingDefs>
-			</filter>
-			<count>9</count>
-		</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>66</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
-		<thingDefs>
-			<li>Steel</li>
-			<li>FSX</li>
-		</thingDefs>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-		<Ammo_CannonBall_Bursting>5</Ammo_CannonBall_Bursting>
+			<Ammo_CannonBall_Bursting>5</Ammo_CannonBall_Bursting>
 		</products>
-		<workAmount>11400</workAmount>
+		<workAmount>8200</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -330,33 +330,33 @@
 		<jobString>Making incendiary shells cannon balls.</jobString>
 		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
 		<ingredients>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-			</filter>
-			<count>66</count>
-		</li>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Prometheum</li>
-			</thingDefs>
-			</filter>
-			<count>2</count>
-		</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>66</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
-		<thingDefs>
-			<li>Steel</li>
-			<li>Prometheum</li>
-		</thingDefs>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-		<Ammo_CannonBall_Incendiary>5</Ammo_CannonBall_Incendiary>
+			<Ammo_CannonBall_Incendiary>5</Ammo_CannonBall_Incendiary>
 		</products>
-		<workAmount>8600</workAmount>
+		<workAmount>7400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -367,14 +367,14 @@
 		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
 		<workAmount>6600</workAmount>
 		<ingredients>
-		<li>
-			<filter>
-				<thingDefs>
-					<li>Steel</li>
-				</thingDefs>
-			</filter>
-			<count>66</count>
-		</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>66</count>
+			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>

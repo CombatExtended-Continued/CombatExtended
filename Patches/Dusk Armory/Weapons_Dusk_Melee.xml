@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dusk Armory</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--===== Dusk Kris =====-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DF_Dusk_Kris"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Dusk Kris handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<chanceFactor>0.33</chanceFactor>
+								<cooldownTime>1.34</cooldownTime>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>Dusk Kris point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>31</power>
+								<cooldownTime>1.34</cooldownTime>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.2</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>Dusk Kris edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>1.24</cooldownTime>
+								<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.6</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DF_Dusk_Kris"]/statBases</xpath>
+					<value>
+						<Bulk>3.4</Bulk>
+						<MeleeCounterParryBonus>0.45</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DF_Dusk_Kris"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.3</MeleeCritChance>
+							<MeleeParryChance>0.45</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DF_Dusk_Kris"]/weaponTags</xpath>
+					<value>
+						<li>CE_Sidearm_Melee</li>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!--===== Dusk Razor =====-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DF_Dusk_Razor"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Dusk Razor handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.59</cooldownTime>
+								<chanceFactor>0.33</chanceFactor>
+								<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>Dusk Razor point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>1.59</cooldownTime>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>3.0</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>Dusk Razor edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>38</power>
+								<cooldownTime>1.46</cooldownTime>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DF_Dusk_Razor"]/statBases</xpath>
+					<value>
+						<Bulk>7.9</Bulk>
+						<MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DF_Dusk_Razor"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.73</MeleeCritChance>
+							<MeleeParryChance>0.85</MeleeParryChance>
+							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!--===== Dusk Saw =====-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="DF_Dusk_Saw"]/tools</xpath>
+
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Dusk Saw chain</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>0.1</cooldownTime>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="DF_Dusk_Saw"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>6.5</Bulk>
+						<Mass>5</Mass>
+						<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DF_Dusk_Saw"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.15</MeleeCritChance>
+							<MeleeParryChance>0.3</MeleeParryChance>
+							<MeleeDodgeChance>0.1</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

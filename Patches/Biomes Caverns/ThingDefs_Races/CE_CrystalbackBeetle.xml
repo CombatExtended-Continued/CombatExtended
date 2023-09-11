@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Caverns</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Larvae -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetleLarvae"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetleLarvae"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.00</MeleeDodgeChance>
+						<MeleeCritChance>0.01</MeleeCritChance>
+						<MeleeParryChance>0.01</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetleLarvae"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<armorPenetrationSharp>0.1</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>mandible</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<armorPenetrationSharp>1.0</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetlePupa"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetlePupa"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.00</MeleeDodgeChance>
+						<MeleeCritChance>0.00</MeleeCritChance>
+						<MeleeParryChance>0.00</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetlePupa"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>4.5</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.03</MeleeDodgeChance>
+						<MeleeCritChance>0.24</MeleeCritChance>
+						<MeleeParryChance>0.13</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>12</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Mandibles</label>
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+								<armorPenetrationSharp>8</armorPenetrationSharp>
+								<chanceFactor>0.7</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.9</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>7</armorPenetrationBlunt>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MH: Mechanical Biomimetics</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATB_MechBipedal"]/corePart/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATB_MechBipedal"]/corePart/parts/li[def="ATR_Framework"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATB_MechBipedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATB_MechBipedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/parts/li[def="ATR_MechanicalHead"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATB_MechBipedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/parts/li[def="ATR_MechanicalHead"]/parts/li[def="ATR_MechanicalAudioSensor"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATB_MechBipedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/parts/li[def="ATR_MechanicalHead"]/parts/li[def="ATR_SmellSensor"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATB_MechBipedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/parts/li[def="ATR_MechanicalHead"]/parts/li[def="ATR_MechanicalJaw"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATB_MechBipedal"]/corePart/parts/li[def="ATR_MechanicalLeg"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="ATB_MechBipedal"]/corePart/parts/li[def="ATR_MechanicalLeg"]/parts/li[def="ATR_MechanicalFoot"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>
+						Defs/BodyDef[defName="ATB_MechBipedal"]//*[
+						def="ATR_MechanicalJaw" or
+						def="ATR_SmellSensor" or
+						def="ATR_MechanicalVisualSensor"]/groups
+					</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

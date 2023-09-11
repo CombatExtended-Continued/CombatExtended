@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AOC The Cleanup Devil</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ScenarioDef[defName="AOC_Scenario"]/scenario/parts</xpath>
+					<value>
+						<li Class="ScenPart_StartingThing_Defined">
+							<def>StartingThing_Defined</def>
+							<thingDef>Ammo_303British_FMJ</thingDef>
+							<count>100</count>
+						</li>
+						<li Class="ScenPart_StartingThing_Defined">
+							<def>StartingThing_Defined</def>
+							<thingDef>Ammo_44Magnum_FMJ</thingDef>
+							<count>60</count>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ScenarioDef[defName="AOC_Scenario"]/scenario/parts/li[thingDef="Apparel_FlakVest"]</xpath>
+					<value>
+						<li Class="ScenPart_StartingThing_Defined">
+							<def>StartingThing_Defined</def>
+							<thingDef>Apparel_FlakVest</thingDef>
+							<stuff>Steel</stuff>
+							<count>1</count>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<!-- ========== Base Dryad ========== -->
@@ -32,14 +32,14 @@
 					</capacities>
 					<power>5</power>
 					<cooldownTime>0.99</cooldownTime>
-                    <surpriseAttack>
-                        <extraMeleeDamages>
-                        <li>
-                            <def>Stun</def>
-                            <amount>10</amount>
-                        </li>
-                        </extraMeleeDamages>
-                    </surpriseAttack>                    
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
 					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
 					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
 					<armorPenetrationSharp>0.07</armorPenetrationSharp>
@@ -51,14 +51,14 @@
 					</capacities>
 					<power>5</power>
 					<cooldownTime>0.99</cooldownTime>
-                    <surpriseAttack>
-                        <extraMeleeDamages>
-                        <li>
-                            <def>Stun</def>
-                            <amount>10</amount>
-                        </li>
-                        </extraMeleeDamages>
-                    </surpriseAttack>                        
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
 					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
 					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
 					<armorPenetrationSharp>0.07</armorPenetrationSharp>
@@ -69,14 +69,14 @@
 					</capacities>
 					<power>12</power>
 					<cooldownTime>1.77</cooldownTime>
-                    <surpriseAttack>
-                        <extraMeleeDamages>
-                        <li>
-                            <def>Stun</def>
-                            <amount>10</amount>
-                        </li>
-                        </extraMeleeDamages>
-                    </surpriseAttack>                        
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
 					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 					<armorPenetrationBlunt>2.880</armorPenetrationBlunt>
 					<armorPenetrationSharp>0.15</armorPenetrationSharp>
@@ -103,7 +103,7 @@
 		<xpath>Defs/ThingDef[defName="Dryad_Clawer"]/statBases/MoveSpeed</xpath>
 		<value>
 			<MoveSpeed>6.4</MoveSpeed>
-            <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
 			<ArmorRating_Sharp>0.12</ArmorRating_Sharp>
 			<MeleeDodgeChance>0.5</MeleeDodgeChance>
 			<MeleeCritChance>0.25</MeleeCritChance>
@@ -195,15 +195,38 @@
 		<xpath>Defs/ThingDef[defName="Dryad_Barkskin"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>10</ArmorRating_Sharp>
+			<MeleeParryChance>0.2</MeleeParryChance>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Dryad_Barkskin"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-            <ArmorRating_Blunt>15</ArmorRating_Blunt>
+			<ArmorRating_Blunt>15</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Dryad_Barkskin"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Dryad_Barkskin"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryad_Barkskin"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>400</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
 </Patch>
-

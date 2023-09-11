@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AOC The Cleanup Devil</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Fire Axe -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AOC_F4T"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>1.3</cooldownTime>
+								<armorPenetrationBlunt>3.263</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Demolish</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>2.43</cooldownTime>
+								<armorPenetrationBlunt>10.8</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>41</power>
+								<cooldownTime>2.41</cooldownTime>
+								<armorPenetrationBlunt>13.05</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.16</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_F4T"]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk>
+						<MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AOC_F4T"]/statBases/Mass</xpath>
+					<value>
+						<Mass>2.9</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_F4T"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.11</MeleeCritChance>
+							<MeleeParryChance>0.28</MeleeParryChance>
+							<MeleeDodgeChance>0.23</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- Niddle -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AOC_ND"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.35</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.78</cooldownTime>
+								<chanceFactor>0.05</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.19</cooldownTime>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.25</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_ND"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_ND"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.17</MeleeCritChance>
+							<MeleeParryChance>1.45</MeleeParryChance>
+							<MeleeDodgeChance>0.9</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- Monospear -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AOC_MonoSpear"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<cooldownTime>1.15</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.48</cooldownTime>
+								<chanceFactor>0.05</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.09</cooldownTime>
+								<armorPenetrationBlunt>5.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>18.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_MonoSpear"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>8</Bulk>
+							<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+						</statBases>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_MonoSpear"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.23</MeleeCritChance>
+							<MeleeParryChance>1.5</MeleeParryChance>
+							<MeleeDodgeChance>0.92</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- Long Monospear -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.45</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.68</cooldownTime>
+								<chanceFactor>0.05</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>1.39</cooldownTime>
+								<armorPenetrationBlunt>5.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>22.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>8</Bulk>
+							<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+						</statBases>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AOC_LongMonoSpear"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.23</MeleeCritChance>
+							<MeleeParryChance>1.5</MeleeParryChance>
+							<MeleeDodgeChance>0.92</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

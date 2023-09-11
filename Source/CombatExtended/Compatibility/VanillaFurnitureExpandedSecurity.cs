@@ -46,7 +46,7 @@ namespace CombatExtended.Compatibility
 
         public IEnumerable<string> GetCompatList()
         {
-            yield return "ArtilleryCompat";
+            yield break;
         }
 
         private static bool CheckCollision(ProjectileCE projectile, IntVec3 cell, Thing launcher)

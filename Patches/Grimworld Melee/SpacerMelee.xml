@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Grimworld: Melee</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === One-handed Tags === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "MeleeWeapon_PowerFist"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!-- ========== PowerFist ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PowerFist"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.33</cooldownTime>
+								<armorPenetrationBlunt>14.00</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PowerFist"]/statBases</xpath>
+					<value>
+						<Bulk>5.50</Bulk>
+						<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PowerFist"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.86</MeleeCritChance>
+							<MeleeParryChance>0.69</MeleeParryChance>
+							<MeleeDodgeChance>0.37</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- ========== Power Sword ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PowerSword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.35</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>47</power>
+								<extraMeleeDamages>
+									<li>
+										<def>EMP</def>
+										<amount>3</amount>
+										<chance>0.2</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>1.45</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>27.35</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>50</power>
+								<extraMeleeDamages>
+									<li>
+										<def>EMP</def>
+										<amount>3</amount>
+										<chance>0.3</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>2.00</cooldownTime>
+								<armorPenetrationBlunt>3.00</armorPenetrationBlunt>
+								<armorPenetrationSharp>32.00</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PowerSword"]/statBases</xpath>
+					<value>
+						<Bulk>9.50</Bulk>
+						<MeleeCounterParryBonus>0.85</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PowerSword"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.00</MeleeCritChance>
+							<MeleeParryChance>0.55</MeleeParryChance>
+							<MeleeDodgeChance>0.45</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- ========== Power Sword Crossguard ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PowerSwordtwo"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.35</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>47</power>
+								<extraMeleeDamages>
+									<li>
+										<def>EMP</def>
+										<amount>3</amount>
+										<chance>0.2</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>1.45</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>27.35</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>50</power>
+								<extraMeleeDamages>
+									<li>
+										<def>EMP</def>
+										<amount>3</amount>
+										<chance>0.3</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>2.0</cooldownTime>
+								<armorPenetrationBlunt>3.00</armorPenetrationBlunt>
+								<armorPenetrationSharp>32.00</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PowerSwordtwo"]/statBases</xpath>
+					<value>
+						<Bulk>10.50</Bulk>
+						<MeleeCounterParryBonus>0.95</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PowerSwordtwo"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.00</MeleeCritChance>
+							<MeleeParryChance>0.75</MeleeParryChance>
+							<MeleeDodgeChance>0.45</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

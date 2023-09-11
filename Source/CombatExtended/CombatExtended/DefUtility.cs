@@ -19,10 +19,20 @@ namespace CombatExtended
         /// </summary>
         internal static FlagArray isAOEArray = new FlagArray(ushort.MaxValue);
 
+
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isFlamableArray = new FlagArray(ushort.MaxValue);
+
         // <summary>
         /// A bitmap that store flags. The real size of this one is 2048 byte.
         /// </summary>
         internal static FlagArray isMenuHiddenArray = new FlagArray(ushort.MaxValue);
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isRadioArray = new FlagArray(ushort.MaxValue);
 
         /// <summary>
         /// Used to create and initialize def related flags that are often checked but require more than 2 or 3 steps to caculate.
@@ -55,7 +65,7 @@ namespace CombatExtended
             }
 
             // Process all weapons
-            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.HasComp(typeof(CompAmmoUser)) && (d.thingClass != typeof(Building_AmmoContainerCE))))
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.verbs != null && d.verbs.Any(x => typeof(Verb_LaunchProjectileCE).IsAssignableFrom(x.verbClass))))
             {
                 ProcessWeapons(def);
             }
@@ -108,6 +118,18 @@ namespace CombatExtended
         public static bool IsMenuHidden(this ThingDef def)
         {
             return isMenuHiddenArray[def.index];
+        }
+
+
+        /// <summary>
+        /// Check is this ThingDef is MenuHidden. This replace the old removed menuHidden field.
+        /// </summary>
+        /// <param name="def">Thing def</param>
+        /// <returns>Is menu hidden</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsFlamable(this ThingDef def)
+        {
+            return isFlamableArray[def.index];
         }
 
         /// <summary>
@@ -172,6 +194,30 @@ namespace CombatExtended
             {
                 isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
             }
+            if (def.HasModExtension<ApparelDefExtension>())
+            {
+                ApparelDefExtension extension = def.GetModExtension<ApparelDefExtension>();
+                /*
+                 * wether this apparel is a radio pack
+                 */
+                isRadioArray[def.index] = extension.isRadioPack;
+                if (extension.isRadioPack)
+                {
+                    Log.Message($"{def}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Process general attributes of things
+        /// </summary>
+        /// <param name="def">Thing def</param>        
+        private static void ProcessThing(ThingDef def)
+        {
+            if (def.useHitPoints)
+            {
+                isFlamableArray[def.index] = def.IsFlamable();
+            }
         }
 
         /// <summary>
@@ -220,7 +266,7 @@ namespace CombatExtended
         /// <param name="def"></param>
         private static void ProcessWeapons(ThingDef def)
         {
-            CompProperties_AmmoUser props = (CompProperties_AmmoUser)(def.comps?.First(c => c.compClass == typeof(CompAmmoUser)) ?? null);
+            CompProperties_AmmoUser props = (CompProperties_AmmoUser)(def.comps?.FirstOrDefault(c => c.compClass == typeof(CompAmmoUser)));
 
             if (props?.ammoSet != null)
             {
@@ -260,22 +306,25 @@ namespace CombatExtended
                 });
             }
 
-            float reloadTime = def.GetCompProperties<CompProperties_AmmoUser>().reloadTime;
-            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.ReloadTime))
+            if (props != null)
             {
-                def.statBases.Add(new StatModifier()
+                float reloadTime = def.GetCompProperties<CompProperties_AmmoUser>().reloadTime;
+                if (!def.statBases.Any(s => s.stat == CE_StatDefOf.ReloadTime))
                 {
-                    stat = CE_StatDefOf.ReloadTime, value = reloadTime
-                });
-            }
+                    def.statBases.Add(new StatModifier()
+                    {
+                        stat = CE_StatDefOf.ReloadTime, value = reloadTime
+                    });
+                }
 
-            float ammoGenPerMagOverride = def.GetCompProperties<CompProperties_AmmoUser>().AmmoGenPerMagOverride;
-            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.AmmoGenPerMagOverride))
-            {
-                def.statBases.Add(new StatModifier()
+                float ammoGenPerMagOverride = def.GetCompProperties<CompProperties_AmmoUser>().AmmoGenPerMagOverride;
+                if (!def.statBases.Any(s => s.stat == CE_StatDefOf.AmmoGenPerMagOverride))
                 {
-                    stat = CE_StatDefOf.AmmoGenPerMagOverride, value = ammoGenPerMagOverride
-                });
+                    def.statBases.Add(new StatModifier()
+                    {
+                        stat = CE_StatDefOf.AmmoGenPerMagOverride, value = ammoGenPerMagOverride
+                    });
+                }
             }
         }
 
@@ -303,6 +352,15 @@ namespace CombatExtended
                    || link.projectile?.thingClass == typeof(ProjectileCE_Explosive)
                    || link.projectile?.thingClass == typeof(Projectile_Explosive)
                    || (link.projectile?.comps?.Any(c => c.compClass == typeof(CompFragments) || c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
+        }
+        /// <summary>
+        /// Return wether this ThingDef is an apparel radio pack
+        /// </summary>
+        /// <param name="def"></param>
+        /// <returns>If this ThingDef is an apparel radio pack</returns>
+        public static bool IsRadioPack(this ThingDef def)
+        {
+            return isRadioArray[def.index];
         }
     }
 }
