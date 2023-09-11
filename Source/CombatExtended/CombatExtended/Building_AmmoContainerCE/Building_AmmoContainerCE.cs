@@ -332,6 +332,11 @@ namespace CombatExtended
         {
             Building_Turret turret = TurretMagazine.turret;
 
+            if (graphicsExt != null && graphicsExt.allowedTurrets.Any() && !graphicsExt.allowedTurrets.Contains(turret.def.defName))
+            {
+                return false;
+            }
+
             //If turret is unable to be reloaded
             if (!turret.Spawned || turret.IsForbidden(Faction) || turret.GetReloading())
             {

@@ -18,5 +18,7 @@ namespace CombatExtended
         public SoundDef reloadingSustainer;
 
         public SoundDef reloadCompleteSound;
+
+        public List<string> allowedTurrets = new List<string>();
     }
 }
