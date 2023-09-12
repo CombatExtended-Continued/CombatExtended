@@ -1,9 +1,4 @@
 ﻿using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
@@ -17,9 +12,9 @@ namespace ProjectileImpactFX
             {
                 return;
             }
-            FleckDef fleck = DefDatabase<FleckDef>.GetNamed(defName) ??  null;
+            FleckDef fleck = DefDatabase<FleckDef>.GetNamed(defName) ?? null;
 
-            if (fleck != null) 
+            if (fleck != null)
             {
                 Rand.PushState();
                 FleckCreationData dataStatic = FleckMaker.GetDataStatic(loc, map, fleck, Rand.Range(1.5f, 2.5f) * size);
