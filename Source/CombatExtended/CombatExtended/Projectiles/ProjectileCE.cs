@@ -1245,9 +1245,8 @@ namespace CombatExtended
             //}
             if (def.HasModExtension<EffectProjectileExtension>())
             {
-                def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
+                def.GetModExtension<EffectProjectileExtension>()?.ThrowFleck(ExactPosition,
                         Map,
-                        def.projectile.damageDef.explosionCellMote,
                         def.projectile.damageDef.explosionColorCenter,
                         def.projectile.damageDef.soundExplosion,
                         hitThing);

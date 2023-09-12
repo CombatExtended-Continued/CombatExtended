@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -9,17 +8,18 @@ namespace ProjectileImpactFX
     // ProjectileImpactFX.EffectProjectileExtension
     public class EffectProjectileExtension : DefModExtension
     {
-        public bool explosionMote = false;
-        public string explosionMoteDef = string.Empty;
-        public float explosionMoteSize = 1f;
+        public bool explosionFleck = false;
+        public string explosionFleckDef = string.Empty;
+        public float explosionFleckSize = 1f;
         public EffecterDef explosionEffecter;
-        public FloatRange? explosionMoteSizeRange;
-        public string ImpactMoteDef = string.Empty;
-        public float ImpactMoteSize = 1f;
-        public FloatRange? ImpactMoteSizeRange;
-        public string ImpactGlowMoteDef = string.Empty;
-        public float ImpactGlowMoteSize = 1f;
-        public FloatRange? ImpactGlowMoteSizeRange;
+        public FloatRange? explosionFleckSizeRange;
+        public string ImpactFleckDef = string.Empty;
+        public float ImpactFleckSize = 1f;
+        public FloatRange? ImpactFleckSizeRange;
+        public string impactSoundDef = string.Empty;
+        public string ImpactGlowFleckDef = string.Empty;
+        public float ImpactGlowFleckSize = 1f;
+        public FloatRange? ImpactGlowFleckSizeRange;
         public bool muzzleFlare = false;
         public string muzzleFlareDef = string.Empty;
         public float muzzleFlareSize = 1f;
@@ -27,84 +27,64 @@ namespace ProjectileImpactFX
         public string muzzleSmokeDef = string.Empty;
         public float muzzleSmokeSize = 0.35f;
 
-        public void ThrowMote(Vector3 loc, Map map, ThingDef explosionMoteDef, Color color, SoundDef sound, Thing hitThing = null)
+        public void ThrowFleck(Vector3 loc, Map map, Color color, SoundDef sound, Thing hitThing = null)
         {
-            ThingDef explosionmoteDef = explosionMoteDef;
-            ThingDef ImpactMoteDef = DefDatabase<ThingDef>.GetNamedSilentFail(this.ImpactMoteDef) ?? null;
-            ThingDef ImpactGlowMoteDef = DefDatabase<ThingDef>.GetNamedSilentFail(this.ImpactGlowMoteDef) ?? null;
-            float explosionSize = this.explosionMoteSize;
-            float ImpactMoteSize = this.ImpactMoteSizeRange?.RandomInRange ?? this.ImpactMoteSize;
-            float ImpactGlowMoteSize = this.ImpactGlowMoteSizeRange?.RandomInRange ?? this.ImpactGlowMoteSize;
+            FleckDef ExplosionFleck = explosionFleckDef != string.Empty ? DefDatabase<FleckDef>.GetNamed(this.explosionFleckDef) : null;
+            FleckDef ImpactFleck = ImpactFleckDef != string.Empty ? DefDatabase<FleckDef>.GetNamed(this.ImpactFleckDef) : null;
+            FleckDef ImpactGlowFleck = ImpactGlowFleckDef != string.Empty ? DefDatabase<FleckDef>.GetNamed(this.ImpactGlowFleckDef) : null;
+            SoundDef ImpactSound = impactSoundDef != string.Empty ? DefDatabase<SoundDef>.GetNamed(this.impactSoundDef) : null;
+            float explosionSize = this.explosionFleckSizeRange?.RandomInRange ?? this.explosionFleckSize;
+            float ImpactFleckSize = this.ImpactFleckSizeRange?.RandomInRange ?? this.ImpactFleckSize;
+            float ImpactGlowFleckSize = this.ImpactGlowFleckSizeRange?.RandomInRange ?? this.ImpactGlowFleckSize;
             if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
             }
             Rand.PushState();
             float rotationRate = Rand.Range(-30f, 30f);
-            float VelocityAngel = (float)Rand.Range(0, 360);
-            float VelocitySpeed = Rand.Range(0.48f, 0.72f);
+            float initialRotation = Rand.Range(0, 360);
+            float VelocityAngle = (float)Rand.Range(-30, 30);
+            float VelocitySpeed = Rand.Range(0.5f, 1f);
             Rand.PopState();
-            if (ImpactGlowMoteDef != null)
+            if (ImpactFleck != null)
             {
-                MoteMaker.MakeStaticMote(loc, map, ImpactGlowMoteDef, ImpactGlowMoteSize);
-            }
-            if (explosionMote)
-            {
-                if (!this.explosionMoteDef.NullOrEmpty())
+                if (explosionEffecter != null)
                 {
-                    ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(this.explosionMoteDef);
-                    if (def != null)
-                    {
-                        explosionmoteDef = def;
-                    }
-                }
-                if (explosionmoteDef != null)
-                {
-                    MoteThrown moteThrown;
-                    moteThrown = (MoteThrown)ThingMaker.MakeThing(explosionmoteDef, null);
-                    moteThrown.Scale = explosionSize;
-                    Rand.PushState();
-                    moteThrown.rotationRate = Rand.Range(-30f, 30f);
-                    Rand.PopState();
-                    moteThrown.exactPosition = loc;
-                    moteThrown.instanceColor = color;
-                    moteThrown.SetVelocity(VelocityAngel, VelocitySpeed);
-                    GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
+                    TriggerEffect(explosionEffecter, loc, map);
                 }
 
+                FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, ImpactFleck);
+                creationData.rotation = initialRotation;
+                creationData.velocityAngle = VelocityAngle;
+                creationData.velocitySpeed = VelocitySpeed;
+                creationData.scale = ImpactFleckSize;
+                creationData.spawnPosition = loc;
+                map.flecks.CreateFleck(creationData);
+                //}
             }
-            if (ImpactMoteDef != null)
+            if (ImpactGlowFleck != null)
             {
-                if (hitThing != null && hitThing is Pawn pawn)
+                FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, ImpactGlowFleck);
+                creationData.scale = ImpactGlowFleckSize;
+                map.flecks.CreateFleck(creationData);
+            }
+            if (explosionFleck)
+            {
+                if (ExplosionFleck != null)
                 {
-                    ImpactMoteDef = ThingDef.Named("Mote_BloodPuff");
-                    if (sound != null)
-                    {
-                        sound.PlayOneShot(new TargetInfo(loc.ToIntVec3(), map, false));
-                    }
-                    MoteThrown moteThrown;
-                    moteThrown = (MoteThrown)ThingMaker.MakeThing(ImpactMoteDef, null);
-                    moteThrown.Scale = ImpactMoteSize;
-                    Rand.PushState();
-                    moteThrown.rotationRate = Rand.Range(-30f, 30f);
-                    Rand.PopState();
-                    moteThrown.exactPosition = loc;
-                    moteThrown.instanceColor = pawn.RaceProps.BloodDef.graphic.color;
-                    moteThrown.SetVelocity(VelocityAngel, VelocitySpeed);
-                    GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map, WipeMode.Vanish);
-                    if (explosionEffecter != null)
-                    {
-                        TriggerEffect(explosionEffecter, loc, map, hitThing);
-                    }
+                    FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, ExplosionFleck);
+                    creationData.scale = explosionSize;
+                    creationData.rotationRate = rotationRate;
+                    creationData.spawnPosition = loc;
+                    creationData.instanceColor = color;
+                    creationData.velocityAngle = VelocityAngle;
+                    creationData.velocitySpeed = VelocitySpeed;
+                    map.flecks.CreateFleck(creationData);
                 }
-                else
-                {
-                    if (explosionEffecter != null)
-                    {
-                        TriggerEffect(explosionEffecter, loc, map);
-                    }
-                    MoteMaker.MakeStaticMote(loc, map, ImpactMoteDef, ImpactMoteSize);
-                }
+            }
+            if (ImpactSound != null)
+            {
+                ImpactSound.PlayOneShot(new TargetInfo(loc.ToIntVec3(), map));
             }
         }
 
