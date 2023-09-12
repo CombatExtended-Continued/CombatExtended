@@ -37,12 +37,12 @@ namespace CombatExtended
             var result = FragmentsPotentialDamage(projectile) + ExplosionPotentialDamage(projectile) + FirePotentialDamage(projectile) + EMPPotentialDamage(projectile, empModifier);
             //Damage calculated as in-map damage, needs to be converted into world object damage. 3500f experimentally obtained
             result /= 3500f;
-            if (projectile.projectile is ProjectilePropertiesCE projectileProperties && projectileProperties.shellingProps.damage > 0f)
-            {
-                result = projectileProperties.shellingProps.damage;
-            }
             //Crit/Miss imitation
             result *= Rand.Range(0.4f, 1.5f);
+            if (projectile.projectile is ProjectilePropertiesCE projectileProperties && projectileProperties.shellingProps.damage > 0f)
+            {
+                result *= projectileProperties.shellingProps.damage;
+            }
             return result;
         }
         protected const float fragDamageMultipler = 0.04f;
