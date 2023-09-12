@@ -16,7 +16,7 @@ namespace ProjectileImpactFX
         public string ImpactFleckDef = string.Empty;
         public float ImpactFleckSize = 1f;
         public FloatRange? ImpactFleckSizeRange;
-        public string impactSoundDef = string.Empty;
+        public string ImpactSoundDef = string.Empty;
         public string ImpactGlowFleckDef = string.Empty;
         public float ImpactGlowFleckSize = 1f;
         public FloatRange? ImpactGlowFleckSizeRange;
@@ -32,7 +32,7 @@ namespace ProjectileImpactFX
             FleckDef ExplosionFleck = explosionFleckDef != string.Empty ? DefDatabase<FleckDef>.GetNamed(this.explosionFleckDef) : null;
             FleckDef ImpactFleck = ImpactFleckDef != string.Empty ? DefDatabase<FleckDef>.GetNamed(this.ImpactFleckDef) : null;
             FleckDef ImpactGlowFleck = ImpactGlowFleckDef != string.Empty ? DefDatabase<FleckDef>.GetNamed(this.ImpactGlowFleckDef) : null;
-            SoundDef ImpactSound = impactSoundDef != string.Empty ? DefDatabase<SoundDef>.GetNamed(this.impactSoundDef) : null;
+            SoundDef ImpactSound = ImpactSoundDef != string.Empty ? DefDatabase<SoundDef>.GetNamed(this.ImpactSoundDef) : null;
             float explosionSize = this.explosionFleckSizeRange?.RandomInRange ?? this.explosionFleckSize;
             float ImpactFleckSize = this.ImpactFleckSizeRange?.RandomInRange ?? this.ImpactFleckSize;
             float ImpactGlowFleckSize = this.ImpactGlowFleckSizeRange?.RandomInRange ?? this.ImpactGlowFleckSize;
