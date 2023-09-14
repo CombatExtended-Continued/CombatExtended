@@ -29,8 +29,27 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
             VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
             VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
+            VehicleTurret.LookupProjectileCountCE = LookupProjectileCountCE;
             global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
             global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
+        }
+
+        public static int LookupProjectileCountCE(ThingDef _ammoDef, Def _ammosetDef)
+        {
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef) {
+                foreach (var al in ammosetDef.ammoTypes)
+                {
+                    if (al.ammo == ammoDef)
+                    {
+                        var projectileDef = al.projectile;
+                        if (projectileDef.projectile is ProjectilePropertiesCE pprop) {
+                            return pprop.pelletCount;
+                        }
+                        break;
+                    }
+                }
+            }
+            return 1;
         }
 
         public static Def LookupAmmosetCE(string defName)
