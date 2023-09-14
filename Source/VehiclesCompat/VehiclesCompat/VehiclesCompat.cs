@@ -29,27 +29,29 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
             VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
             VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
-            VehicleTurret.LookupProjectileCountCE = LookupProjectileCountCE;
+            VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
             global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
             global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
         }
 
-        public static int LookupProjectileCountCE(ThingDef _ammoDef, Def _ammosetDef)
+        public static Tuple<int, float> LookupProjectileCountAndSpreadCE(ThingDef _ammoDef, Def _ammosetDef, float spread)
         {
-            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef) {
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            {
                 foreach (var al in ammosetDef.ammoTypes)
                 {
                     if (al.ammo == ammoDef)
                     {
                         var projectileDef = al.projectile;
-                        if (projectileDef.projectile is ProjectilePropertiesCE pprop) {
-                            return pprop.pelletCount;
+                        if (projectileDef.projectile is ProjectilePropertiesCE pprop)
+                        {
+                            return new Tuple<int, float>(pprop.pelletCount, spread * pprop.spreadMult);
                         }
                         break;
                     }
                 }
             }
-            return 1;
+            return new Tuple<int, float>(1, spread);
         }
 
         public static Def LookupAmmosetCE(string defName)
