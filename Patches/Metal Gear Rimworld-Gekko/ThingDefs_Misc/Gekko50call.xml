@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Metal Gear Rimworld-Gekko</li>
+		</mods>
+
+		<match Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>MGR_Gun_Autocannon</defName>
+			<statBases>
+				<Mass>38.00</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				<SightsEfficiency>1</SightsEfficiency>
+				<ShotSpread>0.05</ShotSpread>
+				<SwayFactor>1.4</SwayFactor>
+				<Bulk>20.00</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.58</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<range>75</range>
+				<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+				<burstShotCount>10</burstShotCount>
+				<soundCast>50Cal_Browning</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>16</muzzleFlashScale>
+				<recoilPattern>Mounted</recoilPattern>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>100</magazineSize>
+				<reloadTime>7.8</reloadTime>
+				<ammoSet>AmmoSet_50BMG</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aimedBurstShotCount>5</aimedBurstShotCount>
+				<aiAimMode>SuppressFire</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_AI_Suppressive</li>
+				<li>NoSwitch</li>
+			</weaponTags>
+		</match>
+
+	</Operation>
+
+</Patch>
