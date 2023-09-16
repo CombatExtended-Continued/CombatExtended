@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royal Warcaskets</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Prestige Marine Warcasket ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Marine"]/statBases</xpath>
+					<value>
+						<Bulk>200</Bulk>
+						<WornBulk>20</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Marine"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>23</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Marine"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>57</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Marine"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>250</CarryWeight>
+						<CarryBulk>200</CarryBulk>
+						<Suppressability>-100</Suppressability>
+					</value>
+				</li>
+
+				<!-- Increase Cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Marine"]/costList/Steel</xpath>
+					<value>
+						<Steel>260</Steel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Marine"]/costList/Gold</xpath>
+					<value>
+						<Gold>40</Gold>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Marine"]/costList/ComponentIndustrial</xpath>
+					<value>
+						<ComponentIndustrial>8</ComponentIndustrial>
+					</value>
+				</li>
+
+				<!-- ========== Prestige Marine Warcasket - Shoulders ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Marine"]/statBases</xpath>
+					<value>
+						<Bulk>15</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Marine"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>23</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Marine"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>57</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- Increase Cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Marine"]/costList/Steel</xpath>
+					<value>
+						<Steel>110</Steel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Marine"]/costList/Gold</xpath>
+					<value>
+						<Gold>10</Gold>
+					</value>
+				</li>
+
+				<!-- === Prestige Marine Warcasket Helmet === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Marine"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<WornBulk>5</WornBulk>
+						<NightVisionEfficiency_Apparel>0.5</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Marine"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Marine"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Marine"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<!-- Armor values scaled by vanilla stat ratios compared to basic warcasket helmet [e.g (1.20/1.06)*16 = ~18 ]. -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Marine"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Marine"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>45</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- Increase Cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Marine"]/costList/Steel</xpath>
+					<value>
+						<Steel>130</Steel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Marine"]/costList/Gold</xpath>
+					<value>
+						<Gold>20</Gold>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Marine"]/costList/ComponentIndustrial</xpath>
+					<value>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</value>
+				</li>
+
+				<!-- ========== Prestige Recon Warcasket ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Recon"]/statBases</xpath>
+					<value>
+						<Bulk>175</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Recon"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18.5</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Recon"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>46</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Recon"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>225</CarryWeight>
+						<CarryBulk>175</CarryBulk>
+						<Suppressability>-100</Suppressability>
+					</value>
+				</li>
+
+				<!-- Increase Cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Recon"]/costList/Steel</xpath>
+					<value>
+						<Steel>160</Steel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Recon"]/costList/Gold</xpath>
+					<value>
+						<Gold>30</Gold>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Recon"]/costList/ComponentIndustrial</xpath>
+					<value>
+						<ComponentIndustrial>6</ComponentIndustrial>
+					</value>
+				</li>
+
+				<!-- ========== Prestige Recon Warcasket - Shoulders ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Recon"]/statBases</xpath>
+					<value>
+						<Bulk>12</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Recon"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18.5</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Recon"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>46</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- Increase Cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Recon"]/costList/Steel</xpath>
+					<value>
+						<Steel>80</Steel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Recon"]/costList/Gold</xpath>
+					<value>
+						<Gold>10</Gold>
+					</value>
+				</li>
+
+				<!-- === Prestige Recon Warcasket Helmet === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Recon"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>4</WornBulk>
+						<NightVisionEfficiency_Apparel>0.65</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Recon"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Recon"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Recon"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Recon"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16.5</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Recon"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>37</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- Increase Cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Recon"]/costList/Steel</xpath>
+					<value>
+						<Steel>80</Steel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Recon"]/costList/Gold</xpath>
+					<value>
+						<Gold>20</Gold>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Recon"]/costList/ComponentIndustrial</xpath>
+					<value>
+						<ComponentIndustrial>2</ComponentIndustrial>
+					</value>
+				</li>
+
+				<!-- ========== Prestige Cataphract Warcasket ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Cataphract"]/statBases</xpath>
+					<value>
+						<Bulk>250</Bulk>
+						<WornBulk>25</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Cataphract"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>32</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Cataphract"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>80</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Cataphract"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>250</CarryWeight>
+						<CarryBulk>200</CarryBulk>
+						<Suppressability>-100</Suppressability>
+					</value>
+				</li>
+
+				<!-- Increase Cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Cataphract"]/costList/Steel</xpath>
+					<value>
+						<Steel>350</Steel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Cataphract"]/costList/Gold</xpath>
+					<value>
+						<Gold>40</Gold>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_Warcasket_Cataphract"]/costList/ComponentIndustrial</xpath>
+					<value>
+						<ComponentIndustrial>10</ComponentIndustrial>
+					</value>
+				</li>
+
+				<!-- ========== Prestige Cataphract Warcasket - Shoulders ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Cataphract"]/statBases</xpath>
+					<value>
+						<Bulk>15</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Cataphract"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>32</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Cataphract"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>80</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- Increase Cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Cataphract"]/costList/Steel</xpath>
+					<value>
+						<Steel>150</Steel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketShoulders_Cataphract"]/costList/Gold</xpath>
+					<value>
+						<Gold>10</Gold>
+					</value>
+				</li>
+
+				<!-- === Prestige Cataphract Warcasket Helmet === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Cataphract"]/statBases</xpath>
+					<value>
+						<Bulk>15</Bulk>
+						<WornBulk>8</WornBulk>
+						<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Cataphract"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Cataphract"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Cataphract"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Cataphract"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>28</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Cataphract"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>63</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- Increase Cost -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Cataphract"]/costList/Steel</xpath>
+					<value>
+						<Steel>150</Steel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Cataphract"]/costList/Gold</xpath>
+					<value>
+						<Gold>20</Gold>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Prestige_WarcasketHelmet_Cataphract"]/costList/ComponentIndustrial</xpath>
+					<value>
+						<ComponentIndustrial>4</ComponentIndustrial>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
