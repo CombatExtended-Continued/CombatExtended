@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Machines of War</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<!-- ========== Add groups entry if it doesn't exist already ========== -->
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/groups</xpath>
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -22,7 +24,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MechanicalNeck"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -32,7 +34,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -42,7 +44,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -52,7 +54,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="HearingSensor"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -62,7 +64,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SmellSensor"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -72,7 +74,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MOW_MechanicalShoulderPauldron"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -82,7 +84,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MOW_MechanicalShoulderPauldron"]/parts/li[def="MechanicalArm"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -92,7 +94,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MOW_MechanicalShoulderPauldron"]/parts/li[def="MechanicalArm"]/parts/li[def="MechanicalHand"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -102,7 +104,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MOW_MechanicalShoulderPauldron"]/parts/li[def="MechanicalArm"]/parts/li[def="MechanicalHand"]/parts/li[def="MechanicalFinger"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -112,7 +114,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MechanicalLeg"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -122,7 +124,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]</xpath>
 						<value>
-							<groups/>
+							<groups />
 						</value>
 					</nomatch>
 				</li>
@@ -199,13 +201,11 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>	Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MOW_MechanicalShoulderPauldron"]/parts/li[def="MechanicalArm"]/parts/li[def="MechanicalHand"]/groups</xpath>
+					<xpath> Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MOW_MechanicalShoulderPauldron"]/parts/li[def="MechanicalArm"]/parts/li[def="MechanicalHand"]/groups</xpath>
 					<value>
 						<li>CoveredByNaturalArmor</li>
 					</value>
 				</li>
-
-
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/BodyDef[defName="MOW_Enforcer"]/corePart/parts/li[def="MOW_MechanicalShoulderPauldron"]/parts/li[def="MechanicalArm"]/parts/li[def="MechanicalHand"]/parts/li[def="MechanicalFinger"]/groups</xpath>
@@ -216,7 +216,6 @@
 
 			</operations>
 		</match>
-			</Operation>
-
+	</Operation>
 
 </Patch>

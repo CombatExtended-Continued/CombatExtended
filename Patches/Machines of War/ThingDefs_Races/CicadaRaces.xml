@@ -7,6 +7,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/statBases</xpath>
 					<value>
@@ -26,7 +27,6 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/statBases</xpath>
 					<value>
-						<ArmorRating_Heat>0.25</ArmorRating_Heat>
 						<CarryWeight>200</CarryWeight>
 						<CarryBulk>100</CarryBulk>
 						<AimingAccuracy>1.0</AimingAccuracy>
@@ -80,7 +80,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
@@ -101,32 +101,32 @@
 					</value>
 				</li>
 
-
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/comps</xpath>
 					<value>
 						<li Class="CombatExtended.CompProperties_ArmorDurability">
-							<Durability>3000</Durability>
+							<Durability>1580</Durability>
 							<Regenerates>true</Regenerates>
 							<RegenInterval>1250</RegenInterval>
 							<RegenValue>5</RegenValue>
 							<Repairable>true</Repairable>
 							<RepairIngredients>
-								<Steel>3</Steel>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
 							</RepairIngredients>
 							<RepairTime>300</RepairTime>
 							<RepairValue>200</RepairValue>
 							<CanOverHeal>true</CanOverHeal>
-							<MaxOverHeal>366</MaxOverHeal>
-							<MinArmorPct>0.5</MinArmorPct>
-							<MinArmorValueSharp>4</MinArmorValueSharp>
-							<MinArmorValueBlunt>6</MinArmorValueBlunt>
+							<MaxOverHeal>158</MaxOverHeal>
+							<MinArmorPct>0.75</MinArmorPct>
+							<MinArmorValueSharp>5</MinArmorValueSharp>
+							<MinArmorValueBlunt>10</MinArmorValueBlunt>
 						</li>
 					</value>
 				</li>
 
 			</operations>
 		</match>
-			</Operation>
+	</Operation>
 
 </Patch>
