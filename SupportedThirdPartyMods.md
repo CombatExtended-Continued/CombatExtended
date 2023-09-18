@@ -192,6 +192,7 @@ Erin's Miqo'te  |
 Erin's Mountain Animals |
 Erin's Sephyr   |
 Erin's Shisune   |
+Erin's Valheim Creatures   |
 Erin's Viera    |
 ESCP - Trolls   |
 EvolvedOrgansRedux |
