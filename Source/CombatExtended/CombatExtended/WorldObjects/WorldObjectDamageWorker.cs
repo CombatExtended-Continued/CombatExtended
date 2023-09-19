@@ -41,7 +41,6 @@ namespace CombatExtended
             }
             //Damage calculated as in-map damage, needs to be converted into world object damage. 3500f experimentally obtained
             result /= 3500f;
-            Log.Message(result.ToString());
             //Crit/Miss imitation
             result *= Rand.Range(0.4f, 1.5f);
             return result;
