@@ -41,7 +41,8 @@ namespace CombatExtended
         public CompCanBeDormant dormantComp;
         public CompInitiatable initiatableComp;
         public CompMannable mannableComp;
-
+        public CompCIWS_Projectile CIWS_ProjectileComp;
+        public CompCIWS_Skyfaller CIWS_SkyfallerComp;
         public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
 
         // New fields
@@ -155,6 +156,9 @@ namespace CombatExtended
         public bool AutoReloadableNow => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0)) && Reloadable;    //suppress manned turret auto-reload for a short time after spawning
         public bool Reloadable => CompAmmo?.HasMagazine ?? false;
         public CompMannable MannableComp => mannableComp;
+        public CompCIWS_Projectile CIWS_Projectile => CIWS_ProjectileComp;
+        public CompCIWS_Skyfaller CIWS_Skyfaller => CIWS_SkyfallerComp;
+
         #endregion
 
         public Building_TurretGunCE()
@@ -173,6 +177,9 @@ namespace CombatExtended
             initiatableComp = GetComp<CompInitiatable>();
             powerComp = GetComp<CompPowerTrader>();
             mannableComp = GetComp<CompMannable>();
+            CIWS_ProjectileComp = GetComp<CompCIWS_Projectile>();
+            CIWS_SkyfallerComp = GetComp<CompCIWS_Skyfaller>();
+
 
             if (!everSpawned && (!Map.IsPlayerHome || Faction != Faction.OfPlayer))
             {
@@ -419,6 +426,16 @@ namespace CombatExtended
             IAttackTargetSearcher attackTargetSearcher = this.TargSearcher();
             Faction faction = attackTargetSearcher.Thing.Faction;
             float range = this.AttackVerb.verbProps.range;
+
+            if (CIWS_Skyfaller != null && CIWS_Skyfaller.TryFindTarget(attackTargetSearcher, out LocalTargetInfo skyfaller))
+            {
+                return skyfaller;
+            }
+            if (CIWS_Projectile != null && CIWS_Projectile.TryFindTarget(attackTargetSearcher, out LocalTargetInfo projectile))
+            {
+                return projectile;
+            }
+
             Building t;
             if (Rand.Value < 0.5f && this.AttackVerb.ProjectileFliesOverhead() && faction.HostileTo(Faction.OfPlayer) && base.Map.listerBuildings.allBuildingsColonist.Where(delegate (Building x)
         {

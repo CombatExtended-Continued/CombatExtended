@@ -550,6 +550,14 @@ namespace CombatExtended
                     {
                         targetHeight = CollisionVertical.WallCollisionHeight;
                     }
+                    if (currentTarget.Thing is ProjectileCE projectileCE)
+                    {
+                        targetHeight = projectileCE.Height;
+                    }
+                    if (currentTarget.Thing is Skyfaller skyfaller)
+                    {
+                        targetHeight = skyfaller.DrawPos.y;
+                    }
                 }
                 if (projectilePropsCE.isInstant)
                 {
@@ -1033,6 +1041,7 @@ namespace CombatExtended
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
 
+                //shotAngle = Mathf.PI / 3;
                 this.lastShotAngle = shotAngle;
                 this.lastShotRotation = shotRotation;
                 this.lastShootLine = shootLine;
