@@ -54,6 +54,9 @@ namespace CombatExtended
         private bool everSpawned = false;
         public GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
 
+        public Material TurretTopBaseMaterial;
+        public Material TurretTopTopMaterial;
+
         #endregion
 
         #region Properties
@@ -193,6 +196,12 @@ namespace CombatExtended
                 }
             }
 
+            TurretDrawExtension turretDrawExtension = this.def.GetModExtension<TurretDrawExtension>();
+            if (turretDrawExtension != null)
+            {
+                TurretTopBaseMaterial = MaterialPool.MatFrom(turretDrawExtension.TurretBottomGraphic.texPath);
+                TurretTopTopMaterial = MaterialPool.MatFrom(turretDrawExtension.TurretTopGraphic.texPath);
+            }
             // if (CompAmmo == null || CompAmmo.Props == null || CompAmmo.Props.ammoSet == null || CompAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
             //     return;
 
@@ -580,8 +589,26 @@ namespace CombatExtended
             {
                 CE_Utility.Recoil(def.building.turretGunDef, AttackVerb, out drawOffset, out angleOffset, top.CurRotation, false);
             }
+            if (TurretTopBaseMaterial != null)
+            {
+                DrawTurretComponents(TurretTopBaseMaterial);
+            }
             top.DrawTurret(drawOffset, angleOffset);
+            if (TurretTopTopMaterial != null)
+            {
+                DrawTurretComponents(TurretTopTopMaterial, true);
+            }
             base.Draw();
+        }
+
+        public void DrawTurretComponents(Material mat, bool above = false)
+        {
+            Vector3 v = new Vector3(def.building.turretTopOffset.x, 0f, def.building.turretTopOffset.y).RotatedBy(top.CurRotation);
+            float turretTopDrawSize = def.building.turretTopDrawSize;
+            float num = CurrentEffectiveVerb?.AimAngleOverride ?? top.CurRotation;
+            Matrix4x4 matrix = default(Matrix4x4);
+            matrix.SetTRS(DrawPos + (above ? 2 * Altitudes.AltIncVect : Altitudes.AltIncVect) + v, (-90 + num).ToQuat(), new Vector3(turretTopDrawSize, 1f, turretTopDrawSize));
+            Graphics.DrawMesh(MeshPool.plane10, matrix, mat, 0);
         }
 
         public override void DrawExtraSelectionOverlays()           // Draw at range less than 1.42 tiles
