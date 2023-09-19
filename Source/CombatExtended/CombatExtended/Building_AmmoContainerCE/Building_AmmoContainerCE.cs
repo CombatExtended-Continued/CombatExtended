@@ -119,6 +119,7 @@ namespace CombatExtended
 
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
+            TargetTurret?.SetReloading(false);
             Map.GetComponent<AmmoContainerTracker>().Unregister(this);
             DropAmmo(mode == DestroyMode.KillFinalize);
             base.DeSpawn(mode);
@@ -252,6 +253,7 @@ namespace CombatExtended
             {
                 if (!TargetTurret.Spawned || TargetTurret.IsForbidden(Faction) || CompAmmoUser.EmptyMagazine)
                 {
+                    TargetTurret?.SetReloading(false);
                     TargetTurret = null;
                     ticksToCompleteInitial = 0;
                 }
