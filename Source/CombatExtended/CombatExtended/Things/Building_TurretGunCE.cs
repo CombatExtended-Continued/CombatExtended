@@ -640,10 +640,8 @@ namespace CombatExtended
 
         public void DrawTurretComponentRecoiled(Material mat, Vector2 offset, Vector3 recoilDrawOffset, float recoilAngleOffset)
         {
-            Vector3 v = new Vector3(def.building.turretTopOffset.x, 0f, def.building.turretTopOffset.y).RotatedBy(top.CurRotation);
             float turretTopDrawSize = def.building.turretTopDrawSize;
-            v = v.RotatedBy(recoilAngleOffset);
-            v += recoilDrawOffset;
+            Vector3 v = recoilDrawOffset.RotatedBy(recoilAngleOffset);
             float num = CurrentEffectiveVerb?.AimAngleOverride ?? top.CurRotation;
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(DrawPos + Altitudes.AltIncVect + v + new Vector3(offset.x, 0f, offset.y).RotatedBy(top.CurRotation), (-90 + num).ToQuat(), new Vector3(turretTopDrawSize, 1f, turretTopDrawSize));
