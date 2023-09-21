@@ -10,9 +10,9 @@ namespace CombatExtended
 {
     public class TurretDrawExtension : DefModExtension
     {
-        public GraphicData TurretBottomTexPath;
+        public GraphicData TurretBottomGraphicData;
 
-        public GraphicData TurretTopTexPath;
+        public GraphicData TurretTopGraphicData;
 
         public List<TurretDrawExtension_BarrelOffsetPair> Barrels = new List<TurretDrawExtension_BarrelOffsetPair>();
     }
@@ -21,6 +21,6 @@ namespace CombatExtended
     {
         public Vector2 BarrelOffset;
         public Material BarrelMaterial;
-        public GraphicData BarrelTexPath;
+        public GraphicData BarrelGraphicData;
     }
 }

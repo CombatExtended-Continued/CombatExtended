@@ -200,14 +200,14 @@ namespace CombatExtended
             TurretDrawExtension turretDrawExtension = this.def.GetModExtension<TurretDrawExtension>();
             if (turretDrawExtension != null)
             {
-                TurretTopBaseMaterial = turretDrawExtension.TurretBottomTexPath.Graphic.MatSingle;
-                TurretTopTopMaterial = turretDrawExtension.TurretTopTexPath.Graphic.MatSingle;
+                TurretTopBaseMaterial = turretDrawExtension.TurretBottomGraphicData.Graphic.MatSingle;
+                TurretTopTopMaterial = turretDrawExtension.TurretTopGraphicData.Graphic.MatSingle;
                 if (turretDrawExtension.Barrels.Any())
                 {
                     foreach (var barrel in turretDrawExtension.Barrels)
                     {
                         TurretDrawExtension_BarrelOffsetPair barrelCache = barrel;
-                        barrelCache.BarrelMaterial = barrel.BarrelTexPath.Graphic.MatSingle;
+                        barrelCache.BarrelMaterial = barrel.BarrelGraphicData.Graphic.MatSingle;
                         BarrelOffsetPairs.Add(barrelCache);
                     }
                 }
