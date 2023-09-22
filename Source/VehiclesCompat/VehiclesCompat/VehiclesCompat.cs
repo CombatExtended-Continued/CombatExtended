@@ -98,6 +98,14 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             }
             var p = ThingMaker.MakeThing(projectileDef, null);
             ProjectileCE projectile = (ProjectileCE)p;
+
+            var projectilePropsCE = projectileDef.projectile as ProjectilePropertiesCE;
+            if (projectilePropsCE.dropsCasings)
+            {
+                CE_Utility.ThrowEmptyCasing(vehicle.DrawPos, vehicle.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname), 3f, shotRotation);
+                CE_Utility.MakeCasingFilth(vehicle.Position, vehicle.Map, DefDatabase<ThingDef>.GetNamed(projectilePropsCE.casingFilthDefname));
+            }
+
             GenSpawn.Spawn(projectile, vehicle.Position, vehicle.Map);
             projectile.ExactPosition = origin;
             projectile.canTargetSelf = false;
