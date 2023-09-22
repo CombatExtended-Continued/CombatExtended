@@ -736,9 +736,25 @@ namespace CombatExtended
         #endregion Misc
 
         #region MoteThrower
+        public static void GenerateAmmoCasings(ProjectilePropertiesCE projProps, Vector3 drawPosition, Map map, float shotRotation = -180f, float recoilAmount = 2f)
+        {
+            if (projProps.dropsCasings)
+            {
+                if (Controller.settings.ShowCasings)
+                {
+                    ThrowEmptyCasing(drawPosition, map, DefDatabase<FleckDef>.GetNamed(projProps.casingMoteDefname), recoilAmount, shotRotation);
+                }
+                if (Controller.settings.CreateCasingsFilth)
+                {
+                    MakeCasingFilth(drawPosition.ToIntVec3(), map, DefDatabase<ThingDef>.GetNamed(projProps.casingFilthDefname));
+                }
+            }
+        }
+
+
         public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f)
         {
-            if (!Controller.settings.ShowCasings || !loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
+            if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
             }
@@ -764,10 +780,6 @@ namespace CombatExtended
 
         public static void MakeCasingFilth(IntVec3 position, Map map, ThingDef casingFilthDef)
         {
-            if (!Controller.settings.CreateCasingsFilth)
-            {
-                return;
-            }
             Rand.PushState();
             float makeFilthChance = Rand.Range(0f, 1f);
             if (makeFilthChance > 0.9f && position.Walkable(map))
