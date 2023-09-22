@@ -194,6 +194,7 @@ Erin's Sephyr   |
 Erin's Shisune   |
 Erin's Valheim Creatures   |
 Erin's Viera    |
+ESCP - Spriggan   |
 ESCP - Trolls   |
 EvolvedOrgansRedux |
 Exotic Arsenal |
