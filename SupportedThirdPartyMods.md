@@ -192,6 +192,7 @@ Erin's Miqo'te  |
 Erin's Mountain Animals |
 Erin's Sephyr   |
 Erin's Shisune   |
+Erin's Valheim Creatures   |
 Erin's Viera    |
 ESCP - Trolls   |
 EvolvedOrgansRedux |
@@ -392,6 +393,7 @@ Rim-Effect: N7	|
 Rimedieval - Medieval Royalty   |
 Rimefeller	|
 RimEffect - Asari of the Rims	|
+Rim-Gnoblins	| 
 Rim-Hivers!	|
 Rim Flood	|
 Rim-Robots_	|
