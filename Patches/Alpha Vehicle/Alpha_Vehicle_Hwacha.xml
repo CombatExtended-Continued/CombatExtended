@@ -45,7 +45,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_Hwacha_Turret"]/magazineCapacity</xpath>
 					<value>
-						<magazineCapacity>35</magazineCapacity>
+						<magazineCapacity>64</magazineCapacity>
 					</value>
 				</li>
 
@@ -61,19 +61,28 @@
 					<value>
 						<fireModes>
 							<li>
-								<shotsPerBurst>35</shotsPerBurst>
+								<shotsPerBurst>64</shotsPerBurst>
 								<ticksBetweenShots>6</ticksBetweenShots>
 								<ticksBetweenBursts>15</ticksBetweenBursts>
-								<label>Rocket Barrage</label>
+								<label>Full Barrage</label>
+								<texPath>UI/Gizmos/AV_ArrowBarrage</texPath>
+							</li>
+						</fireModes>
+						<fireModes>
+							<li>
+								<shotsPerBurst>32</shotsPerBurst>
+								<ticksBetweenShots>6</ticksBetweenShots>
+								<ticksBetweenBursts>15</ticksBetweenBursts>
+								<label>Half Barrage</label>
 								<texPath>UI/Gizmos/FireRate_Auto</texPath>
 							</li>
 						</fireModes>
 						<fireModes>
 							<li>
-								<shotsPerBurst>7</shotsPerBurst>
+								<shotsPerBurst>8</shotsPerBurst>
 								<ticksBetweenShots>6</ticksBetweenShots>
 								<ticksBetweenBursts>15</ticksBetweenBursts>
-								<label>Rocket Burst</label>
+								<label>Burst</label>
 								<texPath>UI/Gizmos/FireRate_Burst</texPath>
 							</li>
 						</fireModes>
@@ -94,7 +103,7 @@
 					<value>
 						<li Class="Vehicles.CETurretDataDefModExtension">
 							<ammoSet>AmmoSet_Hwacha</ammoSet>
-							<shotHeight>2</shotHeight>
+							<shotHeight>2.1</shotHeight>
 							<speed>30</speed>
 							<sway>10</sway>
 							<spread>0.1</spread>
@@ -124,8 +133,8 @@
 								<graphicClass>Graphic_StackCount</graphicClass>
 							</graphicData>
 							<statBases>
-								<Mass>0.15</Mass>
-								<MarketValue>1.85</MarketValue>
+								<Mass>0.05</Mass>
+								<MarketValue>1.16</MarketValue>
 							</statBases>
 							<ammoClass>RocketArrow</ammoClass>
 						</ThingDef>
@@ -172,7 +181,7 @@
 											<li>WoodLog</li>
 										</thingDefs>
 									</filter>
-									<count>2</count>
+									<count>1</count>
 								</li>
 								<li>
 									<filter>
@@ -202,6 +211,7 @@
 							<fixedIngredientFilter>
 								<thingDefs>
 									<li>WoodLog</li>
+									<li>Steel</li>
 									<li>FSX</li>
 									<li>Cloth</li>
 								</thingDefs>
