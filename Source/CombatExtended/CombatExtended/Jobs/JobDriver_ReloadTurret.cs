@@ -167,7 +167,7 @@ namespace CombatExtended
             // If ammo system is turned off we just need to go to the turret.
             if (turret.InteractionCell != null)
             {
-                yield return Toils_Goto.GotoCell(turret.InteractionCell, PathEndMode.Touch);
+                yield return Toils_Goto.GotoCell(turret.InteractionCell, PathEndMode.OnCell);
             }
             else
             {
