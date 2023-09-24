@@ -74,7 +74,7 @@ namespace CombatExtended
         public override string GetReport()
         {
             string text = CE_JobDefOf.ReloadTurret.reportString;
-            string turretType = (turret.def.hasInteractionCell ? "CE_MannedTurret" : "CE_AutoTurret").Translate();
+            string turretType = (turret.TryGetComp<CompMannable>() != null ? "CE_MannedTurret" : "CE_AutoTurret").Translate();
             text = text.Replace("TurretType", turretType);
             text = text.Replace("TargetA", TargetThingA.def.label);
             if (compReloader.UseAmmo)
@@ -165,7 +165,14 @@ namespace CombatExtended
             }
 
             // If ammo system is turned off we just need to go to the turret.
-            yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
+            if (turret.InteractionCell != null)
+            {
+                yield return Toils_Goto.GotoCell(turret.InteractionCell, PathEndMode.Touch);
+            }
+            else
+            {
+                yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+            }
 
             //If pawn fails reloading from this point, reset isReloading
             this.AddFinishAction(delegate
