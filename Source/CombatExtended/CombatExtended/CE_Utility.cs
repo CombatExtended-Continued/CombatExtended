@@ -552,7 +552,14 @@ namespace CombatExtended
             double range = Rand.Value * radius;
             return new Vector2((float)(range * Math.Cos(angle)), (float)(range * Math.Sin(angle)));
         }
-
+        public static float GetMoveSpeed(LocalTargetInfo targetInfo)
+        {
+            if(targetInfo.Pawn != null)
+            {
+                return GetMoveSpeed(targetInfo.Pawn);
+            }
+            return (targetInfo.Thing as ProjectileCE)?.shotSpeed ?? 0f;
+        }
         /// <summary>
         /// Calculates the actual current movement speed of a pawn
         /// </summary>
