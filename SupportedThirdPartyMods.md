@@ -280,7 +280,7 @@ Let's Have a Cat!	|
 Littluna Race |
 Logann Race	|
 Logistics_Mechanoid |
-Magic Wands |
+Machines of War |
 Makeshift Melee Weapons |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
