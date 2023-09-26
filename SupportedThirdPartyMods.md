@@ -192,7 +192,9 @@ Erin's Miqo'te  |
 Erin's Mountain Animals |
 Erin's Sephyr   |
 Erin's Shisune   |
+Erin's Valheim Creatures   |
 Erin's Viera    |
+ESCP - Spriggan   |
 ESCP - Trolls   |
 EvolvedOrgansRedux |
 Exotic Arsenal |
@@ -278,7 +280,7 @@ Let's Have a Cat!	|
 Littluna Race |
 Logann Race	|
 Logistics_Mechanoid |
-Magic Wands |
+Machines of War |
 Makeshift Melee Weapons |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
@@ -294,6 +296,7 @@ Medieval Overhaul   |
 Medieval Quest Rewards  |
 Medieval Tailor   |
 Megafauna	|
+Metal Gear Rimworld - Gekko	|
 MH: Android Tiers	|
 MH: Android Tiers Core	|
 MH: Mechanical Biomimetics	|
@@ -392,6 +395,7 @@ Rim-Effect: N7	|
 Rimedieval - Medieval Royalty   |
 Rimefeller	|
 RimEffect - Asari of the Rims	|
+Rim-Gnoblins	| 
 Rim-Hivers!	|
 Rim Flood	|
 Rim-Robots_	|

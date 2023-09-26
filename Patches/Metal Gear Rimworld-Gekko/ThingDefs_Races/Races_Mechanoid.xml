@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Metal Gear Rimworld-Gekko</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]/statBases</xpath>
+					<value>
+						<PartialArmorBody>0</PartialArmorBody>
+					</value>
+				</li>
+
+				<!--Consistency with vanilla mechs-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]/statBases</xpath>
+					<value>
+						<SmokeSensitivity>0</SmokeSensitivity>
+						<NightVisionEfficiency>0.80</NightVisionEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]/statBases</xpath>
+					<value>
+						<ArmorRating_Heat>0.25</ArmorRating_Heat>
+						<CarryWeight>75</CarryWeight>
+						<CarryBulk>30</CarryBulk>
+						<AimingAccuracy>1.0</AimingAccuracy>
+						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.03</MeleeDodgeChance>
+						<MeleeCritChance>0.26</MeleeCritChance>
+						<MeleeParryChance>0.52</MeleeParryChance>
+						<AimingDelayFactor>1.25</AimingDelayFactor>
+						<MaxHitPoints>500</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>38</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>3.51</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0</armorPenetrationSharp>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+						<li>
+							<compClass>CombatExtended.CompAmmoGiver</compClass>
+						</li>
+						<li Class="CombatExtended.CompProperties_MechAmmo">
+							<gizmoIconSetMagCount>UI/Buttons/SetMagCount</gizmoIconSetMagCount>
+							<gizmoIconTakeAmmoNow>UI/Buttons/TakeAmmoNow</gizmoIconTakeAmmoNow>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+									<parts>
+										<li>SightSensor</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+									<parts>
+										<li>SightSensor</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Sharp>0.625</ArmorRating_Sharp>
+									<parts>
+										<li>MGR_SyntheticalLeg</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>true</useStatic>
+									<ArmorRating_Blunt>0.625</ArmorRating_Blunt>
+									<parts>
+										<li>MGR_SyntheticalLeg</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Sharp>0.625</ArmorRating_Sharp>
+									<parts>
+										<li>MechanicalFoot</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Blunt>0.625</ArmorRating_Blunt>
+									<parts>
+										<li>MechanicalFoot</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Sharp>0.625</ArmorRating_Sharp>
+									<parts>
+										<li>PowerClaw</li>
+									</parts>
+								</li>
+								<li>
+									<useStatic>false</useStatic>
+									<ArmorRating_Blunt>0.625</ArmorRating_Blunt>
+									<parts>
+										<li>PowerClaw</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MGR_Mech_Gekko"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>3000</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>300</MaxOverHeal>
+							<MinArmorPct>0.5</MinArmorPct>
+							<MinArmorValueSharp>10</MinArmorValueSharp>
+							<MinArmorValueBlunt>22</MinArmorValueBlunt>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
