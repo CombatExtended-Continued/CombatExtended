@@ -8,6 +8,27 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+				<!-- Ranged Weapon Draw Size -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[
+						defName = "VFEP_WarcasketGun_Autorifle" or
+						defName = "VFEP_WarcasketGun_UraniumSlugRifle" or
+						defName = "VFEP_WarcasketGun_Slugthrower" or
+						defName = "VFEP_WarcasketGun_Minigun" or
+						defName = "VFEP_WarcasketGun_GrenadeLauncher" or
+						defName = "VFEP_WarcasketGun_HeavyFlamer" or
+						defName = "VFEP_WarcasketGun_ChargeLance" or
+						defName = "VFEP_WarcasketGun_HandheldCannon" or
+						defName = "VFEP_WarcasketGun_ChargeBlaster"
+						]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>1.7,1.7</DrawSize>
+							<DrawOffset>0.0,0.0</DrawOffset>
+						</li>
+					</value>
+				</li>
+
 				<!-- === Remove the added weapon tag from the Charge Lance === -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Gun_ChargeLance"]/weaponTags/li[contains(.,"VFEP_Captain")]</xpath>
