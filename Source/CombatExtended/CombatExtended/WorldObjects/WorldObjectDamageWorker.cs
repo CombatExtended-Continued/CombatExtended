@@ -97,7 +97,7 @@ namespace CombatExtended
             {
                 if (props.damageDef == DamageDefOf.EMP || props.damageDef == CE_DamageDefOf.PrometheumFlame)
                 {
-                    return 0f; 
+                    return 0f;
                 }
                 result += props.damageAmountBase;
                 for (int i = 1; i < props.explosionRadius; i++)
