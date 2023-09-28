@@ -521,7 +521,7 @@ Vanilla Weapons Expanded - Tribal	|
 Vanilla Storytellers Expanded - Perry Persistent |
 Vanilla Storytellers Expanded - Winston Waves |
 Vanilla XCOM Weapons  |
-Vehicle Framework Expanded - Classic Mech   |
+Vehicle Framework Expanded - Classic Mechs   |
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics |
