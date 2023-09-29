@@ -761,9 +761,22 @@ namespace CombatExtended
             {
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
-                    this.Destroy(DestroyMode.Vanish);
+                    this.Impact(null);
                     return true;
                 }
+            }
+            (bool intercepted, bool destroyed) = BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition);
+            if (intercepted)
+            {
+                if (destroyed)
+                {
+                    this.Destroy(DestroyMode.Vanish);
+                }
+                else
+                {
+                    this.Impact(null);
+                }
+                return true;
             }
 
             #region Sanity checks
