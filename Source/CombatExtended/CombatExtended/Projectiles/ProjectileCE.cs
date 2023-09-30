@@ -763,8 +763,8 @@ namespace CombatExtended
             {
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
-                    this.Impact(null);
                     landed = true;
+                    this.Impact(null);
                     return true;
                 }
             }
