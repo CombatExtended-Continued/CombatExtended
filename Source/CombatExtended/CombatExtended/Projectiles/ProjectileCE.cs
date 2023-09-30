@@ -831,11 +831,7 @@ namespace CombatExtended
         {
             if (BlockerRegistry.CheckCellForCollisionCallback(this, cell, launcher))
             {
-                this.ticksToImpact = 0;
-                this.landed = true;
-
-                this.Impact(null);
-                return true;
+		return true;
             }
             var roofChecked = false;
 
@@ -1197,7 +1193,6 @@ namespace CombatExtended
         {
             if (BlockerRegistry.ImpactSomethingCallback(this, launcher))
             {
-                this.Destroy();
                 return;
             }
             var pos = ExactPosition.ToIntVec3();
