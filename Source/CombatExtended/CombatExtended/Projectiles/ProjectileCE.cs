@@ -648,6 +648,7 @@ namespace CombatExtended
         {
 	    ExactPosition = impactPosition;
 	    landed = true;
+	    ticksToImpact = 0;
             if (destroyCompletely)
             {
                 this.Destroy(DestroyMode.Vanish);
