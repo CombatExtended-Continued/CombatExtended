@@ -646,6 +646,9 @@ namespace CombatExtended
         #region Collisions
         public virtual void InterceptProjectile(object interceptor, Vector3 impactPosition, bool destroyCompletely = false)
         {
+	    ExactPosition = impactPosition;
+	    landed = true;
+	    ticksToImpact = 0;
             if (destroyCompletely)
             {
                 this.Destroy(DestroyMode.Vanish);
@@ -653,34 +656,23 @@ namespace CombatExtended
             else
             {
                 this.Impact(null);
-                ExactPosition = impactPosition;
-                landed = true;
             }
         }
         public virtual void InterceptProjectile(object interceptor, Vector3 shieldPosition, float shieldRadius, bool destroyCompletely = false)
         {
-            if (destroyCompletely)
-            {
-                this.Destroy(DestroyMode.Vanish);
-            }
-            else
-            {
-                this.Impact(null);
-                ExactPosition = BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius);
-                landed = true;
-            }
-        }
-
+	    InterceptProjectile(interceptor, BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius * shieldRadius));
+	}
 
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
             float radius = interceptorComp.Props.radius;
             float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
+	    float radiusSq = blockRadius * blockRadius;
 
             var newExactPos = ExactPosition;
 
-            if ((newExactPos - shieldPosition).sqrMagnitude > Mathf.Pow(blockRadius, 2))
+            if ((newExactPos - shieldPosition).sqrMagnitude > radiusSq)
             {
                 return false;
             }
@@ -703,7 +695,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= Mathf.Pow((float)radius, 2))
+            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= radius * radius)
             {
                 return false;
             }
@@ -772,8 +764,8 @@ namespace CombatExtended
             {
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
-                    this.Impact(null);
                     landed = true;
+                    this.Impact(null);
                     return true;
                 }
             }
@@ -839,11 +831,7 @@ namespace CombatExtended
         {
             if (BlockerRegistry.CheckCellForCollisionCallback(this, cell, launcher))
             {
-                this.ticksToImpact = 0;
-                this.landed = true;
-
-                this.Impact(null);
-                return true;
+		return true;
             }
             var roofChecked = false;
 
@@ -1205,7 +1193,6 @@ namespace CombatExtended
         {
             if (BlockerRegistry.ImpactSomethingCallback(this, launcher))
             {
-                this.Destroy();
                 return;
             }
             var pos = ExactPosition.ToIntVec3();
