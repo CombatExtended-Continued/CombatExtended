@@ -70,18 +70,15 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
                 int fieldRadius = (int)generator.FieldRadius_Active();
+		Vector3 shieldPosition2D = new Vector3(shield.Position.x, 0, shield.Position.z);
+
+		if (!CE_Utility.IntersectLineSphericalOutline(shieldPosition2D, fieldRadius, from, to))
+		{
+		    continue;
+		}
+
                 int fieldRadiusSq = fieldRadius * fieldRadius;
-                float DistanceSq = projectile.Position.DistanceToSquared(shield.Position) - fieldRadiusSq;
-                float originDistanceSq = origin.DistanceToSquared(shield.Position) - fieldRadiusSq;
-                if (DistanceSq > 0)
-                {
-                    continue;
-                }
-                if (originDistanceSq < 0)
-                {
-                    continue;
-                }
-                Vector3 shieldPosition2D = new Vector3(shield.Position.x, 0, shield.Position.z);
+
                 Quaternion targetAngle = projectile.ExactRotation;
                 Quaternion shieldProjAng = Quaternion.LookRotation(exactPosition - shieldPosition2D);
                 if ((Quaternion.Angle(targetAngle, shieldProjAng) > 90))
