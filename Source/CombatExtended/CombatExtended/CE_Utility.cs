@@ -893,8 +893,14 @@ namespace CombatExtended
         /// <returns>True if the line segment intercepts the circle</returns>
         public static bool IntersectLineSphericalOutline(Vector3 center, float radius, Vector3 pointA, Vector3 pointB)
         {
-	    var radSq = radius * radius;
-	    return ((center - pointA).sqrMagnitude > radSq) != ((center - pointB).sqrMagnitude > radSq);
+	    Vector3 displacement = pointB - pointA;
+	    double a = displacement.sqrMagnitude;
+	    double b = 2 * (displacement.x * (pointA.x - center.x) + displacement.y * (pointA.y - center.y) + displacement.z * (pointA.z - center.z));
+            double c = (center - pointA).sqrMagnitude - radius * radius;
+            double det = b * b - 4 * a * c;
+	    return det >= 0;
+//	    var radSq = radius * radius;
+//	    return ((center - pointA).sqrMagnitude > radSq) != ((center - pointB).sqrMagnitude > radSq);
         }
 
         /// <summary>
