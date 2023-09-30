@@ -659,18 +659,8 @@ namespace CombatExtended
         }
         public virtual void InterceptProjectile(object interceptor, Vector3 shieldPosition, float shieldRadius, bool destroyCompletely = false)
         {
-            if (destroyCompletely)
-            {
-                this.Destroy(DestroyMode.Vanish);
-            }
-            else
-            {
-                this.Impact(null);
-                ExactPosition = BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius);
-                landed = true;
-            }
-        }
-
+	    InterceptProjectile(interceptor, BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius * shieldRadius));
+	}
 
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
