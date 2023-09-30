@@ -644,6 +644,34 @@ namespace CombatExtended
         #endregion
 
         #region Collisions
+        public virtual void InterceptProjectile(object interceptor, Vector3 impactPosition, bool destroyCompletely = false)
+        {
+            if (destroyCompletely)
+            {
+                this.Destroy(DestroyMode.Vanish);
+            }
+            else
+            {
+                this.Impact(null);
+                ExactPosition = impactPosition;
+                landed = true;
+            }
+        }
+        public virtual void InterceptProjectile(object interceptor, Vector3 shieldPosition, float shieldRadius, bool destroyCompletely = false)
+        {
+            if (destroyCompletely)
+            {
+                this.Destroy(DestroyMode.Vanish);
+            }
+            else
+            {
+                this.Impact(null);
+                ExactPosition = BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius);
+                landed = true;
+            }
+        }
+
+
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
@@ -679,7 +707,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (!IntersectLineSphericalOutline(shieldPosition, radius, lastExactPos, newExactPos))
+            if (!CE_Utility.IntersectLineSphericalOutline(shieldPosition, radius, lastExactPos, newExactPos))
             {
                 return false;
             }
@@ -731,23 +759,6 @@ namespace CombatExtended
             return true;
         }
 
-        private static bool IntersectLineSphericalOutline(Vector3 center, float radius, Vector3 pointA, Vector3 pointB)
-        {
-            var pointAInShield = (center - pointA).sqrMagnitude <= Mathf.Pow(radius, 2);
-            var pointBInShield = (center - pointB).sqrMagnitude <= Mathf.Pow(radius, 2);
-
-            if (pointAInShield && pointBInShield)
-            {
-                return false;
-            }
-            if (!pointAInShield && !pointBInShield)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
@@ -762,20 +773,12 @@ namespace CombatExtended
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
                     this.Impact(null);
+                    landed = true;
                     return true;
                 }
             }
-            (bool intercepted, bool destroyed) = BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition);
-            if (intercepted)
+            if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition))
             {
-                if (destroyed)
-                {
-                    this.Destroy(DestroyMode.Vanish);
-                }
-                else
-                {
-                    this.Impact(null);
-                }
                 return true;
             }
 

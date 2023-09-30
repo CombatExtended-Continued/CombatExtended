@@ -12,19 +12,19 @@ namespace CombatExtended.Compatibility
     public static class BlockerRegistry
     {
         private static bool enabled = false;
-        private static List<Func<ProjectileCE, Vector3, Vector3, (bool, bool)>> checkForCollisionBetweenCallbacks;
+        private static List<Func<ProjectileCE, Vector3, Vector3, bool>> checkForCollisionBetweenCallbacks;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
 
         private static void Enable()
         {
             enabled = true;
-            checkForCollisionBetweenCallbacks = new List<Func<ProjectileCE, Vector3, Vector3, (bool, bool)>>();
+            checkForCollisionBetweenCallbacks = new List<Func<ProjectileCE, Vector3, Vector3, bool>>();
             impactSomethingCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
             checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
         }
 
-        public static void RegisterCheckForCollisionBetweenCallback(Func<ProjectileCE, Vector3, Vector3, (bool, bool)> f)
+        public static void RegisterCheckForCollisionBetweenCallback(Func<ProjectileCE, Vector3, Vector3, bool> f)
         {
             if (!enabled)
             {
@@ -51,21 +51,20 @@ namespace CombatExtended.Compatibility
             impactSomethingCallbacks.Add(f);
         }
 
-        public static (bool, bool) CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
+        public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             if (!enabled)
             {
-                return (false, false);
+                return false;
             }
             foreach (var cb in checkForCollisionBetweenCallbacks)
             {
-                (bool intercepted, bool destroyed) = cb(projectile, from, to);
-                if (intercepted)
+                if (cb(projectile, from, to))
                 {
-                    return (intercepted, destroyed);
+                    return true;
                 }
             }
-            return (false, false);
+            return false;
         }
 
         public static bool CheckCellForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)

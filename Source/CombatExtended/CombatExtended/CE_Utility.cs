@@ -884,6 +884,31 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Calculates whether a line segment intercepts a radius circle. Used to determine if a projectile crosses a shield.
+        /// </summary>
+        /// <param name="center">The center of the circle</param>
+        /// <param name="radius">The radius of the circle</param>
+        /// <param name="pointA">The first point of the line segment</param>
+        /// <param name="pointB">The second point of the line segment</param>
+        /// <returns>True if the line segment intercepts the circle</returns>
+        public static bool IntersectLineSphericalOutline(Vector3 center, float radius, Vector3 pointA, Vector3 pointB)
+        {
+            var pointAInShield = (center - pointA).sqrMagnitude <= Mathf.Pow(radius, 2);
+            var pointBInShield = (center - pointB).sqrMagnitude <= Mathf.Pow(radius, 2);
+
+            if (pointAInShield && pointBInShield)
+            {
+                return false;
+            }
+            if (!pointAInShield && !pointBInShield)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Calculates body scale factors based on body type
         /// </summary>
         /// <param name="pawn">Which pawn to measure for</param>
