@@ -44,8 +44,11 @@ namespace CombatExtended.Compatibility
         }
         public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
-            /* Check if an active shield can block this projectile, we don't check if the projectile flies overhead, as those projectiles don't call this function
+            /* Check if an active shield can block this projectile
              */
+	    if (projectile.def.projectile.flyOverhead) {
+		return false;
+	    }
 	    Thing launcher = projectile.launcher;
             Map map = projectile.Map;
             Vector3 exactPosition = projectile.ExactPosition;
