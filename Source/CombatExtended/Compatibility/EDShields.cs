@@ -83,17 +83,15 @@ namespace CombatExtended.Compatibility
                 Quaternion shieldProjAng = Quaternion.LookRotation(exactPosition - shieldPosition2D);
                 if ((Quaternion.Angle(targetAngle, shieldProjAng) > 90))
                 {
-
                     HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));
-
 
                     int damage = (projectile.def.projectile.GetDamageAmount(launcher));
 
                     generator.FieldIntegrity_Current -= damage;
 
-                    exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
+                    exactPosition = BlockerRegistry.GetExactPosition(from, to, shieldPosition2D, (fieldRadius - 1) * (fieldRadius - 1));
                     FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
-                    projectile.ExactPosition = exactPosition;
+		    projectile.InterceptProjectile(shield, exactPosition, false);
                     return true;
                 }
             }
