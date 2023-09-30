@@ -646,6 +646,8 @@ namespace CombatExtended
         #region Collisions
         public virtual void InterceptProjectile(object interceptor, Vector3 impactPosition, bool destroyCompletely = false)
         {
+	    ExactPosition = impactPosition;
+	    landed = true;
             if (destroyCompletely)
             {
                 this.Destroy(DestroyMode.Vanish);
@@ -653,8 +655,6 @@ namespace CombatExtended
             else
             {
                 this.Impact(null);
-                ExactPosition = impactPosition;
-                landed = true;
             }
         }
         public virtual void InterceptProjectile(object interceptor, Vector3 shieldPosition, float shieldRadius, bool destroyCompletely = false)
