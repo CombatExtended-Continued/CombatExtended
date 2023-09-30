@@ -33,7 +33,7 @@ namespace CombatExtended.Compatibility
         }
         public void Install()
         {
-            BlockerRegistry.RegisterCheckForCollisionCallback(EDShields.CheckForCollisionCallback);
+            BlockerRegistry.RegisterCheckForCollisionBetweenCallback(EDShields.CheckForCollisionBetweenCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(EDShields.ImpactSomethingCallback);
             Type t = Type.GetType("Jaxxa.EnhancedDevelopment.Shields.Shields.ShieldManagerMapComp, ED-Shields");
             HitSoundDef = (SoundDef)t.GetField("HitSoundDef", BindingFlags.Static | BindingFlags.Public).GetValue(null);
@@ -42,10 +42,11 @@ namespace CombatExtended.Compatibility
         {
             yield break;
         }
-        public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
+        public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             /* Check if an active shield can block this projectile, we don't check if the projectile flies overhead, as those projectiles don't call this function
              */
+	    Thing launcher = projectile.launcher;
             Map map = projectile.Map;
             Vector3 exactPosition = projectile.ExactPosition;
             IntVec3 origin = projectile.OriginIV3;
