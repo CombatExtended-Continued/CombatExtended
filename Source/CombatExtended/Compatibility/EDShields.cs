@@ -132,6 +132,7 @@ namespace CombatExtended.Compatibility
                 FleckMakerCE.ThrowLightningGlow(destination, map, 0.5f);
                 int damage = (projectile.def.projectile.GetDamageAmount(launcher));
                 generator.FieldIntegrity_Current -= damage;
+		projectile.InterceptProjectile(shield, projectile.ExactPosition, true);
                 return true;
             }
             return false;
