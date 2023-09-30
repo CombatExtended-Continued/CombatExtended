@@ -667,10 +667,11 @@ namespace CombatExtended
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
             float radius = interceptorComp.Props.radius;
             float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
+	    float radiusSq = blockRadius * blockRadius;
 
             var newExactPos = ExactPosition;
 
-            if ((newExactPos - shieldPosition).sqrMagnitude > Mathf.Pow(blockRadius, 2))
+            if ((newExactPos - shieldPosition).sqrMagnitude > radiusSq)
             {
                 return false;
             }
@@ -693,7 +694,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= Mathf.Pow((float)radius, 2))
+            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= radius * radius)
             {
                 return false;
             }
