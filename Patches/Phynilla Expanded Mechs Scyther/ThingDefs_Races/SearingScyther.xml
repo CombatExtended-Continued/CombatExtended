@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>phynilla Expanded Mechs Scyther</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="pphhyy_ScytherExpandedSearing"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_ScytherExpandedSearing"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						<MeleeCritChance>0.24</MeleeCritChance>
+						<MeleeParryChance>0.33</MeleeParryChance>
+						<MaxHitPoints>250</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_ScytherExpandedSearing"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>8</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_ScytherExpandedSearing"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>5</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_ScytherExpandedSearing"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>24</power>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>15</amount>
+										<chance>0.5</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>2.07</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>15</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.33</cooldownTime>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>7</amount>
+										<chance>0.5</chance>
+									</li>
+								</extraMeleeDamages>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>2.07</cooldownTime>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>15</amount>
+										<chance>0.5</chance>
+									</li>
+								</extraMeleeDamages>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>15</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.33</cooldownTime>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>7</amount>
+										<chance>0.5</chance>
+									</li>
+								</extraMeleeDamages>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>5.9</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="pphhyy_ScytherExpandedSearing"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="pphhyy_ScytherExpandedSearing"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_ScytherExpandedSearing"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>1500</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>100</MaxOverHeal>
+							<MinArmorPct>0.75</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
