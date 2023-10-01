@@ -893,14 +893,45 @@ namespace CombatExtended
         /// <returns>True if the line segment intercepts the circle</returns>
         public static bool IntersectLineSphericalOutline(Vector3 center, float radius, Vector3 pointA, Vector3 pointB)
         {
-	    Vector3 displacement = pointB - pointA;
-	    double a = displacement.sqrMagnitude;
-	    double b = 2 * (displacement.x * (pointA.x - center.x) + displacement.y * (pointA.y - center.y) + displacement.z * (pointA.z - center.z));
-            double c = (center - pointA).sqrMagnitude - radius * radius;
-            double det = b * b - 4 * a * c;
-	    return det >= 0;
-//	    var radSq = radius * radius;
-//	    return ((center - pointA).sqrMagnitude > radSq) != ((center - pointB).sqrMagnitude > radSq);
+	    var radSq = radius * radius;
+	    var aInside = ((center - pointA).sqrMagnitude <= radSq);
+	    var bInside = ((center - pointB).sqrMagnitude <= radSq);
+	    if (aInside != bInside) // One end is inside, one is outside -- we crossed
+	    {
+		return true;
+	    }
+	    if (aInside && bInside) // Both are inside, we did not cross
+	    {
+		return false;
+	    }
+
+	    // Both are outside, so check if the point on the line-segment AB closest to point C is inside.
+
+	    Vector3 direction = pointB - pointA;
+	    Vector3 displacement = pointA - center;
+
+	    // Calculate the dot product between the relative position at the start and the direction of travel.
+	    float dotProduct = displacement.x * direction.x + displacement.y * direction.y + displacement.z * direction.z;
+
+	    if (dotProduct < 0) // Moving *away* from the shield
+	    {
+		return false;
+	    }
+
+	    if (dotProduct > direction.sqrMagnitude) // Still moving closer, might hit next tick but it hasn't arrived.  We don't need to check if the end point is inside, because we already did that.
+	    {
+		return false;
+	    }
+
+	    // The center lies some distance perpindicular to the line segment AB
+	    // Rotate the direction vector 90 degrees, and find its dot product with the relative displacement to find that distance.
+	    dotProduct = displacement.x * direction.z - displacement.z * direction.x + displacement.y * direction.y;
+
+	    if (dotProduct * dotProduct <= direction.sqrMagnitude * displacement.sqrMagnitude)
+	    {
+		return true;
+	    }
+	    return false;
         }
 
         /// <summary>
