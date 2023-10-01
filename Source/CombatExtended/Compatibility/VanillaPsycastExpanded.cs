@@ -171,8 +171,9 @@ namespace CombatExtended.Compatibility
                 //  line does not intersect
                 return new Vector3[] { Vector3.zero, Vector3.zero };
             }
-            mu1 = (-b + Mathf.Sqrt(bb4ac)) / (2 * a);
-            mu2 = (-b - Mathf.Sqrt(bb4ac)) / (2 * a);
+	    let sqrtbb4ac = Mathf.Sqrt(bb4ac)
+            mu1 = (-b + sqrtbb4ac) / (2 * a);
+            mu2 = (-b - sqrtbb4ac) / (2 * a);
             sect = new Vector3[2];
             sect[0] = new Vector3(p1.x + mu1 * (p2.x - p1.x), 0, p1.z + mu1 * (p2.z - p1.z));
             sect[1] = new Vector3(p1.x + mu2 * (p2.x - p1.x), 0, p1.z + mu2 * (p2.z - p1.z));
