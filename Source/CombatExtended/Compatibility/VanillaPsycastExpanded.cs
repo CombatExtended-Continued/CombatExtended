@@ -48,6 +48,7 @@ namespace CombatExtended.Compatibility
                 Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
                 eff.Trigger(new TargetInfo(projectile.ExactPosition.ToIntVec3(), interceptor.Map, false), TargetInfo.Invalid);
                 eff.Cleanup();
+		projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
                 return true;
             }
             else
@@ -80,6 +81,7 @@ namespace CombatExtended.Compatibility
                         Effecter e = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
                         e.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptor.pawn.Map, false), TargetInfo.Invalid);
                         e.Cleanup();
+			projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
                     }
 
                     return result;
@@ -122,6 +124,7 @@ namespace CombatExtended.Compatibility
                 Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
                 eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptor.pawn.Map, false), TargetInfo.Invalid);
                 eff.Cleanup();
+		projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
                 return true;
             }
 
