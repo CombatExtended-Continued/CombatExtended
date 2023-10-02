@@ -240,19 +240,27 @@ namespace CombatExtended
                         BattleLogEntry_MeleeCombat log = CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesHit, false);
 
                         // Attack connects
+                        DamageWorker.DamageResult damageResult;
                         if (surpriseAttack || Rand.Chance(GetComparativeChanceAgainst(casterPawn, defender, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
                         {
                             // Do a critical hit
                             isCrit = true;
-                            ApplyMeleeDamageToTarget(currentTarget).AssociateWithLog(log);
+                            damageResult = ApplyMeleeDamageToTarget(currentTarget);
                             moteText = casterPawn.def.race.Animal ? null : "CE_TextMote_CriticalHit".Translate();
                             casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
                         }
                         else
                         {
                             // Do a regular hit as per vanilla
-                            ApplyMeleeDamageToTarget(currentTarget).AssociateWithLog(log);
+                            damageResult = ApplyMeleeDamageToTarget(currentTarget);
                         }
+
+                        damageResult.AssociateWithLog(log);
+                        if (defender != null && damageResult.totalDamageDealt > 0f)
+                        {
+                            this.ApplyMeleeSlaveSuppression(defender, damageResult.totalDamageDealt);
+                        }
+
                         result = true;
                         soundDef = targetThing.def.category == ThingCategory.Building ? SoundHitBuilding() : SoundHitPawn();
                     }
@@ -536,6 +544,7 @@ namespace CombatExtended
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             IEnumerable<DamageInfo> damageInfosToApply = DamageInfosToApply(target, isCrit);
             bool isHeadHit = false;
+            float totalDmg = 0;
             foreach (DamageInfo current in damageInfosToApply)
             {
                 if (target.ThingDestroyed)
@@ -550,6 +559,7 @@ namespace CombatExtended
 
                 LastAttackVerb = this;
                 result = target.Thing.TakeDamage(current);
+                totalDmg += result.totalDamageDealt;
                 LastAttackVerb = null;
             }
             // Apply animal knockdown
@@ -581,6 +591,7 @@ namespace CombatExtended
                 }
             }
             isCrit = false;
+            result.totalDamageDealt = totalDmg;
             return result;
         }
 
