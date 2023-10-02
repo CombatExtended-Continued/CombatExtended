@@ -361,6 +361,7 @@ pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
+Protoswords |
 PsiTech	|
 Pulsefire Turret (Continued)    |
 Rabbie The Moonrabbit	|
