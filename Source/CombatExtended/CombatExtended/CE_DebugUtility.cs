@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using CombatExtended.WorldObjects;
-using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -47,11 +46,6 @@ namespace CombatExtended
                     comp.recentShells.Clear();
                 }
             }
-        }
-        [DebugAction("CE", actionType = DebugActionType.ToolWorld)]
-        public static void TriggerSmth()
-        {
-            AccessTools.Method(AccessTools.TypeByName("VisibilityEffect_AerodroneBombardment"), "Trigger").Invoke(null, null);
         }
     }
 }
