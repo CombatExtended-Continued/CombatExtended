@@ -1107,19 +1107,20 @@ namespace CombatExtended
             {
                 var vect = intendedTarget.Thing.Position.ToVector3() - new Vector3(ExactPosition.x, 0.0f, ExactPosition.z);
                 Log.Message($"projectile {intendedTarget.Thing.Position.ToVector3()}, {ExactPosition}, {vect.sqrMagnitude}, {minCollisionDistance}");
-                if (vect.sqrMagnitude < minCollisionDistance * minCollisionDistance && Rand.Chance(0.33f))
+                if (vect.sqrMagnitude < minCollisionDistance && Rand.Chance(0.33f))
                 {
                     Impact(null);
                     intendedTarget.Thing.Destroy();
                     return;
                 }
             }
-            Log.Message(intendedTarget.Thing?.GetType().Name ?? "Null");
-            if (intendedTarget.Thing is ActiveDropPod skyfaller && !intendedTarget.Thing.Destroyed)
+            //Log.Message(intendedTarget.Thing?.GetType().Name ?? "Null");
+            if (intendedTarget.Thing is Skyfaller skyfaller && !intendedTarget.Thing.Destroyed)
             {
+
                 var vect = intendedTarget.Thing.DrawPos - new Vector3(ExactPosition.x, 0.0f, ExactPosition.z);
-                Log.Message($"{skyfaller.DrawPos}, {ExactPosition}, {vect.sqrMagnitude}, {minCollisionDistance}");
-                if (vect.sqrMagnitude < minCollisionDistance * minCollisionDistance && Rand.Chance(0.33f))
+                //Log.Message($"{skyfaller.DrawPos}, {ExactPosition}, {vect.sqrMagnitude}, {minCollisionDistance}");
+                if (vect.sqrMagnitude < minCollisionDistance && Rand.Chance(0.33f))
                 {
                     Impact(null);
                     intendedTarget.Thing.Destroy();

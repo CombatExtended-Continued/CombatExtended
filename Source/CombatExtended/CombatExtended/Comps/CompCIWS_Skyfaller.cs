@@ -12,9 +12,10 @@ namespace CombatExtended
     public class CompCIWS_Skyfaller : ThingComp
     {
         public CompProperties_CIWS_Skyfaller Props => props as CompProperties_CIWS_Skyfaller;
-        IEnumerable<ActiveDropPod> Skyfallers => parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.ActiveDropPod).Cast<ActiveDropPod>(); //Performance issues possible 
+        public IEnumerable<Skyfaller> Skyfallers => parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.ActiveDropPod).OfType<Skyfaller>(); //Performance issues possible 
         public virtual bool TryFindTarget(IAttackTargetSearcher targetSearcher, out LocalTargetInfo result)
         {
+            
             Thing p;
             if (parent is Building_TurretGunCE turret)
             {
