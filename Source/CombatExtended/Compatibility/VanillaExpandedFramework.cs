@@ -39,7 +39,7 @@ namespace CombatExtended.Compatibility
                 return false;
             }
             var def = projectile.def;
-            Vector3 lastExactPos = (Vector3)new Traverse(projectile).Field("lastExactPos").GetValue();//Why this field(or linked property) is private?
+            Vector3 lastExactPos = projectile.LastPos;
             var newExactPos = projectile.ExactPosition;
             foreach (var interceptor in interceptors)
             {
@@ -77,8 +77,7 @@ namespace CombatExtended.Compatibility
                 {
                     continue;
                 }
-                var intersectionPoints = //BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptorThing.Position.ToVector3(), (radius ) * (radius));
-                    VanillaPsycastExpanded.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.parent.Position.ToVector3(), (radius));
+                var intersectionPoints = CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.parent.Position.ToVector3(), (radius));
                 if (intersectionPoints == new Vector3[] { Vector3.zero, Vector3.zero })
                 {
                     continue;

@@ -271,9 +271,9 @@ namespace CombatExtended
         }
 
         private Vector3 lastExactPos = new Vector3(-1000, 0, 0);
-        private Vector3 LastPos
+        public Vector3 LastPos
         {
-            set
+            private set
             {
                 lastExactPos = value;
             }

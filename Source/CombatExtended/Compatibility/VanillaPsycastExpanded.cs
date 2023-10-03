@@ -38,7 +38,7 @@ namespace CombatExtended.Compatibility
             if (interceptor != null)
             {
                 var hediff = interceptor.health.hediffSet.hediffs.FirstOrDefault(x => x is Hediff_Overshield) as Hediff_Overshield;
-                projectile.ExactPosition = IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.DrawPos, hediff.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                projectile.ExactPosition = CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.DrawPos, hediff.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 projectile.landed = true;
 
                 new Traverse(interceptor).Field("lastInterceptAngle").SetValue(projectile.ExactPosition.AngleToFlat(interceptor.TrueCenter()));
@@ -64,14 +64,14 @@ namespace CombatExtended.Compatibility
                 .Where(x => typeof(Hediff_Overshield).IsAssignableFrom(x.def.hediffClass)).Cast<Hediff_Overshield>())
             {
                 var def = projectile.def;
-                Vector3 lastExactPos = (Vector3)new Traverse(projectile).Field("lastExactPos").GetValue();//Why this field(or linked property) is private?
+                Vector3 lastExactPos = projectile.LastPos;
                 var newExactPos = projectile.ExactPosition;
                 if (interceptor.GetType() == typeof(Hediff_Overshield))
                 {
                     var result = interceptor.pawn != launcher && (interceptor.pawn.Position == cell || PreventTryColideWithPawn(projectile, interceptor.pawn, newExactPos));
                     if (result)
                     {
-                        projectile.ExactPosition = IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.DrawPos, interceptor.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                        projectile.ExactPosition = CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.DrawPos, interceptor.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                         projectile.landed = true;
 
                         new Traverse(interceptor).Field("lastInterceptAngle").SetValue(newExactPos.AngleToFlat(interceptor.pawn.TrueCenter()));
@@ -112,8 +112,7 @@ namespace CombatExtended.Compatibility
                 {
                     return false;
                 }
-                var exactPosition = //BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptorThing.Position.ToVector3(), (radius ) * (radius));
-                    IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.Position.ToVector3(), (radius)).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                var exactPosition = CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.Position.ToVector3(), (radius)).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 projectile.ExactPosition = exactPosition;
                 projectile.landed = true;
 
@@ -149,40 +148,6 @@ namespace CombatExtended.Compatibility
             return true;
         }
 
-        public static Vector3[] IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius)
-        {
-            Vector3 dp = new Vector3();
-            Vector3[] sect;
-            float a, b, c;
-            float bb4ac;
-            float mu1;
-            float mu2;
-
-            //  get the distance between X and Z on the segment
-            dp.x = p2.x - p1.x;
-            dp.z = p2.z - p1.z;
-            //   I don't get the math here
-            a = dp.x * dp.x + dp.z * dp.z;
-            b = 2 * (dp.x * (p1.x - center.x) + dp.z * (p1.z - center.z));
-            c = center.x * center.x + center.z * center.z;
-            c += p1.x * p1.x + p1.z * p1.z;
-            c -= 2 * (center.x * p1.x + center.z * p1.z);
-            c -= radius * radius;
-            bb4ac = b * b - 4 * a * c;
-            if (Mathf.Abs(a) < float.Epsilon || bb4ac < 0)
-            {
-                //  line does not intersect
-                return new Vector3[] { Vector3.zero, Vector3.zero };
-            }
-            var sqrtbb4ac = Mathf.Sqrt(bb4ac);
-            mu1 = (-b + sqrtbb4ac) / (2 * a);
-            mu2 = (-b - sqrtbb4ac) / (2 * a);
-            sect = new Vector3[2];
-            sect[0] = new Vector3(p1.x + mu1 * (p2.x - p1.x), 0, p1.z + mu1 * (p2.z - p1.z));
-            sect[1] = new Vector3(p1.x + mu2 * (p2.x - p1.x), 0, p1.z + mu2 * (p2.z - p1.z));
-
-            return sect;
-        }
         /// <summary>
         /// Copy of ProjectileCE method
         /// </summary>
