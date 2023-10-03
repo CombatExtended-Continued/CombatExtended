@@ -26,25 +26,14 @@ namespace CombatExtended.Compatibility
         }
         public void Install()
         {
-            BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
+            //BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething); //temp commented
+            BlockerRegistry.RegisterCheckForCollisionCallback(Hediff_Overshield_InterceptCheck);
             BlockerRegistry.RegisterCheckForCollisionBetweenCallback(AOE_CheckIntercept);
         }
 
         private static bool ImpactSomething(ProjectileCE projectile, Thing launcher)
         {
-
-
-            var interceptor = projectile.Map.thingGrid.ThingsAt(projectile.ExactPosition.ToIntVec3()).FirstOrDefault(x => (x is Pawn) && ((x as Pawn).health?.hediffSet.hediffs.Any(x => x is Hediff_Overshield) ?? false)) as Pawn;
-            if (interceptor != null)
-            {
-                var hediff = interceptor.health.hediffSet.hediffs.FirstOrDefault(x => x is Hediff_Overshield) as Hediff_Overshield;
-                OnIntercepted(hediff, projectile);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Hediff_Overshield_InterceptCheck(projectile, projectile.ExactPosition.ToIntVec3(), launcher);
         }
         public static bool Hediff_Overshield_InterceptCheck(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
