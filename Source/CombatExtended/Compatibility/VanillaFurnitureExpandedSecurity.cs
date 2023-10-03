@@ -70,16 +70,16 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
 
-		exactPosition = BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(),
-								     exactPosition,
-								     new Vector3(shield.Position.x, 0, shield.Position.z),
-								     shield.ShieldRadius * shield.ShieldRadius);
+                exactPosition = BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(),
+                                             exactPosition,
+                                             new Vector3(shield.Position.x, 0, shield.Position.z),
+                                             shield.ShieldRadius * shield.ShieldRadius);
 
                 if (!(projectile is ProjectileCE_Explosive))
                 {
                     shield.AbsorbDamage(projectile.def.projectile.GetDamageAmount(launcher), projectile.def.projectile.damageDef, projectile.ExactRotation.eulerAngles.y);
                 }
-		projectile.InterceptProjectile(shield, exactPosition, true);
+                projectile.InterceptProjectile(shield, exactPosition, true);
                 return true;
 
             }
@@ -93,15 +93,15 @@ namespace CombatExtended.Compatibility
 
             refreshShields(map);
 
-	    foreach (var building in shields)
-	    {
-		if (building is Building_Shield bs && ShieldInterceptsProjectile(bs, projectile, launcher))
-		{
-		    projectile.InterceptProjectile(bs, exactPosition, true);
-		    return true;
-		}
-	    }
-	    return false;
+            foreach (var building in shields)
+            {
+                if (building is Building_Shield bs && ShieldInterceptsProjectile(bs, projectile, launcher))
+                {
+                    projectile.InterceptProjectile(bs, exactPosition, true);
+                    return true;
+                }
+            }
+            return false;
         }
 
         private static bool ShieldInterceptsProjectile(Building building, ProjectileCE projectile, Thing launcher)

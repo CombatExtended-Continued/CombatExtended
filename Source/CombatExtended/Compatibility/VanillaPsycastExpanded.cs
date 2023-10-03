@@ -48,7 +48,7 @@ namespace CombatExtended.Compatibility
                 Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
                 eff.Trigger(new TargetInfo(projectile.ExactPosition.ToIntVec3(), interceptor.Map, false), TargetInfo.Invalid);
                 eff.Cleanup();
-		projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
+                projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
                 return true;
             }
             else
@@ -81,7 +81,7 @@ namespace CombatExtended.Compatibility
                         Effecter e = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
                         e.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptor.pawn.Map, false), TargetInfo.Invalid);
                         e.Cleanup();
-			projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
+                        projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
                     }
 
                     return result;
@@ -124,7 +124,7 @@ namespace CombatExtended.Compatibility
                 Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
                 eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptor.pawn.Map, false), TargetInfo.Invalid);
                 eff.Cleanup();
-		projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
+                projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
                 return true;
             }
 
@@ -174,7 +174,7 @@ namespace CombatExtended.Compatibility
                 //  line does not intersect
                 return new Vector3[] { Vector3.zero, Vector3.zero };
             }
-	    let sqrtbb4ac = Mathf.Sqrt(bb4ac)
+            var sqrtbb4ac = Mathf.Sqrt(bb4ac);
             mu1 = (-b + sqrtbb4ac) / (2 * a);
             mu2 = (-b - sqrtbb4ac) / (2 * a);
             sect = new Vector3[2];

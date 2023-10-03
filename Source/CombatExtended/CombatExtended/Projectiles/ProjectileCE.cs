@@ -646,9 +646,9 @@ namespace CombatExtended
         #region Collisions
         public virtual void InterceptProjectile(object interceptor, Vector3 impactPosition, bool destroyCompletely = false)
         {
-	    ExactPosition = impactPosition;
-	    landed = true;
-	    ticksToImpact = 0;
+            ExactPosition = impactPosition;
+            landed = true;
+            ticksToImpact = 0;
             if (destroyCompletely)
             {
                 this.Destroy(DestroyMode.Vanish);
@@ -660,15 +660,15 @@ namespace CombatExtended
         }
         public virtual void InterceptProjectile(object interceptor, Vector3 shieldPosition, float shieldRadius, bool destroyCompletely = false)
         {
-	    InterceptProjectile(interceptor, BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius * shieldRadius));
-	}
+            InterceptProjectile(interceptor, BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius * shieldRadius));
+        }
 
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
             float radius = interceptorComp.Props.radius;
             float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
-	    float radiusSq = blockRadius * blockRadius;
+            float radiusSq = blockRadius * blockRadius;
 
             var newExactPos = ExactPosition;
 
@@ -831,7 +831,7 @@ namespace CombatExtended
         {
             if (BlockerRegistry.CheckCellForCollisionCallback(this, cell, launcher))
             {
-		return true;
+                return true;
             }
             var roofChecked = false;
 

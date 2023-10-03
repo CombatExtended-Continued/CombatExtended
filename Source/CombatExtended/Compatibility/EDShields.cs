@@ -46,10 +46,11 @@ namespace CombatExtended.Compatibility
         {
             /* Check if an active shield can block this projectile
              */
-	    if (projectile.def.projectile.flyOverhead) {
-		return false;
-	    }
-	    Thing launcher = projectile.launcher;
+            if (projectile.def.projectile.flyOverhead)
+            {
+                return false;
+            }
+            Thing launcher = projectile.launcher;
             Map map = projectile.Map;
             Vector3 exactPosition = projectile.ExactPosition;
             IntVec3 origin = projectile.OriginIV3;
@@ -70,12 +71,12 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
                 int fieldRadius = (int)generator.FieldRadius_Active();
-		Vector3 shieldPosition2D = new Vector3(shield.Position.x, 0, shield.Position.z);
+                Vector3 shieldPosition2D = new Vector3(shield.Position.x, 0, shield.Position.z);
 
-		if (!CE_Utility.IntersectLineSphericalOutline(shieldPosition2D, fieldRadius, from, to))
-		{
-		    continue;
-		}
+                if (!CE_Utility.IntersectLineSphericalOutline(shieldPosition2D, fieldRadius, from, to))
+                {
+                    continue;
+                }
 
                 int fieldRadiusSq = fieldRadius * fieldRadius;
 
@@ -91,7 +92,7 @@ namespace CombatExtended.Compatibility
 
                     exactPosition = BlockerRegistry.GetExactPosition(from, to, shieldPosition2D, (fieldRadius - 1) * (fieldRadius - 1));
                     FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
-		    projectile.InterceptProjectile(shield, exactPosition, false);
+                    projectile.InterceptProjectile(shield, exactPosition, false);
                     return true;
                 }
             }
@@ -132,7 +133,7 @@ namespace CombatExtended.Compatibility
                 FleckMakerCE.ThrowLightningGlow(destination, map, 0.5f);
                 int damage = (projectile.def.projectile.GetDamageAmount(launcher));
                 generator.FieldIntegrity_Current -= damage;
-		projectile.InterceptProjectile(shield, projectile.ExactPosition, true);
+                projectile.InterceptProjectile(shield, projectile.ExactPosition, true);
                 return true;
             }
             return false;
