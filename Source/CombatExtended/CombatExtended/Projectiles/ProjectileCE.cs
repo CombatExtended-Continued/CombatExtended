@@ -1243,13 +1243,13 @@ namespace CombatExtended
             //{
             //    Find.CameraDriver.shaker.DoShake(cameraShakingInit);
             //}
-            if (def.HasModExtension<EffectProjectileExtension>())
+            if (Controller.settings.EnableExtraEffects)
             {
-                def.GetModExtension<EffectProjectileExtension>()?.ThrowFleck(ExactPosition,
+                ImpactFleckThrower.ThrowFleck(ExactPosition,
+                        Position,
                         Map,
-                        def.projectile.damageDef.explosionColorCenter,
-                        def.projectile.damageDef.soundExplosion,
-                        hitThing);
+                        def.projectile as ProjectilePropertiesCE,
+                        def, hitThing, shotRotation);
             }
             var ignoredThings = new List<Thing>();
 
