@@ -334,11 +334,6 @@ namespace CombatExtended
         {
             Building_Turret turret = TurretMagazine.turret;
 
-            if (graphicsExt != null && graphicsExt.allowedTurrets.Any() && !graphicsExt.allowedTurrets.Contains(turret.def.defName))
-            {
-                return false;
-            }
-
             //If turret is unable to be reloaded
             if (!turret.Spawned || turret.IsForbidden(Faction) || turret.GetReloading())
             {
@@ -349,6 +344,35 @@ namespace CombatExtended
             if ((isActive && !continued) || CompAmmoUser.EmptyMagazine || !shouldBeOn)
             {
                 return false;
+            }
+
+            //if this is the right turret to reload
+            if (graphicsExt != null)
+            {
+                bool tagMatch = false;
+                //if tag exists and match
+                if (graphicsExt.allowedTurretTags.Any())
+                {
+                    foreach (string loadertag in graphicsExt.allowedTurretTags)
+                    {
+                        if (turret.def.building.buildingTags.NotNullAndContains(loadertag))
+                        {
+                            tagMatch = true;
+                            break;
+                        }
+                    }
+                }
+
+                //if def exists and match
+                if (graphicsExt.allowedTurrets.Any() && graphicsExt.allowedTurrets.Contains(turret.def.defName))
+                {
+                    tagMatch = true;
+                }
+
+                if (!tagMatch)
+                {
+                    return false;
+                }
             }
 
             bool canReplaceAmmo = CanReplaceAmmo(TurretMagazine);
