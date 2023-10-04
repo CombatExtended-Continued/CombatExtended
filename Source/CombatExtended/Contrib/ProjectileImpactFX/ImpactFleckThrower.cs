@@ -33,9 +33,9 @@ namespace ProjectileImpactFX
 
             float[] velocityAngleArray = { 0f, -60f, 60f };
 
+            DamageDef damageDef = projProps.damageDef;
             if (ext.AutoAssign)
             {
-                DamageDef damageDef = projProps.damageDef;
                 if (!projProps.secondaryDamage.NullOrEmpty())
                 {
                     SecondaryDamage secondaryDamage = projProps.secondaryDamage.FirstOrDefault();
@@ -69,7 +69,9 @@ namespace ProjectileImpactFX
                     ImpactGlowFleck = CE_FleckDefOf.Fleck_ElectricGlow_EMP;
                     ImpactGlowFleckSize = ImpactFleckSize * 3;
                 }
-
+            }
+            if(ext.CreateTerrainEffects)
+            {
                 if (hitThing == null)
                 {//if bullet landed on ground
                     TerrainDef terrain = position.GetTerrain(map);

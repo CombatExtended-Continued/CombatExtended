@@ -12,6 +12,7 @@ namespace ProjectileImpactFX
     public class EffectProjectileExtension : DefModExtension
     {
         public bool AutoAssign = true;
+        public bool CreateTerrainEffects = true;
 
         public string explosionFleckDef = string.Empty;
         public float explosionFleckSize = 1f;
