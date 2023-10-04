@@ -70,7 +70,7 @@ namespace ProjectileImpactFX
                     ImpactGlowFleckSize = ImpactFleckSize * 3;
                 }
             }
-            if(ext.CreateTerrainEffects)
+            if (ext.CreateTerrainEffects)
             {
                 if (hitThing == null)
                 {//if bullet landed on ground
