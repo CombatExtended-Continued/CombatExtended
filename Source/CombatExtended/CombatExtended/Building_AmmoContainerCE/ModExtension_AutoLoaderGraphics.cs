@@ -9,7 +9,7 @@ using Verse;
 
 namespace CombatExtended
 {
-    public class ModExtension_AmmoContainerGraphics : DefModExtension
+    public class ModExtension_AutoLoaderGraphics : DefModExtension
     {
         public GraphicData fullGraphic;
         public GraphicData halfFullGraphic;

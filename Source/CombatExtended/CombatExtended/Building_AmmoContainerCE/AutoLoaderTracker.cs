@@ -9,27 +9,27 @@ using Verse;
 
 namespace CombatExtended
 {
-    internal class AmmoContainerTracker : MapComponent
+    internal class AutoLoaderTracker : MapComponent
     {
-        public HashSet<Building_AmmoContainerCE> AmmoContainers = new HashSet<Building_AmmoContainerCE>();
+        public HashSet<Building_AutoloaderCE> AutoLoaders = new HashSet<Building_AutoloaderCE>();
 
-        public AmmoContainerTracker(Map map) : base(map)
+        public AutoLoaderTracker(Map map) : base(map)
         {
         }
 
-        public void Register(Building_AmmoContainerCE t)
+        public void Register(Building_AutoloaderCE t)
         {
-            if (!AmmoContainers.Contains(t))
+            if (!AutoLoaders.Contains(t))
             {
-                AmmoContainers.Add(t);
+                AutoLoaders.Add(t);
             }
         }
 
-        public void Unregister(Building_AmmoContainerCE t)
+        public void Unregister(Building_AutoloaderCE t)
         {
-            if (AmmoContainers.Contains(t))
+            if (AutoLoaders.Contains(t))
             {
-                AmmoContainers.Remove(t);
+                AutoLoaders.Remove(t);
             }
         }
         public Thing ClosestCpmtaomer(IntVec3 position, PathEndMode pathEndMode, TraverseParms parms, float maxDist,
@@ -37,7 +37,7 @@ namespace CombatExtended
         {
             return GenClosest.ClosestThingReachable(
                        position, map, ThingRequest.ForUndefined(), pathEndMode,
-                       parms, maxDist, validator, AmmoContainers);
+                       parms, maxDist, validator, AutoLoaders);
         }
     }
 }

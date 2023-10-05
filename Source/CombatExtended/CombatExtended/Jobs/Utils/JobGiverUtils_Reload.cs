@@ -59,30 +59,30 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
             return job;
         }
 
-        public static Job MakeReloadJob(Pawn pawn, Building_AmmoContainerCE AmmoContainer)
+        public static Job MakeReloadJob(Pawn pawn, Building_AutoloaderCE AutoLoader)
         {
-            var compAmmo = AmmoContainer.CompAmmoUser;
+            var compAmmo = AutoLoader.CompAmmoUser;
             if (compAmmo == null)
             {
-                CELogger.Error($"{pawn} tried to create a reload job on a thing ({AmmoContainer}) that's not reloadable.");
+                CELogger.Error($"{pawn} tried to create a reload job on a thing ({AutoLoader}) that's not reloadable.");
                 return null;
             }
 
             if (!compAmmo.UseAmmo)
             {
-                CELogger.Error($"{pawn} tried to create a reload job on a thing ({AmmoContainer}) that's doesn't need ammo.");
+                CELogger.Error($"{pawn} tried to create a reload job on a thing ({AutoLoader}) that's doesn't need ammo.");
                 return null;
             }
 
-            var ammo = FindBestAmmo(pawn, AmmoContainer);
+            var ammo = FindBestAmmo(pawn, AutoLoader);
             if (ammo == null)
             {
                 CELogger.Error($"{pawn} tried to create a reload job without ammo. This should have been checked earlier.");
                 return null;
             }
-            CELogger.Message($"Making a reload job for {pawn}, {AmmoContainer} and {ammo}");
+            CELogger.Message($"Making a reload job for {pawn}, {AutoLoader} and {ammo}");
 
-            Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadAmmoContainer, AmmoContainer, ammo);
+            Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadAutoLoader, AutoLoader, ammo);
             job.count = Mathf.Min(ammo.stackCount, compAmmo.MissingToFullMagazine);
             return job;
         }
@@ -161,12 +161,12 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
             return true;
         }
 
-        public static Thing FindBestAmmo(Pawn pawn, Building_AmmoContainerCE AmmoContainer)
+        public static Thing FindBestAmmo(Pawn pawn, Building_AutoloaderCE AutoLoader)
         {
-            var ammoComp = AmmoContainer.CompAmmoUser;
+            var ammoComp = AutoLoader.CompAmmoUser;
             AmmoDef requestedAmmo = ammoComp.SelectedAmmo;
             var bestAmmo = FindBestAmmo(pawn, requestedAmmo);   // try to find currently selected ammo first
-            if (bestAmmo == null && ammoComp.EmptyMagazine && requestedAmmo.AmmoSetDefs != null && AmmoContainer.Faction != Faction.OfPlayer)
+            if (bestAmmo == null && ammoComp.EmptyMagazine && requestedAmmo.AmmoSetDefs != null && AutoLoader.Faction != Faction.OfPlayer)
             {
                 //Turret's selected ammo not available, and magazine is empty. Pick a new ammo from the set to load.
                 foreach (AmmoSetDef set in requestedAmmo.AmmoSetDefs)

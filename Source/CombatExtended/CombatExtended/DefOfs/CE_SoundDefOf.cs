@@ -10,7 +10,7 @@ namespace CombatExtended
     [DefOf]
     public static class CE_SoundDefOf
     {
-        public static SoundDef CE_AmmoContainerAmbient;
+        public static SoundDef CE_AutoLoaderAmbient;
 
     }
 }

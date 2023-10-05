@@ -314,7 +314,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    TryReloadViaAmmoContainer();
+                    TryReloadViaAutoLoader();
                 }
             }
 
@@ -852,7 +852,7 @@ namespace CombatExtended
                 return;
             }
 
-            if (TryReloadViaAmmoContainer())
+            if (TryReloadViaAutoLoader())
             {
                 return;
             }
@@ -886,7 +886,7 @@ namespace CombatExtended
             }
         }
 
-        public bool TryReloadViaAmmoContainer()
+        public bool TryReloadViaAutoLoader()
         {
             if (TargetCurrentlyAimingAt != null)
             {
@@ -898,7 +898,7 @@ namespace CombatExtended
 
             foreach (Thing building in adjThings)
             {
-                if (building is Building_AmmoContainerCE container && container.StartReload(compAmmo))
+                if (building is Building_AutoloaderCE container && container.StartReload(compAmmo))
                 {
                     return true;
                 }

@@ -10,17 +10,17 @@ using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
-    public class WorkGiver_ReloadAmmoContainer : WorkGiver_Scanner
+    public class WorkGiver_ReloadAutoLoader : WorkGiver_Scanner
     {
-        public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => pawn.Map.GetComponent<AmmoContainerTracker>().AmmoContainers;
+        public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => pawn.Map.GetComponent<AutoLoaderTracker>().AutoLoaders;
 
         public override float GetPriority(Pawn pawn, TargetInfo t) => GetThingPriority(pawn, t.Thing);
 
         private float GetThingPriority(Pawn pawn, Thing t, bool forced = false)
         {
-            Building_AmmoContainerCE ammoContainer = t as Building_AmmoContainerCE;
+            Building_AutoloaderCE autoloader = t as Building_AutoloaderCE;
 
-            if (!ammoContainer.CompAmmoUser.EmptyMagazine || ammoContainer.isActive)
+            if (!autoloader.CompAmmoUser.EmptyMagazine || autoloader.isActive)
             {
                 return 9f;
             }
@@ -50,26 +50,26 @@ namespace CombatExtended
 
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            Building_AmmoContainerCE ammoContainer = t as Building_AmmoContainerCE;
+            Building_AutoloaderCE AutoLoader = t as Building_AutoloaderCE;
 
             var priority = GetThingPriority(pawn, t, forced);
 
-            var ammo = ammoContainer.CompAmmoUser;
+            var ammo = AutoLoader.CompAmmoUser;
 
-            if (ammoContainer.isReloading || ammoContainer.isActive)
+            if (AutoLoader.isReloading || AutoLoader.isActive)
             {
-                JobFailReason.Is("CE_AmmoContainerBusy".Translate());
+                JobFailReason.Is("CE_AutoLoaderBusy".Translate());
                 return false;
             }
 
-            return CanReload(pawn, ammoContainer, forced);
+            return CanReload(pawn, AutoLoader, forced);
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            Building_AmmoContainerCE ammoContainer = t as Building_AmmoContainerCE;
+            Building_AutoloaderCE AutoLoader = t as Building_AutoloaderCE;
 
-            return JobGiverUtils_Reload.MakeReloadJob(pawn, ammoContainer);
+            return JobGiverUtils_Reload.MakeReloadJob(pawn, AutoLoader);
         }
 
         public static bool CanReload(Pawn pawn, Thing thing, bool forced = false, bool emergency = false)
@@ -80,42 +80,42 @@ namespace CombatExtended
                 return false;
             }
 
-            if (!(thing is Building_AmmoContainerCE ammoContainer))
+            if (!(thing is Building_AutoloaderCE AutoLoader))
             {
-                CELogger.Warn($"{pawn} could not reload {thing} because {thing} is not a Building_AmmoContainerCE. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
+                CELogger.Warn($"{pawn} could not reload {thing} because {thing} is not a Building_AutoLoaderCE. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
                 return false;
             }
-            var compAmmo = ammoContainer.CompAmmoUser;
+            var compAmmo = AutoLoader.CompAmmoUser;
 
             if (compAmmo == null)
             {
-                CELogger.Warn($"{pawn} could not reload {ammoContainer} because Building_AmmoContainerCE has no {nameof(CompAmmoUser)}.");
+                CELogger.Warn($"{pawn} could not reload {AutoLoader} because Building_AutoLoaderCE has no {nameof(CompAmmoUser)}.");
                 return false;
             }
-            if (ammoContainer.IsBurning() && !emergency)
+            if (AutoLoader.IsBurning() && !emergency)
             {
-                CELogger.Message($"{pawn} could not reload {ammoContainer} because Building_AmmoContainerCE is on fire.");
+                CELogger.Message($"{pawn} could not reload {AutoLoader} because Building_AutoLoaderCE is on fire.");
                 JobFailReason.Is("CE_TurretIsBurning".Translate());
                 return false;
             }
             if (compAmmo.FullMagazine)
             {
-                CELogger.Message($"{pawn} could not reload {ammoContainer} because it is full of ammo.");
+                CELogger.Message($"{pawn} could not reload {AutoLoader} because it is full of ammo.");
                 JobFailReason.Is("CE_TurretFull".Translate());
                 return false;
             }
-            if (ammoContainer.IsForbidden(pawn) || !pawn.CanReserve(ammoContainer, 1, -1, null, forced))
+            if (AutoLoader.IsForbidden(pawn) || !pawn.CanReserve(AutoLoader, 1, -1, null, forced))
             {
-                CELogger.Message($"{pawn} could not reload {ammoContainer} because it is forbidden or otherwise busy.");
+                CELogger.Message($"{pawn} could not reload {AutoLoader} because it is forbidden or otherwise busy.");
                 return false;
             }
-            if (ammoContainer.Faction != pawn.Faction && pawn.Faction != null && ammoContainer.Faction?.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally)
+            if (AutoLoader.Faction != pawn.Faction && pawn.Faction != null && AutoLoader.Faction?.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally)
             {
-                CELogger.Message($"{pawn} could not reload {ammoContainer} because the Building_AmmoContainerCE is unclaimed or hostile to them.");
+                CELogger.Message($"{pawn} could not reload {AutoLoader} because the Building_AutoLoaderCE is unclaimed or hostile to them.");
                 JobFailReason.Is("CE_TurretNonAllied".Translate());
                 return false;
             }
-            if (compAmmo.UseAmmo && JobGiverUtils_Reload.FindBestAmmo(pawn, ammoContainer) == null)
+            if (compAmmo.UseAmmo && JobGiverUtils_Reload.FindBestAmmo(pawn, AutoLoader) == null)
             {
                 JobFailReason.Is("CE_NoAmmoAvailable".Translate());
                 return false;

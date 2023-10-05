@@ -9,7 +9,7 @@ using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
-    public class JobDriver_ReloadAmmoContainer : JobDriver
+    public class JobDriver_ReloadAutoLoader : JobDriver
     {
         #region Fields
         private CompAmmoUser _compReloader;
@@ -18,16 +18,16 @@ namespace CombatExtended
         #region Properties
         private string errorBase => this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ";
 
-        private Building_AmmoContainerCE ammoContainer => TargetThingA as Building_AmmoContainerCE;
+        private Building_AutoloaderCE AutoLoader => TargetThingA as Building_AutoloaderCE;
         private AmmoThing ammo => TargetThingB as AmmoThing;
 
         private CompAmmoUser AmmoUser
         {
             get
             {
-                if (_compReloader == null && ammoContainer != null)
+                if (_compReloader == null && AutoLoader != null)
                 {
-                    _compReloader = ammoContainer.CompAmmoUser;
+                    _compReloader = AutoLoader.CompAmmoUser;
                 }
                 return _compReloader;
             }
@@ -44,7 +44,7 @@ namespace CombatExtended
                 return false;
             }
 
-            var compAmmo = ammoContainer?.CompAmmoUser;
+            var compAmmo = AutoLoader?.CompAmmoUser;
 
             if (compAmmo == null)
             {
@@ -74,14 +74,14 @@ namespace CombatExtended
         public override IEnumerable<Toil> MakeNewToils()
         {
             // Error checking/input validation.
-            if (ammoContainer == null)
+            if (AutoLoader == null)
             {
-                Log.Error(string.Concat(errorBase, "TargetThingA isn't a Building_AmmoContainerCE"));
+                Log.Error(string.Concat(errorBase, "TargetThingA isn't a Building_AutoLoaderCE"));
                 yield return null;
             }
             if (AmmoUser == null)
             {
-                Log.Error(string.Concat(errorBase, "TargetThingA (Building_AmmoContainerCE) is missing its CompAmmoUser."));
+                Log.Error(string.Concat(errorBase, "TargetThingA (Building_AutoLoaderCE) is missing its CompAmmoUser."));
                 yield return null;
             }
             if (AmmoUser.UseAmmo && ammo == null)
@@ -148,12 +148,12 @@ namespace CombatExtended
             }
 
             // If ammo system is turned off we just need to go to the turret.
-            yield return Toils_Goto.GotoCell(ammoContainer.Position, PathEndMode.Touch);
+            yield return Toils_Goto.GotoCell(AutoLoader.Position, PathEndMode.Touch);
 
             //If pawn fails reloading from this point, reset isReloading
             this.AddFinishAction(delegate
             {
-                ammoContainer.isReloading = false;
+                AutoLoader.isReloading = false;
             });
 
             // Wait in place
@@ -164,16 +164,16 @@ namespace CombatExtended
             waitToil.initAction = delegate
             {
                 // Initial relaod process activities.
-                ammoContainer.isReloading = true;
+                AutoLoader.isReloading = true;
                 waitToil.actor.pather.StopDead();
                 if (AmmoUser.ShouldThrowMote)
                 {
-                    MoteMakerCE.ThrowText(ammoContainer.Position.ToVector3Shifted(), ammoContainer.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
+                    MoteMakerCE.ThrowText(AutoLoader.Position.ToVector3Shifted(), AutoLoader.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
                 }
                 AmmoDef currentAmmo = AmmoUser.CurrentAmmo;
                 if (currentAmmo != ammo?.def)    //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                 {
-                    ammoContainer.DropAmmo();
+                    AutoLoader.DropAmmo();
                 }
             };
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
@@ -187,8 +187,8 @@ namespace CombatExtended
             {
 
                 AmmoUser.LoadAmmo(ammo);
-                ammoContainer.isReloading = false;
-                ammoContainer.Notify_ColorChanged();
+                AutoLoader.isReloading = false;
+                AutoLoader.Notify_ColorChanged();
             };
             //if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;

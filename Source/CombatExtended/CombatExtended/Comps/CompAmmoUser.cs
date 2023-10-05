@@ -653,7 +653,7 @@ namespace CombatExtended
             {
                 foreach (Thing building in compAffectedByFacilities.linkedFacilities)
                 {
-                    if (building is Building_AmmoContainerCE container && container.StartReload(this))
+                    if (building is Building_AutoloaderCE container && container.StartReload(this))
                     {
                         break;
                     }
@@ -708,13 +708,13 @@ namespace CombatExtended
 
         public void LoadAmmo(Thing ammo = null)
         {
-            Building_AmmoContainerCE AmmoContainer = null;
-            if (parent is Building_AmmoContainerCE)
+            Building_AutoloaderCE AutoLoader = null;
+            if (parent is Building_AutoloaderCE)
             {
-                AmmoContainer = parent as Building_AmmoContainerCE;
+                AutoLoader = parent as Building_AutoloaderCE;
             }
 
-            if (Holder == null && turret == null && AmmoContainer == null)
+            if (Holder == null && turret == null && AutoLoader == null)
             {
                 Log.Error(parent.ToString() + " tried loading ammo with no owner");
                 return;
@@ -758,7 +758,7 @@ namespace CombatExtended
                 else
                 {
                     int newAmmoCount = ammoThing.stackCount;
-                    if (turret != null || AmmoContainer != null)   //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
+                    if (turret != null || AutoLoader != null)   //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                     {
                         newAmmoCount += curMagCountInt;
                     }
@@ -782,9 +782,9 @@ namespace CombatExtended
             {
                 turret.SetReloading(false);
             }
-            if (AmmoContainer != null)
+            if (AutoLoader != null)
             {
-                AmmoContainer.isReloading = false;
+                AutoLoader.isReloading = false;
             }
             if (parent.def.soundInteract != null)
             {

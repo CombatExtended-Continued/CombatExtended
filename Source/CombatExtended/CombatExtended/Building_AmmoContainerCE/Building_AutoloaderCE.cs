@@ -17,7 +17,7 @@ using Verse.Sound;
 namespace CombatExtended
 {
     [StaticConstructorOnStartup]
-    public class Building_AmmoContainerCE : Building
+    public class Building_AutoloaderCE : Building
     {
         public CompAmmoUser CompAmmoUser;
 
@@ -46,7 +46,7 @@ namespace CombatExtended
         public CompInitiatable initiatableComp;
         public CompMannable mannableComp;
 
-        public ModExtension_AmmoContainerGraphics graphicsExt;
+        public ModExtension_AutoLoaderGraphics graphicsExt;
 
         public bool shouldBeOn => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated) && (mannableComp == null || mannableComp.MannedNow);
 
@@ -94,7 +94,7 @@ namespace CombatExtended
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            Map.GetComponent<AmmoContainerTracker>().Register(this);
+            Map.GetComponent<AutoLoaderTracker>().Register(this);
             CompAmmoUser = GetComp<CompAmmoUser>();
 
             dormantComp = GetComp<CompCanBeDormant>();
@@ -102,7 +102,7 @@ namespace CombatExtended
             powerComp = GetComp<CompPowerTrader>();
             mannableComp = GetComp<CompMannable>();
 
-            graphicsExt = def.GetModExtension<ModExtension_AmmoContainerGraphics>();
+            graphicsExt = def.GetModExtension<ModExtension_AutoLoaderGraphics>();
             if (CompAmmoUser == null)
             {
                 Log.Error(this.GetCustomLabelNoCount() + " Requires CompAmmoUser to funtion properly.");
@@ -120,7 +120,7 @@ namespace CombatExtended
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
         {
             TargetTurret?.SetReloading(false);
-            Map.GetComponent<AmmoContainerTracker>().Unregister(this);
+            Map.GetComponent<AutoLoaderTracker>().Unregister(this);
             DropAmmo(mode == DestroyMode.KillFinalize);
             base.DeSpawn(mode);
         }
@@ -166,7 +166,7 @@ namespace CombatExtended
                     defaultLabel = CompAmmoUser.HasMagazine ? (string)"CE_ReloadLabel".Translate() : "",
                     defaultDesc = "CE_ReloadDesc".Translate(),
                     icon = CompAmmoUser.CurrentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : CompAmmoUser.SelectedAmmo.IconTexture(),
-                    tutorTag = "CE_AmmoContainer"
+                    tutorTag = "CE_AutoLoader"
                 };
                 yield return reloadCommandGizmo;
 
@@ -199,9 +199,9 @@ namespace CombatExtended
                 if (!CompAmmoUser.EmptyMagazine)
                 {
                     Command_Action drop = new Command_Action();
-                    drop.defaultLabel = "CE_AmmoContainer_DropAmmo".Translate();
-                    drop.defaultDesc = "CE_AmmoContainer_DropAmmoDesc".Translate();
-                    drop.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AmmoContainer_Drop", true);
+                    drop.defaultLabel = "CE_AutoLoader_DropAmmo".Translate();
+                    drop.defaultDesc = "CE_AutoLoader_DropAmmoDesc".Translate();
+                    drop.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_Drop", true);
                     drop.action = delegate
                     {
                         DropAmmo();
@@ -210,9 +210,9 @@ namespace CombatExtended
 
                     //forced reload
                     Command_Action reload = new Command_Action();
-                    reload.defaultLabel = "CE_AmmoContainer_ForceReload".Translate();
-                    reload.defaultDesc = "CE_AmmoContainer_ForceReloadDesc".Translate();
-                    reload.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AmmoContainer_Reload", true);
+                    reload.defaultLabel = "CE_AutoLoader_ForceReload".Translate();
+                    reload.defaultDesc = "CE_AutoLoader_ForceReloadDesc".Translate();
+                    reload.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_Reload", true);
                     reload.action = delegate
                     {
                         List<Thing> adjThings = new List<Thing>();
@@ -228,16 +228,16 @@ namespace CombatExtended
                         }
                         if (!success)
                         {
-                            Messages.Message(string.Format("CE_AmmoContainer_NoTurretToReload".Translate(), Label, CompAmmoUser.Props.ammoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
+                            Messages.Message(string.Format("CE_AutoLoader_NoTurretToReload".Translate(), Label, CompAmmoUser.Props.ammoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
                         }
                     };
                     yield return reload;
                 }
 
                 Command_Action toggleShouldReplace = new Command_Action();
-                toggleShouldReplace.defaultLabel = shouldReplaceAmmo ? "CE_AmmoContainer_ToggleReplaceOn".Translate() : "CE_AmmoContainer_ToggleReplaceOff".Translate();
-                toggleShouldReplace.defaultDesc = shouldReplaceAmmo ? "CE_AmmoContainer_ToggleReplaceDescOn".Translate() : "CE_AmmoContainer_ToggleReplaceDescOff".Translate();
-                toggleShouldReplace.icon = shouldReplaceAmmo ? ContentFinder<Texture2D>.Get("UI/Buttons/CE_AmmoContainer_ReplaceOn", true) : ContentFinder<Texture2D>.Get("UI/Buttons/CE_AmmoContainer_ReplaceOff", true);
+                toggleShouldReplace.defaultLabel = shouldReplaceAmmo ? "CE_AutoLoader_ToggleReplaceOn".Translate() : "CE_AutoLoader_ToggleReplaceOff".Translate();
+                toggleShouldReplace.defaultDesc = shouldReplaceAmmo ? "CE_AutoLoader_ToggleReplaceDescOn".Translate() : "CE_AutoLoader_ToggleReplaceDescOff".Translate();
+                toggleShouldReplace.icon = shouldReplaceAmmo ? ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_ReplaceOn", true) : ContentFinder<Texture2D>.Get("UI/Buttons/CE_AutoLoader_ReplaceOff", true);
                 toggleShouldReplace.action = delegate
                 {
                     shouldReplaceAmmo = !shouldReplaceAmmo;
@@ -262,7 +262,7 @@ namespace CombatExtended
 
                 if (reloadingSustainer == null)
                 {
-                    reloadingSustainer = (graphicsExt?.reloadingSustainer ?? CE_SoundDefOf.CE_AmmoContainerAmbient).TrySpawnSustainer(SoundInfo.InMap(this));
+                    reloadingSustainer = (graphicsExt?.reloadingSustainer ?? CE_SoundDefOf.CE_AutoLoaderAmbient).TrySpawnSustainer(SoundInfo.InMap(this));
                 }
                 reloadingSustainer.Maintain();
 
@@ -309,9 +309,9 @@ namespace CombatExtended
             }
             if (isActive)
             {
-                stringBuilder.AppendLine("CE_AmmoContainer_ReloadTime".Translate(ticksToComplete.TicksToSeconds().ToString("F0")));
+                stringBuilder.AppendLine("CE_AutoLoader_ReloadTime".Translate(ticksToComplete.TicksToSeconds().ToString("F0")));
             }
-            stringBuilder.AppendLine("CE_AmmoContainer_ShouldReplace".Translate(shouldReplaceAmmo.ToString()));
+            stringBuilder.AppendLine("CE_AutoLoader_ShouldReplace".Translate(shouldReplaceAmmo.ToString()));
             return stringBuilder.ToString().TrimEndNewlines();
         }
 

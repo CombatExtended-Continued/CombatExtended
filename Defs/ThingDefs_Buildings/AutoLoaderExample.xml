@@ -2,20 +2,20 @@
 <Defs>
   <!--
 	
-		===Ammo container example def
+		===Auto loader example def
 	
 	<ThingDef ParentName="BuildingBase">
-		<defName>BDsAmmoContainerTest</defName>
-		<label>ammo container test</label>
+		<defName>BDsAutoLoaderTest</defName>
+		<label>auto loader test</label>
 		<description>An ammo crate with magical autoloaders.</description>
 
 		===Thing class, ticker type and drawer type are mandatory===
 
-		<thingClass>CombatExtended.Building_AmmoContainerCE</thingClass>
+		<thingClass>CombatExtended.Building_AutoLoaderCE</thingClass>
 		<tickerType>Normal</tickerType>
 		<drawerType>MapMeshAndRealTime</drawerType>
 
-		===This Ammo user is the container's ammo capacity and reload time===
+		===This Ammo user is the autoloader's ammo capacity and reload time===
 
 		<comps>
 			<li Class="CombatExtended.CompProperties_AmmoUser">
@@ -38,7 +38,7 @@
 		===Different graphics can be applied at empty, half full (above 0) and full (above 75%) if this mod extension exists===
     
     <modExtensions>
-			<li Class="CombatExtended.ModExtension_AmmoContainerGraphics">
+			<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
 				<fullGraphic>
 					<texPath>Things/Building/Misc/ToolCabinet</texPath>
 					<graphicClass>Graphic_Multi</graphicClass>
