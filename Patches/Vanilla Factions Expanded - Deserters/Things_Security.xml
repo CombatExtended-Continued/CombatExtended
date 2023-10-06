@@ -8,6 +8,12 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Turret_Autocannon"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]
+						| Defs/ThingDef[defName="Turret_Sniper"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]
+						| Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]</xpath>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VFED_RemoteTrapIED_HighExplosive"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 					<value>
