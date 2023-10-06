@@ -349,9 +349,11 @@ namespace CombatExtended
             //if this is the right turret to reload
             if (graphicsExt != null)
             {
-                bool tagMatch = false;
+                //if def exists and match
+                bool tagMatch = graphicsExt.allowedTurrets.Any() && graphicsExt.allowedTurrets.Contains(turret.def.defName);
+
                 //if tag exists and match
-                if (graphicsExt.allowedTurretTags.Any())
+                if (!tagMatch && graphicsExt.allowedTurretTags.Any())
                 {
                     foreach (string loadertag in graphicsExt.allowedTurretTags)
                     {
@@ -361,12 +363,6 @@ namespace CombatExtended
                             break;
                         }
                     }
-                }
-
-                //if def exists and match
-                if (graphicsExt.allowedTurrets.Any() && graphicsExt.allowedTurrets.Contains(turret.def.defName))
-                {
-                    tagMatch = true;
                 }
 
                 if (!tagMatch)
