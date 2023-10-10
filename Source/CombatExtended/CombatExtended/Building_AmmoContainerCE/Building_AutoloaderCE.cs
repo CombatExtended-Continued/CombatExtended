@@ -105,11 +105,11 @@ namespace CombatExtended
             graphicsExt = def.GetModExtension<ModExtension_AutoLoaderGraphics>();
             if (CompAmmoUser == null)
             {
-                Log.Error(this.GetCustomLabelNoCount() + " Requires CompAmmoUser to funtion properly.");
+                Log.Error(this.GetCustomLabelNoCount() + " Requires CompAmmoUser to function properly.");
             }
             if (this.def.tickerType != TickerType.Normal)
             {
-                Log.Error(this.GetCustomLabelNoCount() + " Requires normal ticker type to funtion properly.");
+                Log.Error(this.GetCustomLabelNoCount() + " Requires normal ticker type to function properly.");
             }
             if (this.def.drawerType != DrawerType.MapMeshAndRealTime)
             {
