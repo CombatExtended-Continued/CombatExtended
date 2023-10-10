@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-
-	<Operation Class="PatchOperationSequence">
-		<operations>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework Expanded - Classic Mechs</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
 			<!-- Missile Launcher -->
 			<li Class="PatchOperationReplace">
@@ -64,26 +66,26 @@
             </li>
 			
 			<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]/fireModes</xpath>
-					<value>
-						<fireModes>
-							<li>
-								<shotsPerBurst>1</shotsPerBurst>
-								<ticksBetweenShots>6</ticksBetweenShots>
-								<ticksBetweenBursts>60</ticksBetweenBursts>
-								<label>Single</label>
-								<texPath>UI/Gizmos/FireRate_Single</texPath>
-							</li>
-							<li>
-								<shotsPerBurst>4</shotsPerBurst>
-								<ticksBetweenShots>12</ticksBetweenShots>
-								<ticksBetweenBursts>120</ticksBetweenBursts>
-								<label>Burst</label>
-								<texPath>UI/Gizmos/FireRate_Burst</texPath>
-							</li>
-						</fireModes>
-					</value>
-				</li>
+				<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]/fireModes</xpath>
+				<value>
+					<fireModes>
+						<li>
+							<shotsPerBurst>1</shotsPerBurst>
+							<ticksBetweenShots>6</ticksBetweenShots>
+							<ticksBetweenBursts>60</ticksBetweenBursts>
+							<label>Single</label>
+							<texPath>UI/Gizmos/FireRate_Single</texPath>
+						</li>
+						<li>
+							<shotsPerBurst>4</shotsPerBurst>
+							<ticksBetweenShots>12</ticksBetweenShots>
+							<ticksBetweenBursts>120</ticksBetweenBursts>
+							<label>Burst</label>
+							<texPath>UI/Gizmos/FireRate_Burst</texPath>
+						</li>
+					</fireModes>
+				</value>
+			</li>
 
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]</xpath>
@@ -97,7 +99,8 @@
 					</li>
 				</value>
 			</li>
-		</operations>
-	</Operation>
 
+			</operations>
+		</match>
+	</Operation>
 </Patch>		

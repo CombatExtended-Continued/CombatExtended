@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-
-	<Operation Class="PatchOperationSequence">
-		<operations>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework Expanded - Classic Mechs</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
 			<!-- Main Guns -->
 			<li Class="PatchOperationReplace">
@@ -28,11 +30,11 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/magazineCapacity</xpath>
-					<value>
-						<magazineCapacity>20</magazineCapacity>
-					</value>
-				</li>
+				<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/magazineCapacity</xpath>
+				<value>
+					<magazineCapacity>20</magazineCapacity>
+				</value>
+			</li>
 
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/chargePerAmmoCount</xpath>
@@ -74,7 +76,8 @@
 					</li>
 				</value>
 			</li>
-		</operations>
-	</Operation>
 
-</Patch>		
+			</operations>
+		</match>
+	</Operation>
+</Patch>	
