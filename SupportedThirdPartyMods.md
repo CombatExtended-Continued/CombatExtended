@@ -254,6 +254,9 @@ High Tech Laboratory Facilities	|
 Hive Armory |
 Idhale Race	|
 Impact Weaponry	|
+Imperial Arsenal: Royal Warcasket 	|
+Individuality 	|
+Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
