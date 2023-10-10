@@ -15,6 +15,7 @@ namespace CombatExtended.Compatibility
         private static List<Func<ProjectileCE, Vector3, Vector3, bool>> checkForCollisionBetweenCallbacks;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
+        private static List<Func<ProjectileCE, Thing, bool>> beforeCollideWithCallbacks;
 
         private static void Enable()
         {
@@ -22,6 +23,7 @@ namespace CombatExtended.Compatibility
             checkForCollisionBetweenCallbacks = new List<Func<ProjectileCE, Vector3, Vector3, bool>>();
             impactSomethingCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
             checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
+            beforeCollideWithCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
         }
 
         public static void RegisterCheckForCollisionBetweenCallback(Func<ProjectileCE, Vector3, Vector3, bool> f)
@@ -50,7 +52,14 @@ namespace CombatExtended.Compatibility
             }
             impactSomethingCallbacks.Add(f);
         }
-
+        public static void RegisterBeforeCollideWithCallback(Func<ProjectileCE, Thing, bool> f)
+        {
+            if (!enabled)
+            {
+                Enable();
+            }
+            beforeCollideWithCallbacks.Add(f);
+        }
         public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             if (!enabled)
@@ -99,6 +108,22 @@ namespace CombatExtended.Compatibility
             return false;
         }
 
+        public static bool BeforeCollideWithCallback(ProjectileCE projectile, Thing collideWith)
+        {
+            if (!enabled)
+            {
+                return false;
+            }
+            foreach (var cb in beforeCollideWithCallbacks)
+            {
+                if (cb(projectile, collideWith))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static Vector3 GetExactPosition(Vector3 origin, Vector3 curPosition, Vector3 shieldPosition, float radiusSq)
         {
             Vector3 velocity = curPosition - origin;
@@ -114,5 +139,6 @@ namespace CombatExtended.Compatibility
             float scalar = (float)(2 * c / (-b + Math.Sqrt(det)));
             return velocity * scalar + origin;
         }
+
     }
 }

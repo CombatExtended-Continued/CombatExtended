@@ -876,6 +876,28 @@ namespace CombatExtended
                 // Check for collision
                 if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
+                    if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thing.TrueCenter()))
+                    {
+                        return true;
+                    }
+                    var lastPosIV3 = LastPos.ToIntVec3();
+                    var newPosIV3 = thing.TrueCenter().ToIntVec3();
+                    // Iterate through all cells between the last and the THING
+                    // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
+                    var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
+                    foreach (var _cell in cells)
+                    {
+                        bool colided = false;
+                        colided = BlockerRegistry.CheckCellForCollisionCallback(this, _cell, launcher);
+                        if (Controller.settings.DebugDrawInterceptChecks)
+                        {
+                            Map.debugDrawer.FlashCell(_cell, 1, "o");
+                        }
+                        if (colided)
+                        {
+                            return true;
+                        }
+                    }
                     if (TryCollideWith(thing))
                     {
                         return true;
@@ -980,9 +1002,12 @@ namespace CombatExtended
                 }
             }
 
+            if (BlockerRegistry.BeforeCollideWithCallback(this, thing))
+            {
+                return true;
+            }
             ExactPosition = point;
             landed = true;
-
             if (Controller.settings.DebugDrawInterceptChecks)
             {
                 MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
