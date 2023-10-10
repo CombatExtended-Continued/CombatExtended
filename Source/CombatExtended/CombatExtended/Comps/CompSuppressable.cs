@@ -243,6 +243,10 @@ namespace CombatExtended
                 }
             }
         }
+        public bool IgnoreSuppresion(IntVec3 origin)
+        {
+            return SuppressionUtility.InterceptorZonesFor((Pawn)parent).Where(x=>x.Contains(parent.Position)).Any(x=>!x.Contains(origin));
+        }
 
         public override void CompTick()
         {

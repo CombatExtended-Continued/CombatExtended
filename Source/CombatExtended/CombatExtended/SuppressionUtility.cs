@@ -23,7 +23,7 @@ namespace CombatExtended
 
         private static DangerTracker dangerTracker;
 
-        private static List<CompProjectileInterceptor> interceptors;
+        private static IEnumerable<CompProjectileInterceptor> Interceptors(Thing pawn) => pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>());
 
         public static bool TryRequestHelp(Pawn pawn)
         {
@@ -91,7 +91,7 @@ namespace CombatExtended
         {
             List<IntVec3> cellList = new List<IntVec3>(GenRadial.RadialCellsAround(pawn.Position, maxDist, true));
             IntVec3 bestPos = pawn.Position;
-            interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
+            //interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
             lightingTracker = pawn.Map.GetLightingTracker();
             dangerTracker = pawn.Map.GetDangerTracker();
 
@@ -205,7 +205,7 @@ namespace CombatExtended
 
             // If the cell is covered by a shield and there are no enemies inside, then increases by 15 (for each such shield)
             cellRating += InterceptorZonesFor(pawn).Where(x => !IsOccupiedByEnemies(x, pawn)).Count(x => x.Contains(cell)) * 15;
-            
+
             // Avoid bullets and other danger sources;
             // Yet do not discard cover that is extremely good, even if it may be dangerous
             float dangerAmount = dangerTracker.DangerAt(cell) * DangerTracker.DANGER_TICKS_MAX;
@@ -240,9 +240,9 @@ namespace CombatExtended
             }
             return cellRating;
         }
-        private static IEnumerable<IEnumerable<IntVec3>> InterceptorZonesFor(Pawn pawn)
+        public static IEnumerable<IEnumerable<IntVec3>> InterceptorZonesFor(Pawn pawn)
         {
-            return interceptors.Where(x => x.Active).Select(x => GenRadial.RadialCellsAround(x.parent.Position, x.Props.radius, true));
+            return Interceptors(pawn).Where(x => x.Active).Select(x => GenRadial.RadialCellsAround(x.parent.Position, x.Props.radius, true));
         }
         private static bool IsOccupiedByEnemies(IEnumerable<IntVec3> cells, Pawn pawn)
         {

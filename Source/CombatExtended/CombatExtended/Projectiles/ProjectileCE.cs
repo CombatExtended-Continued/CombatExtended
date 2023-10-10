@@ -1023,7 +1023,8 @@ namespace CombatExtended
             var compSuppressable = pawn.TryGetComp<CompSuppressable>();
             if (compSuppressable != null
                     && pawn.Faction != launcher?.Faction
-                    && (shield == null || shield.ShieldState == ShieldState.Resetting))
+                    && (shield == null || shield.ShieldState == ShieldState.Resetting)
+                    && !compSuppressable.IgnoreSuppresion(OriginIV3))
             {
                 suppressionAmount = def.projectile.damageAmountBase * suppressionMultiplier;
 
