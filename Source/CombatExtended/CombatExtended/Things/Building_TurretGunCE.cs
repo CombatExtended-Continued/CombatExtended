@@ -314,7 +314,7 @@ namespace CombatExtended
             //This code runs TryOrderReload for manning pawns or for non-humanlike intelligence such as mechs
             /*if (this.IsHashIntervalTick(TicksBetweenAmmoChecks) && !isReloading && (MannableComp?.MannedNow ?? false))
                   TryOrderReload(CompAmmo?.CurMagCount == 0);*/
-            if (!CanSetForcedTarget && !isReloading && forcedTarget.IsValid && burstCooldownTicksLeft <= 0)
+            if (!CanSetForcedTarget && !isReloading && forcedTarget.IsValid && !globalTargetInfo.IsValid && burstCooldownTicksLeft <= 0)
             {
                 ResetForcedTarget();
             }
