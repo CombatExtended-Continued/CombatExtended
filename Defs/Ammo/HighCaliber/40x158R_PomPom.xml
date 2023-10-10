@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo40x158mmR</defName>
+		<label>40x158mmR Pom-pom</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberAutocannonLarge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_40x158mmR</defName>
+		<label>40x158mmR Pom-pom</label>
+		<ammoTypes>
+			<Ammo_40x158mmR_AP>Bullet_40x158mmR_AP</Ammo_40x158mmR_AP>
+			<Ammo_40x158mmR_APHE>Bullet_40x158mmR_APHE</Ammo_40x158mmR_APHE>
+			<Ammo_40x158mmR_HE>Bullet_40x158mmR_HE</Ammo_40x158mmR_HE>
+			<Ammo_40x158mmR_HE_TFuzed>Bullet_40x158mmR_HE_TFuzed</Ammo_40x158mmR_HE_TFuzed>
+			<Ammo_40x158mmR_Sabot>Bullet_40x158mmR_Sabot</Ammo_40x158mmR_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo40x158mmRBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>Large caliber cartridge used by autocannons and anti-aircraft cannons.</description>
+		<statBases>
+			<Mass>1.22</Mass>
+			<Bulk>1.15</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo40x158mmR</li>
+		</thingCategories>
+		<!--14 Rounds per belt, multiples of 14-->
+		<stackLimit>140</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x158mmRBase">
+		<defName>Ammo_40x158mmR_AP</defName>
+		<label>40x158mmR Pom-pom (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Bofors/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>5.05</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_40x158mmR_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x158mmRBase">
+		<defName>Ammo_40x158mmR_APHE</defName>
+		<label>40x158mmR Pom-pom (APHE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Bofors/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>13.72</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_40x158mmR_APHE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x158mmRBase">
+		<defName>Ammo_40x158mmR_HE</defName>
+		<label>40x158mmR Pom-pom (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Bofors/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>7.79</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<cookOffProjectile>Bullet_40x158mmR_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x158mmRBase">
+		<defName>Ammo_40x158mmR_HE_TFuzed</defName>
+		<label>40x158mmR Pom-pom (HE Time Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Bofors/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>13.72</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHETF</ammoClass>
+		<cookOffProjectile>Bullet_40x158mmR_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x158mmRBase">
+		<defName>Ammo_40x158mmR_Sabot</defName>
+		<label>40x158mmR Pom-pom (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Bofors/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.71</Mass>
+			<MarketValue>4.89</MarketValue>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_40x158mmR_Sabot</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base40x158mmRBullet" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>141</speed>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
+			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x158mmRBullet">
+		<defName>Bullet_40x158mmR_AP</defName>
+		<label>40x158mmR Pom-pom bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>93</damageAmountBase>
+			<armorPenetrationSharp>57</armorPenetrationSharp>
+			<armorPenetrationBlunt>4471</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x158mmRBullet">
+		<defName>Bullet_40x158mmR_APHE</defName>
+		<label>40x158mmR Pom-pom bullet (APHE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>93</damageAmountBase>
+			<armorPenetrationSharp>57</armorPenetrationSharp>
+			<armorPenetrationBlunt>4410</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>88</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x158mmRBullet">
+		<defName>Bullet_40x158mmR_HE</defName>
+		<label>40x158mmR Pom-pom bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>27</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>4</Fragment_Large>
+					<Fragment_Small>2</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x158mmRBullet">
+		<defName>Bullet_40x158mmR_HE_TFuzed</defName>
+		<label>40x158mmR Pom-pom bullet (HE Time-Fuzed)</label>
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>27</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>2</aimHeightOffset>
+			<armingDelay>2</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>4</Fragment_Large>
+					<Fragment_Small>2</Fragment_Small>
+				</fragments>
+				<fragAngleRange>-89~-5</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x158mmRBullet">
+		<defName>Bullet_40x158mmR_Sabot</defName>
+		<label>40x158mmR Pom-pom bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>71</damageAmountBase>
+			<armorPenetrationSharp>100</armorPenetrationSharp>
+			<armorPenetrationBlunt>4410</armorPenetrationBlunt>
+			<speed>210</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_40x158mmR_AP</defName>
+		<label>make 40x158mmR Pom-pom (AP) cartridge x42</label>
+		<description>Craft 42 40x158mmR Pom-pom (AP) cartridges.</description>
+		<jobString>Making 40x158mmR Pom-pom (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>106</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x158mmR_AP>42</Ammo_40x158mmR_AP>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>12720</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_40x158mmR_APHE</defName>
+		<label>make 40x158mmR Pom-pom (APHE) cartridge x42</label>
+		<description>Craft 42 40x158mmR Pom-pom (APHE) cartridges.</description>
+		<jobString>Making 40x158mmR Pom-pom (APHE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>106</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>35</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x158mmR_HE>42</Ammo_40x158mmR_HE>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>29520</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_40x158mmR_HE</defName>
+		<label>make 40x158mmR Pom-pom (HE) cartridge x42</label>
+		<description>Craft 42 40x158mmR Pom-pom (HE) cartridges.</description>
+		<jobString>Making 40x158mmR Pom-pom (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>106</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x158mmR_HE>42</Ammo_40x158mmR_HE>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>13800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_40x158mmR_HE_TFuzed</defName>
+		<label>make 40x158mmR Pom-pom Time-Fuzed cartridge x42</label>
+		<description>Craft 42 40x158mmR Pom-pom Time-Fuzed cartridges.</description>
+		<jobString>Making 40x158mmR Pom-pom Time-Fuzed cartridges.</jobString>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x158mmR_HE_TFuzed>42</Ammo_40x158mmR_HE_TFuzed>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>14800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_40x158mmR_Sabot</defName>
+		<label>make 40x158mmR Pom-pom (Sabot) cartridge x42</label>
+		<description>Craft 42 40x158mmR Pom-pom (Sabot) cartridges.</description>
+		<jobString>Making 40x158mmR Pom-pom (Sabot) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>28</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>17</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>17</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x158mmR_Sabot>42</Ammo_40x158mmR_Sabot>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>13000</workAmount>
+	</RecipeDef>
+
+</Defs>

@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo102mmShells</defName>
+		<label>102mm naval shell</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_102mmShell</defName>
+		<label>102mm naval shells</label>
+		<ammoTypes>
+			<Ammo_102mmShell_HE>Bullet_102mmShell_HE</Ammo_102mmShell_HE>
+			<Ammo_102mmShell_APHE>Bullet_102mmShell_APHE</Ammo_102mmShell_APHE>
+			<Ammo_102mmShell_HE_TFuzed>Bullet_102mmShell_HE_TFuzed</Ammo_102mmShell_HE_TFuzed>
+			<Ammo_102mmShell_Incendiary>Bullet_102mmShell_Incendiary</Ammo_102mmShell_Incendiary>
+			<Ammo_102mmShell_EMP>Bullet_102mmShell_EMP</Ammo_102mmShell_EMP>
+			<Ammo_102mmShell_Smoke>Bullet_102mmShell_Smoke</Ammo_102mmShell_Smoke>
+		</ammoTypes>
+		<isMortarAmmoSet>true</isMortarAmmoSet>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_102mmShell_directfire</defName>
+		<label>102mm Naval shells</label>
+		<ammoTypes>
+			<Ammo_102mmShell_HE>Bullet_102mmShell_HE_directfire</Ammo_102mmShell_HE>
+			<Ammo_102mmShell_APHE>Bullet_102mmShell_APHE_directfire</Ammo_102mmShell_APHE>
+			<Ammo_102mmShell_HE_TFuzed>Bullet_102mmShell_HE_TFuzed_directfire</Ammo_102mmShell_HE_TFuzed>
+			<Ammo_102mmShell_Incendiary>Bullet_102mmShell_Incendiary_directfire</Ammo_102mmShell_Incendiary>
+			<Ammo_102mmShell_EMP>Bullet_102mmShell_EMP_directfire</Ammo_102mmShell_EMP>
+			<Ammo_102mmShell_Smoke>Bullet_102mmShell_Smoke_directfire</Ammo_102mmShell_Smoke>
+		</ammoTypes>
+		<isMortarAmmoSet>true</isMortarAmmoSet>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="102mmShellBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>Large cannon shell used by light naval guns.</description>
+		<thingCategories>
+			<li>Ammo102mmShells</li>
+		</thingCategories>
+		<graphicData>
+			<drawSize>0.90</drawSize>
+		</graphicData>
+		<stackLimit>25</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Mass>15.88</Mass>
+			<Bulk>8.56</Bulk>
+		</statBases>
+		<cookOffFlashScale>25</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+		<isMortarAmmo>true</isMortarAmmo>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="102mmShellBase">
+		<defName>Ammo_102mmShell_HE</defName>
+		<label>102mm Naval shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>121</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<detonateProjectile>Bullet_102mmShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="102mmShellBase">
+		<defName>Ammo_102mmShell_APHE</defName>
+		<label>102mm Naval shell (APHE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>17.35</Mass>
+			<MarketValue>113</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<detonateProjectile>Bullet_102mmShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="102mmShellBase">
+		<defName>Ammo_102mmShell_HE_TFuzed</defName>
+		<label>102mm Naval shell (HE Time Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>121</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHETF</ammoClass>
+		<detonateProjectile>Bullet_102mmShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="102mmShellBase">
+		<defName>Ammo_102mmShell_Incendiary</defName>
+		<label>102mm Naval shell (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/INC</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>108</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeIncendiary</ammoClass>
+		<detonateProjectile>Bullet_102mmShell_Incendiary</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="102mmShellBase">
+		<defName>Ammo_102mmShell_EMP</defName>
+		<label>102mm Naval shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>193</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<detonateProjectile>Bullet_102mmShell_EMP</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="102mmShellBase">
+		<defName>Ammo_102mmShell_Smoke</defName>
+		<label>102mm Naval shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>102</MarketValue>
+		</statBases>
+		<ammoClass>Smoke</ammoClass>
+		<detonateProjectile>Bullet_102mmShell_Smoke</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<!-- indirect fire-->
+	<ThingDef Name="Base102mmShell" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>0</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<flyOverhead>true</flyOverhead>
+			<gravityFactor>5</gravityFactor>
+			<shellingProps>
+				<tilesPerTick>0.10</tilesPerTick>
+				<range>30</range>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShell">
+		<defName>Bullet_102mmShell_HE</defName>
+		<label>102mm Naval shell (HE)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>171</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>30</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShell">
+		<defName>Bullet_102mmShell_APHE</defName>
+		<label>102mm Naval shell (APHE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>624</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<armorPenetrationSharp>102</armorPenetrationSharp>
+			<armorPenetrationBlunt>29069</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>375</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>97</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>2</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>12</Fragment_Large>
+					<Fragment_Small>6</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShell">
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<defName>Bullet_102mmShell_HE_TFuzed</defName>
+		<label>102mm Naval shell (HE Time Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>171</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>3</aimHeightOffset>
+			<armingDelay>3</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>30</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShell">
+		<defName>Bullet_102mmShell_Incendiary</defName>
+		<label>102mm Naval shell (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/INC</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<explosionRadius>8.5</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>120</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveRadius>2.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShell">
+		<defName>Bullet_102mmShell_EMP</defName>
+		<label>102mm Naval shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>171</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<flyOverhead>true</flyOverhead>
+			<explosionRadius>5.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShell">
+		<defName>Bullet_102mmShell_Smoke</defName>
+		<label>102mm Naval shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<explosionRadius>7</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<!-- direct fire-->
+	<ThingDef Name="Base102mmShellDirectfire" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>163</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShellDirectfire">
+		<defName>Bullet_102mmShell_HE_directfire</defName>
+		<label>102mm Naval shell (HE)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>171</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>30</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShellDirectfire">
+		<defName>Bullet_102mmShell_APHE_directfire</defName>
+		<label>102mm Naval shell (APHE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>624</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<armorPenetrationSharp>102</armorPenetrationSharp>
+			<armorPenetrationBlunt>29069</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>375</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>97</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>12</Fragment_Large>
+					<Fragment_Small>6</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShellDirectfire">
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<defName>Bullet_102mmShell_HE_TFuzed_directfire</defName>
+		<label>102mm Naval shell (HE Time Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>171</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>3</aimHeightOffset>
+			<armingDelay>3</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>30</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShellDirectfire">
+		<defName>Bullet_102mmShell_Incendiary_directfire</defName>
+		<label>102mm Naval shell (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/INC</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<explosionRadius>8.5</explosionRadius>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>120</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveRadius>2.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShellDirectfire">
+		<defName>Bullet_102mmShell_EMP_directfire</defName>
+		<label>102mm Naval shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>171</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<explosionRadius>5.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base102mmShellDirectfire">
+		<defName>Bullet_102mmShell_Smoke_directfire</defName>
+		<label>102mm Naval shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<explosionRadius>7</explosionRadius>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_102mmShell_HE</defName>
+		<label>make 102mm HE Naval shells x2</label>
+		<description>Craft 2 102mm HE Naval shells.</description>
+		<jobString>Making 102mm HE Naval shells.</jobString>
+		<workAmount>9600</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>64</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_102mmShell_HE>2</Ammo_102mmShell_HE>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_102mmShell_APHE</defName>
+		<label>make 102mm APHE Naval shells x2</label>
+		<description>Craft 2 102mm APHE Naval shells.</description>
+		<jobString>Making 102mm APHE Naval shells.</jobString>
+		<workAmount>9000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>70</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_102mmShell_APHE>2</Ammo_102mmShell_APHE>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_102mmShell_HE_TFuzed</defName>
+		<label>make 102mm HETF Naval shells x2</label>
+		<description>Craft 2 102mm HETF Naval shells.</description>
+		<jobString>Making 102mm HETF Naval shells.</jobString>
+		<workAmount>10600</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>64</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_102mmShell_HE_TFuzed>2</Ammo_102mmShell_HE_TFuzed>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_102mmShell_Incendiary</defName>
+		<label>make 102mm Incendiary Naval shells x2</label>
+		<description>Craft 2 102mm Incendiary Naval shells.</description>
+		<jobString>Making 102mm Incendiary Naval shells.</jobString>
+		<workAmount>9200</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>64</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_102mmShell_Incendiary>2</Ammo_102mmShell_Incendiary>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_102mmShell_EMP</defName>
+		<label>make 102mm EMP Naval shells x2</label>
+		<description>Craft 2 102mm EMP Naval shells.</description>
+		<jobString>Making 102mm EMP Naval shells.</jobString>
+		<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
+		<workAmount>11200</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>64</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_102mmShell_EMP>2</Ammo_102mmShell_EMP>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_102mmShell_Smoke</defName>
+		<label>make 102mm Smoke Naval shells x2</label>
+		<description>Craft 2 102mm Smoke Naval shells.</description>
+		<jobString>Making 102mm Smoke Naval shells.</jobString>
+		<workAmount>8400</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>64</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_102mmShell_Smoke>2</Ammo_102mmShell_Smoke>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+</Defs>

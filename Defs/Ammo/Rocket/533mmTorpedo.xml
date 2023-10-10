@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_533mmTorpedo</defName>
+		<label>533mm torpedo</label>
+		<ammoTypes>
+			<Ammo_533mmTorpedo_HE>Bullet_533mmTorpedoHE</Ammo_533mmTorpedo_HE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="533mmTorpedoBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>Self propelled explosive ordnance that travels underwater...at least it's supposed to do so.</description>
+		<thingCategories>
+			<li>AmmoShells</li>
+		</thingCategories>
+		<stackLimit>3</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>500</MaxHitPoints>
+			<Mass>1566</Mass>
+			<Bulk>4000</Bulk>
+		</statBases>
+		<cookOffFlashScale>25</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+		<isMortarAmmo>true</isMortarAmmo>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="533mmTorpedoBase">
+		<defName>Ammo_533mmTorpedo_HE</defName>
+		<label>533mm torpedo (HE)</label>
+		<graphicData>
+			<texPath>Things/Vehicle/HMS_Aurora/Torpedo</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>1.2</drawSize>
+		</graphicData>
+		<ammoClass>GrenadeHE</ammoClass>
+		<detonateProjectile>Bullet_533mmTorpedoHE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_533mmTorpedoHE</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>533mm torpedo (HE)</label>
+		<graphicData>
+			<texPath>Things/Vehicle/HMS_Aurora/TorpedoProj</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,4)</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>250</damageAmountBase>
+			<explosionRadius>8.5</explosionRadius>
+			<suppressionFactor>3.0</suppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<speed>10</speed>
+			<flyOverhead>false</flyOverhead>
+			<gravityFactor>0.05</gravityFactor>
+			<castShadow>false</castShadow>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>100</Fragment_Large>
+					<Fragment_Small>57</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_533mmTorpedo_HE</defName>
+		<label>make 533mm HE torpedo x1</label>
+		<description>Craft a 533mm HE torpedo.</description>
+		<jobString>Making 533mm HE torpedo.</jobString>
+		<workAmount>534000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>1000</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>25</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>500</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_533mmTorpedo_HE>1</Ammo_533mmTorpedo_HE>
+		</products>
+	</RecipeDef>
+</Defs>

@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo152mmShells</defName>
+		<label>152mm naval shell</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_152mmShell</defName>
+		<label>152mm naval shells</label>
+		<ammoTypes>
+			<Ammo_152mmShell_HE>Bullet_152mmShell_HE</Ammo_152mmShell_HE>
+			<Ammo_152mmShell_APHE>Bullet_152mmShell_APHE</Ammo_152mmShell_APHE>
+			<Ammo_152mmShell_HE_TFuzed>Bullet_152mmShell_HE_TFuzed</Ammo_152mmShell_HE_TFuzed>
+			<Ammo_152mmShell_Incendiary>Bullet_152mmShell_Incendiary</Ammo_152mmShell_Incendiary>
+			<Ammo_152mmShell_EMP>Bullet_152mmShell_EMP</Ammo_152mmShell_EMP>
+			<Ammo_152mmShell_Smoke>Bullet_152mmShell_Smoke</Ammo_152mmShell_Smoke>
+		</ammoTypes>
+		<isMortarAmmoSet>true</isMortarAmmoSet>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_152mmShell_directfire</defName>
+		<label>152mm Naval shells</label>
+		<ammoTypes>
+			<Ammo_152mmShell_HE>Bullet_152mmShell_HE_directfire</Ammo_152mmShell_HE>
+			<Ammo_152mmShell_APHE>Bullet_152mmShell_APHE_directfire</Ammo_152mmShell_APHE>
+			<Ammo_152mmShell_HE_TFuzed>Bullet_152mmShell_HE_TFuzed_directfire</Ammo_152mmShell_HE_TFuzed>
+			<Ammo_152mmShell_Incendiary>Bullet_152mmShell_Incendiary_directfire</Ammo_152mmShell_Incendiary>
+			<Ammo_152mmShell_EMP>Bullet_152mmShell_EMP_directfire</Ammo_152mmShell_EMP>
+			<Ammo_152mmShell_Smoke>Bullet_152mmShell_Smoke_directfire</Ammo_152mmShell_Smoke>
+		</ammoTypes>
+		<isMortarAmmoSet>true</isMortarAmmoSet>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="152mmShellBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>Large cannon shell used by light naval guns.</description>
+		<thingCategories>
+			<li>Ammo152mmShells</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Mass>15.88</Mass>
+			<Bulk>8.56</Bulk>
+		</statBases>
+		<cookOffFlashScale>25</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+		<isMortarAmmo>true</isMortarAmmo>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="152mmShellBase">
+		<defName>Ammo_152mmShell_HE</defName>
+		<label>152mm Naval shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>329.3</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<detonateProjectile>Bullet_152mmShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="152mmShellBase">
+		<defName>Ammo_152mmShell_APHE</defName>
+		<label>152mm Naval shell (APHE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>17.35</Mass>
+			<MarketValue>298</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<detonateProjectile>Bullet_152mmShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="152mmShellBase">
+		<defName>Ammo_152mmShell_HE_TFuzed</defName>
+		<label>152mm Naval shell (HE Time Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>329.3</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHETF</ammoClass>
+		<detonateProjectile>Bullet_152mmShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="152mmShellBase">
+		<defName>Ammo_152mmShell_Incendiary</defName>
+		<label>152mm Naval shell (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/INC</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>292</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeIncendiary</ammoClass>
+		<detonateProjectile>Bullet_152mmShell_Incendiary</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="152mmShellBase">
+		<defName>Ammo_152mmShell_EMP</defName>
+		<label>152mm Naval shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>494</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<detonateProjectile>Bullet_152mmShell_EMP</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="152mmShellBase">
+		<defName>Ammo_152mmShell_Smoke</defName>
+		<label>152mm Naval shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>280</MarketValue>
+		</statBases>
+		<ammoClass>Smoke</ammoClass>
+		<detonateProjectile>Bullet_152mmShell_Smoke</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<!-- indirect fire-->
+	<ThingDef Name="Base152mmShell" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>0</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<flyOverhead>true</flyOverhead>
+			<gravityFactor>5</gravityFactor>
+			<shellingProps>
+				<tilesPerTick>0.10</tilesPerTick>
+				<range>30</range>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShell">
+		<defName>Bullet_152mmShell_HE</defName>
+		<label>152mm Naval shell (HE)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>301</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>72</Fragment_Large>
+					<Fragment_Small>75</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShell">
+		<defName>Bullet_152mmShell_APHE</defName>
+		<label>152mm Naval shell (APHE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>1066</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<armorPenetrationSharp>197</armorPenetrationSharp>
+			<armorPenetrationBlunt>54300</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>640</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>181</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>3</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>20</Fragment_Large>
+					<Fragment_Small>16</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShell">
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<defName>Bullet_152mmShell_HE_TFuzed</defName>
+		<label>152mm Naval shell (HE Time Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>301</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>3</aimHeightOffset>
+			<armingDelay>3</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>72</Fragment_Large>
+					<Fragment_Small>75</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShell">
+		<defName>Bullet_152mmShell_Incendiary</defName>
+		<label>152mm Naval shell (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/INC</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<explosionRadius>11.5</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>120</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveRadius>2.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShell">
+		<defName>Bullet_152mmShell_EMP</defName>
+		<label>152mm Naval shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>301</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<flyOverhead>true</flyOverhead>
+			<explosionRadius>7.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShell">
+		<defName>Bullet_152mmShell_Smoke</defName>
+		<label>152mm Naval shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<explosionRadius>9.5</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<!-- direct fire-->
+	<ThingDef Name="Base152mmShellDirectfire" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>163</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShellDirectfire">
+		<defName>Bullet_152mmShell_HE_directfire</defName>
+		<label>152mm Naval shell (HE)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>301</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>72</Fragment_Large>
+					<Fragment_Small>75</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShellDirectfire">
+		<defName>Bullet_152mmShell_APHE_directfire</defName>
+		<label>152mm Naval shell (APHE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>1066</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<armorPenetrationSharp>197</armorPenetrationSharp>
+			<armorPenetrationBlunt>54300</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>640</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>640</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>3</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>20</Fragment_Large>
+					<Fragment_Small>16</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShellDirectfire">
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<defName>Bullet_152mmShell_HE_TFuzed_directfire</defName>
+		<label>152mm Naval shell (HE Time Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>301</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>3</aimHeightOffset>
+			<armingDelay>3</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>72</Fragment_Large>
+					<Fragment_Small>75</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShellDirectfire">
+		<defName>Bullet_152mmShell_Incendiary_directfire</defName>
+		<label>152mm Naval shell (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/INC</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<explosionRadius>11.5</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>120</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveRadius>2.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShellDirectfire">
+		<defName>Bullet_152mmShell_EMP_directfire</defName>
+		<label>152mm Naval shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>301</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<flyOverhead>true</flyOverhead>
+			<explosionRadius>7.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base152mmShellDirectfire">
+		<defName>Bullet_152mmShell_Smoke_directfire</defName>
+		<label>152mm Naval shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<explosionRadius>9.5</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_152mmShell_HE</defName>
+		<label>make 152mm HE Naval shells x1</label>
+		<description>Craft 152mm HE Naval shell.</description>
+		<jobString>Making 152mm HE Naval shell.</jobString>
+		<workAmount>138</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>102</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_152mmShell_HE>1</Ammo_152mmShell_HE>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_152mmShell_APHE</defName>
+		<label>make 152mm APHE Naval shells x1</label>
+		<description>Craft 152mm APHE Naval shell.</description>
+		<jobString>Making 152mm APHE Naval shell.</jobString>
+		<workAmount>12600</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>102</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_152mmShell_APHE>1</Ammo_152mmShell_APHE>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_152mmShell_HE_TFuzed</defName>
+		<label>make 152mm HETF Naval shells x1</label>
+		<description>Craft 152mm HETF Naval shell.</description>
+		<jobString>Making 152mm HETF Naval shell.</jobString>
+		<workAmount>14800</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>103</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_152mmShell_HE_TFuzed>1</Ammo_152mmShell_HE_TFuzed>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_152mmShell_Incendiary</defName>
+		<label>make 152mm Incendiary Naval shells x1</label>
+		<description>Craft 152mm Incendiary Naval shell.</description>
+		<jobString>Making 152mm Incendiary Naval shell.</jobString>
+		<workAmount>13000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>102</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_152mmShell_Incendiary>1</Ammo_152mmShell_Incendiary>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_152mmShell_EMP</defName>
+		<label>make 152mm EMP Naval shells x1</label>
+		<description>Craft 152mm EMP Naval shell.</description>
+		<jobString>Making 152mm EMP Naval shell.</jobString>
+		<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
+		<workAmount>15600</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>102</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>9</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_152mmShell_EMP>1</Ammo_152mmShell_EMP>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_152mmShell_Smoke</defName>
+		<label>make 152mm Smoke Naval shells x1</label>
+		<description>Craft 152mm Smoke Naval shell.</description>
+		<jobString>Making 152mm Smoke Naval shell.</jobString>
+		<workAmount>8400</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>102</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_152mmShell_Smoke>1</Ammo_152mmShell_Smoke>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+	</RecipeDef>
+
+</Defs>
