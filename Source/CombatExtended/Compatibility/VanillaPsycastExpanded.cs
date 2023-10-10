@@ -26,11 +26,25 @@ namespace CombatExtended.Compatibility
         }
         public void Install()
         {
-            //BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething); //temp commented
+            BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething); //temp commented
+            BlockerRegistry.RegisterBeforeCollideWithCallback(BeforeCollideWith);
             BlockerRegistry.RegisterCheckForCollisionCallback(Hediff_Overshield_InterceptCheck);
             BlockerRegistry.RegisterCheckForCollisionBetweenCallback(AOE_CheckIntercept);
         }
 
+        private static bool BeforeCollideWith(ProjectileCE projectile, Thing collideWith)
+        {
+            if (collideWith is Pawn pawn)
+            {
+                var interceptor = pawn.health.hediffSet.hediffs.FirstOrDefault(x => x.GetType() == typeof(Hediff_Overshield)) as Hediff_Overshield;
+                if (interceptor != null)
+                {
+                    OnIntercepted(interceptor, projectile);
+                    return true;
+                }
+            }
+            return false;
+        }
         private static bool ImpactSomething(ProjectileCE projectile, Thing launcher)
         {
             return Hediff_Overshield_InterceptCheck(projectile, projectile.ExactPosition.ToIntVec3(), launcher);
@@ -41,11 +55,8 @@ namespace CombatExtended.Compatibility
                 .SelectMany(x => x.health.hediffSet.hediffs)
                 .Where(x => x.GetType() == typeof(Hediff_Overshield)).Cast<Hediff_Overshield>())
             {
-
                 var def = projectile.def;
-                Vector3 lastExactPos = projectile.LastPos;
-                var newExactPos = projectile.ExactPosition;
-                var result = interceptor.pawn != launcher && (interceptor.pawn.Position == cell || PreventTryColideWithPawn(projectile, interceptor.pawn, newExactPos));
+                var result = interceptor.pawn != launcher && (interceptor.pawn.Position == cell);
                 if (result)
                 {
                     OnIntercepted(interceptor, projectile);
