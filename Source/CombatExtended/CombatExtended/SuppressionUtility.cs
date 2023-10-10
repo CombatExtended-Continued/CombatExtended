@@ -203,15 +203,9 @@ namespace CombatExtended
 
             cellRating += 10f - (bonusCellRating * 10f);
 
-            for (int i = 0; i < interceptors.Count; i++)
-            {
-                CompProjectileInterceptor interceptor = interceptors[i];
-                if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
-                {
-                    cellRating += 15f;
-                }
-            }
-
+            // If the cell is covered by a shield and there are no enemies inside, then increases by 15 (for each such shield)
+            cellRating += InterceptorZonesFor(pawn).Where(x => !IsOccupiedByEnemies(x, pawn)).Count(x => x.Contains(cell)) * 15;
+            
             // Avoid bullets and other danger sources;
             // Yet do not discard cover that is extremely good, even if it may be dangerous
             float dangerAmount = dangerTracker.DangerAt(cell) * DangerTracker.DANGER_TICKS_MAX;
@@ -246,7 +240,14 @@ namespace CombatExtended
             }
             return cellRating;
         }
-
+        private static IEnumerable<IEnumerable<IntVec3>> InterceptorZonesFor(Pawn pawn)
+        {
+            return interceptors.Where(x => x.Active).Select(x => GenRadial.RadialCellsAround(x.parent.Position, x.Props.radius, true));
+        }
+        private static bool IsOccupiedByEnemies(IEnumerable<IntVec3> cells, Pawn pawn)
+        {
+            return cells.Any(cell => pawn.Map.thingGrid.ThingsListAt(cell).Any(thing => (thing.HostileTo(pawn))));
+        }
         private static float GetCoverRating(Thing cover)
         {
             // Higher values mean more effective at being considered cover.
