@@ -884,14 +884,18 @@ namespace CombatExtended
                     var newPosIV3 = thing.TrueCenter().ToIntVec3();
                     // Iterate through all cells between the last and the THING
                     // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
+                    if (!CanCollideWith(thing,out _))
+                    {
+                        continue;
+                    }
                     var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
                     foreach (var _cell in cells)
                     {
                         bool colided = false;
                         colided = BlockerRegistry.CheckCellForCollisionCallback(this, _cell, launcher);
-                        if (Controller.settings.DebugDrawInterceptChecks)
+                        if (Controller.settings.DebugDrawInterceptChecks && Map != null)
                         {
-                            Map.debugDrawer.FlashCell(_cell, 1, "o");
+                            Map.debugDrawer.FlashCell(_cell, 1, "a");
                         }
                         if (colided)
                         {
@@ -944,14 +948,9 @@ namespace CombatExtended
             Impact(null);
             return true;
         }
-
-        /// <summary>
-        /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection.
-        /// </summary>
-        /// <param name="thing">What to impact</param>
-        /// <returns>True if impact occured, false otherwise</returns>
-        private bool TryCollideWith(Thing thing)
+        private bool CanCollideWith(Thing thing, out float dist)
         {
+            dist = -1f;
             if (globalTargetInfo.IsValid)
             {
                 return false;
@@ -962,7 +961,7 @@ namespace CombatExtended
             }
 
             var bounds = CE_Utility.GetBoundsFor(thing);
-            if (!bounds.IntersectRay(ShotLine, out var dist))
+            if (!bounds.IntersectRay(ShotLine, out dist))
             {
                 return false;
             }
@@ -970,7 +969,20 @@ namespace CombatExtended
             {
                 return false;
             }
-
+            return true;
+        }
+        /// <summary>
+        /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection.
+        /// </summary>
+        /// <param name="thing">What to impact</param>
+        /// <returns>True if impact occured, false otherwise</returns>
+        private bool TryCollideWith(Thing thing)
+        {
+            
+            if (!CanCollideWith(thing, out var dist))
+            {
+                return false;
+            }
             // Trees and bushes have RNG chance to collide
             if (thing is Plant)
             {
