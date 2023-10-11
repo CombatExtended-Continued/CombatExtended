@@ -15,6 +15,7 @@ namespace CombatExtended.Compatibility
         private static List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>> shieldZonesCallback;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
+        private static List<Func<Pawn, IntVec3, bool>> pawnUnsuppresableFromCallback;
 
         private static void Enable()
         {
@@ -22,6 +23,7 @@ namespace CombatExtended.Compatibility
             impactSomethingCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
             checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
             shieldZonesCallback = new List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>>();
+            pawnUnsuppresableFromCallback = new List<Func<Pawn, IntVec3, bool>>();
         }
 
         public static void RegisterCheckForCollisionCallback(Func<ProjectileCE, IntVec3, Thing, bool> f)
@@ -49,6 +51,14 @@ namespace CombatExtended.Compatibility
                 Enable();
             }
             shieldZonesCallback.Add(f);
+        }
+        public static void RegisterUnsuppresableFromCallback(Func<Pawn, IntVec3, bool> f)
+        {
+            if (!enabled)
+            {
+                Enable();
+            }
+            pawnUnsuppresableFromCallback.Add(f);
         }
 
         public static bool CheckCellForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
@@ -88,6 +98,21 @@ namespace CombatExtended.Compatibility
                 return null;
             }
             return shieldZonesCallback.SelectMany(cb => cb(thing));
+        }
+        public static bool PawnUnsuppresableFromCallback(Pawn pawn, IntVec3 origin)
+        {
+            if (!enabled)
+            {
+                return false;
+            }
+            foreach (var cb in pawnUnsuppresableFromCallback)
+            {
+                if (cb(pawn, origin))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         public static Vector3 GetExactPosition(Vector3 origin, Vector3 curPosition, Vector3 shieldPosition, float radiusSq)
         {
