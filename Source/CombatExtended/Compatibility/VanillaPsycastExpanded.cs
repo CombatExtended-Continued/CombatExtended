@@ -102,13 +102,11 @@ namespace CombatExtended.Compatibility
             }
             var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
             projectile.ExactPosition = exactPosition;
-            new Traverse(interceptor).Field("lastInterceptAngle").SetValue(newExactPos.AngleToFlat(interceptor.pawn.TrueCenter()));
+            new Traverse(interceptor).Field("lastInterceptAngle").SetValue(exactPosition.AngleToFlat(interceptor.pawn.TrueCenter()));
             new Traverse(interceptor).Field("lastInterceptTicks").SetValue(Find.TickManager.TicksGame);
             new Traverse(interceptor).Field("drawInterceptCone").SetValue(true);
 
-            Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
-            eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptor.pawn.Map, false), TargetInfo.Invalid);
-            eff.Cleanup();
+            FleckMakerCE.ThrowPsycastShieldFleck(exactPosition, projectile.Map, 0.35f);
             projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
         }
     }
