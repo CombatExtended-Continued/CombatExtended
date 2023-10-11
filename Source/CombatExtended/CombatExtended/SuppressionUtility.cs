@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CombatExtended.AI;
+using CombatExtended.Compatibility;
 using CombatExtended.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -242,7 +243,13 @@ namespace CombatExtended
         }
         public static IEnumerable<IEnumerable<IntVec3>> InterceptorZonesFor(Pawn pawn)
         {
-            return Interceptors(pawn).Where(x => x.Active).Select(x => GenRadial.RadialCellsAround(x.parent.Position, x.Props.radius, true));
+            var result = Interceptors(pawn).Where(x => x.Active).Select(x => GenRadial.RadialCellsAround(x.parent.Position, x.Props.radius, true));
+            var compatibilityZones = BlockerRegistry.ShieldZonesCallback(pawn);
+            if (compatibilityZones != null)
+            {
+                result = result.Union(compatibilityZones);
+            }
+            return result;
         }
         private static bool IsOccupiedByEnemies(IEnumerable<IntVec3> cells, Pawn pawn)
         {

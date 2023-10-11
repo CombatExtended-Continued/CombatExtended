@@ -28,6 +28,12 @@ namespace CombatExtended.Compatibility
         {
             BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckIntercept);
+            BlockerRegistry.RegisterShieldZonesCallback(ShieldZones);
+        }
+
+        private static IEnumerable<IEnumerable<IntVec3>> ShieldZones(Thing thing)
+        {
+            return thing.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>().SelectMany(x => x.health.hediffSet.hediffs).OfType<Hediff_Overshield>().Select(x => GenRadial.RadialCellsAround(x.pawn.Position, x.OverlaySize, true));
         }
 
         private static bool ImpactSomething(ProjectileCE projectile, Thing launcher)

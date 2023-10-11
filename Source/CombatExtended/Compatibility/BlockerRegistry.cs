@@ -12,6 +12,7 @@ namespace CombatExtended.Compatibility
     public static class BlockerRegistry
     {
         private static bool enabled = false;
+        private static List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>> shieldZonesCallback;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
 
@@ -20,6 +21,7 @@ namespace CombatExtended.Compatibility
             enabled = true;
             impactSomethingCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
             checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
+            shieldZonesCallback = new List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>>();
         }
 
         public static void RegisterCheckForCollisionCallback(Func<ProjectileCE, IntVec3, Thing, bool> f)
@@ -40,6 +42,15 @@ namespace CombatExtended.Compatibility
             impactSomethingCallbacks.Add(f);
         }
 
+        public static void RegisterShieldZonesCallback(Func<Thing, IEnumerable<IEnumerable<IntVec3>>> f)
+        {
+            if (!enabled)
+            {
+                Enable();
+            }
+            shieldZonesCallback.Add(f);
+        }
+
         public static bool CheckCellForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             if (!enabled)
@@ -55,7 +66,6 @@ namespace CombatExtended.Compatibility
             }
             return false;
         }
-
         public static bool ImpactSomethingCallback(ProjectileCE projectile, Thing launcher)
         {
             if (!enabled)
@@ -71,7 +81,14 @@ namespace CombatExtended.Compatibility
             }
             return false;
         }
-
+        public static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing thing)
+        {
+            if (!enabled)
+            {
+                return null;
+            }
+            return shieldZonesCallback.SelectMany(cb => cb(thing));
+        }
         public static Vector3 GetExactPosition(Vector3 origin, Vector3 curPosition, Vector3 shieldPosition, float radiusSq)
         {
             Vector3 velocity = curPosition - origin;
