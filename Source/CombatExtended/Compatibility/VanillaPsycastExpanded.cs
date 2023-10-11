@@ -104,24 +104,6 @@ namespace CombatExtended.Compatibility
 
             return false;
         }
-        private static bool PreventTryColideWithPawn(ProjectileCE projectile, Thing pawn, Vector3 newExactPos)
-        {
-            if (newExactPos.ToIntVec3() == pawn.Position)
-            {
-                return true;
-            }
-
-            var bounds = CE_Utility.GetBoundsFor(pawn);
-            if (!bounds.IntersectRay(projectile.ShotLine, out var dist))
-            {
-                return false;
-            }
-            if (dist * dist > projectile.ExactMinusLastPos.sqrMagnitude + (projectile.minCollisionDistance * 2))
-            {
-                return false;
-            }
-            return true;
-        }
 
         private static void OnIntercepted(Hediff_Overshield interceptor, ProjectileCE projectile)
         {
