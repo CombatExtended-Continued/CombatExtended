@@ -884,7 +884,7 @@ namespace CombatExtended
                     var newPosIV3 = thing.TrueCenter().ToIntVec3();
                     // Iterate through all cells between the last and the THING
                     // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
-                    if (!CanCollideWith(thing,out _))
+                    if (!CanCollideWith(thing, out _))
                     {
                         continue;
                     }
@@ -978,7 +978,7 @@ namespace CombatExtended
         /// <returns>True if impact occured, false otherwise</returns>
         private bool TryCollideWith(Thing thing)
         {
-            
+
             if (!CanCollideWith(thing, out var dist))
             {
                 return false;
