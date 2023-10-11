@@ -130,7 +130,7 @@ namespace CombatExtended
         {
             get
             {
-                return Wielder ?? (CompEquippable.parent.ParentHolder as Pawn_InventoryTracker)?.pawn;
+                return Wielder ?? (CompEquippable?.parent.ParentHolder as Pawn_InventoryTracker)?.pawn;
             }
         }
         public bool UseAmmo
@@ -648,6 +648,17 @@ namespace CombatExtended
                 }
             }
             CompInventory?.SwitchToNextViableWeapon(!this.parent.def.weaponTags.Contains("NoSwitch"), !Holder.IsColonist, stopJob: false);
+            CompAffectedByFacilities compAffectedByFacilities = turret?.TryGetComp<CompAffectedByFacilities>();
+            if (compAffectedByFacilities != null)
+            {
+                foreach (Thing building in compAffectedByFacilities.linkedFacilities)
+                {
+                    if (building is Building_AutoloaderCE container && container.StartReload(this))
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         public bool TryPickupAmmo()
@@ -697,12 +708,17 @@ namespace CombatExtended
 
         public void LoadAmmo(Thing ammo = null)
         {
-            if (Holder == null && turret == null)
+            Building_AutoloaderCE AutoLoader = null;
+            if (parent is Building_AutoloaderCE)
+            {
+                AutoLoader = parent as Building_AutoloaderCE;
+            }
+
+            if (Holder == null && turret == null && AutoLoader == null)
             {
                 Log.Error(parent.ToString() + " tried loading ammo with no owner");
                 return;
             }
-
             int newMagCount;
             if (UseAmmo)
             {
@@ -738,12 +754,11 @@ namespace CombatExtended
                         ammoThing.stackCount -= MagAmmoCount;
                     }
                 }
-
                 // If there's less ammo in inventory than the weapon can hold, or if there's only one bullet left if reloading one at a time
                 else
                 {
-                    int newAmmoCount = ammoThing.stackCount * CurAmmoCount;
-                    if (turret != null)     //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
+                    int newAmmoCount = ammoThing.stackCount;
+                    if (turret != null || AutoLoader != null)   //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                     {
                         newAmmoCount += curMagCountInt;
                     }
@@ -766,6 +781,10 @@ namespace CombatExtended
             if (turret != null)
             {
                 turret.SetReloading(false);
+            }
+            if (AutoLoader != null)
+            {
+                AutoLoader.isReloading = false;
             }
             if (parent.def.soundInteract != null)
             {
