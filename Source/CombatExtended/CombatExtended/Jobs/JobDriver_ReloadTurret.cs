@@ -77,14 +77,9 @@ namespace CombatExtended
             string turretType = (turret.TryGetComp<CompMannable>() != null ? "CE_MannedTurret" : "CE_AutoTurret").Translate();
             text = text.Replace("TurretType", turretType);
             text = text.Replace("TargetA", TargetThingA.def.label);
-            if (compReloader.UseAmmo)
-            {
-                text = text.Replace("TargetB", TargetThingB.def.label);
-            }
-            else
-            {
-                text = text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
-            }
+            text = compReloader.UseAmmo
+                ? text.Replace("TargetB", TargetThingB.def.label)
+                : text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
             return text;
         }
 
