@@ -77,7 +77,9 @@ Alpha Mechs |
 Alpha Memes |
 Alpha Mythology |
 Alpha Ships |
+Alpha Vehicles - Neolithic  |
 Altered Carbon |
+Ancient Arsenal: Warcaskets |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
@@ -229,6 +231,7 @@ Frontline Collection  |
 FROG Suit Set   |
 Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
+Gestalt Engine  |
 Giddy-Up 2    |
 Gimmicks    |
 Girls' Frontline Apparel Pack	|
@@ -252,6 +255,9 @@ High Tech Laboratory Facilities	|
 Hive Armory |
 Idhale Race	|
 Impact Weaponry	|
+Imperial Arsenal: Royal Warcasket 	|
+Individuality 	|
+Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
@@ -280,7 +286,7 @@ Let's Have a Cat!	|
 Littluna Race |
 Logann Race	|
 Logistics_Mechanoid |
-Magic Wands |
+Machines of War |
 Makeshift Melee Weapons |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
@@ -357,10 +363,12 @@ Polarisbloc - Security Force	|
 Poleepkwa Race	|
 Possessed Weapons	|
 pphhyy's Demigryphs   |
+phynilla Expanded Mechs Scyther |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
+Protoswords |
 PsiTech	|
 Pulsefire Turret (Continued)    |
 Rabbie The Moonrabbit	|
@@ -521,6 +529,7 @@ Vanilla Weapons Expanded - Tribal	|
 Vanilla Storytellers Expanded - Perry Persistent |
 Vanilla Storytellers Expanded - Winston Waves |
 Vanilla XCOM Weapons  |
+Vehicle Framework Expanded - Classic Mechs   |
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics |
@@ -531,6 +540,7 @@ WarCasket Expanded  |
 WarCasket Gundam Addon  |
 Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
+Wasters Toxic Breather  |
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
