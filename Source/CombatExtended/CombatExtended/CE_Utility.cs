@@ -764,10 +764,10 @@ namespace CombatExtended
             }
             Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
-            creationData.airTimeLeft = Rand.Range(0.5f, 1.5f);
+            creationData.velocitySpeed = Rand.Range(1.5f, 2f) * recoilAmount;
+            creationData.airTimeLeft = Rand.Range(1f, 1.5f) / creationData.velocitySpeed;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
             creationData.spawnPosition = loc;
-            creationData.velocitySpeed = Rand.Range(0.6f, 0.4f) * recoilAmount;
             int randomAngle = Rand.Range(-20, 20);
             //shotRotation goes from -270 to +90, while fleck angle uses 0 to 360 degrees (0 deg being North for both cases), so a conversion is used
             //^ not anymore, now it gets aiming angle instead
@@ -778,7 +778,7 @@ namespace CombatExtended
                 flip = true;
             }
             creationData.velocityAngle = flip ? shotRotation - 90 - casingAngleOffset + randomAngle : shotRotation + 90 + casingAngleOffset + randomAngle;
-            creationData.rotation = creationData.velocityAngle + (flip ? 180 : 0) + Rand.Range(-3f, 4f);
+            creationData.rotation = (flip ? shotRotation - 90 : shotRotation + 90) + Rand.Range(-3f, 4f);
             creationData.rotationRate = (float)Rand.Range(-150, 150) / recoilAmount;
             map.flecks.CreateFleck(creationData);
             Rand.PopState();
