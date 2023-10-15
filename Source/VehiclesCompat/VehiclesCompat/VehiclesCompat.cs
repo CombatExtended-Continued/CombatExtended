@@ -13,7 +13,6 @@ using UnityEngine;
 
 namespace CombatExtended.Compatibility.VehiclesCompat
 {
-    [StaticConstructorOnStartup]
     public class VehiclesCompat : IModPart
     {
         public Type GetSettingsType()
@@ -32,6 +31,31 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
             global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
             global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
+	    if (Controller.settings.EnableAmmoSystem)
+	    {
+		foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
+		{
+		    CETurretDataDefModExtension cetddme = vtd.GetModExtension<CETurretDataDefModExtension>();
+		    if (cetddme.ammoSet != null)
+		    {
+			AmmoSetDef asd = (AmmoSetDef) LookupAmmosetCE(cetddme.ammoSet);
+			if (Controller.settings.GenericAmmo && asd?.similarTo != null)
+			{
+			    asd = asd.similarTo;
+			}
+			if (asd != null)
+			{
+			    cetddme._ammoSet = asd;
+			    HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>) vtd.ammunition?.AllowedThingDefs;
+			    allowedAmmo.Clear();
+			    foreach (var al in asd.ammoTypes)
+			    {
+				allowedAmmo.Add(al.ammo);
+			    }
+			}
+		    }
+		}
+	    }
         }
 
         public static Tuple<int, float> LookupProjectileCountAndSpreadCE(ThingDef _ammoDef, Def _ammosetDef, float spread)
