@@ -422,15 +422,17 @@ namespace CombatExtended.HarmonyCE
                 if (drawData.DrawSize == Vector2.one) { drawData.DrawSize = eq.def.graphicData.drawSize; }
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
+                Vector3 casingOffset = new Vector3(drawData.CasingOffset.x, 0, drawData.CasingOffset.y);
                 if (aimAngle > 200 && aimAngle < 340)
                 {
                     posVec.x *= -1;
+                    casingOffset.x *= -1;
                 }
                 matrix.SetTRS(position + posVec.RotatedBy(matrix.rotation.eulerAngles.y), matrix.rotation, scale);
                 CompEquippable compEquippable = eq.TryGetComp<CompEquippable>();
                 if (compEquippable != null && compEquippable.PrimaryVerb is Verb_ShootCE verbCE)
                 {
-                    verbCE.drawPos = casingDrawPos + posVec.RotatedBy(matrix.rotation.eulerAngles.y);
+                    verbCE.drawPos = casingDrawPos + (casingOffset + posVec).RotatedBy(matrix.rotation.eulerAngles.y);
                 }
                 if (eq is WeaponPlatform platform)
                 {

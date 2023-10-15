@@ -105,6 +105,24 @@ namespace CombatExtended
             }
         }
 
+        public float AimAngle
+        {
+            get
+            {
+                if (this.CurrentTarget == null)
+                {
+                    return 143f;
+                }
+                Vector3 vector = (CurrentTarget.Thing == null ? CurrentTarget.Cell.ToVector3Shifted() : CurrentTarget.Thing.DrawPos);
+                float num = 143f;
+                if ((vector - caster.DrawPos).MagnitudeHorizontalSquared() > 0.001f)
+                {
+                    num = (vector - caster.DrawPos).AngleFlat();
+                }
+                return num;
+            }
+        }
+
         public float SpreadDegrees
         {
             get
@@ -359,17 +377,18 @@ namespace CombatExtended
         protected virtual bool OnCastSuccessful()
         {
             Vector3 casingPos = caster.DrawPos;
-            float casingAngle = shotRotation;
+            float casingAngle = AimAngle;
             //Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
             if (ShooterPawn != null && drawPos != Vector3.zero)
             {
                 ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
                 casingPos = drawPos;
-                if (casingAngle < -200f || casingAngle > 20f)
+                if (casingAngle > 20f && casingAngle < 160f)
                 {
                     casingAngle -= 180f;
                 }
             }
+
             //Drop casings
             if (VerbPropsCE.ejectsCasings)
             {
