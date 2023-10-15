@@ -378,14 +378,20 @@ namespace CombatExtended
         {
             Vector3 casingPos = caster.DrawPos;
             float casingAngle = AimAngle;
+            float casingAngleOffset = EquipmentSource?.def.GetModExtension<GunDrawExtension>()?.CasingAngleOffset ?? 0;
             //Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
             if (ShooterPawn != null && drawPos != Vector3.zero)
             {
                 ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
                 casingPos = drawPos;
-                if (casingAngle > 20f && casingAngle < 160f)
+                if (casingAngle > 200f && casingAngle < 340f)
                 {
                     casingAngle -= 180f;
+                    casingAngle -= casingAngleOffset;
+                }
+                else
+                {
+                    casingAngle += casingAngleOffset;
                 }
             }
 

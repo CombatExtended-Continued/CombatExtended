@@ -770,8 +770,9 @@ namespace CombatExtended
             creationData.velocitySpeed = Rand.Range(0.6f, 0.4f) * recoilAmount;
             int randomAngle = Rand.Range(-20, 20);
             //shotRotation goes from -270 to +90, while fleck angle uses 0 to 360 degrees (0 deg being North for both cases), so a conversion is used
+            //^ not anymore, now it gets aiming angle instead
             //+90 makes casings fly to gun's right side
-            creationData.velocityAngle = shotRotation - 90 + randomAngle;
+            creationData.velocityAngle = shotRotation + 90 + randomAngle;
             creationData.rotation = creationData.velocityAngle + Rand.Range(-3f, 4f);
             creationData.rotationRate = (float)Rand.Range(-150, 150) / recoilAmount;
             map.flecks.CreateFleck(creationData);
