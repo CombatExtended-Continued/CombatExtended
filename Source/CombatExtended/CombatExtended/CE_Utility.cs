@@ -736,13 +736,13 @@ namespace CombatExtended
         #endregion Misc
 
         #region MoteThrower
-        public static void GenerateAmmoCasings(ProjectilePropertiesCE projProps, Vector3 drawPosition, Map map, float shotRotation = -180f, float recoilAmount = 2f)
+        public static void GenerateAmmoCasings(ProjectilePropertiesCE projProps, Vector3 drawPosition, Map map, float shotRotation = -180f, float recoilAmount = 2f, bool fromPawn = false, float casingAngleOffset = 0)
         {
             if (projProps.dropsCasings)
             {
                 if (Controller.settings.ShowCasings)
                 {
-                    ThrowEmptyCasing(drawPosition, map, DefDatabase<FleckDef>.GetNamed(projProps.casingMoteDefname), recoilAmount, shotRotation);
+                    ThrowEmptyCasing(drawPosition, map, DefDatabase<FleckDef>.GetNamed(projProps.casingMoteDefname), recoilAmount, shotRotation, 1f, fromPawn, casingAngleOffset);
                 }
                 if (Controller.settings.CreateCasingsFilth)
                 {
@@ -752,7 +752,7 @@ namespace CombatExtended
         }
 
 
-        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f)
+        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f, bool fromPawn = false, float casingAngleOffset = 0)
         {
             if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
@@ -772,8 +772,13 @@ namespace CombatExtended
             //shotRotation goes from -270 to +90, while fleck angle uses 0 to 360 degrees (0 deg being North for both cases), so a conversion is used
             //^ not anymore, now it gets aiming angle instead
             //+90 makes casings fly to gun's right side
-            creationData.velocityAngle = shotRotation + 90 + randomAngle;
-            creationData.rotation = creationData.velocityAngle + Rand.Range(-3f, 4f);
+            bool flip = false;
+            if (fromPawn && shotRotation > 200f && shotRotation < 340f)
+            {
+                flip = true;
+            }
+            creationData.velocityAngle = flip ? shotRotation - 90 - casingAngleOffset + randomAngle : shotRotation + 90 + casingAngleOffset + randomAngle;
+            creationData.rotation = creationData.velocityAngle + (flip ? 180 : 0) + Rand.Range(-3f, 4f);
             creationData.rotationRate = (float)Rand.Range(-150, 150) / recoilAmount;
             map.flecks.CreateFleck(creationData);
             Rand.PopState();
