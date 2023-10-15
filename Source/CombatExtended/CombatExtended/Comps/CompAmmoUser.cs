@@ -21,6 +21,8 @@ namespace CombatExtended
         private AmmoDef currentAmmoInt = null;
         private AmmoDef selectedAmmo;
 
+        public int shotsFiredBeforeReload = 0;
+
         private Thing ammoToBeDeleted;
 
         public Building_Turret turret;         // Cross-linked from CE turret
@@ -267,6 +269,8 @@ namespace CombatExtended
         }
         public bool ShouldThrowMote => Props.throwMote && MagSize > 1;
 
+        GunDrawExtension gunDrawExt => parent.def.GetModExtension<GunDrawExtension>();
+
         public AmmoDef SelectedAmmo
         {
             get
@@ -414,7 +418,7 @@ namespace CombatExtended
 
 
             // Original: curMagCountInt--;
-
+            shotsFiredBeforeReload += ammoConsumedPerShot;
             if (curMagCountInt < 0)
             {
                 TryStartReload();
@@ -485,6 +489,16 @@ namespace CombatExtended
             if (UseAmmo)
             {
                 TryUnload();
+                //For revolvers and 
+                if (gunDrawExt != null && gunDrawExt.DropCasingWhenReload && CompEquippable?.PrimaryVerb is Verb_ShootCE verbCE && verbCE.VerbPropsCE.ejectsCasings)
+                {
+                    Log.Message(shotsFiredBeforeReload.ToString());
+                    for (int i = 0; i < Props.magazineSize; i++)
+                    {
+                        verbCE.ExternalCallDropCasing();
+                    }
+                }
+                shotsFiredBeforeReload = 0;
 
                 // Check for ammo
                 if (IsEquippedGun && !HasAmmo)
@@ -602,7 +616,6 @@ namespace CombatExtended
             }
             // don't forget to set the clip to empty...
             CurMagCount = 0;
-
             return true;
         }
 
