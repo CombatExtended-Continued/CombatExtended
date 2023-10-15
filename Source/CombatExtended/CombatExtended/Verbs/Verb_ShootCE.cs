@@ -359,16 +359,21 @@ namespace CombatExtended
         protected virtual bool OnCastSuccessful()
         {
             Vector3 casingPos = caster.DrawPos;
+            float casingAngle = shotRotation;
             //Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
-            if (ShooterPawn != null)
+            if (ShooterPawn != null && drawPos != Vector3.zero)
             {
                 ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
                 casingPos = drawPos;
+                if (casingAngle < -200f || casingAngle > 20f)
+                {
+                    casingAngle -= 180f;
+                }
             }
             //Drop casings
             if (VerbPropsCE.ejectsCasings)
             {
-                CE_Utility.GenerateAmmoCasings(projectilePropsCE, casingPos, caster.Map, shotRotation, VerbPropsCE.recoilAmount);
+                CE_Utility.GenerateAmmoCasings(projectilePropsCE, casingPos, caster.Map, casingAngle, VerbPropsCE.recoilAmount);
             }
             // This needs to here for weapons without magazine to ensure their last shot plays sounds
             if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
