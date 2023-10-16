@@ -884,57 +884,6 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Calculates whether a line segment intercepts a radius circle. Used to determine if a projectile crosses a shield.
-        /// </summary>
-        /// <param name="center">The center of the circle</param>
-        /// <param name="radius">The radius of the circle</param>
-        /// <param name="pointA">The first point of the line segment</param>
-        /// <param name="pointB">The second point of the line segment</param>
-        /// <returns>True if the line segment intercepts the circle</returns>
-        public static bool IntersectLineSphericalOutline(Vector3 center, float radius, Vector3 pointA, Vector3 pointB)
-        {
-            var radSq = radius * radius;
-            var aInside = ((center - pointA).sqrMagnitude <= radSq);
-            var bInside = ((center - pointB).sqrMagnitude <= radSq);
-            if (aInside != bInside) // One end is inside, one is outside -- we crossed
-            {
-                return true;
-            }
-            if (aInside && bInside) // Both are inside, we did not cross
-            {
-                return false;
-            }
-
-            // Both are outside, so check if the point on the line-segment AB closest to point C is inside.
-
-            Vector3 direction = pointB - pointA;
-            Vector3 displacement = pointA - center;
-
-            // Calculate the dot product between the relative position at the start and the direction of travel.
-            float dotProduct = displacement.x * direction.x + displacement.y * direction.y + displacement.z * direction.z;
-
-            if (dotProduct < 0) // Moving *away* from the shield
-            {
-                return false;
-            }
-
-            if (dotProduct > direction.sqrMagnitude) // Still moving closer, might hit next tick but it hasn't arrived.  We don't need to check if the end point is inside, because we already did that.
-            {
-                return false;
-            }
-
-            // The center lies some distance perpindicular to the line segment AB
-            // Rotate the direction vector 90 degrees, and find its dot product with the relative displacement to find that distance.
-            dotProduct = displacement.x * direction.z - displacement.z * direction.x + displacement.y * direction.y;
-
-            if (dotProduct * dotProduct <= direction.sqrMagnitude * displacement.sqrMagnitude)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Calculates whether a line segment intercepts a radius circle. Used to get intersection points.
         /// </summary>
         /// <param name="p1">The first point of the line segment</param>
@@ -942,39 +891,42 @@ namespace CombatExtended
         /// <param name="center">The center of the circle</param>
         /// <param name="radius">The radius of the circle</param>
         /// <returns><code>Vector3[] { Vector3.zero, Vector3.zero }</code> if there's no intersection, othrewise returns two intersection points</returns>
-        public static Vector3[] IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius)
+        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect)
         {
-            Vector3 dp = new Vector3();
-            Vector3[] sect;
-            float a, b, c;
-            float bb4ac;
-            float mu1;
-            float mu2;
+	    sect = new Vector3[2];
+            float radSq = radius * radius;
 
-            //  get the distance between X and Z on the segment
-            dp.x = p2.x - p1.x;
-            dp.z = p2.z - p1.z;
-            //   I don't get the math here
-            a = dp.x * dp.x + dp.z * dp.z;
-            b = 2 * (dp.x * (p1.x - center.x) + dp.z * (p1.z - center.z));
-            c = center.x * center.x + center.z * center.z;
-            c += p1.x * p1.x + p1.z * p1.z;
-            c -= 2 * (center.x * p1.x + center.z * p1.z);
-            c -= radius * radius;
-            bb4ac = b * b - 4 * a * c;
-            if (Mathf.Abs(a) < float.Epsilon || bb4ac < 0)
+	    // Obtain local coords.  Our virtual center is now 0,0,0
+	    Vector3 lp1 = p1 - center;
+	    Vector3 lp2 = p2 - center;
+
+	    // If we obviously don't cross, early out.
+	    if (lp1.sqrMagnitude < radSq && lp2.sqrMagnitude < radSq)
+	    {
+		return false;
+	    }
+
+	    // direction vector
+	    Vector3 direction = lp2-lp1;
+
+	    float a = direction.sqrMagnitude;
+	    float b = 2 * (direction.x * lp1.x + direction.y * lp1.y + direction.z * lp1.z);
+	    float c = lp1.sqrMagnitude - radSq;
+
+            float det = b * b - 4 * a * c; //b²-4ac
+            if (a < float.Epsilon || det < 0)  // origin and destination are the same, or the determinate is negative
             {
                 //  line does not intersect
-                return new Vector3[] { Vector3.zero, Vector3.zero };
+                return false;
             }
-            var sqrtbb4ac = Mathf.Sqrt(bb4ac);
-            mu1 = (-b + sqrtbb4ac) / (2 * a);
-            mu2 = (-b - sqrtbb4ac) / (2 * a);
-            sect = new Vector3[2];
-            sect[0] = new Vector3(p1.x + mu1 * (p2.x - p1.x), 0, p1.z + mu1 * (p2.z - p1.z));
-            sect[1] = new Vector3(p1.x + mu2 * (p2.x - p1.x), 0, p1.z + mu2 * (p2.z - p1.z));
+	    // det is 0 or higher.  So the roots are -b ± √(det) / 2a
+            var sqrtdet = Mathf.Sqrt(det);
+            float mu1 = (-b + sqrtdet) / (2 * a);
+            float mu2 = (-b - sqrtdet) / (2 * a);
+            sect[0] = new Vector3(p1.x + mu1 * direction.x, p1.y + mu1 * direction.y, p1.z + mu1 * direction.z);
+            sect[1] = new Vector3(p1.x + mu2 * direction.x, p1.y + mu2 * direction.y, p1.z + mu2 * direction.z);
 
-            return sect;
+            return true;
         }
         /// <summary>
         /// Calculates body scale factors based on body type
