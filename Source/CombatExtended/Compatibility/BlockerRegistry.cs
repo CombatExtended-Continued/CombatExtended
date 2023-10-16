@@ -11,58 +11,73 @@ namespace CombatExtended.Compatibility
 {
     public static class BlockerRegistry
     {
-        private static bool enabled = false;
+        private static bool enabledCB = false;
+	private static bool enabledCFC = false;
+	private static bool enabledIS = false;
+	private static bool enabledBCW = false;
         private static List<Func<ProjectileCE, Vector3, Vector3, bool>> checkForCollisionBetweenCallbacks;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> beforeCollideWithCallbacks;
 
-        private static void Enable()
+        private static void EnableCB()
         {
-            enabled = true;
+            enabledCB = true;
             checkForCollisionBetweenCallbacks = new List<Func<ProjectileCE, Vector3, Vector3, bool>>();
+	}
+	private static void EnableIS()
+        {
+            enabledIS = true;
             impactSomethingCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
+	}
+	private static void EnableCFC()
+        {
+            enabledCFC = true;
             checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
+	}
+	private static void EnableBCW()
+        {
+            enabledBCW = true;    
             beforeCollideWithCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
         }
 
         public static void RegisterCheckForCollisionBetweenCallback(Func<ProjectileCE, Vector3, Vector3, bool> f)
         {
-            if (!enabled)
+            if (!enabledCB)
             {
-                Enable();
+                EnableCB();
             }
             checkForCollisionBetweenCallbacks.Add(f);
         }
 
         public static void RegisterCheckForCollisionCallback(Func<ProjectileCE, IntVec3, Thing, bool> f)
         {
-            if (!enabled)
+            if (!enabledCFC)
             {
-                Enable();
+                EnableCFC();
             }
             checkCellForCollisionCallbacks.Add(f);
         }
 
         public static void RegisterImpactSomethingCallback(Func<ProjectileCE, Thing, bool> f)
         {
-            if (!enabled)
+            if (!enabledIS)
             {
-                Enable();
+                EnableIS();
             }
             impactSomethingCallbacks.Add(f);
         }
         public static void RegisterBeforeCollideWithCallback(Func<ProjectileCE, Thing, bool> f)
         {
-            if (!enabled)
+            if (!enabledBCW)
             {
-                Enable();
+                EnableBCW();
             }
             beforeCollideWithCallbacks.Add(f);
         }
         public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
-            if (!enabled)
+            if (!enabledCB)
             {
                 return false;
             }
@@ -78,7 +93,7 @@ namespace CombatExtended.Compatibility
 
         public static bool CheckCellForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
-            if (!enabled)
+            if (!enabledCFC)
             {
                 return false;
             }
@@ -94,7 +109,7 @@ namespace CombatExtended.Compatibility
 
         public static bool ImpactSomethingCallback(ProjectileCE projectile, Thing launcher)
         {
-            if (!enabled)
+            if (!enabledIS)
             {
                 return false;
             }
@@ -110,7 +125,7 @@ namespace CombatExtended.Compatibility
 
         public static bool BeforeCollideWithCallback(ProjectileCE projectile, Thing collideWith)
         {
-            if (!enabled)
+            if (!enabledBCW)
             {
                 return false;
             }
