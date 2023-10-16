@@ -73,7 +73,7 @@ namespace CombatExtended.Compatibility
                 {
                     continue;
                 }
-		Vector3[] intersectionPoints;
+                Vector3[] intersectionPoints;
                 if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out intersectionPoints))
                 {
                     continue;

@@ -72,16 +72,16 @@ namespace CombatExtended.Compatibility
                 }
                 int fieldRadius = (int)generator.FieldRadius_Active();
                 Vector3 shieldPosition2D = new Vector3(shield.Position.x, 0, shield.Position.z);
-		Vector3 nep;
+                Vector3 nep;
 
                 if (CE_Utility.IntersectionPoint(from, to, shieldPosition2D, fieldRadius, out Vector3[] sect))
                 {
-		    nep = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                    nep = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 }
-		else
-		{
-		    continue;
-		}
+                else
+                {
+                    continue;
+                }
 
                 int fieldRadiusSq = fieldRadius * fieldRadius;
 

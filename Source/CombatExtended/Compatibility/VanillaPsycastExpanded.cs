@@ -68,10 +68,10 @@ namespace CombatExtended.Compatibility
         public static bool AOE_CheckIntercept(ProjectileCE projectile, Vector3 from, Vector3 newExactPos)
         {
             var def = projectile.def;
-	    if (projectile.def.projectile.flyOverhead)
-	    {
-		return false;
-	    }
+            if (projectile.def.projectile.flyOverhead)
+            {
+                return false;
+            }
             foreach (var interceptor in projectile.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>()
                 .SelectMany(x => x.health.hediffSet.hediffs)
                 .Where(x => x is Hediff_Overshield && x.GetType() != typeof(Hediff_Overshield)).Cast<Hediff_Overshield>())
@@ -82,7 +82,7 @@ namespace CombatExtended.Compatibility
                 if (CE_Utility.IntersectionPoint(from, newExactPos, shieldPosition, radius, out Vector3[] sect))
                 {
                     OnIntercepted(interceptor, projectile, sect);
-		    return true;
+                    return true;
                 }
             }
 
@@ -92,12 +92,11 @@ namespace CombatExtended.Compatibility
         private static void OnIntercepted(Hediff_Overshield interceptor, ProjectileCE projectile, Vector3[] sect)
         {
             var newExactPos = projectile.ExactPosition;
-	    if (sect == null)
-	    {
-		CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.Position.ToVector3(), interceptor.OverlaySize, out sect);
-	    }
-	    
-	    var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+            if (sect == null)
+            {
+                CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.Position.ToVector3(), interceptor.OverlaySize, out sect);
+            }
+            var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
             projectile.ExactPosition = exactPosition;
             new Traverse(interceptor).Field("lastInterceptAngle").SetValue(newExactPos.AngleToFlat(interceptor.pawn.TrueCenter()));
             new Traverse(interceptor).Field("lastInterceptTicks").SetValue(Find.TickManager.TicksGame);

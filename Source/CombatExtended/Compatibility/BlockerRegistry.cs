@@ -12,9 +12,9 @@ namespace CombatExtended.Compatibility
     public static class BlockerRegistry
     {
         private static bool enabledCB = false;
-	private static bool enabledCFC = false;
-	private static bool enabledIS = false;
-	private static bool enabledBCW = false;
+        private static bool enabledCFC = false;
+        private static bool enabledIS = false;
+        private static bool enabledBCW = false;
         private static List<Func<ProjectileCE, Vector3, Vector3, bool>> checkForCollisionBetweenCallbacks;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
@@ -24,23 +24,22 @@ namespace CombatExtended.Compatibility
         {
             enabledCB = true;
             checkForCollisionBetweenCallbacks = new List<Func<ProjectileCE, Vector3, Vector3, bool>>();
-	}
-	private static void EnableIS()
+        }
+        private static void EnableIS()
         {
             enabledIS = true;
             impactSomethingCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
-	}
-	private static void EnableCFC()
+        }
+        private static void EnableCFC()
         {
             enabledCFC = true;
             checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
-	}
-	private static void EnableBCW()
+        }
+        private static void EnableBCW()
         {
-            enabledBCW = true;    
+            enabledBCW = true;
             beforeCollideWithCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
         }
-
         public static void RegisterCheckForCollisionBetweenCallback(Func<ProjectileCE, Vector3, Vector3, bool> f)
         {
             if (!enabledCB)
