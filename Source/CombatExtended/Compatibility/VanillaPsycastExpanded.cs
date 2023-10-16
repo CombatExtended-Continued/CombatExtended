@@ -39,7 +39,7 @@ namespace CombatExtended.Compatibility
                 var interceptor = pawn.health.hediffSet.hediffs.FirstOrDefault(x => x.GetType() == typeof(Hediff_Overshield)) as Hediff_Overshield;
                 if (interceptor != null)
                 {
-                    OnIntercepted(interceptor, projectile);
+                    OnIntercepted(interceptor, projectile, null);
                     return true;
                 }
             }
@@ -59,7 +59,7 @@ namespace CombatExtended.Compatibility
                 var result = interceptor.pawn != launcher && (interceptor.pawn.Position == cell);
                 if (result)
                 {
-                    OnIntercepted(interceptor, projectile);
+                    OnIntercepted(interceptor, projectile, null);
                     return result;
                 }
             }
@@ -68,6 +68,10 @@ namespace CombatExtended.Compatibility
         public static bool AOE_CheckIntercept(ProjectileCE projectile, Vector3 from, Vector3 newExactPos)
         {
             var def = projectile.def;
+	    if (projectile.def.projectile.flyOverhead)
+	    {
+		return false;
+	    }
             foreach (var interceptor in projectile.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>()
                 .SelectMany(x => x.health.hediffSet.hediffs)
                 .Where(x => x is Hediff_Overshield && x.GetType() != typeof(Hediff_Overshield)).Cast<Hediff_Overshield>())
@@ -75,40 +79,25 @@ namespace CombatExtended.Compatibility
                 Vector3 shieldPosition = interceptor.pawn.Position.ToVector3ShiftedWithAltitude(0.5f);
                 float radius = interceptor.OverlaySize;
                 float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
-                if ((from - shieldPosition).sqrMagnitude < radius * radius)
+                if (CE_Utility.IntersectionPoint(from, newExactPos, shieldPosition, radius, out Vector3[] sect))
                 {
-                    return false;
+                    OnIntercepted(interceptor, projectile, sect);
+		    return true;
                 }
-                if ((newExactPos - shieldPosition).sqrMagnitude > Mathf.Pow(blockRadius, 2))
-                {
-                    return false;
-                }
-
-                if (projectile.def.projectile.flyOverhead)
-                {
-                    return false;
-                }
-
-                if ((shieldPosition - from).sqrMagnitude <= Mathf.Pow((float)radius, 2))
-                {
-                    return false;
-                }
-                if (!CE_Utility.IntersectLineSphericalOutline(shieldPosition, radius, from, newExactPos))
-                {
-                    return false;
-                }
-
-                OnIntercepted(interceptor, projectile);
-                return true;
             }
 
             return false;
         }
 
-        private static void OnIntercepted(Hediff_Overshield interceptor, ProjectileCE projectile)
+        private static void OnIntercepted(Hediff_Overshield interceptor, ProjectileCE projectile, Vector3[] sect)
         {
             var newExactPos = projectile.ExactPosition;
-            var exactPosition = CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.Position.ToVector3(), interceptor.OverlaySize).OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+	    if (sect == null)
+	    {
+		CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.Position.ToVector3(), interceptor.OverlaySize, out sect);
+	    }
+	    
+	    var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
             projectile.ExactPosition = exactPosition;
             new Traverse(interceptor).Field("lastInterceptAngle").SetValue(newExactPos.AngleToFlat(interceptor.pawn.TrueCenter()));
             new Traverse(interceptor).Field("lastInterceptTicks").SetValue(Find.TickManager.TicksGame);

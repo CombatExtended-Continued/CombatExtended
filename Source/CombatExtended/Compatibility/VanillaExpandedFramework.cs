@@ -73,15 +73,12 @@ namespace CombatExtended.Compatibility
                 {
                     continue;
                 }
-                if (!CE_Utility.IntersectLineSphericalOutline(shieldPosition, radius, lastExactPos, newExactPos))
+		Vector3[] intersectionPoints;
+                if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out intersectionPoints))
                 {
                     continue;
                 }
-                var intersectionPoints = CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.parent.Position.ToVector3(), (radius));
-                if (intersectionPoints == new Vector3[] { Vector3.zero, Vector3.zero })
-                {
-                    continue;
-                }
+
                 projectile.ExactPosition = intersectionPoints.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 projectile.landed = true;
                 interceptorComp.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, launcher);

@@ -72,11 +72,16 @@ namespace CombatExtended.Compatibility
                 }
                 int fieldRadius = (int)generator.FieldRadius_Active();
                 Vector3 shieldPosition2D = new Vector3(shield.Position.x, 0, shield.Position.z);
+		Vector3 nep;
 
-                if (!CE_Utility.IntersectLineSphericalOutline(shieldPosition2D, fieldRadius, from, to))
+                if (CE_Utility.IntersectionPoint(from, to, shieldPosition2D, fieldRadius, out Vector3[] sect))
                 {
-                    continue;
+		    nep = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 }
+		else
+		{
+		    continue;
+		}
 
                 int fieldRadiusSq = fieldRadius * fieldRadius;
 
@@ -90,7 +95,7 @@ namespace CombatExtended.Compatibility
 
                     generator.FieldIntegrity_Current -= damage;
 
-                    exactPosition = BlockerRegistry.GetExactPosition(from, to, shieldPosition2D, (fieldRadius - 1) * (fieldRadius - 1));
+                    exactPosition = nep;
                     FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
                     projectile.InterceptProjectile(shield, exactPosition, false);
                     return true;
