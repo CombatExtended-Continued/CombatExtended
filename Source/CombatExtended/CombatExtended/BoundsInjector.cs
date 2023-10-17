@@ -138,7 +138,7 @@ namespace CombatExtended
         }
         private static Vector2 ExtractBounds(Graphic graphic, GraphicType type)
         {
-            if(graphic is Graphic_Collection graphic_collection)
+            if (graphic is Graphic_Collection graphic_collection)
             {
                 return ExctractBoundCollection(graphic_collection, type);
             }
