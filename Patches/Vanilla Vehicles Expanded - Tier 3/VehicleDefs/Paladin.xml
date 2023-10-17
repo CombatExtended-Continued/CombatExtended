@@ -32,16 +32,16 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Paladin_MainTurret"]/magazineCapacity</xpath>
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Paladin_MainTurret"]/genericAmmo</xpath>
 					<value>
-						<magazineCapacity>50</magazineCapacity>
+						<genericAmmo>false</genericAmmo>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Paladin_MainTurret"]/genericAmmo</xpath>
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Paladin_MainTurret"]/magazineCapacity</xpath>
 					<value>
-						<genericAmmo>false</genericAmmo>
+						<magazineCapacity>50</magazineCapacity>
 					</value>
 				</li>
 
@@ -70,13 +70,6 @@
 								<label>Burst</label>
 								<texPath>UI/Gizmos/FireRate_Burst</texPath>
 							</li>
-							<li>
-								<shotsPerBurst>10</shotsPerBurst>
-								<ticksBetweenShots>6</ticksBetweenShots>
-								<ticksBetweenBursts>60</ticksBetweenBursts>
-								<label>Auto</label>
-								<texPath>UI/Gizmos/FireRate_Auto</texPath>
-							</li>
 						</fireModes>
 					</value>
 				</li>
@@ -85,10 +78,11 @@
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Paladin_MainTurret"]/ammunition/thingDefs</xpath>
 					<value>
 						<thingDefs>
-							<li>Ammo_25x137mmNATO_AP</li>
-							<li>Ammo_25x137mmNATO_Incendiary</li>
-							<li>Ammo_25x137mmNATO_HE</li>
-							<li>Ammo_25x137mmNATO_Sabot</li>
+							<li>Ammo_40x53mmGrenade_HE</li>
+							<li>Ammo_40x53mmGrenade_HE_TFuzed</li>
+							<li>Ammo_40x53mmGrenade_HEDP</li>
+							<li>Ammo_40x53mmGrenade_EMP</li>
+							<li>Ammo_40x53mmGrenade_Smoke</li>
 						</thingDefs>
 					</value>
 				</li>
@@ -97,21 +91,22 @@
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Paladin_MainTurret"]</xpath>
 					<value>
 						<li Class="Vehicles.CETurretDataDefModExtension">
-							<ammoSet>AmmoSet_25x137mmNATO</ammoSet>
+							<ammoSet>AmmoSet_40x53mmGrenade</ammoSet>
 							<shotHeight>2.0</shotHeight>
-							<speed>192</speed>
+							<speed>62</speed>
 							<sway>1.61</sway>
-							<spread>0.04</spread>
+							<spread>0.15</spread>
 						</li>
 					</value>
 				</li>
 
 				<!-- Vehicle -->
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]</xpath>
 					<value>
 						<descriptionHyperlinks>
-							<CombatExtended.AmmoSetDef>AmmoSet_25x137mmNATO</CombatExtended.AmmoSetDef>
+							<CombatExtended.AmmoSetDef>AmmoSet_40x53mmGrenade</CombatExtended.AmmoSetDef>
 						</descriptionHyperlinks>
 					</value>
 				</li>
@@ -119,77 +114,56 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Blunt>18</ArmorRating_Blunt>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Sharp>9</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="FrontArmorPlating"]/health</xpath>
 					<value>
-						<health>400</health>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>24</ArmorRating_Blunt>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>12</ArmorRating_Sharp>
+						<health>700</health>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="LeftArmorPlating"]/health</xpath>
 					<value>
-						<health>240</health>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Blunt>24</ArmorRating_Blunt>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>12</ArmorRating_Sharp>
+						<health>260</health>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="RightArmorPlating"]/health</xpath>
 					<value>
-						<health>400</health>
+						<health>260</health>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="BackArmorPlating"]/armor/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>24</ArmorRating_Blunt>
+						<ArmorRating_Blunt>12</ArmorRating_Blunt>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="BackArmorPlating"]/armor/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>12</ArmorRating_Sharp>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Paladin"]/components/li[key="BackArmorPlating"]/health</xpath>
+					<value>
+						<health>180</health>
 					</value>
 				</li>
 
