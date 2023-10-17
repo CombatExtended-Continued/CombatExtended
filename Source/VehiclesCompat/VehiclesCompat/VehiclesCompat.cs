@@ -38,7 +38,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                     CETurretDataDefModExtension cetddme = vtd.GetModExtension<CETurretDataDefModExtension>();
                     if (cetddme.ammoSet != null)
                     {
-                        AmmoSetDef asd = (AmmoSetDef) LookupAmmosetCE(cetddme.ammoSet);
+                        AmmoSetDef asd = (AmmoSetDef)LookupAmmosetCE(cetddme.ammoSet);
                         if (Controller.settings.GenericAmmo && asd?.similarTo != null)
                         {
                             asd = asd.similarTo;
@@ -46,7 +46,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                         if (asd != null)
                         {
                             cetddme._ammoSet = asd;
-                            HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>) vtd.ammunition?.AllowedThingDefs;
+                            HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)vtd.ammunition?.AllowedThingDefs;
                             allowedAmmo.Clear();
                             foreach (var al in asd.ammoTypes)
                             {
