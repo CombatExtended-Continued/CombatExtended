@@ -89,8 +89,12 @@ namespace CombatExtended.Compatibility
             return false;
         }
 
-        private static void OnIntercepted(Hediff_Overshield interceptor, ProjectileCE projectile, Vector3[] sect)
+        private static void OnIntercepted(Hediff hediff, ProjectileCE projectile, Vector3[] sect)
         {
+            if (!(hediff is Hediff_Overshield interceptor))
+            {
+                return;
+            } 
             var newExactPos = projectile.ExactPosition;
             if (sect == null)
             {
