@@ -16,21 +16,21 @@ namespace ProjectileImpactFX
                 return;
             }
             EffectProjectileExtension ext = def.HasModExtension<EffectProjectileExtension>() ? def.GetModExtension<EffectProjectileExtension>() : new EffectProjectileExtension();
-            FleckDef ExplosionFleck = ext.explosionFleckDef != string.Empty ? DefDatabase<FleckDef>.GetNamed(ext.explosionFleckDef) : null;
-            FleckDef ImpactFleck = ext.ImpactFleckDef != string.Empty ? DefDatabase<FleckDef>.GetNamed(ext.ImpactFleckDef) : null;
-            FleckDef ImpactGlowFleck = ext.ImpactGlowFleckDef != string.Empty ? DefDatabase<FleckDef>.GetNamed(ext.ImpactGlowFleckDef) : null;
-            SoundDef ImpactSound = ext.ImpactSoundDef != string.Empty ? DefDatabase<SoundDef>.GetNamed(ext.ImpactSoundDef) : null;
+            FleckDef ExplosionFleck = ext.explosionFleckDef;
+            FleckDef ImpactFleck = ext.ImpactFleckDef;
+            FleckDef ImpactGlowFleck = ext.ImpactGlowFleckDef;
+            SoundDef ImpactSound = ext.ImpactSoundDef;
             float ExplosionFleckSize = ext.explosionFleckSizeRange?.RandomInRange ?? ext.explosionFleckSize;
             float ImpactFleckSize = ext.ImpactFleckSizeRange?.RandomInRange ?? ext.ImpactFleckSize;
             float ImpactGlowFleckSize = ext.ImpactGlowFleckSizeRange?.RandomInRange ?? ext.ImpactGlowFleckSize;
 
             Rand.PushState();
             float rotationRate = Rand.Range(-30f, 30f);
-            float ImpactFleckInitialRotation = Rand.Range(0, 360);
             float VelocitySpeed = Rand.Range(0.5f, 1.0f);
             int ImpactFleckCount = 1;
             float ImpactFleckAirTimeLeft = 5f;
 
+            //angle order for multiple smoke flecks going out: first one always up, 2nd and 3rd to the sides, rest random
             float[] velocityAngleArray = { 0f, -60f, 60f };
 
             DamageDef damageDef = projProps.damageDef;
@@ -88,20 +88,19 @@ namespace ProjectileImpactFX
                     //if (terrain.takeSplashes)
                     //{//water and swamp impact
                     //    //ImpactFleck = CE_FleckDefOf.Fleck_BulletWaterSplash;
-                    //    CE_FleckDefOf.Foam_Impact.PlayOneShot(new TargetInfo(loc.ToIntVec3(), map));
                     //    TriggerWaterSplashes(loc, map, 5);
-                    //    //ImpactFleckInitialRotation = 0;
                     //}
                     if (terrain.takeFootprints)
                     {//soil and sand impact
-                        ImpactFleck = FleckDefOf.DustPuff;
+                        ImpactFleck = FleckDefOf.DustPuffThick;
+                        VelocitySpeed /= 2;
                         ImpactFleckSize = ScaleToRange(2.0f, 4.0f, 10, 50, projProps.damageAmountBase);
                     }
                     else if (terrain.holdSnow && (damageDef == DamageDefOf.Bullet || damageDef == DamageDefOf.Arrow))
                     {//concrete and stone impact from shots. Only terrains that don't hold snow are non-solid ones, like water and vacuum from SOS2
                         ImpactFleck = FleckDefOf.AirPuff;
                         TriggerBulletHole(loc, map, projProps.damageAmountBase < 50 ? ScaleToRange(0.1f, 0.7f, 1, 50, projProps.damageAmountBase) : 0.7f);
-                        TriggerScatteredSparks(loc, map, projProps.damageAmountBase >= 10 ? (int)ScaleToRange(3, 15, 10, 100, projProps.damageAmountBase) : 2, direction > 0 ? 360 - direction : 0 - direction);
+                        TriggerScatteredSparks(loc, map, projProps.damageAmountBase >= 10 && Rand.Chance(0.5f) ? (int)ScaleToRange(3, 15, 10, 100, projProps.damageAmountBase) : 2, direction > 0 ? 360 - direction : 0 - direction);
 
                     }
                 }
@@ -122,8 +121,8 @@ namespace ProjectileImpactFX
                 FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, ImpactFleck);
                 for (int i = 0; i < ImpactFleckCount; i++)
                 {
-                    creationData.rotation = ImpactFleckInitialRotation;
-                    creationData.velocityAngle = velocityAngleArray[i]; //VelocityAngle;
+                    creationData.rotation = Rand.Range(0, 360);
+                    creationData.velocityAngle = i < 3 ? velocityAngleArray[i] : Rand.Range(-90, 90);
                     creationData.velocitySpeed = VelocitySpeed;
                     creationData.scale = ImpactFleckSize;
                     creationData.spawnPosition = loc;
@@ -169,20 +168,15 @@ namespace ProjectileImpactFX
         private static void TriggerScatteredSparks(Vector3 loc, Map map, int count, float direction)
         {
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, CE_FleckDefOf.Fleck_SparkThrownFast);
-            Rand.PushState();
-            if (Rand.Chance(0.5f))
+            for (int i = 0; i < count; i++)
             {
-                for (int i = 0; i < count; i++)
-                {
-                    creationData.velocityAngle = direction + Rand.Range(-45, 45);
-                    creationData.scale = 0.2f;
-                    creationData.velocitySpeed = Rand.Range(5, 10);
-                    creationData.spawnPosition = loc;
-                    creationData.airTimeLeft = 0.2f;
-                    map.flecks.CreateFleck(creationData);
-                }
+                creationData.velocityAngle = direction + Rand.Range(-45, 45);
+                creationData.scale = 0.2f;
+                creationData.velocitySpeed = Rand.Range(5, 10);
+                creationData.spawnPosition = loc;
+                creationData.airTimeLeft = 0.2f;
+                map.flecks.CreateFleck(creationData);
             }
-            Rand.PopState();
         }
 
         private static float ScaleToRange(float minNew, float maxNew, float minOld, float maxOld, float value)

@@ -1,10 +1,4 @@
-﻿using CombatExtended;
-using RimWorld;
-using System.Linq;
-using UnityEngine;
-using Verse;
-using Verse.Noise;
-using Verse.Sound;
+﻿using Verse;
 
 namespace ProjectileImpactFX
 {
@@ -14,16 +8,16 @@ namespace ProjectileImpactFX
         public bool AutoAssign = true;
         public bool CreateTerrainEffects = true;
 
-        public string explosionFleckDef = string.Empty;
+        public FleckDef explosionFleckDef;
         public float explosionFleckSize = 1f;
         public EffecterDef explosionEffecter;
         public FloatRange? explosionFleckSizeRange;
 
-        public string ImpactFleckDef = string.Empty;
+        public FleckDef ImpactFleckDef;
         public float ImpactFleckSize = 1f;
         public FloatRange? ImpactFleckSizeRange;
-        public string ImpactSoundDef = string.Empty;
-        public string ImpactGlowFleckDef = string.Empty;
+        public SoundDef ImpactSoundDef;
+        public FleckDef ImpactGlowFleckDef;
         public float ImpactGlowFleckSize = 1f;
         public FloatRange? ImpactGlowFleckSizeRange;
 
