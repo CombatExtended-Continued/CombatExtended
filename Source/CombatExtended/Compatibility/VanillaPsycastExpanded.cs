@@ -94,7 +94,7 @@ namespace CombatExtended.Compatibility
             if (!(hediff is Hediff_Overshield interceptor))
             {
                 return;
-            } 
+            }
             var newExactPos = projectile.ExactPosition;
             if (sect == null)
             {
