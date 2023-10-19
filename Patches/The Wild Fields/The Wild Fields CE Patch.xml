@@ -22,30 +22,48 @@
 			<operations>
 
 				<!-- Warscythe - Mix of Spear / Axe. Pretty cheap. Balanced around Vanilla Spear and MO Bardiche 
-					WIP	-->
+					
+					cheap version of CE Melee Halberd
 
-				<li Class = "PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/statBases</xpath>
-					<value>
-						<Bulk>10</Bulk>
-						<MeleeCounterParryBonus>1.26</MeleeCounterParryBonus>
-					</value>
-				</li>
+					WIP Balance : meant to be a peasant weapon
+
+
+						-->
+
 				<li Class = "PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/equippedStatOffsets</xpath>
 					<value>
-						<MeleeCritChance>0.17</MeleeCritChance>
+						<MeleeCritChance>0.12</MeleeCritChance>
 						<MeleeParryChance>1.18</MeleeParryChance>
 						<MeleeDodgeChance>0.7</MeleeDodgeChance>
 					</value>
 				</li>
 
+				<li Class = "PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/statBases</xpath>
+					<value>
+						<Mass>1.8</Mass>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.53</MeleeCounterParryBonus>
+						<WorkToMake>10500</WorkToMake>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>70</costStuffCount>
+					</value>
+				</li>
+
+
+
 				<!-- Mass and cost for weapon template for balancing if needed 
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName=""]/costStuffCount</xpath>
+				<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/costStuffCount</xpath>
 					<value>
-						<costStuffCount>40</costStuffCount>
+						<costStuffCount>70</costStuffCount>
 					</value>
 				</li>
 
@@ -65,56 +83,47 @@
 							<li Class = "CombatExtended.ToolCE">
 								<label>shaft</label>
 								<capacities>
-									<li>Poke</li>
-								</capacities>
-								<power>3.2</power>
-								<cooldownTime>1.5</cooldownTime>
-								<chanceFactor>0.05</chanceFactor>
-								<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
-								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
-							</li>
-							<li Class = "CombatExtended.ToolCE">
-								<label>point</label>
-								<capacities>
-									<li>Stab</li>
-								</capacities>
-								<power>12.5</power>
-								<cooldownTime>2.1</cooldownTime>
-								<chanceFactor>0.20</chanceFactor>
-								<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
-								<armorPenetrationSharp>2.32</armorPenetrationSharp>
-								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-							</li>
-							<li Class = "CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
 									<li>Blunt</li>
 								</capacities>
-								<power>12.5</power>
-								<cooldownTime>2.60</cooldownTime>
+								<power>6</power>
 								<chanceFactor>0.15</chanceFactor>
-								<armorPenetrationBlunt>8.5</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.85</armorPenetrationSharp>
-								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+								<cooldownTime>1.16</cooldownTime>
+								<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
 							</li>
-							<li Class = "CombatExtended.ToolCE">
+							<li Class="CombatExtended.ToolCE">
 								<label>edge</label>
 								<capacities>
 									<li>Cut</li>
 								</capacities>
-								<power>30</power>
-								<cooldownTime>2.60</cooldownTime>
-								<chanceFactor>0.60</chanceFactor>
-								<armorPenetrationBlunt>8.5</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.85</armorPenetrationSharp>
+								<power>33</power>
+								<cooldownTime>1.79</cooldownTime>
+								<armorPenetrationBlunt>4.3</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.87</armorPenetrationSharp>
 								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>21</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>1.7</armorPenetrationBlunt>
+								<armorPenetrationSharp>5.6</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 							</li>
 						</tools>
 					</value>
 				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
 
-
-				<!-- Noble Sabre - Elite Stuff - CE armory sabre with buffs and better stats, tweak prérequis -->
+				<!-- Noble Sabre - Elite Stuff - CE armory sabre with social buff and better stats -->
 
 
 				<li Class="PatchOperationAdd">
@@ -194,16 +203,8 @@
 					</value>
 				</li>
 
-				<!-- Sabre, same as Noble but weaker, CE Armory Sabre clone,    -->
+				<!-- Sabre, same as Noble but weaker, CE Armory Sabre clone    -->
 
-
-				<!-- <li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre"]/statBases</xpath>
-					<value>
-						<Bulk>6</Bulk>
-						<MeleeCounterParryBonus>0.45</MeleeCounterParryBonus>
-					</value>
-				</li>  -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre"]</xpath>
 					<value>
@@ -237,7 +238,6 @@
 							<skillRequirements>
 								<Crafting>5</Crafting>
 							</skillRequirements>
-
 						</recipeMaker>
 					</value>
 				</li>		
@@ -304,7 +304,7 @@
 				</li>
 
 				<!-- Bulava - high pen one handed mace
-				add weapon tags WIP -->
+				 WIP -->
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Bulava"]/statBases</xpath>
@@ -422,7 +422,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Serek_Apparel_NobleCape"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
-						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+						<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
 					</value>
 				</li>
 				
