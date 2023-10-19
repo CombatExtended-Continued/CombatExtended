@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Weapons mass & costs stuff -->
+<!-- 
+
+	     WIP
+
+	sabres rebalance : around CE Armory Sabre : DONE 
+
+	todo : other weapon ( balance, mass, costs, prerequisites )
+
+
+
+ -->
 
 
 <Patch>
@@ -11,7 +21,8 @@
 		<match Class = "PatchOperationSequence">
 			<operations>
 
-				<!-- Warscythe - Mix of Spear / Axe. Pretty cheap. Balanced around Vanilla Spear and MO Bardiche -->
+				<!-- Warscythe - Mix of Spear / Axe. Pretty cheap. Balanced around Vanilla Spear and MO Bardiche 
+					WIP	-->
 
 				<li Class = "PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/statBases</xpath>
@@ -103,25 +114,34 @@
 				</li>
 
 
-				<!-- Noble Sabre - Elite Stuff. No stab attack but great slash power and parry / dodge / crit chance. Balanced around MO swords CE Patch stats -->
+				<!-- Noble Sabre - Elite Stuff - CE armory sabre with buffs and better stats, tweak prérequis -->
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_NobleSabre"]/statBases</xpath>
-					<value>
-						<Bulk>6</Bulk>
-						<MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
-					</value>
-				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_NobleSabre"]</xpath>
 					<value>
 						<equippedStatOffsets>
-							<MeleeCritChance>1.5</MeleeCritChance>
+							<MeleeCritChance>1.25</MeleeCritChance>
 							<MeleeParryChance>0.75</MeleeParryChance>
 							<MeleeDodgeChance>0.40</MeleeDodgeChance>
+							<SocialImpact>0.2</SocialImpact>
 						</equippedStatOffsets>
 					</value>
 				</li>
+				<!-- Replace stats -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_NobleSabre"]/statBases</xpath>
+					<value>
+						<statBases>
+							<WorkToMake>16000</WorkToMake>
+							<Mass>1</Mass>
+							<Bulk>6</Bulk>
+							<MeleeCounterParryBonus>0.63</MeleeCounterParryBonus>							
+						</statBases>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_NobleSabre"]/tools</xpath>
 					<value>
@@ -131,49 +151,97 @@
 								<capacities>
 									<li>Poke</li>
 								</capacities>
-								<power>3</power>
-								<cooldownTime>1.36</cooldownTime>
-								<chanceFactor>0.05</chanceFactor>
-								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<power>2</power>
+								<cooldownTime>1.5</cooldownTime>
+								<chanceFactor>0.1</chanceFactor>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.27</cooldownTime>
+								<armorPenetrationBlunt>1.96</armorPenetrationBlunt>
+								<armorPenetrationSharp>3.92</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2.73</cooldownTime>
+								<armorPenetrationBlunt>7.84</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 							</li>
 							<li Class = "CombatExtended.ToolCE">
 								<label>edge</label>
 								<capacities>
 									<li>Cut</li>
 								</capacities>
-								<power>27</power>
-								<cooldownTime>1.36</cooldownTime>
-								<chanceFactor>0.45</chanceFactor>
-								<armorPenetrationBlunt>1.1</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.58</armorPenetrationSharp>
+								<power>29</power>
+								<cooldownTime>2.37</cooldownTime>
+								<chanceFactor>0.60</chanceFactor>
+								<armorPenetrationBlunt>3.24</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.72</armorPenetrationSharp>
 								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 							</li>
 						</tools>
 					</value>
 				</li>
 
-				<!-- Sabre, same as Noble but weaker -->
+				<!-- Sabre, same as Noble but weaker, CE Armory Sabre clone,    -->
 
 
-				<li Class="PatchOperationAdd">
+				<!-- <li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre"]/statBases</xpath>
 					<value>
 						<Bulk>6</Bulk>
-						<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
+						<MeleeCounterParryBonus>0.45</MeleeCounterParryBonus>
 					</value>
-				</li>
+				</li>  -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre"]</xpath>
 					<value>
 						<equippedStatOffsets>
-							<MeleeCritChance>0.75</MeleeCritChance>
+							<MeleeCritChance>1</MeleeCritChance>
 							<MeleeParryChance>0.65</MeleeParryChance>
 							<MeleeDodgeChance>0.35</MeleeDodgeChance>
-							<SocialImpact>0.2</SocialImpact>
 						</equippedStatOffsets>
 					</value>
 				</li>
+
+				<!-- Replace stats -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre"]/statBases</xpath>
+					<value>
+						<statBases>
+							<WorkToMake>9000</WorkToMake>
+							<Mass>1</Mass>
+							<Bulk>6</Bulk>
+							<MeleeCounterParryBonus>0.45</MeleeCounterParryBonus>							
+						</statBases>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre"]/recipeMaker</xpath>
+					<value>
+						<recipeMaker>
+							<researchPrerequisite>Smithing</researchPrerequisite>
+							<skillRequirements>
+								<Crafting>5</Crafting>
+							</skillRequirements>
+
+						</recipeMaker>
+					</value>
+				</li>		
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre"]/tools</xpath>
 					<value>
@@ -183,39 +251,60 @@
 								<capacities>
 									<li>Poke</li>
 								</capacities>
-								<power>3</power>
-								<cooldownTime>1.60</cooldownTime>
-								<chanceFactor>0.05</chanceFactor>
-								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<power>2</power>
+								<cooldownTime>1.5</cooldownTime>
+								<chanceFactor>0.1</chanceFactor>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.27</cooldownTime>
+								<armorPenetrationBlunt>1.96</armorPenetrationBlunt>
+								<armorPenetrationSharp>3.92</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2.73</cooldownTime>
+								<armorPenetrationBlunt>7.84</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 							</li>
 							<li Class = "CombatExtended.ToolCE">
 								<label>edge</label>
 								<capacities>
 									<li>Cut</li>
 								</capacities>
-								<power>24.6</power>
-								<cooldownTime>1.36</cooldownTime>
+								<power>29</power>
+								<cooldownTime>2.37</cooldownTime>
 								<chanceFactor>0.60</chanceFactor>
-								<armorPenetrationBlunt>0.80</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.58</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.24</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.72</armorPenetrationSharp>
 								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 							</li>
 						</tools>
 					</value>
 				</li>
 
-				<!-- Weapon tags for sabres -->
+				<!-- Weapon tags for ordinary sabre -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre" or defName="Serek_MeleeWeapon_NobleSabre"]/weaponTags</xpath>
+					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre"]/weaponTags</xpath>
 					<value>
 						<li>CE_OneHandedWeapon</li>
 					</value>
 				</li>
 
 				<!-- Bulava - high pen one handed mace
-				add weapon tags  -->
+				add weapon tags WIP -->
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Bulava"]/statBases</xpath>
