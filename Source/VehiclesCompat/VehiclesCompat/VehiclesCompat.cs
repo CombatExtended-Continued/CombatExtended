@@ -15,7 +15,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
 {
     public class VehiclesCompat : IModPart
     {
-	public Type GetSettingsType()
+        public Type GetSettingsType()
         {
             return typeof(VehicleSettings);
         }
@@ -25,7 +25,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
         }
         public void PostLoad(ModContentPack content, ISettingsCE vehicleSettings)
         {
-	    VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
+            VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
             VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
             VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
             VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;

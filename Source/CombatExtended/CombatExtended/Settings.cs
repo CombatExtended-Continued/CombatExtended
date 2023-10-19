@@ -15,7 +15,7 @@ namespace CombatExtended
         #region Settings
 
         // General settings
-	private bool bipodMechanics = true;
+        private bool bipodMechanics = true;
         private bool autosetup = true;
         private bool showCasings = true;
         private bool createCasingsFilth = true;
@@ -116,7 +116,6 @@ namespace CombatExtended
         private bool enableRaceAutopatcher = true;
         private bool enablePawnKindAutopatcher = true;
 
-	
         public bool EnableApparelAutopatcher => enableApparelAutopatcher;
         public bool EnableWeaponAutopatcher => enableWeaponAutopatcher;
         public bool EnableWeaponToughnessAutopatcher => enableWeaponToughnessAutopatcher;
@@ -133,11 +132,11 @@ namespace CombatExtended
 
         private bool lastAmmoSystemStatus;
 
-	#region Compatibility Modsettings
-	public bool patchArmorDamage = true;
-	
-	#endregion
-	
+        #region Compatibility Modsettings
+        public bool patchArmorDamage = true;
+
+        #endregion
+
         #region Methods
 
         public override void ExposeData()
@@ -204,7 +203,7 @@ namespace CombatExtended
 
         public void DoWindowContents(Listing_Standard list)
         {
-	    // Do general settings
+            // Do general settings
             Text.Font = GameFont.Medium;
             list.Label("CE_Settings_HeaderGeneral".Translate());
             Text.Font = GameFont.Small;
@@ -337,7 +336,6 @@ namespace CombatExtended
             {
                 AmmoInjector.AddRemoveCaliberFromGunRecipes();
             }
-            
         }
 
         #endregion

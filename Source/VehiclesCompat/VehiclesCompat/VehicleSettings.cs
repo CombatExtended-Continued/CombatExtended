@@ -12,17 +12,17 @@ namespace CombatExtended.Compatibility.VehiclesCompat
 {
     public class VehicleSettings : ISettingsCE
     {
-	public VehicleSettings()
-	{
-	}
-	public void DoWindowContents(Listing_Standard list)
+        public VehicleSettings()
         {
-	    Text.Font = GameFont.Medium;
+        }
+        public void DoWindowContents(Listing_Standard list)
+        {
+            Text.Font = GameFont.Medium;
             list.Label("CE_Settings_Vehicles".Translate());
             Text.Font = GameFont.Small;
             list.Gap();
-	    list.CheckboxLabeled("PatchArmorDamage".Translate(), ref Controller.settings.patchArmorDamage, "PatchArmorDamage".Translate());
-	}
+            list.CheckboxLabeled("PatchArmorDamage".Translate(), ref Controller.settings.patchArmorDamage, "PatchArmorDamage".Translate());
+        }
 
     }
 }

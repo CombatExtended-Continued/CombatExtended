@@ -138,14 +138,14 @@ namespace CombatExtended.Loader
                 ISettingsCE settings = null;
                 if (settingsType != null)
                 {
-		    if (typeof(ModSettings).IsAssignableFrom(settingsType))
-		    {
-			settings = (ISettingsCE)typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingsType).Invoke(instance, null);
-		    }
-		    else
-		    {
-			settings = (ISettingsCE)settingsType.GetConstructor(new Type[] { }).Invoke(new object[] { });
-		    }
+                    if (typeof(ModSettings).IsAssignableFrom(settingsType))
+                    {
+                        settings = (ISettingsCE)typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingsType).Invoke(instance, null);
+                    }
+                    else
+                    {
+                        settings = (ISettingsCE)settingsType.GetConstructor(new Type[] { }).Invoke(new object[] { });
+                    }
                     settingList.Add(settings);
                 }
 
@@ -175,20 +175,17 @@ namespace CombatExtended.Loader
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
+            Listing_Standard list = new Listing_Standard();
+            list.ColumnWidth = (inRect.width - 17) / 2; // Subtract 17 for gap between columns
 
-	    Listing_Standard list = new Listing_Standard();
-	    list.ColumnWidth = (inRect.width - 17) / 2; // Subtract 17 for gap between columns
+            list.Begin(inRect);
 
-	    list.Begin(inRect);
-	    
             foreach (ISettingsCE settings in settingList)
             {
                 settings.DoWindowContents(list);
             }
-	    list.End();
+            list.End();
         }
-
-
 
         //Unused method is only here for reference, the repository assembly uses it to warn users to get a compiled build.
         private static void ShowUncompiledBuildWarning()
