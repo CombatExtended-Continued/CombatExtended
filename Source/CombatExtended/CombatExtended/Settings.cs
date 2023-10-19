@@ -15,7 +15,7 @@ namespace CombatExtended
         #region Settings
 
         // General settings
-        private bool bipodMechanics = true;
+	private bool bipodMechanics = true;
         private bool autosetup = true;
         private bool showCasings = true;
         private bool createCasingsFilth = true;
@@ -116,6 +116,7 @@ namespace CombatExtended
         private bool enableRaceAutopatcher = true;
         private bool enablePawnKindAutopatcher = true;
 
+	
         public bool EnableApparelAutopatcher => enableApparelAutopatcher;
         public bool EnableWeaponAutopatcher => enableWeaponAutopatcher;
         public bool EnableWeaponToughnessAutopatcher => enableWeaponToughnessAutopatcher;
@@ -132,6 +133,11 @@ namespace CombatExtended
 
         private bool lastAmmoSystemStatus;
 
+	#region Compatibility Modsettings
+	public bool patchArmorDamage = true;
+	
+	#endregion
+	
         #region Methods
 
         public override void ExposeData()
@@ -196,13 +202,9 @@ namespace CombatExtended
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
-        public void DoWindowContents(Rect canvas, ref int offset)
+        public void DoWindowContents(Listing_Standard list)
         {
-            Listing_Standard list = new Listing_Standard();
-            list.ColumnWidth = (canvas.width - 17) / 2; // Subtract 17 for gap between columns
-            list.Begin(canvas);
-
-            // Do general settings
+	    // Do general settings
             Text.Font = GameFont.Medium;
             list.Label("CE_Settings_HeaderGeneral".Translate());
             Text.Font = GameFont.Small;
@@ -322,7 +324,6 @@ namespace CombatExtended
             //    list.Gap();
             //}
 #endif
-            list.End();
 
             // Update ammo if setting changes
             if (lastAmmoSystemStatus != enableAmmoSystem)
@@ -336,7 +337,7 @@ namespace CombatExtended
             {
                 AmmoInjector.AddRemoveCaliberFromGunRecipes();
             }
-
+            
         }
 
         #endregion
