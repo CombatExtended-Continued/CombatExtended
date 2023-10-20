@@ -403,14 +403,17 @@ namespace CombatExtended.HarmonyCE
 
             private static Pawn pawn;
 
+            private static Vector3 casingDrawPos;
+
             private static readonly Matrix4x4 TBot5 = Matrix4x4.Translate(new Vector3(0, -0.006f, 0));
 
             private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.004f, 0));
 
-            public static void Prefix(PawnRenderer __instance, Thing eq)
+            public static void Prefix(PawnRenderer __instance, Thing eq, Vector3 drawLoc)
             {
                 pawn = __instance.pawn;
                 equipment = eq;
+                casingDrawPos = drawLoc;
             }
 
             private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle)
@@ -419,11 +422,18 @@ namespace CombatExtended.HarmonyCE
                 if (drawData.DrawSize == Vector2.one) { drawData.DrawSize = eq.def.graphicData.drawSize; }
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
+                Vector3 casingOffset = new Vector3(drawData.CasingOffset.x, 0, drawData.CasingOffset.y);
                 if (aimAngle > 200 && aimAngle < 340)
                 {
                     posVec.x *= -1;
+                    casingOffset.x *= -1;
                 }
                 matrix.SetTRS(position + posVec.RotatedBy(matrix.rotation.eulerAngles.y), matrix.rotation, scale);
+                CompEquippable compEquippable = eq.TryGetComp<CompEquippable>();
+                if (compEquippable != null && compEquippable.PrimaryVerb is Verb_ShootCE verbCE)
+                {
+                    verbCE.drawPos = casingDrawPos + (casingOffset + posVec).RotatedBy(matrix.rotation.eulerAngles.y);
+                }
                 if (eq is WeaponPlatform platform)
                 {
                     platform.DrawPlatform(matrix, mesh == MeshPool.plane10Flip, layer);
