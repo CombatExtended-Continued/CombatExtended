@@ -170,7 +170,12 @@ namespace CombatExtended
                         {
                             destinationInt = origin;
                             startingTicksToImpactInt = 0f;
-                            ImpactSomething();
+                            // During drawing in Multiplayer - impact causes issues. Will get handled inside of the `Tick` call.
+                            // In the future, replace this with `!InInterface` call, as it's more fitting here.
+                            if (!Multiplayer.InMultiplayer)
+                            {
+                                ImpactSomething();
+                            }
                             return 0f;
                         }
                         // Multiplied by ticksPerSecond since the calculated time is actually in seconds.
