@@ -468,7 +468,6 @@ TouhouStyle	|
 Trading Economy	|
 Tribal Warrior Set! |
 Tsar Armory	|
-Turk's Guns |
 Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |

@@ -99,7 +99,16 @@
 				</value>
 			</li>
 
-			<!-- Patch sear damage type -->
+			<!-- Patch sear tool capacity & damage type -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ToolCapacityDef[defName="BON_SearStab"]</xpath>
+				<value>
+					<li Class="CombatExtended.ModExtensionMeleeToolPenetration">
+						<canHitInternal>true</canHitInternal>
+					</li>
+				</value>
+			</li>
+
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/DamageDef[defName="BON_SearDamage"]</xpath>
 				<value>
