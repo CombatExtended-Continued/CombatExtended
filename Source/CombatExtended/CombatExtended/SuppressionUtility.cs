@@ -92,7 +92,6 @@ namespace CombatExtended
         {
             List<IntVec3> cellList = new List<IntVec3>(GenRadial.RadialCellsAround(pawn.Position, maxDist, true));
             IntVec3 bestPos = pawn.Position;
-            //interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
             lightingTracker = pawn.Map.GetLightingTracker();
             dangerTracker = pawn.Map.GetDangerTracker();
 
