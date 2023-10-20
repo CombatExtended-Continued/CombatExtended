@@ -2,11 +2,16 @@
 
 <!-- 
 
-	     WIP
+	    TODOLIST
 
-	sabres rebalance : around CE Armory Sabre : DONE 
+	sabres rebalance : DONE around CE Armory Sabre 
 
-	todo : other weapon ( balance, mass, costs, prerequisites )
+	warscythe : DONE around CE Melee Halberd
+
+	Bulava rebalance : DONE around CE mace patch
+
+
+	should be good, running tests
 
 
 
@@ -25,7 +30,7 @@
 					
 					cheap version of CE Melee Halberd
 
-					WIP Balance : meant to be a peasant weapon
+					Balance : meant to be a peasant weapon
 
 
 						-->
@@ -42,10 +47,12 @@
 				<li Class = "PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/statBases</xpath>
 					<value>
-						<Mass>1.8</Mass>
-						<Bulk>10</Bulk>
-						<MeleeCounterParryBonus>1.53</MeleeCounterParryBonus>
-						<WorkToMake>10500</WorkToMake>
+						<statBases>
+							<Mass>1.8</Mass>
+							<Bulk>10</Bulk>
+							<MeleeCounterParryBonus>1.53</MeleeCounterParryBonus>
+							<WorkToMake>10500</WorkToMake>
+						</statBases>
 					</value>
 				</li>
 
@@ -55,25 +62,6 @@
 						<costStuffCount>70</costStuffCount>
 					</value>
 				</li>
-
-
-
-				<!-- Mass and cost for weapon template for balancing if needed 
-
-				<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/costStuffCount</xpath>
-					<value>
-						<costStuffCount>70</costStuffCount>
-					</value>
-				</li>
-
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName=""]/statBases/Mass</xpath>
-					<value>
-						<Mass>1</Mass>
-					</value>
-				</li>	-->
 
 
 				<li Class = "PatchOperationReplace">
@@ -119,11 +107,11 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_WarScythe"]/weaponTags</xpath>
 					<value>
-						<li>CE_OneHandedWeapon</li>
+						<li>CE_OneHandedWeapon</li> <!-- Tweak to do -->
 					</value>
 				</li>
 
-				<!-- Noble Sabre - Elite Stuff - CE armory sabre with social buff and better stats -->
+				<!-- Noble Sabre - Elite Stuff - CE armory sabre with social buff and slight better stats -->
 
 
 				<li Class="PatchOperationAdd">
@@ -146,7 +134,7 @@
 							<WorkToMake>16000</WorkToMake>
 							<Mass>1</Mass>
 							<Bulk>6</Bulk>
-							<MeleeCounterParryBonus>0.63</MeleeCounterParryBonus>							
+							<MeleeCounterParryBonus>0.63</MeleeCounterParryBonus>
 						</statBases>
 					</value>
 				</li>
@@ -222,7 +210,7 @@
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Sabre"]/statBases</xpath>
 					<value>
 						<statBases>
-							<WorkToMake>9000</WorkToMake>
+							<WorkToMake>10000</WorkToMake>
 							<Mass>1</Mass>
 							<Bulk>6</Bulk>
 							<MeleeCounterParryBonus>0.45</MeleeCounterParryBonus>							
@@ -304,15 +292,20 @@
 				</li>
 
 				<!-- Bulava - high pen one handed mace
-				 WIP -->
+				 with buffs -->
 
-				<li Class="PatchOperationAdd">
+				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Bulava"]/statBases</xpath>
 					<value>
-						<Bulk>5</Bulk>
-						<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+						<statBases>
+							<WorkToMake>14000</WorkToMake>
+							<Mass>1.12</Mass>
+							<Bulk>3.5</Bulk>
+							<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+						</statBases>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_MeleeWeapon_Bulava"]</xpath>
 					<value>
@@ -320,7 +313,7 @@
 							<MeleeCritChance>0.42</MeleeCritChance>
 							<MeleeParryChance>0.24</MeleeParryChance>
 							<MeleeDodgeChance>0.2</MeleeDodgeChance>
-							<SocialImpact>0.15</SocialImpact>
+							<SocialImpact>0.1</SocialImpact>
 							<PainShockThreshold>0.12</PainShockThreshold>
 						</equippedStatOffsets>
 					</value>
@@ -335,9 +328,9 @@
 									<li>Poke</li>
 								</capacities>
 								<power>3</power>
-								<cooldownTime>1.59</cooldownTime>
-								<chanceFactor>0.10</chanceFactor>
-								<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+								<cooldownTime>1.70</cooldownTime>
+								<chanceFactor>0.33</chanceFactor>
+								<armorPenetrationBlunt>0.825</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
 							</li>
 							<li Class = "CombatExtended.ToolCE">
@@ -347,8 +340,8 @@
 								</capacities>
 								<power>18.50</power>
 								<cooldownTime>2.1</cooldownTime>
-								<chanceFactor>0.90</chanceFactor>
-								<armorPenetrationBlunt>7.625</armorPenetrationBlunt>
+								<chanceFactor>0.33</chanceFactor>
+								<armorPenetrationBlunt>6.625</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 							</li>
 						</tools>
@@ -380,7 +373,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Serek_Apparel_CommonerVest"]/statBases/Mass</xpath>
 					<value>
-						<Mass>2</Mass>
+						<Mass>2.8</Mass>
 					</value>
 				</li>
 
@@ -415,7 +408,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Serek_Apparel_NobleCape"]/statBases/Mass</xpath>
 					<value>
-						<Mass>1.8</Mass>
+						<Mass>1</Mass>
 					</value>
 				</li>
 
@@ -433,7 +426,7 @@
 					</value>
 				</li>
 
-				<!-- Noble shirt & Vyshyvanka - noble shirts -->
+				<!--  Vyshyvanka - noble thick shirt -->
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Serek_Apparel_NobleShirt" or defName="Serek_Apparel_Vyshyvanka"]/statBases</xpath>
@@ -444,26 +437,19 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Serek_Apparel_NobleShirt" or defName="Serek_Apparel_Vyshyvanka"]/statBases/Mass</xpath>
+					<xpath>Defs/ThingDef[defName="Serek_Apparel_Vyshyvanka"]/statBases/Mass</xpath>
 					<value>
 						<Mass>1</Mass>
 					</value>
 				</li>				
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Serek_Apparel_NobleShirt or defName="Serek_Apparel_Vyshyvanka"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>Defs/ThingDef[defName="Serek_Apparel_Vyshyvanka"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>1.1</StuffEffectMultiplierArmor>
 					</value>
 				</li>
 
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Serek_Apparel_NobleShirt"]/costStuffCount</xpath>
-					<value>
-						<costStuffCount>40</costStuffCount>
-					</value>
-				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Serek_Apparel_Vyshyvanka"]/costStuffCount</xpath>
