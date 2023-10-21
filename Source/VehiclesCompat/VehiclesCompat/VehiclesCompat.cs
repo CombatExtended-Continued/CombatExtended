@@ -13,7 +13,6 @@ using UnityEngine;
 
 namespace CombatExtended.Compatibility.VehiclesCompat
 {
-    [StaticConstructorOnStartup]
     public class VehiclesCompat : IModPart
     {
         public Type GetSettingsType()
@@ -61,13 +60,29 @@ namespace CombatExtended.Compatibility.VehiclesCompat
 
         public static IEnumerable<ThingDef> _GetUsedAmmo()
         {
-            foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
+            if (Controller.settings.EnableAmmoSystem)
             {
-                foreach (ThingDef td in vtd?.ammunition?.AllowedThingDefs)
+                foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
                 {
-                    if (td is AmmoDef ad)
+                    CETurretDataDefModExtension cetddme = vtd.GetModExtension<CETurretDataDefModExtension>();
+                    if (cetddme.ammoSet != null)
                     {
-                        yield return td;
+                        AmmoSetDef asd = (AmmoSetDef)LookupAmmosetCE(cetddme.ammoSet);
+                        if (Controller.settings.GenericAmmo && asd?.similarTo != null)
+                        {
+                            asd = asd.similarTo;
+                        }
+                        if (asd != null)
+                        {
+                            cetddme._ammoSet = asd;
+                            HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)vtd.ammunition?.AllowedThingDefs;
+                            allowedAmmo.Clear();
+                            foreach (var al in asd.ammoTypes)
+                            {
+                                allowedAmmo.Add(al.ammo);
+                                yield return al.ammo;
+                            }
+                        }
                     }
                 }
             }
