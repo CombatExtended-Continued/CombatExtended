@@ -156,7 +156,7 @@ namespace CombatExtended
 #if DEBUG
             // Debug settings
             Scribe_Values.Look(ref debuggingMode, "debuggingMode", false);
-            Scribe_Values.Look(ref debugDrawInterceptChecks, "drawPartialLoSChecks", false);
+            Scribe_Values.Look(ref debugDrawInterceptChecks, "drawInterceptChecks", false);
             Scribe_Values.Look(ref debugDrawPartialLoSChecks, "drawPartialLoSChecks", false);
             Scribe_Values.Look(ref debugEnableInventoryValidation, "enableInventoryValidation", false);
             Scribe_Values.Look(ref debugDrawTargetCoverChecks, "debugDrawTargetCoverChecks", false);
