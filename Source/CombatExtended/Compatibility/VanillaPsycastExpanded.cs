@@ -34,7 +34,6 @@ namespace CombatExtended.Compatibility
             BlockerRegistry.RegisterShieldZonesCallback(ShieldZones);
             BlockerRegistry.RegisterUnsuppresableFromCallback(Unsuppresable);
         }
-        
         private static IEnumerable<IEnumerable<IntVec3>> ShieldZones(Thing thing)
         {
             return thing.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>().SelectMany(x => x.health.hediffSet.hediffs).OfType<Hediff_Overshield>().Select(x => GenRadial.RadialCellsAround(x.pawn.Position, x.OverlaySize, true));

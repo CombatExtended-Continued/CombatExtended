@@ -44,7 +44,7 @@ namespace CombatExtended.Compatibility
             enabledSZ = true;
             shieldZonesCallback = new List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>>();
         }
-        private static void EnableCFC()
+        private static void EnablePUF()
         {
             enabledPUF = true;
             pawnUnsuppresableFromCallback = new List<Func<Pawn, IntVec3, bool>>();
@@ -168,7 +168,11 @@ namespace CombatExtended.Compatibility
             foreach (var cb in pawnUnsuppresableFromCallback)
             {
                 if (cb(pawn, origin))
+                {
+                    return true;
+                }
             }
+            return false;
         }
         public static bool BeforeCollideWithCallback(ProjectileCE projectile, Thing collideWith)
         {
