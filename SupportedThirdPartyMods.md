@@ -363,6 +363,7 @@ Polarisbloc - Security Force	|
 Poleepkwa Race	|
 Possessed Weapons	|
 pphhyy's Demigryphs   |
+phynilla Expanded Mechs Scyther |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
@@ -467,7 +468,6 @@ TouhouStyle	|
 Trading Economy	|
 Tribal Warrior Set! |
 Tsar Armory	|
-Turk's Guns |
 Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |

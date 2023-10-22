@@ -11,59 +11,119 @@ namespace CombatExtended.Compatibility
 {
     public static class BlockerRegistry
     {
-        private static bool enabled = false;
-        private static List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>> shieldZonesCallback;
+        private static bool enabledCB = false;
+        private static bool enabledCFC = false;
+        private static bool enabledIS = false;
+        private static bool enabledBCW = false;
+        private static bool enabledPUF = false;
+        private static bool enabledSZ = false;
+        private static List<Func<ProjectileCE, Vector3, Vector3, bool>> checkForCollisionBetweenCallbacks;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
+        private static List<Func<ProjectileCE, Thing, bool>> beforeCollideWithCallbacks;
         private static List<Func<Pawn, IntVec3, bool>> pawnUnsuppresableFromCallback;
+        private static List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>> shieldZonesCallback;
 
-        private static void Enable()
+        private static void EnableCB()
         {
-            enabled = true;
+            enabledCB = true;
+            checkForCollisionBetweenCallbacks = new List<Func<ProjectileCE, Vector3, Vector3, bool>>();
+        }
+        private static void EnableIS()
+        {
+            enabledIS = true;
             impactSomethingCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
+        }
+        private static void EnableCFC()
+        {
+            enabledCFC = true;
             checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
+        }
+        private static void EnableSZ()
+        {
+            enabledSZ = true;
             shieldZonesCallback = new List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>>();
+        }
+        private static void EnableCFC()
+        {
+            enabledPUF = true;
             pawnUnsuppresableFromCallback = new List<Func<Pawn, IntVec3, bool>>();
+        }
+        private static void EnableBCW()
+        {
+            enabledBCW = true;
+            beforeCollideWithCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
+        }
+        public static void RegisterCheckForCollisionBetweenCallback(Func<ProjectileCE, Vector3, Vector3, bool> f)
+        {
+            if (!enabledCB)
+            {
+                EnableCB();
+            }
+            checkForCollisionBetweenCallbacks.Add(f);
         }
 
         public static void RegisterCheckForCollisionCallback(Func<ProjectileCE, IntVec3, Thing, bool> f)
         {
-            if (!enabled)
+            if (!enabledCFC)
             {
-                Enable();
+                EnableCFC();
             }
             checkCellForCollisionCallbacks.Add(f);
         }
 
         public static void RegisterImpactSomethingCallback(Func<ProjectileCE, Thing, bool> f)
         {
-            if (!enabled)
+            if (!enabledIS)
             {
-                Enable();
+                EnableIS();
             }
             impactSomethingCallbacks.Add(f);
+        }
+        public static void RegisterBeforeCollideWithCallback(Func<ProjectileCE, Thing, bool> f)
+        {
+            if (!enabledBCW)
+            {
+                EnableBCW();
+            }
+            beforeCollideWithCallbacks.Add(f);
+        }
+        public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
+        {
+            if (!enabledCB)
+            {
+                return false;
+            }
+            foreach (var cb in checkForCollisionBetweenCallbacks)
+            {
+                if (cb(projectile, from, to))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static void RegisterShieldZonesCallback(Func<Thing, IEnumerable<IEnumerable<IntVec3>>> f)
         {
-            if (!enabled)
+            if (!enabledSZ)
             {
-                Enable();
+                EnableSZ();
             }
             shieldZonesCallback.Add(f);
         }
         public static void RegisterUnsuppresableFromCallback(Func<Pawn, IntVec3, bool> f)
         {
-            if (!enabled)
+            if (!enabledPUF)
             {
-                Enable();
+                EnablePUF();
             }
             pawnUnsuppresableFromCallback.Add(f);
         }
 
         public static bool CheckCellForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
-            if (!enabled)
+            if (!enabledCFC)
             {
                 return false;
             }
@@ -78,7 +138,7 @@ namespace CombatExtended.Compatibility
         }
         public static bool ImpactSomethingCallback(ProjectileCE projectile, Thing launcher)
         {
-            if (!enabled)
+            if (!enabledIS)
             {
                 return false;
             }
@@ -93,7 +153,7 @@ namespace CombatExtended.Compatibility
         }
         public static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing thing)
         {
-            if (!enabled)
+            if (!enabledSZ)
             {
                 return null;
             }
@@ -101,13 +161,24 @@ namespace CombatExtended.Compatibility
         }
         public static bool PawnUnsuppresableFromCallback(Pawn pawn, IntVec3 origin)
         {
-            if (!enabled)
+            if (!enabledPUF)
             {
                 return false;
             }
             foreach (var cb in pawnUnsuppresableFromCallback)
             {
                 if (cb(pawn, origin))
+            }
+        }
+        public static bool BeforeCollideWithCallback(ProjectileCE projectile, Thing collideWith)
+        {
+            if (!enabledBCW)
+            {
+                return false;
+            }
+            foreach (var cb in beforeCollideWithCallbacks)
+            {
+                if (cb(projectile, collideWith))
                 {
                     return true;
                 }
@@ -129,5 +200,6 @@ namespace CombatExtended.Compatibility
             float scalar = (float)(2 * c / (-b + Math.Sqrt(det)));
             return velocity * scalar + origin;
         }
+
     }
 }
