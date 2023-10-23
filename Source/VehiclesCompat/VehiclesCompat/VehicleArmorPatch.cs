@@ -234,6 +234,39 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             return true;
         }
 
+        public static float DamageComponent(VehicleComponent component, float damageAmount, DamageInfo dinfo, VehicleComponent.Penetration pen)
+        {
+            float overdamage = 0f;
+            if (damageAmount > component.health)
+            {
+                overdamage = damageAmount - component.health;
+                component.health = 0f;
+            }
+            else
+            {
+                component.health -= damageAmount;
+            }
+
+            if (!component.props.reactors.NullOrEmpty())
+            {
+                foreach (Reactor reactor in component.props.reactors)
+                {
+                    reactor.Hit(component.vehicle, component, ref dinfo, pen);
+                }
+            }
+
+            component.vehicle.EventRegistry[VehicleEventDefOf.DamageTaken].ExecuteEvents();
+            if (component.vehicle.GetStatValue(VehicleStatDefOf.MoveSpeed) <= 0.1f)
+            {
+                component.vehicle.ignition.Drafted = false;
+            }
+            if (component.vehicle.Spawned && component.vehicle.GetStatValue(VehicleStatDefOf.BodyIntegrity) < 0.01f)
+            {
+                component.vehicle.Kill(dinfo);
+            }
+            return overdamage;
+        }
+
         public static bool HitComponent(VehicleComponent component, ref DamageInfo dinfo, StringBuilder report)
         {
             report?.AppendLine($"Applying Damage = {dinfo.Amount} to {component.props.key}");
@@ -243,15 +276,12 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             float penAmount = dinfo.ArmorPenetrationInt;
             var dmgAmount = dinfo.Amount;
             var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
+            float armorDamage = 0;
 
-            bool deflected = DamageArmor(isSharp, armorAmount, ref penAmount, ref dmgAmount, out float armorDamage);
+            bool deflected = armorAmount > 0 && DamageArmor(isSharp, armorAmount, ref penAmount, ref dmgAmount, out armorDamage);
             report?.AppendLine($"deflected by component armor? {deflected}");
             report?.AppendLine($"Armor Damage: {armorDamage}");
-            component.health -= armorDamage;
-            if (component.health < 0)
-            {
-                component.health = 0f;
-            }
+            dmgAmount += DamageComponent(component, armorDamage, dinfo, deflected ? VehicleComponent.Penetration.Diminished : VehicleComponent.Penetration.Penetrated);
 
             if (!deflected)
             {
@@ -259,12 +289,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                 deflected = DamageArmor(isSharp, component.health / 50, ref penAmount, ref dmgAmount, out armorDamage);
                 report?.AppendLine($"deflected by component bulk? {deflected}");
                 report?.AppendLine($"Component Damage: {armorDamage}");
-                component.health -= armorDamage;
-                if (component.health < 0)
-                {
-                    dmgAmount -= component.health;
-                    component.health = 0f;
-                }
+                dmgAmount += DamageComponent(component, armorDamage, dinfo, VehicleComponent.Penetration.Penetrated);
             }
             dinfo.SetAmount(dmgAmount);
             dinfo.armorPenetrationInt = penAmount;
