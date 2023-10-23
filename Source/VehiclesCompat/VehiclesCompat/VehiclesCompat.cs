@@ -64,23 +64,25 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             {
                 foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
                 {
-                    CETurretDataDefModExtension cetddme = vtd.GetModExtension<CETurretDataDefModExtension>();
-                    if (cetddme.ammoSet != null)
+                    if (vtd.GetModExtension<CETurretDataDefModExtension>() is CETurretDataDefModExtension cetddme)
                     {
-                        AmmoSetDef asd = (AmmoSetDef)LookupAmmosetCE(cetddme.ammoSet);
-                        if (Controller.settings.GenericAmmo && asd?.similarTo != null)
+                        if (cetddme.ammoSet != null)
                         {
-                            asd = asd.similarTo;
-                        }
-                        if (asd != null)
-                        {
-                            cetddme._ammoSet = asd;
-                            HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)vtd.ammunition?.AllowedThingDefs;
-                            allowedAmmo.Clear();
-                            foreach (var al in asd.ammoTypes)
+                            AmmoSetDef asd = (AmmoSetDef)LookupAmmosetCE(cetddme.ammoSet);
+                            if (Controller.settings.GenericAmmo && asd?.similarTo != null)
                             {
-                                allowedAmmo.Add(al.ammo);
-                                yield return al.ammo;
+                                asd = asd.similarTo;
+                            }
+                            if (asd != null)
+                            {
+                                cetddme._ammoSet = asd;
+                                HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)vtd.ammunition?.AllowedThingDefs;
+                                allowedAmmo.Clear();
+                                foreach (var al in asd.ammoTypes)
+                                {
+                                    allowedAmmo.Add(al.ammo);
+                                    yield return al.ammo;
+                                }
                             }
                         }
                     }
