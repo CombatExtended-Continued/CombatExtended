@@ -172,7 +172,7 @@ namespace CombatExtended
                             startingTicksToImpactInt = 0f;
                             // During drawing in Multiplayer - impact causes issues. Will get handled inside of the `Tick` call.
                             // In the future, replace this with `!InInterface` call, as it's more fitting here.
-                            if (!Multiplayer.InMultiplayer)
+                            if (!global::CombatExtended.Compatibility.Multiplayer.InMultiplayer)
                             {
                                 ImpactSomething();
                             }
