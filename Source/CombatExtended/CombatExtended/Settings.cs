@@ -19,6 +19,7 @@ namespace CombatExtended
         private bool autosetup = true;
         private bool showCasings = true;
         private bool createCasingsFilth = true;
+        private bool recoilAnim = true;
         private bool showTaunts = true;
         private bool allowMeleeHunting = false;
         private bool smokeEffects = true;
@@ -130,6 +131,8 @@ namespace CombatExtended
 
         public bool CreateCasingsFilth => createCasingsFilth;
 
+        public bool RecoilAnim => recoilAnim;
+
         #endregion
 
         private bool lastAmmoSystemStatus;
@@ -141,6 +144,7 @@ namespace CombatExtended
             base.ExposeData();
             Scribe_Values.Look(ref showCasings, "showCasings", true);
             Scribe_Values.Look(ref createCasingsFilth, "createCasingsFilth", true);
+            Scribe_Values.Look(ref recoilAnim, "recoilAnim", true);
             Scribe_Values.Look(ref showTaunts, "showTaunts", true);
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
             Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
@@ -212,6 +216,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_СreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_СreateCasingsFilth_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_RecoilAnim_Title".Translate(), ref recoilAnim, "CE_Settings_RecoilAnim_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
