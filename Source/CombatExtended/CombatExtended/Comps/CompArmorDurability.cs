@@ -229,7 +229,7 @@ namespace CombatExtended
             }
         }
 
-        [Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void StartJob(Pawn selPawn, Thing firstIngredient = null, Thing secondIngredient = null)
         {
             var job = JobMaker.MakeJob(CE_JobDefOf.RepairNaturalArmor);
