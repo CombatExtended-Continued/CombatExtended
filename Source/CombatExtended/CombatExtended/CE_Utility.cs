@@ -826,32 +826,56 @@ namespace CombatExtended
         #endregion Misc
 
         #region MoteThrower
-        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float size = 1f)
+        public static void GenerateAmmoCasings(ProjectilePropertiesCE projProps, Vector3 drawPosition, Map map, float shotRotation = -180f, float recoilAmount = 2f, bool fromPawn = false, float casingAngleOffset = 0)
         {
-            if (!Controller.settings.ShowCasings || !loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
+            if (projProps.dropsCasings)
+            {
+                if (Controller.settings.ShowCasings)
+                {
+                    ThrowEmptyCasing(drawPosition, map, DefDatabase<FleckDef>.GetNamed(projProps.casingMoteDefname), recoilAmount, shotRotation, 1f, fromPawn, casingAngleOffset);
+                }
+                if (Controller.settings.CreateCasingsFilth)
+                {
+                    MakeCasingFilth(drawPosition.ToIntVec3(), map, DefDatabase<ThingDef>.GetNamed(projProps.casingFilthDefname));
+                }
+            }
+        }
+
+
+        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f, bool fromPawn = false, float casingAngleOffset = 0)
+        {
+            if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
             }
-
+            if (recoilAmount <= 0)
+            {
+                recoilAmount = 1; //avoid division errors in case of guns without recoil
+            }
             Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
-            creationData.airTimeLeft = 1.5f;
+            creationData.velocitySpeed = Rand.Range(1.5f, 2f) * recoilAmount;
+            creationData.airTimeLeft = Rand.Range(1f, 1.5f) / creationData.velocitySpeed;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
-            creationData.rotation = Rand.Range(-3f, 4f);
             creationData.spawnPosition = loc;
-            creationData.velocitySpeed = Rand.Range(0.7f, 0.5f);
-            creationData.velocityAngle = Rand.Range(160, 200);
-            creationData.rotationRate = (float)Rand.Range(-300, 300);
+            int randomAngle = Rand.Range(-20, 20);
+            //shotRotation goes from -270 to +90, while fleck angle uses 0 to 360 degrees (0 deg being North for both cases), so a conversion is used
+            //^ not anymore, now it gets aiming angle instead
+            //+90 makes casings fly to gun's right side
+            bool flip = false;
+            if (fromPawn && shotRotation > 200f && shotRotation < 340f)
+            {
+                flip = true;
+            }
+            creationData.velocityAngle = flip ? shotRotation - 90 - casingAngleOffset + randomAngle : shotRotation + 90 + casingAngleOffset + randomAngle;
+            creationData.rotation = (flip ? shotRotation - 90 : shotRotation + 90) + Rand.Range(-3f, 4f);
+            creationData.rotationRate = (float)Rand.Range(-150, 150) / recoilAmount;
             map.flecks.CreateFleck(creationData);
             Rand.PopState();
         }
 
         public static void MakeCasingFilth(IntVec3 position, Map map, ThingDef casingFilthDef)
         {
-            if (!Controller.settings.CreateCasingsFilth)
-            {
-                return;
-            }
             Rand.PushState();
             float makeFilthChance = Rand.Range(0f, 1f);
             if (makeFilthChance > 0.9f && position.Walkable(map))
@@ -955,6 +979,51 @@ namespace CombatExtended
             return 1f;    //Buildings, etc. fill out a full square
         }
 
+        /// <summary>
+        /// Calculates whether a line segment intercepts a radius circle. Used to get intersection points.
+        /// </summary>
+        /// <param name="p1">The first point of the line segment</param>
+        /// <param name="p2">The second point of the line segment</param>
+        /// <param name="center">The center of the circle</param>
+        /// <param name="radius">The radius of the circle</param>
+        /// <returns><code>Vector3[] { Vector3.zero, Vector3.zero }</code> if there's no intersection, othrewise returns two intersection points</returns>
+        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect)
+        {
+            sect = new Vector3[2];
+            float radSq = radius * radius;
+
+            // Obtain local coords.  Our virtual center is now 0,0,0
+            Vector3 lp1 = p1 - center;
+            Vector3 lp2 = p2 - center;
+
+            // If we obviously don't cross, early out.
+            if (lp1.sqrMagnitude < radSq && lp2.sqrMagnitude < radSq)
+            {
+                return false;
+            }
+
+            // direction vector
+            Vector3 direction = lp2 - lp1;
+
+            float a = direction.sqrMagnitude;
+            float b = 2 * (direction.x * lp1.x + direction.y * lp1.y + direction.z * lp1.z);
+            float c = lp1.sqrMagnitude - radSq;
+
+            float det = b * b - 4 * a * c; //b²-4ac
+            if (a < float.Epsilon || det < 0)  // origin and destination are the same, or the determinate is negative
+            {
+                //  line does not intersect
+                return false;
+            }
+            // det is 0 or higher.  So the roots are -b ± √(det) / 2a
+            var sqrtdet = Mathf.Sqrt(det);
+            float mu1 = (-b + sqrtdet) / (2 * a);
+            float mu2 = (-b - sqrtdet) / (2 * a);
+            sect[0] = new Vector3(p1.x + mu1 * direction.x, p1.y + mu1 * direction.y, p1.z + mu1 * direction.z);
+            sect[1] = new Vector3(p1.x + mu2 * direction.x, p1.y + mu2 * direction.y, p1.z + mu2 * direction.z);
+
+            return true;
+        }
         /// <summary>
         /// Calculates body scale factors based on body type
         /// </summary>

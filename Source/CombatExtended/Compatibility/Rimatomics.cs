@@ -103,7 +103,7 @@ namespace CombatExtended.Compatibility
                     }
 
 
-
+                    projectile.InterceptProjectile(shield, exactPosition, true);
 
                     return true;
                 }
@@ -148,6 +148,7 @@ namespace CombatExtended.Compatibility
                     DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, (float)damage, 0f, -1f, null, null, null, 0, null, true, true);
                     shield.BreakShield(dinfo);
                 }
+                projectile.InterceptProjectile(shield, projectile.ExactPosition, true);
                 return true;
             }
             return false;
