@@ -21,7 +21,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             list.Label("CE_Settings_Vehicles".Translate());
             Text.Font = GameFont.Small;
             list.Gap();
-            list.CheckboxLabeled("PatchArmorDamage".Translate(), ref Controller.settings.patchArmorDamage, "PatchArmorDamage".Translate());
+            list.CheckboxLabeled("CE_Settings_PatchArmorDamage_Title".Translate(), ref Controller.settings.patchArmorDamage, "CE_Settings_PatchArmorDamage_Desc".Translate());
         }
 
     }
