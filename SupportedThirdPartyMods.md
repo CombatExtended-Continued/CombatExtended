@@ -432,7 +432,7 @@ Saclean Race    |
 Sanguinary Animals   |
 Save Our Ship 2	|
 SCP |
-SCP - Clothing Only	|
+SCP - Clothing Only	|d
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
 Seventh Seraph  |
@@ -457,6 +457,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
+The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
