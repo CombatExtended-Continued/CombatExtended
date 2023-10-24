@@ -200,8 +200,8 @@ namespace CombatExtended
             TurretDrawExtension turretDrawExtension = this.def.GetModExtension<TurretDrawExtension>();
             if (turretDrawExtension != null)
             {
-                TurretTopBaseMaterial = turretDrawExtension.TurretBottomGraphicData.Graphic.MatSingle;
-                TurretTopTopMaterial = turretDrawExtension.TurretTopGraphicData.Graphic.MatSingle;
+                TurretTopBaseMaterial = turretDrawExtension.TurretBottomGraphicData?.Graphic.MatSingle;
+                TurretTopTopMaterial = turretDrawExtension.TurretTopGraphicData?.Graphic.MatSingle;
                 if (turretDrawExtension.Barrels.Any())
                 {
                     foreach (var barrel in turretDrawExtension.Barrels)
@@ -648,7 +648,7 @@ namespace CombatExtended
         public void DrawTurretComponentRecoiled(Material mat, Vector2 offset, Vector3 recoilDrawOffset, float recoilAngleOffset)
         {
             float turretTopDrawSize = def.building.turretTopDrawSize;
-            Vector3 v = recoilDrawOffset.RotatedBy(recoilAngleOffset);
+            Vector3 v = recoilDrawOffset;
             float num = CurrentEffectiveVerb?.AimAngleOverride ?? top.CurRotation;
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(DrawPos + Altitudes.AltIncVect + v + new Vector3(offset.x, 0f, offset.y).RotatedBy(top.CurRotation), (-90 + num).ToQuat(), new Vector3(turretTopDrawSize, 1f, turretTopDrawSize));
