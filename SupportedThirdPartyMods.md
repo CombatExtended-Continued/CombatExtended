@@ -457,6 +457,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
+The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
