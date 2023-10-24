@@ -177,7 +177,7 @@ namespace CombatExtended.Loader
         public override void DoSettingsWindowContents(Rect inRect)
         {
             Rect inner = inRect.ContractedBy(20f);
-            inner.height = 750f;
+            inner.height = 800f;
             inner.x += 10f;
             Widgets.BeginScrollView(inRect, ref this.scrollPosition, inner, true);
             Listing_Standard list = new Listing_Standard();
