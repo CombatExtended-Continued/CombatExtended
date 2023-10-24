@@ -432,7 +432,7 @@ Saclean Race    |
 Sanguinary Animals   |
 Save Our Ship 2	|
 SCP |
-SCP - Clothing Only	|d
+SCP - Clothing Only	|
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
 Seventh Seraph  |
