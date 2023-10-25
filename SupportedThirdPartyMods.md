@@ -457,6 +457,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
+The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
@@ -515,6 +516,7 @@ Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
+Vanilla Vehicles Expanded - Tier 3  |
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|

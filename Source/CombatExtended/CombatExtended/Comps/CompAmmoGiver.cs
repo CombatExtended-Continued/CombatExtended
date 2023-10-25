@@ -81,7 +81,7 @@ namespace CombatExtended
 
         // Needs to be a sync method for 2 reasons - MP only auto synchronizes jobs through TryTakeOrderedJob/TryTakeOrderedJobPrioritizedWork,
         // and ammoAmountToGive field is set before ordering the job - which means only 1 player would have the value set.
-        [Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         public void GiveAmmo(Pawn selPawn, Thing ammo, int amount)
         {
             ammoAmountToGive = amount;
