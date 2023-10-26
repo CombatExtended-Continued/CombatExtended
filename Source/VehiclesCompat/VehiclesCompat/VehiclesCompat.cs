@@ -17,13 +17,13 @@ namespace CombatExtended.Compatibility.VehiclesCompat
     {
         public Type GetSettingsType()
         {
-            return null;
+            return typeof(VehicleSettings);
         }
         public IEnumerable<string> GetCompatList()
         {
             yield break;
         }
-        public void PostLoad(ModContentPack content, ISettingsCE _)
+        public void PostLoad(ModContentPack content, ISettingsCE vehicleSettings)
         {
             VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
             VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
@@ -31,6 +31,8 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
             global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
             global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
+            var harmony = new Harmony("CombatExtended.Compatibility.VehiclesCompat");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
         public static Tuple<int, float> LookupProjectileCountAndSpreadCE(ThingDef _ammoDef, Def _ammosetDef, float spread)
