@@ -46,16 +46,10 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="Ammo_5x35mmCharged"]</xpath>
-				<value>
-				<li Class="VFED.ContrabandExtension">
-					<category>VFED_Imperial</category>
-						<intelCost>5</intelCost>
-					<useCriticalIntel>false</useCriticalIntel>
-					<countMult>100</countMult>
-				</li>
-				</value>
+			<!-- Remove Charge Lance from available contraband. -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Gun_ChargeLance"]/modExtensions/li[@Class="VFED.ContrabandExtension"]</xpath>
 			</li>
 
 			</operations>
