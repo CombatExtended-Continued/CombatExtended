@@ -36,7 +36,7 @@ namespace CombatExtended.Compatibility
         }
         private static IEnumerable<IEnumerable<IntVec3>> ShieldZones(Thing thing)
         {
-            return thing.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>().SelectMany(x => x.health.hediffSet.hediffs).OfType<Hediff_Overshield>().Select(x => GenRadial.RadialCellsAround(x.pawn.Position, x.OverlaySize, true));
+            return thing.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>().SelectMany(x => x.health.hediffSet.hediffs).Select(x => { var ho = x as Hediff_Overshield; return GenRadial.RadialCellsAround(ho.pawn.Position, ho.OverlaySize, true); });
         }
 
         private static bool Unsuppresable(Pawn pawn, IntVec3 origin) => pawn.health.hediffSet.hediffs.Any(x => x.GetType() == typeof(Hediff_Overshield));
@@ -81,11 +81,10 @@ namespace CombatExtended.Compatibility
             {
                 return false;
             }
-            foreach (var i in projectile.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>()
+            foreach (var interceptor in projectile.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>()
                 .SelectMany(x => x.health.hediffSet.hediffs)
-                .Where(x => x is Hediff_Overshield && x.GetType() != typeof(Hediff_Overshield)))
+                .Where(x => x is Hediff_Overshield && x.GetType() != typeof(Hediff_Overshield)).Cast<Hediff_Overshield>())
             {
-                var interceptor = i as Hediff_Overshield;
                 Vector3 shieldPosition = interceptor.pawn.Position.ToVector3ShiftedWithAltitude(0.5f);
                 float radius = interceptor.OverlaySize;
                 float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
