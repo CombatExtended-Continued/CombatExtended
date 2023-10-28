@@ -733,6 +733,96 @@ namespace CombatExtended
         }
         */
 
+        /// <summary>
+        /// A copy of the same function in Rimworld.EquipmentUtility, except changing requirement to Verb.
+        /// </summary>
+        /// 
+
+        private static readonly SimpleCurve RecoilCurveAxisY = new SimpleCurve
+    {
+        new CurvePoint(0f, 0f),
+        new CurvePoint(1f, 0.05f),
+        new CurvePoint(2f, 0.075f)
+    };
+
+        private static readonly SimpleCurve RecoilCurveRotation = new SimpleCurve
+    {
+        new CurvePoint(0f, 0f),
+        new CurvePoint(1f, 3f),
+        new CurvePoint(2f, 4f)
+    };
+
+        const float RecoilMagicNumber = 2.6f;
+        const float MuzzleRiseMagicNumber = 0.1f;
+
+        public static void Recoil(ThingDef weaponDef, Verb shootVerb, out Vector3 drawOffset, out float angleOffset, float aimAngle, bool handheld)
+        {
+            drawOffset = Vector3.zero;
+            angleOffset = 0f;
+            if (shootVerb == null || shootVerb.IsMeleeAttack)
+            {
+                return;
+            }
+            float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount;
+
+            float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
+
+            recoil = Math.Min(recoil * recoil, 20) * RecoilMagicNumber * Mathf.Clamp((float)Math.Log10(recoilRelaxation), 0.1f, 10);
+
+            //Prevents recoil for something with absurd ROF, it's too fast for any meaningful recoil animation
+            if (recoilRelaxation < 2)
+            {
+                return;
+            }
+
+            Rand.PushState(shootVerb.LastShotTick);
+            try
+            {
+                float muzzleJumpModifier = 10 * (float)Math.Log10(recoil) + 3;
+                GunDrawExtension recoilAdjustExtension = weaponDef.GetModExtension<GunDrawExtension>();
+                if (recoilAdjustExtension != null)
+                {
+                    recoil *= recoilAdjustExtension.recoilModifier;
+                    recoilRelaxation = recoilAdjustExtension.recoilTick > 0 ? recoilAdjustExtension.recoilTick : recoilRelaxation;
+                    recoil = recoilAdjustExtension.recoilScale > 0 ? recoilAdjustExtension.recoilScale : recoil;
+                    muzzleJumpModifier *= recoilAdjustExtension.muzzleJumpModifier > 0 ? recoilAdjustExtension.muzzleJumpModifier : 1;
+                }
+
+                if (recoil <= 0) { return; }
+
+                if (handheld)
+                {
+                    if (weaponDef.weaponTags.Contains("CE_OneHandedWeapon"))
+                    {
+                        recoil /= 3;
+                        muzzleJumpModifier *= 1.5f;
+                    }
+                    else
+                    {
+                        recoil /= 1.3f;
+                    }
+                    if (recoil > 15)
+                    {
+                        recoil = 15;
+                    }
+                }
+
+                int num = Find.TickManager.TicksGame - shootVerb.LastShotTick;
+                if (num < recoilRelaxation)
+                {
+                    float num2 = Mathf.Clamp01(num / recoilRelaxation);
+                    float num3 = Mathf.Lerp(recoil, 0f, num2);
+                    drawOffset = new Vector3(0f, 0f, 0f - RecoilCurveAxisY.Evaluate(num2)) * num3;
+                    angleOffset = (handheld ? -1 : Rand.Sign) * RecoilCurveRotation.Evaluate(num2) * num3 * MuzzleRiseMagicNumber * muzzleJumpModifier;
+                    drawOffset = drawOffset.RotatedBy(aimAngle);
+                    aimAngle += angleOffset;
+                }
+            }
+            finally
+            {
+                Rand.PopState();
+            }
+        }
         #endregion Misc
 
         #region MoteThrower

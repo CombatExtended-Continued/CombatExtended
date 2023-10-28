@@ -12,6 +12,12 @@
 					<xpath>Defs</xpath>
 					<value>
 
+						<CombatExtended.AmmoCategoryDef>
+							<defName>Fletcher</defName>
+							<label>fletcher</label>
+							<description>Dissolves the target from the inside. Lethal to organics and almost useless against non-organics, such as mechanoids.</description>
+						</CombatExtended.AmmoCategoryDef>
+
 						<ThingCategoryDef>
 							<defName>AmmoFletcherDart</defName>
 							<label>Fletcher Dart</label>
@@ -25,10 +31,10 @@
 							<ammoTypes>
 								<Ammo_FletcherDart>Bullet_FletcherDart</Ammo_FletcherDart>
 							</ammoTypes>
-							<similarTo>AmmoSet_ChargedHeavy</similarTo>
 						</CombatExtended.AmmoSetDef>
 
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="12x64mmChargedBase">
+							<description>Fin-stabilized flechettes with acidifier injectors. Lethal to organics and almost useless against non-organics.\n\nTargets hit by these flechettes will be inflicted with an unstable variant of acidifier fluids, designed to dissolve the target from the inside rather than destroy their equipment.</description>
 							<defName>Ammo_FletcherDart</defName>
 							<label>fletcher cartridge</label>
 							<thingCategories>
@@ -41,7 +47,15 @@
 							<statBases>
 								<MarketValue>6.78</MarketValue>
 							</statBases>
-							<ammoClass>Charged</ammoClass>
+							<ammoClass>Fletcher</ammoClass>
+							<modExtensions>
+								<li Class="VFED.ContrabandExtension" MayRequire="OskarPotocki.VFE.Deserters">
+									<category>VFED_Imperial</category>
+										<intelCost>5</intelCost>
+									<useCriticalIntel>true</useCriticalIntel>
+									<countMult>50</countMult>
+								</li>
+							</modExtensions>		
 						</ThingDef>
 
 						<ThingDef ParentName="BaseBulletCE">

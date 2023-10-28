@@ -172,7 +172,7 @@ namespace CombatExtended
                             startingTicksToImpactInt = 0f;
                             // During drawing in Multiplayer - impact causes issues. Will get handled inside of the `Tick` call.
                             // In the future, replace this with `!InInterface` call, as it's more fitting here.
-                            if (!Multiplayer.InMultiplayer)
+                            if (!global::CombatExtended.Compatibility.Multiplayer.InMultiplayer)
                             {
                                 ImpactSomething();
                             }
@@ -1294,14 +1294,13 @@ namespace CombatExtended
             //{
             //    Find.CameraDriver.shaker.DoShake(cameraShakingInit);
             //}
-            if (def.HasModExtension<EffectProjectileExtension>())
+            if (Controller.settings.EnableExtraEffects)
             {
-                def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
+                ImpactFleckThrower.ThrowFleck(ExactPosition,
+                        Position,
                         Map,
-                        def.projectile.damageDef.explosionCellMote,
-                        def.projectile.damageDef.explosionColorCenter,
-                        def.projectile.damageDef.soundExplosion,
-                        hitThing);
+                        def.projectile as ProjectilePropertiesCE,
+                        def, hitThing, shotRotation);
             }
             var ignoredThings = new List<Thing>();
 

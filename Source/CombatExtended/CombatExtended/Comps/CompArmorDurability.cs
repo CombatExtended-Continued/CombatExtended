@@ -151,7 +151,14 @@ namespace CombatExtended
 
         public override string CompInspectStringExtra()
         {
-            return "CE_ArmorDurability".Translate() + curDurability.ToString() + "/" + maxDurability.ToString() + " (" + curDurabilityPercent.ToStringPercent() + ")";
+            if (maxDurability != 500)
+            {
+                return "CE_ArmorDurability".Translate() + curDurability.ToString() + "/" + maxDurability.ToString() + " (" + curDurabilityPercent.ToStringPercent() + ")";
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
@@ -222,7 +229,7 @@ namespace CombatExtended
             }
         }
 
-        [Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void StartJob(Pawn selPawn, Thing firstIngredient = null, Thing secondIngredient = null)
         {
             var job = JobMaker.MakeJob(CE_JobDefOf.RepairNaturalArmor);

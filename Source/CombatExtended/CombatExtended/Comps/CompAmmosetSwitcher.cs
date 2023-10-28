@@ -115,7 +115,7 @@ namespace CombatExtended
 
         public bool usingUnderBarrel;
 
-        [Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         public void SwitchToUB()
         {
             if (!Props.oneAmmoHolder)
@@ -143,7 +143,7 @@ namespace CombatExtended
             usingUnderBarrel = true;
         }
 
-        [Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         public void SwithToB()
         {
             if (!Props.oneAmmoHolder)
