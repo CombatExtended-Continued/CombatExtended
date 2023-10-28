@@ -173,7 +173,7 @@ namespace CombatExtended
             Current.Game.GetComponent<GameComponent_MechLoadoutDialogManger>()?.RegisterCompMechAmmo(this);
         }
 
-        [Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         public void TakeAmmoNow()
         {
             this.TryMakeAmmoJob(true);

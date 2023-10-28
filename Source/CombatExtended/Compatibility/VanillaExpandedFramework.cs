@@ -39,7 +39,7 @@ namespace CombatExtended.Compatibility
                 return false;
             }
             var def = projectile.def;
-            Vector3 lastExactPos = (Vector3)new Traverse(projectile).Field("lastExactPos").GetValue();//Why this field(or linked property) is private?
+            Vector3 lastExactPos = projectile.LastPos;
             var newExactPos = projectile.ExactPosition;
             foreach (var interceptor in interceptors)
             {
@@ -73,41 +73,18 @@ namespace CombatExtended.Compatibility
                 {
                     continue;
                 }
-                if (!IntersectLineSphericalOutline(shieldPosition, radius, lastExactPos, newExactPos))
+                Vector3[] intersectionPoints;
+                if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out intersectionPoints))
                 {
                     continue;
                 }
-                var intersectionPoints = //BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptorThing.Position.ToVector3(), (radius ) * (radius));
-                    VanillaPsycastExpanded.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.parent.Position.ToVector3(), (radius));
-                if (intersectionPoints == new Vector3[] { Vector3.zero, Vector3.zero })
-                {
-                    continue;
-                }
+
                 projectile.ExactPosition = intersectionPoints.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 projectile.landed = true;
                 interceptorComp.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, launcher);
                 return true;
             }
             return false;
-        }
-        /// <summary>
-        /// Copy of ProjectileCE method
-        /// </summary>
-        private static bool IntersectLineSphericalOutline(Vector3 center, float radius, Vector3 pointA, Vector3 pointB)
-        {
-            var pointAInShield = (center - pointA).sqrMagnitude <= Mathf.Pow(radius, 2);
-            var pointBInShield = (center - pointB).sqrMagnitude <= Mathf.Pow(radius, 2);
-
-            if (pointAInShield && pointBInShield)
-            {
-                return false;
-            }
-            if (!pointAInShield && !pointBInShield)
-            {
-                return false;
-            }
-
-            return true;
         }
 
     }
