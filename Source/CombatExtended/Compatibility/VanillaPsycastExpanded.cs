@@ -78,7 +78,7 @@ namespace CombatExtended.Compatibility
             {
                 Vector3 shieldPosition = interceptor.pawn.Position.ToVector3Shifted().Yto0();
                 float radius = interceptor.OverlaySize;
-                if ((new Vector3(projectile.origin.x, 0, projectile.origin.y) - shieldPosition).sqrMagnitude < radius * radius)
+                if ((new Vector3(projectile.origin.x, 0, projectile.origin.y) - shieldPosition).sqrMagnitude < radius * radius) // Ensure the shield does not block outgoing projectiles
                 {
                     return false;
                 }
