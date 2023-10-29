@@ -704,9 +704,9 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
+            if (CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
             {
-                ExactPosition = newExactPos = sect[0];
+                ExactPosition = newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 landed = true;
             }
             else
