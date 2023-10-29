@@ -86,10 +86,13 @@ namespace CombatExtended.Compatibility
                 .Where(x => x is Hediff_Overshield && x.GetType() != typeof(Hediff_Overshield)))
             {
                 var interceptor = i as Hediff_Overshield;
-                Vector3 shieldPosition = interceptor.pawn.Position.ToVector3ShiftedWithAltitude(0.5f);
+                Vector3 shieldPosition = interceptor.pawn.Position.ToVector3Shifted().Yto0();
                 float radius = interceptor.OverlaySize;
-                float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
-                if (CE_Utility.IntersectionPoint(from, newExactPos, shieldPosition, radius, out Vector3[] sect))
+                if ((new Vector3(projectile.origin.x, 0, projectile.origin.y) - shieldPosition).sqrMagnitude < radius * radius)
+                {
+                    return false;
+                }
+                if (CE_Utility.IntersectionPoint(from.Yto0(), newExactPos.Yto0(), shieldPosition, radius, out Vector3[] sect))
                 {
                     OnIntercepted(interceptor, projectile, sect);
                     return true;
