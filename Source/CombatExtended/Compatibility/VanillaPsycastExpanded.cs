@@ -79,6 +79,10 @@ namespace CombatExtended.Compatibility
                 Vector3 shieldPosition = interceptor.pawn.Position.ToVector3ShiftedWithAltitude(0.5f);
                 float radius = interceptor.OverlaySize;
                 float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
+                if ((projectile.OriginIV3.ToVector3Shifted().Yto0() - interceptor.pawn.Position.ToVector3Shifted()).sqrMagnitude < radius * radius)
+                {
+                    return false;
+                }
                 if (CE_Utility.IntersectionPoint(from, newExactPos, shieldPosition, radius, out Vector3[] sect))
                 {
                     OnIntercepted(interceptor, projectile, sect);
