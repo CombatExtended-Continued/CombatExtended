@@ -34,9 +34,23 @@ namespace CombatExtended.Compatibility
             BlockerRegistry.RegisterShieldZonesCallback(ShieldZones);
             BlockerRegistry.RegisterUnsuppresableFromCallback(Unsuppresable);
         }
+        private static Dictionary<Map, IEnumerable<IEnumerable<IntVec3>>> shieldZones;
+        private static int shieldZonesCacheTick = -1;
         private static IEnumerable<IEnumerable<IntVec3>> ShieldZones(Thing thing)
         {
-            return thing.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>().SelectMany(x => x.health.hediffSet.hediffs).Where(x => x is Hediff_Overshield).Select(x => { var ho = x as Hediff_Overshield; return GenRadial.RadialCellsAround(ho.pawn.Position, ho.OverlaySize, true); });
+            IEnumerable<IEnumerable<IntVec3>> result = null;
+            var currentTick = GenTicks.TicksGame;
+            if (shieldZonesCacheTick != currentTick)
+            {
+                shieldZonesCacheTick = currentTick;
+                shieldZones = new Dictionary<Map, IEnumerable<IEnumerable<IntVec3>>>();
+            }
+            if (!shieldZones.TryGetValue(thing.Map, out result))
+            {
+                result = thing.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>().SelectMany(x => x.health.hediffSet.hediffs).Where(x => x is Hediff_Overshield).Select(x => { var ho = x as Hediff_Overshield; return GenRadial.RadialCellsAround(ho.pawn.Position, ho.OverlaySize, true); }).ToList();
+                shieldZones.Add(thing.Map, result);
+            }
+            return result;
         }
 
         private static bool Unsuppresable(Pawn pawn, IntVec3 origin) => pawn.health.hediffSet.hediffs.Any(x => x.GetType() == typeof(Hediff_Overshield));
