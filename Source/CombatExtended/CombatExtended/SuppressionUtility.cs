@@ -24,7 +24,7 @@ namespace CombatExtended
 
         private static DangerTracker dangerTracker;
 
-        private static IEnumerable<CompProjectileInterceptor> Interceptors(Thing pawn) => pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).Where(x=>x.Props.interceptNonHostileProjectiles || !x.parent.HostileTo(pawn));
+        private static IEnumerable<CompProjectileInterceptor> Interceptors(Thing pawn) => pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).Where(x => x.Props.interceptNonHostileProjectiles || !x.parent.HostileTo(pawn));
 
         public static bool TryRequestHelp(Pawn pawn)
         {
