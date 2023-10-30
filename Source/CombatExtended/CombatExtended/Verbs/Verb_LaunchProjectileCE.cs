@@ -1089,6 +1089,23 @@ namespace CombatExtended
             return true;
         }
 
+        public override float HighlightFieldRadiusAroundTarget(out bool needLOSToCenter)
+        {
+            needLOSToCenter = true;
+            ThingDef projectile = this.Projectile;
+            if (projectile == null)
+            {
+                return 0f;
+            }
+            float num = projectile.projectile.explosionRadius + projectile.projectile.explosionRadiusDisplayPadding;
+            float forcedMissRadius = this.verbProps.ForcedMissRadius;
+            if (forcedMissRadius > 0f && this.verbProps.burstShotCount > 1)
+            {
+                num += forcedMissRadius;
+            }
+            return num;
+        }
+
         private float GetMinCollisionDistance(float targetDistance)
         {
             var shortRangeMinCollisionDistance = 1.5f;
