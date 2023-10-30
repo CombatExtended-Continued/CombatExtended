@@ -1010,8 +1010,10 @@ namespace CombatExtended
 
             float a = direction.sqrMagnitude;
 
-            // either endpoint is farther from the local origin than the projectile moved this tick
-            if (lp1sq > a || lp2sq > a)
+            float radSq_a = a + radSq;
+
+            // either endpoint is farther from the local origin than the projectile moved this tick plus the shield radius
+            if (lp1sq > radSq_a || lp2sq > radSq_a)
             {
                 return false;
             }
