@@ -151,7 +151,14 @@ namespace CombatExtended
 
         public override string CompInspectStringExtra()
         {
-            return "Armor durability: " + curDurability.ToString() + "/" + maxDurability.ToString() + " (" + curDurabilityPercent.ToStringPercent() + ")";
+            if (maxDurability != 500)
+            {
+                return "CE_ArmorDurability".Translate() + curDurability.ToString() + "/" + maxDurability.ToString() + " (" + curDurabilityPercent.ToStringPercent() + ")";
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
@@ -193,7 +200,7 @@ namespace CombatExtended
 
                 if (curDurability < maxDurability + durabilityProps.MaxOverHeal && firstIngredientProvidedOrNotNeeded && secondIngredientProvidedOrNotNeeded)
                 {
-                    yield return new FloatMenuOption("Fix natural armor", delegate
+                    yield return new FloatMenuOption("CE_RepairArmorDurability".Translate(), delegate
                     {
                         Thing firstIngredient = null;
                         Thing secondIngredient = null;
@@ -213,16 +220,16 @@ namespace CombatExtended
                 }
                 else if (this.curDurability >= maxDurability + durabilityProps.MaxOverHeal)
                 {
-                    yield return new FloatMenuOption("Can't repair natural armor, armor is undamaged", null);
+                    yield return new FloatMenuOption("CE_ArmorDurability_CannotRepairUndamaged".Translate(), null);
                 }
                 else
                 {
-                    yield return new FloatMenuOption("Can't repair natural armor, no resources", null);
+                    yield return new FloatMenuOption("CE_ArmorDurability_CannonRepairNoResource".Translate(), null);
                 }
             }
         }
 
-        [Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void StartJob(Pawn selPawn, Thing firstIngredient = null, Thing secondIngredient = null)
         {
             var job = JobMaker.MakeJob(CE_JobDefOf.RepairNaturalArmor);
@@ -374,7 +381,7 @@ namespace CombatExtended
 
             yield return toil;
 
-            var toilWait = Toils_General.Wait(natArmor.durabilityProps.RepairTime, TargetIndex.A).WithProgressBarToilDelay(TargetIndex.A);
+            var toilWait = Toils_General.WaitWith(TargetIndex.A, natArmor.durabilityProps.RepairTime, true, true, true, face: TargetIndex.A);
 
             toilWait.AddFinishAction(
                 delegate

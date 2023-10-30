@@ -85,20 +85,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret"]/ammunition/thingDefs</xpath>
-					<value>
-						<thingDefs>
-							<li>Ammo_762x51mmNATO_FMJ</li>
-							<li>Ammo_762x51mmNATO_AP</li>
-							<li>Ammo_762x51mmNATO_HP</li>
-							<li>Ammo_762x51mmNATO_Incendiary</li>
-							<li>Ammo_762x51mmNATO_HE</li>
-							<li>Ammo_762x51mmNATO_Sabot</li>
-						</thingDefs>
-					</value>
-				</li>
-
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret"]</xpath>
 					<value>
@@ -113,6 +99,15 @@
 				</li>
 
 				<!-- Vehicle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Highwayman"]</xpath>
+					<value>
+						<descriptionHyperlinks>
+							<CombatExtended.AmmoSetDef>AmmoSet_762x51mmNATO</CombatExtended.AmmoSetDef>
+						</descriptionHyperlinks>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Highwayman"]/statBases/ArmorRating_Blunt</xpath>
 					<value>

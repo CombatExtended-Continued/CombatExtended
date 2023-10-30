@@ -80,18 +80,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/ammunition/thingDefs</xpath>
-					<value>
-						<thingDefs>
-							<li>Ammo_20x102mmNATO_AP</li>
-							<li>Ammo_20x102mmNATO_Incendiary</li>
-							<li>Ammo_20x102mmNATO_HE</li>
-							<li>Ammo_20x102mmNATO_Sabot</li>
-						</thingDefs>
-					</value>
-				</li>
-
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]</xpath>
 					<value>
@@ -106,6 +94,15 @@
 				</li>
 
 				<!-- Vehicle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]</xpath>
+					<value>
+						<descriptionHyperlinks>
+							<CombatExtended.AmmoSetDef>AmmoSet_20x102mmNATO</CombatExtended.AmmoSetDef>
+						</descriptionHyperlinks>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/statBases/ArmorRating_Blunt</xpath>
 					<value>

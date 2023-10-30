@@ -79,7 +79,7 @@ namespace CombatExtended
             }
         }
 
-        [Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SetMagCount(CompMechAmmo mechAmmo, Dictionary<AmmoDef, int> tmpLoadout)
         {
             //copy the loadouts from the tmpLoadout
