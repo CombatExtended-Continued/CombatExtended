@@ -997,7 +997,7 @@ namespace CombatExtended
             Vector3 lp2 = p2 - center;
 
             // If we obviously don't cross, early out.
-            if (lp1.sqrMagnitude < radSq && lp2.sqrMagnitude < radSq)
+            if (lp1.sqrMagnitude > radSq && lp2.sqrMagnitude > radSq)
             {
                 return false;
             }
