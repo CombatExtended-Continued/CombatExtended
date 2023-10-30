@@ -996,8 +996,11 @@ namespace CombatExtended
             Vector3 lp1 = p1 - center;
             Vector3 lp2 = p2 - center;
 
-            // If we obviously don't cross, early out.
-            if (lp1.sqrMagnitude > radSq && lp2.sqrMagnitude > radSq)
+            var lp1sq = lp1.sqrMagnitude;
+            var lp2sq = lp2.sqrMagnitude;
+
+            // If we start and end inside the radius, early out..
+            if (lp1sq < radSq && lp2sq < radSq)
             {
                 return false;
             }
@@ -1006,11 +1009,19 @@ namespace CombatExtended
             Vector3 direction = lp2 - lp1;
 
             float a = direction.sqrMagnitude;
+
+            // either endpoint is farther from the local origin than the projectile moved this tick
+            if (lp1sq > a || lp2sq > a)
+            {
+                return false;
+            }
+
             float b = 2 * (direction.x * lp1.x + direction.y * lp1.y + direction.z * lp1.z);
             float c = lp1.sqrMagnitude - radSq;
 
             float det = b * b - 4 * a * c; //b²-4ac
-            if (a < float.Epsilon || det < 0)  // origin and destination are the same, or the determinate is negative
+            // determinate is negative
+            if (det < 0)
             {
                 //  line does not intersect
                 return false;
