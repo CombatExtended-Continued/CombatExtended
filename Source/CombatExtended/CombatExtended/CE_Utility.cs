@@ -1007,13 +1007,14 @@ namespace CombatExtended
 
             // direction vector
             Vector3 direction = lp2 - lp1;
-
             float a = direction.sqrMagnitude;
+            float distance = Mathf.Sqrt(a);
 
-            float radSq_a = a + radSq;
+
+            float rad_a_sq = (distance + radius) * (distance + radius);
 
             // either endpoint is farther from the local origin than the projectile moved this tick plus the shield radius
-            if (lp1sq > radSq_a || lp2sq > radSq_a)
+            if (lp1sq > rad_a_sq || lp2sq > rad_a_sq)
             {
                 return false;
             }
