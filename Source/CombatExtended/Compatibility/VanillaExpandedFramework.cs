@@ -50,7 +50,7 @@ namespace CombatExtended.Compatibility
                 }
                 Vector3 shieldPosition = interceptor.HostThing.Position.ToVector3Shifted().Yto0();
                 float radius = interceptor.ShieldRadius;
-                
+
                 Vector3[] intersectionPoints;
                 if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out intersectionPoints, false))
                 {
