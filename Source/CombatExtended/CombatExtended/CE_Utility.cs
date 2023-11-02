@@ -1003,52 +1003,76 @@ namespace CombatExtended
             map?.debugDrawer.debugLines.Clear();
             map?.debugDrawer.DebugDrawerUpdate();
             map?.debugDrawer.FlashLine(p1.ToIntVec3(), p2.ToIntVec3(), color: SimpleColor.Red);
-            float radSq = radius * radius;
-            if (!catchOutbound && (p1 - center).sqrMagnitude < radSq)
-            {
-                return false;
-            }
-            Vector3 closestOnLine; //https://stackoverflow.com/questions/67144563/how-to-get-the-shortest-distance-from-a-point-in-space-to-a-line-segment
-            if (Vector3.Dot(p1 - p2, center - p1) > 0)
-            {
-                closestOnLine = p1;
-            }
-            else if (Vector3.Dot(p2 - p1, center - p2) > 0)
-            {
-                closestOnLine = p2;
-            }
-            else
-            {
-                closestOnLine = p1 + Vector3.Project(center - p1, p2 - p1);
-            }
-
-            float distance = (closestOnLine - center).sqrMagnitude;
 
             Log.Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
-            Log.Message($"closest point on line = {closestOnLine}, clPoint - center = {closestOnLine - center}, distance = {distance}");
-            // If we start and end inside the radius, early out..
-            if (distance >= radSq)
-            {
-                Log.Message($"New Early out");
-                return false;
-            }
-            // Obtain local coords.  Our virtual center is now 0,0,0
+
+            float radSq = radius * radius;
+
+            // Switch to local coords.  Our virtual center is now 0,0,0
             Vector3 lp1 = p1 - center;
             Vector3 lp2 = p2 - center;
+	    if (!spherical)
+	    {
+		lp1.y = 0;
+		lp2.y = 0;
+	    }
+            float lp1sq = lp1.sqrMagnitude;
+            float lp2sq = lp2.sqrMagnitude;
+            Vector3 displacement;
+            float displacementSq;
 
-            // direction vector
-            Vector3 direction = lp2 - lp1;
-            float a = direction.sqrMagnitude;
+            if (lp1sq < radSq) // Case 1, 2, or 3
+            {
+                if (!catchOutbound || lp2sq < radSq) // Case 1 or 2
+                {
+                    Log.Message($"Case 1 or 2");
+                    return false;
+                }
+                // Case 3
+                Log.Message($"Case 3");
+                displacement = (lp2 - lp1);
+                displacementSq = displacement.sqrMagnitude;
+            }
+            else // case 4 or 5
+            {
+                Log.Message($"Case 4 or 5");
+                displacement = (lp2 - lp1);
+                displacementSq = displacement.sqrMagnitude;
+                if (lp2sq > radSq) // case 5
+                {
+                    Log.Message($"Case 5");
+                    float length = Mathf.Sqrt(displacementSq);
+                    // direction vector is a unit vector along the flight path
+                    Vector3 direction = displacement / length;
 
-            float b = 2 * (direction.x * lp1.x + direction.y * lp1.y + direction.z * lp1.z);
-            float c = lp1.sqrMagnitude - radSq;
+                    // inline Dot product calculation
+                    // This is the length of the projection along the direction unit vector of (lp1 back toward the origin).
+                    float projectionDistance = - lp1.x * direction.x - lp1.y * direction.y - lp1.z * direction.z;
+
+                    if (projectionDistance <= 0 || projectionDistance >= length) // One of the ends is closest, and both are outside, so we didn't cross
+                    {
+                        Log.Message($"Endpoint is closest");
+                        return false;
+                    }
+                    Vector3 closestPoint = lp1 + (projectionDistance / length) * displacement;
+		    Log.Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}");
+                    if (closestPoint.sqrMagnitude > radSq) // closest point is still outside
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            float a = displacementSq;
+            float b = 2 * (displacement.x * lp1.x + displacement.y * lp1.y + displacement.z * lp1.z);
+            float c = lp1sq - radSq;
 
             float det = b * b - 4 * a * c; //b²-4ac
             Log.Message($"b = {b}, c = {c}, det = {det}");
             // determinate is negative
             if (det < 0)
             {
-                Log.Message("Det < 0");
+                Log.Error("Det < 0, but we crossed the radius of the circle");
                 //  line does not intersect
                 return false;
             }
@@ -1056,8 +1080,8 @@ namespace CombatExtended
             var sqrtdet = Mathf.Sqrt(det);
             float mu1 = (-b + sqrtdet) / (2 * a);
             float mu2 = (-b - sqrtdet) / (2 * a);
-            sect[0] = new Vector3(p1.x + mu1 * direction.x, p1.y + mu1 * direction.y, p1.z + mu1 * direction.z);
-            sect[1] = new Vector3(p1.x + mu2 * direction.x, p1.y + mu2 * direction.y, p1.z + mu2 * direction.z);
+            sect[0] = new Vector3(p1.x + mu1 * displacement.x, p1.y + mu1 * displacement.y, p1.z + mu1 * displacement.z);
+            sect[1] = new Vector3(p1.x + mu2 * displacement.x, p1.y + mu2 * displacement.y, p1.z + mu2 * displacement.z);
             map?.debugDrawer.FlashCell(sect[0].ToIntVec3(), 1, "0");
             map?.debugDrawer.FlashCell(sect[1].ToIntVec3(), 1, "1");
             return true;
