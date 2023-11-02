@@ -75,7 +75,7 @@ namespace CombatExtended.Compatibility
                 Vector3 shieldPosition2D = new Vector3(shield.Position.x, 0, shield.Position.z);
                 Vector3 nep;
 
-                if (CE_Utility.IntersectionPoint(from, to, shieldPosition2D, fieldRadius, out Vector3[] sect))
+                if (CE_Utility.IntersectionPoint(from, to, shieldPosition2D, fieldRadius, out Vector3[] sect, map: map, spherical: false, catchOutbound: false))
                 {
                     nep = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 }
