@@ -986,46 +986,58 @@ namespace CombatExtended
         /// <param name="p2">The second point of the line segment</param>
         /// <param name="center">The center of the circle</param>
         /// <param name="radius">The radius of the circle</param>
+        /// <param name="map">Used for debug higlight</param>
         /// <returns><code>Vector3[] { Vector3.zero, Vector3.zero }</code> if there's no intersection, othrewise returns two intersection points</returns>
-        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect)
+        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect, Map map = null)
         {
+            Log.Clear();
+            map?.debugDrawer.debugCells.Clear();
+            map?.debugDrawer.debugLines.Clear();
+            map?.debugDrawer.DebugDrawerUpdate();
+            map?.debugDrawer.FlashLine(p1.ToIntVec3(), p2.ToIntVec3(), color: SimpleColor.Red);
+            Vector3 closestOnLine; //https://stackoverflow.com/questions/67144563/how-to-get-the-shortest-distance-from-a-point-in-space-to-a-line-segment
+            if (Vector3.Dot(p1 - p2, center - p1) > 0)
+            {
+                closestOnLine = p1;
+            }
+            else if (Vector3.Dot(p2 - p1, center - p2) > 0)
+            {
+                closestOnLine = p2;
+            }
+            else
+            {
+                closestOnLine = p1 + Vector3.Project(center - p1, p2 - p1);
+            }
+
+            float distance = (closestOnLine - center).sqrMagnitude;
             sect = new Vector3[2];
             float radSq = radius * radius;
 
+            Log.Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
+            Log.Message($"closest point on line = {closestOnLine}, clPoint - center = {closestOnLine - center}, distance = {distance}");
+            // If we start and end inside the radius, early out..
+            if (distance >= radSq)
+            {
+                Log.Message($"New Early out");
+                return false;
+            }
             // Obtain local coords.  Our virtual center is now 0,0,0
             Vector3 lp1 = p1 - center;
             Vector3 lp2 = p2 - center;
 
-            var lp1sq = lp1.sqrMagnitude;
-            var lp2sq = lp2.sqrMagnitude;
-
-            // If we start and end inside the radius, early out..
-            if (lp1sq < radSq && lp2sq < radSq)
-            {
-                return false;
-            }
-
             // direction vector
             Vector3 direction = lp2 - lp1;
             float a = direction.sqrMagnitude;
-            float distance = Mathf.Sqrt(a);
-
-
-            float rad_a_sq = (distance + radius) * (distance + radius);
-
-            // either endpoint is farther from the local origin than the projectile moved this tick plus the shield radius
-            if (lp1sq > rad_a_sq || lp2sq > rad_a_sq)
-            {
-                return false;
-            }
 
             float b = 2 * (direction.x * lp1.x + direction.y * lp1.y + direction.z * lp1.z);
             float c = lp1.sqrMagnitude - radSq;
 
             float det = b * b - 4 * a * c; //b²-4ac
+            Log.Message($"b = {b}, c = {c}, det = {det}");
             // determinate is negative
             if (det < 0)
             {
+                Log.Message("Det < 0");
                 //  line does not intersect
                 return false;
             }
@@ -1035,7 +1047,8 @@ namespace CombatExtended
             float mu2 = (-b - sqrtdet) / (2 * a);
             sect[0] = new Vector3(p1.x + mu1 * direction.x, p1.y + mu1 * direction.y, p1.z + mu1 * direction.z);
             sect[1] = new Vector3(p1.x + mu2 * direction.x, p1.y + mu2 * direction.y, p1.z + mu2 * direction.z);
-
+            map?.debugDrawer.FlashCell(sect[0].ToIntVec3(), 1, "0");
+            map?.debugDrawer.FlashCell(sect[1].ToIntVec3(), 1, "1");
             return true;
         }
         /// <summary>
