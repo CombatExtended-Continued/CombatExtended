@@ -78,7 +78,7 @@ namespace CombatExtended.Compatibility
             {
                 Vector3 shieldPosition = interceptor.pawn.Position.ToVector3Shifted().Yto0();
                 float radius = interceptor.OverlaySize;
-                if (CE_Utility.IntersectionPoint(from.Yto0(), newExactPos.Yto0(), shieldPosition, radius, out Vector3[] sect, false, projectile.Map))
+                if (CE_Utility.IntersectionPoint(from.Yto0(), newExactPos.Yto0(), shieldPosition, radius, out Vector3[] sect, false, map: projectile.Map))
                 {
                     OnIntercepted(interceptor, projectile, sect);
                     return true;
