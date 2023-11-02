@@ -1016,7 +1016,6 @@ namespace CombatExtended
             }
 
             float distance = (closestOnLine - center).sqrMagnitude;
-            
 
             Log.Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
             Log.Message($"closest point on line = {closestOnLine}, clPoint - center = {closestOnLine - center}, distance = {distance}");
