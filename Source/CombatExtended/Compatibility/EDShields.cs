@@ -54,6 +54,7 @@ namespace CombatExtended.Compatibility
             Map map = projectile.Map;
             Vector3 exactPosition = projectile.ExactPosition;
             IntVec3 origin = projectile.OriginIV3;
+	    Quaternion targetAngle = projectile.ExactRotation;
             getShields(map);
 
             foreach (Building building in shields)
@@ -85,7 +86,6 @@ namespace CombatExtended.Compatibility
 
                 int fieldRadiusSq = fieldRadius * fieldRadius;
 
-                Quaternion targetAngle = projectile.ExactRotation;
                 Quaternion shieldProjAng = Quaternion.LookRotation(exactPosition - shieldPosition2D);
                 if ((Quaternion.Angle(targetAngle, shieldProjAng) > 90))
                 {
