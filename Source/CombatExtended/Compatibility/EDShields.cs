@@ -85,8 +85,7 @@ namespace CombatExtended.Compatibility
                 }
 
                 int fieldRadiusSq = fieldRadius * fieldRadius;
-
-                Quaternion shieldProjAng = Quaternion.LookRotation(exactPosition - shieldPosition2D);
+                Quaternion shieldProjAng = Quaternion.LookRotation(from - shieldPosition2D);
                 if ((Quaternion.Angle(targetAngle, shieldProjAng) > 90))
                 {
                     HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));
