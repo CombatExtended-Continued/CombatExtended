@@ -54,7 +54,7 @@ namespace CombatExtended.Compatibility
             Map map = projectile.Map;
             Vector3 exactPosition = projectile.ExactPosition;
             IntVec3 origin = projectile.OriginIV3;
-	    Quaternion targetAngle = projectile.ExactRotation;
+            Quaternion targetAngle = projectile.ExactRotation;
             getShields(map);
 
             foreach (Building building in shields)

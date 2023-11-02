@@ -981,7 +981,7 @@ namespace CombatExtended
 
         /// <summary>
         /// Calculates whether a line segment intercepts a radius circle. Used to get intersection points.
-	/// https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Vector_formulation
+        /// https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Vector_formulation
         /// Cases:
         ///  1. Start is inside, not catching outbound -> false
         ///  2. Start is inside, end is inside -> false
@@ -1011,11 +1011,11 @@ namespace CombatExtended
             // Switch to local coords.  Our virtual center is now 0,0,0
             Vector3 lp1 = p1 - center;
             Vector3 lp2 = p2 - center;
-	    if (!spherical)
-	    {
-		lp1.y = 0;
-		lp2.y = 0;
-	    }
+            if (!spherical)
+            {
+                lp1.y = 0;
+                lp2.y = 0;
+            }
             float lp1sq = lp1.sqrMagnitude;
             float lp2sq = lp2.sqrMagnitude;
             Vector3 displacement;
@@ -1047,7 +1047,7 @@ namespace CombatExtended
 
                     // inline Dot product calculation
                     // This is the length of the projection along the direction unit vector of (lp1 back toward the origin).
-                    float projectionDistance = - lp1.x * direction.x - lp1.y * direction.y - lp1.z * direction.z;
+                    float projectionDistance = -lp1.x * direction.x - lp1.y * direction.y - lp1.z * direction.z;
 
                     if (projectionDistance <= 0 || projectionDistance >= length) // One of the ends is closest, and both are outside, so we didn't cross
                     {
@@ -1055,7 +1055,7 @@ namespace CombatExtended
                         return false;
                     }
                     Vector3 closestPoint = lp1 + (projectionDistance / length) * displacement;
-		    Log.Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}");
+                    Log.Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}");
                     if (closestPoint.sqrMagnitude > radSq) // closest point is still outside
                     {
                         return false;
