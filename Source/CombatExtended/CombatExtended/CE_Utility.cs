@@ -995,7 +995,7 @@ namespace CombatExtended
         /// <param name="radius">The radius of the circle</param>
         /// <param name="map">Used for debug higlight</param>
         /// <returns><code>Vector3[] { Vector3.zero, Vector3.zero }</code> if there's no intersection, othrewise returns two intersection points</returns>
-        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect, bool catchOutbound = true, Map map = null)
+        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect, bool catchOutbound = true, bool spherical = false, Map map = null)
         {
             sect = new Vector3[2];
             Log.Clear();
