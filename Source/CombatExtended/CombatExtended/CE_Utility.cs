@@ -981,6 +981,13 @@ namespace CombatExtended
 
         /// <summary>
         /// Calculates whether a line segment intercepts a radius circle. Used to get intersection points.
+	/// https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Vector_formulation
+        /// Cases:
+        ///  1. Start is inside, not catching outbound -> false
+        ///  2. Start is inside, end is inside -> false
+        ///  3. Start is inside, end is outside -> true
+        ///  4. Start is outside, end is inside -> true
+        ///  5. Start is outside, end is outside -> is closest point inside
         /// </summary>
         /// <param name="p1">The first point of the line segment</param>
         /// <param name="p2">The second point of the line segment</param>
