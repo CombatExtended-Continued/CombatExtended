@@ -988,13 +988,19 @@ namespace CombatExtended
         /// <param name="radius">The radius of the circle</param>
         /// <param name="map">Used for debug higlight</param>
         /// <returns><code>Vector3[] { Vector3.zero, Vector3.zero }</code> if there's no intersection, othrewise returns two intersection points</returns>
-        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect, Map map = null)
+        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect, bool catchOutbound = true, Map map = null)
         {
+            sect = new Vector3[2];
             Log.Clear();
             map?.debugDrawer.debugCells.Clear();
             map?.debugDrawer.debugLines.Clear();
             map?.debugDrawer.DebugDrawerUpdate();
             map?.debugDrawer.FlashLine(p1.ToIntVec3(), p2.ToIntVec3(), color: SimpleColor.Red);
+            float radSq = radius * radius;
+            if (!catchOutbound && (p1 - center).sqrMagnitude < radSq)
+            {
+                return false;
+            }
             Vector3 closestOnLine; //https://stackoverflow.com/questions/67144563/how-to-get-the-shortest-distance-from-a-point-in-space-to-a-line-segment
             if (Vector3.Dot(p1 - p2, center - p1) > 0)
             {
@@ -1010,8 +1016,7 @@ namespace CombatExtended
             }
 
             float distance = (closestOnLine - center).sqrMagnitude;
-            sect = new Vector3[2];
-            float radSq = radius * radius;
+            
 
             Log.Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
             Log.Message($"closest point on line = {closestOnLine}, clPoint - center = {closestOnLine - center}, distance = {distance}");
