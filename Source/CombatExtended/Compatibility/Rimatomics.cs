@@ -19,6 +19,7 @@ namespace CombatExtended.Compatibility
 
 
         public static List<ThingComp> shields;
+        public static bool found = false;
 
         public static int lastCacheTick = 0;
         public static Map lastCacheMap = null;
@@ -41,8 +42,10 @@ namespace CombatExtended.Compatibility
         public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             Map map = projectile.Map;
-            if (!getShields(map))
+            getShields(map);
+            if (!found)
             {
+                Log.Message("No shields");
                 return false;
             }
             Vector3 exactPosition = projectile.ExactPosition;
@@ -148,12 +151,12 @@ namespace CombatExtended.Compatibility
         }
 
 
-        public static bool getShields(Map map)
+        public static void getShields(Map map)
         {
-            bool found = false;
             int thisTick = Find.TickManager.TicksAbs;
             if (lastCacheTick != thisTick || lastCacheMap != map)
             {
+                found = false;
                 IEnumerable<Building> buildings = map.listerBuildings.allBuildingsColonist.Where(b => b is Building_ShieldArray);
                 shields = new List<ThingComp>();
                 foreach (Building b in buildings)
@@ -165,7 +168,6 @@ namespace CombatExtended.Compatibility
                 lastCacheTick = thisTick;
                 lastCacheMap = map;
             }
-            return found;
         }
 
     }
