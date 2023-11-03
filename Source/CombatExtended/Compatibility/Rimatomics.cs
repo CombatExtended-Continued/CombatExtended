@@ -30,7 +30,7 @@ namespace CombatExtended.Compatibility
         }
         public void Install()
         {
-            BlockerRegistry.RegisterCheckForCollisionBetweenCallback(EDShields.CheckForCollisionBetweenCallback);
+            BlockerRegistry.RegisterCheckForCollisionBetweenCallback(Rimatomics.CheckForCollisionBetweenCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(Rimatomics.ImpactSomethingCallback);
         }
 
