@@ -8,31 +8,6 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<!-- === Throwingspike === -->
-	
-				<li Class="PatchOperationAdd">
-					<xpath>Defs</xpath>
-					<value>
-
-						<!-- This dummy parent just provides a workaround so VFE - Tribal can be loaded before CE. -->
-						<ThingDef ParentName="BaseWeaponAndAmmoNeolithic" Name="SpikeBase_VFET" Abstract="True" />
-
-						<ThingDef ParentName="BasePilumProjectile">
-							<defName>Tribal_Spike_Thrown</defName>
-							<label>throwspike</label>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageAmountBase>14</damageAmountBase>
-								<speed>10</speed>
-								<armorPenetrationBlunt>6.44</armorPenetrationBlunt>
-								<armorPenetrationSharp>3.5</armorPenetrationSharp>
-								<preExplosionSpawnChance>0.70</preExplosionSpawnChance>
-								<preExplosionSpawnThingDef>VFET_Throwspikes</preExplosionSpawnThingDef>
-							</projectile>
-						</ThingDef>
-
-					</value>
-				</li>
-
 				<!-- One-handed Tags -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName = "VFET_Throwspikes"]/weaponTags</xpath>
@@ -90,6 +65,7 @@
 						<verbs>
 							<li Class="CombatExtended.VerbPropertiesCE">
 								<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
 								<defaultProjectile>Tribal_Spike_Thrown</defaultProjectile>
 								<warmupTime>1</warmupTime>
 								<range>10</range>
@@ -117,11 +93,27 @@
 					</value>
 				</li>
 
-				<!-- === Add Projectiles and Recipes for the javelin. === -->
+				<!-- === Add Projectiles and Recipes for the throwspikes. === -->
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
+
+						<!-- This dummy parent just provides a workaround so VFE - Tribal can be loaded before CE. -->
+						<ThingDef ParentName="BaseWeaponAndAmmoNeolithic" Name="SpikeBase_VFET" Abstract="True" />
+
+						<ThingDef ParentName="BasePilumProjectile">
+							<defName>Tribal_Spike_Thrown</defName>
+							<label>throwspike</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>14</damageAmountBase>
+								<speed>10</speed>
+								<armorPenetrationBlunt>3.44</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.45</armorPenetrationSharp>
+								<preExplosionSpawnChance>0.70</preExplosionSpawnChance>
+								<preExplosionSpawnThingDef>VFET_Throwspikes</preExplosionSpawnThingDef>
+							</projectile>
+						</ThingDef>
 
 						<RecipeDef ParentName="AmmoRecipeNeolithicBase">
 							<defName>MakeAmmo_VFET_Throwspikes</defName>
