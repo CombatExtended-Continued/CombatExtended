@@ -997,15 +997,24 @@ namespace CombatExtended
         /// <returns><code>Vector3[] { Vector3.zero, Vector3.zero }</code> if there's no intersection, othrewise returns two intersection points</returns>
         public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect, bool catchOutbound = true, bool spherical = false, Map map = null)
         {
+#if DEBUG
+            void Message(string msg)
+            {
+                if (Controller.settings.DebugDrawInterceptChecks)
+                {
+                    Log.Message(msg);
+                }
+            }
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                map?.debugDrawer.debugCells.Clear();
+                map?.debugDrawer.debugLines.Clear();
+                map?.debugDrawer.DebugDrawerUpdate();
+                map?.debugDrawer.FlashLine(p1.ToIntVec3(), p2.ToIntVec3(), color: SimpleColor.Red);
+            }
+            Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
+#endif
             sect = new Vector3[2];
-            Log.Clear();
-            map?.debugDrawer.debugCells.Clear();
-            map?.debugDrawer.debugLines.Clear();
-            map?.debugDrawer.DebugDrawerUpdate();
-            map?.debugDrawer.FlashLine(p1.ToIntVec3(), p2.ToIntVec3(), color: SimpleColor.Red);
-
-            Log.Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
-
             float radSq = radius * radius;
 
             // Switch to local coords.  Our virtual center is now 0,0,0
@@ -1029,22 +1038,30 @@ namespace CombatExtended
             {
                 if (!catchOutbound || lp2sq < radSq) // Case 1 or 2
                 {
-                    Log.Message($"Case 1 or 2");
+#if DEBUG
+                    Message($"Case 1 or 2");
+#endif
                     return false;
                 }
                 // Case 3
-                Log.Message($"Case 3");
+#if DEBUG
+                Message($"Case 3");
+#endif
                 displacement = (lp2 - lp1);
                 displacementSq = displacement.sqrMagnitude;
             }
             else // case 4 or 5
             {
-                Log.Message($"Case 4 or 5");
+#if DEBUG
+                Message($"Case 4 or 5");
+#endif
                 displacement = (lp2 - lp1);
                 displacementSq = displacement.sqrMagnitude;
                 if (lp2sq > radSq) // case 5
                 {
-                    Log.Message($"Case 5");
+#if DEBUG
+                    Message($"Case 5");
+#endif
                     float length = Mathf.Sqrt(displacementSq);
                     // direction vector is a unit vector along the flight path
                     Vector3 direction = displacement / length;
@@ -1055,11 +1072,15 @@ namespace CombatExtended
 
                     if (projectionDistance <= 0 || projectionDistance >= length) // One of the ends is closest, and both are outside, so we didn't cross
                     {
+#if DEBUG
                         Log.Message($"Endpoint is closest");
+#endif
                         return false;
                     }
                     Vector3 closestPoint = lp1 + (projectionDistance / length) * displacement;
-                    Log.Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}");
+#if DEBUG
+                    Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}");
+#endif
                     if (closestPoint.sqrMagnitude > radSq) // closest point is still outside
                     {
                         return false;
@@ -1072,7 +1093,9 @@ namespace CombatExtended
             float c = lp1sq - radSq;
 
             float det = b * b - 4 * a * c; //b²-4ac
-            Log.Message($"b = {b}, c = {c}, det = {det}");
+#if DEBUG
+            Message($"b = {b}, c = {c}, det = {det}");
+#endif
             // determinate is negative
             if (det < 0)
             {
@@ -1086,8 +1109,13 @@ namespace CombatExtended
             float mu2 = (-b - sqrtdet) / (2 * a);
             sect[0] = new Vector3(p1.x + mu1 * displacement.x, p1.y + mu1 * displacement.y, p1.z + mu1 * displacement.z);
             sect[1] = new Vector3(p1.x + mu2 * displacement.x, p1.y + mu2 * displacement.y, p1.z + mu2 * displacement.z);
-            map?.debugDrawer.FlashCell(sect[0].ToIntVec3(), 1, "0");
-            map?.debugDrawer.FlashCell(sect[1].ToIntVec3(), 1, "1");
+#if DEBUG
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                map?.debugDrawer.FlashCell(sect[0].ToIntVec3(), 1, "0");
+                map?.debugDrawer.FlashCell(sect[1].ToIntVec3(), 1, "1");
+            }
+#endif
             return true;
         }
         /// <summary>
