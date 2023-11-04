@@ -45,7 +45,6 @@ namespace CombatExtended.Compatibility
             getShields(map);
             if (!found)
             {
-                Log.Message("No shields");
                 return false;
             }
             Vector3 exactPosition = projectile.ExactPosition;
