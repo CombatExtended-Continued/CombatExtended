@@ -1013,6 +1013,10 @@ namespace CombatExtended
             Vector3 lp2 = p2 - center;
             if (!spherical)
             {
+                // The shield wants to do a 2-d check, so discard the y component of our local start and end
+                // We do this after the conversion to local coords, so that we only have to mutate 2 vectors instead of 3.
+                // Note that center is left unmutated, because it is not used in the rest of the function.
+                // p1, p2 are left unmutated, but are only used when creating the output vectors to convert back from local coords.
                 lp1.y = 0;
                 lp2.y = 0;
             }
