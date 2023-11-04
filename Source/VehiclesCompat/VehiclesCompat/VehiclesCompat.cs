@@ -78,13 +78,17 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                             if (asd != null)
                             {
                                 cetddme._ammoSet = asd;
-                                HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)vtd.ammunition?.AllowedThingDefs;
-                                allowedAmmo.Clear();
+                                var ammunition = vtd.ammunition = new ThingFilter();
+                                vtd.genericAmmo = false;
+                                HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)ammunition.AllowedThingDefs;
+
                                 foreach (var al in asd.ammoTypes)
                                 {
                                     allowedAmmo.Add(al.ammo);
                                     yield return al.ammo;
                                 }
+
+                                vtd.ammunition.ResolveReferences();
                             }
                         }
                     }
