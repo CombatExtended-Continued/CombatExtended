@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Det's Energy Weapons</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+			
+				<ThingCategoryDef>
+					<defName>AmmoEnergyBolt</defName>
+					<label>Energy Bolt</label>
+					<parent>AmmoRifles</parent>
+					<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+				</ThingCategoryDef>
+				
+				<!-- ==================== AmmoSet ========================== -->
+				
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_EnergyBolt</defName>
+					<label>Energy Bolt</label>
+					<ammoTypes>
+						<Ammo_EnergyBolt>Bullet_EnergyBolt</Ammo_EnergyBolt>
+					</ammoTypes>
+					<similarTo>AmmoSet_Rifle</similarTo>
+				</CombatExtended.AmmoSetDef>
+				
+				<!-- ==================== Ammo ========================== -->
+				
+				<ThingDef Class="CombatExtended.AmmoDef" Name="EnergyBoltBase" ParentName="SmallAmmoBase" Abstract="True">
+					<description>EnergyBoltBase.</description>
+					<statBases>
+						<Mass>0.02</Mass>
+						<Bulk>0.02</Bulk>
+					</statBases>
+					<tradeTags>
+						<li>CE_AutoEnableTrade</li>
+						<li>CE_AutoEnableCrafting</li>
+					</tradeTags>
+					<thingCategories>
+						<li>EnergyBolt</li>
+					</thingCategories>
+				</ThingDef>
+				
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="EnergyBoltBase">
+					<defName>Ammo_EnergyBolt</defName>
+					<label>Energy Bolt</label>
+					<graphicData>
+						<texPath>Things/Ammo/LaserPack</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>0.11</MarketValue>
+					</statBases>
+					<ammoClass>FullMetalJacket</ammoClass>
+					<cookOffProjectile>Bullet_762x51mmNATO_FMJ</cookOffProjectile>
+				</ThingDef>
+				
+				<!-- ================== Projectiles ================== -->
+				<ThingDef Name="BaseEnergyBoltBullet" ParentName="BaseBulletCE" Abstract="true">
+					<graphicData>
+						<texPath>Things/Projectile/Bullet_Small</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Bullet</damageDef>
+						<speed>156</speed>
+						<dropsCasings>true</dropsCasings>
+					</projectile>
+				</ThingDef>
+				<ThingDef ParentName="BaseEnergyBoltBullet">
+					<defName>Bullet_EnergyBolt</defName>
+					<label>Energy Bolt</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageAmountBase>20</damageAmountBase>
+						<armorPenetrationSharp>7</armorPenetrationSharp>
+						<armorPenetrationBlunt>66.72</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+				<!-- ==================== Recipes ========================== -->
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_EnergyBolt</defName>
+					<label>make Energy Bolt  cartridge x500</label>
+					<description>Craft 500 Energy Bolt  cartridges.</description>
+					<jobString>Making Energy Bolt  cartridges.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>26</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_EnergyBolt>500</Ammo_EnergyBolt>
+					</products>
+					<workAmount>2600</workAmount>
+				</RecipeDef>
+			</value>
+		</match>
+	</Operation>
+</Patch>
