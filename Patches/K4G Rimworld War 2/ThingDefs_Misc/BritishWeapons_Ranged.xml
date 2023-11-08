@@ -156,10 +156,10 @@
 
 			<!-- ========== Weapons ========== -->
 
+			<!-- Webley Mk VI -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>K4G_Gun_WW2BritishServiceRevolver</defName>
 				<statBases>
-					<WorkToMake>5000</WorkToMake>
 					<SightsEfficiency>0.7</SightsEfficiency>
 					<ShotSpread>0.18</ShotSpread>
 					<SwayFactor>1.2</SwayFactor>
@@ -168,12 +168,13 @@
 					<RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
 				</statBases>
 				<Properties>
+					<recoilAmount>2.57</recoilAmount>				
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_455Webley_FMJ</defaultProjectile>
 					<warmupTime>0.6</warmupTime>
 					<range>12</range>
-					<soundCast>Shot_C96</soundCast>
+					<soundCast>Shot_Revolver</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
 				</Properties>
@@ -182,46 +183,135 @@
 					<reloadTime>4</reloadTime>
 					<ammoSet>AmmoSet_455Webley</ammoSet>
 				</AmmoUser>
-				<FireModes>
-					<aiUseBurstMode>FALSE</aiUseBurstMode>
-				</FireModes>
 				<weaponTags>
 					<li>CE_Sidearm</li>
 					<li>CE_OneHandedWeapon</li>
 				</weaponTags>
 			</li>
 
+			<!-- Enfield No. 2 Revolver -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_MP_18_KA</defName>
+				<defName>K4G_Gun_WW2BritishServiceRevolver</defName>
 				<statBases>
-					<Mass>4.18</Mass>
-					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-					<SightsEfficiency>1</SightsEfficiency>
-					<ShotSpread>0.14</ShotSpread>
-					<SwayFactor>1.25</SwayFactor>
-					<Bulk>8.32</Bulk>
-					<WorkToMake>18000</WorkToMake>
+					<SightsEfficiency>0.7</SightsEfficiency>
+					<ShotSpread>0.18</ShotSpread>
+					<SwayFactor>1.2</SwayFactor>
+					<Bulk>2.2</Bulk>
+					<Mass>1.1</Mass>
+					<RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
 				</statBases>
-				<costList>
-					<Steel>70</Steel>
-					<ComponentIndustrial>4</ComponentIndustrial>
-					<WoodLog>10</WoodLog>
-				</costList>
 				<Properties>
-					<recoilAmount>1.13</recoilAmount>
+					<recoilAmount>2.62</recoilAmount>				
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<defaultProjectile>Bullet_38SW_FMJ</defaultProjectile>
 					<warmupTime>0.6</warmupTime>
-					<range>20</range>
-					<burstShotCount>5</burstShotCount>
-					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-					<soundCast>Shot_MP_18</soundCast>
+					<range>12</range>
+					<soundCast>Shot_Revolver</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
 				</Properties>
 				<AmmoUser>
-					<magazineSize>20</magazineSize>
+					<magazineSize>6</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_38SW</ammoSet>
+				</AmmoUser>
+				<weaponTags>
+					<li>CE_Sidearm</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<!-- Lee Enfield No. 4 Mk I-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>K4G_Gun_WW2BritishServiceRifle</defName>
+				<statBases>
+					<Mass>4.19</Mass>
+					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>1.68</SwayFactor>
+					<Bulk>12.60</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>2.04</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>55</range>
+					<soundCast>Shot_BoltActionRifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- Lee Enfield No. 4 Mk I with Bayonet-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>K4G_Gun_WW2BritishServiceRifleBayonet</defName>
+				<statBases>
+					<Mass>4.30</Mass>
+					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>1.74</SwayFactor>
+					<Bulk>12.80</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>2.03</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>55</range>
+					<soundCast>Shot_BoltActionRifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- Lanchester SMG -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>K4G_Gun_WW2BritishServiceSMG</defName>
+				<statBases>
+					<Mass>4.3</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.21</SwayFactor>
+					<Bulk>8.43</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.95</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>24</range>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>Shot_HeavySMG</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>32</magazineSize>
 					<reloadTime>4</reloadTime>
 					<ammoSet>AmmoSet_9x19mmPara</ammoSet>
 				</AmmoUser>
@@ -232,48 +322,191 @@
 				<weaponTags>
 					<li>IndustrialGunAdvanced</li>
 				</weaponTags>
-				<researchPrerequisite>Stage2b_KA</researchPrerequisite>
 			</li>
 
+			<!-- Sten Mk II SMG -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>Gun_Gew_98_KA</defName>
+				<defName>K4G_Gun_WW2BritishServiceSMGB</defName>
 				<statBases>
-					<Mass>4.10</Mass>
-					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
-					<SightsEfficiency>1</SightsEfficiency>
-					<ShotSpread>0.02</ShotSpread>
-					<SwayFactor>1.66</SwayFactor>
-					<Bulk>12.50</Bulk>
-					<WorkToMake>12000</WorkToMake>
+					<Mass>4.3</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.16</ShotSpread>
+					<SwayFactor>0.80</SwayFactor>
+					<Bulk>8.43</Bulk>
 				</statBases>
-				<costList>
-					<Steel>50</Steel>
-					<ComponentIndustrial>3</ComponentIndustrial>
-					<WoodLog>20</WoodLog>
-				</costList>
+				<Properties>
+					<recoilAmount>0.95</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>24</range>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>Shot_HeavySMG</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>32</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>4</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
+			</li>
+
+			<!-- Bren Mk IV LMG -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>K4G_Gun_WW2BritishServiceLMG</defName>
+				<statBases>
+					<Mass>8.7</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.05</ShotSpread>
+					<SwayFactor>1.37</SwayFactor>
+					<Bulk>12.9</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.38</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>62</range>
+					<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<soundCast>Shot_CE_BattleRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>50</magazineSize>
+					<reloadTime>4.9</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_MachineGun</li>
+					<li>CE_AI_LMG</li>
+					<li>Bipod_LMG</li>
+				</weaponTags>
+			</li>
+
+			<!-- Lee Enfield No. 4 Mk I (T) Sniper Rifle -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>K4G_Gun_WW2BritishServiceSniperRifle</defName>
+				<statBases>
+					<Mass>5.19</Mass>
+					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.21</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>1.68</SwayFactor>
+					<Bulk>12.60</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>2</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.27</warmupTime>
+					<range>75</range>
+					<soundCast>Shot_BoltActionRifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadOneAtATime>True</reloadOneAtATime>
+					<reloadTime>0.85</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- PIAT -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>K4G_Gun_WW2BritishServiceRocketLauncher</defName>
+				<statBases>
+					<Mass>15.00</Mass>
+					<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>2.49</SwayFactor>
+					<Bulk>10.90</Bulk>
+				</statBases>
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
-					<warmupTime>1.1</warmupTime>
-					<range>55</range>
-					<soundCast>Shot_Gew_98</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
+					<defaultProjectile>Bullet_83mmPIATGrenade_HEAT</defaultProjectile>
+					<warmupTime>1.9</warmupTime>
+					<range>20</range>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<onlyManualCast>true</onlyManualCast>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>5.6</reloadTime>
+					<ammoSet>AmmoSet_83mmPIATGrenade</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- Boys Anti-Tank Rifle -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>K4G_Gun_WW2BritishServiceAntiTankRifle</defName>
+				<statBases>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>2.89</SwayFactor>
+					<Bulk>22.0</Bulk>
+					<Mass>20.30</Mass>
+					<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_55Boys_FMJ</defaultProjectile>
+					<warmupTime>2.8</warmupTime>
+					<range>62</range>
+					<soundCast>HeavyMG</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
 				</Properties>
 				<AmmoUser>
 					<magazineSize>5</magazineSize>
 					<reloadTime>4.3</reloadTime>
-					<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+					<ammoSet>AmmoSet_55Boys</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
 				</FireModes>
 				<weaponTags>
-					<li>IndustrialGunAdvanced</li>
-				</weaponTags>
-				<researchPrerequisite>Stage0b_KA</researchPrerequisite>
-				</li>
+					<li>Bipod_ATR</li>
+				</weaponTags>				
+			</li>
 
 			</operations>
 		</match>
