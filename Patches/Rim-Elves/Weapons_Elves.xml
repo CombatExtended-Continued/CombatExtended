@@ -46,7 +46,7 @@
 						</li>
 					</tools>
 				</value>
-			</li>		
+			</li>
 
 			<!-- ========== Elven Scimitar ========== -->
 
@@ -119,7 +119,45 @@
 			</li>
 
 			<!-- ========== Elven Chargebow ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Bow_ElvenCharge</defName>
+				<statBases>
+					<SightsEfficiency>1.2</SightsEfficiency>
+					<ShotSpread>0.05</ShotSpread>
+					<SwayFactor>1.8</SwayFactor>
+					<Bulk>3.5</Bulk>
+					<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_ChargedGreatArrow_Plasteel</defaultProjectile>
+					<warmupTime>0.85</warmupTime>
+					<range>55</range>
+					<soundCast>ChargeBowElven_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+				</Properties>
+				<AmmoUser>
+					<ammoSet>AmmoSet_ChargedGreatArrow</ammoSet>
+				</AmmoUser>
+				<FireModes />
+			</li>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Bow_ElvenCharge"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
 			<!-- ========== Elven Banebrand ========== -->
 
