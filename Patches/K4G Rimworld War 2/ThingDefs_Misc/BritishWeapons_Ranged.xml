@@ -281,7 +281,7 @@
 
 			<!-- Bren Mk IV LMG -->
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="K4G_Gun_WW2BritishServiceSMGB"]</xpath>
+				<xpath>Defs/ThingDef[defName="K4G_Gun_WW2BritishServiceLMG"]</xpath>
 				<value>
 					<statBases>
 						<Mass>8.7</Mass>
@@ -326,114 +326,136 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="K4G_Gun_WW2BritishServiceRevolverB"]/weaponTags</xpath>
+				<xpath>Defs/ThingDef[defName="K4G_Gun_WW2BritishServiceLMG"]/weaponTags</xpath>
 				<value>
 					<li>Bipod_LMG</li>		
 				</value>
 			</li>
 
 			<!-- Lee Enfield No. 4 Mk I (T) Sniper Rifle -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>K4G_Gun_WW2BritishServiceSniperRifle</defName>
-				<statBases>
-					<Mass>5.19</Mass>
-					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
-					<SightsEfficiency>2.21</SightsEfficiency>
-					<ShotSpread>0.02</ShotSpread>
-					<SwayFactor>1.68</SwayFactor>
-					<Bulk>12.60</Bulk>
-				</statBases>
-				<Properties>
-					<recoilAmount>2</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
-					<warmupTime>1.27</warmupTime>
-					<range>75</range>
-					<soundCast>Shot_BoltActionRifle</soundCast>
-					<soundCastTail>GunTail_Heavy</soundCastTail>
-					<muzzleFlashScale>9</muzzleFlashScale>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>10</magazineSize>
-					<reloadOneAtATime>True</reloadOneAtATime>
-					<reloadTime>0.85</reloadTime>
-					<ammoSet>AmmoSet_303British</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="K4G_Gun_WW2BritishServiceSniperRifle"]</xpath>
+				<value>
+					<statBases>
+						<Mass>5.19</Mass>
+						<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.21</SightsEfficiency>
+						<ShotSpread>0.02</ShotSpread>
+						<SwayFactor>1.68</SwayFactor>
+						<Bulk>12.60</Bulk>
+					</statBases>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<recoilAmount>2</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+							<warmupTime>1.27</warmupTime>
+							<range>75</range>
+							<soundCast>Shot_BoltActionRifle</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+						</li>
+					</verbs>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>10</magazineSize>
+							<reloadOneAtATime>True</reloadOneAtATime>
+							<reloadTime>0.85</reloadTime>
+							<ammoSet>AmmoSet_303British</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiAimMode>AimedShot</aiAimMode>
+						</li>
+					</comps>					
+				</value>
 			</li>
 
 			<!-- PIAT -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>K4G_Gun_WW2BritishServiceRocketLauncher</defName>
-				<statBases>
-					<Mass>15.00</Mass>
-					<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
-					<SightsEfficiency>1.00</SightsEfficiency>
-					<ShotSpread>0.2</ShotSpread>
-					<SwayFactor>2.49</SwayFactor>
-					<Bulk>10.90</Bulk>
-				</statBases>
-				<Properties>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_83mmPIATGrenade_HEAT</defaultProjectile>
-					<warmupTime>1.9</warmupTime>
-					<range>20</range>
-					<soundCast>InfernoCannon_Fire</soundCast>
-					<soundCastTail>GunTail_Heavy</soundCastTail>
-					<muzzleFlashScale>14</muzzleFlashScale>
-					<onlyManualCast>true</onlyManualCast>
-					<stopBurstWithoutLos>false</stopBurstWithoutLos>
-					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>1</magazineSize>
-					<reloadTime>5.6</reloadTime>
-					<ammoSet>AmmoSet_83mmPIATGrenade</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aiUseBurstMode>FALSE</aiUseBurstMode>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="K4G_Gun_WW2BritishServiceRocketLauncher"]</xpath>
+				<value>
+					<statBases>
+						<Mass>15.00</Mass>
+						<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.2</ShotSpread>
+						<SwayFactor>2.49</SwayFactor>
+						<Bulk>10.90</Bulk>
+					</statBases>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_83mmPIATGrenade_HEAT</defaultProjectile>
+							<warmupTime>1.9</warmupTime>
+							<range>20</range>
+							<soundCast>InfernoCannon_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>14</muzzleFlashScale>
+							<onlyManualCast>true</onlyManualCast>
+							<stopBurstWithoutLos>false</stopBurstWithoutLos>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+						</li>
+					</verbs>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>1</magazineSize>
+							<reloadTime>5.6</reloadTime>
+							<ammoSet>AmmoSet_83mmPIATGrenade</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>AimedShot</aiAimMode>
+						</li>
+					</comps>					
+				</value>
 			</li>
 
 			<!-- Boys Anti-Tank Rifle -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>K4G_Gun_WW2BritishServiceAntiTankRifle</defName>
-				<statBases>
-					<SightsEfficiency>1.0</SightsEfficiency>
-					<ShotSpread>0.01</ShotSpread>
-					<SwayFactor>2.89</SwayFactor>
-					<Bulk>22.0</Bulk>
-					<Mass>20.30</Mass>
-					<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
-				</statBases>
-				<Properties>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_55Boys_FMJ</defaultProjectile>
-					<warmupTime>2.8</warmupTime>
-					<range>62</range>
-					<soundCast>HeavyMG</soundCast>
-					<soundCastTail>GunTail_Heavy</soundCastTail>
-					<muzzleFlashScale>9</muzzleFlashScale>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>5</magazineSize>
-					<reloadTime>4.3</reloadTime>
-					<ammoSet>AmmoSet_55Boys</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
-				<weaponTags>
-					<li>Bipod_ATR</li>
-				</weaponTags>				
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="K4G_Gun_WW2BritishServiceAntiTankRifle"]</xpath>
+				<value>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>2.89</SwayFactor>
+						<Bulk>22.0</Bulk>
+						<Mass>20.30</Mass>
+						<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+					</statBases>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_55Boys_FMJ</defaultProjectile>
+							<warmupTime>2.8</warmupTime>
+							<range>62</range>
+							<soundCast>HeavyMG</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+						</li>
+					</verbs>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>5</magazineSize>
+							<reloadTime>4.3</reloadTime>
+							<ammoSet>AmmoSet_55Boys</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiAimMode>AimedShot</aiAimMode>
+						</li>
+					</comps>					
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="K4G_Gun_WW2BritishServiceAntiTankRifle"]/weaponTags</xpath>
+				<value>
+					<li>Bipod_ATR</li>		
+				</value>
 			</li>
 
 			</operations>
