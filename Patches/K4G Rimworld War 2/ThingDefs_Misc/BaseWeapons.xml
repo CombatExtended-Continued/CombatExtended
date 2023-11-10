@@ -11,8 +11,14 @@
 			<!-- ========== Melee Tools ========== -->
 
 			<!-- Handguns -->
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[@defName="WW2ServiceRevolver"]/tools</xpath>
+				<xpath>Defs/ThingDef[
+				@Name="WW2ServiceRevolver" or
+				@Name="WW2SingleShotPistol" or
+				@Name="WW2ServicePistol" or
+				@Name="WW2ServiceSemiAutomaticPistol"
+				]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -41,12 +47,19 @@
 			</li>
 
 			<!-- Rifles -->
+
 			<li Class="PatchOperationReplace">
 				<xpath>
 					Defs/ThingDef[
 					@Name="WW2ServiceRifle" or
+					@Name="WW2ServiceSemiAutomaticRifle" or
 					@Name="WW2ServiceSMG" or
-					@Name="WW2ServiceLMG"
+					@Name="WW2ServiceLMG" or
+					@Name="WW2ServiceCarbine" or
+					@Name="WW2ServiceShotgun" or
+					@Name="WW2ServiceAutomaticRifle" or
+					@Name="WW2ServiceSniperRifle" or
+					@Name="WW2ServiceSemiAutomaticSniperRifle"
 					]/tools
 				</xpath>
 				<value>
@@ -88,7 +101,11 @@
 
 			<!-- Rifles (Bayonet)-->
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[@Name="WW2ServiceRifleBayonet"]/tools</xpath>
+				<xpath>Defs/ThingDef[
+				@Name="WW2ServiceRifleBayonet" or
+				@Name="WW2ServiceSemiAutomaticRifleBayonet" or
+				@Name="WW2ServiceShotgunBayonet"
+				]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">

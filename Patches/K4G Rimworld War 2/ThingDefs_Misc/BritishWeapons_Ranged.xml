@@ -372,47 +372,40 @@
 			</li>
 
 			<!-- PIAT -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="K4G_Gun_WW2BritishServiceRocketLauncher"]</xpath>
-				<value>
-					<statBases>
-						<Mass>15.00</Mass>
-						<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
-						<SightsEfficiency>1.00</SightsEfficiency>
-						<ShotSpread>0.2</ShotSpread>
-						<SwayFactor>2.49</SwayFactor>
-						<Bulk>10.90</Bulk>
-					</statBases>
-					<verbs>
-						<li Class="CombatExtended.VerbPropertiesCE">
-							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<defaultProjectile>Bullet_83mmPIATGrenade_HEAT</defaultProjectile>
-							<warmupTime>1.9</warmupTime>
-							<range>20</range>
-							<soundCast>InfernoCannon_Fire</soundCast>
-							<soundCastTail>GunTail_Heavy</soundCastTail>
-							<muzzleFlashScale>14</muzzleFlashScale>
-							<onlyManualCast>true</onlyManualCast>
-							<stopBurstWithoutLos>false</stopBurstWithoutLos>
-							<targetParams>
-								<canTargetLocations>true</canTargetLocations>
-							</targetParams>
-						</li>
-					</verbs>
-					<comps>
-						<li Class="CombatExtended.CompProperties_AmmoUser">
-							<magazineSize>1</magazineSize>
-							<reloadTime>5.6</reloadTime>
-							<ammoSet>AmmoSet_83mmPIATGrenade</ammoSet>
-						</li>
-						<li Class="CombatExtended.CompProperties_FireModes">
-							<aiUseBurstMode>FALSE</aiUseBurstMode>
-							<aiAimMode>AimedShot</aiAimMode>
-						</li>
-					</comps>					
-				</value>
-			</li>
+			<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>K4G_Gun_WW2BritishServiceRocketLauncher</defName>
+				<statBases>
+					<Mass>15.00</Mass>
+					<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>2.49</SwayFactor>
+					<Bulk>10.90</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_83mmPIATGrenade_HEAT</defaultProjectile>
+					<warmupTime>1.9</warmupTime>
+					<range>20</range>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<onlyManualCast>true</onlyManualCast>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>5.6</reloadTime>
+					<ammoSet>AmmoSet_83mmPIATGrenade</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</Operation>
 
 			<!-- Boys Anti-Tank Rifle -->
 			<li Class="PatchOperationAdd">
