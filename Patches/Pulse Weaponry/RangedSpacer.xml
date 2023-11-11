@@ -72,13 +72,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]/weaponTags</xpath>
-					<value>
-						<li>CE_OneHandedWeapon</li>
-					</value>
-				</li>
-
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName = "DV_PulseSMG" or defName = "DV_PulseSuppressor"]/tools</xpath>
 					<value>
@@ -300,7 +293,7 @@
 						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 						<warmupTime>2.5</warmupTime>
 						<range>62</range>
-						<soundCast>VWE_Shot_ChargeMinigun</soundCast>
+						<soundCast>Shot_PulseMedium</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
@@ -327,6 +320,10 @@
 							<DrawOffset>0.0,0.0</DrawOffset>
 						</li>
 					</value>
+				</li>
+				
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName = "DV_PulseRifle"]/comps/li[@Class="AthenaFramework.CompProperties_ProjectileImpactEffect"]</xpath>
 				</li>
 
 			</operations>
