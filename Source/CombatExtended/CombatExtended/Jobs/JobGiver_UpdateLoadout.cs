@@ -280,7 +280,7 @@ namespace CombatExtended
 
         private static bool AllowedByFoodRestriction(Thing thing, Pawn pawn)
         {
-            if (thing != null && thing.def.IsIngestible)
+            if (thing != null && thing.def.IsNutritionGivingIngestible)
             {
                 return pawn.foodRestriction.GetCurrentRespectedRestriction(pawn).Allows(thing);
             }
