@@ -161,6 +161,7 @@ Cybernetic Warfare and Special Weapons (Continued)  |
 Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Core	|
+Det's Energy Weapons    |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
