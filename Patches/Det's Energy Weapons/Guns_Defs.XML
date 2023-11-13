@@ -8,6 +8,13 @@
 		<match Class="PatchOperationSequence"> 
 			<operations>
 
+			<!-- Damage -->
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/DamageDef[defName="EnergyDamage"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>Flame</value>
+			</li>
+
 			<!-- Weapons -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Energy_Rifle</defName>
