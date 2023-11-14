@@ -704,9 +704,9 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
+            if (CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
             {
-                ExactPosition = newExactPos = sect[0];
+                ExactPosition = newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 landed = true;
             }
             else
@@ -886,6 +886,10 @@ namespace CombatExtended
                 // Check for collision
                 if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
+                    if (!CanCollideWith(thing, out _))
+                    {
+                        continue;
+                    }
                     if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thing.TrueCenter()))
                     {
                         return true;
@@ -894,10 +898,6 @@ namespace CombatExtended
                     var newPosIV3 = thing.TrueCenter().ToIntVec3();
                     // Iterate through all cells between the last and the THING
                     // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
-                    if (!CanCollideWith(thing, out _))
-                    {
-                        continue;
-                    }
                     var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
                     foreach (var _cell in cells)
                     {

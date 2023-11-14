@@ -99,9 +99,9 @@ namespace CombatExtended.Compatibility
                 .SelectMany(x => x.health.hediffSet.hediffs)
                 .Where(x => x is Hediff_Overshield && x.GetType() != typeof(Hediff_Overshield)).Cast<Hediff_Overshield>())
             {
-                Vector3 shieldPosition = interceptor.pawn.Position.ToVector3ShiftedWithAltitude(0.5f);
+                Vector3 shieldPosition = interceptor.pawn.Position.ToVector3Shifted().Yto0();
                 float radius = interceptor.OverlaySize;
-                if (CE_Utility.IntersectionPoint(from, newExactPos, shieldPosition, radius, out Vector3[] sect))
+                if (CE_Utility.IntersectionPoint(from.Yto0(), newExactPos.Yto0(), shieldPosition, radius, out Vector3[] sect, false, map: projectile.Map))
                 {
                     OnIntercepted(interceptor, projectile, sect);
                     return true;
