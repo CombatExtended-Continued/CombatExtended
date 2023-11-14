@@ -8,6 +8,43 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+			<!-- ========== Remove Vanilla Verbs ========== -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+				@Name="WW2ServiceRevolver" or
+				@Name="WW2ServicePistol" or
+				@Name="WW2ServiceSemiAutomaticPistol" or
+				@Name="WW2ServiceRifle" or
+				@Name="WW2ServiceSemiAutomaticRifle" or
+				@Name="WW2ServiceCarbine" or
+				@Name="WW2ServiceShotgun" or
+				@Name="WW2ServiceSMG" or
+				@Name="WW2ServiceLMG" or
+				@Name="WW2ServiceAutomaticRifle" or
+				@Name="WW2ServiceSniperRifle" or
+				@Name="WW2ServiceSemiAutomaticSniperRifle" or
+				@Name="WW2ServiceAntiTankRifle"
+				]/verbs</xpath>
+			</li>
+
+
+			<!-- ========== One-handed Weapons ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				@Name="WW2ServiceRevolver" or
+				@Name="WW2SingleShotPistol" or
+				@Name="WW2ServicePistol" or
+				@Name="WW2ServiceSemiAutomaticPistol"
+				]</xpath>
+				<value>
+					<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+					</weaponTags>				
+				</value>
+			</li>
+
 			<!-- ========== Melee Tools ========== -->
 
 			<!-- Handguns -->
