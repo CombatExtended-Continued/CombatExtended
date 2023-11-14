@@ -158,8 +158,10 @@ CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Cybernetic Warfare and Special Weapons (Continued)  |
+Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Core	|
+Det's Energy Weapons    |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
@@ -499,6 +501,7 @@ Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Pirates |
 Vanilla Factions Expanded - Settlers	|
+Vanilla Factions Expanded - Tribals |
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
