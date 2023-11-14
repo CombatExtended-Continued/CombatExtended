@@ -54,6 +54,7 @@ namespace CombatExtended.Compatibility
             Map map = projectile.Map;
             Vector3 exactPosition = projectile.ExactPosition;
             IntVec3 origin = projectile.OriginIV3;
+            Quaternion targetAngle = projectile.ExactRotation;
             getShields(map);
 
             foreach (Building building in shields)
@@ -74,7 +75,7 @@ namespace CombatExtended.Compatibility
                 Vector3 shieldPosition2D = new Vector3(shield.Position.x, 0, shield.Position.z);
                 Vector3 nep;
 
-                if (CE_Utility.IntersectionPoint(from, to, shieldPosition2D, fieldRadius, out Vector3[] sect))
+                if (CE_Utility.IntersectionPoint(from, to, shieldPosition2D, fieldRadius, out Vector3[] sect, map: map, spherical: false, catchOutbound: false))
                 {
                     nep = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 }
@@ -84,9 +85,7 @@ namespace CombatExtended.Compatibility
                 }
 
                 int fieldRadiusSq = fieldRadius * fieldRadius;
-
-                Quaternion targetAngle = projectile.ExactRotation;
-                Quaternion shieldProjAng = Quaternion.LookRotation(exactPosition - shieldPosition2D);
+                Quaternion shieldProjAng = Quaternion.LookRotation(from - shieldPosition2D);
                 if ((Quaternion.Angle(targetAngle, shieldProjAng) > 90))
                 {
                     HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));

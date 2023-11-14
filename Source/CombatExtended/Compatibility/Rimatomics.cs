@@ -19,6 +19,7 @@ namespace CombatExtended.Compatibility
 
 
         public static List<ThingComp> shields;
+        public static bool found = false;
 
         public static int lastCacheTick = 0;
         public static Map lastCacheMap = null;
@@ -29,7 +30,7 @@ namespace CombatExtended.Compatibility
         }
         public void Install()
         {
-            BlockerRegistry.RegisterCheckForCollisionCallback(Rimatomics.CheckForCollisionCallback);
+            BlockerRegistry.RegisterCheckForCollisionBetweenCallback(Rimatomics.CheckForCollisionBetweenCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(Rimatomics.ImpactSomethingCallback);
         }
 
@@ -38,12 +39,17 @@ namespace CombatExtended.Compatibility
             yield break;
         }
 
-        public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
+        public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             Map map = projectile.Map;
+            getShields(map);
+            if (!found)
+            {
+                return false;
+            }
             Vector3 exactPosition = projectile.ExactPosition;
             IntVec3 origin = projectile.OriginIV3;
-            getShields(map);
+            Quaternion targetAngle = projectile.ExactRotation;
 
             if (projectile.launcher == null)
             {
@@ -63,34 +69,23 @@ namespace CombatExtended.Compatibility
                 }
                 bool interceptOutgoing = shield.Props.interceptOutgoingProjectiles;
 
-
                 int fieldRadius = (int)shield.Radius;
-                int fieldRadiusSq = fieldRadius * fieldRadius;
-                float DistanceSq = projectile.Position.DistanceToSquared(shield.parent.Position) - fieldRadiusSq;
-                float originDistanceSq = origin.DistanceToSquared(shield.parent.Position) - fieldRadiusSq;
-                if (DistanceSq > 0)
-                {
-                    if (!interceptOutgoing || originDistanceSq >= 0)
-                    {
-                        continue;
-                    }
-                }
-                else if (originDistanceSq < 0)
+                Vector3 shieldPosition2d = new Vector3(shield.parent.Position.x, 0, shield.parent.Position.z);
+
+                if (!CE_Utility.IntersectionPoint(from, to, shieldPosition2d, fieldRadius, out Vector3[] sect, map: map, spherical: false, catchOutbound: interceptOutgoing))
                 {
                     continue;
                 }
-                Vector3 shieldPosition2D = new Vector3(shield.parent.Position.x, 0, shield.parent.Position.z);
-                Quaternion targetAngle = projectile.ExactRotation;
-                Quaternion shieldProjAng = Quaternion.LookRotation(exactPosition - shieldPosition2D);
+                Vector3 nep = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                Quaternion shieldProjAng = Quaternion.LookRotation(new Vector3(from.x - shieldPosition2d.x, 0, from.z - shieldPosition2d.z));
                 var angle = Quaternion.Angle(targetAngle, shieldProjAng);
-                if (angle > 90 || (interceptOutgoing && angle < 90))
+                if (angle > 90 || interceptOutgoing)
                 {
-                    int damage = (projectile.def.projectile.GetDamageAmount(launcher));
+                    int damage = (projectile.def.projectile.GetDamageAmount(projectile.launcher));
 
                     exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.parent.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
                     FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
                     projectile.ExactPosition = exactPosition;
-
 
                     Effecter effecter = new Effecter(shield.Props.interceptEffect ?? EffecterDefOf.Interceptor_BlockedProjectile);
                     effecter.Trigger(new TargetInfo(IntVec3Utility.ToIntVec3(exactPosition), shield.parent.Map, false), TargetInfo.Invalid);
@@ -160,10 +155,12 @@ namespace CombatExtended.Compatibility
             int thisTick = Find.TickManager.TicksAbs;
             if (lastCacheTick != thisTick || lastCacheMap != map)
             {
+                found = false;
                 IEnumerable<Building> buildings = map.listerBuildings.allBuildingsColonist.Where(b => b is Building_ShieldArray);
                 shields = new List<ThingComp>();
                 foreach (Building b in buildings)
                 {
+                    found = true;
                     shields.Add((b as Building_ShieldArray).CompShield);
                 }
 
