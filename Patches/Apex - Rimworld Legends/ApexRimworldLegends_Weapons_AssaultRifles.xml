@@ -254,8 +254,38 @@
 						</tools>
 					</value>
 				</li>
-
-				<!-- Havoc -->
+		<!-- Havoc low velocity 5x35 -->
+				<li Class="PatchOperationAdd">
+				   <xpath>Defs</xpath>
+				   <value>
+					  <!-- ============== 5x35 low velocity ammoset ============ -->
+					  <CombatExtended.AmmoSetDef>
+						 <defName>AmmoSet_5x35mmCharged_LowVelocity</defName>
+						 <label>5x35 Charged (Low Velocity)</label>
+						 <ammoTypes>
+							<Ammo_5x35mmCharged>Bullet_5x35mmCharged_LowVelocity</Ammo_5x35mmCharged>
+						 </ammoTypes>
+					  </CombatExtended.AmmoSetDef>
+					  <!-- ================== Projectiles ================== -->
+					  <ThingDef ParentName="Base5x35mmChargedBullet">
+						 <defName>Bullet_5x35mmCharged_LowVelocity</defName>
+						 <label>5x35mm Charged Bullet (Low Velocity)</label>
+						 <projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageAmountBase>10</damageAmountBase>
+							<secondaryDamage>
+							   <li>
+								  <def>Bomb_Secondary</def>
+								  <amount>2</amount>
+							   </li>
+							</secondaryDamage>
+							<speed>100</speed>
+							<armorPenetrationSharp>20</armorPenetrationSharp>
+							<armorPenetrationBlunt>25</armorPenetrationBlunt>
+						 </projectile>
+					  </ThingDef>
+				   </value>
+				</li>
+		<!-- Havoc -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>ARL_MechanoidRifle</defName>
 					<statBases>
@@ -271,7 +301,7 @@
 						<recoilAmount>1.96</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_8x40mmCharged</defaultProjectile>
+						<defaultProjectile>Bullet_5x35mmCharged_LowVelocity</defaultProjectile>
 						<burstShotCount>6</burstShotCount>
 						<ticksBetweenBurstShots>5.2</ticksBetweenBurstShots>
 						<warmupTime>1</warmupTime>
@@ -283,21 +313,19 @@
 					<AmmoUser>
 						<magazineSize>36</magazineSize>
 						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_8x40mmCharged</ammoSet>
+						<ammoSet>AmmoSet_5x35mmCharged_LowVelocity</ammoSet>
 					</AmmoUser>
 					<FireModes />
 					<weaponTags>
 						<li>CE_AI_AssaultWeapon</li>
 					</weaponTags>
 				</li>
-
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="ARL_MechanoidRifle"]/label</xpath>
 					<value>
 						<label>Havoc</label>
 					</value>
 				</li>
-
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="ARL_MechanoidRifle"]/tools</xpath>
 					<value>
