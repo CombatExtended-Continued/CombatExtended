@@ -8,19 +8,20 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public class CompFleckEmitterSmooth : ThingComp
+    public class CompProjectileFleck : ThingComp
     {
-        public int ticksSinceLastEmitted;
-
         public Vector3 lastPos;
 
-        public int tickToCutoff;
+        public int age => projectile.FlightTicks;
 
-        private CompProperties_FleckEmitterSmooth Props => (CompProperties_FleckEmitterSmooth)props;
+        ProjectileCE projectile;
+
+        private CompProperties_ProjectileFleck Props => (CompProperties_ProjectileFleck)props;
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
+            projectile = parent as ProjectileCE;
         }
 
         private bool IsOn
@@ -31,51 +32,12 @@ namespace CombatExtended
                 {
                     return false;
                 }
-                CompPowerTrader comp = parent.GetComp<CompPowerTrader>();
-                if (comp != null && !comp.PowerOn)
-                {
-                    return false;
-                }
-                CompSendSignalOnCountdown comp2 = parent.GetComp<CompSendSignalOnCountdown>();
-                if (comp2 != null && comp2.ticksLeft <= 0)
-                {
-                    return false;
-                }
-                if (parent is Building_MusicalInstrument building_MusicalInstrument && !building_MusicalInstrument.IsBeingPlayed)
-                {
-                    return false;
-                }
-                CompInitiatable comp3 = parent.GetComp<CompInitiatable>();
-                if (comp3 != null && !comp3.Initiated)
-                {
-                    return false;
-                }
-                CompLoudspeaker comp4 = parent.GetComp<CompLoudspeaker>();
-                if (comp4 != null && !comp4.Active)
-                {
-                    return false;
-                }
-                CompHackable comp5 = parent.GetComp<CompHackable>();
-                if (comp5 != null && comp5.IsHacked)
-                {
-                    return false;
-                }
-                if (parent is Building_Crate building_Crate && !building_Crate.HasAnyContents)
-                {
-                    return false;
-                }
-                if (Props.cutoffTickRange.max > 0 && tickToCutoff > Props.cutoffTickRange.max)
+                if (projectile == null)
                 {
                     return false;
                 }
                 return true;
             }
-        }
-
-        float cutoffScaleOffset()
-        {
-            if (Props.cutoffTickRange.max < 0 || tickToCutoff < Props.cutoffTickRange.min) { return 1; }
-            return ((float)Props.cutoffTickRange.max - tickToCutoff) / (Props.cutoffTickRange.max - Props.cutoffTickRange.min);
         }
 
         public override void CompTick()
@@ -88,33 +50,33 @@ namespace CombatExtended
             {
                 lastPos = parent.DrawPos;
             }
-            if (Props.emissionInterval != -1)
-            {
-                if (ticksSinceLastEmitted >= Props.emissionInterval)
-                {
-                    Emit();
-                    ticksSinceLastEmitted = 0;
-                }
-                else
-                {
-                    ticksSinceLastEmitted++;
-                }
-            }
-            tickToCutoff++;
+            Emit();
         }
 
         private void Emit()
         {
-            Vector3 diff = Vector3.zero;
-            for (int i = 0; i < Props.flecksPerTick; i++)
+            Vector3 delta = lastPos - parent.DrawPos;
+            foreach (ProjectileFleckDataCE data in Props.FleckDatas)
             {
-                FleckCreationData dataStatic = FleckMaker.GetDataStatic(parent.DrawPos + Props.offset + diff, parent.MapHeld, Props.fleck, Props.scale.RandomInRange * cutoffScaleOffset());
-                dataStatic.rotation = Props.rotation.RandomInRange;
-                for (int j = 0; j < Props.thickness; j++)
+                if ((data.cutoffTickRange.max < 0 || age < data.cutoffTickRange.max) && data.shouldEmit(age))
                 {
-                    parent.MapHeld.flecks.CreateFleck(dataStatic);
+                    float scaleoffset = 0;
+                    Vector3 diff = Vector3.zero;
+                    for (int i = 0; i < data.emissionAmount; i++)
+                    {
+                        FleckCreationData dataStatic = FleckMaker.GetDataStatic(parent.DrawPos - data.originOffsetInternal * delta + diff, parent.MapHeld, data.fleck, (data.scale.RandomInRange + scaleoffset) * data.cutoffScaleOffset(age));
+                        dataStatic.rotation = data.rotation.RandomInRange;
+                        for (int j = 0; j < data.flecksPerEmission; j++)
+                        {
+                            parent.MapHeld.flecks.CreateFleck(dataStatic);
+                        }
+                        if (data.emissionAmount > 1)
+                        {
+                            diff += delta / data.emissionAmount;
+                            scaleoffset += data.scaleOffsetInternal;
+                        }
+                    }
                 }
-                diff += (lastPos - parent.DrawPos) / Props.flecksPerTick;
             }
             lastPos = parent.DrawPos;
         }
@@ -122,27 +84,53 @@ namespace CombatExtended
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look(ref ticksSinceLastEmitted, "ticksSinceLastEmitted", 0);
             Scribe_Values.Look(ref lastPos, "lastPos");
-            Scribe_Values.Look(ref tickToCutoff, "tickToCutoff");
         }
     }
 
-    public class CompProperties_FleckEmitterSmooth : CompProperties_FleckEmitter
+    public class CompProperties_ProjectileFleck : CompProperties
     {
-        public int flecksPerTick = 1;
+        public List<ProjectileFleckDataCE> FleckDatas;
+
+        public CompProperties_ProjectileFleck()
+        {
+            compClass = typeof(CompProjectileFleck);
+        }
+    }
+
+    public class ProjectileFleckDataCE
+    {
+        public FleckDef fleck;
+
+        float emissionsPerTick = 1;
+
+        public int flecksPerEmission = 1;
 
         public FloatRange rotation = new FloatRange(0, 360);
 
         public FloatRange scale = new FloatRange(1, 1);
 
-        public int thickness = 1;
-
         public IntRange cutoffTickRange = new IntRange(-1, -1);
 
-        public CompProperties_FleckEmitterSmooth()
+        public float originOffset = 0.7f;
+
+        public int emissionAmount => emissionsPerTick > 1 ? (int)emissionsPerTick : 1;
+        public float originOffsetInternal => 1 - originOffset;
+        public float scaleOffsetInternal => fleck.growthRate / (emissionsPerTick * 60);
+
+        public float cutoffScaleOffset(int age)
         {
-            compClass = typeof(CompFleckEmitterSmooth);
+            if (cutoffTickRange.max < 0 || age < cutoffTickRange.min) { return 1; }
+            return ((float)cutoffTickRange.max - age) / (cutoffTickRange.max - cutoffTickRange.min);
+        }
+
+        public bool shouldEmit(int age)
+        {
+            if (emissionsPerTick >= 1)
+            {
+                return true;
+            }
+            return age % (int)(emissionsPerTick / 1) == 0;
         }
     }
 }
