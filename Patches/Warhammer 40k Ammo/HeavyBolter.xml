@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Ancient Arsenal: Warcaskets</li>
+			<li>Warcaskets: Adeptus Astartes</li>
 		</mods>
 		<match Class="PatchOperationAdd">
 			<xpath>Defs</xpath>
 			<value>
 
 				<ThingCategoryDef>
-					<defName>AmmoBrigador</defName>
-					<label>Brigador Bolt</label>
+					<defName>AmmoBolter998</defName>
+					<label>.998 Cal Bolter</label>
 					<parent>AmmoAdvanced</parent>
 					<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
 				</ThingCategoryDef>
@@ -19,93 +18,93 @@
 				<!-- ==================== AmmoSet ========================== -->
 
 				<CombatExtended.AmmoSetDef>
-					<defName>AmmoSetBrigador</defName>
-					<label>Brigador Bolt</label>
+					<defName>AmmoSet_Bolter998</defName>
+					<label>.998 Cal Bolter</label>
 					<ammoTypes>
-						<Ammo_Brigador_Standard>Bullet_Brigador_Standard</Ammo_Brigador_Standard>
-						<Ammo_Brigador_Inferno>Bullet_Brigador_Inferno</Ammo_Brigador_Inferno>
-						<Ammo_Brigador_MetalStorm>Bullet_Brigador_MetalStorm</Ammo_Brigador_MetalStorm>
-						<Ammo_Brigador_Kraken>Bullet_Brigador_Kraken</Ammo_Brigador_Kraken>
+						<Ammo_Bolter998_Standard>Bullet_Bolter998_Standard</Ammo_Bolter998_Standard>
+						<Ammo_Bolter998_Inferno>Bullet_Bolter998_Inferno</Ammo_Bolter998_Inferno>
+						<Ammo_Bolter998_MetalStorm>Bullet_Bolter998_MetalStorm</Ammo_Bolter998_MetalStorm>
+						<Ammo_Bolter998_Kraken>Bullet_Bolter998_Kraken</Ammo_Bolter998_Kraken>
 					</ammoTypes>
 				</CombatExtended.AmmoSetDef>
 
 				<!-- ==================== Ammo ========================== -->
 
-				<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoBrigadorBase" ParentName="SmallAmmoBase" Abstract="True">
-					<description>A gryojet-stabilized projectile with an explosive charge and hardened tip, fired from most patterns of Astartes bolters.</description>
+				<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoBolter998Base" ParentName="AmmoBase" Abstract="True">
+					<description>A .998 caliber, gryojet-stabilized projectile with an explosive charge and hardened tip, fired from most patterns of Astartes heavy bolters.</description>
 					<statBases>
-						<Mass>0.151</Mass>
-						<Bulk>0.06</Bulk>
+						<Mass>0.385</Mass>
+						<Bulk>0.15</Bulk>
 					</statBases>
 					<tradeTags>
 						<li>CE_AutoEnableTrade</li>
 						<li>CE_AutoEnableCrafting</li>
 					</tradeTags>
 					<thingCategories>
-						<li>AmmoBrigador</li>
+						<li>AmmoBolter998</li>
 					</thingCategories>
-					<stackLimit>5000</stackLimit>
+					<stackLimit>2000</stackLimit>
 				</ThingDef>
 
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBrigadorBase">
-					<defName>Ammo_Brigador_Standard</defName>
-					<label>Brigador bolt shell (Standard)</label>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter998Base">
+					<defName>Ammo_Bolter998_Standard</defName>
+					<label>.998 cal bolter shell (Standard)</label>
 					<graphicData>
-						<texPath>ThirdParty/Warhammer/Bolter/Standard</texPath>
+						<texPath>ThirdParty/Warhammer/HeavyBolter/Standard</texPath>
 						<graphicClass>Graphic_StackCount</graphicClass>
 					</graphicData>
 					<statBases>
-						<MarketValue>1.98</MarketValue>
+						<MarketValue>4.44</MarketValue>
 					</statBases>
 					<ammoClass>Standard</ammoClass>
-					<cookOffProjectile>Bullet_Brigador_Standard</cookOffProjectile>
+					<cookOffProjectile>Bullet_Bolter998_Standard</cookOffProjectile>
 				</ThingDef>
 
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBrigadorBase">
-					<defName>Ammo_Brigador_Inferno</defName>
-					<label>Brigador bolt shell (Inferno)</label>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter998Base">
+					<defName>Ammo_Bolter998_Inferno</defName>
+					<label>.998 cal bolter shell (Inferno)</label>
 					<graphicData>
-						<texPath>ThirdParty/Warhammer/Bolter/Inferno</texPath>
+						<texPath>ThirdParty/Warhammer/HeavyBolter/Inferno</texPath>
 						<graphicClass>Graphic_StackCount</graphicClass>
 					</graphicData>
 					<statBases>
-						<MarketValue>1.37</MarketValue>
+						<MarketValue>2.28</MarketValue>
 					</statBases>
 					<ammoClass>Inferno</ammoClass>
-					<cookOffProjectile>Bullet_Brigador_Inferno</cookOffProjectile>
+					<cookOffProjectile>Bullet_Bolter998_Inferno</cookOffProjectile>
 				</ThingDef>
 
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBrigadorBase">
-					<defName>Ammo_Brigador_MetalStorm</defName>
-					<label>Brigador bolt shell (Metal Storm)</label>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter998Base">
+					<defName>Ammo_Bolter998_MetalStorm</defName>
+					<label>.998 cal bolter shell (Metal Storm)</label>
 					<graphicData>
-						<texPath>ThirdParty/Warhammer/Bolter/MetalStorm</texPath>
+						<texPath>ThirdParty/Warhammer/HeavyBolter/MetalStorm</texPath>
 						<graphicClass>Graphic_StackCount</graphicClass>
 					</graphicData>
 					<statBases>
-						<MarketValue>1.48</MarketValue>
+						<MarketValue>2.70</MarketValue>
 					</statBases>
 					<ammoClass>MetalStorm</ammoClass>
-					<cookOffProjectile>Bullet_Brigador_MetalStorm</cookOffProjectile>
+					<cookOffProjectile>Bullet_Bolter998_MetalStorm</cookOffProjectile>
 				</ThingDef>
 
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBrigadorBase">
-					<defName>Ammo_Brigador_Kraken</defName>
-					<label>Brigador bolt shell (Kraken)</label>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter998Base">
+					<defName>Ammo_Bolter998_Kraken</defName>
+					<label>.998 cal bolter shell (Kraken)</label>
 					<graphicData>
-						<texPath>ThirdParty/Warhammer/Bolter/Kraken</texPath>
+						<texPath>ThirdParty/Warhammer/HeavyBolter/Kraken</texPath>
 						<graphicClass>Graphic_StackCount</graphicClass>
 					</graphicData>
 					<statBases>
-						<MarketValue>1.48</MarketValue>
+						<MarketValue>2.37</MarketValue>
 					</statBases>
 					<ammoClass>Kraken</ammoClass>
-					<cookOffProjectile>Bullet_Brigador_Kraken</cookOffProjectile>
+					<cookOffProjectile>Bullet_Bolter998_Kraken</cookOffProjectile>
 				</ThingDef>
 
 				<!-- ================== Projectiles ================== -->
 
-				<ThingDef Name="BaseBrigadorBullet" ParentName="BaseExplosiveBullet" Abstract="true">
+				<ThingDef Name="BaseBolter998Bullet" ParentName="BaseExplosiveBullet" Abstract="true">
 					<graphicData>
 						<texPath>Things/Projectile/Bullet_Big</texPath>
 						<graphicClass>Graphic_Single</graphicClass>
@@ -113,63 +112,62 @@
 					<thingClass>CombatExtended.BulletCE</thingClass>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<damageDef>Bullet</damageDef>
-						<speed>80</speed>
+						<speed>96</speed>
 						<dropsCasings>true</dropsCasings>
-						<casingMoteDefname>Fleck_PistolAmmoCasings</casingMoteDefname>
-						<casingFilthDefname>Filth_PistolAmmoCasings</casingFilthDefname>
+						<casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
 					</projectile>
 				</ThingDef>
 
-				<ThingDef ParentName="BaseBrigadorBullet">
-					<defName>Bullet_Brigador_Standard</defName>
-					<label>Brigador bolt (standard)</label>
+				<ThingDef ParentName="BaseBolter998Bullet">
+					<defName>Bullet_Bolter998_Standard</defName>
+					<label>.998 cal bolt (Standard)</label>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<damageAmountBase>37</damageAmountBase>
-						<armorPenetrationSharp>14</armorPenetrationSharp>
-						<armorPenetrationBlunt>2.931</armorPenetrationBlunt>
+						<damageAmountBase>64</damageAmountBase>
+						<armorPenetrationSharp>20</armorPenetrationSharp>
+						<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
 						<secondaryDamage>
 							<li>
 								<def>Bomb_Secondary</def>
-								<amount>22</amount>
+								<amount>38</amount>
 							</li>
 						</secondaryDamage>
 					</projectile>
 				</ThingDef>
 
-				<ThingDef ParentName="BaseBrigadorBullet">
-					<defName>Bullet_Brigador_Inferno</defName>
-					<label>Brigador bolt (inferno)</label>
+				<ThingDef ParentName="BaseBolter998Bullet">
+					<defName>Bullet_Bolter998_Inferno</defName>
+					<label>.998 cal bolt (Inferno)</label>
 					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<damageDef>PrometheumFlame</damageDef>
-						<damageAmountBase>3</damageAmountBase>
-						<explosionRadius>0.5</explosionRadius>
+						<damageAmountBase>5</damageAmountBase>
+						<explosionRadius>1.5</explosionRadius>
 						<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-						<preExplosionSpawnChance>1</preExplosionSpawnChance>
+						<preExplosionSpawnChance>0.7</preExplosionSpawnChance>
 						<soundExplode>MortarIncendiary_Explode</soundExplode>
 					</projectile>
 					<comps>
 						<li Class="CombatExtended.CompProperties_ExplosiveCE">
-							<damageAmountBase>4</damageAmountBase>
+							<damageAmountBase>7</damageAmountBase>
 							<explosiveDamageType>Thermobaric</explosiveDamageType>
-							<explosiveRadius>0.5</explosiveRadius>
+							<explosiveRadius>1</explosiveRadius>
 							<explosionSound>MortarIncendiary_Explode</explosionSound>
 							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 						</li>
 					</comps>
 				</ThingDef>
 
-				<ThingDef ParentName="BaseBrigadorBullet">
-					<defName>Bullet_Brigador_MetalStorm</defName>
+				<ThingDef ParentName="BaseBolter998Bullet">
+					<defName>Bullet_Bolter998_MetalStorm</defName>
 					<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
-					<label>Brigador bolt (metal storm)</label>
+					<label>.998 cal bolt (Metal Storm)</label>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<explosionRadius>0.5</explosionRadius>
+						<explosionRadius>1</explosionRadius>
 						<damageDef>Bomb</damageDef>
-						<damageAmountBase>10</damageAmountBase>
+						<damageAmountBase>17</damageAmountBase>
 						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-						<aimHeightOffset>1.2</aimHeightOffset>
-						<armingDelay>1.5</armingDelay>
+						<aimHeightOffset>1.05</aimHeightOffset>
+						<armingDelay>2</armingDelay>
 					</projectile>
 					<comps>
 						<li Class="CombatExtended.CompProperties_Fragments">
@@ -181,20 +179,20 @@
 					</comps>
 				</ThingDef>
 
-				<ThingDef ParentName="BaseBrigadorBullet">
-					<defName>Bullet_Brigador_Kraken</defName>
-					<label>Brigador bolt (kraken)</label>
+				<ThingDef ParentName="BaseBolter998Bullet">
+					<defName>Bullet_Bolter998_Kraken</defName>
+					<label>.998 cal bolt (Kraken)</label>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<damageDef>Bullet</damageDef>
-						<damageAmountBase>104</damageAmountBase>
-						<armorPenetrationSharp>27.6</armorPenetrationSharp>
-						<armorPenetrationBlunt>2.931</armorPenetrationBlunt>
+						<damageAmountBase>142</damageAmountBase>
+						<armorPenetrationSharp>46</armorPenetrationSharp>
+						<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
 					</projectile>
 					<comps>
 						<li Class="CombatExtended.CompProperties_ExplosiveCE">
-							<damageAmountBase>10</damageAmountBase>
+							<damageAmountBase>17</damageAmountBase>
 							<explosiveDamageType>Bomb</explosiveDamageType>
-							<explosiveRadius>0.25</explosiveRadius>
+							<explosiveRadius>0.5</explosiveRadius>
 							<explosionSound>MortarBomb_Explode</explosionSound>
 							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 						</li>
@@ -204,10 +202,10 @@
 				<!-- ==================== Recipes ========================== -->
 
 				<RecipeDef ParentName="AmmoRecipeBase">
-					<defName>MakeAmmo_Brigador_Standard</defName>
-					<label>make Brigador Bolter (standard) shell x200</label>
-					<description>Craft 200 Brigador Bolter (standard) shells.</description>
-					<jobString>Making Brigador Bolter (standard) shells.</jobString>
+					<defName>MakeAmmo_Bolter998_Standard</defName>
+					<label>make .998 Cal Bolter (standard) shell x200</label>
+					<description>Craft 200 .998 Cal Bolter (standard) shells.</description>
+					<jobString>Making .998 Cal Bolter (standard) shells.</jobString>
 					<ingredients>
 						<li>
 							<filter>
@@ -215,7 +213,7 @@
 									<li>Steel</li>
 								</thingDefs>
 							</filter>
-							<count>62</count>
+							<count>154</count>
 						</li>
 						<li>
 							<filter>
@@ -223,7 +221,7 @@
 									<li>FSX</li>
 								</thingDefs>
 							</filter>
-							<count>14</count>
+							<count>18</count>
 						</li>
 						<li>
 							<filter>
@@ -231,7 +229,7 @@
 									<li>ComponentIndustrial</li>
 								</thingDefs>
 							</filter>
-							<count>2</count>
+							<count>4</count>
 						</li>
 					</ingredients>
 					<fixedIngredientFilter>
@@ -242,16 +240,16 @@
 						</thingDefs>
 					</fixedIngredientFilter>
 					<products>
-						<Ammo_Brigador_Standard>200</Ammo_Brigador_Standard>
+						<Ammo_Bolter998_Standard>200</Ammo_Bolter998_Standard>
 					</products>
-					<workAmount>10400</workAmount>
+					<workAmount>36600</workAmount>
 				</RecipeDef>
 
 				<RecipeDef ParentName="AmmoRecipeBase">
-					<defName>MakeAmmo_Brigador_Inferno</defName>
-					<label>make Brigador Bolter (inferno) shell x200</label>
-					<description>Craft 200 Brigador Bolter (inferno) shells.</description>
-					<jobString>Making Brigador Bolter (inferno) shells.</jobString>
+					<defName>MakeAmmo_Bolter998_Inferno</defName>
+					<label>make .998 Cal Bolter (inferno) shell x200</label>
+					<description>Craft 200 .998 Cal Bolter (inferno) shells.</description>
+					<jobString>Making .998 Cal Bolter (inferno) shells.</jobString>
 					<ingredients>
 						<li>
 							<filter>
@@ -259,7 +257,7 @@
 									<li>Steel</li>
 								</thingDefs>
 							</filter>
-							<count>62</count>
+							<count>154</count>
 						</li>
 						<li>
 							<filter>
@@ -267,7 +265,7 @@
 									<li>Prometheum</li>
 								</thingDefs>
 							</filter>
-							<count>7</count>
+							<count>12</count>
 						</li>
 						<li>
 							<filter>
@@ -275,7 +273,7 @@
 									<li>ComponentIndustrial</li>
 								</thingDefs>
 							</filter>
-							<count>4</count>
+							<count>6</count>
 						</li>
 					</ingredients>
 					<fixedIngredientFilter>
@@ -286,16 +284,16 @@
 						</thingDefs>
 					</fixedIngredientFilter>
 					<products>
-						<Ammo_Brigador_Inferno>200</Ammo_Brigador_Inferno>
+						<Ammo_Bolter998_Inferno>200</Ammo_Bolter998_Inferno>
 					</products>
-					<workAmount>9400</workAmount>
+					<workAmount>19400</workAmount>
 				</RecipeDef>
 
 				<RecipeDef ParentName="AmmoRecipeBase">
-					<defName>MakeAmmo_Brigador_MetalStorm</defName>
-					<label>make Brigador Bolter (metal storm) shell x200</label>
-					<description>Craft 200 Brigador Bolter (metal storm) shells.</description>
-					<jobString>Making Brigador Bolter (metal storm) shells.</jobString>
+					<defName>MakeAmmo_Bolter998_MetalStorm</defName>
+					<label>make .998 Cal Bolter (metal storm) shell x200</label>
+					<description>Craft 200 .998 Cal Bolter (metal storm) shells.</description>
+					<jobString>Making .998 Cal Bolter (metal storm) shells.</jobString>
 					<ingredients>
 						<li>
 							<filter>
@@ -303,7 +301,7 @@
 									<li>Steel</li>
 								</thingDefs>
 							</filter>
-							<count>62</count>
+							<count>154</count>
 						</li>
 						<li>
 							<filter>
@@ -311,7 +309,7 @@
 									<li>FSX</li>
 								</thingDefs>
 							</filter>
-							<count>5</count>
+							<count>8</count>
 						</li>
 						<li>
 							<filter>
@@ -319,7 +317,7 @@
 									<li>ComponentIndustrial</li>
 								</thingDefs>
 							</filter>
-							<count>6</count>
+							<count>8</count>
 						</li>
 					</ingredients>
 					<fixedIngredientFilter>
@@ -330,16 +328,16 @@
 						</thingDefs>
 					</fixedIngredientFilter>
 					<products>
-						<Ammo_Brigador_MetalStorm>200</Ammo_Brigador_MetalStorm>
+						<Ammo_Bolter998_MetalStorm>200</Ammo_Bolter998_MetalStorm>
 					</products>
-					<workAmount>9400</workAmount>
+					<workAmount>21800</workAmount>
 				</RecipeDef>
 
 				<RecipeDef ParentName="AmmoRecipeBase">
-					<defName>MakeAmmo_Brigador_MetalStorm</defName>
-					<label>make Brigador Bolter (metal storm) shell x200</label>
-					<description>Craft 200 Brigador Bolter (metal storm) shells.</description>
-					<jobString>Making Brigador Bolter (metal storm) shells.</jobString>
+					<defName>MakeAmmo_Bolter998_Kraken</defName>
+					<label>make .998 Cal Bolter (kraken) shell x200</label>
+					<description>Craft 200 .998 Cal Bolter (kraken) shells.</description>
+					<jobString>Making .998 Cal Bolter (kraken) shells.</jobString>
 					<ingredients>
 						<li>
 							<filter>
@@ -347,7 +345,7 @@
 									<li>Steel</li>
 								</thingDefs>
 							</filter>
-							<count>62</count>
+							<count>154</count>
 						</li>
 						<li>
 							<filter>
@@ -355,7 +353,7 @@
 									<li>FSX</li>
 								</thingDefs>
 							</filter>
-							<count>5</count>
+							<count>6</count>
 						</li>
 						<li>
 							<filter>
@@ -364,50 +362,6 @@
 								</thingDefs>
 							</filter>
 							<count>6</count>
-						</li>
-					</ingredients>
-					<fixedIngredientFilter>
-						<thingDefs>
-							<li>Steel</li>
-							<li>FSX</li>
-							<li>ComponentIndustrial</li>
-						</thingDefs>
-					</fixedIngredientFilter>
-					<products>
-						<Ammo_Brigador_MetalStorm>200</Ammo_Brigador_MetalStorm>
-					</products>
-					<workAmount>12400</workAmount>
-				</RecipeDef>
-
-				<RecipeDef ParentName="AmmoRecipeBase">
-					<defName>MakeAmmo_Brigador_Kraken</defName>
-					<label>make Brigador Bolter (kraken) shell x200</label>
-					<description>Craft 200 Brigador Bolter (kraken) shells.</description>
-					<jobString>Making Brigador Bolter (kraken) shells.</jobString>
-					<ingredients>
-						<li>
-							<filter>
-								<thingDefs>
-									<li>Steel</li>
-								</thingDefs>
-							</filter>
-							<count>62</count>
-						</li>
-						<li>
-							<filter>
-								<thingDefs>
-									<li>FSX</li>
-								</thingDefs>
-							</filter>
-							<count>4</count>
-						</li>
-						<li>
-							<filter>
-								<thingDefs>
-									<li>ComponentIndustrial</li>
-								</thingDefs>
-							</filter>
-							<count>4</count>
 						</li>
 						<li>
 							<filter>
@@ -415,7 +369,7 @@
 									<li>Uranium</li>
 								</thingDefs>
 							</filter>
-							<count>4</count>
+							<count>8</count>
 						</li>
 					</ingredients>
 					<fixedIngredientFilter>
@@ -427,13 +381,12 @@
 						</thingDefs>
 					</fixedIngredientFilter>
 					<products>
-						<Ammo_Brigador_Kraken>200</Ammo_Brigador_Kraken>
+						<Ammo_Bolter998_Kraken>200</Ammo_Bolter998_Kraken>
 					</products>
-					<workAmount>13200</workAmount>
+					<workAmount>20600</workAmount>
 				</RecipeDef>
 
 			</value>
 		</match>
 	</Operation>
-
 </Patch>
