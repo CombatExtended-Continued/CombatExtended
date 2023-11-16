@@ -546,6 +546,7 @@ WarCasket Expanded  |
 WarCasket Gundam Addon  |
 Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
+Warhammer 40.000 - Imperium Weaponry    |
 Wasters Toxic Breather  |
 Weapons+	|
 WWII German Uniforms - V's Edit |
