@@ -31,6 +31,10 @@ namespace CombatExtended
         public float airborneSuppressionFactor = 1;
         public float dangerFactor = 1;
 
+        public ThingDef detonateMoteDef;
+        public FleckDef detonateFleckDef;
+        public float detonateEffectsScaleOverride = -1;
+
         #region Bunker Buster fields
         /// <summary>
         /// Amount of tiles ProjectileCE_BunkerBuster will detonate after after penetrating an obstacle

@@ -53,9 +53,13 @@ namespace CombatExtended
 
         void HeightFuseAirBurst()
         {
-            Mote mote = MoteMaker.MakeStaticMote(DrawPos, Map, CE_ThingDefOf.Mote_BigExplode, (def.projectile as ProjectilePropertiesCE).explosionRadius * 2);
             float f = (LastPos.y - detonationHeight) / (LastPos.y - Height);
             ExactPosition = f * (LastPos - ExactPosition);
+            if (!ExactPosition.ToIntVec3().IsValid)
+            {
+                Destroy();
+                return;
+            }
             base.Impact(null);
         }
     }
