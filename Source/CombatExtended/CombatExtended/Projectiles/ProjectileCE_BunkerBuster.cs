@@ -43,9 +43,9 @@ namespace CombatExtended
                                            postExplosionGasType: props.postExplosionGasType
                                           );
 
-                if (this.TryGetComp<CompFragments>() != null)
+                foreach (var comp in GetComps<CompFragments>())
                 {
-                    this.TryGetComp<CompFragments>().Throw(finalPos.ToVector3(), this.Map, this);
+                    comp.Throw(finalPos.ToVector3(), this.Map, this);
                 }
 
                 this.Destroy();
