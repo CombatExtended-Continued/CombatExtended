@@ -11,10 +11,7 @@
 
 				<!-- === Tools === -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-						defName = "GF40K_PlasmaPistol" or
-						defName = "GF40K_PlasmaPistolRelic"
-						]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="GF40K_PhosphorPistolRelic" or defName="GF40K_RelicRadiumPistol"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -43,10 +40,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-						defName = "GF40K_PlasmaGun" or
-						defName = "GF40K_PlasmaGunRelic"
-						]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="GF40K_RelicRadiumCarbine"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -84,40 +78,37 @@
 					</value>
 				</li>
 
-				<!-- === Remove VE Laser components === -->
+				<!-- === Remove VWE: Laser Components === -->
+
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[
-						defName = "GF40K_PlasmaPistolRelic" or
-						defName = "GF40K_PlasmaGunRelic"
-						]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+					<xpath>Defs/ThingDef[defName = "GF40K_PhosphorPistolRelic"]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
 				</li>
 
-				<!-- === Plasma Pistol === -->
+				<!-- === Phosphor Pistol === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>GF40K_PlasmaPistol</defName>
+					<defName>GF40K_PhosphorPistolRelic</defName>
 					<statBases>
-						<Mass>2.5</Mass>
-						<Bulk>5.0</Bulk>
-						<SwayFactor>1.17</SwayFactor>
-						<ShotSpread>0.15</ShotSpread>
+						<Bulk>2.5</Bulk>
+						<SwayFactor>1.25</SwayFactor>
+						<ShotSpread>0.06</ShotSpread>
 						<SightsEfficiency>0.8</SightsEfficiency>
 						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
-						<recoilAmount>0.5</recoilAmount>
+						<recoilAmount>2.5</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>True</hasStandardCommand>
-						<defaultProjectile>Bullet_PlasmaPistol</defaultProjectile>
-						<warmupTime>0.5</warmupTime>
-						<range>16</range>
+						<defaultProjectile>Bullet_30x64mmFuel_Incendiary</defaultProjectile>
+						<warmupTime>0.95</warmupTime>
+						<range>28</range>
 						<soundCast>GF40K_LaserPistolShot</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
 					<AmmoUser>
-						<magazineSize>15</magazineSize>
-						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_PlasmaCanister_Pistol</ammoSet>
+						<magazineSize>7</magazineSize>
+						<reloadTime>5.2</reloadTime>
+						<ammoSet>AmmoSet_30x64mmFuel</ammoSet>
 					</AmmoUser>
 					<FireModes>
 						<aiAimMode>Snapshot</aiAimMode>
@@ -127,102 +118,74 @@
 					</weaponTags>
 				</li>
 
-				<!-- === Relic Plasma Pistol === -->
+				<!-- === Radium Pistol === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>GF40K_PlasmaPistolRelic</defName>
+					<defName>GF40K_RelicRadiumPistol</defName>
 					<statBases>
-						<Mass>2.5</Mass>
-						<Bulk>5.0</Bulk>
-						<SwayFactor>1.00</SwayFactor>
-						<ShotSpread>0.05</ShotSpread>
-						<SightsEfficiency>1.0</SightsEfficiency>
-						<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
-					</statBases>
-					<Properties>
-						<recoilAmount>0.3</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>True</hasStandardCommand>
-						<defaultProjectile>Bullet_PlasmaPistol_Relic</defaultProjectile>
-						<warmupTime>0.45</warmupTime>
-						<range>18</range>
-						<soundCast>GF40K_LaserPistolShot</soundCast>
-						<soundCastTail>GunTail_Light</soundCastTail>
-						<muzzleFlashScale>9</muzzleFlashScale>
-					</Properties>
-					<AmmoUser>
-						<magazineSize>15</magazineSize>
-						<reloadTime>3.8</reloadTime>
-						<ammoSet>AmmoSet_PlasmaCanister_Pistol_Relic</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiAimMode>Snapshot</aiAimMode>
-					</FireModes>
-					<weaponTags>
-						<li>CE_OneHandedWeapon</li>
-					</weaponTags>
-				</li>
-
-				<!-- === Plasma Gun === -->
-				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>GF40K_PlasmaGun</defName>
-					<statBases>
-						<Mass>6.50</Mass>
-						<Bulk>8.00</Bulk>
-						<SwayFactor>1.35</SwayFactor>
+						<Mass>1.25</Mass>
+						<Bulk>2.5</Bulk>
+						<SwayFactor>1.25</SwayFactor>
 						<ShotSpread>0.06</ShotSpread>
-						<SightsEfficiency>1.10</SightsEfficiency>
+						<SightsEfficiency>0.8</SightsEfficiency>
 						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
-						<recoilAmount>0.65</recoilAmount>
+						<recoilAmount>2.5</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>True</hasStandardCommand>
-						<defaultProjectile>Bullet_PlasmaRifle</defaultProjectile>
-						<warmupTime>1</warmupTime>
-						<range>55</range>
-						<soundCast>GF40K_LaserPistolShot</soundCast>
+						<defaultProjectile>Bullet_RadiumPistol_Tox</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>18</range>
+						<soundCast>Shot_ChargeRifle</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
 					<AmmoUser>
-						<magazineSize>30</magazineSize>
+						<magazineSize>15</magazineSize>
 						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_PlasmaCanister_Rifle</ammoSet>
+						<ammoSet>AmmoSet_Radium_Pistol</ammoSet>
 					</AmmoUser>
 					<FireModes>
-						<aiAimMode>AimedShot</aiAimMode>
+						<aiAimMode>Snapshot</aiAimMode>
 					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
 				</li>
 
-				<!-- === Relic Plasma Gun === -->
+				<!-- === Radium Carbine === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>GF40K_PlasmaGunRelic</defName>
+					<defName>GF40K_RelicRadiumCarbine</defName>
 					<statBases>
-						<Mass>6.50</Mass>
-						<Bulk>8.00</Bulk>
-						<SwayFactor>1.30</SwayFactor>
-						<ShotSpread>0.02</ShotSpread>
-						<SightsEfficiency>1.4</SightsEfficiency>
-						<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+						<Mass>5.0</Mass>
+						<Bulk>10.00</Bulk>
+						<SwayFactor>1.5</SwayFactor>
+						<ShotSpread>0.05</ShotSpread>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
-						<recoilAmount>0.4</recoilAmount>
+						<recoilAmount>1.7</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>True</hasStandardCommand>
-						<defaultProjectile>Bullet_PlasmaRifle_Relic</defaultProjectile>
-						<warmupTime>0.95</warmupTime>
-						<range>58</range>
+						<defaultProjectile>Bullet_RadiumCarbine_Tox</defaultProjectile>
+						<warmupTime>1.0</warmupTime>
+						<range>62</range>
+						<burstShotCount>4</burstShotCount>
+						<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 						<soundCast>GF40K_LaserPistolShot</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
 					<AmmoUser>
-						<magazineSize>30</magazineSize>
+						<magazineSize>20</magazineSize>
 						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_PlasmaCanister_Rifle_Relic</ammoSet>
+						<ammoSet>AmmoSet_Radium_Carbine</ammoSet>
 					</AmmoUser>
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
 					</FireModes>
 				</li>
 
