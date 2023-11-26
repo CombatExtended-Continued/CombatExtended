@@ -8,13 +8,19 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<!-- ======= WW2 Soldier Base Weapon Money Increase ======= -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[ @Name="WW2SoldierBase"]/weaponMoney</xpath>
-					<value>
-						<weaponMoney>800~1000</weaponMoney>
-					</value>
-				</li>
+			<!-- Assign SoldierBase some ammo. -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="WW2SoldierBase"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>4</min>
+							<max>6</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
 
 			</operations>
 		</match>
