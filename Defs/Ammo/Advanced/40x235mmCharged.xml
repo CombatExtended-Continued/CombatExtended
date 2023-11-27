@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo40x235mmCharged</defName>
+		<label>40x235mm Charged</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberChargeLarge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_40x235mmCharged</defName>
+		<label>40x235mm Charged</label>
+		<ammoTypes>
+			<Ammo_40x235mmCharged>Bullet_40x235mmCharged</Ammo_40x235mmCharged>
+			<Ammo_40x235mmCharged_AP>Bullet_40x235mmCharged_AP</Ammo_40x235mmCharged_AP>
+			<Ammo_40x235mmCharged_Ion>Bullet_40x235mmCharged_Ion</Ammo_40x235mmCharged_Ion>
+		</ammoTypes>
+		<similarTo>AmmoSet_ChargedHeavy</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="40x235mmChargedBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
+		<description>High-caliber charged shot ammo used by advanced autocannons.</description>
+		<statBases>
+			<Mass>0.808</Mass>
+			<Bulk>0.95</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo40x235mmCharged</li>
+		</thingCategories>
+		<stackLimit>200</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x235mmChargedBase">
+		<defName>Ammo_40x235mmCharged</defName>
+		<label>40x235mm Charged</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/LargeRegular</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>62.12</MarketValue>
+		</statBases>
+		<ammoClass>Charged</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x235mmChargedBase">
+		<defName>Ammo_40x235mmCharged_AP</defName>
+		<label>40x235mm Charged (Conc.)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/LargeConc</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>62.12</MarketValue>
+		</statBases>
+		<ammoClass>ChargedAP</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x235mmChargedBase">
+		<defName>Ammo_40x235mmCharged_Ion</defName>
+		<label>40x235mm Charged (Ion)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/LargeIon</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>62.12</MarketValue>
+		</statBases>
+		<ammoClass>Ionized</ammoClass>
+		<generateAllowChance>0.5</generateAllowChance>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base40x235mmChargedBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.8,1.8)</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>192</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x235mmChargedBullet">
+		<defName>Bullet_40x235mmCharged</defName>
+		<label>40x235mm Charged bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>188</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>56</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>80</armorPenetrationSharp>
+			<armorPenetrationBlunt>9075</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x235mmChargedBullet">
+		<defName>Bullet_40x235mmCharged_AP</defName>
+		<label>40x235mm Charged bullet (Conc.)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>148</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>22</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>160</armorPenetrationSharp>
+			<armorPenetrationBlunt>9075</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x235mmChargedBullet">
+		<defName>Bullet_40x235mmCharged_Ion</defName>
+		<label>40x235mm Charged bullet (Ion)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>148</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>89</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>120</armorPenetrationSharp>
+			<armorPenetrationBlunt>9075</armorPenetrationBlunt>
+			<empShieldBreakChance>1</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_40x235mmCharged</defName>
+		<label>make 40x235mm Charged cartridge x25</label>
+		<description>Craft 25 40x235mm Charged cartridges.</description>
+		<jobString>Making 40x235mm Charged cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>75</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x235mmCharged>25</Ammo_40x235mmCharged>
+		</products>
+		<workAmount>46000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_40x235mmCharged_AP</defName>
+		<label>make 40x235mm Charged (Conc.) cartridge x25</label>
+		<description>Craft 25 40x235mm Charged (Conc.) cartridges.</description>
+		<jobString>Making 40x235mm Charged (Conc.) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>75</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x235mmCharged_AP>25</Ammo_40x235mmCharged_AP>
+		</products>
+		<workAmount>46000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_40x235mmCharged_Ion</defName>
+		<label>make 40x235mm Charged (Ion) cartridge x25</label>
+		<description>Craft 25 40x235mm Charged (Ion) cartridges.</description>
+		<jobString>Making 40x235mm Charged (Ion) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>75</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x235mmCharged_Ion>25</Ammo_40x235mmCharged_Ion>
+		</products>
+		<workAmount>46000</workAmount>
+	</RecipeDef>
+
+</Defs>
