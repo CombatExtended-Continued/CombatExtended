@@ -26,6 +26,10 @@ $ start CombatExtended/Source/CombatExtended.sln
 
 After this, building is just building the solution, references will be pulled from Nuget, and the assemblies should be automatically publicised by the msbuild task. The resulting assembly will be in `$(root)/Assemblies/CombatExtended.dll`.
 
+###
+To install, build and keep updated with a few simple guided clicks use 
+https://github.com/Draconomial/CE-AutoInstaller-Updater-Builder
+
 ## Other options
 
 
