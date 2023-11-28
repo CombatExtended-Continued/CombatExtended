@@ -130,7 +130,7 @@ namespace CombatExtended
             {
                 return true;
             }
-            return age % (int)(emissionsPerTick / 1) == 0;
+            return age % (int)(1 / emissionsPerTick) == 0;
         }
     }
 }
