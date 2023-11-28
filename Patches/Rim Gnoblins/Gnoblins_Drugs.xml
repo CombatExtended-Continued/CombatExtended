@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Gnoblins</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Patch statOffsets ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="ShardHigh"]/stages/li/statOffsets</xpath>
+					<value>
+						<Suppressability>-0.5</Suppressability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="DregHigh"]/stages/li</xpath>
+					<value>
+						<statFactors>
+							<Suppressability>0.75</Suppressability>
+						</statFactors>
+					</value>
+				</li>
+
+				<!-- ========== Patch item bulk ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ShardMethamphetamine"]/statBases</xpath>
+					<value>
+						<Bulk>0.05</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DregMethamphetamine"]/statBases</xpath>
+					<value>
+						<Bulk>0.05</Bulk>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

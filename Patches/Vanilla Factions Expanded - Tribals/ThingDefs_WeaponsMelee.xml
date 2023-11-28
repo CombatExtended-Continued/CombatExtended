@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Tribals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- One-handed Tags -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "VFET_Stake" or defName="VFET_Chunk"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!-- Rock -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFET_Chunk"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>rock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.66</cooldownTime>
+								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFET_Chunk"]/statBases</xpath>
+					<value>
+						<Bulk>0.5</Bulk>
+						<MeleeCounterParryBonus>0.1</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<!-- Stake -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFET_Stake"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<chanceFactor>0.33</chanceFactor>
+								<cooldownTime>1.4</cooldownTime>
+								<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>6.5</power>
+								<cooldownTime>1.4</cooldownTime>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.28</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFET_Stake"]/statBases</xpath>
+					<value>
+						<Bulk>0.25</Bulk>
+						<MeleeCounterParryBonus>0.1</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFET_Stake"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.08</MeleeCritChance>
+							<MeleeParryChance>0.12</MeleeParryChance>
+							<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

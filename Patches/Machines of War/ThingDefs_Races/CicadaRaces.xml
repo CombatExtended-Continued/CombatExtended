@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Machines of War</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/statBases</xpath>
+					<value>
+						<PartialArmorBody>0</PartialArmorBody>
+					</value>
+				</li>
+
+				<!--Consistency with vanilla mechs-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/statBases</xpath>
+					<value>
+						<SmokeSensitivity>0</SmokeSensitivity>
+						<NightVisionEfficiency>0.80</NightVisionEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/statBases</xpath>
+					<value>
+						<CarryWeight>200</CarryWeight>
+						<CarryBulk>100</CarryBulk>
+						<AimingAccuracy>1.0</AimingAccuracy>
+						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.03</MeleeDodgeChance>
+						<MeleeCritChance>0.26</MeleeCritChance>
+						<MeleeParryChance>0.52</MeleeParryChance>
+						<AimingDelayFactor>1.25</AimingDelayFactor>
+						<MaxHitPoints>300</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/tools</xpath>
+					<value>
+						<tools>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>3.51</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>false</alwaysTreatAsWeapon>
+							</li>
+
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/comps</xpath>
+					<value>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+						<li>
+							<compClass>CombatExtended.CompAmmoGiver</compClass>
+						</li>
+						<li Class="CombatExtended.CompProperties_MechAmmo">
+							<gizmoIconSetMagCount>UI/Buttons/SetMagCount</gizmoIconSetMagCount>
+							<gizmoIconTakeAmmoNow>UI/Buttons/TakeAmmoNow</gizmoIconTakeAmmoNow>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MOW_Mech_Cicada"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>1580</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>158</MaxOverHeal>
+							<MinArmorPct>0.75</MinArmorPct>
+							<MinArmorValueSharp>5</MinArmorValueSharp>
+							<MinArmorValueBlunt>10</MinArmorValueBlunt>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

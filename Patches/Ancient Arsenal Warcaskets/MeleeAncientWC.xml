@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ancient Arsenal: Warcaskets</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Melee Weapon Draw Size -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_Cleaver" or defName="AAWarcasketMelee_BrokenBlade"]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>1.7,1.7</DrawSize>
+							<DrawOffset>0.0,0.0</DrawOffset>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_Intruder"]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>1.3,1.3</DrawSize>
+							<DrawOffset>0.0,0.0</DrawOffset>
+						</li>
+					</value>
+				</li>
+
+				<!-- WarcasketCleaver -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_Cleaver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>34</power>
+								<cooldownTime>2.6</cooldownTime>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<armorPenetrationSharp>24</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>44</power>
+								<cooldownTime>2.8</cooldownTime>
+								<armorPenetrationBlunt>30</armorPenetrationBlunt>
+								<armorPenetrationSharp>16.15</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>30</amount>
+										<chance>1</chance>
+									</li>
+								</extraMeleeDamages>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_Cleaver"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.93</MeleeCritChance>
+							<MeleeParryChance>0.95</MeleeParryChance>
+							<MeleeDodgeChance>0.6</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_Cleaver"]/statBases</xpath>
+					<value>
+						<Bulk>15</Bulk>
+						<MeleeCounterParryBonus>0.53</MeleeCounterParryBonus>
+						<ToughnessRating>20</ToughnessRating>
+					</value>
+				</li>
+
+				<!-- BrokenBlade -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_BrokenBlade"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>76</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>11</armorPenetrationBlunt>
+								<armorPenetrationSharp>45</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+								<extraMeleeDamages>
+									<li>
+										<def>EMP</def>
+										<amount>45</amount>
+										<chance>1</chance>
+									</li>
+								</extraMeleeDamages>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>100</power>
+								<cooldownTime>2.35</cooldownTime>
+								<armorPenetrationBlunt>47</armorPenetrationBlunt>
+								<armorPenetrationSharp>34.8</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>50</amount>
+										<chance>1</chance>
+									</li>
+								</extraMeleeDamages>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_BrokenBlade"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.99</MeleeCritChance>
+							<MeleeParryChance>0.97</MeleeParryChance>
+							<MeleeDodgeChance>0.88</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_BrokenBlade"]/statBases</xpath>
+					<value>
+						<Bulk>25</Bulk>
+						<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+						<ToughnessRating>30</ToughnessRating>
+					</value>
+				</li>
+
+				<!-- Intruder -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_Intruder"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>11</armorPenetrationBlunt>
+								<armorPenetrationSharp>21</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>20</amount>
+										<chance>1</chance>
+									</li>
+								</extraMeleeDamages>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>50</power>
+								<cooldownTime>1.35</cooldownTime>
+								<armorPenetrationBlunt>27</armorPenetrationBlunt>
+								<armorPenetrationSharp>15.8</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+								<extraMeleeDamages>
+									<li>
+										<def>IntruderToxic</def>
+										<amount>50</amount>
+										<chance>1</chance>
+									</li>
+								</extraMeleeDamages>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_Intruder"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.79</MeleeCritChance>
+							<MeleeParryChance>0.67</MeleeParryChance>
+							<MeleeDodgeChance>0.48</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AAWarcasketMelee_Intruder"]/statBases</xpath>
+					<value>
+						<Bulk>25</Bulk>
+						<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+						<ToughnessRating>20</ToughnessRating>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

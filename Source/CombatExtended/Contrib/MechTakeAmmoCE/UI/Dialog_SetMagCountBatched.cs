@@ -100,7 +100,7 @@ namespace CombatExtended
             }
         }
 
-        [Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SetMagCount(List<CompMechAmmo> mechAmmoList, Dictionary<AmmoDef, int> tmpLoadouts)
         {
             //set the loadouts for all the comps

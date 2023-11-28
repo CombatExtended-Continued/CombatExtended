@@ -29,6 +29,8 @@ namespace CombatExtended
 
         private bool _isAiming;
 
+        public Vector3 drawPos;
+
         #endregion
 
         #region Properties
@@ -100,6 +102,24 @@ namespace CombatExtended
                     return sway * SuppressionSwayFactor;
                 }
                 return sway;
+            }
+        }
+
+        public float AimAngle
+        {
+            get
+            {
+                if (this.CurrentTarget == null)
+                {
+                    return 143f;
+                }
+                Vector3 vector = (CurrentTarget.Thing == null ? CurrentTarget.Cell.ToVector3Shifted() : CurrentTarget.Thing.DrawPos);
+                float num = 143f;
+                if ((vector - caster.DrawPos).MagnitudeHorizontalSquared() > 0.001f)
+                {
+                    num = (vector - caster.DrawPos).AngleFlat();
+                }
+                return num;
             }
         }
 
@@ -356,16 +376,19 @@ namespace CombatExtended
         }
         protected virtual bool OnCastSuccessful()
         {
+            bool fromPawn = false;
+            GunDrawExtension ext = EquipmentSource.def.GetModExtension<GunDrawExtension>();
             //Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
             if (ShooterPawn != null)
             {
                 ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
+                fromPawn = drawPos != Vector3.zero;
             }
+
             //Drop casings
-            if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
+            if (VerbPropsCE.ejectsCasings)
             {
-                CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname));
-                CE_Utility.MakeCasingFilth(caster.Position, caster.Map, DefDatabase<ThingDef>.GetNamed(projectilePropsCE.casingFilthDefname));
+                CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos + CasingOffsetRotated(ext), caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, casingAngleOffset: EquipmentSource?.def.GetModExtension<GunDrawExtension>()?.CasingAngleOffset ?? 0);
             }
             // This needs to here for weapons without magazine to ensure their last shot plays sounds
             if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
@@ -395,6 +418,16 @@ namespace CombatExtended
                 return CompAmmo.Notify_PostShotFired();
             }
             return true;
+        }
+
+        Vector3 CasingOffsetRotated(GunDrawExtension ext)
+        {
+            if (ext == null || ext.CasingOffset == Vector2.zero)
+            {
+                return Vector3.zero;
+            }
+            return new Vector3(ext.CasingOffset.x, 0, ext.CasingOffset.y).RotatedBy(AimAngle);
+
         }
         #endregion
     }

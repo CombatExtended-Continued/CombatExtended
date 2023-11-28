@@ -49,16 +49,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]/ammunition/thingDefs</xpath>
-					<value>
-						<thingDefs>
-							<li>Ammo_57x307mmR_AP</li>
-							<li>Ammo_57x307mmR_HE</li>
-						</thingDefs>
-					</value>
-				</li>
-
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]</xpath>
 					<value>
@@ -73,6 +63,15 @@
 				</li>
 
 				<!-- Vehicle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]</xpath>
+					<value>
+						<descriptionHyperlinks>
+							<CombatExtended.AmmoSetDef>AmmoSet_57x307mmR</CombatExtended.AmmoSetDef>
+						</descriptionHyperlinks>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/statBases/ArmorRating_Blunt</xpath>
 					<value>

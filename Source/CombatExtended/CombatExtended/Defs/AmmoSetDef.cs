@@ -15,5 +15,16 @@ namespace CombatExtended
         public bool isMortarAmmoSet = false;
 
         public AmmoSetDef similarTo;
+
+        public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
+        {
+            foreach (StatDrawEntry entry in base.SpecialDisplayStats(req)) { yield return entry; }
+
+            foreach (AmmoLink link in ammoTypes)
+            {
+
+                yield return new StatDrawEntry(StatCategoryDefOf.BasicsImportant, link.ammo.label, "", link.projectile.GetProjectileReadout(null), 1, hyperlinks: new List<Dialog_InfoCard.Hyperlink>() { new Dialog_InfoCard.Hyperlink(link.ammo) });
+            }
+        }
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Deserters</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Adds ammo to the scenario === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ScenarioDef[defName="VFED_NewSafehaven"]/scenario/parts</xpath>
+					<value>
+						<li Class="ScenPart_StartingThing_Defined">
+							<def>ScatterThingsAnywhere</def>
+							<thingDef>Ammo_10x18mmCharged</thingDef>
+							<count>240</count>
+						</li>
+						<li Class="ScenPart_StartingThing_Defined">
+							<def>ScatterThingsAnywhere</def>
+							<thingDef>Ammo_40x68mmDemo_Thump</thingDef>
+							<count>20</count>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

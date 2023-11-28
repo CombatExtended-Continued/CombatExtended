@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Tribals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Light Tribalwear -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFET_Apparel_TribalLight"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+						<Bulk>1</Bulk>
+					</value>
+				</li>
+
+				<!-- Heavy Tribalwear -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFET_Apparel_TribalHeavy"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+						<Bulk>1</Bulk>
+					</value>
+				</li>
+
+				<!-- War Tribalwear -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFET_Apparel_TribalWar"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+						<Bulk>5</Bulk>
+						<WornBulk>1.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFET_Apparel_TribalWar"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

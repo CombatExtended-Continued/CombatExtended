@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Tribals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- One-handed Tags -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "VFET_Throwspikes"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>SpikeBase_VFET</value>
+				</li>
+
+				<li Class="PatchOperationAttributeAdd">
+					<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.AmmoDef</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/costList</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]</xpath>
+					<value>
+						<techLevel>Neolithic</techLevel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/recipeMaker</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/statBases</xpath>
+					<value>
+						<statBases>
+							<MarketValue>0.7</MarketValue>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<ShotSpread>1.5</ShotSpread>
+							<SwayFactor>2.5</SwayFactor>
+							<Bulk>1.5</Bulk>
+							<Mass>1</Mass>
+							<RangedWeapon_Cooldown>1.3</RangedWeapon_Cooldown>
+						</statBases>
+						<stackLimit>50</stackLimit>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Tribal_Spike_Thrown</defaultProjectile>
+								<warmupTime>1</warmupTime>
+								<range>10</range>
+								<soundCast>Interact_BeatFire</soundCast>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>limb</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.35</cooldownTime>
+								<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Add Projectiles and Recipes for the throwspikes. === -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- This dummy parent just provides a workaround so VFE - Tribal can be loaded before CE. -->
+						<ThingDef ParentName="BaseWeaponAndAmmoNeolithic" Name="SpikeBase_VFET" Abstract="True" />
+
+						<ThingDef ParentName="BasePilumProjectile">
+							<graphicData>
+								<texPath>Projectile/Projectile_Throwspikes</texPath>
+							</graphicData>
+							<defName>Tribal_Spike_Thrown</defName>
+							<label>throwspike</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>14</damageAmountBase>
+								<speed>10</speed>
+								<armorPenetrationBlunt>3.44</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.45</armorPenetrationSharp>
+								<preExplosionSpawnChance>0.70</preExplosionSpawnChance>
+								<preExplosionSpawnThingDef>VFET_Throwspikes</preExplosionSpawnThingDef>
+							</projectile>
+						</ThingDef>
+
+						<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+							<defName>MakeAmmo_VFET_Throwspikes</defName>
+							<label>make throwspikes x20</label>
+							<description>Craft 20 throwspikes.</description>
+							<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+							<workSkill>Crafting</workSkill>
+							<recipeUsers>
+								<li>CraftingSpot</li>
+							</recipeUsers>
+							<effectWorking>Smelt</effectWorking>
+							<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+							<workAmount>800</workAmount>
+							<jobString>Making throwspikes.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>WoodLog</li>
+										</thingDefs>
+									</filter>
+									<count>10</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>WoodLog</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<VFET_Throwspikes>20</VFET_Throwspikes>
+							</products>
+						</RecipeDef>
+
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -101,6 +101,7 @@ namespace CombatExtended
                 {
                     var fragmentProps = fragmentDef?.thingDef?.projectile as ProjectilePropertiesCE;
                     stringBuilder.AppendLine("   " + "   " + fragmentDef.LabelCap);
+                    stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescDamage".Translate() + ": " + fragmentProps?.damageAmountBase.ToString() + " (" + fragmentProps?.damageDef.LabelCap.ToString() + ")");
                     stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescSharpPenetration".Translate() + ": " + fragmentProps?.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
                     stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescBluntPenetration".Translate() + ": " + fragmentProps?.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
                 }
