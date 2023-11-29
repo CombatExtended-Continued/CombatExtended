@@ -579,7 +579,11 @@ namespace CombatExtended
             // ----------------------------------- STEP 5: Finalization
 
             var w = (newTargetLoc - sourceLoc);
-            shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
+            if (!midBurst)
+            {
+                lastShotRotation = -90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x);
+            }
+            shotRotation = (lastShotRotation + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
             distance = (newTargetLoc - sourceLoc).magnitude;
         }
