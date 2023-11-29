@@ -35,9 +35,12 @@ namespace CombatExtended.Compatibility
         {
             BlockerRegistry.RegisterCheckForCollisionBetweenCallback(EDShields.CheckForCollisionBetweenCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(EDShields.ImpactSomethingCallback);
+            BlockerRegistry.RegisterShieldZonesCallback(EDShields.ShieldZonesCallback);
             Type t = Type.GetType("Jaxxa.EnhancedDevelopment.Shields.Shields.ShieldManagerMapComp, ED-Shields");
             HitSoundDef = (SoundDef)t.GetField("HitSoundDef", BindingFlags.Static | BindingFlags.Public).GetValue(null);
         }
+
+
         public IEnumerable<string> GetCompatList()
         {
             yield break;
@@ -84,7 +87,6 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
 
-                int fieldRadiusSq = fieldRadius * fieldRadius;
                 Quaternion shieldProjAng = Quaternion.LookRotation(from - shieldPosition2D);
                 if ((Quaternion.Angle(targetAngle, shieldProjAng) > 90))
                 {
@@ -153,6 +155,30 @@ namespace CombatExtended.Compatibility
                 shields = buildings.Where(b => b is Building_Shield).ToList();
                 lastCacheTick = thisTick;
                 lastCacheMap = map;
+            }
+        }
+
+        private static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
+        {
+            Map map = pawnToSuppress.Map;
+            getShields(map);
+            foreach (Building building in shields)
+            {
+                var shield = building as Building_Shield;
+                var generator = shield.GetComp<Comp_ShieldGenerator>();
+                bool isActive = generator.IsActive();
+                if (!isActive)
+                {
+                    continue;
+                }
+                bool blockDirect = generator.BlockDirect_Active();
+                if (!blockDirect)
+                {
+                    continue;
+                }
+                //Is there no shields that doesn't intercept ingoing friendly projectiles?
+                int fieldRadius = (int)generator.FieldRadius_Active();
+                yield return GenRadial.RadialCellsAround(shield.Position, fieldRadius, true);
             }
         }
 
