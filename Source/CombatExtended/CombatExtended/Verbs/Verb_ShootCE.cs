@@ -343,7 +343,7 @@ namespace CombatExtended
             {
                 if (caster is Building_TurretGunCE turret)
                 {
-                    if (!_isAiming && turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
+                    if (turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
                     {
                         turret.burstWarmupTicksLeft = (int)(turret.burstWarmupTicksLeft * reduction);
                     }
