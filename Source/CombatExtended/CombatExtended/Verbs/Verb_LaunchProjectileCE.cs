@@ -999,6 +999,10 @@ namespace CombatExtended
             doRetarget = true;
             storedShotReduction = null;
             if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst & suppressive & target is unreachable but alive, keep shooting suppressively.
+            var props = VerbPropsCE;
+            var midBurst = numShotsFired > 0;
+            var suppressing = CompFireModes?.CurrentAimMode == AimMode.SuppressFire;
+
             // Cases
             // 1: Can hit target, set our previous shoot line
             //    Cannot hit target
