@@ -1033,7 +1033,7 @@ namespace CombatExtended
                     {
                         return false;
                     }
-                    shootLine = (ShootLine) lastShootLine;
+                    shootLine = (ShootLine)lastShootLine;
                     currentTarget = new LocalTargetInfo(lastTargetPos);
                 }
                 else // case 4,5,8
