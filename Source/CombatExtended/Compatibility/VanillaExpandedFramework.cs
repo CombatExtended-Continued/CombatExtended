@@ -32,9 +32,10 @@ namespace CombatExtended.Compatibility
         private IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
         {
             IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(pawnToSuppress.Map).ToList();
+            List<IEnumerable<IntVec3>> result = new List<IEnumerable<IntVec3>>();
             if (!interceptors.Any())
             {
-                yield break;
+                return result;
             }
             foreach (var interceptor in interceptors)
             {
@@ -42,8 +43,9 @@ namespace CombatExtended.Compatibility
                 {
                     continue;
                 }
-                yield return GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true);
+                result.Add(GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true));
             }
+            return result;
         }
 
         private static bool CheckIntercept(ProjectileCE projectile, IntVec3 cell, Thing launcher)
