@@ -999,6 +999,20 @@ namespace CombatExtended
             doRetarget = true;
             storedShotReduction = null;
             if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst & suppressive & target is unreachable but alive, keep shooting suppressively.
+            // Cases
+            // 1: Can hit target, set our previous shoot line
+            //    Cannot hit target
+            //      Target exists
+            //        Mid burst
+            // 2:       Interruptible -> stop shooting
+            // 3:       Not interruptible -> continue shooting at last position (do *not* shoot at target position as it will play badly with skip or other teleport effects)
+            // 4:     Suppressing fire -> set our shoot line and continue
+            // 5:     else -> stop
+            //      Target missing
+            //        Mid burst
+            // 6:       Interruptible -> stop shooting
+            // 7:       Not interruptible -> shoot along previous line
+            // 8:     else -> stop
             {
                 if (numShotsFired == 0 || (CompFireModes != null && CompFireModes.CurrentAimMode != AimMode.SuppressFire) || currentTarget.ThingDestroyed)
                 {
