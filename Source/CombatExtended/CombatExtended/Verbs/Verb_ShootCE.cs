@@ -333,9 +333,7 @@ namespace CombatExtended
             }
 
             var d = v - u;
-            var w = new Vector2();
-            w.Set(d.x, d.z);
-            var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
+            var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(d.z, d.x)) % 360;
             var delta = Mathf.Abs(newShotRotation - lastShotRotation) + lastRecoilDeg;
             lastRecoilDeg = 0;
             var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : 0.25f);
