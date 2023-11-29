@@ -7,11 +7,26 @@ using MonoMod.Utils;
 using RimWorld;
 using Verse;
 using Verse.AI;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
     public class CompTacticalManager : ThingComp
     {
+        public CollisionVertical? collision = null;
+
+        public CollisionVertical Collision
+        {
+            get
+            {
+                if (collision == null)
+                {
+                    collision = new CollisionVertical(SelPawn);
+                }
+                return (CollisionVertical)collision;
+            }
+        }
+
         private Job curJob = null;
         private List<Verse.WeakReference<Pawn>> targetedBy = new List<Verse.WeakReference<Pawn>>();
 
@@ -141,6 +156,9 @@ namespace CombatExtended
         public override void CompTick()
         {
             base.CompTick();
+            float heightAdjust = CETrenches.GetHeightAdjust(SelPawn.Position, SelPawn.Map);
+            this.Collision.RecalculateHeight(SelPawn, heightAdjust);
+
             if (parent.IsHashIntervalTick(120))
             {
                 /*
