@@ -154,6 +154,7 @@ namespace CombatExtended.Compatibility
         {
             Map map = pawnToSuppress.Map;
             getShields(map);
+            List<IEnumerable<IntVec3>> result = new List<IEnumerable<IntVec3>>();
             foreach (CompRimatomicsShield shield in shields)
             {
                 if (!shield.Active || shield.ShieldState != ShieldState.Active)
@@ -167,8 +168,9 @@ namespace CombatExtended.Compatibility
                 }
 
                 int fieldRadius = (int)shield.Radius;
-                yield return GenRadial.RadialCellsAround(shield.parent.Position, fieldRadius, true);
+                result.Add(GenRadial.RadialCellsAround(shield.parent.Position, fieldRadius, true));
             }
+            return result;
         }
 
         public static void getShields(Map map)
