@@ -60,7 +60,7 @@ namespace CombatExtended
         protected float lastShotRotation;
         protected float lastRecoilDeg;
         protected float? storedShotReduction = null;
-        protected ShootLine lastShootLine;
+        protected ShootLine? lastShootLine;
         protected bool repeating = false;
         private bool doRetarget = true;
 
@@ -261,6 +261,7 @@ namespace CombatExtended
             shootingAtDowned = false;
             lastTarget = null;
             lastTargetPos = IntVec3.Invalid;
+            lastShootLine = null;
 
             repeating = false;
             storedShotReduction = null;
