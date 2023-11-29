@@ -351,7 +351,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
+        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, bool midBurst = false)
         {
             if (!calculateMechanicalOnly)
             {
@@ -558,14 +558,18 @@ namespace CombatExtended
                         targetHeight = CollisionVertical.WallCollisionHeight;
                     }
                 }
-                if (projectilePropsCE.isInstant)
+                if (!midBurst)
                 {
-                    angleRadians += Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+                    if (projectilePropsCE.isInstant)
+                    {
+                        lastShotAngle = Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+                    }
+                    else
+                    {
+                        lastShotAngle = ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                    }
                 }
-                else
-                {
-                    angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
-                }
+                angleRadians += lastShotAngle;
             }
 
             // ----------------------------------- STEP 4: Mechanical variation
