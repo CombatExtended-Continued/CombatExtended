@@ -1048,9 +1048,6 @@ namespace CombatExtended
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
 
-                this.lastShotAngle = shotAngle;
-                this.lastShotRotation = shotRotation;
-                this.lastShootLine = shootLine;
                 if (instant)
                 {
                     var shotHeight = ShotHeight;
