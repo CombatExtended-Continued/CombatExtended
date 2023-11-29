@@ -32,6 +32,7 @@ namespace CombatExtended.Compatibility
         {
             BlockerRegistry.RegisterCheckForCollisionBetweenCallback(Rimatomics.CheckForCollisionBetweenCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(Rimatomics.ImpactSomethingCallback);
+            BlockerRegistry.RegisterShieldZonesCallback(Rimatomics.ShieldZonesCallback);
         }
 
         public IEnumerable<string> GetCompatList()
@@ -149,6 +150,26 @@ namespace CombatExtended.Compatibility
             return false;
         }
 
+        private static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
+        {
+            Map map = pawnToSuppress.Map;
+            getShields(map);
+            foreach (CompRimatomicsShield shield in shields)
+            {
+                if (!shield.Active || shield.ShieldState != ShieldState.Active)
+                {
+                    continue;
+                }
+                if (GenHostility.HostileTo(pawnToSuppress, shield.parent) && !shield.debugInterceptNonHostileProjectiles && !shield.Props.interceptNonHostileProjectiles)
+                {
+                    // Avoid hostile shields because they aren't intercepting friendly projectiles
+                    continue;
+                }
+
+                int fieldRadius = (int)shield.Radius;
+                yield return GenRadial.RadialCellsAround(shield.parent.Position, fieldRadius, true);
+            }
+        }
 
         public static void getShields(Map map)
         {
