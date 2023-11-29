@@ -162,6 +162,7 @@ namespace CombatExtended.Compatibility
         {
             Map map = pawnToSuppress.Map;
             getShields(map);
+            List<IEnumerable<IntVec3>> result = new List<IEnumerable<IntVec3>>();
             foreach (Building building in shields)
             {
                 var shield = building as Building_Shield;
@@ -178,8 +179,9 @@ namespace CombatExtended.Compatibility
                 }
                 //Is there no shields that doesn't intercept ingoing friendly projectiles?
                 int fieldRadius = (int)generator.FieldRadius_Active();
-                yield return GenRadial.RadialCellsAround(shield.Position, fieldRadius, true);
+                result.Add(GenRadial.RadialCellsAround(shield.Position, fieldRadius, true));
             }
+            return result;
         }
 
     }
