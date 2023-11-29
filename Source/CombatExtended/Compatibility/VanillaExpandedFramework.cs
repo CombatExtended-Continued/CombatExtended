@@ -26,7 +26,26 @@ namespace CombatExtended.Compatibility
         void IPatch.Install()
         {
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckIntercept);
+            BlockerRegistry.RegisterShieldZonesCallback(ShieldZonesCallback);
         }
+
+        private IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
+        {
+            IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(pawnToSuppress.Map).ToList();
+            if (!interceptors.Any())
+            {
+                yield break;
+            }
+            foreach (var interceptor in interceptors)
+            {
+                if (!interceptor.CanFunction)
+                {
+                    continue;
+                }
+                yield return GenRadial.RadialCellsAround(interceptor.HostThing.Position, interceptor.ShieldRadius, true);
+            }
+        }
+
         private static bool CheckIntercept(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             if (projectile.def.projectile.flyOverhead)
