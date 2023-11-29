@@ -998,7 +998,6 @@ namespace CombatExtended
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
-            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst & suppressive & target is unreachable but alive, keep shooting suppressively.
             var props = VerbPropsCE;
             var midBurst = numShotsFired > 0;
             var suppressing = CompFireModes?.CurrentAimMode == AimMode.SuppressFire;
@@ -1017,17 +1016,43 @@ namespace CombatExtended
             // 6:       Interruptible -> stop shooting
             // 7:       Not interruptible -> shoot along previous line
             // 8:     else -> stop
+            if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // Case 1
             {
-                if (numShotsFired == 0 || (CompFireModes != null && CompFireModes.CurrentAimMode != AimMode.SuppressFire) || currentTarget.ThingDestroyed)
+                lastShootLine = shootLine;
+            }
+            else // We cannot hit the current target
+            {
+                if (midBurst) // Case 2,3,6,7
                 {
-                    return false;
+                    if (props.interruptibleBurst && !suppressing) // Case 2, 6
+                    {
+                        return false;
+                    }
+                    // Case 3, 7
+                    if (lastShootLine == null)
+                    {
+                        return false;
+                    }
+                    shootLine = (ShootLine) lastShootLine;
+                    currentTarget = new LocalTargetInfo(lastTargetPos);
                 }
-                shootLine = lastShootLine;
-                currentTarget = new LocalTargetInfo(lastTargetPos);
-
-                if (!currentTarget.IsValid)
+                else // case 4,5,8
                 {
-                    return false;
+                    if (suppressing) // case 4,5
+                    {
+                        if (currentTarget.IsValid && !currentTarget.ThingDestroyed)
+                        {
+                            lastShootLine = shootLine = new ShootLine(caster.Position, currentTarget.Cell);
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
             if (projectilePropsCE.pelletCount < 1)
