@@ -1036,7 +1036,7 @@ namespace CombatExtended
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly, instant);
+                ShiftTarget(report, pelletMechanicsOnly, instant, midBurst);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
