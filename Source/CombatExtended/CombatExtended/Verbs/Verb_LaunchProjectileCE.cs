@@ -301,6 +301,12 @@ namespace CombatExtended
             if (Projectile == null || (IsAttacking && CompAmmo != null && !CompAmmo.CanBeFiredNow))
             {
                 CompAmmo?.TryStartReload();
+                shootingAtDowned = false;
+                lastTarget = null;
+                lastTargetPos = IntVec3.Invalid;
+                lastShootLine = null;
+                repeating = false;
+                storedShotReduction = null;
                 return false;
             }
             return true;
