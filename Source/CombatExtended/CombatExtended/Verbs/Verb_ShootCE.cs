@@ -148,7 +148,7 @@ namespace CombatExtended
             }
             if (ShouldAimFor(mode))
             {
-                return sway * (0, 1 - AimingAccuracy) / (1, sightsEfficiency);
+                return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, sightsEfficiency);
             }
             else if (IsSuppressed)
             {
@@ -226,7 +226,7 @@ namespace CombatExtended
                 if (ShooterPawn != null)
                 {
                     ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
-                    RecalculateWarmupTicks();
+                    ulateWarmupTicks();
                     _isAiming = true;
                     return;
                 }
