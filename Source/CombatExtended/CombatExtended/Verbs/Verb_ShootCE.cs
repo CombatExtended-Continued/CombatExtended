@@ -219,12 +219,14 @@ namespace CombatExtended
                 if (caster is Building_TurretGunCE turret)
                 {
                     turret.burstWarmupTicksLeft += aimTicks;
+                    RecalculateWarmupTicks();
                     _isAiming = true;
                     return;
                 }
                 if (ShooterPawn != null)
                 {
                     ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
+                    RecalculateWarmupTicks();
                     _isAiming = true;
                     return;
                 }
