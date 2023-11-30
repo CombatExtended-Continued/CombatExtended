@@ -226,7 +226,7 @@ namespace CombatExtended
                 if (ShooterPawn != null)
                 {
                     ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
-                    ulateWarmupTicks();
+                    RecalculateWarmupTicks();
                     _isAiming = true;
                     return;
                 }
