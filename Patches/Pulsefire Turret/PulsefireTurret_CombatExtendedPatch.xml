@@ -29,6 +29,16 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName = "PulsefireTurretGun" or
+						defName = "PulsefireTwinCannon"
+						]/fillPercent </xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName = "PulsefireTurretGun" or defName = "PulsefireTwinCannon"]/statBases/ShootingAccuracyTurret</xpath>
 					<value>
 						<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
@@ -140,7 +150,7 @@
 					</AmmoUser>
 					<FireModes>
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
-						<aiAimMode>SuppressFire</aiAimMode>
+						<aiAimMode>AimedShot</aiAimMode>
 						<noSnapshot>true</noSnapshot>
 						<noSingleShot>true</noSingleShot>
 					</FireModes>
@@ -181,7 +191,7 @@
 					</AmmoUser>
 					<FireModes>
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
-						<aiAimMode>SuppressFire</aiAimMode>
+						<aiAimMode>AimedShot</aiAimMode>
 						<noSnapshot>true</noSnapshot>
 						<noSingleShot>true</noSingleShot>
 					</FireModes>

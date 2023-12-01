@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Machines of War</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						Defs/ThingDef[defName = "MOW_Gun_ParticleLauncher"]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>30.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>MOW_Gun_ParticleLauncher</defName>
+					<statBases>
+						<Mass>20.00</Mass>
+						<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>0.82</SwayFactor>
+						<Bulk>20.00</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.01</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_80x256mmFuel_Incendiary</defaultProjectile>
+						<warmupTime>1.7</warmupTime><!-- Intentionally decreased from 4.3s -->
+						<range>40</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>InfernoCannon_Fire</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+						<minRange>4</minRange>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<AmmoGenPerMagOverride>15</AmmoGenPerMagOverride>
+						<reloadTime>7.8</reloadTime>
+						<ammoSet>AmmoSet_80x256mmFuel</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Launcher</li>
+						<li>NoSwitch</li>
+					</weaponTags>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

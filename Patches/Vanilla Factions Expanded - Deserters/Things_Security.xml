@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Deserters</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Turret_Autocannon"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]
+						| Defs/ThingDef[defName="Turret_Sniper"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]
+						| Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_RemoteTrapIED_HighExplosive"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+					<value>
+						<li Class="CompProperties_Explosive">
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<damageAmountBase>270</damageAmountBase>
+							<explosiveRadius>4.5</explosiveRadius>
+							<startWickOnDamageTaken>
+								<li>Bullet</li>
+								<li>Arrow</li>
+								<li>ArrowHighVelocity</li>
+							</startWickOnDamageTaken>
+							<wickTicks>
+								<min>5</min>
+								<max>30</max>
+							</wickTicks>
+						</li>
+						<li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Large>16</Fragment_Large>
+								<Fragment_Small>100</Fragment_Small>
+							</fragments>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_RemoteTrapIED_Incendiary"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+					<value>
+						<li Class="CompProperties_Explosive">
+							<damageAmountBase>15</damageAmountBase>
+							<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+							<explosiveRadius>5</explosiveRadius>
+							<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+							<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
+							<startWickOnDamageTaken>
+								<li>Bullet</li>
+								<li>Arrow</li>
+								<li>ArrowHighVelocity</li>
+							</startWickOnDamageTaken>
+							<wickTicks>
+								<min>5</min>
+								<max>20</max>
+							</wickTicks>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFED_Shell_Shrapnel" or defName="VFED_Shell_ArmorPiercing" or defName="VFED_Shell_Cluster"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFED_TrapIED_Shrapnel" or defName="VFED_TrapIED_ArmorPiercing" or defName="VFED_TrapIED_Cluster"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFED_RemoteTrapIED_Shrapnel" or defName="VFED_RemoteTrapIED_ArmorPiercing" or defName="VFED_RemoteTrapIED_Cluster"]</xpath>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

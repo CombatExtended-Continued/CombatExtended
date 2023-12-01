@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Machines of War</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Add groups entry if it doesn't exist already ========== -->
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart</xpath>
+						<value>
+							<groups />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]</xpath>
+						<value>
+							<groups />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]</xpath>
+						<value>
+							<groups />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]</xpath>
+						<value>
+							<groups />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="HearingSensor"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="HearingSensor"]</xpath>
+						<value>
+							<groups />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SmellSensor"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SmellSensor"]</xpath>
+						<value>
+							<groups />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalLeg"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalLeg"]</xpath>
+						<value>
+							<groups />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]</xpath>
+						<value>
+							<groups />
+						</value>
+					</nomatch>
+				</li>
+
+				<!-- ========== Add armor coverage ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="HearingSensor"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SmellSensor"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalLeg"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="MOW_MechanicalCicada"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

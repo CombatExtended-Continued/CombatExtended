@@ -34,15 +34,16 @@ namespace CombatExtended
                     empModifier = 1f;
                 }
             }
-            var result = FragmentsPotentialDamage(projectile) + ExplosionPotentialDamage(projectile) + FirePotentialDamage(projectile) + EMPPotentialDamage(projectile, empModifier);
+            var result = FragmentsPotentialDamage(projectile) + FirePotentialDamage(projectile) + EMPPotentialDamage(projectile, empModifier) + OtherPotentialDamage(projectile);
             //Damage calculated as in-map damage, needs to be converted into world object damage. 3500f experimentally obtained
             result /= 3500f;
-            //Crit/Miss imitation
-            result *= Rand.Range(0.4f, 1.5f);
+            //manual overwrite
             if (projectile.projectile is ProjectilePropertiesCE projectileProperties && projectileProperties.shellingProps.damage > 0f)
             {
-                result *= projectileProperties.shellingProps.damage;
+                result = projectileProperties.shellingProps.damage;
             }
+            //Crit/Miss imitation
+            result *= Rand.Range(0.4f, 1.5f);
             return result;
         }
         protected const float fragDamageMultipler = 0.04f;
@@ -90,19 +91,29 @@ namespace CombatExtended
             }
             return result;
         }
-        protected virtual float ExplosionPotentialDamage(ThingDef projectile)
+        protected virtual float OtherPotentialDamage(ThingDef projectile)
         {
             float result = 0f;
-            if (projectile.projectile is ProjectilePropertiesCE props && props.damageDef == DamageDefOf.Bomb)
+            if (projectile.projectile is ProjectilePropertiesCE props)
             {
+                if (props.damageDef == DamageDefOf.EMP || props.damageDef == CE_DamageDefOf.PrometheumFlame)
+                {
+                    return 0f;
+                }
                 result += props.damageAmountBase;
                 for (int i = 1; i < props.explosionRadius; i++)
                 {
                     result += DamageAtRadius(projectile, i) * Mathf.Pow(2, i);
                 }
+                var extension = props.damageDef.GetModExtension<DamageDefExtensionCE>();
+                if (extension != null && extension.worldDamageMultiplier >= 0.0f)
+                {
+                    result *= extension.worldDamageMultiplier;
+                }
             }
             return result;
         }
+
         public static float DamageAtRadius(ThingDef projectile, int radius)
         {
             if (!projectile.projectile.explosionDamageFalloff)

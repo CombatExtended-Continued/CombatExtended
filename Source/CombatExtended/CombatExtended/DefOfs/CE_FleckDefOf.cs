@@ -10,5 +10,14 @@ namespace CombatExtended
         //public static FleckDef Fleck_SuppressIcon;
 
         //public static FleckDef Fleck_HunkerIcon;
+
+        //vanilla defs that didn't have a DefOf
+        public static FleckDef BlastFlame;
+        public static FleckDef ElectricalSpark;
+        //CE defs
+        public static FleckDef Fleck_HeatGlow_API;
+        public static FleckDef Fleck_BulletHole;
+        public static FleckDef Fleck_ElectricGlow_EMP;
+        public static FleckDef Fleck_SparkThrownFast;
     }
 }

@@ -313,15 +313,22 @@ namespace CombatExtended
                 ticksUntilAutoReload--;    // Reduce time until we can auto-reload
             }
 
-            if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks) && (MannableComp?.MannedNow ?? false))
+            if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks))
             {
-                TryOrderReload();
+                if (MannableComp?.MannedNow ?? false)
+                {
+                    TryOrderReload();
+                }
+                else
+                {
+                    TryReloadViaAutoLoader();
+                }
             }
 
             //This code runs TryOrderReload for manning pawns or for non-humanlike intelligence such as mechs
             /*if (this.IsHashIntervalTick(TicksBetweenAmmoChecks) && !isReloading && (MannableComp?.MannedNow ?? false))
                   TryOrderReload(CompAmmo?.CurMagCount == 0);*/
-            if (!CanSetForcedTarget && !isReloading && forcedTarget.IsValid && burstCooldownTicksLeft <= 0)
+            if (!CanSetForcedTarget && !isReloading && forcedTarget.IsValid && !globalTargetInfo.IsValid && burstCooldownTicksLeft <= 0)
             {
                 ResetForcedTarget();
             }
@@ -591,7 +598,13 @@ namespace CombatExtended
 
         public override void Draw()
         {
-            top.DrawTurret(Vector3.zero, 0f);
+            Vector3 drawOffset = Vector3.zero;
+            float angleOffset = 0f;
+            if (Controller.settings.RecoilAnim)
+            {
+                CE_Utility.Recoil(def.building.turretGunDef, AttackVerb, out drawOffset, out angleOffset, top.CurRotation, false);
+            }
+            top.DrawTurret(drawOffset, angleOffset);
             base.Draw();
         }
 
@@ -862,6 +875,11 @@ namespace CombatExtended
                 return;
             }
 
+            if (TryReloadViaAutoLoader())
+            {
+                return;
+            }
+
             //Non-mannableComp interaction
             if (!mannableComp?.MannedNow ?? true)
             {
@@ -889,7 +907,26 @@ namespace CombatExtended
                     manningPawn.jobs.StartJob(jobOnThing, JobCondition.Ongoing, null, manningPawn.CurJob?.def != CE_JobDefOf.ReloadTurret);
                 }
             }
+        }
 
+        public bool TryReloadViaAutoLoader()
+        {
+            if (TargetCurrentlyAimingAt != null)
+            {
+                return false;
+            }
+
+            List<Thing> adjThings = new List<Thing>();
+            GenAdjFast.AdjacentThings8Way(this, adjThings);
+
+            foreach (Thing building in adjThings)
+            {
+                if (building is Building_AutoloaderCE container && container.StartReload(compAmmo))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
     }

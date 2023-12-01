@@ -1,0 +1,73 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vehicle Framework Expanded - Classic Mechs</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Main Guns -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_120mmCannonShell_HE</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>9.6</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>20</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/chargePerAmmoCount</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/maxRange</xpath>
+					<value>
+						<maxRange>105</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+							<shotHeight>5</shotHeight>
+							<speed>229</speed>
+							<sway>0.82</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>	

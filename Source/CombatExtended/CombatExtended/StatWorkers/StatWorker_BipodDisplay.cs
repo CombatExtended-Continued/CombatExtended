@@ -72,11 +72,11 @@ namespace CombatExtended
             {
                 var BipodCompProps = bipodComp(req);
                 var VerbPropsCE = verbPropsCE(req);
-                string result = "Time to set up bipod: " + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)";
+                string result = "CE_BipodSetupTime".Translate() + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)";
 
                 if (Controller.settings.AutoSetUp)
                 {
-                    result += "\n" + "Auto sets up in firemode: " + "\n";
+                    result += "\n" + "CE_BipodAutoSetupMode".Translate() + "\n";
                     if (BipodCompProps.catDef.useAutoSetMode)
                     {
                         result += "- " + BipodCompProps.catDef.autosetMode.ToString() + "\n";
@@ -89,35 +89,35 @@ namespace CombatExtended
 
                 }
 
-                result += "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
+                result += "\n" + "CE_BipodStatWhenSetUp".Translate().Colorize(Color.green) + "\n";
 
-                result += "Recoil: " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
+                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
                 result += "\n";
 
-                result += "Sway: " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayMult), 2);
+                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayMult), 2);
                 result += "\n";
 
-                result += "Range: " + (BipodCompProps.additionalrange + VerbPropsCE.range);
+                result += "CE_BipodStatRange".Translate() + ": " + (BipodCompProps.additionalrange + VerbPropsCE.range);
                 result += "\n";
 
-                result += "Warmup Time: " + (BipodCompProps.warmupMult * VerbPropsCE.warmupTime);
+                result += "CE_BipodStatWarmUp".Translate() + ": " + (BipodCompProps.warmupMult * VerbPropsCE.warmupTime);
                 result += "\n" + "\n";
 
-                result += "Stats when NOT set up: ".Colorize(Color.red) + "\n";
+                result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(Color.red) + "\n";
 
-                result += "Recoil: " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff), 2);
-
-                result += "\n";
-
-                result += "Sway: " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty), 2);
+                result += CE_StatDefOf.Recoil.label + ": " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff), 2);
 
                 result += "\n";
 
-                result += "Range: " + (VerbPropsCE.range);
+                result += CE_StatDefOf.SwayFactor.label + ": " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty), 2);
 
                 result += "\n";
 
-                result += "Warmup Time: " + (BipodCompProps.warmupPenalty * VerbPropsCE.warmupTime);
+                result += "CE_BipodStatRange".Translate() + ": " + (VerbPropsCE.range);
+
+                result += "\n";
+
+                result += "CE_BipodStatWarmUp".Translate() + ": " + (BipodCompProps.warmupPenalty * VerbPropsCE.warmupTime);
 
                 return result;
             }
@@ -132,39 +132,39 @@ namespace CombatExtended
                     return base.GetExplanationFinalizePart(req, numberSense, finalVal);
                 }
 
-                string result = "Time to set up bipod: " + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)" + "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
+                string result = "CE_BipodSetupTime".Translate() + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)" + "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
 
-                result += "Recoil: " + (VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton);
-
-                result += "\n";
-
-                result += "Sway: " + (((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty);
+                result += CE_StatDefOf.Recoil.label + ": " + (VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton);
 
                 result += "\n";
 
-                result += "Range: " + (BipodCompProps.additionalrange + VerbPropsCE.range);
+                result += CE_StatDefOf.SwayFactor.label + ": " + (((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty);
 
                 result += "\n";
 
-                result += "Warmup Time: " + (BipodCompProps.warmupMult * VerbPropsCE.warmupTime);
+                result += "CE_BipodStatRange".Translate() + ": " + (BipodCompProps.additionalrange + VerbPropsCE.range);
+
+                result += "\n";
+
+                result += "CE_BipodStatWarmUp".Translate() + ": " + (BipodCompProps.warmupMult * VerbPropsCE.warmupTime);
 
                 result += "\n" + "\n";
 
-                result += "Stats when NOT set up: ".Colorize(Color.red) + "\n";
+                result += "CE_BipodStatWhenNotSetUp".Translate().Colorize(Color.red) + "\n";
 
-                result += "Recoil: " + (VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff);
-
-                result += "\n";
-
-                result += "Sway: " + (((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty);
+                result += CE_StatDefOf.Recoil.label + ": " + (VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff);
 
                 result += "\n";
 
-                result += "Range: " + (VerbPropsCE.range);
+                result += CE_StatDefOf.SwayFactor.label + ": " + (((ThingDef)(req.Def)).statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty);
 
                 result += "\n";
 
-                result += "Warmup Time: " + (BipodCompProps.warmupPenalty * VerbPropsCE.warmupTime);
+                result += "CE_BipodStatRange".Translate() + ": " + (VerbPropsCE.range);
+
+                result += "\n";
+
+                result += "CE_BipodStatWarmUp".Translate() + ": " + (BipodCompProps.warmupPenalty * VerbPropsCE.warmupTime);
 
                 return result;
             }
@@ -178,7 +178,7 @@ namespace CombatExtended
         {
             if (finalized)
             {
-                return "Hover over";
+                return "CE_BipodHoverOverStat".Translate();
             }
             else
             {

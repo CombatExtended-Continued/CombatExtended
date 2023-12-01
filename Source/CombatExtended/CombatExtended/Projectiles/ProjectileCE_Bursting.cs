@@ -29,6 +29,7 @@ namespace CombatExtended
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 armingDelay = props.armingDelay;
+                this.castShadow = props.castShadow;
             }
             if (distance > 0)
             {

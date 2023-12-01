@@ -5,8 +5,10 @@
 		<mods>
 			<li>Dragons Descent</li>
 		</mods>
+
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<!-- ======== BaseDragon (Dragon Base) ======== -->
 				<!-- ====== ModExtension ====== -->
 				<li Class="PatchOperationAddModExtension">
@@ -17,6 +19,7 @@
 						</li>
 					</value>
 				</li>
+
 				<!-- ======== DragonRaceBase (Common Dragon Base) ======== -->
 				<!-- ====== statBases ====== -->
 				<li Class="PatchOperationAdd">
@@ -28,24 +31,41 @@
 						<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/statBases/MeleeDodgeChance</xpath>
 					<value>
 						<MeleeDodgeChance>0.13</MeleeDodgeChance>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>40</ArmorRating_Blunt>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>16</ArmorRating_Sharp>
 					</value>
 				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="DragonRaceBase"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>4250</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 				<!-- ======== RDragonRaceBase (Rare Dragon Base) ======== -->
 				<!-- ====== statBases ====== -->
 				<li Class="PatchOperationAdd">
@@ -76,7 +96,21 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="RDragonRaceBase"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>5075</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

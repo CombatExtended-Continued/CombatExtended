@@ -131,9 +131,17 @@ namespace CombatExtended
                        (float)(hBounds.max - hBounds.min) / (float)hWidth,
                        (float)(vBounds.max - vBounds.min) / (float)vHeight);
         }
-
+        private static Vector2 ExctractBoundCollection(Graphic_Collection graphic, GraphicType type)
+        {
+            IEnumerable<Vector2> bounds = graphic.subGraphics.Select(x => ExtractBounds(x, type));
+            return new Vector2(bounds.Average(v => v.x), bounds.Average(v => v.y));
+        }
         private static Vector2 ExtractBounds(Graphic graphic, GraphicType type)
         {
+            if (graphic is Graphic_Collection graphic_collection)
+            {
+                return ExctractBoundCollection(graphic_collection, type);
+            }
             int vWidth;
             int vHeight;
 

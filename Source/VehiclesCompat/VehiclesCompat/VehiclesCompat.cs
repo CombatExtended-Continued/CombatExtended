@@ -13,24 +13,71 @@ using UnityEngine;
 
 namespace CombatExtended.Compatibility.VehiclesCompat
 {
-    [StaticConstructorOnStartup]
     public class VehiclesCompat : IModPart
     {
         public Type GetSettingsType()
         {
-            return null;
+            return typeof(VehicleSettings);
         }
         public IEnumerable<string> GetCompatList()
         {
             yield break;
         }
-        public void PostLoad(ModContentPack content, ISettingsCE _)
+        public void PostLoad(ModContentPack content, ISettingsCE vehicleSettings)
         {
             VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
             VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
             VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
+            VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
+            VehicleTurret.NotifyShotFiredCE = NotifyShotFiredCE;
             global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
             global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
+            var harmony = new Harmony("CombatExtended.Compatibility.VehiclesCompat");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
+        }
+
+        public static void NotifyShotFiredCE(ThingDef projectileDef, ThingDef _ammoDef, Def _ammosetDef, VehicleTurret turret, float recoil)
+        {
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            {
+                foreach (var al in ammosetDef.ammoTypes)
+                {
+                    if (al.ammo == ammoDef)
+                    {
+                        projectileDef = al.projectile;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                projectileDef = projectileDef.GetProjectile();
+            }
+            if (projectileDef.projectile is ProjectilePropertiesCE ppce)
+            {
+                CE_Utility.GenerateAmmoCasings(ppce, turret.TurretLocation, turret.vehicle.Map, -turret.TurretRotation, recoil);
+            }
+
+        }
+
+        public static Tuple<int, float> LookupProjectileCountAndSpreadCE(ThingDef _ammoDef, Def _ammosetDef, float spread)
+        {
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            {
+                foreach (var al in ammosetDef.ammoTypes)
+                {
+                    if (al.ammo == ammoDef)
+                    {
+                        var projectileDef = al.projectile;
+                        if (projectileDef.projectile is ProjectilePropertiesCE pprop)
+                        {
+                            return new Tuple<int, float>(pprop.pelletCount, spread * pprop.spreadMult);
+                        }
+                        break;
+                    }
+                }
+            }
+            return new Tuple<int, float>(1, spread);
         }
 
         public static Def LookupAmmosetCE(string defName)
@@ -40,13 +87,35 @@ namespace CombatExtended.Compatibility.VehiclesCompat
 
         public static IEnumerable<ThingDef> _GetUsedAmmo()
         {
-            foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
+            if (Controller.settings.EnableAmmoSystem)
             {
-                foreach (ThingDef td in vtd?.ammunition?.AllowedThingDefs)
+                foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
                 {
-                    if (td is AmmoDef ad)
+                    if (vtd.GetModExtension<CETurretDataDefModExtension>() is CETurretDataDefModExtension cetddme)
                     {
-                        yield return td;
+                        if (cetddme.ammoSet != null)
+                        {
+                            AmmoSetDef asd = (AmmoSetDef)LookupAmmosetCE(cetddme.ammoSet);
+                            if (Controller.settings.GenericAmmo && asd?.similarTo != null)
+                            {
+                                asd = asd.similarTo;
+                            }
+                            if (asd != null)
+                            {
+                                cetddme._ammoSet = asd;
+                                var ammunition = vtd.ammunition = new ThingFilter();
+                                vtd.genericAmmo = false;
+                                HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)ammunition.AllowedThingDefs;
+
+                                foreach (var al in asd.ammoTypes)
+                                {
+                                    allowedAmmo.Add(al.ammo);
+                                    yield return al.ammo;
+                                }
+
+                                vtd.ammunition.ResolveReferences();
+                            }
+                        }
                     }
                 }
             }

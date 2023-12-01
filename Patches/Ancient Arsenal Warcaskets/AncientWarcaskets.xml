@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ancient Arsenal: Warcaskets</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== ancient warcasket helmet ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>36</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>80</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/statBases</xpath>
+					<value>
+						<Bulk>20</Bulk>
+						<WornBulk>10</WornBulk>
+						<NightVisionEfficiency_Apparel>0.95</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/verbs</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbGiver"]</xpath>
+				</li>
+
+				<!-- ========== ancient warcasket shoulders ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Ancient"]/statBases</xpath>
+					<value>
+						<Bulk>15</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Ancient"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>40</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Ancient"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>100</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- ========== ancient warcasket body ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Warcasket_Ancient"]/statBases</xpath>
+					<value>
+						<Bulk>275</Bulk>
+						<WornBulk>35</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Warcasket_Ancient"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>40</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Warcasket_Ancient"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>100</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Warcasket_Ancient"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>350</CarryWeight>
+						<CarryBulk>425</CarryBulk>
+						<Suppressability>-100</Suppressability>
+					</value>
+				</li>
+
+				<!-- ========== advanced ancient warcasket helmet ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>45</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>100</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/statBases</xpath>
+					<value>
+						<Bulk>20</Bulk>
+						<WornBulk>10</WornBulk>
+						<NightVisionEfficiency_Apparel>0.99</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/verbs</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Cloak"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbGiver"]</xpath>
+				</li>
+
+				<!-- ========== advanced ancient warcasket shoulders ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketShoulders_Ancient_Cloak"]/statBases</xpath>
+					<value>
+						<Bulk>15</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketShoulders_Ancient_Cloak"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>50</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketShoulders_Ancient_Cloak"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>120</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- ========== advanced ancient warcasket body ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Warcasket_Ancient_Cloak"]/statBases</xpath>
+					<value>
+						<Bulk>275</Bulk>
+						<WornBulk>35</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Warcasket_Ancient_Cloak"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>50</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Warcasket_Ancient_Cloak"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>120</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="Warcasket_Ancient_Cloak"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>450</CarryWeight>
+						<CarryBulk>525</CarryBulk>
+						<Suppressability>-100</Suppressability>
+					</value>
+				</li>
+
+				<!-- ========== advanced ancient warcasket helmet pertinent ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>50</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>120</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/statBases</xpath>
+					<value>
+						<Bulk>20</Bulk>
+						<WornBulk>10</WornBulk>
+						<NightVisionEfficiency_Apparel>0.99</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/verbs</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Penitent"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbGiver"]</xpath>
+				</li>
+
+				<!-- ========== advanced ancient warcasket helmet Mech ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>45</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>110</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/statBases</xpath>
+					<value>
+						<Bulk>20</Bulk>
+						<WornBulk>10</WornBulk>
+						<NightVisionEfficiency_Apparel>0.99</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/verbs</xpath>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Ancient_Mechnomancer"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbGiver"]</xpath>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

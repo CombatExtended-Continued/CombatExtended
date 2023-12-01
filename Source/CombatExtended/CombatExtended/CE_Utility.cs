@@ -740,35 +740,149 @@ namespace CombatExtended
         }
         */
 
-        #endregion Misc
+        /// <summary>
+        /// A copy of the same function in Rimworld.EquipmentUtility, except changing requirement to Verb.
+        /// </summary>
+        /// 
 
-        #region MoteThrower
-        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float size = 1f)
+        private static readonly SimpleCurve RecoilCurveAxisY = new SimpleCurve
+    {
+        new CurvePoint(0f, 0f),
+        new CurvePoint(1f, 0.05f),
+        new CurvePoint(2f, 0.075f)
+    };
+
+        private static readonly SimpleCurve RecoilCurveRotation = new SimpleCurve
+    {
+        new CurvePoint(0f, 0f),
+        new CurvePoint(1f, 3f),
+        new CurvePoint(2f, 4f)
+    };
+
+        const float RecoilMagicNumber = 2.6f;
+        const float MuzzleRiseMagicNumber = 0.1f;
+
+        public static void Recoil(ThingDef weaponDef, Verb shootVerb, out Vector3 drawOffset, out float angleOffset, float aimAngle, bool handheld)
         {
-            if (!Controller.settings.ShowCasings || !loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
+            drawOffset = Vector3.zero;
+            angleOffset = 0f;
+            if (shootVerb == null || shootVerb.IsMeleeAttack)
+            {
+                return;
+            }
+            float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount;
+
+            float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
+
+            recoil = Math.Min(recoil * recoil, 20) * RecoilMagicNumber * Mathf.Clamp((float)Math.Log10(recoilRelaxation), 0.1f, 10);
+
+            //Prevents recoil for something with absurd ROF, it's too fast for any meaningful recoil animation
+            if (recoilRelaxation < 2)
             {
                 return;
             }
 
+            Rand.PushState(shootVerb.LastShotTick);
+            try
+            {
+                float muzzleJumpModifier = 10 * (float)Math.Log10(recoil) + 3;
+                GunDrawExtension recoilAdjustExtension = weaponDef.GetModExtension<GunDrawExtension>();
+                if (recoilAdjustExtension != null)
+                {
+                    recoil *= recoilAdjustExtension.recoilModifier;
+                    recoilRelaxation = recoilAdjustExtension.recoilTick > 0 ? recoilAdjustExtension.recoilTick : recoilRelaxation;
+                    recoil = recoilAdjustExtension.recoilScale > 0 ? recoilAdjustExtension.recoilScale : recoil;
+                    muzzleJumpModifier *= recoilAdjustExtension.muzzleJumpModifier > 0 ? recoilAdjustExtension.muzzleJumpModifier : 1;
+                }
+
+                if (recoil <= 0) { return; }
+
+                if (handheld)
+                {
+                    if (weaponDef.weaponTags.Contains("CE_OneHandedWeapon"))
+                    {
+                        recoil /= 3;
+                        muzzleJumpModifier *= 1.5f;
+                    }
+                    else
+                    {
+                        recoil /= 1.3f;
+                    }
+                    if (recoil > 15)
+                    {
+                        recoil = 15;
+                    }
+                }
+
+                int num = Find.TickManager.TicksGame - shootVerb.LastShotTick;
+                if (num < recoilRelaxation)
+                {
+                    float num2 = Mathf.Clamp01(num / recoilRelaxation);
+                    float num3 = Mathf.Lerp(recoil, 0f, num2);
+                    drawOffset = new Vector3(0f, 0f, 0f - RecoilCurveAxisY.Evaluate(num2)) * num3;
+                    angleOffset = (handheld ? -1 : Rand.Sign) * RecoilCurveRotation.Evaluate(num2) * num3 * MuzzleRiseMagicNumber * muzzleJumpModifier;
+                    drawOffset = drawOffset.RotatedBy(aimAngle);
+                    aimAngle += angleOffset;
+                }
+            }
+            finally
+            {
+                Rand.PopState();
+            }
+        }
+        #endregion Misc
+
+        #region MoteThrower
+        public static void GenerateAmmoCasings(ProjectilePropertiesCE projProps, Vector3 drawPosition, Map map, float shotRotation = -180f, float recoilAmount = 2f, bool fromPawn = false, float casingAngleOffset = 0)
+        {
+            if (projProps.dropsCasings)
+            {
+                if (Controller.settings.ShowCasings)
+                {
+                    ThrowEmptyCasing(drawPosition, map, DefDatabase<FleckDef>.GetNamed(projProps.casingMoteDefname), recoilAmount, shotRotation, 1f, fromPawn, casingAngleOffset);
+                }
+                if (Controller.settings.CreateCasingsFilth)
+                {
+                    MakeCasingFilth(drawPosition.ToIntVec3(), map, DefDatabase<ThingDef>.GetNamed(projProps.casingFilthDefname));
+                }
+            }
+        }
+
+
+        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f, bool fromPawn = false, float casingAngleOffset = 0)
+        {
+            if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
+            {
+                return;
+            }
+            if (recoilAmount <= 0)
+            {
+                recoilAmount = 1; //avoid division errors in case of guns without recoil
+            }
             Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
-            creationData.airTimeLeft = 1.5f;
+            creationData.velocitySpeed = Rand.Range(1.5f, 2f) * recoilAmount;
+            creationData.airTimeLeft = Rand.Range(1f, 1.5f) / creationData.velocitySpeed;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
-            creationData.rotation = Rand.Range(-3f, 4f);
             creationData.spawnPosition = loc;
-            creationData.velocitySpeed = Rand.Range(0.7f, 0.5f);
-            creationData.velocityAngle = Rand.Range(160, 200);
-            creationData.rotationRate = (float)Rand.Range(-300, 300);
+            int randomAngle = Rand.Range(-20, 20);
+            //shotRotation goes from -270 to +90, while fleck angle uses 0 to 360 degrees (0 deg being North for both cases), so a conversion is used
+            //^ not anymore, now it gets aiming angle instead
+            //+90 makes casings fly to gun's right side
+            bool flip = false;
+            if (fromPawn && shotRotation > 200f && shotRotation < 340f)
+            {
+                flip = true;
+            }
+            creationData.velocityAngle = flip ? shotRotation - 90 - casingAngleOffset + randomAngle : shotRotation + 90 + casingAngleOffset + randomAngle;
+            creationData.rotation = (flip ? shotRotation - 90 : shotRotation + 90) + Rand.Range(-3f, 4f);
+            creationData.rotationRate = (float)Rand.Range(-150, 150) / recoilAmount;
             map.flecks.CreateFleck(creationData);
             Rand.PopState();
         }
 
         public static void MakeCasingFilth(IntVec3 position, Map map, ThingDef casingFilthDef)
         {
-            if (!Controller.settings.CreateCasingsFilth)
-            {
-                return;
-            }
             Rand.PushState();
             float makeFilthChance = Rand.Range(0f, 1f);
             if (makeFilthChance > 0.9f && position.Walkable(map))
@@ -872,6 +986,145 @@ namespace CombatExtended
             return 1f;    //Buildings, etc. fill out a full square
         }
 
+        /// <summary>
+        /// Calculates whether a line segment intercepts a radius circle. Used to get intersection points.
+        /// https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Vector_formulation
+        /// Cases:
+        ///  1. Start is inside, not catching outbound -> false
+        ///  2. Start is inside, end is inside -> false
+        ///  3. Start is inside, end is outside -> true
+        ///  4. Start is outside, end is inside -> true
+        ///  5. Start is outside, end is outside -> is closest point inside
+        /// </summary>
+        /// <param name="p1">The first point of the line segment</param>
+        /// <param name="p2">The second point of the line segment</param>
+        /// <param name="center">The center of the circle</param>
+        /// <param name="radius">The radius of the circle</param>
+        /// <param name="map">Used for debug higlight</param>
+        /// <returns><code>Vector3[] { Vector3.zero, Vector3.zero }</code> if there's no intersection, othrewise returns two intersection points</returns>
+        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect, bool catchOutbound = true, bool spherical = false, Map map = null)
+        {
+#if DEBUG
+            void Message(string msg)
+            {
+                if (Controller.settings.DebugDrawInterceptChecks)
+                {
+                    Log.Message(msg);
+                }
+            }
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                map?.debugDrawer.debugCells.Clear();
+                map?.debugDrawer.debugLines.Clear();
+                map?.debugDrawer.DebugDrawerUpdate();
+                map?.debugDrawer.FlashLine(p1.ToIntVec3(), p2.ToIntVec3(), color: SimpleColor.Red);
+            }
+            Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
+#endif
+            sect = new Vector3[2];
+            float radSq = radius * radius;
+
+            // Switch to local coords.  Our virtual center is now 0,0,0
+            Vector3 lp1 = p1 - center;
+            Vector3 lp2 = p2 - center;
+            if (!spherical)
+            {
+                // The shield wants to do a 2-d check, so discard the y component of our local start and end
+                // We do this after the conversion to local coords, so that we only have to mutate 2 vectors instead of 3.
+                // Note that center is left unmutated, because it is not used in the rest of the function.
+                // p1, p2 are left unmutated, but are only used when creating the output vectors to convert back from local coords.
+                lp1.y = 0;
+                lp2.y = 0;
+            }
+            float lp1sq = lp1.sqrMagnitude;
+            float lp2sq = lp2.sqrMagnitude;
+            Vector3 displacement;
+            float displacementSq;
+
+            if (lp1sq < radSq) // Case 1, 2, or 3
+            {
+                if (!catchOutbound || lp2sq < radSq) // Case 1 or 2
+                {
+#if DEBUG
+                    Message($"Case 1 or 2");
+#endif
+                    return false;
+                }
+                // Case 3
+#if DEBUG
+                Message($"Case 3");
+#endif
+                displacement = (lp2 - lp1);
+                displacementSq = displacement.sqrMagnitude;
+            }
+            else // case 4 or 5
+            {
+#if DEBUG
+                Message($"Case 4 or 5");
+#endif
+                displacement = (lp2 - lp1);
+                displacementSq = displacement.sqrMagnitude;
+                if (lp2sq > radSq) // case 5
+                {
+#if DEBUG
+                    Message($"Case 5");
+#endif
+                    float length = Mathf.Sqrt(displacementSq);
+                    // direction vector is a unit vector along the flight path
+                    Vector3 direction = displacement / length;
+
+                    // inline Dot product calculation
+                    // This is the length of the projection along the direction unit vector of (lp1 back toward the origin).
+                    float projectionDistance = -lp1.x * direction.x - lp1.y * direction.y - lp1.z * direction.z;
+
+                    if (projectionDistance <= 0 || projectionDistance >= length) // One of the ends is closest, and both are outside, so we didn't cross
+                    {
+#if DEBUG
+                        Log.Message($"Endpoint is closest");
+#endif
+                        return false;
+                    }
+                    Vector3 closestPoint = lp1 + (projectionDistance / length) * displacement;
+#if DEBUG
+                    Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}");
+#endif
+                    if (closestPoint.sqrMagnitude > radSq) // closest point is still outside
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            float a = displacementSq;
+            float b = 2 * (displacement.x * lp1.x + displacement.y * lp1.y + displacement.z * lp1.z);
+            float c = lp1sq - radSq;
+
+            float det = b * b - 4 * a * c; //b²-4ac
+#if DEBUG
+            Message($"b = {b}, c = {c}, det = {det}");
+#endif
+            // determinate is negative
+            if (det < 0)
+            {
+                Log.Error("Det < 0, but we crossed the radius of the circle");
+                //  line does not intersect
+                return false;
+            }
+            // det is 0 or higher.  So the roots are -b ± √(det) / 2a
+            var sqrtdet = Mathf.Sqrt(det);
+            float mu1 = (-b + sqrtdet) / (2 * a);
+            float mu2 = (-b - sqrtdet) / (2 * a);
+            sect[0] = new Vector3(p1.x + mu1 * displacement.x, p1.y + mu1 * displacement.y, p1.z + mu1 * displacement.z);
+            sect[1] = new Vector3(p1.x + mu2 * displacement.x, p1.y + mu2 * displacement.y, p1.z + mu2 * displacement.z);
+#if DEBUG
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                map?.debugDrawer.FlashCell(sect[0].ToIntVec3(), 1, "0");
+                map?.debugDrawer.FlashCell(sect[1].ToIntVec3(), 1, "1");
+            }
+#endif
+            return true;
+        }
         /// <summary>
         /// Calculates body scale factors based on body type
         /// </summary>

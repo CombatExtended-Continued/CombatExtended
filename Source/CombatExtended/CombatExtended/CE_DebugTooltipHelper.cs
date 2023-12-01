@@ -25,7 +25,17 @@ namespace CombatExtended
             var functions = typeof(CE_DebugTooltipHelper).Assembly
                             .GetTypes()
                             .SelectMany(t => t.GetMethods(AccessTools.all))
-                            .Where(m => m.HasAttribute<CE_DebugTooltip>() && m.IsStatic);
+                            .Where(m =>
+                            {
+                                try
+                                {
+                                    return m.HasAttribute<CE_DebugTooltip>() && m.IsStatic;
+                                }
+                                catch (System.Reflection.TargetInvocationException)
+                                {
+                                    return false;
+                                }
+                            });
             foreach (MethodBase m in functions)
             {
                 CE_DebugTooltip attribute = m.TryGetAttribute<CE_DebugTooltip>();

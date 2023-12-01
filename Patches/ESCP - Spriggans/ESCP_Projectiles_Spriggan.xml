@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ESCP - Spriggan</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Spriggan Fireball -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ESCP_SprigganFireball"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ESCP_SprigganFireball"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>10</damageAmountBase>
+							<speed>50</speed>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+						</projectile>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+
+	</Operation>
+
+</Patch>

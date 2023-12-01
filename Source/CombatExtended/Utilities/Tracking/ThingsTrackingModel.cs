@@ -168,7 +168,7 @@ namespace CombatExtended.Utilities
         {
             // If the line segment is, in fact, a point, treat it as a point much sooner
             // Avoids unnecessary minor calculations
-            IntVec3 direction = destination - origin;
+            IntVec3 direction = (destination - origin);
             float lengthSq = direction.x * direction.x + direction.z * direction.z;
             if (lengthSq == 0) // origin and destination cell are the same, so just return all things within range radius of origin.
             {
@@ -233,9 +233,12 @@ namespace CombatExtended.Utilities
                 }
             }
 
+            float length = Mathf.Sqrt(lengthSq);
+            float rlength = length + range;
+
             // Precalculate some values used for checks
             float rangeSq = range * range;
-            float rangeSqLengthSq = rangeSq * lengthSq;
+            float rangeSqLengthSq = rlength * rlength;
 
             // mid is our best guess at a pawn that might be in the range.
             int index = mid;
@@ -252,7 +255,7 @@ namespace CombatExtended.Utilities
                 IntVec3 relativePosition = curPosition - origin;
 
                 // Calculate the dot product of the direction vector and the relative displacement vector.
-                float rp_direction_dot = relativePosition.x * direction.x + relativePosition.z * direction.z;
+                float rp_direction_dot = (relativePosition.x * direction.x + relativePosition.z * direction.z) / length;
 
                 if (rp_direction_dot < 0) // curPosition is behind the origin
                 {

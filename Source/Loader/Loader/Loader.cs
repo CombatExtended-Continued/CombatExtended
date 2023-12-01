@@ -31,8 +31,9 @@ namespace CombatExtended.Loader
 
           Then each IModPart's PostLoad method is called, with an ISettingsCE if desired (or null).
         */
-        private static List<ISettingsCE> settingList = new List<ISettingsCE>();
+        public static List<ISettingsCE> settingList = new List<ISettingsCE>();
         private static Loader instance = null;
+        private Vector2 scrollPosition;
 
         private ModContentPack content;
 
@@ -138,7 +139,14 @@ namespace CombatExtended.Loader
                 ISettingsCE settings = null;
                 if (settingsType != null)
                 {
-                    settings = (ISettingsCE)typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingsType).Invoke(instance, null);
+                    if (typeof(ModSettings).IsAssignableFrom(settingsType))
+                    {
+                        settings = (ISettingsCE)typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingsType).Invoke(instance, null);
+                    }
+                    else
+                    {
+                        settings = (ISettingsCE)settingsType.GetConstructor(new Type[] { }).Invoke(new object[] { });
+                    }
                     settingList.Add(settings);
                 }
 
@@ -168,14 +176,21 @@ namespace CombatExtended.Loader
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            int offset = 0;
+            Rect inner = inRect.ContractedBy(20f);
+            inner.height = 800f;
+            inner.x += 10f;
+            Widgets.BeginScrollView(inRect, ref this.scrollPosition, inner, true);
+            Listing_Standard list = new Listing_Standard();
+            list.ColumnWidth = (inner.width - 17) / 2; // Subtract 17 for gap between columns
+            list.Begin(inner);
+
             foreach (ISettingsCE settings in settingList)
             {
-                settings.DoWindowContents(inRect, ref offset);
+                settings.DoWindowContents(list);
             }
+            list.End();
+            Widgets.EndScrollView();
         }
-
-
 
         //Unused method is only here for reference, the repository assembly uses it to warn users to get a compiled build.
         private static void ShowUncompiledBuildWarning()

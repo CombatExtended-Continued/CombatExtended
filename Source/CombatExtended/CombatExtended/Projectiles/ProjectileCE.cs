@@ -140,7 +140,7 @@ namespace CombatExtended
         ///
         /// If lastHeightTick equals FlightTicks, it returns a locally stored value heightInt which is the product of previous calculation.
         /// </summary>
-        public float Height
+        public virtual float Height
         {
             get
             {
@@ -170,7 +170,12 @@ namespace CombatExtended
                         {
                             destinationInt = origin;
                             startingTicksToImpactInt = 0f;
-                            ImpactSomething();
+                            // During drawing in Multiplayer - impact causes issues. Will get handled inside of the `Tick` call.
+                            // In the future, replace this with `!InInterface` call, as it's more fitting here.
+                            if (!global::CombatExtended.Compatibility.Multiplayer.InMultiplayer)
+                            {
+                                ImpactSomething();
+                            }
                             return 0f;
                         }
                         // Multiplied by ticksPerSecond since the calculated time is actually in seconds.
@@ -271,9 +276,9 @@ namespace CombatExtended
         }
 
         private Vector3 lastExactPos = new Vector3(-1000, 0, 0);
-        private Vector3 LastPos
+        public Vector3 LastPos
         {
-            set
+            private set
             {
                 lastExactPos = value;
             }
@@ -644,15 +649,35 @@ namespace CombatExtended
         #endregion
 
         #region Collisions
+        public virtual void InterceptProjectile(object interceptor, Vector3 impactPosition, bool destroyCompletely = false)
+        {
+            ExactPosition = impactPosition;
+            landed = true;
+            ticksToImpact = 0;
+            if (destroyCompletely)
+            {
+                this.Destroy(DestroyMode.Vanish);
+            }
+            else
+            {
+                this.Impact(null);
+            }
+        }
+        public virtual void InterceptProjectile(object interceptor, Vector3 shieldPosition, float shieldRadius, bool destroyCompletely = false)
+        {
+            InterceptProjectile(interceptor, BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius * shieldRadius));
+        }
+
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
             float radius = interceptorComp.Props.radius;
             float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
+            float radiusSq = blockRadius * blockRadius;
 
             var newExactPos = ExactPosition;
 
-            if ((newExactPos - shieldPosition).sqrMagnitude > Mathf.Pow(blockRadius, 2))
+            if ((newExactPos - shieldPosition).sqrMagnitude > radiusSq)
             {
                 return false;
             }
@@ -675,11 +700,16 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= Mathf.Pow((float)radius, 2))
+            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= radius * radius)
             {
                 return false;
             }
-            if (!IntersectLineSphericalOutline(shieldPosition, radius, lastExactPos, newExactPos))
+            if (CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
+            {
+                ExactPosition = newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                landed = true;
+            }
+            else
             {
                 return false;
             }
@@ -731,23 +761,6 @@ namespace CombatExtended
             return true;
         }
 
-        private static bool IntersectLineSphericalOutline(Vector3 center, float radius, Vector3 pointA, Vector3 pointB)
-        {
-            var pointAInShield = (center - pointA).sqrMagnitude <= Mathf.Pow(radius, 2);
-            var pointBInShield = (center - pointB).sqrMagnitude <= Mathf.Pow(radius, 2);
-
-            if (pointAInShield && pointBInShield)
-            {
-                return false;
-            }
-            if (!pointAInShield && !pointBInShield)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
@@ -761,9 +774,14 @@ namespace CombatExtended
             {
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
-                    this.Destroy(DestroyMode.Vanish);
+                    landed = true;
+                    this.Impact(null);
                     return true;
                 }
+            }
+            if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition))
+            {
+                return true;
             }
 
             #region Sanity checks
@@ -823,10 +841,6 @@ namespace CombatExtended
         {
             if (BlockerRegistry.CheckCellForCollisionCallback(this, cell, launcher))
             {
-                this.ticksToImpact = 0;
-                this.landed = true;
-
-                this.Impact(null);
                 return true;
             }
             var roofChecked = false;
@@ -872,6 +886,32 @@ namespace CombatExtended
                 // Check for collision
                 if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
+                    if (!CanCollideWith(thing, out _))
+                    {
+                        continue;
+                    }
+                    if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thing.TrueCenter()))
+                    {
+                        return true;
+                    }
+                    var lastPosIV3 = LastPos.ToIntVec3();
+                    var newPosIV3 = thing.TrueCenter().ToIntVec3();
+                    // Iterate through all cells between the last and the THING
+                    // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
+                    var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
+                    foreach (var _cell in cells)
+                    {
+                        bool colided = false;
+                        colided = BlockerRegistry.CheckCellForCollisionCallback(this, _cell, launcher);
+                        if (Controller.settings.DebugDrawInterceptChecks && Map != null)
+                        {
+                            Map.debugDrawer.FlashCell(_cell, 1, "a");
+                        }
+                        if (colided)
+                        {
+                            return true;
+                        }
+                    }
                     if (TryCollideWith(thing))
                     {
                         return true;
@@ -918,14 +958,9 @@ namespace CombatExtended
             Impact(null);
             return true;
         }
-
-        /// <summary>
-        /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection.
-        /// </summary>
-        /// <param name="thing">What to impact</param>
-        /// <returns>True if impact occured, false otherwise</returns>
-        private bool TryCollideWith(Thing thing)
+        private bool CanCollideWith(Thing thing, out float dist)
         {
+            dist = -1f;
             if (globalTargetInfo.IsValid)
             {
                 return false;
@@ -936,7 +971,7 @@ namespace CombatExtended
             }
 
             var bounds = CE_Utility.GetBoundsFor(thing);
-            if (!bounds.IntersectRay(ShotLine, out var dist))
+            if (!bounds.IntersectRay(ShotLine, out dist))
             {
                 return false;
             }
@@ -944,7 +979,20 @@ namespace CombatExtended
             {
                 return false;
             }
+            return true;
+        }
+        /// <summary>
+        /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection.
+        /// </summary>
+        /// <param name="thing">What to impact</param>
+        /// <returns>True if impact occured, false otherwise</returns>
+        private bool TryCollideWith(Thing thing)
+        {
 
+            if (!CanCollideWith(thing, out var dist))
+            {
+                return false;
+            }
             // Trees and bushes have RNG chance to collide
             if (thing is Plant)
             {
@@ -976,9 +1024,12 @@ namespace CombatExtended
                 }
             }
 
+            if (BlockerRegistry.BeforeCollideWithCallback(this, thing))
+            {
+                return true;
+            }
             ExactPosition = point;
             landed = true;
-
             if (Controller.settings.DebugDrawInterceptChecks)
             {
                 MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
@@ -1213,7 +1264,6 @@ namespace CombatExtended
         {
             if (BlockerRegistry.ImpactSomethingCallback(this, launcher))
             {
-                this.Destroy();
                 return;
             }
             var pos = ExactPosition.ToIntVec3();
@@ -1267,14 +1317,13 @@ namespace CombatExtended
             //{
             //    Find.CameraDriver.shaker.DoShake(cameraShakingInit);
             //}
-            if (def.HasModExtension<EffectProjectileExtension>())
+            if (Controller.settings.EnableExtraEffects)
             {
-                def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
+                ImpactFleckThrower.ThrowFleck(ExactPosition,
+                        Position,
                         Map,
-                        def.projectile.damageDef.explosionCellMote,
-                        def.projectile.damageDef.explosionColorCenter,
-                        def.projectile.damageDef.soundExplosion,
-                        hitThing);
+                        def.projectile as ProjectilePropertiesCE,
+                        def, hitThing, shotRotation);
             }
             var ignoredThings = new List<Thing>();
 
