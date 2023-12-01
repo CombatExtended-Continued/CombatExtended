@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dark Ages : Medieval Tools</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Hammer -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Hammer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5.0</power>
+								<cooldownTime>1.2</cooldownTime>
+								<chanceFactor>1.1</chanceFactor>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>9.0</power>
+								<cooldownTime>2.0</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Hammer"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Hammer"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.25</MeleeCritChance>
+						<MeleeParryChance>0.20</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Hammer"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!-- Pickaxe -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Pickaxe"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Pickaxe"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.9</MeleeCritChance>
+						<MeleeParryChance>0.22</MeleeParryChance>
+						<MeleeDodgeChance>0.23</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Pickaxe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>2.0</cooldownTime>
+								<chanceFactor>0.05</chanceFactor>
+								<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>19</power>
+								<cooldownTime>2.3</cooldownTime>
+								<chanceFactor>0.95</chanceFactor>
+								<armorPenetrationBlunt>8.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.72</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Cleaver -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Cleaver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>1.2</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>0.656</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.43</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.26</cooldownTime>
+								<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Cleaver"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Cleaver"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.4</MeleeCritChance>
+						<MeleeParryChance>0.15</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Cleaver"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!-- Hacksaw -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Hacksaw"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.6</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.55</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.26</cooldownTime>
+								<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Hacksaw"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Hacksaw"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.1</MeleeParryChance>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Hacksaw"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!-- Scythe -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Scythe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.78</cooldownTime>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>29</power>
+								<cooldownTime>3.57</cooldownTime>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>3.57</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Scythe"]/statBases</xpath>
+					<value>
+						<Bulk>12</Bulk>
+						<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<!-- Broom -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Broom"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.21</cooldownTime>
+								<chanceFactor>1.43</chanceFactor>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.64</cooldownTime>
+								<armorPenetrationBlunt>1.26</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Broom"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DA_MeleeWeapon_Broom"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>1.4</MeleeParryChance>
+						<MeleeDodgeChance>0.8</MeleeDodgeChance>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

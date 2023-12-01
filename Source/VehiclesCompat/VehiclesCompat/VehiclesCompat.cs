@@ -17,20 +17,47 @@ namespace CombatExtended.Compatibility.VehiclesCompat
     {
         public Type GetSettingsType()
         {
-            return null;
+            return typeof(VehicleSettings);
         }
         public IEnumerable<string> GetCompatList()
         {
             yield break;
         }
-        public void PostLoad(ModContentPack content, ISettingsCE _)
+        public void PostLoad(ModContentPack content, ISettingsCE vehicleSettings)
         {
             VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
             VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
             VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
             VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
+            VehicleTurret.NotifyShotFiredCE = NotifyShotFiredCE;
             global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
             global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
+            var harmony = new Harmony("CombatExtended.Compatibility.VehiclesCompat");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
+        }
+
+        public static void NotifyShotFiredCE(ThingDef projectileDef, ThingDef _ammoDef, Def _ammosetDef, VehicleTurret turret, float recoil)
+        {
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            {
+                foreach (var al in ammosetDef.ammoTypes)
+                {
+                    if (al.ammo == ammoDef)
+                    {
+                        projectileDef = al.projectile;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                projectileDef = projectileDef.GetProjectile();
+            }
+            if (projectileDef.projectile is ProjectilePropertiesCE ppce)
+            {
+                CE_Utility.GenerateAmmoCasings(ppce, turret.TurretLocation, turret.vehicle.Map, -turret.TurretRotation, recoil);
+            }
+
         }
 
         public static Tuple<int, float> LookupProjectileCountAndSpreadCE(ThingDef _ammoDef, Def _ammosetDef, float spread)
@@ -64,23 +91,29 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             {
                 foreach (VehicleTurretDef vtd in DefDatabase<global::Vehicles.VehicleTurretDef>.AllDefs)
                 {
-                    CETurretDataDefModExtension cetddme = vtd.GetModExtension<CETurretDataDefModExtension>();
-                    if (cetddme.ammoSet != null)
+                    if (vtd.GetModExtension<CETurretDataDefModExtension>() is CETurretDataDefModExtension cetddme)
                     {
-                        AmmoSetDef asd = (AmmoSetDef)LookupAmmosetCE(cetddme.ammoSet);
-                        if (Controller.settings.GenericAmmo && asd?.similarTo != null)
+                        if (cetddme.ammoSet != null)
                         {
-                            asd = asd.similarTo;
-                        }
-                        if (asd != null)
-                        {
-                            cetddme._ammoSet = asd;
-                            HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)vtd.ammunition?.AllowedThingDefs;
-                            allowedAmmo.Clear();
-                            foreach (var al in asd.ammoTypes)
+                            AmmoSetDef asd = (AmmoSetDef)LookupAmmosetCE(cetddme.ammoSet);
+                            if (Controller.settings.GenericAmmo && asd?.similarTo != null)
                             {
-                                allowedAmmo.Add(al.ammo);
-                                yield return al.ammo;
+                                asd = asd.similarTo;
+                            }
+                            if (asd != null)
+                            {
+                                cetddme._ammoSet = asd;
+                                var ammunition = vtd.ammunition = new ThingFilter();
+                                vtd.genericAmmo = false;
+                                HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)ammunition.AllowedThingDefs;
+
+                                foreach (var al in asd.ammoTypes)
+                                {
+                                    allowedAmmo.Add(al.ammo);
+                                    yield return al.ammo;
+                                }
+
+                                vtd.ammunition.ResolveReferences();
                             }
                         }
                     }

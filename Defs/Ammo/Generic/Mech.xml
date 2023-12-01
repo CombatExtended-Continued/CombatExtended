@@ -37,6 +37,14 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MechShell_Demo</defName>
+		<label>mech shell</label>
+		<ammoTypes>
+			<Ammo_MechShell_Demo>Bullet_164x284mmDemo</Ammo_MechShell_Demo>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ============= Ammo ============= -->
 
 	<!-- Mech Charged -->
@@ -87,7 +95,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="MechShellAmmo">
 		<defName>Ammo_MechShell</defName>
-		<label>Mechanoid shell</label>
+		<label>mechanoid shell</label>
 		<graphicData>
 			<texPath>Things/Ammo/FuelCell/Large</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -98,6 +106,32 @@
 				<explosiveRadius>1.9</explosiveRadius>
 				<damageAmountBase>5</damageAmountBase>
 				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.33</startWickHitPointsPercent>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>60~300</wickTicks>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="164x284mmDemoBase">
+		<defName>Ammo_MechShell_Demo</defName>
+		<label>mech shell (demo)</label>
+		<graphicData>
+			<texPath>Things/Ammo/FuelCell/Large</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>10.97</MarketValue>
+		</statBases>
+		<ammoClass>Demolition</ammoClass>
+		<detonateProjectile>Bullet_164x284mmDemo</detonateProjectile>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>1</explosiveRadius>
+				<damageAmountBase>18</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
 				<explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
 				<startWickHitPointsPercent>0.33</startWickHitPointsPercent>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -148,7 +182,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_12x64mmCharged>200</Ammo_12x64mmCharged>
+			<Ammo_MechCharged>200</Ammo_MechCharged>
 		</products>
 		<skillRequirements>
 			<Crafting>8</Crafting>
@@ -195,7 +229,54 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_80x256mmFuel_Incendiary>5</Ammo_80x256mmFuel_Incendiary>
+			<Ammo_MechShell>5</Ammo_MechShell>
+		</products>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workAmount>3730</workAmount><!-- 10% more work -->
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_MechShell_Demo</defName>
+		<label>make Mech Shell (Demo) x5</label>
+		<description>Craft 5 Mech Shells (Demo).</description>
+		<jobString>Making Mech Shells (Demo).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>FSX</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_MechShell_Demo>5</Ammo_MechShell_Demo>
 		</products>
 		<skillRequirements>
 			<Crafting>8</Crafting>

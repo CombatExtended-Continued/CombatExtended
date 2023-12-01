@@ -22,7 +22,7 @@ namespace CombatExtended.HarmonyCE
                 // fully. However, because of how Harmony works all prefixes, postfixes, finalizers will still run - which will cause issues
                 // as this postfix will run before it ends up being synchronized in Multiplayer.
                 // Once Multiplayer API exposes `InInterface` method, it should replace this check (as it'll better handle a few edge cases).
-                if (Multiplayer.InMultiplayer && !Multiplayer.IsExecutingCommands)
+                if (global::CombatExtended.Compatibility.Multiplayer.InMultiplayer && !global::CombatExtended.Compatibility.Multiplayer.IsExecutingCommands)
                 {
                     return;
                 }

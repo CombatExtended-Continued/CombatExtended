@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Deserters</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VFED_ImperialTurretBase" or defName="VFED_Turret_StrikerTurret"]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[@Name="VFED_ImperialTurretBase"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VFED_ImperialTurretBase" or defName="VFED_Turret_StrikerTurret"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VFED_ImperialTurretBase"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>800</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VFED_ImperialTurretBase"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.4</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VFED_ImperialTurretBase"]/comps/li[@Class="CompProperties_Power"]</xpath>
+					<value>
+						<li Class="CompProperties_Power">
+							<compClass>CompPowerTrader</compClass>
+							<basePowerConsumption>750</basePowerConsumption>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[@Name="VFED_ImperialTurretBase"]/placeWorkers/li[.="PlaceWorker_ShowTurretRadius"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/comps/li[@Class="CompProperties_Refuelable"]
+						| Defs/ThingDef[defName="VFED_Turret_Palintone"]/comps/li[@Class="CompProperties_Refuelable"]
+						| Defs/ThingDef[defName="VFED_Turret_Onager"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]
+						| Defs/ThingDef[defName="VFED_Turret_Palintone"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]
+						| Defs/ThingDef[defName="VFED_Turret_Onager"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/modExtensions/li[@Class="VFED.TurretExtension_Barrels"]
+						| Defs/ThingDef[defName="VFED_Turret_Palintone"]/modExtensions/li[@Class="VFED.TurretExtension_Barrels"]
+						| Defs/ThingDef[defName="VFED_Turret_Onager"]/modExtensions/li[@Class="VFED.TurretExtension_Barrels"]</xpath>
+				</li>
+
+				<!-- Kontarion -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.75</AimingAccuracy>
+						<NightVisionEfficiency>0.5</NightVisionEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/statBases/ShootingAccuracyTurret</xpath>
+					<value>
+						<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Kontarion"]/costList</xpath>
+					<value>
+						<costList>
+							<Steel>550</Steel>
+							<Plasteel>100</Plasteel>
+							<Uranium>60</Uranium>
+							<ComponentIndustrial>14</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>VFED_Gun_Kontarion</defName>
+					<statBases>
+						<SightsEfficiency>2.36</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>1.0</SwayFactor>
+						<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+						<Mass>150</Mass>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.0</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_40x311mmR_AP</defaultProjectile>
+						<warmupTime>4.6</warmupTime>
+						<minRange>12</minRange>
+						<range>500</range>
+						<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+						<burstShotCount>6</burstShotCount>
+						<soundCast>Shot_TurretSniper</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>20</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>13.6</reloadTime>
+						<ammoSet>AmmoSet_40x311mmR</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li>
+
+				<!-- Palintone -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Palintone"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.75</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Palintone"]/statBases/ShootingAccuracyTurret</xpath>
+					<value>
+						<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Palintone"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Palintone"]/costList</xpath>
+					<value>
+						<costList>
+							<Steel>550</Steel>
+							<Plasteel>80</Plasteel>
+							<ComponentIndustrial>12</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>VFED_Gun_Palintone</defName>
+					<statBases>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>1.0</SwayFactor>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+						<Mass>150</Mass>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.0</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+						<warmupTime>2.3</warmupTime>
+						<minRange>14</minRange>
+						<range>500</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>20</burstShotCount>
+						<soundCast>Shot_Minigun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>200</magazineSize>
+						<reloadTime>15.6</reloadTime>
+						<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li>
+
+				<!-- Onager -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Onager"]/statBases/ShootingAccuracyTurret</xpath>
+					<value>
+						<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Onager"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>1.0</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Onager"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>4.2</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_Onager"]/costList</xpath>
+					<value>
+						<costList>
+							<Steel>600</Steel>
+							<Plasteel>90</Plasteel>
+							<ComponentIndustrial>15</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFED_Gun_Onager"]/statBases/AccuracyTouch
+						| Defs/ThingDef[defName="VFED_Gun_Onager"]/statBases/AccuracyShort
+						| Defs/ThingDef[defName="VFED_Gun_Onager"]/statBases/AccuracyMedium
+						| Defs/ThingDef[defName="VFED_Gun_Onager"]/statBases/AccuracyLong </xpath>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFED_Gun_Onager"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFED_Gun_Onager"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFED_Gun_Onager"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>20</li>
+								<li>30</li>
+								<li>40</li>
+								<li>50</li>
+								<li>60</li>
+							</chargeSpeeds>
+						</li>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>24</magazineSize>
+							<reloadTime>13</reloadTime>
+							<ammoSet>AmmoSet_50mmRocket</ammoSet>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Gun_Onager"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>1.0</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+								<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+								<hasStandardCommand>true</hasStandardCommand>
+								<requireLineOfSight>false</requireLineOfSight>
+								<defaultProjectile>Bullet_50mmRocket_HE</defaultProjectile>
+								<warmupTime>3.6</warmupTime>
+								<range>86</range>
+								<minRange>14</minRange>
+								<burstShotCount>6</burstShotCount>
+								<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+								<soundCast>RocketswarmLauncher_Fire</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>39</muzzleFlashScale>
+								<circularError>1</circularError>
+								<indirectFirePenalty>0.25</indirectFirePenalty>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- Striker -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_StrikerTurret"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.25</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_StrikerTurret"]/statBases/ShootingAccuracyTurret</xpath>
+					<value>
+						<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_Turret_StrikerTurret"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

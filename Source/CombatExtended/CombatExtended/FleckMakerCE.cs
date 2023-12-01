@@ -33,5 +33,12 @@ namespace CombatExtended
             FleckMaker.WaterSplash(loc, map, size, velocity);
             Rand.PopState();
         }
+
+        public static void ThrowPsycastShieldFleck(Vector3 loc, Map map, float size)
+        {
+            Rand.PushState();
+            FleckMaker.Static(loc, map, FleckDefOf.PsycastAreaEffect, size);
+            Rand.PopState();
+        }
     }
 }

@@ -158,8 +158,10 @@ CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Cybernetic Warfare and Special Weapons (Continued)  |
+Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Core	|
+Det's Energy Weapons    |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
@@ -403,6 +405,7 @@ Rim-Effect: N7	|
 Rimedieval - Medieval Royalty   |
 Rimefeller	|
 RimEffect - Asari of the Rims	|
+Rim-Elves   |
 Rim-Gnoblins	| 
 Rim-Hivers!	|
 Rim Flood	|
@@ -457,6 +460,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
+The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
@@ -491,12 +495,14 @@ Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
 Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Classical   |
+Vanilla Factions Expanded - Deserters  |
 Vanilla Factions Expanded - Empire  |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Pirates |
 Vanilla Factions Expanded - Settlers	|
+Vanilla Factions Expanded - Tribals |
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
@@ -508,6 +514,7 @@ Vanilla Plants Expanded - Mushrooms  |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Races Expanded - Android  |
+Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Phytokin  |
@@ -515,6 +522,7 @@ Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
+Vanilla Vehicles Expanded - Tier 3  |
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|
@@ -539,6 +547,9 @@ WarCasket Expanded  |
 WarCasket Gundam Addon  |
 Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
+Warhammer"ish" - Dryad    |
+Warhammer 40.000 - Imperium Materials   |
+Warhammer 40k - Genes and Psycasts  |
 Wasters Toxic Breather  |
 Weapons+	|
 WWII German Uniforms - V's Edit |

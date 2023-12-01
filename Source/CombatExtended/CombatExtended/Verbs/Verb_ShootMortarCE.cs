@@ -215,6 +215,7 @@ namespace CombatExtended
                     CompReloadable.UsedOnce();
                 }
             }
+            lastShotTick = Find.TickManager.TicksGame;
             return true;
         }
 
