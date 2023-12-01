@@ -849,8 +849,18 @@ namespace CombatExtended
 
             //Find pawns in adjacent cells and append them to main list
             var adjList = new List<IntVec3>();
-            adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, Rot4.FromAngleFlat(shotRotation), new IntVec2(collisionCheckSize, 0)).ToList());
-
+            var rot4 = Rot4.FromAngleFlat(shotRotation);
+            if (rot4.rotInt > 1)
+            {
+                //For some reason south and west returns incorrect adjacent cells collection
+                rot4 = rot4.Opposite;
+            }
+            adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, rot4, new IntVec2(collisionCheckSize, 0)).ToList());
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                Map.debugDrawer.debugCells.Clear();
+                Map.debugDrawer.DebugDrawerUpdate();
+            }
             //Iterate through adjacent cells and find all the pawns
             foreach (var curCell in adjList)
             {
