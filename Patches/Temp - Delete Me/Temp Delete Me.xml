@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>ZPU-1/2/4</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAdd">
+          <xpath>
+            Defs/ThingDef[
+            defName="Turret_ZPU_1_Base" or
+            defName="Turret_ZPU_2_Base" or
+            defName="Turret_ZPU_4_Base"
+            ]
+          </xpath>
+          <value>
+            <comps>
+              <li Class="CombatExtended.CompProperties_CIWS_Projectile">
+              </li>
+              <li Class="CombatExtended.CompProperties_CIWS_Skyfaller">
+              </li>
+            </comps>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>
