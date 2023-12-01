@@ -7,206 +7,64 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs</xpath>
-					<value>
 
-						<!-- ======= Projectiles ======= -->
+					<!-- ======= Projectiles ======= -->
 
-						<!-- ===== British ===== -->
+					<!-- ===== ThingClass ===== -->
 
-						<!-- === British No. 36M Mk I Mills Bomb Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>Proj_K4GGrenade_WW2BRI</defName>
-							<label>service grenade WW2 british</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2BritishServiceGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+						defName="K4G_Proj_WW2BritishServiceGrenade" or
+						defName="K4G_Proj_WW2FinnishServiceGrenade" or
+						defName="K4G_Proj_WW2FrenchServiceGrenade" or
+						defName="K4G_Proj_WW2GermanServiceGrenade" or
+						defName="K4G_Proj_WW2GermanServiceGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceGrenadeB" or
+						defName="K4G_Proj_WW2ItalianServiceGrenadeC" or
+						defName="K4G_Proj_WW2JapaneseServiceGrenade" or
+						defName="K4G_Proj_WW2RussianServiceGrenade" or
+						defName="K4G_Proj_WW2RussianServiceGrenadeB" or
+						defName="K4G_Proj_WW2RussianServiceGrenadeC" or
+						defName="K4G_Proj_WW2AmericanServiceGrenade" or
+						defName="K4G_Proj_WW2BritishServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2BritishServiceAntiTankGrenadeB" or
+						defName="K4G_Proj_WW2GermanServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"						
+						]</xpath>
+						<value>
 							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						</value>
+					</li>
+
+
+					<!-- ===== Fragmentation ===== -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+						defName="K4G_Proj_WW2BritishServiceGrenade" or
+						defName="K4G_Proj_WW2FinnishServiceGrenade" or
+						defName="K4G_Proj_WW2FrenchServiceGrenade" or
+						defName="K4G_Proj_WW2GermanServiceGrenade" or
+						defName="K4G_Proj_WW2GermanServiceGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceGrenadeB" or
+						defName="K4G_Proj_WW2ItalianServiceGrenadeC" or
+						defName="K4G_Proj_WW2JapaneseServiceGrenade" or
+						defName="K4G_Proj_WW2RussianServiceGrenade" or
+						defName="K4G_Proj_WW2RussianServiceGrenadeB" or
+						defName="K4G_Proj_WW2RussianServiceGrenadeC" or
+						defName="K4G_Proj_WW2AmericanServiceGrenade"
+						]</xpath>
+						<value>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<explosionRadius>1.5</explosionRadius>
 								<damageDef>Bomb</damageDef>
 								<damageAmountBase>56</damageAmountBase>
 								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-								<speed>10</speed>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>40</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- === British No. 73 Anti-Tank Grenades === -->
-						<ThingDef ParentName="BaseExplosiveBullet">
-							<defName>Proj_K4GGrenadeAT_WW2BRI</defName>
-							<label>anti-tank grenade WW2 british</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2BritishServiceAntiTankGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<damageAmountBase>120</damageAmountBase>
-								<armorPenetrationSharp>450</armorPenetrationSharp>
-								<armorPenetrationBlunt>44.956</armorPenetrationBlunt>
-								<explosionDelay>0</explosionDelay>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>9</speed>
-								<gravityFactor>1.5</gravityFactor>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_ExplosiveCE">
-									<damageAmountBase>100</damageAmountBase>
-									<explosiveDamageType>Bomb</explosiveDamageType>
-									<explosiveRadius>0.5</explosiveRadius>
-									<explosionSound>Explosion_Thump</explosionSound>
-									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								</li>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>5</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- === British No. 74 Sticky Bomb Anti-Tank Grenades === -->
-						<ThingDef ParentName="BaseExplosiveBullet">
-							<defName>ProjB_K4GGrenadeAT_WW2BRI</defName>
-							<label>anti-tank grenade WW2 british</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2BritishServiceAntiTankGrenadeB</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<damageAmountBase>120</damageAmountBase>
-								<armorPenetrationSharp>500</armorPenetrationSharp>
-								<armorPenetrationBlunt>46.956</armorPenetrationBlunt>
-								<explosionDelay>0</explosionDelay>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>9</speed>
-								<gravityFactor>1.5</gravityFactor>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_ExplosiveCE">
-									<damageAmountBase>100</damageAmountBase>
-									<explosiveDamageType>Bomb</explosiveDamageType>
-									<explosiveRadius>0.5</explosiveRadius>
-									<explosionSound>Explosion_Thump</explosionSound>
-									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								</li>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>5</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- ===== Finnish ===== -->
-
-						<!-- === Finnish Mk II Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>Proj_K4GGrenade_WW2FIN</defName>
-							<label>service grenade WW2 finland</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2FinnishServiceGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>40</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- ===== France ===== -->
-
-						<!-- === French F1 Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>Proj_K4GGrenade_WW2FRA</defName>
-							<label>service grenade WW2 france</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2FrenchServiceGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>40</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- ===== Germany ===== -->
-
-						<!-- === German M24 Stielhandgranate Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>Proj_K4GGrenade_WW2GER</defName>
-							<label>service grenade WW2 germany</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2GermanServiceGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>47</damageAmountBase>
-								<explosionDelay>50</explosionDelay>
 								<dropsCasings>true</dropsCasings>
 								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
 								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
@@ -216,38 +74,25 @@
 								<dangerFactor>2.0</dangerFactor>
 								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>30</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
+						</value>
+					</li>
 
-						<!-- === German M39 Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>ProjB_K4GGrenade_WW2GER</defName>
-							<label>service grenade WW2 Germany</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2GermanServiceGrenadeB</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+						defName="K4G_Proj_WW2BritishServiceGrenade" or
+						defName="K4G_Proj_WW2FinnishServiceGrenade" or
+						defName="K4G_Proj_WW2FrenchServiceGrenade" or
+						defName="K4G_Proj_WW2GermanServiceGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceGrenadeB" or
+						defName="K4G_Proj_WW2ItalianServiceGrenadeC" or
+						defName="K4G_Proj_WW2JapaneseServiceGrenade" or
+						defName="K4G_Proj_WW2RussianServiceGrenade" or
+						defName="K4G_Proj_WW2RussianServiceGrenadeB" or
+						defName="K4G_Proj_WW2RussianServiceGrenadeC" or
+						defName="K4G_Proj_WW2AmericanServiceGrenade"							
+						]</xpath>
+						<value>
 							<comps>
 								<li Class="CombatExtended.CompProperties_Fragments">
 									<fragments>
@@ -255,31 +100,56 @@
 									</fragments>
 								</li>
 							</comps>
-						</ThingDef>
+						</value>
+					</li>
 
-						<!-- === German M24 Stielhandgranate Bundle Anti-Tank Grenades === -->
-						<ThingDef ParentName="BaseExplosiveBullet">
-							<defName>Proj_K4GGrenadeAT_WW2GER</defName>
-							<label>anti-tank grenade WW2 germany</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2GermanServiceAntiTankGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<!-- ===== Anti-Tank ===== -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+						defName="K4G_Proj_WW2BritishServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2BritishServiceAntiTankGrenadeB" or
+						defName="K4G_Proj_WW2GermanServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"
+						]</xpath>
+						<value>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<damageAmountBase>120</damageAmountBase>
-								<armorPenetrationSharp>550</armorPenetrationSharp>
-								<armorPenetrationBlunt>48.956</armorPenetrationBlunt>
-								<explosionDelay>0</explosionDelay>
+								<explosionRadius>1.5</explosionRadius>
+								<damageDef>Bomb</damageDef>
+								<damageAmountBase>56</damageAmountBase>
+								<explosionDelay>60</explosionDelay>
+								<dropsCasings>true</dropsCasings>
+								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>9</speed>
-								<gravityFactor>1.5</gravityFactor>
+								<speed>12</speed>
 								<suppressionFactor>3.0</suppressionFactor>
 								<dangerFactor>2.0</dangerFactor>
 								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 							</projectile>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[
+						defName="K4G_Proj_WW2BritishServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2BritishServiceAntiTankGrenadeB" or
+						defName="K4G_Proj_WW2GermanServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"
+						]</xpath>
+						<value>
 							<comps>
+								<li Class="CombatExtended.CompProperties_Fragments">
+									<fragments>
+										<Fragment_Small>5</Fragment_Small>
+									</fragments>
+								</li>
 								<li Class="CombatExtended.CompProperties_ExplosiveCE">
 									<damageAmountBase>100</damageAmountBase>
 									<explosiveDamageType>Bomb</explosiveDamageType>
@@ -287,434 +157,131 @@
 									<explosionSound>Explosion_Thump</explosionSound>
 									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 								</li>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>5</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
+							</comps>								
+						</value>
+					</li>
 
-						<!-- ===== Italy ===== -->
+				<!-- ======= Grenades Equipment ======= -->
 
-						<!-- === Italian SRCM Mod.35 Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>Proj_K4GGrenade_WW2ITA</defName>
-							<label>service grenade WW2 italy</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2ItalianServiceGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>30</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Weapon_WW2BritishServiceGrenades" or
+					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+					defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+					defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+					defName="K4G_Weapon_WW2GermanServiceGrenades" or
+					defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+					defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+					defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+					defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+					defName="K4G_Weapon_WW2AmericanServiceGrenades"
+					]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseWeapon</value>
+				</li>
 
-						<!-- === Italian OTO Mod.35 Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>ProjB_K4GGrenade_WW2ITA</defName>
-							<label>service grenade WW2 italy</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2ItalianServiceGrenadeB</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.7</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>35</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
+				<!-- Grenade -->
 
-						<!-- === Italian Breda Mod.35 Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>ProjC_K4GGrenade_WW2ITA</defName>
-							<label>service grenade WW2 italy</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2ItalianServiceGrenadeC</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.9</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>40</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- === Italian Type L Anti-Tank Grenades === -->
-						<ThingDef ParentName="BaseExplosiveBullet">
-							<defName>Proj_K4GGrenadeAT_WW2ITA</defName>
-							<label>anti-tank grenade WW2 italy</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2ItalianServiceAntiTankGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<damageAmountBase>120</damageAmountBase>
-								<armorPenetrationSharp>500</armorPenetrationSharp>
-								<armorPenetrationBlunt>46.956</armorPenetrationBlunt>
-								<explosionDelay>0</explosionDelay>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>9</speed>
-								<gravityFactor>1.5</gravityFactor>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_ExplosiveCE">
-									<damageAmountBase>100</damageAmountBase>
-									<explosiveDamageType>Bomb</explosiveDamageType>
-									<explosiveRadius>0.5</explosiveRadius>
-									<explosionSound>Explosion_Thump</explosionSound>
-									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								</li>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>5</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- ===== Japan ===== -->
-
-						<!-- === Japanese Type 97 Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>Proj_K4GGrenade_WW2JPN</defName>
-							<label>service grenade WW2 japan</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2JapaneseServiceGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>40</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- ===== Russia ===== -->
-
-						<!-- === Russian F1 Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>Proj_K4GGrenade_WW2RUS</defName>
-							<label>service grenade WW2 russia</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2RussianServiceGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>50</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>30</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- === Russian RG-42 Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>ProjB_K4GGrenade_WW2RUS</defName>
-							<label>service grenade WW2 Russia</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2RussianServiceGrenadeB</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>55</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>35</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- === Russian RGD-33 Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>ProjC_K4GGrenade_WW2RUS</defName>
-							<label>service grenade WW2 russia</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2RussianServiceGrenadeC</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>40</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- === Russian RPG-40 Anti-Tank Grenades === -->
-						<ThingDef ParentName="BaseExplosiveBullet">
-							<defName>Proj_K4GGrenadeAT_WW2RUS</defName>
-							<label>anti-tank grenade WW2 russia</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2RussianServiceAntiTankGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<damageAmountBase>120</damageAmountBase>
-								<armorPenetrationSharp>450</armorPenetrationSharp>
-								<armorPenetrationBlunt>44.956</armorPenetrationBlunt>
-								<explosionDelay>0</explosionDelay>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>9</speed>
-								<gravityFactor>1.5</gravityFactor>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_ExplosiveCE">
-									<damageAmountBase>100</damageAmountBase>
-									<explosiveDamageType>Bomb</explosiveDamageType>
-									<explosiveRadius>0.5</explosiveRadius>
-									<explosionSound>Explosion_Thump</explosionSound>
-									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								</li>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>5</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- === Russian RPG-43 Anti-Tank Grenades === -->
-						<ThingDef ParentName="BaseExplosiveBullet">
-							<defName>ProjB_K4GGrenadeAT_WW2RUS</defName>
-							<label>anti-tank grenade WW2 russia</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2RussianServiceAntiTankGrenadeB</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<damageAmountBase>120</damageAmountBase>
-								<armorPenetrationSharp>500</armorPenetrationSharp>
-								<armorPenetrationBlunt>46.956</armorPenetrationBlunt>
-								<explosionDelay>0</explosionDelay>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>9</speed>
-								<gravityFactor>1.5</gravityFactor>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_ExplosiveCE">
-									<damageAmountBase>100</damageAmountBase>
-									<explosiveDamageType>Bomb</explosiveDamageType>
-									<explosiveRadius>0.5</explosiveRadius>
-									<explosionSound>Explosion_Thump</explosionSound>
-									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								</li>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>5</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- === Russian RPG-6 Anti-Tank Grenades === -->
-						<ThingDef ParentName="BaseExplosiveBullet">
-							<defName>ProjC_K4GGrenadeAT_WW2RUS</defName>
-							<label>anti-tank grenade WW2 russia</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2RussianServiceAntiTankGrenadeC</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<damageAmountBase>120</damageAmountBase>
-								<armorPenetrationSharp>550</armorPenetrationSharp>
-								<armorPenetrationBlunt>48.956</armorPenetrationBlunt>
-								<explosionDelay>0</explosionDelay>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>9</speed>
-								<gravityFactor>1.5</gravityFactor>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_ExplosiveCE">
-									<damageAmountBase>100</damageAmountBase>
-									<explosiveDamageType>Bomb</explosiveDamageType>
-									<explosiveRadius>0.5</explosiveRadius>
-									<explosionSound>Explosion_Thump</explosionSound>
-									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								</li>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>5</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
-						<!-- ===== United States ===== -->
-
-						<!-- === American Mk II Grenades === -->
-						<ThingDef ParentName="BaseGrenadeProjectile">
-							<defName>Proj_K4GGrenade_WW2USA</defName>
-							<label>service grenade WW2 united states</label>
-							<graphicData>
-								<texPath>Things/Projectile/WW2AmericanServiceGrenade</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>10</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>40</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</ThingDef>
-
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Weapon_WW2BritishServiceGrenades" or
+					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+					defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+					defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+					defName="K4G_Weapon_WW2GermanServiceGrenades" or
+					defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+					defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+					defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+					defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+					defName="K4G_Weapon_WW2AmericanServiceGrenades"
+					]</xpath>
+					<value>
+						<thingClass>CombatExtended.AmmoThing</thingClass>
+						<stackLimit>75</stackLimit>
+						<resourceReadoutPriority>First</resourceReadoutPriority>
 					</value>
 				</li>
 
-				<!-- ======= Grenades Equipment ======= -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Weapon_WW2BritishServiceGrenades" or
+					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+					defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+					defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+					defName="K4G_Weapon_WW2GermanServiceGrenades" or
+					defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+					defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+					defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+					defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+					defName="K4G_Weapon_WW2AmericanServiceGrenades"
+					]</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.AmmoDef</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Weapon_WW2BritishServiceGrenades" or
+					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+					defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+					defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+					defName="K4G_Weapon_WW2GermanServiceGrenades" or
+					defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+					defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+					defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+					defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+					defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+					defName="K4G_Weapon_WW2AmericanServiceGrenades"
+					]/comps</xpath>
+					<value>
+						<comps>
+							<li Class="CombatExtended.CompProperties_ExplosiveCE">
+								<damageAmountBase>56</damageAmountBase>
+								<explosiveDamageType>Bomb</explosiveDamageType>
+								<explosiveRadius>1.5</explosiveRadius>
+							</li>
+						</comps>
+					</value>
+				</li>
 
 				<!-- ===== British ===== -->
 
@@ -762,7 +329,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenade_WW2BRI</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2BritishServiceGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -829,7 +396,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenadeAT_WW2BRI</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2BritishServiceAntiTankGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -902,7 +469,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>ProjB_K4GGrenadeAT_WW2BRI</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2BritishServiceAntiTankGrenadeB</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -976,7 +543,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenade_WW2FIN</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2FinnishServiceGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1044,7 +611,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenade_WW2FRA</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2FrenchServiceGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1112,7 +679,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenade_WW2GER</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2GermanServiceGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1180,7 +747,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>ProjB_K4GGrenade_WW2GER</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2GermanServiceGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1247,7 +814,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenadeAT_WW2GER</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2GermanServiceAntiTankGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1321,7 +888,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenade_WW2ITA</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2ItalianServiceGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1387,7 +954,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>ProjB_K4GGrenade_WW2ITA</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2ItalianServiceGrenadeB</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1453,7 +1020,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>ProjC_K4GGrenade_WW2ITA</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2ItalianServiceGrenadeC</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1520,7 +1087,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenadeAT_WW2ITA</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2ItalianServiceAntiTankGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1594,7 +1161,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenade_WW2JPN</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2JapaneseServiceGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1662,7 +1229,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenade_WW2RUS</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2RussianServiceGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1728,7 +1295,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>ProjB_K4GGrenade_WW2RUS</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2RussianServiceGrenadeB</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1794,7 +1361,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>ProjC_K4GGrenade_WW2RUS</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2RussianServiceGrenadeC</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1861,7 +1428,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenadeAT_WW2RUS</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2RussianServiceAntiTankGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -1934,7 +1501,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>ProjB_K4GGrenadeAT_WW2RUS</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2RussianServiceAntiTankGrenadeB</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -2007,7 +1574,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>ProjC_K4GGrenadeAT_WW2RUS</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2RussianServiceAntiTankGrenadeC</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
@@ -2081,7 +1648,7 @@
 									<targetParams>
 										<canTargetLocations>true</canTargetLocations>
 									</targetParams>
-									<defaultProjectile>Proj_K4GGrenade_WW2USA</defaultProjectile>
+									<defaultProjectile>K4G_Proj_WW2AmericanServiceGrenade</defaultProjectile>
 									<onlyManualCast>true</onlyManualCast>
 									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 									<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>

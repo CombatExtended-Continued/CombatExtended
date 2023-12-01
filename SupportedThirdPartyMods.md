@@ -161,6 +161,7 @@ Cybernetic Warfare and Special Weapons (Continued)  |
 Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Core	|
+Det's Energy Weapons    |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
@@ -404,6 +405,7 @@ Rim-Effect: N7	|
 Rimedieval - Medieval Royalty   |
 Rimefeller	|
 RimEffect - Asari of the Rims	|
+Rim-Elves   |
 Rim-Gnoblins	| 
 Rim-Hivers!	|
 Rim Flood	|
@@ -500,6 +502,7 @@ Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Pirates |
 Vanilla Factions Expanded - Settlers	|
+Vanilla Factions Expanded - Tribals |
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
@@ -511,6 +514,7 @@ Vanilla Plants Expanded - Mushrooms  |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Races Expanded - Android  |
+Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Phytokin  |
@@ -543,6 +547,9 @@ WarCasket Expanded  |
 WarCasket Gundam Addon  |
 Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
+Warhammer"ish" - Dryad    |
+Warhammer 40.000 - Imperium Materials   |
+Warhammer 40k - Genes and Psycasts  |
 Wasters Toxic Breather  |
 Weapons+	|
 WWII German Uniforms - V's Edit |

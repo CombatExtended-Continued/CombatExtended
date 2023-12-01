@@ -29,10 +29,35 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
             VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
             VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
+            VehicleTurret.NotifyShotFiredCE = NotifyShotFiredCE;
             global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
             global::CombatExtended.Compatibility.Patches.UsedAmmoCallbacks.Add(_GetUsedAmmo);
             var harmony = new Harmony("CombatExtended.Compatibility.VehiclesCompat");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
+        }
+
+        public static void NotifyShotFiredCE(ThingDef projectileDef, ThingDef _ammoDef, Def _ammosetDef, VehicleTurret turret, float recoil)
+        {
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            {
+                foreach (var al in ammosetDef.ammoTypes)
+                {
+                    if (al.ammo == ammoDef)
+                    {
+                        projectileDef = al.projectile;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                projectileDef = projectileDef.GetProjectile();
+            }
+            if (projectileDef.projectile is ProjectilePropertiesCE ppce)
+            {
+                CE_Utility.GenerateAmmoCasings(ppce, turret.TurretLocation, turret.vehicle.Map, -turret.TurretRotation, recoil);
+            }
+
         }
 
         public static Tuple<int, float> LookupProjectileCountAndSpreadCE(ThingDef _ammoDef, Def _ammosetDef, float spread)

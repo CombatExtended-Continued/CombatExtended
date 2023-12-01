@@ -29,59 +29,38 @@ namespace CombatExtended.Compatibility
         }
         private static bool CheckIntercept(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
-            List<CompShieldField> interceptors;
-            if (!CompShieldField.listerShieldGensByMaps.TryGetValue(projectile.Map, out interceptors))
+            if (projectile.def.projectile.flyOverhead)
             {
                 return false;
             }
+            IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(projectile.Map).ToList();
             if (!interceptors.Any())
             {
                 return false;
             }
             var def = projectile.def;
-            Vector3 lastExactPos = projectile.LastPos;
-            var newExactPos = projectile.ExactPosition;
+            Vector3 lastExactPos = projectile.LastPos.Yto0();
+            var newExactPos = projectile.ExactPosition.Yto0();
             foreach (var interceptor in interceptors)
             {
-                var interceptorComp = interceptor;
-                if (!interceptorComp.active)
-                {
-                    continue;
-                }
-                if (interceptorComp.ThingsWithinRadius.Contains(launcher))
-                {
-                    continue;
-                }
-                Vector3 shieldPosition = interceptor.parent.Position.ToVector3ShiftedWithAltitude(0.5f);
-                float radius = interceptorComp.ShieldRadius;
-                float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
-                if ((lastExactPos - shieldPosition).sqrMagnitude < radius * radius)
-                {
-                    continue;
-                }
-                if ((newExactPos - shieldPosition).sqrMagnitude > Mathf.Pow(blockRadius, 2))
-                {
-                    continue;
-                }
 
-                if (projectile.def.projectile.flyOverhead)
+                if (!interceptor.CanFunction)
                 {
                     continue;
                 }
+                Vector3 shieldPosition = interceptor.HostThing.Position.ToVector3Shifted().Yto0();
+                float radius = interceptor.ShieldRadius;
 
-                if ((shieldPosition - lastExactPos).sqrMagnitude <= Mathf.Pow((float)radius, 2))
-                {
-                    continue;
-                }
                 Vector3[] intersectionPoints;
-                if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out intersectionPoints))
+                if (!CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out intersectionPoints, false))
                 {
                     continue;
                 }
 
                 projectile.ExactPosition = intersectionPoints.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 projectile.landed = true;
-                interceptorComp.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, launcher);
+                projectile.InterceptProjectile(interceptor.HostThing, projectile.ExactPosition, true);
+                interceptor.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, launcher);
                 return true;
             }
             return false;
