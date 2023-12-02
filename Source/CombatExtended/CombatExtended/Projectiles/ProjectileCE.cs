@@ -426,7 +426,7 @@ namespace CombatExtended
             {
                 if (turret == null && Map != null)
                 {
-                    turret = Map.GetComponent<TurretTracker>().Turrets.FirstOrDefault(x=>x.GetGun() == equipment);
+                    turret = Map.GetComponent<TurretTracker>().Turrets.FirstOrDefault(x => x.GetGun() == equipment);
                 }
                 return turret;
             }

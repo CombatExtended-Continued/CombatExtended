@@ -554,7 +554,7 @@ namespace CombatExtended
         }
         public static float GetMoveSpeed(LocalTargetInfo targetInfo)
         {
-            if(targetInfo.Pawn != null)
+            if (targetInfo.Pawn != null)
             {
                 return GetMoveSpeed(targetInfo.Pawn);
             }

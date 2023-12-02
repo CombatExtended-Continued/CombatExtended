@@ -15,7 +15,6 @@ namespace CombatExtended
         public IEnumerable<Skyfaller> Skyfallers => parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.ActiveDropPod).OfType<Skyfaller>(); //Performance issues possible 
         public virtual bool TryFindTarget(IAttackTargetSearcher targetSearcher, out LocalTargetInfo result)
         {
-            
             Thing p;
             if (parent is Building_TurretGunCE turret)
             {
