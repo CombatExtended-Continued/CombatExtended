@@ -419,6 +419,19 @@ namespace CombatExtended
                 return shadowMaterial[Rand.Range(0, this.shadowMaterial.Length)];
             }
         }
+        private Building_Turret turret;
+        public Building_Turret Turret
+        {
+            get
+            {
+                if (turret == null && Map != null)
+                {
+                    turret = Map.GetComponent<TurretTracker>().Turrets.FirstOrDefault(x=>x.GetGun() == equipment);
+                }
+                return turret;
+            }
+        }
+        public Building_TurretGunCE TurretCE => Turret as Building_TurretGunCE;
         #endregion
 
         /*
@@ -1158,7 +1171,7 @@ namespace CombatExtended
             {
                 var vect = intendedTarget.Thing.Position.ToVector3() - new Vector3(ExactPosition.x, 0.0f, ExactPosition.z);
                 Log.Message($"projectile {intendedTarget.Thing.Position.ToVector3()}, {ExactPosition}, {vect.sqrMagnitude}, {minCollisionDistance}");
-                if (vect.sqrMagnitude < minCollisionDistance && Rand.Chance(0.33f))
+                if (vect.sqrMagnitude < minCollisionDistance && Rand.Chance(TurretCE?.CIWS_Projectile.Props.hitChance ?? 0.35f))
                 {
                     Impact(null);
                     intendedTarget.Thing.Destroy();
@@ -1171,7 +1184,7 @@ namespace CombatExtended
 
                 var vect = intendedTarget.Thing.DrawPos - new Vector3(ExactPosition.x, 0.0f, ExactPosition.z);
                 //Log.Message($"{skyfaller.DrawPos}, {ExactPosition}, {vect.sqrMagnitude}, {minCollisionDistance}");
-                if (vect.sqrMagnitude < minCollisionDistance && Rand.Chance(0.33f))
+                if (vect.sqrMagnitude < minCollisionDistance && Rand.Chance(TurretCE?.CIWS_Skyfaller.Props.hitChance ?? 0.25f))
                 {
                     Impact(null);
                     intendedTarget.Thing.Destroy();

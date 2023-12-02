@@ -15,5 +15,6 @@ namespace CombatExtended
         }
         public bool interceptOnGroundProjectiles = false;
         public bool radarRequired = false;
+        public float hitChance = 0.33f;
     }
 }

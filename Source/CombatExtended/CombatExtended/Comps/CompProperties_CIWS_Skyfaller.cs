@@ -13,5 +13,6 @@ namespace CombatExtended
         {
             compClass = typeof(CompCIWS_Skyfaller);
         }
+        public float hitChance = 0.2f;
     }
 }
