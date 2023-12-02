@@ -930,13 +930,30 @@ namespace CombatExtended
                               new Vector3(1f, height, 1f));
         }
 
+        public static CollisionVertical GetCollisionVertical(this Thing thing)
+        {
+            if (thing is Pawn pawn)
+            {
+                return pawn.GetTacticalManager().Collision;
+            }
+            return new CollisionVertical(thing);
+        }
+
         public static Bounds GetBoundsFor(Thing thing)
         {
             if (thing == null)
             {
                 return new Bounds();
             }
-            var height = new CollisionVertical(thing);
+            CollisionVertical height;
+            if (thing is Pawn pawn)
+            {
+                height = pawn.GetTacticalManager().Collision;
+            }
+            else
+            {
+                height = new CollisionVertical(thing);
+            }
             float length;
             float width;
             var thingPos = thing.DrawPos;
@@ -1504,5 +1521,8 @@ namespace CombatExtended
         }
 
         public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
+
+        public static CompTacticalManager GetTacticalManager(this Pawn pawn) => pawn.TryGetComp<CompTacticalManager>();
+
     }
 }

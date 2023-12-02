@@ -129,7 +129,7 @@ namespace CombatExtended
                 return shotSpeed;
             }
         }
-        public float ShotHeight => (new CollisionVertical(caster)).shotHeight;
+        public float ShotHeight => caster.GetCollisionVertical().shotHeight;
         private Vector3 ShotSource
         {
             get
@@ -391,7 +391,7 @@ namespace CombatExtended
                 // Height difference calculations for ShotAngle
                 float targetHeight = 0f;
 
-                var coverRange = new CollisionVertical(report.cover).HeightRange;   //Get " " cover, assume it is the edifice
+                var coverRange = report.cover.GetCollisionVertical().HeightRange;   //Get " " cover, assume it is the edifice
 
                 // Projectiles with flyOverhead target the surface in front of the target
                 if (Projectile.projectile.flyOverhead)
@@ -400,7 +400,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    var victimVert = new CollisionVertical(currentTarget.Thing);
+                    var victimVert = currentTarget.Thing.GetCollisionVertical();
                     var targetRange = victimVert.HeightRange;   //Get lower and upper heights of the target
                     if (targetRange.min < coverRange.max)   //Some part of the target is hidden behind some cover
                     {
@@ -782,7 +782,7 @@ namespace CombatExtended
                             && newCover.def.Fillage == FillCategory.Partial
                             && !newCover.IsPlant())
                     {
-                        float newCoverHeight = new CollisionVertical(newCover).Max;
+                        float newCoverHeight = newCover.GetCollisionVertical().Max;
 
                         if (highestCover == null || highestCoverHeight < newCoverHeight)
                         {
@@ -1280,7 +1280,7 @@ namespace CombatExtended
                     AdjustShotHeight(caster, targetThing, ref shotHeight);
                     shotSource.y = shotHeight;
                     Vector3 targDrawPos = targetThing.DrawPos;
-                    targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);
+                    targetPos = new Vector3(targDrawPos.x, targetThing.GetCollisionVertical().Max, targDrawPos.z);
                     var targPawn = targetThing as Pawn;
                     if (targPawn != null)
                     {
