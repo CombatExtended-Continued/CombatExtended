@@ -26,6 +26,12 @@ $ start CombatExtended/Source/CombatExtended.sln
 
 After this, building is just building the solution, references will be pulled from Nuget, and the assemblies should be automatically publicised by the msbuild task. The resulting assembly will be in `$(root)/Assemblies/CombatExtended.dll`.
 
+###
+A GPL3 windows Batch file to automate updating and building mods via `dotnet build` is available [here](https://raw.githubusercontent.com/CombatExtended-Continued/CE-AutoInstaller-Updater-Builder/main/CE-AutoInstaller-Updater-Builder.bat).  
+Simply download the file to your Rimworld/Mods directory and run it.  Running it again will rebase your local copy to the latest upstream and rebuild it.
+
+The repository for it is https://github.com/CombatExtended-Continued/CE-AutoInstaller-Updater-Builder 
+
 ## Other options
 
 
