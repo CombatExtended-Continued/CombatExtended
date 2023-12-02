@@ -30,6 +30,8 @@ After this, building is just building the solution, references will be pulled fr
 A GPL3 windows Batch file to automate updating and building mods via `dotnet build` is available [here](https://raw.githubusercontent.com/CombatExtended-Continued/CE-AutoInstaller-Updater-Builder/main/CE-AutoInstaller-Updater-Builder.bat).  
 Simply download the file to your Rimworld/Mods directory and run it.  Running it again will rebase your local copy to the latest upstream and rebuild it.
 
+This assumes you have `git` and `dotnet` configured to be available from windows batch files.
+
 The repository for it is https://github.com/CombatExtended-Continued/CE-AutoInstaller-Updater-Builder 
 
 ## Other options
