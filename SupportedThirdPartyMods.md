@@ -299,6 +299,7 @@ Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
 Medieval Medicines 1.4 Medieval Overhaul Edition |
+Medical Supplements |
 Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
