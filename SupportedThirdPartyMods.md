@@ -16,7 +16,9 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [FF] Bushi!	|
+[FSF] Advanced Bionics Expansion    |
 [FSF] More Psycast Powers   |
+[FSF] Vanilla Bionics Expansion |
 [HLX] ReGrowth - Extinct Animals Pack |
 [HLX] ReGrowth - Mutated Animals Pack |
 [JDS] Castle Walls  |
@@ -491,7 +493,6 @@ Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
 Vanilla Base Generation Expanded    |
-Vanilla Bionics Expansion	|
 Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
 Vanilla Factions Expanded - Ancients    |
