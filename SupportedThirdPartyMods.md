@@ -457,8 +457,8 @@ Star Crafters Armory  |
 Star Wars - Droids |
 Star Wars - Factions |
 Starship Troopers Aracnids  |
-Stoneborn - Delights  |
 Steamworld Uniforms |
+Stoneborn - Delights  |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
