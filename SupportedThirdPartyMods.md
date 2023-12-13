@@ -517,6 +517,7 @@ Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
+Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Phytokin  |
