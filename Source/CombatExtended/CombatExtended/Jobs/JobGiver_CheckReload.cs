@@ -140,7 +140,7 @@ namespace CombatExtended
                 if (tmpComp.UseAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))
                 {
                     // Do we have ammo in the inventory that the gun uses which satisfies requirements? (expensive)
-                    AmmoDef matchAmmo = tmpComp.Props.ammoSet.ammoTypes
+                    AmmoDef matchAmmo = tmpComp.CurAmmoSet.ammoTypes
                                         .Where(al => al.ammo != ammoType)
                                         .Select(al => al.ammo)
                                         .FirstOrDefault(ad => TrackingSatisfied(pawn, ad, magazineSize)

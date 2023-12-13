@@ -88,7 +88,7 @@ namespace CombatExtended
 
         public bool CanReplaceAmmo(CompAmmoUser ammoUser)
         {
-            return shouldReplaceAmmo && ammoUser.Props.ammoSet == CompAmmoUser.Props.ammoSet && ammoUser.CurrentAmmo != CompAmmoUser.CurrentAmmo;
+            return shouldReplaceAmmo && ammoUser.CurAmmoSet == CompAmmoUser.CurAmmoSet && ammoUser.CurrentAmmo != CompAmmoUser.CurrentAmmo;
         }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -228,7 +228,7 @@ namespace CombatExtended
                         }
                         if (!success)
                         {
-                            Messages.Message(string.Format("CE_AutoLoader_NoTurretToReload".Translate(), Label, CompAmmoUser.Props.ammoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
+                            Messages.Message(string.Format("CE_AutoLoader_NoTurretToReload".Translate(), Label, CompAmmoUser.CurAmmoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
                         }
                     };
                     yield return reload;
