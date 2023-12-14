@@ -929,7 +929,7 @@ namespace CombatExtended
 
         public override string TransformLabel(string label)
         {
-            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)SelectedAmmo.LabelCap + ") " : "";
+            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)CurAmmoSet.LabelCap + ") " : "";
             return label + ammoSet;
         }
 

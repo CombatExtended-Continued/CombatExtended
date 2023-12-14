@@ -95,7 +95,7 @@ namespace CombatExtended
         {
             base.SpawnSetup(map, respawningAfterLoad);
             Map.GetComponent<AutoLoaderTracker>().Register(this);
-            CompAmmoUser = GetComp<CompAmmoUser>();
+            CompAmmoUser = this.TryGetComp<CompAmmoUser>();
 
             dormantComp = GetComp<CompCanBeDormant>();
             initiatableComp = GetComp<CompInitiatable>();
@@ -349,18 +349,24 @@ namespace CombatExtended
             //if this is the right turret to reload
             if (graphicsExt != null)
             {
-                //if def exists and match
-                bool tagMatch = graphicsExt.allowedTurrets.Any() && graphicsExt.allowedTurrets.Contains(turret.def.defName);
+                //if turret type restriction is in place, if both are null, tag chech automatically pass
+                bool tagMatch = graphicsExt.allowedTurrets.NullOrEmpty() && graphicsExt.allowedTurretTags.NullOrEmpty();
 
-                //if tag exists and match
-                if (!tagMatch && graphicsExt.allowedTurretTags.Any())
+                if (!tagMatch)
                 {
-                    foreach (string loadertag in graphicsExt.allowedTurretTags)
+                    //if def dont exist or match
+                    tagMatch = graphicsExt.allowedTurrets.NullOrEmpty() || graphicsExt.allowedTurrets.Contains(turret.def.defName);
+
+                    //if tag exists and match
+                    if (!tagMatch && graphicsExt.allowedTurretTags.Any())
                     {
-                        if (turret.def.building.buildingTags.NotNullAndContains(loadertag))
+                        foreach (string loadertag in graphicsExt.allowedTurretTags)
                         {
-                            tagMatch = true;
-                            break;
+                            if (turret.def.building.buildingTags.NotNullAndContains(loadertag))
+                            {
+                                tagMatch = true;
+                                break;
+                            }
                         }
                     }
                 }
