@@ -470,6 +470,7 @@ The Joris Experience	|
 The Tuffalo |
 Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
+Thrumbo Plushie |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
 Trading Economy	|
