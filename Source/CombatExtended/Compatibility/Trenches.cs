@@ -16,7 +16,12 @@ namespace CombatExtended.Compatibility
         private const string VFES_ModName = "Vanilla Furniture Expanded - Security";
         static CETrenches()
         {
+            Log.Message("Combat Extended :: Checking VFE Security");
             vfeInstalled = ModLister.HasActiveModWithName(VFES_ModName);
+            if (vfeInstalled)
+            {
+                Log.Message("Combat Extended :: Installing VFE Security");
+            }
         }
 
         private static bool checkVFE(IntVec3 cell, Map map, out float heightAdjust)
