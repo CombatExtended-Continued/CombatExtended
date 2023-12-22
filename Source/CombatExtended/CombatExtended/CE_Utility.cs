@@ -934,7 +934,7 @@ namespace CombatExtended
         {
             if (thing is Pawn pawn)
             {
-                return pawn.GetTacticalManager().Collision;
+                return pawn.GetTacticalManager()?.Collision ?? new CollisionVertical(thing);
             }
             return new CollisionVertical(thing);
         }
@@ -948,7 +948,7 @@ namespace CombatExtended
             CollisionVertical height;
             if (thing is Pawn pawn)
             {
-                height = pawn.GetTacticalManager().Collision;
+                height = pawn.GetTacticalManager()?.Collision ?? new CollisionVertical(thing);
             }
             else
             {
