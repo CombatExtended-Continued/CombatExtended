@@ -9,20 +9,29 @@
 			<operations>
 
 				<!-- ========== Remove Recipe Maker & Verbs ========== -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="Weapon_GrenadeSmart"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseWeapon</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Weapon_GrenadeSmart"]/smeltable</xpath>
+					<value>
+						<smeltable>false</smeltable>
+					</value>
+				</li>
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Weapon_GrenadeSmart"]/recipeMaker </xpath>
 				</li>
+				
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Weapon_GrenadeSmart"]/costList </xpath>
 				</li>
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="Weapon_GrenadeSmart"]/verbs </xpath>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Weapon_GrenadeSmart"] </xpath>
-					<value>
-						<tickerType>Normal</tickerType>
-					</value>
 				</li>
 
 				<!-- ========== Projectile ========== -->
@@ -155,7 +164,18 @@
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>
-				
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Weapon_GrenadeSmart"]/graphicData</xpath>
+					<value>
+						<graphicData>
+							<texPath>Things/Projectile/SmartGrenade</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+						</graphicData>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
