@@ -113,7 +113,22 @@ namespace CombatExtended
         /// <summary>
         /// Determine the armor penetration value of a given projectile type's explosion.
         /// </summary>
-        public static float GetExplosionArmorPenetration(this ProjectileProperties props) => props.damageAmountBase * ExplosiveArmorPenetrationMultiplier;
+        public static float GetExplosionArmorPenetration(this ProjectileProperties props)
+        {
+            ProjectilePropertiesCE propsCE = props as ProjectilePropertiesCE;
+            if (propsCE != null)
+            {
+                if (props.damageDef.armorCategory == CE_DamageArmorCategoryDefOf.Blunt)
+                {
+                    return propsCE.armorPenetrationBlunt;
+                }
+                if (props.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                {
+                    return propsCE.armorPenetrationBlunt;
+                }
+            }
+            return props.damageAmountBase * ExplosiveArmorPenetrationMultiplier;
+        }
 
         /// <summary>
         /// Determine the armor penetration value of a given explosive type's explosion.
