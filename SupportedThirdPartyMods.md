@@ -376,6 +376,7 @@ Prostheses+ |
 Protoswords |
 PsiTech	|
 Pulsefire Turret (Continued)    |
+Pulse Weaponry  |
 Rabbie The Moonrabbit	|
 Racc Race	|
 Race to the Rim |
