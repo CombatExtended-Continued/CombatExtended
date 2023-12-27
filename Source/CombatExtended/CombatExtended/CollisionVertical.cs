@@ -133,7 +133,7 @@ namespace CombatExtended
                 collisionHeight = Mathf.Min(collisionHeight, crouchHeight + 0.01f + shotHeightOffset);  // We crouch down only so far that we can still shoot over our own cover and never beyond our own body size
                 heightRange.min = heightAdjust;
                 heightRange.max = heightAdjust + collisionHeight;
-                shotHeight = shotHeightOffset;
+                shotHeight = Mathf.Min(heightRange.max * BodyRegionMiddleHeight, crouchHeight + 0.01f);
             }
         }
 
