@@ -1519,6 +1519,21 @@ namespace CombatExtended
             skyfaller.ticksToImpact = oldValue;
             return result.Yto0();
         }
-        public static int SkyfallerPrefire = 40;
+        public static Vector3 GetTargetCellForSkyfaller(Skyfaller skyfaller, Vector3 origin, float shotSpeed)
+        {
+            for (int i = 0; i < 80; i++)
+            {
+                var loc = skyfaller.DrawPos(i);
+                var dist = (origin - loc).MagnitudeHorizontal();
+                var requiredTicksToReach = Mathf.CeilToInt(dist / (shotSpeed / (float)GenTicks.TicksPerRealSecond));
+                if (requiredTicksToReach < i)
+                {
+                    Log.Message($"Selected {loc} since {i} ticks. Bullet fly time {requiredTicksToReach}, speed {shotSpeed}, dist {dist}");
+                    FleckMakerCE.ThrowLightningGlow(loc, skyfaller.Map, 1.5f);
+                    return loc;
+                }
+            }
+            return skyfaller.DrawPos(81);
+        }
     }
 }

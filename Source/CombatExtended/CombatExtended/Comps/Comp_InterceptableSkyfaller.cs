@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,12 +60,10 @@ namespace CombatExtended
             {
                 var damage = projectile.DamageAmount;
                 currentHP -= damage;
-#if DEBUG
-                Log.Message($"{parent} - {currentHP}");
-#endif
-                if (parent is IThingHolder thingHolder && thingHolder.GetDirectlyHeldThings().Any && Rand.Chance(Props.chanceToHitContainingThings))
+                if (parent is IThingHolder thingHolder && Rand.Chance(Props.chanceToHitContainingThings))
                 {
-                    var thingToImpact = thingHolder.GetDirectlyHeldThings().RandomElement();
+                    var things = thingHolder.GetDirectlyHeldThings().OfType<ActiveDropPod>().SelectMany(x => x.contents.innerContainer);
+                    var thingToImpact = things.Where(x =>!(x is Corpse)).RandomElement();
                     projectile.Impact(thingToImpact);
                 }
                 else
@@ -80,7 +79,7 @@ namespace CombatExtended
         }
         public virtual void OnDestoying(ProjectileCE projectile)
         {
-            FleckMakerCE.ThrowLightningGlow(parent.DrawPos, parent.Map, 2f);
+            FleckMakerCE.ThrowLightningGlow(parent.DrawPos, parent.Map, 20f);
         }
         public override void PostExposeData()
         {

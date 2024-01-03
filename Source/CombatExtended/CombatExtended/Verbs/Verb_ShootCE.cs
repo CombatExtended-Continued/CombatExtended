@@ -327,9 +327,9 @@ namespace CombatExtended
         {
             Vector3 u = caster.TrueCenter();
             Vector3 v;
-            if (currentTarget.HasThing && currentTarget.Thing is Skyfaller skyfaller) 
+            if (currentTarget.HasThing && currentTarget.Thing is Skyfaller skyfaller)
             {
-                v = skyfaller.DrawPos(CE_Utility.SkyfallerPrefire);
+                v = CE_Utility.GetTargetCellForSkyfaller(skyfaller, u, ShotSpeed);
             }
             else
             {

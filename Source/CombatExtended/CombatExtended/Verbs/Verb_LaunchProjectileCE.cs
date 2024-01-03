@@ -359,7 +359,7 @@ namespace CombatExtended
                 Vector3 v;
                 if (currentTarget.HasThing && currentTarget.Thing is Skyfaller skyfaller)
                 {
-                    v = skyfaller.DrawPos(CE_Utility.SkyfallerPrefire);
+                    v = CE_Utility.GetTargetCellForSkyfaller(skyfaller, u, ShotSpeed);
                 }
                 else
                 {
@@ -562,9 +562,9 @@ namespace CombatExtended
                     {
                         targetHeight = projectileCE.Height;
                     }
-                    if (currentTarget.Thing is Skyfaller skyfaller1)
+                    if (currentTarget.Thing is Skyfaller)
                     {
-                        targetHeight = skyfaller1.DrawPos.y;
+                        targetHeight = 1f;
                     }
                 }
                 if (projectilePropsCE.isInstant)
@@ -1183,7 +1183,7 @@ namespace CombatExtended
             {
                 if (targ.Thing is Skyfaller skyfaller)
                 {
-                    cellRect = CellRect.SingleCell(skyfaller.DrawPos(CE_Utility.SkyfallerPrefire).ToIntVec3());
+                    cellRect = CellRect.SingleCell(CE_Utility.GetTargetCellForSkyfaller(skyfaller, root.ToVector3Shifted(), ShotSpeed).ToIntVec3());
                 }
                 else
                 {
