@@ -60,6 +60,7 @@ namespace CombatExtended
             {
                 var damage = projectile.DamageAmount;
                 currentHP -= damage;
+                projectile.ExactPosition = parent.DrawPos.Yto0();
                 if (parent is IThingHolder thingHolder && Rand.Chance(Props.chanceToHitContainingThings))
                 {
                     var things = thingHolder.GetDirectlyHeldThings().OfType<ActiveDropPod>().SelectMany(x => x.contents.innerContainer);
