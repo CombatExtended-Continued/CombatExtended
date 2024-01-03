@@ -63,7 +63,7 @@ namespace CombatExtended
                 if (parent is IThingHolder thingHolder && Rand.Chance(Props.chanceToHitContainingThings))
                 {
                     var things = thingHolder.GetDirectlyHeldThings().OfType<ActiveDropPod>().SelectMany(x => x.contents.innerContainer);
-                    var thingToImpact = things.Where(x =>!(x is Corpse)).RandomElement();
+                    var thingToImpact = things.Where(x => !(x is Corpse)).RandomElement();
                     projectile.Impact(thingToImpact);
                 }
                 else
