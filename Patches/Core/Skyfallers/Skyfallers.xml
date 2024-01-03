@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Drop Pod ========== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="DropPodIncoming"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="DropPodIncoming"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DropPodIncoming"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_InterceptableSkyfaller">
+        <sharpArmor>3.0</sharpArmor>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

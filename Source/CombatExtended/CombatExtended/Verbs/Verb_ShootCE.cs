@@ -326,7 +326,15 @@ namespace CombatExtended
         public override void RecalculateWarmupTicks()
         {
             Vector3 u = caster.TrueCenter();
-            Vector3 v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
+            Vector3 v;
+            if (currentTarget.HasThing && currentTarget.Thing is Skyfaller skyfaller) 
+            {
+                v = skyfaller.DrawPos(CE_Utility.SkyfallerPrefire);
+            }
+            else
+            {
+                v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
+            }
             if (currentTarget.Pawn is Pawn dtPawn)
             {
                 v += dtPawn.Drawer.leaner.LeanOffset * 0.5f;

@@ -356,7 +356,15 @@ namespace CombatExtended
                     // On first shot of burst do a range estimate
                     estimatedTargDist = report.GetRandDist();
                 }
-                Vector3 v = report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
+                Vector3 v;
+                if (currentTarget.HasThing && currentTarget.Thing is Skyfaller skyfaller)
+                {
+                    v = skyfaller.DrawPos(CE_Utility.SkyfallerPrefire);
+                }
+                else
+                {
+                    v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
+                }
                 if (report.targetPawn != null)
                 {
                     v += report.targetPawn.Drawer.leaner.LeanOffset * 0.5f;
@@ -554,9 +562,9 @@ namespace CombatExtended
                     {
                         targetHeight = projectileCE.Height;
                     }
-                    if (currentTarget.Thing is Skyfaller skyfaller)
+                    if (currentTarget.Thing is Skyfaller skyfaller1)
                     {
-                        targetHeight = skyfaller.DrawPos.y;
+                        targetHeight = skyfaller1.DrawPos.y;
                     }
                 }
                 if (projectilePropsCE.isInstant)
@@ -1170,7 +1178,22 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, targ.Cell);
                 return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
             }
-            CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
+            CellRect cellRect;
+            if (targ.HasThing)
+            {
+                if (targ.Thing is Skyfaller skyfaller)
+                {
+                    cellRect = CellRect.SingleCell(skyfaller.DrawPos(CE_Utility.SkyfallerPrefire).ToIntVec3());
+                }
+                else
+                {
+                    cellRect = targ.Thing.OccupiedRect();
+                }
+            }
+            else
+            {
+                cellRect = CellRect.SingleCell(targ.Cell);
+            }
             float num = cellRect.ClosestDistSquaredTo(root);
             if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
             {

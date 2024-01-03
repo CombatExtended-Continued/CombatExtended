@@ -1511,5 +1511,14 @@ namespace CombatExtended
         }
 
         public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
+        public static Vector3 DrawPos(this Skyfaller skyfaller, int skipTicks)
+        {
+            var oldValue = skyfaller.ticksToImpact;
+            skyfaller.ticksToImpact -= skipTicks;
+            var result = skyfaller.DrawPos;
+            skyfaller.ticksToImpact = oldValue;
+            return result.Yto0();
+        }
+        public static int SkyfallerPrefire = 40;
     }
 }

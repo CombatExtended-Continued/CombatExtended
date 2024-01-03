@@ -1181,13 +1181,13 @@ namespace CombatExtended
             //Log.Message(intendedTarget.Thing?.GetType().Name ?? "Null");
             if (intendedTarget.Thing is Skyfaller skyfaller && !intendedTarget.Thing.Destroyed)
             {
-
-                var vect = intendedTarget.Thing.DrawPos - new Vector3(ExactPosition.x, 0.0f, ExactPosition.z);
                 //Log.Message($"{skyfaller.DrawPos}, {ExactPosition}, {vect.sqrMagnitude}, {minCollisionDistance}");
-                if (vect.sqrMagnitude < minCollisionDistance && Rand.Chance(TurretCE?.CIWS_Skyfaller.Props.hitChance ?? 0.25f))
+                var y0bounds = CE_Utility.GetBoundsFor(skyfaller);
+                y0bounds.center = y0bounds.center.Yto0();
+                var y0Ray = new Ray(LastPos.Yto0(), ExactPosition.Yto0());
+                if (y0bounds.IntersectRay(y0Ray, out var dist) && ExactMinusLastPos.sqrMagnitude < dist * dist && Rand.Chance(TurretCE?.CIWS_Skyfaller.Props.hitChance ?? 0.25f))
                 {
-                    Impact(null);
-                    intendedTarget.Thing.Destroy();
+                    skyfaller.GetComp<Comp_InterceptableSkyfaller>().Impact(this);
                     return;
                 }
             }
