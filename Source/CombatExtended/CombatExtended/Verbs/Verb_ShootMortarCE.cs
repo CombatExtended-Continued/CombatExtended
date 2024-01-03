@@ -184,6 +184,7 @@ namespace CombatExtended
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
                 projectile.intendedTarget = globalTargetInfo.Thing ?? currentTarget;
+                projectile.ignoreCollision = projectile.intendedTarget.Thing is Skyfaller;
                 projectile.globalSourceInfo = globalSourceInfo;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);

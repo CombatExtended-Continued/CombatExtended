@@ -1046,6 +1046,7 @@ namespace CombatExtended
 
                 projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
                 projectile.intendedTarget = currentTarget;
+                projectile.ignoreCollision = projectile.intendedTarget.Thing is Skyfaller;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
 

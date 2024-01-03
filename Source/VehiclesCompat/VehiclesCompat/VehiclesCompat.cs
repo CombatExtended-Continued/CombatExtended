@@ -172,6 +172,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             projectile.canTargetSelf = false;
             projectile.minCollisionDistance = 1;
             projectile.intendedTarget = target;
+            projectile.ignoreCollision = projectile.intendedTarget.Thing is Skyfaller;
             projectile.mount = null;
             projectile.AccuracyFactor = 1;
             projectile.Launch(

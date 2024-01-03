@@ -117,6 +117,7 @@ namespace CombatExtended
         public bool canTargetSelf;
         public bool castShadow = true;
         public bool logMisses = true;
+        public bool ignoreCollision;
 
         public GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
         public GlobalTargetInfo globalSourceInfo = GlobalTargetInfo.Invalid;
@@ -1191,7 +1192,7 @@ namespace CombatExtended
                     return;
                 }
             }
-            if (CheckForCollisionBetween())
+            if (!ignoreCollision && CheckForCollisionBetween())
             {
                 return;
             }
