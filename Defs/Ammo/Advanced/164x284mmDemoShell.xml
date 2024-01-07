@@ -44,7 +44,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>10.97</MarketValue><!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+			<MarketValue>20.09</MarketValue><!-- value intentionally decreased to help reduce wealth bloat/free silver -->
 		</statBases>
 		<ammoClass>Demolition</ammoClass>
 		<detonateProjectile>Bullet_164x284mmDemo</detonateProjectile>
@@ -163,5 +163,52 @@
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_164x284mmDemo</defName>
+		<label>make 164x284mm demolition shell x5</label>
+		<description>Craft 5 164x284mm demolition shells.</description>
+		<jobString>Making 164x284mm demolition shell.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>16</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>FSX</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_164x284mmDemo>5</Ammo_164x284mmDemo>
+		</products>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workAmount>6600</workAmount><!-- 10% more work -->
+	</RecipeDef>
 
 </Defs>
