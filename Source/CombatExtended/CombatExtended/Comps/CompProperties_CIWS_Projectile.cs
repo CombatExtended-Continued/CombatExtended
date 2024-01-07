@@ -7,14 +7,12 @@ using Verse;
 
 namespace CombatExtended
 {
-    public class CompProperties_CIWS_Projectile : CompProperties
+    public class CompProperties_CIWS_Projectile : CompProperties_CIWS
     {
         public CompProperties_CIWS_Projectile()
         {
             compClass = typeof(CompCIWS_Projectile);
         }
         public bool interceptOnGroundProjectiles = false;
-        public bool radarRequired = false;
-        public float hitChance = 0.33f;
     }
 }

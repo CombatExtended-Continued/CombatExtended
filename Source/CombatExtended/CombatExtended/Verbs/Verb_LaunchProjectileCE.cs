@@ -63,6 +63,7 @@ namespace CombatExtended
         protected ShootLine lastShootLine;
         protected bool repeating = false;
         private bool doRetarget = true;
+        public CompCIWS ciws;
 
         #endregion
 
@@ -1081,7 +1082,9 @@ namespace CombatExtended
                         ShotHeight,
                         ShotSpeed,
                         EquipmentSource,
-                        distance);
+                        distance,
+                        ciws
+                        );
                 }
                 pelletMechanicsOnly = true;
             }

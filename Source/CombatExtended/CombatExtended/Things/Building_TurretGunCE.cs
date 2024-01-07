@@ -41,8 +41,8 @@ namespace CombatExtended
         public CompCanBeDormant dormantComp;
         public CompInitiatable initiatableComp;
         public CompMannable mannableComp;
-        public CompCIWS_Projectile CIWS_ProjectileComp;
-        public CompCIWS_Skyfaller CIWS_SkyfallerComp;
+        public List<CompCIWS> ciws;
+        private CompCIWS activeCIWS;
         public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
 
         // New fields
@@ -156,8 +156,19 @@ namespace CombatExtended
         public bool AutoReloadableNow => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0)) && Reloadable;    //suppress manned turret auto-reload for a short time after spawning
         public bool Reloadable => CompAmmo?.HasMagazine ?? false;
         public CompMannable MannableComp => mannableComp;
-        public CompCIWS_Projectile CIWS_Projectile => CIWS_ProjectileComp;
-        public CompCIWS_Skyfaller CIWS_Skyfaller => CIWS_SkyfallerComp;
+        public IEnumerable<CompCIWS> CIWS
+        {
+            get
+            {
+                if (ciws == null)
+                {
+                    ciws = new List<CompCIWS>();
+                    ciws.AddRange(this.GetComps<CompCIWS>());
+                }
+                return ciws;
+            }
+        }
+
 
         #endregion
 
@@ -177,8 +188,6 @@ namespace CombatExtended
             initiatableComp = GetComp<CompInitiatable>();
             powerComp = GetComp<CompPowerTrader>();
             mannableComp = GetComp<CompMannable>();
-            CIWS_ProjectileComp = GetComp<CompCIWS_Projectile>();
-            CIWS_SkyfallerComp = GetComp<CompCIWS_Skyfaller>();
 
 
             if (!everSpawned && (!Map.IsPlayerHome || Faction != Faction.OfPlayer))
@@ -434,13 +443,13 @@ namespace CombatExtended
             Faction faction = attackTargetSearcher.Thing.Faction;
             float range = this.AttackVerb.verbProps.range;
 
-            if (CIWS_Skyfaller != null && CIWS_Skyfaller.TryFindTarget(attackTargetSearcher, out LocalTargetInfo skyfaller))
+            foreach (var ciws in CIWS)
             {
-                return skyfaller;
-            }
-            if (CIWS_Projectile != null && CIWS_Projectile.TryFindTarget(attackTargetSearcher, out LocalTargetInfo projectile))
-            {
-                return projectile;
+                if (ciws.TryFindTarget(attackTargetSearcher, out var ciwsTarget))
+                {
+                    activeCIWS = ciws;
+                    return ciwsTarget;
+                }
             }
 
             Building t;
@@ -508,6 +517,10 @@ namespace CombatExtended
         public void BeginBurst()                     // Added handling for ticksUntilAutoReload
         {
             ticksUntilAutoReload = minTicksBeforeAutoReload;
+            if (AttackVerb is Verb_LaunchProjectileCE launchProjectileCE)
+            {
+                launchProjectileCE.ciws = activeCIWS;
+            }
             if (AttackVerb is Verb_ShootMortarCE shootMortar)
             {
                 if (globalTargetInfo.IsValid)
@@ -811,6 +824,7 @@ namespace CombatExtended
             this.forcedTarget = LocalTargetInfo.Invalid;
             this.globalTargetInfo = GlobalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;
+            this.activeCIWS = null;
             if (this.burstCooldownTicksLeft <= 0)
             {
                 this.TryStartShootSomething(false);
@@ -821,6 +835,7 @@ namespace CombatExtended
         {
             this.currentTargetInt = LocalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;
+            this.activeCIWS = null;
         }
 
         //MakeGun not added -- MakeGun-like code is run whenever Gun is called

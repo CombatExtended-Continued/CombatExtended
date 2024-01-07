@@ -7,12 +7,11 @@ using Verse;
 
 namespace CombatExtended
 {
-    public class CompProperties_CIWS_Skyfaller : CompProperties
+    public class CompProperties_CIWS_Skyfaller : CompProperties_CIWS
     {
         public CompProperties_CIWS_Skyfaller()
         {
             compClass = typeof(CompCIWS_Skyfaller);
         }
-        public float hitChance = 0.2f;
     }
 }

@@ -376,6 +376,10 @@ namespace CombatExtended
         public float shotSpeed = -1f;
 
         private float _gravityFactor = -1;
+        /// <summary>
+        /// CIWS, that found target for this projectile
+        /// </summary>
+        public CompCIWS ciws;
 
         /// <summary>
         /// Gravity factor in meters(cells) per second squared
@@ -420,19 +424,6 @@ namespace CombatExtended
                 return shadowMaterial[Rand.Range(0, this.shadowMaterial.Length)];
             }
         }
-        private Building_Turret turret;
-        public Building_Turret Turret
-        {
-            get
-            {
-                if (turret == null && Map != null)
-                {
-                    turret = Map.GetComponent<TurretTracker>().Turrets.FirstOrDefault(x => x.GetGun() == equipment);
-                }
-                return turret;
-            }
-        }
-        public Building_TurretGunCE TurretCE => Turret as Building_TurretGunCE;
         #endregion
 
         /*
@@ -632,8 +623,9 @@ namespace CombatExtended
         /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
         /// <param name="equipment">The equipment used to fire the projectile.</param>
         /// <param name="distance">The distance to the estimated intercept point</param>
-        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
+        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1, CompCIWS ciws = null)
         {
+            this.ciws = ciws;
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
@@ -1168,30 +1160,12 @@ namespace CombatExtended
                 Destroy();
                 return;
             }
-            if ((intendedTarget.Thing is Projectile || intendedTarget.Thing is ProjectileCE) && !intendedTarget.Thing.Destroyed)
+            if (ciws?.CheckImpact(this) ?? false)
             {
-                var vect = intendedTarget.Thing.Position.ToVector3() - new Vector3(ExactPosition.x, 0.0f, ExactPosition.z);
-                Log.Message($"projectile {intendedTarget.Thing.Position.ToVector3()}, {ExactPosition}, {vect.sqrMagnitude}, {minCollisionDistance}");
-                if (vect.sqrMagnitude < minCollisionDistance && Rand.Chance(TurretCE?.CIWS_Projectile.Props.hitChance ?? 0.35f))
-                {
-                    Impact(null);
-                    intendedTarget.Thing.Destroy();
-                    return;
-                }
+                return;
             }
+            
             //Log.Message(intendedTarget.Thing?.GetType().Name ?? "Null");
-            if (intendedTarget.Thing is Skyfaller skyfaller && !intendedTarget.Thing.Destroyed)
-            {
-                //Log.Message($"{skyfaller.DrawPos}, {ExactPosition}, {vect.sqrMagnitude}, {minCollisionDistance}");
-                var y0bounds = CE_Utility.GetBoundsFor(skyfaller);
-                y0bounds.center = y0bounds.center.Yto0();
-                var y0Ray = new Ray(LastPos.Yto0(), ExactPosition.Yto0());
-                if (y0bounds.IntersectRay(y0Ray, out var dist) && ExactMinusLastPos.sqrMagnitude < dist * dist && Rand.Chance(TurretCE?.CIWS_Skyfaller.Props.hitChance ?? 0.25f))
-                {
-                    skyfaller.GetComp<Comp_InterceptableSkyfaller>().Impact(this);
-                    return;
-                }
-            }
             if (!ignoreCollision && CheckForCollisionBetween())
             {
                 return;
