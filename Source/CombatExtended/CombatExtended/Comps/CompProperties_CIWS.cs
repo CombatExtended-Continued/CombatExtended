@@ -6,5 +6,6 @@ namespace CombatExtended
     {
         public bool radarRequired = false;
         public float hitChance = 0.33f;
+        public string label;
     }
 }

@@ -12,6 +12,7 @@ namespace CombatExtended
         public CompProperties_CIWS_Skyfaller()
         {
             compClass = typeof(CompCIWS_Skyfaller);
+            this.label = "CE_CIWS_Skyfaller";
         }
     }
 }

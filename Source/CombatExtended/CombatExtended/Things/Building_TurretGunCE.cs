@@ -42,7 +42,8 @@ namespace CombatExtended
         public CompInitiatable initiatableComp;
         public CompMannable mannableComp;
         public List<CompCIWS> ciws;
-        private CompCIWS activeCIWS;
+        public List<CompCIWS> enabledCIWS = new List<CompCIWS>(); //Used for targeting
+        private CompCIWS activeCIWS; // Used for current target
         public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
 
         // New fields
@@ -207,6 +208,8 @@ namespace CombatExtended
                 {
                     ticksUntilAutoReload = minTicksBeforeAutoReload;
                 }
+                enabledCIWS.Clear();
+                enabledCIWS.AddRange(CIWS);
             }
 
             // if (CompAmmo == null || CompAmmo.Props == null || CompAmmo.Props.ammoSet == null || CompAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
@@ -265,8 +268,13 @@ namespace CombatExtended
             Scribe_TargetInfo.Look(ref this.currentTargetInt, "currentTarget");
             Scribe_Values.Look<bool>(ref this.holdFire, "holdFire", false, false);
             Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
+            Scribe_Collections.Look(ref this.enabledCIWS, "enabledCIWS", LookMode.Value);
 
             Scribe_TargetInfo.Look(ref globalTargetInfo, "globalSourceInfo");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && enabledCIWS == null)
+            {
+                enabledCIWS = new List<CompCIWS>();
+            }
             BackCompatibility.PostExposeData(this);
         }
 
@@ -443,7 +451,7 @@ namespace CombatExtended
             Faction faction = attackTargetSearcher.Thing.Faction;
             float range = this.AttackVerb.verbProps.range;
 
-            foreach (var ciws in CIWS)
+            foreach (var ciws in enabledCIWS)
             {
                 if (ciws.TryFindTarget(attackTargetSearcher, out var ciwsTarget))
                 {
@@ -799,6 +807,10 @@ namespace CombatExtended
                         toggleAction = ToggleHoldFire,
                         isActive = (() => holdFire)
                     };
+                }
+                foreach (var ciwsGizmo in CompCIWS.GetGizmos(CIWS, enabledCIWS))
+                {
+                    yield return ciwsGizmo;
                 }
             }
         }

@@ -12,6 +12,7 @@ namespace CombatExtended
         public CompProperties_CIWS_Projectile()
         {
             compClass = typeof(CompCIWS_Projectile);
+            this.label = "CE_CIWS_Projectile";
         }
         public bool interceptOnGroundProjectiles = false;
     }
