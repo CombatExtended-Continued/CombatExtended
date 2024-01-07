@@ -1164,7 +1164,7 @@ namespace CombatExtended
             {
                 return;
             }
-            
+
             //Log.Message(intendedTarget.Thing?.GetType().Name ?? "Null");
             if (!ignoreCollision && CheckForCollisionBetween())
             {
