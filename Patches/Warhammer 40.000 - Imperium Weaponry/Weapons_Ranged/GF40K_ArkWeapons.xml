@@ -113,6 +113,41 @@
 					</weaponTags>
 				</li>
 
+				<!-- === Relic Ark Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_RelicArkPistol</defName>
+					<statBases>
+						<Mass>1.2</Mass>
+						<Bulk>2.35</Bulk>
+						<SwayFactor>1.25</SwayFactor>
+						<ShotSpread>0.04</ShotSpread>
+						<SightsEfficiency>0.85</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.32</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.4</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_10x18mmCharged</defaultProjectile>
+						<warmupTime>0.45</warmupTime>
+						<range>21</range>
+						<soundCast>Shot_ChargeRifle</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_10x18mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
 				<!-- === Ark Rifle === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>GF40K_ArkRifle</defName>
@@ -128,9 +163,45 @@
 						<recoilAmount>1.7</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>True</hasStandardCommand>
-						<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+						<defaultProjectile>Bullet_8x35mmCharged_Ion</defaultProjectile>
 						<warmupTime>1.0</warmupTime>
 						<range>62</range>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+						<soundCast>GF40K_LaserPistolShot</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+				<!-- === Relic Ark Rifle === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_RelicArkRifle</defName>
+					<statBases>
+						<Mass>4.75</Mass>
+						<Bulk>9.8</Bulk>
+						<SwayFactor>1.5</SwayFactor>
+						<ShotSpread>0.05</ShotSpread>
+						<SightsEfficiency>1.15</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.32</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.6</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_8x35mmCharged_Ion</defaultProjectile>
+						<warmupTime>1.0</warmupTime>
+						<range>65</range>
 						<burstShotCount>3</burstShotCount>
 						<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 						<soundCast>GF40K_LaserPistolShot</soundCast>
