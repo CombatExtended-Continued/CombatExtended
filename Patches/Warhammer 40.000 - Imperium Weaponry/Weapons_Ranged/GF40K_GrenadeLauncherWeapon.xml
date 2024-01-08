@@ -99,22 +99,6 @@
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<RangedWeapon_Cooldown>0.57</RangedWeapon_Cooldown>
 					</statBases>
-					<Properties>
-						<recoilAmount>4.88</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>True</hasStandardCommand>
-						<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
-						<warmupTime>1.0</warmupTime>
-						<range>55</range>
-						<minRange>6</minRange>
-						<soundCast>Mortar_LaunchA</soundCast>
-						<soundCastTail>GunTail_Medium</soundCastTail>
-						<muzzleFlashScale>14</muzzleFlashScale>
-						<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
-						<targetParams>
-							<canTargetLocations>True</canTargetLocations>
-						</targetParams>
-					</Properties>
 					<AmmoUser>
 						<magazineSize>6</magazineSize>
 						<reloadOneAtATime>true</reloadOneAtATime>
@@ -124,6 +108,30 @@
 					<FireModes>
 						<aiAimMode>SuppressFire</aiAimMode>
 					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_GrenadeLauncher"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>4.88</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
+								<warmupTime>1.0</warmupTime>
+								<range>55</range>
+								<minRange>6</minRange>
+								<soundCast>Mortar_LaunchA</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>14</muzzleFlashScale>
+								<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
+								<targetParams>
+									<canTargetLocations>True</canTargetLocations>
+								</targetParams>
+							</li>
+						</verbs>
+					</value>
 				</li>
 
 				<!-- === Relic Grenade Launcher === -->				
@@ -137,22 +145,6 @@
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<RangedWeapon_Cooldown>0.54</RangedWeapon_Cooldown>
 					</statBases>
-					<Properties>
-						<recoilAmount>4.4</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-						<hasStandardCommand>True</hasStandardCommand>
-						<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
-						<warmupTime>1.0</warmupTime>
-						<range>60</range>
-						<minRange>6</minRange>
-						<soundCast>Mortar_LaunchA</soundCast>
-						<soundCastTail>GunTail_Medium</soundCastTail>
-						<muzzleFlashScale>14</muzzleFlashScale>
-						<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
-						<targetParams>
-							<canTargetLocations>True</canTargetLocations>
-						</targetParams>
-					</Properties>
 					<AmmoUser>
 						<magazineSize>6</magazineSize>
 						<reloadOneAtATime>true</reloadOneAtATime>
@@ -162,6 +154,30 @@
 					<FireModes>
 						<aiAimMode>SuppressFire</aiAimMode>
 					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_RelicGrenadeLauncher"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>4.4</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
+								<warmupTime>1.0</warmupTime>
+								<range>60</range>
+								<minRange>6</minRange>
+								<soundCast>Mortar_LaunchA</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>14</muzzleFlashScale>
+								<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
+								<targetParams>
+									<canTargetLocations>True</canTargetLocations>
+								</targetParams>
+							</li>
+						</verbs>
+					</value>
 				</li>
 
 			</operations>
