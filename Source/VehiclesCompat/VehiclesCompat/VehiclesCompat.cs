@@ -105,6 +105,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                                 cetddme._ammoSet = asd;
                                 var ammunition = vtd.ammunition = new ThingFilter();
                                 vtd.genericAmmo = false;
+                                vtd.chargePerAmmoCount = 1f / asd.ammoConsumedPerShot;
                                 HashSet<ThingDef> allowedAmmo = (HashSet<ThingDef>)ammunition.AllowedThingDefs;
 
                                 foreach (var al in asd.ammoTypes)
