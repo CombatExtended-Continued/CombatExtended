@@ -778,11 +778,7 @@ namespace CombatExtended
                     this.Impact(null);
                     return true;
                 }
-            }
-            if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition))
-            {
-                return true;
-            }
+            }  
 
             #region Sanity checks
             if (ticksToImpact < 0 || def.projectile.flyOverhead)
@@ -808,6 +804,10 @@ namespace CombatExtended
             //Order cells by distance from the last position
             foreach (var cell in cells)
             {
+                if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition.ToIntVec3() == cell ? ExactPosition : cell.ToVector3Shifted()))
+                {
+                    return true;
+                }
                 if (CheckCellForCollision(cell))
                 {
                     newPosIV3 = cell;
