@@ -41,7 +41,9 @@ namespace CombatExtended
         public CompCanBeDormant dormantComp;
         public CompInitiatable initiatableComp;
         public CompMannable mannableComp;
-
+        public List<CompCIWS> ciws;
+        public List<CompCIWS> enabledCIWS = new List<CompCIWS>(); //Used for targeting
+        private CompCIWS activeCIWS; // Used for current target
         public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
 
         // New fields
@@ -155,6 +157,20 @@ namespace CombatExtended
         public bool AutoReloadableNow => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0)) && Reloadable;    //suppress manned turret auto-reload for a short time after spawning
         public bool Reloadable => CompAmmo?.HasMagazine ?? false;
         public CompMannable MannableComp => mannableComp;
+        public IEnumerable<CompCIWS> CIWS
+        {
+            get
+            {
+                if (ciws == null)
+                {
+                    ciws = new List<CompCIWS>();
+                    ciws.AddRange(this.GetComps<CompCIWS>());
+                }
+                return ciws;
+            }
+        }
+
+
         #endregion
 
         public Building_TurretGunCE()
@@ -174,6 +190,7 @@ namespace CombatExtended
             powerComp = GetComp<CompPowerTrader>();
             mannableComp = GetComp<CompMannable>();
 
+
             if (!everSpawned && (!Map.IsPlayerHome || Faction != Faction.OfPlayer))
             {
                 compAmmo?.ResetAmmoCount();
@@ -191,6 +208,8 @@ namespace CombatExtended
                 {
                     ticksUntilAutoReload = minTicksBeforeAutoReload;
                 }
+                enabledCIWS.Clear();
+                enabledCIWS.AddRange(CIWS);
             }
 
             // if (CompAmmo == null || CompAmmo.Props == null || CompAmmo.Props.ammoSet == null || CompAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
@@ -249,8 +268,13 @@ namespace CombatExtended
             Scribe_TargetInfo.Look(ref this.currentTargetInt, "currentTarget");
             Scribe_Values.Look<bool>(ref this.holdFire, "holdFire", false, false);
             Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
+            Scribe_Collections.Look(ref this.enabledCIWS, "enabledCIWS", LookMode.Value);
 
             Scribe_TargetInfo.Look(ref globalTargetInfo, "globalSourceInfo");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && enabledCIWS == null)
+            {
+                enabledCIWS = new List<CompCIWS>();
+            }
             BackCompatibility.PostExposeData(this);
         }
 
@@ -426,6 +450,16 @@ namespace CombatExtended
             IAttackTargetSearcher attackTargetSearcher = this.TargSearcher();
             Faction faction = attackTargetSearcher.Thing.Faction;
             float range = this.AttackVerb.verbProps.range;
+
+            foreach (var ciws in enabledCIWS)
+            {
+                if (ciws.TryFindTarget(attackTargetSearcher, out var ciwsTarget))
+                {
+                    activeCIWS = ciws;
+                    return ciwsTarget;
+                }
+            }
+
             Building t;
             if (Rand.Value < 0.5f && this.AttackVerb.ProjectileFliesOverhead() && faction.HostileTo(Faction.OfPlayer) && base.Map.listerBuildings.allBuildingsColonist.Where(delegate (Building x)
         {
@@ -491,6 +525,10 @@ namespace CombatExtended
         public void BeginBurst()                     // Added handling for ticksUntilAutoReload
         {
             ticksUntilAutoReload = minTicksBeforeAutoReload;
+            if (AttackVerb is Verb_LaunchProjectileCE launchProjectileCE)
+            {
+                launchProjectileCE.ciws = activeCIWS;
+            }
             if (AttackVerb is Verb_ShootMortarCE shootMortar)
             {
                 if (globalTargetInfo.IsValid)
@@ -770,6 +808,10 @@ namespace CombatExtended
                         isActive = (() => holdFire)
                     };
                 }
+                foreach (var ciwsGizmo in CompCIWS.GetGizmos(CIWS, enabledCIWS))
+                {
+                    yield return ciwsGizmo;
+                }
             }
         }
 
@@ -794,6 +836,7 @@ namespace CombatExtended
             this.forcedTarget = LocalTargetInfo.Invalid;
             this.globalTargetInfo = GlobalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;
+            this.activeCIWS = null;
             if (this.burstCooldownTicksLeft <= 0)
             {
                 this.TryStartShootSomething(false);
@@ -804,6 +847,7 @@ namespace CombatExtended
         {
             this.currentTargetInt = LocalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;
+            this.activeCIWS = null;
         }
 
         //MakeGun not added -- MakeGun-like code is run whenever Gun is called

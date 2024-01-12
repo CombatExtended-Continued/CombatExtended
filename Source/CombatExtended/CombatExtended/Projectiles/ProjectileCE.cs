@@ -117,6 +117,7 @@ namespace CombatExtended
         public bool canTargetSelf;
         public bool castShadow = true;
         public bool logMisses = true;
+        public bool ignoreCollision;
 
         public GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
         public GlobalTargetInfo globalSourceInfo = GlobalTargetInfo.Invalid;
@@ -227,7 +228,7 @@ namespace CombatExtended
         #endregion
 
         #region Position
-        private Vector2 Vec2Position(float ticks = -1f)
+        public Vector2 Vec2Position(float ticks = -1f)
         {
             if (ticks < 0)
             {
@@ -375,6 +376,10 @@ namespace CombatExtended
         public float shotSpeed = -1f;
 
         private float _gravityFactor = -1;
+        /// <summary>
+        /// CIWS, that found target for this projectile
+        /// </summary>
+        public CompCIWS ciws;
 
         /// <summary>
         /// Gravity factor in meters(cells) per second squared
@@ -618,8 +623,9 @@ namespace CombatExtended
         /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
         /// <param name="equipment">The equipment used to fire the projectile.</param>
         /// <param name="distance">The distance to the estimated intercept point</param>
-        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
+        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1, CompCIWS ciws = null)
         {
+            this.ciws = ciws;
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
@@ -1165,7 +1171,13 @@ namespace CombatExtended
                 Destroy();
                 return;
             }
-            if (CheckForCollisionBetween())
+            if (ciws?.CheckImpact(this) ?? false)
+            {
+                return;
+            }
+
+            //Log.Message(intendedTarget.Thing?.GetType().Name ?? "Null");
+            if (!ignoreCollision && CheckForCollisionBetween())
             {
                 return;
             }

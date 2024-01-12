@@ -23,7 +23,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref this.ticksToBurst, "ticksToBurst", -1, false);
         }
 
-        public override void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
+        public override void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1, CompCIWS ciws = null)
         {
             int armingDelay = 0;
             if (def.projectile is ProjectilePropertiesCE props)
@@ -51,6 +51,7 @@ namespace CombatExtended
                 ticksToBurst = armingDelay;
             }
 
+            this.ciws = ciws;
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;

@@ -82,7 +82,7 @@ namespace CombatExtended
         {
             get
             {
-                return targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving && (targetPawn.stances.stunner == null || !targetPawn.stances.stunner.Stunned);
+                return target.Thing is ProjectileCE || (targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving && (targetPawn.stances.stunner == null || !targetPawn.stances.stunner.Stunned));
             }
         }
         private float leadDistInt = -1f;
@@ -94,7 +94,8 @@ namespace CombatExtended
                 {
                     if (targetIsMoving)
                     {
-                        float targetSpeed = CE_Utility.GetMoveSpeed(targetPawn);
+                        float targetSpeed = CE_Utility.GetMoveSpeed(target);
+                        Log.Message($"Speed {targetSpeed}");
                         float timeToTarget = shotDist / shotSpeed;
                         leadDistInt = targetSpeed * timeToTarget;
                     }
@@ -181,7 +182,15 @@ namespace CombatExtended
             Vector3 moveVec = new Vector3();
             if (targetIsMoving)
             {
-                moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3() * (leadDist + Rand.Range(-leadShift, leadShift));
+                if (target.Pawn != null)
+                {
+                    moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3() * (leadDist + Rand.Range(-leadShift, leadShift));
+                }
+                else if (target.Thing is ProjectileCE projectile)
+                {
+                    Log.Message($"{projectile.Vec2Position(projectile.fTicks + 1)} - {projectile.Vec2Position(projectile.fTicks)} = {projectile.Vec2Position(projectile.fTicks + 1) - projectile.Vec2Position(projectile.fTicks)}\n {leadDist}, {leadShift}");
+                    return (projectile.Vec2Position(projectile.fTicks + 1) - projectile.Vec2Position(projectile.fTicks)) * (leadDist + Rand.Range(-leadShift, leadShift));
+                }
             }
             return new Vector2(moveVec.x, moveVec.z);
         }

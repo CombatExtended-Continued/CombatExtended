@@ -63,6 +63,7 @@ namespace CombatExtended
         protected ShootLine lastShootLine;
         protected bool repeating = false;
         private bool doRetarget = true;
+        public CompCIWS ciws;
 
         #endregion
 
@@ -356,7 +357,15 @@ namespace CombatExtended
                     // On first shot of burst do a range estimate
                     estimatedTargDist = report.GetRandDist();
                 }
-                Vector3 v = report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
+                Vector3 v;
+                if (currentTarget.HasThing && currentTarget.Thing is Skyfaller skyfaller)
+                {
+                    v = CE_Utility.GetTargetCellForSkyfaller(skyfaller, u, ShotSpeed);
+                }
+                else
+                {
+                    v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
+                }
                 if (report.targetPawn != null)
                 {
                     v += report.targetPawn.Drawer.leaner.LeanOffset * 0.5f;
@@ -549,6 +558,14 @@ namespace CombatExtended
                     if (targetHeight > CollisionVertical.WallCollisionHeight && report.roofed)
                     {
                         targetHeight = CollisionVertical.WallCollisionHeight;
+                    }
+                    if (currentTarget.Thing is ProjectileCE projectileCE)
+                    {
+                        targetHeight = projectileCE.Height;
+                    }
+                    if (currentTarget.Thing is Skyfaller)
+                    {
+                        targetHeight = 1f;
                     }
                 }
                 if (projectilePropsCE.isInstant)
@@ -1030,9 +1047,11 @@ namespace CombatExtended
 
                 projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
                 projectile.intendedTarget = currentTarget;
+                projectile.ignoreCollision = projectile.intendedTarget.Thing is Skyfaller;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
 
+                //shotAngle = Mathf.PI / 3;
                 this.lastShotAngle = shotAngle;
                 this.lastShotRotation = shotRotation;
                 this.lastShootLine = shootLine;
@@ -1063,7 +1082,9 @@ namespace CombatExtended
                         ShotHeight,
                         ShotSpeed,
                         EquipmentSource,
-                        distance);
+                        distance,
+                        ciws
+                        );
                 }
                 pelletMechanicsOnly = true;
             }
@@ -1161,7 +1182,22 @@ namespace CombatExtended
                 resultingLine = new ShootLine(root, targ.Cell);
                 return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
             }
-            CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
+            CellRect cellRect;
+            if (targ.HasThing)
+            {
+                if (targ.Thing is Skyfaller skyfaller)
+                {
+                    cellRect = CellRect.SingleCell(CE_Utility.GetTargetCellForSkyfaller(skyfaller, root.ToVector3Shifted(), ShotSpeed).ToIntVec3());
+                }
+                else
+                {
+                    cellRect = targ.Thing.OccupiedRect();
+                }
+            }
+            else
+            {
+                cellRect = CellRect.SingleCell(targ.Cell);
+            }
             float num = cellRect.ClosestDistSquaredTo(root);
             if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
             {

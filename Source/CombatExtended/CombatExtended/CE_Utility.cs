@@ -552,7 +552,14 @@ namespace CombatExtended
             double range = Rand.Value * radius;
             return new Vector2((float)(range * Math.Cos(angle)), (float)(range * Math.Sin(angle)));
         }
-
+        public static float GetMoveSpeed(LocalTargetInfo targetInfo)
+        {
+            if (targetInfo.Pawn != null)
+            {
+                return GetMoveSpeed(targetInfo.Pawn);
+            }
+            return (targetInfo.Thing as ProjectileCE)?.shotSpeed ?? 0f;
+        }
         /// <summary>
         /// Calculates the actual current movement speed of a pawn
         /// </summary>
@@ -1384,6 +1391,7 @@ namespace CombatExtended
             projectile.canTargetSelf = false;
             projectile.minCollisionDistance = 1;
             projectile.intendedTarget = target;
+            projectile.ignoreCollision = projectile.intendedTarget.Thing is Skyfaller;
             projectile.mount = null;
             projectile.AccuracyFactor = 1;
 
@@ -1504,5 +1512,29 @@ namespace CombatExtended
         }
 
         public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
+        public static Vector3 DrawPos(this Skyfaller skyfaller, int skipTicks)
+        {
+            var oldValue = skyfaller.ticksToImpact;
+            skyfaller.ticksToImpact -= skipTicks;
+            var result = skyfaller.DrawPos;
+            skyfaller.ticksToImpact = oldValue;
+            return result.Yto0();
+        }
+        public static Vector3 GetTargetCellForSkyfaller(Skyfaller skyfaller, Vector3 origin, float shotSpeed)
+        {
+            for (int i = 0; i < 80; i++)
+            {
+                var loc = skyfaller.DrawPos(i);
+                var dist = (origin - loc).MagnitudeHorizontal();
+                var requiredTicksToReach = Mathf.CeilToInt(dist / (shotSpeed / (float)GenTicks.TicksPerRealSecond));
+                if (requiredTicksToReach < i)
+                {
+                    Log.Message($"Selected {loc} since {i} ticks. Bullet fly time {requiredTicksToReach}, speed {shotSpeed}, dist {dist}");
+                    FleckMakerCE.ThrowLightningGlow(loc, skyfaller.Map, 1.5f);
+                    return loc;
+                }
+            }
+            return skyfaller.DrawPos(81);
+        }
     }
 }
