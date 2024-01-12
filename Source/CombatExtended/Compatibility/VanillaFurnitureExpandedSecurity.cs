@@ -33,12 +33,18 @@ namespace CombatExtended.Compatibility
         public void Install()
         {
             BlockerRegistry.RegisterCheckForCollisionBetweenCallback(CheckCollisionBetween);
+            BlockerRegistry.RegisterShieldZonesCallback(ShieldZones);
         }
 
 
         public IEnumerable<string> GetCompatList()
         {
             yield break;
+        }
+        private IEnumerable<IEnumerable<IntVec3>> ShieldZones(Thing arg)
+        {
+            refreshShields(arg.Map);
+            return shields.Where(x => IsActive(x)).Select(x => GenRadial.RadialCellsAround(x.Position, Radius(x), false));
         }
 
         private bool CheckCollisionBetween(ProjectileCE projectile, Vector3 from, Vector3 to)
@@ -50,24 +56,12 @@ namespace CombatExtended.Compatibility
             refreshShields(projectile.Map);
             foreach (Building_Shield shield in shields)
             {
-                if (!shield.active || !shield.CanFunction || shield.Energy <= 0f)
+                if (!IsActive(shield))
                 {
                     continue;
                 }
-                float size = shield.ShieldRadius * 2 * Mathf.Lerp(0.9f, 1.1f, shield.Energy / shield.MaxEnergy);
-                Vector3 shieldPos = shield.Position.ToVector3Shifted();
-                shieldPos.y = AltitudeLayer.MoteOverhead.AltitudeFor();
-
-                int ticksSinceAbsorbDamage = Find.TickManager.TicksGame - shield.lastAbsorbDamageTick;
-                if (ticksSinceAbsorbDamage < 8)
-                {
-                    float sizeMod = (8 - ticksSinceAbsorbDamage) / 8f * 0.05f;
-                    shieldPos += shield.impactAngleVect * sizeMod;
-                    size -= sizeMod;
-                }
-                size *= (256f - 15f) / 256f;//VFEs use default shield texture that have 8 px offset from left and 7 from right (up and down similar)
-                var radius = (size)/ 2;
-                if (CE_Utility.IntersectionPoint(from, to, shieldPos, radius, out var sect, false, map: projectile.Map))
+                
+                if (CE_Utility.IntersectionPoint(from, to, ShieldPos(shield), Radius(shield), out var sect, false, map: projectile.Map))
                 {
                     OnIntercepted(projectile, shield, sect);
                     return true;
@@ -103,6 +97,48 @@ namespace CombatExtended.Compatibility
             FleckMakerCE.ThrowLightningGlow(exactPosition, building.Map, 1.4f);
             projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
             interceptor.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, projectile.launcher);
+        }
+        private static bool IsActive(Building building)
+        {
+            if (building is Building_Shield shield)
+            {
+                return shield.active && shield.CanFunction && shield.Energy > 0f;
+            }
+            return false;
+        }
+        private float Radius(Building building)
+        {
+            if (building is Building_Shield shield)
+            {
+                float size = shield.ShieldRadius * 2 * Mathf.Lerp(0.9f, 1.1f, shield.Energy / shield.MaxEnergy);
+
+                int ticksSinceAbsorbDamage = Find.TickManager.TicksGame - shield.lastAbsorbDamageTick;
+                if (ticksSinceAbsorbDamage < 8)
+                {
+                    float sizeMod = (8 - ticksSinceAbsorbDamage) / 8f * 0.05f;
+                    size -= sizeMod;
+                }
+                size *= (256f - 15f) / 256f;//VFEs use default shield texture that have 8 px offset from left and 7 from right (up and down similar)
+                return size / 2;
+            }
+            return 0f;
+        }
+        private Vector3 ShieldPos(Building building)
+        {
+            if (building is Building_Shield shield)
+            {
+                Vector3 shieldPos = shield.Position.ToVector3Shifted();
+                shieldPos.y = AltitudeLayer.MoteOverhead.AltitudeFor();
+
+                int ticksSinceAbsorbDamage = Find.TickManager.TicksGame - shield.lastAbsorbDamageTick;
+                if (ticksSinceAbsorbDamage < 8)
+                {
+                    float sizeMod = (8 - ticksSinceAbsorbDamage) / 8f * 0.05f;
+                    shieldPos += shield.impactAngleVect * sizeMod;
+                }
+                return shieldPos;
+            }
+            return Vector3.negativeInfinity;
         }
     }
 }
