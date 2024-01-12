@@ -21,7 +21,6 @@ namespace CombatExtended.Compatibility
         private static HashSet<Building> shields;
         private const string VFES_ModName = "Vanilla Furniture Expanded - Security";
 
-        private static FastInvokeHandler CanFunctionPropertyGetter;
         public bool CanInstall()
         {
             if (!ModLister.HasActiveModWithName(VFES_ModName))
@@ -33,97 +32,49 @@ namespace CombatExtended.Compatibility
         }
         public void Install()
         {
-            // Only do this after we're sure that Building_Shield is a thing.
-            var type = typeof(Building_Shield);
-            if (type != null)
-            {
-                CanFunctionPropertyGetter = MethodInvoker.GetHandler(AccessTools.PropertyGetter(typeof(Building_Shield), "CanFunction"));
-            }
-
-            BlockerRegistry.RegisterCheckForCollisionCallback(CheckCollision);
-            BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
+            BlockerRegistry.RegisterCheckForCollisionBetweenCallback(CheckCollisionBetween);
         }
+
 
         public IEnumerable<string> GetCompatList()
         {
             yield break;
         }
 
-        private static bool CheckCollision(ProjectileCE projectile, IntVec3 cell, Thing launcher)
+        private bool CheckCollisionBetween(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             if (projectile.def.projectile.flyOverhead)
             {
-                // All VFE shields are bullet shields. Don't block flying projectiles.
                 return false;
             }
-
-            var map = projectile.Map;
-            Vector3 exactPosition = projectile.ExactPosition;
-
-            refreshShields(map);
-
-            foreach (var building in shields)
+            refreshShields(projectile.Map);
+            foreach (Building_Shield shield in shields)
             {
-                var shield = building as Building_Shield;
-                if (!ShieldInterceptsProjectile(shield, projectile, launcher))
+                if (!shield.active || !shield.CanFunction || shield.Energy <= 0f)
                 {
                     continue;
                 }
+                float size = shield.ShieldRadius * 2 * Mathf.Lerp(0.9f, 1.1f, shield.Energy / shield.MaxEnergy);
+                Vector3 shieldPos = shield.Position.ToVector3Shifted();
+                shieldPos.y = AltitudeLayer.MoteOverhead.AltitudeFor();
 
-                exactPosition = BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(),
-                                             exactPosition,
-                                             new Vector3(shield.Position.x, 0, shield.Position.z),
-                                             shield.ShieldRadius * shield.ShieldRadius);
-
-                if (!(projectile is ProjectileCE_Explosive))
+                int ticksSinceAbsorbDamage = Find.TickManager.TicksGame - shield.lastAbsorbDamageTick;
+                if (ticksSinceAbsorbDamage < 8)
                 {
-                    shield.AbsorbDamage(projectile.def.projectile.GetDamageAmount(launcher), projectile.def.projectile.damageDef, projectile.ExactRotation.eulerAngles.y);
+                    float sizeMod = (8 - ticksSinceAbsorbDamage) / 8f * 0.05f;
+                    shieldPos += shield.impactAngleVect * sizeMod;
+                    size -= sizeMod;
                 }
-                projectile.InterceptProjectile(shield, exactPosition, true);
-                return true;
-
-            }
-            return false;
-        }
-
-        private static bool ImpactSomething(ProjectileCE projectile, Thing launcher)
-        {
-            var map = projectile.Map;
-            Vector3 exactPosition = projectile.ExactPosition;
-
-            refreshShields(map);
-
-            foreach (var building in shields)
-            {
-                if (building is Building_Shield bs && ShieldInterceptsProjectile(bs, projectile, launcher))
+                size *= (256f - 15f) / 256f;//VFEs use default shield texture that have 8 px offset from left and 7 from right (up and down similar)
+                var radius = (size)/ 2;
+                if (CE_Utility.IntersectionPoint(from, to, shieldPos, radius, out var sect, false, map: projectile.Map))
                 {
-                    projectile.InterceptProjectile(bs, exactPosition, true);
+                    OnIntercepted(projectile, shield, sect);
                     return true;
                 }
             }
             return false;
         }
-
-        private static bool ShieldInterceptsProjectile(Building building, ProjectileCE projectile, Thing launcher)
-        {
-            var shield = building as Building_Shield;
-            if (!shield.active || !(bool)CanFunctionPropertyGetter(shield) || shield.Energy == 0)
-            {
-                // Shield inactive, don't intercept.
-                return false;
-            }
-
-            if (shield.coveredCells.Contains(launcher.Position))
-            {
-                return false;
-            }
-            if (!shield.coveredCells.Contains(projectile.Position))
-            {
-                return false;
-            }
-            return true;
-        }
-
         private static void refreshShields(Map map)
         {
             int thisTick = Find.TickManager.TicksAbs;
@@ -136,6 +87,22 @@ namespace CombatExtended.Compatibility
                 lastCacheTick = thisTick;
                 lastCacheMap = map;
             }
+        }
+        private static void OnIntercepted(ProjectileCE projectile, Building building, Vector3[] sect)
+        {
+            var interceptor = building as Building_Shield;
+
+            if (sect == null)
+            {
+                CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.Position.ToVector3Shifted(), interceptor.ShieldRadius, out sect);
+            }
+            var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+            projectile.ExactPosition = exactPosition;
+
+            projectile.landed = true;
+            FleckMakerCE.ThrowLightningGlow(exactPosition, building.Map, 1.4f);
+            projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
+            interceptor.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, projectile.launcher);
         }
     }
 }
