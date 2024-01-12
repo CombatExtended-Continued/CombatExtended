@@ -1038,7 +1038,7 @@ namespace CombatExtended
             if (Mathf.Abs(displacementSq) < 0.000001f)
             {
 #if DEBUG
-                Message($"displacementSq zero ({displacementSq :F10})");
+                Message($"displacementSq zero ({displacementSq:F10})");
 #endif
                 return false;
             }
@@ -1055,14 +1055,14 @@ namespace CombatExtended
 #if DEBUG
                 Message($"Case 3");
 #endif
-               
+
             }
             else // case 4 or 5
             {
 #if DEBUG
                 Message($"Case 4 or 5");
 #endif
-                
+
                 if (lp2sq > radSq) // case 5
                 {
 #if DEBUG
