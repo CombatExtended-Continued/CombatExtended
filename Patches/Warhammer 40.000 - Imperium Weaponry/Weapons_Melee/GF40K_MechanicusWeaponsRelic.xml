@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40.000: Imperium Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_RelicMechanicusPowerSword"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>10</Bulk>
+							<MeleeCounterParryBonus>1.6</MeleeCounterParryBonus>
+						</statBases>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.1</MeleeCritChance>
+							<MeleeParryChance>0.85</MeleeParryChance>
+							<MeleeDodgeChance>0.6</MeleeDodgeChance>
+						</equippedStatOffsets>
+						<weaponTags>
+							<li>CE_OneHandedWeapon</li>
+						</weaponTags>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_RelicMechanicusPowerSword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>39</power>
+								<cooldownTime>2.0</cooldownTime>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<armorPenetrationSharp>46</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>62</power>
+								<extraMeleeDamages>
+									<li>
+										<def>EMP</def>
+										<amount>2</amount>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>2.0</cooldownTime>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+								<armorPenetrationSharp>35</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

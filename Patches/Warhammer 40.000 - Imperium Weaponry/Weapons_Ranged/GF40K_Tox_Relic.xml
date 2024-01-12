@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40.000: Imperium Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_PhosphorPistolRelic" or defName="GF40K_RelicRadiumPistol"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_RelicRadiumCarbine"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Remove VWE: Laser Components === -->
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName = "GF40K_PhosphorPistolRelic"]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+				</li>
+
+				<!-- === Phosphor Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_PhosphorPistolRelic</defName>
+					<statBases>
+						<Bulk>2.5</Bulk>
+						<SwayFactor>1.25</SwayFactor>
+						<ShotSpread>0.06</ShotSpread>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.5</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_30x64mmFuel_Incendiary</defaultProjectile>
+						<warmupTime>0.95</warmupTime>
+						<range>28</range>
+						<soundCast>GF40K_LaserPistolShot</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>7</magazineSize>
+						<reloadTime>5.2</reloadTime>
+						<ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Radium Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_RelicRadiumPistol</defName>
+					<statBases>
+						<Mass>1.25</Mass>
+						<Bulk>2.5</Bulk>
+						<SwayFactor>1.25</SwayFactor>
+						<ShotSpread>0.06</ShotSpread>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.5</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_RadiumPistol_Tox</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>18</range>
+						<soundCast>Shot_ChargeRifle</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_Radium_Pistol</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Radium Carbine === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_RelicRadiumCarbine</defName>
+					<statBases>
+						<Mass>5.0</Mass>
+						<Bulk>10.00</Bulk>
+						<SwayFactor>1.5</SwayFactor>
+						<ShotSpread>0.05</ShotSpread>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.7</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_RadiumCarbine_Tox</defaultProjectile>
+						<warmupTime>1.0</warmupTime>
+						<range>62</range>
+						<burstShotCount>4</burstShotCount>
+						<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+						<soundCast>GF40K_LaserPistolShot</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_Radium_Carbine</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
