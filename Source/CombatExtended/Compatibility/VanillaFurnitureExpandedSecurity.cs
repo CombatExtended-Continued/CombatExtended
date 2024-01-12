@@ -94,7 +94,7 @@ namespace CombatExtended.Compatibility
             projectile.ExactPosition = exactPosition;
 
             projectile.landed = true;
-            FleckMakerCE.ThrowLightningGlow(exactPosition, building.Map, 1.4f);
+            FleckMakerCE.ThrowLightningGlow(exactPosition, building.Map, 0.5f);
             projectile.InterceptProjectile(interceptor, projectile.ExactPosition, true);
             interceptor.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, projectile.launcher);
         }
