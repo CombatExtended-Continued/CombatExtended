@@ -778,7 +778,7 @@ namespace CombatExtended
                     this.Impact(null);
                     return true;
                 }
-            }  
+            }
 
             #region Sanity checks
             if (ticksToImpact < 0 || def.projectile.flyOverhead)
