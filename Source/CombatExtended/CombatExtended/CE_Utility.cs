@@ -1033,7 +1033,15 @@ namespace CombatExtended
             float lp2sq = lp2.sqrMagnitude;
             Vector3 displacement;
             float displacementSq;
-
+            displacement = (lp2 - lp1);
+            displacementSq = displacement.sqrMagnitude;
+            if (Mathf.Abs(displacementSq) < 0.000001f)
+            {
+#if DEBUG
+                Message($"displacementSq zero ({displacementSq :F10})");
+#endif
+                return false;
+            }
             if (lp1sq < radSq) // Case 1, 2, or 3
             {
                 if (!catchOutbound || lp2sq < radSq) // Case 1 or 2
@@ -1047,16 +1055,14 @@ namespace CombatExtended
 #if DEBUG
                 Message($"Case 3");
 #endif
-                displacement = (lp2 - lp1);
-                displacementSq = displacement.sqrMagnitude;
+               
             }
             else // case 4 or 5
             {
 #if DEBUG
                 Message($"Case 4 or 5");
 #endif
-                displacement = (lp2 - lp1);
-                displacementSq = displacement.sqrMagnitude;
+                
                 if (lp2sq > radSq) // case 5
                 {
 #if DEBUG
@@ -1079,7 +1085,7 @@ namespace CombatExtended
                     }
                     Vector3 closestPoint = lp1 + (projectionDistance / length) * displacement;
 #if DEBUG
-                    Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}");
+                    Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}, {projectionDistance}, {length}, {direction}");
 #endif
                     if (closestPoint.sqrMagnitude > radSq) // closest point is still outside
                     {
