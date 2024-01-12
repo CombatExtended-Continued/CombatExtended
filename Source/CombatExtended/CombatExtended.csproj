@@ -26,6 +26,7 @@
 		<DebugSymbols>false</DebugSymbols>
 		<LangVersion>8.0</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Optimize>false</Optimize>
 	</PropertyGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="Exists('C:\Program Files (x86)\Mono\bin\pdb2mdb.bat')">
 		<Exec Command="if $(ConfigurationName) == Debugger call &quot;C:\Program Files (x86)\Mono\bin\pdb2mdb.bat&quot; $(TargetDir)$(TargetName)$(TargetExt)" />
@@ -63,6 +64,7 @@
 		<Compile Remove="CombatExtended\ThinkNodes\ThinkNode_ConditionalNoJob.cs" />
 		<Compile Remove="Harmony\Harmony-HediffComp_GetsOld.cs" />
 		<Compile Remove="Harmony\Harmony-RaidStrategyWorker_ImmediateAttackSappers.cs" />
+		<Compile Remove="Harmony\Harmony_Profiler.cs" />
 		<Compile Remove="Harmony\Harmony_WeatherDecider.cs" />
 		<Compile Remove="Projectile_FireTrail.cs" />
 	</ItemGroup>
@@ -106,6 +108,7 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
+		<Folder Include="Comps\" />
 		<Folder Include="Properties\" />
 		<Folder Include="Contrib\Collections\" />
 		<Folder Include="CombatExtended\StatParts\Base\" />

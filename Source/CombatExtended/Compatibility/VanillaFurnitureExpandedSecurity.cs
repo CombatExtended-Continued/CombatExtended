@@ -60,7 +60,7 @@ namespace CombatExtended.Compatibility
                 {
                     continue;
                 }
-                
+
                 if (CE_Utility.IntersectionPoint(from, to, ShieldPos(shield), Radius(shield), out var sect, false, map: projectile.Map))
                 {
                     OnIntercepted(projectile, shield, sect);
