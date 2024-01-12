@@ -1085,7 +1085,7 @@ namespace CombatExtended
                     }
                     Vector3 closestPoint = lp1 + (projectionDistance / length) * displacement;
 #if DEBUG
-                    Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}, {projectionDistance}, {length}, {direction}");
+                    Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}");
 #endif
                     if (closestPoint.sqrMagnitude > radSq) // closest point is still outside
                     {
