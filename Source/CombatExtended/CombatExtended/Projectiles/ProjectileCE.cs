@@ -1179,7 +1179,7 @@ namespace CombatExtended
             {
                 return;
             }
-            Position = ExactPosition.ToIntVec3();
+            Position = nextPosition.ToIntVec3();
             if (globalTargetInfo.IsValid)
             {
                 return;
