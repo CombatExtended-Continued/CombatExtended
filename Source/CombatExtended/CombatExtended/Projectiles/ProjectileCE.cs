@@ -215,6 +215,7 @@ namespace CombatExtended
             }
         }
 
+        private int flightTicks;
         /// <summary>
         /// The amount of integer ticks this projectile has remained in the air for, ignoring impact.
         /// </summary>
@@ -222,7 +223,7 @@ namespace CombatExtended
         {
             get
             {
-                return IntTicksToImpact - ticksToImpact;
+                return flightTicks;
             }
         }
         /// <summary>
@@ -1148,7 +1149,8 @@ namespace CombatExtended
             }
             LastPos = ExactPosition;
             ticksToImpact--;
-            if (!ExactPosition.InBounds(Map))
+            flightTicks++;
+            Vector3 nextPosition;
             {
                 if (globalTargetInfo.IsValid)
                 {
