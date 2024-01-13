@@ -281,8 +281,7 @@ namespace CombatExtended
         {
             get
             {
-                var v = DrawPosV2;
-                return new Vector3(v.x, def.Altitude, v.y);
+                return ExactPosition;
             }
         }
 
