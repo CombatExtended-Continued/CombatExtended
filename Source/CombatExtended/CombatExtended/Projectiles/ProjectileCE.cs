@@ -1136,6 +1136,16 @@ namespace CombatExtended
             ticksToImpact--;
             flightTicks++;
             Vector3 nextPosition;
+            if (lerpPosition)
+            {
+                var v = Vec2Position();
+                nextPosition = new Vector3(v.x, Height, v.y);
+            }
+            else
+            {
+                nextPosition = MoveForward();
+            }
+            if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
                 {
