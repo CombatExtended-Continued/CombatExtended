@@ -1174,6 +1174,7 @@ namespace CombatExtended
                 Destroy();
                 return;
             }
+            ExactPosition = nextPosition;
             if (CheckForCollisionBetween())
             {
                 return;
