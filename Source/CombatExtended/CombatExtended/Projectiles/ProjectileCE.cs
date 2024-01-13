@@ -148,23 +148,11 @@ namespace CombatExtended
         public float AccuracyFactor;
 
         #region Height
-        private int lastHeightTick = -1;
-        private float heightInt = 0f;
-        /// <summary>
-        /// If lastHeightTick is not FlightTicks, Height calculates the quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> shotSpeed * Mathf.Sin(shotAngle), y0 -> shotHeight, t -> seconds} to find y rounded to the nearest 3 decimals.
-        ///
-        /// If lastHeightTick equals FlightTicks, it returns a locally stored value heightInt which is the product of previous calculation.
-        /// </summary>
         public virtual float Height
         {
             get
             {
-                if (lastHeightTick != FlightTicks)
-                {
-                    heightInt = ticksToImpact > 0 ? GetHeightAtTicks(FlightTicks) : 0f;
-                    lastHeightTick = FlightTicks;
-                }
-                return heightInt;
+                return ExactPosition.y;
             }
         }
         #endregion
