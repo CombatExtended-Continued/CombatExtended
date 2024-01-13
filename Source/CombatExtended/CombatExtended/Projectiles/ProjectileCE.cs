@@ -764,6 +764,7 @@ namespace CombatExtended
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
+            List<(Vector3 IntersectionPos, object Interceptor, Action<object, ProjectileCE, Vector3> OnInterception)> possibleIntersections = new List<(Vector3 IntersectionPos, object Interceptor, Action<object, ProjectileCE, Vector3> OnInterception)>();
             bool collided = false;
             Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
             var lastPosIV3 = LastPos.ToIntVec3();
@@ -801,13 +802,10 @@ namespace CombatExtended
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
             var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
 
+            possibleIntersections.AddRange(BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition));
             //Order cells by distance from the last position
             foreach (var cell in cells)
             {
-                if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition.ToIntVec3() == cell ? ExactPosition : cell.ToVector3Shifted()))
-                {
-                    return true;
-                }
                 if (CheckCellForCollision(cell))
                 {
                     newPosIV3 = cell;
@@ -820,6 +818,14 @@ namespace CombatExtended
                     Map.debugDrawer.FlashCell(cell, 1, "o");
                 }
             }
+            if (possibleIntersections.Count > 0)
+            {
+                var intersection = possibleIntersections.OrderBy(x => (LastPos - x.IntersectionPos).sqrMagnitude).First();
+                intersection.OnInterception(intersection.Interceptor, this, intersection.IntersectionPos);
+                newPosIV3 = intersection.IntersectionPos.ToIntVec3();
+                collided = true;
+                Log.Warning("Yaaay?");
+            }
 
             // Apply suppression. The height here is NOT that of the bullet in CELL,
             // it is the height at the END OF THE PATH. This is because SuppressionRadius
@@ -828,7 +834,6 @@ namespace CombatExtended
             {
                 RayCastSuppression(lastPosIV3, newPosIV3, localMap);
             }
-
             return collided;
         }
 
@@ -900,10 +905,10 @@ namespace CombatExtended
                     {
                         continue;
                     }
-                    if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thing.TrueCenter()))
-                    {
-                        return true;
-                    }
+                    //if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thing.TrueCenter()))
+                    //{
+                    //    return true;
+                    //}
                     var lastPosIV3 = LastPos.ToIntVec3();
                     var newPosIV3 = thing.TrueCenter().ToIntVec3();
                     // Iterate through all cells between the last and the THING

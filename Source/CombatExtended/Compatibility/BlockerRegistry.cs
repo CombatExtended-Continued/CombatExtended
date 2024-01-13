@@ -17,7 +17,7 @@ namespace CombatExtended.Compatibility
         private static bool enabledBCW = false;
         private static bool enabledPUF = false;
         private static bool enabledSZ = false;
-        private static List<Func<ProjectileCE, Vector3, Vector3, bool>> checkForCollisionBetweenCallbacks;
+        private static List<(Func<ProjectileCE, Vector3, Vector3, IEnumerable<(Vector3 IntersectionPos, object Interceptor)>> FindIntersectionFunc, Action<object, ProjectileCE, Vector3> OnIntersection)> checkForCollisionBetweenCallbacks;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> beforeCollideWithCallbacks;
@@ -27,7 +27,7 @@ namespace CombatExtended.Compatibility
         private static void EnableCB()
         {
             enabledCB = true;
-            checkForCollisionBetweenCallbacks = new List<Func<ProjectileCE, Vector3, Vector3, bool>>();
+            checkForCollisionBetweenCallbacks = new List<(Func<ProjectileCE, Vector3, Vector3, IEnumerable<(Vector3, object)>>, Action<object, ProjectileCE, Vector3>)>();
         }
         private static void EnableIS()
         {
@@ -54,7 +54,11 @@ namespace CombatExtended.Compatibility
             enabledBCW = true;
             beforeCollideWithCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
         }
-        public static void RegisterCheckForCollisionBetweenCallback(Func<ProjectileCE, Vector3, Vector3, bool> f)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="f">Func that returns potential intersection pos and action </param>
+        public static void RegisterCheckForCollisionBetweenCallback((Func<ProjectileCE, Vector3, Vector3, IEnumerable<(Vector3 IntersectionPos, object Interceptor)>> FindIntersectionFunc, Action<object, ProjectileCE, Vector3> OnIntersection) f)
         {
             if (!enabledCB)
             {
@@ -88,20 +92,20 @@ namespace CombatExtended.Compatibility
             }
             beforeCollideWithCallbacks.Add(f);
         }
-        public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
+        public static IEnumerable<(Vector3 IntersectionPos, object Interceptor, Action<object, ProjectileCE, Vector3> OnInterception)> CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             if (!enabledCB)
             {
-                return false;
+                yield break;
             }
-            foreach (var cb in checkForCollisionBetweenCallbacks)
+            foreach (var cbTuple in checkForCollisionBetweenCallbacks)
             {
-                if (cb(projectile, from, to))
+                var cb = cbTuple.FindIntersectionFunc;
+                foreach (var possibleIntersection in cb(projectile, from, to))
                 {
-                    return true;
+                    yield return (possibleIntersection.IntersectionPos, possibleIntersection.Interceptor, cbTuple.OnIntersection);
                 }
             }
-            return false;
         }
 
         public static void RegisterShieldZonesCallback(Func<Thing, IEnumerable<IEnumerable<IntVec3>>> f)

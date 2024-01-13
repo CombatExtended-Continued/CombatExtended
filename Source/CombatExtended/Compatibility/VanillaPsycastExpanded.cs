@@ -27,10 +27,10 @@ namespace CombatExtended.Compatibility
         public void Install()
         {
 
-            BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething); //temp commented
-            BlockerRegistry.RegisterBeforeCollideWithCallback(BeforeCollideWith);
-            BlockerRegistry.RegisterCheckForCollisionCallback(Hediff_Overshield_InterceptCheck);
-            BlockerRegistry.RegisterCheckForCollisionBetweenCallback(AOE_CheckIntercept);
+            //BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething); //temp commented
+            //BlockerRegistry.RegisterBeforeCollideWithCallback(BeforeCollideWith);
+            //BlockerRegistry.RegisterCheckForCollisionCallback(Hediff_Overshield_InterceptCheck);
+            BlockerRegistry.RegisterCheckForCollisionBetweenCallback((AOE_CheckIntercept, OnIntercepted));
             BlockerRegistry.RegisterShieldZonesCallback(ShieldZones);
             BlockerRegistry.RegisterUnsuppresableFromCallback(Unsuppresable);
         }
@@ -55,45 +55,45 @@ namespace CombatExtended.Compatibility
 
         private static bool Unsuppresable(Pawn pawn, IntVec3 origin) => pawn.health.hediffSet.hediffs.Any(x => x.GetType() == typeof(Hediff_Overshield));
 
-        private static bool BeforeCollideWith(ProjectileCE projectile, Thing collideWith)
-        {
-            if (collideWith is Pawn pawn)
-            {
-                var interceptor = pawn.health.hediffSet.hediffs.FirstOrDefault(x => x.GetType() == typeof(Hediff_Overshield)) as Hediff_Overshield;
-                if (interceptor != null)
-                {
-                    OnIntercepted(interceptor, projectile, null);
-                    return true;
-                }
-            }
-            return false;
-        }
-        private static bool ImpactSomething(ProjectileCE projectile, Thing launcher)
-        {
-            return Hediff_Overshield_InterceptCheck(projectile, projectile.ExactPosition.ToIntVec3(), launcher);
-        }
-        public static bool Hediff_Overshield_InterceptCheck(ProjectileCE projectile, IntVec3 cell, Thing launcher)
-        {
-            foreach (var interceptor in projectile.Map.thingGrid.ThingsListAt(cell).OfType<Pawn>()
-                .SelectMany(x => x.health.hediffSet.hediffs)
-                .Where(x => x.GetType() == typeof(Hediff_Overshield)).Cast<Hediff_Overshield>())
-            {
-                var def = projectile.def;
-                var result = interceptor.pawn != launcher && (interceptor.pawn.Position == cell);
-                if (result)
-                {
-                    OnIntercepted(interceptor, projectile, null);
-                    return result;
-                }
-            }
-            return false;
-        }
-        public static bool AOE_CheckIntercept(ProjectileCE projectile, Vector3 from, Vector3 newExactPos)
+        //private static bool BeforeCollideWith(ProjectileCE projectile, Thing collideWith)
+        //{
+        //    if (collideWith is Pawn pawn)
+        //    {
+        //        var interceptor = pawn.health.hediffSet.hediffs.FirstOrDefault(x => x.GetType() == typeof(Hediff_Overshield)) as Hediff_Overshield;
+        //        if (interceptor != null)
+        //        {
+        //            OnIntercepted(interceptor, projectile, null);
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+        //private static bool ImpactSomething(ProjectileCE projectile, Thing launcher)
+        //{
+        //    return Hediff_Overshield_InterceptCheck(projectile, projectile.ExactPosition.ToIntVec3(), launcher);
+        //}
+        //public static bool Hediff_Overshield_InterceptCheck(ProjectileCE projectile, IntVec3 cell, Thing launcher)
+        //{
+        //    foreach (var interceptor in projectile.Map.thingGrid.ThingsListAt(cell).OfType<Pawn>()
+        //        .SelectMany(x => x.health.hediffSet.hediffs)
+        //        .Where(x => x.GetType() == typeof(Hediff_Overshield)).Cast<Hediff_Overshield>())
+        //    {
+        //        var def = projectile.def;
+        //        var result = interceptor.pawn != launcher && (interceptor.pawn.Position == cell);
+        //        if (result)
+        //        {
+        //            OnIntercepted(interceptor, projectile, null);
+        //            return result;
+        //        }
+        //    }
+        //    return false;
+        //}
+        public static IEnumerable<(Vector3, object)> AOE_CheckIntercept(ProjectileCE projectile, Vector3 from, Vector3 newExactPos)
         {
             var def = projectile.def;
             if (projectile.def.projectile.flyOverhead)
             {
-                return false;
+                yield break;
             }
             foreach (var interceptor in projectile.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>()
                 .SelectMany(x => x.health.hediffSet.hediffs)
@@ -103,26 +103,19 @@ namespace CombatExtended.Compatibility
                 float radius = interceptor.OverlaySize;
                 if (CE_Utility.IntersectionPoint(from.Yto0(), newExactPos.Yto0(), shieldPosition, radius, out Vector3[] sect, false, map: projectile.Map))
                 {
-                    OnIntercepted(interceptor, projectile, sect);
-                    return true;
+                    //OnIntercepted(interceptor, projectile, sect);
+                    var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                    yield return (exactPosition, interceptor);
                 }
             }
-
-            return false;
         }
 
-        private static void OnIntercepted(Hediff hediff, ProjectileCE projectile, Vector3[] sect)
+        private static void OnIntercepted(object hediff, ProjectileCE projectile, Vector3 exactPosition)
         {
             if (!(hediff is Hediff_Overshield interceptor))
             {
                 return;
             }
-            var newExactPos = projectile.ExactPosition;
-            if (sect == null)
-            {
-                CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.Position.ToVector3(), interceptor.OverlaySize, out sect);
-            }
-            var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
             projectile.ExactPosition = exactPosition;
             new Traverse(interceptor).Field("lastInterceptAngle").SetValue(exactPosition.AngleToFlat(interceptor.pawn.TrueCenter()));
             new Traverse(interceptor).Field("lastInterceptTicks").SetValue(Find.TickManager.TicksGame);
