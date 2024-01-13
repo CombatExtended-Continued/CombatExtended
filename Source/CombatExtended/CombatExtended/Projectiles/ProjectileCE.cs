@@ -112,7 +112,11 @@ namespace CombatExtended
                     this.damageAmount = def.projectile.GetDamageAmount(weaponDamageMultiplier);
                 }
 
-                return (float)this.damageAmount;
+                if (lerpPosition)
+                {
+                    return (float)this.damageAmount;
+                }
+                return ((float)this.damageAmount) * (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
             }
         }
 
