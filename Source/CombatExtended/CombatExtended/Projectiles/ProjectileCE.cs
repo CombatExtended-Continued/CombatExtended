@@ -85,7 +85,7 @@ namespace CombatExtended
         /// <summary>
         /// Backing field for <see cref="DamageAmount"/>.
         /// </summary>
-        private float? damageAmount;
+        protected float? damageAmount;
 
         /// <summary>
         /// Return the damage dealt by this projectile scaled by the quality multiplier of its launcher.
@@ -124,7 +124,7 @@ namespace CombatExtended
         #region Vanilla
         public bool landed;
         public int ticksToImpact;
-        private Sustainer ambientSustainer;
+        protected Sustainer ambientSustainer;
 
         #endregion
 
@@ -155,7 +155,7 @@ namespace CombatExtended
         #endregion
 
         #region Ticks/Seconds
-        float startingTicksToImpactInt = -1f;
+        protected float startingTicksToImpactInt = -1f;
         public float StartingTicksToImpact
         {
             get
