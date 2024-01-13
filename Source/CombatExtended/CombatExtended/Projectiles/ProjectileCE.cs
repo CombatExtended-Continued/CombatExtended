@@ -466,6 +466,34 @@ namespace CombatExtended
         }
         #endregion
 
+        #region Throw
+        public virtual void Throw(Thing launcher, Vector3 origin,  Vector3 heading, Thing equipment = null)
+        {
+            this.ExactPosition = origin;
+            this.shotHeight = origin.y;
+            this.origin = new Vector2(origin.x, origin.z);
+            this.shotSpeed = Math.Max(heading.magnitude, def.projectile.speed);
+            var projectileProperties = def.projectile as ProjectilePropertiesCE;
+            this.castShadow = projectileProperties.castShadow;
+            this.velocity = heading;
+            this.launcher = launcher;
+            this.equipment = equipment;
+            //For explosives/bullets, equipmentDef is important
+            equipmentDef = (equipment != null) ? equipment.def : null;
+
+            if (!def.projectile.soundAmbient.NullOrUndefined())
+            {
+                var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
+                ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
+            }
+            ballisticCoefficient = projectileProperties.ballisticCoefficient.RandomInRange;
+            mass = projectileProperties.mass.RandomInRange;
+            radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
+            gravity = projectileProperties.Gravity;
+            initialSpeed = shotSpeed;
+        }
+        #endregion
+
         #region Raycast
         public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null)
         {
