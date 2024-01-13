@@ -238,7 +238,7 @@ namespace CombatExtended
             return Vector2.Lerp(origin, Destination, ticks / StartingTicksToImpact);
         }
 
-        private Vector3 impactPosition = new Vector3();
+        private Vector3? exactPosition = null;
         /// <summary>
         /// Exact x,y,z (x,height,y) position in terms of Vec2Position.x, .y (lerped origin to Destination) and Height.
         /// </summary>
@@ -246,17 +246,16 @@ namespace CombatExtended
         {
             set
             {
-                impactPosition = new Vector3(value.x, value.y, value.z);
-                Position = impactPosition.ToIntVec3();
+                exactPosition = new Vector3(value.x, value.y, value.z);
+                Position = ((Vector3)exactPosition).ToIntVec3();
             }
             get
             {
-                if (landed)
+                if (exactPosition == null)
                 {
-                    return impactPosition;
+                    exactPosition = new Vector3(origin.x, Height, origin.y);
                 }
-                var v = Vec2Position();
-                return new Vector3(v.x, Height, v.y);
+                return ((Vector3)exactPosition);
             }
         }
 
@@ -467,7 +466,7 @@ namespace CombatExtended
 	    Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
 
             //To fix landed grenades sl problem
-            Scribe_Values.Look(ref impactPosition, "impactPosition");
+            Scribe_Values.Look(ref exactPosition, "exactPosition");
             // To insure saves don't get affected..
         }
         #endregion
