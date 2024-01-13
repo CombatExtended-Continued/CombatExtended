@@ -28,7 +28,16 @@ namespace CombatExtended
         /// </summary>
         protected const int collisionCheckSize = 5;
 
+        #region Kinetic Projectiles
         protected bool lerpPosition = true;
+        protected bool kinit = false;
+        protected float ballisticCoefficient;
+        protected float mass;
+        protected float radius;
+        protected float gravity;
+        protected Vector3 velocity;
+        protected float initialSpeed;
+        #endregion
 
         #region Origin destination
         public bool OffMapOrigin = false;
