@@ -273,7 +273,7 @@ namespace CombatExtended
         {
             get
             {
-                return Vec2Position() + new Vector2(0, Height - shotHeight * ((StartingTicksToImpact - fTicks) / StartingTicksToImpact));
+                return new Vector2(ExactPosition.x, ExactPosition.z);
             }
         }
 
