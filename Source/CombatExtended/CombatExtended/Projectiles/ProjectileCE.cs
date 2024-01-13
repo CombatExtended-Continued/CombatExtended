@@ -263,7 +263,7 @@ namespace CombatExtended
             {
                 if (exactPosition == null)
                 {
-                    exactPosition = new Vector3(origin.x, Height, origin.y);
+                    exactPosition = new Vector3(origin.x, shotHeight, origin.y);
                 }
                 return ((Vector3)exactPosition);
             }
