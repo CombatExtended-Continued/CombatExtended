@@ -1189,7 +1189,7 @@ namespace CombatExtended
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }
             //TODO : It appears that the final steps in the arc (past ticksToImpact == 0) don't CheckForCollisionBetween.
-            if (ticksToImpact <= 0)
+            if (ticksToImpact <= 0 || nextPosition.y <= 0f)
             {
                 ImpactSomething();
                 return;
