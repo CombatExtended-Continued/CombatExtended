@@ -286,22 +286,8 @@ namespace CombatExtended
         }
 
         private Vector3 lastExactPos = new Vector3(-1000, 0, 0);
-        public Vector3 LastPos
-        {
-            private set
-            {
-                lastExactPos = value;
-            }
-            get
-            {
-                if (lastExactPos.x < -999)
-                {
-                    var lastPos = Vec2Position(FlightTicks - 1);
-                    lastExactPos = new Vector3(lastPos.x, GetHeightAtTicks(FlightTicks - 1), lastPos.y);
-                }
-                return lastExactPos;
-            }
-        }
+        public Vector3 LastPos { get; set; }
+
 
         public Vector3 ExactMinusLastPos
         {
