@@ -764,7 +764,7 @@ namespace CombatExtended
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
-            List<(Vector3 IntersectionPos, object Interceptor, Action<object, ProjectileCE, Vector3> OnInterception)> possibleIntersections = new List<(Vector3 IntersectionPos, object Interceptor, Action<object, ProjectileCE, Vector3> OnInterception)>();
+            List<(Vector3 IntersectionPos, Action OnInterception)> possibleIntersections = new List<(Vector3 IntersectionPos, Action OnInterception)>();
             bool collided = false;
             Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
             var lastPosIV3 = LastPos.ToIntVec3();
@@ -821,7 +821,7 @@ namespace CombatExtended
             if (possibleIntersections.Count > 0)
             {
                 var intersection = possibleIntersections.OrderBy(x => (LastPos - x.IntersectionPos).sqrMagnitude).First();
-                intersection.OnInterception(intersection.Interceptor, this, intersection.IntersectionPos);
+                intersection.OnInterception();
                 newPosIV3 = intersection.IntersectionPos.ToIntVec3();
                 collided = true;
                 Log.Warning("Yaaay?");

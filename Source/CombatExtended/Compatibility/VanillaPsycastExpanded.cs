@@ -30,7 +30,7 @@ namespace CombatExtended.Compatibility
             //BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething); //temp commented
             //BlockerRegistry.RegisterBeforeCollideWithCallback(BeforeCollideWith);
             //BlockerRegistry.RegisterCheckForCollisionCallback(Hediff_Overshield_InterceptCheck);
-            BlockerRegistry.RegisterCheckForCollisionBetweenCallback((AOE_CheckIntercept, OnIntercepted));
+            BlockerRegistry.RegisterCheckForCollisionBetweenCallback(AOE_CheckIntercept);
             BlockerRegistry.RegisterShieldZonesCallback(ShieldZones);
             BlockerRegistry.RegisterUnsuppresableFromCallback(Unsuppresable);
         }
@@ -88,7 +88,7 @@ namespace CombatExtended.Compatibility
         //    }
         //    return false;
         //}
-        public static IEnumerable<(Vector3, object)> AOE_CheckIntercept(ProjectileCE projectile, Vector3 from, Vector3 newExactPos)
+        public static IEnumerable<(Vector3, Action)> AOE_CheckIntercept(ProjectileCE projectile, Vector3 from, Vector3 newExactPos)
         {
             var def = projectile.def;
             if (projectile.def.projectile.flyOverhead)
@@ -105,7 +105,7 @@ namespace CombatExtended.Compatibility
                 {
                     //OnIntercepted(interceptor, projectile, sect);
                     var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
-                    yield return (exactPosition, interceptor);
+                    yield return (exactPosition, () => OnIntercepted(interceptor, projectile, exactPosition));
                 }
             }
         }
