@@ -31,6 +31,12 @@ namespace CombatExtended
         public float airborneSuppressionFactor = 1;
         public float dangerFactor = 1;
 
+        public FloatRange ballisticCoefficient = new FloatRange(1f, 1f);
+        public FloatRange mass = new FloatRange(1f, 1f);
+        public FloatRange diameter = new FloatRange(1f, 1f);
+
+        public bool lerpPosition = true;
+
         #region Bunker Buster fields
         /// <summary>
         /// Amount of tiles ProjectileCE_BunkerBuster will detonate after after penetrating an obstacle
