@@ -163,6 +163,10 @@ namespace CombatExtended
         {
             get
             {
+                if (!lerpPosition)
+                {
+                    return float.MaxValue;
+                }
                 if (startingTicksToImpactInt < 0f)
                 {
                     // Optimization in case shotHeight is zero (for example for fragments)
@@ -199,6 +203,10 @@ namespace CombatExtended
         {
             get
             {
+                if (!lerpPosition)
+                {
+                    return 1;
+                }
                 if (intTicksToImpact < 0)
                 {
                     intTicksToImpact = Mathf.CeilToInt(StartingTicksToImpact);
