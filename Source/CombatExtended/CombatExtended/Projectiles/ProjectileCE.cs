@@ -458,7 +458,7 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
-	    Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
+            Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
@@ -467,7 +467,7 @@ namespace CombatExtended
         #endregion
 
         #region Throw
-        public virtual void Throw(Thing launcher, Vector3 origin,  Vector3 heading, Thing equipment = null)
+        public virtual void Throw(Thing launcher, Vector3 origin, Vector3 heading, Thing equipment = null)
         {
             this.ExactPosition = origin;
             this.shotHeight = origin.y;
