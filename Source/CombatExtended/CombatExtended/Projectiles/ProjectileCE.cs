@@ -1215,7 +1215,7 @@ namespace CombatExtended
             }
             float distToOrigin = originInt.DistanceTo(positionInt);
             float dangerFactor = (def.projectile as ProjectilePropertiesCE).dangerFactor;
-            if (dangerFactor > 0f && ExactPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
+            if (dangerFactor > 0f && nextPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
             {
                 DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * dangerFactor);
             }
