@@ -28,6 +28,8 @@ namespace CombatExtended
         /// </summary>
         protected const int collisionCheckSize = 5;
 
+        protected bool lerpPosition = true;
+
         #region Origin destination
         public bool OffMapOrigin = false;
 
@@ -462,6 +464,7 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
+	    Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref impactPosition, "impactPosition");
@@ -627,6 +630,7 @@ namespace CombatExtended
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 this.castShadow = props.castShadow;
+                this.lerpPosition = props.lerpPosition;
             }
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
