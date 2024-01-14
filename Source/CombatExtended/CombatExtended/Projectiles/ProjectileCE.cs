@@ -799,11 +799,12 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
             #endregion
-
+            var lastPosV2 = Vec2Position(FlightTicks - 2);
+            var lastPosV3 = new Vector3(lastPosV2.x, GetHeightAtTicks(FlightTicks - 2), lastPosV2.y);
+            possibleIntersections.AddRange(BlockerRegistry.CheckForCollisionBetweenCallback(this, lastPosV3, ExactPosition));
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
             var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
-            possibleIntersections.AddRange(BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition));
             //Order cells by distance from the last position
             foreach (var cell in cells)
             {
