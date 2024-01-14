@@ -1007,9 +1007,6 @@ namespace CombatExtended
             }
             if (Controller.settings.DebugDrawInterceptChecks)
             {
-                map?.debugDrawer.debugCells.Clear();
-                map?.debugDrawer.debugLines.Clear();
-                map?.debugDrawer.DebugDrawerUpdate();
                 map?.debugDrawer.FlashLine(p1.ToIntVec3(), p2.ToIntVec3(), color: SimpleColor.Red);
             }
             Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
@@ -1079,7 +1076,7 @@ namespace CombatExtended
                     if (projectionDistance <= 0 || projectionDistance >= length) // One of the ends is closest, and both are outside, so we didn't cross
                     {
 #if DEBUG
-                        Log.Message($"Endpoint is closest");
+                        Message($"Endpoint is closest");
 #endif
                         return false;
                     }

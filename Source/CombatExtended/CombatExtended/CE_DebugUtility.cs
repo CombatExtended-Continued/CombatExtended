@@ -3,6 +3,7 @@ using System.Linq;
 using CombatExtended.WorldObjects;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended
@@ -46,6 +47,17 @@ namespace CombatExtended
                     comp.recentShells.Clear();
                 }
             }
+        }
+        [DebugAction("CE", actionType = DebugActionType.ToolMapForPawns)]
+        public static void ShowBounds(Pawn p)
+        {
+            var bounds = CE_Utility.GetBoundsFor(p);
+            MoteMakerCE.ThrowText(bounds.max, p.Map, "M", Color.red, 1000);
+            MoteMakerCE.ThrowText(bounds.center, p.Map, "c", Color.green, 1000);
+            MoteMakerCE.ThrowText(bounds.min, p.Map, "m", Color.blue, 1000);
+
+            MoteMakerCE.ThrowText(new Vector3(bounds.max.x,0, bounds.min.z), p.Map, "0", Color.red, 1000);
+            MoteMakerCE.ThrowText(new Vector3(bounds.min.x, 0, bounds.max.z), p.Map, "0", Color.red, 1000);
         }
     }
 }
