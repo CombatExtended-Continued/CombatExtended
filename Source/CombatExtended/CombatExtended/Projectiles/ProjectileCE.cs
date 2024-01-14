@@ -803,7 +803,6 @@ namespace CombatExtended
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
             var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
-
             possibleIntersections.AddRange(BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition));
             //Order cells by distance from the last position
             foreach (var cell in cells)
@@ -822,7 +821,7 @@ namespace CombatExtended
             }
             if (possibleIntersections.Count > 0)
             {
-                var intersection = possibleIntersections.OrderBy(x => (LastPos - x.IntersectionPos).sqrMagnitude).First();
+                var intersection = possibleIntersections.OrderBy(x => (LastPos - x.IntersectionPos).MagnitudeHorizontalSquared()).First();
                 intersection.OnInterception();
                 newPosIV3 = intersection.IntersectionPos.ToIntVec3();
                 collided = true;
@@ -896,13 +895,6 @@ namespace CombatExtended
                     if (!CanCollideWith(thing, out _, out var thingIntersectionPoint))
                     {
                         continue;
-                    }
-                    foreach (var adjacentInterceptor in BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thingIntersectionPoint)) // Is it worth it?
-                    {
-                        yield return adjacentInterceptor;
-#if DEBUG
-                        Log.Message($"Adjacent interceptor at {adjacentInterceptor.IntersectionPos} for {thing} at {thingIntersectionPoint}. Distance to interceptor {(LastPos - adjacentInterceptor.IntersectionPos).sqrMagnitude}, distance to thing {(LastPos - thingIntersectionPoint).sqrMagnitude}");
-#endif
                     }
 
                     yield return (thingIntersectionPoint, () => TryCollideWith(thing)
