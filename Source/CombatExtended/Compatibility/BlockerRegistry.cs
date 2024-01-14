@@ -12,13 +12,11 @@ namespace CombatExtended.Compatibility
     public static class BlockerRegistry
     {
         private static bool enabledCB = false;
-        private static bool enabledCFC = false;
         private static bool enabledIS = false;
         private static bool enabledBCW = false;
         private static bool enabledPUF = false;
         private static bool enabledSZ = false;
         private static List<Func<ProjectileCE, Vector3, Vector3, IEnumerable<(Vector3 IntersectionPos, Action OnIntersection)>>> checkForCollisionBetweenCallbacks;
-        private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> beforeCollideWithCallbacks;
         private static List<Func<Pawn, IntVec3, bool>> pawnUnsuppresableFromCallback;
@@ -33,11 +31,6 @@ namespace CombatExtended.Compatibility
         {
             enabledIS = true;
             impactSomethingCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
-        }
-        private static void EnableCFC()
-        {
-            enabledCFC = true;
-            checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
         }
         private static void EnableSZ()
         {
@@ -67,14 +60,6 @@ namespace CombatExtended.Compatibility
             checkForCollisionBetweenCallbacks.Add(f);
         }
 
-        public static void RegisterCheckForCollisionCallback(Func<ProjectileCE, IntVec3, Thing, bool> f)
-        {
-            if (!enabledCFC)
-            {
-                EnableCFC();
-            }
-            checkCellForCollisionCallbacks.Add(f);
-        }
 
         public static void RegisterImpactSomethingCallback(Func<ProjectileCE, Thing, bool> f)
         {
@@ -124,21 +109,6 @@ namespace CombatExtended.Compatibility
             pawnUnsuppresableFromCallback.Add(f);
         }
 
-        public static bool CheckCellForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
-        {
-            if (!enabledCFC)
-            {
-                return false;
-            }
-            foreach (var cb in checkCellForCollisionCallbacks)
-            {
-                if (cb(projectile, cell, launcher))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
         public static bool ImpactSomethingCallback(ProjectileCE projectile, Thing launcher)
         {
             if (!enabledIS)
