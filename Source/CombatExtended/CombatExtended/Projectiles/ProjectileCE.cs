@@ -668,51 +668,61 @@ namespace CombatExtended
             InterceptProjectile(interceptor, BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius * shieldRadius));
         }
 
-        private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
+        private IEnumerable<(Vector3 IntersectionPos, Action OnInterception)> CheckIntercept(IEnumerable<Thing> interceptorThings)
         {
-            Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
-            float radius = interceptorComp.Props.radius;
-            float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
-            float radiusSq = blockRadius * blockRadius;
-
             var newExactPos = ExactPosition;
+            foreach (var interceptorThing in interceptorThings)
+            {
+                var interceptorComp = interceptorThing.TryGetComp<CompProjectileInterceptor>();
+                if (interceptorComp == null)
+                {
+                    continue;
+                }
+                Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
+                float radius = interceptorComp.Props.radius;
+                float radiusSq = radius * radius;
 
-            if ((newExactPos - shieldPosition).sqrMagnitude > radiusSq)
-            {
-                return false;
-            }
-            if (!interceptorComp.Active)
-            {
-                return false;
+
+                if ((newExactPos - shieldPosition).sqrMagnitude > radiusSq)
+                {
+                    continue;
+                }
+                if (!interceptorComp.Active)
+                {
+                    continue;
+                }
+
+                if (interceptorComp.Props.interceptGroundProjectiles && def.projectile.flyOverhead)
+                {
+                    continue;
+                }
+
+                if (interceptorComp.Props.interceptAirProjectiles && !def.projectile.flyOverhead)
+                {
+                    continue;
+                }
+
+                if ((launcher == null || !launcher.HostileTo(interceptorThing)) && !interceptorComp.debugInterceptNonHostileProjectiles && !interceptorComp.Props.interceptNonHostileProjectiles)
+                {
+                    continue;
+                }
+                if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= radius * radius)
+                {
+                    continue;
+                }
+                if (CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
+                {
+                    newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                    yield return (newExactPos, () => OnCompProjectileInterceptorInterception(interceptorThing, interceptorComp, newExactPos));
+                }
+
             }
 
-            if (interceptorComp.Props.interceptGroundProjectiles && def.projectile.flyOverhead)
-            {
-                return false;
-            }
-
-            if (interceptorComp.Props.interceptAirProjectiles && !def.projectile.flyOverhead)
-            {
-                return false;
-            }
-
-            if ((launcher == null || !launcher.HostileTo(interceptorThing)) && !interceptorComp.debugInterceptNonHostileProjectiles && !interceptorComp.Props.interceptNonHostileProjectiles)
-            {
-                return false;
-            }
-            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= radius * radius)
-            {
-                return false;
-            }
-            if (CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
-            {
-                ExactPosition = newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
-                landed = true;
-            }
-            else
-            {
-                return false;
-            }
+        }
+        private void OnCompProjectileInterceptorInterception(Thing interceptorThing, CompProjectileInterceptor interceptorComp, Vector3 newExactPos)
+        {
+            landed = true;
+            ExactPosition = newExactPos;
             interceptorComp.lastInterceptAngle = lastExactPos.AngleToFlat(interceptorThing.TrueCenter());
             interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
 
@@ -751,16 +761,16 @@ namespace CombatExtended
                     interceptorComp.currentHitPoints = 0;
                     interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
                     interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, this.DamageAmount));
-                    return true;
+                    this.Impact(null);
+                    return;
                 }
             }
 
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
-            eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptorThing.Map, false), TargetInfo.Invalid);
+            eff.Trigger(new TargetInfo(Position, interceptorThing.Map, false), TargetInfo.Invalid);
             eff.Cleanup();
-            return true;
+            this.Impact(null);
         }
-
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
@@ -771,15 +781,7 @@ namespace CombatExtended
             var newPosIV3 = ExactPosition.ToIntVec3();
 
             List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
-                {
-                    landed = true;
-                    this.Impact(null);
-                    return true;
-                }
-            }
+            possibleIntersections.AddRange(CheckIntercept(list));
 
             #region Sanity checks
             if (ticksToImpact < 0 || def.projectile.flyOverhead)
@@ -895,7 +897,7 @@ namespace CombatExtended
                     {
                         continue;
                     }
-                    foreach (var adjacentInterceptor in BlockerRegistry.CheckForCollisionBetweenCallback(this, ExactPosition, thingIntersectionPoint)) // Is it worth it?
+                    foreach (var adjacentInterceptor in BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thingIntersectionPoint)) // Is it worth it?
                     {
                         yield return adjacentInterceptor;
 #if DEBUG
