@@ -27,9 +27,8 @@ namespace CombatExtended.Compatibility
         public void Install()
         {
 
-            //BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething); //temp commented
-            //BlockerRegistry.RegisterBeforeCollideWithCallback(BeforeCollideWith);
-            //BlockerRegistry.RegisterCheckForCollisionCallback(Hediff_Overshield_InterceptCheck);
+            BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething); 
+            BlockerRegistry.RegisterBeforeCollideWithCallback(BeforeCollideWith);
             BlockerRegistry.RegisterCheckForCollisionBetweenCallback(AOE_CheckIntercept);
             BlockerRegistry.RegisterShieldZonesCallback(ShieldZones);
             BlockerRegistry.RegisterUnsuppresableFromCallback(Unsuppresable);
@@ -55,39 +54,41 @@ namespace CombatExtended.Compatibility
 
         private static bool Unsuppresable(Pawn pawn, IntVec3 origin) => pawn.health.hediffSet.hediffs.Any(x => x.GetType() == typeof(Hediff_Overshield));
 
-        //private static bool BeforeCollideWith(ProjectileCE projectile, Thing collideWith)
-        //{
-        //    if (collideWith is Pawn pawn)
-        //    {
-        //        var interceptor = pawn.health.hediffSet.hediffs.FirstOrDefault(x => x.GetType() == typeof(Hediff_Overshield)) as Hediff_Overshield;
-        //        if (interceptor != null)
-        //        {
-        //            OnIntercepted(interceptor, projectile, null);
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
-        //private static bool ImpactSomething(ProjectileCE projectile, Thing launcher)
-        //{
-        //    return Hediff_Overshield_InterceptCheck(projectile, projectile.ExactPosition.ToIntVec3(), launcher);
-        //}
-        //public static bool Hediff_Overshield_InterceptCheck(ProjectileCE projectile, IntVec3 cell, Thing launcher)
-        //{
-        //    foreach (var interceptor in projectile.Map.thingGrid.ThingsListAt(cell).OfType<Pawn>()
-        //        .SelectMany(x => x.health.hediffSet.hediffs)
-        //        .Where(x => x.GetType() == typeof(Hediff_Overshield)).Cast<Hediff_Overshield>())
-        //    {
-        //        var def = projectile.def;
-        //        var result = interceptor.pawn != launcher && (interceptor.pawn.Position == cell);
-        //        if (result)
-        //        {
-        //            OnIntercepted(interceptor, projectile, null);
-        //            return result;
-        //        }
-        //    }
-        //    return false;
-        //}
+        private static bool BeforeCollideWith(ProjectileCE projectile, Thing collideWith)
+        {
+            if (collideWith is Pawn pawn)
+            {
+                var interceptor = pawn.health.hediffSet.hediffs.FirstOrDefault(x => x.GetType() == typeof(Hediff_Overshield)) as Hediff_Overshield;
+                if (interceptor != null)
+                {
+                    Vector3 exactPos;
+                    if (CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.pawn.TrueCenter(), interceptor.OverlaySize, out var sect))
+                    {
+                        exactPos = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                    }
+                    else
+                    {
+                        Log.Error("Intersection points not found");
+                        exactPos = interceptor.pawn.TrueCenter();
+                    }
+                    OnIntercepted(interceptor, projectile, exactPos);
+                    return true;
+                }
+            }
+            return false;
+        }
+        private static bool ImpactSomething(ProjectileCE projectile, Thing launcher)
+        {
+            foreach (var interceptor in projectile.Map.thingGrid.ThingsListAt(projectile.ExactPosition.ToIntVec3()).OfType<Pawn>())
+            {
+                if (BeforeCollideWith(projectile, interceptor))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static IEnumerable<(Vector3, Action)> AOE_CheckIntercept(ProjectileCE projectile, Vector3 from, Vector3 newExactPos)
         {
             var def = projectile.def;
