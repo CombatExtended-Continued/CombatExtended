@@ -1,171 +1,171 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <ThingCategoryDef>
-    <defName>Ammo88mmRPzBRockets</defName>
-    <label>88mm RPzB Rockets</label>
-    <parent>AmmoRockets</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
-  </ThingCategoryDef>
+	<ThingCategoryDef>
+		<defName>Ammo88mmRPzBRockets</defName>
+		<label>88mm RPzB Rockets</label>
+		<parent>AmmoRockets</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+	</ThingCategoryDef>
 
-  <!-- ==================== AmmoSet ========================== -->
+	<!-- ==================== AmmoSet ========================== -->
 
-  <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_88mmRPzBRocket</defName>
-    <label>88mmRPzB Rockets</label>
-    <ammoTypes>
-      <Ammo_88mmRPzB_HEAT>Bullet_88mmRPzB_HEAT</Ammo_88mmRPzB_HEAT>
-    </ammoTypes>
-  </CombatExtended.AmmoSetDef>
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_88mmRPzBRocket</defName>
+		<label>88mmRPzB Rockets</label>
+		<ammoTypes>
+			<Ammo_88mmRPzB_HEAT>Bullet_88mmRPzB_HEAT</Ammo_88mmRPzB_HEAT>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
 
-  <!-- ==================== Ammo ========================== -->
+	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="88mmRPzBRocketBase" ParentName="MediumAmmoBase" Abstract="True">
-    <description>Outdated 88mm rocket.</description>
-    <statBases>
-      <MaxHitPoints>150</MaxHitPoints>
-    </statBases>
-    <tradeTags>
-      <li>CE_AutoEnableTrade</li>
-      <li>CE_AutoEnableCrafting_TableMachining</li>
-    </tradeTags>
-    <thingCategories>
-      <li>Ammo88mmRPzBRockets</li>
-    </thingCategories>
-    <stackLimit>25</stackLimit>
-    <cookOffFlashScale>40</cookOffFlashScale>
-    <cookOffSound>MortarBomb_Explode</cookOffSound>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="88mmRPzBRocketBase" ParentName="MediumAmmoBase" Abstract="True">
+		<description>Outdated 88mm rocket.</description>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo88mmRPzBRockets</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<cookOffFlashScale>40</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="88mmRPzBRocketBase">
-    <defName>Ammo_88mmRPzB_HEAT</defName>
-    <label>88mm RPzB Rocket (HEAT)</label>
-    <graphicData>
-      <texPath>Things/Ammo/RPG/HEAT</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>48.08</MarketValue>
-      <Mass>2.7</Mass>
-      <Bulk>11.59</Bulk>
-    </statBases>
-    <ammoClass>RocketHEAT</ammoClass>
-    <detonateProjectile>Bullet_88mmRPzB_HEAT</detonateProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="88mmRPzBRocketBase">
+		<defName>Ammo_88mmRPzB_HEAT</defName>
+		<label>88mm RPzB Rocket (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Ammo/RPG/HEAT</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>48.08</MarketValue>
+			<Mass>2.7</Mass>
+			<Bulk>11.59</Bulk>
+		</statBases>
+		<ammoClass>RocketHEAT</ammoClass>
+		<detonateProjectile>Bullet_88mmRPzB_HEAT</detonateProjectile>
+	</ThingDef>
 
-  <!-- ================== Projectiles ================== -->
+	<!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base88mmRPzBRocket" ParentName="BaseExplosiveBullet" Abstract="true">
-    <graphicData>
-      <shaderType>TransparentPostLight</shaderType>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>34</speed>
-      <soundAmbient>RocketPropelledLoop_Small</soundAmbient>
-    </projectile>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ProjectileFleck">
-        <FleckDatas>
-          <li>
-            <fleck>Fleck_CERocketFlame</fleck>
-            <emissionsPerTick>7</emissionsPerTick>
-            <flecksPerEmission>3</flecksPerEmission>
-            <scale>1</scale>
-            <cutoffTickRange>15~30</cutoffTickRange>
-            <originOffset>0.8</originOffset>
-          </li>
-          <li>
-            <fleck>Fleck_CERocketSmokeTrail</fleck>
-            <emissionsPerTick>2</emissionsPerTick>
-            <rotation>0~360</rotation>
-            <flecksPerEmission>1</flecksPerEmission>
-          </li>
-          <li>
-            <fleck>Fleck_CERocketSmoke</fleck>
-            <emissionsPerTick>2</emissionsPerTick>
-            <rotation>0~360</rotation>
-            <flecksPerEmission>2</flecksPerEmission>
-            <cutoffTickRange>25~60</cutoffTickRange>
-          </li>
-        </FleckDatas>
-      </li>
-    </comps>
-  </ThingDef>
+	<ThingDef Name="Base88mmRPzBRocket" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>34</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<scale>1</scale>
+						<cutoffTickRange>15~30</cutoffTickRange>
+						<originOffset>0.8</originOffset>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>2</flecksPerEmission>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
 
-  <ThingDef ParentName="Base88mmRPzBRocket">
-    <defName>Bullet_88mmRPzB_HEAT</defName>
-    <label>88mm RPzB rocket (HEAT)</label>
-    <graphicData>
-      <texPath>Things/Projectile/RPG/HEAT</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>208</damageAmountBase>
-      <armorPenetrationSharp>220</armorPenetrationSharp>
-      <armorPenetrationBlunt>37.321</armorPenetrationBlunt>
-    </projectile>
-    <comps>
-      <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <damageAmountBase>124</damageAmountBase>
-        <explosiveDamageType>Bomb</explosiveDamageType>
-        <explosiveRadius>1</explosiveRadius>
-        <explosionSound>MortarBomb_Explode</explosionSound>
-        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      </li>
-      <li Class="CombatExtended.CompProperties_Fragments">
-        <fragments>
-          <Fragment_Large>3</Fragment_Large>
-          <Fragment_Small>9</Fragment_Small>
-        </fragments>
-      </li>
-    </comps>
-  </ThingDef>
+	<ThingDef ParentName="Base88mmRPzBRocket">
+		<defName>Bullet_88mmRPzB_HEAT</defName>
+		<label>88mm RPzB rocket (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Projectile/RPG/HEAT</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>208</damageAmountBase>
+			<armorPenetrationSharp>220</armorPenetrationSharp>
+			<armorPenetrationBlunt>37.321</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>124</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>3</Fragment_Large>
+					<Fragment_Small>9</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
 
-  <!-- ==================== Recipes ========================== -->
+	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="LauncherAmmoRecipeBase">
-    <defName>MakeAmmo_88mmRPzB_HEAT</defName>
-    <label>make 88mm RPzB HEAT rockets x5</label>
-    <description>Craft 5 88mm RPzB HEAT rockets.</description>
-    <jobString>Making 88mm RPzB HEAT rockets.</jobString>
-    <workAmount>8000</workAmount>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>28</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>7</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>ComponentIndustrial</li>
-          </thingDefs>
-        </filter>
-        <count>4</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-        <li>ComponentIndustrial</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_88mmRPzB_HEAT>5</Ammo_88mmRPzB_HEAT>
-    </products>
-  </RecipeDef>
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_88mmRPzB_HEAT</defName>
+		<label>make 88mm RPzB HEAT rockets x5</label>
+		<description>Craft 5 88mm RPzB HEAT rockets.</description>
+		<jobString>Making 88mm RPzB HEAT rockets.</jobString>
+		<workAmount>8000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>28</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_88mmRPzB_HEAT>5</Ammo_88mmRPzB_HEAT>
+		</products>
+	</RecipeDef>
 
 </Defs>

@@ -8,137 +8,137 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-			<!-- VFED Ammo Box Base -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="VFED_AmmoBoxBase"]</xpath>
-				<value>
-					<thingClass>CombatExtended.Building_AutoLoaderCE</thingClass>
-					<drawerType>MapMeshAndRealTime</drawerType>
-				</value>
-			</li>
+				<!-- VFED Ammo Box Base -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="VFED_AmmoBoxBase"]</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_AutoLoaderCE</thingClass>
+						<drawerType>MapMeshAndRealTime</drawerType>
+					</value>
+				</li>
 
-			<!-- Uranium Slug Turret -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]</xpath>
-				<value>
-					<comps>
-						<li Class="CombatExtended.CompProperties_AmmoUser">
-							<magazineSize>180</magazineSize>
-							<reloadTime>7.8</reloadTime>
-							<ammoSet>AmmoSet_40x311mmR</ammoSet>
+				<!-- Uranium Slug Turret -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]</xpath>
+					<value>
+						<comps>
+							<li Class="CombatExtended.CompProperties_AmmoUser">
+								<magazineSize>180</magazineSize>
+								<reloadTime>7.8</reloadTime>
+								<ammoSet>AmmoSet_40x311mmR</ammoSet>
+							</li>
+						</comps>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]/costList</xpath>
+					<value>
+						<costList>
+							<Steel>40</Steel>
+							<ComponentIndustrial>2</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]</xpath>
+					<value>
+						<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
+							<allowedTurrets>
+								<li>Turret_Sniper</li>
+								<li>VFED_Turret_Kontarion</li>
+							</allowedTurrets>
 						</li>
-					</comps>
-				</value>
-			</li>
+					</value>
+				</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]/costList</xpath>
-				<value>
-					<costList>
-						<Steel>40</Steel>
-						<ComponentIndustrial>2</ComponentIndustrial>
-					</costList>	
-				</value>
-			</li>
+				<!-- Autocannon Turret -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>600</magazineSize>
+							<reloadTime>7.8</reloadTime>
+							<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+						</li>
+					</value>
+				</li>
 
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]</xpath>
-				<value>
-					<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
-						<allowedTurrets>
-						<li>Turret_Sniper</li>
-						<li>VFED_Turret_Kontarion</li>
-						</allowedTurrets>
-					</li>
-				</value>
-			</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]/costList</xpath>
+					<value>
+						<costList>
+							<Steel>40</Steel>
+							<ComponentIndustrial>2</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
 
-			<!-- Autocannon Turret -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]/comps</xpath>
-				<value>
-					<li Class="CombatExtended.CompProperties_AmmoUser">
-						<magazineSize>600</magazineSize>
-						<reloadTime>7.8</reloadTime>
-						<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
-					</li>
-				</value>
-			</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]</xpath>
+					<value>
+						<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
+							<allowedTurrets>
+								<li>Turret_Autocannon</li>
+								<li>VFED_Turret_Palintone</li>
+							</allowedTurrets>
+						</li>
+					</value>
+				</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]/costList</xpath>
-				<value>
-					<costList>
-						<Steel>40</Steel>
-						<ComponentIndustrial>2</ComponentIndustrial>
-					</costList>	
-				</value>
-			</li>
+				<!-- Missile Turret -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>72</magazineSize>
+							<reloadTime>7.8</reloadTime>
+							<ammoSet>AmmoSet_50mmRocket</ammoSet>
+						</li>
+					</value>
+				</li>
 
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]</xpath>
-				<value>
-					<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
-						<allowedTurrets>
-						<li>Turret_Autocannon</li>
-						<li>VFED_Turret_Palintone</li>
-						</allowedTurrets>
-					</li>
-				</value>
-			</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]/costList</xpath>
+					<value>
+						<costList>
+							<Steel>40</Steel>
+							<ComponentIndustrial>2</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
 
-			<!-- Missile Turret -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]/comps</xpath>
-				<value>
-					<li Class="CombatExtended.CompProperties_AmmoUser">
-						<magazineSize>72</magazineSize>
-						<reloadTime>7.8</reloadTime>
-						<ammoSet>AmmoSet_50mmRocket</ammoSet>
-					</li>
-				</value>
-			</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]</xpath>
+					<value>
+						<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
+							<allowedTurrets>
+								<li>Turret_RocketswarmLauncher</li>
+								<li>VFED_Turret_Onager</li>
+							</allowedTurrets>
+						</li>
+					</value>
+				</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]/costList</xpath>
-				<value>
-					<costList>
-						<Steel>40</Steel>
-						<ComponentIndustrial>2</ComponentIndustrial>
-					</costList>	
-				</value>
-			</li>
-
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]</xpath>
-				<value>
-					<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
-						<allowedTurrets>
-						<li>Turret_RocketswarmLauncher</li>
-						<li>VFED_Turret_Onager</li>
-						</allowedTurrets>
-					</li>
-				</value>
-			</li>
-
-			<!-- Aerodrone Munition Crate -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="VFED_AerodroneMunitionsCrate"]/comps/li[@Class="VFED.CompProperties_Explosive_Shells"]</xpath>
-				<value>
-					<li Class="CompProperties_Explosive">
-						<wickTicks>1000</wickTicks>
-						<explosiveRadius>4</explosiveRadius>
-						<explosiveDamageType>Bomb</explosiveDamageType>
-						<chanceNeverExplodeFromDamage>0.2</chanceNeverExplodeFromDamage>
-						<startWickHitPointsPercent>0.25</startWickHitPointsPercent>
-					</li>				
-					<li Class="CombatExtended.CompProperties_Fragments">
-						<fragments>
-							<Fragment_Bomblet>6</Fragment_Bomblet>
-						</fragments>
-					</li>
-				</value>
-			</li>
+				<!-- Aerodrone Munition Crate -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFED_AerodroneMunitionsCrate"]/comps/li[@Class="VFED.CompProperties_Explosive_Shells"]</xpath>
+					<value>
+						<li Class="CompProperties_Explosive">
+							<wickTicks>1000</wickTicks>
+							<explosiveRadius>4</explosiveRadius>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<chanceNeverExplodeFromDamage>0.2</chanceNeverExplodeFromDamage>
+							<startWickHitPointsPercent>0.25</startWickHitPointsPercent>
+						</li>
+						<li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Bomblet>6</Fragment_Bomblet>
+							</fragments>
+						</li>
+					</value>
+				</li>
 
 			</operations>
 		</match>
