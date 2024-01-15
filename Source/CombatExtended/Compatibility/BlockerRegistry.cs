@@ -89,7 +89,7 @@ namespace CombatExtended.Compatibility
             {
                 foreach (var possibleIntersection in cb(projectile, from, to))
                 {
-                    var dist = (from - possibleIntersection.IntersectionPos).sqrMagnitude;
+                    var dist = (from - possibleIntersection.IntersectionPos).MagnitudeHorizontalSquared();
                     if (dist < max)
                     {
 
