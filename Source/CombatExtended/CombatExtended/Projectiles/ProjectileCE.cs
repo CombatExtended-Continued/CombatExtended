@@ -1571,6 +1571,17 @@ namespace CombatExtended
 
         #region Ballistics
         /// <summary>
+        /// Calculated rounding to three decimales the output of h0 + v * sin(a0) * t - g/2 * t^2 with {h0 -> shotHeight, v -> shotSpeed, a0 -> shotAngle, t -> ticks/GenTicks.TicksPerRealSecond, g -> GravityFactor}. Called roughly each tick for impact checks and for drawing.
+        /// </summary>
+        /// <param name="ticks">Integer ticks, since the only time value which is not an integer (accessed by StartingTicksToImpact) has height zero by definition.</param>
+        /// <returns>Projectile height at time ticks in ticks.</returns>
+        private float GetHeightAtTicks(int ticks)
+        {
+            var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
+            return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityFactor * seconds * seconds) / 2f, 3);
+        }
+        
+        /// <summary>
         /// Calculates the time in seconds the arc characterized by <i>angle</i>, <i>shotHeight</i> takes to traverse at speed <i>velocity</i> - e.g until the height reaches zero. Does not take into account air resistance.
         /// </summary>
         /// <param name="velocity">Projectile velocity in cells per second.</param>
