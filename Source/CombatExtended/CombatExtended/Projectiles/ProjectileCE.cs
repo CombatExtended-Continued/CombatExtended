@@ -837,15 +837,15 @@ namespace CombatExtended
             //Order cells by distance from the last position
             foreach (var cell in cells)
             {
-                var collected = CollectPossibleTargetsForCell(cell).ToList();
+                var target = PossibleTargetForCell(cell);
 
                 if (Controller.settings.DebugDrawInterceptChecks)
                 {
                     Map.debugDrawer.FlashCell(cell, 1, "o");
                 }
-                if (collected.Any())//if we found any target close, we don't need to check other
+                if (target.HasValue)//if we found any target close, we don't need to check other
                 {
-                    possibleIntersections.AddRange(collected);
+                    possibleIntersections.Add(target.Value);
                     break;
                 }
             }
@@ -872,7 +872,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="cell">Where to check for collisions in</param>
         /// <returns>True if collision occured, false otherwise</returns>
-        private IEnumerable<(Vector3 IntersectionPos, Action OnIntersection)> CollectPossibleTargetsForCell(IntVec3 cell)
+        private (Vector3 IntersectionPos, Action OnIntersection)? PossibleTargetForCell(IntVec3 cell)
         {
             Vector3 roofIntersectionPos;
             bool roofChecked = false;
@@ -881,8 +881,8 @@ namespace CombatExtended
             {
                 if (CanCollideWithRoof(cell, out roofIntersectionPos))
                 {
-                    yield return (roofIntersectionPos, () => CollideWithRoof(roofIntersectionPos));
-                    yield break;
+                    return (roofIntersectionPos, () => CollideWithRoof(roofIntersectionPos));
+
                 }
                 roofChecked = true;
             }
@@ -911,7 +911,9 @@ namespace CombatExtended
                     }
                 }
             }
-
+            (Vector3 IntersectionPos, Action OnIntersection)? result = null;
+            float resultDist = float.MaxValue;
+            float dist;
             foreach (var thing in mainThingList.Distinct().OrderBy(x => (x.DrawPos - LastPos).sqrMagnitude))
             {
                 if ((thing == launcher || thing == mount) && !canTargetSelf)
@@ -927,16 +929,25 @@ namespace CombatExtended
                         continue;
                     }
 
-                    yield return (thingIntersectionPoint, () => TryCollideWith(thing)
-                    );
+                    dist = (LastPos - thingIntersectionPoint).MagnitudeHorizontalSquared();
+                    if (dist < resultDist)
+                    {
+                        resultDist = dist;
+                        result = (thingIntersectionPoint, () => TryCollideWith(thing));
+                    }
                 }
             }
 
             //Finally check for intersecting with a roof (again).
             if (!roofChecked && CanCollideWithRoof(cell, out roofIntersectionPos))
             {
-                yield return (roofIntersectionPos, () => CollideWithRoof(roofIntersectionPos));
+                dist = (LastPos - roofIntersectionPos).MagnitudeHorizontalSquared();
+                if (dist < resultDist)
+                {
+                    result = (roofIntersectionPos, () => CollideWithRoof(roofIntersectionPos));
+                }
             }
+            return result;
         }
 
         private bool CanCollideWithRoof(IntVec3 cell, out Vector3 point)
