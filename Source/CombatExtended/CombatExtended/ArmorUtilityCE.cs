@@ -300,6 +300,7 @@ namespace CombatExtended
         {
             // Calculate deflection
             var isSharpDmg = def.armorCategory == DamageArmorCategoryDefOf.Sharp;
+            var isFireDmg = def.armorCategory == CE_DamageArmorCategoryDefOf.Heat;
             //var rand = UnityEngine.Random.Range(penAmount - PenetrationRandVariation, penAmount + PenetrationRandVariation);
             var deflected = isSharpDmg && armorAmount > penAmount;
 
@@ -321,6 +322,10 @@ namespace CombatExtended
                 if (isSoftArmor)
                 {
                     // Soft armor takes absorbed damage from sharp and no damage from blunt
+                    if (isFireDmg)
+                    {
+                        armorDamage = armor.GetStatValue(StatDefOf.Flammability, true) * dmgAmount;
+                    }
                     if (isSharpDmg)
                     {
                         armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
@@ -339,8 +344,15 @@ namespace CombatExtended
                     }
                     else
                     {
-                        armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
-                        armorDamage *= HardArmorDamageFactor;
+                        if (isFireDmg)
+			{
+                            armorDamage = armor.GetStatValue(StatDefOf.Flammability, true) * dmgAmount;
+                        }
+			else
+                        {
+                            armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+                        }
+			armorDamage *= HardArmorDamageFactor;
                     }
 
                     TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);
