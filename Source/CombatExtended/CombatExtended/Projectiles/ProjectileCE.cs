@@ -1352,14 +1352,27 @@ namespace CombatExtended
                 effecter.Trigger(new TargetInfo(explodePos.ToIntVec3(), Map, false), new TargetInfo(explodePos.ToIntVec3(), Map, false));
                 effecter.Cleanup();
             }
-
+            ProjectilePropertiesCE projectileCE = def.projectile as ProjectilePropertiesCE;
+            float effectScale = projectileCE.detonateEffectsScaleOverride > 0 ? projectileCE.detonateEffectsScaleOverride : projectileCE.explosionRadius * 2;
+            if (projectileCE.detonateMoteDef != null)
+            {
+                MoteMaker.MakeStaticMote(DrawPos, Map, CE_ThingDefOf.Mote_BigExplode, effectScale);
+            }
+            if (projectileCE.detonateFleckDef != null)
+            {
+                FleckCreationData dataStatic = FleckMaker.GetDataStatic(DrawPos, MapHeld, projectileCE.detonateFleckDef, effectScale);
+                MapHeld.flecks.CreateFleck(dataStatic);
+            }
             var projectilePropsCE = (def.projectile as ProjectilePropertiesCE);
 
             var explodingComp = this.TryGetComp<CompExplosiveCE>();
 
             if (explodingComp == null)
             {
-                this.TryGetComp<CompFragments>()?.Throw(explodePos, Map, launcher);
+                foreach (var comp in GetComps<CompFragments>())
+                {
+                    comp.Throw(explodePos, Map, launcher);
+                }
             }
 
             //If the comp exists, it'll already call CompFragments
