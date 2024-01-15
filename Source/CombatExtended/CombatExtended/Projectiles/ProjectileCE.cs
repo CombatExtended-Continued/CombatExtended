@@ -831,6 +831,10 @@ namespace CombatExtended
             {
                 possibleIntersections.Add(interceptor.Value);
             }
+            if (possibleIntersections.Any())
+            {
+                newPosIV3 = possibleIntersections.OrderBy(x => (LastPos - x.IntersectionPos).MagnitudeHorizontalSquared()).First().IntersectionPos.ToIntVec3();
+            }
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
             var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
