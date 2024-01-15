@@ -292,21 +292,19 @@ namespace CombatExtended
                 return lastExactPos;
             }
         }
-        private Vector3 preLastExactPos = new Vector3(-1000, 0, 0);
         public Vector3 PreLastPos
         {
-            private set
-            {
-                lastExactPos = value;
-            }
             get
             {
-                if (preLastExactPos.x < -999)
+                if (FlightTicks > 2)
                 {
                     var preLastPos = Vec2Position(FlightTicks - 2);
-                    preLastExactPos = new Vector3(preLastPos.x, GetHeightAtTicks(FlightTicks - 2), preLastPos.y);
+                    return new Vector3(preLastPos.x, GetHeightAtTicks(FlightTicks - 2), preLastPos.y);
                 }
-                return preLastExactPos;
+                else
+                {
+                    return LastPos;
+                }
             }
         }
 
@@ -729,10 +727,10 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                if (CE_Utility.IntersectionPoint(preLastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
+                if (CE_Utility.IntersectionPoint(PreLastPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
                 {
                     newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
-                    float dist = (preLastExactPos - newExactPos).MagnitudeHorizontalSquared();
+                    float dist = (PreLastPos - newExactPos).MagnitudeHorizontalSquared();
                     if (dist < distToResult)
                     {
                         result = (newExactPos, () => OnCompProjectileInterceptorInterception(interceptorThing, interceptorComp, newExactPos));
@@ -1145,9 +1143,7 @@ namespace CombatExtended
             {
                 return;
             }
-            PreLastPos = LastPos;
             LastPos = ExactPosition;
-            Log.Message($"{PreLastPos}, {LastPos}, {ExactPosition}");
             ticksToImpact--;
             if (!ExactPosition.InBounds(Map))
             {
