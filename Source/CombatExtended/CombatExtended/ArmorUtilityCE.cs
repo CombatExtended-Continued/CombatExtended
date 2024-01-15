@@ -350,7 +350,14 @@ namespace CombatExtended
                         }
 			else
                         {
-                            armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+                            if (penAmount == 0 || armorAmount == 0)
+                            {
+                                Log.ErrorOnce($"penAmount or armorAmount are zero for {def.armorCategory} on {armor}", 846532021);
+                            }
+                            else
+                            {
+                                armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+                            }
                         }
 			armorDamage *= HardArmorDamageFactor;
                     }
