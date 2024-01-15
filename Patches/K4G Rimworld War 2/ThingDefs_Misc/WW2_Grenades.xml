@@ -8,12 +8,12 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-					<!-- ======= Projectiles ======= -->
+				<!-- ======= Projectiles ======= -->
 
-					<!-- ===== ThingClass ===== -->
+				<!-- ===== ThingClass ===== -->
 
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
 						defName="K4G_Proj_WW2BritishServiceGrenade" or
 						defName="K4G_Proj_WW2FinnishServiceGrenade" or
 						defName="K4G_Proj_WW2FrenchServiceGrenade" or
@@ -33,18 +33,17 @@
 						defName="K4G_Proj_WW2ItalianServiceAntiTankGrenade" or
 						defName="K4G_Proj_WW2RussianServiceAntiTankGrenade" or
 						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
-						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"						
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"
 						]</xpath>
-						<value>
-							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-						</value>
-					</li>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
 
+				<!-- ===== Fragmentation ===== -->
 
-					<!-- ===== Fragmentation ===== -->
-
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
 						defName="K4G_Proj_WW2BritishServiceGrenade" or
 						defName="K4G_Proj_WW2FinnishServiceGrenade" or
 						defName="K4G_Proj_WW2FrenchServiceGrenade" or
@@ -59,26 +58,26 @@
 						defName="K4G_Proj_WW2RussianServiceGrenadeC" or
 						defName="K4G_Proj_WW2AmericanServiceGrenade"
 						]</xpath>
-						<value>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>12</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-						</value>
-					</li>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>1.5</explosionRadius>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>56</damageAmountBase>
+							<explosionDelay>60</explosionDelay>
+							<dropsCasings>true</dropsCasings>
+							<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+							<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<speed>12</speed>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+							<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+						</projectile>
+					</value>
+				</li>
 
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
 						defName="K4G_Proj_WW2BritishServiceGrenade" or
 						defName="K4G_Proj_WW2FinnishServiceGrenade" or
 						defName="K4G_Proj_WW2FrenchServiceGrenade" or
@@ -90,23 +89,23 @@
 						defName="K4G_Proj_WW2RussianServiceGrenade" or
 						defName="K4G_Proj_WW2RussianServiceGrenadeB" or
 						defName="K4G_Proj_WW2RussianServiceGrenadeC" or
-						defName="K4G_Proj_WW2AmericanServiceGrenade"							
+						defName="K4G_Proj_WW2AmericanServiceGrenade"
 						]</xpath>
-						<value>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>40</Fragment_Small>
-									</fragments>
-								</li>
-							</comps>
-						</value>
-					</li>
+					<value>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Fragment_Small>40</Fragment_Small>
+								</fragments>
+							</li>
+						</comps>
+					</value>
+				</li>
 
-					<!-- ===== Anti-Tank ===== -->
+				<!-- ===== Anti-Tank ===== -->
 
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
 						defName="K4G_Proj_WW2BritishServiceAntiTankGrenade" or
 						defName="K4G_Proj_WW2BritishServiceAntiTankGrenadeB" or
 						defName="K4G_Proj_WW2GermanServiceAntiTankGrenade" or
@@ -115,77 +114,77 @@
 						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
 						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"
 						]</xpath>
-						<value>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.5</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>56</damageAmountBase>
-								<explosionDelay>60</explosionDelay>
-								<dropsCasings>true</dropsCasings>
-								<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-								<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionRadius>1.5</explosionRadius>
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>56</damageAmountBase>
+							<explosionDelay>60</explosionDelay>
+							<dropsCasings>true</dropsCasings>
+							<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+							<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							<speed>12</speed>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+							<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="K4G_Proj_WW2BritishServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2BritishServiceAntiTankGrenadeB" or
+						defName="K4G_Proj_WW2GermanServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2ItalianServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenade" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
+						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"
+						]</xpath>
+					<value>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Fragment_Small>5</Fragment_Small>
+								</fragments>
+							</li>
+							<li Class="CombatExtended.CompProperties_ExplosiveCE">
+								<damageAmountBase>100</damageAmountBase>
+								<explosiveDamageType>Bomb</explosiveDamageType>
+								<explosiveRadius>0.5</explosiveRadius>
+								<explosionSound>Explosion_Thump</explosionSound>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>12</speed>
-								<suppressionFactor>3.0</suppressionFactor>
-								<dangerFactor>2.0</dangerFactor>
-								<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-							</projectile>
-						</value>
-					</li>
-
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[
-						defName="K4G_Proj_WW2BritishServiceAntiTankGrenade" or
-						defName="K4G_Proj_WW2BritishServiceAntiTankGrenadeB" or
-						defName="K4G_Proj_WW2GermanServiceAntiTankGrenade" or
-						defName="K4G_Proj_WW2ItalianServiceAntiTankGrenade" or
-						defName="K4G_Proj_WW2RussianServiceAntiTankGrenade" or
-						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
-						defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"
-						]</xpath>
-						<value>
-							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>5</Fragment_Small>
-									</fragments>
-								</li>
-								<li Class="CombatExtended.CompProperties_ExplosiveCE">
-									<damageAmountBase>100</damageAmountBase>
-									<explosiveDamageType>Bomb</explosiveDamageType>
-									<explosiveRadius>0.5</explosiveRadius>
-									<explosionSound>Explosion_Thump</explosionSound>
-									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								</li>
-							</comps>								
-						</value>
-					</li>
+							</li>
+						</comps>
+					</value>
+				</li>
 
 				<!-- ======= Grenades Equipment ======= -->
 
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[
-					defName="K4G_Weapon_WW2BritishServiceGrenades" or
-					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
-					defName="K4G_Weapon_WW2FinnishServiceGrenades" or
-					defName="K4G_Weapon_WW2FrenchServiceGrenades" or
-					defName="K4G_Weapon_WW2GermanServiceGrenades" or
-					defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
-					defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenades" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
-					defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
-					defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
-					defName="K4G_Weapon_WW2AmericanServiceGrenades"
-					]</xpath>
+						defName="K4G_Weapon_WW2BritishServiceGrenades" or
+						defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+						defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+						defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+						defName="K4G_Weapon_WW2GermanServiceGrenades" or
+						defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+						defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+						defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+						defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+						defName="K4G_Weapon_WW2AmericanServiceGrenades"
+						]</xpath>
 					<attribute>ParentName</attribute>
 					<value>BaseWeapon</value>
 				</li>
@@ -194,27 +193,27 @@
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
-					defName="K4G_Weapon_WW2BritishServiceGrenades" or
-					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
-					defName="K4G_Weapon_WW2FinnishServiceGrenades" or
-					defName="K4G_Weapon_WW2FrenchServiceGrenades" or
-					defName="K4G_Weapon_WW2GermanServiceGrenades" or
-					defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
-					defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenades" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
-					defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
-					defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
-					defName="K4G_Weapon_WW2AmericanServiceGrenades"
-					]</xpath>
+						defName="K4G_Weapon_WW2BritishServiceGrenades" or
+						defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+						defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+						defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+						defName="K4G_Weapon_WW2GermanServiceGrenades" or
+						defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+						defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+						defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+						defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+						defName="K4G_Weapon_WW2AmericanServiceGrenades"
+						]</xpath>
 					<value>
 						<thingClass>CombatExtended.AmmoThing</thingClass>
 						<stackLimit>75</stackLimit>
@@ -224,54 +223,54 @@
 
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[
-					defName="K4G_Weapon_WW2BritishServiceGrenades" or
-					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
-					defName="K4G_Weapon_WW2FinnishServiceGrenades" or
-					defName="K4G_Weapon_WW2FrenchServiceGrenades" or
-					defName="K4G_Weapon_WW2GermanServiceGrenades" or
-					defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
-					defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenades" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
-					defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
-					defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
-					defName="K4G_Weapon_WW2AmericanServiceGrenades"
-					]</xpath>
+						defName="K4G_Weapon_WW2BritishServiceGrenades" or
+						defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+						defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+						defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+						defName="K4G_Weapon_WW2GermanServiceGrenades" or
+						defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+						defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+						defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+						defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+						defName="K4G_Weapon_WW2AmericanServiceGrenades"
+						]</xpath>
 					<attribute>Class</attribute>
 					<value>CombatExtended.AmmoDef</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-					defName="K4G_Weapon_WW2BritishServiceGrenades" or
-					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
-					defName="K4G_Weapon_WW2FinnishServiceGrenades" or
-					defName="K4G_Weapon_WW2FrenchServiceGrenades" or
-					defName="K4G_Weapon_WW2GermanServiceGrenades" or
-					defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
-					defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenades" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
-					defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
-					defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
-					defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
-					defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
-					defName="K4G_Weapon_WW2AmericanServiceGrenades"
-					]/comps</xpath>
+						defName="K4G_Weapon_WW2BritishServiceGrenades" or
+						defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+						defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+						defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+						defName="K4G_Weapon_WW2GermanServiceGrenades" or
+						defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+						defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+						defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+						defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+						defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+						defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+						defName="K4G_Weapon_WW2AmericanServiceGrenades"
+						]/comps</xpath>
 					<value>
 						<comps>
 							<li Class="CombatExtended.CompProperties_ExplosiveCE">
