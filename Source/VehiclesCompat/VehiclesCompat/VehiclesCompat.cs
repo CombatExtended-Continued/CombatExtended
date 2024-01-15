@@ -82,7 +82,13 @@ namespace CombatExtended.Compatibility.VehiclesCompat
 
         public static Def LookupAmmosetCE(string defName)
         {
-            return DefDatabase<AmmoSetDef>.AllDefs.Where(x => x.defName == defName).First();
+            var list = DefDatabase<AmmoSetDef>.AllDefs.Where(x => x.defName == defName);
+            if (list.EnumerableNullOrEmpty())
+            {
+                Log.Error($"Combat Extended Vehicle Compat: ammoset named {defName} not found.");
+                return null;
+            }
+            return list.First();
         }
 
         public static IEnumerable<ThingDef> _GetUsedAmmo()
