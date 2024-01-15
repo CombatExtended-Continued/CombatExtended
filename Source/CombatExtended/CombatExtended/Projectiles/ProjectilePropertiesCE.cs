@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +36,9 @@ namespace CombatExtended
         public FloatRange diameter = new FloatRange(1f, 1f);
 
         public bool lerpPosition = true;
+        public ThingDef detonateMoteDef;
+        public FleckDef detonateFleckDef;
+        public float detonateEffectsScaleOverride = -1;
 
         #region Bunker Buster fields
         /// <summary>

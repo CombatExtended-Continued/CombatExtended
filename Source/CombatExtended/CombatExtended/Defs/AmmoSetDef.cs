@@ -16,6 +16,8 @@ namespace CombatExtended
 
         public AmmoSetDef similarTo;
 
+        public int ammoConsumedPerShot = 1;
+
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
         {
             foreach (StatDrawEntry entry in base.SpecialDisplayStats(req)) { yield return entry; }

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40.000: Imperium Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName = "GF40K_PlasmaPistol" or
+						defName = "GF40K_PlasmaPistolRelic"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName = "GF40K_PlasmaGun" or
+						defName = "GF40K_PlasmaGunRelic"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Remove VE Laser components === -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[
+						defName = "GF40K_PlasmaPistolRelic" or
+						defName = "GF40K_PlasmaGunRelic"
+						]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+				</li>
+
+				<!-- === Plasma Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_PlasmaPistol</defName>
+					<statBases>
+						<Mass>2.5</Mass>
+						<Bulk>5.0</Bulk>
+						<SwayFactor>1.17</SwayFactor>
+						<ShotSpread>0.15</ShotSpread>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.5</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaPistol</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>16</range>
+						<soundCast>GF40K_LaserPistolShot</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_PlasmaCanister_Pistol</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Relic Plasma Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_PlasmaPistolRelic</defName>
+					<statBases>
+						<Mass>2.5</Mass>
+						<Bulk>5.0</Bulk>
+						<SwayFactor>1.00</SwayFactor>
+						<ShotSpread>0.05</ShotSpread>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.3</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaPistol_Relic</defaultProjectile>
+						<warmupTime>0.45</warmupTime>
+						<range>18</range>
+						<soundCast>GF40K_LaserPistolShot</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>3.8</reloadTime>
+						<ammoSet>AmmoSet_PlasmaCanister_Pistol_Relic</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Plasma Gun === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_PlasmaGun</defName>
+					<statBases>
+						<Mass>6.50</Mass>
+						<Bulk>8.00</Bulk>
+						<SwayFactor>1.35</SwayFactor>
+						<ShotSpread>0.06</ShotSpread>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.65</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaRifle</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>55</range>
+						<soundCast>GF40K_LaserPistolShot</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_PlasmaCanister_Rifle</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<!-- === Relic Plasma Gun === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_PlasmaGunRelic</defName>
+					<statBases>
+						<Mass>6.50</Mass>
+						<Bulk>8.00</Bulk>
+						<SwayFactor>1.30</SwayFactor>
+						<ShotSpread>0.02</ShotSpread>
+						<SightsEfficiency>1.4</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.4</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_PlasmaRifle_Relic</defaultProjectile>
+						<warmupTime>0.95</warmupTime>
+						<range>58</range>
+						<soundCast>GF40K_LaserPistolShot</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_PlasmaCanister_Rifle_Relic</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

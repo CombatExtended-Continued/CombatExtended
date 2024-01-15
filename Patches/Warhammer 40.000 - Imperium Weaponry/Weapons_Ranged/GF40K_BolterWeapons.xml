@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40.000: Imperium Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Tools === -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName = "GF40K_BoltPistol" or
+						defName = "GF40K_BoltPistolRelic"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName = "GF40K_BoltGun" or
+						defName = "GF40K_BoltSniper" or
+						defName = "GF40K_BoltGunRelic" or
+						defName = "GF40K_BoltSniperRelic"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Bolt Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_BoltPistol</defName>
+					<statBases>
+						<Mass>4.5</Mass>
+						<Bulk>4.5</Bulk>
+						<SwayFactor>1.17</SwayFactor>
+						<ShotSpread>0.15</ShotSpread>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_Bolter75</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_BoltPistol"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>2.5</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+								<warmupTime>0.5</warmupTime>
+								<range>15</range>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+								<soundCast>Shot_SniperRifle</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Relic Bolt Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_BoltPistolRelic</defName>
+					<statBases>
+						<Mass>4.5</Mass>
+						<Bulk>4.5</Bulk>
+						<SwayFactor>1.00</SwayFactor>
+						<ShotSpread>0.05</ShotSpread>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadTime>3.8</reloadTime>
+						<ammoSet>AmmoSet_Bolter75_Relic</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_BoltPistolRelic"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>2.3</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_Bolter75_Standard_Relic</defaultProjectile>
+								<warmupTime>0.45</warmupTime>
+								<range>16</range>
+								<burstShotCount>3</burstShotCount>
+								<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+								<soundCast>Shot_SniperRifle</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Bolt Gun === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_BoltGun</defName>
+					<statBases>
+						<Mass>8.50</Mass>
+						<Bulk>8.00</Bulk>
+						<SwayFactor>1.35</SwayFactor>
+						<ShotSpread>0.06</ShotSpread>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>12</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_Bolter75</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_BoltGun"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>0.95</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+								<warmupTime>1</warmupTime>
+								<range>51</range>
+								<burstShotCount>3</burstShotCount>
+								<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+								<soundCast>Shot_SniperRifle</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Relic Bolt Gun === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_BoltGunRelic</defName>
+					<statBases>
+						<Mass>8.50</Mass>
+						<Bulk>8.00</Bulk>
+						<SwayFactor>1.30</SwayFactor>
+						<ShotSpread>0.02</ShotSpread>
+						<SightsEfficiency>1.4</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>12</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_Bolter75_Relic</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_BoltGunRelic"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>0.85</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_Bolter75_Standard_Relic</defaultProjectile>
+								<warmupTime>0.95</warmupTime>
+								<range>55</range>
+								<burstShotCount>6</burstShotCount>
+								<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+								<soundCast>Shot_SniperRifle</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Bolt Sniper === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_BoltSniper</defName>
+					<statBases>
+						<Mass>10.20</Mass>
+						<Bulk>10.00</Bulk>
+						<SwayFactor>1.19</SwayFactor>
+						<ShotSpread>0.03</ShotSpread>
+						<SightsEfficiency>2.48</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+						<NightVisionEfficiency_Weapon>0.55</NightVisionEfficiency_Weapon>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_Bolter75</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_BoltSniper"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>0.7</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+								<warmupTime>1.7</warmupTime>
+								<range>75</range>
+								<soundCast>Shot_SniperRifle</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Relic Bolt Sniper === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_BoltSniperRelic</defName>
+					<statBases>
+						<Mass>10.20</Mass>
+						<Bulk>10.00</Bulk>
+						<SwayFactor>1.10</SwayFactor>
+						<ShotSpread>0.01</ShotSpread>
+						<SightsEfficiency>3.1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
+						<NightVisionEfficiency_Weapon>0.7</NightVisionEfficiency_Weapon>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadTime>3.9</reloadTime>
+						<ammoSet>AmmoSet_Bolter75_Relic</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_BoltSniperRelic"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>0.6</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_Bolter75_Standard_Relic</defaultProjectile>
+								<warmupTime>1.5</warmupTime>
+								<range>81</range>
+								<soundCast>Shot_SniperRifle</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
