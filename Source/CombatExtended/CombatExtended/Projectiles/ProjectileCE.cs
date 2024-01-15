@@ -826,7 +826,7 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
             #endregion
-            var interceptor = BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition);
+            var interceptor = BlockerRegistry.CheckForCollisionBetweenCallback(this, PreLastPos, ExactPosition);
             if (interceptor.HasValue)
             {
                 possibleIntersections.Add(interceptor.Value);
