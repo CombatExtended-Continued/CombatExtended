@@ -1580,7 +1580,7 @@ namespace CombatExtended
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
             return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityFactor * seconds * seconds) / 2f, 3);
         }
-        
+
         /// <summary>
         /// Calculates the time in seconds the arc characterized by <i>angle</i>, <i>shotHeight</i> takes to traverse at speed <i>velocity</i> - e.g until the height reaches zero. Does not take into account air resistance.
         /// </summary>
