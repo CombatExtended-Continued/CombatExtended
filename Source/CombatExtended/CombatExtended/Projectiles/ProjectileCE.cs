@@ -292,6 +292,23 @@ namespace CombatExtended
                 return lastExactPos;
             }
         }
+        private Vector3 preLastExactPos = new Vector3(-1000, 0, 0);
+        public Vector3 PreLastPos
+        {
+            private set
+            {
+                lastExactPos = value;
+            }
+            get
+            {
+                if (preLastExactPos.x < -999)
+                {
+                    var preLastPos = Vec2Position(FlightTicks - 2);
+                    preLastExactPos = new Vector3(preLastPos.x, GetHeightAtTicks(FlightTicks - 2), preLastPos.y);
+                }
+                return preLastExactPos;
+            }
+        }
 
         public Vector3 ExactMinusLastPos
         {
@@ -668,8 +685,10 @@ namespace CombatExtended
             InterceptProjectile(interceptor, BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius * shieldRadius));
         }
 
-        private IEnumerable<(Vector3 IntersectionPos, Action OnInterception)> CheckIntercept(IEnumerable<Thing> interceptorThings)
+        private (Vector3 IntersectionPos, Action OnInterception)? CheckIntercept(IEnumerable<Thing> interceptorThings)
         {
+            (Vector3 IntersectionPos, Action OnInterception)? result = null;
+            float distToResult = float.MaxValue;
             var newExactPos = ExactPosition;
             foreach (var interceptorThing in interceptorThings)
             {
@@ -710,13 +729,19 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                if (CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
+                if (CE_Utility.IntersectionPoint(preLastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
                 {
                     newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
-                    yield return (newExactPos, () => OnCompProjectileInterceptorInterception(interceptorThing, interceptorComp, newExactPos));
+                    float dist = (preLastExactPos - newExactPos).MagnitudeHorizontalSquared();
+                    if (dist < distToResult)
+                    {
+                        result = (newExactPos, () => OnCompProjectileInterceptorInterception(interceptorThing, interceptorComp, newExactPos));
+                        distToResult = dist;
+                    }
                 }
 
             }
+            return result;
 
         }
         private void OnCompProjectileInterceptorInterception(Thing interceptorThing, CompProjectileInterceptor interceptorComp, Vector3 newExactPos)
@@ -774,14 +799,18 @@ namespace CombatExtended
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
-            List<(Vector3 IntersectionPos, Action OnInterception)> possibleIntersections = new List<(Vector3 IntersectionPos, Action OnInterception)>();
+            List<(Vector3 IntersectionPos, Action OnInterception)> possibleIntersections = new List<(Vector3 IntersectionPos, Action OnInterception)>(3); // CompProjectileInterceptor, Interceptor from Blocker registry and interceptor from CollectPossibleTargetsForCell
             bool collided = false;
             Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
             List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
-            possibleIntersections.AddRange(CheckIntercept(list));
+            var nearestDefaultInterceptor = CheckIntercept(list);
+            if (nearestDefaultInterceptor.HasValue)
+            {
+                possibleIntersections.Add(nearestDefaultInterceptor.Value);
+            }
 
             #region Sanity checks
             if (ticksToImpact < 0 || def.projectile.flyOverhead)
@@ -799,9 +828,7 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
             #endregion
-            var lastPosV2 = Vec2Position(FlightTicks - 2);
-            var lastPosV3 = new Vector3(lastPosV2.x, GetHeightAtTicks(FlightTicks - 2), lastPosV2.y);
-            var interceptor = BlockerRegistry.CheckForCollisionBetweenCallback(this, lastPosV3, ExactPosition);
+            var interceptor = BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition);
             if (interceptor.HasValue)
             {
                 possibleIntersections.Add(interceptor.Value);
@@ -1118,7 +1145,9 @@ namespace CombatExtended
             {
                 return;
             }
+            PreLastPos = LastPos;
             LastPos = ExactPosition;
+            Log.Message($"{PreLastPos}, {LastPos}, {ExactPosition}");
             ticksToImpact--;
             if (!ExactPosition.InBounds(Map))
             {
