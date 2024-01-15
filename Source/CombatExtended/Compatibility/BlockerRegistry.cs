@@ -77,19 +77,28 @@ namespace CombatExtended.Compatibility
             }
             beforeCollideWithCallbacks.Add(f);
         }
-        public static IEnumerable<(Vector3 IntersectionPos, Action OnInterception)> CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
+        public static (Vector3 IntersectionPos, Action OnInterception)? CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             if (!enabledCB)
             {
-                yield break;
+                return null;
             }
+            float max = float.MaxValue;
+            (Vector3 IntersectionPos, Action OnInterception)? ms = null;
             foreach (var cb in checkForCollisionBetweenCallbacks)
             {
                 foreach (var possibleIntersection in cb(projectile, from, to))
                 {
-                    yield return (possibleIntersection.IntersectionPos, possibleIntersection.OnIntersection);
+                    var dist = (from - possibleIntersection.IntersectionPos).sqrMagnitude;
+                    if (dist < max)
+                    {
+
+                        ms = (possibleIntersection.IntersectionPos, possibleIntersection.OnIntersection);
+                        max = dist;
+                    }
                 }
             }
+            return ms;
         }
 
         public static void RegisterShieldZonesCallback(Func<Thing, IEnumerable<IEnumerable<IntVec3>>> f)
