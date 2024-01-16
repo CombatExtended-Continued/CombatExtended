@@ -39,18 +39,18 @@ namespace CombatExtended.Compatibility
             yield break;
         }
 
-        public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
+        public static IEnumerable<(Vector3 IntersectionPos, Action OnIntersection)> CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             Map map = projectile.Map;
             getShields(map);
             if (!found)
             {
-                return false;
+                yield break;
             }
 
             if (projectile.launcher == null)
             {
-                return false;
+                yield break;
             }
 
             foreach (ThingComp thingComp in shields)
@@ -70,19 +70,19 @@ namespace CombatExtended.Compatibility
 
                 if (CE_Utility.IntersectionPoint(from, to, thingComp.parent.Position.ToVector3Shifted(), fieldRadius, out Vector3[] sect, map: map, spherical: false, catchOutbound: interceptOutgoing))
                 {
-                    OnIntercepted(projectile, thingComp, sect);
-                    return true;
+                    var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                    yield return (exactPosition, () => OnIntercepted(projectile, thingComp, exactPosition));
+                    
                 }
             }
-            return false;
         }
-        private static void OnIntercepted(ProjectileCE projectile, ThingComp interceptor, Vector3[] sect)
+        private static void OnIntercepted(ProjectileCE projectile, ThingComp interceptor, Vector3 exactPosition)
         {
             CompRimatomicsShield shield = interceptor as CompRimatomicsShield;
             var lastExactPos = projectile.LastPos;
             var map = projectile.Map;
             int damage = (projectile.def.projectile.GetDamageAmount(projectile.launcher));
-            var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+            
             DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, damage, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true);
             shield.lastInterceptAngle = lastExactPos.AngleToFlat(shield.parent.TrueCenter());
             shield.lastInterceptTicks = Find.TickManager.TicksGame;
