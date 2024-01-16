@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Divine Order</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="BotchJob_DivineOrderBaseTrader"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_Category">
+							<categoryDef>CannonBall</categoryDef>
+							<countRange>
+								<min>12</min>
+								<max>36</max>
+							</countRange>
+							<price>Expensive</price>
+							<thingDefCountRange>
+								<min>1</min>
+								<max>3</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Category">
+							<categoryDef>MiniCannonBall</categoryDef>
+							<countRange>
+								<min>50</min>
+								<max>100</max>
+							</countRange>
+							<price>Normal</price>
+							<thingDefCountRange>
+								<min>1</min>
+								<max>2</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_PreIndustrialAmmo</tradeTag>
+							<countRange>
+								<min>300</min>
+								<max>1200</max>
+							</countRange>
+							<price>Cheap</price>
+							<thingDefCountRange>
+								<min>2</min>
+								<max>4</max>
+							</thingDefCountRange>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="BotchJob_DivineOrderCaravanTrader"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_Category">
+							<categoryDef>MiniCannonBall</categoryDef>
+							<countRange>
+								<min>25</min>
+								<max>50</max>
+							</countRange>
+							<price>Normal</price>
+							<thingDefCountRange>
+								<min>1</min>
+								<max>2</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_PreIndustrialAmmo</tradeTag>
+							<countRange>
+								<min>100</min>
+								<max>200</max>
+							</countRange>
+							<price>Cheap</price>
+							<thingDefCountRange>
+								<min>1</min>
+								<max>3</max>
+							</thingDefCountRange>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
