@@ -47,14 +47,14 @@ namespace CombatExtended.Compatibility
             return shields.Where(x => IsActive(x)).Select(x => GenRadial.RadialCellsAround(x.Position, Radius(x), false));
         }
 
-        private bool CheckCollisionBetween(ProjectileCE projectile, Vector3 from, Vector3 to)
+        private IEnumerable<(Vector3 IntersectionPos, Action OnIntersection)> CheckCollisionBetween(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             if (projectile.def.projectile.flyOverhead)
             {
-                return false;
+                yield break;
             }
             refreshShields(projectile.Map);
-            foreach (Building_Shield shield in shields)
+            foreach (var shield in shields)
             {
                 if (!IsActive(shield))
                 {
@@ -63,11 +63,11 @@ namespace CombatExtended.Compatibility
 
                 if (CE_Utility.IntersectionPoint(from, to, ShieldPos(shield), Radius(shield), out var sect, false, map: projectile.Map))
                 {
-                    OnIntercepted(projectile, shield, sect);
-                    return true;
+                    var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                    yield return (exactPosition, () => OnIntercepted(projectile, shield, exactPosition));
+                    
                 }
             }
-            return false;
         }
         private static void refreshShields(Map map)
         {
@@ -82,15 +82,9 @@ namespace CombatExtended.Compatibility
                 lastCacheMap = map;
             }
         }
-        private static void OnIntercepted(ProjectileCE projectile, Building building, Vector3[] sect)
+        private static void OnIntercepted(ProjectileCE projectile, Building building, Vector3 exactPosition)
         {
             var interceptor = building as Building_Shield;
-
-            if (sect == null)
-            {
-                CE_Utility.IntersectionPoint(projectile.OriginIV3.ToVector3(), projectile.ExactPosition, interceptor.Position.ToVector3Shifted(), interceptor.ShieldRadius, out sect);
-            }
-            var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
             projectile.ExactPosition = exactPosition;
 
             projectile.landed = true;
