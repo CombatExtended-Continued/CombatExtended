@@ -17,7 +17,6 @@
       <!-- Overrides vanilla artillery shell -->
       <Shell_HighExplosive>Bullet_81mmMortarShell_HE</Shell_HighExplosive>
       <Shell_HighExplosive_HF>Bullet_81mmMortarShell_HE_HF</Shell_HighExplosive_HF>
-      <Shell_HighExplosive_HiF>Bullet_81mmMortarShell_HE_HiF</Shell_HighExplosive_HiF>
       <Shell_Incendiary>Bullet_81mmMortarShell_Incendiary</Shell_Incendiary>
       <Shell_EMP>Bullet_81mmMortarShell_EMP</Shell_EMP>
       <Shell_Firefoam>Bullet_81mmMortarShell_Firefoam</Shell_Firefoam>
@@ -85,14 +84,14 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
-    <defName>Shell_HighExplosive_HiF</defName>
-    <label>81mm mortar shell (HE-HiF)</label>
+    <defName>Shell_HighExplosive_HF</defName>
+    <label>81mm mortar shell (Airburst)</label>
     <graphicData>
       <texPath>Things/Ammo/Mortar/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>50.09</MarketValue>
+      <MarketValue>63.09</MarketValue>
       <Mass>5.27</Mass>
       <Bulk>8.17</Bulk>
     </statBases>
@@ -267,37 +266,7 @@
 
   <ThingDef ParentName="Base81mmMortarShell">
     <defName>Bullet_81mmMortarShell_HE_HF</defName>
-    <label>81mm mortar shell (HE-HF)</label>
-    <thingClass>CombatExtended.ProjectileCE_HeightFuse</thingClass>
-    <graphicData>
-      <texPath>Things/Projectile/Mortar/HE</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Bomb</damageDef>
-      <damageAmountBase>156</damageAmountBase>
-      <explosionRadius>2.5</explosionRadius>
-      <flyOverhead>true</flyOverhead>
-      <soundExplode>MortarBomb_Explode</soundExplode>
-      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      <ai_IsIncendiary>true</ai_IsIncendiary>
-      <detonateMoteDef>Mote_BigExplode</detonateMoteDef>
-      <aimHeightOffset>0.6</aimHeightOffset>
-    </projectile>
-    <comps>
-      <li Class="CombatExtended.CompProperties_Fragments">
-        <fragments>
-          <Fragment_Large>6</Fragment_Large>
-          <Fragment_Small>45</Fragment_Small>
-        </fragments>
-        <fragAngleRange>-0.5~0.1</fragAngleRange>
-      </li>
-    </comps>
-  </ThingDef>
-
-  <ThingDef ParentName="Base81mmMortarShell">
-    <defName>Bullet_81mmMortarShell_HE_HiF</defName>
-    <label>81mm mortar shell (HE-HiF)</label>
+    <label>81mm mortar shell (Airburst)</label>
     <thingClass>CombatExtended.ProjectileCE_HeightFuse</thingClass>
     <graphicData>
       <texPath>Things/Projectile/Mortar/HE</texPath>
@@ -318,16 +287,10 @@
     <comps>
       <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
-          <Fragment_Large>11</Fragment_Large>
-          <Fragment_Small>35</Fragment_Small>
+          <Fragment_Large>16</Fragment_Large>
+          <Fragment_Small>25</Fragment_Small>
         </fragments>
         <fragAngleRange>-89~-60</fragAngleRange>
-      </li>
-      <li Class="CombatExtended.CompProperties_Fragments">
-        <fragments>
-          <Fragment_Small>15</Fragment_Small>
-        </fragments>
-        <fragAngleRange>-60~-30</fragAngleRange>
       </li>
     </comps>
   </ThingDef>
@@ -507,6 +470,53 @@
       <Crafting>4</Crafting>
     </skillRequirements>
     <workAmount>10600</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeShell_HighExplosive_HF</defName>
+    <label>make 81mm airburst mortar shells x5</label>
+    <description>Craft 5 81mm airburst mortar shells.</description>
+    <jobString>Making 81mm airburst mortar shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>54</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Shell_HighExplosive_HF>5</Shell_HighExplosive_HF>
+    </products>
+    <skillRequirements>
+      <Crafting>5</Crafting>
+    </skillRequirements>
+    <workAmount>11800</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
