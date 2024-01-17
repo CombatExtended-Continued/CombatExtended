@@ -45,13 +45,13 @@ namespace CombatExtended.Compatibility
         {
             yield break;
         }
-        public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
+        public static IEnumerable<(Vector3 IntersectionPos, Action OnIntersection)> CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             /* Check if an active shield can block this projectile
              */
             if (projectile.def.projectile.flyOverhead)
             {
-                return false;
+                yield break;
             }
             Thing launcher = projectile.launcher;
             Map map = projectile.Map;
@@ -87,22 +87,8 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
 
-                Quaternion shieldProjAng = Quaternion.LookRotation(from - shieldPosition2D);
-                if ((Quaternion.Angle(targetAngle, shieldProjAng) > 90))
-                {
-                    HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));
-
-                    int damage = (projectile.def.projectile.GetDamageAmount(launcher));
-
-                    generator.FieldIntegrity_Current -= damage;
-
-                    exactPosition = nep;
-                    FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
-                    projectile.InterceptProjectile(shield, exactPosition, false);
-                    return true;
-                }
+                yield return (nep, () => OnInterception(projectile, generator, nep));
             }
-            return false;
         }
         public static bool ImpactSomethingCallback(ProjectileCE projectile, Thing launcher)
         {
@@ -182,6 +168,17 @@ namespace CombatExtended.Compatibility
                 result.Add(GenRadial.RadialCellsAround(shield.Position, fieldRadius, true));
             }
             return result;
+        }
+        private static void OnInterception(ProjectileCE projectile, ThingComp comp, Vector3 exactPosition)
+        {
+            var generator = comp as Comp_ShieldGenerator;
+            HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(comp.parent.Position, comp.parent.Map, false));
+
+            int damage = (projectile.def.projectile.GetDamageAmount(projectile.launcher));
+
+            generator.FieldIntegrity_Current -= damage;
+            FleckMakerCE.ThrowLightningGlow(exactPosition, comp.parent.Map, 0.5f);
+            projectile.InterceptProjectile(comp.parent, exactPosition, false);
         }
 
     }
