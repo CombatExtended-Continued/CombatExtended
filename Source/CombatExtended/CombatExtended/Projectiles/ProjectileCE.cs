@@ -128,13 +128,13 @@ namespace CombatExtended
 
         #endregion
 
-        private float suppressionAmount;
+        protected float suppressionAmount;
         public Thing mount; // GiddyUp compatibility, ignore collisions with pawns the launcher is mounting
         public float AccuracyFactor;
 
         #region Height
-        private int lastHeightTick = -1;
-        private float heightInt = 0f;
+        protected int lastHeightTick = -1;
+        protected float heightInt = 0f;
         /// <summary>
         /// If lastHeightTick is not FlightTicks, Height calculates the quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> shotSpeed * Mathf.Sin(shotAngle), y0 -> shotHeight, t -> seconds} to find y rounded to the nearest 3 decimals.
         ///
@@ -227,7 +227,7 @@ namespace CombatExtended
         #endregion
 
         #region Position
-        private Vector2 Vec2Position(float ticks = -1f)
+        protected virtual Vector2 Vec2Position(float ticks = -1f)
         {
             if (ticks < 0)
             {
@@ -258,7 +258,7 @@ namespace CombatExtended
             }
         }
 
-        public Vector2 DrawPosV2
+        public virtual Vector2 DrawPosV2
         {
             get
             {
@@ -278,7 +278,7 @@ namespace CombatExtended
         private Vector3 lastExactPos = new Vector3(-1000, 0, 0);
         public Vector3 LastPos
         {
-            private set
+            protected set
             {
                 lastExactPos = value;
             }
@@ -412,8 +412,8 @@ namespace CombatExtended
 
 
 
-        private Material[] shadowMaterial;
-        private Material ShadowMaterial
+        protected Material[] shadowMaterial;
+        protected Material ShadowMaterial
         {
             get
             {
@@ -599,7 +599,7 @@ namespace CombatExtended
             }
         }
 
-        private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination, Map map = null)
+        protected void RayCastSuppression(IntVec3 muzzle, IntVec3 destination, Map map = null)
         {
             if (muzzle == destination)
             {
@@ -683,7 +683,7 @@ namespace CombatExtended
             InterceptProjectile(interceptor, BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius * shieldRadius));
         }
 
-        private (Vector3 IntersectionPos, Action OnInterception)? CheckIntercept(IEnumerable<Thing> interceptorThings)
+        protected virtual (Vector3 IntersectionPos, Action OnInterception)? CheckIntercept(IEnumerable<Thing> interceptorThings)
         {
             (Vector3 IntersectionPos, Action OnInterception)? result = null;
             float distToResult = float.MaxValue;
@@ -795,7 +795,7 @@ namespace CombatExtended
             this.Impact(null);
         }
         //Removed minimum collision distance
-        private bool CheckForCollisionBetween()
+        protected bool CheckForCollisionBetween()
         {
             List<(Vector3 IntersectionPos, Action OnInterception)> possibleIntersections = new List<(Vector3 IntersectionPos, Action OnInterception)>(3); // CompProjectileInterceptor, Interceptor from Blocker registry and interceptor from CollectPossibleTargetsForCell
             bool collided = false;
@@ -876,7 +876,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="cell">Where to check for collisions in</param>
         /// <returns>True if collision occured, false otherwise</returns>
-        private (Vector3 IntersectionPos, Action OnIntersection)? PossibleTargetForCell(IntVec3 cell)
+        protected (Vector3 IntersectionPos, Action OnIntersection)? PossibleTargetForCell(IntVec3 cell)
         {
             Vector3 roofIntersectionPos;
             bool roofChecked = false;
@@ -954,7 +954,7 @@ namespace CombatExtended
             return result;
         }
 
-        private bool CanCollideWithRoof(IntVec3 cell, out Vector3 point)
+        protected bool CanCollideWithRoof(IntVec3 cell, out Vector3 point)
         {
             point = Vector3.negativeInfinity;
             if (!cell.Roofed(Map))
@@ -988,7 +988,7 @@ namespace CombatExtended
 
             Impact(null);
         }
-        private bool CanCollideWith(Thing thing, out float dist, out Vector3 point)
+        protected bool CanCollideWith(Thing thing, out float dist, out Vector3 point)
         {
             dist = -1f;
             point = Vector3.negativeInfinity;
@@ -1018,7 +1018,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="thing">What to impact</param>
         /// <returns>True if impact occured, false otherwise</returns>
-        private bool TryCollideWith(Thing thing)
+        protected bool TryCollideWith(Thing thing)
         {
 
             if (!CanCollideWith(thing, out var dist, out var point))
@@ -1376,14 +1376,27 @@ namespace CombatExtended
                 effecter.Trigger(new TargetInfo(explodePos.ToIntVec3(), Map, false), new TargetInfo(explodePos.ToIntVec3(), Map, false));
                 effecter.Cleanup();
             }
-
+            ProjectilePropertiesCE projectileCE = def.projectile as ProjectilePropertiesCE;
+            float effectScale = projectileCE.detonateEffectsScaleOverride > 0 ? projectileCE.detonateEffectsScaleOverride : projectileCE.explosionRadius * 2;
+            if (projectileCE.detonateMoteDef != null)
+            {
+                MoteMaker.MakeStaticMote(DrawPos, Map, CE_ThingDefOf.Mote_BigExplode, effectScale);
+            }
+            if (projectileCE.detonateFleckDef != null)
+            {
+                FleckCreationData dataStatic = FleckMaker.GetDataStatic(DrawPos, MapHeld, projectileCE.detonateFleckDef, effectScale);
+                MapHeld.flecks.CreateFleck(dataStatic);
+            }
             var projectilePropsCE = (def.projectile as ProjectilePropertiesCE);
 
             var explodingComp = this.TryGetComp<CompExplosiveCE>();
 
             if (explodingComp == null)
             {
-                this.TryGetComp<CompFragments>()?.Throw(explodePos, Map, launcher);
+                foreach (var comp in GetComps<CompFragments>())
+                {
+                    comp.Throw(explodePos, Map, launcher);
+                }
             }
 
             //If the comp exists, it'll already call CompFragments
@@ -1493,7 +1506,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="ticks">Integer ticks, since the only time value which is not an integer (accessed by StartingTicksToImpact) has height zero by definition.</param>
         /// <returns>Projectile height at time ticks in ticks.</returns>
-        private float GetHeightAtTicks(int ticks)
+        protected virtual float GetHeightAtTicks(int ticks)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
             return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityFactor * seconds * seconds) / 2f, 3);
@@ -1506,7 +1519,7 @@ namespace CombatExtended
         /// <param name="angle">Shot angle in radians off the ground.</param>
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Time in seconds that the projectile will take to traverse the given arc.</returns>
-        private float GetFlightTime()
+        protected float GetFlightTime()
         {
             //Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
             return (Mathf.Sin(shotAngle) * shotSpeed + Mathf.Sqrt(Mathf.Pow(Mathf.Sin(shotAngle) * shotSpeed, 2f) + 2f * GravityFactor * shotHeight)) / GravityFactor;
@@ -1543,7 +1556,7 @@ namespace CombatExtended
         }
         #endregion
 
-        private static Material[] GetShadowMaterial(Graphic_Collection g)
+        protected static Material[] GetShadowMaterial(Graphic_Collection g)
         {
             var collection = g.subGraphics;
             var shadows = collection.Select(item => item.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle).ToArray();

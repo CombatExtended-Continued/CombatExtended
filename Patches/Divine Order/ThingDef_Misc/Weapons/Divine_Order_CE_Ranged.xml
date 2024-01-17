@@ -50,7 +50,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderCrossbow"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderCrossbow" or defName="BotchJob_DivineOrderHandCrossbow"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -129,6 +129,37 @@
 					</FireModes>
 					<weaponTags>
 						<li>CE_XBow</li>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Hand Crossbow === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>BotchJob_DivineOrderHandCrossbow</defName>
+					<statBases>
+						<Bulk>2.5</Bulk>
+						<SwayFactor>1.2</SwayFactor>
+						<ShotSpread>0.35</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>10</range>
+						<soundCast>Bow_Large</soundCast>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>3.5</reloadTime>
+						<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>

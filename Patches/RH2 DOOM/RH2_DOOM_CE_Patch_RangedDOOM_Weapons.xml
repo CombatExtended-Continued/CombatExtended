@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] DOOM</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== UAC EMG Sidearm ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_UACEMGPistol</defName>
+					<statBases>
+						<Mass>1.35</Mass>
+						<RangedWeapon_Cooldown>0.05</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.70</SightsEfficiency>
+						<ShotSpread>0.176</ShotSpread>
+						<SwayFactor>1.27</SwayFactor>
+						<Bulk>2.45</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.57</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_Doom2016EmgPistol</defaultProjectile>
+						<warmupTime>0.0</warmupTime>
+						<range>12</range>
+						<soundCast>RHShot_DOOMEMGPistol</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<!-- Infinite ammo -->
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+
+				</li>
+
+				<!-- ========== UAC EMG Mk V Pistol ========== 
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_UACEMGMarkVPistol</defName>
+					<statBases>
+						<Mass>1.35</Mass>
+						<RangedWeapon_Cooldown>0.05</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.70</SightsEfficiency>
+						<ShotSpread>0.176</ShotSpread>
+						<SwayFactor>1.27</SwayFactor>
+						<Bulk>2.45</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_Doom2016EmgMkVPistol</defaultProjectile>
+						<warmupTime>0.0</warmupTime>
+						<range>12</range>
+						<soundCast>RHShot_DOOMEMGMarkVPistol</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>50</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_Doom2016EmgMkVPistol</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+				</li> -->
+
+				<!-- ========== UAC Combat Shotgun ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_CombatShotgun</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.49</SwayFactor>
+						<Bulk>7.67</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.26</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>20</range>
+						<soundCast>RHShot_DOOMCombatShotgun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>4.9</reloadTime>
+						<ammoSet>AmmoSet_12Gauge</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+
+				</li> 
+
+				<!-- ========== UAC Combat Shotgun - Eternal ========== 
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_CombatShotgunEternal</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.68</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.49</SwayFactor>
+						<Bulk>7.67</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.26</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+						<warmupTime>0.7</warmupTime>
+						<range>26</range>
+						<soundCast>RHShot_DOOMCombatShotgun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>4.9</reloadTime>
+						<ammoSet>AmmoSet_12Gauge</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+
+				</li> -->
+
+				<!-- ========== Super Shotgun ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_SuperShotgun</defName>
+					<statBases>
+						<Mass>1.90</Mass>
+						<RangedWeapon_Cooldown>0.93</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>2.73</SwayFactor>
+						<Bulk>6.29</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12Gauge_DoubleBarreled_Buck</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+						<range>11</range>
+						<soundCast>RHShot_DOOMSuperShotgun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>2</magazineSize>
+						<reloadTime>1.7</reloadTime>
+						<ammoSet>AmmoSet_12Gauge_CP_DOOM_SuperShotgun</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<!-- ========== UAC Heavy Assault Rifle ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_HeavyAssaultRifle</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.27</SwayFactor>
+						<Bulk>9.00</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.48</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>75</range>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<burstShotCount>6</burstShotCount>
+						<soundCast>RHShot_DOOMHeavyAssaultRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>90</magazineSize>
+						<reloadTime>7.80</reloadTime>
+						<ammoSet>AmmoSet_50BMG</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li>
+
+				<!-- ========== UAC Heavy Assault Rifle ========== 
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_HeavyCannon</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>10.00</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.45</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>82</range>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>RHShot_EternalHeavyCannon</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>100</magazineSize>
+						<reloadTime>7.80</reloadTime>
+						<ammoSet>AmmoSet_50BMG</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li> -->
+
+				<!-- ========== UAC D12 Chaingun ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_Chaingun</defName>
+					<statBases>
+						<Mass>39.00</Mass>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>1.32</SwayFactor>
+						<Bulk>9.5</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.58</recoilAmount>
+						<recoilPattern>Mounted</recoilPattern>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+						<warmupTime>2.3</warmupTime>
+						<range>62</range>
+						<burstShotCount>150</burstShotCount>
+						<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+						<soundCast>RHFire_DOOMChaingun</soundCast>
+						<soundAiming>RHGun_DOOMChaingunAiming</soundAiming>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>150</magazineSize>
+						<reloadTime>9.2</reloadTime>
+						<ammoSet>AmmoSet_50BMG</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+				</li>
+
+				<!-- ========== UAC Plasma Rifle ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_PlasmaRifle</defName>
+					<statBases>
+						<Mass>8.20</Mass>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.27</SwayFactor>
+						<Bulk>13.00</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.48</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_Doom2016PlasmaGun</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>75</range>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>RHShot_DOOMPlasmaRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>150</magazineSize>
+						<reloadTime>4.9</reloadTime>
+						<ammoSet>AmmoSet_Doom2016PlasmaGun</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+				<!-- ========== UAC Plasma Gun ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_PlasmaGun</defName>
+					<statBases>
+						<Mass>8.20</Mass>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.27</SwayFactor>
+						<Bulk>10.00</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.48</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_Doom2016PlasmaGun</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>75</range>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>RHShot_DOOMPlasmaGun</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>150</magazineSize>
+						<reloadTime>4.9</reloadTime>
+						<ammoSet>AmmoSet_Doom2016PlasmaGun</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+				<!-- ========== UAC Vortex Rifle ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_VortexRifle</defName>
+					<statBases>
+						<Mass>7.51</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.60</SightsEfficiency>
+						<ShotSpread>0.04</ShotSpread>
+						<SwayFactor>1.76</SwayFactor>
+						<Bulk>9.05</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_Doom2016VortexRifle</defaultProjectile>
+						<warmupTime>1.6</warmupTime>
+						<range>68</range>
+						<soundCast>RHFire_DOOMVortexRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_Doom2016VortexRifle</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+
+					<!-- No additional CE weaponTags needed -->
+
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- ========== UAC Hellshot ========== 
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RHGun_DOOM_Hellshot</defName>
+					<statBases>
+						<Mass>6.35</Mass>
+						<RangedWeapon_Cooldown>0.05</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.24</SightsEfficiency>
+						<ShotSpread>0.2</ShotSpread>
+						<SwayFactor>1.42</SwayFactor>
+						<Bulk>7.49</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_Doom2016Hellshot</defaultProjectile>
+						<warmupTime>0.0</warmupTime>
+						<range>48</range>
+						<soundCast>RHFire_DOOMHellshot</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_Doom2016Hellshot</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+				</li>-->
+
+				<!-- == Shared patches for firearm melee tools == -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="RHGun_DOOM_UACEMGPistol" or
+						defName="RHGun_DOOM_UACEMGMarkVPistol"
+						]/tools </xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="RHGun_DOOM_CombatShotgun" or
+						defName="RHGun_DOOM_CombatShotgunEternal" or
+						defName="RHGun_DOOM_SuperShotgun" or
+						defName="RHGun_DOOM_HeavyAssaultRifle" or
+						defName="RHGun_DOOM_PlasmaRifle" or
+						defName="RHGun_DOOM_PlasmaGun" or
+						defName="RHGun_DOOM_VortexRifle" or
+						defName="RHGun_DOOM_HeavyCannon" or
+						defName="RHGun_DOOM_Hellshot"
+						]/tools </xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="RHGun_DOOM_Chaingun"
+						]/tools </xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

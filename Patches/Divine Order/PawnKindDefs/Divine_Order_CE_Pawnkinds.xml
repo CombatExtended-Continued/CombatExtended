@@ -31,7 +31,6 @@
 					</value>
 				</li>
 
-				<!--Give ammo to pistols -->
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderSharpshooter" or defName="BotchJob_DivineOrderInquisitor"]</xpath>
 					<value>
@@ -53,7 +52,6 @@
 					</value>
 				</li>
 
-				<!--Give ammo to grenadier -->
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderHerald" or defName="BotchJob_DivineOrderMerchant"]</xpath>
 					<value>
@@ -74,13 +72,26 @@
 						</li>
 					</value>
 				</li>
-				
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderConscript"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>30</min>
+								<max>40</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/PawnKindDef[
 						defName="BotchJob_DivineOrderScout" or
 						defName="BotchJob_DivineOrderSharpshooter" or
 						defName="BotchJob_DivineOrderInquisitor" or
-						defName="BotchJob_DivineOrderMerchant"]
+						defName="BotchJob_DivineOrderMerchant" or
+						defName="BotchJob_DivineOrderConscript"]
 					</xpath>
 					<value>
 						<apparelRequired>
@@ -110,24 +121,11 @@
 					</match>
 				</li>
 
-				<li Class="PatchOperationFindMod">
-					<mods>
-						<li>Medieval Fantasy Themed Quest Rewards</li>
-					</mods>
-					<match Class="PatchOperationAdd">
-						<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderHerald"]/apparelRequired</xpath>
-						<value>
-							<li>CE_Apparel_TribalBackpack</li>
-						</value>
-					</match>
-					<nomatch Class="PatchOperationAdd">
-						<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderHerald"]</xpath>
-						<value>
-							<apparelRequired>
-								<li>CE_Apparel_TribalBackpack</li>
-							</apparelRequired>
-						</value>
-					</nomatch>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderHerald"]/apparelRequired</xpath>
+					<value>
+						<li>CE_Apparel_TribalBackpack</li>
+					</value>
 				</li>
 
 			</operations>

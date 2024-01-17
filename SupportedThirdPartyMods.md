@@ -42,11 +42,13 @@ Mod |
 [O21] Outland - Redburn Pact  |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
+[RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: Utilitarian  |
 [RH2] Faction: V.O.I.D.	|
+[RH2] Metal Gear Solid  |
 [RH2] Rimmu-Nation² - Clothing	|
 [RH2] Rimmu-Nation² - Security  |
 [RH2] Rimmu-Nation² - Weapons	|

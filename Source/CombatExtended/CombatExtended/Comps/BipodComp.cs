@@ -32,7 +32,8 @@ namespace CombatExtended
                 if (Controller.settings.AutoSetUp)
                 {
                     var varA = this.parent.TryGetComp<CompFireModes>();
-                    result = (((varA.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && varA.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn);
+                    Pawn pawn = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
+                    result = (((varA.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && varA.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn && !PawnUtility.IsCarryingPawn(pawn));
                 }
                 else
                 {

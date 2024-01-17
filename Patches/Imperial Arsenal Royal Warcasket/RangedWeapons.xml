@@ -8,97 +8,97 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-			<!-- === Tools === -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName = "RWC_Halberd"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>point</label>
-							<capacities>
-								<li>VFEP_GravityHammerAttack</li>
-							</capacities>
-							<power>135</power>
-							<cooldownTime>2.14</cooldownTime>
-							<armorPenetrationBlunt>16</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "RWC_Halberd"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>VFEP_GravityHammerAttack</li>
+								</capacities>
+								<power>135</power>
+								<cooldownTime>2.14</cooldownTime>
+								<armorPenetrationBlunt>16</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>75</power>
+								<cooldownTime>1.34</cooldownTime>
+								<armorPenetrationBlunt>16</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+								<extraMeleeDamages>
+									<li>
+										<def>Flame</def>
+										<amount>25</amount>
+										<chance>1</chance>
+									</li>
+								</extraMeleeDamages>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ===  Halberd === -->
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="RWC_Halberd"]/verbs</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="RWC_Halberd"]/comps/li[@Class="CompToggleFireMode.CompProperties_ToggleFireMode"]</xpath>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RWC_Halberd</defName>
+					<statBases>
+						<Bulk>15</Bulk>
+						<SwayFactor>1.2</SwayFactor>
+						<ShotSpread>0.08</ShotSpread>
+						<SightsEfficiency>2.20</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.19</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_BoltXonus_Standard</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<range>68</range>
+						<soundCast>Xonus_ShotHeavy</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>16</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>25</magazineSize>
+						<reloadTime>3.0</reloadTime>
+						<ammoSet>AmmoSet_BoltXonus</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RWC_Halberd"]</xpath>
+					<value>
+						<equippedAngleOffset>-90</equippedAngleOffset>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="RWC_Halberd"]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>1.9,1.9</DrawSize>
+							<DrawOffset>0.0,0.0</DrawOffset>
 						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>blade</label>
-							<capacities>
-								<li>Cut</li>
-							</capacities>
-							<power>75</power>
-							<cooldownTime>1.34</cooldownTime>
-							<armorPenetrationBlunt>16</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-							<extraMeleeDamages>
-								<li>
-									<def>Flame</def>
-									<amount>25</amount>
-									<chance>1</chance>
-								</li>
-							</extraMeleeDamages>
-						</li>
-					</tools>
-				</value>
-			</li>
-
-			<!-- ===  Halberd === -->
-			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="RWC_Halberd"]/verbs</xpath>
-			</li>
-
-			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="RWC_Halberd"]/comps/li[@Class="CompToggleFireMode.CompProperties_ToggleFireMode"]</xpath>
-			</li>
-
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>RWC_Halberd</defName>
-				<statBases>
-					<Bulk>15</Bulk>
-					<SwayFactor>1.2</SwayFactor>
-					<ShotSpread>0.08</ShotSpread>
-					<SightsEfficiency>2.20</SightsEfficiency>
-					<RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
-				</statBases>
-				<Properties>
-					<recoilAmount>1.19</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>True</hasStandardCommand>
-					<defaultProjectile>Bullet_BoltXonus_Standard</defaultProjectile>
-					<warmupTime>0.8</warmupTime>
-					<range>68</range>
-					<soundCast>Xonus_ShotHeavy</soundCast>
-					<soundCastTail>GunTail_Heavy</soundCastTail>
-					<muzzleFlashScale>16</muzzleFlashScale>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>25</magazineSize>
-					<reloadTime>3.0</reloadTime>
-					<ammoSet>AmmoSet_BoltXonus</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="RWC_Halberd"]</xpath>
-				<value>
-					<equippedAngleOffset>-90</equippedAngleOffset>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="RWC_Halberd"]</xpath>
-				<value>
-					<li Class="CombatExtended.GunDrawExtension">
-						<DrawSize>1.9,1.9</DrawSize>
-						<DrawOffset>0.0,0.0</DrawOffset>
-					</li>
-				</value>
-			</li>
+					</value>
+				</li>
 
 			</operations>
 		</match>
