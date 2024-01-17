@@ -26,8 +26,7 @@ namespace CombatExtended.Compatibility
         }
         public void Install()
         {
-
-            BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething); 
+            BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
             BlockerRegistry.RegisterBeforeCollideWithCallback(BeforeCollideWith);
             BlockerRegistry.RegisterCheckForCollisionBetweenCallback(AOE_CheckIntercept);
             BlockerRegistry.RegisterShieldZonesCallback(ShieldZones);

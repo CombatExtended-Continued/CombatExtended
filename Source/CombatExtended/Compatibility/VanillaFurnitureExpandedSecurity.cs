@@ -65,7 +65,7 @@ namespace CombatExtended.Compatibility
                 {
                     var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                     yield return (exactPosition, () => OnIntercepted(projectile, shield, exactPosition));
-                    
+
                 }
             }
         }

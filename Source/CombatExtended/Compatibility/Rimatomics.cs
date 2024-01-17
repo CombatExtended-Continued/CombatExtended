@@ -72,7 +72,7 @@ namespace CombatExtended.Compatibility
                 {
                     var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                     yield return (exactPosition, () => OnIntercepted(projectile, thingComp, exactPosition));
-                    
+
                 }
             }
         }
@@ -82,7 +82,7 @@ namespace CombatExtended.Compatibility
             var lastExactPos = projectile.LastPos;
             var map = projectile.Map;
             int damage = (projectile.def.projectile.GetDamageAmount(projectile.launcher));
-            
+
             DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, damage, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true);
             shield.lastInterceptAngle = lastExactPos.AngleToFlat(shield.parent.TrueCenter());
             shield.lastInterceptTicks = Find.TickManager.TicksGame;
