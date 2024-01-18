@@ -173,7 +173,6 @@ namespace CombatExtended.Compatibility
         }
         private static void OnInterception(ProjectileCE projectile, Building building, Vector3 exactPosition)
         {
-            
             var generator = building.GetComp<Comp_ShieldGenerator>();
             HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(building.Position, building.Map, false));
 
