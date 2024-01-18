@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40.000: Imperium Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName = "GF40K_StubShotgun" or
+						defName = "GF40K_StubCarbine" or
+						defName = "GF40K_StubPistol" or
+						defName = "GF40K_StubSniper"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>2</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "GF40K_StubHMG"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Stub Shotgun === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_StubShotgun</defName>
+					<statBases>
+						<Mass>5.5</Mass>
+						<Bulk>7</Bulk>
+						<SwayFactor>1.25</SwayFactor>
+						<ShotSpread>0.15</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>8</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_23x75mmR</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_StubShotgun"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>2.75</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_23x75mmR_Buck</defaultProjectile>
+								<warmupTime>0.5</warmupTime>
+								<range>16</range>
+								<ticksBetweenBurstShots>14</ticksBetweenBurstShots>
+								<soundCast>Shot_Shotgun</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Stub HMG === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_StubHMG</defName>
+					<statBases>
+						<Mass>8.50</Mass>
+						<Bulk>12.5</Bulk>
+						<SwayFactor>1.35</SwayFactor>
+						<ShotSpread>0.06</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>50</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_50BMG</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_StubHMG"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>1.4</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+								<warmupTime>1.2</warmupTime>
+								<range>62</range>
+								<burstShotCount>10</burstShotCount>
+								<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+								<soundCast>HeavyMG</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Stub Carbine === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_StubCarbine</defName>
+					<statBases>
+						<Mass>4.21</Mass>
+						<Bulk>9.6</Bulk>
+						<SwayFactor>1.30</SwayFactor>
+						<ShotSpread>0.06</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_762x54mmR</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_StubCarbine"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>1.5</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+								<warmupTime>1.05</warmupTime>
+								<range>55</range>
+								<burstShotCount>6</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<soundCast>Shot_Shotgun_NoRack</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Stub Sniper === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_StubSniper</defName>
+					<statBases>
+						<Mass>8.20</Mass>
+						<Bulk>12.00</Bulk>
+						<SwayFactor>1.34</SwayFactor>
+						<ShotSpread>0.04</ShotSpread>
+						<SightsEfficiency>2.6</SightsEfficiency>
+						<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_762x54mmR</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_StubSniper"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>1.4</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+								<warmupTime>1.7</warmupTime>
+								<range>75</range>
+								<soundCast>Shot_SniperRifle</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<!-- === Stub Pistol === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_StubPistol</defName>
+					<statBases>
+						<Mass>1.20</Mass>
+						<Bulk>2.50</Bulk>
+						<SwayFactor>1.05</SwayFactor>
+						<ShotSpread>0.15</ShotSpread>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					</statBases>
+					<AmmoUser>
+						<magazineSize>9</magazineSize>
+						<reloadTime>3.5</reloadTime>
+						<ammoSet>AmmoSet_50AE</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_StubPistol"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>2.7</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>True</hasStandardCommand>
+								<defaultProjectile>Bullet_50AE_FMJ</defaultProjectile>
+								<warmupTime>0.6</warmupTime>
+								<range>15</range>
+								<soundCast>Shot_Shotgun_NoRack</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

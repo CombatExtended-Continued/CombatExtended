@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40.000: Imperium Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName = "GF40K_Hellgun" or
+						defName = "GF40K_HellgunRelic"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Remove VWE Overheating Gizmo === -->
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[
+						defName = "GF40K_Hellgun" or
+						defName = "GF40K_HellgunRelic"
+						]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+				</li>
+
+				<!-- === Hellgun === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_LaserGun</defName>
+					<statBases>
+						<Mass>5.75</Mass>
+						<Bulk>10.15</Bulk>
+						<SwayFactor>1.35</SwayFactor>
+						<ShotSpread>0.04</ShotSpread>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.01</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_Lasgun_HellGun</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>66</range>
+						<soundCast>GF40K_LaserGunShot</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>11</muzzleFlashScale>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_Lasgun_HellGun</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<!-- === Relic Hellgun === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_HellgunRelic</defName>
+					<statBases>
+						<Mass>5.15</Mass>
+						<Bulk>9.85</Bulk>
+						<SwayFactor>1.15</SwayFactor>
+						<ShotSpread>0.02</ShotSpread>
+						<SightsEfficiency>1.5</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.01</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_Lasgun_HellGun</defaultProjectile>
+						<warmupTime>0.95</warmupTime>
+						<range>70</range>
+						<soundCast>GF40K_LaserGunShot</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>11</muzzleFlashScale>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_Lasgun_HellGun</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

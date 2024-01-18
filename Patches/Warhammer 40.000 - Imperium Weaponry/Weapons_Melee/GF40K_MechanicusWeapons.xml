@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40.000: Imperium Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusArcMaul"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>15</Bulk>
+							<MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+						</statBases>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.5</MeleeCritChance>
+							<MeleeParryChance>0.3</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						</equippedStatOffsets>
+						<weaponTags>
+							<li>CE_OneHandedWeapon</li>
+						</weaponTags>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusArcMaul"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>60</power>
+								<extraMeleeDamages>
+									<li>
+										<def>EMP</def>
+										<amount>2</amount>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>2.5</cooldownTime>
+								<armorPenetrationBlunt>200</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusOmnisianAxe"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>12</Bulk>
+							<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+						</statBases>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.5</MeleeCritChance>
+							<MeleeParryChance>0.3</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusOmnisianAxe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>25</power>
+								<cooldownTime>2.1</cooldownTime>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<armorPenetrationSharp>45</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>62</power>
+								<extraMeleeDamages>
+									<li>
+										<def>EMP</def>
+										<amount>2</amount>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>2.5</cooldownTime>
+								<armorPenetrationBlunt>9</armorPenetrationBlunt>
+								<armorPenetrationSharp>35</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusPowerSword"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>10</Bulk>
+							<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+						</statBases>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.0</MeleeCritChance>
+							<MeleeParryChance>0.75</MeleeParryChance>
+							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+						<weaponTags>
+							<li>CE_OneHandedWeapon</li>
+						</weaponTags>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusPowerSword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>2.2</cooldownTime>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<armorPenetrationSharp>40</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>58</power>
+								<extraMeleeDamages>
+									<li>
+										<def>EMP</def>
+										<amount>2</amount>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>2.2</cooldownTime>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+								<armorPenetrationSharp>30</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusTaserGoad"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>8</Bulk>
+							<MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+						</statBases>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.70</MeleeCritChance>
+							<MeleeParryChance>0.5</MeleeParryChance>
+							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+						<weaponTags>
+							<li>CE_OneHandedWeapon</li>
+						</weaponTags>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusTaserGoad"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tip</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>36</power>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>2</amount>
+										<chance>0.33</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>2.1</cooldownTime>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<armorPenetrationSharp>30</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusTransonicBlade"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>10</Bulk>
+							<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+						</statBases>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.0</MeleeCritChance>
+							<MeleeParryChance>0.75</MeleeParryChance>
+							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+						<weaponTags>
+							<li>CE_OneHandedWeapon</li>
+						</weaponTags>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusTransonicBlade"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tip</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>34</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+								<armorPenetrationSharp>38</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>GF40K_MolDesCut</li>
+								</capacities>
+								<power>47</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<armorPenetrationSharp>27</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusTransonicRazor"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>4</Bulk>
+							<MeleeCounterParryBonus>0.3</MeleeCounterParryBonus>
+						</statBases>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.2</MeleeCritChance>
+							<MeleeParryChance>0.15</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						</equippedStatOffsets>
+						<weaponTags>
+							<li>CE_OneHandedWeapon</li>
+						</weaponTags>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_MechanicusTransonicRazor"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tip</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>30</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+								<armorPenetrationSharp>38</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>GF40K_MolDesCut</li>
+								</capacities>
+								<power>40</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<armorPenetrationSharp>27</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

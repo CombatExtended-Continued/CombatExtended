@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40.000: Imperium Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Add DefModExtension ========== -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/DamageDef[defName="GF40K_Shock"]</xpath>
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+							<isAmbientDamage>true</isAmbientDamage>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

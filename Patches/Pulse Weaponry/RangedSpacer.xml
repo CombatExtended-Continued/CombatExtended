@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Pulse Weaponry</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<chanceFactor>0.33</chanceFactor>
+								<cooldownTime>1.52</cooldownTime>
+								<armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>5</power>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>32</amount>
+										<chance>0.20</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>1.68</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]/statBases</xpath>
+					<value>
+						<Bulk>2.75</Bulk>
+						<MeleeCounterParryBonus>0.9</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]/equippedAngleOffset</xpath>
+					<value>
+						<equippedAngleOffset>-65</equippedAngleOffset>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.17</MeleeCritChance>
+							<MeleeParryChance>0.9</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "DV_PulseSMG" or defName = "DV_PulseSuppressor"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "DV_PulseRifle"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === HL:A SMG === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DV_PulseSMG</defName>
+					<statBases>
+						<WorkToMake>40000</WorkToMake>
+						<Mass>2.80</Mass>
+						<Bulk>5.00</Bulk>
+						<SwayFactor>0.75</SwayFactor>
+						<ShotSpread>0.16</ShotSpread>
+						<SightsEfficiency>1.15</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Steel>45</Steel>
+						<Plasteel>15</Plasteel>
+						<Chemfuel>5</Chemfuel>
+						<ComponentIndustrial>4</ComponentIndustrial>
+						<ComponentSpacer>1</ComponentSpacer>
+					</costList>
+					<Properties>
+						<recoilAmount>1.0</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_DV_PulseSMG_CE</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>31</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<soundCast>Shot_PulseLight</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>7</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>2.5</reloadTime>
+						<ammoSet>AmmoSet_DV_PulseSMG</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>SpacerGun</li>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- === HL2 rifle === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DV_PulseRifle</defName>
+					<statBases>
+						<Mass>3.0</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.08</ShotSpread>
+						<SwayFactor>1.20</SwayFactor>
+						<Bulk>7.00</Bulk>
+						<WorkToMake>49000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>45</Steel>
+						<Plasteel>25</Plasteel>
+						<ComponentIndustrial>4</ComponentIndustrial>
+						<ComponentSpacer>2</ComponentSpacer>
+						<Chemfuel>10</Chemfuel>
+					</costList>
+					<Properties>
+						<recoilAmount>1.20</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_DV_PulseRifle_CE</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+						<range>55</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<soundCast>Shot_PulseMedium</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>3.5</reloadTime>
+						<ammoSet>AmmoSet_DV_PulseRifle</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_AR</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DV_PulseRifle"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_UnderBarrel">
+							<propsUnderBarrel>
+								<magazineSize>30</magazineSize>
+								<reloadTime>3.5</reloadTime>
+								<ammoSet>Bullet_DV_PulseRifle_UBGL_CE</ammoSet>
+							</propsUnderBarrel>
+							<verbPropsUnderBarrel>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_DV_PulseRifle_UBGL_CE</defaultProjectile>
+								<warmupTime>1.05</warmupTime>
+								<range>55</range>
+								<ammoConsumedPerShotCount>10</ammoConsumedPerShotCount>
+								<recoilAmount>1.20</recoilAmount>
+								<soundCast>Shot_Shotgun</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>12</muzzleFlashScale>
+							</verbPropsUnderBarrel>
+							<propsFireModesUnderBarrel>
+								<aiAimMode>AimedShot</aiAimMode>
+							</propsFireModesUnderBarrel>
+						</li>
+					</value>
+				</li>
+
+				<!-- === Pulse Suppressor === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>DV_PulseSuppressor</defName>
+					<statBases>
+						<WorkToMake>60000</WorkToMake>
+						<Mass>20.0</Mass>
+						<Bulk>12.0</Bulk>
+						<SwayFactor>1.35</SwayFactor>
+						<ShotSpread>0.10</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Steel>120</Steel>
+						<Plasteel>40</Plasteel>
+						<Chemfuel>15</Chemfuel>
+						<ComponentIndustrial>6</ComponentIndustrial>
+						<ComponentSpacer>3</ComponentSpacer>
+					</costList>
+					<Properties>
+						<recoilAmount>1.0</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_DV_PulseSuppressor_CE</defaultProjectile>
+						<burstShotCount>50</burstShotCount>
+						<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+						<warmupTime>2.5</warmupTime>
+						<range>62</range>
+						<soundCast>Shot_PulseMedium</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>450</magazineSize>
+						<reloadTime>6.2</reloadTime>
+						<ammoSet>AmmoSet_DV_PulseSuppressor</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>25</aimedBurstShotCount>
+					</FireModes>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[
+						defName = "DV_PulseSMG" or
+						defName = "DV_PulseRifle" or
+						defName = "DV_PulseSuppressor"]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>1.05,1.05</DrawSize>
+							<DrawOffset>0.0,0.0</DrawOffset>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName = "DV_PulseRifle"]/comps/li[@Class="AthenaFramework.CompProperties_EquippableAbility"]</xpath>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

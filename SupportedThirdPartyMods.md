@@ -376,6 +376,7 @@ Prostheses+ |
 Protoswords |
 PsiTech	|
 Pulsefire Turret (Continued)    |
+Pulse Weaponry  |
 Rabbie The Moonrabbit	|
 Racc Race	|
 Race to the Rim |
@@ -553,9 +554,10 @@ WarCasket Expanded  |
 WarCasket Gundam Addon  |
 Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
-Warhammer"ish" - Dryad    |
+Warhammer 40.000 - Imperium Weaponry    |
 Warhammer 40.000 - Imperium Materials   |
 Warhammer 40k - Genes and Psycasts  |
+Warhammer"ish" - Dryad    |
 Wasters Toxic Breather  |
 Weapons+	|
 WWII German Uniforms - V's Edit |

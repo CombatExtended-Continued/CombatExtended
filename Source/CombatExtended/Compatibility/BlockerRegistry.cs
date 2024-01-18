@@ -15,10 +15,14 @@ namespace CombatExtended.Compatibility
         private static bool enabledCFC = false;
         private static bool enabledIS = false;
         private static bool enabledBCW = false;
+        private static bool enabledPUF = false;
+        private static bool enabledSZ = false;
         private static List<Func<ProjectileCE, Vector3, Vector3, bool>> checkForCollisionBetweenCallbacks;
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> beforeCollideWithCallbacks;
+        private static List<Func<Pawn, IntVec3, bool>> pawnUnsuppresableFromCallback;
+        private static List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>> shieldZonesCallback;
 
         private static void EnableCB()
         {
@@ -34,6 +38,16 @@ namespace CombatExtended.Compatibility
         {
             enabledCFC = true;
             checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
+        }
+        private static void EnableSZ()
+        {
+            enabledSZ = true;
+            shieldZonesCallback = new List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>>();
+        }
+        private static void EnablePUF()
+        {
+            enabledPUF = true;
+            pawnUnsuppresableFromCallback = new List<Func<Pawn, IntVec3, bool>>();
         }
         private static void EnableBCW()
         {
@@ -90,6 +104,23 @@ namespace CombatExtended.Compatibility
             return false;
         }
 
+        public static void RegisterShieldZonesCallback(Func<Thing, IEnumerable<IEnumerable<IntVec3>>> f)
+        {
+            if (!enabledSZ)
+            {
+                EnableSZ();
+            }
+            shieldZonesCallback.Add(f);
+        }
+        public static void RegisterUnsuppresableFromCallback(Func<Pawn, IntVec3, bool> f)
+        {
+            if (!enabledPUF)
+            {
+                EnablePUF();
+            }
+            pawnUnsuppresableFromCallback.Add(f);
+        }
+
         public static bool CheckCellForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             if (!enabledCFC)
@@ -105,7 +136,6 @@ namespace CombatExtended.Compatibility
             }
             return false;
         }
-
         public static bool ImpactSomethingCallback(ProjectileCE projectile, Thing launcher)
         {
             if (!enabledIS)
@@ -121,7 +151,29 @@ namespace CombatExtended.Compatibility
             }
             return false;
         }
-
+        public static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing thing)
+        {
+            if (!enabledSZ)
+            {
+                return null;
+            }
+            return shieldZonesCallback.SelectMany(cb => cb(thing));
+        }
+        public static bool PawnUnsuppresableFromCallback(Pawn pawn, IntVec3 origin)
+        {
+            if (!enabledPUF)
+            {
+                return false;
+            }
+            foreach (var cb in pawnUnsuppresableFromCallback)
+            {
+                if (cb(pawn, origin))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public static bool BeforeCollideWithCallback(ProjectileCE projectile, Thing collideWith)
         {
             if (!enabledBCW)
@@ -137,7 +189,6 @@ namespace CombatExtended.Compatibility
             }
             return false;
         }
-
         public static Vector3 GetExactPosition(Vector3 origin, Vector3 curPosition, Vector3 shieldPosition, float radiusSq)
         {
             Vector3 velocity = curPosition - origin;
