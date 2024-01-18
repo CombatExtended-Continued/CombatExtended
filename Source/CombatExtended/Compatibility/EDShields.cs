@@ -49,9 +49,10 @@ namespace CombatExtended.Compatibility
         {
             /* Check if an active shield can block this projectile
              */
+            List<(Vector3, Action)> result = new List<(Vector3, Action)>();
             if (projectile.def.projectile.flyOverhead)
             {
-                yield break;
+                return result;
             }
             Thing launcher = projectile.launcher;
             Map map = projectile.Map;
@@ -87,8 +88,9 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
 
-                yield return (nep, () => OnInterception(projectile, generator, nep));
+                result.Add((nep, () => OnInterception(projectile, building, nep)));
             }
+            return result;
         }
         public static bool ImpactSomethingCallback(ProjectileCE projectile, Thing launcher)
         {
@@ -169,16 +171,17 @@ namespace CombatExtended.Compatibility
             }
             return result;
         }
-        private static void OnInterception(ProjectileCE projectile, ThingComp comp, Vector3 exactPosition)
+        private static void OnInterception(ProjectileCE projectile, Building building, Vector3 exactPosition)
         {
-            var generator = comp as Comp_ShieldGenerator;
-            HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(comp.parent.Position, comp.parent.Map, false));
+            
+            var generator = building.GetComp<Comp_ShieldGenerator>();
+            HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(building.Position, building.Map, false));
 
             int damage = (projectile.def.projectile.GetDamageAmount(projectile.launcher));
 
             generator.FieldIntegrity_Current -= damage;
-            FleckMakerCE.ThrowLightningGlow(exactPosition, comp.parent.Map, 0.5f);
-            projectile.InterceptProjectile(comp.parent, exactPosition, false);
+            FleckMakerCE.ThrowLightningGlow(exactPosition, building.Map, 0.5f);
+            projectile.InterceptProjectile(building, exactPosition, false);
         }
 
     }

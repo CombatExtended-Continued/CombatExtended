@@ -41,16 +41,17 @@ namespace CombatExtended.Compatibility
 
         public static IEnumerable<(Vector3 IntersectionPos, Action OnIntersection)> CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
+            List<(Vector3, Action)> result = new List<(Vector3, Action)>();
             Map map = projectile.Map;
             getShields(map);
             if (!found)
             {
-                yield break;
+                return result;
             }
 
             if (projectile.launcher == null)
             {
-                yield break;
+                return result;
             }
 
             foreach (ThingComp thingComp in shields)
@@ -71,10 +72,11 @@ namespace CombatExtended.Compatibility
                 if (CE_Utility.IntersectionPoint(from, to, thingComp.parent.Position.ToVector3Shifted(), fieldRadius, out Vector3[] sect, map: map, spherical: false, catchOutbound: interceptOutgoing))
                 {
                     var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
-                    yield return (exactPosition, () => OnIntercepted(projectile, thingComp, exactPosition));
+                    result.Add((exactPosition, () => OnIntercepted(projectile, thingComp, exactPosition)));
 
                 }
             }
+            return result;
         }
         private static void OnIntercepted(ProjectileCE projectile, ThingComp interceptor, Vector3 exactPosition)
         {

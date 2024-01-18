@@ -90,24 +90,27 @@ namespace CombatExtended.Compatibility
 
         public static IEnumerable<(Vector3, Action)> AOE_CheckIntercept(ProjectileCE projectile, Vector3 from, Vector3 newExactPos)
         {
+            List<(Vector3, Action)> result = new List<(Vector3, Action)>();
             var def = projectile.def;
             if (projectile.def.projectile.flyOverhead)
             {
-                yield break;
+                return result;
             }
-            foreach (var interceptor in projectile.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>()
+            foreach (var hediff in projectile.Map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).Cast<Pawn>()
                 .SelectMany(x => x.health.hediffSet.hediffs)
-                .Where(x => x is Hediff_Overshield && x.GetType() != typeof(Hediff_Overshield)).Cast<Hediff_Overshield>())
+                .Where(x => x is Hediff_Overshield && x.GetType() != typeof(Hediff_Overshield)))
             {
+                var interceptor = hediff as Hediff_Overshield;
                 Vector3 shieldPosition = interceptor.pawn.Position.ToVector3Shifted().Yto0();
                 float radius = interceptor.OverlaySize;
                 if (CE_Utility.IntersectionPoint(from.Yto0(), newExactPos.Yto0(), shieldPosition, radius, out Vector3[] sect, false, map: projectile.Map))
                 {
                     //OnIntercepted(interceptor, projectile, sect);
                     var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
-                    yield return (exactPosition, () => OnIntercepted(interceptor, projectile, exactPosition));
+                    result.Add((exactPosition, () => OnIntercepted(hediff, projectile, exactPosition)));
                 }
             }
+            return result;
         }
 
         private static void OnIntercepted(object hediff, ProjectileCE projectile, Vector3 exactPosition)

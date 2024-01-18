@@ -50,19 +50,20 @@ namespace CombatExtended.Compatibility
 
         private static IEnumerable<(Vector3, Action)> CheckIntercept(ProjectileCE projectile, Vector3 lastExactPos, Vector3 newExactPos)
         {
+            List<(Vector3, Action)> result = new List<(Vector3, Action)>();
             if (projectile.def.projectile.flyOverhead)
             {
-                yield break;
+                return result;
             }
             IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(projectile.Map).ToList();
             if (!interceptors.Any())
             {
-                yield break;
+                return result;
             }
             var def = projectile.def;
-            foreach (var interceptor in interceptors)
+            foreach (ThingComp comp in interceptors)
             {
-
+                var interceptor = comp as CompShieldField;
                 if (!interceptor.CanFunction)
                 {
                     continue;
@@ -78,8 +79,9 @@ namespace CombatExtended.Compatibility
                 var exactPosition = intersectionPoints.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
 
 
-                yield return (exactPosition, () => OnIntercepted(projectile, interceptor, exactPosition));
+                result.Add((exactPosition, () => OnIntercepted(projectile, comp, exactPosition)));
             }
+            return result;
         }
         private static void OnIntercepted(ProjectileCE projectile, ThingComp comp, Vector3 newExactPos)
         {
