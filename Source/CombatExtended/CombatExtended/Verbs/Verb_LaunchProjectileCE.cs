@@ -1296,7 +1296,7 @@ namespace CombatExtended
 
                 foreach (Pawn pawn in shotSource.ToIntVec3().PawnsNearSegment(targetLoc, caster.Map, 1, behind: false, infront: true))
                 {
-                    if (pawn.Faction != null && !ShooterPawn?.HostileTo(pawn) ?? false)
+                    if (pawn.Faction != null && ShooterPawn != null && !ShooterPawn.HostileTo(pawn))
                     {
                         if (pawn == ShooterPawn || pawn.Downed)
                         {
