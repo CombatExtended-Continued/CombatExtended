@@ -344,11 +344,11 @@ namespace CombatExtended
                     }
                     else
                     {
-                        if (isFireDmg)
-			{
+                        if (isFireDmg)   
+                        {
                             armorDamage = armor.GetStatValue(StatDefOf.Flammability, true) * dmgAmount;
                         }
-			else
+                        else
                         {
                             if (penAmount == 0 || armorAmount == 0)
                             {
@@ -359,7 +359,7 @@ namespace CombatExtended
                                 armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
                             }
                         }
-			armorDamage *= HardArmorDamageFactor;
+                        armorDamage *= HardArmorDamageFactor;
                     }
 
                     TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);
