@@ -344,7 +344,7 @@ namespace CombatExtended
                     }
                     else
                     {
-                        if (isFireDmg)   
+                        if (isFireDmg)
                         {
                             armorDamage = armor.GetStatValue(StatDefOf.Flammability, true) * dmgAmount;
                         }
