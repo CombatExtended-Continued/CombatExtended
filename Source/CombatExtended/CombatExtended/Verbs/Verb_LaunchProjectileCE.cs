@@ -1296,7 +1296,7 @@ namespace CombatExtended
 
                 foreach (Pawn pawn in shotSource.ToIntVec3().PawnsNearSegment(targetLoc, caster.Map, 1, behind: false, infront: true))
                 {
-                    Log.Messsage($"Pawn: {pawn} may be in the way");
+                    Log.Message($"Pawn: {pawn} may be in the way");
                     if (pawn.Faction != null && ShooterPawn != null && !ShooterPawn.HostileTo(pawn))
                     {
                         if (pawn == ShooterPawn || pawn.Downed)
@@ -1314,7 +1314,7 @@ namespace CombatExtended
 
                 foreach (Pawn pawn in shotSource.ToIntVec3().PawnsNearSegment(targetLoc, caster.Map, 2, behind: false, infront: true))
                 {
-                    Log.Messsage($"Pawn: {pawn} may be in the way (2)");
+                    Log.Message($"Pawn: {pawn} may be in the way (2)");
                     if (pawn.Faction != null && ShooterPawn != null && !ShooterPawn.HostileTo(pawn))
                     {
                         if (pawn == ShooterPawn || pawn.Downed)
