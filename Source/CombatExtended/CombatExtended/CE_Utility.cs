@@ -887,6 +887,10 @@ namespace CombatExtended
 
         public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
         {
+            if (pawn.Map == null)
+            {
+                return;
+            }
             MoteThrownAttached moteThrown = (MoteThrownAttached)ThingMaker.MakeThing(moteDef);
             moteThrown.Attach(pawn);
             moteThrown.exactPosition = pawn.DrawPos;
