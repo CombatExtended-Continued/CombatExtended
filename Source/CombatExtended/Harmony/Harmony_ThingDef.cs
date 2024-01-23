@@ -132,17 +132,10 @@ namespace CombatExtended.HarmonyCE
                 List<DefModExtension> list = __instance.modExtensions.Where(e => e.GetType() == typeof(PartialArmorExt)).ToList();
                 if (list.Count > 1)
                 {
-                    PartialArmorExt mergedExt = new PartialArmorExt();
-                    mergedExt.stats = new List<ApparelPartialStat>();
-                    foreach (PartialArmorExt ext in list)
+                    for (int i = 0; i < list.Count - 1; i++)
                     {
-                        foreach (ApparelPartialStat partial in ext.stats)
-                        {
-                            mergedExt.stats.Add(partial);
-                        }
-                        __instance.modExtensions.Remove(ext);
+                        __instance.modExtensions.Remove(list[i]);
                     }
-                    __instance.modExtensions.Add(mergedExt);
                 }
             }
         }
