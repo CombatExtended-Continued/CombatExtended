@@ -120,4 +120,31 @@ namespace CombatExtended.HarmonyCE
             }
         }
     }
+
+    [HarmonyPatch(typeof(ThingDef), "PostLoad")]
+    static class PostLoad_PostFix
+    {
+        [HarmonyPostfix]
+        public static void Postfix(ThingDef __instance)
+        {
+            if (__instance.HasModExtension<PartialArmorExt>())
+            {
+                List<DefModExtension> list = __instance.modExtensions.Where(e => e.GetType() == typeof(PartialArmorExt)).ToList();
+                if (list.Count > 1)
+                {
+                    PartialArmorExt mergedExt = new PartialArmorExt();
+                    mergedExt.stats = new List<ApparelPartialStat>();
+                    foreach (PartialArmorExt ext in list)
+                    {
+                        foreach (ApparelPartialStat partial in ext.stats)
+                        {
+                            mergedExt.stats.Add(partial);
+                        }
+                        __instance.modExtensions.Remove(ext);
+                    }
+                    __instance.modExtensions.Add(mergedExt);
+                }
+            }
+        }
+    }
 }
