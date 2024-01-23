@@ -415,7 +415,7 @@ namespace CombatExtended
 
         #region Misc
         /// <summary>
-        /// Generates a random Vector2 in a circle with given radius
+        /// Returns the last occurance (instead of first) of a modextension
         /// </summary>
 
         public static T GetLastModExtension<T>(this Def def) where T : DefModExtension
