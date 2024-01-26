@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royal Arsenal: Specialty Weapons</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+			<!-- ================== Projectiles ================== -->
+			
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseProjectileNeolithic">
+				<defName>ThunderJavelin_Thrown</defName>
+				<graphicData>
+					<texPath>Things/Projectiles/ThunderJavelinProjectile</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<label>thunder javelin (thrown)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bomb</damageDef>
+					<damageAmountBase>80</damageAmountBase>
+					<speed>16</speed>
+					<explosionRadius>1</explosionRadius>
+					<soundExplode>MortarBomb_Explode</soundExplode>
+				</projectile>
+			</ThingDef>
+
+		
+			<!-- ==================== Recipes ========================== -->
+			<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				<defName>MakeAmmo_ThunderJavelins</defName>
+				<label>make thunder javelin x5</label>
+				<description>Craft 5 thunder javelins.</description>
+				<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+				<workSkill>Crafting</workSkill>
+				<recipeUsers>
+					<li>FabricationBench</li>
+				</recipeUsers>
+				<researchPrerequisite>RA_ExperimentalRoyal</researchPrerequisite>
+				<effectWorking>Smelt</effectWorking>
+				<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+				<workAmount>7500</workAmount>	
+				<jobString>Making thunder javelins.</jobString>
+				<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Plasteel</li>
+						</thingDefs>
+					</filter>
+					<count>25</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Uranium</li>
+						</thingDefs>
+					</filter>
+					<count>20</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+					<count>10</count>
+				</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Plasteel</li>
+						<li>Uranium</li>
+							<li>ComponentIndustrial</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<RA_ThunderJavelins>5</RA_ThunderJavelins>
+				</products>
+			</RecipeDef>
+	
+			</value>
+		</match>
+	</Operation>
+  
+</Patch>

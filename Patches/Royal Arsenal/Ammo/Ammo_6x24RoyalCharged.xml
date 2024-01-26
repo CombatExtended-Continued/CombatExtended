@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royal Arsenal</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+			<value>
+
+			<!-- ==================== AmmoSet ========================== -->
+
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_6x24mmRoyal</defName>
+				<label>6x24mm Charged</label>
+				<ammoTypes>
+					<Ammo_6x24mmCharged>Bullet_6x24mmRoyal</Ammo_6x24mmCharged>
+					<Ammo_6x24mmCharged_AP>Bullet_6x24mmRoyal_AP</Ammo_6x24mmCharged_AP>
+					<Ammo_6x24mmCharged_Ion>Bullet_6x24mmRoyal_Ion</Ammo_6x24mmCharged_Ion>
+				</ammoTypes>
+				<similarTo>AmmoSet_ChargedRifle</similarTo>
+			</CombatExtended.AmmoSetDef>
+
+			<!-- ================== Projectiles ================== -->
+
+			<ThingDef Class="CombatExtended.AmmoDef" Name="Base6x24mmRoyalBullet" ParentName="BaseBulletCE" Abstract="true">
+				<graphicData>
+					<texPath>Things/Projectiles/RoyalChargeShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<speed>160</speed>
+				</projectile>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmRoyalBullet">
+				<defName>Bullet_6x24mmRoyal</defName>
+				<label>6x24mm Royal Charged bullet</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageAmountBase>15</damageAmountBase>
+					<secondaryDamage>
+					<li>
+						<def>Bomb_Secondary</def>
+						<amount>5</amount>
+					</li>
+					</secondaryDamage>
+					<armorPenetrationSharp>16</armorPenetrationSharp>
+					<armorPenetrationBlunt>28</armorPenetrationBlunt>
+				</projectile>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmRoyalBullet">
+				<defName>Bullet_6x24mmRoyal_AP</defName>
+				<label>6x24mm Royal Charged bullet (Conc.)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageAmountBase>12</damageAmountBase>
+					<secondaryDamage>
+					<li>
+						<def>Bomb_Secondary</def>
+						<amount>3</amount>
+					</li>
+					</secondaryDamage>
+					<armorPenetrationSharp>35</armorPenetrationSharp>
+					<armorPenetrationBlunt>30</armorPenetrationBlunt>
+				</projectile>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmRoyalBullet">
+				<defName>Bullet_6x24mmRoyal_Ion</defName>
+				<label>6x24mm Royal Charged bullet (Ion)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageAmountBase>10</damageAmountBase>
+					<secondaryDamage>
+					<li>
+						<def>EMP</def>
+						<amount>6</amount>
+					</li>
+					</secondaryDamage>
+					<armorPenetrationSharp>25</armorPenetrationSharp>
+					<armorPenetrationBlunt>27</armorPenetrationBlunt>
+					<empShieldBreakChance>0.3</empShieldBreakChance>
+				</projectile>
+			</ThingDef>
+
+			</value>
+		</match>
+	</Operation>
+</Patch>

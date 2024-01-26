@@ -437,6 +437,8 @@ Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Rockmen race    |
+Royal Arsenal |
+Royal Arsenal - Speciality Weapons  |
 Royal Warcaskets   |
 Saclean Race    |
 Sanguinary Animals   |
