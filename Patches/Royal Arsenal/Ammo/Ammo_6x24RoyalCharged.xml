@@ -1,324 +1,89 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-<Operation Class="PatchOperationFindMod">
+	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Royal Arsenal</li>
 		</mods>
-		<match Class="PatchOperationSequence">
-			<operations>
-			
-				<li Class="PatchOperationAdd">
-					<xpath>Defs</xpath>
-					<value>
+		<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+			<value>
 
-  <ThingCategoryDef>
-    <defName>Ammo6x24mmRoyalCharged</defName>
-    <label>6x24mm Royal charged</label>
-    <parent>AmmoAdvanced</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
-  </ThingCategoryDef>
+			<!-- ==================== AmmoSet ========================== -->
 
-  <!-- ==================== AmmoSet ========================== -->
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_6x24mmRoyal</defName>
+				<label>6x24mm Charged</label>
+				<ammoTypes>
+					<Ammo_6x24mmCharged>Bullet_6x24mmRoyal</Ammo_6x24mmCharged>
+					<Ammo_6x24mmCharged_AP>Bullet_6x24mmRoyal_AP</Ammo_6x24mmCharged_AP>
+					<Ammo_6x24mmCharged_Ion>Bullet_6x24mmRoyal_Ion</Ammo_6x24mmCharged_Ion>
+				</ammoTypes>
+				<similarTo>AmmoSet_ChargedRifle</similarTo>
+			</CombatExtended.AmmoSetDef>
 
-  <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_6x24mmRoyal</defName>
-    <label>6x24mm Royal Charged</label>
-    <ammoTypes>
-      <Ammo_6x24mmRoyal>Bullet_6x24mmRoyal</Ammo_6x24mmRoyal>
-      <Ammo_6x24mmRoyal_AP>Bullet_6x24mmRoyal_AP</Ammo_6x24mmRoyal_AP>
-      <Ammo_6x24mmRoyal_Ion>Bullet_6x24mmRoyal_Ion</Ammo_6x24mmRoyal_Ion>
-    </ammoTypes>
-  </CombatExtended.AmmoSetDef>
+			<!-- ================== Projectiles ================== -->
 
-  <!-- ==================== Ammo ========================== -->
+			<ThingDef Class="CombatExtended.AmmoDef" Name="Base6x24mmRoyalBullet" ParentName="BaseBulletCE" Abstract="true">
+				<graphicData>
+					<texPath>Things/Projectiles/RoyalChargeShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<speed>160</speed>
+				</projectile>
+			</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="6x24mmRoyalChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
-    <description>Specialty royal charged ammo designed by the Empire during its prime. Can be used by royal charge rifles.</description>
-    <statBases>
-      <Mass>0.01</Mass>
-      <Bulk>0.01</Bulk>
-    </statBases>
-    <tradeTags>
-      <li>CE_AutoEnableTrade</li>
-      <li>CE_AutoEnableCrafting_FabricationBench</li>
-    </tradeTags>
-    <thingCategories>
-      <li>Ammo6x24mmRoyalCharged</li>
-    </thingCategories>
-    <stackLimit>5000</stackLimit>		
-  </ThingDef>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmRoyalBullet">
+				<defName>Bullet_6x24mmRoyal</defName>
+				<label>6x24mm Royal Charged bullet</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageAmountBase>15</damageAmountBase>
+					<secondaryDamage>
+					<li>
+						<def>Bomb_Secondary</def>
+						<amount>5</amount>
+					</li>
+					</secondaryDamage>
+					<armorPenetrationSharp>16</armorPenetrationSharp>
+					<armorPenetrationBlunt>28</armorPenetrationBlunt>
+				</projectile>
+			</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="6x24mmRoyalChargedBase">
-    <defName>Ammo_6x24mmRoyal</defName>
-    <label>6x24mm Royal charged cartridge</label>
-    <graphicData>
-      <texPath>Things/Ammo/Charged/MediumRegular</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>1</MarketValue>
-    </statBases>
-    <ammoClass>Charged</ammoClass>
-  </ThingDef>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmRoyalBullet">
+				<defName>Bullet_6x24mmRoyal_AP</defName>
+				<label>6x24mm Royal Charged bullet (Conc.)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageAmountBase>12</damageAmountBase>
+					<secondaryDamage>
+					<li>
+						<def>Bomb_Secondary</def>
+						<amount>3</amount>
+					</li>
+					</secondaryDamage>
+					<armorPenetrationSharp>35</armorPenetrationSharp>
+					<armorPenetrationBlunt>30</armorPenetrationBlunt>
+				</projectile>
+			</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="6x24mmRoyalChargedBase">
-    <defName>Ammo_6x24mmRoyal_AP</defName>
-    <label>6x24mm Royal charged cartridge (Conc.)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Charged/MediumConc</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>1</MarketValue>
-    </statBases>
-    <ammoClass>ChargedAP</ammoClass>
-  </ThingDef>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmRoyalBullet">
+				<defName>Bullet_6x24mmRoyal_Ion</defName>
+				<label>6x24mm Royal Charged bullet (Ion)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageAmountBase>10</damageAmountBase>
+					<secondaryDamage>
+					<li>
+						<def>EMP</def>
+						<amount>6</amount>
+					</li>
+					</secondaryDamage>
+					<armorPenetrationSharp>25</armorPenetrationSharp>
+					<armorPenetrationBlunt>27</armorPenetrationBlunt>
+					<empShieldBreakChance>0.3</empShieldBreakChance>
+				</projectile>
+			</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="6x24mmRoyalChargedBase">
-    <defName>Ammo_6x24mmRoyal_Ion</defName>
-    <label>6x24mm Royal charged cartridge (Ion)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Charged/MediumIon</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>1</MarketValue>
-    </statBases>
-    <ammoClass>Ionized</ammoClass>
-    <generateAllowChance>0</generateAllowChance>
-  </ThingDef>
-
-  <!-- ================== Projectiles ================== -->
-
-  <ThingDef Class="CombatExtended.AmmoDef" Name="Base6x24mmRoyalBullet" ParentName="BaseBulletCE" Abstract="true">
-    <graphicData>
-      <texPath>Things/Projectiles/RoyalChargeShot</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Bullet</damageDef>
-      <speed>160</speed>
-    </projectile>
-  </ThingDef>
-
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmRoyalBullet">
-    <defName>Bullet_6x24mmRoyal</defName>
-    <label>6x24mm Royal charged bullet</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>15</damageAmountBase>
-      <secondaryDamage>
-        <li>
-          <def>Bomb_Secondary</def>
-          <amount>5</amount>
-        </li>
-      </secondaryDamage>
-      <armorPenetrationSharp>16</armorPenetrationSharp>
-      <armorPenetrationBlunt>28</armorPenetrationBlunt>
-    </projectile>
-  </ThingDef>
-
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmRoyalBullet">
-    <defName>Bullet_6x24mmRoyal_AP</defName>
-    <label>6x24mm Royal charged bullet (Conc.)</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>12</damageAmountBase>
-      <secondaryDamage>
-        <li>
-          <def>Bomb_Secondary</def>
-          <amount>3</amount>
-        </li>
-      </secondaryDamage>
-      <armorPenetrationSharp>35</armorPenetrationSharp>
-      <armorPenetrationBlunt>30</armorPenetrationBlunt>
-    </projectile>
-  </ThingDef>
-
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmRoyalBullet">
-    <defName>Bullet_6x24mmRoyal_Ion</defName>
-    <label>6x24mm Royal charged bullet (Ion)</label>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>10</damageAmountBase>
-      <secondaryDamage>
-        <li>
-          <def>EMP</def>
-          <amount>6</amount>
-        </li>
-      </secondaryDamage>
-      <armorPenetrationSharp>25</armorPenetrationSharp>
-      <armorPenetrationBlunt>27</armorPenetrationBlunt>
-      <empShieldBreakChance>0.3</empShieldBreakChance>
-    </projectile>
-  </ThingDef>
-
-  <!-- ==================== Recipes ========================== -->
-
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_6x24mmRoyal</defName>
-    <label>make 6x24mm Royal charged cartridge x500</label>
-    <description>Craft 500 6x24mm Royal charged cartridges.</description>
-	<researchPrerequisite>RA_RoyalChargedShot</researchPrerequisite>
-    <jobString>Making 6x24mm Royal charged cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Plasteel</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>6</count>
-      </li>	  
-	  <li>
-        <filter>
-          <thingDefs>
-            <li>Gold</li>
-          </thingDefs>
-        </filter>
-        <count>1</count>
-      </li>	  
-      <li>
-        <filter>
-          <thingDefs>
-            <li>ComponentIndustrial</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Plasteel</li>
-        <li>Steel</li>	
-		<li>Gold</li>			
-        <li>ComponentIndustrial</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_6x24mmRoyal>500</Ammo_6x24mmRoyal>
-    </products>
-    <workAmount>8600</workAmount>		
-  </RecipeDef>
-
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_6x24mmRoyal_AP</defName>
-    <label>make 6x24mm Royal charged (Conc.) cartridge x500</label>
-    <description>Craft 500 6x24mm Royal charged (Conc.) cartridges.</description>
-	<researchPrerequisite>RA_RoyalChargedShot</researchPrerequisite>
-    <jobString>Making 6x24mm Royal charged (Conc.) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Plasteel</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>6</count>
-      </li>	  
-	  <li>
-        <filter>
-          <thingDefs>
-            <li>Gold</li>
-          </thingDefs>
-        </filter>
-        <count>1</count>
-      </li>	  
-      <li>
-        <filter>
-          <thingDefs>
-            <li>ComponentIndustrial</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Plasteel</li>
-        <li>Steel</li>	
-		<li>Gold</li>			
-        <li>ComponentIndustrial</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_6x24mmRoyal_AP>500</Ammo_6x24mmRoyal_AP>
-    </products>
-    <workAmount>8600</workAmount>		
-  </RecipeDef>
-
-  <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_6x24mmRoyal_Ion</defName>
-    <label>make 6x24mm Royal charged (Ion) cartridge x500</label>
-    <description>Craft 500 6x24mm Royal charged (Ion) cartridges.</description>
-	<researchPrerequisite>RA_RoyalChargedShot</researchPrerequisite>
-    <jobString>Making 6x24mm Royal charged (Ion) cartridges.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Plasteel</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>6</count>
-      </li>	  
-	  <li>
-        <filter>
-          <thingDefs>
-            <li>Gold</li>
-          </thingDefs>
-        </filter>
-        <count>1</count>
-      </li>	  
-      <li>
-        <filter>
-          <thingDefs>
-            <li>ComponentIndustrial</li>
-          </thingDefs>
-        </filter>
-        <count>8</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Plasteel</li>
-        <li>Steel</li>	
-		<li>Gold</li>			
-        <li>ComponentIndustrial</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_6x24mmRoyal_Ion>500</Ammo_6x24mmRoyal_Ion>
-    </products>
-    <workAmount>8600</workAmount>	
-  </RecipeDef>
-
-  </value>
-</li>
-
-</operations>
-</match>
-</Operation>
-  
+			</value>
+		</match>
+	</Operation>
 </Patch>
