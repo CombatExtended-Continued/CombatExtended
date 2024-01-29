@@ -414,6 +414,25 @@ namespace CombatExtended
         #endregion
 
         #region Misc
+        /// <summary>
+        /// Returns the last occurance (instead of first) of a modextension
+        /// </summary>
+
+        public static T GetLastModExtension<T>(this Def def) where T : DefModExtension
+        {
+            if (def.modExtensions == null)
+            {
+                return null;
+            }
+            for (int i = def.modExtensions.Count - 1; i >= 0; i--)
+            {
+                if (def.modExtensions[i] is T)
+                {
+                    return def.modExtensions[i] as T;
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Gets the true rating of armor with partial stats taken into account
