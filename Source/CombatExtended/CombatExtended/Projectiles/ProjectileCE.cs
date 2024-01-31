@@ -1210,16 +1210,16 @@ namespace CombatExtended
             LastPos = ExactPosition;
             ticksToImpact--;
             flightTicks++;
-            Vector3 nextPosition;
             if (lerpPosition)
             {
                 var v = Vec2Position();
-                nextPosition = new Vector3(v.x, GetHeightAtTicks(flightTicks), v.y);
+                ExactPosition = new Vector3(v.x, GetHeightAtTicks(flightTicks), v.y);
             }
             else
             {
-                nextPosition = MoveForward();
+                ExactPosition = MoveForward();
             }
+            Vector3 nextPosition = ExactPosition;
             if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
@@ -1249,7 +1249,6 @@ namespace CombatExtended
                 Destroy();
                 return;
             }
-            ExactPosition = nextPosition;
             if (CheckForCollisionBetween())
             {
                 return;
