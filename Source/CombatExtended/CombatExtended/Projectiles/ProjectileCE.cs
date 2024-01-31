@@ -152,6 +152,7 @@ namespace CombatExtended
         {
             get
             {
+                Log.ErrorOnce("ProjectileCE.Height is deprecated, use ProjectileCE.ExactPosition.y instead", 12748107);
                 return ExactPosition.y;
             }
         }
