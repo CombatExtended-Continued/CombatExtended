@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,11 +31,6 @@ namespace CombatExtended
         public float airborneSuppressionFactor = 1;
         public float dangerFactor = 1;
 
-        public FloatRange ballisticCoefficient = new FloatRange(1f, 1f);
-        public FloatRange mass = new FloatRange(1f, 1f);
-        public FloatRange diameter = new FloatRange(1f, 1f);
-
-        public bool lerpPosition = true;
         public ThingDef detonateMoteDef;
         public FleckDef detonateFleckDef;
         public float detonateEffectsScaleOverride = -1;
