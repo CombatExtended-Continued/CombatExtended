@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Races Expanded - Fungoid</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Space Suit === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="VREF_ApparelArmorAstrosuitBase"]/statBases</xpath>
+					<value>
+						<Bulk>40</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VREF_ApparelArmorAstrosuitBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VREF_ApparelArmorAstrosuitBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>28</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="VREF_ApparelArmorAstrosuitBase"]/equippedStatOffsets/MoveSpeed</xpath>
+					<value>
+						<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="VREF_ApparelArmorAstrosuitBase"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="VREF_ApparelArmorAstrosuitBase"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical Supplements (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Give bandages appropriate bulk. -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="MSBandage" or
+						defName="MSASBandage" or
+						defName="MSNanoBandage"
+						]/statBases</xpath>
+					<value>
+						<Bulk>0.1</Bulk>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

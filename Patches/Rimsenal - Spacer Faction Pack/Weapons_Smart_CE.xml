@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimsenal - Spacer Faction Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Melee Tools =========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="Gun_SmartRevolver" or
+						defName="Gun_SmartAutoPistol" or
+						defName="Gun_SmartMachinePistol"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="Gun_SmartBoltActionRifle" or
+						defName="Gun_SmartPumpShotgun" or
+						defName="Gun_SmartChainShotgun" or
+						defName="Gun_SmartHeavySMG" or
+						defName="Gun_SmartLMG" or
+						defName="Gun_SmartAssaultRifle" or
+						defName="Gun_SniperRifleSmart" or
+						defName="Gun_SmartChargeRifle" or
+						defName="Gun_SmartChargeLance"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Gun_SmartMinigun"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrels</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Stats =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="Gun_SmartRevolver" or
+						defName="Gun_SmartAutoPistol" or
+						defName="Gun_SmartMachinePistol" or
+						defName="Gun_SmartBoltActionRifle" or
+						defName="Gun_SmartPumpShotgun" or
+						defName="Gun_SmartChainShotgun" or
+						defName="Gun_SmartHeavySMG" or
+						defName="Gun_SmartLMG" or
+						defName="Gun_SmartAssaultRifle" or
+						defName="Gun_SniperRifleSmart" or
+						defName="Gun_SmartChargeRifle" or
+						defName="Gun_SmartChargeLance" or
+						defName="Gun_SmartMinigun"
+						]/statBases </xpath>
+					<value>
+						<NightVisionEfficiency_Weapon>0.50</NightVisionEfficiency_Weapon>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="Gun_SmartRevolver" or
+						defName="Gun_SmartAutoPistol" or
+						defName="Gun_SmartMachinePistol" or
+						defName="Gun_SmartBoltActionRifle" or
+						defName="Gun_SmartPumpShotgun" or
+						defName="Gun_SmartChainShotgun" or
+						defName="Gun_SmartHeavySMG" or
+						defName="Gun_SmartLMG" or
+						defName="Gun_SmartAssaultRifle" or
+						defName="Gun_SniperRifleSmart" or
+						defName="Gun_SmartChargeRifle" or
+						defName="Gun_SmartChargeLance" or
+						defName="Gun_SmartMinigun"
+						]/equippedStatOffsets </xpath>
+					<value>
+						<AimingAccuracy>0.5</AimingAccuracy>
+					</value>
+				</li>
+
+				<!-- ========== Smart Revolver =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartRevolver</defName>
+					<statBases>
+						<SightsEfficiency>0.9</SightsEfficiency>
+						<ShotSpread>0.135</ShotSpread><!--25% reduction-->
+						<SwayFactor>0.635</SwayFactor><!--25% reduction-->
+						<Bulk>2.41</Bulk>
+						<Mass>1.39</Mass>
+						<RangedWeapon_Cooldown>0.51</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.76</recoilAmount><!--50% reduction-->
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_44Magnum_HV_FMJ</defaultProjectile>
+						<warmupTime>0.4</warmupTime>
+						<range>23</range>
+						<soundCast>Shot_Revolver</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadTime>3.6</reloadTime>
+						<ammoSet>AmmoSet_44Magnum_HV</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_Sidearm</li>
+						<li>CE_AI_Pistol</li>
+						<li>CE_OneHandedWeapon</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart Pistol =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartAutoPistol</defName>
+					<statBases>
+						<SightsEfficiency>0.9</SightsEfficiency>
+						<ShotSpread>0.13</ShotSpread>
+						<SwayFactor>0.80</SwayFactor>
+						<Bulk>2.10</Bulk>
+						<Mass>1.11</Mass>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.89</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
+						<warmupTime>0.4</warmupTime>
+						<range>23</range>
+						<soundCast>Shot_Autopistol</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>14</magazineSize>
+						<reloadTime>3.0</reloadTime>
+						<ammoSet>AmmoSet_FN57x28mm</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_Sidearm</li>
+						<li>CE_AI_Pistol</li>
+						<li>CE_OneHandedWeapon</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart Bolt Action =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartBoltActionRifle</defName>
+					<statBases>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.02</ShotSpread>
+						<SwayFactor>1.26</SwayFactor>
+						<Bulk>9.50</Bulk>
+						<Mass>4.19</Mass>
+						<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.97</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_277Fury_FMJ</defaultProjectile>
+						<warmupTime>0.9</warmupTime>
+						<range>68</range>
+						<soundCast>Shot_BoltActionRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>3.0</reloadTime>
+						<ammoSet>AmmoSet_277Fury</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_Sidearm</li>
+						<li>CE_AI_Pistol</li>
+						<li>CE_OneHandedWeapon</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart MP =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartMachinePistol</defName>
+					<statBases>
+						<SightsEfficiency>0.9</SightsEfficiency>
+						<ShotSpread>0.11</ShotSpread>
+						<SwayFactor>1.45</SwayFactor>
+						<Bulk>2.95</Bulk>
+						<Mass>2.84</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.57</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
+						<warmupTime>0.4</warmupTime>
+						<range>21</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<soundCast>Shot_MachinePistol</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>3.0</reloadTime>
+						<ammoSet>AmmoSet_FN57x28mm</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_Pistol</li>
+						<li>CE_OneHandedWeapon</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart Pump =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartPumpShotgun</defName>
+					<statBases>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.11</ShotSpread>
+						<SwayFactor>0.90</SwayFactor>
+						<Bulk>9.00</Bulk>
+						<Mass>3.00</Mass>
+						<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.58</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+						<warmupTime>0.4</warmupTime>
+						<range>18</range>
+						<soundCast>Shot_Shotgun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<reloadTime>0.45</reloadTime>
+						<ammoSet>AmmoSet_12Gauge</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>AdvancedGun</li>
+						<li>CE_AI_BROOM</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart Chain =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartChainShotgun</defName>
+					<statBases>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.11</ShotSpread>
+						<SwayFactor>0.95</SwayFactor>
+						<Bulk>6.70</Bulk>
+						<Mass>3.50</Mass>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.46</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+						<warmupTime>0.4</warmupTime>
+						<range>18</range>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+						<soundCast>Shot_Shotgun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>9</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_12Gauge</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>AdvancedGun</li>
+						<li>CE_AI_BROOM</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart SMG =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartHeavySMG</defName>
+					<statBases>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.11</ShotSpread>
+						<SwayFactor>0.71</SwayFactor>
+						<Bulk>4.50</Bulk>
+						<Mass>2.5</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.58</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
+						<warmupTime>0.4</warmupTime>
+						<range>31</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+						<soundCast>Shot_Minigun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>50</magazineSize>
+						<reloadTime>3.0</reloadTime>
+						<ammoSet>AmmoSet_FN57x28mm</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_SMG</li>
+						<li>CE_AI_AssaultWeapon</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart MG =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartLMG</defName>
+					<statBases>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.04</ShotSpread>
+						<SwayFactor>1.60</SwayFactor>
+						<Bulk>12.90</Bulk>
+						<Mass>8.70</Mass>
+						<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.66</recoilAmount><!--Halved from 1.33-->
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_277Fury_FMJ</defaultProjectile>
+						<warmupTime>1.1</warmupTime>
+						<range>68</range>
+						<burstShotCount>10</burstShotCount>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+						<soundCast>Shot_Minigun</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>100</magazineSize>
+						<reloadTime>5.1</reloadTime>
+						<ammoSet>AmmoSet_277Fury</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_MachineGun</li>
+						<li>CE_AI_Suppressive</li>
+						<li>AdvancedGun</li>
+						<li>Bipod_LMG</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart Rifle =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartAssaultRifle</defName>
+					<statBases>
+						<WorkToMake>39500</WorkToMake>
+						<SightsEfficiency>1.20</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.00</SwayFactor>
+						<Bulk>9.00</Bulk>
+						<Mass>3.40</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.11</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_277Fury_FMJ</defaultProjectile>
+						<warmupTime>0.9</warmupTime>
+						<range>62</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<soundCast>Shot_AssaultRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>3.0</reloadTime>
+						<ammoSet>AmmoSet_277Fury</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_Rifle</li>
+						<li>CE_AI_AssaultWeapon</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart Sniper Rifle =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SniperRifleSmart</defName>
+					<statBases>
+						<SightsEfficiency>4</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>0.98</SwayFactor>
+						<Bulk>11.92</Bulk>
+						<Mass>6.8</Mass>
+						<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
+						<warmupTime>1.6</warmupTime>
+						<range>86</range>
+						<soundCast>Shot_SniperRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadTime>3.0</reloadTime>
+						<ammoSet>AmmoSet_338Lapua</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_Rifle</li>
+						<li>AdvancedGun</li>
+						<li>Bipod_DMR</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Minigun =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartMinigun</defName>
+					<statBases>
+						<SightsEfficiency>1.20</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>2.42</SwayFactor>
+						<Bulk>8.02</Bulk>
+						<Mass>20.00</Mass>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.49</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_277Fury_FMJ</defaultProjectile>
+						<warmupTime>1.9</warmupTime>
+						<range>68</range>
+						<burstShotCount>50</burstShotCount>
+						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+						<soundCast>Shot_Minigun</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>250</magazineSize>
+						<reloadTime>7.1</reloadTime>
+						<ammoSet>AmmoSet_277Fury</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>25</aimedBurstShotCount>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Suppressive</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart Rifle (Charge) =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartChargeRifle</defName>
+					<statBases>
+						<SightsEfficiency>1.20</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>0.90</SwayFactor>
+						<Bulk>7.00</Bulk>
+						<Mass>3.00</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.73</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+						<warmupTime>0.9</warmupTime>
+						<range>62</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<soundCast>Shot_ChargeRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>3.0</reloadTime>
+						<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_AR</li>
+						<li>CE_Rifle</li>
+						<li>CE_AI_AssaultWeapon</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Smart Lance (Charge Sniper) =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SmartChargeLance</defName>
+					<statBases>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.04</ShotSpread>
+						<SwayFactor>1.43</SwayFactor>
+						<Bulk>12.00</Bulk>
+						<Mass>8.00</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.75</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_8x50mmCharged</defaultProjectile>
+						<warmupTime>0.95</warmupTime>
+						<range>75</range>
+						<soundCast>ChargeLance_Fire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadTime>3.0</reloadTime>
+						<ammoSet>AmmoSet_8x50mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_Rifle</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Slug Spitter =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_SlugSpitter</defName>
+					<statBases>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<ShotSpread>0.09</ShotSpread>
+						<SwayFactor>0.88</SwayFactor>
+						<Bulk>13.00</Bulk>
+						<Mass>8.00</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.89</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_5x100mmCaseless_Sabot_LV</defaultProjectile>
+						<warmupTime>1.3</warmupTime>
+						<range>44</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+						<soundCast>Shot_AssaultRifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>24</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_5x100mmCaseless_LV</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>TRUE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_AR</li>
+						<li>NoSwitch</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="Gun_SlugSpitterBase"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>bayonet</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.38</cooldownTime>
+								<armorPenetrationBlunt>1.15</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.50</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Smart Sword =========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_SmartSword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.69</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.80</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>47</power>
+								<cooldownTime>1.17</cooldownTime>
+								<armorPenetrationBlunt>4.06</armorPenetrationBlunt>
+								<armorPenetrationSharp>12</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>25</power>
+								<cooldownTime>1.05</cooldownTime>
+								<armorPenetrationBlunt>2.048</armorPenetrationBlunt>
+								<armorPenetrationSharp>16</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_SmartSword"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+						<Bulk>8.5</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_SmartSword"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+					<value>
+						<MeleeCritChance>1.1</MeleeCritChance>
+						<MeleeParryChance>0.7</MeleeParryChance>
+						<MeleeDodgeChance>0.6</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<!-- ========== Stun Prod =========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_StunProd"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.59</cooldownTime>
+								<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>5</power>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>8</amount>
+										<chance>0.50</chance>
+									</li>
+								</extraMeleeDamages>
+								<cooldownTime>1.68</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_StunProd"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>0.9</MeleeCounterParryBonus>
+						<Bulk>5</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_StunProd"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.17</MeleeCritChance>
+							<MeleeParryChance>0.9</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

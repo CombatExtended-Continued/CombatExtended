@@ -1089,6 +1089,27 @@ namespace CombatExtended
             return true;
         }
 
+        /// <summary>
+        /// Highlight the explosion radius for this projectile.
+        /// This is mostly a carbon copy of the corresponding vanilla logic.
+        /// </summary>
+        public override float HighlightFieldRadiusAroundTarget(out bool needLOSToCenter)
+        {
+            needLOSToCenter = true;
+            ThingDef projectile = this.Projectile;
+            if (projectile == null)
+            {
+                return 0f;
+            }
+            float explosionRadiusForDisplay = projectile.projectile.explosionRadius + projectile.projectile.explosionRadiusDisplayPadding;
+            float forcedMissRadius = this.verbProps.ForcedMissRadius;
+            if (forcedMissRadius > 0f && this.verbProps.burstShotCount > 1)
+            {
+                explosionRadiusForDisplay += forcedMissRadius;
+            }
+            return explosionRadiusForDisplay;
+        }
+
         private float GetMinCollisionDistance(float targetDistance)
         {
             var shortRangeMinCollisionDistance = 1.5f;

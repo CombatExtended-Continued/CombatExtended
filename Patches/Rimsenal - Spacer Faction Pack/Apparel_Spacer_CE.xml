@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimsenal - Spacer Faction Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ==========  Unisuit =========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_Unisuit"]/statBases</xpath>
+					<value>
+						<Bulk>0</Bulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Unisuit"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_Unisuit"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="Apparel_Unisuit"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.625</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.625</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<!-- ==========  Smart Visor =========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_SmartVisor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_SmartVisor"]/statBases</xpath>
+					<value>
+						<NightVisionEfficiency_Apparel>0.80</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_SmartVisor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAttributeAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_SmartVisor"]/costList</xpath>
+					<attribute>Inherit</attribute>
+					<value>false</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_SmartVisor"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets Inherit="False">
+							<AimingAccuracy>0.3</AimingAccuracy>
+							<AimingDelayFactor>-0.25</AimingDelayFactor>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_SmartVisor"]/apparel</xpath>
+					<value>
+						<layers Inherit="False">
+							<li>StrappedHead</li>
+						</layers>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
+			
+			

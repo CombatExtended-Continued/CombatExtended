@@ -414,6 +414,25 @@ namespace CombatExtended
         #endregion
 
         #region Misc
+        /// <summary>
+        /// Returns the last occurance (instead of first) of a modextension
+        /// </summary>
+
+        public static T GetLastModExtension<T>(this Def def) where T : DefModExtension
+        {
+            if (def.modExtensions == null)
+            {
+                return null;
+            }
+            for (int i = def.modExtensions.Count - 1; i >= 0; i--)
+            {
+                if (def.modExtensions[i] is T)
+                {
+                    return def.modExtensions[i] as T;
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Gets the true rating of armor with partial stats taken into account
@@ -887,6 +906,10 @@ namespace CombatExtended
 
         public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
         {
+            if (pawn.Map == null)
+            {
+                return;
+            }
             MoteThrownAttached moteThrown = (MoteThrownAttached)ThingMaker.MakeThing(moteDef);
             moteThrown.Attach(pawn);
             moteThrown.exactPosition = pawn.DrawPos;
@@ -981,37 +1004,125 @@ namespace CombatExtended
 
         /// <summary>
         /// Calculates whether a line segment intercepts a radius circle. Used to get intersection points.
+        /// https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Vector_formulation
+        /// Cases:
+        ///  1. Start is inside, not catching outbound -> false
+        ///  2. Start is inside, end is inside -> false
+        ///  3. Start is inside, end is outside -> true
+        ///  4. Start is outside, end is inside -> true
+        ///  5. Start is outside, end is outside -> is closest point inside
         /// </summary>
         /// <param name="p1">The first point of the line segment</param>
         /// <param name="p2">The second point of the line segment</param>
         /// <param name="center">The center of the circle</param>
         /// <param name="radius">The radius of the circle</param>
+        /// <param name="map">Used for debug higlight</param>
         /// <returns><code>Vector3[] { Vector3.zero, Vector3.zero }</code> if there's no intersection, othrewise returns two intersection points</returns>
-        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect)
+        public static bool IntersectionPoint(Vector3 p1, Vector3 p2, Vector3 center, float radius, out Vector3[] sect, bool catchOutbound = true, bool spherical = false, Map map = null)
         {
+#if DEBUG
+            void Message(string msg)
+            {
+                if (Controller.settings.DebugDrawInterceptChecks)
+                {
+                    Log.Message(msg);
+                }
+            }
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                map?.debugDrawer.debugCells.Clear();
+                map?.debugDrawer.debugLines.Clear();
+                map?.debugDrawer.DebugDrawerUpdate();
+                map?.debugDrawer.FlashLine(p1.ToIntVec3(), p2.ToIntVec3(), color: SimpleColor.Red);
+            }
+            Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
+#endif
             sect = new Vector3[2];
             float radSq = radius * radius;
 
-            // Obtain local coords.  Our virtual center is now 0,0,0
+            // Switch to local coords.  Our virtual center is now 0,0,0
             Vector3 lp1 = p1 - center;
             Vector3 lp2 = p2 - center;
-
-            // If we obviously don't cross, early out.
-            if (lp1.sqrMagnitude < radSq && lp2.sqrMagnitude < radSq)
+            if (!spherical)
             {
-                return false;
+                // The shield wants to do a 2-d check, so discard the y component of our local start and end
+                // We do this after the conversion to local coords, so that we only have to mutate 2 vectors instead of 3.
+                // Note that center is left unmutated, because it is not used in the rest of the function.
+                // p1, p2 are left unmutated, but are only used when creating the output vectors to convert back from local coords.
+                lp1.y = 0;
+                lp2.y = 0;
+            }
+            float lp1sq = lp1.sqrMagnitude;
+            float lp2sq = lp2.sqrMagnitude;
+            Vector3 displacement;
+            float displacementSq;
+
+            if (lp1sq < radSq) // Case 1, 2, or 3
+            {
+                if (!catchOutbound || lp2sq < radSq) // Case 1 or 2
+                {
+#if DEBUG
+                    Message($"Case 1 or 2");
+#endif
+                    return false;
+                }
+                // Case 3
+#if DEBUG
+                Message($"Case 3");
+#endif
+                displacement = (lp2 - lp1);
+                displacementSq = displacement.sqrMagnitude;
+            }
+            else // case 4 or 5
+            {
+#if DEBUG
+                Message($"Case 4 or 5");
+#endif
+                displacement = (lp2 - lp1);
+                displacementSq = displacement.sqrMagnitude;
+                if (lp2sq > radSq) // case 5
+                {
+#if DEBUG
+                    Message($"Case 5");
+#endif
+                    float length = Mathf.Sqrt(displacementSq);
+                    // direction vector is a unit vector along the flight path
+                    Vector3 direction = displacement / length;
+
+                    // inline Dot product calculation
+                    // This is the length of the projection along the direction unit vector of (lp1 back toward the origin).
+                    float projectionDistance = -lp1.x * direction.x - lp1.y * direction.y - lp1.z * direction.z;
+
+                    if (projectionDistance <= 0 || projectionDistance >= length) // One of the ends is closest, and both are outside, so we didn't cross
+                    {
+#if DEBUG
+                        Log.Message($"Endpoint is closest");
+#endif
+                        return false;
+                    }
+                    Vector3 closestPoint = lp1 + (projectionDistance / length) * displacement;
+#if DEBUG
+                    Message($"Closest point {closestPoint}, distance: {closestPoint.sqrMagnitude}");
+#endif
+                    if (closestPoint.sqrMagnitude > radSq) // closest point is still outside
+                    {
+                        return false;
+                    }
+                }
             }
 
-            // direction vector
-            Vector3 direction = lp2 - lp1;
-
-            float a = direction.sqrMagnitude;
-            float b = 2 * (direction.x * lp1.x + direction.y * lp1.y + direction.z * lp1.z);
-            float c = lp1.sqrMagnitude - radSq;
+            float a = displacementSq;
+            float b = 2 * (displacement.x * lp1.x + displacement.y * lp1.y + displacement.z * lp1.z);
+            float c = lp1sq - radSq;
 
             float det = b * b - 4 * a * c; //b²-4ac
-            if (a < float.Epsilon || det < 0)  // origin and destination are the same, or the determinate is negative
+#if DEBUG
+            Message($"b = {b}, c = {c}, det = {det}");
+#endif
+            // determinate is negative
+            if (det < 0)
             {
+                Log.Error("Det < 0, but we crossed the radius of the circle");
                 //  line does not intersect
                 return false;
             }
@@ -1019,9 +1130,15 @@ namespace CombatExtended
             var sqrtdet = Mathf.Sqrt(det);
             float mu1 = (-b + sqrtdet) / (2 * a);
             float mu2 = (-b - sqrtdet) / (2 * a);
-            sect[0] = new Vector3(p1.x + mu1 * direction.x, p1.y + mu1 * direction.y, p1.z + mu1 * direction.z);
-            sect[1] = new Vector3(p1.x + mu2 * direction.x, p1.y + mu2 * direction.y, p1.z + mu2 * direction.z);
-
+            sect[0] = new Vector3(p1.x + mu1 * displacement.x, p1.y + mu1 * displacement.y, p1.z + mu1 * displacement.z);
+            sect[1] = new Vector3(p1.x + mu2 * displacement.x, p1.y + mu2 * displacement.y, p1.z + mu2 * displacement.z);
+#if DEBUG
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                map?.debugDrawer.FlashCell(sect[0].ToIntVec3(), 1, "0");
+                map?.debugDrawer.FlashCell(sect[1].ToIntVec3(), 1, "1");
+            }
+#endif
             return true;
         }
         /// <summary>

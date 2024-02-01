@@ -16,7 +16,9 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [FF] Bushi!	|
+[FSF] Advanced Bionics Expansion    |
 [FSF] More Psycast Powers   |
+[FSF] Vanilla Bionics Expansion |
 [HLX] ReGrowth - Extinct Animals Pack |
 [HLX] ReGrowth - Mutated Animals Pack |
 [JDS] Castle Walls  |
@@ -40,11 +42,13 @@ Mod |
 [O21] Outland - Redburn Pact  |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
+[RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: Utilitarian  |
 [RH2] Faction: V.O.I.D.	|
+[RH2] Metal Gear Solid  |
 [RH2] Rimmu-Nation² - Clothing	|
 [RH2] Rimmu-Nation² - Security  |
 [RH2] Rimmu-Nation² - Weapons	|
@@ -158,8 +162,10 @@ CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
 Cybernetic Warfare and Special Weapons (Continued)  |
+Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Core	|
+Det's Energy Weapons    |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
@@ -297,6 +303,7 @@ Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
 Medieval Medicines 1.4 Medieval Overhaul Edition |
+Medical Supplements |
 Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
@@ -371,6 +378,7 @@ Prostheses+ |
 Protoswords |
 PsiTech	|
 Pulsefire Turret (Continued)    |
+Pulse Weaponry  |
 Rabbie The Moonrabbit	|
 Racc Race	|
 Race to the Rim |
@@ -403,6 +411,7 @@ Rim-Effect: N7	|
 Rimedieval - Medieval Royalty   |
 Rimefeller	|
 RimEffect - Asari of the Rims	|
+Rim-Elves   |
 Rim-Gnoblins	| 
 Rim-Hivers!	|
 Rim Flood	|
@@ -419,6 +428,7 @@ Rimsenal - Enhanced Vanilla |
 Rimsenal - Federation Faction Pack |
 Rimsenal - Feral Faction Pack |
 Rimsenal - Security Pack |
+Rimsenal - Spacer Faction Pack  |
 RimTraits - General Traits  |
 RimTraits – Medieval Talents    |
 Rimworld - The Dark Descent |
@@ -427,6 +437,8 @@ Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Rockmen race    |
+Royal Arsenal |
+Royal Arsenal - Speciality Weapons  |
 Royal Warcaskets   |
 Saclean Race    |
 Sanguinary Animals   |
@@ -452,6 +464,7 @@ Star Wars - Droids |
 Star Wars - Factions |
 Starship Troopers Aracnids  |
 Steamworld Uniforms |
+Stoneborn - Delights  |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
@@ -464,6 +477,7 @@ The Joris Experience	|
 The Tuffalo |
 Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
+Thrumbo Plushie |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
 Trading Economy	|
@@ -487,7 +501,6 @@ Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
 Vanilla Base Generation Expanded    |
-Vanilla Bionics Expansion	|
 Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
 Vanilla Factions Expanded - Ancients    |
@@ -499,6 +512,7 @@ Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Pirates |
 Vanilla Factions Expanded - Settlers	|
+Vanilla Factions Expanded - Tribals |
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
@@ -510,6 +524,8 @@ Vanilla Plants Expanded - Mushrooms  |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Races Expanded - Android  |
+Vanilla Races Expanded - Archon |
+Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Phytokin  |
@@ -542,6 +558,10 @@ WarCasket Expanded  |
 WarCasket Gundam Addon  |
 Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
+Warhammer 40.000 - Imperium Weaponry    |
+Warhammer 40.000 - Imperium Materials   |
+Warhammer 40k - Genes and Psycasts  |
+Warhammer"ish" - Dryad    |
 Wasters Toxic Breather  |
 Weapons+	|
 WWII German Uniforms - V's Edit |

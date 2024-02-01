@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Memes</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Remove styles for weapons that no longer exist. -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/StyleCategoryDef/thingDefStyles/li[thingDef="Flamebow"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/StyleCategoryDef/thingDefStyles/li[thingDef="Gun_EmpLauncher"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/StyleCategoryDef/thingDefStyles/li[thingDef="Gun_ToxbombLauncher"]</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/StyleCategoryDef/thingDefStyles/li[thingDef="Gun_SmokeLauncher"]</xpath>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

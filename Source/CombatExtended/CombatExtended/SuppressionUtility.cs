@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CombatExtended.AI;
+using CombatExtended.Compatibility;
 using CombatExtended.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace CombatExtended
 
         private static DangerTracker dangerTracker;
 
-        private static List<CompProjectileInterceptor> interceptors;
+        private static IEnumerable<CompProjectileInterceptor> Interceptors(Thing pawn) => pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).Where(x => x.Props.interceptNonHostileProjectiles || !x.parent.HostileTo(pawn));
 
         public static bool TryRequestHelp(Pawn pawn)
         {
@@ -91,7 +92,6 @@ namespace CombatExtended
         {
             List<IntVec3> cellList = new List<IntVec3>(GenRadial.RadialCellsAround(pawn.Position, maxDist, true));
             IntVec3 bestPos = pawn.Position;
-            interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
             lightingTracker = pawn.Map.GetLightingTracker();
             dangerTracker = pawn.Map.GetDangerTracker();
 
@@ -203,14 +203,8 @@ namespace CombatExtended
 
             cellRating += 10f - (bonusCellRating * 10f);
 
-            for (int i = 0; i < interceptors.Count; i++)
-            {
-                CompProjectileInterceptor interceptor = interceptors[i];
-                if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
-                {
-                    cellRating += 15f;
-                }
-            }
+            // If the cell is covered by a shield and there are no enemies inside, then increases by 15 (for each such shield)
+            cellRating += InterceptorZonesFor(pawn).Where(x => !IsOccupiedByEnemies(x, pawn)).Count(x => x.Contains(cell)) * 15;
 
             // Avoid bullets and other danger sources;
             // Yet do not discard cover that is extremely good, even if it may be dangerous
@@ -246,7 +240,20 @@ namespace CombatExtended
             }
             return cellRating;
         }
-
+        public static IEnumerable<IEnumerable<IntVec3>> InterceptorZonesFor(Pawn pawn)
+        {
+            var result = Interceptors(pawn).Where(x => x.Active).Select(x => GenRadial.RadialCellsAround(x.parent.Position, x.Props.radius, true));
+            var compatibilityZones = BlockerRegistry.ShieldZonesCallback(pawn);
+            if (compatibilityZones != null)
+            {
+                result = result.Union(compatibilityZones);
+            }
+            return result;
+        }
+        private static bool IsOccupiedByEnemies(IEnumerable<IntVec3> cells, Pawn pawn)
+        {
+            return cells.Any(cell => pawn.Map.thingGrid.ThingsListAt(cell).Any(thing => (thing.HostileTo(pawn))));
+        }
         private static float GetCoverRating(Thing cover)
         {
             // Higher values mean more effective at being considered cover.

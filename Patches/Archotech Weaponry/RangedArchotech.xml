@@ -42,6 +42,48 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName = "AW_ArchotechRifle" or
+						defName = "AW_ArchotechSniper"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[
 						defName = "AW_ArchotechMinigun" or
 						defName = "AW_ArchotechShotgun" or
@@ -95,12 +137,14 @@
 						defName = "AW_ArchotechCrossbow" or
 						defName = "AW_ArchotechBow" or
 						defName = "AW_ArchotechPistol" or
-						defName = "AW_ArchotechSMG"]/modExtensions/li[@Class="ArchotechWeaponry.Defs.ArchotechDamageExtension"] </xpath>
+						defName = "AW_ArchotechSMG" or
+						defName = "AW_ArchotechRifle" or
+						defName = "AW_ArchotechSniper"
+						]/modExtensions/li[@Class="ArchotechWeaponry.Defs.ArchotechDamageExtension"] </xpath>
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[
-						defName = "AW_ArchotechVoidlauncher"]/weaponTags </xpath>
+					<xpath>/Defs/ThingDef[defName = "AW_ArchotechVoidlauncher"]/weaponTags</xpath>
 					<value>
 						<li>Patched</li>
 					</value>

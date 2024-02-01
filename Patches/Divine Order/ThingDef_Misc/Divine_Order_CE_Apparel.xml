@@ -40,10 +40,26 @@
 						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
 					</value>
 				</li>
+				
+				<!-- Zealot Robes -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderZealotRobes"]/statBases</xpath>
+					<value>
+						<Bulk>20</Bulk>
+						<WornBulk>6</WornBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderZealotRobes"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
 
 				<!-- Headstuff -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderHood"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderHood" or defName="BotchJob_DivineOrderFurHood"]/statBases</xpath>
 					<value>
 						<Bulk>3</Bulk>
 						<WornBulk>0.5</WornBulk>
@@ -51,7 +67,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderHood"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderHood" or defName="BotchJob_DivineOrderFurHood"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
 					</value>

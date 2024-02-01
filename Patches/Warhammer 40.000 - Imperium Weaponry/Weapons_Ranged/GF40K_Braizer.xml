@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer 40.000: Imperium Weaponry</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_Brazier"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_Brazier"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.6</MeleeCritChance>
+							<MeleeParryChance>1.2</MeleeParryChance>
+							<MeleeDodgeChance>0.4</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_BrazierRelic"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GF40K_BrazierRelic"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.6</MeleeCritChance>
+							<MeleeParryChance>1.2</MeleeParryChance>
+							<MeleeDodgeChance>0.4</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_BrazierRelic"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>1.85</cooldownTime>
+								<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.7</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="GF40K_BrazierRelic"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>1.85</cooldownTime>
+								<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.7</cooldownTime>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Braizer === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_Brazier</defName>
+					<statBases>
+						<Bulk>9.8</Bulk>
+						<SwayFactor>1.2</SwayFactor>
+						<ShotSpread>0.1</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.62</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.6</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_Braizer</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<range>24</range>
+						<burstShotCount>4</burstShotCount>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<soundCast>InfernoCannon_Fire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+				</li>
+
+				<!-- === Braizer - Relic === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>GF40K_BrazierRelic</defName>
+					<statBases>
+						<Bulk>9.8</Bulk>
+						<SwayFactor>1.2</SwayFactor>
+						<ShotSpread>0.1</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.62</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.6</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_Braizer_Relic</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<range>24</range>
+						<burstShotCount>4</burstShotCount>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<soundCast>InfernoCannon_Fire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

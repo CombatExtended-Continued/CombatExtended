@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Stoneborn - Delights</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Patch item bulk ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="SD_BladerootCigar" or
+						defName="SD_Feywing" or
+						defName="SD_FeywingJoint" or
+						defName="SD_MinersDelight"
+						]/statBases</xpath>
+					<value>
+						<Bulk>0.05</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="SD_Alkahest" or defName="SD_Glimmerquartz"]/statBases</xpath>
+					<value>
+						<Bulk>0.2</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="SD_BeardWax"]/statBases</xpath>
+					<value>
+						<Bulk>0.5</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="SD_RawShatterbrew" or defName="SD_FermentedShatterbrew"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+					</value>
+				</li>
+
+				<!-- ========== Patch statOffsets ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SD_ElixirHigh"]/stages/li[1]</xpath>
+					<value>
+						<statOffsets>
+							<Suppressability>-0.1</Suppressability>
+						</statOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SD_ElixirHigh"]/stages/li[2]</xpath>
+					<value>
+						<statOffsets>
+							<Suppressability>-0.25</Suppressability>
+						</statOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SD_ElixirHigh"]/stages/li[3]</xpath>
+					<value>
+						<statOffsets>
+							<Suppressability>-0.5</Suppressability>
+						</statOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SD_ElixirHigh"]/stages/li[4]</xpath>
+					<value>
+						<statOffsets>
+							<Suppressability>-10</Suppressability>
+						</statOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="SD_MDHigh"]/stages/li[1]</xpath>
+					<value>
+						<statFactors>
+							<Suppressability>0.75</Suppressability>
+						</statFactors>
+					</value>
+				</li>
+
+				<!-- ========== Patch Bottles ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="SD_ForgeLiquor" or
+						defName="SD_HiveMead" or
+						defName="SD_ShroomAle" or
+						defName="SD_Sweetwine"
+						]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>2.22</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>neck</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>3.33</cooldownTime>
+								<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="SD_ForgeLiquor" or
+						defName="SD_HiveMead" or
+						defName="SD_ShroomAle" or
+						defName="SD_Sweetwine"
+						]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+						<Bulk>0.35</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="SD_ForgeLiquor" or
+						defName="SD_HiveMead" or
+						defName="SD_ShroomAle" or
+						defName="SD_Sweetwine"
+						]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.1</MeleeCritChance>
+							<MeleeParryChance>0.33</MeleeParryChance>
+							<MeleeDodgeChance>0.07</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="SD_ForgeLiquor" or
+						defName="SD_HiveMead" or
+						defName="SD_ShroomAle" or
+						defName="SD_Sweetwine"
+						]</xpath>
+					<value>
+						<weaponTags>
+							<li>CE_OneHandedWeapon</li>
+						</weaponTags>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

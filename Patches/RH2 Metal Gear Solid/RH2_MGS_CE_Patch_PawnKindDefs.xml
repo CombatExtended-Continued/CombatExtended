@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Metal Gear Solid</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[@Name="RH_MGS_SoldierBase"]/invNutrition</xpath>
+					<value>
+						<invNutrition>1</invNutrition>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[
+						defName="RH_FOX_Infiltrator" or
+						defName="RH_MGS_GenomeSoldierBase" or
+						defName="RH_MGS_Infiltrator_Elite" or
+						defname="RH_MGS_CyborgNinja"
+						]/inventoryOptions/subOptionsChooseOne/li/countRange </xpath>
+					<value>
+						<countRange>
+							<min>0</min>
+							<max>1</max>
+						</countRange>
+					</value>
+				</li>
+
+				<!-- ========== FOX / FOXHOUND QRF Operator pawns should spawn with ammo appropriate to their primary weapon, as well as a sidearm (and its own ammo) ========== -->
+
+				<!-- First remove redundant MK23 from pawn's existing primary weaponTags -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/PawnKindDef[defName="RH_MGS_Infiltrator_Elite"]/weaponTags/li[.="RH2_FOXHOUND"]</xpath>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="RH_MGS_Infiltrator_Elite"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>6</min>
+								<max>8</max>
+							</primaryMagazineCount>
+							<sidearms>
+								<li>
+									<generateChance>1</generateChance>
+									<magazineCount>
+										<min>2</min>
+										<max>3</max>
+									</magazineCount>
+									<weaponTags>
+										<li>RN_MK23_Loud</li>
+									</weaponTags>
+								</li>
+							</sidearms>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

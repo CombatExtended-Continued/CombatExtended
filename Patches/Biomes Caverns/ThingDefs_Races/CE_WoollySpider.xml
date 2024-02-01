@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biomes! Caverns</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="BMT_WoollySpider"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>QuadrupedLow</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BMT_WoollySpider"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.26</MeleeDodgeChance>
+						<MeleeCritChance>0.2</MeleeCritChance>
+						<MeleeParryChance>0.25</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BMT_WoollySpider"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.85</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>mandibles</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.1</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.02</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

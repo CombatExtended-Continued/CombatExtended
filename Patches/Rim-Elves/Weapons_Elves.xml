@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Elves</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Elven Longbow ========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Bow_ElvenLong</defName>
+					<statBases>
+						<SightsEfficiency>0.85</SightsEfficiency>
+						<ShotSpread>0.8</ShotSpread>
+						<SwayFactor>1.8</SwayFactor>
+						<Bulk>4.00</Bulk>
+						<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+						<warmupTime>1.9</warmupTime>
+						<range>33</range>
+						<soundCast>Bow_Large</soundCast>
+					</Properties>
+					<AmmoUser>
+						<ammoSet>AmmoSet_GreatArrow</ammoSet>
+					</AmmoUser>
+					<FireModes />
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bow_ElvenLong"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.6</cooldownTime>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Elven Scimitar ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_ElvenScimitar"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.28</armorPenetrationSharp>
+								<chanceFactor>0.33</chanceFactor>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>1.25</cooldownTime>
+								<armorPenetrationBlunt>1.782</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.8</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_ElvenScimitar"]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk>
+						<MeleeCounterParryBonus>0.38</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_ElvenScimitar"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.24</MeleeCritChance>
+							<MeleeParryChance>0.38</MeleeParryChance>
+							<MeleeDodgeChance>0.28</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_ElvenScimitar"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!-- ========== Elven Chargebow ========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Bow_ElvenCharge</defName>
+					<statBases>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>1.8</SwayFactor>
+						<Bulk>3.5</Bulk>
+						<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_ChargedGreatArrow_Plasteel</defaultProjectile>
+						<warmupTime>0.85</warmupTime>
+						<range>55</range>
+						<soundCast>ChargeBowElven_Fire</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+					</Properties>
+					<AmmoUser>
+						<ammoSet>AmmoSet_ChargedGreatArrow</ammoSet>
+					</AmmoUser>
+					<FireModes />
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bow_ElvenCharge"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.6</cooldownTime>
+								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Elven Banebrand ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_BaneBrand"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<chanceFactor>0.1</chanceFactor>
+								<cooldownTime>1.5</cooldownTime>
+								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>33</power>
+								<cooldownTime>0.78</cooldownTime>
+								<armorPenetrationBlunt>2.84</armorPenetrationBlunt>
+								<armorPenetrationSharp>16</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>0.94</cooldownTime>
+								<armorPenetrationBlunt>1.28</armorPenetrationBlunt>
+								<armorPenetrationSharp>16</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_BaneBrand"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>3</Bulk>
+							<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
+						</statBases>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_BaneBrand"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.90</MeleeCritChance>
+							<MeleeParryChance>0.40</MeleeParryChance>
+							<MeleeDodgeChance>0.32</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_BaneBrand"]</xpath>
+					<value>
+						<weaponTags>
+							<li>CE_OneHandedWeapon</li>
+						</weaponTags>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

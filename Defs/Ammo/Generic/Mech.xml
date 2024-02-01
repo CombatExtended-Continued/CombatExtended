@@ -25,15 +25,23 @@
 		<defName>AmmoSet_MechCharged</defName>
 		<label>mech charged ammo</label>
 		<ammoTypes>
-			<Ammo_MechCharged>Bullet_5x35mmCharged</Ammo_MechCharged>
+			<Ammo_Mech_Charged>Bullet_5x35mmCharged</Ammo_Mech_Charged>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_MechShell</defName>
-		<label>mech shell</label>
+		<defName>AmmoSet_MechShell_Incendiary</defName>
+		<label>mech shell (Incendiary)</label>
 		<ammoTypes>
-			<Ammo_MechShell>Bullet_80x256mmFuel_Incendiary</Ammo_MechShell>
+			<Ammo_MechShell_Incendiary>Bullet_80x256mmFuel_Incendiary</Ammo_MechShell_Incendiary>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MechShell_Demo</defName>
+		<label>mech shell (Demo)</label>
+		<ammoTypes>
+			<Ammo_MechShell_Demo>Bullet_164x284mmDemo</Ammo_MechShell_Demo>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -50,6 +58,7 @@
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade_Sellable</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
 		</tradeTags>
 		<thingCategories>
 			<li>AmmoMechCharged</li>
@@ -58,7 +67,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="MechChargedAmmo">
-		<defName>Ammo_MechCharged</defName>
+		<defName>Ammo_Mech_Charged</defName>
 		<label>Mech Charged cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Charged/MediumMech</texPath>
@@ -78,6 +87,7 @@
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade_Sellable</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
 		</tradeTags>
 		<thingCategories>
 			<li>AmmoMechShell</li>
@@ -86,13 +96,14 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="MechShellAmmo">
-		<defName>Ammo_MechShell</defName>
-		<label>Mechanoid shell</label>
+		<defName>Ammo_MechShell_Incendiary</defName>
+		<label>mechanoid shell (Incendiary)</label>
 		<graphicData>
 			<texPath>Things/Ammo/FuelCell/Large</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>GrenadeIncendiary</ammoClass>
+		<detonateProjectile>Bullet_80x256mmFuel_Incendiary</detonateProjectile>
 		<comps>
 			<li Class="CompProperties_Explosive">
 				<explosiveRadius>1.9</explosiveRadius>
@@ -107,10 +118,36 @@
 		</comps>
 	</ThingDef>
 
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="MechShellAmmo">
+		<defName>Ammo_MechShell_Demo</defName>
+		<label>mech shell (Demo)</label>
+		<graphicData>
+			<texPath>Things/Ammo/FuelCell/Large</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>10.97</MarketValue>
+		</statBases>
+		<ammoClass>Demolition</ammoClass>
+		<detonateProjectile>Bullet_164x284mmDemo</detonateProjectile>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>1</explosiveRadius>
+				<damageAmountBase>18</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.33</startWickHitPointsPercent>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>60~300</wickTicks>
+			</li>
+		</comps>
+	</ThingDef>
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
-		<defName>MakeAmmo_MechCharged</defName>
+		<defName>MakeAmmo_Mech_Charged</defName>
 		<label>make Mech Charged cartridge x200</label>
 		<description>Craft 200 Mech Charged cartridges.</description>
 		<jobString>Making Mech Charged cartridges.</jobString>
@@ -148,7 +185,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_12x64mmCharged>200</Ammo_12x64mmCharged>
+			<Ammo_Mech_Charged>200</Ammo_Mech_Charged>
 		</products>
 		<skillRequirements>
 			<Crafting>8</Crafting>
@@ -157,10 +194,10 @@
 	</RecipeDef>
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
-		<defName>MakeAmmo_MechShell</defName>
-		<label>make Mech Shell x5</label>
-		<description>Craft 5 Mech Shells.</description>
-		<jobString>Making Mech Shells.</jobString>
+		<defName>MakeAmmo_MechShell_Incendiary</defName>
+		<label>make Mech Shell (Incendiary) x5</label>
+		<description>Craft 5 Mech Shells (Incendiary).</description>
+		<jobString>Making Mech Shells (Incendiary).</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -195,7 +232,54 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_80x256mmFuel_Incendiary>5</Ammo_80x256mmFuel_Incendiary>
+			<Ammo_MechShell_Incendiary>5</Ammo_MechShell_Incendiary>
+		</products>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workAmount>3730</workAmount><!-- 10% more work -->
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_MechShell_Demo</defName>
+		<label>make Mech Shell (Demo) x5</label>
+		<description>Craft 5 Mech Shells (Demo).</description>
+		<jobString>Making Mech Shells (Demo).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>FSX</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_MechShell_Demo>5</Ammo_MechShell_Demo>
 		</products>
 		<skillRequirements>
 			<Crafting>8</Crafting>

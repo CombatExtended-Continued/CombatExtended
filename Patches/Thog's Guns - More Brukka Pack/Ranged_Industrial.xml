@@ -4,11 +4,13 @@
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Thog's Guns - More Brukka Pack</li>
+			<li>Thog's Guns - More Brukka Pack - REPRIMED</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
 
 				<!--===== Melee Tools =====-->
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
 						defName="Gun_LightSMG" or
@@ -20,7 +22,8 @@
 						defName="Gun_Magnum" or
 						defName="Gun_SawnoffPumpShotgun" or
 						defName="Gun_BreacherShotgun" or
-						defName="Gun_BreacherShotgunSemi"
+						defName="Gun_BreacherShotgunSemi" or
+						defName="Gun_AdvancedAutopistol"
 						]/tools </xpath>
 					<value>
 						<tools>
@@ -61,7 +64,7 @@
 						defName="Gun_CrudeRifle" or
 						defName="Gun_EBR" or
 						defName="Gun_AdvancedShotgun" or
-						defName="Gun_AdvancedAssaultRifle" or
+						defName="ThogsGun_AdvancedAssaultRifle" or
 						defName="Gun_AutomaticShotgun" or
 						defName="Gun_ServiceSAW" or
 						defName="Gun_PDW" or
@@ -76,7 +79,8 @@
 						defName="Gun_SAW" or
 						defName="Gun_LightMinigun" or
 						defName="Gun_CrudeLMG" or
-						defName="Gun_ServiceHMG"
+						defName="Gun_ServiceHMG" or
+						defName="Gun_ThogsAntiMaterialRifle"
 						]/tools </xpath>
 					<value>
 						<tools>
@@ -121,17 +125,6 @@
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
-								<label>Blade</label>
-								<capacities>
-									<li>Stab</li>
-								</capacities>
-								<power>8</power>
-								<cooldownTime>1.18</cooldownTime>
-								<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.54</armorPenetrationSharp>
-								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-							</li>
-							<li Class="CombatExtended.ToolCE">
 								<label>stock</label>
 								<capacities>
 									<li>Blunt</li>
@@ -143,14 +136,26 @@
 								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
 							</li>
 							<li Class="CombatExtended.ToolCE">
-								<label>barrel</label>
+								<label>bayonet</label>
 								<capacities>
-									<li>Blunt</li>
+									<li>Cut</li>
 								</capacities>
-								<power>4</power>
-								<cooldownTime>2.02</cooldownTime>
-								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<power>17</power>
+								<cooldownTime>2.14</cooldownTime>
+								<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
 								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>bayonet</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.49</cooldownTime>
+								<armorPenetrationBlunt>2.16</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.44</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 							</li>
 						</tools>
 					</value>
@@ -165,9 +170,9 @@
 					<xpath>Defs/ThingDef[defName="Gun_GrenadeLauncher"]</xpath>
 				</li>
 
-				<!--=== Removing dart rifle entirely until properly patched ===-->
+				<!--=== Removing dart rifles entirely until properly patched ===-->
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="Gun_DartRifle"]</xpath>
+					<xpath>Defs/ThingDef[defName="Gun_AnestheticDartRifle" or defName="Gun_ToxicDartRifle"]</xpath>
 				</li>
 
 				<!--==== Varmit Rifle ====-->
@@ -1607,9 +1612,86 @@
 					</weaponTags>
 				</li>
 
+				<!-- ========== Advanced Auto Pistol ========== -->
+				<li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+					<defName>Gun_AdvancedAutopistol</defName>
+					<statBases>
+						<WorkToMake>7000</WorkToMake>
+						<SightsEfficiency>0.70</SightsEfficiency>
+						<ShotSpread>0.17</ShotSpread>
+						<SwayFactor>0.88</SwayFactor>
+						<Bulk>1.86</Bulk>
+						<Mass>0.78</Mass>
+						<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.74</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>12</range>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<soundCast>Shot_Autopistol</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Regular</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>17</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+				</li>
+
+				<!-- ========== Anti-Material Rifle ========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_ThogsAntiMaterialRifle</defName>
+					<statBases>
+						<Mass>13.50</Mass>
+						<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.84</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.87</SwayFactor>
+						<Bulk>13.00</Bulk>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.49</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+						<warmupTime>3.3</warmupTime>
+						<range>126</range>
+						<soundCast>RNShot50Cal</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_50BMG</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+					</weaponTags>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
 				<!--==== Advanced Assault Rifle ====-->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>Gun_AdvancedAssaultRifle</defName>
+					<defName>ThogsGun_AdvancedAssaultRifle</defName>
 					<statBases>
 						<Mass>3.67</Mass>
 						<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>

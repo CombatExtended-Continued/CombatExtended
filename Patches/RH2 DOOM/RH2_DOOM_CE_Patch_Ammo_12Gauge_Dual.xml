@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] DOOM</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- ========== Custom variants of the standard 12 Gauge shotgun projectiles, emulating the effect of two ordinary 12 Gauge shotgun shells being fired side-by-side simultaneously ========== -->
+
+						<ThingDef ParentName="Base12GaugeBullet">
+							<defName>Bullet_12Gauge_DoubleBarreled_Buck</defName>
+							<label>buckshot pellet</label>
+							<graphicData>
+								<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>18</damageAmountBase>
+								<pelletCount>18</pelletCount><!-- Twice the usual number of buckshot pellets -->
+								<armorPenetrationSharp>4</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.7</armorPenetrationBlunt>
+								<spreadMult>17.8</spreadMult>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="Base12GaugeBullet">
+							<defName>Bullet_12Gauge_DoubleBarreled_Slug</defName>
+							<label>shotgun slug</label>
+							<graphicData>
+								<texPath>Things/Projectile/Bullet_big</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>92</speed>
+								<damageAmountBase>46</damageAmountBase>
+								<pelletCount>2</pelletCount><!-- Double slugs -->
+								<armorPenetrationSharp>6</armorPenetrationSharp>
+								<armorPenetrationBlunt>48.04</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="Base12GaugeBullet">
+							<defName>Bullet_12Gauge_DoubleBarreled_Beanbag</defName>
+							<label>beanbag</label>
+							<graphicData>
+								<texPath>Things/Projectile/Bullet_big</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>30</speed>
+								<damageDef>Beanbag</damageDef>
+								<damageAmountBase>18</damageAmountBase>
+								<pelletCount>2</pelletCount><!-- Double beanbags -->
+								<armorPenetrationSharp>0</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.240</armorPenetrationBlunt>
+								<spreadMult>2</spreadMult>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="Base12GaugeBullet">
+							<defName>Bullet_12Gauge_DoubleBarreled_ElectroSlug</defName>
+							<label>EMP slug</label>
+							<graphicData>
+								<texPath>Things/Projectile/Bullet_big</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>43</speed>
+								<damageDef>EMP</damageDef>
+								<damageAmountBase>24</damageAmountBase>
+								<pelletCount>2</pelletCount><!-- Double EMP slugs -->
+								<armorPenetrationSharp>0</armorPenetrationSharp>
+								<armorPenetrationBlunt>8.509</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+
+						<!-- ========== Custom AmmoSet for the double-barreled Super Shotgun, which maps the custom 12 Gauge shotgun projectiles to standard versions of their craftable ammo ========== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_12Gauge_CP_DOOM_SuperShotgun</defName>
+							<label>12 Gauge</label>
+							<ammoTypes>
+								<Ammo_12Gauge_Buck>Bullet_12Gauge_DoubleBarreled_Buck</Ammo_12Gauge_Buck>
+								<Ammo_12Gauge_Slug>Bullet_12Gauge_DoubleBarreled_Slug</Ammo_12Gauge_Slug>
+								<Ammo_12Gauge_Beanbag>Bullet_12Gauge_DoubleBarreled_Beanbag</Ammo_12Gauge_Beanbag>
+								<Ammo_12Gauge_ElectroSlug>Bullet_12Gauge_DoubleBarreled_ElectroSlug</Ammo_12Gauge_ElectroSlug>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

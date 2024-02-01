@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Races Expanded - Archon</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Archoplate -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]/statBases</xpath>
+					<value>
+						<Bulk>50</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>650</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]/statBases/VEF_EnergyShieldEnergyMaxApparel</xpath>
+					<value>
+						<VEF_EnergyShieldEnergyMaxApparel>12</VEF_EnergyShieldEnergyMaxApparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]/statBases/Mass</xpath>
+					<value>
+						<Mass>25</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>26</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>54</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>50</CarryWeight>
+						<CarryBulk>20</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VREA_Apparel_Archoplate"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

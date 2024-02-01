@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Races Expanded - Archon</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Archoblade === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VREA_MeleeWeapon_ArchobladeBladelink"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.69</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.80</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>VREA_Sear</li>
+								</capacities>
+								<power>49</power>
+								<cooldownTime>1.37</cooldownTime>
+								<armorPenetrationBlunt>4.06</armorPenetrationBlunt>
+								<armorPenetrationSharp>50</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VREA_MeleeWeapon_ArchobladeBladelink"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.42</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VREA_MeleeWeapon_ArchobladeBladelink"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.00</MeleeCritChance>
+							<MeleeParryChance>0.60</MeleeParryChance>
+							<MeleeDodgeChance>0.53</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

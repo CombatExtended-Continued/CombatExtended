@@ -35,9 +35,12 @@ namespace CombatExtended.Compatibility
         {
             BlockerRegistry.RegisterCheckForCollisionBetweenCallback(EDShields.CheckForCollisionBetweenCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(EDShields.ImpactSomethingCallback);
+            BlockerRegistry.RegisterShieldZonesCallback(EDShields.ShieldZonesCallback);
             Type t = Type.GetType("Jaxxa.EnhancedDevelopment.Shields.Shields.ShieldManagerMapComp, ED-Shields");
             HitSoundDef = (SoundDef)t.GetField("HitSoundDef", BindingFlags.Static | BindingFlags.Public).GetValue(null);
         }
+
+
         public IEnumerable<string> GetCompatList()
         {
             yield break;
@@ -54,6 +57,7 @@ namespace CombatExtended.Compatibility
             Map map = projectile.Map;
             Vector3 exactPosition = projectile.ExactPosition;
             IntVec3 origin = projectile.OriginIV3;
+            Quaternion targetAngle = projectile.ExactRotation;
             getShields(map);
 
             foreach (Building building in shields)
@@ -74,7 +78,7 @@ namespace CombatExtended.Compatibility
                 Vector3 shieldPosition2D = new Vector3(shield.Position.x, 0, shield.Position.z);
                 Vector3 nep;
 
-                if (CE_Utility.IntersectionPoint(from, to, shieldPosition2D, fieldRadius, out Vector3[] sect))
+                if (CE_Utility.IntersectionPoint(from, to, shieldPosition2D, fieldRadius, out Vector3[] sect, map: map, spherical: false, catchOutbound: false))
                 {
                     nep = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 }
@@ -83,10 +87,7 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
 
-                int fieldRadiusSq = fieldRadius * fieldRadius;
-
-                Quaternion targetAngle = projectile.ExactRotation;
-                Quaternion shieldProjAng = Quaternion.LookRotation(exactPosition - shieldPosition2D);
+                Quaternion shieldProjAng = Quaternion.LookRotation(from - shieldPosition2D);
                 if ((Quaternion.Angle(targetAngle, shieldProjAng) > 90))
                 {
                     HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));
@@ -155,6 +156,32 @@ namespace CombatExtended.Compatibility
                 lastCacheTick = thisTick;
                 lastCacheMap = map;
             }
+        }
+
+        private static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
+        {
+            Map map = pawnToSuppress.Map;
+            getShields(map);
+            List<IEnumerable<IntVec3>> result = new List<IEnumerable<IntVec3>>();
+            foreach (Building building in shields)
+            {
+                var shield = building as Building_Shield;
+                var generator = shield.GetComp<Comp_ShieldGenerator>();
+                bool isActive = generator.IsActive();
+                if (!isActive)
+                {
+                    continue;
+                }
+                bool blockDirect = generator.BlockDirect_Active();
+                if (!blockDirect)
+                {
+                    continue;
+                }
+                //Is there no shields that doesn't intercept ingoing friendly projectiles?
+                int fieldRadius = (int)generator.FieldRadius_Active();
+                result.Add(GenRadial.RadialCellsAround(shield.Position, fieldRadius, true));
+            }
+            return result;
         }
 
     }
