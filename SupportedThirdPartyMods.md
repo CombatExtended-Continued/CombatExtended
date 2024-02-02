@@ -27,6 +27,7 @@ Mod |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
+[K4G] Equipment of the Weimar Republic  |
 [K4G] RimWorld War 2    |
 [KV] Hand 'n' Footwear	|
 [LF] Command And Conquer NOD Combat Armor |
