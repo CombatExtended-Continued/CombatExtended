@@ -53,7 +53,7 @@
 					<xpath>Defs/ThingDef[defName="RE_Husk_Colossus"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
-							<bodyShape>Birdlike</bodyShape>
+							<bodyShape>Quadruped</bodyShape>
 						</li>
 					</value>
 				</li>
@@ -509,6 +509,62 @@
 								<chanceFactor>0.5</chanceFactor>
 								<armorPenetrationBlunt>1</armorPenetrationBlunt>
 								<armorPenetrationSharp>0</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== Colossus ========== -->
+        
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RE_Husk_Colossus"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>1</AimingAccuracy>
+						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						<MeleeCritChance>0.75</MeleeCritChance>
+						<MeleeParryChance>0.1</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RE_Husk_Colossus"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>48</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RE_Husk_Colossus"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RE_Husk_Colossus"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>horn</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>56</power>
+								<cooldownTime>1.85</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>20</armorPenetrationSharp>
+								<armorPenetrationBlunt>50</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>40</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>50</armorPenetrationBlunt>
 							</li>
 						</tools>
 					</value>
