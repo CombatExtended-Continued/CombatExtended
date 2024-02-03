@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[K4G] Empires of Old - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- ========== Tools ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="K4G_Gun_Snubgun" or
+				defName="K4G_Gun_Bolter" or
+				defName="K4G_Gun_AdvancedAutopistol" or
+				defName="K4G_Gun_PrecisionPistol"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="K4G_Gun_LongGun" or
+				defName="K4G_Gun_Carbiner" or
+				defName="K4G_Gun_DuneRifle" or
+				defName="K4G_Gun_HeavyShotgun" or
+				defName="K4G_Gun_LightSMG" or
+				defName="K4G_Gun_AdvancedSMG" or
+				defName="K4G_Gun_CompactRifle" or
+				defName="K4G_Gun_BattleRifle"
+				]/tools </xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
