@@ -29,7 +29,7 @@ namespace CombatExtended
         public static ThingDef CombatExtended_MechAmmoBeacon;
         //Apparel
         public static ThingDef CE_Apparel_RadioPack;
-        
+
         public static ThingDef FSX;
         public static ThingDef Flare;
         public static ThingDef ExplosionCE;
