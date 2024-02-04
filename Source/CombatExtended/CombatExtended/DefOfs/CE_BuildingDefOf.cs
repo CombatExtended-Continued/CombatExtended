@@ -9,5 +9,6 @@ namespace CombatExtended
     {
         public static ThingDef GunsmithingBench;
         public static ThingDef AmmoBench;
+        public static ThingDef CombatExtended_MechAmmoBeacon;
     }
 }
