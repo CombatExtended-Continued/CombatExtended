@@ -28,13 +28,13 @@ namespace CombatExtended.HarmonyCE
             {
                 if (points > 3000)
                 {
-                    __result.Add(CE_BuildingDefOf.CombatExtended_MechAmmoBeacon);
+                    __result.Add(CE_ThingDefOf.CombatExtended_MechAmmoBeacon);
                 }
                 if (points > 7000)
                 {
-                    __result.Add(CE_BuildingDefOf.CombatExtended_MechAmmoBeacon);
+                    __result.Add(CE_ThingDefOf.CombatExtended_MechAmmoBeacon);
                 }
-                __result.Add(CE_BuildingDefOf.CombatExtended_MechAmmoBeacon);
+                __result.Add(CE_ThingDefOf.CombatExtended_MechAmmoBeacon);
             }
         }
     }
