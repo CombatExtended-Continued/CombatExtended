@@ -130,12 +130,14 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_Katana"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_Katana"]</xpath>
 				<value>
-					<MeleeCritChance>0.95</MeleeCritChance>
-					<MeleeParryChance>0.54</MeleeParryChance>
-					<MeleeDodgeChance>0.33</MeleeDodgeChance>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.95</MeleeCritChance>
+						<MeleeParryChance>0.54</MeleeParryChance>
+						<MeleeDodgeChance>0.33</MeleeDodgeChance>
+					</equippedStatOffsets>
 				</value>
 			</li>
 
@@ -251,13 +253,6 @@
 				<value>
 					<Bulk>4</Bulk>
 					<MeleeCounterParryBonus>0.38</MeleeCounterParryBonus>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_Scimitar"]/statBases/Mass</xpath>
-				<value>
-					<Mass>1.1</Mass>
 				</value>
 			</li>
 
@@ -392,7 +387,6 @@
 					</tools>
 				</value>
 			</li>
-
 
 			</operations>
 		</match>
