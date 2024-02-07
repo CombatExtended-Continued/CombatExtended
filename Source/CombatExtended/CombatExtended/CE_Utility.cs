@@ -1453,7 +1453,7 @@ namespace CombatExtended
         {
             var hitPart = dinfo.HitPart;
 
-            if(hitPart.depth != BodyPartDepth.Outside
+            if (hitPart.depth != BodyPartDepth.Outside
                     || dinfo.Def == DamageDefOf.SurgicalCut
                     || dinfo.Def == DamageDefOf.ExecutionCut
                     || !hitPart.def.tags.Contains(CE_BodyPartTagDefOf.OutsideSquishy))
