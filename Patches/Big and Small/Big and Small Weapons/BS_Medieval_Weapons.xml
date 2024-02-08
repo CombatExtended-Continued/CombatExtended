@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small - Weapons</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ====== Giant Medieval Hammer ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantMedievalHammer"]/statBases</xpath>
+					<value>
+						<Bulk>35</Bulk>
+						<MeleeCounterParryBonus>0.04</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantMedievalHammer"]/statBases/WorkToMake</xpath>
+					<value>
+						<WorkToMake>2700</WorkToMake>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantMedievalHammer"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>2</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantMedievalHammer"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantMedievalHammer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>19</power>
+								<cooldownTime>2.95</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Demolish</li>
+								</capacities>
+								<power>34</power>
+								<cooldownTime>3.23</cooldownTime>
+								<chanceFactor>0.90</chanceFactor>
+								<armorPenetrationBlunt>30</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantScythe"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>160</costStuffCount>
+					</value>
+				</li>
+
+				<!-- ====== Giant Scythe ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantScythe"]/statBases</xpath>
+					<value>
+						<Bulk>50</Bulk>
+						<MeleeCounterParryBonus>1.85</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantScythe"]/statBases/WorkToMake</xpath>
+					<value>
+						<WorkToMake>3600</WorkToMake>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantScythe"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.02</MeleeCritChance>
+						<MeleeParryChance>0.18</MeleeParryChance>
+						<MeleeDodgeChance>2.5</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantScythe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>2.95</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>5.65</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>37</power>
+								<cooldownTime>4.2</cooldownTime>
+								<armorPenetrationBlunt>12.96</armorPenetrationBlunt>
+								<armorPenetrationSharp>25.92</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>45</power>
+								<cooldownTime>10.1</cooldownTime>
+								<armorPenetrationBlunt>12.1</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.69</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ====== Oni Club ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_OniClub"]/statBases</xpath>
+					<value>
+						<Bulk>40</Bulk>
+						<MeleeCounterParryBonus>0.13</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_OniClub"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>2</MeleeCritChance>
+							<MeleeParryChance>0.1</MeleeParryChance>
+							<MeleeDodgeChance>0.6</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_OniClub"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>3.09</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>9</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Demolish</li>
+								</capacities>
+								<power>60</power>
+								<cooldownTime>4.94</cooldownTime>
+								<chanceFactor>0.90</chanceFactor>
+								<armorPenetrationBlunt>45</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
