@@ -127,6 +127,7 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Better Wool Production - C# Edition	|
 Big and Small Genes	|
 Big and Small - Medieval Factions	|
 Big and Small - Medieval Overhaul Factions	|
