@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Clay Soldier Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyPartDef[defName="CM_Eye"
+						or defName="CM_Jaw"]/tags</xpath>
+
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyPartDef[defName="CM_Nose"]/tags</xpath>
+
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/BodyPartDef[defName="CM_Nose"]/tags</xpath>
+
+						<value>
+							<li>OutsideSquishy</li>
+						</value>
+					</match>
+
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/BodyPartDef[defName="CM_Nose"]</xpath>
+
+						<value>
+							<tags>
+								<li>OutsideSquishy</li>
+							</tags>
+						</value>
+					</nomatch>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
