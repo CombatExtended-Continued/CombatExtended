@@ -32,7 +32,7 @@ namespace CombatExtended
             {
                 armed = true;
             }
-            if (armed && ExactPosition.y <= detonationHeight)
+            if (armed && Height <= detonationHeight)
             {
                 HeightFuseAirBurst();
             }
@@ -41,7 +41,7 @@ namespace CombatExtended
         public override void Impact(Thing hitThing)
         {
             //intercept impact if it hit something after where height fuse should have triggered
-            if (armed && ExactPosition.y <= detonationHeight)
+            if (armed && Height <= detonationHeight)
             {
                 HeightFuseAirBurst();
             }
@@ -53,7 +53,7 @@ namespace CombatExtended
 
         void HeightFuseAirBurst()
         {
-            float f = (LastPos.y - detonationHeight) / (LastPos.y - ExactPosition.y);
+            float f = (LastPos.y - detonationHeight) / (LastPos.y - Height);
             ExactPosition = f * (LastPos - ExactPosition);
             if (!ExactPosition.ToIntVec3().IsValid)
             {

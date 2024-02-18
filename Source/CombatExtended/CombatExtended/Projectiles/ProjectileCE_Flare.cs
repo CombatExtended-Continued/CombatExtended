@@ -36,7 +36,7 @@ namespace CombatExtended
             base.Tick();
             if (decentStarted)
             {
-                if (ExactPosition.y <= FLYOVER_FLARING_HEIGHT && Rand.Chance(FLYOVER_FLARING_CHANCE))
+                if (Height <= FLYOVER_FLARING_HEIGHT && Rand.Chance(FLYOVER_FLARING_CHANCE))
                 {
                     Impact(null);
                 }
@@ -53,7 +53,7 @@ namespace CombatExtended
             Flare flare;
             flare = (Flare)ThingMaker.MakeThing(CE_ThingDefOf.Flare, null);
             flare.DrawMode = Flare.FlareDrawMode.FlyOver;
-            flare.StartingAltitude = ExactPosition.y;
+            flare.StartingAltitude = Height;
             flare.Position = Position;
             flare.SpawnSetup(Map, false);
             base.Impact(null);

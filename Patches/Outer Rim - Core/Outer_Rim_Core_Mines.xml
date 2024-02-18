@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outer Rim - Core</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Mine_Frag"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+					<value>
+						<li Class="CompProperties_Explosive">
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<damageAmountBase>320</damageAmountBase>
+							<explosiveRadius>4.9</explosiveRadius>
+							<startWickOnDamageTaken>
+								<li>Bullet</li>
+								<li>Arrow</li>
+								<li>ArrowHighVelocity</li>
+							</startWickOnDamageTaken>
+							<wickTicks>
+								<min>5</min>
+								<max>30</max>
+							</wickTicks>
+						</li>
+						<li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Large>32</Fragment_Large>
+								<Fragment_Small>80</Fragment_Small>
+							</fragments>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -96,7 +96,7 @@ namespace CombatExtended
                 FloatRange fragXZAngleRange;
                 if (parent is ProjectileCE projCE)
                 {
-                    height = projCE.ExactPosition.y;
+                    height = projCE.Height;
                     fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
                 }
                 else

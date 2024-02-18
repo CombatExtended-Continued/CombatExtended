@@ -152,7 +152,6 @@ namespace CombatExtended
         {
             get
             {
-                Log.ErrorOnce("ProjectileCE.Height is deprecated, use ProjectileCE.ExactPosition.y instead", 12748107);
                 return ExactPosition.y;
             }
         }
@@ -249,7 +248,7 @@ namespace CombatExtended
             return Vector2.Lerp(origin, Destination, ticks / StartingTicksToImpact);
         }
 
-        private Vector3 exactPosition;
+        private Vector3? exactPosition = null;
         /// <summary>
         /// Exact x,y,z (x,height,y) position in terms of Vec2Position.x, .y (lerped origin to Destination) and Height.
         /// </summary>
@@ -257,12 +256,16 @@ namespace CombatExtended
         {
             set
             {
-                exactPosition = value;
-                Position = value.ToIntVec3();
+                exactPosition = new Vector3(value.x, value.y, value.z);
+                Position = ((Vector3)exactPosition).ToIntVec3();
             }
             get
             {
-                return exactPosition;
+                if (exactPosition == null)
+                {
+                    exactPosition = new Vector3(origin.x, shotHeight, origin.y);
+                }
+                return ((Vector3)exactPosition);
             }
         }
 
@@ -282,7 +285,7 @@ namespace CombatExtended
             }
         }
 
-        private Vector3 lastExactPos;
+        private Vector3 lastExactPos = new Vector3(-1000, 0, 0);
         public Vector3 LastPos
         {
             protected set
@@ -291,6 +294,11 @@ namespace CombatExtended
             }
             get
             {
+                if (lastExactPos.x < -999)
+                {
+                    var lastPos = Vec2Position(FlightTicks - 1);
+                    lastExactPos = new Vector3(lastPos.x, GetHeightAtTicks(FlightTicks - 1), lastPos.y);
+                }
                 return lastExactPos;
             }
         }
@@ -668,7 +676,6 @@ namespace CombatExtended
         {
             this.launcher = launcher;
             this.origin = origin;
-            this.exactPosition = this.lastExactPos = new Vector3(origin.x, shotHeight, origin.y);
             this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
@@ -1211,16 +1218,16 @@ namespace CombatExtended
             LastPos = ExactPosition;
             ticksToImpact--;
             flightTicks++;
+            Vector3 nextPosition;
             if (lerpPosition)
             {
                 var v = Vec2Position();
-                ExactPosition = new Vector3(v.x, GetHeightAtTicks(flightTicks), v.y);
+                nextPosition = new Vector3(v.x, Height, v.y);
             }
             else
             {
-                ExactPosition = MoveForward();
+                nextPosition = MoveForward();
             }
-            Vector3 nextPosition = ExactPosition;
             if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
@@ -1250,6 +1257,7 @@ namespace CombatExtended
                 Destroy();
                 return;
             }
+            ExactPosition = nextPosition;
             if (CheckForCollisionBetween())
             {
                 return;
@@ -1317,7 +1325,7 @@ namespace CombatExtended
                     //TODO : EXPERIMENTAL Add edifice height
                     var shadowPos = new Vector3(ExactPosition.x,
                                                 def.Altitude - 0.01f,
-                                                ExactPosition.z - Mathf.Lerp(ExactPosition.y, 0f, fTicks / StartingTicksToImpact));
+                                                ExactPosition.z - Mathf.Lerp(shotHeight, 0f, fTicks / StartingTicksToImpact));
                     //EXPERIMENTAL: + (new CollisionVertical(ExactPosition.ToIntVec3().GetEdifice(Map))).Max);
 
                     //TODO : Vary ShadowMat plane
