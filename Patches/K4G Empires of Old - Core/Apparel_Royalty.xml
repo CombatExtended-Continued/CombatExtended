@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[K4G] Empires of Old - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationFindMod">
+				<mods>
+					<li>Royalty</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
+
+					<!-- Dynasty Crown -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="K4G_Apparel_DynastyCrown"]/statBases/StuffEffectMultiplierArmor</xpath>
+						<value>
+							<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+						</value>
+					</li>				
+
+					</operations>
+				</match>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

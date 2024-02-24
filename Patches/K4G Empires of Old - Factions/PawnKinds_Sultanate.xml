@@ -1,0 +1,67 @@
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[K4G] Empires of Old - The Faceless Sultanate</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- === Civilians / Royals === -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="K4G_Sultanate_Common_Trader" or defName="K4G_Sultanate_Common_Worker"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>4</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<!-- === Fighters === -->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="K4GSultanateGuerrillaBase" or @Name="K4GSultanateJanissaryBase"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>4</min>
+							<max>6</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				defName="K4G_Sultanate_Fighter_Cataphract" or
+				defName="K4G_Sultanate_Fighter_KhanGuardRanged" or
+				defName="K4G_Sultanate_Fighter_BlackMarketMercenary"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>5</min>
+							<max>7</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[defName="K4G_Sultanate_Fighter_Bomber"]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>8</min>
+							<max>12</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
