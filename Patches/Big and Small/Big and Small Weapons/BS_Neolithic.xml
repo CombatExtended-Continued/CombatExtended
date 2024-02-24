@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small - Weapons</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ====== Giant Salvage Club ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantSalvageClub"]/statBases</xpath>
+					<value>
+						<Bulk>35</Bulk>
+						<MeleeCounterParryBonus>0.04</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantSalvageClub"]/statBases/WorkToMake</xpath>
+					<value>
+						<WorkToMake>2700</WorkToMake>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantSalvageClub"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.5</MeleeCritChance>
+							<MeleeParryChance>0.04</MeleeParryChance>
+							<MeleeDodgeChance>0.6</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantSalvageClub"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantSalvageClub"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>19</power>
+								<cooldownTime>2.95</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Demolish</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>3.23</cooldownTime>
+								<chanceFactor>0.90</chanceFactor>
+								<armorPenetrationBlunt>30</armorPenetrationBlunt>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ====== Giant Shard Knife ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantShard"]/statBases</xpath>
+					<value>
+						<Bulk>50</Bulk>
+						<MeleeCounterParryBonus>1.85</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantShard"]/statBases/WorkToMake</xpath>
+					<value>
+						<WorkToMake>3600</WorkToMake>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantShard"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.02</MeleeCritChance>
+							<MeleeParryChance>0.18</MeleeParryChance>
+							<MeleeDodgeChance>2.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_GiantShard"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantShard"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>11</power>
+								<cooldownTime>2.52</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>41</power>
+								<cooldownTime>2.89</cooldownTime>
+								<armorPenetrationBlunt>5.76</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.66</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>2.52</cooldownTime>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<armorPenetrationSharp>3.34</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

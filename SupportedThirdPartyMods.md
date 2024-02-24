@@ -27,6 +27,7 @@ Mod |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
+[K4G] Empires of Old Collection    |
 [K4G] Equipment of the Weimar Republic  |
 [K4G] RimWorld War 2    |
 [KV] Hand 'n' Footwear	|
@@ -74,6 +75,7 @@ A Dog Said...	|
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
+All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
 Alpha Genes |
@@ -128,6 +130,7 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Better Wool Production - C# Edition	|
 Big and Small Genes	|
 Big and Small - Medieval Factions	|
 Big and Small - Medieval Overhaul Factions	|
