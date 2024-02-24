@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small - Weapons</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_GiantMusket"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>2.02</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>11.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>22</power>
+								<cooldownTime>2.20</cooldownTime>
+								<armorPenetrationBlunt>9</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>11.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>BS_GiantMusket</defName>
+					<statBases>
+						<Mass>10</Mass>
+						<RangedWeapon_Cooldown>0.93</RangedWeapon_Cooldown>
+						<SightsEfficiency>0.9</SightsEfficiency>
+						<ShotSpread>0.03</ShotSpread>
+						<SwayFactor>1.68</SwayFactor>
+						<Bulk>30</Bulk>
+						<WorkToMake>36000</WorkToMake>
+					</statBases>
+					<costList>
+						<Steel>150</Steel>
+						<ComponentIndustrial>6</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>2.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_MiniCannonBall_Round</defaultProjectile>
+						<warmupTime>1.26</warmupTime>
+						<range>55</range>
+						<soundCast>BS_GiantMusketShot</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>13</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>7.11</reloadTime>
+						<ammoSet>AmmoSet_MiniCannonBall</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>SimpleGun</li>
+						<li>CE_AI_SR</li>
+					</weaponTags>
+					<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="BS_GiantMusket"]</xpath>
+					<value>
+						<li Class="CombatExtended.GunDrawExtension">
+							<DrawSize>2,2</DrawSize>
+							<DrawOffset>0.25,0.0</DrawOffset>
+							<CasingOffset>-0.1,0.1</CasingOffset>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

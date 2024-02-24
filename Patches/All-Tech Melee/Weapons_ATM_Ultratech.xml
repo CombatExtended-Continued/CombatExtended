@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>All-Tech Melee</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- ========== Gladius ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[contains(defName, "ATM_MeleeWeapon_Spacer")]/costStuffCount</xpath>
+				<value>
+					<costStuffCount>200</costStuffCount>
+				</value>
+			</li>
+
+			<!-- Patch stats -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechGladius"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>12</power>
+							<chanceFactor>0.33</chanceFactor>
+							<cooldownTime>0.8</cooldownTime>
+							<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>140</power>
+							<cooldownTime>0.75</cooldownTime>
+							<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.4</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>100</power>
+							<cooldownTime>0.7</cooldownTime>
+							<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.4</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechGladius"]/statBases</xpath>
+				<value>
+					<Bulk>1.5</Bulk>
+					<MeleeCounterParryBonus>1.8</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechGladius"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>1.2</MeleeCritChance>
+						<MeleeParryChance>2.2</MeleeParryChance>
+						<MeleeDodgeChance>1.2</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<!-- Add tags -->
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechGladius"]/weaponTags</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechGladius"]</xpath>
+					<value>
+						<weaponTags />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechGladius"]/weaponTags</xpath>
+				<value>
+					<li>CE_Sidearm_Melee</li>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+			<!-- ========== Hammer ========== -->
+
+			<!-- Patch stats -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechHammer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>20</power>
+							<chanceFactor>0.33</chanceFactor>
+							<cooldownTime>0.5</cooldownTime>
+							<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>60</power>
+							<cooldownTime>1.5</cooldownTime>
+							<armorPenetrationBlunt>40</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechHammer"]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechHammer"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>3.0</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+						<MeleeDodgeChance>1.2</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<!-- Add tags -->
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechHammer"]/weaponTags</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechHammer"]</xpath>
+					<value>
+						<weaponTags />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechHammer"]/weaponTags</xpath>
+				<value>
+					<li>CE_Sidearm_Tribal</li>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+			</li>
+
+			<!-- ========== SledgeHammer ========== -->
+
+			<!-- Patch stats -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechSledgehammer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<chanceFactor>0.33</chanceFactor>
+							<cooldownTime>0.66</cooldownTime>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>80</power>
+							<cooldownTime>0.75</cooldownTime>
+							<armorPenetrationBlunt>60</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechSledgehammer"]/statBases</xpath>
+				<value>
+					<Bulk>2.0</Bulk>
+					<MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechSledgehammer"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>2.08</MeleeCritChance>
+						<MeleeParryChance>1.28</MeleeParryChance>
+						<MeleeDodgeChance>1.2</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<!-- ========== Spear ========== -->
+
+			<!-- Patch stats -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechSpear"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>36</power>
+							<cooldownTime>0.57</cooldownTime>
+							<chanceFactor>0.15</chanceFactor>
+							<armorPenetrationBlunt>28</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.8</cooldownTime>
+							<chanceFactor>0.05</chanceFactor>
+							<armorPenetrationBlunt>10</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>100</power>
+							<cooldownTime>0.55</cooldownTime>
+							<armorPenetrationBlunt>33</armorPenetrationBlunt>
+							<armorPenetrationSharp>33</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechSpear"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<MeleeCounterParryBonus>7.52</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechSpear"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>1.0</MeleeCritChance>
+						<MeleeParryChance>6.64</MeleeParryChance>
+						<MeleeDodgeChance>4.8</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<!-- ========== Longsword ========== -->
+
+			<!-- Patch stats -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechLongsword"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>24</power>
+							<cooldownTime>1.753</cooldownTime>
+							<chanceFactor>0.10</chanceFactor>
+							<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>96</power>
+							<cooldownTime>1.753</cooldownTime>
+							<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							<armorPenetrationSharp>18</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>200</power>
+							<cooldownTime>3.28</cooldownTime>
+							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechLongsword"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<MeleeCounterParryBonus>4.0</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ATM_MeleeWeapon_UltratechLongsword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>2.6</MeleeCritChance>
+						<MeleeParryChance>2.8</MeleeParryChance>
+						<MeleeDodgeChance>2.0</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
