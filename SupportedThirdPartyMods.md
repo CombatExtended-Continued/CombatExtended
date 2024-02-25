@@ -519,10 +519,11 @@ Vanilla Factions Expanded - Tribals |
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
+Vanilla Genetics Expanded   |
 Vanilla Ideology Expanded – Dryads  |
 Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
-Vanilla Genetics Expanded   |
+Vanilla Persona Weapons Expanded   |
 Vanilla Plants Expanded - Mushrooms  |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
