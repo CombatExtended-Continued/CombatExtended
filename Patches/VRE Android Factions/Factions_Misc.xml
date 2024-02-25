@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>VRE Android Factions</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="R_AndroidTrader"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_Ammo</tradeTag>
+							<countRange>
+								<min>200</min>
+								<max>500</max>
+							</countRange>
+							<thingDefCountRange>
+								<min>2</min>
+								<max>4</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_MediumAmmo</tradeTag>
+							<countRange>
+								<min>20</min>
+								<max>50</max>
+							</countRange>
+							<thingDefCountRange>
+								<min>2</min>
+								<max>6</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_HeavyAmmo</tradeTag>
+							<countRange>
+								<min>5</min>
+								<max>10</max>
+							</countRange>
+							<thingDefCountRange>
+								<min>2</min>
+								<max>4</max>
+							</thingDefCountRange>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
