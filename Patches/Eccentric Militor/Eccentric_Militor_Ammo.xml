@@ -14,35 +14,35 @@
 
 						<!-- Double Barrel Ammo Set -->
 						<CombatExtended.AmmoSetDef>
-							<defName>AmmoSet_23x75mmR_Eccentric_Militor_Double</defName>
+							<defName>AmmoSet_12Gauge_Eccentric_Militor_Double</defName>
 							<label>12 Gauge</label>
 							<ammoTypes>
-								<Ammo_23x75mmR_Buck>Bullet_23x75mmR_Eccentric_Militor_Double_Buck</Ammo_23x75mmR_Buck>
-								<Ammo_23x75mmR_Slug>Bullet_23x75mmR_Eccentric_Militor_Double_Slug</Ammo_23x75mmR_Slug>
-								<Ammo_23x75mmR_Beanbag>Bullet_23x75mmR_Eccentric_Militor_Double_Beanbag</Ammo_23x75mmR_Beanbag>
-								<Ammo_23x75mmR_ElectroSlug>Bullet_23x75mmR_Eccentric_Militor_Double_ElectroSlug</Ammo_23x75mmR_ElectroSlug>
+								<Ammo_12Gauge_Buck>Bullet_12Gauge_Eccentric_Militor_Double_Buck</Ammo_12Gauge_Buck>
+								<Ammo_12Gauge_Slug>Bullet_12Gauge_Eccentric_Militor_Double_Slug</Ammo_12Gauge_Slug>
+								<Ammo_12Gauge_Beanbag>Bullet_12Gauge_Eccentric_Militor_Double_Beanbag</Ammo_12Gauge_Beanbag>
+								<Ammo_12Gauge_ElectroSlug>Bullet_12Gauge_Eccentric_Militor_Double_ElectroSlug</Ammo_12Gauge_ElectroSlug>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
 
 						<!-- Double Barrel Fire -->
-						<ThingDef ParentName="Base23x75mmRBullet">
-							<defName>Bullet_23x75mmR_Eccentric_Militor_Double_Buck</defName>
+						<ThingDef ParentName="Base12GaugeBullet">
+							<defName>Bullet_12Gauge_Eccentric_Militor_Double_Buck</defName>
 							<label>buckshot pellet</label>
 							<graphicData>
 								<texPath>Things/Projectile/Shotgun_Pellet</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageAmountBase>10</damageAmountBase>
-								<pelletCount>28</pelletCount><!-- Twice the usual number of buckshot pellets -->
-								<armorPenetrationSharp>5</armorPenetrationSharp>
-								<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+								<damageAmountBase>8</damageAmountBase>
+								<pelletCount>18</pelletCount><!-- Twice the usual number of buckshot pellets -->
+								<armorPenetrationSharp>4</armorPenetrationSharp>
+								<armorPenetrationBlunt>4.52</armorPenetrationBlunt>
 								<spreadMult>17.8</spreadMult>
 							</projectile>
 						</ThingDef>
 
-						<ThingDef ParentName="Base23x75mmRBullet">
-							<defName>Bullet_23x75mmR_Eccentric_Militor_Double_Slug</defName>
+						<ThingDef ParentName="Base12GaugeBullet">
+							<defName>Bullet_12Gauge_Eccentric_Militor_Double_Slug</defName>
 							<label>shotgun slug</label>
 							<graphicData>
 								<texPath>Things/Projectile/Bullet_big</texPath>
@@ -50,17 +50,17 @@
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<speed>106</speed>
-								<damageAmountBase>38</damageAmountBase>
+								<damageAmountBase>28</damageAmountBase>
 								<pelletCount>2</pelletCount><!-- Double slugs -->
-								<armorPenetrationSharp>8</armorPenetrationSharp>
-								<armorPenetrationBlunt>162.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>6</armorPenetrationSharp>
+								<armorPenetrationBlunt>85.2</armorPenetrationBlunt>
 								<casingMoteDefname>Fleck_ShotgunShell_Green</casingMoteDefname>
 								<casingFilthDefname>Filth_ShotgunAmmoCasings_Green</casingFilthDefname>
 							</projectile>
 						</ThingDef>
 
-						<ThingDef ParentName="Base23x75mmRBullet">
-							<defName>Bullet_23x75mmR_Eccentric_Militor_Double_Beanbag</defName>
+						<ThingDef ParentName="Base12GaugeBullet">
+							<defName>Bullet_12Gauge_Eccentric_Militor_Double_Beanbag</defName>
 							<label>beanbag</label>
 							<graphicData>
 								<texPath>Things/Projectile/Bullet_big</texPath>
@@ -69,17 +69,18 @@
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<speed>30</speed>
 								<damageDef>Beanbag</damageDef>
-								<damageAmountBase>13</damageAmountBase>
+								<damageAmountBase>9</damageAmountBase>
 								<pelletCount>2</pelletCount><!-- Double beanbags -->
-								<armorPenetrationBlunt>7.38</armorPenetrationBlunt>
+								<armorPenetrationSharp>0</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.240</armorPenetrationBlunt>
 								<spreadMult>2</spreadMult>
 								<casingMoteDefname>Fleck_ShotgunShell_White</casingMoteDefname>
 								<casingFilthDefname>Filth_ShotgunAmmoCasings_White</casingFilthDefname>
 							</projectile>
 						</ThingDef>
 
-						<ThingDef ParentName="Base23x75mmRBullet">
-							<defName>Bullet_23x75mmR_Eccentric_Militor_Double_ElectroSlug</defName>
+						<ThingDef ParentName="Base12GaugeBullet">
+							<defName>Bullet_12Gauge_Eccentric_Militor_Double_ElectroSlug</defName>
 							<label>EMP slug</label>
 							<graphicData>
 								<texPath>Things/Projectile/Bullet_big</texPath>
@@ -88,12 +89,12 @@
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>EMP</damageDef>
-								<damageAmountBase>29</damageAmountBase>
+								<speed>43</speed>
+								<damageAmountBase>12</damageAmountBase>
 								<pelletCount>2</pelletCount><!-- Double EMP slugs -->
 								<armorPenetrationSharp>0</armorPenetrationSharp>
 								<armorPenetrationBlunt>0</armorPenetrationBlunt>
-								<empShieldBreakChance>0.5</empShieldBreakChance>
-								<speed>60</speed>
+								<empShieldBreakChance>0.2</empShieldBreakChance>
 								<casingMoteDefname>Fleck_ShotgunShell_Black</casingMoteDefname>
 								<casingFilthDefname>Filth_ShotgunAmmoCasings_Black</casingFilthDefname>
 							</projectile>
