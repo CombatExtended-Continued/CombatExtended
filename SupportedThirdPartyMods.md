@@ -362,6 +362,13 @@ Ogam's Warbanner Mod    |
 Opossum Friends |
 Orassans	|
 Ordo Tempestus - Tempestus Scions   |
+Outer Rim - Core	|
+Outer Rim - Galactic Empire	|
+Outer Rim - Galactic Republic	|
+Outer Rim - Mandalore	|
+Outer Rim - Old Republic	|
+Outer Rim - Rebel Alliance	|
+Outer Rim - Separatists	|
 Outer Rim - Tatooine    |
 Palm Cats   |
 Paniel the Automata |
