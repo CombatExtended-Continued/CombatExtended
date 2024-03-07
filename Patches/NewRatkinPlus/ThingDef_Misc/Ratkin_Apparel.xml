@@ -370,6 +370,8 @@
 				</li>
 
 				<!-- ========== Shields =========== -->
+				
+						<!-- ========== WoodenShield =========== -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="RK_WoodenShield"]/statBases</xpath>
 					<value>
@@ -401,7 +403,7 @@
 						<MeleeParryChance>1.0</MeleeParryChance>
 					</value>
 				</li>
-
+						<!-- ========== HeavyShield =========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RK_HeavyShield"]/statBases/Mass</xpath>
 					<value>
@@ -440,8 +442,49 @@
 						<MeleeParryChance>1.0</MeleeParryChance>
 					</value>
 				</li>
+				
+						<!-- ========== HeavyShield_Big =========== -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RK_HeavyShield" or defName="RK_WoodenShield"]/apparel/layers</xpath>
+					<xpath>Defs/ThingDef[defName="RK_HeavyShield_Big"]/statBases/Mass</xpath>
+					<value>
+						<Mass>12</Mass>
+						<Bulk>18</Bulk>
+						<WornBulk>10</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RK_HeavyShield_Big"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RK_HeavyShield_Big"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>2</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RK_HeavyShield_Big"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>3</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RK_HeavyShield_Big"]/equippedStatOffsets</xpath>
+					<value>
+						<ReloadSpeed>-0.3</ReloadSpeed>
+						<MeleeHitChance>-1.2</MeleeHitChance>
+						<ShootingAccuracyPawn>-0.40</ShootingAccuracyPawn>
+						<AimingAccuracy>-0.40</AimingAccuracy>
+						<Suppressability>-0.50</Suppressability>
+						<MeleeCritChance>-0.05</MeleeCritChance>
+						<MeleeParryChance>1.0</MeleeParryChance>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RK_HeavyShield" or defName="RK_WoodenShield" or defName="RK_HeavyShield_Big"]/apparel/layers</xpath>
 					<value>
 						<layers>
 							<li>Shield</li>
