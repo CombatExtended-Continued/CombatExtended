@@ -183,6 +183,7 @@ Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
 Dusk Armory   |
+Eccentric Militors	|
 ED-Shields	|
 Edge of Descension - Monoblades  |
 Eltex Bodysuit  |
@@ -365,6 +366,13 @@ Ogam's Warbanner Mod    |
 Opossum Friends |
 Orassans	|
 Ordo Tempestus - Tempestus Scions   |
+Outer Rim - Core	|
+Outer Rim - Galactic Empire	|
+Outer Rim - Galactic Republic	|
+Outer Rim - Mandalore	|
+Outer Rim - Old Republic	|
+Outer Rim - Rebel Alliance	|
+Outer Rim - Separatists	|
 Outer Rim - Tatooine    |
 Palm Cats   |
 Paniel the Automata |
@@ -473,6 +481,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
+The Vanity Project - Shiba Inu  |
 The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
 The GiantRace	|
@@ -552,6 +561,7 @@ Vanilla Storytellers Expanded - Perry Persistent |
 Vanilla Storytellers Expanded - Winston Waves |
 Vanilla XCOM Weapons  |
 Vehicle Framework Expanded - Classic Mechs   |
+VFE Pirates unofficial add-on: Warcasket Melee Armory Continued	|
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics |
