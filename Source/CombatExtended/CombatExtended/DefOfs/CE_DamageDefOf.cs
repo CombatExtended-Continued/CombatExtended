@@ -16,5 +16,6 @@ namespace CombatExtended
         public static DamageDef PrometheumFlame;
         public static DamageDef Bomb;
         public static DamageDef EMP;
+        public static DamageDef Demolish;
     }
 }
