@@ -361,9 +361,9 @@ namespace CombatExtended
         public override bool TryCastShot()
         {
             //Reduce ammunition
-            if (CompAmmo != null && CompAmmo.Props.ammoSet != null)
+            if (CompAmmo != null)
             {
-                if (!CompAmmo.TryReduceAmmoCount(CompAmmo.Props.ammoSet.ammoConsumedPerShot * VerbPropsCE.ammoConsumedPerShotCount))
+                if (!CompAmmo.TryReduceAmmoCount(((CompAmmo.Props.ammoSet != null) ? CompAmmo.Props.ammoSet.ammoConsumedPerShot : 1) * VerbPropsCE.ammoConsumedPerShotCount))
                 {
                     return false;
                 }
