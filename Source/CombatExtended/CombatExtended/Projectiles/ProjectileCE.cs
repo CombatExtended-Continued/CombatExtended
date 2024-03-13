@@ -1021,7 +1021,7 @@ namespace CombatExtended
         /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection.
         /// </summary>
         /// <param name="thing">What to impact</param>
-        /// <returns>True if impact occured, false otherwise</returns>
+        /// <returns>True if impact occurred, false otherwise</returns>
         protected bool TryCollideWith(Thing thing)
         {
 
