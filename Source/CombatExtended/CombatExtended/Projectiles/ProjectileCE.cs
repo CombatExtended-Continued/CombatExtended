@@ -797,18 +797,16 @@ namespace CombatExtended
         //Removed minimum collision distance
         protected bool CheckForCollisionBetween()
         {
-            List<(Vector3 IntersectionPos, Action OnInterception)> possibleIntersections = new List<(Vector3 IntersectionPos, Action OnInterception)>(3); // CompProjectileInterceptor, Interceptor from Blocker registry and interceptor from CollectPossibleTargetsForCell
+            (Vector3 IntersectionPos, Action OnInterception)? interception = null;
+            float dist = float.MaxValue;
             bool collided = false;
             Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
             List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
-            var nearestDefaultInterceptor = CheckIntercept(list);
-            if (nearestDefaultInterceptor.HasValue)
-            {
-                possibleIntersections.Add(nearestDefaultInterceptor.Value);
-            }
+            var newInterceptor = CheckIntercept(list);
+            CheckNewInterceptor(newInterceptor);
 
             #region Sanity checks
             if (ticksToImpact < 0 || def.projectile.flyOverhead)
@@ -826,14 +824,11 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
             #endregion
-            var interceptor = BlockerRegistry.CheckForCollisionBetweenCallback(this, PreLastPos, ExactPosition);
-            if (interceptor.HasValue)
+            newInterceptor = BlockerRegistry.CheckForCollisionBetweenCallback(this, PreLastPos, ExactPosition);
+            CheckNewInterceptor(newInterceptor);
+            if (interception.HasValue)
             {
-                possibleIntersections.Add(interceptor.Value);
-            }
-            if (possibleIntersections.Any())
-            {
-                newPosIV3 = possibleIntersections.OrderBy(x => (LastPos - x.IntersectionPos).MagnitudeHorizontalSquared()).First().IntersectionPos.ToIntVec3();
+                newPosIV3 = interception.Value.IntersectionPos.ToIntVec3();
             }
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
@@ -841,23 +836,21 @@ namespace CombatExtended
             //Order cells by distance from the last position
             foreach (var cell in cells)
             {
-                var target = PossibleTargetForCell(cell);
+                newInterceptor = PossibleTargetForCell(cell);
 
                 if (Controller.settings.DebugDrawInterceptChecks)
                 {
                     Map.debugDrawer.FlashCell(cell, 1, "o");
                 }
-                if (target.HasValue)//if we found any target close, we don't need to check other
+                if (CheckNewInterceptor(newInterceptor))//if we found any target close, we don't need to check other
                 {
-                    possibleIntersections.Add(target.Value);
                     break;
                 }
             }
-            if (possibleIntersections.Count > 0)
+            if (interception.HasValue)
             {
-                var intersection = possibleIntersections.OrderBy(x => (LastPos - x.IntersectionPos).MagnitudeHorizontalSquared()).First();
-                intersection.OnInterception();
-                newPosIV3 = intersection.IntersectionPos.ToIntVec3();
+                interception.Value.OnInterception();
+                newPosIV3 = interception.Value.IntersectionPos.ToIntVec3();
                 collided = true;
             }
 
@@ -869,6 +862,17 @@ namespace CombatExtended
                 RayCastSuppression(lastPosIV3, newPosIV3, localMap);
             }
             return collided;
+            bool CheckNewInterceptor((Vector3 IntersectionPos, Action OnInterception)? newValue)
+            {
+                float newDist;
+                if (newValue.HasValue && (newDist = (LastPos - newValue.Value.IntersectionPos).MagnitudeHorizontalSquared()) < dist)
+                {
+                    interception = newInterceptor;
+                    dist = newDist;
+                    return true;
+                }
+                return false;
+            }
         }
 
         /// <summary>
