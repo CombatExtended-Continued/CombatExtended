@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small - Weapons</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ====== Giant Plasma Spear ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_VaeSuis"]/statBases</xpath>
+					<value>
+						<Bulk>45</Bulk>
+						<MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_VaeSuis"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.03</MeleeCritChance>
+							<MeleeParryChance>0.24</MeleeParryChance>
+							<MeleeDodgeChance>0.9</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_VaeSuis"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>2.54</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>7.26</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>74</power>
+								<cooldownTime>2.14</cooldownTime>
+								<armorPenetrationBlunt>41.82</armorPenetrationBlunt>
+								<armorPenetrationSharp>217.8</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.59</cooldownTime>
+								<armorPenetrationBlunt>18.58</armorPenetrationBlunt>
+								<armorPenetrationSharp>290</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ====== Skarstind ====== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_Skarstind"]/statBases</xpath>
+					<value>
+						<Bulk>50</Bulk>
+						<MeleeCounterParryBonus>0.13</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BS_Skarstind"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.03</MeleeCritChance>
+							<MeleeParryChance>0.01</MeleeParryChance>
+							<MeleeDodgeChance>0.83</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BS_Skarstind"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>2.79</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>32</power>
+								<cooldownTime>2.19</cooldownTime>
+								<armorPenetrationBlunt>38.4</armorPenetrationBlunt>
+								<armorPenetrationSharp>749.71</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Royal Arsenal: Specialty Weapons</li>
+	</mods>
+	<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+		<ThingCategoryDef>
+			<defName>Ammo6x28mmRoyalSpark</defName>
+			<label>6x28mm Royal spark</label>
+			<parent>AmmoAdvanced</parent>
+			<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+		</ThingCategoryDef>
+
+		<!-- ==================== AmmoSet ========================== -->
+
+		<CombatExtended.AmmoSetDef>
+			<defName>AmmoSet_6x28mmSpark</defName>
+			<label>6x28mm Royal Spark</label>
+			<ammoTypes>
+				<Ammo_6x28mmSpark>Bullet_6x28mmSpark</Ammo_6x28mmSpark>
+			</ammoTypes>
+		</CombatExtended.AmmoSetDef>
+
+		<!-- ==================== Ammo ========================== -->
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+			<defName>Ammo_6x28mmSpark</defName>
+			<label>6x28mm Royal spark cartridge</label>
+			<description>Specialty ionized royal charged ammo designed by the Empire during its prime. Can be used by zeusrifles.</description>
+			<statBases>
+				<Mass>0.01</Mass>
+				<Bulk>0.01</Bulk>
+				<MarketValue>1.5</MarketValue>
+			</statBases>
+			<tradeTags>
+				<li>CE_AutoEnableTrade</li>
+				<li>CE_AutoEnableCrafting_FabricationBench</li>
+			</tradeTags>
+			<thingCategories>
+				<li>Ammo6x28mmRoyalSpark</li>
+			</thingCategories>
+			<stackLimit>5000</stackLimit>	
+
+			<graphicData>
+				<texPath>Things/Ammo/Charged/MediumIon</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<ammoClass>Ionized</ammoClass>
+		</ThingDef>
+
+		<!-- ================== Projectiles ================== -->
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBulletCE">
+			<defName>Bullet_6x28mmSpark</defName>
+			<label>6x28mm Royal Charged bullet</label>
+			<graphicData>
+				<texPath>Things/Projectiles/ZeusShot</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Bullet</damageDef>
+				<speed>160</speed>
+				<damageAmountBase>22</damageAmountBase>
+				<secondaryDamage>
+					<li>
+						<def>EMP</def>
+						<amount>12</amount>
+					</li>
+				</secondaryDamage>
+				<empShieldBreakChance>0.5</empShieldBreakChance>
+				<armorPenetrationSharp>36</armorPenetrationSharp>
+				<armorPenetrationBlunt>32</armorPenetrationBlunt>
+			</projectile>
+		</ThingDef>
+
+		<!-- ==================== Recipes ========================== -->
+
+		<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_6x28mmSpark</defName>
+			<label>make 6x28mm Royal spark cartridge x500</label>
+			<description>Craft 500 6x28mm Royal spark cartridges.</description>
+			<researchPrerequisite>RA_ExperimentalRoyal</researchPrerequisite>
+			<jobString>Making 6x28mm Royal spark cartridges.</jobString>
+			<ingredients>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>Plasteel</li>
+				</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>Uranium</li>
+				</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>	    
+			<li>
+				<filter>
+				<thingDefs>
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			</ingredients>
+			<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Uranium</li>				
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+			<Ammo_6x28mmSpark>500</Ammo_6x28mmSpark>
+			</products>
+			<workAmount>8600</workAmount>		
+		</RecipeDef>
+
+  		</value>
+	</match>
+</Operation>
+  
+</Patch>

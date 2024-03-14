@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small Genes</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Acid Attack -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="BS_AcidAttack"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>BS_AcidBuiltupCap</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.26</cooldownTime>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Venomous Talons -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="LoS_VenomClaws"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>venomous talons</label>
+								<capacities>
+									<li>BS_AcidBuiltupCap</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.5</cooldownTime>
+								<armorPenetrationSharp>1.25</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Talons -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="BS_Talons"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>talons</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.5</cooldownTime>
+								<armorPenetrationSharp>1.25</armorPenetrationSharp>
+								<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Feeding Frenzy -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="BS_FeedingFrenzy"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>teeth</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>0.50</cooldownTime>
+								<chanceFactor>5</chanceFactor>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<soundMeleeHit>Pawn_Melee_HumanBite_Hit</soundMeleeHit>
+								<soundMeleeMiss>Pawn_Melee_HumanBite_Miss</soundMeleeMiss>
+								<armorPenetrationSharp>0.35</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Snake Tail -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="LS_SnakeTail"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tail</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>3.17</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>6</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<chanceFactor>0.05</chanceFactor>
+								<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

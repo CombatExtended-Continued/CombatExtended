@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outer Rim - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- general adjustments -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="OuterRimMetal"]/stuffProps/categories</xpath>
+					<value>
+						<li>Metallic_Weapon</li>
+						<li>Steeled</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="OuterRimMetal"]</xpath>
+					<value>
+						<statBases>
+							<Bulk>0.03</Bulk>
+						</statBases>
+					</value>
+				</li>
+				
+				<!-- fabrics -->
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durafiber"]/statBases</xpath>
+					<value>
+						<Bulk>0.05</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durafiber"]/statBases</xpath>
+					<value>
+						<WornBulk>0.25</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durafiber"]/stuffProps/statFactors</xpath>
+					<value>
+						<Mass>0.9</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durafiber"]/stuffProps</xpath>
+					<value>
+						<categories>
+							<li>SoftArmor</li>
+						</categories>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durafiber"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.6</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durafiber"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.12</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durafiber"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.1</StuffPower_Armor_Heat>
+						<StuffPower_Armor_Electric>0.05</StuffPower_Armor_Electric>
+					</value>
+				</li>
+				
+				<!-- metals -->
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durasteel"]/statBases/StuffPower_Armor_Heat</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="OuterRim_Beskar"]/statBases/StuffPower_Armor_Heat</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="OuterRim_PureBeskar"]/statBases/StuffPower_Armor_Heat</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durasteel"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>1.5</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durasteel"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>2.5</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_Durasteel"]/stuffProps/statFactors</xpath>
+					<value>
+						<MeleePenetrationFactor>1.1</MeleePenetrationFactor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Beskar"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>2</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Beskar"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>3</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_Beskar"]/stuffProps/statFactors</xpath>
+					<value>
+						<MeleePenetrationFactor>1.15</MeleePenetrationFactor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_PureBeskar"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>2.2</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_PureBeskar"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>3.5</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_PureBeskar"]/stuffProps/statFactors</xpath>
+					<value>
+						<MeleePenetrationFactor>1.3</MeleePenetrationFactor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royal Arsenal</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+				<!-- Mono Greatsword, Persona Mono Greatsword -->
+			
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RA_MonoGreatsword" or 
+					defName="RA_MonoGreatswordBladelink"
+					]/tools</xpath>
+					<value>
+					  <tools>
+						  <li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							  <li>Poke</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.32</cooldownTime>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						  </li>
+						  <li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+							  <li>Stab</li>
+							</capacities>
+							<power>70</power>
+							<cooldownTime>2</cooldownTime>
+							<chanceFactor>1.2</chanceFactor>
+							<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+							<armorPenetrationSharp>30.0</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						  </li>
+						  <li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+							  <li>Cut</li>
+							</capacities>
+							<power>105</power>
+							<cooldownTime>2.4</cooldownTime>
+							<chanceFactor>1</chanceFactor>
+							<armorPenetrationBlunt>4.0</armorPenetrationBlunt>
+							<armorPenetrationSharp>24.0</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						  </li>
+					  </tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RA_MonoGreatsword"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>0.10</MeleeCounterParryBonus>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RA_MonoGreatsword"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+						  <MeleeCritChance>1</MeleeCritChance>
+						  <MeleeParryChance>0.60</MeleeParryChance>
+						  <MeleeDodgeChance>0.25</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RA_MonoGreatswordBladelink"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RA_MonoGreatswordBladelink"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+						  <MeleeCritChance>1.20</MeleeCritChance>
+						  <MeleeParryChance>0.75</MeleeParryChance>
+						  <MeleeDodgeChance>0.35</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RA_MonoGreatsword" or 
+					defName="RA_MonoGreatswordBladelink"
+					]/statBases/Mass</xpath>
+					<value>
+						<Mass>10</Mass>
+						<Bulk>12</Bulk>
+					</value>
+				</li>
+				
+				<!-- Plasma Greatsword, Persona Plasma Greatsword -->
+			
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RA_PlasmaGreatsword" or 
+					defName="RA_PlasmaGreatswordBladelink"
+					]/tools</xpath>
+					<value>
+					  <tools>
+						  <li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+							  <li>Poke</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.32</cooldownTime>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						  </li>
+						  <li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+							  <li>Stab</li>
+							</capacities>
+							<power>60</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Flame</def>
+								<amount>5</amount>
+								<chance>0.3</chance>
+							</li>
+							</extraMeleeDamages>
+							<cooldownTime>2</cooldownTime>
+							<chanceFactor>1.2</chanceFactor>
+							<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>36</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						  </li>
+						  <li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+							  <li>Cut</li>
+							</capacities>
+							<power>120</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Flame</def>
+								<amount>8</amount>
+								<chance>0.3</chance>
+							</li>
+							</extraMeleeDamages>
+							<cooldownTime>2.4</cooldownTime>
+							<chanceFactor>1</chanceFactor>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<armorPenetrationSharp>30</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						  </li>
+					  </tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RA_PlasmaGreatsword"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>0.10</MeleeCounterParryBonus>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RA_PlasmaGreatsword"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+						  <MeleeCritChance>1</MeleeCritChance>
+						  <MeleeParryChance>0.60</MeleeParryChance>
+						  <MeleeDodgeChance>0.25</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RA_PlasmaGreatswordBladelink"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RA_PlasmaGreatswordBladelink"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+						  <MeleeCritChance>1.20</MeleeCritChance>
+						  <MeleeParryChance>0.75</MeleeParryChance>
+						  <MeleeDodgeChance>0.35</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="RA_PlasmaGreatsword" or 
+					defName="RA_PlasmaGreatswordBladelink"
+					]/statBases/Mass</xpath>
+					<value>
+						<Mass>16</Mass>
+						<Bulk>12</Bulk>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

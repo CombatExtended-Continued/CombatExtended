@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outer Rim - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="OuterRim_Blaster"]/armorCategory</xpath>
+					<value>
+						<armorCategory>Sharp</armorCategory>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<ThingCategoryDef>
+							<defName>AmmoPlasmaGasCartridge</defName>
+							<label>Plasma Gas Cartridges</label>
+							<parent>AmmoAdvanced</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+						</ThingCategoryDef>
+
+						<!-- ==================== AmmoSets ========================== -->
+						
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeRed_Pistol</defName>
+							<label>Pistol Plasma Gas Cartridges (Imperial/Sith)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterPistol_Red</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterPistol_RedAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterPistol_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterPistol_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+						
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeRed_Rifle</defName>
+							<label>Rifle Plasma Gas Cartridges (Imperial/Sith)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterRifle_Red</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterRifle_RedAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterRifle_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterRifle_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+						
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeRed_Sniper</defName>
+							<label>Heavy Plasma Gas Cartridges (Imperial/Sith)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterSniper_Red</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterSniper_RedAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterSniper_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterSniper_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeGreen_Pistol</defName>
+							<label>Pistol Plasma Gas Cartridges (Rebel/Old Republic)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterPistol_Green</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterPistol_GreenAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterPistol_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterPistol_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeGreen_Rifle</defName>
+							<label>Rifle Plasma Gas Cartridges (Rebel/Old Republic)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterRifle_Green</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterRifle_GreenAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterRifle_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterRifle_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeGreen_Sniper</defName>
+							<label>Heavy Plasma Gas Cartridges (Rebel/Old Republic)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterSniper_Green</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterSniper_GreenAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterSniper_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterSniper_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeBlue_Pistol</defName>
+							<label>Plasma Gas Cartridges (Galactic Republic)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterPistol_Blue</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterPistol_BlueAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterPistol_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterPistol_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeBlue_Rifle</defName>
+							<label>Rifle Plasma Gas Cartridges (Galactic Republic)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterRifle_Blue</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterRifle_BlueAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterRifle_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterRifle_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeBlue_Sniper</defName>
+							<label>Heavy Plasma Gas Cartridges (Galactic Republic)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterSniper_Blue</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterSniper_BlueAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterSniper_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterSniper_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeYellow_Pistol</defName>
+							<label>Pistol Plasma Gas Cartridges (Chiss/Mandalorian)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterPistol_Yellow</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterPistol_YellowAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterPistol_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterPistol_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeYellow_Rifle</defName>
+							<label>Rifle Plasma Gas Cartridges (Chiss/Mandalorian)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterRifle_Yellow</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterRifle_YellowAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterRifle_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterRifle_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeYellow_Sniper</defName>
+							<label>Heavy Plasma Gas Cartridges (Chiss/Mandalorian)</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterSniper_Yellow</Ammo_PlasmaGasCartridge_Standard>
+								<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterSniper_YellowAP</Ammo_PlasmaGasCartridge_AP>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterSniper_Ion</Ammo_PlasmaGasCartridge_Ion>
+								<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterSniper_Stun</Ammo_PlasmaGasCartridge_Stun>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridge_Scatter</defName>
+							<label>Scatterblaster Plasma Gas Cartridges</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterBolt_Scatter</Ammo_PlasmaGasCartridge_Standard>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeIon_Pistol</defName>
+							<label>Ionized Pistol Plasma Gas Cartridges</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterPistol_Ion</Ammo_PlasmaGasCartridge_Ion>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeIon_Rifle</defName>
+							<label>Ionized Rifle Plasma Gas Cartridges</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterRifle_Ion</Ammo_PlasmaGasCartridge_Ion>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_PlasmaGasCartridgeIon_Sniper</defName>
+							<label>Heavy Ionized Plasma Gas Cartridges</label>
+							<ammoTypes>
+								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterSniper_Ion</Ammo_PlasmaGasCartridge_Ion>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+						
+						<!-- ================== Ammo ================== -->
+
+						<ThingDef Class="CombatExtended.AmmoDef" Name="PlasmaGasCartridgeBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+							<description>Plasma gas ammo used by advanced blaster designs. Standard general-purpose tibanna-gas based plasma bolts, effective against most targets and lighter armours.</description>
+							<statBases>
+								<Mass>0.01</Mass>
+								<Bulk>0.03</Bulk>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade</li>
+								<li>CE_AutoEnableCrafting</li>
+							</tradeTags>
+							<thingCategories>
+								<li>AmmoPlasmaGasCartridge</li>
+							</thingCategories>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="PlasmaGasCartridgeBase">
+							<defName>Ammo_PlasmaGasCartridge_Standard</defName>
+							<label>Plasma Gas Cartridges</label>
+							<graphicData>
+								<texPath>Things/Ammo/Charged/MediumRegular</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>1.55</MarketValue>
+							</statBases>
+							<ammoClass>BlasterStandard</ammoClass>
+							<cookOffProjectile>Bullet_BlasterPistol_Red</cookOffProjectile>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="PlasmaGasCartridgeBase">
+							<defName>Ammo_PlasmaGasCartridge_AP</defName>
+							<description>Plasma gas ammo used by advanced blaster designs. A concentrated high-pressure refinement process produces plasma bolts capable of piercing hardened armour more effectively.</description>
+							<label>Plasma Gas Cartridges (Conc.)</label>
+							<graphicData>
+								<texPath>Things/Ammo/Charged/MediumConc</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>1.95</MarketValue>
+							</statBases>
+							<ammoClass>BlasterAP</ammoClass>
+							<generateAllowChance>0.25</generateAllowChance>
+							<cookOffProjectile>Bullet_BlasterPistol_RedAP</cookOffProjectile>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="PlasmaGasCartridgeBase">
+							<defName>Ammo_PlasmaGasCartridge_Ion</defName>
+							<description>Plasma gas ammo used by advanced blaster designs. Specialized particle induction causes ionization effects on bolt impacts, increasing effectiveness against mechanical targets.</description>
+							<label>Plasma Gas Cartridges (Ion)</label>
+							<graphicData>
+								<texPath>Things/Ammo/Charged/MediumIon</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>1.95</MarketValue>
+							</statBases>
+							<ammoClass>BlasterIonized</ammoClass>
+							<generateAllowChance>0.05</generateAllowChance>
+							<cookOffProjectile>Bullet_BlasterPistol_Ion</cookOffProjectile>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="PlasmaGasCartridgeBase">
+							<defName>Ammo_PlasmaGasCartridge_Stun</defName>
+							<description>Plasma gas ammo used by advanced blaster designs. Modulated energy pulse emission generates a non-lethal pulse that can disable organics, but is highly ineffective against mechanical targets.</description>
+							<label>Plasma Gas Cartridges (Stun)</label>
+							<graphicData>
+								<texPath>Things/Ammo/Charged/MediumTox</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>1.95</MarketValue>
+							</statBases>
+							<ammoClass>BlasterStun</ammoClass>
+							<generateAllowChance>0</generateAllowChance>
+							<cookOffProjectile>Bullet_BlasterPistol_Stun</cookOffProjectile>
+						</ThingDef>
+
+						<!-- ================== Projectiles ================== -->
+
+						<ThingDef Name="BaseBlasterBolt" ParentName="BaseBulletCE" Abstract="true">
+							<label>blaster bolt</label>
+							<graphicData>
+								<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>OuterRim_Blaster</damageDef>
+								<speed>122</speed>
+								<dropsCasings>false</dropsCasings>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef Name="BaseBlasterBolt_Pistol" ParentName="BaseBlasterBolt" Abstract="true">
+							<graphicData>
+								<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>14</damageAmountBase>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+								<armorPenetrationSharp>14</armorPenetrationSharp>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef Name="BaseBlasterBolt_PistolAP" ParentName="BaseBlasterBolt" Abstract="true">
+							<graphicData>
+								<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>11</damageAmountBase>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<armorPenetrationSharp>18</armorPenetrationSharp>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef Name="BaseBlasterBolt_Rifle" ParentName="BaseBlasterBolt" Abstract="true">
+							<graphicData>
+								<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>18</damageAmountBase>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<armorPenetrationSharp>22</armorPenetrationSharp>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef Name="BaseBlasterBolt_RifleAP" ParentName="BaseBlasterBolt" Abstract="true">
+							<graphicData>
+								<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>12</damageAmountBase>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<armorPenetrationSharp>33</armorPenetrationSharp>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef Name="BaseBlasterBolt_Sniper" ParentName="BaseBlasterBolt" Abstract="true">
+							<graphicData>
+								<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>175</speed>
+								<damageAmountBase>30</damageAmountBase>
+								<armorPenetrationBlunt>4</armorPenetrationBlunt>
+								<armorPenetrationSharp>20</armorPenetrationSharp>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef Name="BaseBlasterBolt_SniperAP" ParentName="BaseBlasterBolt" Abstract="true">
+							<graphicData>
+								<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>175</speed>
+								<damageAmountBase>20</damageAmountBase>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<armorPenetrationSharp>36</armorPenetrationSharp>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Pistol">
+							<defName>Bullet_BlasterPistol_Red</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_PistolAP">
+							<defName>Bullet_BlasterPistol_RedAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Rifle">
+							<defName>Bullet_BlasterRifle_Red</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_RifleAP">
+							<defName>Bullet_BlasterRifle_RedAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Sniper">
+							<defName>Bullet_BlasterSniper_Red</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_SniperAP">
+							<defName>Bullet_BlasterSniper_RedAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Pistol">
+							<defName>Bullet_BlasterPistol_Green</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_PistolAP">
+							<defName>Bullet_BlasterPistol_GreenAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Rifle">
+							<defName>Bullet_BlasterRifle_Green</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_RifleAP">
+							<defName>Bullet_BlasterRifle_GreenAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Sniper">
+							<defName>Bullet_BlasterSniper_Green</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_SniperAP">
+							<defName>Bullet_BlasterSniper_GreenAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Pistol">
+							<defName>Bullet_BlasterPistol_Blue</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_PistolAP">
+							<defName>Bullet_BlasterPistol_BlueAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Rifle">
+							<defName>Bullet_BlasterRifle_Blue</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_RifleAP">
+							<defName>Bullet_BlasterRifle_BlueAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Sniper">
+							<defName>Bullet_BlasterSniper_Blue</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_SniperAP">
+							<defName>Bullet_BlasterSniper_BlueAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Pistol">
+							<defName>Bullet_BlasterPistol_Yellow</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_PistolAP">
+							<defName>Bullet_BlasterPistol_YellowAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Rifle">
+							<defName>Bullet_BlasterRifle_Yellow</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_RifleAP">
+							<defName>Bullet_BlasterRifle_YellowAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Sniper">
+							<defName>Bullet_BlasterSniper_Yellow</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_SniperAP">
+							<defName>Bullet_BlasterSniper_YellowAP</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Pistol">
+							<defName>Bullet_BlasterPistol_Ion</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>8</damageAmountBase>
+								<secondaryDamage>
+									<li>
+										<def>EMP</def>
+										<amount>5</amount>
+									</li>
+								</secondaryDamage>
+								<empShieldBreakChance>0.2</empShieldBreakChance>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Rifle">
+							<defName>Bullet_BlasterRifle_Ion</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>12</damageAmountBase>
+								<secondaryDamage>
+									<li>
+										<def>EMP</def>
+										<amount>8</amount>
+									</li>
+								</secondaryDamage>
+								<empShieldBreakChance>0.33</empShieldBreakChance>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Sniper">
+							<defName>Bullet_BlasterSniper_Ion</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>14</damageAmountBase>
+								<secondaryDamage>
+									<li>
+										<def>EMP</def>
+										<amount>11</amount>
+									</li>
+								</secondaryDamage>
+								<empShieldBreakChance>0.66</empShieldBreakChance>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Pistol">
+							<defName>Bullet_BlasterPistol_Stun</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Neuralizer</damageDef>
+								<damageAmountBase>1</damageAmountBase>
+								<speed>80</speed>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Rifle">
+							<defName>Bullet_BlasterRifle_Stun</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Neuralizer</damageDef>
+								<damageAmountBase>1</damageAmountBase>
+								<speed>90</speed>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt_Sniper">
+							<defName>Bullet_BlasterSniper_Stun</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Neuralizer</damageDef>
+								<damageAmountBase>1</damageAmountBase>
+								<speed>100</speed>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBlasterBolt">
+							<defName>Bullet_BlasterBolt_Scatter</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageAmountBase>8</damageAmountBase>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<armorPenetrationSharp>9</armorPenetrationSharp>
+								<pelletCount>12</pelletCount>
+								<spreadMult>15</spreadMult>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBulletCE">
+							<defName>Bullet_OR_WristRocket</defName>
+							<label>wrist rocket</label>
+							<graphicData>
+								<texPath>OuterRim/Projectile/Proj_MicroMissile</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<explosionRadius>1.8</explosionRadius>
+								<damageDef>Bomb</damageDef>
+								<damageAmountBase>190</damageAmountBase>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								<speed>65</speed>
+							</projectile>
+							<comps>
+								<li Class="CombatExtended.CompProperties_Fragments">
+									<fragments>
+										<Fragment_Small>19</Fragment_Small>
+										<Fragment_Large>5</Fragment_Large>
+									</fragments>
+								</li>
+							</comps>
+						</ThingDef>
+						
+						<!-- ==================== RPS6/HH ========================== -->
+						
+						<ThingCategoryDef>
+							<defName>AmmoOuterRimRocket</defName>
+							<label>RPS-6 Rockets</label>
+							<parent>AmmoRockets</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+						</ThingCategoryDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_OuterRimRockets</defName>
+							<label>RPS-6 Rockets</label>
+							<ammoTypes>
+								<Ammo_RPS6_HEDP>Bullet_RPS6_HEDP</Ammo_RPS6_HEDP>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" Name="RPS6RocketBase" ParentName="MediumAmmoBase" Abstract="True">
+							<description>A powerful rocket first used in the Galactic Republic's RPS-6. Old caches have been repurposed by the Rebel Alliance for use in the HH-12 launcher. The dual-purpose missile is lethal to both vehicles and infantry alike.</description>
+							<statBases>
+								<MaxHitPoints>150</MaxHitPoints>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade</li>
+								<li>CE_AutoEnableCrafting_TableMachining</li>
+							</tradeTags>
+							<thingCategories>
+								<li>AmmoOuterRimRocket</li>
+							</thingCategories>
+							<stackLimit>25</stackLimit>
+							<cookOffFlashScale>40</cookOffFlashScale>
+							<cookOffSound>MortarBomb_Explode</cookOffSound>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="RPS6RocketBase">
+							<defName>Ammo_RPS6_HEDP</defName>
+							<label>RPS-6 rocket</label>
+							<graphicData>
+								<texPath>ThirdParty/StarWars/Ammo/OR_RPS6</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>63.92</MarketValue>
+								<Mass>6.3</Mass>
+								<Bulk>17.91</Bulk>
+							</statBases>
+							<ammoClass>SWRocketPlasma</ammoClass>
+							<detonateProjectile>Bullet_RPS6_HEDP</detonateProjectile>
+						</ThingDef>
+
+						<ThingDef Name="BaseRPS6" ParentName="BaseExplosiveBullet" Abstract="true">
+							<graphicData>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>58</speed>
+								<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+							</projectile>
+							<comps>
+								<li Class="CombatExtended.CompProperties_ProjectileFleck">
+									<FleckDatas>
+										<li>
+											<fleck>Fleck_CERocketFlame</fleck>
+											<emissionsPerTick>7</emissionsPerTick>
+											<flecksPerEmission>3</flecksPerEmission>
+											<scale>1</scale>
+											<cutoffTickRange>25~30</cutoffTickRange>
+											<originOffset>0.4</originOffset>
+										</li>
+										<li>
+											<fleck>Fleck_CERocketSmokeTrail</fleck>
+											<emissionsPerTick>2</emissionsPerTick>
+											<rotation>0~360</rotation>
+											<flecksPerEmission>1</flecksPerEmission>
+										</li>
+										<li>
+											<fleck>Fleck_CERocketSmoke</fleck>
+											<emissionsPerTick>2</emissionsPerTick>
+											<rotation>0~360</rotation>
+											<flecksPerEmission>2</flecksPerEmission>
+											<cutoffTickRange>25~60</cutoffTickRange>
+										</li>
+									</FleckDatas>
+								</li>
+							</comps>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseRPS6">
+							<defName>Bullet_RPS6_HEDP</defName>
+							<label>RPS-6 Rocket</label>
+							<graphicData>
+								<texPath>OuterRim/Projectile/HH12Missile</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>248</damageAmountBase>
+								<armorPenetrationSharp>600</armorPenetrationSharp>
+								<armorPenetrationBlunt>39.494</armorPenetrationBlunt>
+							</projectile>
+							<comps>
+								<li Class="CombatExtended.CompProperties_ExplosiveCE">
+									<damageAmountBase>132</damageAmountBase>
+									<explosiveDamageType>Thermobaric</explosiveDamageType>
+									<explosiveRadius>5</explosiveRadius>
+									<explosionSound>MortarBomb_Explode</explosionSound>
+									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								</li>
+							</comps>
+						</ThingDef>
+
+						<!-- ==================== Recipes ========================== -->
+
+						<RecipeDef ParentName="LauncherAmmoRecipeBase">
+							<defName>MakeAmmo_RPS6_HEDP</defName>
+							<label>make RPS-6/HH-12 rockets x5</label>
+							<description>Craft 5 RPS-6/HH-12 rockets.</description>
+							<jobString>Making RPS-6/HH-12 rockets.</jobString>
+							<workAmount>12000</workAmount>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Durasteel</li>
+										</thingDefs>
+									</filter>
+									<count>64</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Tibanna</li>
+										</thingDefs>
+									</filter>
+									<count>8</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_ComponentHypertech</li>
+										</thingDefs>
+									</filter>
+									<count>4</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>OuterRim_Durasteel</li>
+									<li>OuterRim_Tibanna</li>
+									<li>OuterRim_ComponentHypertech</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<recipeUsers Inherit="False">
+								<li>OuterRim_HypertechFabricator</li>
+							</recipeUsers>
+							<products>
+								<Ammo_RPS6_HEDP>5</Ammo_RPS6_HEDP>
+							</products>
+							<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
+						</RecipeDef>
+
+						<RecipeDef ParentName="ChargeAmmoRecipeBase">
+							<defName>MakeAmmo_PlasmaGasCartridge_Standard</defName>
+							<label>make Plasma Gas Cartridges x500</label>
+							<description>Craft 500 Standard Plasma Gas Cartridges.</description>
+							<jobString>Making Plasma Gas Cartridges.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Durasteel</li>
+										</thingDefs>
+									</filter>
+									<count>30</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Tibanna</li>
+										</thingDefs>
+									</filter>
+									<count>30</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_ComponentHypertech</li>
+										</thingDefs>
+									</filter>
+									<count>1</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>OuterRim_Durasteel</li>
+									<li>OuterRim_Tibanna</li>
+									<li>OuterRim_ComponentHypertech</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<recipeUsers Inherit="False">
+								<li>OuterRim_HypertechFabricator</li>
+							</recipeUsers>
+							<products>
+								<Ammo_PlasmaGasCartridge_Standard>500</Ammo_PlasmaGasCartridge_Standard>
+							</products>
+							<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
+						</RecipeDef>
+
+						<RecipeDef ParentName="ChargeAmmoRecipeBase">
+							<defName>MakeAmmo_PlasmaGasCartridge_AP</defName>
+							<label>make Plasma Gas Cartridges (AP) x500</label>
+							<description>Craft 500 Plasma Gas Cartridges (AP).</description>
+							<jobString>Making Plasma Gas Cartridges (AP).</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Durasteel</li>
+										</thingDefs>
+									</filter>
+									<count>45</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Tibanna</li>
+										</thingDefs>
+									</filter>
+									<count>45</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_ComponentHypertech</li>
+										</thingDefs>
+									</filter>
+									<count>1</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>OuterRim_Durasteel</li>
+									<li>OuterRim_Tibanna</li>
+									<li>OuterRim_ComponentHypertech</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<recipeUsers Inherit="False">
+								<li>OuterRim_HypertechFabricator</li>
+							</recipeUsers>
+							<products>
+								<Ammo_PlasmaGasCartridge_AP>500</Ammo_PlasmaGasCartridge_AP>
+							</products>
+							<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
+						</RecipeDef>
+
+						<RecipeDef ParentName="ChargeAmmoRecipeBase">
+							<defName>MakeAmmo_PlasmaGasCartridge_Ion</defName>
+							<label>make Plasma Gas Cartridges (Ion) x500</label>
+							<description>Craft 500 PlasmaGas Cartridges (Ion).</description>
+							<jobString>Making Plasma Gas Cartridges (Ion).</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Durasteel</li>
+										</thingDefs>
+									</filter>
+									<count>30</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Tibanna</li>
+										</thingDefs>
+									</filter>
+									<count>45</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_ComponentHypertech</li>
+										</thingDefs>
+									</filter>
+									<count>2</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>OuterRim_Durasteel</li>
+									<li>OuterRim_Tibanna</li>
+									<li>OuterRim_ComponentHypertech</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<recipeUsers Inherit="False">
+								<li>OuterRim_HypertechFabricator</li>
+							</recipeUsers>
+							<products>
+								<Ammo_PlasmaGasCartridge_Ion>500</Ammo_PlasmaGasCartridge_Ion>
+							</products>
+							<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
+						</RecipeDef>
+
+						<RecipeDef ParentName="ChargeAmmoRecipeBase">
+							<defName>MakeAmmo_PlasmaGasCartridge_Stun</defName>
+							<label>make Plasma Gas Cartridges (Stun) x500</label>
+							<description>Craft 500 PlasmaGas Cartridges (Stun).</description>
+							<jobString>Making Plasma Gas Cartridges (Stun).</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Durasteel</li>
+										</thingDefs>
+									</filter>
+									<count>30</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Tibanna</li>
+										</thingDefs>
+									</filter>
+									<count>60</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_ComponentHypertech</li>
+										</thingDefs>
+									</filter>
+									<count>3</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>OuterRim_Durasteel</li>
+									<li>OuterRim_Tibanna</li>
+									<li>OuterRim_ComponentHypertech</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<recipeUsers Inherit="False">
+								<li>OuterRim_HypertechFabricator</li>
+							</recipeUsers>
+							<products>
+								<Ammo_PlasmaGasCartridge_Stun>500</Ammo_PlasmaGasCartridge_Stun>
+							</products>
+							<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
+						</RecipeDef>
+
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

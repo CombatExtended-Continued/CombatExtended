@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
+
 	<FleckDef ParentName="FleckBase" Name="CE_CasingFleckBase" Abstract="True">
 		<fleckSystemClass>CombatExtended.FleckSystem_Casing</fleckSystemClass>
 		<acceleration>(0,0,-5)</acceleration>
@@ -246,4 +247,33 @@
 		<fadeOutTime>0.05</fadeOutTime>
 		<growthRate>-5</growthRate>
 	</FleckDef>
+
+	<FleckDef ParentName="FleckBase_Thrown">
+		<defName>Fleck_CEFlamethrowerTrail</defName>
+		<graphicData>
+			<texPath>Things/Mote/FireGlow</texPath>
+			<shaderType>MoteGlow</shaderType>
+			<color>(1, 0.7, 0.7)</color>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<fadeInTime>0</fadeInTime>
+		<solidTime>0.03</solidTime>
+		<fadeOutTime>0.25</fadeOutTime>
+		<growthRate>0</growthRate>
+	</FleckDef>
+
+	<FleckDef ParentName="FleckBase_Thrown">
+		<defName>Fleck_CEFlamethrowerSmokeTrail</defName>
+		<graphicData>
+			<texPath>Things/Mote/Smoke</texPath>
+			<shaderType>Transparent</shaderType>
+			<color>(0.5, 0.5, 0.5)</color>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<fadeInTime>0.14</fadeInTime>
+		<solidTime>0.05</solidTime>
+		<fadeOutTime>2</fadeOutTime>
+		<growthRate>-0.15</growthRate>
+	</FleckDef>
+
 </Defs>
