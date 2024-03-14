@@ -135,6 +135,7 @@ Big and Small Genes	|
 Big and Small - Medieval Factions	|
 Big and Small - Medieval Overhaul Factions	|
 Big and Small Races	|
+Big and Small Weapons	|
 Biomes! Caverns	|
 Biomes! Core	|
 Biotech Expansion - Mammalia  |
