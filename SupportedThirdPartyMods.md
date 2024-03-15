@@ -154,6 +154,7 @@ Call of Duty: Pack A Punch |
 Call of Duty: Wonder Weapons |
 Carbon	|
 Censored Armory  |
+Charge-Loading Lee-Enfield  |
 Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Colony Leadership   |
