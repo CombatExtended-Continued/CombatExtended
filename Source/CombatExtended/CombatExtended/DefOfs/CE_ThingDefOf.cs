@@ -26,6 +26,7 @@ namespace CombatExtended
         //Buildings
         public static ThingDef AmmoBench;
         public static ThingDef GunsmithingBench;
+        [MayRequireRoyalty]
         public static ThingDef CombatExtended_MechAmmoBeacon;
         //Apparel
         public static ThingDef CE_Apparel_RadioPack;
