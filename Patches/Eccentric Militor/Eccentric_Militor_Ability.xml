@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Eccentric Militors</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Jolly Militor -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="JollyLauncher_Militor"]/comps/li[@Class="CompProperties_AbilityLaunchProjectile"]/projectileDef</xpath>
+					<value>
+						<projectileDef>Bullet_30x29mmGrenade_HE</projectileDef>
+					</value>
+				</li>
+
+				<!-- Holy Blades -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="HolyBlade"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseBulletCE</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HolyBlade"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>HolyFire_Greater</damageDef>
+							<damageAmountBase>17.0</damageAmountBase>
+							<armorPenetrationSharp>25.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

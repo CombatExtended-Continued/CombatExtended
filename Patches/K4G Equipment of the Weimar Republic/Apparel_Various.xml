@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[K4G] Equipment of the Weimar Republic</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ======= Uniforms ======= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Apparel_WRSicherheitspolizeiOfficerUniform" or
+					defName="K4G_Apparel_WRReichswehrInfantryUniform"					
+					]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Apparel_WRSicherheitspolizeiOfficerUniform" or
+					defName="K4G_Apparel_WRReichswehrInfantryUniform"
+					]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Apparel_WRSicherheitspolizeiOfficerUniform" or
+					defName="K4G_Apparel_WRReichswehrInfantryUniform"
+					]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.045</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- ======= Coat ======= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRSicherheitspolizeiOfficerTrenchcoat"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRSicherheitspolizeiOfficerTrenchcoat"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRSicherheitspolizeiOfficerTrenchcoat"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRSicherheitspolizeiOfficerTrenchcoat"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryBulk>15</CarryBulk>
+						<ReloadSpeed>0.1</ReloadSpeed>
+					</value>
+				</li>
+
+				<!-- === Backpack === -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRReichswehrInfantryRucksack"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRReichswehrInfantryRucksack"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<bodyPartGroups>
+							<li>Shoulders</li>
+						</bodyPartGroups>
+						<careIfDamaged>false</careIfDamaged>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRReichswehrInfantryRucksack"]/thingCategories</xpath>
+					<value>
+						<thingCategories>
+							<li>Loadout</li>
+						</thingCategories>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRReichswehrInfantryRucksack"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryBulk>40</CarryBulk>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- === Webbing === -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Apparel_WRSicherheitspolizeiOfficerWebbing" or
+					defName="K4G_Apparel_WRReichswehrInfantryWebbing"
+					]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Apparel_WRSicherheitspolizeiOfficerWebbing" or
+					defName="K4G_Apparel_WRReichswehrInfantryWebbing"
+					]/apparel/bodyPartGroups</xpath>
+					<value>
+						<bodyPartGroups>
+							<li>Shoulders</li>
+						</bodyPartGroups>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Apparel_WRSicherheitspolizeiOfficerWebbing" or
+					defName="K4G_Apparel_WRReichswehrInfantryWebbing"
+					]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>Webbing</li>
+						</layers>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Apparel_WRSicherheitspolizeiOfficerWebbing" or
+					defName="K4G_Apparel_WRReichswehrInfantryWebbing"
+					]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryBulk>15</CarryBulk>
+							<ReloadSpeed>0.1</ReloadSpeed>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- ======= Helmets ======= -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRReichswehrInfantryHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>4</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRReichswehrInfantryHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- ======= Caps ======= -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_WRSicherheitspolizeiOfficerShako"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>0</WornBulk>
+					</value>
+				</li>
+
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
