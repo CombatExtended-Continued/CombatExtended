@@ -11,6 +11,10 @@ namespace CombatExtended
     [DefOf]
     public class CE_BodyPartTagDefOf
     {
+        static CE_BodyPartTagDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(CE_BodyPartTagDefOf));
+        }
         public static BodyPartTagDef OutsideSquishy;
     }
 }
