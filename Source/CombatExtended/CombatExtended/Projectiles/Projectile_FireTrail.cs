@@ -23,7 +23,7 @@ namespace CombatExtended
                 return;
             }
             Rand.PushState();
-            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDef.Named("Mote_Firetrail"), null);
+            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(CE_ThingDefOf.Mote_Firetrail);
             moteThrown.Scale = Rand.Range(1.5f, 2.5f) * size;
             moteThrown.exactRotation = Rand.Range(-0.5f, 0.5f);
             moteThrown.exactPosition = loc;
