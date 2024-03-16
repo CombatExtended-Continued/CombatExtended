@@ -45,8 +45,8 @@ namespace CombatExtended.HarmonyCE
                                      ammoDef.GetCompProperties<CompProperties_Explosive>()?.explosiveDamageType;
 
             // Get the projectile damage def via the mortar ammo set.
-            var mortarAmmoSet = DefDatabase<AmmoSetDef>.GetNamed("AmmoSet_81mmMortarShell");
-            var projectileDamageDef = ammoDef.projectile?.damageDef ?? mortarAmmoSet.ammoTypes.FirstOrDefault(t => t.ammo == ammoDef)?.projectile?.projectile?.damageDef;
+            //var mortarAmmoSet = DefDatabase<AmmoSetDef>.GetNamed("AmmoSet_81mmMortarShell");
+            var projectileDamageDef = ammoDef.projectile?.damageDef ?? CE_AmmoSetDefOf.AmmoSet_81mmMortarShell.ammoTypes.FirstOrDefault(t => t.ammo == ammoDef)?.projectile?.projectile?.damageDef;
 
             // Ignore shells that don't have damage defs.
             if (explosiveDamageDef == null && projectileDamageDef == null)

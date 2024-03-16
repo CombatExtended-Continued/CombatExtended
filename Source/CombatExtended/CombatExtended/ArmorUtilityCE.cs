@@ -23,7 +23,7 @@ namespace CombatExtended
         #region Properties
 
 
-        private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, DefDatabase<StuffCategoryDef>.GetNamed("Leathery") };
+        private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, StuffCategoryDefOf.Leathery };
 
         #endregion
 

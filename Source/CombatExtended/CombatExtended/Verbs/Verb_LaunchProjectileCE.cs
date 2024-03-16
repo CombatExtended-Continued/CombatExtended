@@ -153,7 +153,7 @@ namespace CombatExtended
         }
         public float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
         public float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
-        public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
+        public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(CE_StatDefOf.SwayFactor) ?? 1f));
 
         // Ammo variables
         public virtual CompAmmoUser CompAmmo
@@ -632,7 +632,7 @@ namespace CombatExtended
             report.shotSpeed = ShotSpeed;
             report.swayDegrees = SwayAmplitude;
             float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
-            report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
+            report.spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * spreadmult;
             Thing cover;
             float smokeDensity;
             bool roofed;
@@ -674,7 +674,7 @@ namespace CombatExtended
             report.shotSpeed = ShotSpeed * 2.5f;
             report.swayDegrees = SwayAmplitude;
             float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
-            report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
+            report.spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * spreadmult;
             report.cover = null;
             if (target.Map != null)
             {
@@ -1010,7 +1010,7 @@ namespace CombatExtended
             if (Projectile.projectile is ProjectilePropertiesCE pprop)
             {
                 instant = pprop.isInstant;
-                spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * pprop.spreadMult;
+                spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * pprop.spreadMult;
                 aperatureSize = 0.03f;
             }
 

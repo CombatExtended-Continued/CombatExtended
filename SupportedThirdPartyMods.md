@@ -135,6 +135,7 @@ Big and Small Genes	|
 Big and Small - Medieval Factions	|
 Big and Small - Medieval Overhaul Factions	|
 Big and Small Races	|
+Big and Small Weapons	|
 Biomes! Caverns	|
 Biomes! Core	|
 Biotech Expansion - Mammalia  |
@@ -153,6 +154,8 @@ Call of Duty: Pack A Punch |
 Call of Duty: Wonder Weapons |
 Carbon	|
 Censored Armory  |
+Charge-Loading Lee-Enfield  |
+Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|

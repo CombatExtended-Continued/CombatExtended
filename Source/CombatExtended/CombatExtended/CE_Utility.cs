@@ -1166,7 +1166,7 @@ namespace CombatExtended
             {
                 RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
 
-                var shape = props.bodyShape;
+                var shape = props.bodyShape ?? CE_BodyShapeDefOf.Invalid;
 
                 if (shape == CE_BodyShapeDefOf.Invalid)
                 {
