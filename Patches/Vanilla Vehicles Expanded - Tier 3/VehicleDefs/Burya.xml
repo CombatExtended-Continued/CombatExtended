@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Vehicles Expanded - Tier 3</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Turret -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Burya_MainTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_50mmRocket_HE</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Burya_MainTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>9.2</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Burya_MainTurret"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>22</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Burya_MainTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_50mmRocket</ammoSet>
+							<shotHeight>2.5</shotHeight>
+							<speed>160</speed> <!-- Temporarily set artifically high, as it fires on a flat trajectory. -->
+							<sway>0.82</sway>
+							<spread>0.15</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Vehicle -->
+				<li Class="PatchOperationAdd"> <!-- Doesn't currently work. -->
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>20</li>
+								<li>30</li>
+								<li>40</li>
+								<li>50</li>
+								<li>60</li>
+							</chargeSpeeds>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]</xpath>
+					<value>
+						<descriptionHyperlinks>
+							<CombatExtended.AmmoSetDef>AmmoSet_50mmRocket</CombatExtended.AmmoSetDef>
+						</descriptionHyperlinks>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>3</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[key="FrontArmorPlating"]/health</xpath>
+					<value>
+						<health>100</health>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[key="LeftArmorPlating"]/health</xpath>
+					<value>
+						<health>120</health>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[key="RightArmorPlating"]/health</xpath>
+					<value>
+						<health>120</health>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[
+					key="FrontLeftWheel" or
+					key="FrontRightWheel" or
+					key="MiddleLeftWheel" or
+					key="MiddleRightWheel" or
+					key="BackLeftWheel" or
+					key="BackRightWheel"
+					]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>2.5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[
+					key="FrontLeftWheel" or
+					key="FrontRightWheel" or
+					key="MiddleLeftWheel" or
+					key="MiddleRightWheel" or
+					key="BackLeftWheel" or
+					key="BackRightWheel"
+					]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>5</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Burya"]/components/li[
+					key="FrontLeftWheel" or
+					key="FrontRightWheel" or
+					key="MiddleLeftWheel" or
+					key="MiddleRightWheel" or
+					key="BackLeftWheel" or
+					key="BackRightWheel"
+					]/health</xpath>
+					<value>
+						<health>60</health>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
