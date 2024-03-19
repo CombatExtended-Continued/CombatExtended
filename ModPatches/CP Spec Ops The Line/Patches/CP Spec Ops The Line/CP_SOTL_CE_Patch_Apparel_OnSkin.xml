@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Combat UBAC A-TACS AU, Combats A-TACS AU (Delta) ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RHApparel_combats_ATACSAU_Delta" or
+			defName="RHApparel_combats_ATACSAU_DeltaII"
+			]/statBases </xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>3</WornBulk>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="RHApparel_combats_ATACSAU_Delta" or
+			defName="RHApparel_combats_ATACSAU_DeltaII"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+</Patch>

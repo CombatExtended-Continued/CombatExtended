@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Larval Angle Moth -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AA_AngelMothLarva"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_AngelMothLarva"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.00</MeleeDodgeChance>
+			<MeleeCritChance>0.01</MeleeCritChance>
+			<MeleeParryChance>0.01</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_AngelMothLarva"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AA_AngelMoth"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_AngelMoth"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.3</MeleeDodgeChance>
+			<MeleeCritChance>0.01</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<!-- Atispec -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_AngelMoth"]/tools</xpath>
+		<value>
+			<tools>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.12</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				</li>
+
+			</tools>
+		</value>
+	</Operation>
+</Patch>

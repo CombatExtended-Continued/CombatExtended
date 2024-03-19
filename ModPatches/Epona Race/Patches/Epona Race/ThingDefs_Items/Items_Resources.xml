@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ==========  Giant Sheep Wool  =========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.45</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.18</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.05</StuffPower_Armor_Heat>
+			<StuffPower_Armor_Electric>0.05</StuffPower_Armor_Electric>
+			<Bulk>0.3</Bulk>
+			<WornBulk>0.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/stuffProps/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/stuffProps</xpath>
+			<value>
+				<categories>
+					<li>SoftArmor</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Epona_Sheep_Wool"]/stuffProps/categories</xpath>
+			<value>
+				<li>SoftArmor</li>
+			</value>
+		</match>
+	</Operation>
+</Patch>

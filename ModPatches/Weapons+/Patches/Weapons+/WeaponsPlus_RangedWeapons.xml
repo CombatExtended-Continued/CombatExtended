@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAttributeAdd">
+		<xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeaponAndAmmoNeolithic</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>Things/Ammo/Neolithic/Kunai</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+				<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<!-- Kunai is made of stuff, we remove that and just give a steel cost per kunai. -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/costStuffCount|Defs/ThingDef[defName="RangedWeapon_Kunai"]/stuffCategories</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]</xpath>
+		<value>
+			<costList>
+				<Steel>3</Steel>
+			</costList>
+			<stackLimit>75</stackLimit>
+			<tradeTags>
+				<li>CE_AutoEnableTrade</li>
+			</tradeTags>
+			<ammoClass>Kunai</ammoClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.26</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.25</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Kunai_Thrown</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>4</range>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>1000</WorkToMake>
+				<MarketValue>4</MarketValue>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+				<Bulk>1.00</Bulk>
+				<Mass>0.2</Mass>
+				<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/weaponTags</xpath>
+		<value>
+			<li>CE_Pila</li>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_Rifle</li>
+		</value>
+	</Operation>
+</Patch>

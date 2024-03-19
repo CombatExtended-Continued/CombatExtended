@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Grenade Base ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderCleansingConcoction"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Body</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.75</cooldownTime>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Fire Bomb ========== -->
+
+	<!-- Projectile -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderCleansingConcoctionThrown"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>3</explosionRadius>
+				<damageDef>BotchJob_DivineOrderCleansingBlast</damageDef>
+				<speed>15</speed>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+				<shadowSize>0.6</shadowSize>
+				<screenShakeFactor>0.5</screenShakeFactor>
+				<explosionDelay>200</explosionDelay>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderCleansingConcoctionThrown"]</xpath>
+		<value>
+			<thingClass>CombatExtended.Projectile_FireTrail</thingClass>
+		</value>
+	</Operation>
+
+	<!-- Grenade -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderCleansingConcoction"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>50</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderCleansingConcoction"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderCleansingConcoction"]/comps</xpath>
+		<value>
+			<comps>
+				<li Class="CompProperties_Explosive">
+					<explosiveRadius>3</explosiveRadius>
+					<explosiveDamageType>BotchJob_DivineOrderCleansingBlast</explosiveDamageType>
+					<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+					<explodeOnKilled>True</explodeOnKilled>
+					<wickTicks>60~100</wickTicks>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BotchJob_DivineOrderCleansingConcoction</defName>
+		<statBases>
+			<Mass>0.6</Mass>
+			<Bulk>1.8</Bulk>
+			<MarketValue>3</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw cleansing bomb</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10</range>
+			<minRange>3</minRange>
+			<warmupTime>1.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>BotchJob_DivineOrderCleansingConcoctionThrown</defaultProjectile>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>

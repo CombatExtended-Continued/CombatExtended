@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Gambeson === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/statBases</xpath>
+		<value>
+			<Bulk>2.5</Bulk>
+			<WornBulk>1</WornBulk>
+			<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.09</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>30</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Gambeson"]</xpath>
+		<value>
+			<costList>
+				<Cloth>40</Cloth>
+			</costList>
+		</value>
+	</Operation>
+
+	<!-- === Quilted Vest === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_QuiltedVest"]/statBases</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
+			<WornBulk>0.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_QuiltedVest"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_QuiltedVest"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.07</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_QuiltedVest"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>0.105</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_QuiltedVest"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>20</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_QuiltedVest"]</xpath>
+		<value>
+			<costList>
+				<Cloth>30</Cloth>
+			</costList>
+		</value>
+	</Operation>
+
+	<!-- === Light Plate Armor === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_LightPlateArmor"]/statBases/Mass</xpath>
+		<value>
+			<Bulk>52.5</Bulk>
+			<WornBulk>6</WornBulk>
+			<Mass>8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_LightPlateArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_LightPlateArmor"]/statBases/StuffEffectMultiplierInsulation_Cold</xpath>
+		<value>
+			<StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_LightPlateArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.08</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_LightPlateArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Plate Shoulderpads === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_PlateShoulderpads"]/statBases/Mass</xpath>
+		<value>
+			<Bulk>4.5</Bulk>
+			<WornBulk>1.5</WornBulk>
+			<Mass>1.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_PlateShoulderpads"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_PlateShoulderpads"]/statBases/StuffEffectMultiplierInsulation_Cold</xpath>
+		<value>
+			<StuffEffectMultiplierInsulation_Cold>0</StuffEffectMultiplierInsulation_Cold>
+		</value>
+	</Operation>
+
+	<!-- === Chestplate === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Chestplate"]/statBases/Mass</xpath>
+		<value>
+			<Bulk>30</Bulk>
+			<WornBulk>4.5</WornBulk>
+			<Mass>4.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Chestplate"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Chestplate"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.045</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Chestplate"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Chainmail === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Chainmail"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Chainmail"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1.341</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Chainmail"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.1</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- === Plate Helmet === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_PlateHelmet"]/statBases/Mass</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<Mass>3</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_PlateHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_PlateHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>-0.1</AimingAccuracy>
+				<MeleeHitChance>-0.5</MeleeHitChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_PlateHelmet"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_PlateHelmet"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+				<li>Eyes</li>
+				<li>Teeth</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_PlateHelmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

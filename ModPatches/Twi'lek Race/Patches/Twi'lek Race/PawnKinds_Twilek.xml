@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Give ammo to pawns with ranged weapons. ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="TwilekMilBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>7</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.15</generateChance>
+						<sidearmMoney>
+							<min>150</min>
+							<max>350</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>NeolithicMeleeBasic</li>
+							<li>MedievalMeleeDecent</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+</Patch>

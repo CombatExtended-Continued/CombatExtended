@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Pylons ======= -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RF_BombardPylon" or defName="RF_LancePylon" or defName="RF_SprayPylon"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_BombardPylon" or defName="RF_LancePylon" or defName="RF_SprayPylon"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_BombardPylon" or defName="RF_LancePylon" or defName="RF_SprayPylon"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_BombardPylon" or defName="RF_LancePylon" or defName="RF_SprayPylon"]/costList</xpath>
+		<value>
+			<DankPyon_Onyx>100</DankPyon_Onyx>
+		</value>
+	</Operation>
+
+	<!-- ===== Bombard Pylon ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_BombardPylon_MagicBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<armorPenetrationBlunt>25</armorPenetrationBlunt>
+				<armorPenetrationSharp>6</armorPenetrationSharp>
+				<dropsCasings>false</dropsCasings>
+				<damageDef>RF_BombardPylon_MagicBolt</damageDef>
+				<damageAmountBase>8</damageAmountBase>
+				<speed>50</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_BombardPylon_MagicBolt"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>3</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>3</explosiveRadius>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					<preExplosionSpawnChance>0.03</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>RF_RubbleShardsRF_Ruby</preExplosionSpawnThingDef>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_BombardPylon_MagicBolt"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_BombardPylonTurret_Invisible</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.19</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_BombardPylon_MagicBolt</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>45</range>
+			<ticksBetweenBurstShots>36</ticksBetweenBurstShots>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ===== Lance Pylon ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_LancePylon_MagicBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<armorPenetrationBlunt>30</armorPenetrationBlunt>
+				<armorPenetrationSharp>6.5</armorPenetrationSharp>
+				<dropsCasings>false</dropsCasings>
+				<damageDef>RF_LancePylon_MagicBolt</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<speed>55</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_LancePylon_MagicBolt"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_LancePylonTurret_Invisible</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.19</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_LancePylon_MagicBolt</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>50</range>
+			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<soundCast>ChargeLance_Fire</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ===== Spray Pylon ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_SprayPylon_MagicBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<armorPenetrationBlunt>20</armorPenetrationBlunt>
+				<armorPenetrationSharp>5</armorPenetrationSharp>
+				<dropsCasings>false</dropsCasings>
+				<damageDef>RF_SprayPylon_MagicBolt</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<speed>60</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_SprayPylon_MagicBolt"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_SprayPylonTurret_Invisible</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.19</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_SprayPylon_MagicBolt</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>40</range>
+			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>ChargeLance_Fire</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>

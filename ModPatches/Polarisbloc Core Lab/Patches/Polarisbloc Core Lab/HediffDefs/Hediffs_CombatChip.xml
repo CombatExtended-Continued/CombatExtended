@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Combat Chip modes-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="PolarisCombatChip_Currency"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
+			<AimingAccuracy>0.1</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="PolarisCombatChip_Sniper"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+			<AimingAccuracy>0.5</AimingAccuracy>
+			<ReloadSpeed>0.5</ReloadSpeed>
+			<Suppressability>-0.25</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="PolarisCombatChip_Scouter"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.87</MeleeDodgeChance>
+			<MeleeCritChance>0.04</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
+			<Suppressability>-0.50</Suppressability>
+		</value>
+	</Operation>
+</Patch>

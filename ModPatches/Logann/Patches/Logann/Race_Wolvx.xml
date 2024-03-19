@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Wolvx"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Gives Gun Gizmos to Wolvx HUD thing ========== -->
+	<!-- ========== Also Makes Em Suppressable ========== -->
+	<!-- ========== Wait is it wolvx or logann ========== -->
+	<!-- ========== Question for the ages! \o/ ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseWolvPawn"]</xpath>
+		<value>
+			<comps>
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable"/>
+			</comps>
+		</value>
+	</Operation>
+	<!-- ========== Patch Wolvx Melee Attacks ========== -->
+	<!-- ========== Big fuckin large boys (and girls) ========== -->
+	<!-- ========== Hit hard, and prefer to hit hard ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Wolvx"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.8</AimingAccuracy>
+			<MeleeDodgeChance>0.8</MeleeDodgeChance>
+			<MeleeCritChance>1.75</MeleeCritChance>
+			<MeleeParryChance>1.75</MeleeParryChance>
+			<ReloadSpeed>0.8</ReloadSpeed>
+			<Suppressability>0.15</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Wolvx"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationSharp>1.0</armorPenetrationSharp>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>2.5</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.40</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth are already set. I think. ========== -->
+	<!-- ========== Thanks Xenn! ========== -->
+</Patch>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Ammo-->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="Moyo_CartelTech" or
+			defName="Moyo_CartelSmuggler" or
+			defName="Moyo_CartelLabourer" or
+			defName="Moyo_CartelTrooper"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="CartelSoldierLight"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="CartelSoldierLight"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="CartelSniper"]</xpath>
+		<value>
+			<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>500</min>
+						<max>1200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>MoyoBasicGun</li>
+						<li>MoyoCartelBasicGun</li>
+					</weaponTags>
+					<magazineCount>
+						<min>1</min>
+						<max>2</max>
+					</magazineCount>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Backpack-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			@Name="CartelSoldierLight" or
+			@Name="CartelSniper" or
+			defName="Moyo_CartelTrooper" or
+			defName="Moyo_CartelSmuggler"
+			]/apparelRequired </xpath>
+		<value>
+			<li>CE_Apparel_Backpack</li>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Tools -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderCrossbow" or defName="BotchJob_DivineOrderHandCrossbow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Divine Order Pistol === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BotchJob_DivineOrderPistol</defName>
+		<statBases>
+			<Bulk>7</Bulk>
+			<SwayFactor>1.22</SwayFactor>
+			<ShotSpread>0.36</ShotSpread>
+			<SightsEfficiency>0.85</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
+			<warmupTime>1.66</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Shotgun_NoRack</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>4</magazineSize>
+			<reloadTime>5.1</reloadTime>
+			<ammoSet>AmmoSet_SlowMusketBall</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NeolithicRangedHeavy</li>
+			<li>NeolithicRangedChief</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Crossbow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BotchJob_DivineOrderCrossbow</defName>
+		<statBases>
+			<Bulk>6</Bulk>
+			<SwayFactor>1.2</SwayFactor>
+			<ShotSpread>0.25</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>23</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_XBow</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Hand Crossbow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BotchJob_DivineOrderHandCrossbow</defName>
+		<statBases>
+			<Bulk>2.5</Bulk>
+			<SwayFactor>1.2</SwayFactor>
+			<ShotSpread>0.35</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>10</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Divine Judgement Staff -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BotchJob_DivineJudgementStaff</defName>
+		<statBases>
+			<Bulk>6</Bulk>
+			<SwayFactor>0</SwayFactor>
+			<ShotSpread>0.0</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.93</MeleeCounterParryBonus>
+		</statBases>
+		<Properties>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>BotchJob_DivineOrderStaffThrown</defaultProjectile>
+			<warmupTime>12</warmupTime>
+			<range>35</range>
+			<forcedMissRadius>1</forcedMissRadius>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+				<canTargetPawns>false</canTargetPawns>
+			</targetParams>
+			<aimingChargeMote>BotchJob_StaffChargeMote</aimingChargeMote>
+			<aimingTargetMote>BotchJob_StaffTargetMote</aimingTargetMote>
+			<beamTargetsGround>true</beamTargetsGround>
+			<soundAiming>BotchJob_DivineStaffCharge</soundAiming>
+			<minRange>5.9</minRange>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineJudgementStaff"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.85</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineJudgementStaff"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.00</MeleeCritChance>
+				<MeleeParryChance>0.70</MeleeParryChance>
+				<MeleeDodgeChance>0.47</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+</Patch>

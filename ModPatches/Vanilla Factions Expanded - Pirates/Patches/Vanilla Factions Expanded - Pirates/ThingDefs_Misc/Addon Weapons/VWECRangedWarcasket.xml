@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Coilguns</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "VFEP_WarcasketGun_Railgun"]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>16</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>VFEP_WarcasketGun_Railgun</defName>
+					<statBases>
+						<Bulk>55.0</Bulk>
+						<SwayFactor>2.40</SwayFactor>
+						<ShotSpread>0.66</ShotSpread>
+						<SightsEfficiency>1.25</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.86</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.26</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_CoilGun_Lance</defaultProjectile>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<warmupTime>2.4</warmupTime>
+						<range>85</range>
+						<soundCast>VWE_Shot_GaussLance</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Regular</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>5.2</reloadTime>
+						<ammoSet>AmmoSet_8mmRailgun_GaussLance</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>true</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>SpacerGun</li>
+					</weaponTags>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
