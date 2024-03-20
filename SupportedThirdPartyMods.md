@@ -99,7 +99,6 @@ Androids Expanded	|
 Anima Animals Combined  |
 Anima Bionics   |
 Anima Gear  |
-AnimalCollabProj	|
 Animal Collab Project Vanilla-Style |
 Animal Armor: Vanilla	|
 Animal Equipment	|
