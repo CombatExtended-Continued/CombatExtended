@@ -194,7 +194,7 @@ namespace CombatExtended
             {
                 isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
             }
-            if (Prefs.DevMode && def.HasModExtension<ApparelDefExtension>())
+            if (isInDebugMode && def.HasModExtension<ApparelDefExtension>())
             {
                 ApparelDefExtension extension = def.GetModExtension<ApparelDefExtension>();
                 /*
