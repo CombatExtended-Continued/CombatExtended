@@ -462,7 +462,6 @@ Simple Ogre Race  |
 Simply More Melee	|
 Slime Rancher	|
 Solark Race |
-Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
