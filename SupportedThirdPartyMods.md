@@ -561,7 +561,6 @@ Vanilla XCOM Weapons  |
 Vehicle Framework Expanded - Classic Mechs   |
 VFE Pirates unofficial add-on: Warcasket Melee Armory Continued	|
 VFE - Mechanoids : Drones |
-VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics |
 VGP Garden Drinks UF    |
 VRE Android Factions  |
