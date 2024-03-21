@@ -125,7 +125,6 @@ Astra Militarum Regimentum - Krieg  |
 Astra Militarum Regimentum - Krieg: Officer Helmet  |
 Autocleaner	|
 Auto-Mortars	|
-Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Wool Production - C# Edition	|
@@ -169,7 +168,7 @@ Cybernetic Organism and Neural Network	|
 Cybernetic Warfare and Special Weapons (Continued)  |
 Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
-Darkest Rim: Core	|
+Darkest Rim: Apparel	|
 Det's Energy Weapons    |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
@@ -257,7 +256,6 @@ Grimworld: Lasguns	|
 Grimworld: Melee	|
 Gulden Mod  |
 Half Dragons    |
-Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
@@ -477,6 +475,7 @@ Star Wars - Droids |
 Star Wars - Factions |
 Starship Troopers Aracnids  |
 Steamworld Uniforms |
+Steves Animals  |
 Stoneborn - Delights  |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
@@ -494,7 +493,6 @@ Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
-Trading Economy	|
 Tribal Warrior Set! |
 Tsar Armory	|
 Turret Collection	|
