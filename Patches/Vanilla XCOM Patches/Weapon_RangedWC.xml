@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla XCOM Patches</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!--
+				[Smmothbrain:Bill]
+				He will refuse to use his brain and slap existing 3HST weapon stats whenever possible
+				The last straw: "Mag autocannon"
+				-->
+
+				<!-- Magnetic, bulky and heavy than conventional I assume? since all these coils and
+				rails-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>
+						Defs/ThingDef[
+						defName="XCOM_WarcasketGun_CVHA" or
+						defName="XCOM_WarcasketGun_Railgun" or
+						defName="XCOM_WarcasketGun_MagHA" or
+						defName="XCOM_WarcasketGun_BeamHA"
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_WarcasketGun_CVHA</defName>
+					<statBases>
+						<WorkToMake>48000</WorkToMake>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.12</ShotSpread>
+						<SwayFactor>1.7</SwayFactor>
+						<Bulk>13.90</Bulk>
+						<Mass>6.30</Mass>
+						<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Steel>80</Steel>
+						<ComponentIndustrial>6</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<recoilAmount>3.2</recoilAmount>
+						<defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
+						<burstShotCount>5</burstShotCount>
+						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+						<warmupTime>1.4</warmupTime>
+						<range>55</range>
+						<soundCast>CV_HeavyAutocannon</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_338Lapua</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>Bipod_LMG</li>
+					</weaponTags>
+					<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_WarcasketGun_Railgun</defName>
+					<statBases>
+						<WorkToMake>125000</WorkToMake>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>2.2</SwayFactor>
+						<Bulk>55.90</Bulk>
+						<Mass>28.30</Mass>
+						<RangedWeapon_Cooldown>1.47</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Plasteel>300</Plasteel>
+						<ComponentSpacer>12</ComponentSpacer>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<soundAiming>Laser_Warmup</soundAiming>
+						<recoilAmount>1</recoilAmount>
+						<defaultProjectile>XCOM_Bullet_LaserRailgunCE</defaultProjectile>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+						<warmupTime>2</warmupTime>
+						<range>55</range>
+						<soundCast>Laser_Railgun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>18</magazineSize>
+						<reloadTime>7.5</reloadTime>
+						<ammoSet>AmmoSet_XCOM_Gun_LaserRailgun</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>Bipod_LMG</li>
+					</weaponTags>
+					<researchPrerequisite>XCOM_LaserWeapons</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_WarcasketGun_BeamHA</defName>
+					<statBases>
+						<WorkToMake>125000</WorkToMake>
+						<SightsEfficiency>1.2</SightsEfficiency>
+						<ShotSpread>0.12</ShotSpread>
+						<SwayFactor>1.7</SwayFactor>
+						<Bulk>13.90</Bulk>
+						<Mass>15.30</Mass>
+						<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Plasteel>180</Plasteel>
+						<ComponentSpacer>12</ComponentSpacer>
+						<Uranium>50</Uranium>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<soundAiming>Beam_WarmupAutocannon</soundAiming>
+						<recoilAmount>1</recoilAmount>
+						<defaultProjectile>XCOM_Bullet_BeamSniperRifleCE</defaultProjectile>
+						<burstShotCount>10</burstShotCount>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<warmupTime>1.4</warmupTime>
+						<range>55</range>
+						<soundCast>Beam_HeavyAutocannon</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_XCOM_Gun_BeamSniperRifle</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>Bipod_LMG</li>
+					</weaponTags>
+					<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- SPARK Helix Rail-Cannon -->
+				<!-- AMOTHER handheld autocannon which is in fact a battle rifle....not again-->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_WarcasketGun_MagHA</defName>
+					<statBases>
+						<WorkToMake>75500</WorkToMake>
+						<Mass>12.8</Mass>
+						<Bulk>11.5</Bulk>
+						<SwayFactor>1.7</SwayFactor>
+						<ShotSpread>0.1</ShotSpread>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<RangedWeapon_Cooldown>1.57</RangedWeapon_Cooldown>
+						<NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
+					</statBases>
+					<costList>
+						<Steel>80</Steel>
+						<Plasteel>130</Plasteel>
+						<ComponentIndustrial>10</ComponentIndustrial>
+						<ComponentSpacer>5</ComponentSpacer>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_XCOM8mmRailgun_Sabot</defaultProjectile>
+						<warmupTime>2</warmupTime>
+						<burstShotCount>8</burstShotCount>
+						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+						<range>55</range>
+						<soundCast>Mag_HeavyAutocannon</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<recoilAmount>2.9</recoilAmount>
+						<muzzleFlashScale>8</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>40</magazineSize>
+						<reloadTime>6.5</reloadTime>
+						<ammoSet>AmmoSet_8mmRailgunXCOM</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>4</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_LMG</li>
+						<li>Bipod_LMG</li>
+					</weaponTags>
+					<researchPrerequisite>ChargedShot</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
