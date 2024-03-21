@@ -20,7 +20,6 @@ Mod |
 [FSF] More Psycast Powers   |
 [FSF] Vanilla Bionics Expansion |
 [HLX] ReGrowth - Extinct Animals Pack |
-[HLX] ReGrowth - Mutated Animals Pack |
 [JDS] Castle Walls  |
 [JDS] EFT Apparel |
 [JDS] Exiled Dawn |
@@ -403,7 +402,7 @@ Redcoat Apparel	|
 Recon Mechanoid |
 ReGrowth: Core |
 ReGrowth: Extinct Animals |
-ReGrowth: Mutated Animals Pack  |
+ReGrowth: Wastelands |
 Remote Detonator	|
 Revia Race |
 Revia Race - biotech |
