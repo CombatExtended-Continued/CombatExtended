@@ -568,7 +568,7 @@ VRE Android Factions  |
 Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
-WarCasket Gundam Addon  |
+WarCasket Barbatos Gundam Addon  |
 Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
 Warhammer 40.000 - Imperium Weaponry    |
