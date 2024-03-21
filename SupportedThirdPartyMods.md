@@ -503,7 +503,6 @@ Useless Clothes |
 Ushankas Glitterworld Uprising  |
 Vampires, Demons, and the Undead  |
 Vanilla Animals Expanded |
-Vanilla Animals Expanded - Caves |
 Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
 Vanilla Animals Expanded - Waste Animals |
