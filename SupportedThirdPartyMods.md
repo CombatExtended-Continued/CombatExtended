@@ -419,7 +419,6 @@ Rim-Effect: Extended Cut	|
 Rim-Effect: N7	|
 Rimedieval - Medieval Royalty   |
 Rimefeller	|
-RimEffect - Asari of the Rims	|
 Rim-Elves   |
 Rim-Gnoblins	| 
 Rim-Hivers!	|
