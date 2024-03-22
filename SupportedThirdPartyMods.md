@@ -191,9 +191,7 @@ Erin's Auronya   |
 Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
 Erin's Chocobos |
-Erin's Critter Collection |
 Erin's Final Fantasy Races |
-Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Lizard Doggo |
@@ -203,6 +201,7 @@ Erin's Sephyr   |
 Erin's Shisune   |
 Erin's Valheim Creatures   |
 Erin's Viera    |
+Erin's Wildlife |
 ESCP - Spriggan   |
 ESCP - Trolls   |
 EvolvedOrgansRedux |

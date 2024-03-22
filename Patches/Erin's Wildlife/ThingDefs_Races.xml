@@ -2,7 +2,7 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Erin's Critter Collection</li>
+			<li>Erin's Wildlife</li>
 		</mods>
 
 		<match Class="PatchOperationSequence">
@@ -10,8 +10,12 @@
 
 				<!-- === bodyShape === -->
 				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="Greyfox" or defName="Fisher" or defName="Hedgehog" or defName="Armadillo"]</xpath>
-
+					<xpath>Defs/ThingDef[
+					defName="ERN_Greyfox" or
+					defName="ERN_Redpanda" or
+					defName="ERN_Hedgehog" or
+					defName="ERN_Mink" or
+					defName="ERN_Armadillo"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>QuadrupedLow</bodyShape>
@@ -20,8 +24,16 @@
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="Gartersnake"]</xpath>
+					<xpath>Defs/ThingDef[defName="ERN_ptarmigan"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Birdlike</bodyShape>
+						</li>
+					</value>
+				</li>
 
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="ERN_Gartersnake"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Serpentine</bodyShape>
@@ -31,8 +43,7 @@
 
 				<!-- === Grey Fox === -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Greyfox"]/statBases</xpath>
-
+					<xpath>Defs/ThingDef[defName="ERN_Greyfox"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.24</MeleeDodgeChance>
 						<MeleeCritChance>0.01</MeleeCritChance>
@@ -41,16 +52,14 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="Greyfox"]/combatPower</xpath>
-
+					<xpath>Defs/PawnKindDef[defName="ERN_Greyfox"]/combatPower</xpath>
 					<value>
 						<combatPower>25</combatPower>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Greyfox"]/tools</xpath>
-
+					<xpath>Defs/ThingDef[defName="ERN_Greyfox"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -124,28 +133,18 @@
 					</value>
 				</li>
 
-				<!-- === Fisher === -->
+				<!-- === Mink === -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Fisher"]/statBases</xpath>
-
+					<xpath>Defs/ThingDef[defName="ERN_Mink"]/statBases</xpath>
 					<value>
-						<MeleeDodgeChance>0.05</MeleeDodgeChance>
-						<MeleeCritChance>0.07</MeleeCritChance>
-						<MeleeParryChance>0.16</MeleeParryChance>
+						<MeleeDodgeChance>0.27</MeleeDodgeChance>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.02</MeleeParryChance>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="Fisher"]/combatPower</xpath>
-
-					<value>
-						<combatPower>60</combatPower>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Fisher"]/tools</xpath>
-
+					<xpath>Defs/ThingDef[defName="ERN_Mink"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -153,7 +152,7 @@
 								<capacities>
 									<li>Scratch</li>
 								</capacities>
-								<power>4</power>
+								<power>2</power>
 								<cooldownTime>1.67</cooldownTime>
 								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>0.036</armorPenetrationBlunt>
@@ -164,7 +163,7 @@
 								<capacities>
 									<li>Scratch</li>
 								</capacities>
-								<power>4</power>
+								<power>2</power>
 								<cooldownTime>1.67</cooldownTime>
 								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>0.036</armorPenetrationBlunt>
@@ -174,7 +173,7 @@
 								<capacities>
 									<li>Bite</li>
 								</capacities>
-								<power>5</power>
+								<power>4</power>
 								<cooldownTime>0.88</cooldownTime>
 								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>0.675</armorPenetrationBlunt>
@@ -185,7 +184,7 @@
 								<capacities>
 									<li>Blunt</li>
 								</capacities>
-								<power>2</power>
+								<power>1</power>
 								<cooldownTime>3.00</cooldownTime>
 								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 								<chanceFactor>0.2</chanceFactor>
@@ -193,13 +192,12 @@
 								<armorPenetrationSharp>0</armorPenetrationSharp>
 							</li>
 						</tools>
-					</value>
+					</value>	
 				</li>
 
 				<!-- === Hedgehog === -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Hedgehog"]/statBases</xpath>
-
+					<xpath>Defs/ThingDef[defName="ERN_Hedgehog"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.17</MeleeDodgeChance>
 						<MeleeCritChance>0.05</MeleeCritChance>
@@ -208,16 +206,14 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="Hedgehog"]/combatPower</xpath>
-
+					<xpath>Defs/PawnKindDef[defName="ERN_Hedgehog"]/combatPower</xpath>
 					<value>
 						<combatPower>5</combatPower>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Hedgehog"]/tools</xpath>
-
+					<xpath>Defs/ThingDef[defName="ERN_Hedgehog"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -270,8 +266,7 @@
 
 				<!-- === Garter Snake === -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Gartersnake"]/statBases</xpath>
-
+					<xpath>Defs/ThingDef[defName="ERN_Gartersnake"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.20</MeleeDodgeChance>
 						<MeleeCritChance>0.01</MeleeCritChance>
@@ -280,16 +275,14 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="Gartersnake"]/combatPower</xpath>
-
+					<xpath>Defs/PawnKindDef[defName="ERN_Gartersnake"]/combatPower</xpath>
 					<value>
 						<combatPower>5</combatPower>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Gartersnake"]/tools</xpath>
-
+					<xpath>Defs/ThingDef[defName="ERN_Gartersnake"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -327,16 +320,15 @@
 					</value>
 				</li>
 
-				<!-- === Armadillo === -->
+				<!-- === ERN_Armadillo === -->
 				<li Class="PatchOperationRemove">
 					<xpath>
-						Defs/ThingDef[defName="Armadillo"]/statBases/ArmorRating_Blunt |
-						Defs/ThingDef[defName="Armadillo"]/statBases/ArmorRating_Sharp
+						Defs/ThingDef[defName="ERN_Armadillo"]/statBases/ArmorRating_Blunt |
+						Defs/ThingDef[defName="ERN_Armadillo"]/statBases/ArmorRating_Sharp
 					</xpath>
 				</li>
-
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Armadillo"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="ERN_Armadillo"]/statBases</xpath>
 
 					<value>
 						<MeleeDodgeChance>0.17</MeleeDodgeChance>
@@ -348,16 +340,14 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/PawnKindDef[defName="Armadillo"]/combatPower</xpath>
-
+					<xpath>Defs/PawnKindDef[defName="ERN_Armadillo"]/combatPower</xpath>
 					<value>
 						<combatPower>25</combatPower>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Armadillo"]/tools</xpath>
-
+					<xpath>Defs/ThingDef[defName="ERN_Armadillo"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -410,6 +400,114 @@
 								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 								<chanceFactor>0.2</chanceFactor>
 								<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Red Panda === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ERN_Redpanda"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.16</MeleeDodgeChance>
+						<MeleeCritChance>0.03</MeleeCritChance>
+						<MeleeParryChance>0.02</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ERN_Redpanda"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>0.55</cooldownTime>
+								<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>0.55</cooldownTime>
+								<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>0.85</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>8</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<armorPenetrationBlunt>0.254</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.03</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>0.55</cooldownTime>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Ptarmigan === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ERN_ptarmigan"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.22</MeleeDodgeChance>
+						<MeleeCritChance>0.05</MeleeCritChance>
+						<MeleeParryChance>0</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ERN_ptarmigan"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.85</cooldownTime>
+								<armorPenetrationBlunt>0.096</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.65</cooldownTime>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>0.480</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							</li>
 						</tools>
 					</value>
