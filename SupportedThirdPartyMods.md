@@ -36,7 +36,6 @@ Mod |
 [LTS] Military |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
-[O21] Mechadroids |
 [O21] Outland - Core    |
 [O21] Outland - Eastborn Empire    |
 [O21] Outland - Motz Coalition  |
@@ -172,8 +171,6 @@ Det's Energy Weapons    |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
-Dishonored Assassin Coat |
-Dishonored Assassin Mask |
 Divine Order |
 DOOM - Faction (Continued) |
 DMWands |
@@ -299,6 +296,7 @@ Makeshift Melee Weapons |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
+Mechadroids |
 Mechanized Armor Set    |
 Mechanoid Bench 2   |
 Mechanoid Bench 3   |
