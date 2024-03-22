@@ -208,7 +208,6 @@ EvolvedOrgansRedux |
 Exotic Arsenal |
 Expanded Materials - Metals |
 Expanded Materials - Plastics |
-Expanded Patchleather	|
 Expanded Prosthetics and Organ Engineering (EPOE)	|
 Expanded Prosthetics and Organ Engineering (EPOE) - Forked	|
 EPOE-Forked: Royalty DLC expansion	|
