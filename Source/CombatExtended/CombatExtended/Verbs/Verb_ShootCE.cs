@@ -339,7 +339,7 @@ namespace CombatExtended
             var delta = Mathf.Abs(newShotRotation - lastShotRotation) + lastRecoilDeg;
             lastRecoilDeg = 0;
             var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : 0.25f);
-            var reduction = Mathf.Min(maxReduction, delta / 45f);
+            var reduction = Mathf.Max(maxReduction, delta / 45f);
             storedShotReduction = reduction;
             if (reduction < 1.0f)
             {
