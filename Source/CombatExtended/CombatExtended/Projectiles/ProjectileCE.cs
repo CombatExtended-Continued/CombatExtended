@@ -139,13 +139,18 @@ namespace CombatExtended
         #endregion
 
         #region Position
-        protected virtual Vector2 Vec2Position(float ticks = -1f)
-        {
-            if (ticks < 0)
-            {
-                ticks = fTicks;
+	protected virtual Vector2 Vec2Position(float ticks = -1f)
+	{
+            Log.ErrorOnce("Vec2Position(float) is deprecated and will be removed in 1.5", 50021);
+	    if (ticks < 0)
+	    {
+                return Vec2Position();
             }
-            return Vector2.Lerp(origin, Destination, ticks / StartingTicksToImpact);
+	    return Vector2.Lerp(origin, Destination, ticks / startingTicksToImpact);
+        }
+        protected virtual Vector2 Vec2Position()
+        {
+            return Vector2.Lerp(origin, Destination, FlightTicks / startingTicksToImpact);
         }
 
         private Vector3 exactPosition;
