@@ -134,25 +134,7 @@ namespace CombatExtended
         #region Ticks/Seconds
         public float startingTicksToImpact;
 
-        int intTicksToImpact = -1;
-        /// <summary>
-        /// An integer ceil value of StartingTicksToImpact. intTicksToImpact is equal to -1 when not initialized.
-        /// </summary>
-        public int IntTicksToImpact
-        {
-            get
-            {
-                if (!lerpPosition)
-                {
-                    return 1;
-                }
-                if (intTicksToImpact < 0)
-                {
-                    intTicksToImpact = Mathf.CeilToInt(StartingTicksToImpact);
-                }
-                return intTicksToImpact;
-            }
-        }
+        public int FlightTicks = 0;
 
         private int flightTicks;
         /// <summary>
@@ -586,7 +568,6 @@ namespace CombatExtended
                 this.GravityFactor = props.Gravity;
             }
             Launch(launcher, origin, equipment);
-            this.ticksToImpact = IntTicksToImpact;
         }
 
         public virtual void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
@@ -605,6 +586,7 @@ namespace CombatExtended
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
             }
             this.startingTicksToImpact = GetFlightTime() * GenTicks.TicksPerRealSecond;
+            this.ticksToImpact = Mathf.CeilToInt(this.startingTicksToImpact);
             this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
 
         }
