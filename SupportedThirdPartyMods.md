@@ -263,7 +263,6 @@ Infused 2 Expansion |
 Infusion 2  |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
-Jernfalk's Standalone Horses	|
 Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
 Kemomimihouse |
