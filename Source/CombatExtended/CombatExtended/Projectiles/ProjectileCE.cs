@@ -1110,7 +1110,7 @@ namespace CombatExtended
             if (lerpPosition)
             {
                 var v = Vec2Position();
-                nextPosition = new Vector3(v.x, Height, v.y);
+                nextPosition = new Vector3(v.x, GetHeightAtTicks(FlightTicks), v.y);
             }
             else
             {
