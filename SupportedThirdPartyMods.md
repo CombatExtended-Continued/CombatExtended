@@ -551,7 +551,7 @@ Vehicle Framework Expanded - Classic Mechs   |
 VFE Pirates unofficial add-on: Warcasket Melee Armory Continued	|
 VFE - Mechanoids : Drones |
 VGP Fabrics |
-VGP Garden Drinks UF    |
+VGP Garden Drinks    |
 VRE Android Factions  |
 Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
