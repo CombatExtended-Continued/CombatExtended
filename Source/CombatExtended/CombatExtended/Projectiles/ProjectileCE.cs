@@ -222,13 +222,13 @@ namespace CombatExtended
         {
             get
             {
-                var w = (Destination - origin);
+                Vector2 w = (Destination - origin);
 
-                var vx = w.x / StartingTicksToImpact;
+                var vx = w.x / startingTicksToImpact;
 
-                var vy = (w.y - shotHeight) / StartingTicksToImpact
+                var vy = (w.y - shotHeight) / startingTicksToImpact
                          + shotSpeed * Mathf.Sin(shotAngle) / GenTicks.TicksPerRealSecond
-                         - (GravityFactor * fTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
+                         - (GravityFactor * FlightTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
 
                 return Quaternion.AngleAxis(
                            Mathf.Rad2Deg * Mathf.Atan2(-vy, vx) + 90f
