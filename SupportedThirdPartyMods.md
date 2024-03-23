@@ -31,7 +31,6 @@ Mod |
 [KV] Hand 'n' Footwear	|
 [LF] Command And Conquer NOD Combat Armor |
 [LF] Red Dawn   |
-[LITE] Expanded Materials – Metals  |
 [LTS] Military |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
@@ -299,7 +298,6 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Overhaul   |
-Medieval Quest Rewards  |
 Medieval Tailor   |
 Megafauna	|
 Metal Gear Rimworld - Gekko	|
