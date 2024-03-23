@@ -246,7 +246,8 @@ namespace CombatExtended
             return Vector2.Lerp(origin, Destination, ticks / StartingTicksToImpact);
         }
 
-        private Vector3? exactPosition = null;
+        private Vector3 exactPosition;
+
         /// <summary>
         /// Exact x,y,z (x,height,y) position in terms of Vec2Position.x, .y (lerped origin to Destination) and Height.
         /// </summary>
@@ -254,24 +255,12 @@ namespace CombatExtended
         {
             set
             {
-                exactPosition = new Vector3(value.x, value.y, value.z);
+                exactPosition = value;
                 Position = ((Vector3)exactPosition).ToIntVec3();
             }
             get
             {
-                if (exactPosition == null)
-                {
-                    exactPosition = new Vector3(origin.x, shotHeight, origin.y);
-                }
-                return ((Vector3)exactPosition);
-            }
-        }
-
-        public virtual Vector2 DrawPosV2
-        {
-            get
-            {
-                return new Vector2(ExactPosition.x, ExactPosition.z);
+                return exactPosition;
             }
         }
 
@@ -464,7 +453,7 @@ namespace CombatExtended
         #region Throw
         public virtual void Throw(Thing launcher, Vector3 origin, Vector3 heading, Thing equipment = null)
         {
-            this.ExactPosition = origin;
+            this.ExactPosition = LastPos = origin;
             this.shotHeight = origin.y;
             this.origin = new Vector2(origin.x, origin.z);
             this.shotSpeed = Math.Max(heading.magnitude, def.projectile.speed);
@@ -667,6 +656,8 @@ namespace CombatExtended
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
             }
+            this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
+
         }
         #endregion
 
