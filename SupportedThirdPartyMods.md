@@ -39,7 +39,6 @@ Mod |
 [O21] Outland - Eastborn Empire    |
 [O21] Outland - Motz Coalition  |
 [O21] Outland - Redburn Pact  |
-[Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
@@ -350,7 +349,7 @@ Ni'Hal	|
 Nukes   |
 Nyaron Race |
 Not Only Just a Cannon  |
-Obsidia Expansion - Mothoids  |
+Obsidia Expansion - Mothoids Xenotype   |
 ODZ Suits |
 Opossum Friends |
 Orassans	|
