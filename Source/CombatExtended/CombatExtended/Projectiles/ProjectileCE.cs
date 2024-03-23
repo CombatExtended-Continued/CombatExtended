@@ -42,18 +42,7 @@ namespace CombatExtended
 
         public Vector2 origin;
 
-        private IntVec3 originInt = new IntVec3(0, -1000, 0);
-        public IntVec3 OriginIV3
-        {
-            get
-            {
-                if (originInt.y < 0)
-                {
-                    originInt = new IntVec3(origin);
-                }
-                return originInt;
-            }
-        }
+        public IntVec3 OriginIV3;
 
         public Vector3 destinationInt = new Vector3(0f, 0f, -1f);
         /// <summary>
@@ -446,6 +435,7 @@ namespace CombatExtended
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
 	    Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
+            Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));
             // To insure saves don't get affected..
         }
         #endregion
@@ -456,6 +446,7 @@ namespace CombatExtended
             this.ExactPosition = LastPos = origin;
             this.shotHeight = origin.y;
             this.origin = new Vector2(origin.x, origin.z);
+            this.OriginIV3 = new IntVec3(this.origin);
             this.shotSpeed = Math.Max(heading.magnitude, def.projectile.speed);
             var projectileProperties = def.projectile as ProjectilePropertiesCE;
             this.castShadow = projectileProperties.castShadow;
@@ -647,6 +638,7 @@ namespace CombatExtended
         {
             this.launcher = launcher;
             this.origin = origin;
+            this.OriginIV3 = new IntVec3(origin);
             this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
@@ -1269,7 +1261,7 @@ namespace CombatExtended
                     }
                 }
             }
-            float distToOrigin = originInt.DistanceTo(positionInt);
+            float distToOrigin = OriginIV3.DistanceTo(positionInt);
             float dangerFactor = (def.projectile as ProjectilePropertiesCE).dangerFactor;
             if (dangerFactor > 0f && nextPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
             {
