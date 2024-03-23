@@ -112,7 +112,21 @@ namespace CombatExtended
 
         #region Vanilla
         public bool landed;
-        public int ticksToImpact;
+	// TODO: // Remove in 1.5
+        public int intTicksToImpact;
+	public int ticksToImpact
+        {
+            get
+            {
+                return intTicksToImpact;
+            }
+            set
+            {
+                intTicksToImpact = value;
+            }
+        }
+
+
         protected Sustainer ambientSustainer;
 
         #endregion
@@ -320,7 +334,7 @@ namespace CombatExtended
             Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
             Scribe_References.Look<Thing>(ref launcher, "launcher");
             Scribe_References.Look<Thing>(ref equipment, "equipment");
-            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
+            Scribe_Values.Look<int>(ref intTicksToImpact, "ticksToImpact", 0, true);
             Scribe_Values.Look<float>(ref startingTicksToImpact, "startingTicksToImpact", 0, true);
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
