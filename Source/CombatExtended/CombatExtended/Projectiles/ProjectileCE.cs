@@ -382,28 +382,10 @@ namespace CombatExtended
         /// </summary>
         public float shotSpeed = -1f;
 
-        private float _gravityFactor = -1;
-
         /// <summary>
         /// Gravity factor in meters(cells) per second squared
         /// </summary>
-        private float GravityFactor
-        {
-            get
-            {
-                if (_gravityFactor < 0)
-                {
-                    _gravityFactor = CE_Utility.GravityConst;
-                    if (def.projectile is ProjectilePropertiesCE props)
-                    {
-                        _gravityFactor = props.Gravity;
-                    }
-                }
-                return _gravityFactor;
-            }
-        }
-
-
+        private float GravityFactor = CE_Utility.GravityConst;
 
         protected Material[] shadowMaterial;
         protected Material ShadowMaterial
@@ -474,6 +456,7 @@ namespace CombatExtended
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
+	    Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
             // To insure saves don't get affected..
         }
         #endregion
@@ -665,6 +648,7 @@ namespace CombatExtended
             {
                 this.castShadow = props.castShadow;
                 this.lerpPosition = props.lerpPosition;
+                this.GravityFactor = props.Gravity;
             }
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
