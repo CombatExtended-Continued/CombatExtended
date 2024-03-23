@@ -184,32 +184,11 @@ namespace CombatExtended
         {
             get
             {
-                return ExactPosition;
-            }
-        }
-
-        private Vector3 lastExactPos = new Vector3(-1000, 0, 0);
-        public Vector3 LastPos
-        {
-            protected set
-            {
-                lastExactPos = value;
-            }
-            get
-            {
-                if (lastExactPos.x < -999)
-                {
-                    var lastPos = Vec2Position(FlightTicks - 1);
-                    lastExactPos = new Vector3(lastPos.x, GetHeightAtTicks(FlightTicks - 1), lastPos.y);
-                }
-                return lastExactPos;
-            }
-        }
-
                 return ExactPosition + new Vector3(0, 0, ExactPosition.y - shotHeight);
             }
         }
 
+        public Vector3 LastPos;
         protected DangerTracker _dangerTracker = null;
         protected DangerTracker DangerTracker
         {
@@ -358,6 +337,7 @@ namespace CombatExtended
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
 	    Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
+            Scribe_Values.Look(ref LastPos, "lastPosition");
             Scribe_Values.Look(ref FlightTicks, "flightTicks");
             Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));
 	    Scribe_Values.Look(ref Destination, "destination", this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled);
