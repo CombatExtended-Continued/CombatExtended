@@ -136,27 +136,6 @@ namespace CombatExtended
 
         public int FlightTicks = 0;
 
-        private int flightTicks;
-        /// <summary>
-        /// The amount of integer ticks this projectile has remained in the air for, ignoring impact.
-        /// </summary>
-        public int FlightTicks
-        {
-            get
-            {
-                return flightTicks;
-            }
-        }
-        /// <summary>
-        /// The amount of float ticks the projectile has remained in the air for, including impact.
-        /// </summary>
-        public float fTicks
-        {
-            get
-            {
-                return (ticksToImpact == 0 ? StartingTicksToImpact : (float)FlightTicks);
-            }
-        }
         #endregion
 
         #region Position
@@ -369,6 +348,7 @@ namespace CombatExtended
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
 	    Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
+            Scribe_Values.Look(ref FlightTicks, "flightTicks");
             Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));
 	    Scribe_Values.Look(ref Destination, "destination", this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled);
             // To insure saves don't get affected..
@@ -1120,7 +1100,7 @@ namespace CombatExtended
             }
             LastPos = ExactPosition;
             ticksToImpact--;
-            flightTicks++;
+            FlightTicks++;
             Vector3 nextPosition;
             if (lerpPosition)
             {
