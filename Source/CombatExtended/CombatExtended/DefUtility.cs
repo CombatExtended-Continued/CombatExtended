@@ -194,14 +194,14 @@ namespace CombatExtended
             {
                 isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
             }
-            if (Prefs.DevMode && def.HasModExtension<ApparelDefExtension>())
+            if (def.HasModExtension<ApparelDefExtension>())
             {
                 ApparelDefExtension extension = def.GetModExtension<ApparelDefExtension>();
                 /*
                  * wether this apparel is a radio pack
                  */
                 isRadioArray[def.index] = extension.isRadioPack;
-                if (extension.isRadioPack)
+                if (Prefs.DevMode && extension.isRadioPack)
                 {
                     Log.Message($"{def}");
                 }
