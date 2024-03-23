@@ -60,7 +60,7 @@ namespace CombatExtended
         protected float lastShotRotation;
         protected float lastRecoilDeg;
         protected float? storedShotReduction = null;
-        protected ShootLine lastShootLine;
+        protected ShootLine? lastShootLine;
         protected bool repeating = false;
         private bool doRetarget = true;
 
@@ -261,7 +261,7 @@ namespace CombatExtended
             shootingAtDowned = false;
             lastTarget = null;
             lastTargetPos = IntVec3.Invalid;
-
+            lastShootLine = null;
             repeating = false;
             storedShotReduction = null;
         }
@@ -300,6 +300,12 @@ namespace CombatExtended
             if (Projectile == null || (IsAttacking && CompAmmo != null && !CompAmmo.CanBeFiredNow))
             {
                 CompAmmo?.TryStartReload();
+                shootingAtDowned = false;
+                lastTarget = null;
+                lastTargetPos = IntVec3.Invalid;
+                lastShootLine = null;
+                repeating = false;
+                storedShotReduction = null;
                 return false;
             }
             return true;
@@ -344,7 +350,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
+        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, bool midBurst = false)
         {
             if (!calculateMechanicalOnly)
             {
@@ -551,14 +557,18 @@ namespace CombatExtended
                         targetHeight = CollisionVertical.WallCollisionHeight;
                     }
                 }
-                if (projectilePropsCE.isInstant)
+                if (!midBurst)
                 {
-                    angleRadians += Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+                    if (projectilePropsCE.isInstant)
+                    {
+                        lastShotAngle = Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+                    }
+                    else
+                    {
+                        lastShotAngle = ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                    }
                 }
-                else
-                {
-                    angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
-                }
+                angleRadians += lastShotAngle;
             }
 
             // ----------------------------------- STEP 4: Mechanical variation
@@ -568,7 +578,11 @@ namespace CombatExtended
             // ----------------------------------- STEP 5: Finalization
 
             var w = (newTargetLoc - sourceLoc);
-            shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
+            if (!midBurst)
+            {
+                lastShotRotation = -90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x);
+            }
+            shotRotation = (lastShotRotation + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
             distance = (newTargetLoc - sourceLoc).magnitude;
         }
@@ -983,18 +997,61 @@ namespace CombatExtended
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
-            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst & suppressive & target is unreachable but alive, keep shooting suppressively.
-            {
-                if (numShotsFired == 0 || (CompFireModes != null && CompFireModes.CurrentAimMode != AimMode.SuppressFire) || currentTarget.ThingDestroyed)
-                {
-                    return false;
-                }
-                shootLine = lastShootLine;
-                currentTarget = new LocalTargetInfo(lastTargetPos);
+            var props = VerbPropsCE;
+            var midBurst = numShotsFired > 0;
+            var suppressing = CompFireModes?.CurrentAimMode == AimMode.SuppressFire;
 
-                if (!currentTarget.IsValid)
+            // Cases
+            // 1: Can hit target, set our previous shoot line
+            //    Cannot hit target
+            //      Target exists
+            //        Mid burst
+            // 2:       Interruptible -> stop shooting
+            // 3:       Not interruptible -> continue shooting at last position (do *not* shoot at target position as it will play badly with skip or other teleport effects)
+            // 4:     Suppressing fire -> set our shoot line and continue
+            // 5:     else -> stop
+            //      Target missing
+            //        Mid burst
+            // 6:       Interruptible -> stop shooting
+            // 7:       Not interruptible -> shoot along previous line
+            // 8:     else -> stop
+            if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // Case 1
+            {
+                lastShootLine = shootLine;
+            }
+            else // We cannot hit the current target
+            {
+                if (midBurst) // Case 2,3,6,7
                 {
-                    return false;
+                    if (props.interruptibleBurst && !suppressing) // Case 2, 6
+                    {
+                        return false;
+                    }
+                    // Case 3, 7
+                    if (lastShootLine == null)
+                    {
+                        return false;
+                    }
+                    shootLine = (ShootLine)lastShootLine;
+                    currentTarget = new LocalTargetInfo(lastTargetPos);
+                }
+                else // case 4,5,8
+                {
+                    if (suppressing) // case 4,5
+                    {
+                        if (currentTarget.IsValid && !currentTarget.ThingDestroyed)
+                        {
+                            lastShootLine = shootLine = new ShootLine(caster.Position, currentTarget.Cell);
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
             if (projectilePropsCE.pelletCount < 1)
@@ -1021,7 +1078,7 @@ namespace CombatExtended
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly, instant);
+                ShiftTarget(report, pelletMechanicsOnly, instant, midBurst);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
@@ -1033,9 +1090,6 @@ namespace CombatExtended
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
 
-                this.lastShotAngle = shotAngle;
-                this.lastShotRotation = shotRotation;
-                this.lastShootLine = shootLine;
                 if (instant)
                 {
                     var shotHeight = ShotHeight;
