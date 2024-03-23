@@ -13,7 +13,6 @@ using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
-    [StaticConstructorOnStartup]
     public abstract class ProjectileCE : ThingWithComps
     {
         #region ClassVariables
