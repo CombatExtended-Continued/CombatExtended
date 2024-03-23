@@ -18,7 +18,6 @@ Mod |
 [FSF] Advanced Bionics Expansion    |
 [FSF] More Psycast Powers   |
 [FSF] Vanilla Bionics Expansion |
-[HLX] ReGrowth - Extinct Animals Pack |
 [JDS] Castle Walls  |
 [JDS] EFT Apparel |
 [JDS] Exiled Dawn |
