@@ -44,23 +44,10 @@ namespace CombatExtended
 
         public IntVec3 OriginIV3;
 
-        public Vector3 destinationInt = new Vector3(0f, 0f, -1f);
         /// <summary>
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
         /// </summary>
-        public Vector2 Destination
-        {
-            get
-            {
-                if (destinationInt.z < 0)
-                {
-                    destinationInt = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
-                    destinationInt.z = 0f;
-                }
-                // Since returning as a Vector2 yields Vector2(Vector3.x, Vector3.y)!
-                return destinationInt;
-            }
-        }
+        public Vector2 Destination;
         #endregion
 
         /// <summary>
@@ -436,6 +423,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref exactPosition, "exactPosition");
 	    Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
             Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));
+	    Scribe_Values.Look(ref Destination, "destination", this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled);
             // To insure saves don't get affected..
         }
         #endregion
@@ -447,6 +435,7 @@ namespace CombatExtended
             this.shotHeight = origin.y;
             this.origin = new Vector2(origin.x, origin.z);
             this.OriginIV3 = new IntVec3(this.origin);
+            this.Destination = this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
             this.shotSpeed = Math.Max(heading.magnitude, def.projectile.speed);
             var projectileProperties = def.projectile as ProjectilePropertiesCE;
             this.castShadow = projectileProperties.castShadow;
@@ -639,6 +628,7 @@ namespace CombatExtended
             this.launcher = launcher;
             this.origin = origin;
             this.OriginIV3 = new IntVec3(origin);
+            this.Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
             this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
