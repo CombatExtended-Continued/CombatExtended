@@ -8,7 +8,6 @@ Mod |
 --- |
 [Cosplay Equipment]	Blue Archive |
 [CP] DOOM	|
-[CP] Metal Gear Solid	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
 [CP] Rimmu-Nation - Security	|
