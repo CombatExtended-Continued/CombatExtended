@@ -453,7 +453,6 @@ Spidercamp's Horses     |
 SRTS Expanded	|
 Stalingrad – Uniforms   |
 Star Crafters Armory  |
-Star Wars - Droids |
 Star Wars - Factions |
 Starship Troopers Aracnids  |
 Steamworld Uniforms |
