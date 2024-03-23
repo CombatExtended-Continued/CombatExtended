@@ -132,42 +132,7 @@ namespace CombatExtended
         #endregion
 
         #region Ticks/Seconds
-        protected float startingTicksToImpactInt = -1f;
-        public float StartingTicksToImpact
-        {
-            get
-            {
-                if (!lerpPosition)
-                {
-                    return float.MaxValue;
-                }
-                if (startingTicksToImpactInt < 0f)
-                {
-                    // Optimization in case shotHeight is zero (for example for fragments)
-                    if (shotHeight < 0.001f)
-                    {
-                        // Opt-out in case the projectile is to collide instantly
-                        if (shotAngle < 0f)
-                        {
-                            destinationInt = origin;
-                            startingTicksToImpactInt = 0f;
-                            // During drawing in Multiplayer - impact causes issues. Will get handled inside of the `Tick` call.
-                            // In the future, replace this with `!InInterface` call, as it's more fitting here.
-                            if (!global::CombatExtended.Compatibility.Multiplayer.InMultiplayer)
-                            {
-                                ImpactSomething();
-                            }
-                            return 0f;
-                        }
-                        // Multiplied by ticksPerSecond since the calculated time is actually in seconds.
-                        startingTicksToImpactInt = (float)((origin - Destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * (float)GenTicks.TicksPerRealSecond;
-                        return startingTicksToImpactInt;
-                    }
-                    startingTicksToImpactInt = GetFlightTime() * (float)GenTicks.TicksPerRealSecond;
-                }
-                return startingTicksToImpactInt;
-            }
-        }
+        public float startingTicksToImpact;
 
         int intTicksToImpact = -1;
         /// <summary>
@@ -407,6 +372,7 @@ namespace CombatExtended
             Scribe_References.Look<Thing>(ref launcher, "launcher");
             Scribe_References.Look<Thing>(ref equipment, "equipment");
             Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
+            Scribe_Values.Look<float>(ref startingTicksToImpact, "startingTicksToImpact", 0, true);
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
             //Here be new variables
@@ -638,6 +604,7 @@ namespace CombatExtended
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
             }
+            this.startingTicksToImpact = GetFlightTime() * GenTicks.TicksPerRealSecond;
             this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
 
         }
