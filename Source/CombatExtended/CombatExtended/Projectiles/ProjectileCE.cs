@@ -112,9 +112,9 @@ namespace CombatExtended
 
         #region Vanilla
         public bool landed;
-	// TODO: // Remove in 1.5
+        // TODO: // Remove in 1.5
         public int intTicksToImpact;
-	public int ticksToImpact
+        public int ticksToImpact
         {
             get
             {
@@ -153,14 +153,14 @@ namespace CombatExtended
         #endregion
 
         #region Position
-	protected virtual Vector2 Vec2Position(float ticks = -1f)
-	{
+        protected virtual Vector2 Vec2Position(float ticks = -1f)
+        {
             Log.ErrorOnce("Vec2Position(float) is deprecated and will be removed in 1.5", 50021);
-	    if (ticks < 0)
-	    {
+            if (ticks < 0)
+            {
                 return Vec2Position();
             }
-	    return Vector2.Lerp(origin, Destination, ticks / startingTicksToImpact);
+            return Vector2.Lerp(origin, Destination, ticks / startingTicksToImpact);
         }
         protected virtual Vector2 Vec2Position()
         {
@@ -185,14 +185,14 @@ namespace CombatExtended
             }
         }
 
-	public Vector3 ExactMinusLastPos
-	{
-	    get
-	    {
+        public Vector3 ExactMinusLastPos
+        {
+            get
+            {
                 Log.ErrorOnce("ExactMinusLastPos is deprecated and will be removed in 1.5", 50022);
                 return (ExactPosition - LastPos);
-	    }
-	}
+            }
+        }
 
         public override Vector3 DrawPos
         {
@@ -350,11 +350,11 @@ namespace CombatExtended
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
-	    Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
+            Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
             Scribe_Values.Look(ref LastPos, "lastPosition");
             Scribe_Values.Look(ref FlightTicks, "flightTicks");
             Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));
-	    Scribe_Values.Look(ref Destination, "destination", this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled);
+            Scribe_Values.Look(ref Destination, "destination", this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled);
             // To insure saves don't get affected..
         }
         #endregion
