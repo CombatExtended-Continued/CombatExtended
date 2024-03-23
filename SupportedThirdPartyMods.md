@@ -228,7 +228,6 @@ Filthy Orc Invasion |
 Forgelings race	|
 Forgotten Realms - Lizardfolk	|
 Forgotten Realms - Minotaur	|
-Forsakens	|
 Fort's Firefighter gadget   |
 Frontline Collection  |
 FROG Suit Set   |
