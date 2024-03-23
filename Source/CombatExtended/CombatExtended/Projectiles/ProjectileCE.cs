@@ -171,6 +171,15 @@ namespace CombatExtended
             }
         }
 
+	public Vector3 ExactMinusLastPos
+	{
+	    get
+	    {
+                Log.ErrorOnce("ExactMinusLastPos is deprecated and will be removed in 1.5", 50022);
+                return (ExactPosition - LastPos);
+	    }
+	}
+
         public override Vector3 DrawPos
         {
             get
@@ -197,11 +206,7 @@ namespace CombatExtended
             }
         }
 
-        public Vector3 ExactMinusLastPos
-        {
-            get
-            {
-                return (ExactPosition - LastPos);
+                return ExactPosition + new Vector3(0, 0, ExactPosition.y - shotHeight);
             }
         }
 
@@ -222,7 +227,7 @@ namespace CombatExtended
             {
                 if (lastShotLine != FlightTicks)
                 {
-                    shotLine = new Ray(LastPos, ExactMinusLastPos);
+                    shotLine = new Ray(LastPos, ExactPosition - LastPos);
                     lastShotLine = FlightTicks;
                 }
                 return shotLine;
@@ -879,7 +884,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (dist * dist > ExactMinusLastPos.sqrMagnitude)
+            if (dist * dist > (ExactPosition - LastPos).sqrMagnitude)
             {
                 return false;
             }
@@ -913,7 +918,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (dist * dist > ExactMinusLastPos.sqrMagnitude)
+            if (dist * dist > (ExactPosition - LastPos).sqrMagnitude)
             {
                 return false;
             }
