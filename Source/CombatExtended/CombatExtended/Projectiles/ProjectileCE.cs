@@ -984,72 +984,126 @@ namespace CombatExtended
         /// <param name="suppressionMultiplier">How much to multiply the projectile's damage by before using it as suppression</param>
         protected void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f)
         {
-            var propsCE = def.projectile as ProjectilePropertiesCE;
-
-            if (propsCE.suppressionFactor <= 0f || (!landed && propsCE.airborneSuppressionFactor <= 0f))
-            {
-                return;
-            }
-
-            CompShield shield = pawn.TryGetComp<CompShield>();
-            if (pawn.RaceProps.Humanlike)
-            {
-                // check for shield user
-
-                var wornApparel = pawn.apparel.WornApparel;
-                for (var i = 0; i < wornApparel.Count; i++)
+            int lastLine = 0;
+            try {
+                lastLine = 0;
+                
+                var propsCE = def.projectile as ProjectilePropertiesCE;
+                lastLine = 1;
+                
+                if (propsCE.suppressionFactor <= 0f || (!landed && propsCE.airborneSuppressionFactor <= 0f))
                 {
-                    var personalShield = wornApparel[i].TryGetComp<CompShield>();
-                    if (personalShield != null)
+                    lastLine = 2;
+                    
+                    return;
+                }
+                lastLine = 3;
+                
+                CompShield shield = pawn.TryGetComp<CompShield>();
+                lastLine = 4;
+                
+                if (pawn?.RaceProps?.Humanlike ?? false)
+                {
+                    lastLine = 5;
+                    
+                    // check for shield user
+                    lastLine = 6;
+                    
+                    var wornApparel = pawn.apparel.WornApparel;
+                    lastLine = 8;
+                    
+                    for (var i = 0; i < wornApparel.Count; i++)
                     {
-                        shield = personalShield;
-                        break;
+                        lastLine = 7;
+                        
+                        var personalShield = wornApparel[i].TryGetComp<CompShield>();
+                        lastLine = 10;
+                        
+                        if (personalShield != null)
+                        {
+                            lastLine = 9;
+                            
+                            shield = personalShield;
+                            break;
+                        }
                     }
                 }
-            }
-            //Add suppression
-            var compSuppressable = pawn.TryGetComp<CompSuppressable>();
-            if (compSuppressable != null
+                lastLine = 11;
+                
+                //Add suppression
+                var compSuppressable = pawn.TryGetComp<CompSuppressable>();
+                lastLine = 12;
+                
+                if (compSuppressable != null
                     && pawn.Faction != launcher?.Faction
                     && (shield == null || shield.ShieldState == ShieldState.Resetting)
                     && !compSuppressable.IgnoreSuppresion(OriginIV3))
-            {
-                suppressionAmount = def.projectile.damageAmountBase * suppressionMultiplier;
-
-                suppressionAmount *= propsCE.suppressionFactor;
-                if (!landed)
                 {
-                    suppressionAmount *= propsCE.airborneSuppressionFactor;
-                }
-
-                var explodeRadius = propsCE.explosionRadius;
-                if (explodeRadius == 0f)
-                {
-                    var comp = this.TryGetComp<CompExplosiveCE>()?.props as CompProperties_ExplosiveCE;
-                    if (comp != null)
+                    lastLine = 13;
+                    
+                    suppressionAmount = def.projectile.damageAmountBase * suppressionMultiplier;
+                    lastLine = 14;
+                    
+                    suppressionAmount *= propsCE.suppressionFactor;
+                    if (!landed)
                     {
-                        explodeRadius = comp.explosiveRadius;
-                        suppressionAmount = comp.damageAmountBase;
+                        lastLine = 15;
+                        
+                        suppressionAmount *= propsCE.airborneSuppressionFactor;
                     }
-                }
 
-                if (explodeRadius == 0f)
-                {
-                    var penetrationAmount = propsCE?.armorPenetrationSharp ?? 0f;
-                    var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageSharpArmor) * 0.5f / penetrationAmount, 0, 1);
-                    suppressionAmount *= armorMod;
+                    var explodeRadius = propsCE.explosionRadius;
+                    lastLine = 16;
+                    
+                    if (explodeRadius == 0f)
+                    {
+                        lastLine = 17;
+                        
+                        var comp = this.TryGetComp<CompExplosiveCE>()?.props as CompProperties_ExplosiveCE;
+                        if (comp != null)
+                        {
+                            lastLine = 18;
+                            
+                            explodeRadius = comp.explosiveRadius;
+                            suppressionAmount = comp.damageAmountBase;
+                        }
+                    }
+                    lastLine = 19;
+                    
+                    if (explodeRadius == 0f)
+                    {
+                        lastLine = 20;
+                        
+                        var penetrationAmount = propsCE?.armorPenetrationSharp ?? 0f;
+                        var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageSharpArmor) * 0.5f / penetrationAmount, 0, 1);
+                        suppressionAmount *= armorMod;
+                        lastLine = 21;
+                        
+                    }
+                    else
+                    {
+                        lastLine = 22;
+                        
+                        // Larger suppression amount at distances compared to linear interpolation.
+                        var dPosX = ExactPosition.x - pawn.DrawPos.x;
+                        var dPosZ = ExactPosition.z - pawn.DrawPos.z;
+                        // Affected by the ratio of distance from the explosion/projectile to the max suppression radius raised to the power of two.
+                        var totalRadius = explodeRadius + SuppressionRadius;
+                        var distanceFactor = Mathf.Clamp01(1f - (dPosX * dPosX + dPosZ * dPosZ) / (totalRadius * totalRadius));
+                        suppressionAmount *= distanceFactor;
+                        lastLine = 23;
+                        
+                    }
+                    lastLine = 24;
+                    
+                    compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
+                    lastLine = 25;
+                    
                 }
-                else
-                {
-                    // Larger suppression amount at distances compared to linear interpolation.
-                    var dPosX = ExactPosition.x - pawn.DrawPos.x;
-                    var dPosZ = ExactPosition.z - pawn.DrawPos.z;
-                    // Affected by the ratio of distance from the explosion/projectile to the max suppression radius raised to the power of two.
-                    var totalRadius = explodeRadius + SuppressionRadius;
-                    var distanceFactor = Mathf.Clamp01(1f - (dPosX * dPosX + dPosZ * dPosZ) / (totalRadius * totalRadius));
-                    suppressionAmount *= distanceFactor;
-                }
-                compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
+            }
+            catch (Exception e) {
+                Log.Message($"LL: {lastLine}");
+                throw e;
             }
         }
 
@@ -1194,7 +1248,7 @@ namespace CombatExtended
         /// <summary>
         /// Draws projectile if at least a tick away from caster (or always if no caster)
         /// </summary>
-        public override void Draw()
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             if (FlightTicks == 0 && launcher != null && launcher is Pawn)
             {

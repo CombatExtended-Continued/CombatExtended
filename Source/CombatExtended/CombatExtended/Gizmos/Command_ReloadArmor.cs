@@ -11,7 +11,7 @@ namespace CombatExtended
 {
     public class Command_ReloadArmor : Command_Action
     {
-        public CompReloadable compReloadable;
+        public CompApparelReloadable compReloadable;
 
         public override bool GroupsWith(Gizmo other)
         {

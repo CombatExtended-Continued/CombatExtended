@@ -79,7 +79,7 @@ namespace CombatExtended
             baseData = default(FleckStatic);
             baseData.Setup(creationData);
             airTimeLeft = creationData.airTimeLeft ?? 999999f;
-            baseData.exactPosition += creationData.def.attachedDrawOffset;
+            baseData.position.worldPosition += creationData.def.attachedDrawOffset;
             rotationRate = creationData.rotationRate;
             SetVelocity(creationData.velocityAngle, creationData.velocitySpeed);
             if (creationData.velocity.HasValue)
@@ -100,7 +100,7 @@ namespace CombatExtended
             }
             Vector3 vector = NextExactPosition(deltaTime);
             IntVec3 intVec = new IntVec3(vector);
-            if (intVec != new IntVec3(baseData.exactPosition))
+            if (intVec != new IntVec3(baseData.position.ExactPosition))
             {
                 if (!intVec.InBounds(map))
                 {
@@ -112,7 +112,7 @@ namespace CombatExtended
                     return false;
                 }
             }
-            baseData.exactPosition = vector;
+            baseData.position.worldPosition = vector;
             if (baseData.def.speedPerTime != FloatRange.Zero)
             {
                 Speed = Mathf.Max(Speed + baseData.def.speedPerTime.RandomInRange * deltaTime, 0f);
@@ -135,7 +135,7 @@ namespace CombatExtended
                 }
                 if (airTimeLeft <= 0f && !baseData.def.landSound.NullOrUndefined())
                 {
-                    baseData.def.landSound.PlayOneShot(new TargetInfo(new IntVec3(baseData.exactPosition), map));
+                    baseData.def.landSound.PlayOneShot(new TargetInfo(new IntVec3(baseData.position.ExactPosition), map));
                 }
             }
             return false;
@@ -143,7 +143,7 @@ namespace CombatExtended
 
         private Vector3 NextExactPosition(float deltaTime)
         {
-            return baseData.exactPosition + velocity * deltaTime;
+            return baseData.position.ExactPosition + velocity * deltaTime;
         }
 
         public void SetVelocity(float angle, float speed)

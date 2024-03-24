@@ -48,7 +48,10 @@ namespace CombatExtended
         _iconPickupDrop = ContentFinder<Texture2D>.Get("UI/Icons/loadoutPickupDrop"),
         _iconDropExcess = ContentFinder<Texture2D>.Get("UI/Icons/loadoutDropExcess");
 
-        private static Regex validNameRegex = Outfit.ValidNameRegex;
+        //TODO: 1.5
+        //private static Regex validNameRegex = Outfit.ValidNameRegex;
+
+        private static Regex validNameRegex = new Regex("^.*$");
         private Vector2 _availableScrollPosition = Vector2.zero;
         private const float _barHeight = 24f;
         private Vector2 _countFieldSize = new Vector2(40f, 24f);

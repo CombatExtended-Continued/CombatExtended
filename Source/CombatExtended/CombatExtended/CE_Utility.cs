@@ -1470,7 +1470,7 @@ namespace CombatExtended
                     {
                         Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, parent), pawn, null);
                         hediff_Injury.Part = parent;
-                        hediff_Injury.source = dinfo.Weapon;
+                        hediff_Injury.sourceDef = dinfo.Weapon;
                         hediff_Injury.sourceBodyPartGroup = dinfo.WeaponBodyPartGroup;
                         hediff_Injury.Severity = totalDamage - (hitPartHealth * hitPartHealth / totalDamage);
                         if (hediff_Injury.Severity <= 0f)
