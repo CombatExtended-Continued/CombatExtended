@@ -324,7 +324,6 @@ MH: Mechanical Biomimetics	|
 MH: Military Tiers	|
 Midworld Expanded: Flak Armor  |
 Miho, the Celestial Fox  |
-Mincho, The Mint Choco Slime  |
 Mincho, The Mint Choco Slime ~ HAR ver. |
 MiningCo. MiningHelmet	|
 MiningCo. Spaceship	|
