@@ -22,6 +22,40 @@
 					</value>
 				</li>
 				
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="OuterRim_LightLaserCannon_Coruscant" or defName="OuterRim_LightLaserCannon_Tatooine" or defName="OuterRim_LightLaserCannon_Corellia" or defName="OuterRim_LightIonCannon"]/placeWorkers</xpath>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_LightLaserCannon_Coruscant" or defName="OuterRim_LightLaserCannon_Tatooine" or defName="OuterRim_LightLaserCannon_Corellia" or defName="OuterRim_LightIonCannon"]</xpath>
+					<value>
+						<placeWorkers>
+							<li>PlaceWorker_ShowTurretRadius</li>
+						</placeWorkers>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_LightLaserCannon_Coruscant" or defName="OuterRim_LightLaserCannon_Tatooine" or defName="OuterRim_LightLaserCannon_Corellia"]/description</xpath>
+					<value>
+						<description>A mid-sized automatic blaster turret, small enough to be placed indoors. It runs on Tibanna and must be kept fueled. It may explode when damaged.</description>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_LightIonCannon"]/description</xpath>
+					<value>
+						<description>A mid-sized automatic blaster turret, small enough to be placed indoors. It fires ion bolts that are highly effective against electronics. It runs on Tibanna and must be kept fueled. It may explode when damaged.</description>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_MediumLaserCannon" or defName="OuterRim_Turbolaser" or defName="OuterRim_LightLaserCannon_Corellia" or defName="OuterRim_HeavyTurbolaser" or defName="OuterRim_HeavyLaserCannon" or defName="OuterRim_HeavyIonCannon" or defName="OuterRim_HeavyImperialTurbolaser"]/placeWorkers</xpath>
+					<value>
+						<li>PlaceWorker_ShowTurretRadius</li>
+					</value>
+				</li>
+				
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>OuterRim_Gun_LightLaserCannon_Coruscant</defName>
 					<statBases>
@@ -397,16 +431,16 @@
 					</statBases>
 					<Properties>
 						<recoilAmount>0.91</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_OR_ProtonMortar</defaultProjectile>
 						<warmupTime>0</warmupTime>
 						<minRange>12.9</minRange>
-						<range>53</range>
+						<range>500</range>
 						<burstShotCount>1</burstShotCount>
 						<soundCast>OuterRim_Turret_ProtonTorpedo</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
-						<muzzleFlashScale>12</muzzleFlashScale>
+						<muzzleFlashScale>16</muzzleFlashScale>
 						<recoilPattern>Mounted</recoilPattern>
 						<consumeFuelPerShot>1</consumeFuelPerShot>
 						<requireLineOfSight>false</requireLineOfSight>
@@ -430,7 +464,7 @@
 					</statBases>
 					<Properties>
 						<recoilAmount>0.91</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_OR_ProtonArtillery</defaultProjectile>
 						<warmupTime>0</warmupTime>
@@ -439,7 +473,7 @@
 						<burstShotCount>1</burstShotCount>
 						<soundCast>OuterRim_Turret_ProtonTorpedo</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
-						<muzzleFlashScale>12</muzzleFlashScale>
+						<muzzleFlashScale>32</muzzleFlashScale>
 						<recoilPattern>Mounted</recoilPattern>
 						<consumeFuelPerShot>1</consumeFuelPerShot>
 						<requireLineOfSight>false</requireLineOfSight>
@@ -452,6 +486,70 @@
 						<noSnapshot>true</noSnapshot>
 						<noSingleShot>true</noSingleShot>
 					</FireModes>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_Gun_ProtonMortar" or defName="OuterRim_Gun_ProtonArtillery"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>30</li>
+								<li>50</li>
+								<li>70</li>
+								<li>90</li>
+							</chargeSpeeds>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Gun_ProtonMortar"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+								<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_ProtonMortar</defaultProjectile>
+								<warmupTime>0</warmupTime>
+								<minRange>12.9</minRange>
+								<range>700</range>
+								<burstShotCount>1</burstShotCount>
+								<soundCast>OuterRim_Turret_ProtonTorpedo</soundCast>
+								<muzzleFlashScale>16</muzzleFlashScale>
+								<circularError>1</circularError>
+								<indirectFirePenalty>0.2</indirectFirePenalty>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Gun_ProtonArtillery"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+								<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_ProtonArtillery</defaultProjectile>
+								<warmupTime>0</warmupTime>
+								<minRange>32</minRange>
+								<range>700</range>
+								<burstShotCount>1</burstShotCount>
+								<soundCast>OuterRim_Turret_ProtonTorpedo</soundCast>
+								<muzzleFlashScale>32</muzzleFlashScale>
+								<circularError>1</circularError>
+								<indirectFirePenalty>0.2</indirectFirePenalty>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+							</li>
+						</verbs>
+					</value>
 				</li>
 			</operations>
 		</match>
