@@ -1,127 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<operations>
-			<li Class="PatchOperationFindMod">
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Kurin HAR Edition</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-				<mods>
-					<li>Kurin, The Three Tailed Fox</li>
-				</mods>
-
-				<match Class="PatchOperationSequence">
-					<operations>
-
-						<li Class="PatchOperationConditional">
-							<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Kurin"]/comps</xpath>
-							<nomatch Class="PatchOperationAdd">
-								<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Kurin"]</xpath>
-								<value>
-									<comps />
-								</value>
-							</nomatch>
-							<match Class="PatchOperationAdd">
-								<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Kurin"]</xpath>
-								<value>
-								</value>
-							</match>
-						</li>
-
-						<li Class="PatchOperationAddModExtension">
-							<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Kurin"]</xpath>
-							<value>
-								<li Class="CombatExtended.RacePropertiesExtensionCE">
-									<bodyShape>Humanoid</bodyShape>
-								</li>
-							</value>
-						</li>
-
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Kurin"]/comps</xpath>
-							<value>
-								<li>
-									<compClass>CombatExtended.CompPawnGizmo</compClass>
-								</li>
-								<li Class="CombatExtended.CompProperties_Suppressable" />
-							</value>
-						</li>
-
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Kurin"]/statBases</xpath>
-							<value>
-								<MeleeDodgeChance>1</MeleeDodgeChance>
-								<MeleeCritChance>1</MeleeCritChance>
-								<MeleeParryChance>1</MeleeParryChance>
-								<Suppressability>1</Suppressability>
-								<SmokeSensitivity>1</SmokeSensitivity>
-							</value>
-						</li>
-
-						<li Class="PatchOperationReplace">
-							<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Kurin"]/tools</xpath>
-							<value>
-								<tools>
-									<li Class="CombatExtended.ToolCE">
-										<label>left fist</label>
-										<capacities>
-											<li>Blunt</li>
-										</capacities>
-										<power>1</power>
-										<cooldownTime>1.26</cooldownTime>
-										<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-										<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-									</li>
-									<li Class="CombatExtended.ToolCE">
-										<label>right fist</label>
-										<capacities>
-											<li>Blunt</li>
-										</capacities>
-										<power>1</power>
-										<cooldownTime>1.26</cooldownTime>
-										<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-										<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-									</li>
-									<li Class="CombatExtended.ToolCE">
-										<label>teeth</label>
-										<capacities>
-											<li>Bite</li>
-										</capacities>
-										<power>4</power>
-										<cooldownTime>2.14</cooldownTime>
-										<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-										<chanceFactor>0.2</chanceFactor>
-										<armorPenetrationSharp>0.01</armorPenetrationSharp>
-										<armorPenetrationBlunt>0.245</armorPenetrationBlunt>
-									</li>
-									<li Class="CombatExtended.ToolCE">
-										<label>head</label>
-										<capacities>
-											<li>Blunt</li>
-										</capacities>
-										<power>2</power>
-										<cooldownTime>4.49</cooldownTime>
-										<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-										<chanceFactor>0.2</chanceFactor>
-										<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
-									</li>
-								</tools>
-							</value>
-						</li>
-
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Kurin"]/raceAddonSettings/apparelRestrictionSetting/allAllow_Exceptions</xpath>
-							<value>
-								<li>CE_Apparel_TacVest</li>
-								<li>CE_Apparel_Backpack</li>
-								<li>CE_Apparel_TribalBackpack</li>
-								<li>CE_Apparel_BallisticShield</li>
-								<li>CE_Apparel_MeleeShield</li>
-								<li>CE_Apparel_GasMask</li>
-								<li>CE_Apparel_ImprovGasMask</li>
-							</value>
-						</li>
-					</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Kurin_Race"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Kurin_Race"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Kurin_Race"]</xpath>
+					<value>
+					</value>
 				</match>
 			</li>
-		</operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Kurin_Race"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Kurin_Race"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Kurin_Race"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+					<SmokeSensitivity>1</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Kurin_Race"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>teeth</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>2.14</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.245</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>4.49</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Kurin_Race"]/alienRace/raceRestriction/apparelList</xpath>
+				<value>
+					<li>CE_Apparel_TacVest</li>
+					<li>CE_Apparel_Backpack</li>
+					<li>CE_Apparel_TribalBackpack</li>
+					<li>CE_Apparel_BallisticShield</li>
+					<li>CE_Apparel_MeleeShield</li>
+					<li>CE_Apparel_GasMask</li>
+					<li>CE_Apparel_ImprovGasMask</li>
+				</value>
+			</li>
+
+			</operations>
+		</match>
 	</Operation>
 </Patch>
