@@ -180,7 +180,6 @@ Dishonored Assassin Mask |
 Divine Order |
 DOOM - Faction (Continued) |
 DMWands |
-Dragonian Race	|
 Dragons Descent    |
 Dragons!	|
 Dubs Rimatomics |
@@ -252,6 +251,7 @@ Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 Glitter Weaponry	|
+Gloomy Dragonian Race	|
 GouRIMet	|
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
