@@ -24,7 +24,7 @@ Mod |
 [JDS] Castle Walls  |
 [JDS] EFT Apparel |
 [JDS] Exiled Dawn |
-[JDS] Star Wars BlasTech Industries |
+[JDS] Star Wars - Armory |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [K4G] Empires of Old Collection    |

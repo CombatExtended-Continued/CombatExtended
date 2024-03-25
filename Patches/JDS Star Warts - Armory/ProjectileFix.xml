@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Projectile Ammo Fix -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[JDS] StarWars - Armory</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Star Wars - Factions</li>
+			</mods>
+			<nomatch Class="PatchOperationSequence">
+				<operations>
+
+					<!-- Both are used by Blastech Industries -->
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridgeBlue"]/graphicData</xpath>
+						<value>
+							<graphicData>
+								<texPath>Things/Projectile/Bullet_Laser</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</value>
+					</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridge"]/graphicData</xpath>
+						<value>
+							<graphicData>
+								<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</value>
+					</li>
+
+					<!-- Unused projectiles get a dummy texture -->
+					<li Class="PatchOperationReplace">
+						<xpath>
+							Defs/ThingDef[
+							defName = "Bullet_SWPlasmaGasCartridge_AP" or
+							defName = "Bullet_SWPlasmaGasCartridge_Ion" or
+							defName = "Bullet_SWBigPlasmaGasCartridge" or
+							defName = "Bullet_SWBigPlasmaGasCartridge_AP" or
+							defName = "Bullet_SWBigPlasmaGasCartridge_Ion"
+							]/graphicData </xpath>
+						<value>
+							<graphicData>
+								<texPath>Things/Projectile/Yellow_Bullet_Laser</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</value>
+					</li>
+
+					<!-- Both are used by Blastech Industries -->
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridgeBlue"]/graphicData</xpath>
+						<value>
+							<graphicData>
+								<texPath>Things/Projectile/Bullet_Laser</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</value>
+					</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="Bullet_SWPlasmaGasCartridge"]/graphicData</xpath>
+						<value>
+							<graphicData>
+								<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</value>
+					</li>
+
+					<!-- Unused projectiles get a dummy texture -->
+					<li Class="PatchOperationReplace">
+						<xpath>
+							Defs/ThingDef[
+							defName = "Bullet_SWPlasmaGasCartridge_AP" or
+							defName = "Bullet_SWPlasmaGasCartridge_Ion" or
+							defName = "Bullet_SWBigPlasmaGasCartridge" or
+							defName = "Bullet_SWBigPlasmaGasCartridge_AP" or
+							defName = "Bullet_SWBigPlasmaGasCartridge_Ion"
+							]/graphicData </xpath>
+						<value>
+							<graphicData>
+								<texPath>Things/Projectile/Yellow_Bullet_Laser</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+						</value>
+					</li>
+
+				</operations>
+			</nomatch>
+		</match>
+	</Operation>
+
+
+</Patch>
