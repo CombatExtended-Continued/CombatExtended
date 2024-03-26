@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outland - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Pact Catapult -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Outland_PactCatapult"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Outland_PactCatapult"]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Outland_Gun_PactCatapult"]/building</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Outland_Gun_PactCatapult"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+				</li>
+
+				<!-- Pact Catapult - Weapon -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Outland_Gun_PactCatapult"]/statBases</xpath>
+					<value>
+						<SightsEfficiency>0.5</SightsEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "Outland_Gun_PactCatapult"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>10</li>
+								<li>20</li>
+								<li>30</li>
+								<li>50</li>
+								<li>70</li>
+							</chargeSpeeds>
+						</li>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>1</magazineSize>
+							<reloadTime>12</reloadTime>
+							<ammoSet>AmmoSet_Catapult</ammoSet>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "Outland_Gun_PactCatapult"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+								<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_CatapultBullet_Boulder</defaultProjectile>
+								<warmupTime>4</warmupTime>
+								<minRange>30</minRange>
+								<range>500</range>
+								<burstShotCount>1</burstShotCount>
+								<soundCast>Bow_Recurve</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<indirectFirePenalty>0.2</indirectFirePenalty>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "Outland_Gun_PactCatapult"]/weaponTags</xpath>
+					<value>
+						<li>TurretGun</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

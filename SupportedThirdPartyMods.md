@@ -21,7 +21,7 @@ Mod |
 [JDS] Castle Walls  |
 [JDS] EFT Apparel |
 [JDS] Exiled Dawn |
-[JDS] Star Wars BlasTech Industries |
+[JDS] Star Wars - Armory |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [K4G] Empires of Old Collection    |
@@ -170,7 +170,6 @@ Dinosauria |
 Divine Order |
 DOOM - Faction (Continued) |
 DMWands |
-Dragonian Race	|
 Dragons Descent    |
 Dragons!	|
 Dubs Rimatomics |
@@ -237,6 +236,7 @@ Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 Glitter Weaponry	|
+Gloomy Dragonian Race	|
 GouRIMet	|
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
@@ -274,8 +274,7 @@ Kit's Industrial Weapons |
 Kit's Roman Weapons |
 Kit's VFE Weapons |
 Kobolds of the Rim  |
-Kurin, The Three Tailed Fox	|
-Kurin, The Three Tailed Fox [Deluxe Edition]    |
+Kurin HAR Edition	|
 Leeani Playable Race	|
 Lemolim Race    |
 Let's Have a Cat!	|
@@ -306,7 +305,6 @@ MH: Mechanical Biomimetics	|
 MH: Military Tiers	|
 Midworld Expanded: Flak Armor  |
 Miho, the Celestial Fox  |
-Mincho, The Mint Choco Slime  |
 Mincho, The Mint Choco Slime ~ HAR ver. |
 MiningCo. MiningHelmet	|
 MiningCo. Spaceship	|
