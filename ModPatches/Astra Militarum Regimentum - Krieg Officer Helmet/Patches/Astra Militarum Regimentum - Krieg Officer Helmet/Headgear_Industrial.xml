@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Grenadier Helmet === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40K_IG_DKOK_OFFICER" or defName="ODZ_40K_IG_DKOK_NCO"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40K_IG_DKOK_OFFICER" or defName="ODZ_40K_IG_DKOK_NCO"]</xpath>
+		<value>
+			<costList>
+				<Hyperweave>20</Hyperweave>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40K_IG_DKOK_OFFICER" or defName="ODZ_40K_IG_DKOK_NCO"]/stuffCategories/li[.="Metallic"]</xpath>
+		<value>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+
+</Patch>

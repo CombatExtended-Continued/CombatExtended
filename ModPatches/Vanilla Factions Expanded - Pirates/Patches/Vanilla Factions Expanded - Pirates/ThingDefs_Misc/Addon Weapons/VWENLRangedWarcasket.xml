@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Non-Lethal</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "VFEP_WarcasketGun_TearGasGrenadeLauncher"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>16</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>VFEP_WarcasketGun_TearGasGrenadeLauncher</defName>
+					<statBases>
+						<Bulk>25</Bulk>
+						<SwayFactor>1.31</SwayFactor>
+						<ShotSpread>0.18</ShotSpread>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.08</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_40x46mmGrenade_CN</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>50</range>
+						<burstShotCount>2</burstShotCount>
+						<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+						<soundCast>VWENL_Shot_GrenadeLauncher</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
+						<ignorePartialLoSBlocker>True</ignorePartialLoSBlocker>
+						<targetParams>
+							<canTargetLocations>True</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>6</magazineSize>
+						<reloadTime>2.2</reloadTime>
+						<ammoSet>AmmoSet_40x46mmGrenadeNL</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>False</aiUseBurstMode>
+					</FireModes>
+					<weaponTags>
+						<li>NonLethal</li>
+					</weaponTags>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

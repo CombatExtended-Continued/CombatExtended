@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Patch EMP to use CE EMP projectile defs ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNAir_EMPBlast"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>EMP</damageDef>
+				<damageAmountBase>9001</damageAmountBase>
+				<explosionRadius>15.9</explosionRadius>
+				<flyOverhead>true</flyOverhead>
+				<preExplosionSpawnThingDef>Spark</preExplosionSpawnThingDef>
+				<speed>70</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ========== All other air support defs do not require CE patches ========== -->
+</Patch>

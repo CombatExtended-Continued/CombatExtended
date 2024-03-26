@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Tribal -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="FR_MinotaurTribes_Peasant"]/combatPower</xpath>
+		<value>
+			<combatPower>25</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="FR_MinotaurTribes_Fighter"]/combatPower</xpath>
+		<value>
+			<combatPower>32</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="FR_MinotaurTribes_Warrior"]/combatPower</xpath>
+		<value>
+			<combatPower>40</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="FR_MinotaurTribes_Bowman"]/combatPower</xpath>
+		<value>
+			<combatPower>40</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="FR_MinotaurTribes_Champion" or defName="FR_MinotaurTribes_Chief"]/combatPower</xpath>
+		<value>
+			<combatPower>70</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Hive_Archer -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="FR_MinotaurTribes_Bowman"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>100</min>
+					<max>140</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.6</shieldChance>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>40</min>
+							<max>80</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Hiver_Warrior -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="FR_MinotaurTribes_Fighter" or defName="FR_MinotaurTribes_Warrior"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>200</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.75</shieldChance>
+			</li>
+		</value>
+	</Operation>
+</Patch>

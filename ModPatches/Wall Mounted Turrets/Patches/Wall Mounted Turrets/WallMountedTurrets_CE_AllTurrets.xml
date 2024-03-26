@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== All turrets ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="WallRiotControlTurret"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]/statBases/Mass</xpath>
+		<value>
+			<Mass>15</Mass>
+		</value>
+	</Operation>
+
+	<!-- Add trade tags -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]</xpath>
+		<value>
+			<tradeTags>
+				<li>CE_Turret</li>
+			</tradeTags>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Remove Useless Recipes ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/RecipeDef[defName="Make_PM1910_Ammo_TA"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="TableMachining"]/recipes/li[text()="Make_PM1910_Ammo_TA"]</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="TableMachining"]/recipes/li[text()="Make_PM1910_Ammo_TA"]</xpath>
+		</match>
+	</Operation>
+</Patch>

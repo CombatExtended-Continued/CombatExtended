@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Remove the patched-out weapons === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/KCSG.SettlementLayoutDef[
+			defName="VBGE_OutlanderDefence" or
+			defName="VBGE_PiratesDefence" or
+			defName="VBGE_EmpireDefence"
+			]/stockpileOptions/fillWithDefs/li[.="Gun_SmokeLauncher"] </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/KCSG.SettlementLayoutDef[
+			defName="VBGE_OutlanderDefence" or
+			defName="VBGE_PiratesDefence" or
+			defName="VBGE_EmpireDefence"
+			]/stockpileOptions/fillWithDefs/li[.="Gun_EmpLauncher"] </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/KCSG.SettlementLayoutDef[defName="VBGE_TribalDefence"]/stockpileOptions/fillWithDefs/li[.="ThrumboHorn"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/KCSG.SettlementLayoutDef[defName="VBGE_TribalDefence"]/stockpileOptions/fillWithDefs/li[.="ElephantTusk"]</xpath>
+	</Operation>
+
+</Patch>

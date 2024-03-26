@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Psycast Hediff ===== -->
+
+	<!-- === Conflagrator === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VPE_FireShield"]/stages/li/statOffsets</xpath>
+		<value>
+			<ArmorRating_Heat>3.0</ArmorRating_Heat>
+		</value>
+	</Operation>
+
+	<!-- === Warlord === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VPE_FiringFocus"]/stages/li/statFactors</xpath>
+		<value>
+			<statOffsets>
+				<AimingDelayFactor>-0.50</AimingDelayFactor>
+				<ReloadSpeed>1.0</ReloadSpeed>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VPE_AdrenalineRush"]/stages/li</xpath>
+		<value>
+			<statOffsets>
+				<Suppressability>-0.25</Suppressability>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VPE_GuidedShot"]/stages/li</xpath>
+		<value>
+			<statOffsets>
+				<AimingAccuracy>5.0</AimingAccuracy>
+				<ShootingAccuracyPawn>5.0</ShootingAccuracyPawn>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- === Harmonist === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VPE_Lucky"]</xpath>
+		<value>
+			<stages>
+				<li>
+					<statOffsets>
+						<ShootingAccuracyPawn>5.0</ShootingAccuracyPawn>
+						<MeleeHitChance>5</MeleeHitChance>
+						<MeleeDodgeChance>5.0</MeleeDodgeChance>
+						<IncomingDamageFactor>-1.0</IncomingDamageFactor>
+					</statOffsets>
+				</li>
+			</stages>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VPE_UnLucky"]</xpath>
+		<value>
+			<stages>
+				<li>
+					<statOffsets>
+						<ShootingAccuracyPawn>-5.0</ShootingAccuracyPawn>
+						<MeleeHitChance>-5</MeleeHitChance>
+						<MeleeDodgeChance>-5.0</MeleeDodgeChance>
+					</statOffsets>
+				</li>
+			</stages>
+		</value>
+	</Operation>
+
+	<!-- === Nightstalker === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VPE_Darkvision"]/stages/li/statFactors</xpath>
+		<value>
+			<statOffsets>
+				<NightVisionEfficiency>1.0</NightVisionEfficiency>
+			</statOffsets>
+		</value>
+	</Operation>
+
+</Patch>

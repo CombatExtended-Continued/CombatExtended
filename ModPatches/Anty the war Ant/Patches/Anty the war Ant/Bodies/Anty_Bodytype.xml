@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Arm Groups-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Anty"]//*[
+			customLabel="Left shoulder"
+			]/groups
+		</xpath>
+		<value>
+			<li>LeftShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Anty"]//*[
+			customLabel="Right shoulder"
+			]/groups
+		</xpath>
+		<value>
+			<li>RightShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Anty"]//*[
+			customLabel="Left arm"
+			]/groups
+		</xpath>
+		<value>
+			<li>LeftArm</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Anty"]//*[
+			customLabel="Right arm"
+			]/groups
+		</xpath>
+		<value>
+			<li>RightArm</li>
+		</value>
+	</Operation>
+
+	<!--Natural Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Anty"]//*[
+			def="ExoThorax" or
+			def="AntyThorax" or
+			def="Neck" or
+			def="ExoHead" or
+			def="Head" or
+			def="Nose" or
+			def="Jaw" or
+			def="Shoulder" or
+			def="ExoArm" or
+			def="Arm" or
+			def="Hand" or
+			def="Finger" or
+			def="ExoLeg" or
+			def="Leg" or
+			def="Foot" or
+			def="Toe"
+			]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+</Patch>

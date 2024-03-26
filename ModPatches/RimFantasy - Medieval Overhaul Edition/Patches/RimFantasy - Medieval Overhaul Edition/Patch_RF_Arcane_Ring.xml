@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Tools ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RF_BaseWeapon_ArcaneRings"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>band</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>0.5</cooldownTime>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ===== Statbases ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RF_BaseWeapon_ArcaneRings"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>18000</WorkToMake>
+				<Mass>1.25</Mass>
+				<Bulk>0.6</Bulk>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>0.14</ShotSpread>
+				<SwayFactor>0.10</SwayFactor>
+				<RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
+			</statBases>
+		</value>
+	</Operation>
+
+	<!-- ======= Emerald Ring ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_EmeraldRing</defName>
+		<costList>
+			<DankPyon_Emerald>55</DankPyon_Emerald>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicBolt_Ring_Emerald</defaultProjectile>
+			<warmupTime>0.25</warmupTime>
+			<range>35</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>5</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ======= Sapphire Ring ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_SapphireRing</defName>
+		<costList>
+			<DankPyon_Sapphire>55</DankPyon_Sapphire>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicBolt_Ring_Sapphire</defaultProjectile>
+			<warmupTime>0.25</warmupTime>
+			<range>35</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>5</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ======= Ruby Ring ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_RubyRing</defName>
+		<costList>
+			<DankPyon_Ruby>55</DankPyon_Ruby>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicBolt_Ring_Ruby</defaultProjectile>
+			<warmupTime>0.25</warmupTime>
+			<range>35</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>5</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

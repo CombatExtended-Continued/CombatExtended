@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ==================== CMC300a Armor =====================-->
+
+	<!--Clumbersome armor with a carbon fiber helmet? for real?-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/statBases</xpath>
+		<value>
+			<Bulk>200</Bulk>
+			<WornBulk>30</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- Mass Produced...I guess?-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/statBases/WorkToMake</xpath>
+		<value>
+			<WorkToMake>65000</WorkToMake>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>1000</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/statBases/Mass</xpath>
+		<value>
+			<Mass>175</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>150</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>200</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>80</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>175</CarryWeight>
+			<CarryBulk>30</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets/ToxicSensitivity</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets/ToxicSensitivity</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ==================== CMC300 helmet =====================-->
+
+	<!-- Carbon fiber, so lightweight but low HP and flammable-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>1</WornBulk>
+			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/statBases/Mass</xpath>
+		<value>
+			<Mass>5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/statBases/WorkToMake</xpath>
+		<value>
+			<WorkToMake>20000</WorkToMake>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>220</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>24</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>60</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.15</AimingAccuracy>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets/ToxicSensitivity</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets/ToxicSensitivity</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>60</Plasteel>
+			<Steel>60</Steel>
+			<DevilstrandCloth>25</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+</Patch>

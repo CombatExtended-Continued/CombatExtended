@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== M90 Uniform ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Uniform" or defName="LTS_UniformPants"]/statBases/Mass</xpath>
+		<value>
+			<Mass>0.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Uniform" or defName="LTS_UniformPants"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- ========== Cap / Beret ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_UniformCap" or defName="LTS_UniformBeret"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>0.5</WornBulk>
+			<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+</Patch>

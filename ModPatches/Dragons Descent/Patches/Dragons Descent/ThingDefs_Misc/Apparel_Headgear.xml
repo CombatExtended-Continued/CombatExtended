@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- scale helmet -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_ScaleHelm"]/statBases</xpath>
+		<value>
+			<Bulk>4.25</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_ScaleHelm"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_ScaleHelm"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+	<!-- dragon crown -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_DragonCrown"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_DragonCrown"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<AimingAccuracy>-0.1</AimingAccuracy>
+		</value>
+	</Operation>
+</Patch>

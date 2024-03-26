@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Autocleaner === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Autocleaner"]/statBases/ArmorRating_Heat</xpath>
+		<value>
+			<ArmorRating_Heat>0.3</ArmorRating_Heat>
+			<MeleeDodgeChance>0</MeleeDodgeChance>
+			<MeleeCritChance>0.01</MeleeCritChance>
+			<MeleeParryChance>0</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Autocleaner"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.20</baseBodySize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Autocleaner"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Autocleaner"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>body</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>0.05</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Based upon the dimensions of an actual Roomba. === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AutocleanerItem"]/statBases</xpath>
+		<value>
+			<Bulk>9</Bulk>
+		</value>
+	</Operation>
+
+</Patch>

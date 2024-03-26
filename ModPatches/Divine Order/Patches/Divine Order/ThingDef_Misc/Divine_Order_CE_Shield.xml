@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_DivineOrderShield"]</xpath>
+		<value>
+
+			<ThingDef ParentName="ShieldBase">
+				<defName>BotchJob_DivineOrderShield</defName>
+				<label>divine order shield</label>
+				<description>A sturdy, reinforced shield that bears the insignia of the Divine Order.</description>
+				<techLevel>Medieval</techLevel>
+				<graphicData>
+					<texPath>Things/Pawn/Humanlike/Apparel/Other/DivineOrderShield</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1</drawSize>
+					<shaderType>CutoutComplex</shaderType>
+				</graphicData>
+				<thingCategories Inherit="False">
+					<li>Shields</li>
+				</thingCategories>
+				<stuffCategories>
+					<li>Metallic</li>
+				</stuffCategories>
+				<costStuffCount>150</costStuffCount>
+				<costList>
+					<Gold>5</Gold>
+				</costList>
+				<recipeMaker>
+					<researchPrerequisite>BotchJob_DivineOrderSmithing</researchPrerequisite>
+					<recipeUsers>
+						<li>FueledSmithy</li>
+						<li>ElectricSmithy</li>
+					</recipeUsers>
+					<skillRequirements>
+						<Crafting>8</Crafting>
+					</skillRequirements>
+				</recipeMaker>
+				<statBases>
+					<WorkToMake>3000</WorkToMake>
+					<MaxHitPoints>145</MaxHitPoints>
+					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+					<Mass>8</Mass>
+					<Bulk>9</Bulk>
+					<WornBulk>6</WornBulk>
+				</statBases>
+				<equippedStatOffsets>
+					<ReloadSpeed>-0.2</ReloadSpeed>
+					<MeleeHitChance>-1</MeleeHitChance>
+					<ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
+					<AimingAccuracy>-0.08</AimingAccuracy>
+					<Suppressability>-0.25</Suppressability>
+					<MeleeCritChance>-0.05</MeleeCritChance>
+					<MeleeParryChance>1.0</MeleeParryChance>
+				</equippedStatOffsets>
+				<apparel>
+					<tags>
+						<li>KiteShield</li>
+					</tags>
+					<defaultOutfitTags>
+						<li>Soldier</li>
+					</defaultOutfitTags>
+					<countsAsClothingForNudity>false</countsAsClothingForNudity>
+					<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+				</apparel>
+				<comps>
+					<li>
+						<compClass>CompColorable</compClass>
+					</li>
+				</comps>
+				<modExtensions>
+					<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+							<li>Arms</li>
+							<li>Shoulders</li>
+							<li>Torso</li>
+							<li>Neck</li>
+						</shieldCoverage>
+						<drawAsTall>false</drawAsTall>
+					</li>
+				</modExtensions>
+			</ThingDef>
+
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Expanded Framework</li>
+		</mods>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderKnight"]</xpath>
+			<value>
+				<apparelRequired>
+					<li>BotchJob_DivineOrderShield</li>
+				</apparelRequired>
+			</value>
+		</nomatch>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Heavy Weapons</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Laser_Destructor"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Remove Shotgun Gizmo === -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName = "Laser_Destructor"]/verbs</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName = "Laser_Destructor"]/modExtensions/li[@Class="AthenaFramework.AngularShotgunExtension"]</xpath>
+				</li>
+
+				<!-- === Laser Destructor === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Laser_Destructor</defName>
+					<statBases>
+						<Mass>3</Mass>
+						<Bulk>15</Bulk>
+						<SwayFactor>1.24</SwayFactor>
+						<ShotSpread>0.06</ShotSpread>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<RangedWeapon_Cooldown>1.58</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.01</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_Laser_DestructorLaser</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>45</range>
+						<soundCast>Laser_Woop</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_DestructorLaser</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+					</FireModes>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

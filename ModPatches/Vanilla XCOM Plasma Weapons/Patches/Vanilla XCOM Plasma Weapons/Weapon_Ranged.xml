@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<!-- Sleek, advanced, but still energy weapon thus heavier mass but less bulk -->
+
+		<xpath>
+			Defs/ThingDef[
+			defName="XCOM_Gun_BeamRifle" or
+			defName="XCOM_Gun_BeamSniperRifle" or
+			defName="XCOM_Gun_BeamShotgun" or
+			defName="XCOM_Gun_BeamCannon" or
+			defName="XCOM_Gun_BeamVektor" or
+			defName="XCOM_Gun_BeamBullpup" or
+			defName="XCOM_Gun_BeamHeavyAutocannon"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="XCOM_Gun_BeamPistol" or defName="XCOM_Gun_BeamAutopistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- XCOM Plasma Rifle -->
+	<!-- peeeeeew~-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BeamRifle</defName>
+		<statBases>
+			<Mass>4.5</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<Bulk>9.2</Bulk>
+			<WorkToMake>60000</WorkToMake>
+		</statBases>
+		<costList>
+			<Plasteel>60</Plasteel>
+			<ComponentSpacer>4</ComponentSpacer>
+			<Uranium>20</Uranium>
+		</costList>
+		<Properties>
+			<hasStandardCommand>true</hasStandardCommand>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<recoilAmount>0</recoilAmount>
+			<soundAiming>Beam_WarmupRifle</soundAiming>
+			<defaultProjectile>XCOM_Bullet_BeamRifleCE</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<soundCast>Beam_Rifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>36</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_XCOM_Gun_BeamRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+		<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Plasma Lance -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BeamSniperRifle</defName>
+		<statBases>
+			<Mass>11</Mass>
+			<RangedWeapon_Cooldown>1.55</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.6</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>10.88</Bulk>
+			<WorkToMake>75000</WorkToMake>
+		</statBases>
+		<costList>
+			<Plasteel>100</Plasteel>
+			<ComponentSpacer>8</ComponentSpacer>
+			<Uranium>30</Uranium>
+		</costList>
+		<Properties>
+			<hasStandardCommand>true</hasStandardCommand>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<recoilAmount>0</recoilAmount>
+			<soundAiming>Beam_WarmupSniperRifle</soundAiming>
+			<defaultProjectile>XCOM_Bullet_BeamSniperRifleCE</defaultProjectile>
+			<warmupTime>2</warmupTime>
+			<range>76</range>
+			<soundCast>Beam_SniperRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_XCOM_Gun_BeamSniperRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+		<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- XCOM Storm Gun -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BeamShotgun</defName>
+		<statBases>
+			<Mass>4.5</Mass>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>0.97</SwayFactor>
+			<Bulk>5</Bulk>
+			<WorkToMake>50000</WorkToMake>
+		</statBases>
+		<costList>
+			<Plasteel>50</Plasteel>
+			<ComponentSpacer>4</ComponentSpacer>
+			<Uranium>25</Uranium>
+		</costList>
+		<Properties>
+			<hasStandardCommand>true</hasStandardCommand>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<recoilAmount>0</recoilAmount>
+			<soundAiming>Beam_WarmupShotgun</soundAiming>
+			<defaultProjectile>XCOM_Bullet_BeamShotgunCE</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>20</range>
+			<soundCast>Beam_Shotgun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_XCOM_Gun_BeamShotgun</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+		<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Beam Cannon -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BeamCannon</defName>
+		<statBases>
+			<Mass>20.5</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>3.22</SwayFactor>
+			<Bulk>12.5</Bulk>
+			<WorkToMake>100000</WorkToMake>
+		</statBases>
+		<costList>
+			<Plasteel>150</Plasteel>
+			<ComponentSpacer>10</ComponentSpacer>
+			<Uranium>40</Uranium>
+		</costList>
+		<Properties>
+			<recoilAmount>0</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>XCOM_Bullet_BeamRifleCE</defaultProjectile>
+			<soundAiming>Beam_WarmupCannon</soundAiming>
+			<warmupTime>2.5</warmupTime>
+			<burstShotCount>30</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>62</range>
+			<soundCast>Beam_Cannon</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>90</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_XCOM_Gun_BeamRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Suppressive</li>
+			<li>Bipod_LMG</li>
+		</weaponTags>
+		<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- XCOM Beam Pistol -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BeamPistol</defName>
+		<statBases>
+			<Mass>2.2</Mass>
+			<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.4</SwayFactor>
+			<Bulk>2</Bulk>
+			<WorkToMake>42000</WorkToMake>
+		</statBases>
+		<costList>
+			<Plasteel>40</Plasteel>
+			<ComponentSpacer>2</ComponentSpacer>
+			<Uranium>10</Uranium>
+		</costList>
+		<Properties>
+			<recoilAmount>3.55</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<soundAiming>Beam_WarmupPistol</soundAiming>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>XCOM_Bullet_Beam_PistolCE</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<range>18</range>
+			<soundCast>Beam_Pistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4.6</reloadTime>
+			<ammoSet>AmmoSet_XCOM_Gun_BeamPistol</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Beam Autopistol -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BeamAutopistol</defName>
+		<statBases>
+			<Mass>3</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.93</SwayFactor>
+			<Bulk>2.5</Bulk>
+			<WorkToMake>45000</WorkToMake>
+		</statBases>
+		<costList>
+			<Plasteel>50</Plasteel>
+			<ComponentSpacer>2</ComponentSpacer>
+			<Uranium>15</Uranium>
+		</costList>
+		<Properties>
+			<recoilAmount>1.81</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<soundAiming>Beam_WarmupAutopistol</soundAiming>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>XCOM_Bullet_Beam_PistolCE</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>15</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<soundCast>Beam_Autopistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_XCOM_Gun_BeamPistol</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_SMG</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Beam Vektor -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BeamVektor</defName>
+		<statBases>
+			<WorkToMake>70000</WorkToMake>
+			<SightsEfficiency>2.24</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.70</SwayFactor>
+			<Bulk>10.25</Bulk>
+			<Mass>5.9</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Plasteel>80</Plasteel>
+			<ComponentSpacer>6</ComponentSpacer>
+			<Uranium>20</Uranium>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<soundAiming>Beam_WarmupRifle</soundAiming>
+			<recoilAmount>0</recoilAmount>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>XCOM_Bullet_BeamRifleCE</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>75</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<soundCast>Beam_Vektor</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>18</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_XCOM_Gun_BeamRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>SniperRifle</li>
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+		<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Beam Bullpup -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BeamBullpup</defName>
+		<statBases>
+			<WorkToMake>55000</WorkToMake>
+			<Mass>5.4</Mass>
+			<Bulk>6.30</Bulk>
+			<ShotSpread>0.1</ShotSpread>
+			<SwayFactor>1.55</SwayFactor>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Plasteel>80</Plasteel>
+			<ComponentSpacer>4</ComponentSpacer>
+			<Uranium>25</Uranium>
+		</costList>
+		<Properties>
+			<hasStandardCommand>true</hasStandardCommand>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<recoilAmount>0</recoilAmount>
+			<soundAiming>Beam_WarmupRifle</soundAiming>
+			<defaultProjectile>XCOM_Bullet_BeamRifleCE</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>55</range>
+			<burstShotCount>5</burstShotCount>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<soundCast>Beam_Rifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_XCOM_Gun_BeamRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+		<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+	</Operation>
+
+	<!-- SPARK Elerium Phase-Cannon -->
+	<!-- An even more fancy "autocannon"-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BeamHeavyAutocannon</defName>
+		<statBases>
+			<WorkToMake>125000</WorkToMake>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<ShotSpread>0.12</ShotSpread>
+			<SwayFactor>1.7</SwayFactor>
+			<Bulk>13.90</Bulk>
+			<Mass>15.30</Mass>
+			<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Plasteel>180</Plasteel>
+			<ComponentSpacer>12</ComponentSpacer>
+			<Uranium>50</Uranium>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<soundAiming>Beam_WarmupAutocannon</soundAiming>
+			<recoilAmount>1</recoilAmount>
+			<defaultProjectile>XCOM_Bullet_BeamSniperRifleCE</defaultProjectile>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<warmupTime>1.4</warmupTime>
+			<range>55</range>
+			<soundCast>Beam_HeavyAutocannon</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_XCOM_Gun_BeamSniperRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+			<li>Bipod_LMG</li>
+		</weaponTags>
+		<researchPrerequisite>XCOM_BeamWeapons</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+</Patch>

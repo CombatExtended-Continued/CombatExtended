@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Magic Projectiles ======= -->
+
+	<!-- ===== Magic Arrows ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicArrow_Emerald" or defName="RF_MagicArrow_Sapphire" or defName="RF_MagicArrow_Ruby"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>33</speed>
+				<damageAmountBase>14</damageAmountBase>
+				<armorPenetrationBlunt>7</armorPenetrationBlunt>
+				<armorPenetrationSharp>2</armorPenetrationSharp>
+				<damageDef>Arrow</damageDef>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicArrow_Emerald" or defName="RF_MagicArrow_Sapphire" or defName="RF_MagicArrow_Ruby"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ===== Magic Bolts Ring ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Emerald"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>60</speed>
+				<damageAmountBase>14</damageAmountBase>
+				<armorPenetrationBlunt>26</armorPenetrationBlunt>
+				<armorPenetrationSharp>8</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt_EmeraldRing</damageDef>
+				<dropsCasings>false</dropsCasings>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Emerald"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>4</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.2</explosiveRadius>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					<preExplosionSpawnChance>0.06</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>RF_RubbleShardsRF_Emerald</preExplosionSpawnThingDef>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Sapphire"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>60</speed>
+				<damageAmountBase>14</damageAmountBase>
+				<armorPenetrationBlunt>26</armorPenetrationBlunt>
+				<armorPenetrationSharp>8</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt_SapphireRing</damageDef>
+				<dropsCasings>false</dropsCasings>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Sapphire"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>4</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.2</explosiveRadius>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					<preExplosionSpawnChance>0.06</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>RF_RubbleShardsRF_Sapphire</preExplosionSpawnThingDef>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Ruby"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>60</speed>
+				<damageAmountBase>14</damageAmountBase>
+				<armorPenetrationBlunt>26</armorPenetrationBlunt>
+				<armorPenetrationSharp>8</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt_RubyRing</damageDef>
+				<dropsCasings>false</dropsCasings>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Sapphire"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.2</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<preExplosionSpawnChance>0.06</preExplosionSpawnChance>
+				<preExplosionSpawnThingDef>RF_RubbleShardsRF_Ruby</preExplosionSpawnThingDef>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Emerald" or defName="RF_MagicBolt_Ring_Sapphire" or defName="RF_MagicBolt_Ring_Ruby"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ===== Magic Bolts Staff ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Staff_Emerald" or defName="RF_MagicBolt_Staff_Sapphire" or defName="RF_MagicBolt_Staff_Ruby"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>65</speed>
+				<damageAmountBase>16</damageAmountBase>
+				<armorPenetrationBlunt>30</armorPenetrationBlunt>
+				<armorPenetrationSharp>9</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt</damageDef>
+				<dropsCasings>false</dropsCasings>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Staff_Emerald" or defName="RF_MagicBolt_Staff_Sapphire" or defName="RF_MagicBolt_Staff_Ruby"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ===== Magic Bolts Wand ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Wand_Emerald" or defName="RF_MagicBolt_Wand_Sapphire" or defName="RF_MagicBolt_Wand_Ruby"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>70</speed>
+				<damageAmountBase>17</damageAmountBase>
+				<armorPenetrationBlunt>30</armorPenetrationBlunt>
+				<armorPenetrationSharp>9</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt</damageDef>
+				<dropsCasings>false</dropsCasings>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Wand_Emerald" or defName="RF_MagicBolt_Wand_Sapphire" or defName="RF_MagicBolt_Wand_Ruby"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+</Patch>

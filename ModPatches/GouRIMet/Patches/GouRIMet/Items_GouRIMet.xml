@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Sweets -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CaramelBalls" or
+			defName="HotCocoa" or
+			defName="HotTea"
+			]/statBases </xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
+
+	<!-- Resources -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="ResourceBaseGRM"]</xpath>
+		<value>
+			<statBases>
+				<Bulk>0.1</Bulk>
+			</statBases>
+		</value>
+	</Operation>
+
+	<!-- Smoked Meat -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SmokedMeat"]/statBases</xpath>
+		<value>
+			<Bulk>0.1</Bulk>
+		</value>
+	</Operation>
+</Patch>

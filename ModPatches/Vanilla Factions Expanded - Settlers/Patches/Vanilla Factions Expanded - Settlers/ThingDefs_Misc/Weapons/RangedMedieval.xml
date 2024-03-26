@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Tomahawk === -->
+	<!-- == Projectile == -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk_Thrown"]/graphicData</xpath>
+
+		<value>
+			<graphicData>
+				<texPath>Things/Projectile/TomahawkThrown/TomahawkThrownC</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk_Thrown"]/projectile</xpath>
+
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>12</speed>
+				<flyOverhead>false</flyOverhead>
+				<damageDef>Cut</damageDef>
+				<damageAmountBase>16</damageAmountBase>
+				<armorPenetrationSharp>1.562</armorPenetrationSharp>
+				<armorPenetrationBlunt>0.980</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- == Weapon == -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk"]/costStuffCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk"]/stuffCategories</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk"]/graphicData</xpath>
+		<value>
+			<color>(105,105,105)</color>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName = "VFES_Tomahawk"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "VFES_Tomahawk"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_Tomahawk</defName>
+		<statBases>
+			<Mass>1.2</Mass>
+			<Bulk>3.3</Bulk>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<label>Throw tomahawk</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>VFES_Tomahawk_Thrown</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<range>10</range>
+			<soundCast>Interact_BeatFire</soundCast>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_Tomahawk"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.62</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.25</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- == Recipe == -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>Make_VFES_Tomahawk</defName>
+				<label>make tomahawk x10</label>
+				<description>Craft 10 tomahawks.</description>
+				<jobString>Making tomahawk.</jobString>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</filter>
+						<count>100</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<VFES_Tomahawk>10</VFES_Tomahawk>
+				</products>
+				<recipeUsers>
+					<li>FueledSmithy</li>
+					<li>ElectricSmithy</li>
+					<li>CraftingSpot</li>
+				</recipeUsers>
+				<researchPrerequisite>Smithing</researchPrerequisite>
+			</RecipeDef>
+		</value>
+	</Operation>
+
+</Patch>

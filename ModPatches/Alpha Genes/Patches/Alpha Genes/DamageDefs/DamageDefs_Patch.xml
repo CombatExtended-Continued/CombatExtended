@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Patch-out melee stun mechanic from ranged blunt damage ======= -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/DamageDef[defName="AG_RangedBlunt"]/*[self::bluntStunDuration or self::bluntStunChancePerDamagePctOfCorePartToHeadCurve or self::bluntStunChancePerDamagePctOfCorePartToBodyCurve]</xpath>
+	</Operation>
+
+	<!-- ======= Electric Shock ======= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="AG_Electric"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AG_Electric"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Electric</armorCategory>
+		</value>
+	</Operation>
+
+	<!-- ======= Acid Spit ======= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="AG_AcidSpit"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

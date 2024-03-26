@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Give ammo to pawns with bows ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>
+			Defs/PawnKindDef[
+			@Name="O21_FR_NPCTribePawnBase_Bowman" or
+			@Name="O21_FR_NPCTribePawnBase_Hunter" or
+			@Name="O21_FR_NPCTribePawnBase_Miner" or
+			@Name="O21_FR_NPCTribePawnBase_Logger" or
+			@Name="O21_FR_NPCTribePawnBase_Farmer"]
+		</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>12</min>
+					<max>20</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.3</generateChance>
+						<sidearmMoney>
+							<min>150</min>
+							<max>350</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>NeolithicMeleeBasic</li>
+							<li>MedievalMeleeDecent</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+</Patch>

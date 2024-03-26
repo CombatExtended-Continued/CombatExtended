@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== sneaking suit FOX & sneaking suit FOXHOUND ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RNApparel_SneakingSuit_A" or
+			defName="RNApparel_SneakingSuit_B"
+			]/apparel/bodyPartGroups </xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RNApparel_SneakingSuit_A" or
+			defName="RNApparel_SneakingSuit_B"
+			]/equippedStatOffsets </xpath>
+		<value>
+			<CarryBulk>15</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RNApparel_SneakingSuit_A" or
+			defName="RNApparel_SneakingSuit_B"
+			]/statBases </xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RNApparel_SneakingSuit_A" or
+			defName="RNApparel_SneakingSuit_B"
+			]/statBases </xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RNApparel_SneakingSuit_A" or
+			defName="RNApparel_SneakingSuit_B"
+			]/statBases </xpath>
+		<value>
+			<ArmorRating_Blunt>13</ArmorRating_Blunt>
+		</value>
+	</Operation>
+</Patch>

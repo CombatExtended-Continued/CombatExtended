@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Tools ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RF_BaseWeapon_ArcaneWands"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>limb</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ===== Statbases ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RF_BaseWeapon_ArcaneWands"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>18000</WorkToMake>
+				<Mass>2</Mass>
+				<Bulk>2</Bulk>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>0.14</ShotSpread>
+				<SwayFactor>1.01</SwayFactor>
+				<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+			</statBases>
+		</value>
+	</Operation>
+
+	<!-- ======= Emerald Wand ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_EmeraldWand</defName>
+		<costList>
+			<DankPyon_Emerald>55</DankPyon_Emerald>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicBolt_Wand_Emerald</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>40</range>
+			<recoilAmount>1.53</recoilAmount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>5</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ======= Sapphire Wand ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_SapphireWand</defName>
+		<costList>
+			<DankPyon_Sapphire>55</DankPyon_Sapphire>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicBolt_Wand_Sapphire</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>40</range>
+			<recoilAmount>1.53</recoilAmount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>5</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ======= Ruby Wand ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_RubyWand</defName>
+		<costList>
+			<DankPyon_Ruby>55</DankPyon_Ruby>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicBolt_Wand_Ruby</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>40</range>
+			<recoilAmount>1.53</recoilAmount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>5</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

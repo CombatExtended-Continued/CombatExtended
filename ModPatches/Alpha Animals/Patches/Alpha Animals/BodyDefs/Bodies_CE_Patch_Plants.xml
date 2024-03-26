@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ====== ManTrap or FlyTrap or Sentientplant ====== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/parts/li[def="Neck"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/parts/li[def="Neck"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/parts/li[def="Neck"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/parts/li[def="Neck"]/parts/li[def="AA_SentientPlantHead"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/parts/li[def="Neck"]/parts/li[def="AA_SentientPlantHead"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/parts/li[def="Neck"]/parts/li[def="AA_SentientPlantHead"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/parts/li[def="Neck"]/parts/li[def="AA_SentientPlantHead"]/parts/li[def="AA_SentientPlantMouth"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/parts/li[def="Neck"]/parts/li[def="AA_SentientPlantHead"]/parts/li[def="AA_SentientPlantMouth"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_FlyTrap" or defName="AA_SentientPlant"]/corePart/parts/li[def="Neck"]/parts/li[def="AA_SentientPlantHead"]/parts/li[def="AA_SentientPlantMouth"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+</Patch>

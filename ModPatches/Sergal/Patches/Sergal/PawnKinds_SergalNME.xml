@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Spawn backpacks for selected Sergal NME pawntypes -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="SergalColonistNME" or
+			defName="SergalCommandoNME" or
+			defName="SergalCommandoEliteNME" or
+			defName="SergalHunterNME" or
+			defName="SergalPackLeaderNME" or
+			defName="SergalRecruitNME" or
+			defName="SergalSecurityGuardNME" or
+			defName="SergalTraderNME"
+			] </xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_Backpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<!-- Spawn different combinations of primary ammo, secondary weapon and ammo for various Sergal NME pawntypes -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="SergalRefugeeNME" or
+			defName="SergalSlaveNME"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>4</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="SergalColonistNME" or
+			defName="SergalCommandoNME" or
+			defName="SergalCommandoEliteNME" or
+			defName="SergalHunterNME" or
+			defName="SergalPackLeaderNME" or
+			defName="SergalRecruitNME" or
+			defName="SergalSecurityGuardNME" or
+			defName="SergalTraderNME"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>1</generateChance>
+						<magazineCount>
+							<min>2</min>
+							<max>3</max>
+						</magazineCount>
+						<weaponTags>
+							<li>CE_Sidearm</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+</Patch>

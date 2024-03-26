@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Protosword-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BON_Protosword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.1</chanceFactor>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>26</power>
+					<extraMeleeDamages>
+						<li>
+							<def>Bomb</def>
+							<amount>6</amount>
+							<chance>0.3</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>1.3</cooldownTime>
+					<armorPenetrationBlunt>2.88</armorPenetrationBlunt>
+					<armorPenetrationSharp>15</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>13</power>
+					<extraMeleeDamages>
+						<li>
+							<def>Bomb</def>
+							<amount>6</amount>
+							<chance>0.3</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>1.28</armorPenetrationBlunt>
+					<armorPenetrationSharp>18</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BON_Protosword"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<MeleeCounterParryBonus>0.36</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BON_Protosword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.45</MeleeCritChance>
+				<MeleeParryChance>0.32</MeleeParryChance>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="BON_Protosword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="BON_Protosword"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BON_Protosword"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- Patch sear tool capacity & damage type -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ToolCapacityDef[defName="BON_SearStab"]</xpath>
+		<value>
+			<li Class="CombatExtended.ModExtensionMeleeToolPenetration">
+				<canHitInternal>true</canHitInternal>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="BON_SearDamage"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Phase Sword -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BON_Phasesword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>hilt</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<chanceFactor>0.1</chanceFactor>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>BON_SearCut</li>
+					</capacities>
+					<power>36</power>
+					<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>4</amount>
+							<chance>0.3</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>1.19</cooldownTime>
+					<armorPenetrationBlunt>3.16</armorPenetrationBlunt>
+					<armorPenetrationSharp>20</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>BON_SearStab</li>
+					</capacities>
+					<power>18</power>
+					<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>4</amount>
+							<chance>0.3</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>1.32</cooldownTime>
+					<armorPenetrationBlunt>1.68</armorPenetrationBlunt>
+					<armorPenetrationSharp>26</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BON_Phasesword"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.45</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BON_Phasesword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.71</MeleeCritChance>
+				<MeleeParryChance>0.45</MeleeParryChance>
+				<MeleeDodgeChance>0.29</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="BON_Phasesword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="BON_Phasesword"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BON_Phasesword"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+</Patch>

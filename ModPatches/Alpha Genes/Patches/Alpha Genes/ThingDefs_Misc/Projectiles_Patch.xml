@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Mineral Clump ======= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AG_Rocks"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>AG_RangedBlunt</damageDef>
+				<speed>55</speed>
+				<damageAmountBase>20</damageAmountBase>
+				<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ======= Web ======= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AG_Web"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>Stun</damageDef>
+				<speed>15</speed>
+				<damageAmountBase>15</damageAmountBase>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

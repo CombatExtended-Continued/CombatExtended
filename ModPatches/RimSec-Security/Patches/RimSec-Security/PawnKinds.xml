@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ======= Ammo ======= -->
+
+	<!-- Defender Series -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			@Name="RSPeacekeeperDefenderPawnKindBase"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Enforcer Series -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			@Name="RSPeacekeeperEnforcerPawnKindBase"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>3</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Sentinel Series -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			@Name="RSPeacekeeperSentinelPawnKindBase"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ======= Combat Power ======= -->
+
+	<!-- Defender Series -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[
+			defName="RSPeacekeeperDefenderPawnKind" or
+			defName="RSPeacekeeperDefenderForestPawnKind" or
+			defName="RSPeacekeeperDefenderDesertPawnKind" or
+			defName="RSPeacekeeperDefenderWinterPawnKind"
+			]/combatPower </xpath>
+		<value>
+			<combatPower>180</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Enforcer Series -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[
+			defName="RSPeacekeeperEnforcerPawnKind" or
+			defName="RSPeacekeeperEnforcerForestPawnKind" or
+			defName="RSPeacekeeperEnforcerDesertPawnKind" or
+			defName="RSPeacekeeperEnforcerWinterPawnKind"
+			]/combatPower </xpath>
+		<value>
+			<combatPower>225</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Defender Series -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[
+			defName="RSPeacekeeperSentinelPawnKind" or
+			defName="RSPeacekeeperSentinelForestPawnKind" or
+			defName="RSPeacekeeperSentinelDesertPawnKind" or
+			defName="RSPeacekeeperSentinelWinterPawnKind"
+			]/combatPower </xpath>
+		<value>
+			<combatPower>400</combatPower>
+		</value>
+	</Operation>
+</Patch>

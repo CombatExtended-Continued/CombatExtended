@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Bandit === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Bandit"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.5</generateChance>
+						<magazineCount>
+							<min>1</min>
+							<max>2</max>
+						</magazineCount>
+						<sidearmMoney>
+							<min>100</min>
+							<max>200</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>Revolver</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Bounty Hunter === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="BountyHunter"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>1</min>
+					<max>3</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.2</generateChance>
+						<magazineCount>
+							<min>1</min>
+							<max>2</max>
+						</magazineCount>
+						<sidearmMoney>
+							<min>100</min>
+							<max>200</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>Revolver</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Outlaw === -->
+	<!-- We'll add this as a secondary -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[defName="Outlaw"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/PawnKindDef[defName="Outlaw"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Outlaw"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>1</min>
+					<max>3</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>1</generateChance>
+						<magazineCount>
+							<min>1</min>
+							<max>3</max>
+						</magazineCount>
+						<sidearmMoney>
+							<min>100</min>
+							<max>200</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>GrenadeDynamite</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Gunslinger | Bandit Leader === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Gunslinger" or defName="BanditLeader"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>4</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

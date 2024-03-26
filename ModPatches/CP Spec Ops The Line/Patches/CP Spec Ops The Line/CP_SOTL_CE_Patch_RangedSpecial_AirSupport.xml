@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Adjust mass and bulk of SOFLAM based on real-life stats for the AN/PEQ-1 -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNAir_SOFLAM"]</xpath>
+		<value>
+			<statBases>
+				<Mass>5.2</Mass>
+				<Bulk>2.5</Bulk>
+			</statBases>
+		</value>
+	</Operation>
+
+	<!-- Increase SOFLAM range, to match its real-life performance relative to RimWorld-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNAir_SOFLAM"]/verbs/li/range</xpath>
+		<value>
+			<range>700</range>
+		</value>
+	</Operation>
+</Patch>

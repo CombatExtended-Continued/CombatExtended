@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Natural Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="MinchoGolem"]//*[
+			def="Torso" or
+			def="MinchoGolem_Head" or
+			def="MinchoGolem_Shoulder" or
+			def="MinchoGolem_Arm" or
+			def="MinchoGolem_Hand" or
+			def="MinchoGolem_Waist" or
+			def="MinchoGolem_Leg" or
+			def="MinchoGolem_Foot" or
+			def="MinchoGolem_Hand"
+			]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+</Patch>

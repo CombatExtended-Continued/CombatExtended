@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Give ammo to pawns ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>
+			Defs/PawnKindDef[@Name="AstorielCivBase"]
+		</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>
+			Defs/PawnKindDef[@Name="AstorielMilBase"]
+		</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>7</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Give packs to pawns ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="AstorielMilBase" or @Name="AstorielCivBase"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_Backpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+</Patch>
