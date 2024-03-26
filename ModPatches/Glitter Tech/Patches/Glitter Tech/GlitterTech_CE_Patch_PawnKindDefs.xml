@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Commandos and Orion Corp faction pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="ComBase" or @Name="OCBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Commandos and Orion Corp faction pawns should spawn backpacks, allowing them to carry extra inventory such as ammo ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="Commando" or
+			defName="CommandoH" or
+			defName="CommandoScout" or
+			defName="OCSoldier" or
+			defName="OCHeavy" or
+			defName="OCPeaceKeeper" or
+			defName="OCDirector"] </xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_Backpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+</Patch>
