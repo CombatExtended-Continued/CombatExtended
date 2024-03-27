@@ -398,7 +398,7 @@ namespace CombatExtended
                 if (caster.def.race.predator && IsTargetImmobile(target))
                 {
                     var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
-                               .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
+                               .FirstOrDefault(r => r.def == BodyPartDefOf.Eye);
                     damageInfo.SetHitPart(neck);
                 }
                 //for some reason, when all parts of height are missing their incode count is 3

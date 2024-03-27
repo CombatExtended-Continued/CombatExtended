@@ -28,6 +28,8 @@ namespace CombatExtended
 
         public static bool TryRequestHelp(Pawn pawn)
         {
+            //TODO: 1.5
+            if (pawn != null) return false;
             Map map = pawn.Map;
             float curLevel = pawn.TryGetComp<CompSuppressable>().CurrentSuppression;
             ThingWithComps grenade = null;
@@ -307,7 +309,6 @@ namespace CombatExtended
 
             // Panic break
             if (!(traits.HasTrait(TraitDefOf.Bloodlust)
-                    || traits.DegreeOfTrait(TraitDefOf.Nerves) > 0
                     || traits.DegreeOfTrait((CE_TraitDefOf.Bravery)) > 1))
             {
                 breaks.Add(pawn.IsColonist ? MentalStateDefOf.Wander_OwnRoom : MentalStateDefOf.PanicFlee);
@@ -316,7 +317,6 @@ namespace CombatExtended
 
             // Attack break
             if (!(pawn.WorkTagIsDisabled(WorkTags.Violent)
-                    || traits.DegreeOfTrait(TraitDefOf.Nerves) < 0
                     || traits.DegreeOfTrait(CE_TraitDefOf.Bravery) < 0))
             {
                 breaks.Add(CE_MentalStateDefOf.CombatFrenzy);

@@ -80,7 +80,7 @@ namespace CombatExtended.AI
             }
 
             // switch back action
-            this.AddFinishAction(() =>
+            this.AddFinishAction(delegate
             {
                 if (oldWeapon != null && oldWeapon != pawn.equipment?.Primary && !oldWeapon.Destroyed)
                 {

@@ -579,7 +579,7 @@ namespace CombatExtended
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
-        public override void Draw()
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             Vector3 drawOffset = Vector3.zero;
             float angleOffset = 0f;
@@ -587,8 +587,8 @@ namespace CombatExtended
             {
                 CE_Utility.Recoil(def.building.turretGunDef, AttackVerb, out drawOffset, out angleOffset, top.CurRotation, false);
             }
-            top.DrawTurret(drawOffset, angleOffset);
-            base.Draw();
+            top.DrawTurret(drawLoc, drawOffset, angleOffset);
+            base.DrawAt(drawLoc, flip);
         }
 
         public override void DrawExtraSelectionOverlays()           // Draw at range less than 1.42 tiles

@@ -9,7 +9,8 @@ using HarmonyLib;
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(StunHandler), "Notify_DamageApplied")]
+    //TODO 1.5:  StunHandler.adaptationTicksLeft : Dictionary<DamageDef, int> mapping damage type to duration
+    /*    [HarmonyPatch(typeof(StunHandler), nameof(StunHandler.Notify_DamageApplied))]
     public static class Harmony_StunHandler_Notify_DamageApplied
     {
         public static bool Prefix(StunHandler __instance, DamageInfo dinfo, ref int ___EMPAdaptedTicksLeft, ref int ___stunTicksLeft, ref bool ___stunFromEMP)
@@ -105,5 +106,5 @@ namespace CombatExtended.HarmonyCE
                 __instance.parent.TakeDamage(newDinfo);
             }
         }
-    }
+        }*/
 }

@@ -102,307 +102,310 @@ namespace CombatExtended.HarmonyCE
          *
          * Should Allow headgear to render since most CE gear has full head coverage.
          */
-        [HarmonyPatch(typeof(PawnRenderer), "DrawBodyApparel")]
-        public static class Harmony_PawnRenderer_DrawBodyApparel
-        {
-            private static MethodBase mDrawMeshNowOrLater = AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater), parameters: new[] { typeof(Mesh), typeof(Vector3), typeof(Quaternion), typeof(Material), typeof(bool) });
+        //TODO: 1.5
+        //        [HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.DrawBodyApparel))]
+        //        public static class Harmony_PawnRenderer_DrawBodyApparel
+        //        {
+        //            private static MethodBase mDrawMeshNowOrLater = AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater), parameters: new[] { typeof(Mesh), typeof(Vector3), typeof(Quaternion), typeof(Material), typeof(bool) });
+        //
+        //            private static FieldInfo fShell = AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell));
+        //
+        //            public static bool IsVisibleLayer(ApparelLayerDef def)
+        //            {
+        //                // If it's invisible skip everything
+        //                if (!def.IsVisibleLayer())
+        //                {
+        //                    return false;
+        //                }
+        //                // Moved to since backpacks use
+        //                if (def == CE_ApparelLayerDefOf.Backpack)
+        //                {
+        //                    return false;
+        //                }
+        //                // Enable toggling webbing rendering
+        //                if (def == CE_ApparelLayerDefOf.Webbing && !Controller.settings.ShowTacticalVests)
+        //                {
+        //                    return false;
+        //                }
+        //                return true;
+        //            }
+        //
+        //            public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        //            {
+        //                List<CodeInstruction> codes = instructions.ToList();
+        //                Label l1 = generator.DefineLabel();
+        //                Label l2 = generator.DefineLabel();
+        //                for (int i = 0; i < codes.Count; i++)
+        //                {
+        //                    CodeInstruction code = codes[i];
+        //                    /*
+        //                     * Replace ApparelLayerDef::lastLayer != ApparelLayerDefOf::Shell with IsPreShellLayer(ApparelLayerDef::lastLayer)
+        //                     * by poping the first part and replacin the second part and changing != to brtrue
+        //                     */
+        //                    if (code.opcode == OpCodes.Ldsfld && code.OperandIs(fShell))
+        //                    {
+        //                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(Harmony_PawnRenderer_DrawBodyApparel.IsVisibleLayer), parameters: new[] { typeof(ApparelLayerDef) }));
+        //                        i++;
+        //                        yield return new CodeInstruction(OpCodes.Brfalse_S, codes[i].operand);
+        //                        continue;
+        //                    }
+        //                    /*
+        //                     * Add the offset to loc before calling mDrawMeshNowOrLater
+        //                     */
+        //                    if (code.opcode == OpCodes.Call && code.OperandIs(mDrawMeshNowOrLater))
+        //                    {
+        //                        yield return new CodeInstruction(OpCodes.Ldloca_S, 5)
+        //                        {
+        //                            labels = code.labels
+        //                        };
+        //                        yield return new CodeInstruction(OpCodes.Dup);
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
+        //                        yield return new CodeInstruction(OpCodes.Ldarg_0);
+        //                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(GetPostShellOffset)));
+        //                        yield return new CodeInstruction(OpCodes.Add);
+        //                        yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
+        //                        code.labels = new List<Label>();
+        //                    }
+        //                    /*
+        //                     * Find and add a condition to utilityLoc to make backpacks render behind hair
+        //                     */
+        //                    if (code.opcode == OpCodes.Ldarg_2)
+        //                    {
+        //                        /*
+        //                         * Load apparelGraphicRecord from for(int i = 0....) { ApparelGraphicRecord apparelGraphicRecord = apparelGraphics[i];
+        //                         * From the start of the function
+        //                         */
+        //                        yield return new CodeInstruction(OpCodes.Ldloc_3).MoveLabelsFrom(code);
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ApparelGraphicRecord), nameof(ApparelGraphicRecord.sourceApparel)));
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), nameof(Thing.def)));
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), nameof(ThingDef.apparel)));
+        //                        yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.PropertyGetter(typeof(ApparelProperties), nameof(ApparelProperties.LastLayer)));                // Load current apparel last layer
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldsfld, AccessTools.Field(typeof(CE_ApparelLayerDefOf), nameof(CE_ApparelLayerDefOf.Backpack)));              // Load backpack
+        //
+        //                        yield return new CodeInstruction(OpCodes.Bne_Un_S, l1); // Compare value
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldarg_1);      // shellloc
+        //                        yield return new CodeInstruction(OpCodes.Ldarg_S, 5);   // bodyFacing
+        //                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(GetBackpackOffset)));                          // shellloc
+        //                        yield return new CodeInstruction(OpCodes.Br_S, l2);     // continue;
+        //
+        //                        code.labels = new List<Label>()
+        //                        {
+        //                            l1
+        //                        };
+        //                        yield return code;
+        //                        codes[i + 1].labels.Add(l2);
+        //                        continue;
+        //                    }
+        //                    yield return code;
+        //                }
+        //            }
+        //
+        //            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //            private static Vector3 GetBackpackOffset(Vector3 vector, Rot4 bodyFacing)
+        //            {
+        //                /*
+        //                 * Need to subract  0.023166021f since if we don't backpacks will render
+        //                 * infront of pawns when facing the player (south)
+        //                 */
+        //                if (bodyFacing == Rot4.South)
+        //                {
+        //                    vector.y -= 0.023166021f;
+        //                }
+        //                return vector;
+        //            }
+        //
+        //            /*
+        //             * Add some type of offset (reasoning is in the old code below)
+        //             */
+        //            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //            private static float GetPostShellOffset(PawnRenderer renderer)
+        //            {
+        //                return 0;
+        //                //TODO 1.5
+        //                //                List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics
+        //                //      .Where(a => a.sourceApparel.def.apparel.LastLayer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder).ToList();
+        //                //return apparelGraphics.Count == 0 ? 0 : YOffsetIntervalClothes / apparelGraphics.Count;
+        //            }
+        //        }
 
-            private static FieldInfo fShell = AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell));
+        //[HarmonyPatch(typeof(PawnRenderer), "DrawHeadHair")]
+        //        public static class Harmony_PawnRenderer_DrawHeadHair
+        //        {
+        //            private static Rot4 north = Rot4.North;
+        //
+        //
+        //            // skip this if dubs apparel tweak is loaded
+        //            private static bool Prepare()
+        //            {
+        //                if (quickFast_Loaded)
+        //                {
+        //                    Log.Message("CE: Dubwise apparel tweak detected!");
+        //                    return false;
+        //                }
+        //                return true;
+        //            }
+        //
+        //            private static void DrawHeadApparel(PawnRenderer renderer, Pawn pawn, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, Rot4 headFacing, ref bool shouldRenderHair)
+        //            {
+        //                return;
+        //                //TODO: 1.5
+        //                //                if (flags.FlagSet(PawnRenderFlags.Portrait) && Prefs.HatsOnlyOnMap)
+        //                //                {
+        //                //                    return;
+        //                //                }
+        //                //                if (!flags.FlagSet(PawnRenderFlags.Headgear))
+        //                //                {
+        //                //                    return;
+        //                //                }
+        //                //                List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics;
+        //                //
+        //                //                // This will limit us to only 32 layers of headgear
+        //                //                float interval = YOffsetIntervalClothes / 32;
+        //                //
+        //                //                Vector3 customScale = Vec2ToVec3(GetHeadCustomSize(pawn.def));
+        //                //                Vector3 headwearPos = headLoc + Vec2ToVec3(GetHeadCustomOffset(pawn.def));
+        //                //
+        //                //                // Let other mods such as HAR inject an alternative graphic for the hair/head.
+        //                //                // Note that in the absence of a specific bodyWidth multiplier (Biotech/HAR) for this pawn,
+        //                //                // we must use MeshPool.HumanlikeHeadAverageWidth (1.5f) to ensure proper headgear sizing.
+        //                //                float lifeStageFactor = pawn.ageTracker.CurLifeStage.bodyWidth ?? MeshPool.HumanlikeHeadAverageWidth;
+        //                //                GraphicMeshSet gms = GetHumanlikeHeadSetForPawnHelper(lifeStageFactor, pawn);
+        //                //                Mesh mesh = gms?.MeshAt(bodyFacing) ?? renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
+        //                //
+        //                //                for (int i = 0; i < apparelGraphics.Count; i++)
+        //                //                {
+        //                //                    ApparelGraphicRecord apparelRecord = apparelGraphics[i];
+        //                //                    if (apparelRecord.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead && !apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
+        //                //                    {
+        //                //                        shouldRenderHair = !apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? false;
+        //                //                    }
+        //                //                    else if (apparelRecord.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
+        //                //                    {
+        //                //                        Material apparelMat = GetMaterial(renderer, pawn, apparelRecord, bodyFacing, flags);
+        //                //
+        //                //                        if (apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
+        //                //                        {
+        //                //                            Matrix4x4 matrix = new Matrix4x4();
+        //                //                            Vector3 maskLoc = rootLoc + headOffset;
+        //                //                            maskLoc.y += !(bodyFacing == north) ? YOffsetPostHead : YOffsetBehind;
+        //                //                            matrix.SetTRS(maskLoc, quaternion, customScale);
+        //                //                            GenDraw.DrawMeshNowOrLater(mesh, matrix, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
+        //                //                        }
+        //                //                        else
+        //                //                        {
+        //                //                            Matrix4x4 matrix = new Matrix4x4();
+        //                //                            if (!quickFast_Loaded)
+        //                //                            {
+        //                //                                shouldRenderHair = !apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? false;
+        //                //                            }
+        //                //                            headwearPos.y += interval;
+        //                //                            matrix.SetTRS(headwearPos, quaternion, customScale);
+        //                //                            GenDraw.DrawMeshNowOrLater(mesh, matrix, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
+        //                //                        }
+        //                //                    }
+        //                //                }
+        //            }
+        //
+        //            [MethodImpl(MethodImplOptions.NoInlining)]
+        //            private static Material GetMaterial(PawnRenderer renderer, Pawn pawn, ApparelGraphicRecord record, Rot4 bodyFacing, PawnRenderFlags flags)
+        //            {
+        //                Material mat = record.graphic.MatAt(bodyFacing);
+        //                if (flags.FlagSet(PawnRenderFlags.Cache))
+        //                {
+        //                    return mat;
+        //                }
+        //                return renderer.OverrideMaterialIfNeeded(mat, PawnRenderFlags.Portrait);
+        //            }
+        //
+        //            /// <summary>
+        //            /// Name of the compiler generated class containing from PawnRenderer.DrawHeadHair()
+        //            /// 0. headfacing
+        //            /// 1. bodyfacing
+        //            /// 2. onheadloc
+        //            /// 3. quat
+        //            /// 3. flags
+        //            /// 4. rootloc
+        //            /// 5. headoffset
+        //            /// </summary>
+        //            //private const string displayClassName = "DisplayClass39";
+        //
+        //            /*
+        //             * For VFE vikings compatiblity
+        //             * Required for better compatiblity
+        //             */
+        //            [HarmonyPriority(Priority.Last)]
+        //            internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        //            {
+        //                var codes = instructions.ToList();
+        //                var displayType = typeof(PawnRenderer).GetNestedTypes(AccessTools.all).First();
+        //                //
+        //                //var l1 = generator.DefineLabel();
+        //                for (int i = 0; i < codes.Count; i++)
+        //                {
+        //                    var code = codes[i];
+        //                    /*
+        //                     * 1. Insert calls for head renderer
+        //                     *
+        //                     * Ldloc_2 is the bool used to controll the rendering of headstumps
+        //                     *
+        //                     * Look for Ldloc_2 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it
+        //                     * breaks make sure to check compat with Alien Races & VFE-Vikings/Beards
+        //                     */
+        //
+        //                    if (code.opcode == OpCodes.Ldloc_2)
+        //                    {
+        //                        // Insert headgear global render check
+        //                        //yield return new CodeInstruction(OpCodes.Ldloc_S, 4) { labels = code.labels }; // check if we should render head gear
+        //                        //yield return new CodeInstruction(OpCodes.Brfalse_S, l1);
+        //
+        //                        // Insert new calls for headgear renderer
+        //                        yield return new CodeInstruction(OpCodes.Ldarg_0)
+        //                        {
+        //                            labels = code.labels
+        //                        }; // PawnRenderer renderer
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldarg_0); // render.pawn
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(PawnRenderer), "pawn"));
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Vector3 rootLoc
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "rootLoc"));
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Vector3 onHeadLoc
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "onHeadLoc"));
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Vector3 headOffset
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "headOffset"));
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Rot4 bodyFacing
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "bodyFacing"));
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Quaternion quat
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "quat"));
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldloc_0); // PawnRenderFlags flags
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "flags"));
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldloc_0); // PawnRenderFlags flags
+        //                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "headFacing"));
+        //
+        //                        yield return new CodeInstruction(OpCodes.Ldloca_S, 2);  // ref bool shouldRenderHair
+        //
+        //                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawHeadHair), nameof(DrawHeadApparel)));
+        //                        code.labels = new List<Label>();
+        //                    }
+        //                    yield return code;
+        //                }
+        //            }
+        //        }
 
-            public static bool IsVisibleLayer(ApparelLayerDef def)
-            {
-                // If it's invisible skip everything
-                if (!def.IsVisibleLayer())
-                {
-                    return false;
-                }
-                // Moved to since backpacks use
-                if (def == CE_ApparelLayerDefOf.Backpack)
-                {
-                    return false;
-                }
-                // Enable toggling webbing rendering
-                if (def == CE_ApparelLayerDefOf.Webbing && !Controller.settings.ShowTacticalVests)
-                {
-                    return false;
-                }
-                return true;
-            }
-
-            public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
-            {
-                List<CodeInstruction> codes = instructions.ToList();
-                Label l1 = generator.DefineLabel();
-                Label l2 = generator.DefineLabel();
-                for (int i = 0; i < codes.Count; i++)
-                {
-                    CodeInstruction code = codes[i];
-                    /*
-                     * Replace ApparelLayerDef::lastLayer != ApparelLayerDefOf::Shell with IsPreShellLayer(ApparelLayerDef::lastLayer)
-                     * by poping the first part and replacin the second part and changing != to brtrue
-                     */
-                    if (code.opcode == OpCodes.Ldsfld && code.OperandIs(fShell))
-                    {
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(Harmony_PawnRenderer_DrawBodyApparel.IsVisibleLayer), parameters: new[] { typeof(ApparelLayerDef) }));
-                        i++;
-                        yield return new CodeInstruction(OpCodes.Brfalse_S, codes[i].operand);
-                        continue;
-                    }
-                    /*
-                     * Add the offset to loc before calling mDrawMeshNowOrLater
-                     */
-                    if (code.opcode == OpCodes.Call && code.OperandIs(mDrawMeshNowOrLater))
-                    {
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 5)
-                        {
-                            labels = code.labels
-                        };
-                        yield return new CodeInstruction(OpCodes.Dup);
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
-                        yield return new CodeInstruction(OpCodes.Ldarg_0);
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(GetPostShellOffset)));
-                        yield return new CodeInstruction(OpCodes.Add);
-                        yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
-                        code.labels = new List<Label>();
-                    }
-                    /*
-                     * Find and add a condition to utilityLoc to make backpacks render behind hair
-                     */
-                    if (code.opcode == OpCodes.Ldarg_2)
-                    {
-                        /*
-                         * Load apparelGraphicRecord from for(int i = 0....) { ApparelGraphicRecord apparelGraphicRecord = apparelGraphics[i];
-                         * From the start of the function
-                         */
-                        yield return new CodeInstruction(OpCodes.Ldloc_3).MoveLabelsFrom(code);
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ApparelGraphicRecord), nameof(ApparelGraphicRecord.sourceApparel)));
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), nameof(Thing.def)));
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), nameof(ThingDef.apparel)));
-                        yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.PropertyGetter(typeof(ApparelProperties), nameof(ApparelProperties.LastLayer)));                // Load current apparel last layer
-
-                        yield return new CodeInstruction(OpCodes.Ldsfld, AccessTools.Field(typeof(CE_ApparelLayerDefOf), nameof(CE_ApparelLayerDefOf.Backpack)));              // Load backpack
-
-                        yield return new CodeInstruction(OpCodes.Bne_Un_S, l1); // Compare value
-
-                        yield return new CodeInstruction(OpCodes.Ldarg_1);      // shellloc
-                        yield return new CodeInstruction(OpCodes.Ldarg_S, 5);   // bodyFacing
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(GetBackpackOffset)));                          // shellloc
-                        yield return new CodeInstruction(OpCodes.Br_S, l2);     // continue;
-
-                        code.labels = new List<Label>()
-                        {
-                            l1
-                        };
-                        yield return code;
-                        codes[i + 1].labels.Add(l2);
-                        continue;
-                    }
-                    yield return code;
-                }
-            }
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            private static Vector3 GetBackpackOffset(Vector3 vector, Rot4 bodyFacing)
-            {
-                /*
-                 * Need to subract  0.023166021f since if we don't backpacks will render
-                 * infront of pawns when facing the player (south)
-                 */
-                if (bodyFacing == Rot4.South)
-                {
-                    vector.y -= 0.023166021f;
-                }
-                return vector;
-            }
-
-            /*
-             * Add some type of offset (reasoning is in the old code below)
-             */
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            private static float GetPostShellOffset(PawnRenderer renderer)
-            {
-                List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics
-                        .Where(a => a.sourceApparel.def.apparel.LastLayer.drawOrder >= ApparelLayerDefOf.Shell.drawOrder).ToList();
-                return apparelGraphics.Count == 0 ? 0 : YOffsetIntervalClothes / apparelGraphics.Count;
-            }
-        }
-
-        [HarmonyPatch(typeof(PawnRenderer), "DrawHeadHair")]
-        public static class Harmony_PawnRenderer_DrawHeadHair
-        {
-            private static Rot4 north = Rot4.North;
-
-
-            // skip this if dubs apparel tweak is loaded
-            private static bool Prepare()
-            {
-                if (quickFast_Loaded)
-                {
-                    Log.Message("CE: Dubwise apparel tweak detected!");
-                    return false;
-                }
-                return true;
-            }
-
-            private static void DrawHeadApparel(PawnRenderer renderer, Pawn pawn, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, Rot4 headFacing, ref bool shouldRenderHair)
-            {
-                if (flags.FlagSet(PawnRenderFlags.Portrait) && Prefs.HatsOnlyOnMap)
-                {
-                    return;
-                }
-                if (!flags.FlagSet(PawnRenderFlags.Headgear))
-                {
-                    return;
-                }
-                List<ApparelGraphicRecord> apparelGraphics = renderer.graphics.apparelGraphics;
-
-                // This will limit us to only 32 layers of headgear
-                float interval = YOffsetIntervalClothes / 32;
-
-                Vector3 customScale = Vec2ToVec3(GetHeadCustomSize(pawn.def));
-                Vector3 headwearPos = headLoc + Vec2ToVec3(GetHeadCustomOffset(pawn.def));
-
-                // Let other mods such as HAR inject an alternative graphic for the hair/head.
-                // Note that in the absence of a specific bodyWidth multiplier (Biotech/HAR) for this pawn,
-                // we must use MeshPool.HumanlikeHeadAverageWidth (1.5f) to ensure proper headgear sizing.
-                float lifeStageFactor = pawn.ageTracker.CurLifeStage.bodyWidth ?? MeshPool.HumanlikeHeadAverageWidth;
-                GraphicMeshSet gms = GetHumanlikeHeadSetForPawnHelper(lifeStageFactor, pawn);
-                Mesh mesh = gms?.MeshAt(bodyFacing) ?? renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
-
-                for (int i = 0; i < apparelGraphics.Count; i++)
-                {
-                    ApparelGraphicRecord apparelRecord = apparelGraphics[i];
-                    if (apparelRecord.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead && !apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
-                    {
-                        shouldRenderHair = !apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? false;
-                    }
-                    else if (apparelRecord.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
-                    {
-                        Material apparelMat = GetMaterial(renderer, pawn, apparelRecord, bodyFacing, flags);
-
-                        if (apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
-                        {
-                            Matrix4x4 matrix = new Matrix4x4();
-                            Vector3 maskLoc = rootLoc + headOffset;
-                            maskLoc.y += !(bodyFacing == north) ? YOffsetPostHead : YOffsetBehind;
-                            matrix.SetTRS(maskLoc, quaternion, customScale);
-                            GenDraw.DrawMeshNowOrLater(mesh, matrix, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
-                        }
-                        else
-                        {
-                            Matrix4x4 matrix = new Matrix4x4();
-                            if (!quickFast_Loaded)
-                            {
-                                shouldRenderHair = !apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? false;
-                            }
-                            headwearPos.y += interval;
-                            matrix.SetTRS(headwearPos, quaternion, customScale);
-                            GenDraw.DrawMeshNowOrLater(mesh, matrix, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
-                        }
-                    }
-                }
-            }
-
-            [MethodImpl(MethodImplOptions.NoInlining)]
-            private static Material GetMaterial(PawnRenderer renderer, Pawn pawn, ApparelGraphicRecord record, Rot4 bodyFacing, PawnRenderFlags flags)
-            {
-                Material mat = record.graphic.MatAt(bodyFacing);
-                if (flags.FlagSet(PawnRenderFlags.Cache))
-                {
-                    return mat;
-                }
-                return renderer.OverrideMaterialIfNeeded(mat, pawn, flags.FlagSet(PawnRenderFlags.Portrait));
-            }
-
-            /// <summary>
-            /// Name of the compiler generated class containing from PawnRenderer.DrawHeadHair()
-            /// 0. headfacing
-            /// 1. bodyfacing
-            /// 2. onheadloc
-            /// 3. quat
-            /// 3. flags
-            /// 4. rootloc
-            /// 5. headoffset
-            /// </summary>
-            //private const string displayClassName = "DisplayClass39";
-
-            /*
-             * For VFE vikings compatiblity
-             * Required for better compatiblity
-             */
-            [HarmonyPriority(Priority.Last)]
-            internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
-            {
-                var codes = instructions.ToList();
-                var displayType = typeof(PawnRenderer).GetNestedTypes(AccessTools.all).First();
-                //
-                //var l1 = generator.DefineLabel();
-                for (int i = 0; i < codes.Count; i++)
-                {
-                    var code = codes[i];
-                    /*
-                     * 1. Insert calls for head renderer
-                     *
-                     * Ldloc_2 is the bool used to controll the rendering of headstumps
-                     *
-                     * Look for Ldloc_2 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it
-                     * breaks make sure to check compat with Alien Races & VFE-Vikings/Beards
-                     */
-
-                    if (code.opcode == OpCodes.Ldloc_2)
-                    {
-                        // Insert headgear global render check
-                        //yield return new CodeInstruction(OpCodes.Ldloc_S, 4) { labels = code.labels }; // check if we should render head gear
-                        //yield return new CodeInstruction(OpCodes.Brfalse_S, l1);
-
-                        // Insert new calls for headgear renderer
-                        yield return new CodeInstruction(OpCodes.Ldarg_0)
-                        {
-                            labels = code.labels
-                        }; // PawnRenderer renderer
-
-                        yield return new CodeInstruction(OpCodes.Ldarg_0); // render.pawn
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(PawnRenderer), "pawn"));
-
-                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Vector3 rootLoc
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "rootLoc"));
-
-                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Vector3 onHeadLoc
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "onHeadLoc"));
-
-                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Vector3 headOffset
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "headOffset"));
-
-                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Rot4 bodyFacing
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "bodyFacing"));
-
-                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Quaternion quat
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "quat"));
-
-                        yield return new CodeInstruction(OpCodes.Ldloc_0); // PawnRenderFlags flags
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "flags"));
-
-                        yield return new CodeInstruction(OpCodes.Ldloc_0); // PawnRenderFlags flags
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "headFacing"));
-
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 2);  // ref bool shouldRenderHair
-
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawHeadHair), nameof(DrawHeadApparel)));
-                        code.labels = new List<Label>();
-                    }
-                    yield return code;
-                }
-            }
-        }
-
-        [HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming")]
+        [HarmonyPatch(typeof(PawnRenderUtility), nameof(PawnRenderUtility.DrawEquipmentAiming))]
         internal static class Harmony_PawnRenderer_DrawEquipmentAiming
         {
             public static Rot4 south = Rot4.South;
 
             private static Thing equipment;
-
-            private static Pawn pawn;
 
             private static Vector3 recoilOffset = new Vector3();
 
@@ -414,9 +417,8 @@ namespace CombatExtended.HarmonyCE
 
             private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.004f, 0));
 
-            public static void Prefix(PawnRenderer __instance, Thing eq, Vector3 drawLoc)
+            public static void Prefix(Thing eq, Vector3 drawLoc)
             {
-                pawn = __instance.pawn;
                 equipment = eq;
                 casingDrawPos = drawLoc;
             }
@@ -466,49 +468,55 @@ namespace CombatExtended.HarmonyCE
              */
             internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
-                var codes = instructions.ToList();
-                var recoil_opcodes = new CodeInstruction[]
+                foreach (var c in instructions)
                 {
-                    new CodeInstruction(OpCodes.Ldarg_1),
-                    new CodeInstruction(OpCodes.Ldarg_2),
-                    new CodeInstruction(OpCodes.Ldarg_3),
-                    new CodeInstruction(OpCodes.Ldloc_1),
-                    new CodeInstruction(OpCodes.Ldloc_2),
-                    new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)))
-                };
-                bool foundRecoil = false;
-                int index = 0;
-                for (int i = 0; i < codes.Count; i++)
-                {
-                    CodeInstruction code = codes[i];
-                    if (foundRecoil && code.opcode == OpCodes.Stloc_1)
-                    {
-                        index = i + 1;
-                        break;
-                    }
-                    else if (code.opcode == OpCodes.Call && ReferenceEquals(code.operand, typeof(EquipmentUtility).GetMethod("Recoil")))
-                    {
-                        foundRecoil = true;
-                    }
+                    yield return c;
                 }
-                codes.InsertRange(index, recoil_opcodes);
-                codes[codes.Count - 2].operand =
-                    AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
-                codes.InsertRange(codes.Count - 2, new[]
-                {
-                    new CodeInstruction(OpCodes.Ldarg_1),
-                    new CodeInstruction(OpCodes.Ldarg_2),
-                    new CodeInstruction(OpCodes.Ldarg_3)
-                });
-                return codes;
+                //    var codes = instructions.ToList();
+                //                var recoil_opcodes = new CodeInstruction[]
+                //                {
+                //                    new CodeInstruction(OpCodes.Ldarg_1),
+                //                    new CodeInstruction(OpCodes.Ldarg_2),
+                //                    new CodeInstruction(OpCodes.Ldarg_3),
+                //                    new CodeInstruction(OpCodes.Ldloc_1),
+                //                    new CodeInstruction(OpCodes.Ldloc_2),
+                //                    new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)))
+                //                };
+                //                bool foundRecoil = false;
+                //                int index = 0;
+                //                for (int i = 0; i < codes.Count; i++)
+                //                {
+                //                    CodeInstruction code = codes[i];
+                //                    if (foundRecoil && code.opcode == OpCodes.Stloc_1)
+                //                    {
+                //                        index = i + 1;
+                //                        break;
+                //                    }
+                //                    else if (code.opcode == OpCodes.Call && ReferenceEquals(code.operand, typeof(EquipmentUtility).GetMethod(nameof(EquipmentUtility.Recoil))))
+                //                    {
+                //                        foundRecoil = true;
+                //                    }
+                //                }
+                //                codes.InsertRange(index, recoil_opcodes);
+                //                codes[codes.Count - 2].operand =
+                //                    AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
+                //                codes.InsertRange(codes.Count - 2, new[]
+                //                {
+                //                    new CodeInstruction(OpCodes.Ldarg_1),
+                //                    new CodeInstruction(OpCodes.Ldarg_2),
+                //                    new CodeInstruction(OpCodes.Ldarg_3)
+                //                });
+                //                return codes;
             }
 
-            internal static void Prefix(PawnRenderer __instance, Pawn ___pawn, ref Vector3 drawLoc)
+            internal static void Prefix(ref Vector3 drawLoc)
             {
-                if (___pawn.Rotation == south)
-                {
-                    drawLoc.y++;
-                }
+                return;
+                //TODO 1.5
+                //                if (___pawn.Rotation == south)
+                //                {
+                //                    drawLoc.y++;
+                //                }
             }
         }
     }

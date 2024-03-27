@@ -92,9 +92,10 @@ namespace CombatExtended
 
             if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 16)
             {
-                targetBodyPart = BodyPartDefOf.Neck;
+                //TODO: 1.5 Should be neck?
+                targetBodyPart = BodyPartDefOf.Eye;
 
-                var neck = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == BodyPartDefOf.Neck).FirstOrFallback();
+                var neck = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == BodyPartDefOf.Eye).FirstOrFallback();
 
                 if (neck != null)
                 {
