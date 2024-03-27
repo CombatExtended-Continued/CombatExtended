@@ -527,7 +527,7 @@
 					<SightsEfficiency>1.0</SightsEfficiency>
 				</statBases>
 				<Properties>
-					<label>throw cryoban deonator</label>
+					<label>throw cryoban detonator</label>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<range>10.0</range>
@@ -794,7 +794,13 @@
 					<ammoCountPerCharge>1</ammoCountPerCharge>
 				</value>
 			</li>
-
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeBelt" or defName="OuterRim_CryoBanGrenadeBelt" or defName="OuterRim_IonGrenadeBelt" or defName="OuterRim_PlasmaGrenadeBelt" or defName="OuterRim_SonicGrenadeBelt" or defName="OuterRim_StunGrenadeBelt" or defName="OuterRim_ThermalDetonatorBelt"]/comps/li[@Class="CompProperties_Reloadable"]/chargeNoun</xpath>
+				<value>
+					<chargeNoun>grenade</chargeNoun>
+				</value>
+			</li>
 			<!-- Grenade Verbs -->
 			
 			<li Class="PatchOperationReplace">
