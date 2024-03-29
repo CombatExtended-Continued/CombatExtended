@@ -219,7 +219,6 @@ namespace CombatExtended
                 if (caster is Building_TurretGunCE turret)
                 {
                     turret.burstWarmupTicksLeft += aimTicks;
-                    RecalculateWarmupTicks();
                     _isAiming = true;
                     return;
                 }
