@@ -342,9 +342,12 @@ namespace CombatExtended
             var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(d.z, d.x)) % 360;
             var delta = Mathf.Abs(newShotRotation - lastShotRotation) + lastRecoilDeg;
             lastRecoilDeg = 0;
-            var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : 0.25f);
+            var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ?
+                                                       0.1f :
+                                                       (_isAiming ? 0.5f : 0.25f));
             var reduction = Mathf.Max(maxReduction, delta / 45f);
             storedShotReduction = reduction;
+
             if (reduction < 1.0f)
             {
                 if (caster is Building_TurretGunCE turret)
