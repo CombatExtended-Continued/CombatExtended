@@ -258,6 +258,11 @@ namespace CombatExtended
         public override void Reset()
         {
             base.Reset();
+            resetRetarget();
+        }
+
+        protected void resetRetarget()
+        {
             shootingAtDowned = false;
             lastTarget = null;
             lastTargetPos = IntVec3.Invalid;
@@ -265,6 +270,7 @@ namespace CombatExtended
             repeating = false;
             storedShotReduction = null;
         }
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -300,12 +306,7 @@ namespace CombatExtended
             if (Projectile == null || (IsAttacking && CompAmmo != null && !CompAmmo.CanBeFiredNow))
             {
                 CompAmmo?.TryStartReload();
-                shootingAtDowned = false;
-                lastTarget = null;
-                lastTargetPos = IntVec3.Invalid;
-                lastShootLine = null;
-                repeating = false;
-                storedShotReduction = null;
+                resetRetarget();
                 return false;
             }
             return true;
@@ -1133,6 +1134,7 @@ namespace CombatExtended
                 if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
                 {
                     CompAmmo?.TryStartReload();
+                    resetRetarget();
                 }
                 if (CompReloadable != null)
                 {
