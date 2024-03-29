@@ -979,7 +979,7 @@ namespace CombatExtended
             bool startedCasting = base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
             if (startedCasting)
             {
-                if (Controller.settings.FasterRepeatShots && this.repeating && this.verbProps.warmupTime > 0f) // now warming up
+                if (this.repeating && this.verbProps.warmupTime > 0f) // now warming up
                 {
                     this.RecalculateWarmupTicks();
                 }

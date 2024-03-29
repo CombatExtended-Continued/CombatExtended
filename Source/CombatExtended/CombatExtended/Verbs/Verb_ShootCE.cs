@@ -327,6 +327,10 @@ namespace CombatExtended
 
         public override void RecalculateWarmupTicks()
         {
+            if (!Controller.settings.FasterRepeatShots)
+            {
+                return;
+            }
             Vector3 u = caster.TrueCenter();
             Vector3 v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
             if (currentTarget.Pawn is Pawn dtPawn)
