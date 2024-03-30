@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- == PTCombatPrecognition == -->
+	<!-- StatOffsets -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Def[defName="PTCombatPrecognition"]/StatOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.5</MeleeDodgeChance>
+			<MeleeParryChance>0.5</MeleeParryChance>
+		</value>
+	</Operation>
+	<!-- description -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Def[defName="PTCombatPrecognition"]/description</xpath>
+		<value>
+			<description>Combat precognition is a technique that allows a psion to predict an adversary's movement before it happens, making them better at evading and blocking attacks.</description>
+		</value>
+	</Operation>
+
+	<!-- == PTCombatInsight == -->
+	<!-- StatOffsets -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Def[defName="PTCombatInsight"]</xpath>
+		<value>
+			<StatOffsets>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleePenetrationFactor>0.5</MeleePenetrationFactor>
+			</StatOffsets>
+		</value>
+	</Operation>
+	<!-- StatFactors -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Def[defName="PTCombatInsight"]/StatFactors</xpath>
+	</Operation>
+	<!-- description -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Def[defName="PTCombatInsight"]/description</xpath>
+		<value>
+			<description>Combat insight is a technique that allows a psion to more easily see an adversary's weaknesses, making them more effective at penetrating armor and dealing critical blows.</description>
+		</value>
+	</Operation>
+
+	<!-- == PTCombatPrecision == -->
+	<!-- StatOffsets -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Def[defName="PTCombatPrecision"]/StatOffsets</xpath>
+		<value>
+			<StatFactors>
+				<AimingAccuracy>1.5</AimingAccuracy>
+			</StatFactors>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- "The Emperor protects!" (But a few centimeters of ceramite never hurt, either.) -->
+
+	<!-- ========== Swap ShootingAccuracy for AimingAccuracy ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_WarcasketHelmet_SpaceMarine"
+			]/equippedStatOffsets/ShootingAccuracyPawn </xpath>
+		<value>
+			<AimingAccuracy>0.15</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarOne" or
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarTwo" or
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarThree" or
+			defName="VFEP_WarcasketHelmet_SpaceMarineWings" or
+			defName="VFEP_WarcasketHelmet_SpaceMarineKnight" or
+			defName="VFEP_WarcasketHelmet_SpaceMarineMkVI"
+			]/equippedStatOffsets/ShootingAccuracyPawn </xpath>
+		<value>
+			<AimingAccuracy>0.18</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisSgt" or
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisCpt" or
+			defName="VFEP_WarcasketHelmet_SpaceMarineKnightVet"
+			]/equippedStatOffsets/ShootingAccuracyPawn </xpath>
+		<value>
+			<AimingAccuracy>0.21</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_WarcasketHelmet_SpaceMarineTerminator"
+			]/equippedStatOffsets/ShootingAccuracyPawn </xpath>
+		<value>
+			<AimingAccuracy>0.39</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Space Marine Warcasket (Standard) ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine"]/statBases</xpath>
+		<value>
+			<Bulk>200</Bulk>
+			<WornBulk>20</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>26</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>62</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>200</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine"]/costList/Steel</xpath>
+		<value>
+			<Steel>260</Steel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine"]/costList/ComponentIndustrial</xpath>
+		<value>
+			<ComponentIndustrial>8</ComponentIndustrial>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Shoulders (Standard) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>26</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>54</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Helmet (Standard) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarine"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.5</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarine"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarine"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarine"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarine"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarine"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ========== Space Marine Warcasket (Veteran) ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Vet"]/statBases</xpath>
+		<value>
+			<Bulk>225</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Vet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>27.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Vet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>64</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Vet"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>200</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Vet"]/costList/Steel</xpath>
+		<value>
+			<Steel>270</Steel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Vet"]/costList/ComponentIndustrial</xpath>
+		<value>
+			<ComponentIndustrial>9</ComponentIndustrial>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Shoulders (Veteran) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Vet"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Vet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>28.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Vet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>58</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ========== Space Marine Warcasket (Cpt.) ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Cpt"]/statBases</xpath>
+		<value>
+			<Bulk>250</Bulk>
+			<WornBulk>25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Cpt"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Cpt"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>74</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Cpt"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>200</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Cpt"]/costList/Steel</xpath>
+		<value>
+			<Steel>350</Steel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Cpt"]/costList/ComponentIndustrial</xpath>
+		<value>
+			<ComponentIndustrial>10</ComponentIndustrial>
+		</value>
+	</Operation>
+
+	<!-- ========== Space Marine Warcasket (Mk. II) ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MkII"]/statBases</xpath>
+		<value>
+			<Bulk>250</Bulk>
+			<WornBulk>25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MkII"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>29.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MkII"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>74</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MkII"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>200</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MkII"]/costList/Steel</xpath>
+		<value>
+			<Steel>360</Steel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MkII"]/costList/ComponentIndustrial</xpath>
+		<value>
+			<ComponentIndustrial>10</ComponentIndustrial>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Shoulders (Mk. II) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_MkII"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_MkII"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>29.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_MkII"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>68</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ========== Space Marine Warcasket (Mk. VI) ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MKVI"]/statBases</xpath>
+		<value>
+			<Bulk>250</Bulk>
+			<WornBulk>25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MKVI"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MKVI"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>70</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MKVI"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>200</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MKVI"]/costList/Steel</xpath>
+		<value>
+			<Steel>370</Steel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_MKVI"]/costList/ComponentIndustrial</xpath>
+		<value>
+			<ComponentIndustrial>10</ComponentIndustrial>
+		</value>
+	</Operation>
+
+	<!-- ========== Terminator Warcasket ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Terminator"]/statBases</xpath>
+		<value>
+			<Bulk>275</Bulk>
+			<WornBulk>35</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Terminator"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>37.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Terminator"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>84</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Terminator"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>225</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Terminator"]/costList/Steel</xpath>
+		<value>
+			<Steel>480</Steel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine_Terminator"]/costList/ComponentIndustrial</xpath>
+		<value>
+			<ComponentIndustrial>16</ComponentIndustrial>
+		</value>
+	</Operation>
+
+	<!-- === Terminator Warcasket Shoulders === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Terminator"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Terminator"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Terminator"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>84</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Shoulders (Tac) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Tac"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Tac"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>27.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Tac"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>62</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Shoulders (Heavy Support) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_HeavySupport"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_HeavySupport"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>26</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_HeavySupport"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>62</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Shoulders (Studded) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Studded"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Studded"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>26</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_SpaceMarine_Studded"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>62</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Primaris Marine Warcasket Helmet (V. 1) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarOne"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarOne"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarOne"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarOne"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarOne"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>24</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarOne"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Primaris Marine Warcasket Helmet (V. 2 and V. 3) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarTwo" or defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarThree"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarTwo" or defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarThree"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarTwo" or defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarThree"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarTwo" or defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarThree"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarTwo" or defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarThree"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>25.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarTwo" or defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarThree"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Primaris Marine Warcasket Helmet (Winged) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineWings"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineWings"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineWings"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineWings"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineWings"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>27</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineWings"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>52</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Primaris Marine Warcasket Helmet (Sgt.) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisSgt"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.65</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisSgt"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisSgt"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisSgt"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisSgt"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>28.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisSgt"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>54</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Primaris Marine Warcasket Helmet (Cpt.) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisCpt"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.65</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisCpt"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisCpt"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisCpt"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisCpt"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>30</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisCpt"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>56</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Helmet (Mk. II) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnight"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.65</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnight"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnight"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnight"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnight"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>27</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnight"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Helmet (Mk. II Vet.) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnightVet"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnightVet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnightVet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnightVet"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnightVet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>27</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineKnightVet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>54</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Space Marine Warcasket Helmet (Mk. VI) === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineMkVI"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineMkVI"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineMkVI"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineMkVI"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineMkVI"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineMkVI"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Terminator Warcasket Helmet === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineTerminator"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+			<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineTerminator"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineTerminator"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineTerminator"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineTerminator"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>38</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_SpaceMarineTerminator"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>84</ArmorRating_Blunt>
+		</value>
+	</Operation>
+</Patch>

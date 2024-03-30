@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Charge For Everyone === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VSEWW.ModifierDef[defName="VSEWW_ChargeForEveryone"]/allowedWeaponDef/li[contains(.,"Gun_ChargeLance")]</xpath>
+		<value>
+			<li MayRequire="CETeam.CombatExtendedGuns">CE_Gun_ChargeLMG</li>
+			<li MayRequire="CETeam.CombatExtendedGuns">CE_Gun_ChargeSniperRifle</li>
+			<li MayRequire="CETeam.CombatExtendedGuns">CE_Gun_ChargeSMG</li>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Reduce meals and medicine carried by all pawns ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="RH_DeltaSOTL_Bare"]/invNutrition</xpath>
+		<value>
+			<invNutrition>1</invNutrition>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_Operator"]/inventoryOptions/subOptionsChooseOne/li/countRange</xpath>
+		<value>
+			<countRange>
+				<min>0</min>
+				<max>1</max>
+			</countRange>
+		</value>
+	</Operation>
+
+	<!-- ========== Delta QRF Operator pawns should spawn backpacks, allowing them to carry their (huge) inventory ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_QRF"]/apparelRequired</xpath>
+		<value>
+			<li>RHApparel_Backpack_Tactical_ShoulderBag</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Delta QRF Operator pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_QRF"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Delta Rogue Operator pawns should spawn with ammo appropriate to their primary weapon ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_Rogue"]/inventoryOptions/subOptionsChooseOne/li/countRange</xpath>
+		<value>
+			<countRange>0~2</countRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="RH_SOTL_Delta_Rogue"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+</Patch>

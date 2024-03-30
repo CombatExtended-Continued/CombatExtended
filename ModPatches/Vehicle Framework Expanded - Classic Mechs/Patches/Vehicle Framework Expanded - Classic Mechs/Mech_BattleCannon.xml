@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Main Guns -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_120mmCannonShell_HE</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>9.6</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>3</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>20</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]/maxRange</xpath>
+		<value>
+			<maxRange>105</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_BattleCannon"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+				<shotHeight>5</shotHeight>
+				<speed>229</speed>
+				<sway>0.82</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+</Patch>

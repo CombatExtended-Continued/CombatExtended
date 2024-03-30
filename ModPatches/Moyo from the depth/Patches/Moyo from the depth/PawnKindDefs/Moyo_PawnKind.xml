@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Ammo-->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="Moyo_TopCivilan" or
+			defName="Moyo_MiddleCivilan" or
+			defName="Moyo_BottomCivilan" or
+			defName="Moyo_Resercher" or
+			defName="Moyo_TopSmuggler" or
+			defName="Moyo_MiddleSmuggler" or
+			@Name="MoyoSoldierLight" or
+			@Name="MoyoSoliderStandard" or
+			defName="Moyo_leader" or
+			@Name="MoyoGuardian" or
+			@Name="MoyoGuardianAssault" or
+			@Name="MoyoGeneral"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="MoyoSoldierHeavy"]</xpath>
+		<value>
+			<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>3</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>500</min>
+						<max>1200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>MoyoBasicGun</li>
+						<li>Moyo_SpacerLightGun</li>
+					</weaponTags>
+					<magazineCount>
+						<min>3</min>
+						<max>4</max>
+					</magazineCount>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Backpack-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			@Name="MoyoSoldierLight" or
+			@Name="MoyoSoliderStandard" or
+			@Name="MoyoSoldierHeavy" or
+			@Name="MoyoSoldierAssult" or
+			@Name="MoyoGuardian" or
+			@Name="MoyoGuardianAssault" or
+			@Name="MoyoGeneral" or
+			defName="Moyo_Engineer" or
+			defName="Moyo_Resercher" or
+			defName="Moyo_MiddleSmuggler"
+			]/apparelRequired </xpath>
+		<value>
+			<li>CE_Apparel_Backpack</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CE_Apparel_Backpack"]/apparel/tags</xpath>
+		<value>
+			<li>Moyo_Industrial</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CE_Apparel_KidBackpack"]/apparel/tags</xpath>
+		<value>
+			<li>Moyo_Industrial</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CE_Apparel_TribalBackpack"]/apparel/tags</xpath>
+		<value>
+			<li>Moyo_Neolithic</li>
+		</value>
+	</Operation>
+</Patch>

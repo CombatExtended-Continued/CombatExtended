@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationInsert">
+		<xpath>Defs/ThingDef[defName="Artillery_zis"]</xpath>
+		<value>
+			<ThingDef Name="BaseArtilleryWeaponZIS" Abstract="True">
+				<category>Item</category>
+				<thingClass>ThingWithComps</thingClass>
+				<label>artillery error</label>
+				<useHitPoints>false</useHitPoints>
+				<equipmentType>Primary</equipmentType>
+				<tickerType>Never</tickerType>
+				<techLevel>Industrial</techLevel>
+				<destroyOnDrop>True</destroyOnDrop>
+				<generateCommonality>0</generateCommonality>
+				<menuHidden>True</menuHidden>
+				<tradeability>None</tradeability>
+				<weaponTags>
+					<li>Artillery</li>
+				</weaponTags>
+				<comps>
+					<li>
+						<compClass>CompEquippable</compClass>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Artillery_zis</defName>
+		<statBases>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>0.82</SwayFactor>
+			<Bulk>13.0</Bulk>
+			<WorkToMake>18000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_90mmCannonShell_HE</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<minRange>5</minRange>
+			<range>75</range>
+			<ticksBetweenBurstShots>45</ticksBetweenBurstShots>
+			<soundCast>Zis_Fire1</soundCast>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilAmount>0.78</recoilAmount>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>4.75</reloadTime>
+			<ammoSet>AmmoSet_90mmCannonShell</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Turret</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseSovietArtillery"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Turret_Zis"]</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+</Patch>
