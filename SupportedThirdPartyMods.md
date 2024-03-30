@@ -27,6 +27,8 @@ Mod |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
+[K4G] Empires of Old Collection    |
+[K4G] Equipment of the Weimar Republic  |
 [K4G] RimWorld War 2    |
 [KV] Hand 'n' Footwear	|
 [LF] Command And Conquer NOD Combat Armor |
@@ -133,6 +135,7 @@ Big and Small Genes	|
 Big and Small - Medieval Factions	|
 Big and Small - Medieval Overhaul Factions	|
 Big and Small Races	|
+Big and Small Weapons	|
 Biomes! Caverns	|
 Biomes! Core	|
 Biotech Expansion - Mammalia  |
@@ -151,6 +154,8 @@ Call of Duty: Pack A Punch |
 Call of Duty: Wonder Weapons |
 Carbon	|
 Censored Armory  |
+Charge-Loading Lee-Enfield  |
+Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
@@ -182,6 +187,7 @@ Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
 Dusk Armory   |
+Eccentric Militors	|
 ED-Shields	|
 Edge of Descension - Monoblades  |
 Eltex Bodysuit  |
@@ -364,6 +370,13 @@ Ogam's Warbanner Mod    |
 Opossum Friends |
 Orassans	|
 Ordo Tempestus - Tempestus Scions   |
+Outer Rim - Core	|
+Outer Rim - Galactic Empire	|
+Outer Rim - Galactic Republic	|
+Outer Rim - Mandalore	|
+Outer Rim - Old Republic	|
+Outer Rim - Rebel Alliance	|
+Outer Rim - Separatists	|
 Outer Rim - Tatooine    |
 Palm Cats   |
 Paniel the Automata |
@@ -472,6 +485,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
+The Vanity Project - Shiba Inu  |
 The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
 The GiantRace	|
@@ -518,10 +532,11 @@ Vanilla Factions Expanded - Tribals |
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
+Vanilla Genetics Expanded   |
 Vanilla Ideology Expanded – Dryads  |
 Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
-Vanilla Genetics Expanded   |
+Vanilla Persona Weapons Expanded   |
 Vanilla Plants Expanded - Mushrooms  |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
@@ -550,10 +565,12 @@ Vanilla Storytellers Expanded - Perry Persistent |
 Vanilla Storytellers Expanded - Winston Waves |
 Vanilla XCOM Weapons  |
 Vehicle Framework Expanded - Classic Mechs   |
+VFE Pirates unofficial add-on: Warcasket Melee Armory Continued	|
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics |
 VGP Garden Drinks UF    |
+VRE Android Factions  |
 Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |

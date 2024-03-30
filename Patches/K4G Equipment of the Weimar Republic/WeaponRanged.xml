@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[K4G] Equipment of the Weimar Republic</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<!-- ========== Gewehr 98 ========== -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>
+				Defs/ThingDef[
+				defName="K4G_Gun_WRGewehr98Rifle" or
+				defName="K4G_Gun_WRMP34SMG"
+				]/tools
+			</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<!-- ========== Gewehr 98 ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>K4G_Gun_WRGewehr98Rifle</defName>
+			<statBases>
+				<Mass>4.09</Mass>
+				<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+				<SightsEfficiency>1</SightsEfficiency>
+				<ShotSpread>0.02</ShotSpread>
+				<SwayFactor>1.66</SwayFactor>
+				<Bulk>12.50</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>2.17</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<range>55</range>
+				<soundCast>Shot_BoltActionRifle</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>5</magazineSize>
+				<reloadTime>4.3</reloadTime>
+				<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_AI_SR</li>
+			</weaponTags>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="K4G_Gun_WRGewehr98Rifle"]</xpath>
+			<value>
+				<li Class="CombatExtended.GunDrawExtension">
+					<DrawSize>1.3,1.3</DrawSize>
+					<DrawOffset>0.12,0.04</DrawOffset>
+					<CasingOffset>-0.1,0.1</CasingOffset>
+				</li>
+			</value>
+		</li>
+
+		<!-- ========== MP 34 ========== -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>K4G_Gun_WRMP34SMG</defName>
+			<statBases>
+				<Mass>4.25</Mass>
+				<RangedWeapon_Cooldown>0.41</RangedWeapon_Cooldown>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<ShotSpread>0.14</ShotSpread>
+				<SwayFactor>1.28</SwayFactor>
+				<Bulk>8.5</Bulk>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.12</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>25</range>
+				<burstShotCount>5</burstShotCount>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<soundCast>Shot_HeavySMG</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>20</magazineSize>
+				<reloadTime>4</reloadTime>
+				<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>Snapshot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_SMG</li>
+				<li>CE_AI_BROOM</li>
+			</weaponTags>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

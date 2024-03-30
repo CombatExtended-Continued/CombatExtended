@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outer Rim - Galactic Empire</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="OuterRim_StormtrooperHelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_StormtrooperHelmet"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<value>
+						<ToxicEnvironmentResistance>0.25</ToxicEnvironmentResistance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_ScoutTrooperHelmet"]/equippedStatOffsets</xpath>
+					<value>
+						<NightVisionEfficiency>0.8</NightVisionEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="OuterRim_ScoutTrooperHelmet"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_ImperialArmyHelmet"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<ToxicEnvironmentResistance>0</ToxicEnvironmentResistance>
+							<SmokeSensitivity>0</SmokeSensitivity>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_ImperialArmyHelmet"]/apparel</xpath>
+					<value>
+						<bodyPartGroups Inherit="False">
+							<li>UpperHead</li>
+						</bodyPartGroups>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_ImperialCadetHelmet"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<value>
+						<ToxicEnvironmentResistance>0.25</ToxicEnvironmentResistance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_ImperialCadetHelmetAlt"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>false</immuneToToxGasExposure>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_ImperialCadetHelmetAlt"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<ToxicEnvironmentResistance>0</ToxicEnvironmentResistance>
+							<SmokeSensitivity>0</SmokeSensitivity>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_ISBAgentHelmet"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<ToxicEnvironmentResistance>0</ToxicEnvironmentResistance>
+							<SmokeSensitivity>0</SmokeSensitivity>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="OuterRim_ISBAgentHelmet"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0</ArmorRating_Sharp>
+									<parts>
+										<li>Eye</li>
+										<li>Nose</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0</ArmorRating_Blunt>
+									<parts>
+										<li>Eye</li>
+										<li>Nose</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>

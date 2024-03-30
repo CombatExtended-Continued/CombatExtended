@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Vehicles Expanded - Tier 3</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[
+						defName="VVE_Badger" or
+						defName="VVE_BigRig" or
+						defName="VVE_Burya" or
+						defName="VVE_Cherokee" or
+						defName="VVE_Goliath" or
+						defName="VVE_Hermano" or
+						defName="VVE_Lightning" or
+						defName="VVE_Louie" or
+						defName="VVE_Marshal" or
+						defName="VVE_Nomad" or
+						defName="VVE_Paladin" or
+						defName="VVE_Springbok" or
+						defName="VVE_Udar"
+						]/components/li[key="Engine"]/reactors/li[@Class = "Vehicles.Reactor_Explosive"]/damageDef</xpath>
+					<value>
+						<damageDef>Bomb</damageDef>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[
+						defName="VVE_Badger" or
+						defName="VVE_BigRig" or
+						defName="VVE_Burya" or
+						defName="VVE_Cherokee" or
+						defName="VVE_Goliath" or
+						defName="VVE_Hermano" or
+						defName="VVE_Lightning" or
+						defName="VVE_Louie" or
+						defName="VVE_Marshal" or
+						defName="VVE_Nomad" or
+						defName="VVE_Paladin" or
+						defName="VVE_Springbok" or
+						defName="VVE_Udar"
+						]/components/li[key="Engine"]/reactors/li[@Class = "Vehicles.Reactor_Explosive"]/radius</xpath>
+					<value>
+						<radius>1</radius>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[
+						defName="VVE_Badger" or
+						defName="VVE_BigRig" or
+						defName="VVE_Burya" or
+						defName="VVE_Cherokee" or
+						defName="VVE_Goliath" or
+						defName="VVE_Hermano" or
+						defName="VVE_Lightning" or
+						defName="VVE_Louie" or
+						defName="VVE_Marshal" or
+						defName="VVE_Nomad" or
+						defName="VVE_Paladin" or
+						defName="VVE_Springbok" or
+						defName="VVE_Udar"
+						]/components/li[key="Chemtank"]/reactors/li[@Class = "Vehicles.Reactor_Explosive"]/damageDef</xpath>
+					<value>
+						<damageDef>Bomb</damageDef>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

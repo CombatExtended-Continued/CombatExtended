@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[K4G] Empires of Old - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Thawb, Kimono -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					@Name="K4GThawb" or
+					@Name="K4GKimono"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>1.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- Headgear -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					@Name="K4GTurban" or
+					@Name="K4GHeadScarf" or
+					defName="K4G_Apparel_TricornHat" or
+					defName="K4G_Apparel_ConeHat" or
+					defName="K4G_Apparel_HoodedMask"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+						<Bulk>1</Bulk>
+						<WornBulk>0</WornBulk>
+					</value>
+				</li>
+
+				<!-- Imperial & Outlander Helmet -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="K4GImperialHelmet" or defName="K4G_Apparel_OutlanderHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="K4GImperialHelmet" or defName="K4G_Apparel_OutlanderHelmet"]/stuffCategories/li[.="Metallic"]</xpath>
+					<value>
+						<li>Steeled</li>
+					</value>
+				</li>
+
+				<!-- Goggled & Advanced Outlander Helmet -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Apparel_AdvancedOutlanderHelmet" or
+					defName="K4G_Apparel_GoggledHelmet" or
+					defName="K4G_Apparel_LegionaryHelmet"
+					]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+					defName="K4G_Apparel_AdvancedOutlanderHelmet" or
+					defName="K4G_Apparel_GoggledHelmet" or
+					defName="K4G_Apparel_LegionaryHelmet"					
+					]/stuffCategories/li[.="Metallic"]</xpath>
+					<value>
+						<li>Steeled</li>
+					</value>
+				</li>
+
+				<!-- Flak Mask -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_FlakMask"]/statBases/ArmorRating_Sharp </xpath>
+					<value>
+						<ArmorRating_Sharp>5</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_FlakMask"]/statBases/ArmorRating_Blunt </xpath>
+					<value>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_FlakMask"]/apparel/layers/li[.="EyeCover"] </xpath>
+					<value>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<!-- Coveralls & Overcoat-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="K4GCoveralls" or @Name="K4GOvercoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- Advanced Flak Vest -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_AdvancedFlakVest"]/statBases/ArmorRating_Sharp </xpath>
+					<value>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+						<Bulk>5</Bulk>
+						<WornBulk>3.5</WornBulk>						
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_AdvancedFlakVest"]/statBases/ArmorRating_Blunt </xpath>
+					<value>
+						<ArmorRating_Blunt>8</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_AdvancedFlakVest"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>150</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_AdvancedFlakVest"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+										<li>Shoulder</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+										<li>Shoulder</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<!-- Goggles -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_Goggles"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>0.5</StuffEffectMultiplierArmor>
+						<Bulk>0.5</Bulk>
+						<WornBulk>0</WornBulk>
+					</value>
+				</li>
+
+				<!-- Lab Coat -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="K4G_Apparel_LabCoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>7.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

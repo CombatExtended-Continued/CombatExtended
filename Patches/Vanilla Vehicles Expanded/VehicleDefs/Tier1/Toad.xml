@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Vehicles Expanded</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Turret -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Toad_MainTurret"]</xpath>
+					<value>
+						<projectile>Bullet_81mmMortarShell_HE</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Toad_MainTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>6.5</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Toad_MainTurret"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>5.5</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Toad_MainTurret"]/minRange</xpath>
+					<value>
+						<minRange>32</minRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Toad_MainTurret"]/ammunition/categories</xpath>
+					<value>
+						<categories>
+							<li>Ammo81mmMortarShells</li>
+						</categories>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Toad_MainTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_81mmMortarShell</ammoSet>
+							<shotHeight>2</shotHeight>
+							<speed>90</speed> <!-- Temporarily set to max charge speed to make them somewhat usable. -->
+							<sway>0.82</sway>
+							<spread>0.01</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Mortar -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Toad"]/statBases</xpath>
+					<value>
+						<SightsEfficiency>0.5</SightsEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd"> <!-- Doesn't currently work. -->
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Toad"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>30</li>
+								<li>50</li>
+								<li>70</li>
+								<li>90</li>
+							</chargeSpeeds>
+						</li>
+					</value>
+				</li>
+
+				<!-- Vehicle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Toad"]</xpath>
+					<value>
+						<descriptionHyperlinks>
+							<CombatExtended.AmmoSetDef>AmmoSet_81mmMortarShell</CombatExtended.AmmoSetDef>
+						</descriptionHyperlinks>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Toad"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>46</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Toad"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>23</ArmorRating_Sharp>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

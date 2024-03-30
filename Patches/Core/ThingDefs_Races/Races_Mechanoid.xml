@@ -25,19 +25,12 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Mech_Lancer" or defName="Mech_Pikeman"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>8</min>
-					<max>10</max>
-				</primaryMagazineCount>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Mech_Termite_Breach" or @Name="MechCentipedeBase"]</xpath>
+		<xpath>Defs/PawnKindDef[
+			defName="Mech_Lancer" or
+			defName="Mech_Pikeman" or
+			defName="Mech_Termite_Breach" or
+			@Name="MechCentipedeBase"
+			]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>

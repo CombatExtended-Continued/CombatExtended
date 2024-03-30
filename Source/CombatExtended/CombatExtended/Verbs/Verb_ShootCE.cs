@@ -127,7 +127,7 @@ namespace CombatExtended
         {
             get
             {
-                return (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * (projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f);
+                return (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * (projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f);
             }
         }
 
@@ -290,7 +290,7 @@ namespace CombatExtended
             report.shotSpeed = ShotSpeed;
             report.swayDegrees = SwayAmplitudeFor(aimMode);
             float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
-            report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
+            report.spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * spreadmult;
             return report;
         }
 
@@ -363,7 +363,7 @@ namespace CombatExtended
             //Reduce ammunition
             if (CompAmmo != null)
             {
-                if (!CompAmmo.TryReduceAmmoCount(CompAmmo.Props.ammoSet.ammoConsumedPerShot * VerbPropsCE.ammoConsumedPerShotCount))
+                if (!CompAmmo.TryReduceAmmoCount(((CompAmmo.Props.ammoSet != null) ? CompAmmo.Props.ammoSet.ammoConsumedPerShot : 1) * VerbPropsCE.ammoConsumedPerShotCount))
                 {
                     return false;
                 }

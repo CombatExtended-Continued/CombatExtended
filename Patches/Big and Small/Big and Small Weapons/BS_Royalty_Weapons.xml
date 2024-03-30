@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small - Weapons</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Royalty</li>
+			</mods>
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<!-- ====== Persona Giant Plasma Spear ====== -->
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="BS_VaeSuis_Persona"]/statBases</xpath>
+						<value>
+							<Bulk>45</Bulk>
+							<MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="BS_VaeSuis_Persona"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.03</MeleeCritChance>
+								<MeleeParryChance>0.24</MeleeParryChance>
+								<MeleeDodgeChance>0.9</MeleeDodgeChance>
+							</equippedStatOffsets>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="BS_VaeSuis_Persona"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>handle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>18</power>
+									<cooldownTime>2.28</cooldownTime>
+									<chanceFactor>0.10</chanceFactor>
+									<armorPenetrationBlunt>7.97</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>74</power>
+									<cooldownTime>1.926</cooldownTime>
+									<armorPenetrationBlunt>46</armorPenetrationBlunt>
+									<armorPenetrationSharp>239.5</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>14</power>
+									<cooldownTime>1.43</cooldownTime>
+									<armorPenetrationBlunt>20.43</armorPenetrationBlunt>
+									<armorPenetrationSharp>319</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<!-- ====== Persona Skarstind ====== -->
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="BS_Skarstind_Persona"]/statBases</xpath>
+						<value>
+							<Bulk>50</Bulk>
+							<MeleeCounterParryBonus>0.13</MeleeCounterParryBonus>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="BS_Skarstind_Persona"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.03</MeleeCritChance>
+								<MeleeParryChance>0.01</MeleeParryChance>
+								<MeleeDodgeChance>0.83</MeleeDodgeChance>
+							</equippedStatOffsets>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="BS_Skarstind_Persona"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>handle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>16</power>
+									<cooldownTime>2.51</cooldownTime>
+									<chanceFactor>0.15</chanceFactor>
+									<armorPenetrationBlunt>6.6</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>32</power>
+									<cooldownTime>1.97</cooldownTime>
+									<armorPenetrationBlunt>42.24</armorPenetrationBlunt>
+									<armorPenetrationSharp>824.68</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+</Patch>

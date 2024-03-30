@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Vehicles Expanded - Tier 3</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Turret - Swarm -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_SwarmTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_50mmRocket_HE</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_SwarmTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.2</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_SwarmTurret"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>12</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_SwarmTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_50mmRocket</ammoSet>
+							<shotHeight>2</shotHeight>
+							<speed>60</speed> <!-- Temporarily set to max charge speed to make them somewhat usable. -->
+							<sway>0.82</sway>
+							<spread>0.15</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Turret - Military -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_MilitaryTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_762x51mmNATO_FMJ</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_MilitaryTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.8</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_MilitaryTurret"]/warmUpTimer</xpath>
+					<value>
+						<warmUpTimer>1.3</warmUpTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_MilitaryTurret"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>120</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_MilitaryTurret"]/maxRange</xpath>
+					<value>
+						<maxRange>48</maxRange>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_MilitaryTurret"]/fireModes</xpath>
+					<value>
+						<fireModes>
+							<li>
+								<shotsPerBurst>1</shotsPerBurst>
+								<ticksBetweenShots>4</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Single</label>
+								<texPath>UI/Gizmos/FireRate_Single</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>6</shotsPerBurst>
+								<ticksBetweenShots>4</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Burst</label>
+								<texPath>UI/Gizmos/FireRate_Burst</texPath>
+							</li>
+							<li>
+								<shotsPerBurst>12</shotsPerBurst>
+								<ticksBetweenShots>4</ticksBetweenShots>
+								<ticksBetweenBursts>60</ticksBetweenBursts>
+								<label>Auto</label>
+								<texPath>UI/Gizmos/FireRate_Auto</texPath>
+							</li>
+						</fireModes>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Goliath_MilitaryTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+							<shotHeight>2.5</shotHeight>
+							<speed>168</speed>
+							<sway>0.82</sway>
+							<spread>0.07</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Mortar -->
+				<li Class="PatchOperationAdd"> <!-- Doesn't currently work. -->
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Goliath"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>20</li>
+								<li>30</li>
+								<li>40</li>
+								<li>50</li>
+								<li>60</li>
+							</chargeSpeeds>
+						</li>
+					</value>
+				</li>
+
+				<!-- Vehicle -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Goliath"]</xpath>
+					<value>
+						<descriptionHyperlinks>
+							<CombatExtended.AmmoSetDef>AmmoSet_50mmRocket</CombatExtended.AmmoSetDef>
+							<CombatExtended.AmmoSetDef>AmmoSet_556x45mmNATO</CombatExtended.AmmoSetDef>
+						</descriptionHyperlinks>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Goliath"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Goliath"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>12</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Goliath"]/components/li[key="BlastShield"]/armor/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Goliath"]/components/li[key="BlastShield"]/armor/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Goliath"]/components/li[key="BlastShield"]/health</xpath>
+					<value>
+						<health>400</health>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
