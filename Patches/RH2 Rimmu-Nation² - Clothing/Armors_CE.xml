@@ -87,6 +87,7 @@
 						defName="RNApparel_OpsCoreFAST_Tan" or
 						defName="RNApparel_OpsCoreFASTBUMP_Multicam" or
 						defName="RNApparel_OpsCoreFASTCarbon_Grey" or
+						defName="RNApparel_OpsCoreFAST_SF" or
 						defName="RNApparel_MICH2000_CAG" or
 						defName="RNApparel_MICH2000_AmericanSniper" or
 						defName="RNApparel_Mk6BallisticHelmet_DDPM" or
@@ -233,7 +234,8 @@
 					<xpath>Defs/ThingDef[
 						defName="RNApparel_OpsCoreFAST_Tan" or
 						defName="RNApparel_OpsCoreFASTBUMP_Multicam" or
-						defName="RNApparel_OpsCoreFASTCarbon_Grey"]/statBases </xpath>
+						defName="RNApparel_OpsCoreFASTCarbon_Grey" or
+						defName="RNApparel_OpsCoreFAST_SF"]/statBases </xpath>
 					<value>
 						<Bulk>3.5</Bulk>
 						<WornBulk>1</WornBulk>
@@ -420,6 +422,39 @@
 					</value>
 				</li>
 
+				<!--OpsCoreFAST SF with Night Vision-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_OpsCoreFAST_SF"]/statBases </xpath>
+					<value>
+						<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_OpsCoreFAST_SF"]/recipeMaker/researchPrerequisite </xpath>
+					<value>
+         				<researchPrerequisite>Smithing</researchPrerequisite>
+         				<researchPrerequisite>CE_AdvancedNV</researchPrerequisite>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="RNApparel_OpsCoreFAST_SF"]/costList </xpath>
+					<value>
+						<stuffCategories>
+							<li>Steeled</li>
+						</stuffCategories>
+						<costStuffCount>45</costStuffCount>
+						<costList>
+							<Plasteel>15</Plasteel>
+							<ComponentIndustrial>5</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+
 				<!--========================== Body Armors =====================================-->
 				<!--EOD-->
 				<li Class="PatchOperationAdd">
@@ -582,7 +617,8 @@
 						defName="RNApparel_AR500Veritas_Brown" or
 						defName="RNApparel_MBCFantom_Black" or
 						defName="RNApparel_PACALVC_Tan" or
-						defName="RNApparel_BristolBodyArmor_Olive"]/statBases/Mass </xpath>
+						defName="RNApparel_BristolBodyArmor_Olive" or
+						defName="RNApparel_FirstSpearAACV2_Multicam"]/statBases/Mass </xpath>
 					<value>
 						<Mass>11</Mass>
 						<Bulk>6</Bulk>
@@ -604,7 +640,8 @@
 						defName="RNApparel_AR500Veritas_Brown" or
 						defName="RNApparel_MBCFantom_Black" or
 						defName="RNApparel_PACALVC_Tan" or
-						defName="RNApparel_BristolBodyArmor_Olive"]/statBases/MaxHitPoints </xpath>
+						defName="RNApparel_BristolBodyArmor_Olive" or
+						defName="RNApparel_FirstSpearAACV2_Multicam"]/statBases/MaxHitPoints </xpath>
 					<value>
 						<MaxHitPoints>75</MaxHitPoints>
 					</value>
@@ -624,7 +661,8 @@
 						defName="RNApparel_AR500Veritas_Brown" or
 						defName="RNApparel_MBCFantom_Black" or
 						defName="RNApparel_PACALVC_Tan" or
-						defName="RNApparel_BristolBodyArmor_Olive"]/statBases/ArmorRating_Sharp </xpath>
+						defName="RNApparel_BristolBodyArmor_Olive" or
+						defName="RNApparel_FirstSpearAACV2_Multicam"]/statBases/ArmorRating_Sharp </xpath>
 					<value>
 						<ArmorRating_Sharp>14</ArmorRating_Sharp>
 					</value>
@@ -644,7 +682,8 @@
 						defName="RNApparel_AR500Veritas_Brown" or
 						defName="RNApparel_MBCFantom_Black" or
 						defName="RNApparel_PACALVC_Tan" or
-						defName="RNApparel_BristolBodyArmor_Olive"]/statBases/ArmorRating_Blunt </xpath>
+						defName="RNApparel_BristolBodyArmor_Olive" or
+						defName="RNApparel_FirstSpearAACV2_Multicam"]/statBases/ArmorRating_Blunt </xpath>
 					<value>
 						<ArmorRating_Blunt>20</ArmorRating_Blunt>
 					</value>
@@ -664,7 +703,8 @@
 						defName="RNApparel_AR500Veritas_Brown" or
 						defName="RNApparel_MBCFantom_Black" or
 						defName="RNApparel_PACALVC_Tan" or
-						defName="RNApparel_BristolBodyArmor_Olive"]/equippedStatOffsets/MoveSpeed </xpath>
+						defName="RNApparel_BristolBodyArmor_Olive" or
+						defName="RNApparel_FirstSpearAACV2_Multicam"]/equippedStatOffsets/MoveSpeed </xpath>
 				</li>
 
 				<!--16mm (sharp 1.05)-->

@@ -67,7 +67,7 @@
 						<ShotSpread>0.14</ShotSpread>
 						<SwayFactor>1.32</SwayFactor>
 						<Bulk>9.78</Bulk>
-						<WorkToMake>1000</WorkToMake>
+						<WorkToMake>19500</WorkToMake>
 					</statBases>
 					<costList>
 						<Chemfuel>10</Chemfuel>
@@ -613,6 +613,52 @@
 					</weaponTags>
 				</li>
 
+				<!-- ========== M1014 / Benelli M4 Super 90 ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>RNGun_M1014SD_Shotgun</defName>
+					<statBases>
+						<Mass>3.82</Mass>
+						<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.27</SwayFactor>
+						<Bulk>10.10</Bulk>
+						<WorkToMake>18000</WorkToMake>
+					</statBases>
+					<costList>
+						<Chemfuel>10</Chemfuel>
+						<Steel>55</Steel>
+						<ComponentIndustrial>3</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>16</range>
+						<soundCast>RNShotM1014SD</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+
+					<AmmoUser>
+						<magazineSize>8</magazineSize>
+						<reloadOneAtATime>true</reloadOneAtATime>
+						<reloadTime>0.8</reloadTime>
+						<ammoSet>AmmoSet_12Gauge</ammoSet>
+					</AmmoUser>
+
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+
+					<weaponTags>
+						<li>CE_AI_AssaultWeapon</li>
+					</weaponTags>
+				</li>
+
 				<!-- == Shared patches for firearm melee tools == -->
 
 				<!-- shotguns with stocks -->
@@ -630,7 +676,8 @@
 						defName="RNGun_USAS12_Shotgun" or
 						defName="RNGun_M1014_Shotgun" or
 						defName="RNGun_SpartanMarine_Shotgun" or
-						defName="RNGun_PancorJackhammer_Shotgun"
+						defName="RNGun_PancorJackhammer_Shotgun" or
+						defName="RNGun_M1014SD_Shotgun"
 						]/tools </xpath>
 					<value>
 						<tools>
