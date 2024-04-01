@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ======== Projectiles ======== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>AA_PoisonBolt_V</defName>
+		<label>venomous spit</label>
+		<graphicData>
+			<texPath>Things/Projectiles/AA_PoisonBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>false</flyOverhead>
+			<damageDef>AA_ToxicBolt</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBase>2.5</armorPenetrationBase>
+			<speed>50</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>AA_BurnWeb</defName>
+		<label>burning web</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Things/Projectiles/AA_Web</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>2</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Burn</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<speed>15</speed>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<!-- Adding secondary damage with CE's Procedure instead of AA's AnimalProjectile -->
+			<secondaryDamage>
+				<li>
+					<def>Stun</def>
+					<amount>8</amount>
+					<chance>0.5</chance>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>AA_AcidicVomit_CE</defName>
+		<label>acidic vomit</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Things/Projectiles/Proj_LiquidStream</texPath>
+			<graphicClass>Graphic_Flicker</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>AA_AcidSpit</damageDef>
+			<flyOverhead>false</flyOverhead>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+			<speed>18</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>AA_FlameBreathAnimated_CE</defName>
+		<label>flame breath</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectiles/AA_FieryProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<explosionRadius>2.5</explosionRadius>
+			<suppressionFactor>3.0</suppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+			<speed>40</speed>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+			<soundExplode>Interact_Ignite</soundExplode>
+		</projectile>
+	</ThingDef>
+
+</Defs>

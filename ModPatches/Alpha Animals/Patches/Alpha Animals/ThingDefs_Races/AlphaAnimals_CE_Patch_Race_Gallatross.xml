@@ -86,27 +86,6 @@
 
 	<!-- Add Low Bleed Hediff -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<HediffDef>
-				<defName>AA_LowBleed</defName>
-				<description>This creature bleeds very little.</description>
-				<label>Regen factor</label>
-				<defaultLabelColor>(.8,0,0)</defaultLabelColor>
-				<scenarioCanAdd>false</scenarioCanAdd>
-				<maxSeverity>1.0</maxSeverity>
-				<stages>
-					<li>
-						<totalBleedFactor>0.25</totalBleedFactor>
-					</li>
-				</stages>
-			</HediffDef>
-		</value>
-	</Operation>
-
-	<!-- Add Low Bleed Hediff -->
-
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">

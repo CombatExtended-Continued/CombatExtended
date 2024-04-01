@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<CombatExtended.AmmoCategoryDef>
-				<defName>Tar</defName>
-				<label>Tar</label>
-				<description>Releases a splattering of thick, black substance.</description>
-			</CombatExtended.AmmoCategoryDef>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AB_Shell_Tar"]</xpath>
 		<value>
@@ -34,86 +23,10 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<ThingDef ParentName="Base81mmMortarShell">
-				<defName>Bullet_81mmMortarShell_Tar</defName>
-				<label>81mm mortar shell (Tar)</label>
-				<graphicData>
-					<texPath>Things/Projectile/ShellHighExplosive</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>AB_Tar</damageDef>
-					<damageAmountBase>40</damageAmountBase>
-					<explosionRadius>3.5</explosionRadius>
-					<flyOverhead>true</flyOverhead>
-					<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-					<soundExplode>Explosion_Smoke</soundExplode>
-					<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
-					<soundAmbient>MortarRound_Ambient</soundAmbient>
-					<postExplosionSpawnThingDef>AB_Filth_Tar</postExplosionSpawnThingDef>
-					<postExplosionSpawnChance>0.8</postExplosionSpawnChance>
-					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				</projectile>
-			</ThingDef>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
 		<value>
 			<AB_Shell_Tar>Bullet_81mmMortarShell_Tar</AB_Shell_Tar>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<RecipeDef ParentName="AmmoRecipeBase">
-				<defName>MakeAB_Shell_Tar</defName>
-				<label>make 81mm tar mortar shell x2</label>
-				<description>Craft 2 tar shells.</description>
-				<jobString>Making 81mm tar shells.</jobString>
-				<ingredients>
-					<li>
-						<filter>
-							<thingDefs>
-								<li>Steel</li>
-							</thingDefs>
-						</filter>
-						<count>25</count>
-					</li>
-					<li>
-						<filter>
-							<thingDefs>
-								<li>ComponentIndustrial</li>
-							</thingDefs>
-						</filter>
-						<count>2</count>
-					</li>
-					<li>
-						<filter>
-							<thingDefs>
-								<li>AB_AsphaltBucket</li>
-							</thingDefs>
-						</filter>
-						<count>10</count>
-					</li>
-				</ingredients>
-				<fixedIngredientFilter>
-					<thingDefs>
-						<li>Steel</li>
-						<li>ComponentIndustrial</li>
-						<li>AB_AsphaltBucket</li>
-					</thingDefs>
-				</fixedIngredientFilter>
-				<products>
-					<AB_Shell_Tar>2</AB_Shell_Tar>
-				</products>
-				<workAmount>3000</workAmount>
-				<researchPrerequisite>Mortars</researchPrerequisite>
-			</RecipeDef>
-		</value>
-	</Operation>
 </Patch>
