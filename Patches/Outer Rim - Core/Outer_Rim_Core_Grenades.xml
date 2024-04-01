@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outer Rim - Core</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- ========== Kill recipe makers ========== -->
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenade" or defName="OuterRim_CryoBanGrenade" or defName="OuterRim_IonGrenade" or defName="OuterRim_PlasmaGrenade" or defName="OuterRim_SonicGrenade" or defName="OuterRim_StunGrenade" or defName="OuterRim_ThermalDetonator"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>
+			</li>
+
+			<!-- ========== Melee tools ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenade" or defName="OuterRim_CryoBanGrenade" or defName="OuterRim_IonGrenade" or defName="OuterRim_PlasmaGrenade" or defName="OuterRim_SonicGrenade" or defName="OuterRim_StunGrenade" or defName="OuterRim_ThermalDetonator"]</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>Body</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.75</cooldownTime>
+							<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+						</li>
+					</tools>
+					<tradeTags Inherit="False">
+						<li>CE_MediumAmmo</li>
+					</tradeTags>
+					<allowedArchonexusCount>5</allowedArchonexusCount>
+				</value>
+			</li>
+
+			<!-- ========== Frag Grenade ========== -->
+
+			<!-- Projectile -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeProj" or defName="OuterRim_CryoBanGrenadeProj" or defName="OuterRim_IonGrenadeProj" or defName="OuterRim_PlasmaGrenadeProj" or defName="OuterRim_SonicGrenadeProj" or defName="OuterRim_StunGrenadeProj" or defName="OuterRim_ThermalDetProj"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenade"]/description</xpath>
+				<value>
+					<description>A lightweight but powerful fragmentation grenade, releasing a deadly storm of flechettes on detonation.</description>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_CryoBanGrenade"]/description</xpath>
+				<value>
+					<description>A lightweight but powerful explosive, releasing a cloud of supercooled cryoban to freeze opponents solid. Does little direct damage by itself.</description>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_IonGrenade"]/description</xpath>
+				<value>
+					<description>A lightweight but powerful pulse detonator, burning out its internal components to release an electromagnetic shockwave that can disable or even damage droids.</description>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_PlasmaGrenade"]/description</xpath>
+				<value>
+					<description>A lightweight but powerful plasma detonator, releasing a burst of superheated gas to inflict tremendous burns on anyone nearby.</description>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_SonicGrenade"]/description</xpath>
+				<value>
+					<description>A lightweight but powerful sonic generator, burning out its internal components to release a shockwave that causes blunt force trauma to all in the radius.</description>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_StunGrenade"]/description</xpath>
+				<value>
+					<description>A lightweight but nonlethal detonator, emitting a bright flash and loud sound to stun targets, useful when attempting to take someone in alive and unharmed.</description>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_ThermalDetonator"]/description</xpath>
+				<value>
+					<description>A lightweight but tremendously powerful explosive, capable of inflicting terrible harm on anything caught in its area of effect.</description>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeProj"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>ThirdParty/StarWars/Projectile/OR_FragGrenade</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_CryoBanGrenadeProj"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>ThirdParty/StarWars/Projectile/OR_CryoBanGrenade</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_IonGrenadeProj"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>ThirdParty/StarWars/Projectile/OR_IonGrenade</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_PlasmaGrenadeProj"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>ThirdParty/StarWars/Projectile/OR_PlasmaGrenade</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_SonicGrenadeProj"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>ThirdParty/StarWars/Projectile/OR_SonicGrenade</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_StunGrenadeProj"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>ThirdParty/StarWars/Projectile/OR_StunGrenade</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_ThermalDetProj"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>ThirdParty/StarWars/Projectile/OR_ThermalDetonator</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeProj"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>1.5</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>56</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>false</dropsCasings>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>12</speed>
+						<suppressionFactor>3.0</suppressionFactor>
+						<dangerFactor>2.0</dangerFactor>
+						<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_CryoBanGrenadeProj"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>3.5</explosionRadius>
+						<damageDef>OuterRim_CryoBan</damageDef>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>false</dropsCasings>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>12</speed>
+						<suppressionFactor>3.0</suppressionFactor>
+						<dangerFactor>2.0</dangerFactor>
+						<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_IonGrenadeProj"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>3.5</explosionRadius>
+						<damageDef>OuterRim_Ion</damageDef>
+						<damageAmountBase>56</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>false</dropsCasings>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>12</speed>
+						<suppressionFactor>3.0</suppressionFactor>
+						<dangerFactor>2.0</dangerFactor>
+						<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_PlasmaGrenadeProj"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>3.5</explosionRadius>
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>56</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>false</dropsCasings>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>12</speed>
+						<suppressionFactor>3.0</suppressionFactor>
+						<dangerFactor>2.0</dangerFactor>
+						<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_SonicGrenadeProj"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>3.5</explosionRadius>
+						<damageDef>OuterRim_Sonic</damageDef>
+						<damageAmountBase>56</damageAmountBase>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>false</dropsCasings>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>12</speed>
+						<suppressionFactor>3.0</suppressionFactor>
+						<dangerFactor>2.0</dangerFactor>
+						<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_StunGrenadeProj"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>3.5</explosionRadius>
+						<damageDef>Stun</damageDef>
+						<explosionDelay>60</explosionDelay>
+						<dropsCasings>false</dropsCasings>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>12</speed>
+						<suppressionFactor>3.0</suppressionFactor>
+						<dangerFactor>2.0</dangerFactor>
+						<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_ThermalDetProj"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<explosionRadius>3.5</explosionRadius>
+						<damageDef>Bomb</damageDef>
+						<damageAmountBase>200</damageAmountBase>
+						<explosionDelay>120</explosionDelay>
+						<dropsCasings>false</dropsCasings>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<speed>12</speed>
+						<suppressionFactor>3.0</suppressionFactor>
+						<dangerFactor>2.0</dangerFactor>
+						<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeProj"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeProj"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeProj"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>50</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>
+			
+			<!-- Grenade -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenade"]/label</xpath>
+				<value>
+					<label>frag detonator</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_CryoBanGrenade"]/label</xpath>
+				<value>
+					<label>cryoban detonator</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_IonGrenade"]/label</xpath>
+				<value>
+					<label>ion detonator</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_PlasmaGrenade"]/label</xpath>
+				<value>
+					<label>plasma detonator</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_SonicGrenade"]/label</xpath>
+				<value>
+					<label>sonic detonator</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_StunGrenade"]/label</xpath>
+				<value>
+					<label>stun detonator</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_ThermalDetonator"]/label</xpath>
+				<value>
+					<label>thermal detonator</label>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenade"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>OuterRim/Items/FragGrenade</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_CryoBanGrenade"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>OuterRim/Items/CryoBanGrenade</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_IonGrenade"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>OuterRim/Items/IonGrenade</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_PlasmaGrenade"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>OuterRim/Items/PlasmaGrenade</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_SonicGrenade"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>OuterRim/Items/SonicGrenade</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_StunGrenade"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>OuterRim/Items/StunGrenade</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_ThermalDetonator"]/graphicData</xpath>
+				<value>
+					<graphicData>
+						<texPath>OuterRim/Items/ThermalDetonator</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+					</graphicData>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenade" or defName="OuterRim_CryoBanGrenade" or defName="OuterRim_IonGrenade" or defName="OuterRim_PlasmaGrenade" or defName="OuterRim_SonicGrenade" or defName="OuterRim_StunGrenade" or defName="OuterRim_ThermalDetonator"]</xpath>
+				<value>
+					<thingClass>CombatExtended.AmmoThing</thingClass>
+					<stackLimit>75</stackLimit>
+					<resourceReadoutPriority>First</resourceReadoutPriority>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenade" or defName="OuterRim_CryoBanGrenade" or defName="OuterRim_IonGrenade" or defName="OuterRim_PlasmaGrenade" or defName="OuterRim_SonicGrenade" or defName="OuterRim_StunGrenade" or defName="OuterRim_ThermalDetonator"]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenade"]/comps</xpath>
+				<value>
+					<comps>
+						<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>56</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>1.5</explosiveRadius>
+						</li>
+					</comps>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenade"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>50</Fragment_Small>
+						</fragments>
+					</li>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OuterRim_FragGrenade</defName>
+				<statBases>
+					<Mass>0.4</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>11.22</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw frag detonator</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>OuterRim_FragGrenadeProj</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OuterRim_CryoBanGrenade</defName>
+				<statBases>
+					<Mass>0.4</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>11.22</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw cryoban deonator</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>OuterRim_CryoBanGrenadeProj</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+    					<li>CE_GrenadeFlashbang</li>
+				</weaponTags>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OuterRim_IonGrenade</defName>
+				<statBases>
+					<Mass>0.4</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>11.22</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw ion detonator</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>OuterRim_IonGrenadeProj</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OuterRim_PlasmaGrenade</defName>
+				<statBases>
+					<Mass>0.4</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>11.22</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw plasma detonator</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>OuterRim_PlasmaGrenadeProj</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OuterRim_SonicGrenade</defName>
+				<statBases>
+					<Mass>0.4</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>11.22</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw sonic detonator</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>OuterRim_SonicGrenadeProj</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OuterRim_StunGrenade</defName>
+				<statBases>
+					<Mass>0.4</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>11.22</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw stun detonator</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>OuterRim_StunGrenadeProj</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+    					<li>CE_GrenadeFlashbang</li>
+				</weaponTags>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>OuterRim_ThermalDetonator</defName>
+				<statBases>
+					<Mass>0.4</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>11.22</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<Properties>
+					<label>throw thermal detonator</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10.0</range>
+					<minRange>4</minRange>
+					<warmupTime>0.8</warmupTime>
+					<noiseRadius>4</noiseRadius>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>OuterRim_ThermalDetProj</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+				</Properties>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<!-- Grenade Costs -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeBelt"]/costList</xpath>
+				<value>
+					<costList>
+						<OuterRim_FragGrenade>5</OuterRim_FragGrenade>
+					</costList>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_CryoBanGrenadeBelt"]/costList</xpath>
+				<value>
+					<costList>
+						<OuterRim_CryoBanGrenade>5</OuterRim_CryoBanGrenade>
+					</costList>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_IonGrenadeBelt"]/costList</xpath>
+				<value>
+					<costList>
+						<OuterRim_IonGrenade>5</OuterRim_IonGrenade>
+					</costList>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_PlasmaGrenadeBelt"]/costList</xpath>
+				<value>
+					<costList>
+						<OuterRim_PlasmaGrenade>5</OuterRim_PlasmaGrenade>
+					</costList>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_SonicGrenadeBelt"]/costList</xpath>
+				<value>
+					<costList>
+						<OuterRim_SonicGrenade>5</OuterRim_SonicGrenade>
+					</costList>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_StunGrenadeBelt"]/costList</xpath>
+				<value>
+					<costList>
+						<OuterRim_StunGrenade>5</OuterRim_StunGrenade>
+					</costList>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_ThermalDetonatorBelt"]/costList</xpath>
+				<value>
+					<costList>
+						<OuterRim_ThermalDetonator>5</OuterRim_ThermalDetonator>
+					</costList>
+				</value>
+			</li>
+			
+			<!-- Reload Logic -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeBelt" or defName="OuterRim_CryoBanGrenadeBelt" or defName="OuterRim_IonGrenadeBelt" or defName="OuterRim_PlasmaGrenadeBelt" or defName="OuterRim_SonicGrenadeBelt" or defName="OuterRim_StunGrenadeBelt" or defName="OuterRim_ThermalDetonatorBelt"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountToRefill</xpath>
+				<value>
+					<ammoCountPerCharge>1</ammoCountPerCharge>
+				</value>
+			</li>
+
+			<!-- Grenade Verbs -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_FragGrenadeBelt"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>throw frag detonator</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>True</onlyManualCast>
+							<warmupTime>0.8</warmupTime>
+							<range>10</range>
+							<minRange>3</minRange>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<soundCast>ThrowGrenade</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>OuterRim_FragGrenadeProj</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_CryoBanGrenadeBelt"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>throw cryoban detonator</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>True</onlyManualCast>
+							<warmupTime>0.8</warmupTime>
+							<range>10</range>
+							<minRange>3</minRange>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<soundCast>ThrowGrenade</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>OuterRim_CryoBanGrenadeProj</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_IonGrenadeBelt"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>throw ion detonator</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>True</onlyManualCast>
+							<warmupTime>0.8</warmupTime>
+							<range>10</range>
+							<minRange>3</minRange>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<soundCast>ThrowGrenade</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>OuterRim_IonGrenadeProj</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_PlasmaGrenadeBelt"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>throw plasma detonator</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>True</onlyManualCast>
+							<warmupTime>0.8</warmupTime>
+							<range>10</range>
+							<minRange>3</minRange>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<soundCast>ThrowGrenade</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>OuterRim_PlasmaGrenadeProj</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_SonicGrenadeBelt"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>throw sonic detonator</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>True</onlyManualCast>
+							<warmupTime>0.8</warmupTime>
+							<range>10</range>
+							<minRange>3</minRange>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<soundCast>ThrowGrenade</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>OuterRim_SonicGrenadeProj</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_StunGrenadeBelt"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>throw stun detonator</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>True</onlyManualCast>
+							<warmupTime>0.8</warmupTime>
+							<range>10</range>
+							<minRange>3</minRange>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<soundCast>ThrowGrenade</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>OuterRim_StunGrenadeProj</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="OuterRim_ThermalDetonatorBelt"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>throw thermal detonator</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>True</onlyManualCast>
+							<warmupTime>0.8</warmupTime>
+							<range>10</range>
+							<minRange>3</minRange>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<soundCast>ThrowGrenade</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>OuterRim_ThermalDetProj</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

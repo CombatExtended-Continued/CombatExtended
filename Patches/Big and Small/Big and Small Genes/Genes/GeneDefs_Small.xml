@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Big and Small Genes</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Adds Dwarf Bulk -->
+				<!-- Adds Gnome Bulk -->
+				<!-- Adds Rabbit Bulk -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/GeneDef[defName="DwarfFrame" or defName="GnomeFrame" or defName="BS_RabbitFrame"]/statOffsets</xpath>
+					<value>
+						<CarryBulk>10</CarryBulk>
+					</value>
+				</li>
+
+				<!-- Add Small Frame Bulk -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/GeneDef[defName="BS_SmallFrame"]/statOffsets</xpath>
+					<value>
+						<CarryBulk>8</CarryBulk>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Better Wool Production - C# Edition</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="WoolBlended"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.01</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="WoolBlended"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.05</StuffPower_Armor_Heat>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

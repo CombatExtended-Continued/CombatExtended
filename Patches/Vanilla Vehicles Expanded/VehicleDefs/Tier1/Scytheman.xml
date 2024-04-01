@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Vehicles Expanded</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Turret -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Scytheman_MainTurret"]/projectile</xpath>
+					<value>
+						<projectile>Bullet_50mmRocket_HE</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Scytheman_MainTurret"]/reloadTimer</xpath>
+					<value>
+						<reloadTimer>7.2</reloadTimer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Scytheman_MainTurret"]/genericAmmo</xpath>
+					<value>
+						<genericAmmo>false</genericAmmo>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Scytheman_MainTurret"]/magazineCapacity</xpath>
+					<value>
+						<magazineCapacity>12</magazineCapacity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/Vehicles.VehicleTurretDef[defName="Scytheman_MainTurret"]</xpath>
+					<value>
+						<li Class="Vehicles.CETurretDataDefModExtension">
+							<ammoSet>AmmoSet_50mmRocket</ammoSet>
+							<shotHeight>2</shotHeight>
+							<speed>160</speed> <!-- Temporarily set artifically high, as it fires on a flat trajectory. -->
+							<sway>0.82</sway>
+							<spread>0.15</spread>
+						</li>
+					</value>
+				</li>
+
+				<!-- Vehicle -->
+				<li Class="PatchOperationAdd"> <!-- Doesn't currently work. -->
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Scytheman"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>20</li>
+								<li>30</li>
+								<li>40</li>
+								<li>50</li>
+								<li>60</li>
+							</chargeSpeeds>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Scytheman"]</xpath>
+					<value>
+						<descriptionHyperlinks>
+							<CombatExtended.AmmoSetDef>AmmoSet_50mmRocket</CombatExtended.AmmoSetDef>
+						</descriptionHyperlinks>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Scytheman"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>4</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Scytheman"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>2</ArmorRating_Sharp>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

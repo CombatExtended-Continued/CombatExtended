@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outer Rim - Rebel Alliance</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_A180Blaster"]/description</xpath>
+					<value>
+						<description>The A-180 blaster was a modular blaster manufactured by BlasTech Industries. Though theoretically capable of being easily reconfigured for various battlefield roles, the vast majority found are the simple blaster pistol variant.</description>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>OuterRim_A180Blaster</defName>
+					<statBases>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.21</ShotSpread>
+						<SwayFactor>1.32</SwayFactor>
+						<Bulk>2.60</Bulk>
+						<Mass>1.50</Mass>
+						<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>3.0</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_BlasterPistol_Green</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>12</range>
+						<soundCast>OuterRim_Shot_SE14RBlasterBolt</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aiUseBurstMode>True</aiUseBurstMode>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>SpacerGun</li>
+						<li>CE_Sidearm</li>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+					<AmmoUser>
+						<magazineSize>24</magazineSize>
+						<reloadTime>3.7</reloadTime>
+						<ammoSet>AmmoSet_PlasmaGasCartridgeGreen_Pistol</ammoSet>
+					</AmmoUser>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_DH17Pistol"]/label</xpath>
+					<value>
+						<label>dh-17 blaster carbine</label>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_DH17Pistol"]/description</xpath>
+					<value>
+						<description>The DH-17 blaster carbine was a close-combat blaster weapon produced by BlasTech Industries.</description>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>OuterRim_DH17Pistol</defName>
+					<statBases>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.21</ShotSpread>
+						<SwayFactor>1.32</SwayFactor>
+						<Bulk>5.00</Bulk>
+						<Mass>2.80</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_BlasterRifle_Red</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>35</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>5</burstShotCount>
+						<soundCast>OuterRim_Shot_E11BlasterBolt</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>60</magazineSize>
+						<reloadTime>2.6</reloadTime>
+						<ammoSet>AmmoSet_PlasmaGasCartridgeGreen_Rifle</ammoSet>
+					</AmmoUser>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_DH17Rifle"]/description</xpath>
+					<value>
+						<description>Not to be confused with the more compact DH-17 carbine, the DH-17 rifle was another staple of the Rebel Alliance's armouries. With a full stock and improved optics, it was more accurate than the carbine model.</description>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>OuterRim_DH17Rifle</defName>
+					<statBases>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.12</SwayFactor>
+						<Bulk>6.00</Bulk>
+						<Mass>4.10</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_BlasterRifle_Green</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<range>41</range>
+						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<burstShotCount>5</burstShotCount>
+						<soundCast>OuterRim_Shot_E11BlasterBolt</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>80</magazineSize>
+						<reloadTime>3.7</reloadTime>
+						<ammoSet>AmmoSet_PlasmaGasCartridgeGreen_Rifle</ammoSet>
+					</AmmoUser>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>OuterRim_A280Blaster</defName>
+					<statBases>
+						<SightsEfficiency>1.9</SightsEfficiency>
+						<ShotSpread>0.05</ShotSpread>
+						<SwayFactor>2.25</SwayFactor>
+						<Bulk>6.5</Bulk>
+						<Mass>4.30</Mass>
+						<RangedWeapon_Cooldown>0.42</RangedWeapon_Cooldown>
+						<NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_BlasterSniper_Green</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>52</range>
+						<soundCast>OuterRim_Shot_E11BlasterBolt</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>3.7</reloadTime>
+						<ammoSet>AmmoSet_PlasmaGasCartridgeGreen_Sniper</ammoSet>
+					</AmmoUser>
+				</li>
+				
+				<!-- === HH12 RL === -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_HH12RocketLauncher"]/description</xpath>
+					<value>
+						<description>A simple but effective shoulder-fired rocket launcher utilized by the Rebel Alliance, engineered to take advantage of generous leftover stocks of RPS-6 missiles that were once used by the Galactic Republic before its dissolution.</description>
+					</value>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>OuterRim_HH12RocketLauncher</defName>
+					<statBases>
+						<Mass>7.5</Mass>
+						<Bulk>10.5</Bulk>
+						<SwayFactor>1.7</SwayFactor>
+						<ShotSpread>0.15</ShotSpread>
+						<SightsEfficiency>2.25</SightsEfficiency>
+						<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_RPS6_HEDP</defaultProjectile>
+						<warmupTime>3.3</warmupTime>
+						<range>58</range>
+						<minRange>10</minRange>
+						<soundCast>OuterRim_Shot_RocketLauncher</soundCast>
+						<muzzleFlashScale>15</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>True</canTargetLocations>
+						</targetParams>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>1</magazineSize>
+						<reloadTime>12</reloadTime>
+						<ammoSet>AmmoSet_OuterRimRockets</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+					</FireModes>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

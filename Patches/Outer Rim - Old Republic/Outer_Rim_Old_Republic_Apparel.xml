@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outer Rim - Old Republic</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_SithTrooperHelmet"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<value>
+						<ToxicEnvironmentResistance>0.25</ToxicEnvironmentResistance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_OldRepublicTrooperHelmet"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<value>
+						<ToxicEnvironmentResistance>0</ToxicEnvironmentResistance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_OldRepublicTrooperHelmet"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>0</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_OldRepublicTrooperHelmet"]/apparel</xpath>
+					<value>
+						<bodyPartGroups Inherit="False">
+							<li>UpperHead</li>
+						</bodyPartGroups>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="OuterRim_OldRepublicTrooperHelmet"]/apparel/immuneToToxGasExposure</xpath>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
