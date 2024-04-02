@@ -157,9 +157,9 @@ namespace CombatExtended
             return FlightTicks;
         }
 
-        public int get_fTicks()
+        public float get_fTicks()
         {
-            return FlightTicks;
+            return FlightTicks / 1.0f;
         }
 
         #endregion
