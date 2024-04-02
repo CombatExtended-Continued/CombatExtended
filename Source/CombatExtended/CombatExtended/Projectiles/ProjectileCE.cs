@@ -43,6 +43,10 @@ namespace CombatExtended
         public Vector2 origin;
 
         public IntVec3 OriginIV3;
+        public IntVec3 get_OriginIV3()
+        {
+            return OriginIV3;
+        }
 
         /// <summary>
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
