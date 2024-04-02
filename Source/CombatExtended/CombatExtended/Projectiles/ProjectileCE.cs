@@ -158,6 +158,15 @@ namespace CombatExtended
         #region Ticks/Seconds
         public float startingTicksToImpact;
         float startingTicksToImpactInt = -1f;
+        public float get_StartingTicksToImpact()
+        {
+            return startingTicksToImpact;
+        }
+
+        public void set_StartingTicksToImpact(float value)
+        {
+            startingTicksToImpact = value;
+        }
 
         public int FlightTicks = 0;
         public int get_FlightTicks()
