@@ -157,6 +157,11 @@ namespace CombatExtended
             return FlightTicks;
         }
 
+        public int get_fTicks()
+        {
+            return FlightTicks;
+        }
+
         #endregion
 
         #region Position
@@ -210,6 +215,7 @@ namespace CombatExtended
         }
 
         public Vector3 LastPos;
+        protected Vector3 lastExactPos;
         protected DangerTracker _dangerTracker = null;
         protected DangerTracker DangerTracker
         {
@@ -359,6 +365,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref exactPosition, "exactPosition");
             Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
             Scribe_Values.Look(ref LastPos, "lastPosition");
+            lastExactPos = LastPos;
             Scribe_Values.Look(ref FlightTicks, "flightTicks");
             Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));
             Scribe_Values.Look(ref Destination, "destination", this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled);
@@ -448,6 +455,7 @@ namespace CombatExtended
                     destination = tp;
                     landed = true;
                     LastPos = destination;
+                    lastExactPos = LastPos;
                     Position = ExactPosition.ToIntVec3();
 
                     lbce.SpawnBeam(muzzle, destination);
@@ -490,6 +498,7 @@ namespace CombatExtended
                     destination = tp;
                     landed = true;
                     LastPos = destination;
+                    lastExactPos = LastPos;
                     Position = ExactPosition.ToIntVec3();
 
                     lbce.SpawnBeam(muzzle, destination);
@@ -578,6 +587,7 @@ namespace CombatExtended
             this.startingTicksToImpact = GetFlightTime() * GenTicks.TicksPerRealSecond;
             this.ticksToImpact = Mathf.CeilToInt(this.startingTicksToImpact);
             this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
+            this.lastExactPos = LastPos;
 
         }
         #endregion
@@ -1110,6 +1120,7 @@ namespace CombatExtended
                 return;
             }
             LastPos = ExactPosition;
+            lastExactPos = LastPos;
             ticksToImpact--;
             FlightTicks++;
             Vector3 nextPosition;
