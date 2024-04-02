@@ -48,11 +48,16 @@ namespace CombatExtended
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
         /// </summary>
 
-        public Vector3 destinationInt = new Vector3(0f, 0f, -1f);
+        public Vector3 destinationInt = new Vector3(0f, 0f, 0f);
 
         public Vector2 Destination;
         public Vector2 get_Destination()
         {
+            if (destinationInt.z < 0)
+            {
+                destinationInt.z = 0f;
+                Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
+            }
             return Destination;
         }
         #endregion
