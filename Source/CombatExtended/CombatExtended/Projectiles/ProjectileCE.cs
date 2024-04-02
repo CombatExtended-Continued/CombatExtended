@@ -47,6 +47,9 @@ namespace CombatExtended
         /// <summary>
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
         /// </summary>
+
+        public Vector3 destinationInt = new Vector3(0f, 0f, -1f);
+
         public Vector2 Destination;
         public Vector2 get_Destination()
         {
@@ -149,6 +152,7 @@ namespace CombatExtended
 
         #region Ticks/Seconds
         public float startingTicksToImpact;
+        float startingTicksToImpactInt = -1f;
 
         public int FlightTicks = 0;
         public int get_FlightTicks()
@@ -349,6 +353,7 @@ namespace CombatExtended
             Scribe_References.Look<Thing>(ref equipment, "equipment");
             Scribe_Values.Look<int>(ref intTicksToImpact, "ticksToImpact", 0, true);
             Scribe_Values.Look<float>(ref startingTicksToImpact, "startingTicksToImpact", 0, true);
+            startingTicksToImpactInt = startingTicksToImpact;
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
             //Here be new variables
@@ -585,6 +590,7 @@ namespace CombatExtended
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
             }
             this.startingTicksToImpact = GetFlightTime() * GenTicks.TicksPerRealSecond;
+            this.startingTicksToImpactInt = startingTicksToImpact;
             this.ticksToImpact = Mathf.CeilToInt(this.startingTicksToImpact);
             this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
             this.lastExactPos = LastPos;
