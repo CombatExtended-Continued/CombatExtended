@@ -48,6 +48,10 @@ namespace CombatExtended
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
         /// </summary>
         public Vector2 Destination;
+        public Vector2 get_Destination()
+        {
+            return Destination;
+        }
         #endregion
 
         /// <summary>
@@ -114,18 +118,15 @@ namespace CombatExtended
         public bool landed;
         // TODO: // Remove in 1.5
         public int intTicksToImpact;
-        public int ticksToImpact
+        public int ticksToImpact;
+        public int get_ticksToImpact()
         {
-            get
-            {
-                return intTicksToImpact;
-            }
-            set
-            {
-                intTicksToImpact = value;
-            }
+            return intTicksToImpact;
         }
-
+        public void set_ticksToImpact(int value)
+        {
+            intTicksToImpact = value;
+        }
 
         protected Sustainer ambientSustainer;
 
@@ -140,6 +141,7 @@ namespace CombatExtended
         {
             get
             {
+                Log.ErrorOnce("ProjectileCE.Height is deprecated and will be removed in 1.5", 50023);
                 return ExactPosition.y;
             }
         }
@@ -149,6 +151,11 @@ namespace CombatExtended
         public float startingTicksToImpact;
 
         public int FlightTicks = 0;
+        public int get_FlightTicks()
+        {
+            Log.ErrorOnce("ProjectileCE.get_FlightTicks() is deprecated and will be removed in 1.5", 50022);
+            return FlightTicks;
+        }
 
         #endregion
 
