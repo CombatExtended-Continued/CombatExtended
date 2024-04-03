@@ -1138,7 +1138,7 @@ namespace CombatExtended
             {
                 return;
             }
-	    if (destinationInt.z < 0)
+            if (destinationInt.z < 0)
             {
                 destinationInt.z = 0f;
                 Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;

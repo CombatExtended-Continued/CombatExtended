@@ -48,10 +48,10 @@ namespace CombatExtended.HarmonyCE.Compatibility
 
         public static bool Prefix(ref BulletCE __instance)
         {
-	    Vector3 v3Pos = __instance.ExactPosition;
-	    float distance = (__instance.origin - new Vector2(v3Pos.x, v3Pos.z)).magnitude;
-	    float DistancePercent = distance / __instance.equipmentDef.Verbs[0].range;
-	    if (DistancePercent <= 1f)
+            Vector3 v3Pos = __instance.ExactPosition;
+            float distance = (__instance.origin - new Vector2(v3Pos.x, v3Pos.z)).magnitude;
+            float DistancePercent = distance / __instance.equipmentDef.Verbs[0].range;
+            if (DistancePercent <= 1f)
             {
                 return true;
             }
@@ -62,8 +62,8 @@ namespace CombatExtended.HarmonyCE.Compatibility
             if (!__instance.landed)
             {
                 __instance.FlightTicks++;
-		var v = __instance.Vec2Position();
-		var nextPosition = new Vector3(v.x, __instance.GetHeightAtTicks(__instance.FlightTicks), v.y);
+                var v = __instance.Vec2Position();
+                var nextPosition = new Vector3(v.x, __instance.GetHeightAtTicks(__instance.FlightTicks), v.y);
                 __instance.ExactPosition = nextPosition;
                 if (!__instance.ExactPosition.InBounds(__instance.Map))
                 {
