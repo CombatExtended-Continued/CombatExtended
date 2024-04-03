@@ -226,6 +226,7 @@ namespace CombatExtended
                 {
                     ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
                     _isAiming = true;
+                    RecalculateWarmupTicks();
                     return;
                 }
             }
@@ -325,6 +326,10 @@ namespace CombatExtended
 
         public override void RecalculateWarmupTicks()
         {
+            if (!Controller.settings.FasterRepeatShots)
+            {
+                return;
+            }
             Vector3 u = caster.TrueCenter();
             Vector3 v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
             if (currentTarget.Pawn is Pawn dtPawn)
@@ -333,19 +338,20 @@ namespace CombatExtended
             }
 
             var d = v - u;
-            var w = new Vector2();
-            w.Set(d.x, d.z);
-            var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
+            var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(d.z, d.x)) % 360;
             var delta = Mathf.Abs(newShotRotation - lastShotRotation) + lastRecoilDeg;
             lastRecoilDeg = 0;
-            var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : 0.25f);
+            var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ?
+                                                       0.1f :
+                                                       (_isAiming ? 0.5f : 0.25f));
             var reduction = Mathf.Max(maxReduction, delta / 45f);
             storedShotReduction = reduction;
+
             if (reduction < 1.0f)
             {
                 if (caster is Building_TurretGunCE turret)
                 {
-                    if (!_isAiming && turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
+                    if (turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
                     {
                         turret.burstWarmupTicksLeft = (int)(turret.burstWarmupTicksLeft * reduction);
                     }
