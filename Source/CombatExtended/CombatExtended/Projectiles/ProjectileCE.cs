@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -14,7 +13,6 @@ using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
-    [StaticConstructorOnStartup]
     public abstract class ProjectileCE : ThingWithComps
     {
         #region ClassVariables
@@ -44,36 +42,12 @@ namespace CombatExtended
 
         public Vector2 origin;
 
-        private IntVec3 originInt = new IntVec3(0, -1000, 0);
-        public IntVec3 OriginIV3
-        {
-            get
-            {
-                if (originInt.y < 0)
-                {
-                    originInt = new IntVec3(origin);
-                }
-                return originInt;
-            }
-        }
+        public IntVec3 OriginIV3;
 
-        public Vector3 destinationInt = new Vector3(0f, 0f, -1f);
         /// <summary>
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
         /// </summary>
-        public Vector2 Destination
-        {
-            get
-            {
-                if (destinationInt.z < 0)
-                {
-                    destinationInt = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
-                    destinationInt.z = 0f;
-                }
-                // Since returning as a Vector2 yields Vector2(Vector3.x, Vector3.y)!
-                return destinationInt;
-            }
-        }
+        public Vector2 Destination;
         #endregion
 
         /// <summary>
@@ -138,7 +112,21 @@ namespace CombatExtended
 
         #region Vanilla
         public bool landed;
-        public int ticksToImpact;
+        // TODO: // Remove in 1.5
+        public int intTicksToImpact;
+        public int ticksToImpact
+        {
+            get
+            {
+                return intTicksToImpact;
+            }
+            set
+            {
+                intTicksToImpact = value;
+            }
+        }
+
+
         protected Sustainer ambientSustainer;
 
         #endregion
@@ -158,97 +146,29 @@ namespace CombatExtended
         #endregion
 
         #region Ticks/Seconds
-        protected float startingTicksToImpactInt = -1f;
-        public float StartingTicksToImpact
-        {
-            get
-            {
-                if (!lerpPosition)
-                {
-                    return float.MaxValue;
-                }
-                if (startingTicksToImpactInt < 0f)
-                {
-                    // Optimization in case shotHeight is zero (for example for fragments)
-                    if (shotHeight < 0.001f)
-                    {
-                        // Opt-out in case the projectile is to collide instantly
-                        if (shotAngle < 0f)
-                        {
-                            destinationInt = origin;
-                            startingTicksToImpactInt = 0f;
-                            // During drawing in Multiplayer - impact causes issues. Will get handled inside of the `Tick` call.
-                            // In the future, replace this with `!InInterface` call, as it's more fitting here.
-                            if (!global::CombatExtended.Compatibility.Multiplayer.InMultiplayer)
-                            {
-                                ImpactSomething();
-                            }
-                            return 0f;
-                        }
-                        // Multiplied by ticksPerSecond since the calculated time is actually in seconds.
-                        startingTicksToImpactInt = (float)((origin - Destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * (float)GenTicks.TicksPerRealSecond;
-                        return startingTicksToImpactInt;
-                    }
-                    startingTicksToImpactInt = GetFlightTime() * (float)GenTicks.TicksPerRealSecond;
-                }
-                return startingTicksToImpactInt;
-            }
-        }
+        public float startingTicksToImpact;
 
-        int intTicksToImpact = -1;
-        /// <summary>
-        /// An integer ceil value of StartingTicksToImpact. intTicksToImpact is equal to -1 when not initialized.
-        /// </summary>
-        public int IntTicksToImpact
-        {
-            get
-            {
-                if (!lerpPosition)
-                {
-                    return 1;
-                }
-                if (intTicksToImpact < 0)
-                {
-                    intTicksToImpact = Mathf.CeilToInt(StartingTicksToImpact);
-                }
-                return intTicksToImpact;
-            }
-        }
+        public int FlightTicks = 0;
 
-        private int flightTicks;
-        /// <summary>
-        /// The amount of integer ticks this projectile has remained in the air for, ignoring impact.
-        /// </summary>
-        public int FlightTicks
-        {
-            get
-            {
-                return flightTicks;
-            }
-        }
-        /// <summary>
-        /// The amount of float ticks the projectile has remained in the air for, including impact.
-        /// </summary>
-        public float fTicks
-        {
-            get
-            {
-                return (ticksToImpact == 0 ? StartingTicksToImpact : (float)FlightTicks);
-            }
-        }
         #endregion
 
         #region Position
         protected virtual Vector2 Vec2Position(float ticks = -1f)
         {
+            Log.ErrorOnce("Vec2Position(float) is deprecated and will be removed in 1.5", 50021);
             if (ticks < 0)
             {
-                ticks = fTicks;
+                return Vec2Position();
             }
-            return Vector2.Lerp(origin, Destination, ticks / StartingTicksToImpact);
+            return Vector2.Lerp(origin, Destination, ticks / startingTicksToImpact);
+        }
+        protected virtual Vector2 Vec2Position()
+        {
+            return Vector2.Lerp(origin, Destination, FlightTicks / startingTicksToImpact);
         }
 
-        private Vector3? exactPosition = null;
+        private Vector3 exactPosition;
+
         /// <summary>
         /// Exact x,y,z (x,height,y) position in terms of Vec2Position.x, .y (lerped origin to Destination) and Height.
         /// </summary>
@@ -256,50 +176,12 @@ namespace CombatExtended
         {
             set
             {
-                exactPosition = new Vector3(value.x, value.y, value.z);
+                exactPosition = value;
                 Position = ((Vector3)exactPosition).ToIntVec3();
             }
             get
             {
-                if (exactPosition == null)
-                {
-                    exactPosition = new Vector3(origin.x, shotHeight, origin.y);
-                }
-                return ((Vector3)exactPosition);
-            }
-        }
-
-        public virtual Vector2 DrawPosV2
-        {
-            get
-            {
-                return new Vector2(ExactPosition.x, ExactPosition.z);
-            }
-        }
-
-        public override Vector3 DrawPos
-        {
-            get
-            {
-                return ExactPosition;
-            }
-        }
-
-        private Vector3 lastExactPos = new Vector3(-1000, 0, 0);
-        public Vector3 LastPos
-        {
-            protected set
-            {
-                lastExactPos = value;
-            }
-            get
-            {
-                if (lastExactPos.x < -999)
-                {
-                    var lastPos = Vec2Position(FlightTicks - 1);
-                    lastExactPos = new Vector3(lastPos.x, GetHeightAtTicks(FlightTicks - 1), lastPos.y);
-                }
-                return lastExactPos;
+                return exactPosition;
             }
         }
 
@@ -307,10 +189,20 @@ namespace CombatExtended
         {
             get
             {
+                Log.ErrorOnce("ExactMinusLastPos is deprecated and will be removed in 1.5", 50022);
                 return (ExactPosition - LastPos);
             }
         }
 
+        public override Vector3 DrawPos
+        {
+            get
+            {
+                return ExactPosition + new Vector3(0, 0, ExactPosition.y - shotHeight);
+            }
+        }
+
+        public Vector3 LastPos;
         protected DangerTracker _dangerTracker = null;
         protected DangerTracker DangerTracker
         {
@@ -328,7 +220,7 @@ namespace CombatExtended
             {
                 if (lastShotLine != FlightTicks)
                 {
-                    shotLine = new Ray(LastPos, ExactMinusLastPos);
+                    shotLine = new Ray(LastPos, ExactPosition - LastPos);
                     lastShotLine = FlightTicks;
                 }
                 return shotLine;
@@ -344,13 +236,13 @@ namespace CombatExtended
         {
             get
             {
-                var w = (Destination - origin);
+                Vector2 w = (Destination - origin);
 
-                var vx = w.x / StartingTicksToImpact;
+                var vx = w.x / startingTicksToImpact;
 
-                var vy = (w.y - shotHeight) / StartingTicksToImpact
+                var vy = (w.y - shotHeight) / startingTicksToImpact
                          + shotSpeed * Mathf.Sin(shotAngle) / GenTicks.TicksPerRealSecond
-                         - (GravityFactor * fTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
+                         - (GravityFactor * FlightTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
 
                 return Quaternion.AngleAxis(
                            Mathf.Rad2Deg * Mathf.Atan2(-vy, vx) + 90f
@@ -384,28 +276,10 @@ namespace CombatExtended
         /// </summary>
         public float shotSpeed = -1f;
 
-        private float _gravityFactor = -1;
-
         /// <summary>
         /// Gravity factor in meters(cells) per second squared
         /// </summary>
-        private float GravityFactor
-        {
-            get
-            {
-                if (_gravityFactor < 0)
-                {
-                    _gravityFactor = CE_Utility.GravityConst;
-                    if (def.projectile is ProjectilePropertiesCE props)
-                    {
-                        _gravityFactor = props.Gravity;
-                    }
-                }
-                return _gravityFactor;
-            }
-        }
-
-
+        private float GravityFactor = CE_Utility.GravityConst;
 
         protected Material[] shadowMaterial;
         protected Material ShadowMaterial
@@ -458,10 +332,10 @@ namespace CombatExtended
             Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
 
             Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
-            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
             Scribe_References.Look<Thing>(ref launcher, "launcher");
             Scribe_References.Look<Thing>(ref equipment, "equipment");
-            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
+            Scribe_Values.Look<int>(ref intTicksToImpact, "ticksToImpact", 0, true);
+            Scribe_Values.Look<float>(ref startingTicksToImpact, "startingTicksToImpact", 0, true);
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
             //Here be new variables
@@ -476,6 +350,11 @@ namespace CombatExtended
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
+            Scribe_Values.Look(ref GravityFactor, "gravityFactor", CE_Utility.GravityConst);
+            Scribe_Values.Look(ref LastPos, "lastPosition");
+            Scribe_Values.Look(ref FlightTicks, "flightTicks");
+            Scribe_Values.Look(ref OriginIV3, "originIV3", new IntVec3(this.origin));
+            Scribe_Values.Look(ref Destination, "destination", this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled);
             // To insure saves don't get affected..
         }
         #endregion
@@ -483,9 +362,11 @@ namespace CombatExtended
         #region Throw
         public virtual void Throw(Thing launcher, Vector3 origin, Vector3 heading, Thing equipment = null)
         {
-            this.ExactPosition = origin;
+            this.ExactPosition = LastPos = origin;
             this.shotHeight = origin.y;
             this.origin = new Vector2(origin.x, origin.z);
+            this.OriginIV3 = new IntVec3(this.origin);
+            this.Destination = this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
             this.shotSpeed = Math.Max(heading.magnitude, def.projectile.speed);
             var projectileProperties = def.projectile as ProjectilePropertiesCE;
             this.castShadow = projectileProperties.castShadow;
@@ -667,15 +548,17 @@ namespace CombatExtended
             {
                 this.castShadow = props.castShadow;
                 this.lerpPosition = props.lerpPosition;
+                this.GravityFactor = props.Gravity;
             }
             Launch(launcher, origin, equipment);
-            this.ticksToImpact = IntTicksToImpact;
         }
 
         public virtual void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
         {
             this.launcher = launcher;
             this.origin = origin;
+            this.OriginIV3 = new IntVec3(origin);
+            this.Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
             this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
@@ -685,6 +568,10 @@ namespace CombatExtended
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
             }
+            this.startingTicksToImpact = GetFlightTime() * GenTicks.TicksPerRealSecond;
+            this.ticksToImpact = Mathf.CeilToInt(this.startingTicksToImpact);
+            this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
+
         }
         #endregion
 
@@ -740,11 +627,11 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= radius * radius)
+            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - LastPos).sqrMagnitude <= radius * radius)
             {
                 return false;
             }
-            if (CE_Utility.IntersectionPoint(lastExactPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
+            if (CE_Utility.IntersectionPoint(LastPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
             {
                 ExactPosition = newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 landed = true;
@@ -753,7 +640,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            interceptorComp.lastInterceptAngle = lastExactPos.AngleToFlat(interceptorThing.TrueCenter());
+            interceptorComp.lastInterceptAngle = LastPos.AngleToFlat(interceptorThing.TrueCenter());
             interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
 
             var projectileProperties = def.projectile as ProjectilePropertiesCE;
@@ -991,7 +878,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (dist * dist > ExactMinusLastPos.sqrMagnitude)
+            if (dist * dist > (ExactPosition - LastPos).sqrMagnitude)
             {
                 return false;
             }
@@ -1025,7 +912,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (dist * dist > ExactMinusLastPos.sqrMagnitude)
+            if (dist * dist > (ExactPosition - LastPos).sqrMagnitude)
             {
                 return false;
             }
@@ -1217,12 +1104,12 @@ namespace CombatExtended
             }
             LastPos = ExactPosition;
             ticksToImpact--;
-            flightTicks++;
+            FlightTicks++;
             Vector3 nextPosition;
             if (lerpPosition)
             {
                 var v = Vec2Position();
-                nextPosition = new Vector3(v.x, Height, v.y);
+                nextPosition = new Vector3(v.x, GetHeightAtTicks(FlightTicks), v.y);
             }
             else
             {
@@ -1296,7 +1183,7 @@ namespace CombatExtended
                     }
                 }
             }
-            float distToOrigin = originInt.DistanceTo(positionInt);
+            float distToOrigin = OriginIV3.DistanceTo(positionInt);
             float dangerFactor = (def.projectile as ProjectilePropertiesCE).dangerFactor;
             if (dangerFactor > 0f && nextPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
             {
@@ -1324,8 +1211,8 @@ namespace CombatExtended
                 {
                     //TODO : EXPERIMENTAL Add edifice height
                     var shadowPos = new Vector3(ExactPosition.x,
-                                                def.Altitude - 0.01f,
-                                                ExactPosition.z - Mathf.Lerp(shotHeight, 0f, fTicks / StartingTicksToImpact));
+                                                0,
+                                                ExactPosition.z);
                     //EXPERIMENTAL: + (new CollisionVertical(ExactPosition.ToIntVec3().GetEdifice(Map))).Max);
 
                     //TODO : Vary ShadowMat plane
