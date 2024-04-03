@@ -57,11 +57,6 @@ namespace CombatExtended
         public Vector2 Destination;
         public Vector2 get_Destination()
         {
-            if (destinationInt.z < 0)
-            {
-                destinationInt.z = 0f;
-                Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
-            }
             return Destination;
         }
         #endregion
@@ -187,7 +182,7 @@ namespace CombatExtended
         #endregion
 
         #region Position
-        protected virtual Vector2 Vec2Position(float ticks = -1f)
+        public virtual Vector2 Vec2Position(float ticks = -1f)
         {
             Log.ErrorOnce("Vec2Position(float) is deprecated and will be removed in 1.5", 50021);
             if (ticks < 0)
@@ -196,7 +191,7 @@ namespace CombatExtended
             }
             return Vector2.Lerp(origin, Destination, ticks / startingTicksToImpact);
         }
-        protected virtual Vector2 Vec2Position()
+        public virtual Vector2 Vec2Position()
         {
             return Vector2.Lerp(origin, Destination, FlightTicks / startingTicksToImpact);
         }
@@ -1143,6 +1138,11 @@ namespace CombatExtended
             {
                 return;
             }
+	    if (destinationInt.z < 0)
+            {
+                destinationInt.z = 0f;
+                Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
+            }
             LastPos = ExactPosition;
             lastExactPos = LastPos;
             ticksToImpact--;
@@ -1504,7 +1504,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="ticks">Integer ticks, since the only time value which is not an integer (accessed by StartingTicksToImpact) has height zero by definition.</param>
         /// <returns>Projectile height at time ticks in ticks.</returns>
-        private float GetHeightAtTicks(int ticks)
+        public float GetHeightAtTicks(int ticks)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
             return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityFactor * seconds * seconds) / 2f, 3);
