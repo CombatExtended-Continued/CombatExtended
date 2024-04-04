@@ -122,11 +122,13 @@ Auto-Mortars	|
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Wool Production - C# Edition	|
-Big and Small Genes	|
+Big and Small - Genes & More	|
+Big and Small - Heaven and Hell
 Big and Small - Medieval Factions	|
 Big and Small - Medieval Overhaul Factions	|
-Big and Small Races	|
-Big and Small Weapons	|
+Big and Small - Races	|
+Big and Small - Vampires and the Undead  |
+Big and Small - Weapons	|
 Biomes! Caverns	|
 Biomes! Core	|
 Biotech Expansion - Mammalia  |
@@ -481,7 +483,6 @@ Urbworld Weaponry: Caseless |
 Urbworld Weaponry SDS |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
-Vampires, Demons, and the Undead  |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
