@@ -25,6 +25,13 @@
 							<parent>AmmoAdvanced</parent>
 							<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
 						</ThingCategoryDef>
+						
+						<ThingCategoryDef>
+							<defName>AmmoOuterRimTranqDart</defName>
+							<label>tranquilizer darts</label>
+							<parent>AmmoAdvanced</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+						</ThingCategoryDef>
 
 						<!-- ==================== AmmoSets ========================== -->
 						
@@ -191,6 +198,14 @@
 								<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterSniper_Ion</Ammo_PlasmaGasCartridge_Ion>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_OuterRim_KnockoutDarts</defName>
+							<label>Knockout Darts</label>
+							<ammoTypes>
+								<Ammo_OuterRim_KnockoutDart>Bullet_OR_KnockoutDart</Ammo_OuterRim_KnockoutDart>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
 						
 						<!-- ================== Ammo ================== -->
 
@@ -269,6 +284,25 @@
 							<ammoClass>BlasterStun</ammoClass>
 							<generateAllowChance>0</generateAllowChance>
 							<cookOffProjectile>Bullet_BlasterPistol_Stun</cookOffProjectile>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="PlasmaGasCartridgeBase">
+							<defName>Ammo_OuterRim_KnockoutDart</defName>
+							<description>A small durasteel dart with an integrated injector that's laden with an extremely potent and fast-acting anesthetic. Favoured by bounty hunters who want to bring their targets in alive.</description>
+							<label>Knockout Darts</label>
+							<graphicData>
+								<texPath>ThirdParty/StarWars/Ammo/KnockoutDart</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>3.00</MarketValue>
+							</statBases>
+							<thingCategories>
+								<li>AmmoOuterRimTranqDart</li>
+							</thingCategories>
+							<ammoClass>TranqNonLethal</ammoClass>
+							<generateAllowChance>0</generateAllowChance>
+							<cookOffProjectile>Bullet_OR_KnockoutDart</cookOffProjectile>
 						</ThingDef>
 
 						<!-- ================== Projectiles ================== -->
@@ -365,6 +399,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -373,6 +408,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -381,6 +417,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -389,6 +426,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -397,6 +435,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -405,6 +444,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -413,6 +453,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -421,6 +462,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -429,6 +471,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -437,6 +480,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -445,6 +489,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -453,6 +498,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Green</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -461,6 +507,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -469,6 +516,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -477,6 +525,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -485,6 +534,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -493,6 +543,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -501,6 +552,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -509,6 +561,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -517,6 +570,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -525,6 +579,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -533,6 +588,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -541,6 +597,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -549,6 +606,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Yellow</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 						</ThingDef>
 
@@ -557,6 +615,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageAmountBase>8</damageAmountBase>
@@ -575,6 +634,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageAmountBase>12</damageAmountBase>
@@ -593,6 +653,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageAmountBase>14</damageAmountBase>
@@ -611,6 +672,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>Neuralizer</damageDef>
@@ -624,6 +686,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>Neuralizer</damageDef>
@@ -637,6 +700,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>Neuralizer</damageDef>
@@ -650,6 +714,7 @@
 							<graphicData>
 								<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageAmountBase>8</damageAmountBase>
@@ -659,6 +724,56 @@
 								<spreadMult>15</spreadMult>
 							</projectile>
 						</ThingDef>
+						
+						<!-- ==================== Droid/Vambrace Minirockets ========================== -->
+						
+						<ThingCategoryDef>
+							<defName>AmmoOuterRimMiniRocket</defName>
+							<label>Mini Rockets</label>
+							<parent>AmmoRockets</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+						</ThingCategoryDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" Name="OR_MiniRocketBase" ParentName="MediumAmmoBase" Abstract="True">
+							<description>A small but nonetheless extremely deadly miniaturized rocket, designed to be launched from wrist-mounted weapon platforms.</description>
+							<statBases>
+								<MaxHitPoints>150</MaxHitPoints>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade</li>
+								<li>CE_AutoEnableCrafting_TableMachining</li>
+							</tradeTags>
+							<thingCategories>
+								<li>AmmoOuterRimMiniRocket</li>
+							</thingCategories>
+							<stackLimit>25</stackLimit>
+							<cookOffFlashScale>40</cookOffFlashScale>
+							<cookOffSound>MortarBomb_Explode</cookOffSound>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="OR_MiniRocketBase">
+							<defName>Ammo_OR_MiniRocket_Standard</defName>
+							<label>standard minirocket</label>
+							<graphicData>
+								<texPath>ThirdParty/StarWars/Ammo/OR_MiniRocket</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<statBases>
+								<MarketValue>24</MarketValue>
+								<Mass>1.25</Mass>
+								<Bulk>3</Bulk>
+							</statBases>
+							<ammoClass>SWRocketPlasma</ammoClass>
+							<detonateProjectile>Bullet_OR_WristRocket</detonateProjectile>
+						</ThingDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_OuterRimMiniRockets</defName>
+							<label>antipersonnel rockets</label>
+							<ammoTypes>
+								<Ammo_OR_MiniRocket_Standard>Bullet_OR_WristRocket</Ammo_OR_MiniRocket_Standard>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
 
 						<ThingDef ParentName="BaseBulletCE">
 							<defName>Bullet_OR_WristRocket</defName>
@@ -668,20 +783,62 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<explosionRadius>1.8</explosionRadius>
-								<damageDef>Bomb</damageDef>
-								<damageAmountBase>190</damageAmountBase>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<speed>65</speed>
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>75</damageAmountBase>
+								<armorPenetrationSharp>60</armorPenetrationSharp>
+								<armorPenetrationBlunt>39.494</armorPenetrationBlunt>
+								<speed>50</speed>
+								<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
 							</projectile>
 							<comps>
-								<li Class="CombatExtended.CompProperties_Fragments">
-									<fragments>
-										<Fragment_Small>19</Fragment_Small>
-										<Fragment_Large>5</Fragment_Large>
-									</fragments>
+								<li Class="CombatExtended.CompProperties_ExplosiveCE">
+									<damageAmountBase>25</damageAmountBase>
+									<explosiveDamageType>Thermobaric</explosiveDamageType>
+									<explosiveRadius>3</explosiveRadius>
+									<explosionSound>MortarBomb_Explode</explosionSound>
+									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+								</li>
+								<li Class="CombatExtended.CompProperties_ProjectileFleck">
+									<FleckDatas>
+										<li>
+											<fleck>Fleck_CERocketFlame</fleck>
+											<emissionsPerTick>7</emissionsPerTick>
+											<flecksPerEmission>3</flecksPerEmission>
+											<scale>1</scale>
+											<cutoffTickRange>25~30</cutoffTickRange>
+											<originOffset>0.4</originOffset>
+										</li>
+										<li>
+											<fleck>Fleck_CERocketSmokeTrail</fleck>
+											<emissionsPerTick>2</emissionsPerTick>
+											<rotation>0~360</rotation>
+											<flecksPerEmission>1</flecksPerEmission>
+										</li>
+										<li>
+											<fleck>Fleck_CERocketSmoke</fleck>
+											<emissionsPerTick>2</emissionsPerTick>
+											<rotation>0~360</rotation>
+											<flecksPerEmission>2</flecksPerEmission>
+											<cutoffTickRange>25~60</cutoffTickRange>
+										</li>
+									</FleckDatas>
 								</li>
 							</comps>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBulletCE">
+							<defName>Bullet_OR_KnockoutDart</defName>
+							<graphicData>
+								<texPath>OuterRim/Projectile/Proj_Dart</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Tranquilizer</damageDef>
+								<damageAmountBase>3</damageAmountBase>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<armorPenetrationSharp>22</armorPenetrationSharp>
+								<speed>90</speed>
+							</projectile>
 						</ThingDef>
 						
 						<!-- ==================== RPS6/HH ========================== -->
@@ -841,6 +998,54 @@
 							</recipeUsers>
 							<products>
 								<Ammo_RPS6_HEDP>5</Ammo_RPS6_HEDP>
+							</products>
+							<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
+						</RecipeDef>
+
+						<RecipeDef ParentName="LauncherAmmoRecipeBase">
+							<defName>MakeAmmo_OR_MiniRocket_Standard</defName>
+							<label>make mini-rockets x5</label>
+							<description>Craft 5 mini-rockets.</description>
+							<jobString>Making mini-rockets.</jobString>
+							<workAmount>7500</workAmount>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Durasteel</li>
+										</thingDefs>
+									</filter>
+									<count>32</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Tibanna</li>
+										</thingDefs>
+									</filter>
+									<count>10</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_ComponentHypertech</li>
+										</thingDefs>
+									</filter>
+									<count>2</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>OuterRim_Durasteel</li>
+									<li>OuterRim_Tibanna</li>
+									<li>OuterRim_ComponentHypertech</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<recipeUsers Inherit="False">
+								<li>OuterRim_HypertechFabricator</li>
+							</recipeUsers>
+							<products>
+								<Ammo_OR_MiniRocket_Standard>5</Ammo_OR_MiniRocket_Standard>
 							</products>
 							<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
 						</RecipeDef>
@@ -1029,6 +1234,53 @@
 							</recipeUsers>
 							<products>
 								<Ammo_PlasmaGasCartridge_Stun>500</Ammo_PlasmaGasCartridge_Stun>
+							</products>
+							<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
+						</RecipeDef>
+
+						<RecipeDef ParentName="ChargeAmmoRecipeBase">
+							<defName>MakeAmmo_OuterRim_KnockoutDarts</defName>
+							<label>make knockout dart x5</label>
+							<description>Craft 5 knockout darts.</description>
+							<jobString>Making knockout darts.</jobString>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_Durasteel</li>
+										</thingDefs>
+									</filter>
+									<count>30</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Neutroamine</li>
+										</thingDefs>
+									</filter>
+									<count>10</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>OuterRim_ComponentHypertech</li>
+										</thingDefs>
+									</filter>
+									<count>1</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>OuterRim_Durasteel</li>
+									<li>Neutroamine</li>
+									<li>OuterRim_ComponentHypertech</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<recipeUsers Inherit="False">
+								<li>OuterRim_HypertechFabricator</li>
+							</recipeUsers>
+							<products>
+								<Ammo_OuterRim_KnockoutDart>5</Ammo_OuterRim_KnockoutDart>
 							</products>
 							<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
 						</RecipeDef>
