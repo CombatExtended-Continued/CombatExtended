@@ -10,14 +10,11 @@
 				<!-- ==================== Weapons research prerequisite patches ==================== -->
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RNGun_RPG7_RocketLauncher" or defName="RNGun_M79_GrenadeLauncher"]/recipeMaker/researchPrerequisite</xpath>
-					<value>
-						<researchPrerequisite>CE_Launchers</researchPrerequisite>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RNGun_HK69A1_GrenadeLauncher"]/recipeMaker</xpath>
+					<xpath>Defs/ThingDef[
+					defName="RNGun_RPG7_RocketLauncher" or
+					defName="RNGun_M79_GrenadeLauncher" or
+					defName="RNGun_HK69A1_GrenadeLauncher"
+					]/recipeMaker/researchPrerequisite</xpath>
 					<value>
 						<researchPrerequisite>CE_Launchers</researchPrerequisite>
 					</value>
@@ -26,10 +23,16 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RNGun_M72LAW_RocketLauncher"]/recipeMaker/skillRequirements</xpath>
 					<value>
-						<researchPrerequisite>CE_Launchers</researchPrerequisite>
 						<skillRequirements>
 							<Crafting>6</Crafting>
 						</skillRequirements>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNGun_M72LAW_RocketLauncher"]/recipeMaker/researchPrerequisite</xpath>
+					<value>
+						<researchPrerequisite>CE_Launchers</researchPrerequisite>
 					</value>
 				</li>
 

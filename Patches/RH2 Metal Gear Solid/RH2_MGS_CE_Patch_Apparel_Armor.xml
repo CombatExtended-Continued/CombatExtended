@@ -55,6 +55,61 @@
 					</value>
 				</li>
 
+				<!-- ========== Exo Body ========== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RHApparel_ExoSuit_Raiden"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RHApparel_ExoSuit_Raiden"]/statBases</xpath>
+					<value>
+						<Bulk>25</Bulk>
+						<WornBulk>20</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RHApparel_ExoSuit_Raiden"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>50</CarryWeight>
+						<!-- Essentially cancel out the added bulk of the exosuit -->
+						<CarryBulk>30</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RHApparel_ExoSuit_Raiden"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>22</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RHApparel_ExoSuit_Raiden"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>44</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RHApparel_ExoSuit_Raiden"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.9</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RHApparel_ExoSuit_Raiden" or defName="RHApparel_ExoSuit_GrayFox"]/equippedStatOffsets</xpath>
+					<value>
+						<Suppressability>-3.0</Suppressability>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
