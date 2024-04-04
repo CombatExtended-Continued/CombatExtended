@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Eccentric Militors</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== Mini-turret ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/comps/li[@Class="CompProperties_Power"]/basePowerConsumption</xpath>
+					<value>
+						<basePowerConsumption>120</basePowerConsumption>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.25</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/statBases/ShootingAccuracyTurret</xpath>
+					<value>
+						<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/statBases/Mass</xpath>
+					<value>
+						<Mass>25</Mass>
+						<Bulk>15</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<!-- Add trade tags -->
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/tradeTags</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]</xpath>
+						<value>
+							<tradeTags/>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Turret_DualBarreledChristmasTurret"]/tradeTags</xpath>
+					<value>
+						<li>CE_Turret</li>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_DualBarrelledTurret</defName>
+					<statBases>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.06</ShotSpread>
+						<SwayFactor>1.32</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.3</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+						<warmupTime>2.1</warmupTime>
+						<range>54</range>
+						<burstShotCount>25</burstShotCount>
+						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+						<soundCast>Shot_Minigun</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>250</magazineSize>
+						<reloadTime>9.2</reloadTime>
+						<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSnapshot>true</noSnapshot>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags Inherit="False">
+						<li>TurretGun</li>
+					</weaponTags>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

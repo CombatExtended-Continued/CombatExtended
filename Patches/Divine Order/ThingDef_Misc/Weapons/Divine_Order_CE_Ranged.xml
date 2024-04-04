@@ -164,6 +164,69 @@
 					</weaponTags>
 				</li>
 
+				<!-- Divine Judgement Staff -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>BotchJob_DivineJudgementStaff</defName>
+					<statBases>
+						<Bulk>6</Bulk>
+						<SwayFactor>0</SwayFactor>
+						<ShotSpread>0.0</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
+						<MeleeCounterParryBonus>0.93</MeleeCounterParryBonus>
+					</statBases>
+					<Properties>
+						<verbClass>Verb_Shoot</verbClass>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>BotchJob_DivineOrderStaffThrown</defaultProjectile>
+						<warmupTime>12</warmupTime>
+						<range>35</range>
+						<forcedMissRadius>1</forcedMissRadius>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+							<canTargetPawns>false</canTargetPawns>
+						</targetParams>
+						<aimingChargeMote>BotchJob_StaffChargeMote</aimingChargeMote>
+						<aimingTargetMote>BotchJob_StaffTargetMote</aimingTargetMote>
+						<beamTargetsGround>true</beamTargetsGround>
+						<soundAiming>BotchJob_DivineStaffCharge</soundAiming>
+						<minRange>5.9</minRange>
+					</Properties>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineJudgementStaff"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.85</cooldownTime>
+								<chanceFactor>0.30</chanceFactor>
+								<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_DivineJudgementStaff"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.00</MeleeCritChance>
+							<MeleeParryChance>0.70</MeleeParryChance>
+							<MeleeDodgeChance>0.47</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>

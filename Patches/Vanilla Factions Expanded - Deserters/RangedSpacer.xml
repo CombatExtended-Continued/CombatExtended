@@ -88,14 +88,6 @@
 						<SightsEfficiency>0.8</SightsEfficiency>
 						<RangedWeapon_Cooldown>0.41</RangedWeapon_Cooldown>
 					</statBases>
-					<AmmoUser>
-						<magazineSize>8</magazineSize>
-						<reloadTime>4.6</reloadTime>
-						<ammoSet>AmmoSet_10x18mmCharged</ammoSet>
-					</AmmoUser>
-					<FireModes>
-						<aiAimMode>Snapshot</aiAimMode>
-					</FireModes>
 					<weaponTags>
 						<li>CE_Sidearm</li>
 						<li>CE_OneHandedWeapon</li>
@@ -121,12 +113,24 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName = "VFED_Gun_ChargeCycler"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]</xpath>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="VFED_Gun_ChargeCycler"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "VFED_Gun_ChargeCycler"]/comps</xpath>
 					<value>
-						<li>
-							<compClass>CompEquippable</compClass>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>8</magazineSize>
+							<reloadTime>4.6</reloadTime>
+							<ammoSet>AmmoSet_10x18mmCharged</ammoSet>
 						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiAimMode>Snapshot</aiAimMode>
+						</li>
+						<!--li>
+							<compClass>CompEquippable</compClass>
+						</li-->
 						<li Class="CombatExtended.CompProperties_UnderBarrel">
 							<propsUnderBarrel>
 								<magazineSize>1</magazineSize>

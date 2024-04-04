@@ -3,7 +3,7 @@
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Big and Small Genes</li>
+			<li>Big and Small - Genes &amp; More</li>
 		</mods>
 
 		<match Class="PatchOperationSequence">
@@ -271,7 +271,7 @@
 
 				<!-- ====== Surtr Sword ====== -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BS_SurtrSword" or defName="BS_SurtrSword_Persona"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="BS_SurtrSword"]/statBases</xpath>
 					<value>
 						<Bulk>30</Bulk>
 						<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
@@ -279,7 +279,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BS_SurtrSword" or defName="BS_SurtrSword_Persona"]</xpath>
+					<xpath>Defs/ThingDef[defName="BS_SurtrSword"]</xpath>
 					<value>
 						<equippedStatOffsets>
 							<MeleeCritChance>1</MeleeCritChance>
@@ -290,7 +290,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BS_SurtrSword" or defName="BS_SurtrSword_Persona"]/weaponTags</xpath>
+					<xpath>Defs/ThingDef[defName="BS_SurtrSword"]/weaponTags</xpath>
 					<value>
 						<li>CE_OneHandedWeapon</li>
 					</value>
@@ -353,66 +353,9 @@
 					</value>
 				</li>
 
-				<!-- ====== Persona Surtr Sword ====== -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BS_SurtrSword_Persona"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>handle</label>
-								<capacities>
-									<li>Poke</li>
-								</capacities>
-								<power>16</power>
-								<cooldownTime>2.51</cooldownTime>
-								<chanceFactor>0.05</chanceFactor>
-								<armorPenetrationBlunt>7.26</armorPenetrationBlunt>
-								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>point</label>
-								<capacities>
-									<li>Stab</li>
-								</capacities>
-								<power>76</power>
-								<cooldownTime>2.10</cooldownTime>
-								<chanceFactor>0.50</chanceFactor>
-								<armorPenetrationBlunt>10.45</armorPenetrationBlunt>
-								<armorPenetrationSharp>203.28</armorPenetrationSharp>
-								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-								<extraMeleeDamages>
-									<li>
-										<def>Flame</def>
-										<amount>20</amount>
-										<chance>0.75</chance>
-									</li>
-								</extraMeleeDamages>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>edge</label>
-								<capacities>
-									<li>Cut</li>
-								</capacities>
-								<power>87</power>
-								<cooldownTime>1.86</cooldownTime>
-								<chanceFactor>0.45</chanceFactor>
-								<armorPenetrationBlunt>23.52</armorPenetrationBlunt>
-								<armorPenetrationSharp>147.01</armorPenetrationSharp>
-								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-								<extraMeleeDamages>
-									<li>
-										<def>Flame</def>
-										<amount>20</amount>
-										<chance>0.75</chance>
-									</li>
-								</extraMeleeDamages>
-							</li>
-						</tools>
-					</value>
-				</li>
 				<!-- ====== Skrymir Hammer ====== -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BS_SkrymirHammer" or defName="BS_SkrymirHammer_Persona"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="BS_SkrymirHammer"]/statBases</xpath>
 					<value>
 						<Bulk>60</Bulk>
 						<MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
@@ -420,7 +363,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BS_SkrymirHammer" or defName="BS_SkrymirHammer_Persona"]</xpath>
+					<xpath>Defs/ThingDef[defName="BS_SkrymirHammer"]</xpath>
 					<value>
 						<equippedStatOffsets>
 							<MeleeCritChance>1</MeleeCritChance>
@@ -470,53 +413,6 @@
 								<cooldownTime>3.21</cooldownTime>
 								<chanceFactor>0.90</chanceFactor>
 								<armorPenetrationBlunt>200</armorPenetrationBlunt>
-								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
-							</li>
-						</tools>
-					</value>
-				</li>
-
-				<!-- ====== Persona Skrymir Hammer ====== -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BS_SkrymirHammer_Persona"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>handle</label>
-								<capacities>
-									<li>Poke</li>
-								</capacities>
-								<power>22</power>
-								<cooldownTime>2.78</cooldownTime>
-								<chanceFactor>0.10</chanceFactor>
-								<armorPenetrationBlunt>18.15</armorPenetrationBlunt>
-								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
-									<li>Demolish</li>
-								</capacities>
-								<power>77</power>
-								<extraMeleeDamages>
-									<li>
-										<def>Frostbite</def>
-										<amount>9</amount>
-										<chance>0.75</chance>
-									</li>
-									<li>
-										<def>EMP</def>
-										<amount>9</amount>
-									</li>
-									<li>
-										<def>Stun</def>
-										<amount>9</amount>
-										<chance>0.25</chance>
-									</li>
-								</extraMeleeDamages>
-								<cooldownTime>2.59</cooldownTime>
-								<chanceFactor>0.90</chanceFactor>
-								<armorPenetrationBlunt>242</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 							</li>
 						</tools>

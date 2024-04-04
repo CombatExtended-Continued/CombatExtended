@@ -67,6 +67,66 @@
 					</value>
 				</li>
 
+				<!-- ========== Longsword / Katana ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RHMelee_HF_Blade"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>7</power>
+								<chanceFactor>0.38</chanceFactor>
+								<cooldownTime>1.57</cooldownTime>
+								<armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>RHMelee_HFBladeStab</li>
+								</capacities>
+								<power>21</power>
+								<cooldownTime>1</cooldownTime>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<armorPenetrationSharp>90</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>RHMelee_HFBladeSlash</li>
+								</capacities>
+								<power>45</power>
+								<cooldownTime>0.5</cooldownTime>
+								<armorPenetrationBlunt>45</armorPenetrationBlunt>
+								<armorPenetrationSharp>80</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RHMelee_HF_Blade"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<MeleeCounterParryBonus>0.83</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RHMelee_HF_Blade"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>4.5</MeleeCritChance>
+						<MeleeParryChance>1.7</MeleeParryChance>
+						<MeleeDodgeChance>0.9</MeleeDodgeChance>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>

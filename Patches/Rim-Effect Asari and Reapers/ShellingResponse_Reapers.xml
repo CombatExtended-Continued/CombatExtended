@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: Asari and Reapers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Let the Reapers respond to anyone stupid enough to shell their landing site. -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+
+				<CombatExtended.ShellingResponseDef ParentName="ShellingPreset_UltraBase">
+					<defName>CE_ShellingPreset_Reapers</defName>
+					<projectiles Inherit="false">
+						<li>
+							<projectile>Bullet_ReaperKineticArtillery</projectile>
+							<points>250</points>
+							<weight>0.001</weight>
+						</li>
+					</projectiles>
+					<worldObjects>
+						<li>
+							<worldObject>Site</worldObject>
+							<shellingPropability>0.75</shellingPropability>
+							<raidPropability>0.5</raidPropability>
+							<raidMTBDays>2</raidMTBDays>
+						</li>				
+					</worldObjects>					
+				</CombatExtended.ShellingResponseDef>
+
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/FactionDef[defName="RE_Reapers"]</xpath>
+				<value>
+					<li Class="CombatExtended.FactionDefExtensionCE">
+						<shellingResponse>CE_ShellingPreset_Reapers</shellingResponse>
+					</li>
+				</value>
+			</li>
+
+			<!-- Increase Reaper landing site health and negation chance. -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName="RE_Reaper"]/comps</xpath>
+				<value>
+					<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Health">
+						<healthModifier>8</healthModifier>
+						<techLevelNoImpact>true</techLevelNoImpact>
+						<chanceToNegateDamage>0.33</chanceToNegateDamage>
+					</li>
+					<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Hostility" />
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

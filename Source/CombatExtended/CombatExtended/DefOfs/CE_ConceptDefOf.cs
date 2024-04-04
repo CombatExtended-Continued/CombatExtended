@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RimWorld;
-using Verse;
-using UnityEngine;
+﻿using RimWorld;
 
 namespace CombatExtended
 {
     [DefOf]
     public class CE_ConceptDefOf
     {
+        static CE_ConceptDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(CE_ConceptDefOf));
+        }
         // *** Modal dialog concepts ***
         public static ConceptDef CE_AmmoSettings;
 
