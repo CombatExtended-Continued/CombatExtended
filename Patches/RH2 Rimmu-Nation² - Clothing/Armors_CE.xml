@@ -112,8 +112,7 @@
 
 				<!--Wendy Exfil Ballistic-->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[
-						defName="RNApparel_EXFILBallisticHelmet_Tan"]/statBases </xpath>
+					<xpath>Defs/ThingDef[defName="RNApparel_EXFILBallisticHelmet_Tan"]/statBases </xpath>
 					<value>
 						<Bulk>3.5</Bulk>
 						<WornBulk>1</WornBulk>
@@ -282,7 +281,8 @@
 						defName="RNApparel_VestGuardPASGT_Black" or
 						defName="RNApparel_PASGT_Tan" or
 						defName="RNApparel_PASGT_ENVO" or
-						defName="RNApparel_LWH_DMARPAT"]/statBases </xpath>
+						defName="RNApparel_LWH_DMARPAT" or
+						defName="RNApparel_VestGuardPASGT_PRESS"]/statBases </xpath>
 					<value>
 						<Bulk>3.5</Bulk>
 						<WornBulk>1</WornBulk>
@@ -424,30 +424,25 @@
 
 				<!--OpsCoreFAST SF with Night Vision-->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[
-						defName="RNApparel_OpsCoreFAST_SF"]/statBases </xpath>
+					<xpath>Defs/ThingDef[defName="RNApparel_OpsCoreFAST_SF"]/statBases </xpath>
 					<value>
 						<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-						defName="RNApparel_OpsCoreFAST_SF"]/recipeMaker/researchPrerequisite </xpath>
+					<xpath>Defs/ThingDef[defName="RNApparel_OpsCoreFAST_SF"]/recipeMaker/researchPrerequisite</xpath>
 					<value>
-         				<researchPrerequisite>Smithing</researchPrerequisite>
-         				<researchPrerequisite>CE_AdvancedNV</researchPrerequisite>
+         				<researchPrerequisites>
+							<li>Smithing</li>
+							<li>CE_AdvancedNV</li>
+						</researchPrerequisites>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-						defName="RNApparel_OpsCoreFAST_SF"]/costList </xpath>
+					<xpath>Defs/ThingDef[defName="RNApparel_OpsCoreFAST_SF"]/costList </xpath>
 					<value>
-						<stuffCategories>
-							<li>Steeled</li>
-						</stuffCategories>
-						<costStuffCount>45</costStuffCount>
 						<costList>
 							<Plasteel>15</Plasteel>
 							<ComponentIndustrial>5</ComponentIndustrial>
