@@ -128,11 +128,12 @@ namespace CombatExtended
         public int ticksToImpact;
         public int get_ticksToImpact()
         {
-            return intTicksToImpact;
+            return ticksToImpact;
         }
         public void set_ticksToImpact(int value)
         {
             intTicksToImpact = value;
+            ticksToImpact = value;
         }
 
         protected Sustainer ambientSustainer;
@@ -1146,6 +1147,7 @@ namespace CombatExtended
             LastPos = ExactPosition;
             lastExactPos = LastPos;
             ticksToImpact--;
+            intTicksToImpact = ticksToImpact;
             FlightTicks++;
             Vector3 nextPosition;
             if (lerpPosition)
