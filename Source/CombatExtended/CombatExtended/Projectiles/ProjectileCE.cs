@@ -228,7 +228,8 @@ namespace CombatExtended
         {
             get
             {
-                return ExactPosition + new Vector3(0, 0, ExactPosition.y - shotHeight);
+                var sh = Mathf.Max(0f, ExactPosition.y);
+                return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
         }
 
