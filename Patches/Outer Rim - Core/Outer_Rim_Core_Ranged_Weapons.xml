@@ -50,19 +50,40 @@
 						</tools>
 					</value>
 				</li>
+								
+				<li Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[@Name="OuterRimBlasterBase_Pistol"]/statBases/AccuracyTouch
+							| Defs/ThingDef[@Name="OuterRimBlasterBase_Pistol"]/statBases/AccuracyShort
+							| Defs/ThingDef[@Name="OuterRimBlasterBase_Pistol"]/statBases/AccuracyMedium
+							| Defs/ThingDef[@Name="OuterRimBlasterBase_Pistol"]/statBases/AccuracyLong </xpath>
+				</li>
+								
+				<li Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[@Name="OuterRimBlasterBase_Rifle"]/statBases/AccuracyTouch
+							| Defs/ThingDef[@Name="OuterRimBlasterBase_Rifle"]/statBases/AccuracyShort
+							| Defs/ThingDef[@Name="OuterRimBlasterBase_Rifle"]/statBases/AccuracyMedium
+							| Defs/ThingDef[@Name="OuterRimBlasterBase_Rifle"]/statBases/AccuracyLong </xpath>
+				</li>
+								
+				<li Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[@Name="OuterRimBlasterBase_SniperRifle"]/statBases/AccuracyTouch
+							| Defs/ThingDef[@Name="OuterRimBlasterBase_SniperRifle"]/statBases/AccuracyShort
+							| Defs/ThingDef[@Name="OuterRimBlasterBase_SniperRifle"]/statBases/AccuracyMedium
+							| Defs/ThingDef[@Name="OuterRimBlasterBase_SniperRifle"]/statBases/AccuracyLong </xpath>
+				</li>
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OuterRim_AB75BoRifle</defName>
 					<statBases>
 						<Mass>3.0</Mass>
-						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.10</SightsEfficiency>
 						<ShotSpread>0.08</ShotSpread>
 						<SwayFactor>1.20</SwayFactor>
 						<Bulk>7.00</Bulk>
 					</statBases>
 					<Properties>
-						<recoilAmount>1.46</recoilAmount>
+						<recoilAmount>1.45</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_BlasterRifle_Red</defaultProjectile>
@@ -79,7 +100,7 @@
 						</targetParams>
 					</Properties>
 					<AmmoUser>
-						<magazineSize>30</magazineSize>
+						<magazineSize>60</magazineSize>
 						<reloadTime>4</reloadTime>
 						<ammoSet>AmmoSet_PlasmaGasCartridgeRed_Rifle</ammoSet>
 					</AmmoUser>
@@ -135,7 +156,7 @@
 					<statBases>
 						<SightsEfficiency>0.8</SightsEfficiency>
 						<ShotSpread>0.15</ShotSpread>
-						<SwayFactor>1.07</SwayFactor>
+						<SwayFactor>1.05</SwayFactor>
 						<Bulk>2.60</Bulk>
 						<Mass>1.50</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -145,8 +166,6 @@
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_BlasterPistol_Yellow</defaultProjectile>
-						<burstShotCount>3</burstShotCount>
-						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 						<warmupTime>0.5</warmupTime>
 						<range>12</range>
 						<soundCast>OuterRim_Shot_MediumBlasterBolt</soundCast>
@@ -158,8 +177,6 @@
 					</Properties>
 					<FireModes>
 						<aiAimMode>Snapshot</aiAimMode>
-						<aiUseBurstMode>True</aiUseBurstMode>
-						<aimedBurstShotCount>2</aimedBurstShotCount>
 					</FireModes>
 					<AmmoUser>
 						<magazineSize>24</magazineSize>
@@ -191,7 +208,7 @@
 						<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
-						<recoilAmount>3.0</recoilAmount>
+						<recoilAmount>4.0</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_BlasterRifle_Red</defaultProjectile>
@@ -229,15 +246,13 @@
 						<SwayFactor>1.07</SwayFactor>
 						<Bulk>2.60</Bulk>
 						<Mass>1.50</Mass>
-						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
 						<recoilAmount>3.0</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_BlasterPistol_Yellow</defaultProjectile>
-						<burstShotCount>3</burstShotCount>
-						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 						<warmupTime>0.5</warmupTime>
 						<range>12</range>
 						<soundCast>OuterRim_Shot_MediumBlasterBolt</soundCast>
@@ -249,8 +264,6 @@
 					</Properties>
 					<FireModes>
 						<aiAimMode>Snapshot</aiAimMode>
-						<aiUseBurstMode>True</aiUseBurstMode>
-						<aimedBurstShotCount>2</aimedBurstShotCount>
 					</FireModes>
 					<AmmoUser>
 						<magazineSize>24</magazineSize>
@@ -267,20 +280,20 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OuterRim_IonRifle</defName>
 					<statBases>
-						<SightsEfficiency>0.7</SightsEfficiency>
-						<ShotSpread>0.21</ShotSpread>
-						<SwayFactor>1.32</SwayFactor>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<ShotSpread>0.08</ShotSpread>
+						<SwayFactor>1.2</SwayFactor>
 						<Bulk>3.00</Bulk>
 						<Mass>4.10</Mass>
-						<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
-						<recoilAmount>0.0</recoilAmount>
+						<recoilAmount>1.45</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_BlasterRifle_Ion</defaultProjectile>
-						<warmupTime>1.2</warmupTime>
-						<range>31</range>
+						<warmupTime>1</warmupTime>
+						<range>55</range>
 						<soundCast>OuterRim_Shot_DLT19DBlasterBolt</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
@@ -302,24 +315,24 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OuterRim_HeavyIonRifle</defName>
 					<statBases>
-						<SightsEfficiency>0.7</SightsEfficiency>
-						<ShotSpread>0.21</ShotSpread>
-						<SwayFactor>1.32</SwayFactor>
+						<SightsEfficiency>1.8</SightsEfficiency>
+						<ShotSpread>0.03</ShotSpread>
+						<SwayFactor>1.8</SwayFactor>
 						<Bulk>3.00</Bulk>
 						<Mass>4.10</Mass>
-						<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
-						<recoilAmount>0.0</recoilAmount>
+						<recoilAmount>1.48</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_BlasterRifle_Ion</defaultProjectile>
-						<warmupTime>2.4</warmupTime>
-						<range>42</range>
+						<defaultProjectile>Bullet_BlasterSniper_Ion</defaultProjectile>
+						<warmupTime>2</warmupTime>
+						<range>62</range>
 						<soundCast>OuterRim_Shot_DLT19DBlasterBolt</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
-						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+						<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
 						<targetParams>
 							<canTargetLocations>true</canTargetLocations>
 						</targetParams>
@@ -328,7 +341,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 					<AmmoUser>
-						<magazineSize>10</magazineSize>
+						<magazineSize>15</magazineSize>
 						<reloadTime>3.7</reloadTime>
 						<ammoSet>AmmoSet_PlasmaGasCartridgeIon_Sniper</ammoSet>
 					</AmmoUser>
@@ -337,24 +350,23 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OuterRim_IonBlaster</defName>
 					<statBases>
-						<SightsEfficiency>0.7</SightsEfficiency>
-						<ShotSpread>0.21</ShotSpread>
-						<SwayFactor>1.32</SwayFactor>
+						<SightsEfficiency>0.95</SightsEfficiency>
+						<ShotSpread>0.16</ShotSpread>
+						<SwayFactor>0.75</SwayFactor>
 						<Bulk>3.00</Bulk>
 						<Mass>4.10</Mass>
-						<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
-						<recoilAmount>0.0</recoilAmount>
+						<recoilAmount>1.2</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_BlasterRifle_Ion</defaultProjectile>
-						<warmupTime>0.8</warmupTime>
-						<range>24</range>
+						<defaultProjectile>Bullet_BlasterPistol_Ion</defaultProjectile>
+						<warmupTime>0.75</warmupTime>
+						<range>44</range>
 						<soundCast>OuterRim_Shot_DLT19DBlasterBolt</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
-						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
 						<targetParams>
 							<canTargetLocations>true</canTargetLocations>
 						</targetParams>
@@ -363,7 +375,7 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 					<AmmoUser>
-						<magazineSize>20</magazineSize>
+						<magazineSize>21</magazineSize>
 						<reloadTime>2.5</reloadTime>
 						<ammoSet>AmmoSet_PlasmaGasCartridgeIon_Pistol</ammoSet>
 					</AmmoUser>
@@ -406,9 +418,9 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OuterRim_BlasterCarbine</defName>
 					<statBases>
-						<SightsEfficiency>0.6</SightsEfficiency>
-						<ShotSpread>0.24</ShotSpread>
-						<SwayFactor>1.32</SwayFactor>
+						<SightsEfficiency>0.95</SightsEfficiency>
+						<ShotSpread>0.16</ShotSpread>
+						<SwayFactor>0.75</SwayFactor>
 						<Bulk>5.30</Bulk>
 						<Mass>3.10</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -418,8 +430,8 @@
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_BlasterRifle_Red</defaultProjectile>
-						<warmupTime>0.5</warmupTime>
-						<range>35</range>
+						<warmupTime>0.75</warmupTime>
+						<range>44</range>
 						<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
 						<burstShotCount>3</burstShotCount>
 						<soundCast>OuterRim_Shot_E11BlasterBolt</soundCast>
@@ -434,8 +446,8 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 					<AmmoUser>
-						<magazineSize>80</magazineSize>
-						<reloadTime>4</reloadTime>
+						<magazineSize>42</magazineSize>
+						<reloadTime>3.36</reloadTime>
 						<ammoSet>AmmoSet_PlasmaGasCartridgeRed_Rifle</ammoSet>
 					</AmmoUser>
 				</li>
@@ -448,14 +460,14 @@
 						<SwayFactor>1.3</SwayFactor>
 						<Bulk>13.25</Bulk>
 						<Mass>7.75</Mass>
-						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
-						<recoilAmount>1.05</recoilAmount>
+						<recoilAmount>1.15</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_BlasterRifle_Red</defaultProjectile>
-						<warmupTime>1.2</warmupTime>
+						<warmupTime>1.25</warmupTime>
 						<range>62</range>
 						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
 						<burstShotCount>15</burstShotCount>
@@ -472,7 +484,7 @@
 						<aimedBurstShotCount>5</aimedBurstShotCount>
 					</FireModes>
 					<AmmoUser>
-						<magazineSize>220</magazineSize>
+						<magazineSize>225</magazineSize>
 						<reloadTime>6.25</reloadTime>
 						<ammoSet>AmmoSet_PlasmaGasCartridgeRed_Rifle</ammoSet>
 					</AmmoUser>
@@ -488,12 +500,12 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>OuterRim_VSSBlasterCarbine</defName>
 					<statBases>
-						<SightsEfficiency>1.9</SightsEfficiency>
-						<ShotSpread>0.05</ShotSpread>
-						<SwayFactor>2.25</SwayFactor>
+						<SightsEfficiency>1.8</SightsEfficiency>
+						<ShotSpread>0.03</ShotSpread>
+						<SwayFactor>1.8</SwayFactor>
 						<Bulk>6.5</Bulk>
 						<Mass>4.30</Mass>
-						<RangedWeapon_Cooldown>0.42</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
 						<NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
 					</statBases>
 					<Properties>
@@ -501,8 +513,8 @@
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_BlasterRifle_Red</defaultProjectile>
-						<warmupTime>0.6</warmupTime>
-						<range>52</range>
+						<warmupTime>2.0</warmupTime>
+						<range>62</range>
 						<soundCast>OuterRim_Shot_E11BlasterBolt</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
