@@ -55,6 +55,7 @@ namespace CombatExtended
         {
             float f = (LastPos.y - detonationHeight) / (LastPos.y - ExactPosition.y);
             ExactPosition = f * (LastPos - ExactPosition);
+            ExactPosition += f * (LastPos - ExactPosition);
             if (!ExactPosition.ToIntVec3().IsValid)
             {
                 Destroy();
