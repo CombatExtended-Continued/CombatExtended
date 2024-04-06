@@ -224,7 +224,7 @@ namespace CombatExtended
             }
         }
 
-	//TODO 1.5: Make this a cached field updated by setting ExactPosition
+        //TODO 1.5: Make this a cached field updated by setting ExactPosition
         public override Vector3 DrawPos
         {
             get
