@@ -229,7 +229,7 @@ namespace CombatExtended
         {
             get
             {
-                var sh = Mathf.Max(0f, ExactPosition.y);
+                var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
                 return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
         }
@@ -1258,7 +1258,7 @@ namespace CombatExtended
                     //TODO : EXPERIMENTAL Add edifice height
                     var shadowPos = new Vector3(ExactPosition.x,
                                                 def.Altitude - 0.001f,
-                                                ExactPosition.z - Mathf.Max(0f, ExactPosition.y));
+                                                ExactPosition.z);
                     //EXPERIMENTAL: + (new CollisionVertical(ExactPosition.ToIntVec3().GetEdifice(Map))).Max);
 
                     //TODO : Vary ShadowMat plane
