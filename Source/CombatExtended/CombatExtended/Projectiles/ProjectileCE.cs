@@ -207,7 +207,10 @@ namespace CombatExtended
             set
             {
                 exactPosition = value;
-                Position = ((Vector3)exactPosition).ToIntVec3();
+                if (value != null)
+                {
+                    Position = ((Vector3)exactPosition).ToIntVec3();
+                }
             }
             get
             {
