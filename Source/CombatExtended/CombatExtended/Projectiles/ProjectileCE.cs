@@ -198,7 +198,8 @@ namespace CombatExtended
         {
             get
             {
-                return ExactPosition + new Vector3(0, 0, ExactPosition.y - shotHeight);
+                var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
+                return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
         }
 
@@ -1224,7 +1225,11 @@ namespace CombatExtended
                 {
                     //TODO : EXPERIMENTAL Add edifice height
                     var shadowPos = new Vector3(ExactPosition.x,
+<<<<<<< HEAD
                                                 0,
+=======
+                                                def.Altitude - 0.001f,
+>>>>>>> d452ab850 (Use a 40 degree projection for projectile drawing)
                                                 ExactPosition.z);
                     //EXPERIMENTAL: + (new CollisionVertical(ExactPosition.ToIntVec3().GetEdifice(Map))).Max);
 
