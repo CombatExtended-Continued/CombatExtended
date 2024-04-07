@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CombatExtended.CombatExtended.LoggerUtils;
 using RimWorld;
 using UnityEngine;
@@ -213,8 +214,32 @@ namespace CombatExtended
                 compReloader.LoadAmmo(ammo);
                 turret.SetReloading(false);
             };
+
+            Func<bool> jumpCondition =
+                () => compReloader.Props.reloadOneAtATime &&
+                compReloader.CurMagCount < compReloader.MagSize &&
+                (!compReloader.UseAmmo || TryFindAmmo(pawn, compReloader, ammo));
+            Toil jumpToil = Toils_Jump.JumpIf(waitToil, jumpCondition);
             //if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;
+            yield return jumpToil;
+        }
+
+        bool TryFindAmmo(Pawn byPawn, CompAmmoUser comp, Thing ammoThing)
+        {
+            //Find both inventory & carried thing, prefer inventory
+            Thing thing = byPawn.carryTracker.CarriedThing?.def == ammoThing.def ? byPawn.carryTracker.CarriedThing : null;
+            if (byPawn.TryGetComp<CompInventory>() is CompInventory inv && inv.ammoList.Find(x => x.def == ammoThing.def) is Thing ans)
+            {
+                var Tempthing = ans;
+                inv.ammoList.Remove(ans);
+                byPawn.TryGetComp<CompInventory>().UpdateInventory();
+                byPawn.carryTracker.TryStartCarry(ans);
+                thing = ans;
+            }
+            if (thing == null) { return false; }
+            ammoThing = thing;
+            return true;
         }
         #endregion Methods
     }
