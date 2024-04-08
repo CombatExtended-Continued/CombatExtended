@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- ========== Cover-Seeking Behavior ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="Mech_Tesseron" or defName="Mech_Apocriton"]</xpath>
+		<value>
+			<aiAvoidCover>false</aiAvoidCover>
+		</value>
+	</Operation>
+
 	<!-- ========== Adjust combatPower ========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -79,7 +88,7 @@
 		<xpath>Defs/ThingDef[defName="Mech_Legionary"]/statBases</xpath>
 		<value>
 			<CarryWeight>75</CarryWeight>
-			<CarryBulk>60</CarryBulk>
+			<CarryBulk>40</CarryBulk>
 			<MeleeDodgeChance>0.12</MeleeDodgeChance>
 			<MeleeCritChance>0.11</MeleeCritChance>
 			<MeleeParryChance>0.09</MeleeParryChance>
@@ -257,7 +266,7 @@
 		<value>
 			<ArmorRating_Heat>0.5</ArmorRating_Heat>
 			<CarryWeight>75</CarryWeight>
-			<CarryBulk>40</CarryBulk>
+			<CarryBulk>30</CarryBulk>
 			<MeleeDodgeChance>0.07</MeleeDodgeChance>
 			<MeleeCritChance>0.13</MeleeCritChance>
 			<MeleeParryChance>0.13</MeleeParryChance>
