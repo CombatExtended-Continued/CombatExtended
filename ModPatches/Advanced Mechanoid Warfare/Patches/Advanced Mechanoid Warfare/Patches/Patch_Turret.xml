@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!--
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[@Name="AAMW_Turret_AutoMortarBase"]/thingClass</xpath>
-	<value>
-		<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-	</value>
-</li>
-
-
-<li Class="PatchOperationReplace">
-	<xpath>Defs/ThingDef[@Name="AAMW_Turret_AutoMortarBase"]/building/turretBurstCooldownTime</xpath>
-	<value>
-		<turretBurstCooldownTime>10</turretBurstCooldownTime>
-	</value>
-</li>
--->
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="AMW_Turret_AutoMortar"]</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-
-			<ThingDef ParentName="AMW_Turret_AutoMortarBase">
-				<defName>AMW_Turret_AutoMortar</defName>
-				<label>automated mortar complex</label>
-				<description>A fully automated mortar complex. Fires a volley of 3 explosive shells and does not require to be reloaded or manned in order to operate. However it requires a lot of power to manufacture shells quickly and it can only fire explosive shells.</description>
-				<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-				<building>
-					<turretGunDef>AMW_Gun_AAComplex</turretGunDef>
-				</building>
-				<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-				<uiIconPath>Things/Buildings/Turrets/AMW_AutoArtillery</uiIconPath>
-				<uiIconScale>0.9</uiIconScale>
-			</ThingDef>
-
-		</value>
-	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>AMW_Gun_AAComplex</defName>

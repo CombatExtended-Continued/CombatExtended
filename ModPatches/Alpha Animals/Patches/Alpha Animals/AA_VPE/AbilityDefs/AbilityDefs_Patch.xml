@@ -19,27 +19,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd"><!-- ===== The patched projectile does not work ===== -->
-					<xpath>Defs</xpath>
-					<value>
-						<ThingDef ParentName="BaseBullet">
-							<defName>AA_PoisonBolt_V</defName>
-							<label>venomous spit</label>
-							<graphicData>
-								<texPath>Things/Projectiles/AA_PoisonBolt</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-							</graphicData>
-							<projectile>
-								<flyOverhead>false</flyOverhead>
-								<damageDef>AA_ToxicBolt</damageDef>
-								<damageAmountBase>10</damageAmountBase>
-								<armorPenetrationBase>2.5</armorPenetrationBase>
-								<speed>50</speed>
-							</projectile>
-						</ThingDef>
-					</value>
-				</li>
-
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_VenomSpit"]/modExtensions/li[@Class="VFECore.Abilities.AbilityExtension_Projectile"]/projectile</xpath>
 					<value>

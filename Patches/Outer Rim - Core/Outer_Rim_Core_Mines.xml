@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outer Rim - Core</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Mine_Frag"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+					<value>
+						<li Class="CompProperties_Explosive">
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<damageAmountBase>320</damageAmountBase>
+							<explosiveRadius>4.9</explosiveRadius>
+							<startWickOnDamageTaken>
+								<li>Bullet</li>
+								<li>Arrow</li>
+								<li>ArrowHighVelocity</li>
+							</startWickOnDamageTaken>
+							<wickTicks>6</wickTicks>
+						</li>
+						<li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Large>32</Fragment_Large>
+								<Fragment_Small>80</Fragment_Small>
+							</fragments>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Mine_Ion"]/description</xpath>
+					<value>
+						<description>A powerful mine designed to release a large electromagnetic pulse when triggered. Whilst harmless to unaugmented organics, it can temporarily stun cyborgs, mechanoids, droids, and other mechanical entities. Particularly weak mechanoids might be destroyed outright.</description>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_Mine_Ion"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+					<value>
+						<li Class="CompProperties_Explosive">
+							<explosiveRadius>9.9</explosiveRadius>
+							<explosiveDamageType>EMP</explosiveDamageType>
+							<startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+							<wickTicks>6</wickTicks>
+							<startWickOnDamageTaken>
+								<li>Bullet</li>
+								<li>Arrow</li>
+								<li>ArrowHighVelocity</li>
+							</startWickOnDamageTaken>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

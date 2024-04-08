@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Outer Rim - Mandalore</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="MandalorianChestBase"]/statBases/Mass</xpath>
+					<value>
+						<Mass>15</Mass>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="MandalorianChestBase"]/statBases</xpath>
+					<value>
+						<Bulk>80</Bulk>
+						<WornBulk>15</WornBulk>
+						<ArmorRating_Sharp>5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>18</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="MandalorianChestBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>11</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="MandalorianChestBase"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MoveSpeed>-0.15</MoveSpeed>
+							<ToxicEnvironmentResistance>0.25</ToxicEnvironmentResistance>
+							<CarryBulk>25</CarryBulk>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="MandalorianChestBase"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="MandalorianHelmetBase"]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk>
+						<WornBulk>2</WornBulk>
+						<ArmorRating_Sharp>5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>18</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="MandalorianHelmetBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>11</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="MandalorianHelmetBase"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<SmokeSensitivity>-1</SmokeSensitivity>
+							<ToxicEnvironmentResistance>0.25</ToxicEnvironmentResistance>
+							<NightVisionEfficiency>0.8</NightVisionEfficiency>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="MandalorianPauldronsBase"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>3</WornBulk>
+						<ArmorRating_Sharp>5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>18</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="MandalorianPauldronsBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>11</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="MandalorianPauldronsBase"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<ToxicEnvironmentResistance>0.25</ToxicEnvironmentResistance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="MandalorianPauldronsBase"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_MandalorianChest_Heavy"]/statBases</xpath>
+					<value>
+						<Bulk>40</Bulk>
+						<WornBulk>25</WornBulk>
+						<ArmorRating_Sharp>7.5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>22.5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_MandalorianChest_Heavy"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>15</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_MandalorianHelmet_Heavy"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>4</WornBulk>
+						<ArmorRating_Sharp>7.5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>22.5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_MandalorianHelmet_Heavy"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>15</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="OuterRim_MandalorianPauldrons_Heavy"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>4</WornBulk>
+						<ArmorRating_Sharp>7.5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>22.5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OuterRim_MandalorianPauldrons_Heavy"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>15</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

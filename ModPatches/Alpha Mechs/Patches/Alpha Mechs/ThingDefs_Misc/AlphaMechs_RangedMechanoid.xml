@@ -167,30 +167,6 @@
 
 	<!-- Cryogenic Gun -->
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<ThingDef ParentName="AM_BaseMechProjectile">
-				<defName>AM_CryoBulletCE</defName>
-				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				<label>cryogenic pellet</label>
-				<graphicData>
-					<texPath>Things/Projectiles/AM_Cryo</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-					<shaderType>TransparentPostLight</shaderType>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<flyOverhead>false</flyOverhead>
-					<speed>40</speed>
-					<damageDef>Frostbite</damageDef>
-					<damageAmountBase>3</damageAmountBase>
-					<explosionRadius>2.9</explosionRadius>
-					<soundExplode>AM_Cryogun</soundExplode>
-				</projectile>
-			</ThingDef>
-		</value>
-	</Operation>
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>AM_CryogenicGun</defName>
 		<statBases>
