@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- Firing Frenzy -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[@Name="VFEP_RoleAuraBuffBase"]/verbProperties/range</xpath>
-		<value>
-			<range>14.9</range>
-		</value>
-	</Operation>
+			<!-- Firing Frenzy -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[@Name="VFEP_RoleAuraBuffBase"]/statBases/Ability_EffectRadius</xpath>
-		<value>
-			<Ability_EffectRadius>14.9</Ability_EffectRadius>
-		</value>
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Ideology">
+				<xpath>Defs/AbilityDef[@Name="VFEP_RoleAuraBuffBase"]/verbProperties/range</xpath>
+				<value>
+					<range>14.9</range>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Ideology">
+				<xpath>Defs/AbilityDef[@Name="VFEP_RoleAuraBuffBase"]/statBases/Ability_EffectRadius</xpath>
+				<value>
+					<Ability_EffectRadius>14.9</Ability_EffectRadius>
+				</value>
+			</li>
+
+		</operations>
 	</Operation>
 
 </Patch>

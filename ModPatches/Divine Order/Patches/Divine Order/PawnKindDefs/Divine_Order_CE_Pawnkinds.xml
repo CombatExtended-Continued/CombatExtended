@@ -92,20 +92,25 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderKnight"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>100</min>
-					<max>350</max>
-				</shieldMoney>
-				<shieldTags>
-					<li>BotchJob_DivineOrderShield</li>
-				</shieldTags>
-				<shieldChance>0.65</shieldChance>
-			</li>
-		</value>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Expanded Framework</li>
+		</mods>
+		<match Class="PatchOperationAddModExtension">
+			<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderKnight"]</xpath>
+			<value>
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<shieldMoney>
+						<min>100</min>
+						<max>350</max>
+					</shieldMoney>
+					<shieldTags>
+						<li>BotchJob_DivineOrderShield</li>
+					</shieldTags>
+					<shieldChance>0.65</shieldChance>
+				</li>
+			</value>
+		</match>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
