@@ -39,15 +39,22 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="CE_Gun_ChargeSniperRifle"]</xpath>
-		<value>
-			<li Class="VFED.ContrabandExtension">
-				<category>VFED_Imperial</category>
-				<intelCost>13</intelCost>
-				<useCriticalIntel>false</useCriticalIntel>
-			</li>
-		</value>
+	<!-- Combat Extended: Guns -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Combat Extended Guns</li>
+		</mods>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="CE_Gun_ChargeSniperRifle"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>13</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+				</li>
+			</value>
+		</match>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">

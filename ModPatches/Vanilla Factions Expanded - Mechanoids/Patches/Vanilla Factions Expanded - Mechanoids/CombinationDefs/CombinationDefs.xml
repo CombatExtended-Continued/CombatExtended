@@ -109,11 +109,18 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_AB_Shell_Tar"]/result</xpath>
-		<value>
-			<result>AB_Shell_Tar</result>
-		</value>
+	<!-- Alpha Biomes -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Biomes</li>
+		</mods>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_AB_Shell_Tar"]/result</xpath>
+			<value>
+				<result>AB_Shell_Tar</result>
+			</value>
+		</match>
 	</Operation>
 
 	<!--60mm-->
