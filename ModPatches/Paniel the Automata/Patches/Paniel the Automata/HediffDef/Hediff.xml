@@ -22,34 +22,45 @@
 
 	<!-- ==========  Abilities  =========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[
-			defName="PN_OfficerCommand" or
-			defName="PN_OfficerCommandBuff"
-			]/stages/li/statOffsets/ShootingAccuracyPawn </xpath>
-		<value>
-			<ShootingAccuracyPawn>0.4</ShootingAccuracyPawn>
-			<AimingAccuracy>0.2</AimingAccuracy>
-		</value>
-	</Operation>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ideology</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[
-			defName="PN_RapidFire"
-			]/stages/li/statOffsets/ShootingAccuracyPawn </xpath>
-		<value>
-			<ShootingAccuracyPawn>-0.4</ShootingAccuracyPawn>
-			<AimingAccuracy>-0.4</AimingAccuracy>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[
+						defName="PN_OfficerCommand" or
+						defName="PN_OfficerCommandBuff"
+						]/stages/li/statOffsets/ShootingAccuracyPawn </xpath>
+					<value>
+						<ShootingAccuracyPawn>0.4</ShootingAccuracyPawn>
+						<AimingAccuracy>0.2</AimingAccuracy>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[
-			defName="PN_RapidFireOverload"
-			]/stages/li/statOffsets/ShootingAccuracyPawn </xpath>
-		<value>
-			<ShootingAccuracyPawn>-0.6</ShootingAccuracyPawn>
-			<AimingAccuracy>-0.6</AimingAccuracy>
-		</value>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[
+						defName="PN_RapidFire"
+						]/stages/li/statOffsets/ShootingAccuracyPawn </xpath>
+					<value>
+						<ShootingAccuracyPawn>-0.4</ShootingAccuracyPawn>
+						<AimingAccuracy>-0.4</AimingAccuracy>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[
+						defName="PN_RapidFireOverload"
+						]/stages/li/statOffsets/ShootingAccuracyPawn </xpath>
+					<value>
+						<ShootingAccuracyPawn>-0.6</ShootingAccuracyPawn>
+						<AimingAccuracy>-0.6</AimingAccuracy>
+					</value>
+				</li>
+
+			</operations>
+		</match>
 	</Operation>
 </Patch>

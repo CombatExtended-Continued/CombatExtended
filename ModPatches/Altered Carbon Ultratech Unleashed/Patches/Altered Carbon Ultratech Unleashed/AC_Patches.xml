@@ -573,146 +573,157 @@
 	</Operation>
 
 	<!-- Dragoon armor and jump wings require Royalty -->
-	<!-- Dragoon Armor -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases</xpath>
-		<value>
-			<Bulk>100</Bulk>
-			<WornBulk>15</WornBulk>
-		</value>
-	</Operation>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/Flammability</xpath>
-		<value>
-			<Flammability>0</Flammability>
-		</value>
-	</Operation>
+				<!-- Dragoon Armor -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases</xpath>
+					<value>
+						<Bulk>100</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>700</MaxHitPoints>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/Mass</xpath>
-		<value>
-			<Mass>80</Mass>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>700</MaxHitPoints>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>32</ArmorRating_Sharp>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/Mass</xpath>
+					<value>
+						<Mass>80</Mass>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>75</ArmorRating_Blunt>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>32</ArmorRating_Sharp>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]</xpath>
-		<value>
-			<li Class="CombatExtended.PartialArmorExt">
-				<stats>
-					<li>
-						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-				</stats>
-			</li>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>75</ArmorRating_Blunt>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/equippedStatOffsets</xpath>
-		<value>
-			<CarryWeight>100</CarryWeight>
-			<CarryBulk>20</CarryBulk>
-			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
-		</value>
-	</Operation>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/ComponentSpacer</xpath>
-		<value>
-			<ComponentSpacer>8</ComponentSpacer>
-		</value>
-	</Operation>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>100</CarryWeight>
+						<CarryBulk>20</CarryBulk>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/Plasteel</xpath>
-		<value>
-			<Plasteel>275</Plasteel>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/ComponentSpacer</xpath>
+					<value>
+						<ComponentSpacer>8</ComponentSpacer>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/Uranium</xpath>
-		<value>
-			<Uranium>90</Uranium>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>275</Plasteel>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList</xpath>
-		<value>
-			<DevilstrandCloth>75</DevilstrandCloth>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/Uranium</xpath>
+					<value>
+						<Uranium>90</Uranium>
+					</value>
+				</li>
 
-	<!-- Jump Wings -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases</xpath>
-		<value>
-			<Bulk>10</Bulk>
-			<WornBulk>3</WornBulk>
-		</value>
-	</Operation>
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases/JumpRange</xpath>
-		<value>
-			<JumpRange>20</JumpRange>
-		</value>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>75</DevilstrandCloth>
+					</value>
+				</li>
+
+				<!-- Jump Wings -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases/JumpRange</xpath>
+					<value>
+						<JumpRange>20</JumpRange>
+					</value>
+				</li>
+
+			</operations>
+		</match>
 	</Operation>
 
 	<!-- Cuirassier Belt -->

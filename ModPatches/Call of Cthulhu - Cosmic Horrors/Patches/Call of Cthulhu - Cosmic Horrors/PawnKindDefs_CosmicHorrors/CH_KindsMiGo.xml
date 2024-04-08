@@ -83,15 +83,20 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationTest">
-		<xpath>Defs/ThingDef[defName="ROM_MiGo"]/comps</xpath>
-		<success>Invert</success>
-	</Operation>
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ROM_MiGo"]</xpath>
-		<value>
-			<comps/>
-		</value>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="ROM_MiGo"]/comps</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ROM_MiGo"]</xpath>
+				<value>
+					<comps/>
+				</value>
+			</li>
+		</operations>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">

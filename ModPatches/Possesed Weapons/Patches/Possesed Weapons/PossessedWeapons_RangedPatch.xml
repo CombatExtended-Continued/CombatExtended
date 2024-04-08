@@ -599,22 +599,27 @@
 	</Operation>
 
 	<!-- Patch to Make it Utilize Heavy Crossbow Ammo from MO when loaded -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedAutomatonCrossbow"]/comps</xpath>
-		<value>
-			<comps>
-				<li Class="CombatExtended.CompProperties_AmmoUser">
-					<magazineSize>3</magazineSize>
-					<reloadTime>5</reloadTime>
-					<ammoSet>AmmoSet_ArbalestBolt</ammoSet>
-				</li>
-				<li Class="CombatExtended.CompProperties_FireModes">
-					<aiUseBurstMode>FALSE</aiUseBurstMode>
-					<aiAimMode>Snapshot</aiAimMode>
-					<aimedBurstShotCount>3</aimedBurstShotCount>
-				</li>
-			</comps>
-		</value>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medieval Overhaul</li>
+		</mods>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="BotchJob_PossessedAutomatonCrossbow"]/comps</xpath>
+			<value>
+				<comps>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>3</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_ArbalestBolt</ammoSet>
+					</li>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+					</li>
+				</comps>
+			</value>
+		</match>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -733,15 +738,20 @@
 	</Operation>
 
 	<!-- Patch to Make it Utilize Heavy Crossbow Ammo from MO when loaded -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedVerdantBow"]/comps</xpath>
-		<value>
-			<comps>
-				<li Class="CombatExtended.CompProperties_AmmoUser">
-					<ammoSet>AmmoSet_VerdantMOArrow</ammoSet>
-				</li>
-			</comps>
-		</value>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medieval Overhaul</li>
+		</mods>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="BotchJob_PossessedVerdantBow"]/comps</xpath>
+			<value>
+				<comps>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<ammoSet>AmmoSet_VerdantMOArrow</ammoSet>
+					</li>
+				</comps>
+			</value>
+		</match>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -1144,118 +1154,129 @@
 	</Operation>
 
 	<!--=============================== Acolyte Staff ================================-->
-	<!--li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/statBases</xpath>
-		<value>
-			<Bulk>10.00</Bulk>
-		</value>
-	</li>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/warmupTime</xpath>
-		<value>
-			<warmupTime>3.2</warmupTime>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/range</xpath>
-		<value>
-			<range>30</range>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/burstShotCount</xpath>
-		<value>
-			<burstShotCount>10</burstShotCount>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/ticksBetweenBurstShots</xpath>
-		<value>
-			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-		</value>
-	</li>
-
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>limb</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>6</power>
-					<cooldownTime>1.2</cooldownTime>
-					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+				<!--li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/statBases</xpath>
+					<value>
+						<Bulk>10.00</Bulk>
+					</value>
 				</li>
-			</tools>
-		</value>
-	</li-->
 
-	<!--=============================== Possessed Acolyte Staff ================================-->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases</xpath>
-		<value>
-			<Bulk>10.00</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases/RangedWeapon_Cooldown</xpath>
-		<value>
-			<RangedWeapon_Cooldown>1.53</RangedWeapon_Cooldown>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/warmupTime</xpath>
-		<value>
-			<warmupTime>2.7</warmupTime>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/range</xpath>
-		<value>
-			<range>30</range>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/burstShotCount</xpath>
-		<value>
-			<burstShotCount>14</burstShotCount>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/ticksBetweenBurstShots</xpath>
-		<value>
-			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>limb</label>
-					<capacities>
-						<li>Blunt</li>
-						<li>Poke</li>
-					</capacities>
-					<power>6</power>
-					<cooldownTime>1.2</cooldownTime>
-					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/warmupTime</xpath>
+					<value>
+						<warmupTime>3.2</warmupTime>
+					</value>
 				</li>
-			</tools>
-		</value>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/range</xpath>
+					<value>
+						<range>30</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/burstShotCount</xpath>
+					<value>
+						<burstShotCount>10</burstShotCount>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/ticksBetweenBurstShots</xpath>
+					<value>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>limb</label>
+								<capacities>
+									<li>Blunt</li>
+									<li>Poke</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.2</cooldownTime>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li-->
+
+				<!--=============================== Possessed Acolyte Staff ================================-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases</xpath>
+					<value>
+						<Bulk>10.00</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases/RangedWeapon_Cooldown</xpath>
+					<value>
+						<RangedWeapon_Cooldown>1.53</RangedWeapon_Cooldown>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/warmupTime</xpath>
+					<value>
+						<warmupTime>2.7</warmupTime>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/range</xpath>
+					<value>
+						<range>30</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/burstShotCount</xpath>
+					<value>
+						<burstShotCount>14</burstShotCount>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/ticksBetweenBurstShots</xpath>
+					<value>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>limb</label>
+								<capacities>
+									<li>Blunt</li>
+									<li>Poke</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.2</cooldownTime>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
 	</Operation>
 
 	<!--=============================== Ghostly Flintlock ================================-->

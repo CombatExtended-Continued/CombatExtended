@@ -34,25 +34,34 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[@Name="Cossack_NobleBase" or @Name="Cossack_CommonBase" or defName="Cossack_Private2" or defName="Cossack_Captain2"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>15</min>
-					<max>20</max>
-				</primaryMagazineCount>
-				<forcedSidearm>
-					<sidearmMoney>
-						<min>200</min>
-						<max>450</max>
-					</sidearmMoney>
-					<weaponTags>
-						<li>CossackSabre</li>
-					</weaponTags>
-				</forcedSidearm>
-			</li>
-		</value>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[@Name="Cossack_NobleBase" or @Name="Cossack_CommonBase" or defName="Cossack_Private2" or defName="Cossack_Captain2"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>15</min>
+								<max>20</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>200</min>
+									<max>450</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CossackSabre</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
 	</Operation>
 
 </Patch>
