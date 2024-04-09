@@ -438,250 +438,283 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
-	
-	<!-- Plasma Glaive -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_PlasmaGlaive"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>edge</label>
-					<capacities>
-						<li>Cut</li>
-					</capacities>
-					<power>85</power>
-					<extraMeleeDamages>
-						<li>
-							<def>Flame</def>
-							<amount>35</amount>
-							<chance>0.45</chance>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Insectoids</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Plasma Glaive -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_PlasmaGlaive"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>85</power>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>35</amount>
+									<chance>0.45</chance>
+								</li>
+							</extraMeleeDamages>
+							<cooldownTime>4.25</cooldownTime>
+							<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							<armorPenetrationSharp>34</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 						</li>
-					</extraMeleeDamages>
-					<cooldownTime>4.25</cooldownTime>
-					<armorPenetrationBlunt>12</armorPenetrationBlunt>
-					<armorPenetrationSharp>34</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>30</power>
-					<extraMeleeDamages>
-						<li>
-							<def>Flame</def>
-							<amount>25</amount>
-							<chance>0.45</chance>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>30</power>
+							<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>25</amount>
+									<chance>0.45</chance>
+								</li>
+							</extraMeleeDamages>
+							<cooldownTime>2.4</cooldownTime>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<armorPenetrationSharp>40</armorPenetrationSharp>
 						</li>
-					</extraMeleeDamages>
-					<cooldownTime>2.4</cooldownTime>
-					<armorPenetrationBlunt>6</armorPenetrationBlunt>
-					<armorPenetrationSharp>40</armorPenetrationSharp>
-				</li>
-			</tools>
-		</value>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_PlasmaGlaive"]/statBases</xpath>
+				<value>
+					<Bulk>20</Bulk>
+					<MeleeCounterParryBonus>1.75</MeleeCounterParryBonus>
+					<ToughnessRating>25</ToughnessRating>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_PlasmaGlaive"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>1.25</MeleeCritChance>
+						<MeleeParryChance>1.25</MeleeParryChance>
+						<MeleeDodgeChance>0.8</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			</operations>
+		</match>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_PlasmaGlaive"]/statBases</xpath>
-		<value>
-			<Bulk>20</Bulk>
-			<MeleeCounterParryBonus>1.75</MeleeCounterParryBonus>
-			<ToughnessRating>25</ToughnessRating>
-		</value>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Vikings</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Crypto Axe -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_CryptoAxe"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>12</power>
+							<chanceFactor>0.1</chanceFactor>
+							<cooldownTime>2.5</cooldownTime>
+							<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>VFEV_Cut</li>
+							</capacities>
+							<power>50</power>
+							<cooldownTime>4.5</cooldownTime>
+							<armorPenetrationBlunt>38</armorPenetrationBlunt>
+							<armorPenetrationSharp>8</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_CryptoAxe"]/statBases</xpath>
+				<value>
+					<Bulk>17</Bulk>
+					<MeleeCounterParryBonus>0.1</MeleeCounterParryBonus>
+					<ToughnessRating>20</ToughnessRating>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_CryptoAxe"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.4</MeleeCritChance>
+						<MeleeParryChance>0.2</MeleeParryChance>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			</operations>
+		</match>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_PlasmaGlaive"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>1.25</MeleeCritChance>
-				<MeleeParryChance>1.25</MeleeParryChance>
-				<MeleeDodgeChance>0.8</MeleeDodgeChance>
-			</equippedStatOffsets>
-		</value>
-	</Operation>
-	
-	<!-- Mechanoid Hammer -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaHammer"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>15</power>
-					<chanceFactor>0.1</chanceFactor>
-					<cooldownTime>2.11</cooldownTime>
-					<armorPenetrationBlunt>20</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>Demolish</li>
-					</capacities>
-					<power>65</power>
-					<cooldownTime>5.73</cooldownTime>
-					<armorPenetrationBlunt>320</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</Operation>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Mechanoids</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaHammer"]/statBases</xpath>
-		<value>
-			<Bulk>24</Bulk>
-			<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
-			<ToughnessRating>20</ToughnessRating>
-		</value>
-	</Operation>
+			<!-- Mechanoid Hammer -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaHammer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>15</power>
+							<chanceFactor>0.1</chanceFactor>
+							<cooldownTime>2.11</cooldownTime>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Demolish</li>
+							</capacities>
+							<power>65</power>
+							<cooldownTime>5.73</cooldownTime>
+							<armorPenetrationBlunt>320</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaHammer"]/equippedStatOffsets</xpath>
-		<value>
-			<MeleeCritChance>0.8</MeleeCritChance>
-			<MeleeParryChance>0.1</MeleeParryChance>
-			<MeleeDodgeChance>0.18</MeleeDodgeChance>
-		</value>
-	</Operation>
-	
-	<!-- Mechanoid Gauntlet -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaGauntlet"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>fist</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>26</power>
-					<cooldownTime>1.54</cooldownTime>
-					<armorPenetrationBlunt>24</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</Operation>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaHammer"]/statBases</xpath>
+				<value>
+					<Bulk>24</Bulk>
+					<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
+					<ToughnessRating>20</ToughnessRating>
+				</value>
+			</li>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaGauntlet"]/statBases</xpath>
-		<value>
-			<Bulk>5</Bulk>
-			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
-			<ToughnessRating>15</ToughnessRating>
-		</value>
-	</Operation>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaHammer"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.8</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
+					<MeleeDodgeChance>0.18</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!-- Mechanoid Gauntlet -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaGauntlet"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>26</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>24</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaGauntlet"]/equippedStatOffsets</xpath>
-		<value>
-			<MeleeCritChance>0.5</MeleeCritChance>
-			<MeleeParryChance>0.15</MeleeParryChance>
-			<MeleeDodgeChance>0.2</MeleeDodgeChance>
-		</value>
-	</Operation>
-	
-	<!-- Mechanoid Baton -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaBaton"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power/>
-					<chanceFactor>0.1</chanceFactor>
-					<cooldownTime>2</cooldownTime>
-					<armorPenetrationBlunt>4</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>30</power>
-					<cooldownTime>4.5</cooldownTime>
-					<armorPenetrationBlunt>16</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</Operation>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaGauntlet"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+					<ToughnessRating>15</ToughnessRating>
+				</value>
+			</li>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaBaton"]/statBases</xpath>
-		<value>
-			<Bulk>14</Bulk>
-			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
-			<ToughnessRating>15</ToughnessRating>
-		</value>
-	</Operation>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaGauntlet"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.5</MeleeCritChance>
+					<MeleeParryChance>0.15</MeleeParryChance>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+				</value>
+			</li>
+			
+			<!-- Mechanoid Baton -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaBaton"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power/>
+							<chanceFactor>0.1</chanceFactor>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>30</power>
+							<cooldownTime>4.5</cooldownTime>
+							<armorPenetrationBlunt>16</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaBaton"]/equippedStatOffsets</xpath>
-		<value>
-			<MeleeCritChance>0.75</MeleeCritChance>
-			<MeleeParryChance>0.25</MeleeParryChance>
-			<MeleeDodgeChance>0.2</MeleeDodgeChance>
-		</value>
-	</Operation>
-	
-	<!-- Crypto Axe -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_CryptoAxe"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>12</power>
-					<chanceFactor>0.1</chanceFactor>
-					<cooldownTime>2.5</cooldownTime>
-					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>edge</label>
-					<capacities>
-						<li>VFEV_Cut</li>
-					</capacities>
-					<power>50</power>
-					<cooldownTime>4.5</cooldownTime>
-					<armorPenetrationBlunt>38</armorPenetrationBlunt>
-					<armorPenetrationSharp>8</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaBaton"]/statBases</xpath>
+				<value>
+					<Bulk>14</Bulk>
+					<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+					<ToughnessRating>15</ToughnessRating>
+				</value>
+			</li>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_CryptoAxe"]/statBases</xpath>
-		<value>
-			<Bulk>17</Bulk>
-			<MeleeCounterParryBonus>0.1</MeleeCounterParryBonus>
-			<ToughnessRating>20</ToughnessRating>
-		</value>
-	</Operation>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_MechaBaton"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.75</MeleeCritChance>
+					<MeleeParryChance>0.25</MeleeParryChance>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+				</value>
+			</li>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFEPUA_WarcasketMeleeWeapon_CryptoAxe"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.4</MeleeCritChance>
-				<MeleeParryChance>0.2</MeleeParryChance>
-				<MeleeDodgeChance>0.2</MeleeDodgeChance>
-			</equippedStatOffsets>
-		</value>
+			</operations>
+		</match>
 	</Operation>
 
 </Patch>

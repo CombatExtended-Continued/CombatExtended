@@ -1,33 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!--Not required anymore, cuz not using HAR-->
-	<!--<li Class="PatchOperationConditional">
-	<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/comps</xpath>
-	<nomatch Class="PatchOperationAdd">
-<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]</xpath>
-<value>
-	<comps/>
-</value>
-	</nomatch>
-	<match Class="PatchOperationAdd">
-<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]</xpath>
-<value>
-</value>
-	</match>
-</li>
-
-<li Class="PatchOperationAddModExtension">
-	<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]</xpath>
-	<value>
-<li Class="CombatExtended.RacePropertiesExtensionCE">
-	<bodyShape>Humanoid</bodyShape>
-</li>
-	</value>
-</li>-->
 
 	<!--      
-Making them less suppressible the more tails they get (See mod page for what that means, for comparison it takes 100 corpses sacrificed to get to tier 9)
-Soulreap tier 1 is their base state, weaker than a normal human so not adding any for that. -->
+	Making them less suppressible the more tails they get (See mod page for what that means, for comparison it takes 100 corpses sacrificed to get to tier 9)
+	Soulreap tier 1 is their base state, weaker than a normal human so not adding any for that. -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier2"]/stages/li/statOffsets</xpath>
 		<value>
@@ -79,38 +55,6 @@ Soulreap tier 1 is their base state, weaker than a normal human so not adding an
 			<Suppressability>-0.9</Suppressability>
 		</value>
 	</Operation>
-	<!--Not required anymore, cuz not using HAR-->
-	<!--<li Class="PatchOperationAdd">
- <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/statBases</xpath>
-	  <value>
-<MeleeCritChance>1.1</MeleeCritChance>
-<MeleeParryChance>1.15</MeleeParryChance>
-<Suppressability>1</Suppressability>
-<SmokeSensitivity>0.85</SmokeSensitivity>
-<CarryBulk>25</CarryBulk>
-<CarryWeight>40</CarryWeight>
-	  </value>
-</li>-->
-
-	<!--Not required anymore, cuz not using HAR-->
-	<!--<li Class="PatchOperationAdd">
-        <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
-        <value>
-          <li>
-            <defName>Bravery</defName>
-            <degree>-1</degree>
-            <chance>0</chance>
-          </li>
-        </value>
-      </li>-->
-
-	<!--Not required anymore, cuz not using HAR-->
-	<!--<li Class="PatchOperationReplace">
- <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/statBases/MeleeDodgeChance</xpath>
-	  <value>
-<MeleeDodgeChance>1.20</MeleeDodgeChance>
-	  </value>
-</li>-->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="ReviaClaws"]/comps/li/tools</xpath>
