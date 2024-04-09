@@ -80,35 +80,46 @@
 	</Operation>
 
 	<!-- VFE-Mechanoid - Mech Weapon -->
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/destroyOnDrop</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]</xpath>
-			<value>
-				<destroyOnDrop>true</destroyOnDrop>
-			</value>
-		</nomatch>
-		<match Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/destroyOnDrop</xpath>
-			<value>
-				<destroyOnDrop>true</destroyOnDrop>
-			</value>
-		</match>
-	</Operation>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Mechanoids</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/tradeability</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]</xpath>
-			<value>
-				<tradeability>None</tradeability>
-			</value>
-		</nomatch>
-		<match Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/tradeability</xpath>
-			<value>
-				<tradeability>None</tradeability>
-			</value>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/destroyOnDrop</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]</xpath>
+						<value>
+							<destroyOnDrop>true</destroyOnDrop>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/destroyOnDrop</xpath>
+						<value>
+							<destroyOnDrop>true</destroyOnDrop>
+						</value>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/tradeability</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]</xpath>
+						<value>
+							<tradeability>None</tradeability>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/tradeability</xpath>
+						<value>
+							<tradeability>None</tradeability>
+						</value>
+					</match>
+				</li>
+
+			</operations>
 		</match>
 	</Operation>
 </Patch>

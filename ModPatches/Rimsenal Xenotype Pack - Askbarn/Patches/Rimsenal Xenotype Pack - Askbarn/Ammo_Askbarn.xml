@@ -39,37 +39,43 @@
 		</match>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimsenal - Augmented Vanilla Pack</li>
+		</mods>
 
-			<!-- ================== EMP Blast - Projectiles ================== -->
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
 
-			<ThingDef ParentName="BaseExplosiveBullet">
-				<defName>EMP_FusterClucker</defName>
-				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-				<label>emp blast</label>
-				<graphicData>
-					<texPath>Things/Projectile/RaceBallLightning</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>EMP</damageDef>
-					<damageAmountBase>75</damageAmountBase>
-					<speed>73</speed>
-					<flyOverhead>false</flyOverhead>
-					<explosionRadius>2</explosionRadius>
-					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				</projectile>
-			</ThingDef>
+				<!-- ================== EMP Blast - Projectiles ================== -->
 
-			<CombatExtended.AmmoSetDef>
-				<defName>AmmoSet_LaserEMP_FusterClucker</defName>
-				<label>Charge Pack (EMP)</label>
-				<ammoTypes>
-					<Ammo_LaserChargePack>EMP_FusterClucker</Ammo_LaserChargePack>
-				</ammoTypes>
-			</CombatExtended.AmmoSetDef>
-		</value>
+				<ThingDef ParentName="BaseExplosiveBullet">
+					<defName>EMP_FusterClucker</defName>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<label>emp blast</label>
+					<graphicData>
+						<texPath>Things/Projectile/RaceBallLightning</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>EMP</damageDef>
+						<damageAmountBase>75</damageAmountBase>
+						<speed>73</speed>
+						<flyOverhead>false</flyOverhead>
+						<explosionRadius>2</explosionRadius>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					</projectile>
+				</ThingDef>
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_LaserEMP_FusterClucker</defName>
+					<label>Charge Pack (EMP)</label>
+					<ammoTypes>
+						<Ammo_LaserChargePack>EMP_FusterClucker</Ammo_LaserChargePack>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+			</value>
+		</match>
 	</Operation>
 </Patch>

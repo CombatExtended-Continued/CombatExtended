@@ -83,15 +83,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationTest">
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="ROM_MiGo"]/comps</xpath>
-		<success>Invert</success>
-	</Operation>
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ROM_MiGo"]</xpath>
-		<value>
-			<comps/>
-		</value>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="ROM_MiGo"]/</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
