@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[@ParentName="PN_ShellBase"]</xpath>
+	</Operation>
+
 	<!-- ==========  Shovel  =========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -937,16 +942,6 @@
 								<armorPenetrationSharp>30.24</armorPenetrationSharp>
 							</li>
 						</tools>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs</xpath>
-					<value>
-						<DamageDef ParentName="Flame">
-							<defName>Flame_Nopenetration</defName>
-							<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
-						</DamageDef>
 					</value>
 				</li>
 

@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="CannonBall_Solidshot" or
+			defName="CannonBall_Explosiveshot" or
+			defName="CannonBall_Incendiary" or
+			defName="Chamber_Solidshot" or
+			defName="Chamber_Explosiveshot" or
+			defName="Chamber_Incendiary" or
+			defName="MortarShell_Solidshot" or
+			defName="MortarShell_Explosiveshot" or
+			defName="MortarShell_Incendiary" or
+			defName="GunStone" or
+			defName="SGunStone"
+			]</xpath>
+	</Operation>
+
+
 	<!-- Mortars won't place if they have show radius -->
 
 	<Operation Class="PatchOperationReplace">

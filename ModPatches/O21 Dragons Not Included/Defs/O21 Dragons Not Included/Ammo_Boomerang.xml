@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>Boomerang_Thrown</defName>
+		<label>boomerang</label>
+		<graphicData>
+			<texPath>Things/Weapons/Melee/Boomerang</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Blunt</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<speed>12</speed>
+			<armorPenetrationBlunt>0.18</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.50</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>O21_DNI_Boomerang</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_O21_DNI_Boomerang</defName>
+		<label>make boomerang x5</label>
+		<description>Craft 5 boomerangs.</description>
+		<jobString>Making boomerangs.</jobString>
+		<workAmount>1200</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<recipeUsers>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<products>
+			<O21_DNI_Boomerang>5</O21_DNI_Boomerang>
+		</products>
+	</RecipeDef>
+
+</Defs>
