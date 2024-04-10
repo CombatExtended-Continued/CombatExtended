@@ -1,40 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-
-			<!-- ==================== Recipes ========================== -->
-
-			<RecipeDef>
-				<defName>PressFirePlortCE</defName>
-				<label>press fire plort</label>
-				<description>Concentrate fire plorts into highly flammable compounds.</description>
-				<jobString>Pressing fire plort</jobString>
-				<workAmount>100</workAmount>
-				<products>
-					<Prometheum>1</Prometheum>
-				</products>
-				<ingredients>
-					<li>
-						<filter>
-							<thingDefs>
-								<li>FirePlort</li>
-							</thingDefs>
-						</filter>
-						<count>3</count>
-					</li>
-				</ingredients>
-				<fixedIngredientFilter>
-					<thingDefs>
-						<li>FirePlort</li>
-					</thingDefs>
-				</fixedIngredientFilter>
-			</RecipeDef>
-
-		</value>
-	</Operation>
+	
+	<!-- ==================== Recipes ========================== -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/RecipeDef[defName="PressBoomPlort"]/products</xpath>
@@ -51,4 +18,5 @@
 			<li>PressFirePlortCE</li>
 		</value>
 	</Operation>
+	
 </Patch>

@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!-- === Javelin === -->
 
-	<!-- This dummy parent just provides a workaround so VFE - Classical can be loaded before CE. -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<ThingDef ParentName="BaseWeaponAndAmmoNeolithic" Name="JavelinBase_VFEC" Abstract="True"/>
-		</value>
-	</Operation>
+	<!-- === Javelin === -->
 
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
 		<attribute>ParentName</attribute>
-		<value>JavelinBase_VFEC</value>
+		<value>BaseWeaponAndAmmoNeolithic</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAttributeAdd">
@@ -100,56 +93,10 @@
 		</value>
 	</Operation>
 
-	<!-- === Add Projectiles and Recipes for the javelin. === -->
-
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_Javelins"]/ammoTypes</xpath>
 		<value>
-
-			<RecipeDef ParentName="AmmoRecipeNeolithicBase">
-				<defName>MakeAmmo_VFEC_Javelin</defName>
-				<label>make javelins x5</label>
-				<description>Craft 5 javelins.</description>
-				<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-				<workSkill>Crafting</workSkill>
-				<recipeUsers>
-					<li>ElectricSmithy</li>
-					<li>FueledSmithy</li>
-					<li>CraftingSpot</li>
-				</recipeUsers>
-				<effectWorking>Smelt</effectWorking>
-				<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-				<workAmount>2700</workAmount>
-				<jobString>Making javelins.</jobString>
-				<ingredients>
-					<li>
-						<filter>
-							<thingDefs>
-								<li>WoodLog</li>
-							</thingDefs>
-						</filter>
-						<count>6</count>
-					</li>
-					<li>
-						<filter>
-							<thingDefs>
-								<li>Steel</li>
-							</thingDefs>
-						</filter>
-						<count>22</count>
-					</li>
-				</ingredients>
-				<fixedIngredientFilter>
-					<thingDefs>
-						<li>WoodLog</li>
-						<li>Steel</li>
-					</thingDefs>
-				</fixedIngredientFilter>
-				<products>
-					<VFEC_Javelin>5</VFEC_Javelin>
-				</products>
-			</RecipeDef>
-
+			<VFEC_Javelin>Classical_Javelin_Fired</VFEC_Javelin>
 		</value>
 	</Operation>
 

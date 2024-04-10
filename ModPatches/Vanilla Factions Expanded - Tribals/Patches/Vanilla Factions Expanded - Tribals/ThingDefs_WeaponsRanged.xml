@@ -11,7 +11,7 @@
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]</xpath>
 		<attribute>ParentName</attribute>
-		<value>SpikeBase_VFET</value>
+		<value>BaseWeaponAndAmmoNeolithic</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAttributeAdd">
@@ -85,64 +85,4 @@
 		</value>
 	</Operation>
 
-	<!-- === Add Projectiles and Recipes for the throwspikes. === -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-
-			<!-- This dummy parent just provides a workaround so VFE - Tribal can be loaded before CE. -->
-			<ThingDef ParentName="BaseWeaponAndAmmoNeolithic" Name="SpikeBase_VFET" Abstract="True"/>
-
-			<ThingDef ParentName="BasePilumProjectile">
-				<graphicData>
-					<texPath>Projectile/Projectile_Throwspikes</texPath>
-				</graphicData>
-				<defName>Tribal_Spike_Thrown</defName>
-				<label>throwspike</label>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageAmountBase>14</damageAmountBase>
-					<speed>10</speed>
-					<armorPenetrationBlunt>3.44</armorPenetrationBlunt>
-					<armorPenetrationSharp>0.45</armorPenetrationSharp>
-					<preExplosionSpawnChance>0.70</preExplosionSpawnChance>
-					<preExplosionSpawnThingDef>VFET_Throwspikes</preExplosionSpawnThingDef>
-				</projectile>
-			</ThingDef>
-
-			<RecipeDef ParentName="AmmoRecipeNeolithicBase">
-				<defName>MakeAmmo_VFET_Throwspikes</defName>
-				<label>make throwspikes x20</label>
-				<description>Craft 20 throwspikes.</description>
-				<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-				<workSkill>Crafting</workSkill>
-				<recipeUsers>
-					<li>CraftingSpot</li>
-				</recipeUsers>
-				<effectWorking>Smelt</effectWorking>
-				<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-				<workAmount>800</workAmount>
-				<jobString>Making throwspikes.</jobString>
-				<ingredients>
-					<li>
-						<filter>
-							<thingDefs>
-								<li>WoodLog</li>
-							</thingDefs>
-						</filter>
-						<count>10</count>
-					</li>
-				</ingredients>
-				<fixedIngredientFilter>
-					<thingDefs>
-						<li>WoodLog</li>
-					</thingDefs>
-				</fixedIngredientFilter>
-				<products>
-					<VFET_Throwspikes>20</VFET_Throwspikes>
-				</products>
-			</RecipeDef>
-
-		</value>
-	</Operation>
 </Patch>
