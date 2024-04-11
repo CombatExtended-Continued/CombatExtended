@@ -56,7 +56,6 @@ namespace CombatExtended
             this.shotRotation = shotRotation;
             this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
             Launch(launcher, origin, equipment);
-            this.ticksToImpact = IntTicksToImpact;
         }
 
         public override void Tick()

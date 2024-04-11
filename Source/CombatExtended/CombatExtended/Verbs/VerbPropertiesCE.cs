@@ -18,6 +18,7 @@ namespace CombatExtended
         public float meleeArmorPenetration = 0;
         public bool ejectsCasings = true;
         public bool ignorePartialLoSBlocker = false;
+        public bool interruptibleBurst = true;
 
         public float AdjustedArmorPenetrationCE(Verb ownerVerb, Pawn attacker)
         {

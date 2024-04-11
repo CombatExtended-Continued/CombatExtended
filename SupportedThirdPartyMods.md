@@ -352,6 +352,7 @@ Opossum Friends |
 Orassans	|
 Ordo Tempestus - Tempestus Scions   |
 Outer Rim - Core	|
+Outer Rim - Droid Depot	|
 Outer Rim - Galactic Empire	|
 Outer Rim - Galactic Republic	|
 Outer Rim - Mandalore	|

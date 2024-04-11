@@ -51,7 +51,7 @@ namespace CombatExtended
             {
                 if (enviromentShiftInt < 0)
                 {
-                    enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 3.5f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
+                    enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 7f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
                 }
                 return enviromentShiftInt;
             }
