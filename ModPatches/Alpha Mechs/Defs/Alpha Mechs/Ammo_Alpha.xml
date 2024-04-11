@@ -3,7 +3,7 @@
 
 	<!-- Coil Lance -->
 
-	<CombatExtended.AmmoSetDef  MayRequire="Ludeon.RimWorld.Biotech">
+	<CombatExtended.AmmoSetDef MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>AmmoSet_CoilLance</defName>
 		<label>8mm Railgun</label>
 		<ammoTypes>
@@ -11,7 +11,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet"  MayRequire="Ludeon.RimWorld.Biotech">
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet" MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>Bullet_CoilLance</defName>
 		<label>coil lance shot</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -61,16 +61,16 @@
 	<!-- Acid Spewer -->
 
 	<CombatExtended.AmmoSetDef MayRequire="Ludeon.RimWorld.Biotech">
-		<defName>AmmoSet_5x100mmCaselessAcidic</defName>
-		<label>5x100mm Caseless (Acidic)</label>
+		<defName>AmmoSet_5x50mmCaselessAcidic</defName>
+		<label>5x50mm Caseless (Acidic)</label>
 		<ammoTypes>
-			<Ammo_5x100mmCaseless_Sabot>Bullet_5x100mmCaseless_Acidic</Ammo_5x100mmCaseless_Sabot>
+			<Ammo_5x50mmCaseless_Sabot>Bullet_5x50mmCaseless_Acidic</Ammo_5x50mmCaseless_Sabot>
 		</ammoTypes>
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 
-	<ThingDef ParentName="Base5x100mmCaselessBullet" MayRequire="Ludeon.RimWorld.Biotech">
-		<defName>Bullet_5x100mmCaseless_Acidic</defName>
+	<ThingDef ParentName="Base5x50mmCaselessBullet" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Bullet_5x50mmCaseless_Acidic</defName>
 		<label>5x100 Caseless bullet (Acidic)</label>
 		<graphicData>
 			<texPath>Things/Projectile/ToxicNeedleShot</texPath>
@@ -79,36 +79,36 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>11</damageAmountBase>
-			<armorPenetrationSharp>20</armorPenetrationSharp>
-			<armorPenetrationBlunt>108</armorPenetrationBlunt>
+			<armorPenetrationSharp>24</armorPenetrationSharp>
+			<armorPenetrationBlunt>112.5</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 					<def>AM_AcidSpit</def>
 					<amount>15</amount>
 				</li>
 			</secondaryDamage>
-			<speed>204</speed>
+			<speed>242</speed>
 		</projectile>
 	</ThingDef>
 
 	<!-- Rotary Needle launcher -->
 
 	<CombatExtended.AmmoSetDef MayRequire="Ludeon.RimWorld.Biotech">
-		<defName>AmmoSet_5x100mmS</defName>
-		<label>5x100mm Special</label>
+		<defName>AmmoSet_5x50mmS</defName>
+		<label>5x50mm Special</label>
 		<ammoTypes>
-			<Ammo_5x100mmCaseless_Sabot>Bullet_5x100mmS_Sabot</Ammo_5x100mmCaseless_Sabot>
+			<Ammo_5x50mmCaseless_Sabot>Bullet_5x50mmS_Sabot</Ammo_5x50mmCaseless_Sabot>
 		</ammoTypes>
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 
-	<ThingDef ParentName="Base5x100mmCaselessBullet" MayRequire="Ludeon.RimWorld.Biotech">
-		<defName>Bullet_5x100mmS_Sabot</defName>
+	<ThingDef ParentName="Base5x50mmCaselessBullet" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Bullet_5x50mmS_Sabot</defName>
 		<label>5x100 Special bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
 			<armorPenetrationBlunt>48</armorPenetrationBlunt>
 			<speed>150</speed>
 		</projectile>
