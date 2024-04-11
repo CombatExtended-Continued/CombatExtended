@@ -15,7 +15,7 @@ namespace CombatExtended.HarmonyCE
     /// <summary>
     /// Replaces DoExplosion on BUILDINGS, PAWNS, AMMO with the CE version that has correct AP and damage
     /// </summary>
-    [HarmonyPatch(typeof(CompExplosive), "Detonate")]
+    [HarmonyPatch(typeof(CompExplosive), nameof(CompExplosive.Detonate))]
     public class Harmony_CompExplosive_Detonate_Transpiler
     {
         internal static void ThrowFragments(ThingWithComps parent, Map map, Thing instigator)

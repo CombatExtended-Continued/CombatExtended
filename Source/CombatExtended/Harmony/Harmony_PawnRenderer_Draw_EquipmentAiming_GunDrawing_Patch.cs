@@ -10,7 +10,7 @@ using Verse;
 namespace CombatExtended.Lasers
 {
 
-    [HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming", new Type[] { typeof(Thing), typeof(Vector3), typeof(float) }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(PawnRenderUtility), nameof(PawnRenderUtility.DrawEquipmentAiming))]
     public static class Harmony_PawnRenderer_Draw_EquipmentAiming_GunDrawing_Patch
     {
         [HarmonyPrefix, HarmonyPriority(Priority.First)]
