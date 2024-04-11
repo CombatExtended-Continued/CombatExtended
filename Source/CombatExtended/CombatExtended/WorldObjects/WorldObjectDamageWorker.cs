@@ -196,20 +196,21 @@ namespace CombatExtended
                     {
                         thing.DeSpawn(DestroyMode.Vanish);
                         thing.Destroy(DestroyMode.Vanish);
-                        if (thing.def.category == ThingCategory.Plant && (thing.def.plant?.IsTree ?? false))
-                        {
-                            Thing burntTree = ThingMaker.MakeThing(ThingDefOf.BurnedTree);
-                            burntTree.positionInt = cellToAffect;
-                            burntTree.SpawnSetup(map, false);
-                            if (!filthMade && Rand.Chance(0.5f))
-                            {
-                                ScatterDebrisUtility.ScatterFilthAroundThing(burntTree, map, ThingDefOf.Filth_Ash);
-                                filthMade = true;
-                            }
-                        }
+                        //                        if (thing.def.category == ThingCategory.Plant && (thing.def.plant?.IsTree ?? false))
+                        //                        {
+                        //                            //Todo: 1.5 burned trees
+                        //                            Thing burntTree = ThingMaker.MakeThing(ThingDefOf.BurnedTree);
+                        //                            burntTree.positionInt = cellToAffect;
+                        //                            burntTree.SpawnSetup(map, false);
+                        //                            if (!filthMade && Rand.Chance(0.5f))
+                        //                            {
+                        //                                ScatterDebrisUtility.ScatterFilthAroundThing(burntTree, map, ThingDefOf.Filth_Ash);
+                        //                                filthMade = true;
+                        //                            }
+                        //                        }
                         if (thing.def.MakeFog)
                         {
-                            map.fogGrid.Notify_FogBlockerRemoved(cellToAffect);
+                            map.fogGrid.Notify_FogBlockerRemoved(thing);
                         }
                         ThingDef filth = thing.def.filthLeaving ?? (Rand.Chance(0.5f) ? ThingDefOf.Filth_Ash : ThingDefOf.Filth_RubbleBuilding);
                         if (!filthMade && FilthMaker.TryMakeFilth(cellToAffect, map, filth, Rand.Range(1, 3), FilthSourceFlags.Any))
