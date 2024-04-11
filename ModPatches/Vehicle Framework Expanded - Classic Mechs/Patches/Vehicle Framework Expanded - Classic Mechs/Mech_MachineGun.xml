@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- HMG Sub-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MachineGun"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_50BMG_FMJ</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MachineGun"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>3</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MachineGun"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>1</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MachineGun"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>200</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MachineGun"]/maxRange</xpath>
+		<value>
+			<maxRange>80</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MachineGun"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_50BMG_FMJ</li>
+				<li>Ammo_50BMG_AP</li>
+				<li>Ammo_50BMG_Incendiary</li>
+				<li>Ammo_50BMG_HE</li>
+				<li>Ammo_50BMG_Sabot</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MachineGun"]/fireModes</xpath>
+		<value>
+			<fireModes>
+				<li>
+					<shotsPerBurst>1</shotsPerBurst>
+					<ticksBetweenShots>6</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>5</shotsPerBurst>
+					<ticksBetweenShots>6</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Burst</label>
+					<texPath>UI/Gizmos/FireRate_Burst</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>10</shotsPerBurst>
+					<ticksBetweenShots>6</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Auto</label>
+					<texPath>UI/Gizmos/FireRate_Auto</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MachineGun"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_50BMG</ammoSet>
+				<shotHeight>2.5</shotHeight>
+				<speed>163</speed>
+				<sway>1.5</sway>
+				<spread>0.1</spread>
+			</li>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ====== TentacledSlug ====== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_TentacledSlug"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_TentacledSlug"]/corePart</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_TentacledSlug"]/corePart/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_TentacledSlug"]/corePart/parts/li[def="AA_Carapace"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_TentacledSlug"]/corePart/parts/li[def="AA_Carapace"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_TentacledSlug"]/corePart/parts/li[def="AA_Carapace"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+</Patch>

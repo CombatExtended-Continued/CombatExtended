@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Make Drake Drakonic ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Drake"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Serpentine</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- ========== Give em that thicc dragon skin ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Drake"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeCritChance>0.85</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Drake"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Drake"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<!-- ========== Patch Drake Melee Attacks ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Drake"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.3</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<armorPenetration>0.350</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.3</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<armorPenetration>0.350</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetration>0.375</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetration>0.048</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail spear</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>TailAttackToolStab</linkedBodyPartsGroup>
+					<armorPenetration>0.5</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	<!-- ========== yeah i think i made them a bit op ========== -->
+
+</Patch>

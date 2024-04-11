@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="AIPawn"]//*[
+			def="AIPawn_Thorax" or
+			def="MechanicalNeck" or
+			def="Head" or
+			def="HearingSensor" or
+			def="SmellSensor" or
+			def="MechanicalShoulder" or
+			def="MechanicalArm" or
+			def="MechanicalHand" or
+			def="MechanicalFinger" or
+			def="MechanicalLeg" or
+			def="MechanicalFoot"]/groups
+		</xpath>
+
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>

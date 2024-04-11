@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Private & Medic === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2ItalianPrivateAxis" or
+			defName="K4G_WW2ItalianMedicAxis" or
+			defName="K4G_WW2ItalianMedicSharedAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Rifleman & Infantry === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2ItalianRiflemanAxis" or
+			defName="K4G_WW2ItalianRiflemanSharedAxis" or
+			defName="K4G_WW2ItalianInfantryAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.25</generateChance>
+						<sidearmMoney>
+							<min>75</min>
+							<max>185</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2ItalyMelee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Machine Gunner === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2ItalianMachineGunnerAxis" or
+			defName="K4G_WW2ItalianMachineGunnerSharedAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.5</generateChance>
+						<sidearmMoney>
+							<min>85</min>
+							<max>195</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2ItalyMelee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Sniper === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianSniperSharedAxis"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.75</generateChance>
+						<sidearmMoney>
+							<min>95</min>
+							<max>195</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2ItalyMelee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Grenadier === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianGrenadierAxis"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>8</min>
+					<max>14</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.75</generateChance>
+						<sidearmMoney>
+							<min>25</min>
+							<max>100</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2ItalyPistol</li>
+						</weaponTags>
+						<magazineCount>
+							<min>3</min>
+							<max>5</max>
+						</magazineCount>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Anti-Tank === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="K4G_WW2ItalianAntiTankSharedAxis"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.75</generateChance>
+						<sidearmMoney>
+							<min>25</min>
+							<max>100</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2ItalyPistol</li>
+						</weaponTags>
+						<magazineCount>
+							<min>3</min>
+							<max>5</max>
+						</magazineCount>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Officers === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2ItalianOfficerAxis" or
+			defName="K4G_WW2ItalianOfficerSharedAxis" or
+			defName="K4G_WW2ItalianOfficerBAxis" or
+			defName="K4G_WW2ItalianOfficerBSharedAxis" or
+			defName="K4G_WW2ItalianLogisticsOfficerAxis" or
+			defName="K4G_WW2ItalianLogisticsOfficerSharedAxis" or
+			defName="K4G_WW2ItalianLogisticsOfficerBAxis" or
+			defName="K4G_WW2ItalianLogisticsOfficerBSharedAxis" or
+			defName="K4G_WW2ItalianLeaderAxis" or
+			defName="K4G_WW2ItalianLeaderSharedAxis" or
+			defName="K4G_WW2ItalianLeaderBAxis" or
+			defName="K4G_WW2ItalianLeaderBSharedAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.33</generateChance>
+						<sidearmMoney>
+							<min>20</min>
+							<max>120</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2ItalyMelee</li>
+						</weaponTags>
+					</li>
+					<li>
+						<generateChance>0.1</generateChance>
+						<sidearmMoney>
+							<min>100</min>
+							<max>300</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_FlareLauncher</li>
+						</weaponTags>
+						<magazineCount>
+							<min>2</min>
+							<max>4</max>
+						</magazineCount>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

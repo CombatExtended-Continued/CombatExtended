@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Animal Gear</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Caparison === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="DevDesigner_Apparel_Horse_CaparisonBase" or @Name="DevDesigner_Apparel_Horse_DarkCaparisonBase"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="DevDesigner_Apparel_Horse_CaparisonBase" or @Name="DevDesigner_Apparel_Horse_DarkCaparisonBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- === Horse Plate Armor === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="DevDesigner_Apparel_Horse_PlateBase"]/statBases</xpath>
+					<value>
+						<Bulk>100</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="DevDesigner_Apparel_Horse_PlateBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2.85</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- === Horse Bone Armor === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="DevDesigner_Apparel_Horse_BoneBase"]/statBases</xpath>
+					<value>
+						<Bulk>100</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="DevDesigner_Apparel_Horse_BoneBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

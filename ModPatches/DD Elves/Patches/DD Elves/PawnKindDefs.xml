@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- === Spearman === -->
+	<!-- Give Shields -->
+
+	<!-- Dark elves -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DevDesigner_DarkElves_DreadspearBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>2000</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DevDesigner_DarkElves_Shield</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- High elves -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DevDesigner_HighElves_SpearmanBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>2000</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DevDesigner_HighElves_Shield</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Wood elves -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DevDesigner_WoodElves_StagKnigthBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>2000</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DevDesigner_WoodElves_Shield</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Ranged === -->
+
+	<!-- Dark elves -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DevDesigner_DarkElves_DarkshardBase" or @Name="DevDesigner_DarkElves_DarkRiderBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>12</min>
+					<max>15</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>150</min>
+						<max>250</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- High elves -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DevDesigner_HighElves_ArcherBase" or @Name="DevDesigner_HighElves_ShadowWarriorBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>15</min>
+					<max>30</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>150</min>
+						<max>250</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Wood elves -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DevDesigner_WoodElves_ArcherBase" or @Name="DevDesigner_WoodElves_GuardBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>15</min>
+					<max>30</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>150</min>
+						<max>250</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="DevDesigner_DarkElves_DarkshardBase" or @Name="DevDesigner_DarkElves_DarkRiderBase" or @Name="DevDesigner_HighElves_ArcherBase" or @Name="DevDesigner_HighElves_ShadowWarriorBase" or @Name="DevDesigner_WoodElves_ArcherBase" or @Name="DevDesigner_WoodElves_GuardBase"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+</Patch>

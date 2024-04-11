@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimsenal - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ==========  Molten Carbine =========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/thingDef[defName="JI_Sigrun"]/statBases</xpath>
+					<value>
+						<statBases>
+							<SightsEfficiency>1.1</SightsEfficiency>
+							<ShotSpread>0.1</ShotSpread>
+							<SwayFactor>1.14</SwayFactor>
+							<Bulk>6.5</Bulk>
+							<Mass>3.4</Mass>
+							<RangedWeapon_Cooldown>0.41</RangedWeapon_Cooldown>
+						</statBases>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/thingDef[defName="JI_Sigrun"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>3.43</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_JI_Carbine</defaultProjectile>
+								<warmupTime>1.2</warmupTime>
+								<range>35</range>
+								<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+								<burstShotCount>3</burstShotCount>
+								<soundCast>RS_ShotJI</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>12</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/thingDef[defName="JI_Sigrun"]</xpath>
+					<value>
+						<comps>
+							<li Class="CombatExtended.CompProperties_AmmoUser">
+								<magazineSize>24</magazineSize>
+								<reloadTime>4</reloadTime>
+								<ammoSet>AmmoSet_JICarbine</ammoSet>
+							</li>
+							<li Class="CombatExtended.CompProperties_FireModes">
+								<aimedBurstShotCount>2</aimedBurstShotCount>
+								<aiUseBurstMode>TRUE</aiUseBurstMode>
+								<aiAimMode>Snapshot</aiAimMode>
+							</li>
+						</comps>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/thingDef[
+						defName="JI_Sigrun"
+						] </xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimsenal - Augmented Vanilla Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== EMP Sidearm =========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_DisruptionPistol</defName>
+					<statBases>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.15</ShotSpread>
+						<SwayFactor>1.53</SwayFactor>
+						<Bulk>2.50</Bulk>
+						<Mass>2.10</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>2.20</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>12</range>
+						<ammoConsumedPerShotCount>5</ammoConsumedPerShotCount>
+						<soundCast>Shot_ChargeRifle</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>35</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_LaserEMP_Rimsenal</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_Sidearm</li>
+						<li>CE_AI_Pistol</li>
+						<li>CE_OneHandedWeapon</li>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Gun_DisruptionPistol"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ========== EMP Heavy	=========== -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_FusterClucker</defName>
+					<statBases>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>2.18</SwayFactor>
+						<Bulk>13.00</Bulk>
+						<Mass>8.80</Mass>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>EMP_FusterClucker</defaultProjectile>
+						<warmupTime>2.6</warmupTime>
+						<range>75</range>
+						<ammoConsumedPerShotCount>100</ammoConsumedPerShotCount>
+						<soundCast>Shot_ChargeRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>100</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_LaserEMP_FusterClucker</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>AdvancedGun</li>
+					</weaponTags>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Gun_FusterClucker"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

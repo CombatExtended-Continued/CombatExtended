@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Bolt Caster -->
+	<!-- whoo, 6-8 dmg and stun. 50cal then, gonna need a new ammo set for this.-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_XCOMBoltCaster</defName>
+		<label>.50 BMG</label>
+		<ammoTypes>
+			<Ammo_50BMG_FMJ>Bullet_50BMG_FMJStun</Ammo_50BMG_FMJ>
+			<Ammo_50BMG_AP>Bullet_50BMG_APStun</Ammo_50BMG_AP>
+			<Ammo_50BMG_Incendiary>Bullet_50BMG_IncendiaryStun</Ammo_50BMG_Incendiary>
+			<Ammo_50BMG_HE>Bullet_50BMG_HEStun</Ammo_50BMG_HE>
+			<Ammo_50BMG_Sabot>Bullet_50BMG_SabotStun</Ammo_50BMG_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_AntiMateriel</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="Base50BMGBullet">
+		<defName>Bullet_50BMG_FMJStun</defName>
+		<label>.50 BMG bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationSharp>15.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>360.34</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Stun</def>
+					<amount>10</amount>
+					<chance>0.2</chance>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50BMGBullet">
+		<defName>Bullet_50BMG_APStun</defName>
+		<label>.50 BMG bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>31</armorPenetrationSharp>
+			<armorPenetrationBlunt>360.34</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Stun</def>
+					<amount>10</amount>
+					<chance>0.2</chance>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50BMGBullet">
+		<defName>Bullet_50BMG_IncendiaryStun</defName>
+		<label>.50 BMG bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>31</armorPenetrationSharp>
+			<armorPenetrationBlunt>360.34</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>12</amount>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>10</amount>
+					<chance>0.2</chance>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50BMGBullet">
+		<defName>Bullet_50BMG_HEStun</defName>
+		<label>.50 BMG bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationSharp>15.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>360.34</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>20</amount>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>10</amount>
+					<chance>0.2</chance>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50BMGBullet">
+		<defName>Bullet_50BMG_SabotStun</defName>
+		<label>.50 BMG bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>54</armorPenetrationSharp>
+			<armorPenetrationBlunt>388.88</armorPenetrationBlunt>
+			<speed>244</speed>
+			<secondaryDamage>
+				<li>
+					<def>Stun</def>
+					<amount>10</amount>
+					<chance>0.2</chance>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+</Defs>

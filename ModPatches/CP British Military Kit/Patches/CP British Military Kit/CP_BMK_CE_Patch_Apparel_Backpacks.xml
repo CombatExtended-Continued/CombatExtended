@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Bergen rucksack ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNApparel_Rucksack_Bergen"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNApparel_Rucksack_Bergen"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>35</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNApparel_Rucksack_Bergen"]/apparel
+		</xpath>
+		<value>
+			<apparel>
+				<careIfWornByCorpse>false</careIfWornByCorpse>
+				<bodyPartGroups>
+					<li>Shoulders</li>
+				</bodyPartGroups>
+				<layers>
+					<li>Backpack</li>
+				</layers>
+				<tags>
+					<li>RN_Backpack</li>
+				</tags>
+				<defaultOutfitTags>
+					<li>Soldier</li>
+				</defaultOutfitTags>
+				<wornGraphicPath>Things/Apparel/Belt/MTP_Bergen</wornGraphicPath>
+			</apparel>
+		</value>
+	</Operation>
+</Patch>

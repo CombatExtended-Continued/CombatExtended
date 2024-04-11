@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Ammo ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="RH_VOID_Base" or @Name="RH_VOID_BB_Base"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Backpacks ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="RH_VOID_Base" or @Name="RH_VOID_BB_Base"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_Backpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<!-- ========== CombatPower Patches ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_VOID_Undying"]/combatPower</xpath>
+		<value>
+			<combatPower>900</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_VOID_Collaborator"]/combatPower</xpath>
+		<value>
+			<combatPower>270</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="RH_VOIDAdvMemberBase"]/combatPower</xpath>
+		<value>
+			<combatPower>300</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_VOID_Associate"]/combatPower</xpath>
+		<value>
+			<combatPower>300</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_VOID_Destroyer"]/combatPower</xpath>
+		<value>
+			<combatPower>360</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_VOID_Grinder"]/combatPower</xpath>
+		<value>
+			<combatPower>360</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="RH_VOIDEliteBase"]/combatPower</xpath>
+		<value>
+			<combatPower>600</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="RH_VOIDEliteCloakedBase"]/combatPower</xpath>
+		<value>
+			<combatPower>600</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_VOID_Boss"]/combatPower</xpath>
+		<value>
+			<combatPower>750</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_VOID_Negotiator"]/combatPower</xpath>
+		<value>
+			<combatPower>240</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RH_VOID_Bodyguard"]/combatPower</xpath>
+		<value>
+			<combatPower>240</combatPower>
+		</value>
+	</Operation>
+</Patch>

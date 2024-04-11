@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--========= Regular =========-->
+
+<!--Thin-->
+
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[
+		defName="RS_ChestWrap"
+		]/statBases </xpath>
+	<value>
+		<Bulk>0.5</Bulk>
+		<WornBulk>0.25</WornBulk>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="RS_IdolCostume" or
+		defName="RS_StarIdol"
+		]/statBases </xpath>
+	<value>
+		<Bulk>2</Bulk>
+		<WornBulk>1</WornBulk>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="RS_IdolCostume"]/statBases/StuffEffectMultiplierArmor</xpath>
+	<value>
+		<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="RS_StarIdol"]/statBases/StuffEffectMultiplierArmor</xpath>
+	<value>
+		<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+	</value>
+</Operation>
+
+<!--Mid-->
+
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="RS_MaidCostume" or
+		defName="RS_KnitSweater"
+		]/statBases </xpath>
+	<value>
+		<Bulk>5</Bulk>
+		<WornBulk>2</WornBulk>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="RS_MaidCostume"]/statBases/StuffEffectMultiplierArmor</xpath>
+	<value>
+		<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="RS_KnitSweater"]/statBases/StuffEffectMultiplierArmor</xpath>
+	<value>
+		<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+	</value>
+</Operation>
+
+</Patch>

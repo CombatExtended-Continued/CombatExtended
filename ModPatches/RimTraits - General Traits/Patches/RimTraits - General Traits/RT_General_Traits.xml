@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ======= General Traits ======= -->
+
+	<!-- ===== RT Trait: Nearsighted ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName = "RT_Nearsighted"]/degreeDatas/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>-0.4</ShootingAccuracyPawn>
+				<AimingDelayFactor>0.15</AimingDelayFactor>
+				<MeleeHitChance>1</MeleeHitChance>
+				<MeleeDodgeChance>0.10</MeleeDodgeChance>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- ===== RT Trait: Farsighted ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName = "RT_Farsighted"]/degreeDatas/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>0.5</ShootingAccuracyPawn>
+				<AimingDelayFactor>-0.15</AimingDelayFactor>
+				<MeleeHitChance>-1</MeleeHitChance>
+				<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- ===== RT Trait: Athletic ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName = "RT_Athletic"]/degreeDatas/li/statOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.10</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- ===== RT Trait: Stiff ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName = "RT_Stiff"]/degreeDatas/li/statOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- ===== RT Trait: Muscular ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName = "RT_Muscular"]/degreeDatas/li/statOffsets/CarryingCapacity</xpath>
+		<value>
+			<CarryWeight>5</CarryWeight>
+			<CarryBulk>5</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- ===== RT Trait: Frail ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName = "RT_Frail"]/degreeDatas/li/statOffsets/CarryingCapacity</xpath>
+		<value>
+			<CarryWeight>-3</CarryWeight>
+			<CarryBulk>-3</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- ======= General Traits Uncommon ======= -->
+
+	<!-- ===== RT Trait: Coordinated ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName = "RT_Coordinated"]/degreeDatas/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>0.5</ShootingAccuracyPawn>
+				<MeleeHitChance>1</MeleeHitChance>
+				<MeleeDodgeChance>0.10</MeleeDodgeChance>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- ===== RT Trait: Clumsy ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/TraitDef[defName = "RT_Clumsy"]/degreeDatas/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>-0.4</ShootingAccuracyPawn>
+				<MeleeHitChance>-1</MeleeHitChance>
+				<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+			</statOffsets>
+		</value>
+	</Operation>
+
+</Patch>

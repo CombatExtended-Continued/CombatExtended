@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Spawn backpacks for selected Sergal pawntypes -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="SergalColonist" or
+			defName="SergalCommando" or
+			defName="SergalCommandoElite" or
+			defName="SergalHunter" or
+			defName="SergalPackLeader" or
+			defName="SergalRecruit" or
+			defName="SergalSecurityGuard" or
+			defName="SergalTrader"
+			] </xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_Backpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<!-- Spawn different combinations of primary ammo, secondary weapon and ammo for various Sergal pawntypes -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="SergalRefugee" or
+			defName="SergalSlave"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>4</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="SergalColonist" or
+			defName="SergalCommando" or
+			defName="SergalCommandoElite" or
+			defName="SergalHunter" or
+			defName="SergalPackLeader" or
+			defName="SergalRecruit" or
+			defName="SergalSecurityGuard" or
+			defName="SergalTrader"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>1</generateChance>
+						<magazineCount>
+							<min>2</min>
+							<max>3</max>
+						</magazineCount>
+						<weaponTags>
+							<li>CE_Sidearm</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+</Patch>

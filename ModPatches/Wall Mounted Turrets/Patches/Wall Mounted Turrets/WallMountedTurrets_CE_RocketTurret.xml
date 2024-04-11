@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Wall Rocket Turret ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WallRocketTurret"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>3.8</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WallRocketTurret"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.25</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WallRocketTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WallRocketTurret"]/researchPrerequisites</xpath>
+		<value>
+			<researchPrerequisites>
+				<li>GunTurrets</li>
+			</researchPrerequisites>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_WallTurretRocket</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>0.32</SwayFactor>
+			<Bulk>10.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20mmFliegerfaust_HE</defaultProjectile>
+			<warmupTime>2</warmupTime>
+			<minRange>3</minRange>
+			<range>25</range>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<soundCast>Shot_Autocannon</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>50</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_20mmFliegerfaust</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+</Patch>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="VIEHAR_Apparel_Beads" or
+			defName="VIEHAR_Apparel_BishopHat" or
+			defName="VIEHAR_Apparel_BrimlessHat" or
+			defName="VIEHAR_Apparel_CommisarHat" or
+			defName="VIEHAR_Apparel_DeerSkull" or
+			defName="VIEHAR_Apparel_Fez" or
+			defName="VIEHAR_Apparel_Headbag" or
+			defName="VIEHAR_Apparel_Headscarf" or
+			defName="VIEHAR_Apparel_HorseMask" or
+			defName="VIEHAR_Apparel_MilitaryCap" or
+			defName="VIEHAR_Apparel_WideHat"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			<Bulk>1</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="VIEHAR_Apparel_Skullcap" or
+			defName="VIEHAR_Apparel_SpikedSkullcap"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<Bulk>3</Bulk>
+			<WornBulk>1.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="VIEHAR_Apparel_DeerSkull" or
+			defName="VIEHAR_Apparel_Headbag" or
+			defName="VIEHAR_Apparel_HorseMask" or
+			defName="VIEHAR_Apparel_MilitaryCap"
+			] </xpath>
+		<value>
+			<equippedStatOffsets>
+				<Suppressability>-0.25</Suppressability>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VIEHAR_Apparel_CommisarHat"]/equippedStatOffsets</xpath>
+		<value>
+			<Suppressability>-0.25</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VIEHAR_Apparel_Beads" or defName="VIEHAR_Apparel_Headscarf"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+</Patch>

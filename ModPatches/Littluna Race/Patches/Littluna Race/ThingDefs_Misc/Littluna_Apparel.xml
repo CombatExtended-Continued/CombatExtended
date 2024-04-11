@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--========= Stuffable =========-->
+
+	<!--Skin Layer minimum protection-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_LL_O_a"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+			<Bulk>0.5</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_LL_T_a" or
+			defName="HAR_LL_T_b" or
+			defName="HAR_LL_T_c" or
+			defName="HAR_LL_T_e"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			<Bulk>2</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<!--Shell-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_LL_S_a" or
+			defName="HAR_LL_S_b" or
+			defName="HAR_LL_S_c" or
+			defName="HAR_LL_S_e"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<!--Overhead-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_LL_H_a" or
+			defName="HAR_LL_H_b" or
+			defName="HAR_LL_H_e"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+			<Bulk>1</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_LL_H_c"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<Bulk>1</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+</Patch>

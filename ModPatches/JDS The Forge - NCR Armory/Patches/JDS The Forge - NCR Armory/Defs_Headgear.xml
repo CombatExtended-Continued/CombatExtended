@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Pith and Ranger Hats ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Pith_Hat" or defName="JDS_NCR_Pith2_Hat" or defName="JDS_NCR_Ranger_Hat"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Pith_Hat" or defName="JDS_NCR_Pith2_Hat" or defName="JDS_NCR_Ranger_Hat"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Pith_Hat" or defName="JDS_NCR_Pith2_Hat" or defName="JDS_NCR_Ranger_Hat"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ========== Pith Hats w/ Face Wrap ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Wrap_Pith_Hat" or defName="JDS_NCR_Wrap2_Pith_Hat"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<SmokeSensitivity>-0.10</SmokeSensitivity>
+				<ToxicEnvironmentResistance>0.10</ToxicEnvironmentResistance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- ========== Beret ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Beret"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Beret"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Beret"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ========== Ranger Combat Helmet ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>32</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/equippedStatOffsets/ToxicResistance</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_Ranger_Combat_Helmet"]/apparel</xpath>
+		<value>
+			<layers>
+				<li>OnHead</li>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<!-- ========== Salvaged Power Armor Helmet ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>15</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>34</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/equippedStatOffsets/ToxicResistance</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="JDS_NCR_SalvagedPowerArmor_Helmet"]/apparel</xpath>
+		<value>
+			<layers>
+				<li>OnHead</li>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+</Patch>

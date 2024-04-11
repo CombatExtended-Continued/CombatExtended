@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Remove MoveSpeed Penalties ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RNGun_WraithCannon_HMG" or defName="RNGun_GAU19_HMG" or defName="RNGun_DuskMAG_HMG"]/equippedStatOffsets</xpath>
+	</Operation>
+
+	<!-- ========== Shared Melee Tools ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_GAU19_HMG"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrels</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_Longshot_PP10AMR"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>2.0</cooldownTime>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<armorPenetrationSharp>2</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_WraithCannon_HMG"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel spikes</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>2.0</cooldownTime>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>heavy barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="RNGun_DuskMAG_HMG" or
+			defName="RNGun_CorpseBlaster_Shotgun" or
+			defName="RNGun_DuskStriker_Shotgun" or
+			defName="RNGun_CorpseDestroyer_GPMG" or
+			defName="RNGun_DuskCarbine_DMR" or
+			defName="RNGun_DFGAUSSRifle_AMR"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_DuskEnforcer_Revolver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Longshot PP-10 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_Longshot_PP10AMR</defName>
+		<statBases>
+			<Mass>20.00</Mass>
+			<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.24</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>2.0</SwayFactor>
+			<Bulk>20</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.5</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_145x114mm_FMJ</defaultProjectile>
+			<warmupTime>2.8</warmupTime>
+			<range>86</range>
+			<soundCast>RNShot_DFGAUSSRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_145x114mm</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Wraith Cannon ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_WraithCannon_HMG</defName>
+		<statBases>
+			<Mass>66.00</Mass>
+			<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.52</SwayFactor>
+			<Bulk>25</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.0</recoilAmount>
+			<recoilPattern>Mounted</recoilPattern>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_145x114mm_AP</defaultProjectile>
+			<warmupTime>2.8</warmupTime>
+			<range>75</range>
+			<burstShotCount>50</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<soundCast>RNShot_GAU19HMG</soundCast>
+			<soundAiming>RHGun_DOOMChaingunAiming</soundAiming>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aimedBurstShotCount>25</aimedBurstShotCount>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== GAU-19 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_GAU19_HMG</defName>
+		<statBases>
+			<Mass>55.00</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.32</SwayFactor>
+			<Bulk>18</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.70</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+			<warmupTime>2.3</warmupTime>
+			<range>68</range>
+			<burstShotCount>50</burstShotCount>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<soundCast>RNShot_GAU19HMG</soundCast>
+			<soundAiming>RHGun_DOOMChaingunAiming</soundAiming>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>200</magazineSize>
+			<reloadTime>9.2</reloadTime>
+			<ammoSet>AmmoSet_50BMG</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>25</aimedBurstShotCount>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Dusk MAG Machine Gun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_DuskMAG_HMG</defName>
+		<statBases>
+			<Mass>9.12</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.53</SwayFactor>
+			<Bulk>15</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.32</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>62</range>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>RNShot_DuskMag</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>80</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_50BMG</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Corpse Blaster Shotgun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_CorpseBlaster_Shotgun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>9.0</Bulk>
+			<SightsEfficiency>1.1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.5</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_10Gauge_Buck</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>20</range>
+			<soundCast>RNShot_CorpseBlaster</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>0.85</reloadTime>
+			<ammoSet>AmmoSet_10Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Dusk Striker Shotgun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_DuskStriker_Shotgun</defName>
+		<statBases>
+			<Mass>5.20</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.49</SwayFactor>
+			<Bulk>10.66</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.8</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_10Gauge_Buck</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>20</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+			<soundCast>RNShot_DuskStriker</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_10Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Dusk Enforcer ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_DuskEnforcer_Revolver</defName>
+		<statBases>
+			<Mass>3.00</Mass>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.58</SwayFactor>
+			<Bulk>2.73</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.5</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_500SWMagnum_AP</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>18</range>
+			<soundCast>RNShot_DuskEnforcer</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Corpse Destroyer ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_CorpseDestroyer_GPMG</defName>
+		<statBases>
+			<Mass>10.50</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.51</SwayFactor>
+			<Bulk>14.05</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.30</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>75</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>RNShot_CorpseDestroyer</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Dusk Carbine ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_DuskCarbine_DMR</defName>
+		<statBases>
+			<Mass>5</Mass>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.68</SwayFactor>
+			<Bulk>8</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.30</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<range>60</range>
+			<soundCast>RNShot_DuskCarbine</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_50BMG</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Gauss Rifle ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_DFGAUSSRifle_AMR</defName>
+		<statBases>
+			<Mass>5</Mass>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.68</SwayFactor>
+			<Bulk>8</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6mmRailgun_Sabot</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<range>60</range>
+			<soundCast>RNShot_DFGAUSSRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_6mmRailgun</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+</Patch>

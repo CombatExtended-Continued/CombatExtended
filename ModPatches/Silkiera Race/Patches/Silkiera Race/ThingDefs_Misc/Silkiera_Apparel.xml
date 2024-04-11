@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--========= Stuffable =========-->
+
+	<!--Skin Layer minimum protection-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AO_a"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+			<Bulk>0.5</Bulk>
+			<WornBulk>0.25</WornBulk>
+		</value>
+	</Operation>
+
+	<!--Middle Mid-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AT_a" or
+			defName="HAR_SK_AT_b" or
+			defName="HAR_SK_AT_c" or
+			defName="HAR_SK_AT_d" or
+			defName="HAR_SK_AT_e"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<!--Shell-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AS_a" or
+			defName="HAR_SK_AS_c"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AS_b"
+			]/statBases/ArmorRating_Sharp </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AS_b"
+			]/statBases/MaxHitPoints </xpath>
+		<value>
+			<MaxHitPoints>300</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AS_b"
+			]/statBases/MaxHitPoints </xpath>
+		<value>
+			<MaxHitPoints>300</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AS_b"
+			]/statBases/ArmorRating_Blunt </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AS_b"
+			]/statBases/ArmorRating_Heat </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AS_b" or
+			defName="HAR_SK_AS_c"
+			]/equippedStatOffsets/MoveSpeed </xpath>
+	</Operation>
+
+	<!--Overhead-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HAR_SK_AH_a" or
+			defName="HAR_SK_AH_b" or
+			defName="HAR_SK_AH_c" or
+			defName="HAR_SK_AH_d" or
+			defName="HAR_SK_AH_e"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<Bulk>1</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+</Patch>

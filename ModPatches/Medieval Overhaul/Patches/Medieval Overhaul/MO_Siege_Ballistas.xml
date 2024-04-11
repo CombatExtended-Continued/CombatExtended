@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Clean and Replace-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DankPyon_Turret_Ballista" or defName="DankPyon_Turret_RepeaterBallista"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_Turret_Ballista" or defName="DankPyon_Turret_RepeaterBallista"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_Turret_Ballista" or defName="DankPyon_Turret_RepeaterBallista"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<!-- ========== Ballista - Weapon ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DankPyon_Gun_BallistaTurret</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>0.2</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>BallistaPilum_Fired</defaultProjectile>
+			<warmupTime>1.4</warmupTime>
+			<range>45</range>
+			<soundCast>BulletImpact_Wood</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>2.8</reloadTime>
+			<ammoSet>AmmoSet_BallistaJavelins</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>false</noSingleShot>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Repeater Ballista - Weapon ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DankPyon_Gun_RepeaterBallistaTurret</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>0.2</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>BallistaPilum_Fired</defaultProjectile>
+			<warmupTime>1.4</warmupTime>
+			<range>45</range>
+			<burstShotCount>2</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<soundCast>BulletImpact_Wood</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>3.6</reloadTime>
+			<ammoSet>AmmoSet_BallistaJavelins</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Gun_BallistaTurret" or defName="DankPyon_Gun_RepeaterBallistaTurret"]/weaponTags</xpath>
+		<value>
+			<li>TurretGun</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/RecipeDef[defName="DankPyon_MakeBullet_BallistaBolt" or defName="DankPyon_MakeBullet_BallistaBoltBulk"]</xpath>
+	</Operation>
+
+</Patch>
