@@ -27,7 +27,7 @@ namespace CombatExtended
                 return;
             }
             pawn.CurJob.playerForced = true;
-            if (pawn.CurJob.JobIsSameAs(newJob))
+            if (pawn.CurJob.JobIsSameAs(pawn, newJob))
             {
                 return;
             }
