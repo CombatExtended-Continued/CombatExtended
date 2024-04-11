@@ -60,7 +60,7 @@ namespace CombatExtended
             {
                 Color color = MoteGraphic.Color * this.instanceColor;
                 color.a *= alpha;
-                Vector3 exactScale = this.exactScale;
+                Vector3 exactScale = this.ExactScale;
                 exactScale.x *= MoteGraphic.data.drawSize.x;
                 exactScale.z *= MoteGraphic.data.drawSize.y;
                 Matrix4x4 matrix = default(Matrix4x4);
