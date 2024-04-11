@@ -20,33 +20,6 @@
 		</value>
 	</Operation>
 
-	<!--Ballista Ammos-->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<CombatExtended.AmmoSetDef>
-				<defName>AmmoSet_BallistaJavelins</defName>
-				<label>javelins</label>
-				<ammoTypes>
-					<Pila>BallistaPilum_Fired</Pila>
-				</ammoTypes>
-			</CombatExtended.AmmoSetDef>
-
-			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
-				<defName>BallistaPilum_Fired</defName>
-				<label>pilum (fired)</label>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageAmountBase>45</damageAmountBase>
-					<speed>60</speed>
-					<armorPenetrationBlunt>141.12</armorPenetrationBlunt>
-					<armorPenetrationSharp>13</armorPenetrationSharp>
-					<preExplosionSpawnChance>0.4</preExplosionSpawnChance>
-					<preExplosionSpawnThingDef>Pila</preExplosionSpawnThingDef>
-				</projectile>
-			</ThingDef>
-		</value>
-	</Operation>
-
 	<!-- ========== Ballista - Weapon ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DankPyon_Gun_BallistaTurret</defName>

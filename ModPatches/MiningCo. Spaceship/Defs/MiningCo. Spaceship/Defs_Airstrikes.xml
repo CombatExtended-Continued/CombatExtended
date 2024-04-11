@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- DamageDefs -->
+	<DamageDef>
+		<defName>MiningCo_Cannon</defName>
+		<label>Autocannon</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has died in an explosion.</deathMessage>
+		<hediff>Blast</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Blunt</armorCategory>
+		<minDamageToFragment>10</minDamageToFragment>
+		<defaultDamage>56</defaultDamage>
+		<defaultStoppingPower>2</defaultStoppingPower>
+		<defaultArmorPenetration>60</defaultArmorPenetration>
+		<buildingDamageFactor>4</buildingDamageFactor>
+		<plantDamageFactor>4</plantDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellFleck>BlastDry</explosionCellFleck>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>Explosion_Bomb</soundExplosion>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+	</DamageDef>
+
+	<DamageDef>
+		<defName>MiningCo_Rocket</defName>
+		<label>Rocket</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has died in an explosion.</deathMessage>
+		<hediff>Blast</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Blunt</armorCategory>
+		<minDamageToFragment>10</minDamageToFragment>
+		<defaultDamage>120</defaultDamage>
+		<defaultStoppingPower>3</defaultStoppingPower>
+		<defaultArmorPenetration>160</defaultArmorPenetration>
+		<buildingDamageFactor>4</buildingDamageFactor>
+		<plantDamageFactor>4</plantDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellFleck>BlastDry</explosionCellFleck>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>Explosion_Bomb</soundExplosion>
+		<combatLogRules>Damage_Bomb</combatLogRules>
+	</DamageDef>
+
+	<!-- Projectiles -->
+	<ThingDef ParentName="BaseBullet">
+		<defName>PrometheumBomb</defName>
+		<label>Prometheum bomb</label>
+		<thingClass>Projectile_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<flyOverhead>true</flyOverhead>
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<explosionRadius>6</explosionRadius>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<speed>20</speed>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+		</projectile>
+	</ThingDef>
+
+	<!-- Ship Weapons -->
+	<Def Class="Spaceship.WeaponDef">
+		<defName>PrometheumBombWeapon</defName>
+		<label>Prometheum bomb</label>
+		<ammoDef>PrometheumBomb</ammoDef>
+		<soundCastDef>InfernoCannon_Fire</soundCastDef>
+		<ammoQuantity>3</ammoQuantity>
+		<ticksBetweenShots>60</ticksBetweenShots>
+		<startShootingDistance>10</startShootingDistance>
+		<ammoTravelDistance>5</ammoTravelDistance>
+		<isTwinGun>true</isTwinGun>
+		<horizontalPositionOffset>3.0</horizontalPositionOffset>
+		<verticalPositionOffset>0.0</verticalPositionOffset>
+		<disableRainDurationInTicks>30000</disableRainDurationInTicks>
+	</Def>
+
+	<Def Class="Spaceship.AirStrikeDef">
+		<defName>PrometheumRaid</defName>
+		<label>prometheum bombing run</label>
+		<description>PROMETHEUM STICKS TO MECHANOIDS!</description>
+		<runsNumber>1</runsNumber>
+		<costInSilver>3500</costInSilver>
+		<ammoResupplyDays>20</ammoResupplyDays>
+		<cellsTravelledPerTick>0.08</cellsTravelledPerTick>
+		<ticksBeforeOverflightReducedSpeed>60</ticksBeforeOverflightReducedSpeed>
+		<weapons>
+			<li>PrometheumBombWeapon</li>
+		</weapons>
+	</Def>
+
+</Defs>

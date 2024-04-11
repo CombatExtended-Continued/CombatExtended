@@ -1,71 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!--Medieval Kobold with Sticky Bomb -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<PawnKindDef>
-				<defName>Kobold_Kamikaze</defName>
-				<race>Alien_Kobold</race>
-				<label>Blaster</label>
-				<combatPower>65</combatPower>
-				<defaultFactionType>LTS_MedboldEmpireFriendly</defaultFactionType>
-				<backstoryCategories>
-					<li>MedboldBackstory</li>
-				</backstoryCategories>
-				<maxGenerationAge>10</maxGenerationAge>
-				<chemicalAddictionChance>0.05</chemicalAddictionChance>
-				<invNutrition>1.8</invNutrition>
-				<invFoodDef>Pemmican</invFoodDef>
-				<canBeSapper>true</canBeSapper>
-				<gearHealthRange>
-					<min>0.5</min>
-					<max>1.8</max>
-				</gearHealthRange>
-				<apparelMoney>
-					<min>180</min>
-					<max>350</max>
-				</apparelMoney>
-				<apparelRequired>
-					<li>Apparel_Pants</li>
-					<li>CE_Apparel_TribalBackpack</li>
-				</apparelRequired>
-				<apparelTags>
-					<li>IndustrialBasic</li>
-				</apparelTags>
-				<weaponMoney>
-					<min>120</min>
-					<max>400</max>
-				</weaponMoney>
-				<weaponTags>
-					<li>CE_GrenadeNeolithic</li>
-				</weaponTags>
-				<techHediffsMoney>
-					<min>50</min>
-					<max>800</max>
-				</techHediffsMoney>
-				<techHediffsTags>
-					<li>Poor</li>
-					<li>Simple</li>
-				</techHediffsTags>
-				<techHediffsChance>0.33</techHediffsChance>
-				<disallowedTraits>
-					<li>Brawler</li>
-				</disallowedTraits>
-				<initialWillRange>2~4</initialWillRange>
-				<initialResistanceRange>14~22</initialResistanceRange>
-				<modExtensions>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-						<primaryMagazineCount>
-							<min>6</min>
-							<max>18</max>
-						</primaryMagazineCount>
-						<!-- No sidearms, these guys are literally just sticky-bomb launchers-->
-					</li>
-				</modExtensions>
-			</PawnKindDef>
-		</value>
-	</Operation>
+
 	<!-- Adding Kobold Kamikazes -->
 	<Operation Class="PatchOperationAdd"><!-- Combat -->
 		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers/li[1]/options</xpath>
@@ -73,24 +8,28 @@
 			<Kobold_Kamikaze>10</Kobold_Kamikaze>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd"><!--Peaceful-->
 		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers/li[2]/options</xpath>
 		<value>
 			<Kobold_Kamikaze>5</Kobold_Kamikaze>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd"><!--Trader-->
 		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers/li[3]/guards</xpath>
 		<value>
 			<Kobold_Kamikaze>7</Kobold_Kamikaze>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd"><!-- Settlement -->
 		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers/li[4]/options</xpath>
 		<value>
 			<Kobold_Kamikaze>20</Kobold_Kamikaze>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd"><!--Adding Kamikaze ONLY raid -->
 		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers</xpath>
 		<value>
@@ -103,4 +42,5 @@
 			</li>
 		</value>
 	</Operation>
+	
 </Patch>
