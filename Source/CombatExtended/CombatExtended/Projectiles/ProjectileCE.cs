@@ -1194,7 +1194,7 @@ namespace CombatExtended
         /// <summary>
         /// Draws projectile if at least a tick away from caster (or always if no caster)
         /// </summary>
-        public override void Draw()
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             if (FlightTicks == 0 && launcher != null && launcher is Pawn)
             {
