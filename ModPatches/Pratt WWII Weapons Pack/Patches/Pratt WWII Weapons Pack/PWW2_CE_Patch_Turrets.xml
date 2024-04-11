@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== (Turret FR) Hotchkiss M1914 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_HotchkissM1914HMG</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.16</SwayFactor>
+			<Bulk>14.70</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.80</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_8x50mmRLebel_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>75</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_8x50mmRLebel</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_HotchkissM1914HMG"]/statBases/Mass</xpath>
+		<value>
+			<Mass>23.60</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_HotchkissM1914HMG"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>47000</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_HotchkissM1914HMG"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>170</Steel>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_HotchkissM1914HMG"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>75</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<!-- ========== (Turret GER) MG 34 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_MG34MG</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.28</SwayFactor>
+			<Bulk>14.19</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.64</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>86</range>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MG34MG"]/statBases/Mass</xpath>
+		<value>
+			<Mass>32.00</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MG34MG"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>48500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MG34MG"]/costList</xpath>
+		<value>
+			<costList>
+				<WoodLog>20</WoodLog>
+				<Steel>175</Steel>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MG34MG"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<!-- ========== (Turret GER) MG 42 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_MG42MG</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.27</SwayFactor>
+			<Bulk>14.20</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.63</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>86</range>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MG42MG"]/statBases/Mass</xpath>
+		<value>
+			<Mass>31.65</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MG42MG"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>48500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MG42MG"]/costList</xpath>
+		<value>
+			<costList>
+				<WoodLog>20</WoodLog>
+				<Steel>175</Steel>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MG42MG"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<!-- ========== (Turret JPN) Type 92 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_Type92HMG</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.57</SwayFactor>
+			<Bulk>13.56</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.37</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_77x58mmArisaka_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>75</range>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_77x58mmArisaka</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_Type92HMG"]/statBases/Mass</xpath>
+		<value>
+			<Mass>55.30</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_Type92HMG"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>59500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_Type92HMG"]/costList</xpath>
+		<value>
+			<costList>
+				<WoodLog>5</WoodLog>
+				<Steel>270</Steel>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_Type92HMG"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>75</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<!-- ========== (Turret UK) Vickers ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_VickersHMG</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>13.20</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.54</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>86</range>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_303British</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_VickersHMG"]/statBases/Mass</xpath>
+		<value>
+			<Mass>37.00</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_VickersHMG"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>52000</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_VickersHMG"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>210</Steel>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_VickersHMG"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<!-- ========== (Turret US) M1917A1 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_M1917A1MG</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>11.80</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.53</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_3006Springfield_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>75</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_3006Springfield</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_M1917A1MG"]/statBases/Mass</xpath>
+		<value>
+			<Mass>39.25</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_M1917A1MG"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>52500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_M1917A1MG"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>215</Steel>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_M1917A1MG"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>75</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<!-- ========== (Turret US) M1919A4 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_M1919A4MG</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.05</SwayFactor>
+			<Bulk>11.64</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.83</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_3006Springfield_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>86</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_3006Springfield</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_M1919A4MG"]/statBases/Mass</xpath>
+		<value>
+			<Mass>20.40</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_M1919A4MG"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>44500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_M1919A4MG"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>150</Steel>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_M1919A4MG"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<!-- ========== (Turret USSR) Maxim M1910-30 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_MaximM1910-30HMG</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.67</SwayFactor>
+			<Bulk>12.67</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.28</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>86</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_762x54mmR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MaximM1910-30HMG"]/statBases/Mass</xpath>
+		<value>
+			<Mass>64.30</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MaximM1910-30HMG"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>63000</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MaximM1910-30HMG"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>300</Steel>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MaximM1910-30HMG"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<!-- ========== Common to all Turrets ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Turret_HotchkissM1914HMG" or
+			defName="Turret_MG34MG" or
+			defName="Turret_MG42MG" or
+			defName="Turret_Type92HMG" or
+			defName="Turret_VickersHMG" or
+			defName="Turret_M1917A1MG" or
+			defName="Turret_M1919A4MG" or
+			defName="Turret_MaximM1910-30HMG"
+			]/thingClass </xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="Turret_HotchkissM1914HMG" or
+			defName="Turret_MG34MG" or
+			defName="Turret_MG42MG" or
+			defName="Turret_Type92HMG" or
+			defName="Turret_VickersHMG" or
+			defName="Turret_M1917A1MG" or
+			defName="Turret_M1919A4MG" or
+			defName="Turret_MaximM1910-30HMG"
+			]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+	</Operation>
+
+	<!-- All Pratt WWII Turrets already have their fillPercent set to 0.85, making them automatically compatible with CE embrasures -->
+</Patch>

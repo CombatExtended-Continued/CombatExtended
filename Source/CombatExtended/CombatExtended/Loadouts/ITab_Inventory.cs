@@ -401,7 +401,7 @@ namespace CombatExtended
                     var worn_apparel = SelPawnForGear?.apparel?.WornApparel;
                     foreach (var apparel in worn_apparel)
                     {
-                        var compReloadable = apparel.TryGetComp<CompReloadable>();
+                        var compReloadable = apparel.TryGetComp<CompApparelReloadable>();
                         if (compReloadable != null && compReloadable.AmmoDef == thing.def && compReloadable.NeedsReload(true))
                         {
                             if (!SelPawnForGear.Drafted)    //TODO-1.2 This should be doable for drafted pawns as well, but the job does nothing. Figure out what's wrong and remove this condition.
@@ -519,7 +519,8 @@ namespace CombatExtended
             List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
             foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
             {
-                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Neck)))
+                //TODO: 1.5 should be Neck
+                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Eye)))
                 {
                     float armorValue = part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
                     if (wornApparel != null)

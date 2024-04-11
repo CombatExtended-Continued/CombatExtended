@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Give ammo to pawns ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>
+			Defs/PawnKindDef[@Name="AnthroOutlanderBase"]
+		</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>7</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+</Patch>

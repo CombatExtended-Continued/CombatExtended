@@ -134,10 +134,11 @@ namespace CombatExtended.AI
             {
                 return false;
             }
-            if (TryUseAOE(verb, castTarg, destTarg))
-            {
-                return false;
-            }
+            //TODO 1.5
+            //if (TryUseAOE(verb, castTarg, destTarg))
+            //{
+            //return false;
+            //}
             return true;
         }
 

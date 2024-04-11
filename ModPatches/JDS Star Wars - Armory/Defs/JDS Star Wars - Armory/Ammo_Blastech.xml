@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- AmmoSet -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SWPlasmaGasCartridgeYellow</defName>
+		<label>Plasma Gas Cartridges</label>
+		<ammoTypes>
+			<Ammo_SWPlasmaGasCartridge>Bullet_SWPlasmaGasCartridgeYellow</Ammo_SWPlasmaGasCartridge>
+			<Ammo_SWPlasmaGasCartridge_AP>Bullet_SWPlasmaGasCartridge_AP</Ammo_SWPlasmaGasCartridge_AP>
+			<Ammo_SWPlasmaGasCartridge_Ion>Bullet_SWPlasmaGasCartridge_Ion</Ammo_SWPlasmaGasCartridge_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- DamageDefs -->
+	<DamageDef>
+		<defName>CE_Blaster_Damage</defName>
+		<label>blaster bolt</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<externalViolence>true</externalViolence>
+		<isExplosive>true</isExplosive>
+		<deathMessage>{0} has been shot to death.</deathMessage>
+		<hediff>Burn</hediff>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Blunt</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<minDamageToFragment>15</minDamageToFragment>
+		<defaultDamage>3</defaultDamage>
+		<buildingDamageFactor>3</buildingDamageFactor>
+		<plantDamageFactor>3</plantDamageFactor>
+		<explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+		<explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+		<explosionCellFleck>BlastFlame</explosionCellFleck>
+		<explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>Explosion_Flame</soundExplosion>
+		<combatLogRules>Damage_Flame</combatLogRules>
+		<canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+	</DamageDef>
+
+	<!-- Projectiles -->
+	<ThingDef ParentName="BaseSWPlasmaGasCartridgeBullet">
+		<defName>Bullet_SWPlasmaGasCartridgeYellow</defName>
+		<label>Blaster Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Yellow_Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_Blaster_Blue_Mid</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Blaster_Damage</damageDef>
+			<speed>150</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base762x51mmNATOBullet">
+		<defName>Bullet_Blaster_Blue_High</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Blaster_Damage</damageDef>
+			<speed>150</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>23</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base45ACPBullet">
+		<defName>Bullet_Blaster_Blue_Low</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Blaster_Damage</damageDef>
+			<speed>130</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base45ACPBullet">
+		<defName>Bullet_Blaster_Red_Low</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Blaster_Damage</damageDef>
+			<speed>130</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_Blaster_Red_Mid</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Blaster_Damage</damageDef>
+			<speed>150</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_Blaster_Red_High</defName>
+		<label>blaster bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Red_Bullet_Laser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Blaster_Damage</damageDef>
+			<speed>150</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>23</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>23</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x365mmBoforsBullet">
+		<defName>Bullet_B2Cannon</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>b-2 droid wrist cannon shot</label>
+		<graphicData>
+			<texPath>Things/Projectile/Red_Bullet_cannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Blaster_Damage</damageDef>
+			<speed>80</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>60</damageAmountBase>
+			<armorPenetrationBlunt>35</armorPenetrationBlunt>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<explosionRadius>1.0</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+</Defs>

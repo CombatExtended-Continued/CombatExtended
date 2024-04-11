@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Allow ammo for Empire/Deserter weapons to be purchased using intel. -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Ammo_6x24mmCharged"]</xpath>
+		<value>
+			<li Class="VFED.ContrabandExtension">
+				<category>VFED_Imperial</category>
+				<intelCost>5</intelCost>
+				<useCriticalIntel>false</useCriticalIntel>
+				<countMult>100</countMult>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Ammo_6x24mmCharged_AP"]</xpath>
+		<value>
+			<li Class="VFED.ContrabandExtension">
+				<category>VFED_Imperial</category>
+				<intelCost>5</intelCost>
+				<useCriticalIntel>false</useCriticalIntel>
+				<countMult>100</countMult>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Ammo_6x24mmCharged_Ion"]</xpath>
+		<value>
+			<li Class="VFED.ContrabandExtension">
+				<category>VFED_Imperial</category>
+				<intelCost>5</intelCost>
+				<useCriticalIntel>false</useCriticalIntel>
+				<countMult>100</countMult>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Combat Extended: Guns -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Combat Extended Guns</li>
+		</mods>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="CE_Gun_ChargeSniperRifle"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>13</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+				</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Ammo_8x50mmCharged"]</xpath>
+		<value>
+			<li Class="VFED.ContrabandExtension">
+				<category>VFED_Imperial</category>
+				<intelCost>6</intelCost>
+				<useCriticalIntel>false</useCriticalIntel>
+				<countMult>100</countMult>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Ammo_8x50mmCharged_AP"]</xpath>
+		<value>
+			<li Class="VFED.ContrabandExtension">
+				<category>VFED_Imperial</category>
+				<intelCost>6</intelCost>
+				<useCriticalIntel>false</useCriticalIntel>
+				<countMult>100</countMult>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Ammo_8x50mmCharged_Ion"]</xpath>
+		<value>
+			<li Class="VFED.ContrabandExtension">
+				<category>VFED_Imperial</category>
+				<intelCost>6</intelCost>
+				<useCriticalIntel>false</useCriticalIntel>
+				<countMult>100</countMult>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Remove Charge Lance from available contraband. -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Gun_ChargeLance"]/modExtensions/li[@Class="VFED.ContrabandExtension"]</xpath>
+	</Operation>
+
+</Patch>

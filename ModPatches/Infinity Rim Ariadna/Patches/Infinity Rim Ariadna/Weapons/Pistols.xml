@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_HeavyPistol" or defName="Gun_AssaultPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_HeavyPistol</defName>
+		<statBases>
+			<Mass>2.39</Mass>
+			<RangedWeapon_Cooldown>0.49</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.18</ShotSpread>
+			<SwayFactor>1.27</SwayFactor>
+			<Bulk>3.41</Bulk>
+			<WorkToMake>14000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>55</Steel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<Teseum>10</Teseum>
+		</costList>
+		<Properties>
+			<recoilAmount>2.96</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_44Magnum_Teseum</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>15</range>
+			<soundCast>ShotHeavyPistol</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>0.8</reloadTime>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<ammoSet>AmmoSet_TeseumPistolMagnum</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<researchPrerequisite>Gunsmithing</researchPrerequisite>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_AssaultPistol</defName>
+		<statBases>
+			<Mass>1.35</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.07</SwayFactor>
+			<Bulk>2.5</Bulk>
+			<WorkToMake>14000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>90</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<Teseum>5</Teseum>
+		</costList>
+		<Properties>
+			<recoilAmount>1.72</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_Teseum</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<soundCast>ShotAssaultPistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_TeseumPistol</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<researchPrerequisite>BlowbackOperation</researchPrerequisite>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gun_AssaultPistol"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>0.93,0.93</DrawSize>
+				<DrawOffset>0.0,0.0</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+</Patch>

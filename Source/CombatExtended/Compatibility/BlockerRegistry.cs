@@ -21,7 +21,7 @@ namespace CombatExtended.Compatibility
         private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
         private static List<Func<ProjectileCE, Thing, bool>> beforeCollideWithCallbacks;
-        private static List<Func<Pawn, IntVec3, bool>> pawnUnsuppresableFromCallback;
+        private static List<Func<Pawn, IntVec3, bool>> pawnUnsuppressableFromCallback;
         private static List<Func<Thing, IEnumerable<IEnumerable<IntVec3>>>> shieldZonesCallback;
 
         private static void EnableCB()
@@ -47,7 +47,7 @@ namespace CombatExtended.Compatibility
         private static void EnablePUF()
         {
             enabledPUF = true;
-            pawnUnsuppresableFromCallback = new List<Func<Pawn, IntVec3, bool>>();
+            pawnUnsuppressableFromCallback = new List<Func<Pawn, IntVec3, bool>>();
         }
         private static void EnableBCW()
         {
@@ -118,7 +118,7 @@ namespace CombatExtended.Compatibility
             {
                 EnablePUF();
             }
-            pawnUnsuppresableFromCallback.Add(f);
+            pawnUnsuppressableFromCallback.Add(f);
         }
 
         public static bool CheckCellForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
@@ -159,13 +159,13 @@ namespace CombatExtended.Compatibility
             }
             return shieldZonesCallback.SelectMany(cb => cb(thing));
         }
-        public static bool PawnUnsuppresableFromCallback(Pawn pawn, IntVec3 origin)
+        public static bool PawnUnsuppressableFromCallback(Pawn pawn, IntVec3 origin)
         {
             if (!enabledPUF)
             {
                 return false;
             }
-            foreach (var cb in pawnUnsuppresableFromCallback)
+            foreach (var cb in pawnUnsuppressableFromCallback)
             {
                 if (cb(pawn, origin))
                 {

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Officer Gorget === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_OfficerGorget"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>0.5</Bulk>
+			<StuffEffectMultiplierArmor>1.25</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- === Field Cap === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_Fieldcap"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- === Officer's Cap === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_CrusherCap"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- === Helmet === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>6.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_Helmet"]</xpath>
+		<value>
+			<costList>
+				<Hyperweave>15</Hyperweave><!-- Hyperweave instead of Devilstrand, since the torso armor already uses it.-->
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_Helmet"]/stuffCategories/li[.="Metallic"]</xpath>
+		<value>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+
+	<!-- === Kasrkin Helmet === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>9</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_Helmet"]/costList</xpath>
+		<value>
+			<Hyperweave>20</Hyperweave>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_Helmet"]/stuffCategories/li[.="Metallic"]</xpath>
+		<value>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+
+</Patch>

@@ -195,7 +195,7 @@ namespace CombatExtended.Lasers
             }
         }
 
-        public override void Draw()
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             SetupDrawing();
 

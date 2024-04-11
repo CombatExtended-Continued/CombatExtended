@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>RocketArrow</defName>
+		<label>hwacha rocket arrow</label>
+		<labelShort>hwacha</labelShort>
+		<description>Steel arrowhead with an underslung tube of gunpowder for explosive results.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== Ammoset ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Hwacha</defName>
+		<label>hwacha arrows</label>
+		<ammoTypes>
+			<Ammo_GreatArrow_ExplosiveArrow>Projectile_GreatArrow_ExplosiveArrow</Ammo_GreatArrow_ExplosiveArrow>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+		<defName>Ammo_GreatArrow_ExplosiveArrow</defName>
+		<label>hwacha rocket arrow</label>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/Arrow/Flame</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.05</Mass>
+			<MarketValue>1.16</MarketValue>
+		</statBases>
+		<ammoClass>RocketArrow</ammoClass>
+	</ThingDef>
+
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrow_ExplosiveArrow</defName>
+		<label>hwacha rocket arrow</label>
+		<graphicData>
+			<texPath>Things/Projectiles/AV_ArrowProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>30</speed>
+			<damageDef>Arrow</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>3.18</armorPenetrationBlunt>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<suppressionFactor>3.0</suppressionFactor>
+			<airborneSuppressionFactor>0.42</airborneSuppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+			<soundExplode>Explosion_Rocket</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>20</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_GreatArrow_ExplosiveArrow</defName>
+		<label>make hwacha explosive arrows x10</label>
+		<description>Craft 10 hwacha explosive arrows.</description>
+		<jobString>Making hwacha rocket arrows.</jobString>
+		<workAmount>800</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Cloth</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>Cloth</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_GreatArrow_ExplosiveArrow>10</Ammo_GreatArrow_ExplosiveArrow>
+		</products>
+		<researchPrerequisites>
+			<li>CE_Gunpowder</li>
+		</researchPrerequisites>
+	</RecipeDef>
+
+</Defs>

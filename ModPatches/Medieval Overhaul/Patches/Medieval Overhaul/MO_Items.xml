@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Make ammos craftable with the anvil-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AmmoGreatArrowBase" or @Name="AmmoArrowBase" or @Name="AmmoCrossbowBoltBase"]/tradeTags</xpath>
+		<value>
+			<li>CE_AutoEnableCrafting_DankPyon_Workbench</li>
+			<li>CE_AutoEnableCrafting_DankPyon_Workbench</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DankPyon_DrugBase" or defName="DankPyon_JuiceApple" or defName="DankPyon_JuiceAppleUnfermented"]/statBases</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="DankPyon_DrugBase" or defName="DankPyon_JuiceApple" or defName="DankPyon_JuiceAppleUnfermented"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>2.22</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>neck</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>3.33</cooldownTime>
+					<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

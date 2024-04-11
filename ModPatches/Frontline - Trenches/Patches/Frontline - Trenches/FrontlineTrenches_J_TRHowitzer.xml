@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TR_Base_Howitzer"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="TR_Base_Howitzer"]/tradeTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="TR_Base_Howitzer"]</xpath>
+			<value>
+				<tradeTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TR_Base_Howitzer"]/tradeTags</xpath>
+		<value>
+			<li>CE_Turret</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TR_Gun_Howitzer</defName>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Flammability>0</Flammability>
+			<MarketValue>2500</MarketValue>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>0.9</SwayFactor>
+			<RangedWeapon_Cooldown>15</RangedWeapon_Cooldown>
+			<MaxHitPoints>800</MaxHitPoints>
+			<Bulk>30.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.78</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_TRHowitzerShell_HE</defaultProjectile>
+			<warmupTime>5</warmupTime>
+			<range>2000</range>
+			<minRange>25</minRange>
+			<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>TR_Howitzer_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_TRHowitzerShell</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "TR_Gun_Howitzer"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+</Patch>

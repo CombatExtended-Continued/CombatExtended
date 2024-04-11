@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- One-handed Tags -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "VFET_Throwspikes"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeaponAndAmmoNeolithic</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeAdd">
+		<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/costList</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]</xpath>
+		<value>
+			<techLevel>Neolithic</techLevel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/statBases</xpath>
+		<value>
+			<statBases>
+				<MarketValue>0.7</MarketValue>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+				<Bulk>1.5</Bulk>
+				<Mass>1</Mass>
+				<RangedWeapon_Cooldown>1.3</RangedWeapon_Cooldown>
+			</statBases>
+			<stackLimit>50</stackLimit>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Tribal_Spike_Thrown</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>10</range>
+					<soundCast>Interact_BeatFire</soundCast>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFET_Throwspikes"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>limb</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

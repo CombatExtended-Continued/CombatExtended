@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Eltex Weapon ===== -->
+
+	<!-- === Eltex Dagger === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexDagger"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexDagger"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexDagger"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
+					<MeleeDodgeChance>0.30</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</nomatch>
+
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexDagger"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.15</MeleeCritChance>
+				<MeleeParryChance>0.30</MeleeParryChance>
+				<MeleeDodgeChance>0.30</MeleeDodgeChance>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexDagger"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexDagger"]</xpath>
+			<value>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</value>
+		</nomatch>
+
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexDagger"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexDagger"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.69</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.46</cooldownTime>
+					<chanceFactor>0.50</chanceFactor>
+					<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.20</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>1.36</cooldownTime>
+					<chanceFactor>0.45</chanceFactor>
+					<armorPenetrationBlunt>0.95</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.58</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Eltex Mace === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexMace"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexMace"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexMace"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.42</MeleeCritChance>
+					<MeleeParryChance>0.24</MeleeParryChance>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</nomatch>
+
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexMace"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.42</MeleeCritChance>
+				<MeleeParryChance>0.24</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexMace"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexMace"]</xpath>
+			<value>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</value>
+		</nomatch>
+
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexMace"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexMace"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>2.1</cooldownTime>
+					<chanceFactor>0.90</chanceFactor>
+					<armorPenetrationBlunt>6.925</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Eltex Sword === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexSword"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexSword"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexSword"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.40</MeleeCritChance>
+					<MeleeParryChance>0.60</MeleeParryChance>
+					<MeleeDodgeChance>0.30</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</nomatch>
+
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexSword"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.40</MeleeCritChance>
+				<MeleeParryChance>0.60</MeleeParryChance>
+				<MeleeDodgeChance>0.30</MeleeDodgeChance>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexSword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexSword"]</xpath>
+			<value>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</value>
+		</nomatch>
+
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexSword"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VPE_MeleeWeapon_EltexSword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.46</cooldownTime>
+					<chanceFactor>0.50</chanceFactor>
+					<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.40</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.45</chanceFactor>
+					<armorPenetrationBlunt>1.1</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.58</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ===== Misc ===== -->
+
+	<!-- === Heat Pearls === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VPE_HeatPearls"]/verbs/li/range</xpath>
+		<value>
+			<range>17.9</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VPE_HeatPearls"]/verbs/li/forcedMissRadius</xpath>
+		<value>
+			<forcedMissRadius>0.9</forcedMissRadius>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Projectiles -->
+	<!-- Tanker -->
+	<ThingDef ParentName="BaseFlamethrowerBullet">
+		<defName>Bullet_TankerInfernoCannon</defName>
+		<label>flame stream</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Bugs_Fireball</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>2.5</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<speed>20</speed>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.33</preExplosionSpawnChance>
+			<soundExplode>CE_FlamethrowerExplosion</soundExplode>
+			<explosionRadius>1.5</explosionRadius>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<!-- Firefly -->
+	<ThingDef ParentName="BaseFlamethrowerBullet">
+		<defName>Bullet_FireFlyInfernoCannon</defName>
+		<label>flame stream</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Bugs_Fireball</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<speed>20</speed>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.33</preExplosionSpawnChance>
+			<soundExplode>CE_FlamethrowerExplosion</soundExplode>
+			<explosionRadius>1.0</explosionRadius>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<!-- Bombardier -->
+	<ThingDef ParentName="BaseFlamethrowerBullet">
+		<defName>Bullet_BombardierBugTrigger</defName>
+		<label>Bombardier Suicide</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Bugs_Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+			<drawSize>0</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>120</damageAmountBase>
+			<speed>200</speed>
+			<explosionRadius>8.0</explosionRadius>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<!-- Plasma Grenadier -->
+	<ThingDef ParentName="BaseFlamethrowerBullet">
+		<defName>Bullet_PlasmaGrenadierBugPlasma</defName>
+		<label>plasma burst</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Bugs_Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+			<drawSize>3</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>90</damageAmountBase>
+			<speed>20</speed>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<explosionRadius>1.5</explosionRadius>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<!-- Scorpion Plasma -->
+	<ThingDef ParentName="BaseFlamethrowerBullet">
+		<defName>Bullet_ScorpionBugPlasma</defName>
+		<label>plasma burst</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Bugs_Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+			<drawSize>3</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>90</damageAmountBase>
+			<speed>30</speed>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<explosionRadius>2.4</explosionRadius>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<!-- Plasma Bug -->
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_PlasmaBugPlasma</defName>
+		<label>plasma burst</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Bugs_Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+			<drawSize>10</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<speed>1</speed>
+			<gravityFactor>5</gravityFactor>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.33</preExplosionSpawnChance>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<explosionRadius>8.0</explosionRadius>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>120</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveRadius>4.4</explosiveRadius>
+				<explosionSound>MortarIncendiary_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

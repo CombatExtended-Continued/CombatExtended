@@ -1,0 +1,1665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Projectiles ======= -->
+
+	<!-- ===== ThingClass ===== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="K4G_Proj_WW2BritishServiceGrenade" or
+			defName="K4G_Proj_WW2FinnishServiceGrenade" or
+			defName="K4G_Proj_WW2FrenchServiceGrenade" or
+			defName="K4G_Proj_WW2GermanServiceGrenade" or
+			defName="K4G_Proj_WW2GermanServiceGrenade" or
+			defName="K4G_Proj_WW2ItalianServiceGrenade" or
+			defName="K4G_Proj_WW2ItalianServiceGrenadeB" or
+			defName="K4G_Proj_WW2ItalianServiceGrenadeC" or
+			defName="K4G_Proj_WW2JapaneseServiceGrenade" or
+			defName="K4G_Proj_WW2RussianServiceGrenade" or
+			defName="K4G_Proj_WW2RussianServiceGrenadeB" or
+			defName="K4G_Proj_WW2RussianServiceGrenadeC" or
+			defName="K4G_Proj_WW2AmericanServiceGrenade" or
+			defName="K4G_Proj_WW2BritishServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2BritishServiceAntiTankGrenadeB" or
+			defName="K4G_Proj_WW2GermanServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2ItalianServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2RussianServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
+			defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"
+			]</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ===== Fragmentation ===== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="K4G_Proj_WW2BritishServiceGrenade" or
+			defName="K4G_Proj_WW2FinnishServiceGrenade" or
+			defName="K4G_Proj_WW2FrenchServiceGrenade" or
+			defName="K4G_Proj_WW2GermanServiceGrenade" or
+			defName="K4G_Proj_WW2GermanServiceGrenade" or
+			defName="K4G_Proj_WW2ItalianServiceGrenade" or
+			defName="K4G_Proj_WW2ItalianServiceGrenadeB" or
+			defName="K4G_Proj_WW2ItalianServiceGrenadeC" or
+			defName="K4G_Proj_WW2JapaneseServiceGrenade" or
+			defName="K4G_Proj_WW2RussianServiceGrenade" or
+			defName="K4G_Proj_WW2RussianServiceGrenadeB" or
+			defName="K4G_Proj_WW2RussianServiceGrenadeC" or
+			defName="K4G_Proj_WW2AmericanServiceGrenade"
+			]</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1.5</explosionRadius>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>56</damageAmountBase>
+				<explosionDelay>60</explosionDelay>
+				<dropsCasings>true</dropsCasings>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<speed>12</speed>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="K4G_Proj_WW2BritishServiceGrenade" or
+			defName="K4G_Proj_WW2FinnishServiceGrenade" or
+			defName="K4G_Proj_WW2FrenchServiceGrenade" or
+			defName="K4G_Proj_WW2GermanServiceGrenade" or
+			defName="K4G_Proj_WW2ItalianServiceGrenade" or
+			defName="K4G_Proj_WW2ItalianServiceGrenadeB" or
+			defName="K4G_Proj_WW2ItalianServiceGrenadeC" or
+			defName="K4G_Proj_WW2JapaneseServiceGrenade" or
+			defName="K4G_Proj_WW2RussianServiceGrenade" or
+			defName="K4G_Proj_WW2RussianServiceGrenadeB" or
+			defName="K4G_Proj_WW2RussianServiceGrenadeC" or
+			defName="K4G_Proj_WW2AmericanServiceGrenade"
+			]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Small>40</Fragment_Small>
+					</fragments>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- ===== Anti-Tank ===== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="K4G_Proj_WW2BritishServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2BritishServiceAntiTankGrenadeB" or
+			defName="K4G_Proj_WW2GermanServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2ItalianServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2RussianServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
+			defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"
+			]</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1.5</explosionRadius>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>56</damageAmountBase>
+				<explosionDelay>60</explosionDelay>
+				<dropsCasings>true</dropsCasings>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<speed>12</speed>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="K4G_Proj_WW2BritishServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2BritishServiceAntiTankGrenadeB" or
+			defName="K4G_Proj_WW2GermanServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2ItalianServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2RussianServiceAntiTankGrenade" or
+			defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeB" or
+			defName="K4G_Proj_WW2RussianServiceAntiTankGrenadeC"
+			]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_Small>5</Fragment_Small>
+					</fragments>
+				</li>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>100</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>0.5</explosiveRadius>
+					<explosionSound>Explosion_Thump</explosionSound>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- ======= Grenades Equipment ======= -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[
+			defName="K4G_Weapon_WW2BritishServiceGrenades" or
+			defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+			defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+			defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+			defName="K4G_Weapon_WW2GermanServiceGrenades" or
+			defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+			defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+			defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+			defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+			defName="K4G_Weapon_WW2AmericanServiceGrenades"
+			]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<!-- Grenade -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="K4G_Weapon_WW2BritishServiceGrenades" or
+			defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+			defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+			defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+			defName="K4G_Weapon_WW2GermanServiceGrenades" or
+			defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+			defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+			defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+			defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+			defName="K4G_Weapon_WW2AmericanServiceGrenades"
+			]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[
+			defName="K4G_Weapon_WW2BritishServiceGrenades" or
+			defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+			defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+			defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+			defName="K4G_Weapon_WW2GermanServiceGrenades" or
+			defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+			defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+			defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+			defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+			defName="K4G_Weapon_WW2AmericanServiceGrenades"
+			]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="K4G_Weapon_WW2BritishServiceGrenades" or
+			defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB" or
+			defName="K4G_Weapon_WW2FinnishServiceGrenades" or
+			defName="K4G_Weapon_WW2FrenchServiceGrenades" or
+			defName="K4G_Weapon_WW2GermanServiceGrenades" or
+			defName="K4G_Weapon_WW2GermanServiceGrenadesB" or
+			defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenades" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenadesB" or
+			defName="K4G_Weapon_WW2ItalianServiceGrenadesC" or
+			defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2JapaneseServiceGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceGrenadesB" or
+			defName="K4G_Weapon_WW2RussianServiceGrenadesC" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB" or
+			defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC" or
+			defName="K4G_Weapon_WW2AmericanServiceGrenades"
+			]/comps</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>56</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.5</explosiveRadius>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- ===== British ===== -->
+
+	<!-- === British No. 36M Mk I Mills Bomb Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2BritishServiceGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2BritishServiceGrenades</defName>
+				<label>British No. 36M Mk I Mills Bomb Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/UnitedKingdom/WW2BritishServiceGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2UnitedKingdomTrading</li>
+					<li>K4GWW2UnitedKingdomGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2BritishServiceGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === British No. 73 Anti-Tank Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2BritishServiceAntiTankGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseEquipment">
+				<defName>K4G_Weapon_WW2BritishServiceAntiTankGrenades</defName>
+				<label>British No. 73 Anti-Tank Grenade</label>
+				<description>Heavy explosive grenades used during WW2. They can be thrown a short distance and are designed to damage or destroy armored targets.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/UnitedKingdom/WW2BritishServiceAntiTankGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<stackLimit>25</stackLimit>
+				<statBases>
+					<Mass>1.36</Mass>
+					<Bulk>10</Bulk>
+					<MarketValue>25</MarketValue>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				</statBases>
+				<weaponTags>
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>GrenadeDestructive</li>
+					<li>K4GWW2UnitedKingdomTrading</li>
+					<li>K4GWW2UnitedKingdomAntiTankGrenade</li>
+				</weaponTags>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw anti-tank grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>16.0</range>
+						<warmupTime>1.4</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2BritishServiceAntiTankGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+				</comps>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>Body</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.75</cooldownTime>
+						<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === British No. 74 Sticky Bomb Anti-Tank Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2BritishServiceAntiTankGrenadesB"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseEquipment">
+				<defName>K4G_Weapon_WW2BritishServiceAntiTankGrenadesB</defName>
+				<label>British No. 74 Sticky Bomb Anti-Tank Grenades</label>
+				<description>Heavy explosive grenades used during WW2. They can be thrown a short distance and are designed to damage or destroy armored targets.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/UnitedKingdom/WW2BritishServiceAntiTankGrenadesB</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>GrenadeDestructive</li>
+					<li>K4GWW2UnitedKingdomTrading</li>
+					<li>K4GWW2UnitedKingdomAntiTankGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<stackLimit>25</stackLimit>
+				<statBases>
+					<Mass>1.36</Mass>
+					<Bulk>10</Bulk>
+					<MarketValue>27</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw anti-tank grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>16</range>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2BritishServiceAntiTankGrenadeB</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+				</comps>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>Body</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.75</cooldownTime>
+						<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ===== Finnish ===== -->
+
+	<!-- === Finnish Mk II Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2FinnishServiceGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2FinnishServiceGrenades</defName>
+				<label>Finnish M32 Mortar Shell Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Finland/WW2FinnishServiceGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2FinlandTrading</li>
+					<li>K4GWW2FinlandGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2FinnishServiceGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ===== France ===== -->
+
+	<!-- === French F1 Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2FrenchServiceGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2FrenchServiceGrenades</defName>
+				<label>French F1 Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2FranceTrading</li>
+					<li>K4GWW2FranceGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2FrenchServiceGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ===== Germany ===== -->
+
+	<!-- === German M24 Stielhandgranate Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2GermanServiceGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2GermanServiceGrenades</defName>
+				<label>German M24 Stielhandgranate Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Germany/WW2GermanServiceGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2GermanyTrading</li>
+					<li>K4GWW2GermanyGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2GermanServiceGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === German M39 Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2GermanServiceGrenadesB"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2GermanServiceGrenadesB</defName>
+				<label>German M39 Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Germany/WW2GermanServiceGrenadesB</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2GermanyTrading</li>
+					<li>K4GWW2GermanyGrenade</li>
+					<li>K4GWW2RussiaGrenadeSharedAllies</li>
+					<li>K4GWW2RussiaGrenadeSharedCoBelligerentGermany</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>13.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2GermanServiceGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === German M24 Stielhandgranate Bundle Anti-Tank Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2GermanServiceAntiTankGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseEquipment">
+				<defName>K4G_Weapon_WW2GermanServiceAntiTankGrenades</defName>
+				<label>German M24 Stielhandgranate Bundle Anti-Tank Grenades</label>
+				<description>Heavy explosive grenades used during WW2. They can be thrown a short distance and are designed to damage or destroy armored targets.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Germany/WW2GermanServiceAntiTankGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>GrenadeDestructive</li>
+					<li>K4GWW2GermanyTrading</li>
+					<li>K4GWW2GermanyAntiTankGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<stackLimit>25</stackLimit>
+				<statBases>
+					<Mass>1.36</Mass>
+					<Bulk>10</Bulk>
+					<MarketValue>28</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw anti-tank grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>16</range>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2GermanServiceAntiTankGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+				</comps>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>Body</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.75</cooldownTime>
+						<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ===== Italy ===== -->
+
+	<!-- === Italian SRCM Mod.35 Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2ItalianServiceGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2ItalianServiceGrenades</defName>
+				<label>Italian SRCM Mod.35 Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2ItalyTrading</li>
+					<li>K4GWW2ItalyGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>11.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2ItalianServiceGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>30</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === Italian OTO Mod.35 Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2ItalianServiceGrenadesB"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2ItalianServiceGrenadesB</defName>
+				<label>Italian OTO Mod.35 Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceGrenadesB</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2ItalyTrading</li>
+					<li>K4GWW2ItalyGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2ItalianServiceGrenadeB</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>35</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === Italian Breda Mod.35 Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2ItalianServiceGrenadesC"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2ItalianServiceGrenadesC</defName>
+				<label>Italian Breda Mod.35 Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceGrenadesC</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2ItalyTrading</li>
+					<li>K4GWW2ItalyGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>13.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2ItalianServiceGrenadeC</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === Italian Type L Anti-Tank Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2ItalianServiceAntiTankGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseEquipment">
+				<defName>K4G_Weapon_WW2ItalianServiceAntiTankGrenades</defName>
+				<label>Italian Type L Anti-Tank Grenades</label>
+				<description>Heavy explosive grenades used during WW2. They can be thrown a short distance and are designed to damage or destroy armored targets.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceAntiTankGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>GrenadeDestructive</li>
+					<li>K4GWW2ItalyTrading</li>
+					<li>K4GWW2ItalyAntiTankGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<stackLimit>25</stackLimit>
+				<statBases>
+					<Mass>1.36</Mass>
+					<Bulk>10</Bulk>
+					<MarketValue>25</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw anti-tank grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>16</range>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2ItalianServiceAntiTankGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+				</comps>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>Body</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.75</cooldownTime>
+						<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ===== Japan ===== -->
+
+	<!-- === Japanese Type 97 Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2JapaneseServiceGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2JapaneseServiceGrenades</defName>
+				<label>Japanese Type 97 Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Japan/WW2JapaneseServiceGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2JapanTrading</li>
+					<li>K4GWW2JapanGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2JapaneseServiceGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ===== Russia ===== -->
+
+	<!-- === Russian F1 Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2RussianServiceGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2RussianServiceGrenades</defName>
+				<label>Russian F1 Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2RussiaTrading</li>
+					<li>K4GWW2RussiaGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>11.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2RussianServiceGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>30</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === Russian RG-42 Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2RussianServiceGrenadesB"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2RussianServiceGrenadesB</defName>
+				<label>Russian RG-42 Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceGrenadesB</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2RussiaTrading</li>
+					<li>K4GWW2RussiaGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2RussianServiceGrenadeB</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>35</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === Russian RGD-33 Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2RussianServiceGrenadesC"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2RussianServiceGrenadesC</defName>
+				<label>Russian RGD-33 Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceGrenadesC</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2RussiaTrading</li>
+					<li>K4GWW2RussiaGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>13.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2RussianServiceGrenadeC</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === Russian RPG-40 Anti-Tank Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2RussianServiceAntiTankGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseEquipment">
+				<defName>K4G_Weapon_WW2RussianServiceAntiTankGrenades</defName>
+				<label>Russian RPG-40 Anti-Tank Grenades</label>
+				<description>Heavy explosive grenades used during WW2. They can be thrown a short distance and are designed to damage or destroy armored targets.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceAntiTankGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>GrenadeDestructive</li>
+					<li>K4GWW2RussiaTrading</li>
+					<li>K4GWW2RussiaAntiTankGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<stackLimit>25</stackLimit>
+				<statBases>
+					<Mass>1.36</Mass>
+					<Bulk>10</Bulk>
+					<MarketValue>25</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw anti-tank grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>16</range>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2RussianServiceAntiTankGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+				</comps>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>Body</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.75</cooldownTime>
+						<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === Russian RPG-43 Anti-Tank Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesB"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseEquipment">
+				<defName>K4G_Weapon_WW2RussianServiceAntiTankGrenadesB</defName>
+				<label>Russian RPG-43 Anti-Tank Grenades</label>
+				<description>Heavy explosive grenades used during WW2. They can be thrown a short distance and are designed to damage or destroy armored targets.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceAntiTankGrenadesB</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>GrenadeDestructive</li>
+					<li>K4GWW2RussiaTrading</li>
+					<li>K4GWW2RussiaAntiTankGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<stackLimit>25</stackLimit>
+				<statBases>
+					<Mass>1.36</Mass>
+					<Bulk>10</Bulk>
+					<MarketValue>27</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw anti-tank grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>16</range>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2RussianServiceAntiTankGrenadeB</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+				</comps>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>Body</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.75</cooldownTime>
+						<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- === Russian RPG-6 Anti-Tank Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2RussianServiceAntiTankGrenadesC"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseEquipment">
+				<defName>K4G_Weapon_WW2RussianServiceAntiTankGrenadesC</defName>
+				<label>Russian RPG-6 Anti-Tank Grenades</label>
+				<description>Heavy explosive grenades used during WW2. They can be thrown a short distance and are designed to damage or destroy armored targets.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceAntiTankGrenadesC</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_Grenade</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>GrenadeDestructive</li>
+					<li>K4GWW2RussiaTrading</li>
+					<li>K4GWW2RussiaAntiTankGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<stackLimit>25</stackLimit>
+				<statBases>
+					<Mass>1.36</Mass>
+					<Bulk>10</Bulk>
+					<MarketValue>28</MarketValue>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw anti-tank grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>16</range>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2RussianServiceAntiTankGrenadeC</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_FireModes">
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</li>
+				</comps>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>Body</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.75</cooldownTime>
+						<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ===== United States ===== -->
+
+	<!-- === American Mk II Grenades === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_Weapon_WW2AmericanServiceGrenades"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGrenadeEquipment">
+				<defName>K4G_Weapon_WW2AmericanServiceGrenades</defName>
+				<label>American Mk II Grenades</label>
+				<description>Old-school fragmentation grenades used during WW2. They can be thrown a short distance, where they'll explode, damaging anything and anyone nearby.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/UnitedStates/WW2AmericanServiceGrenades</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<weaponTags Inherit="False">
+					<li>CE_AI_AOE</li>
+					<li>CE_OneHandedWeapon</li>
+					<li>K4GWW2UnitedStatesTrading</li>
+					<li>K4GWW2UnitedStatesGrenade</li>
+				</weaponTags>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<techLevel>Industrial</techLevel>
+				<statBases>
+					<Mass>0.6</Mass>
+					<Bulk>0.87</Bulk>
+					<MarketValue>12.22</MarketValue>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+				</statBases>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw frag grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>11</range>
+						<minRange>4</minRange>
+						<warmupTime>1.2</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>K4G_Proj_WW2AmericanServiceGrenade</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>56</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>1.5</explosiveRadius>
+					</li>
+					<li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+							<Fragment_Small>40</Fragment_Small>
+						</fragments>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+</Patch>

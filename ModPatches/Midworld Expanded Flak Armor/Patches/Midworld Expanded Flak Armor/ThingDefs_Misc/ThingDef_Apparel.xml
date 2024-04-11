@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Bulk/Mass-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakGloves" or
+			defName="Apparel_FlakBoots" or
+			defName="Apparel_FlakMask"
+			]/statBases/Mass </xpath>
+		<value>
+			<Mass>0.50</Mass>
+			<Bulk>3</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="FlakShirt"
+			]/statBases/Mass </xpath>
+		<value>
+			<Mass>1.2</Mass>
+			<Bulk>5</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="LightFlakVest"
+			]/statBases/Mass </xpath>
+		<value>
+			<Mass>6.25</Mass>
+			<Bulk>5</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="LightFlakVest"
+			]/statBases/MaxHitPoints </xpath>
+		<value>
+			<MaxHitPoints>100</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HeavyFlakSuit"
+			]/statBases/Mass </xpath>
+		<value>
+			<Mass>17.5</Mass>
+			<Bulk>60</Bulk>
+			<WornBulk>14</WornBulk>
+		</value>
+	</Operation>
+
+	<!--Armor Values-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Apparel_FlakBoots" or
+			defName="Apparel_FlakMask"
+			]/statBases/ArmorRating_Sharp </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Apparel_FlakGloves" or
+			defName="FlakShirt"
+			]/statBases/ArmorRating_Sharp </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LightFlakVest"
+			]/statBases/ArmorRating_Sharp </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HeavyFlakSuit"
+			]/statBases/ArmorRating_Sharp </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>7</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakGloves" or
+			defName="Apparel_FlakBoots" or
+			defName="Apparel_FlakMask" or
+			defName="FlakShirt"
+			]/statBases/ArmorRating_Blunt </xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HeavyFlakSuit"
+			]/statBases/ArmorRating_Blunt </xpath>
+		<value>
+			<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="LightFlakVest"
+			]/statBases/ArmorRating_Blunt </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakGloves" or
+			defName="Apparel_FlakBoots" or
+			defName="Apparel_FlakMask" or
+			defName="FlakShirt" or
+			defName="LightFlakVest" or
+			defName="HeavyFlakSuit"
+			]/statBases/ArmorRating_Heat </xpath>
+	</Operation>
+
+	<!--Movespeed-->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="Apparel_FlakBoots" or
+			defName="FlakShirt" or
+			defName="HeavyFlakSuit"
+			]/equippedStatOffsets/MoveSpeed </xpath>
+	</Operation>
+
+	<!--Costs-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakGloves" or
+			defName="Apparel_FlakBoots" or
+			defName="FlakShirt"
+			]/costList </xpath>
+		<value>
+			<costList>
+				<Steel>15</Steel>
+			</costList>
+			<stuffCategories>
+				<li>Fabric</li>
+			</stuffCategories>
+			<costStuffCount>35</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Apparel_FlakMask"
+			]/costList </xpath>
+		<value>
+			<costList>
+				<Plasteel>15</Plasteel>
+			</costList>
+			<stuffCategories>
+				<li>Fabric</li>
+			</stuffCategories>
+			<costStuffCount>35</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LightFlakVest"
+			]/costList </xpath>
+		<value>
+			<costList>
+				<Cloth>20</Cloth>
+			</costList>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+			<costStuffCount>45</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HeavyFlakSuit"
+			]/costList </xpath>
+		<value>
+			<costList>
+				<Steel>120</Steel>
+			</costList>
+			<stuffCategories>
+				<li>Fabric</li>
+			</stuffCategories>
+			<costStuffCount>100</costStuffCount>
+		</value>
+	</Operation>
+
+	<!--Layer-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakMask"
+			]/apparel/layers/li[.="Overhead"] </xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+</Patch>

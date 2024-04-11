@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== JI Carbine ========================== -->
+
+	<CombatExtended.AmmoSetDef MayRequire="rimsenal.core">
+		<defName>AmmoSet_JICarbine</defName>
+		<label>molten slug</label>
+		<ammoTypes>
+			<Ammo_JI_Alloy>Bullet_JI_Carbine</Ammo_JI_Alloy>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base556x45mmNATOBullet" MayRequire="rimsenal.core">
+		<defName>Bullet_JI_Carbine</defName>
+		<label>Semi-molten alloy</label>
+		<graphicData>
+			<texPath>Things/Projectile/Slug</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>106</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationBlunt>125</armorPenetrationBlunt>
+			<armorPenetrationSharp>13</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<!-- ====================  EMP ========================== -->
+
+	<CombatExtended.AmmoSetDef MayRequire="rimsenal.EVP">
+		<defName>AmmoSet_LaserEMP_FusterClucker</defName>
+		<label>Charge Pack (EMP)</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>EMP_FusterClucker</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseExplosiveBullet" MayRequire="rimsenal.EVP">
+		<defName>EMP_FusterClucker</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>emp blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/RaceBallLightning</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>75</damageAmountBase>
+			<speed>73</speed>
+			<flyOverhead>false</flyOverhead>
+			<explosionRadius>2</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+	</ThingDef>
+
+</Defs>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Pauldrons === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DevDesigner_DarkElves_BlackGuardPauldrons" or defName="DevDesigner_DarkElves_MorathiPauldrons" or defName="DevDesigner_HighElves_ShadowWarriorPauldrons" or defName="DevDesigner_HighElves_DragonPrincePauldrons" or defName="DevDesigner_HighElves_LordPauldrons" or defName="DevDesigner_WoodElves_StagKnightPauldrons"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DevDesigner_HighElves_ShadowWarriorPauldrons"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.25</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DevDesigner_DarkElves_BlackGuardPauldrons" or defName="DevDesigner_DarkElves_MorathiPauldrons" or defName="DevDesigner_HighElves_DragonPrincePauldrons" or defName="DevDesigner_HighElves_LordPauldrons"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.7</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DevDesigner_WoodElves_StagKnightPauldrons"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.35</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- === Gloves and Boots === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DevDesigner_WoodElves_Boots" or defName="DevDesigner_WoodElves_Gloves"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>0.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DevDesigner_WoodElves_Boots" or defName="DevDesigner_WoodElves_Gloves"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- === Quiver === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DevDesigner_Utility_QuiverBase"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DevDesigner_Utility_QuiverBase"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>15</CarryBulk>
+				<ReloadSpeed>0.4</ReloadSpeed>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MedievalFlamethrower</defName>
+		<label>Medieval Flamethrower Grenades</label>
+		<ammoTypes>
+			<BZT_Weapon_FirepotBomb>BZT_Proj_FirepotBomb_Fired</BZT_Weapon_FirepotBomb>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>BZT_Proj_FirepotBomb_Fired</defName>
+		<label>firepot bomb</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/FirepotBomb</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>0.5</explosionRadius>
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<speed>20</speed>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<!-- ================== Recipes ================== -->
+	
+	<RecipeDef ParentName="GrenadeRecipeBase">
+		<defName>MakeFirePotBomb</defName>
+		<label>make firepot bombs x10</label>
+		<description>Craft 10 fire bombs.</description>
+		<jobString>Making fire bombs.</jobString>
+		<workAmount>1600</workAmount>
+		<recipeUsers>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<BZT_Weapon_FirepotBomb>10</BZT_Weapon_FirepotBomb>
+		</products>
+	</RecipeDef>
+
+</Defs>

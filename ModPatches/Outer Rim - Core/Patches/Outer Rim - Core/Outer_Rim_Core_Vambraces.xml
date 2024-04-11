@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--
+	<li Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="OuterRim_Vambrace_FlameProjector" or defName="OuterRim_Vambrace_KnockoutDart" or defName="OuterRim_Vambrace_Cryoban"]/comps</xpath>
+	</li>
+	-->
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="OuterRim_Vambrace_KnockoutDart"]/comps</xpath>
+	</Operation>
+	
+	<!-- something about the default projectile's graphicdata setup means the icon for the added verb causes a NRE. the cryoban projector has this issue too.
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_Vambrace_FlameProjector"]</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>incinerate</label>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>0.5</warmupTime>
+					<range>12.9</range>
+					<minRange>2</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>OuterRim_Shot_FlameProjector</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetItems>true</canTargetItems>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>OuterRim_Bullet_FlameProjector</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</li>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_Vambrace_FlameProjector"]</xpath>
+		<value>
+			<comps>
+				<li Class="CompProperties_Reloadable">
+					<maxCharges>5</maxCharges>
+					<ammoDef>Chemfuel</ammoDef>
+					<ammoCountPerCharge>10</ammoCountPerCharge>
+					<baseReloadTicks>60</baseReloadTicks>
+					<soundReload>Standard_Reload</soundReload>
+					<hotKey>Misc4</hotKey>
+					<chargeNoun>blast</chargeNoun>
+					<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+				</li>
+			</comps>
+		</value>
+	</li>
+	-->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_Vambrace_KnockoutDart"]</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>fire knockout dart</label>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>0.5</warmupTime>
+					<range>16.9</range>
+					<minRange>1</minRange>
+					<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+					<soundCast>Shot_NeedleGun</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>false</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>Bullet_OR_KnockoutDart</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_Vambrace_KnockoutDart"]</xpath>
+		<value>
+			<comps>
+				<li Class="CompProperties_Reloadable">
+					<maxCharges>5</maxCharges>
+					<ammoDef>Ammo_OuterRim_KnockoutDart</ammoDef>
+					<ammoCountPerCharge>1</ammoCountPerCharge>
+					<baseReloadTicks>60</baseReloadTicks>
+					<soundReload>Standard_Reload</soundReload>
+					<hotKey>Misc4</hotKey>
+					<chargeNoun>dart</chargeNoun>
+					<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+	
+	<!--
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_Vambrace_Cryoban"]</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>carbon-freeze spray</label>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>0.5</warmupTime>
+					<range>12.9</range>
+					<minRange>2</minRange>
+					<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+					<soundCast>OuterRim_Shot_FlameProjector</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>OuterRim_Bullet_CryoBanProjector</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_Vambrace_Cryoban"]</xpath>
+		<value>
+			<comps>
+				<li Class="CompProperties_Reloadable">
+					<maxCharges>5</maxCharges>
+					<ammoDef>Neutroamine</ammoDef>
+					<ammoCountPerCharge>10</ammoCountPerCharge>
+					<baseReloadTicks>60</baseReloadTicks>
+					<soundReload>Standard_Reload</soundReload>
+					<hotKey>Misc4</hotKey>
+					<chargeNoun>blast</chargeNoun>
+					<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+				</li>
+			</comps>
+		</value>
+	</li>
+	-->
+</Patch>

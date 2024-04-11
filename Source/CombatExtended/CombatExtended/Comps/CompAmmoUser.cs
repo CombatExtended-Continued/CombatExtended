@@ -557,10 +557,10 @@ namespace CombatExtended
             int remainder = curMagCountInt % CurAmmoCount;
             if (remainder > 0)
             {
-                if (currentAmmoInt.HasComp(typeof(CompReloadable)))
+                if (currentAmmoInt.HasComp(typeof(CompApparelReloadable)))
                 {
                     remainderThing = ThingMaker.MakeThing(currentAmmoInt);
-                    remainderThing.TryGetComp<CompReloadable>().remainingCharges = remainder;
+                    remainderThing.TryGetComp<CompApparelReloadable>().remainingCharges = remainder;
                 }
                 else if (currentAmmoInt.partialUnloadAmmoDef != null)
                 {
@@ -739,7 +739,7 @@ namespace CombatExtended
                 }
                 currentAmmoInt = (AmmoDef)ammoThing.def;
 
-                CompReloadable compReloadable = ammoThing.TryGetComp<CompReloadable>();
+                CompApparelReloadable compReloadable = ammoThing.TryGetComp<CompApparelReloadable>();
                 // If there's more ammo in inventory than the weapon can hold, or if there's greater than 1 bullet in inventory if reloading one at a time
                 if ((Props.reloadOneAtATime ? 1 : MagAmmoCount) < ammoThing.stackCount)
                 {

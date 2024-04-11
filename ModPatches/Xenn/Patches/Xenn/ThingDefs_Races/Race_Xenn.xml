@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Found Fido ========== -->
+
+	<!-- ========== Turn our dog boys into dog *boys* ========== -->
+	<!-- ========== To be human is to be a tall brick ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<!-- === Note to future furball compatibility nerds: 		=== -->
+		<!-- === Paste the defName of your horrible alien there   |	=== -->
+		<!-- === 												  V	=== -->
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Xenn"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Gives Gun Gizmos to Xenn HUD thing ========== -->
+	<!-- ========== Also Makes Em Suppressable		   ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<!-- === Shouldn't need to change this at all		  === -->
+		<!-- === Unless you changed the name of your BaseXennPawn === -->
+		<!-- === In which case change "BaseXennPawn" to that name === -->
+		<xpath>Defs/ThingDef[@Name="BaseXennPawn"]</xpath>
+		<value>
+			<comps>
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable"/>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- === Patch Xenn default melee attacks === -->
+	<!-- === For the most part, it adds the CE melee handler thing 	=== -->
+	<!-- === And also defines armor penetration, which allows them	=== -->
+	<!-- === to actually do damage.									=== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Xenn"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>1</AimingAccuracy>
+			<MeleeDodgeChance>1</MeleeDodgeChance>
+			<MeleeCritChance>1.15</MeleeCritChance>
+			<MeleeParryChance>1</MeleeParryChance>
+			<ReloadSpeed>1</ReloadSpeed>
+			<Suppressability>1</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Xenn"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.15</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.15</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.37</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.02</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.923</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	<!-- ===================================== -->
+	<!-- === BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth should already be set. I think. === -->
+	<!-- ===================================== -->
+
+	<!-- === Congratulations! Your alien is Combat Ready!	 === -->
+	<!-- === If your alien comes with extra guns and gear,	 === -->
+	<!-- === Congratulations! You're not even close to done! === -->
+</Patch>

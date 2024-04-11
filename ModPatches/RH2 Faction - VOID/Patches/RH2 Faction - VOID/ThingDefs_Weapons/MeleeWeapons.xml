@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Dusk Blade -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFDuskBlade_Sword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.68</MeleeCritChance>
+				<MeleeParryChance>0.8</MeleeParryChance>
+				<MeleeDodgeChance>0.45</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFDuskBlade_Sword"]/statBases</xpath>
+		<value>
+			<Bulk>9</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFDuskBlade_Sword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>pommel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.8</cooldownTime>
+					<chanceFactor>0.33</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>RHMelee_DFBladeStab</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>2.1</cooldownTime>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
+					<armorPenetrationSharp>20</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>serrated blade</label>
+					<capacities>
+						<li>RHMelee_DFBladeSlash</li>
+					</capacities>
+					<power>42</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
+					<armorPenetrationSharp>8</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Amputator -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFAmputator_Blade"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.63</MeleeCritChance>
+				<MeleeParryChance>0.75</MeleeParryChance>
+				<MeleeDodgeChance>0.4</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFAmputator_Blade"]/statBases</xpath>
+		<value>
+			<Bulk>9</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFAmputator_Blade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>pommel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.8</cooldownTime>
+					<chanceFactor>0.33</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>RHMelee_AmputatorStab</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
+					<armorPenetrationSharp>18</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>RHMelee_AmputatorSlash</li>
+					</capacities>
+					<power>52</power>
+					<cooldownTime>2.1</cooldownTime>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+					<armorPenetrationSharp>7</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Grinder (Chainsaw) -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFGrinder_Chainsaw"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.3</MeleeCritChance>
+			<MeleeParryChance>0.1</MeleeParryChance>
+			<MeleeDodgeChance>0.1</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFGrinder_Chainsaw"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<MeleeCounterParryBonus>3</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFGrinder_Chainsaw"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>RHMelee_ChainsawStab</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>0.8</cooldownTime>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
+					<armorPenetrationSharp>12</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>RHMelee_ChainsawSlash</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+					<armorPenetrationSharp>6</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Dual Blade -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFDual_Blade"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.0</MeleeCritChance>
+				<MeleeParryChance>0.5</MeleeParryChance>
+				<MeleeDodgeChance>0.45</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFDual_Blade"]/statBases</xpath>
+		<value>
+			<Bulk>9</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMelee_DFDual_Blade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>pommel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.8</cooldownTime>
+					<chanceFactor>0.33</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>RHMelee_DFBladeStab</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>2.1</cooldownTime>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+					<armorPenetrationSharp>25</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>RHMelee_DFBladeSlash</li>
+					</capacities>
+					<power>65</power>
+					<cooldownTime>2.7</cooldownTime>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+					<armorPenetrationSharp>12</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>
