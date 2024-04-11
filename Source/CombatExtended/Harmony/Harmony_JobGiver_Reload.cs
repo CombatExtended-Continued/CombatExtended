@@ -16,7 +16,7 @@ namespace CombatExtended.HarmonyCE
     {
         internal static bool Prefix(Pawn pawn, ref Job __result)
         {
-            CompReloadable compReloadable = ReloadableUtility.FindSomeReloadableComponent(pawn, false);
+            CompApparelReloadable compReloadable = (CompApparelReloadable)ReloadableUtility.FindSomeReloadableComponent(pawn, false);
             if (compReloadable != null)
             {
                 var inventoryAmmo = pawn?.inventory?.innerContainer?.InnerListForReading?.Find(thing => thing.def == compReloadable.AmmoDef);

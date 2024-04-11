@@ -401,7 +401,7 @@ namespace CombatExtended
                     var worn_apparel = SelPawnForGear?.apparel?.WornApparel;
                     foreach (var apparel in worn_apparel)
                     {
-                        var compReloadable = apparel.TryGetComp<CompReloadable>();
+                        var compReloadable = apparel.TryGetComp<CompApparelReloadable>();
                         if (compReloadable != null && compReloadable.AmmoDef == thing.def && compReloadable.NeedsReload(true))
                         {
                             if (!SelPawnForGear.Drafted)    //TODO-1.2 This should be doable for drafted pawns as well, but the job does nothing. Figure out what's wrong and remove this condition.
