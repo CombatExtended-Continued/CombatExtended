@@ -31,7 +31,9 @@ namespace CombatExtended.HarmonyCE
         {
             //TODO: 1.5
             foreach (var code in instructions)
+            {
                 yield return code;
+            }
             yield break;
             //            bool codeFound = false;
             //            int parentCalls = 0;
