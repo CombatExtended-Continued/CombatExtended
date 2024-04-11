@@ -344,7 +344,8 @@ namespace CombatExtended
         {
             var draw = pawn.drawer;
             (new Traverse(draw).Field("jitterer").GetValue() as JitterHandler)?.ProcessPostTickVisuals(10000);
-            draw.renderer.graphics.flasher.lastDamageTick = -9999;
+            //Todo: find renderer.graphics
+            //draw.renderer.graphics.flasher.lastDamageTick = -9999;
         }
         #endregion
 
