@@ -189,7 +189,7 @@ namespace CombatExtended
                         }
                         if (Rand.Chance(0.1f))
                         {
-                            FireUtility.TryStartFireIn(cellToAffect, map, Rand.Range(0.5f, 1.5f));
+                            FireUtility.TryStartFireIn(cellToAffect, map, Rand.Range(0.5f, 1.5f), null);
                         }
                     }
                     else
