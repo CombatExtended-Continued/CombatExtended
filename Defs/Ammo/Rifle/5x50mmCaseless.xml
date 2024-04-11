@@ -19,6 +19,15 @@
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_5x50mmCaseless_HV</defName>
+		<label>5x50mm Caseless</label>
+		<ammoTypes>
+			<Ammo_5x50mmCaseless_Sabot>Bullet_5x50mmCaseless_Sabot_HV</Ammo_5x50mmCaseless_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
 	<CombatExtended.AmmoSetDef MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>AmmoSet_5x50mmCaselessToxic</defName>
 		<label>5x50mm Caseless (Toxic)</label>
@@ -89,6 +98,18 @@
 		</projectile>
 	</ThingDef>
 
+	<ThingDef ParentName="Base5x50mmCaselessBullet">
+		<defName>Bullet_5x50mmCaseless_Sabot_HV</defName>
+		<label>5x50mm Caseless bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>26</armorPenetrationSharp>
+			<armorPenetrationBlunt>112.5</armorPenetrationBlunt>
+			<speed>242</speed>
+		</projectile>
+	</ThingDef>
+
 	<ThingDef ParentName="Base5x50mmCaselessBullet" MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>Bullet_5x50mmCaseless_Toxic</defName>
 		<label>5x50mm Caseless bullet (Toxic)</label>
@@ -111,9 +132,9 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>7</damageAmountBase>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
-			<armorPenetrationBlunt>32</armorPenetrationBlunt>
-			<speed>151</speed>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationBlunt>40.5</armorPenetrationBlunt>
+			<speed>165</speed>
 		</projectile>
 	</ThingDef>
 
