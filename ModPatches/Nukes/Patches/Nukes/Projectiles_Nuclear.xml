@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- Remove base mod shells.-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="Shell_FusionWarhead" or
+			defName="Shell_LargeNuclearWarhead" or
+			defName="Shell_SmallNuclearWarhead" or
+			defName="Shell_DirtyNuclearWarhead"]
+		</xpath>
+	</Operation>
+
 	<!-- Add ThingClass-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[

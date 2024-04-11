@@ -3,6 +3,13 @@
 
 	<!--=============================== Ranged ================================-->
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="BotchJob_RockSmash"]</xpath>
+		<value>
+			<buildingDamageFactor>3</buildingDamageFactor>
+		</value>
+	</Operation>
+
 	<!-- Possessed Dragonfire Bow -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>BotchJob_PossessedDragonfireGreatbow</defName>
@@ -116,42 +123,11 @@
 			</tools>
 		</value>
 	</Operation>
+	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BotchJob_PossessedLightningJavelin"]/description</xpath>
 		<value>
 			<description>A large, lightning infused spear that is deadly in close quarters but can also be thrown to produce an EMP burst on impact.\n\nThe electricity coursing through this weapon will energize its wielder, increasing their movement speed. The downside of this is that being constantly energized makes it difficult to sleep and as such, the wielder's rest rate will be slower.\n\nThis weapon is possessed by an ancient spirit and will exhibit some of their traits. The spirit will bond with the first person to wield it and thereafter, refuse to be wielded by anyone else.\n\nWhen wielded by the bonded person, the spirit will augment their combat abilities, allowing them to attack with greater ferocity, speed and accuracy than ever before. The spirit of the lightning javelin is temperamental and will depart once thrown.</description>
-		</value>
-	</Operation>
-	<!-- Projectile -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<ThingDef ParentName="BasePilumProjectile">
-				<defName>Projectile_ThrownPossessedLightningJavelin</defName>
-				<label>lightning javelin</label>
-				<graphicData>
-					<texPath>Things/Projectile/LightningJavelinThrown</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageAmountBase>36</damageAmountBase>
-					<flyOverhead>false</flyOverhead>
-					<speed>20</speed>
-					<damageDef>EMP</damageDef>
-					<armorPenetrationBlunt>10</armorPenetrationBlunt>
-					<armorPenetrationSharp>8.34</armorPenetrationSharp>
-					<!--preExplosionSpawnChance>1</preExplosionSpawnChance>
-					<preExplosionSpawnThingDef>BotchJob_LightningJavelin</preExplosionSpawnThingDef-->
-				</projectile>
-				<comps>
-					<li Class="CombatExtended.CompProperties_ExplosiveCE">
-						<damageAmountBase>30</damageAmountBase>
-						<explosiveDamageType>EMP</explosiveDamageType>
-						<explosiveRadius>4</explosiveRadius>
-						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-					</li>
-				</comps>
-			</ThingDef>
 		</value>
 	</Operation>
 
@@ -206,35 +182,6 @@
 					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
 				</li>
 			</tools>
-		</value>
-	</Operation>
-
-	<!-- Archmage Staff Projectiles  -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<ThingDef ParentName="BasePilumProjectile">
-				<defName>Projectile_ArchmageStaffBolt</defName>
-				<label>archmage staff bolt</label>
-				<graphicData>
-					<texPath>Things/Projectile/ArchmageStaffBolt</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<flyOverhead>false</flyOverhead>
-					<speed>20</speed>
-					<damageDef>BotchJob_ArchmageStaffBolt</damageDef>
-					<explosionRadius>1</explosionRadius>
-					<ai_IsIncendiary>true</ai_IsIncendiary>
-					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-				</projectile>
-				<comps>
-					<li Class="CombatExtended.CompProperties_ExplosiveCE">
-						<explosiveDamageType>Flame</explosiveDamageType>
-						<explosiveRadius>1</explosiveRadius>
-					</li>
-				</comps>
-			</ThingDef>
 		</value>
 	</Operation>
 
@@ -534,71 +481,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_PossessedShroudedDagger"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>4</power>
-					<cooldownTime>0.9</cooldownTime>
-					<armorPenetrationBlunt>1.37</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>stab</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>17</power>
-					<cooldownTime>0.9</cooldownTime>
-					<chanceFactor>1.2</chanceFactor>
-					<armorPenetrationBlunt>1.37</armorPenetrationBlunt>
-					<armorPenetrationSharp>2.27</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>slash</label>
-					<capacities>
-						<li>Cut</li>
-					</capacities>
-					<power>15</power>
-					<cooldownTime>1.27</cooldownTime>
-					<chanceFactor>1.20</chanceFactor>
-					<armorPenetrationBlunt>0.87</armorPenetrationBlunt>
-					<armorPenetrationSharp>0.77</armorPenetrationSharp>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-			<ThingDef ParentName="BasePilumProjectile">
-				<defName>Projectile_ThrownShroudedDagger</defName>
-				<label>shrouded dagger</label>
-				<graphicData>
-					<texPath>Things/Projectile/ShroudedDaggerThrown</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageAmountBase>32</damageAmountBase>
-					<flyOverhead>false</flyOverhead>
-					<speed>26</speed>
-					<damageDef>RangedStab</damageDef>
-					<armorPenetrationBlunt>4.52</armorPenetrationBlunt>
-					<armorPenetrationSharp>7.52</armorPenetrationSharp>
-					<!--preExplosionSpawnChance>1</preExplosionSpawnChance>
-					<preExplosionSpawnThingDef>BotchJob_ShroudedDagger</preExplosionSpawnThingDef-->
-				</projectile>
-			</ThingDef>
-		</value>
-	</Operation>
-
 	<!--=============================== Acolyte Staff ================================-->
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -607,119 +489,66 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<!--li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/statBases</xpath>
-					<value>
-						<Bulk>10.00</Bulk>
-					</value>
-				</li>
+	<!--=============================== Possessed Acolyte Staff ================================-->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases</xpath>
+				<value>
+					<Bulk>10.00</Bulk>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/warmupTime</xpath>
-					<value>
-						<warmupTime>3.2</warmupTime>
-					</value>
-				</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases/RangedWeapon_Cooldown</xpath>
+				<value>
+					<RangedWeapon_Cooldown>1.53</RangedWeapon_Cooldown>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/range</xpath>
-					<value>
-						<range>30</range>
-					</value>
-				</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/warmupTime</xpath>
+				<value>
+					<warmupTime>2.7</warmupTime>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/burstShotCount</xpath>
-					<value>
-						<burstShotCount>10</burstShotCount>
-					</value>
-				</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/range</xpath>
+				<value>
+					<range>30</range>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/verbs/li/ticksBetweenBurstShots</xpath>
-					<value>
-						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-					</value>
-				</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/burstShotCount</xpath>
+				<value>
+					<burstShotCount>14</burstShotCount>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_AcolyteStaff"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>limb</label>
-								<capacities>
-									<li>Blunt</li>
-									<li>Poke</li>
-								</capacities>
-								<power>6</power>
-								<cooldownTime>1.2</cooldownTime>
-								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/ticksBetweenBurstShots</xpath>
+				<value>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				</value>
+			</li>
 
-				<!--=============================== Possessed Acolyte Staff ================================-->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases</xpath>
-					<value>
-						<Bulk>10.00</Bulk>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/statBases/RangedWeapon_Cooldown</xpath>
-					<value>
-						<RangedWeapon_Cooldown>1.53</RangedWeapon_Cooldown>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/warmupTime</xpath>
-					<value>
-						<warmupTime>2.7</warmupTime>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/range</xpath>
-					<value>
-						<range>30</range>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/burstShotCount</xpath>
-					<value>
-						<burstShotCount>14</burstShotCount>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/verbs/li/ticksBetweenBurstShots</xpath>
-					<value>
-						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>limb</label>
-								<capacities>
-									<li>Blunt</li>
-									<li>Poke</li>
-								</capacities>
-								<power>6</power>
-								<cooldownTime>1.2</cooldownTime>
-								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BotchJob_PossessedAcolyteStaff"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>limb</label>
+							<capacities>
+								<li>Blunt</li>
+								<li>Poke</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.2</cooldownTime>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
 			</operations>
 		</match>

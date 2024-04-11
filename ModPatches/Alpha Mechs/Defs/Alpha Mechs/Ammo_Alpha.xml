@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Coil Lance -->
+
+	<CombatExtended.AmmoSetDef  MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>AmmoSet_CoilLance</defName>
+		<label>8mm Railgun</label>
+		<ammoTypes>
+			<Ammo_8mmRailgun_Sabot>Bullet_CoilLance</Ammo_8mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet"  MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Bullet_CoilLance</defName>
+		<label>coil lance shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>46.4</armorPenetrationSharp>
+			<armorPenetrationBlunt>312</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- Super HCB -->
+
+	<CombatExtended.AmmoSetDef MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>AmmoSet_12x64mmHyper</defName>
+		<label>12x64mm Charged</label>
+		<ammoTypes>
+			<Ammo_12x64mmCharged>Bullet_12x64mmHyper</Ammo_12x64mmCharged>
+		</ammoTypes>
+		<similarTo>AmmoSet_MechCharged</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="Base12x64mmChargedBullet" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Bullet_12x64mmHyper</defName>
+		<label>12x64mm Hyper bullet</label>
+		<graphicData>
+			<texPath>Things/Projectiles/AM_RedPlasma_Bullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>52</damageAmountBase>
+			<speed>178</speed>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>13</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>33</armorPenetrationSharp>
+			<armorPenetrationBlunt>400</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- Acid Spewer -->
+
+	<CombatExtended.AmmoSetDef MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>AmmoSet_5x100mmCaselessAcidic</defName>
+		<label>5x100mm Caseless (Acidic)</label>
+		<ammoTypes>
+			<Ammo_5x100mmCaseless_Sabot>Bullet_5x100mmCaseless_Acidic</Ammo_5x100mmCaseless_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="Base5x100mmCaselessBullet" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Bullet_5x100mmCaseless_Acidic</defName>
+		<label>5x100 Caseless bullet (Acidic)</label>
+		<graphicData>
+			<texPath>Things/Projectile/ToxicNeedleShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>108</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>AM_AcidSpit</def>
+					<amount>15</amount>
+				</li>
+			</secondaryDamage>
+			<speed>204</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- Rotary Needle launcher -->
+
+	<CombatExtended.AmmoSetDef MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>AmmoSet_5x100mmS</defName>
+		<label>5x100mm Special</label>
+		<ammoTypes>
+			<Ammo_5x100mmCaseless_Sabot>Bullet_5x100mmS_Sabot</Ammo_5x100mmCaseless_Sabot>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="Base5x100mmCaselessBullet" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Bullet_5x100mmS_Sabot</defName>
+		<label>5x100 Special bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>48</armorPenetrationBlunt>
+			<speed>150</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- Heavy Laser -->
+
+	<CombatExtended.AmmoSetDef MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>AmmoSet_HeavyLaser</defName>
+		<label>heavy laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_HeavyLaser</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Bullet_HeavyLaser</defName>
+		<label>laser shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>17</damageAmountBase>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+</Defs>

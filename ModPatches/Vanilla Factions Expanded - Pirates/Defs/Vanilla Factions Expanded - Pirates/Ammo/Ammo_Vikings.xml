@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="CryptoAmmoBase" MayRequire="OskarPotocki.VFE.Vikings">
+		<defName>Ammo_CryptoCannon</defName>
+		<label>Crypto Cannon Fuel</label>
+		<graphicData>
+			<drawSize>0.75</drawSize>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.7</MarketValue>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>AmmoCryptoCannon</li>
+		</thingCategories>
+		<detonateProjectile>Bullet_Flamethrower_CryptoCannon</detonateProjectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="OskarPotocki.VFE.Vikings">
+		<defName>MakeAmmo_CryptoCannon</defName>
+		<label>make crypto cannon fuel x200</label>
+		<description>Craft 200 crypto cannon fuel.</description>
+		<jobString>Making crypto cannon fuel.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Chemfuel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CryptoCannon>200</Ammo_CryptoCannon>
+		</products>
+		<workAmount>8600</workAmount>
+	</RecipeDef>
+
+</Defs>
