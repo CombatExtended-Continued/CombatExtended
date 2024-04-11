@@ -29,7 +29,10 @@ namespace CombatExtended
         public static bool TryRequestHelp(Pawn pawn)
         {
             //TODO: 1.5
-            if (pawn != null) return false;
+            if (pawn != null)
+            {
+                return false;
+            }
             Map map = pawn.Map;
             float curLevel = pawn.TryGetComp<CompSuppressable>().CurrentSuppression;
             ThingWithComps grenade = null;
