@@ -984,6 +984,10 @@ namespace CombatExtended
         /// <param name="suppressionMultiplier">How much to multiply the projectile's damage by before using it as suppression</param>
         protected void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f)
         {
+            if (pawn == null)
+            {
+                return;
+            }
             var propsCE = def.projectile as ProjectilePropertiesCE;
 
             if (propsCE.suppressionFactor <= 0f || (!landed && propsCE.airborneSuppressionFactor <= 0f))
