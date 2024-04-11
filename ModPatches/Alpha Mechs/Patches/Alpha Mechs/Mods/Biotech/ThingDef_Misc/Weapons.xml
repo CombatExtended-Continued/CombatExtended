@@ -739,20 +739,22 @@
 						<Mass>3.0</Mass>
 						<Bulk>6.0</Bulk>
 						<SwayFactor>1.0</SwayFactor>
-						<ShotSpread>0.1</ShotSpread>
+						<ShotSpread>0.16</ShotSpread>
 						<SightsEfficiency>1.0</SightsEfficiency>
-						<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
 					</statBases>
 					<Properties>
-						<recoilAmount>3.5</recoilAmount>
-						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
-						<warmupTime>1</warmupTime>
-						<range>40</range>
-						<minRange>5</minRange>
-						<soundCast>InfernoCannon_Fire</soundCast>
-						<muzzleFlashScale>9</muzzleFlashScale>
+						<defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
+						<warmupTime>3</warmupTime>
+						<minRange>10</minRange>
+						<range>55</range>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<circularError>3</circularError>
+						<indirectFirePenalty>0.3</indirectFirePenalty>
 						<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
 						<ignorePartialLoSBlocker>True</ignorePartialLoSBlocker>
 						<targetParams>
@@ -760,16 +762,31 @@
 						</targetParams>
 					</Properties>
 					<AmmoUser>
-						<magazineSize>10</magazineSize>
-						<reloadTime>5.1</reloadTime>
-						<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+						<magazineSize>1</magazineSize>
+						<AmmoGenPerMagOverride>2</AmmoGenPerMagOverride>
+						<reloadTime>1.6</reloadTime>
+						<ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
 					</AmmoUser>
 					<FireModes>
-						<aiAimMode>SuppressFire</aiAimMode>
+						<aiAimMode>Snapshot</aiAimMode>
 					</FireModes>
 					<weaponTags>
 						<li>NoSwitch</li>
 					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AM_MechanoidMortar"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_Charges">
+							<chargeSpeeds>
+								<li>30</li>
+								<li>50</li>
+								<li>70</li>
+								<li>90</li>
+							</chargeSpeeds>
+						</li>
+					</value>
 				</li>
 
 			</operations>
