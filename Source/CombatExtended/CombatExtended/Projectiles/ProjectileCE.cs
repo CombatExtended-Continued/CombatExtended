@@ -996,7 +996,7 @@ namespace CombatExtended
             }
 
             CompShield shield = pawn.TryGetComp<CompShield>();
-            if (pawn.RaceProps.Humanlike)
+            if (pawn.RaceProps?.Humanlike ?? false)
             {
                 // check for shield user
 
