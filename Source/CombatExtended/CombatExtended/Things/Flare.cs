@@ -253,7 +253,7 @@ namespace CombatExtended
             }
         }
 
-        public override void Draw()
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             var scale = HeightDrawScale;
             var matrix = new Matrix4x4();
