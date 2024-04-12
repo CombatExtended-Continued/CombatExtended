@@ -22,7 +22,7 @@ namespace CombatExtended.Lasers
         public float DamageModifier = 1.0f;
         public LaserBeamDefCE laserBeamDef => base.def as LaserBeamDefCE;
 
-        public override void Draw()
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
 
         }

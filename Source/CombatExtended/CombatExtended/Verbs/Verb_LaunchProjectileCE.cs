@@ -44,7 +44,7 @@ namespace CombatExtended
         public CompAmmoUser compAmmo = null;
         public CompFireModes compFireModes = null;
         public CompChangeableProjectile compChangeable = null;
-        public CompReloadable compReloadable = null;
+        public CompApparelReloadable compReloadable = null;
         private float shotSpeed = -1;
 
         private float rotationDegrees = 0f;
@@ -207,13 +207,13 @@ namespace CombatExtended
             }
         }
 
-        public CompReloadable CompReloadable
+        public CompApparelReloadable CompReloadable
         {
             get
             {
                 if (compReloadable == null && EquipmentSource != null)
                 {
-                    compReloadable = EquipmentSource.TryGetComp<CompReloadable>();
+                    compReloadable = EquipmentSource.TryGetComp<CompApparelReloadable>();
                 }
                 return compReloadable;
             }

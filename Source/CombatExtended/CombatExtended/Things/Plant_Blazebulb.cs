@@ -31,7 +31,7 @@ namespace CombatExtended
                 float ignitionChance = 0.005f * Mathf.Pow((temperature - IgnitionTemp), 2);
                 if (Rand.Value < ignitionChance)
                 {
-                    FireUtility.TryStartFireIn(Position, base.Map, 0.1f);
+                    FireUtility.TryStartFireIn(Position, base.Map, 0.1f, this);
                 }
             }
         }

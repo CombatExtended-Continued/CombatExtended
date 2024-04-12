@@ -143,7 +143,7 @@ namespace CombatExtended
             {
                 yield return s;
             }
-            if (HasComp(typeof(CompReloadable)) && stackLimit > 1)
+            if (HasComp(typeof(CompApparelReloadable)) && stackLimit > 1)
             {
                 yield return "has compreloadable and a stack limit higher than 1. this is not recommended.";
             }
