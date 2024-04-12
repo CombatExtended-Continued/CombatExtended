@@ -397,6 +397,7 @@ namespace CombatExtended
                 // Predators get a neck bite on immobile targets
                 if (caster.def.race.predator && IsTargetImmobile(target))
                 {
+                    //TODO: 1.5 Should be neck?
                     var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
                                .FirstOrDefault(r => r.def == BodyPartDefOf.Eye);
                     damageInfo.SetHitPart(neck);
