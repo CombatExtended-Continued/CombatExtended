@@ -89,7 +89,7 @@ namespace CombatExtended.AI
                     if (target.HasThing)
                     {
                         Pawn pawn = target.Thing as Pawn;
-                        if (target.Thing.Destroyed || (pawn != null && !startedIncapacitated && pawn.Downed) || (pawn != null && pawn.IsInvisible()))
+                        if (target.Thing.Destroyed || (pawn != null && !startedIncapacitated && pawn.Downed) || (pawn != null && !(pawn.GetInvisibilityComp()?.ForcedVisible ?? false)))
                         {
                             driver.EndJobWith(JobCondition.Succeeded);
                             return;
