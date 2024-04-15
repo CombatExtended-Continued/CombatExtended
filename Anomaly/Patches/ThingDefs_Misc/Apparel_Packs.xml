@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Disruptor Flare Pack ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_DisruptorFlarePack"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+<!-- TO DO: Need CE support for the disruptor flare projectile's thingClass `Projectile_SpawnsThing`
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_DisruptorFlarePack"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>deploy flare</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<targetable>true</targetable>
+					<violent>false</violent>					
+					<warmupTime>1</warmupTime>
+					<range>25</range>
+					<soundCast>FlareLaunch</soundCast>
+					<targetParams>
+						<canTargetPawns>false</canTargetPawns>
+						<canTargetBuildings>false</canTargetBuildings>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Bullet_DisruptorFlareCE</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+-->
+	<!-- ========== Turret Pack ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_PackTurret"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+<!-- TO DO: Need CE version of verbClass: Verb_LaunchProjectileStaticOneUse
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PackTurret"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>deploy turret</label>
+					<verbClass>Verb_LaunchProjectileStaticOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>1</warmupTime>
+					<range>25</range>
+					<soundCast>ThrowGrenade</soundCast>
+					<targetParams>
+						<canTargetPawns>false</canTargetPawns>
+						<canTargetBuildings>false</canTargetBuildings>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Grenade_DisruptorFlare</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+-->
+	<!-- ========== Deadlife Pack ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_DeadlifePack"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_DeadlifePack"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>deploy deadlife dust</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>1.5</warmupTime>
+					<range>28</range>
+					<soundCast>ThrowGrenade</soundCast>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<defaultProjectile>Grenade_Deadlife</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- Deadlife Capsule -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grenade_Deadlife"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grenade_Deadlife"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>0.1</explosionRadius>
+				<damageDef>DeadlifeDust</damageDef>
+				<damageAmountBase>0</damageAmountBase>
+				<speed>12</speed>
+				<soundExplode>ToxicShellLanded</soundExplode>
+				<postExplosionSpawnThingDef>Shell_Deadlife_Releasing</postExplosionSpawnThingDef>				
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>
