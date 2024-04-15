@@ -12,8 +12,9 @@ namespace CombatExtended
     {
         public override void Impact(Thing hitThing)
         {
+            Map map = Map;
             base.Impact(hitThing);
-            Thing thing = GenSpawn.Spawn(ThingMaker.MakeThing(this.def.projectile.spawnsThingDef, null), Position, Map, WipeMode.Vanish);
+            Thing thing = GenSpawn.Spawn(ThingMaker.MakeThing(this.def.projectile.spawnsThingDef, null), Position, map, WipeMode.Vanish);
             if (thing.def.CanHaveFaction && launcher != null)
             {
                 thing.SetFaction(this.launcher.Faction, null);
