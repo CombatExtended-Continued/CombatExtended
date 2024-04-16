@@ -1336,6 +1336,10 @@ namespace CombatExtended
                 effecter.Trigger(new TargetInfo(explodePos.ToIntVec3(), Map, false), new TargetInfo(explodePos.ToIntVec3(), Map, false));
                 effecter.Cleanup();
             }
+            if (def.projectile.landedEffecter != null)
+            {
+                def.projectile.landedEffecter.Spawn(Position, Map, 1f).Cleanup();
+            }
             ProjectilePropertiesCE projectileCE = def.projectile as ProjectilePropertiesCE;
             float effectScale = projectileCE.detonateEffectsScaleOverride > 0 ? projectileCE.detonateEffectsScaleOverride : projectileCE.explosionRadius * 2;
             if (projectileCE.detonateMoteDef != null)
