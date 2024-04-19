@@ -1211,7 +1211,9 @@ namespace CombatExtended
                 if (def.projectile.spinRate != 0f)
                 {
                     float num2 = 60f / def.projectile.spinRate;
-                    shadowRotation = projectileRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
+                    var spinRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
+                    shadowRotation *= spinRotation;
+                    projectileRotation *= spinRotation;
                 }
                 //Projectile
                 //Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
