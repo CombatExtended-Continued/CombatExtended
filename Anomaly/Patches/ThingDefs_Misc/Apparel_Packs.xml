@@ -2,42 +2,64 @@
 <Patch>
 
 	<!-- ========== Disruptor Flare Pack ========== -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_DisruptorFlarePack"]/statBases</xpath>
-		<value>
-			<Bulk>10</Bulk>
-			<WornBulk>2</WornBulk>
-		</value>
-	</Operation>
-
-<!-- TO DO: Need CE support for the disruptor flare projectile's thingClass `Projectile_SpawnsThing`
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_DisruptorFlarePack"]/verbs</xpath>
 		<value>
 			<verbs>
 				<li Class="CombatExtended.VerbPropertiesCE">
-					<label>deploy flare</label>
 					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<defaultProjectile>Grenade_DisruptorFlare</defaultProjectile>
+					<label>deploy flare</label>
+					<warmupTime>0.5</warmupTime>
+					<range>40</range>
+					<burstShotCount>1</burstShotCount>
+					<onlyManualCast>true</onlyManualCast>
 					<hasStandardCommand>true</hasStandardCommand>
-					<onlyManualCast>True</onlyManualCast>
 					<targetable>true</targetable>
-					<violent>false</violent>					
-					<warmupTime>1</warmupTime>
-					<range>25</range>
-					<soundCast>FlareLaunch</soundCast>
+					<violent>false</violent>
 					<targetParams>
 						<canTargetPawns>false</canTargetPawns>
 						<canTargetBuildings>false</canTargetBuildings>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
-					<defaultProjectile>Bullet_DisruptorFlareCE</defaultProjectile>
+					<soundCast>FlareLaunch</soundCast>
 					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+					<canGoWild>false</canGoWild>
+					<explosionRadiusRingColor>(0.8, 0.8, 0.4, 1)</explosionRadiusRingColor><!-- Keep in sync with PlaceWorker_GlowRadius.RingColor -->
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
 				</li>
 			</verbs>
 		</value>
 	</Operation>
--->
+
+	<!--Projectile-->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grenade_DisruptorFlare"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grenade_DisruptorFlare"]/projectile</xpath>
+		<value>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+			<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+			<dangerFactor>0</dangerFactor>
+			<airborneSuppressionFactor>0</airborneSuppressionFactor>
+			<speed>12</speed>
+			<spinRate>3</spinRate>
+			<!--<explosionRadius>7.9</explosionRadius> --><!-- Must be kept in sync with radius of CompProperties_DisruptorFlare -->
+			<landedEffecter>DisruptorFlareLanded</landedEffecter>
+			<spawnsThingDef>DisruptorFlare</spawnsThingDef>
+		</projectile>
+		</value>
+	</Operation>
+
 	<!-- ========== Turret Pack ========== -->
 
 	<Operation Class="PatchOperationAdd">
