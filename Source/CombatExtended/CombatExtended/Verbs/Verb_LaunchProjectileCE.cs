@@ -941,7 +941,7 @@ namespace CombatExtended
                 Thing caster = Caster;
 
 
-                foreach (Pawn possibleTarget in Caster.Position.PawnsNearSegment(lastTargetPos, caster.Map, 3, false))
+                foreach (Pawn possibleTarget in Caster.Position.PawnsNearSegment(lastTargetPos, caster.Map, 3, false).OfType<Pawn>())
                 {
                     if ((possibleTarget.Faction == currentTarget.Pawn?.Faction) && possibleTarget.Faction.HostileTo(caster.Faction) && !possibleTarget.Downed && CanHitFromCellIgnoringRange(Caster.Position, possibleTarget, out IntVec3 dest))
                     {
