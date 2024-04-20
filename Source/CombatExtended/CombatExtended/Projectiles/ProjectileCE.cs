@@ -1210,7 +1210,7 @@ namespace CombatExtended
                 Quaternion projectileRotation = DrawRotation;
                 if (def.projectile.spinRate != 0f)
                 {
-                    float num2 = 60f / def.projectile.spinRate;
+                    float num2 = GenTicks.TicksPerRealSecond / def.projectile.spinRate;
                     var spinRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
                     shadowRotation *= spinRotation;
                     projectileRotation *= spinRotation;
