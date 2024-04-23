@@ -336,7 +336,7 @@ namespace CombatExtended
             if (Active && (this.mannableComp == null || this.mannableComp.MannedNow) && base.Spawned && !(isReloading && WarmingUp))
             {
                 this.GunCompEq.verbTracker.VerbsTick();
-                if (!this.stunner.Stunned && this.GunCompEq.PrimaryVerb.state != VerbState.Bursting)
+                if (!IsStunned && this.GunCompEq.PrimaryVerb.state != VerbState.Bursting)
                 {
                     if (this.WarmingUp)
                     {
