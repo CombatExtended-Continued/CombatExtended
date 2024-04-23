@@ -1206,9 +1206,18 @@ namespace CombatExtended
             }
             else
             {
+                Quaternion shadowRotation = ExactRotation;
+                Quaternion projectileRotation = DrawRotation;
+                if (def.projectile.spinRate != 0f)
+                {
+                    float num2 = GenTicks.TicksPerRealSecond / def.projectile.spinRate;
+                    var spinRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
+                    shadowRotation *= spinRotation;
+                    projectileRotation *= spinRotation;
+                }
                 //Projectile
                 //Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
-                Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), DrawPos, DrawRotation, def.DrawMatSingle, 0);
+                Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), DrawPos, projectileRotation, def.DrawMatSingle, 0);
 
                 //Shadow
                 if (castShadow)
@@ -1221,7 +1230,7 @@ namespace CombatExtended
 
                     //TODO : Vary ShadowMat plane
                     //Graphics.DrawMesh(MeshPool.plane08, shadowPos, ExactRotation, ShadowMaterial, 0);
-                    Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), shadowPos, ExactRotation, ShadowMaterial, 0);
+                    Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), shadowPos, shadowRotation, ShadowMaterial, 0);
                 }
 
                 Comps_PostDraw();
@@ -1335,6 +1344,10 @@ namespace CombatExtended
                 Effecter effecter = def.projectile.explosionEffect.Spawn();
                 effecter.Trigger(new TargetInfo(explodePos.ToIntVec3(), Map, false), new TargetInfo(explodePos.ToIntVec3(), Map, false));
                 effecter.Cleanup();
+            }
+            if (def.projectile.landedEffecter != null)
+            {
+                def.projectile.landedEffecter.Spawn(Position, Map, 1f).Cleanup();
             }
             ProjectilePropertiesCE projectileCE = def.projectile as ProjectilePropertiesCE;
             float effectScale = projectileCE.detonateEffectsScaleOverride > 0 ? projectileCE.detonateEffectsScaleOverride : projectileCE.explosionRadius * 2;
