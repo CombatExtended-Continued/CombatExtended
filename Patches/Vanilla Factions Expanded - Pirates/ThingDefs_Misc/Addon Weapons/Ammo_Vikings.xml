@@ -54,11 +54,17 @@
 
 							<!-- ================== Damage ================== -->
 
-							<DamageDef ParentName="Bullet">
+							<DamageDef ParentName="Frostbite">
 								<defName>CE_Cryptofuel</defName>
 								<label>Crypto Burn</label>
 								<hediff>Frostbite</hediff>
 								<workerClass>DamageWorker_AddInjury</workerClass>
+								<additionalHediffs>
+									<li>
+										<hediff>Hypothermia</hediff>
+										<severityPerDamageDealt>0.01</severityPerDamageDealt>
+									</li>
+								</additionalHediffs>
 								<hasForcefulImpact>true</hasForcefulImpact>
 								<makesBlood>false</makesBlood>
 								<canInterruptJobs>true</canInterruptJobs>
@@ -66,7 +72,7 @@
 								<deathMessage>{0} has been frozen to death.</deathMessage>
 								<armorCategory>Heat</armorCategory>
 								<minDamageToFragment>15</minDamageToFragment>
-								<defaultArmorPenetration>0</defaultArmorPenetration>
+								<defaultArmorPenetration>0.5</defaultArmorPenetration>
 								<explosionHeatEnergyPerCell>-20</explosionHeatEnergyPerCell>
 								<soundExplosion>Explosion_Stun</soundExplosion>
 								<combatLogRules>Damage_Flame</combatLogRules>
