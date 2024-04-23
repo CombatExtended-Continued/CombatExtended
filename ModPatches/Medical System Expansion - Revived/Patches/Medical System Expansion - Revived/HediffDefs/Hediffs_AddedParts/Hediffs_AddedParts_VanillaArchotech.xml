@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ==== Vanilla Archotech Prosthesis  ==== -->
+	<!-- ArchotechEye -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/HediffDef[defName="ArchotechEye"]/stages</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="ArchotechEye"]</xpath>
+			<value>
+				<stages />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ArchotechEye"]/stages</xpath>
+		<value>
+			<li>
+				<minSeverity>0.000001</minSeverity>
+				<statOffsets>
+					<ArmorRating_Sharp>0.026</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.048</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.004</ArmorRating_Heat>
+				</statOffsets>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ArchotechArm -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ArchotechArm"]</xpath>
+		<value>
+			<stages>
+				<li>
+					<minSeverity>0.000001</minSeverity>
+					<statOffsets>
+						<ArmorRating_Sharp>0.786</ArmorRating_Sharp>
+						<ArmorRating_Blunt>1.444</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.105</ArmorRating_Heat>
+					</statOffsets>
+				</li>
+			</stages>
+		</value>
+	</Operation>
+
+	<!-- ArchotechLeg -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ArchotechLeg"]</xpath>
+		<value>
+			<stages>
+				<li>
+					<minSeverity>0.000001</minSeverity>
+					<statOffsets>
+						<ArmorRating_Sharp>1.195</ArmorRating_Sharp>
+						<ArmorRating_Blunt>2.196</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.159</ArmorRating_Heat>
+					</statOffsets>
+				</li>
+			</stages>
+		</value>
+	</Operation>
+</Patch>

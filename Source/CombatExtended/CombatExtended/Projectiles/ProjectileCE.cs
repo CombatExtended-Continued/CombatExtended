@@ -984,6 +984,10 @@ namespace CombatExtended
         /// <param name="suppressionMultiplier">How much to multiply the projectile's damage by before using it as suppression</param>
         protected void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f)
         {
+            if (pawn == null)
+            {
+                return;
+            }
             var propsCE = def.projectile as ProjectilePropertiesCE;
 
             if (propsCE.suppressionFactor <= 0f || (!landed && propsCE.airborneSuppressionFactor <= 0f))
@@ -992,7 +996,7 @@ namespace CombatExtended
             }
 
             CompShield shield = pawn.TryGetComp<CompShield>();
-            if (pawn.RaceProps.Humanlike)
+            if (pawn.RaceProps?.Humanlike ?? false)
             {
                 // check for shield user
 
@@ -1194,7 +1198,7 @@ namespace CombatExtended
         /// <summary>
         /// Draws projectile if at least a tick away from caster (or always if no caster)
         /// </summary>
-        public override void Draw()
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
             if (FlightTicks == 0 && launcher != null && launcher is Pawn)
             {

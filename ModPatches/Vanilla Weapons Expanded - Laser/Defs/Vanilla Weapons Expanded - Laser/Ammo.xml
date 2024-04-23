@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- === Ammo Sets === -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserPistol</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserPistol</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LaserPistol</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_LaserPistol</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LaserSMG</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_LaserSMG</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserRifle</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserRifle</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LaserRifle</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_LaserRifle</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserShotgun</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserShotgun</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LaserShotgun</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_LaserShotgun</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserSniperRifle</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserSniperRifle</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LaserSniperRifle</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_LaserSniperRifle</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LaserMiniGun</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_LaserMiniGun</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LaserTeslaGun</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_TeslaGun</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- === Projectiles === -->
+
+	<!--
+	Unstable shots do slightly higher damage, but have slightly less penetration, due to the beams being less focused, delivering the energy over a wider area.
+	Vice versa for stable shots, due to better made weaponry.
+	-->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_SalvagedLaserPistol</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_SalvagedLaserPistol</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>15.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt><!-- The overall pressure exerted by a laser beam striking something is, unsuprisingly, negligable. -->
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_LaserPistol</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_LaserPistol</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>17.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_LaserSMG</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_LaserPistol</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>18.25</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_SalvagedLaserRifle</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_SalvagedLaserRifle</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>16.75</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_LaserRifle</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_LaserRifle</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>17.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_SalvagedLaserShotgun</defName>
+		<label>rifle beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_SalvagedLaserShotgun</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>14.25</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<pelletCount>7</pelletCount>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_LaserShotgun</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_LaserShotgun</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>15.75</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<pelletCount>7</pelletCount>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_SalvagedLaserSniperRifle</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_SalvagedLaserSniperRifle</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>24</damageAmountBase>
+			<armorPenetrationSharp>18.75</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_LaserSniperRifle</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_LaserSniperRifle</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>20.25</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_LaserMiniGun</defName>
+		<label>laser beam</label>
+		<textures>
+			<li>Things/Projectile/Shot_LaserMinigun</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>16</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_Laser_TeslaGun</defName>
+		<label>arc discharge</label>
+		<textures>
+			<li>Things/Projectile/Shot_TeslaGunA</li>
+			<li>Things/Projectile/Shot_TeslaGunB</li>
+			<li>Things/Projectile/Shot_TeslaGunC</li>
+			<li>Things/Projectile/Shot_TeslaGunD</li>
+			<li>Things/Projectile/Shot_TeslaGunE</li>
+		</textures>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+<!--        <damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>16</armorPenetrationSharp> -->
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+</Defs>

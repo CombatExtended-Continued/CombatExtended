@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Magic Projectiles ======= -->
+
+	<!-- ===== Magic Bolts Wand ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Wand_Amethyst"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>70</speed>
+				<damageAmountBase>17</damageAmountBase>
+				<armorPenetrationBlunt>30</armorPenetrationBlunt>
+				<armorPenetrationSharp>9</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt</damageDef>
+				<dropsCasings>false</dropsCasings>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Wand_Amethyst"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ===== Magic Bolts Staff ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Staff_Amethyst"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>65</speed>
+				<damageAmountBase>16</damageAmountBase>
+				<armorPenetrationBlunt>30</armorPenetrationBlunt>
+				<armorPenetrationSharp>9</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt</damageDef>
+				<dropsCasings>false</dropsCasings>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Staff_Amethyst"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ===== Magic Bolts Ring ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Amethyst"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>60</speed>
+				<damageAmountBase>14</damageAmountBase>
+				<armorPenetrationBlunt>26</armorPenetrationBlunt>
+				<armorPenetrationSharp>8</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt_AmethystRing</damageDef>
+				<dropsCasings>false</dropsCasings>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Amethyst"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>4</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.2</explosiveRadius>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					<preExplosionSpawnChance>0.06</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>RF_RubbleShardsRF_Amethyst</preExplosionSpawnThingDef>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Amethyst"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ===== Magic Arrows ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicArrow_Amethyst"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>33</speed>
+				<damageAmountBase>14</damageAmountBase>
+				<armorPenetrationBlunt>7</armorPenetrationBlunt>
+				<armorPenetrationSharp>2</armorPenetrationSharp>
+				<damageDef>Arrow</damageDef>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicArrow_Amethyst"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+</Patch>

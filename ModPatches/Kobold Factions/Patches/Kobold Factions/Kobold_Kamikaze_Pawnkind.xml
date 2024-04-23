@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Adding Kobold Kamikazes -->
+	<Operation Class="PatchOperationAdd"><!-- Combat -->
+		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers/li[1]/options</xpath>
+		<value>
+			<Kobold_Kamikaze>10</Kobold_Kamikaze>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!--Peaceful-->
+		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers/li[2]/options</xpath>
+		<value>
+			<Kobold_Kamikaze>5</Kobold_Kamikaze>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!--Trader-->
+		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers/li[3]/guards</xpath>
+		<value>
+			<Kobold_Kamikaze>7</Kobold_Kamikaze>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Settlement -->
+		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers/li[4]/options</xpath>
+		<value>
+			<Kobold_Kamikaze>20</Kobold_Kamikaze>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!--Adding Kamikaze ONLY raid -->
+		<xpath>Defs/FactionDef[@Name="Medbold_FactionBase"]/pawnGroupMakers</xpath>
+		<value>
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>30</commonality>
+				<options>
+					<Kobold_Kamikaze>20</Kobold_Kamikaze>
+				</options>
+			</li>
+		</value>
+	</Operation>
+	
+</Patch>

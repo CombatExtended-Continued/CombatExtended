@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--ARROWS-->
+
+	<!--Remove the bows and their projectiles-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Bow_Grenade"] |
+			Defs/ThingDef[defName="Arrow_Grenade"] |
+			Defs/ThingDef[defName="Bow_Molotov"] |
+			Defs/ThingDef[defName="Arrow_Molotov"] |
+			Defs/ThingDef[defName="Bow_EMP"] |
+			Defs/ThingDef[defName="Arrow_EMP"] |
+			Defs/ThingDef[defName="Bow_Battery"] |
+			Defs/ThingDef[defName="Arrow_Battery"]
+		</xpath>
+	</Operation>
+
+	<!-- Ammo Set -->
+	<!--Regular Arrows-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_Arrow"]/ammoTypes</xpath>
+		<value>
+			<Ammo_Arrow_Grenade>Projectile_Arrow_Grenade</Ammo_Arrow_Grenade>
+			<Ammo_Arrow_Molotov>Projectile_Arrow_Molotov</Ammo_Arrow_Molotov>
+			<Ammo_Arrow_EMP>Projectile_Arrow_EMP</Ammo_Arrow_EMP>
+			<Ammo_Arrow_Battery>Projectile_Arrow_Battery</Ammo_Arrow_Battery>
+		</value>
+	</Operation>
+
+	<!--Streamlined Arrows-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_StreamlinedArrow"]/ammoTypes</xpath>
+		<value>
+			<Ammo_Arrow_Grenade>Projectile_StreamlinedArrow_Grenade</Ammo_Arrow_Grenade>
+			<Ammo_Arrow_Molotov>Projectile_StreamlinedArrow_Molotov</Ammo_Arrow_Molotov>
+			<Ammo_Arrow_EMP>Projectile_StreamlinedArrow_EMP</Ammo_Arrow_EMP>
+			<Ammo_Arrow_Battery>Projectile_StreamlinedArrow_Battery</Ammo_Arrow_Battery>
+		</value>
+	</Operation>
+
+	<!--Great Arrows-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_GreatArrow"]/ammoTypes</xpath>
+		<value>
+			<Ammo_GreatArrow_Grenade>Projectile_GreatArrow_Grenade</Ammo_GreatArrow_Grenade>
+			<Ammo_GreatArrow_Molotov>Projectile_GreatArrow_Molotov</Ammo_GreatArrow_Molotov>
+			<Ammo_GreatArrow_EMP>Projectile_GreatArrow_EMP</Ammo_GreatArrow_EMP>
+			<Ammo_GreatArrow_Battery>Projectile_GreatArrow_Battery</Ammo_GreatArrow_Battery>
+		</value>
+	</Operation>
+
+</Patch>

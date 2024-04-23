@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Odin Body ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart/parts/li[def = "MechanicalNeck"]</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def = "MechanicalHead"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def = "MechanicalHead"]/parts/li[def="HearingSensor"]</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart/parts/li[def = "MechanicalShoulder"]</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def = "MechanicalArm"]</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def = "MechanicalArm"]/parts/li[def = "MechanicalHand"]</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def = "MechanicalArm"]/parts/li[def = "MechanicalHand"]/parts/li[def = "MechanicalFinger"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart/parts/li[def = "MechanicalLeg"]</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "VFEV_Odin"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def = "MechanicalFoot"]</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<!-- ========== Odin ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.04</MeleeDodgeChance>
+			<MeleeCritChance>0.76</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>2</ArmorRating_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]</xpath>
+		<value>
+			<damageMultipliers>
+				<li>
+					<damageDef>VFEV_Cut</damageDef>
+					<multiplier>2</multiplier>
+				</li>
+				<li>
+					<damageDef>Cut</damageDef>
+					<multiplier>2</multiplier>
+				</li>
+				<li>
+					<damageDef>Stab</damageDef>
+					<multiplier>2</multiplier>
+				</li>
+				<li>
+					<damageDef>Bullet</damageDef>
+					<multiplier>0.8</multiplier>
+				</li>
+				<li>
+					<damageDef>Flame</damageDef>
+					<multiplier>0</multiplier>
+				</li>
+			</damageMultipliers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>24.0</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<armorPenetrationSharp>8</armorPenetrationSharp>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>24.0</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<armorPenetrationSharp>8</armorPenetrationSharp>
+					<armorPenetrationBlunt>10</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>3.20</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEV_Mech_Odin"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>3000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>300</MaxOverHeal>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="VFEV_Mech_Odin"]/combatPower</xpath>
+		<value>
+			<combatPower>600</combatPower>
+		</value>
+	</Operation>
+</Patch>

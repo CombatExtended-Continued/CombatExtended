@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Vanilla Fishing Expanded - Fishing Treasures AddOn -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Fishing Expanded - Fishing Treasures AddOn</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/VCE_Fishing.FishDef[defName="VCEF_SpecialShell_Napalm" or defName="VCEF_SpecialNapalm"]</xpath>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+	<!-- Research -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ResearchProjectDef[defName="Napalm"]/label</xpath>
+		<value>
+			<label>Prometheum Refining</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ResearchProjectDef[defName="Napalm"]/description</xpath>
+		<value>
+			<description>Produce Prometheum from stored chemfuel, used for making incendiary explosives and specialty ammunition.</description>
+		</value>
+	</Operation>
+
+	<!-- Refinery Loading Bay -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RefineryLoadingBay"]/building/fixedStorageSettings/filter/thingDefs/li[.="Napalm"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RefineryLoadingBay"]/building/defaultStorageSettings/filter/thingDefs/li[.="Napalm"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RefineryLoadingBay"]/building/fixedStorageSettings/filter/thingDefs</xpath>
+		<value>
+			<li>Prometheum</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RefineryLoadingBay"]/building/defaultStorageSettings/filter/thingDefs</xpath>
+		<value>
+			<li>Prometheum</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RefineryLoadingBay"]/building/defaultStorageSettings/filter/thingDefs</xpath>
+		<value>
+			<li>FSX</li>
+		</value>
+	</Operation>
+
+	<!-- Napalm Refiner -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmRefiner"]/label</xpath>
+		<value>
+			<label>Prometheum Refiner</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmRefiner"]/description</xpath>
+		<value>
+			<description>Processes chemfuel into prometheum, a military-grade incendiary agent which ignites on contact with oxygen. The raw resource is used to craft incendiary ammo of all kinds.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmRefiner"]/comps/li[2]/Product</xpath>
+		<value>
+			<Product>Prometheum</Product>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmRefiner"]/comps/li[2]/StackSize</xpath>
+		<value>
+			<StackSize>1</StackSize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmRefiner"]/comps/li[2]/BufferSize</xpath>
+		<value>
+			<BufferSize>4</BufferSize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmRefiner"]/comps/li[2]/ConsumeRate</xpath>
+		<value>
+			<ConsumeRate>0.1</ConsumeRate>
+		</value>
+	</Operation>
+
+	<!-- Napalm Trails -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Filth_NapalmTrail"]/label</xpath>
+		<value>
+			<label>Chemfuel trail</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Filth_NapalmTrail"]/description</xpath>
+		<value>
+			<description>Chemfuel trail</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Filth_NapalmTrail"]/costList</xpath>
+		<value>
+			<costList>
+				<Chemfuel>1</Chemfuel>
+			</costList>
+		</value>
+	</Operation>
+
+	<!-- Napalm Bombs -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmBomb"]/label</xpath>
+		<value>
+			<label>Prometheum bomb</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmBomb"]/description</xpath>
+		<value>
+			<description>Prometheum bomb</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmBomb"]/costList</xpath>
+		<value>
+			<costList>
+				<Prometheum>5</Prometheum>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmBomb"]/graphicData/texPath</xpath>
+		<value>
+			<texPath>ThirdParty/Rimefeller/Things/Resource/NapalmBomb</texPath>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmBomb"]/uiIconPath</xpath>
+		<value>
+			<uiIconPath>ThirdParty/Rimefeller/UI/NapalmBomb</uiIconPath>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NapalmBomb"]/comps/li[2]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>3</explosiveRadius>
+				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+				<startWickHitPointsPercent>0.8</startWickHitPointsPercent>
+				<destroyThingOnExplosionSize>1</destroyThingOnExplosionSize>
+				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<wickTicks>
+					<min>0</min>
+					<max>1</max>
+				</wickTicks>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NapalmBomb"]</xpath>
+		<value>
+			<specialDisplayRadius>3</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NapalmBomb"]</xpath>
+		<value>
+			<fillPercent>0.5</fillPercent>
+		</value>
+	</Operation>
+
+	<!-- Napalm Shell -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Shell_Napalm" or defName="Bullet_Shell_Napalm"]</xpath>
+	</Operation>
+
+	<!-- Napalm Recipes -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/RecipeDef[defName="Make_Napalm"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Napalm"]</xpath>
+		<value>
+			<generateCommonality>0</generateCommonality>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Napalm"]</xpath>
+		<value>
+			<generateAllowChance>0</generateAllowChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Napalm"]/graphicData/texPath</xpath>
+		<value>
+			<texPath>ThirdParty/Rimefeller/Things/Resource/NapalmBomb</texPath>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OilBarrel"]/graphicData/texPath</xpath>
+		<value>
+			<texPath>ThirdParty/Rimefeller/Things/Resource/OilBarrel</texPath>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Filth_OilSlick"]/graphicData/texPath</xpath>
+		<value>
+			<texPath>ThirdParty/Rimefeller/Things/Resource/OilBarrel</texPath>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Filth_NapalmTrail"]/graphicData/texPath</xpath>
+		<value>
+			<texPath>ThirdParty/Rimefeller/UI/NapalmSpill</texPath>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Filth_NapalmTrail"]/building/blueprintGraphicData/texPath</xpath>
+		<value>
+			<texPath>ThirdParty/Rimefeller/UI/NapalmSpill_bp</texPath>
+		</value>
+	</Operation>
+
+</Patch>

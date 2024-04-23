@@ -39,14 +39,14 @@ jobs:
       run: |
         TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
 
-    - name: build compat
-      run: |
-        TEMP=${{ runner.temp }}/ python BuildCompat.py
+    #- name: build compat
+    #  run: |
+    #    TEMP=${{ runner.temp }}/ python BuildCompat.py
         
     - name: package
       run: |
         mkdir CombatExtended
-        cp -r Source/ Assemblies/ AssembliesCompat/ AssembliesCore/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Biotech/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
+        cp -r Source/ Assemblies/ AssembliesCompat/ AssembliesCore/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Biotech/ Sounds/ Textures/ ModPatches/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
         zip -9 -r build.zip CombatExtended
     - name: Upload to DO
       run: |

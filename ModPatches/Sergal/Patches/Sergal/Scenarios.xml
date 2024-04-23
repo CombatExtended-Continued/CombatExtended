@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Add ammo to various starting scenarios -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ScenarioDef[
+			defName="ExiledLions_Scenario" or
+			defName="LostCommandoSergal_Scenario"
+			]/scenario/parts </xpath>
+		<value>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>Ammo_45ACP_FMJ</thingDef>
+				<count>100</count>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ScenarioDef[
+			defName="LostCommandoSergal_Scenario" or
+			defName="Frog_Scenario"
+			]/scenario/parts </xpath>
+		<value>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>Ammo_303British_FMJ</thingDef>
+				<count>100</count>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ScenarioDef[defName="Frog_Scenario"]/scenario/parts</xpath>
+		<value>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>Ammo_44Magnum_FMJ</thingDef>
+				<count>100</count>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Remove starting apparel items from Frog scenario -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="Frog_Scenario"]/scenario/parts/li[thingDef="Apparel_AdvancedHelmet"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="Frog_Scenario"]/scenario/parts/li[thingDef="Apparel_FlakVest"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="Frog_Scenario"]/scenario/parts/li[thingDef="Apparel_FlakPants"]</xpath>
+	</Operation>
+</Patch>

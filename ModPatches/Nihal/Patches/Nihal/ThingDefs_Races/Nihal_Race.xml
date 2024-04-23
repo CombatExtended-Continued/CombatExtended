@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Got one ========== -->
+
+	<!-- ========== Turn our Fish boys into Fish *boys* ========== -->
+	<!-- ========== To be human is to be a tall brick ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<!-- === Note to future furball compatibility nerds: 		=== -->
+		<!-- === Paste the defName of your horrible alien there   |	=== -->
+		<!-- === 												  V	=== -->
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Gives Gun Gizmos to Nihal HUD thing ========== -->
+	<!-- ========== Also Makes Em Suppressable		   ========== -->
+
+	<!-- Checking if "Alien_Nihal" has a <comps> node and adding it if it doesn't exist -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+			</li>
+			<li Class="CombatExtended.CompProperties_Suppressable"/>
+		</value>
+	</Operation>
+
+	<!-- === Patch Nihal default melee attacks === -->
+	<!-- === For the most part, it adds the CE melee handler thing 	=== -->
+	<!-- === And also defines armor penetration, which allows them	=== -->
+	<!-- === to actually do damage. 								=== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_NiHal"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>1</AimingAccuracy>
+			<MeleeDodgeChance>1.5</MeleeDodgeChance>
+			<MeleeCritChance>1</MeleeCritChance>
+			<MeleeParryChance>1</MeleeParryChance>
+			<ReloadSpeed>1</ReloadSpeed>
+			<Suppressability>1</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.5</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.5</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetration>0.15</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetration>0.10</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetration>0.10</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.7</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetration>0.16</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Claws! Teeth! Blub!		   === -->
+	<!-- ===================================== -->
+	<!-- === BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth should already be set. I think. === -->
+	<!-- ===================================== -->
+	<!-- === Adds In Inspector Tabs 	   === -->
+	<!-- === Inventory and all that jazz   === -->
+	<!-- === Again, no need to change 'em  === -->
+	<!-- === Unless you changed it         === -->
+	<!-- === then change 'em			   === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseNiHal"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+		<value>
+			<li>CombatExtended.ITab_Inventory</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseNiHal"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Inventory"/>
+		</value>
+	</Operation>
+	<!-- === Congratulations! Your alien is Combat Ready!	 === -->
+	<!-- === If your alien comes with extra guns and gear,	 === -->
+	<!-- === Congratulations! You're not even close to done! === -->
+</Patch>

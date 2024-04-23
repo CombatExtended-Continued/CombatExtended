@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ====== WormWithArmor ====== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/parts/li[def="AA_FirstWormSegment" or def="AA_SecondWormSegment" or def="AA_ThirdWormSegment" or def="AA_FourthWormSegment"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/parts/li[def="AA_FirstWormSegment" or def="AA_SecondWormSegment" or def="AA_ThirdWormSegment" or def="AA_FourthWormSegment"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/parts/li[def="AA_FirstWormSegment" or def="AA_SecondWormSegment" or def="AA_ThirdWormSegment" or def="AA_FourthWormSegment"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/parts/li[def="SnakeHead"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/parts/li[def="SnakeHead"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/parts/li[def="SnakeHead"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/parts/li[def="SnakeHead"]/parts/li[def="Jaw"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/parts/li[def="SnakeHead"]/parts/li[def="Jaw"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="AA_WormWithArmor"]/corePart/parts/li[def="SnakeHead"]/parts/li[def="Jaw"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+</Patch>

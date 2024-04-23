@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Add tribal grenadies ========== -->
+
+	<Operation Class="PatchOperationAdd"><!-- Combat -->
+		<xpath>Defs/FactionDef[defName="PoleepkwaFaction"]/pawnGroupMakers/li[1]/options</xpath>
+		<value>
+			<PpGrenadier>5</PpGrenadier>
+			<PpGunner>10</PpGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Peaceful -->
+		<xpath>Defs/FactionDef[defName="PoleepkwaFaction"]/pawnGroupMakers/li[2]/options</xpath>
+		<value>
+			<PpGrenadier>6</PpGrenadier>
+			<PpGunner>6</PpGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Trader -->
+		<xpath>Defs/FactionDef[defName="PoleepkwaFaction"]/pawnGroupMakers/li[3]/guards</xpath>
+		<value>
+			<PpGrenadier>4</PpGrenadier>
+			<PpGunner>8</PpGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Settlement -->
+		<xpath>Defs/FactionDef[defName="PoleepkwaFaction"]/pawnGroupMakers/li[4]/options</xpath>
+		<value>
+			<PpGrenadier>8</PpGrenadier>
+			<PpGunner>12</PpGunner>
+		</value>
+	</Operation>
+</Patch>
