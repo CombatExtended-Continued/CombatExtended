@@ -38,15 +38,15 @@ namespace CombatExtended
         public CompFireModes compFireModes = null;
         public CompChangeableProjectile compChangeable = null;
         public CompApparelReloadable compReloadable = null;
-        private float shotSpeed = -1;
+        protected float shotSpeed = -1;
 
-        private float rotationDegrees = 0f;
-        private float angleRadians = 0f;
+        protected float rotationDegrees = 0f;
+        protected float angleRadians = 0f;
 
         //private int lastTauntTick;
 
-        private bool shootingAtDowned = false;
-        private LocalTargetInfo lastTarget = null;
+        protected bool shootingAtDowned = false;
+        protected LocalTargetInfo lastTarget = null;
         protected IntVec3 lastTargetPos = IntVec3.Invalid;
 
         protected float lastShotAngle;
@@ -695,7 +695,7 @@ namespace CombatExtended
         /// <param name="target">The target of which to find cover of</param>
         /// <param name="cover">Output parameter, filled with the highest cover object found</param>
         /// <returns>True if cover was found, false otherwise</returns>
-        private bool GetHighestCoverAndSmokeForTarget(LocalTargetInfo target, out Thing cover, out float smokeDensity, out bool roofed)
+        protected bool GetHighestCoverAndSmokeForTarget(LocalTargetInfo target, out Thing cover, out float smokeDensity, out bool roofed)
         {
             Map map = caster.Map;
             Thing targetThing = target.Thing;
