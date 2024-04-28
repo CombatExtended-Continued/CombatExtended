@@ -406,6 +406,8 @@ namespace CombatExtended
             radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
             gravity = projectileProperties.Gravity;
             initialSpeed = shotSpeed;
+            lerpPosition = false;
+            kinit = true;
         }
         #endregion
 
