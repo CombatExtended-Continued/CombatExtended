@@ -313,14 +313,13 @@
 			<texPath>Things/Projectile/Grenades/Smoke</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-	<!--	<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>	-->	
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<dangerFactor>0.0</dangerFactor>
 			<explosionRadius>0.1</explosionRadius>
 			<damageDef>Smoke</damageDef>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
-			<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+			<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname> 
 			<postExplosionSpawnThingDef>Grenade_Smoke_Releasing</postExplosionSpawnThingDef>
 			<speed>12</speed>
 			<screenShakeFactor>0</screenShakeFactor>
@@ -331,16 +330,17 @@
 		<defName>Grenade_Smoke_Releasing</defName>
 		<label>smoke grenade</label>	
 		<graphicData>
-		<texPath>Things/Projectile/Grenades/Smoke</texPath>
-		<graphicClass>Graphic_Single</graphicClass>
-		<shaderType>Transparent</shaderType>
+			<texPath>Things/Projectile/Grenades/Smoke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>Transparent</shaderType>
+			<onGroundRandomRotateAngle>45</onGroundRandomRotateAngle>
 		</graphicData>
 		<comps Inherit="false">
 		<li Class="CompProperties_ReleaseGas">
 			<gasType>BlindSmoke</gasType>
-			<cellsToFill>16</cellsToFill>
+			<cellsToFill>20</cellsToFill>
 			<durationSeconds>30</durationSeconds>
-			<effecterReleasing>ToxGasReleasing</effecterReleasing>
+			<effecterReleasing>WhiteSmokeReleasing</effecterReleasing>
 		</li>
 		<li Class="CompProperties_DestroyAfterDelay">
 			<delayTicks>30000</delayTicks><!-- 1/2 day -->
