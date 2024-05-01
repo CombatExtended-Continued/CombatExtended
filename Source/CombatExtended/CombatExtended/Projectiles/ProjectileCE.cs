@@ -1374,7 +1374,7 @@ namespace CombatExtended
             }
 
             //If the comp exists, it'll already call CompFragments
-            if (explodingComp != null || def.projectile.explosionRadius > 0f)
+            if (explodingComp != null || (def.projectile.explosionRadius > 0f && def.projectile.damageDef != null))
             {
                 float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
                 //Handle anything explosive
