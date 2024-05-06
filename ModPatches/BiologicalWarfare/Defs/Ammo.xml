@@ -1,0 +1,1901 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<CombatExtended.AmmoCategoryDef>
+		<defName>FleshBreaker</defName>
+		<label>FleshBreaker</label>
+		<description>Filled with gas containing FleshBreaker.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+	<CombatExtended.AmmoCategoryDef>
+		<defName>Flu</defName>
+		<label>Flu</label>
+		<description>Filled with gas containing Flu virus.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+	<CombatExtended.AmmoCategoryDef>
+		<defName>Malaria</defName>
+		<label>Malaria</label>
+		<description>Filled with gas containing Malaria pathogen.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+	<CombatExtended.AmmoCategoryDef>
+		<defName>Necroa</defName>
+		<label>Necroa</label>
+		<description>Filled with gas containing Necroa archovirus, This archovirus turns pawns into shamblers post-mortem</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+	<CombatExtended.AmmoCategoryDef>
+		<defName>Plague</defName>
+		<label>Plague</label>
+		<description>Filled with gas containing Plague bacteria.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+	<CombatExtended.AmmoCategoryDef>
+		<defName>Scaria</defName>
+		<label>Scaria</label>
+		<description>Filled with gas containing Scaria virus.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+	<CombatExtended.AmmoCategoryDef>
+		<defName>SleepingSickness</defName>
+		<label>SleepingSickness</label>
+		<description>Filled with gas containing SleepingSickness parasite.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+	<!-- FleshBreaker -->
+	<!-- 40x46mmGrenade -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+		<defName>Ammo_40x46mmGrenade_FleshBreaker</defName>
+		<label>40x46mm grenade (flesh-breaker)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/Grenade</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(148, 153, 49)</color>
+		</graphicData>
+		<statBases />
+		<ammoClass>FleshBreaker</ammoClass>
+		<detonateProjectile>Bullet_40x46mmGrenade_FleshBreaker</detonateProjectile>
+	</ThingDef>
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_40x46mmGrenade_FleshBreaker</defName>
+		<label>40x46mm grenade (flesh-breaker)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>4.9</explosionRadius>
+			<damageDef>USH_FleshBreakerDamage</damageDef>
+			<postExplosionGasType>USH_FleshBreakerGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40x46mmGrenade_FleshBreaker</defName>
+		<label>make 40x46mm flesh-breaker grenades x100</label>
+		<description>Craft 100 40x46mm flesh-breaker grenades.</description>
+		<jobString>Making 40x46mm flesh-breaker grenades.</jobString>
+		<researchPrerequisite>USH_FleshBreakerOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_FleshBreaker</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_FleshBreaker</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x46mmGrenade_FleshBreaker>100</Ammo_40x46mmGrenade_FleshBreaker>
+		</products>
+		<workAmount>7400</workAmount>
+	</RecipeDef>
+
+
+	<!-- 81mm mortar -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Shell_81mmMortarShell_FleshBreaker</defName>
+		<label>81mm mortar shell (flesh-breaker)</label>
+		<graphicData>
+			<texPath>Things/Item/GasShells</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(148, 153, 49)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.1</Mass>
+			<Bulk>10.01</Bulk>
+		</statBases>
+		<ammoClass>FleshBreaker</ammoClass>
+		<detonateProjectile>Bullet_81mmMortarShell_FleshBreaker</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_81mmMortarShell_FleshBreaker</defName>
+		<label>81mm mortar shell (flesh-breaker)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Smoke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_FleshBreakerDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>USH_FleshBreakerGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeShell_FleshBreaker</defName>
+		<label>make 81mm flesh-breaker mortar shells x5</label>
+		<description>Craft 5 81mm flesh-breaker mortar shells.</description>
+		<jobString>Making 81mm flesh-breaker mortar shells.</jobString>
+		<researchPrerequisite>USH_FleshBreakerOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>42</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_FleshBreaker</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_FleshBreaker</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_81mmMortarShell_Fleshbreaker>5</Shell_81mmMortarShell_Fleshbreaker>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>6600</workAmount>
+	</RecipeDef>
+
+<!-- 50mmrocket -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50mmRocketBase">
+		<defName>Ammo_50mmRocket_FleshBreaker</defName>
+		<label>50mm rocket (flesh-breaker)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/50mm</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(148, 153, 49)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.5</Mass>
+			<Bulk>7.07</Bulk>
+		</statBases>
+		<ammoClass>FleshBreaker</ammoClass>
+		<detonateProjectile>Bullet_50mmRocket_FleshBreaker</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50mmRocket">
+		<defName>Bullet_50mmRocket_FleshBreaker</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>50mm rocket (flesh-breaker)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/70mmAPKWS</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.70</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_FleshBreakerDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<postExplosionGasType>USH_FleshBreakerGas</postExplosionGasType>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>60~120</cutoffTickRange>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>120~240</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_50mmRocket_FleshBreaker</defName>
+		<label>make 50mm flesh-breaker rockets x10</label>
+		<description>Craft 10 50mm flesh-breaker rockets.</description>
+		<jobString>Making 50mm flesh-breaker rockets.</jobString>
+		<researchPrerequisite>USH_FleshBreakerOperationRes</researchPrerequisite>
+		<workAmount>11000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>46</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_FleshBreaker</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_FleshBreaker</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_50mmRocket_FleshBreaker>10</Ammo_50mmRocket_FleshBreaker>
+		</products>
+	</RecipeDef>
+
+	<!-- Flu -->
+	<!-- 40x46mmGrenade -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+		<defName>Ammo_40x46mmGrenade_Flu</defName>
+		<label>40x46mm grenade (flu)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/Grenade</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(242, 200, 25)</color>
+		</graphicData>
+		<statBases />
+		<ammoClass>Toxic</ammoClass>
+		<detonateProjectile>Bullet_40x46mmGrenade_Flu</detonateProjectile>
+	</ThingDef>
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_40x46mmGrenade_Flu</defName>
+		<label>40x46mm grenade (flu)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>4.9</explosionRadius>
+			<damageDef>USH_FluDamage</damageDef>
+			<postExplosionGasType>USH_FluGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40x46mmGrenade_Flu</defName>
+		<label>make 40x46mm flu grenades x100</label>
+		<description>Craft 100 40x46mm flu grenades.</description>
+		<jobString>Making 40x46mm flu grenades.</jobString>
+		<researchPrerequisite>USH_FluOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_FluPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_FluPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x46mmGrenade_Flu>100</Ammo_40x46mmGrenade_Flu>
+		</products>
+		<workAmount>7400</workAmount>
+	</RecipeDef>
+
+
+	<!-- 81mm mortar -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Shell_81mmMortarShell_Flu</defName>
+		<label>81mm mortar shell (flu)</label>
+		<graphicData>
+			<texPath>Things/Item/GasShells</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(242, 200, 25)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.1</Mass>
+			<Bulk>10.01</Bulk>
+		</statBases>
+		<ammoClass>Flu</ammoClass>
+		<detonateProjectile>Bullet_81mmMortarShell_Flu</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_81mmMortarShell_Flu</defName>
+		<label>81mm mortar shell (flu)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Smoke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_FluDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>USH_FluGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeShell_Flu</defName>
+		<label>make 81mm flu mortar shells x5</label>
+		<description>Craft 5 81mm flu mortar shells.</description>
+		<jobString>Making 81mm flu mortar shells.</jobString>
+		<researchPrerequisite>USH_FluOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>42</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_FluPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_FluPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_81mmMortarShell_Flu>5</Shell_81mmMortarShell_Flu>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>6600</workAmount>
+	</RecipeDef>
+
+<!-- 50mmrocket -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50mmRocketBase">
+		<defName>Ammo_50mmRocket_Flu</defName>
+		<label>50mm rocket (flu)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/50mm</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(242, 200, 25)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.5</Mass>
+			<Bulk>7.07</Bulk>
+		</statBases>
+		<ammoClass>Flu</ammoClass>
+		<detonateProjectile>Bullet_50mmRocket_Flu</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50mmRocket">
+		<defName>Bullet_50mmRocket_Flu</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>50mm rocket (flu)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/70mmAPKWS</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.70</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_FluDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<postExplosionGasType>USH_FluGas</postExplosionGasType>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>60~120</cutoffTickRange>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>120~240</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_50mmRocket_Flu</defName>
+		<label>make 50mm flu rockets x10</label>
+		<description>Craft 10 50mm flu rockets.</description>
+		<jobString>Making 50mm flu rockets.</jobString>
+		<researchPrerequisite>USH_FluOperationRes</researchPrerequisite>
+		<workAmount>11000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>46</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_FluPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_FluPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_50mmRocket_Flu>10</Ammo_50mmRocket_Flu>
+		</products>
+	</RecipeDef>
+	<!-- Malaria -->
+	<!-- 40x46mmGrenade -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+		<defName>Ammo_40x46mmGrenade_Malaria</defName>
+		<label>40x46mm grenade (malaria)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/Grenade</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(165, 120, 98)</color>
+		</graphicData>
+		<statBases />
+		<ammoClass>Malaria</ammoClass>
+		<detonateProjectile>Bullet_40x46mmGrenade_Malaria</detonateProjectile>
+	</ThingDef>
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_40x46mmGrenade_Malaria</defName>
+		<label>40x46mm grenade (malaria)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>4.9</explosionRadius>
+			<damageDef>USH_MalariaDamage</damageDef>
+			<postExplosionGasType>USH_MalariaGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40x46mmGrenade_Malaria</defName>
+		<label>make 40x46mm malaria grenades x100</label>
+		<description>Craft 100 40x46mm malaria grenades.</description>
+		<jobString>Making 40x46mm malaria grenades.</jobString>
+		<researchPrerequisite>USH_MalariaOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_MalariaPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_MalariaPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x46mmGrenade_Malaria>100</Ammo_40x46mmGrenade_Malaria>
+		</products>
+		<workAmount>7400</workAmount>
+	</RecipeDef>
+
+
+	<!-- 81mm mortar -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Shell_81mmMortarShell_Malaria</defName>
+		<label>81mm mortar shell (malaria)</label>
+		<graphicData>
+			<texPath>Things/Item/GasShells</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(165, 120, 98)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.1</Mass>
+			<Bulk>10.01</Bulk>
+		</statBases>
+		<ammoClass>Malaria</ammoClass>
+		<detonateProjectile>Bullet_81mmMortarShell_Malaria</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_81mmMortarShell_Malaria</defName>
+		<label>81mm mortar shell (malaria)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Smoke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_MalariaDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>USH_MalariaGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeShell_Malaria</defName>
+		<label>make 81mm malaria mortar shells x5</label>
+		<description>Craft 5 81mm malaria mortar shells.</description>
+		<jobString>Making 81mm malaria mortar shells.</jobString>
+		<researchPrerequisite>USH_MalariaOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>42</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_MalariaPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_MalariaPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_81mmMortarShell_Malaria>5</Shell_81mmMortarShell_Malaria>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>6600</workAmount>
+	</RecipeDef>
+
+<!-- 50mmrocket -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50mmRocketBase">
+		<defName>Ammo_50mmRocket_Malaria</defName>
+		<label>50mm rocket (malaria)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/50mm</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(165, 120, 98)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.5</Mass>
+			<Bulk>7.07</Bulk>
+		</statBases>
+		<ammoClass>Malaria</ammoClass>
+		<detonateProjectile>Bullet_50mmRocket_Malaria</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50mmRocket">
+		<defName>Bullet_50mmRocket_Malaria</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>50mm rocket (malaria)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/70mmAPKWS</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.70</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_MalariaDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<postExplosionGasType>USH_MalariaGas</postExplosionGasType>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>60~120</cutoffTickRange>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>120~240</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_50mmRocket_Malaria</defName>
+		<label>make 50mm malaria rockets x10</label>
+		<description>Craft 10 50mm malaria rockets.</description>
+		<jobString>Making 50mm malaria rockets.</jobString>
+		<researchPrerequisite>USH_MalariaOperationRes</researchPrerequisite>
+		<workAmount>11000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>46</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_MalariaPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_MalariaPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_50mmRocket_Malaria>10</Ammo_50mmRocket_Malaria>
+		</products>
+	</RecipeDef>
+	<!-- Necroa -->
+	<!-- 40x46mmGrenade -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+		<defName>Ammo_40x46mmGrenade_Necroa</defName>
+		<label>40x46mm grenade (necroa)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/Grenade</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(123, 124, 99)</color>
+		</graphicData>
+		<statBases />
+		<ammoClass>Necroa</ammoClass>
+		<detonateProjectile>Bullet_40x46mmGrenade_Necroa</detonateProjectile>
+	</ThingDef>
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_40x46mmGrenade_Necroa</defName>
+		<label>40x46mm grenade (necroa)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>4.9</explosionRadius>
+			<damageDef>USH_NecroaDamage</damageDef>
+			<postExplosionGasType>USH_NecroaGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40x46mmGrenade_Necroa</defName>
+		<label>make 40x46mm necroa grenades x100</label>
+		<description>Craft 100 40x46mm necroa grenades.</description>
+		<jobString>Making 40x46mm necroa grenades.</jobString>
+		<researchPrerequisite>USH_NecroaOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_NecroaPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_NecroaPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x46mmGrenade_Necroa>100</Ammo_40x46mmGrenade_Necroa>
+		</products>
+		<workAmount>7400</workAmount>
+	</RecipeDef>
+
+
+	<!-- 81mm mortar -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Shell_81mmMortarShell_Necroa</defName>
+		<label>81mm mortar shell (necroa)</label>
+		<graphicData>
+			<texPath>Things/Item/GasShells</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(123, 124, 99)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.1</Mass>
+			<Bulk>10.01</Bulk>
+		</statBases>
+		<ammoClass>Necroa</ammoClass>
+		<detonateProjectile>Bullet_81mmMortarShell_Necroa</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_81mmMortarShell_Necroa</defName>
+		<label>81mm mortar shell (necroa)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Smoke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_NecroaDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>USH_NecroaGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeShell_Necroa</defName>
+		<label>make 81mm necroa mortar shells x5</label>
+		<description>Craft 5 81mm necroa mortar shells.</description>
+		<jobString>Making 81mm necroa mortar shells.</jobString>
+		<researchPrerequisite>USH_NecroaOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>42</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_NecroaPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_NecroaPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_81mmMortarShell_Necroa>5</Shell_81mmMortarShell_Necroa>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>6600</workAmount>
+	</RecipeDef>
+
+<!-- 50mmrocket -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50mmRocketBase">
+		<defName>Ammo_50mmRocket_Necroa</defName>
+		<label>50mm rocket (necroa)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/50mm</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(123, 124, 99)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.5</Mass>
+			<Bulk>7.07</Bulk>
+		</statBases>
+		<ammoClass>Necroa</ammoClass>
+		<detonateProjectile>Bullet_50mmRocket_Necroa</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50mmRocket">
+		<defName>Bullet_50mmRocket_Necroa</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>50mm rocket (necroa)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/70mmAPKWS</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.70</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_NecroaDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<postExplosionGasType>USH_NecroaGas</postExplosionGasType>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>60~120</cutoffTickRange>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>120~240</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_50mmRocket_Necroa</defName>
+		<label>make 50mm necroa rockets x10</label>
+		<description>Craft 10 50mm necroa rockets.</description>
+		<jobString>Making 50mm necroa rockets.</jobString>
+		<researchPrerequisite>USH_NecroaOperationRes</researchPrerequisite>
+		<workAmount>11000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>46</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_NecroaPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_NecroaPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_50mmRocket_Necroa>10</Ammo_50mmRocket_Necroa>
+		</products>
+	</RecipeDef>
+	<!-- Plague -->
+	<!-- 40x46mmGrenade -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+		<defName>Ammo_40x46mmGrenade_Plague</defName>
+		<label>40x46mm grenade (plague)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/Grenade</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(160, 92, 124)</color>
+		</graphicData>
+		<statBases />
+		<ammoClass>Plague</ammoClass>
+		<detonateProjectile>Bullet_40x46mmGrenade_Plague</detonateProjectile>
+	</ThingDef>
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_40x46mmGrenade_Plague</defName>
+		<label>40x46mm grenade (plague)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>4.9</explosionRadius>
+			<damageDef>USH_PlagueDamage</damageDef>
+			<postExplosionGasType>USH_PlagueGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40x46mmGrenade_Plague</defName>
+		<label>make 40x46mm plague grenades x100</label>
+		<description>Craft 100 40x46mm plague grenades.</description>
+		<jobString>Making 40x46mm plague grenades.</jobString>
+		<researchPrerequisite>USH_PlagueOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_PlaguePathogen</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_PlaguePathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x46mmGrenade_Plague>100</Ammo_40x46mmGrenade_Plague>
+		</products>
+		<workAmount>7400</workAmount>
+	</RecipeDef>
+
+
+	<!-- 81mm mortar -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Shell_81mmMortarShell_Plague</defName>
+		<label>81mm mortar shell (plague)</label>
+		<graphicData>
+			<texPath>Things/Item/GasShells</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(160, 92, 124)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.1</Mass>
+			<Bulk>10.01</Bulk>
+		</statBases>
+		<ammoClass>Plague</ammoClass>
+		<detonateProjectile>Bullet_81mmMortarShell_Plague</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_81mmMortarShell_Plague</defName>
+		<label>81mm mortar shell (plague)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Smoke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_PlagueDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>USH_PlagueGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeShell_Plague</defName>
+		<label>make 81mm plague mortar shells x5</label>
+		<description>Craft 5 81mm plague mortar shells.</description>
+		<jobString>Making 81mm plague mortar shells.</jobString>
+		<researchPrerequisite>USH_PlagueOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>42</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_PlaguePathogen</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_PlaguePathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_81mmMortarShell_Plague>5</Shell_81mmMortarShell_Plague>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>6600</workAmount>
+	</RecipeDef>
+
+<!-- 50mmrocket -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50mmRocketBase">
+		<defName>Ammo_50mmRocket_Plague</defName>
+		<label>50mm rocket (plague)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/50mm</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(160, 92, 124)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.5</Mass>
+			<Bulk>7.07</Bulk>
+		</statBases>
+		<ammoClass>Plague</ammoClass>
+		<detonateProjectile>Bullet_50mmRocket_Plague</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50mmRocket">
+		<defName>Bullet_50mmRocket_Plague</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>50mm rocket (plague)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/70mmAPKWS</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.70</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_PlagueDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<postExplosionGasType>USH_PlagueGas</postExplosionGasType>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>60~120</cutoffTickRange>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>120~240</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_50mmRocket_Plague</defName>
+		<label>make 50mm plague rockets x10</label>
+		<description>Craft 10 50mm plague rockets.</description>
+		<jobString>Making 50mm plague rockets.</jobString>
+		<researchPrerequisite>USH_PlagueOperationRes</researchPrerequisite>
+		<workAmount>11000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>46</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_PlaguePathogen</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_PlaguePathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_50mmRocket_Plague>10</Ammo_50mmRocket_Plague>
+		</products>
+	</RecipeDef>
+	<!-- Scaria -->
+	<!-- 40x46mmGrenade -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+		<defName>Ammo_40x46mmGrenade_</defName>
+		<label>40x46mm grenade (scaria)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/Grenade</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(181, 45, 61)</color>
+		</graphicData>
+		<statBases />
+		<ammoClass>Scaria</ammoClass>
+		<detonateProjectile>Bullet_40x46mmGrenade_Scaria</detonateProjectile>
+	</ThingDef>
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_40x46mmGrenade_Scaria</defName>
+		<label>40x46mm grenade (scaria)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>4.9</explosionRadius>
+			<damageDef>USH_ScariaDamage</damageDef>
+			<postExplosionGasType>USH_ScariaGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40x46mmGrenade_Scaria</defName>
+		<label>make 40x46mm scaria grenades x100</label>
+		<description>Craft 100 40x46mm scaria grenades.</description>
+		<jobString>Making 40x46mm scaria grenades.</jobString>
+		<researchPrerequisite>USH_ScariaOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_ScariaPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_ScariaPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x46mmGrenade_Scaria>100</Ammo_40x46mmGrenade_Scaria>
+		</products>
+		<workAmount>7400</workAmount>
+	</RecipeDef>
+
+
+	<!-- 81mm mortar -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Shell_81mmMortarShell_Scaria</defName>
+		<label>81mm mortar shell (scaria)</label>
+		<graphicData>
+			<texPath>Things/Item/GasShells</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(181, 45, 61)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.1</Mass>
+			<Bulk>10.01</Bulk>
+		</statBases>
+		<ammoClass>Scaria</ammoClass>
+		<detonateProjectile>Bullet_81mmMortarShell_Scaria</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_81mmMortarShell_Scaria</defName>
+		<label>81mm mortar shell (scaria)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Smoke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_ScariaDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>USH_ScariaGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeShell_Scaria</defName>
+		<label>make 81mm scaria mortar shells x5</label>
+		<description>Craft 5 81mm scaria mortar shells.</description>
+		<jobString>Making 81mm scaria mortar shells.</jobString>
+		<researchPrerequisite>USH_ScariaOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>42</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_ScariaPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_ScariaPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_81mmMortarShell_Scaria>5</Shell_81mmMortarShell_Scaria>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>6600</workAmount>
+	</RecipeDef>
+
+<!-- 50mmrocket -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50mmRocketBase">
+		<defName>Ammo_50mmRocket_Scaria</defName>
+		<label>50mm rocket (scaria)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/50mm</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(181, 45, 61)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.5</Mass>
+			<Bulk>7.07</Bulk>
+		</statBases>
+		<ammoClass>Scaria</ammoClass>
+		<detonateProjectile>Bullet_50mmRocket_Scaria</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50mmRocket">
+		<defName>Bullet_50mmRocket_Scaria</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>50mm rocket (scaria)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/70mmAPKWS</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.70</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_ScariaDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<postExplosionGasType>USH_ScariaGas</postExplosionGasType>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>60~120</cutoffTickRange>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>120~240</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_50mmRocket_Scaria</defName>
+		<label>make 50mm scaria rockets x10</label>
+		<description>Craft 10 50mm scaria rockets.</description>
+		<jobString>Making 50mm scaria rockets.</jobString>
+		<researchPrerequisite>USH_ScariaOperationRes</researchPrerequisite>
+		<workAmount>11000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>46</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_ScariaPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_ScariaPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_50mmRocket_Scaria>10</Ammo_50mmRocket_Scaria>
+		</products>
+	</RecipeDef>
+	<!-- SleepingSickness -->
+	<!-- 40x46mmGrenade -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+		<defName>Ammo_40x46mmGrenade_SleepingSickness</defName>
+		<label>40x46mm grenade (sleeping sickness)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/Grenade</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(22, 168, 119)</color>
+		</graphicData>
+		<statBases />
+		<ammoClass>SleepingSickness</ammoClass>
+		<detonateProjectile>Bullet_40x46mmGrenade_SleepingSickness</detonateProjectile>
+	</ThingDef>
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_40x46mmGrenade_SleepingSickness</defName>
+		<label>40x46mm grenade (sleeping sickness)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>4.9</explosionRadius>
+			<damageDef>USH_SleepingSicknessDamage</damageDef>
+			<postExplosionGasType>USH_SleepingSicknessGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40x46mmGrenade_SleepingSickness</defName>
+		<label>make 40x46mm sleeping sickness grenades x100</label>
+		<description>Craft 100 40x46mm sleeping sickness grenades.</description>
+		<jobString>Making 40x46mm sleeping sickness grenades.</jobString>
+		<researchPrerequisite>USH_SleepingSicknessOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_SleepingSicknessPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_SleepingSicknessPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40x46mmGrenade_SleepingSickness>100</Ammo_40x46mmGrenade_SleepingSickness>
+		</products>
+		<workAmount>7400</workAmount>
+	</RecipeDef>
+
+
+	<!-- 81mm mortar -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Shell_81mmMortarShell_SleepingSickness</defName>
+		<label>81mm mortar shell (sleeping sickness)</label>
+		<graphicData>
+			<texPath>Things/Item/GasShells</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(22, 168, 119)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.1</Mass>
+			<Bulk>10.01</Bulk>
+		</statBases>
+		<ammoClass>SleepingSickness</ammoClass>
+		<detonateProjectile>Bullet_81mmMortarShell_SleepingSickness</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_81mmMortarShell_SleepingSickness</defName>
+		<label>81mm mortar shell (sleeping sickness)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Smoke</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_SleepingSicknessDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionGasType>USH_SleepingSicknessGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeShell_SleepingSickness</defName>
+		<label>make 81mm sleeping sickness mortar shells x5</label>
+		<description>Craft 5 81mm sleeping sickness mortar shells.</description>
+		<jobString>Making 81mm sleeping sickness mortar shells.</jobString>
+		<researchPrerequisite>USH_SleepingSicknessOperationRes</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>42</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_SleepingSicknessPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_SleepingSicknessPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_81mmMortarShell_SleepingSickness>5</Shell_81mmMortarShell_SleepingSickness>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>6600</workAmount>
+	</RecipeDef>
+
+<!-- 50mmrocket -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="50mmRocketBase">
+		<defName>Ammo_50mmRocket_SleepingSickness</defName>
+		<label>50mm rocket (sleeping sickness)</label>
+		<graphicData>
+			<texPath>ThirdParty/BiologicalWarfare/50mm</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(22, 168, 119)</color>
+		</graphicData>
+		<statBases>
+			<Mass>4.5</Mass>
+			<Bulk>7.07</Bulk>
+		</statBases>
+		<ammoClass>SleepingSickness</ammoClass>
+		<detonateProjectile>Bullet_50mmRocket_SleepingSickness</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base50mmRocket">
+		<defName>Bullet_50mmRocket_SleepingSickness</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>50mm rocket (sleeping sickness)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/70mmAPKWS</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.70</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>USH_SleepingSicknessDamage</damageDef>
+			<explosionRadius>6</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<postExplosionGasType>USH_SleepingSicknessGas</postExplosionGasType>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>60~120</cutoffTickRange>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>120~240</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_50mmRocket_SleepingSickness</defName>
+		<label>make 50mm sleeping sickness rockets x10</label>
+		<description>Craft 10 50mm sleeping sickness rockets.</description>
+		<jobString>Making 50mm sleeping sickness rockets.</jobString>
+		<researchPrerequisite>USH_SleepingSicknessOperationRes</researchPrerequisite>
+		<workAmount>11000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>46</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>USH_SleepingSicknessPathogen</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>USH_SleepingSicknessPathogen</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_50mmRocket_SleepingSickness>10</Ammo_50mmRocket_SleepingSickness>
+		</products>
+	</RecipeDef>
+</Defs>
