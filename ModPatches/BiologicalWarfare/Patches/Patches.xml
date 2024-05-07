@@ -40,6 +40,52 @@
 		</value>
 	</Operation>
 
+	<!-- Respirator -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_RespiratorMask"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>10000</WorkToMake>
+				<MaxHitPoints>30</MaxHitPoints>
+				<Mass>0.5</Mass>
+				<Bulk>3</Bulk>
+				<WornBulk>1</WornBulk>
+				<EquipDelay>0.5</EquipDelay>
+				<ArmorRating_Sharp>0.01</ArmorRating_Sharp> <!-- A little bit of armor to prevent triggering a warning when shot. -->
+				<ArmorRating_Blunt>0.01</ArmorRating_Blunt>						
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="USH_RespiratorMask"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="USH_RespiratorMask"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+			<li Class="CombatExtended.ApperalRenderingExtension">
+				<HideHair>false</HideHair>
+				<HideBeard>true</HideBeard>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_RespiratorMask"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+
 	<!-- FleshBreaker -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_FleshBreaker"]/thingDefsToFormatAndColor/li[
