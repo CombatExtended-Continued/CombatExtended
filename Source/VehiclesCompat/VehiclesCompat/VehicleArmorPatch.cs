@@ -161,12 +161,9 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                             }
                             else // Hit any pawns and then move on to the next cell
                             {
-                                Rot4 directionFromAngle = Traverse.Create(stats).Method("DirectionFromAngle", new Type[] { typeof(float) }).GetValue<Rot4>( dinfo.Angle );
+                                Rot4 directionFromAngle = Traverse.Create(stats).Method("DirectionFromAngle", new Type[] { typeof(float) }).GetValue<Rot4>(dinfo.Angle);
                                 Pawn hitPawn = null;
-                                if ( Traverse.Create(stats)
-                                    .Method("HitPawn", new Type[] { typeof(DamageInfo), typeof(VehicleComponent.VehiclePartDepth), typeof(IntVec2), typeof(Rot4), typeof(Pawn).MakeByRefType(), typeof(StringBuilder) } )
-                                    .GetValue<bool>(dinfo, hitDepth, cell2, directionFromAngle, hitPawn, report ) 
-                                    )
+                                if (Traverse.Create(stats).Method("HitPawn", new Type[] { typeof(DamageInfo), typeof(VehicleComponent.VehiclePartDepth), typeof(IntVec2), typeof(Rot4), typeof(Pawn).MakeByRefType(), typeof(StringBuilder) }).GetValue<bool>(dinfo, hitDepth, cell2, directionFromAngle, hitPawn, report))
                                 {
                                     report?.AppendLine($"Hit {hitPawn} for {dinfo.Amount}. Impact site = {hitCell}");
                                 }
