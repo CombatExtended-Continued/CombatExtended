@@ -52,7 +52,7 @@
 				<WornBulk>1</WornBulk>
 				<EquipDelay>0.5</EquipDelay>
 				<ArmorRating_Sharp>0.01</ArmorRating_Sharp> <!-- A little bit of armor to prevent triggering a warning when shot. -->
-				<ArmorRating_Blunt>0.01</ArmorRating_Blunt>						
+				<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
 			</statBases>
 		</value>
 	</Operation>
@@ -83,6 +83,20 @@
 			<layers>
 				<li>StrappedHead</li>
 			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="USH_IronLung"]/stages</xpath>
+		<value>
+			<stages>
+				<li>
+					<statOffsets>
+						<ToxicEnvironmentResistance>0.6</ToxicEnvironmentResistance>
+						<SmokeSensitivity>-0.6</SmokeSensitivity>
+					</statOffsets>
+				</li>
+			</stages>
 		</value>
 	</Operation>
 
