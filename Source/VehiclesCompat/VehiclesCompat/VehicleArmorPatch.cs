@@ -16,15 +16,16 @@ using CombatExtended;
 namespace CombatExtended.Compatibility.VehiclesCompat
 {
     [HarmonyPatch(typeof(VehicleStatHandler),
-                  nameof(VehicleStatHandler.ApplyDamageToComponent))]
+                  nameof(VehicleStatHandler.ApplyDamage))]
     public static class VehicleArmorPatch
     {
-        public static bool Prefix(VehicleStatHandler __instance, ref DamageInfo dinfo, IntVec2 hitCell, StringBuilder report)
+        public static bool Prefix(VehicleStatHandler __instance, ref DamageInfo dinfo, IntVec2 hitCell)
         {
             if (!Controller.settings.patchArmorDamage)
             {
                 return true;
             }
+            StringBuilder report = VehicleMod.settings.debug.debugLogging ? new StringBuilder() : null;
             __instance.ApplyDamageCE(ref dinfo, hitCell, report);
             return false;
         }
@@ -45,7 +46,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
         public static void ApplyDamageCE(this VehicleStatHandler stats, ref DamageInfo dinfo, IntVec2 hitCell, StringBuilder report)
         {
             DamageDef def = dinfo.Def;
-            VehiclePawn vehicle = stats.vehicle;
+            VehiclePawn vehicle = Traverse.Create(stats).Field("vehicle").GetValue<VehiclePawn>();
             float damage = dinfo.Amount;
             if (!def.harmsHealth)
             {
@@ -114,10 +115,9 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                     {
                         renderCell = renderCell.RotatedBy(vehicle.Rotation, vehicle.VehicleDef.Size, reverseRotate: true);
                     }
-                    stats.debugCellHighlight.Add(new Pair<IntVec2, int>(renderCell, VehicleStatHandler.TicksHighlighted));
+                    Traverse.Create(stats).Field("debugCellHighlight").GetValue<List<Pair<IntVec2, int>>>().Add(new Pair<IntVec2, int>(renderCell, Traverse.Create<VehicleStatHandler>().Field("TicksHighlighted").GetValue<int>()));
                 }
-
-                if (stats.componentLocations.TryGetValue(cell2, out List<VehicleComponent> components))
+                if (Traverse.Create(stats).Field("componentLocations").GetValue<Dictionary<IntVec2, List<VehicleComponent>>>().TryGetValue(cell2, out List<VehicleComponent> components))
                 {
                     bool penetrated = TryPenetrateComponents(stats, ref dinfo, components, hitDepth, report);
                     report?.AppendLine($"penetrated? {penetrated}");
@@ -161,7 +161,12 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                             }
                             else // Hit any pawns and then move on to the next cell
                             {
-                                if (stats.HitPawn(dinfo, hitDepth, cell2, stats.DirectionFromAngle(dinfo.Angle), out Pawn hitPawn))
+                                Rot4 directionFromAngle = Traverse.Create(stats).Method("DirectionFromAngle", new Type[] { typeof(float) }).GetValue<Rot4>( dinfo.Angle );
+                                Pawn hitPawn = null;
+                                if ( Traverse.Create(stats)
+                                    .Method("HitPawn", new Type[] { typeof(DamageInfo), typeof(VehicleComponent.VehiclePartDepth), typeof(IntVec2), typeof(Rot4), typeof(Pawn).MakeByRefType(), typeof(StringBuilder) } )
+                                    .GetValue<bool>(dinfo, hitDepth, cell2, directionFromAngle, hitPawn, report ) 
+                                    )
                                 {
                                     report?.AppendLine($"Hit {hitPawn} for {dinfo.Amount}. Impact site = {hitCell}");
                                 }
@@ -272,7 +277,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             report?.AppendLine($"Applying Damage = {dinfo.Amount} to {component.props.key}");
 
             DamageArmorCategoryDef armorCategoryDef = dinfo.Def.armorCategory;
-            float armorAmount = component.Efficiency * component.ArmorRating(armorCategoryDef);
+            float armorAmount = component.Efficiency * component.ArmorRating(armorCategoryDef, out _);
             float penAmount = dinfo.ArmorPenetrationInt;
             var dmgAmount = dinfo.Amount;
             var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
