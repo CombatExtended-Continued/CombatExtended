@@ -441,7 +441,12 @@ namespace CombatExtended
         {
             if (!apparel.def.apparel.CoversBodyPart(part))
             {
-                return 0;
+                var shieldDef = apparel.def.GetModExtension<ShieldDefExtension>();
+                if(shieldDef == null
+                        || !shieldDef.PartIsCoveredByShield(part, true))
+                {
+                    return 0;
+                }
             }
 
             float result = apparel.GetStatValue(stat);

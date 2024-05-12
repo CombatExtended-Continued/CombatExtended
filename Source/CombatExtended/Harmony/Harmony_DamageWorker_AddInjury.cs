@@ -14,21 +14,29 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(DamageWorker_AddInjury), "ApplyDamageToPart")]
     internal static class Harmony_DamageWorker_AddInjury_ApplyDamageToPart
     {
+        // Secondary damage debounce boolean
         private static bool _applyingSecondary = false;
-        private static bool shieldAbsorbed = false;
-        private static readonly int[] ArmorBlockNullOps = { 1, 3, 4, 5, 6 };  // Lines in armor block that need to be nulled out
+        // Set to false initially and in the prefix, may be set to true in GetAfterArmorDamage
+        private static bool _skipSecondary = false;
+        // Lines in armor block that need to be nulled out
+        private static readonly int[] ArmorBlockNullOps = { 1, 3, 4, 5, 6 };
 
-        private static void ArmorReroute(Pawn pawn, ref DamageInfo dinfo, out bool deflectedByArmor, out bool diminishedByArmor)
+        private static void ArmorReroute(Pawn pawn, ref DamageInfo dinfo,
+                out bool deflectedByArmor, out bool diminishedByArmor)
         {
-            var newDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn, dinfo.HitPart, out deflectedByArmor, out diminishedByArmor, out shieldAbsorbed);
+            var newDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn, dinfo.HitPart,
+                    out deflectedByArmor, out diminishedByArmor, out _skipSecondary);
             if (dinfo.HitPart != newDinfo.HitPart)
             {
                 if (pawn.Spawned)
                 {
-                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ArmorSystem, OpportunityType.Critical);    // Inform the player about armor deflection
+                    // Inform the player about armor deflection
+                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ArmorSystem,
+                            OpportunityType.Critical);
                 }
             }
-            Patch_CheckDuplicateDamageToOuterParts.lastHitPartHealth = pawn.health.hediffSet.GetPartHealth(newDinfo.HitPart);
+            Patch_CheckDuplicateDamageToOuterParts.lastHitPartHealth =
+                pawn.health.hediffSet.GetPartHealth(newDinfo.HitPart);
 
             dinfo = newDinfo;
         }
@@ -39,7 +47,9 @@ namespace CombatExtended.HarmonyCE
             var codes = instructions.ToList();
 
             // Find armor block
-            var armorBlockEnd = codes.FirstIndexOf(c => ReferenceEquals(c.operand, typeof(ArmorUtility).GetMethod("GetPostArmorDamage", AccessTools.all)));
+            var armorBlockEnd = codes.FirstIndexOf(
+                    c => ReferenceEquals(c.operand,
+                        typeof(ArmorUtility).GetMethod("GetPostArmorDamage", AccessTools.all)));
 
             int armorBlockStart = -1;
 
@@ -54,7 +64,8 @@ namespace CombatExtended.HarmonyCE
             }
             if (armorBlockStart == -1)
             {
-                Log.Error("CE failed to transpile DamageWorker_AddInjury: could not identify armor block start");
+                Log.Error("[CE] Failed to transpile DamageWorker_AddInjury:"
+                        + "could not identify armor block start");
                 return instructions;
             }
 
@@ -68,43 +79,56 @@ namespace CombatExtended.HarmonyCE
             }
 
             // Override armor method call
-            codes[armorBlockEnd].operand = typeof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart).GetMethod(nameof(ArmorReroute), AccessTools.all);
+            codes[armorBlockEnd].operand = typeof(Harmony_DamageWorker_AddInjury_ApplyDamageToPart)
+                .GetMethod(nameof(ArmorReroute), AccessTools.all);
 
             // Prevent vanilla code from overriding changed damageDef
-            codes[armorBlockEnd + 3] = new CodeInstruction(OpCodes.Call, typeof(DamageInfo).GetMethod($"get_{nameof(DamageInfo.Def)}"));
+            codes[armorBlockEnd + 3] = new CodeInstruction(OpCodes.Call, typeof(DamageInfo)
+                    .GetMethod($"get_{nameof(DamageInfo.Def)}"));
             codes[armorBlockEnd + 4] = new CodeInstruction(OpCodes.Stloc_S, 4);
 
-            // Our method returns a Dinfo instead of float, we want to insert a call to Dinfo.Amount before stloc at ArmorBlockEnd+1
+            // Our method returns a Dinfo instead of float, we want to insert
+            // a call to Dinfo.Amount before stloc at ArmorBlockEnd+1
             codes.InsertRange(armorBlockEnd + 1, new[]
             {
                 new CodeInstruction(OpCodes.Ldarga_S, 1),
-                new CodeInstruction(OpCodes.Call, typeof(DamageInfo).GetMethod($"get_{nameof(DamageInfo.Amount)}"))
+                new CodeInstruction(OpCodes.Call, typeof(DamageInfo)
+                        .GetMethod($"get_{nameof(DamageInfo.Amount)}"))
             });
 
             return codes;
         }
 
+        internal static void Prefix()
+        {
+            _skipSecondary = false;
+        }
+
         internal static void Postfix(DamageInfo dinfo, Pawn pawn)
         {
-            if (shieldAbsorbed)
+            if (_skipSecondary)
             {
                 return;
             }
 
-            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE props && !props.secondaryDamage.NullOrEmpty() && !_applyingSecondary)
+            if (!_applyingSecondary
+                    && dinfo.Weapon?.projectile is ProjectilePropertiesCE props
+                    && !props.secondaryDamage.NullOrEmpty())
             {
                 _applyingSecondary = true;
                 foreach (var sec in props.secondaryDamage)
                 {
-                    if (pawn.Dead || !Rand.Chance(sec.chance))
+                    if (pawn.Dead)
                     {
                         break;
                     }
+                    if (!Rand.Chance(sec.chance))
+                    {
+                        continue;
+                    }
                     var secDinfo = sec.GetDinfo(dinfo);
-
                     pawn.TakeDamage(secDinfo);
                 }
-
                 _applyingSecondary = false;
             }
         }
@@ -119,9 +143,11 @@ namespace CombatExtended.HarmonyCE
         static class Patch_DamageWorker_AddInjury
         {
             [HarmonyPrefix]
-            static bool Prefix(DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
+            static bool Prefix(DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn,
+                    float totalDamage, DamageWorker.DamageResult result)
             {
-                CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
+                CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn,
+                        totalDamage, result, lastHitPartHealth);
                 return true;
             }
         }
@@ -131,9 +157,11 @@ namespace CombatExtended.HarmonyCE
         static class Patch_DamageWorker_Cut
         {
             [HarmonyPrefix]
-            static bool Prefix(DamageWorker_Cut __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
+            static bool Prefix(DamageWorker_Cut __instance, DamageInfo dinfo, Pawn pawn,
+                    float totalDamage, DamageWorker.DamageResult result)
             {
-                CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
+                CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn,
+                        totalDamage, result, lastHitPartHealth);
                 return true;
             }
         }
@@ -143,9 +171,11 @@ namespace CombatExtended.HarmonyCE
         static class Patch_DamageWorker_Stab
         {
             [HarmonyPrefix]
-            static bool Prefix(DamageWorker_Stab __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
+            static bool Prefix(DamageWorker_Stab __instance, DamageInfo dinfo, Pawn pawn,
+                    float totalDamage, DamageWorker.DamageResult result)
             {
-                CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
+                CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn,
+                        totalDamage, result, lastHitPartHealth);
                 return true;
             }
         }
@@ -155,7 +185,8 @@ namespace CombatExtended.HarmonyCE
 
     // Should work as long as ShouldReduceDamageToPreservePart exists
 
-    [HarmonyPatch(typeof(DamageWorker_AddInjury), nameof(DamageWorker_AddInjury.ShouldReduceDamageToPreservePart))]
+    [HarmonyPatch(typeof(DamageWorker_AddInjury),
+            nameof(DamageWorker_AddInjury.ShouldReduceDamageToPreservePart))]
     static class Patch_ShouldReduceDamageToPreservePart
     {
         [HarmonyPrefix]
