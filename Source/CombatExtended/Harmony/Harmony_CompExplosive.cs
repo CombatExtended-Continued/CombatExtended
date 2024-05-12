@@ -54,7 +54,6 @@ namespace CombatExtended.HarmonyCE
             [5] valuetype [mscorlib]System.Nullable`1<valuetype Verse.FloatRange>
             )
         */
-        [HarmonyDebug]
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             //TODO: 1.5
