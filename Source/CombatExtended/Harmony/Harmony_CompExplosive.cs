@@ -62,8 +62,8 @@ namespace CombatExtended.HarmonyCE
             {
                 yield return code;
             } */
-            /* bool codeFound = false;
-            bool codeChanged = false; */
+            bool codeFound = false;
+            //bool codeChanged = false;
 
             foreach (var code in instructions)
             {
