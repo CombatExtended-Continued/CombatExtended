@@ -59,8 +59,10 @@ namespace CombatExtended
             private set;
         }
 
-        public float ArmorPenetrationSharp => (tool as ToolCE)?.armorPenetrationSharp * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
-        public float ArmorPenetrationBlunt => (tool as ToolCE)?.armorPenetrationBlunt * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
+        protected virtual float PenetrationSkillMultiplier => CasterIsPawn ? (1f + CasterPawn.skills.GetSkill(SkillDefOf.Melee).Level * (EquipmentSource == Caster ? 2f : 5f) / 200f) : 1f;
+        protected virtual float PenetrationOtherMultipliers => CasterIsPawn ? this.verbProps.GetDamageFactorFor(this, CasterPawn) : 1f;
+        public float ArmorPenetrationSharp => (tool as ToolCE)?.armorPenetrationSharp * PenetrationOtherMultipliers * PenetrationSkillMultiplier * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
+        public float ArmorPenetrationBlunt => (tool as ToolCE)?.armorPenetrationBlunt * PenetrationOtherMultipliers * PenetrationSkillMultiplier * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
 
         public bool Enabled
         {
