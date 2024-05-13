@@ -198,7 +198,8 @@ namespace CombatExtended
         {
             get
             {
-                return ExactPosition + new Vector3(0, 0, ExactPosition.y - shotHeight);
+                var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
+                return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
         }
 
@@ -1206,22 +1207,31 @@ namespace CombatExtended
             }
             else
             {
+                Quaternion shadowRotation = ExactRotation;
+                Quaternion projectileRotation = DrawRotation;
+                if (def.projectile.spinRate != 0f)
+                {
+                    float num2 = GenTicks.TicksPerRealSecond / def.projectile.spinRate;
+                    var spinRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
+                    shadowRotation *= spinRotation;
+                    projectileRotation *= spinRotation;
+                }
                 //Projectile
                 //Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
-                Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), DrawPos, DrawRotation, def.DrawMatSingle, 0);
+                Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), DrawPos, projectileRotation, def.DrawMatSingle, 0);
 
                 //Shadow
                 if (castShadow)
                 {
                     //TODO : EXPERIMENTAL Add edifice height
                     var shadowPos = new Vector3(ExactPosition.x,
-                                                0,
-                                                ExactPosition.z);
+                                                def.Altitude - 0.001f,
+                                                ExactPosition.z - Mathf.Max(0f, ExactPosition.y));
                     //EXPERIMENTAL: + (new CollisionVertical(ExactPosition.ToIntVec3().GetEdifice(Map))).Max);
 
                     //TODO : Vary ShadowMat plane
                     //Graphics.DrawMesh(MeshPool.plane08, shadowPos, ExactRotation, ShadowMaterial, 0);
-                    Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), shadowPos, ExactRotation, ShadowMaterial, 0);
+                    Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), shadowPos, shadowRotation, ShadowMaterial, 0);
                 }
 
                 Comps_PostDraw();
@@ -1336,6 +1346,10 @@ namespace CombatExtended
                 effecter.Trigger(new TargetInfo(explodePos.ToIntVec3(), Map, false), new TargetInfo(explodePos.ToIntVec3(), Map, false));
                 effecter.Cleanup();
             }
+            if (def.projectile.landedEffecter != null)
+            {
+                def.projectile.landedEffecter.Spawn(Position, Map, 1f).Cleanup();
+            }
             ProjectilePropertiesCE projectileCE = def.projectile as ProjectilePropertiesCE;
             float effectScale = projectileCE.detonateEffectsScaleOverride > 0 ? projectileCE.detonateEffectsScaleOverride : projectileCE.explosionRadius * 2;
             if (projectileCE.detonateMoteDef != null)
@@ -1360,7 +1374,7 @@ namespace CombatExtended
             }
 
             //If the comp exists, it'll already call CompFragments
-            if (explodingComp != null || def.projectile.explosionRadius > 0f)
+            if (explodingComp != null || (def.projectile.explosionRadius > 0f && def.projectile.damageDef != null))
             {
                 float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
                 //Handle anything explosive

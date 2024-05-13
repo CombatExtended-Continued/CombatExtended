@@ -277,4 +277,903 @@ r = resource cost. -->
 			<Gun_ThrowingAxes>5</Gun_ThrowingAxes>
 		</products>
 	</RecipeDef>
+	
+	<ThingCategoryDef>
+		<defName>Ammo25mmRockets</defName>
+		<label>25mm Rocket</label>
+		<parent>AmmoGrenades</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_25mmRocket</defName>
+		<label>25mm Rockets</label>
+		<ammoTypes>
+			<Ammo_25mmRocket_HE>Bullet_25mmRocket_HE</Ammo_25mmRocket_HE>
+			<Ammo_25mmRocket_HE_TFuzed>Bullet_25mmRocket_HE_TFuzed</Ammo_25mmRocket_HE_TFuzed>
+			<Ammo_25mmRocket_HEDP>Bullet_25mmRocket_HEDP</Ammo_25mmRocket_HEDP>
+			<Ammo_25mmRocket_EMP>Bullet_25mmRocket_EMP</Ammo_25mmRocket_EMP>
+			<Ammo_25mmRocket_Smoke>Bullet_25mmRocket_Smoke</Ammo_25mmRocket_Smoke>
+		</ammoTypes>
+		<similarTo>AmmoSet_LauncherGrenade</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="25mmRocketBase" ParentName="MediumAmmoBase" Abstract="True">
+		<description>Dumbfire micro-rockets.</description>
+		<statBases>
+			<Mass>0.29</Mass>
+			<Bulk>0.2</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo25mmRockets</li>
+		</thingCategories>
+		<stackLimit>2000</stackLimit>
+		<cookOffFlashScale>20</cookOffFlashScale>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="25mmRocketBase">
+		<defName>Ammo_25mmRocket_HE</defName>
+		<label>25mm Rocket (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.35</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<detonateProjectile>Bullet_25mmRocket_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="25mmRocketBase">
+		<defName>Ammo_25mmRocket_HE_TFuzed</defName>
+		<label>25mm Rocket (HE Time-Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/AIR</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>3.33</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHETF</ammoClass>
+		<detonateProjectile>Bullet_25mmRocket_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="25mmRocketBase">
+		<defName>Ammo_25mmRocket_HEDP</defName>
+		<label>25mm Rocket (HEDP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.2</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHEDP</ammoClass>
+		<detonateProjectile>Bullet_25mmRocket_HEDP</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="25mmRocketBase">
+		<defName>Ammo_25mmRocket_EMP</defName>
+		<label>25mm Rocket (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>4.08</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<generateAllowChance>0.5</generateAllowChance>
+		<detonateProjectile>Bullet_25mmRocket_EMP</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="25mmRocketBase">
+		<defName>Ammo_25mmRocket_Smoke</defName>
+		<label>25mm Rocket (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/SMK</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.93</MarketValue>
+		</statBases>
+		<ammoClass>Smoke</ammoClass>
+		<generateAllowChance>0</generateAllowChance>
+		<detonateProjectile>Bullet_25mmRocket_Smoke</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base25mmRocketBullet" ParentName="BaseExplosiveBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Dumbfire_rocket</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(0.85,0.85)</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>50</speed>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>8</emissionsPerTick>
+						<flecksPerEmission>2</flecksPerEmission>
+						<scale>0.35</scale>
+						<originOffset>0</originOffset>
+						<cutoffTickRange>45~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base25mmRocketBullet">
+		<defName>Bullet_25mmRocket_HE</defName>
+		<label>25mm Rocket</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>19</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>24</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base25mmRocketBullet">
+		<defName>Bullet_25mmRocket_HE_TFuzed</defName>
+		<label>25mm Rocket (HE Time-Fuzed)</label>
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>19</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>1.4</aimHeightOffset>
+			<armingDelay>2</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>24</Fragment_Small>
+				</fragments>
+				<fragAngleRange>-89~-5</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base25mmRocketBullet">
+		<defName>Bullet_25mmRocket_HEDP</defName>
+		<label>25mm Rocket</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationSharp>50</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.818</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>16</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>12</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base25mmRocketBullet">
+		<defName>Bullet_25mmRocket_EMP</defName>
+		<label>25mm Rocket</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>19</damageAmountBase>
+			<explosionRadius>1.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base25mmRocketBullet">
+		<defName>Bullet_25mmRocket_Smoke</defName>
+		<label>25mm Rocket (Smoke)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>2</explosionRadius>
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_25mmRocket_HE</defName>
+		<label>make 25mm HE rockets x100</label>
+		<description>Craft 100 25mm HE rockets.</description>
+		<jobString>Making 25mm HE rockets.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>58</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25mmRocket_HE>100</Ammo_25mmRocket_HE>
+		</products>
+		<workAmount>9800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_25mmRocket_HE_TFuzed</defName>
+		<label>make 25mm HE Time-Fuzed rockets x100</label>
+		<description>Craft 100 25mm HE Time-Fuzed rockets.</description>
+		<jobString>Making 25mm HE Time-Fuzed rockets.</jobString>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>58</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25mmRocket_HE_TFuzed>100</Ammo_25mmRocket_HE_TFuzed>
+		</products>
+		<workAmount>11600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_25mmRocket_HEDP</defName>
+		<label>make 25mm HEDP rockets x100</label>
+		<description>Craft 100 25mm HEDP rockets.</description>
+		<jobString>Making 25mm HEDP rockets.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>58</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25mmRocket_HEDP>100</Ammo_25mmRocket_HEDP>
+		</products>
+		<workAmount>9000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_25mmRocket_EMP</defName>
+		<label>make 25mm EMP rockets x100</label>
+		<description>Craft 100 25mm EMP rockets.</description>
+		<jobString>Making 25mm EMP rockets.</jobString>
+		<researchPrerequisites>
+			<li>MicroelectronicsBasics</li>
+			<li>CE_Launchers</li>
+		</researchPrerequisites>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>58</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>9</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25mmRocket_EMP>100</Ammo_25mmRocket_EMP>
+		</products>
+		<workAmount>11200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_25mmRocket_Smoke</defName>
+		<label>make 25mm smoke rockets x100</label>
+		<description>Craft 100 25mm smoke rockets.</description>
+		<jobString>Making 25mm smoke rockets.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>58</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_25mmRocket_Smoke>100</Ammo_25mmRocket_Smoke>
+		</products>
+		<workAmount>7800</workAmount>
+	</RecipeDef>
+	
+	
+	<ThingCategoryDef>
+		<defName>Ammo40mmRockets</defName>
+		<label>40mm Rocket</label>
+		<parent>AmmoGrenades</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_40mmRocket</defName>
+		<label>40mm Rockets</label>
+		<ammoTypes>
+			<Ammo_40mmRocket_HE>Bullet_40mmRocket_HE</Ammo_40mmRocket_HE>
+			<Ammo_40mmRocket_HE_TFuzed>Bullet_40mmRocket_HE_TFuzed</Ammo_40mmRocket_HE_TFuzed>
+			<Ammo_40mmRocket_HEDP>Bullet_40mmRocket_HEDP</Ammo_40mmRocket_HEDP>
+			<Ammo_40mmRocket_EMP>Bullet_40mmRocket_EMP</Ammo_40mmRocket_EMP>
+			<Ammo_40mmRocket_Smoke>Bullet_40mmRocket_Smoke</Ammo_40mmRocket_Smoke>
+		</ammoTypes>
+		<similarTo>AmmoSet_LauncherGrenade</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="40mmRocketBase" ParentName="MediumAmmoBase" Abstract="True">
+		<description>Dumbfire micro-rockets.</description>
+		<statBases>
+			<Mass>0.375</Mass>
+			<Bulk>0.46</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo40mmRockets</li>
+		</thingCategories>
+		<stackLimit>500</stackLimit>
+		<cookOffFlashScale>20</cookOffFlashScale>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40mmRocketBase">
+		<defName>Ammo_40mmRocket_HE</defName>
+		<label>40mm Rocket (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.87</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<detonateProjectile>Bullet_40mmRocket_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40mmRocketBase">
+		<defName>Ammo_40mmRocket_HE_TFuzed</defName>
+		<label>40mm Rocket (HE Time-Fuzed)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/AIR</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>3.84</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHETF</ammoClass>
+		<detonateProjectile>Bullet_40mmRocket_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40mmRocketBase">
+		<defName>Ammo_40mmRocket_HEDP</defName>
+		<label>40mm Rocket (HEDP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.71</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHEDP</ammoClass>
+		<detonateProjectile>Bullet_40mmRocket_HEDP</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40mmRocketBase">
+		<defName>Ammo_40mmRocket_EMP</defName>
+		<label>40mm Rocket (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>5.09</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<generateAllowChance>0.5</generateAllowChance>
+		<detonateProjectile>Bullet_40mmRocket_EMP</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="40mmRocketBase">
+		<defName>Ammo_40mmRocket_Smoke</defName>
+		<label>40mm Rocket (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/SMK</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.35</MarketValue>
+		</statBases>
+		<ammoClass>Smoke</ammoClass>
+		<generateAllowChance>0</generateAllowChance>
+		<detonateProjectile>Bullet_40mmRocket_Smoke</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base40mmRocketBullet" ParentName="BaseExplosiveBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Dumbfire_rocket</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>50</speed>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>8</emissionsPerTick>
+						<flecksPerEmission>2</flecksPerEmission>
+						<scale>0.35</scale>
+						<originOffset>0</originOffset>
+						<cutoffTickRange>45~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40mmRocketBullet">
+		<defName>Bullet_40mmRocket_HE</defName>
+		<label>40mm Rocket</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>28</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>36</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40mmRocketBullet">
+		<defName>Bullet_40mmRocket_HE_TFuzed</defName>
+		<label>40mm Rocket (HE Time-Fuzed)</label>
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>28</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>1.4</aimHeightOffset>
+			<armingDelay>2</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>36</Fragment_Small>
+				</fragments>
+				<fragAngleRange>-89~-5</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40mmRocketBullet">
+		<defName>Bullet_40mmRocket_HEDP</defName>
+		<label>40mm Rocket</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>36</damageAmountBase>
+			<armorPenetrationSharp>76</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.942</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>19</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>16</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40mmRocketBullet">
+		<defName>Bullet_40mmRocket_EMP</defName>
+		<label>40mm Rocket</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>28</damageAmountBase>
+			<explosionRadius>2</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40mmRocketBullet">
+		<defName>Bullet_40mmRocket_Smoke</defName>
+		<label>40mm Rocket (Smoke)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>2</explosionRadius>
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<postExplosionGasType>BlindSmoke</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40mmRocket_HE</defName>
+		<label>make 40mm HE rockets x100</label>
+		<description>Craft 100 40mm HE rockets.</description>
+		<jobString>Making 40mm HE rockets.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>76</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40mmRocket_HE>100</Ammo_40mmRocket_HE>
+		</products>
+		<workAmount>12400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40mmRocket_HE_TFuzed</defName>
+		<label>make 40mm HE Time-Fuzed rockets x100</label>
+		<description>Craft 100 40mm HE Time-Fuzed rockets.</description>
+		<jobString>Making 40mm HE Time-Fuzed rockets.</jobString>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>76</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40mmRocket_HE_TFuzed>100</Ammo_40mmRocket_HE_TFuzed>
+		</products>
+		<workAmount>14200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40mmRocket_HEDP</defName>
+		<label>make 40mm HEDP rockets x100</label>
+		<description>Craft 100 40mm HEDP rockets.</description>
+		<jobString>Making 40mm HEDP rockets.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>76</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40mmRocket_HEDP>100</Ammo_40mmRocket_HEDP>
+		</products>
+		<workAmount>11600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40mmRocket_EMP</defName>
+		<label>make 40mm EMP rockets x100</label>
+		<description>Craft 100 40mm EMP rockets.</description>
+		<jobString>Making 40mm EMP rockets.</jobString>
+		<researchPrerequisites>
+			<li>MicroelectronicsBasics</li>
+			<li>CE_Launchers</li>
+		</researchPrerequisites>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>58</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>9</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40mmRocket_EMP>100</Ammo_40mmRocket_EMP>
+		</products>
+		<workAmount>14200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_40mmRocket_Smoke</defName>
+		<label>make 40mm smoke rockets x100</label>
+		<description>Craft 100 40mm smoke rockets.</description>
+		<jobString>Making 40mm smoke rockets.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>76</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_40mmRocket_Smoke>100</Ammo_40mmRocket_Smoke>
+		</products>
+		<workAmount>10000</workAmount>
+	</RecipeDef>
 </Defs>
