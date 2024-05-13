@@ -81,31 +81,31 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VFE_Gun_RaiderMechanoidGun</defName>
 		<statBases>
-			<Mass>12</Mass>
-			<Bulk>18</Bulk>
-			<SwayFactor>1.6</SwayFactor>
-			<ShotSpread>0.1</ShotSpread>
+			<Mass>15</Mass>
+			<Bulk>17</Bulk>
+			<SwayFactor>1.05</SwayFactor>
+			<ShotSpread>0.03</ShotSpread>
 			<SightsEfficiency>1.0</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.75</recoilAmount>
+			<recoilAmount>2.42</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
-			<warmupTime>1.6</warmupTime>
+			<defaultProjectile>Bullet_20x82mmMauser_AP</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
 			<range>62</range>
 			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<burstShotCount>10</burstShotCount>
-			<soundCast>HeavyMG</soundCast>
+			<soundCast>autocannon_slow</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>10</muzzleFlashScale>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>80</magazineSize>
+			<magazineSize>50</magazineSize>
 			<reloadTime>7.8</reloadTime>
-			<ammoSet>AmmoSet_50BMG</ammoSet>
+			<ammoSet>AmmoSet_20x82mmMauser</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -408,27 +408,26 @@
 		<defName>VFE_Gun_AdvancedNeedle</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
+			<SightsEfficiency>2.36</SightsEfficiency>
 			<ShotSpread>0.01</ShotSpread>
-			<SwayFactor>0.81</SwayFactor>
+			<SwayFactor>0.87</SwayFactor>
 			<Bulk>15.00</Bulk>
 		</statBases>
 		<Properties>
 			<recoilAmount>1.80</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_5x100mmCaseless_Sabot</defaultProjectile>
-			<warmupTime>1.3</warmupTime>
+			<defaultProjectile>Bullet_5x50mmCaseless_Sabot</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
 			<range>86</range>
-			<burstShotCount>1</burstShotCount>
 			<soundCast>Shot_NeedleGun</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>10</magazineSize>
+			<magazineSize>15</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_5x100mmCaseless</ammoSet>
+			<ammoSet>AmmoSet_5x50mmCaseless</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -574,7 +573,7 @@
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>10</magazineSize>
+			<magazineSize>15</magazineSize>
 			<reloadTime>4</reloadTime>
 			<ammoSet>AmmoSet_5x35mmCharged</ammoSet>
 		</AmmoUser>
@@ -662,11 +661,11 @@
 			<Bulk>20.00</Bulk>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.90</recoilAmount>
+			<recoilAmount>2.60</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_80x256mmFuel_Incendiary</defaultProjectile>
-			<warmupTime>3.0</warmupTime>
+			<warmupTime>4.0</warmupTime>
 			<range>86</range>
 			<burstShotCount>1</burstShotCount>
 			<soundCast>InfernoCannon_Fire</soundCast>
@@ -678,7 +677,8 @@
 		</Properties>
 		<AmmoUser>
 			<magazineSize>3</magazineSize>
-			<reloadTime>9.8</reloadTime>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>1.6</reloadTime>
 			<ammoSet>AmmoSet_80x256mmFuel</ammoSet>
 		</AmmoUser>
 		<FireModes>

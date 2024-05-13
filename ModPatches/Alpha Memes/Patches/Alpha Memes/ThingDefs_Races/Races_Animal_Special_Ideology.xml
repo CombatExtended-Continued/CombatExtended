@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Projectile and DamageDef -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AM_ToxicBolt" or defName="AM_ToxicSting"]/additionalHediffs/li[hediff="AM_ToxicBuildup"]/severityPerDamageDealt</xpath>
+		<value>
+			<severityPerDamageDealt>0.01</severityPerDamageDealt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AM_PoisonBolt"] </xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AM_PoisonBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>AM_ToxicBolt</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<speed>27</speed>
+				<armorPenetrationSharp>2.5</armorPenetrationSharp>
+				<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Spitter Drayd -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AM_Dryad_Spitter"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.6</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AM_Dryad_Spitter"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AM_Dryad_Spitter"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AM_Dryad_Spitter"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>AM_PoisonBolt</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<burstShotCount>1</burstShotCount>
+					<minRange>2</minRange>
+					<range>44</range>
+					<soundCast>AA_PoisonBolt</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<label>venomous spit</label>
+					<commonality>.8</commonality>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AM_Dryad_Spitter"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AM_Dryad_Spitter"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AM_Dryad_Spitter"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>487</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

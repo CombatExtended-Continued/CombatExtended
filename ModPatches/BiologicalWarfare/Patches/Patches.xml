@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Ammo inject -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_40x46mmGrenade"]/ammoTypes</xpath>
+		<value>
+			<Ammo_40x46mmGrenade_FleshBreaker>Bullet_40x46mmGrenade_FleshBreaker</Ammo_40x46mmGrenade_FleshBreaker>
+			<Ammo_40x46mmGrenade_Flu>Bullet_40x46mmGrenade_Flu</Ammo_40x46mmGrenade_Flu>
+			<Ammo_40x46mmGrenade_Malaria>Bullet_40x46mmGrenade_Malaria</Ammo_40x46mmGrenade_Malaria>
+			<Ammo_40x46mmGrenade_Necroa>Bullet_40x46mmGrenade_Necroa</Ammo_40x46mmGrenade_Necroa>
+			<Ammo_40x46mmGrenade_Plague>Bullet_40x46mmGrenade_Plague</Ammo_40x46mmGrenade_Plague>
+			<Ammo_40x46mmGrenade_Scaria>Bullet_40x46mmGrenade_Scaria</Ammo_40x46mmGrenade_Scaria>
+			<Ammo_40x46mmGrenade_SleepingSickness>Bullet_40x46mmGrenade_SleepingSickness</Ammo_40x46mmGrenade_SleepingSickness>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+		<value>
+			<Ammo_81mmMortarShell_FleshBreaker>Bullet_81mmMortarShell_FleshBreaker</Ammo_81mmMortarShell_FleshBreaker>
+			<Ammo_81mmMortarShell_Flu>Bullet_81mmMortarShell_Flu</Ammo_81mmMortarShell_Flu>
+			<Ammo_81mmMortarShell_Malaria>Bullet_81mmMortarShell_Malaria</Ammo_81mmMortarShell_Malaria>
+			<Ammo_81mmMortarShell_Necroa>Bullet_81mmMortarShell_Necroa</Ammo_81mmMortarShell_Necroa>
+			<Ammo_81mmMortarShell_Plague>Bullet_81mmMortarShell_Plague</Ammo_81mmMortarShell_Plague>
+			<Ammo_81mmMortarShell_Scaria>Bullet_81mmMortarShell_Scaria</Ammo_81mmMortarShell_Scaria>
+			<Ammo_81mmMortarShell_SleepingSickness>Bullet_81mmMortarShell_SleepingSickness</Ammo_81mmMortarShell_SleepingSickness>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_50mmRocket"]/ammoTypes</xpath>
+		<value>
+			<Ammo_50mmRocket_FleshBreaker>Bullet_50mmRocket_FleshBreaker</Ammo_50mmRocket_FleshBreaker>
+			<Ammo_50mmRocket_Flu>Bullet_50mmRocket_Flu</Ammo_50mmRocket_Flu>
+			<Ammo_50mmRocket_Malaria>Bullet_50mmRocket_Malaria</Ammo_50mmRocket_Malaria>
+			<Ammo_50mmRocket_Necroa>Bullet_50mmRocket_Necroa</Ammo_50mmRocket_Necroa>
+			<Ammo_50mmRocket_Plague>Bullet_50mmRocket_Plague</Ammo_50mmRocket_Plague>
+			<Ammo_50mmRocket_Scaria>Bullet_50mmRocket_Scaria</Ammo_50mmRocket_Scaria>
+			<Ammo_50mmRocket_SleepingSickness>Bullet_50mmRocket_SleepingSickness</Ammo_50mmRocket_SleepingSickness>
+		</value>
+	</Operation>
+
+	<!-- Respirator -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_RespiratorMask"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>10000</WorkToMake>
+				<MaxHitPoints>30</MaxHitPoints>
+				<Mass>0.5</Mass>
+				<Bulk>3</Bulk>
+				<WornBulk>1</WornBulk>
+				<EquipDelay>0.5</EquipDelay>
+				<ArmorRating_Sharp>0.01</ArmorRating_Sharp> <!-- A little bit of armor to prevent triggering a warning when shot. -->
+				<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="USH_RespiratorMask"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="USH_RespiratorMask"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+			<li Class="CombatExtended.ApperalRenderingExtension">
+				<HideHair>false</HideHair>
+				<HideBeard>true</HideBeard>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="USH_RespiratorMask"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="USH_IronLung"]/stages</xpath>
+		<value>
+			<stages>
+				<li>
+					<statOffsets>
+						<ToxicEnvironmentResistance>0.6</ToxicEnvironmentResistance>
+						<SmokeSensitivity>-0.6</SmokeSensitivity>
+					</statOffsets>
+				</li>
+			</stages>
+		</value>
+	</Operation>
+
+	<!-- FleshBreaker -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_FleshBreaker"]/thingDefsToFormatAndColor/li[
+			.="USH_FleshBreakerShell" or
+			.="USH_FleshBreakerShellBullet" or
+			.="USH_FleshBreakerMissileLauncherTurret" or
+			.="USH_FleshBreakerMissileBullet" or
+			.="USH_FleshBreakerGrenadeLauncher" or
+			.="USH_FleshBreakerGrenadeBullet"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_FleshBreaker"]/thingDefsToColorIcons/li[.="USH_FleshBreakerMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_FleshBreaker"]/thingDefsToFormat/li[.="USH_FleshBreakerMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="USH_FleshBreakerShell" or
+			defName="USH_FleshBreakerMissileLauncher" or
+			defName="USH_FleshBreakerMissileLauncherTurret" or
+			defName="USH_FleshBreakerMissileBullet" or
+			defName="USH_FleshBreakerGrenadeLauncher" or
+			defName="USH_FleshBreakerGrenadeBullet"]</xpath>
+	</Operation>
+	<!-- Flu -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Flu"]/thingDefsToFormatAndColor/li[
+			.="USH_FluShell" or
+			.="USH_FluShellBullet" or
+			.="USH_FluMissileLauncherTurret" or
+			.="USH_FluMissileBullet" or
+			.="USH_FluGrenadeLauncher" or
+			.="USH_FluGrenadeBullet"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Flu"]/thingDefsToColorIcons/li[.="USH_FluMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Flu"]/thingDefsToFormat/li[.="USH_FluMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="USH_FluShell" or
+			defName="USH_FluMissileLauncher" or
+			defName="USH_FluMissileLauncherTurret" or
+			defName="USH_FluMissileBullet" or
+			defName="USH_FluGrenadeLauncher" or
+			defName="USH_FluGrenadeBullet"]</xpath>
+	</Operation>
+	<!-- Malaria -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Malaria"]/thingDefsToFormatAndColor/li[
+			.="USH_MalariaShell" or
+			.="USH_MalariaShellBullet" or
+			.="USH_MalariaMissileLauncherTurret" or
+			.="USH_MalariaMissileBullet" or
+			.="USH_MalariaGrenadeLauncher" or
+			.="USH_MalariaGrenadeBullet"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Malaria"]/thingDefsToColorIcons/li[.="USH_MalariaMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Malaria"]/thingDefsToFormat/li[.="USH_MalariaMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="USH_MalariaShell" or
+			defName="USH_MalariaMissileLauncher" or
+			defName="USH_MalariaMissileLauncherTurret" or
+			defName="USH_MalariaMissileBullet" or
+			defName="USH_MalariaGrenadeLauncher" or
+			defName="USH_MalariaGrenadeBullet"]</xpath>
+	</Operation>
+	<!-- Necroa -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Necroa"]/thingDefsToFormatAndColor/li[
+			.="USH_NecroaShell" or
+			.="USH_NecroaShellBullet" or
+			.="USH_NecroaMissileLauncherTurret" or
+			.="USH_NecroaMissileBullet" or
+			.="USH_NecroaGrenadeLauncher" or
+			.="USH_NecroaGrenadeBullet"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Necroa"]/thingDefsToColorIcons/li[.="USH_NecroaMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Necroa"]/thingDefsToFormat/li[.="USH_NecroaMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="USH_NecroaShell" or
+			defName="USH_NecroaMissileLauncher" or
+			defName="USH_NecroaMissileLauncherTurret" or
+			defName="USH_NecroaMissileBullet" or
+			defName="USH_NecroaGrenadeLauncher" or
+			defName="USH_NecroaGrenadeBullet"]</xpath>
+	</Operation>
+	<!-- Plague -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Plague"]/thingDefsToFormatAndColor/li[
+			.="USH_PlagueShell" or
+			.="USH_PlagueShellBullet" or
+			.="USH_PlagueMissileLauncherTurret" or
+			.="USH_PlagueMissileBullet" or
+			.="USH_PlagueGrenadeLauncher" or
+			.="USH_PlagueGrenadeBullet"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Plague"]/thingDefsToColorIcons/li[.="USH_PlagueMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Plague"]/thingDefsToFormat/li[.="USH_PlagueMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="USH_PlagueShell" or
+			defName="USH_PlagueMissileLauncher" or
+			defName="USH_PlagueMissileLauncherTurret" or
+			defName="USH_PlagueMissileBullet" or
+			defName="USH_PlagueGrenadeLauncher" or
+			defName="USH_PlagueGrenadeBullet"]</xpath>
+	</Operation>
+	<!-- Scaria -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Scaria"]/thingDefsToFormatAndColor/li[
+			.="USH_ScariaShell" or
+			.="USH_ScariaShellBullet" or
+			.="USH_ScariaMissileLauncherTurret" or
+			.="USH_ScariaMissileBullet" or
+			.="USH_ScariaGrenadeLauncher" or
+			.="USH_ScariaGrenadeBullet"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Scaria"]/thingDefsToColorIcons/li[.="USH_ScariaMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_Scaria"]/thingDefsToFormat/li[.="USH_ScariaMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="USH_ScariaShell" or
+			defName="USH_ScariaMissileLauncher" or
+			defName="USH_ScariaMissileLauncherTurret" or
+			defName="USH_ScariaMissileBullet" or
+			defName="USH_ScariaGrenadeLauncher" or
+			defName="USH_ScariaGrenadeBullet"]</xpath>
+	</Operation>
+	<!-- SleepingSickness -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_SleepingSickness"]/thingDefsToFormatAndColor/li[
+			.="USH_SleepingSicknessShell" or
+			.="USH_SleepingSicknessShellBullet" or
+			.="USH_SleepingSicknessMissileLauncherTurret" or
+			.="USH_SleepingSicknessMissileBullet" or
+			.="USH_SleepingSicknessGrenadeLauncher" or
+			.="USH_SleepingSicknessGrenadeBullet"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_SleepingSickness"]/thingDefsToColorIcons/li[.="USH_SleepingSicknessMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/BiologicalWarfare.CombatDiseaseDef[defName="USH_SleepingSickness"]/thingDefsToFormat/li[.="USH_SleepingSicknessMissileLauncher"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="USH_SleepingSicknessShell" or
+			defName="USH_SleepingSicknessMissileLauncher" or
+			defName="USH_SleepingSicknessMissileLauncherTurret" or
+			defName="USH_SleepingSicknessMissileBullet" or
+			defName="USH_SleepingSicknessGrenadeLauncher" or
+			defName="USH_SleepingSicknessGrenadeBullet"]</xpath>
+	</Operation>
+</Patch>
