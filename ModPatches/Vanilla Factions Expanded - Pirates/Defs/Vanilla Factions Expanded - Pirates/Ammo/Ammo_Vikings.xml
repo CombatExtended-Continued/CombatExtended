@@ -3,17 +3,27 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="CryptoAmmoBase" MayRequire="OskarPotocki.VFE.Vikings">
+	<!-- Despite using MayRequire, the Parent still has to exist, so we can't use the Vikings `CryptoAmmoBase`.-->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase" MayRequire="OskarPotocki.VFE.Vikings">
 		<defName>Ammo_CryptoCannon</defName>
 		<label>Crypto Cannon Fuel</label>
+		<description>Metal-cored projectiles wrapped in unstable crypto technology contained with an energy field. Capable of dealing both ballistic damage and causing serious hypothermia.</description>
 		<graphicData>
-			<drawSize>0.75</drawSize>
-		</graphicData>
+			<texPath>ThirdParty/VanillaExpanded/Crypto</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.75</drawSize>			
+		</graphicData>	
 		<statBases>
 			<MarketValue>0.7</MarketValue>
 			<Mass>0.01</Mass>
 			<Bulk>0.01</Bulk>
 		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<ammoClass>Crypto</ammoClass>
+		<stackLimit>2500</stackLimit>		
 		<thingCategories>
 			<li>AmmoCryptoCannon</li>
 		</thingCategories>

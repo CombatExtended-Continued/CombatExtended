@@ -198,7 +198,8 @@ namespace CombatExtended
         {
             get
             {
-                return ExactPosition + new Vector3(0, 0, ExactPosition.y - shotHeight);
+                var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
+                return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
         }
 
@@ -1224,8 +1225,8 @@ namespace CombatExtended
                 {
                     //TODO : EXPERIMENTAL Add edifice height
                     var shadowPos = new Vector3(ExactPosition.x,
-                                                0,
-                                                ExactPosition.z);
+                                                def.Altitude - 0.001f,
+                                                ExactPosition.z - Mathf.Max(0f, ExactPosition.y));
                     //EXPERIMENTAL: + (new CollisionVertical(ExactPosition.ToIntVec3().GetEdifice(Map))).Max);
 
                     //TODO : Vary ShadowMat plane
@@ -1373,7 +1374,7 @@ namespace CombatExtended
             }
 
             //If the comp exists, it'll already call CompFragments
-            if (explodingComp != null || def.projectile.explosionRadius > 0f)
+            if (explodingComp != null || (def.projectile.explosionRadius > 0f && def.projectile.damageDef != null))
             {
                 float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
                 //Handle anything explosive
