@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Melee Tools =========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_DumbfireRifle" or defName="Gun_DumbfireLance" or defName="Gun_DumbfireBarragegun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Dumbfire Rifle =========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_DumbfireRifle</defName>
+		<statBases>
+			<WorkToMake>39500</WorkToMake>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.8</ShotSpread>
+			<SwayFactor>1.54</SwayFactor>
+			<Bulk>9.80</Bulk>
+			<Mass>5.60</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.11</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_25mmRocket_HE</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>40</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+			<soundCast>InfernoCannon_Fire</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>0.65</reloadTime>
+			<ammoSet>AmmoSet_25mmRocket</ammoSet>
+			<reloadOneAtATime>true</reloadOneAtATime>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Rifle</li>
+			<li>CE_AI_AssaultWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Dumbfire Pistol =========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_DumbfirePistol</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>1.9</SwayFactor>
+			<Bulk>3.45</Bulk>
+			<Mass>2.25</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.24</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_25mmRocket_HE</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>31</range>
+			<soundCast>InfernoCannon_Fire</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_25mmRocket</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_AI_Pistol</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_DumbfirePistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Dumbfire Barrage Gun =========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_DumbfireBarragegun</defName>
+		<statBases>
+			<WorkToMake>37000</WorkToMake>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<ShotSpread>4</ShotSpread>
+			<SwayFactor>2.00</SwayFactor>
+			<Bulk>11.00</Bulk>
+			<Mass>10.0</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.08</recoilAmount><!--Halved from 1.40-->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_25mmRocket_HE</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>40</range>
+			<burstShotCount>5</burstShotCount>
+			<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+			<soundCast>InfernoCannon_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>5.1</reloadTime>
+			<ammoSet>AmmoSet_25mmRocket</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<noSingleShot>true</noSingleShot>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_SMG</li>
+			<li>CE_AI_AssaultWeapon</li>
+			<li>AdvancedGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Dumbfire Lance =========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_DumbfireLance</defName>
+		<statBases>
+			<WorkToMake>42500</WorkToMake>
+			<SightsEfficiency>2</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>2.06</SwayFactor><!--25% reduction from 1.88-->
+			<Bulk>13</Bulk>
+			<Mass>7.6</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.25</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40mmRocket_HE</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>65</range>
+			<soundCast>InfernoCannon_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>4</magazineSize>
+			<reloadTime>1.0</reloadTime>
+			<ammoSet>AmmoSet_40mmRocket</ammoSet>
+			<reloadOneAtATime>true</reloadOneAtATime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Rifle</li>
+			<li>AdvancedGun</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>

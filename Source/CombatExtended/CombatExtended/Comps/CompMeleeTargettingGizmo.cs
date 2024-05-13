@@ -171,7 +171,8 @@ namespace CombatExtended
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             // Don't let people control melee targeting for non-colonist pawns or colonists in a mental state
-            if (!PawnParent.IsColonist || PawnParent.InAggroMentalState)
+            // Corpses are also auto-assigned this comp, but clearly they are not typeof(Pawn)
+            if (parent is Corpse || !PawnParent.IsColonist || PawnParent.InAggroMentalState)
             {
                 yield break;
             }
