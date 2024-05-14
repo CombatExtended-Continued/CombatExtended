@@ -46,7 +46,7 @@ namespace CombatExtended.HarmonyCE
                 {
                     float stunResistChance = ((float)adaptedTicksLeft / (float)newStunAdaptedTicks) * 15;
 
-                    if (Rand.Value > stunResistChance)
+                    if (Rand.Value * 100 > stunResistChance)
                     {
                         ___adaptationTicksLeft[dinfo.Def] += newStunAdaptedTicks;
 
