@@ -148,14 +148,14 @@ namespace CombatExtended
         private float GetSkillFactor(StatRequest req)
         {
             var skillFactor = 1f;
-            if (req.Thing is Pawn pawn)
+            if (req.Thing is Pawn pawn && pawn.skills != null)
             {
                 skillFactor += skillFactorPerLevel * (pawn.skills.GetSkill(SkillDefOf.Melee).Level - 1);
             }
             else
             {
                 var thingHolder = (req.Thing?.ParentHolder as Pawn_EquipmentTracker)?.pawn;
-                if (thingHolder != null)
+                if (thingHolder != null && thingHolder.skills != null)
                 {
                     skillFactor += skillFactorPerLevel * (thingHolder.skills.GetSkill(SkillDefOf.Melee).Level - 1);
                 }
