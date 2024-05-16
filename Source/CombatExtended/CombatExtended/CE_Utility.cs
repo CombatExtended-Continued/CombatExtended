@@ -437,15 +437,20 @@ namespace CombatExtended
         /// <summary>
         /// Gets the true rating of armor with partial stats taken into account
         /// </summary>
-        public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartRecord part)
+        public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartRecord part,
+                bool ignoreShieldCoverage = false)
         {
             if (!apparel.def.apparel.CoversBodyPart(part))
             {
-                var shieldDef = apparel.def.GetModExtension<ShieldDefExtension>();
-                if(shieldDef == null
-                        || !shieldDef.PartIsCoveredByShield(part, true))
+                if(ignoreShieldCoverage)
                 {
-                    return 0;
+                    return 0f;
+                }
+
+                var shieldDef = apparel.def.GetModExtension<ShieldDefExtension>();
+                if(shieldDef == null || !shieldDef.PartIsCoveredByShield(part, true))
+                {
+                    return 0f;
                 }
             }
 
@@ -477,7 +482,7 @@ namespace CombatExtended
         /// <summary>
         /// Gets the true rating of armor with partial stats taken into account
         /// </summary>
-        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartRecord part, float damage = 0f, float AP = 0f)
+        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartRecord part)
         {
             float result = pawn.GetStatValue(stat);
 

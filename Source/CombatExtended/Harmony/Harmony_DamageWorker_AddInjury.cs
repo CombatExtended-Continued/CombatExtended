@@ -16,7 +16,7 @@ namespace CombatExtended.HarmonyCE
     {
         // Secondary damage debounce boolean
         private static bool _applyingSecondary = false;
-        // Set to false initially and in the prefix, may be set to true in GetAfterArmorDamage
+        // Set to false initially and in postfix, may be set to true in GetAfterArmorDamage
         private static bool _skipSecondary = false;
         // Lines in armor block that need to be nulled out
         private static readonly int[] ArmorBlockNullOps = { 1, 3, 4, 5, 6 };
@@ -99,19 +99,14 @@ namespace CombatExtended.HarmonyCE
             return codes;
         }
 
-        internal static void Prefix()
-        {
-            _skipSecondary = false;
-        }
-
         internal static void Postfix(DamageInfo dinfo, Pawn pawn)
         {
-            if (_skipSecondary)
+            if (_applyingSecondary)
             {
                 return;
             }
 
-            if (!_applyingSecondary
+            if (!_skipSecondary
                     && dinfo.Weapon?.projectile is ProjectilePropertiesCE props
                     && !props.secondaryDamage.NullOrEmpty())
             {
@@ -131,6 +126,7 @@ namespace CombatExtended.HarmonyCE
                 }
                 _applyingSecondary = false;
             }
+            _skipSecondary = false;
         }
     }
 
