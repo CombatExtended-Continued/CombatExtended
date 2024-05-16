@@ -143,26 +143,28 @@ namespace CombatExtended
             }
             return penetrationFactor;
         }
+        public const float skillFactorPerLevel = (25f / 19f) / 100f;
+        public const float powerForOtherFactors = 0.75f;
         private float GetSkillFactor(StatRequest req)
         {
             var skillFactor = 1f;
             if (req.Thing is Pawn pawn)
             {
-                skillFactor += pawn.skills.GetSkill(SkillDefOf.Melee).Level * 2f / 200f;
+                skillFactor += skillFactorPerLevel * (pawn.skills.GetSkill(SkillDefOf.Melee).Level - 1);
             }
             else
             {
                 var thingHolder = (req.Thing?.ParentHolder as Pawn_EquipmentTracker)?.pawn;
                 if (thingHolder != null)
                 {
-                    skillFactor += thingHolder.skills.GetSkill(SkillDefOf.Melee).Level * 5f / 200f;
+                    skillFactor += skillFactorPerLevel * (thingHolder.skills.GetSkill(SkillDefOf.Melee).Level - 1);
                 }
             }
             return skillFactor;
         }
         private IEnumerable<float> GetOtherFactors(Tool tool, StatRequest req)
         {
-            return tool.VerbsProperties.Select(x => x.GetDamageFactorFor(tool, req.Thing as Pawn ?? (req.Thing?.ParentHolder as Pawn_EquipmentTracker)?.pawn, null));
+            return tool.VerbsProperties.Select(x => Mathf.Pow(x.GetDamageFactorFor(tool, req.Thing as Pawn ?? (req.Thing?.ParentHolder as Pawn_EquipmentTracker)?.pawn, null), powerForOtherFactors));
         }
 
     }
