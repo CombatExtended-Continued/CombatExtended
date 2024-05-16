@@ -241,7 +241,7 @@ namespace CombatExtended
                         continue;
                     }
 
-                    for(var info = ainfo; info != null; info = info.next)
+                    for (var info = ainfo; info != null; info = info.next)
                     {
                         var blockedPenAmount = PenetrateArmor(info, app);
                         if (info.penTransferRate > 0f)
@@ -292,11 +292,11 @@ namespace CombatExtended
 
                 var armorRatingStat = ainfo.dinfo.ArmorRatingStat();
                 var partDensity = 0f;
-                if(armorRatingStat == StatDefOf.ArmorRating_Sharp)
+                if (armorRatingStat == StatDefOf.ArmorRating_Sharp)
                 {
                     partDensity = sharpPartDensity;
                 }
-                else if(armorRatingStat == StatDefOf.ArmorRating_Blunt)
+                else if (armorRatingStat == StatDefOf.ArmorRating_Blunt)
                 {
                     partDensity = bluntPartDensity;
                 }
@@ -605,7 +605,7 @@ namespace CombatExtended
 
             if (parryThing is Apparel app)
             {
-                for(var info = ainfo; info != null; info = info.next)
+                for (var info = ainfo; info != null; info = info.next)
                 {
                     var blockedPenAmount = PenetrateArmor(info, app);
                     if (info.penTransferRate > 0f)
@@ -618,11 +618,11 @@ namespace CombatExtended
 
             if (parryThing.def.IsWeapon)
             {
-                for(var info = ainfo; info != null; info = info.next)
+                for (var info = ainfo; info != null; info = info.next)
                 {
                     var armorRatingStat = info.dinfo.ArmorRatingStat();
                     float armorAmount = 0f;
-                    if(armorRatingStat == StatDefOf.ArmorRating_Sharp)
+                    if (armorRatingStat == StatDefOf.ArmorRating_Sharp)
                     {
                         armorAmount = parryThing.GetStatValue(CE_StatDefOf.ToughnessRating);
                     }

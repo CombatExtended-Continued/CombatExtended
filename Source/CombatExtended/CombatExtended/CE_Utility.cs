@@ -442,13 +442,13 @@ namespace CombatExtended
         {
             if (!apparel.def.apparel.CoversBodyPart(part))
             {
-                if(ignoreShieldCoverage)
+                if (ignoreShieldCoverage)
                 {
                     return 0f;
                 }
 
                 var shieldDef = apparel.def.GetModExtension<ShieldDefExtension>();
-                if(shieldDef == null || !shieldDef.PartIsCoveredByShield(part, true))
+                if (shieldDef == null || !shieldDef.PartIsCoveredByShield(part, true))
                 {
                     return 0f;
                 }
