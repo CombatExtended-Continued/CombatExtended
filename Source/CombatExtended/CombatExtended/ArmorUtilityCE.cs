@@ -330,12 +330,14 @@ namespace CombatExtended
                 info.dinfo.SetIgnoreArmor(true);
                 info.dinfo.weaponInt = null;
                 info.dinfo.SetAmount(info.penAmount * info.dmgPerPenAmount);
+                info.dinfo.armorPenetrationInt = info.penAmount;
                 Log.Warning($"GetAfterArmorDamage additional damage {info.dinfo}");
                 dworker.Apply(info.dinfo, pawn);
             }
 
             Log.Warning($"GetAfterArmorDamage return {ainfo.dinfo}");
             ainfo.dinfo.SetAmount(ainfo.penAmount * ainfo.dmgPerPenAmount);
+            ainfo.dinfo.armorPenetrationInt = ainfo.penAmount;
             return ainfo.dinfo;
         }
 
@@ -439,6 +441,7 @@ namespace CombatExtended
                 dinfo.SetIgnoreArmor(true);
                 dinfo.weaponInt = null;
                 dinfo.SetAmount(newPenAmount * ainfo.dmgPerPenAmount);
+                dinfo.armorPenetrationInt = newPenAmount;
                 Log.Warning($"PenetrateBodyPart additional damage {dinfo}");
                 dworker.Apply(dinfo, pawn);
             }
