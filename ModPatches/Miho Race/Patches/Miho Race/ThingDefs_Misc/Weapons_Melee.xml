@@ -126,7 +126,7 @@
 					</capacities>
 					<power>2</power>
 					<cooldownTime>1.57</cooldownTime>
-					<chanceFactor>0.4</chanceFactor>
+					<chanceFactor>0.2</chanceFactor>
 					<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
 				</li>
@@ -139,7 +139,7 @@
 					<cooldownTime>1.45</cooldownTime>
 					<chanceFactor>1</chanceFactor>
 					<armorPenetrationBlunt>1.296</armorPenetrationBlunt>
-					<armorPenetrationSharp>2.16</armorPenetrationSharp>
+					<armorPenetrationSharp>8.68</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -151,7 +151,7 @@
 					<cooldownTime>1.22</cooldownTime>
 					<chanceFactor>1</chanceFactor>
 					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
-					<armorPenetrationSharp>1.8</armorPenetrationSharp>
+					<armorPenetrationSharp>5.4</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 				</li>
 			</tools>
@@ -175,33 +175,29 @@
 		</value>
 	</Operation>
 
-	<!-- ==========  Breacher  =========== -->
+	<!-- ==========  Stun Rod  =========== -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Miho_Weapon_Sappertool"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
+					<label>head</label>
 					<capacities>
 						<li>Poke</li>
+						<li>Blunt</li>
 					</capacities>
 					<power>4</power>
 					<cooldownTime>1.78</cooldownTime>
-					<chanceFactor>0.10</chanceFactor>
-					<armorPenetrationBlunt>1.000</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>Demolish</li>
-					</capacities>
-					<power>22</power>
-					<cooldownTime>2.36</cooldownTime>
 					<chanceFactor>0.30</chanceFactor>
-					<armorPenetrationBlunt>11.76</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.000</armorPenetrationBlunt>
+					<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>3</amount>
+							<chance>0.15</chance>
+						</li>
+					</extraMeleeDamages>
 				</li>
 			</tools>
 		</value>
@@ -210,7 +206,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Miho_Weapon_Sappertool"]/statBases</xpath>
 		<value>
-			<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+			<MeleeCounterParryBonus>1.24</MeleeCounterParryBonus>
 			<Bulk>8</Bulk>
 		</value>
 	</Operation>
@@ -218,9 +214,46 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Miho_Weapon_Sappertool"]/equippedStatOffsets/MeleeDodgeChance</xpath>
 		<value>
-			<MeleeCritChance>2.30</MeleeCritChance>
-			<MeleeParryChance>0.18</MeleeParryChance>
-			<MeleeDodgeChance>0.30</MeleeDodgeChance>
+			<MeleeCritChance>0.30</MeleeCritChance>
+			<MeleeParryChance>1.18</MeleeParryChance>
+			<MeleeDodgeChance>1.30</MeleeDodgeChance>
+		</value>
+	</Operation>
+	
+	<!-- ==========  Jackhammer  =========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Weapon_PowerHammer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Demolish</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>0.30</cooldownTime>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Weapon_PowerHammer"]/statBases</xpath>
+		<value>
+			<MeleeCounterParryBonus>0</MeleeCounterParryBonus>
+			<Bulk>12</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Weapon_PowerHammer"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>-0.15</MoveSpeed>
+			<MeleeCritChance>0</MeleeCritChance>
+			<MeleeParryChance>0</MeleeParryChance>
+			<MeleeDodgeChance>0</MeleeDodgeChance>
 		</value>
 	</Operation>
 
