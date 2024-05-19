@@ -9,6 +9,14 @@
 		</value>
 	</Operation>
 
+	<!-- ======== Propane Fuel Tank ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AB_Propane"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
+
 	<!-- ======== Alcyonite Chunk ======== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AB_AlcyoniteChunk"]/statBases</xpath>
@@ -57,7 +65,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]</xpath>
+		<xpath>Defs/ThingDef[defName="AB_MushroomWoodLog" or defName="AB_CrystalWood" or defName="GU_RedWood"]</xpath>
 		<value>
 			<li Class="CombatExtended.StuffToughnessMultiplierExtensionCE">
 				<toughnessMultiplier>4</toughnessMultiplier>
@@ -77,7 +85,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="AB_MushroomWoodLog" or defName="AB_CrystalWood" or defName="GU_RedWood"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
 			<Bulk>0.07</Bulk>
 			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
