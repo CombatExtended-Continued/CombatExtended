@@ -74,9 +74,9 @@ namespace CombatExtended
                     }, targetValidator: (target) =>
                     {
                         RoofDef roof = map.roofGrid.RoofAt(target.Cell);
-                        if ((roof == null || roof == RoofDefOf.RoofConstructed) && 
+                        if ((roof == null || roof == RoofDefOf.RoofConstructed) &&
                                 target.Cell.GetFirstThing<ArtilleryMarker>(map) != null)
-                        {   
+                        {
                             return true;
                         }
                         else
