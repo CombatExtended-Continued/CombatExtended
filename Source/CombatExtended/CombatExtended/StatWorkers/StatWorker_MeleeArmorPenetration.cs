@@ -57,11 +57,11 @@ namespace CombatExtended
                                                        penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree)));
                 if (Mathf.Abs(skillFactor - 1f) > 0.001f)
                 {
-                    stringBuilder.Append(string.Format(" x {0}", skillFactor));
+                    stringBuilder.Append(string.Format(" x {0}", skillFactor.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
                 }
                 if (Mathf.Abs(otherFactors - 1f) > 0.001f)
                 {
-                    stringBuilder.Append(string.Format(" x {0}", otherFactors));
+                    stringBuilder.Append(string.Format(" x {0}", otherFactors.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
                 }
                 stringBuilder.AppendLine(string.Format(" = {0} {1}",
                                                         (tool.armorPenetrationSharp * penetrationFactor * skillFactor * otherFactors).ToStringByStyle(ToStringStyle.FloatMaxTwo),
@@ -74,11 +74,11 @@ namespace CombatExtended
                                                        penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree)));
                 if (Mathf.Abs(skillFactor - 1f) > 0.001f)
                 {
-                    stringBuilder.Append(string.Format(" x {0}", skillFactor));
+                    stringBuilder.Append(string.Format(" x {0}", skillFactor.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
                 }
                 if (Mathf.Abs(otherFactors - 1f) > 0.001f)
                 {
-                    stringBuilder.Append(string.Format(" x {0}", otherFactors));
+                    stringBuilder.Append(string.Format(" x {0}", otherFactors.ToStringByStyle(ToStringStyle.FloatMaxTwo)));
                 }
                 stringBuilder.AppendLine(string.Format(" = {0} {1}",
                                                        (tool.armorPenetrationBlunt * penetrationFactor * skillFactor * otherFactors).ToStringByStyle(ToStringStyle.FloatMaxTwo),
