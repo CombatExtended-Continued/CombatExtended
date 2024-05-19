@@ -45,7 +45,7 @@ namespace CombatExtended
                 }
                 maneuverString = maneuverString.TrimmedToLength(maneuverString.Length - 1) + ")";
                 stringBuilder.AppendLine("  " + "Tool".Translate() + ": " + tool.ToString() + " " + maneuverString);
-                var otherFactors = GetOtherFactors(tool, req).Aggregate(1f, (x, y) => x * y);
+                var otherFactors = GetOtherFactors(req).Aggregate(1f, (x, y) => x * y);
                 if (Mathf.Abs(otherFactors - 1f) > 0.001f)
                 {
                     stringBuilder.AppendLine("   " + "CE_WeaponPenetrationOtherFactors".Translate() + ": " + otherFactors.ToStringByStyle(ToStringStyle.PercentZero));
@@ -116,7 +116,7 @@ namespace CombatExtended
             foreach (ToolCE tool in tools)
             {
                 var weightFactor = tool.chanceFactor / totalSelectionWeight;
-                var otherFactors = GetOtherFactors(tool, optionalReq).Aggregate(1f, (x, y) => x * y);
+                var otherFactors = GetOtherFactors(optionalReq).Aggregate(1f, (x, y) => x * y);
                 totalAveragePenSharp += weightFactor * tool.armorPenetrationSharp * otherFactors;
                 totalAveragePenBlunt += weightFactor * tool.armorPenetrationBlunt * otherFactors;
             }
@@ -162,10 +162,14 @@ namespace CombatExtended
             }
             return skillFactor;
         }
-        private IEnumerable<float> GetOtherFactors(Tool tool, StatRequest req)
+        private IEnumerable<float> GetOtherFactors(StatRequest req)
         {
-            return tool.VerbsProperties.Select(x => Mathf.Pow(x.GetDamageFactorFor(tool, req.Thing as Pawn ?? (req.Thing?.ParentHolder as Pawn_EquipmentTracker)?.pawn, null), powerForOtherFactors));
+            var pawn = req.Thing as Pawn ?? (req.Thing?.ParentHolder as Pawn_EquipmentTracker)?.pawn;
+            if (pawn != null)
+            {
+                yield return Mathf.Pow(pawn.ageTracker.CurLifeStage.meleeDamageFactor, powerForOtherFactors);
+                yield return Mathf.Pow(pawn.GetStatValue(StatDefOf.MeleeDamageFactor, true, -1), powerForOtherFactors);
+            }
         }
-
     }
 }
