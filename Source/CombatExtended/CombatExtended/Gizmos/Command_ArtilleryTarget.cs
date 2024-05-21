@@ -178,7 +178,7 @@ namespace CombatExtended
             }, canSelectTarget: (targetInfo) =>
             {
                 if (!targetInfo.HasWorldObject || targetInfo.Tile == turretTile ||
-                        !(targetInfo.WorldObject.def == WorldObjectDefOf.Ambush) &&
+                        (targetInfo.WorldObject as MapParent)?.Map == null &&
                         targetInfo.WorldObject.GetComponent<WorldObjects.HealthComp>() == null)
                 {
                     return false;
