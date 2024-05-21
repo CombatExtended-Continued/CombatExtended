@@ -67,7 +67,21 @@
 			<Bulk>9.3</Bulk>
 		</statBases>
 		<ammoClass>Grapeshot</ammoClass>
-		<detonateProjectile>Bullet_90mmRCR_CAN</detonateProjectile>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<damageAmountBase>25</damageAmountBase>
+				<explosiveRadius>1.0</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.033</explosiveExpandPerStackcount>
+				<startWickOnDamageTaken>
+					<li>Bomb</li>
+				</startWickOnDamageTaken>
+				<startWickHitPointsPercent>0.5</startWickHitPointsPercent>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>90~120</wickTicks>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -139,20 +153,21 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base12GaugeBullet">
+	<ThingDef ParentName="BaseBulletCE">
 		<defName>Bullet_90mmRCR_CAN</defName>
 		<label>Flechette</label>
 		<graphicData>
-			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
 			<speed>87</speed>
-			<damageAmountBase>27</damageAmountBase>
-			<pelletCount>120</pelletCount>
-			<!-- Originally 2400 flechettes are present, changed to 120 buffed projectile -->
+			<damageAmountBase>34</damageAmountBase>
+			<pelletCount>25</pelletCount>
+			<!-- Originally 2400 flechettes are present, changed to 25 buffed projectile -->
 			<armorPenetrationSharp>5</armorPenetrationSharp>
-			<armorPenetrationBlunt>14.52</armorPenetrationBlunt>
+			<armorPenetrationBlunt>29.04</armorPenetrationBlunt>
 			<spreadMult>26.7</spreadMult>
 			<!-- x3 the normal spread -->
 		</projectile>
