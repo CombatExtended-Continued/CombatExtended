@@ -21,7 +21,7 @@ namespace CombatExtended.HarmonyCE
 
             Pawn pawn = __instance.parent as Pawn;
             float bodySize = 1.0f;
-            float resistance = 1f;
+            float resistance = 0f;
             if (pawn != null)
             {
                 if (pawn.Downed || pawn.Dead)
