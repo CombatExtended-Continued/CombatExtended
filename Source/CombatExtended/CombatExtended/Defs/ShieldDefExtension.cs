@@ -13,6 +13,11 @@ namespace CombatExtended
         public List<BodyPartGroupDef> shieldCoverage = new List<BodyPartGroupDef>();
         public List<BodyPartGroupDef> crouchCoverage = new List<BodyPartGroupDef>();
         public bool drawAsTall = false;
+        public Vector3 northDrawOffset = new Vector3(-0.1f, 0, -0.2f);
+        public Vector3 southDrawOffset = new Vector3(0.1f, 0, -0.2f);
+        public Vector3 eastDrawOffset = new Vector3(0.1f, 0, -0.2f);
+        public Vector3 westDrawOffset = new Vector3(-0.1f, 0, -0.2f);
+        public GraphicData equippedGraphicData;
 
         public bool PartIsCoveredByShield(BodyPartRecord part, Pawn pawn)
         {
