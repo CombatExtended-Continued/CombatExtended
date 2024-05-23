@@ -16,8 +16,8 @@ namespace CombatExtended
         public bool radiusChange = false;
         public bool toBeMerged = false;
         private const int DamageAtEdge = 2;      // Synch these with spreadsheet
-        private const float PenAtEdge = 0.6f;
-        private const float PressurePerDamage = 0.3f;
+        private const float PenAtEdge = 2;
+        private const float PressurePerDamage = 1.0f;
         private const float MaxMergeTicks = 3f;
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
         public const bool MergeExplosions = false;
@@ -402,18 +402,18 @@ namespace CombatExtended
         }
 
         //New methods
-        public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(0.333f)
+        public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(2.0f)
         {
             if (!damageFalloff)
             {
                 return damAmount;
             }
             var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 0.333f);
+            t = Mathf.Pow(t, 2.0f);
             return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, DamageAtEdge, t)), 1);
         }
 
-        public float GetArmorPenetrationAtCE(IntVec3 c) //t => t^(0.55f), penetrationAmount => damAmount * PressurePerDamage
+        public float GetArmorPenetrationAtCE(IntVec3 c) //t => t^(2.0f), penetrationAmount => damAmount * PressurePerDamage
         {
             var basePen = Mathf.Max(damAmount * PressurePerDamage, armorPenetration);
             if (!damageFalloff)
@@ -421,7 +421,7 @@ namespace CombatExtended
                 return basePen;
             }
             var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 0.55f);
+            t = Mathf.Pow(t, 2.0f);
             return Mathf.Lerp(basePen, PenAtEdge, t);
         }
     }
