@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- ========== Tech Level ========== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
@@ -19,6 +20,7 @@
 			<techLevel>Industrial</techLevel>
 		</value>
 	</Operation>
+
 	<!-- ========== Basic Axe ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_HA_O"]/tools</xpath>
@@ -37,11 +39,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_HA_O"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_O"]</xpath>
 		<value>
@@ -54,17 +58,21 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_HA_O"]/recipeMaker</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_HA_O"]/costList</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_HA_O"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_O"]/equippedStatOffsets</xpath>
 		<value>
@@ -73,6 +81,7 @@
 			<MeleeDodgeChance>0.20</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_HA_O</defName>
 		<statBases>
@@ -96,6 +105,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_HandaxeO_Thrown"]</xpath>
 		<value>
@@ -119,6 +129,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Delay Axe ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_HA_AO"]/tools</xpath>
@@ -137,11 +148,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_HA_AO"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+	
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_AO"]</xpath>
 		<value>
@@ -154,14 +167,17 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_HA_AO"]/recipeMaker</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_HA_AO"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_AO"]/equippedStatOffsets</xpath>
 		<value>
@@ -170,6 +186,7 @@
 			<MeleeDodgeChance>0.20</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_HA_AO</defName>
 		<statBases>
@@ -193,6 +210,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_HandaxeAO_Thrown"]</xpath>
 		<value>
@@ -216,6 +234,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Throw Axe ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_HA_AT"]/tools</xpath>
@@ -234,11 +253,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_HA_AT"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_AT"]</xpath>
 		<value>
@@ -251,14 +272,17 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_HA_AT"]/recipeMaker</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_HA_AT"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_AT"]/equippedStatOffsets</xpath>
 		<value>
@@ -267,6 +291,7 @@
 			<MeleeDodgeChance>0.20</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_HA_AT</defName>
 		<statBases>
@@ -290,6 +315,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_HandaxeAT_Thrown"]</xpath>
 		<value>
@@ -313,6 +339,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Track Axe ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_HA_BO"]/tools</xpath>
@@ -331,11 +358,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_HA_BO"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_BO"]</xpath>
 		<value>
@@ -348,14 +377,17 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_HA_BO"]/recipeMaker</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_HA_BO"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_BO"]/equippedStatOffsets</xpath>
 		<value>
@@ -364,6 +396,7 @@
 			<MeleeDodgeChance>0.20</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_HA_BO</defName>
 		<statBases>
@@ -387,6 +420,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_HandaxeBO_Thrown"]</xpath>
 		<value>
@@ -410,6 +444,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Hunting Axe ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_HA_BT"]/tools</xpath>
@@ -428,6 +463,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_BT"]/equippedStatOffsets</xpath>
 		<value>
@@ -436,6 +472,7 @@
 			<MeleeDodgeChance>0.20</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_HA_BT"]/statBases</xpath>
 		<value>
@@ -443,6 +480,7 @@
 			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<!-- ========== Basic Harpoon ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_O"]/tools</xpath>
@@ -483,11 +521,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_O"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_O"]</xpath>
 		<value>
@@ -500,14 +540,17 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_WH_O"]/recipeMaker</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_O"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_O"]</xpath>
 		<value>
@@ -518,6 +561,7 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_WH_O</defName>
 		<statBases>
@@ -542,6 +586,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoon_Thrown"]</xpath>
 		<value>
@@ -566,6 +611,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Improvement Harpoon ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_AO"]/tools</xpath>
@@ -606,11 +652,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_AO"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_AO"]</xpath>
 		<value>
@@ -623,14 +671,17 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_WH_AO"]/recipeMaker</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_AO"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_AO"]</xpath>
 		<value>
@@ -641,6 +692,7 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_WH_AO</defName>
 		<statBases>
@@ -665,6 +717,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonAO_Thrown"]</xpath>
 		<value>
@@ -689,6 +742,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Abduct Harpoon ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_AT"]/tools</xpath>
@@ -729,11 +783,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_AT"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_AT"]</xpath>
 		<value>
@@ -746,14 +802,17 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_WH_AT"]/recipeMaker</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_AT"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_AT"]</xpath>
 		<value>
@@ -764,6 +823,7 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_WH_AT</defName>
 		<statBases>
@@ -788,6 +848,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonAT_Thrown"]</xpath>
 		<value>
@@ -812,6 +873,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Abduct B Harpoon ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]/tools</xpath>
@@ -852,11 +914,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]</xpath>
 		<value>
@@ -869,11 +933,13 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]</xpath>
 		<value>
@@ -884,6 +950,7 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]/statBases</xpath>
 		<value>
@@ -891,6 +958,7 @@
 			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<!-- ========== Internal Anti-Gravity Harpoon ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_BO"]/tools</xpath>
@@ -931,11 +999,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_BO"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_BO"]</xpath>
 		<value>
@@ -948,14 +1018,17 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_WH_BO"]/recipeMaker</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_BO"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_BO"]</xpath>
 		<value>
@@ -966,6 +1039,7 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_WH_BO</defName>
 		<statBases>
@@ -989,6 +1063,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonBO_Thrown"]</xpath>
 		<value>
@@ -1013,6 +1088,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Internal External Anti-Gravity ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_BT"]/tools</xpath>
@@ -1053,11 +1129,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_BT"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_BT"]</xpath>
 		<value>
@@ -1070,14 +1148,17 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MR_WH_BT"]/recipeMaker</xpath>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_BT"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_BT"]</xpath>
 		<value>
@@ -1088,6 +1169,7 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_WH_BT</defName>
 		<statBases>
@@ -1112,6 +1194,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonBT_Thrown"]</xpath>
 		<value>
@@ -1145,6 +1228,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Internal External Anti-Gravity ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]/tools</xpath>
@@ -1185,11 +1269,13 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>BaseWeapon</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]</xpath>
 		<value>
@@ -1202,11 +1288,13 @@
 			<smeltable>False</smeltable>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]</xpath>
 		<value>
@@ -1217,6 +1305,7 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MR_WH_BTT</defName>
 		<statBases>
@@ -1241,6 +1330,7 @@
 		<FireModes/>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonBTT_Thrown"]</xpath>
 		<value>
@@ -1265,6 +1355,7 @@
 			</ThingDef>
 		</value>
 	</Operation>
+
 	<!-- ========== Chain ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_CO"]/tools</xpath>
@@ -1292,6 +1383,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_COT"]/tools</xpath>
 		<value>
@@ -1317,6 +1409,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_CO" or defName="MR_WH_COT"]/equippedStatOffsets</xpath>
 		<value>
@@ -1325,6 +1418,7 @@
 			<MeleeDodgeChance>0.9</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_CO" or defName="MR_WH_COT"]/statBases</xpath>
 		<value>
@@ -1332,6 +1426,7 @@
 			<MeleeCounterParryBonus>0.9</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+
 	<!-- ========== Firewheel ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_CT"]/tools</xpath>
@@ -1359,6 +1454,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="MR_WH_CTT"]/tools</xpath>
 		<value>
@@ -1384,6 +1480,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_CT" or defName="MR_WH_CTT"]/equippedStatOffsets</xpath>
 		<value>
@@ -1392,6 +1489,7 @@
 			<MeleeDodgeChance>1.1</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="MR_WH_CT" or defName="MR_WH_CTT"]/statBases</xpath>
 		<value>
@@ -1399,4 +1497,5 @@
 			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
 		</value>
 	</Operation>
+	
 </Patch>
