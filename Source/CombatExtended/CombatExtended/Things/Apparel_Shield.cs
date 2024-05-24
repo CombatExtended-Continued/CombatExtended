@@ -69,7 +69,7 @@ namespace CombatExtended
 
             Vector3 vector = Wearer.Drawer.DrawPos + GetFacingVector(rot);
             vector.y = Wearer.Rotation == Rot4.West || Wearer.Rotation == Rot4.South ? AltitudeLayer.PawnUnused.AltitudeFor() : AltitudeLayer.Pawn.AltitudeFor();
-
+            vector.y -= 0.01f;
 
             Material mat = GetFacingMaterial(graphic, rot);
             Matrix4x4 matrix = default(Matrix4x4);
