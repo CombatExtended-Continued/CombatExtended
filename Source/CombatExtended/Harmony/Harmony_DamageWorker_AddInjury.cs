@@ -14,17 +14,17 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(DamageWorker_AddInjury), "ApplyDamageToPart")]
     internal static class Harmony_DamageWorker_AddInjury_ApplyDamageToPart
     {
-        // Secondary damage debounce boolean
-        private static bool _applyingSecondary = false;
         // Set to false initially and in postfix, may be set to true in GetAfterArmorDamage
         private static bool _skipSecondary = false;
+        // Secondary damage debounce boolean
+        private static bool _applyingSecondary = false;
         // Lines in armor block that need to be nulled out
         private static readonly int[] ArmorBlockNullOps = { 1, 3, 4, 5, 6 };
 
         private static void ArmorReroute(Pawn pawn, ref DamageInfo dinfo,
                 out bool deflectedByArmor, out bool diminishedByArmor)
         {
-            var newDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn, dinfo.HitPart,
+            var newDinfo = ArmorUtilityCE.GetAfterArmorDamage(dinfo, pawn,
                     out deflectedByArmor, out diminishedByArmor, out _skipSecondary);
             if (dinfo.HitPart != newDinfo.HitPart)
             {
