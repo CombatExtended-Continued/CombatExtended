@@ -72,7 +72,7 @@ namespace CombatExtended
                 var multiplier = Gun(req)?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
                 if (Mathf.Abs(1f -  multiplier) > 0.0001f)
                 {
-                    stringBuilder.AppendLine("CE_RangedPenetrationMultiplier".Translate() + ": " + multiplier.ToStringByStyle(ToStringStyle.PercentOne));
+                    stringBuilder.AppendLine("CE_RangedQualityMultiplier".Translate() + ": " + multiplier.ToStringByStyle(ToStringStyle.PercentOne));
                 }
                 stringBuilder.AppendLine();
                 foreach (var cur in ammoSet.ammoTypes)
