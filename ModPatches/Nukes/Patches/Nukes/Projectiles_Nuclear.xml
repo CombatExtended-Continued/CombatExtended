@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Remove base mod shells.-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="Shell_FusionWarhead" or
+			defName="Shell_LargeNuclearWarhead" or
+			defName="Shell_SmallNuclearWarhead" or
+			defName="Shell_DirtyNuclearWarhead"]
+		</xpath>
+	</Operation>
+
+	<!-- Add ThingClass-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Bullet_FusionWarhead" or
+			defName="Bullet_LargeNuclearWarhead" or
+			defName="Bullet_SmallNuclearWarhead" or
+			defName="Bullet_DirtyNuclearWarhead"
+			]/thingClass
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[
+			defName="Bullet_FusionWarhead" or
+			defName="Bullet_LargeNuclearWarhead" or
+			defName="Bullet_SmallNuclearWarhead" or
+			defName="Bullet_DirtyNuclearWarhead"
+			]/projectile
+		</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.ProjectilePropertiesCE</value>
+	</Operation>
+
+	<!-- Set speed.-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Bullet_FusionWarhead" or
+			defName="Bullet_LargeNuclearWarhead" or
+			defName="Bullet_SmallNuclearWarhead" or
+			defName="Bullet_DirtyNuclearWarhead"
+			]/projectile/speed
+		</xpath>
+		<value>
+			<speed>0</speed>
+		</value>
+	</Operation>
+
+	<!-- Add shells to 81mm ammo set.-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+		<value>
+			<Ammo_FusionBomb>Bullet_FusionWarhead</Ammo_FusionBomb>
+			<Ammo_LargeNuclearBomb>Bullet_LargeNuclearWarhead</Ammo_LargeNuclearBomb>
+			<Ammo_SmallNuclearBomb>Bullet_SmallNuclearWarhead</Ammo_SmallNuclearBomb>
+			<Ammo_DirtyNuclearBomb>Bullet_DirtyNuclearWarhead</Ammo_DirtyNuclearBomb>
+		</value>
+	</Operation>
+</Patch>

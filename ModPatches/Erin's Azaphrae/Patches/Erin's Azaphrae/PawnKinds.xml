@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Give Ammo to PawnKinds ======= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="ERN_MercenaryMercenaryBase" or @Name="ERN_AzaphraeOutlanderBase" or @Name="ERN_AzaphraePirateBase" or defName="ERN_AzaphraeAncientSoldier"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="ERN_AzaphraeTribalBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>12</min>
+					<max>20</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>100</min>
+							<max>600</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>NeolithicMeleeBasic</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

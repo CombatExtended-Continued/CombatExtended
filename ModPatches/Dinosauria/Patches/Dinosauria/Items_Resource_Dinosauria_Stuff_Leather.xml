@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--========== Basic leathers ============-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Raptor" or defName="Leather_DinosaurFuzz" or defName="Leather_DinosaurHide"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<!--========== Thin leathers ============-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_DinosaurSkin" or defName="Leather_PterosaurSkin"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_DinosaurSkin" or defName="Leather_PterosaurSkin"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.02</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!--========== Tough leathers ============-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Theropod" or defName="Leather_Sauropod" or defName="Leather_Redhide"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.06</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Theropod" or defName="Leather_Redhide"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!--========== Super leathers ============-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Tyrannosaurus" or defName="Leather_Spinosaurus"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.72</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Tyrannosaurus" or defName="Leather_Spinosaurus"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Bluefuzz"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.7</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Bluefuzz"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.09</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_ArmoredDino"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.75</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_ArmoredDino"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.14</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!--========== Leather_Tyrannosaurus, Leather_Spinosaurus, Leather_Bluefuzz, Leather_ArmoredDino ============-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Leather_Tyrannosaurus" or defName="Leather_Spinosaurus" or defName="Leather_Bluefuzz" or defName="Leather_ArmoredDino"]/stuffProps</xpath>
+		<value>
+			<categories>
+				<li>SoftArmor</li>
+			</categories>
+		</value>
+	</Operation>
+</Patch>

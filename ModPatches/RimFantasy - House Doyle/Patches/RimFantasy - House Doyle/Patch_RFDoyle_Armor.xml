@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= House Doyle Armor ======= -->
+
+	<!-- ===== Heavy Hauberk ===== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicHeavyHauberk_Doyle"]/statBases</xpath>
+		<value>
+			<Bulk>30</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicHeavyHauberk_Doyle"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicHeavyHauberk_Doyle"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicHeavyHauberk_Doyle"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- ===== Full-Plate Gilded ===== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicGildedFullPlate_Doyle"]/statBases</xpath>
+		<value>
+			<Bulk>100</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicGildedFullPlate_Doyle"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicGildedFullPlate_Doyle"]/statBases/Mass</xpath>
+		<value>
+			<Mass>15</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicGildedFullPlate_Doyle"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicGildedFullPlate_Doyle"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ===== Heraldic Great Helm ===== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicGreatHelm_Doyle"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicGreatHelm_Doyle"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicGreatHelm_Doyle"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>-0.4</AimingAccuracy>
+			<MeleeHitChance>-2</MeleeHitChance>
+			<Suppressability>-0.20</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_Apparel_HeraldicGreatHelm_Doyle"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.75</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+</Patch>

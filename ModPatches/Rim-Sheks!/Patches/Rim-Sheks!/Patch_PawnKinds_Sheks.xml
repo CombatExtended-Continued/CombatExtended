@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- SHEK Neutrals (Non-Combatants) -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="NeutralShekBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>1</min>
+					<max>3</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.15</generateChance>
+						<sidearmMoney>
+							<min>40</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- SHEK WARRIOR -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Shek_Warrior" or defName="Shek_Vassal"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>100</min>
+					<max>150</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.25</shieldChance>
+				<sidearms>
+					<li>
+						<generateChance>0.35</generateChance>
+						<sidearmMoney>
+							<min>40</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- SHEK PYRO -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Shek_Pyrotechnician"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>10</min>
+					<max>21</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>100</min>
+					<max>150</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.5</shieldChance>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>40</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- SHEK GUNNERS -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Shek_Guardian" or defName="Heavy_Shek_Guardian"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.35</generateChance>
+						<sidearmMoney>
+							<min>40</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+</Patch>

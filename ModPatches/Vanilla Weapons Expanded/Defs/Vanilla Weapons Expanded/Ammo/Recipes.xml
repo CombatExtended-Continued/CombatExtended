@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- == Recipes == -->
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeThrowingRocks</defName>
+		<label>make throwing rocks x10</label>
+		<description>Craft 10 throwing rocks.</description>
+		<jobString>Making throwing rocks.</jobString>
+		<workAmount>1200</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<stuffCategoriesToAllow>
+						<li>Stony</li>
+					</stuffCategoriesToAllow>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<stuffCategoriesToAllow>
+				<li>Stony</li>
+			</stuffCategoriesToAllow>
+		</fixedIngredientFilter>
+		<recipeUsers>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<products>
+			<VWE_Throwing_Rocks>10</VWE_Throwing_Rocks>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="GrenadeRecipeBase">
+		<defName>MakeVWEThrowingKnives</defName>
+		<label>make throwing knives x10</label>
+		<description>Craft 10 throwing knives.</description>
+		<jobString>Making throwing knives.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>14</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<VWE_Throwing_Knives>14</VWE_Throwing_Knives>
+		</products>
+		<recipeUsers>
+			<li>FueledSmithy</li>
+			<li>ElectricSmithy</li>
+		</recipeUsers>
+	</RecipeDef>
+
+</Defs>

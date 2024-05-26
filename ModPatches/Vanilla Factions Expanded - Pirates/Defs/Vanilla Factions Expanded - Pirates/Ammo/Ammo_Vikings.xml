@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- Despite using MayRequire, the Parent still has to exist, so we can't use the Vikings `CryptoAmmoBase`.-->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase" MayRequire="OskarPotocki.VFE.Vikings">
+		<defName>Ammo_CryptoCannon</defName>
+		<label>Crypto Cannon Fuel</label>
+		<description>Metal-cored projectiles wrapped in unstable crypto technology contained with an energy field. Capable of dealing both ballistic damage and causing serious hypothermia.</description>
+		<graphicData>
+			<texPath>ThirdParty/VanillaExpanded/Crypto</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.75</drawSize>			
+		</graphicData>	
+		<statBases>
+			<MarketValue>0.7</MarketValue>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<ammoClass>Crypto</ammoClass>
+		<stackLimit>2500</stackLimit>		
+		<thingCategories>
+			<li>AmmoCryptoCannon</li>
+		</thingCategories>
+		<detonateProjectile>Bullet_Flamethrower_CryptoCannon</detonateProjectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="OskarPotocki.VFE.Vikings">
+		<defName>MakeAmmo_CryptoCannon</defName>
+		<label>make crypto cannon fuel x200</label>
+		<description>Craft 200 crypto cannon fuel.</description>
+		<jobString>Making crypto cannon fuel.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Chemfuel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CryptoCannon>200</Ammo_CryptoCannon>
+		</products>
+		<workAmount>8600</workAmount>
+	</RecipeDef>
+
+</Defs>

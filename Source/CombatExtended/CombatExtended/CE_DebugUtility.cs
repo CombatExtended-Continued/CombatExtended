@@ -5,6 +5,7 @@ using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
+using LudeonTK;
 
 namespace CombatExtended
 {
@@ -22,7 +23,7 @@ namespace CombatExtended
             return $"Tile index: {tile}";
         }
 
-        [DebugOutput("CE", name = "Not patched WorldObjecDefs")]
+        [DebugOutputAttribute("CE", name = "Not patched WorldObjecDefs")]
         public static void NotPatchedWorldObjectDefs()
         {
             var notPatched = DefDatabase<WorldObjectDef>.AllDefsListForReading.Where(x => !x.comps.Any(comp => comp is WorldObjectCompProperties_Health) || !x.comps.Any(comp => comp is WorldObjectCompProperties_Hostility));

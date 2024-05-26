@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WMH_LeshyWave" or
+			defName="WMH_WyvernAcidSpit" or
+			defName="WMH_WispProjectile"
+			] </xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="WMH_Rock"
+			]/thingClass </xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WMH_LeshyWave"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>WMH_VeryToxicBite</damageDef>
+				<damageAmountBase>40</damageAmountBase>
+				<speed>28</speed>
+				<armorPenetrationSharp>10</armorPenetrationSharp>
+				<armorPenetrationBlunt>20.660</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WMH_WyvernAcidSpit"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>WMH_AcidSpit</damageDef>
+				<damageAmountBase>40</damageAmountBase>
+				<speed>22</speed>
+				<armorPenetrationSharp>10</armorPenetrationSharp>
+				<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WMH_WispProjectile"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>Flame</damageDef>
+				<damageAmountBase>6</damageAmountBase>
+				<speed>13</speed>
+				<armorPenetrationSharp>16</armorPenetrationSharp>
+				<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WMH_Rock"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1.5</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>40</damageAmountBase>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+				<speed>13</speed>
+				<armorPenetrationSharp>5</armorPenetrationSharp>
+				<armorPenetrationBlunt>25</armorPenetrationBlunt>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ============== Atlant Pollen ================ -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="OE_PollenAtlant"]/verbProperties/range</xpath>
+		<value>
+			<range>14.9</range>
+		</value>
+	</Operation>
+
+	<!-- ============== Flight ================ -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="OE_WingsFly"]/verbProperties/range</xpath>
+		<value>
+			<range>27.9</range>
+		</value>
+	</Operation>
+
+	<!-- ============== silkshot compatibility ================ -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="OE_Silkshot"]/verbProperties/range</xpath>
+		<value>
+			<range>11.9</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OE_Silkshot_Bullet"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Stun</damageDef>
+				<speed>95</speed>
+				<damageAmountBase>18</damageAmountBase>
+				<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+</Patch>

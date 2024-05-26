@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="SimpleProstheticHand" or defName="SimpleProstheticArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+	</Operation>
+
+	<!-- ========== Bionics ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<cooldownTime>1.66</cooldownTime>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="PowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic fist</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>9</power>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.15</armorPenetrationSharp>
+					<cooldownTime>1.66</cooldownTime>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Advanced Bionics ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AdvancedPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic fist</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>22</power>
+					<armorPenetrationBlunt>4.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.96</armorPenetrationSharp>
+					<cooldownTime>0.76</cooldownTime>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AdvancedBionicArm" or defName="AdvancedBionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<cooldownTime>0.83</cooldownTime>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Remove Vanilla Mortar Shells. =======-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/TraderKindDef[@Name="WW2BaseTrader"]/stockGenerators/li[thingDef="Shell_HighExplosive"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/TraderKindDef[@Name="WW2BaseTrader"]/stockGenerators/li[thingDef="Shell_Incendiary"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/TraderKindDef[@Name="WW2BaseTrader"]/stockGenerators/li[thingDef="Shell_Smoke"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/TraderKindDef[@Name="WW2CaravanTrader"]/stockGenerators/li[thingDef="Shell_HighExplosive"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/TraderKindDef[@Name="WW2CaravanTrader"]/stockGenerators/li[thingDef="Shell_Incendiary"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/TraderKindDef[@Name="WW2CaravanTrader"]/stockGenerators/li[thingDef="Shell_Smoke"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/TraderKindDef[@Name="WW2VisitorTrader"]/stockGenerators/li[thingDef="Shell_HighExplosive"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/TraderKindDef[@Name="WW2VisitorTrader"]/stockGenerators/li[thingDef="Shell_Incendiary"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/TraderKindDef[@Name="WW2VisitorTrader"]/stockGenerators/li[thingDef="Shell_Smoke"]</xpath>
+	</Operation>
+
+	<!-- ======= Trader Base =======-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[@Name="WW2BaseTrader"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>FSX</thingDef>
+				<countRange>
+					<min>15</min>
+					<max>40</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Prometheum</thingDef>
+				<countRange>
+					<min>15</min>
+					<max>40</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Ammo</tradeTag>
+				<countRange>
+					<min>400</min>
+					<max>1000</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>3</min>
+					<max>8</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_MediumAmmo</tradeTag>
+				<countRange>
+					<min>400</min>
+					<max>1000</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>3</min>
+					<max>8</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_HeavyAmmo</tradeTag>
+				<countRange>
+					<min>10</min>
+					<max>50</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>2</min>
+					<max>5</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>Ammo</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ======= Trader Caravan Base =======-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[@Name="WW2CaravanTrader"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>FSX</thingDef>
+				<countRange>
+					<min>15</min>
+					<max>40</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Prometheum</thingDef>
+				<countRange>
+					<min>15</min>
+					<max>40</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Ammo</tradeTag>
+				<countRange>
+					<min>400</min>
+					<max>1000</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>3</min>
+					<max>8</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_MediumAmmo</tradeTag>
+				<countRange>
+					<min>10</min>
+					<max>50</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>2</min>
+					<max>4</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_HeavyAmmo</tradeTag>
+				<countRange>
+					<min>5</min>
+					<max>30</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>2</min>
+					<max>6</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>Ammo</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Turret</tradeTag>
+				<thingDefCountRange>
+					<min>-4</min>
+					<max>2</max>
+				</thingDefCountRange>
+				<countRange>
+					<min>1</min>
+					<max>1</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>WeaponsTurrets</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Animals">
+				<tradeTagsSell>
+					<li>CE_AnimalBoom</li>
+				</tradeTagsSell>
+				<tradeTagsBuy>
+					<li>CE_AnimalBoom</li>
+				</tradeTagsBuy>
+				<kindCountRange>
+					<min>0</min>
+					<max>1</max>
+				</kindCountRange>
+				<countRange>
+					<min>-1</min>
+					<max>2</max>
+				</countRange>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ======= Trader Visitor Base =======-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[@Name="WW2VisitorTrader"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>FSX</thingDef>
+				<countRange>
+					<min>0</min>
+					<max>15</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Prometheum</thingDef>
+				<countRange>
+					<min>0</min>
+					<max>15</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Ammo</tradeTag>
+				<countRange>
+					<min>100</min>
+					<max>250</max>
+				</countRange>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>4</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>Ammo</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

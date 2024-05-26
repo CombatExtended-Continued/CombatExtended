@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--== Projectiles ==-->
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>GR_PoisonBreathAnimated_CE</defName>
+		<label>poison breath</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/GR_PoisonShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<damageDef>ToxicBite</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<speed>20</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>GR_FlameBreathAnimated_CE</defName>
+		<label>flame breath</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/GR_FireSpit</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<speed>20</speed>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+</Defs>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Beverages === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="VBE_DrugToolBase"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.1</MeleeCritChance>
+				<MeleeParryChance>0.33</MeleeParryChance>
+				<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VBE_DrugToolBase"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>2.22</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>neck</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>3.33</cooldownTime>
+					<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Mixing === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VBE_WhiskeyAsIngredient"]/stages/li[1]/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>3</ShootingAccuracyPawn>
+			<AimingAccuracy>1.5</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VBE_VodkaAsIngredient"]/stages/li[1]/statOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>2</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VBE_ConsumedGoStock"]/stages/li[1]</xpath>
+		<value>
+			<statOffsets>
+				<Suppressability>-0.10</Suppressability>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VBE_RBMeadAsIngredient"]/stages/li[1]/statOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-0.10</SmokeSensitivity>
+		</value>
+	</Operation>
+
+</Patch>

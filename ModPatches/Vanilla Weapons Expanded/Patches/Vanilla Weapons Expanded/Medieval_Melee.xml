@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Battle Axe === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_BattleAxe"]/statBases</xpath>
+		<value>
+			<Bulk>13</Bulk>
+			<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_BattleAxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.3</MeleeCritChance>
+				<MeleeParryChance>1.6</MeleeParryChance>
+				<MeleeDodgeChance>0.56</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_BattleAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.31</cooldownTime>
+					<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>48</power>
+					<cooldownTime>3.4</cooldownTime>
+					<armorPenetrationBlunt>10.4</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.8</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>41</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetrationBlunt>2.3</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.2</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Halberd === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Halberd"]/statBases</xpath>
+		<value>
+			<Bulk>13</Bulk>
+			<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Halberd"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>1.45</MeleeParryChance>
+				<MeleeDodgeChance>0.6</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Halberd"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.31</cooldownTime>
+					<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>47</power>
+					<cooldownTime>3.4</cooldownTime>
+					<armorPenetrationBlunt>8.3</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.69</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>40</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>2.1</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.15</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Hammer === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Hammer"]/statBases</xpath>
+		<value>
+			<Bulk>3.75</Bulk>
+			<MeleeCounterParryBonus>0.06</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Hammer"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.45</MeleeCritChance>
+			<MeleeParryChance>0.11</MeleeParryChance>
+			<MeleeDodgeChance>0.10</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Hammer"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Hammer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.62</cooldownTime>
+					<armorPenetrationBlunt>0.675</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2.79</cooldownTime>
+					<armorPenetrationBlunt>2.7</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

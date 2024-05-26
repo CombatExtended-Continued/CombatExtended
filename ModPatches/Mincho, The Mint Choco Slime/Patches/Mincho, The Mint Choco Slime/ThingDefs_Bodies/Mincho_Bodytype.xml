@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Arm Groups-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Mincho_BodyDef"]//*[
+			def="Mincho_Core"
+			]/groups
+		</xpath>
+		<value>
+			<li>LeftShoulder</li>
+			<li>RightShoulder</li>
+			<li>LeftArm</li>
+			<li>RightArm</li>
+			<li>Shoulders</li>
+		</value>
+	</Operation>
+
+	<!--Natural Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Mincho_BodyDef"]//*[
+			def="Mincho_Torso" or
+			def="Mincho_Head"
+			]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+</Patch>

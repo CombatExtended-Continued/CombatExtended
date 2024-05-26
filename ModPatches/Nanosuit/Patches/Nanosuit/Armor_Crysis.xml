@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Nano Helmet === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>0.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>240</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingDelayFactor>-0.05</AimingDelayFactor>
+				<AimingAccuracy>0.1</AimingAccuracy>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+				<Suppressability>-0.1</Suppressability>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/apparel/layers</xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<!-- === Nano Armor === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/apparel/layers</xpath>
+		<value>
+			<li>Webbing</li>
+			<li>Backpack</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/statBases/Mass</xpath>
+		<value>
+			<Bulk>60</Bulk>
+			<WornBulk>8</WornBulk>
+			<Mass>18</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryWeight>60</CarryWeight>
+				<CarryBulk>80</CarryBulk>
+				<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+				<MoveSpeed>1</MoveSpeed>
+				<ReloadSpeed>0.15</ReloadSpeed>
+				<Suppressability>-0.33</Suppressability>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorNanoSuitBase"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Nanosuit.NanosuitDef[defName="NS_Apparel_Nanosuit"]/nightVisor/accuracyBonus</xpath>
+		<value>
+			<accuracyBonus>1.5</accuracyBonus>
+		</value>
+	</Operation>
+
+</Patch>

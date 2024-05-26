@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Gas Mask  -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WTM_ToxicBreather"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>8000</WorkToMake>
+				<MaxHitPoints>100</MaxHitPoints>
+				<Mass>0.5</Mass>
+				<Bulk>3</Bulk>
+				<WornBulk>1</WornBulk>
+				<EquipDelay>0.5</EquipDelay>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WTM_ToxicBreather"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="WTM_ToxicBreather"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+			<li Class="CombatExtended.ApperalRenderingExtension">
+				<HideHair>false</HideHair>
+				<HideBeard>true</HideBeard>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WTM_ToxicBreather"]/apparel/hatRenderedFrontOfFace</xpath>
+		<value>
+			<hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WTM_ToxicBreather"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+</Patch>

@@ -341,7 +341,7 @@ namespace CombatExtended
                         swayMult = bipodDef.swayMult,
                         swayPenalty = bipodDef.swayPenalty
                     });
-                    gun.statBases.Add(new StatModifier { value = 0f, stat = BipodDefsOfs.BipodStats });
+                    gun.statBases.Add(new StatModifier { value = 0f, stat = CE_StatDefOf.BipodStats });
                 }
             }
             #endregion

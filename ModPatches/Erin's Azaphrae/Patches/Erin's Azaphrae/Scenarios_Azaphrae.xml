@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ScenarioDef[defName="ERN_AzaphraeCrashlanded"]/scenario/parts</xpath>
+		<value>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>Ammo_303British_FMJ</thingDef>
+				<count>100</count>
+			</li>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>Ammo_44Magnum_FMJ</thingDef>
+				<count>120</count>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="ERN_AzaphraeCrashlanded"]/scenario/parts/li[thingDef="Apparel_FlakPants"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="ERN_AzaphraeCrashlanded"]/scenario/parts/li[thingDef="Apparel_FlakVest"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="ERN_AzaphraeCrashlanded"]/scenario/parts/li[thingDef="Apparel_AdvancedHelmet"]</xpath>
+	</Operation>
+
+</Patch>

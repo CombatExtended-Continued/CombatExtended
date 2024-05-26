@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Leeani"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Gives Gun Gizmos to Leeani HUD thing ========== -->
+	<!-- ========== Also Makes Em Suppressable ========== -->
+
+	<!-- ========== Patch Leeani Melee Attacks ========== -->
+	<!-- ========== Also Sharpens Their Slashers ========== -->
+	<!-- ========== And adds fists and chompers ========== -->
+	<!-- ========== A bit more robust than ferians ========== -->
+	<!-- ========== We'll see how that works out? ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Leeani"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>1</AimingAccuracy>
+			<MeleeDodgeChance>1.5</MeleeDodgeChance>
+			<MeleeCritChance>1.3</MeleeCritChance>
+			<MeleeParryChance>1.2</MeleeParryChance>
+			<ReloadSpeed>1</ReloadSpeed>
+			<Suppressability>1</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Leeani"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.5</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.5</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetration>0.12</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetration>0.10</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetration>0.10</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.7</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetration>0.16</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth are already set. I think. ========== -->
+	<!-- ========== Thanks Mike! ========== -->
+
+	<!-- ========== Adds In Inspector Tabs ========== -->
+	<!-- ========== Inventory and all that jazz ========== -->
+</Patch>

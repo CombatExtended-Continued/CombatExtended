@@ -34,7 +34,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    thing.TryAttachFire(maxFireSize);
+                    thing.TryAttachFire(maxFireSize, null);
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace CombatExtended
             }
             else
             {
-                FireUtility.TryStartFireIn(Position, base.Map, maxFireSize);
+                FireUtility.TryStartFireIn(Position, base.Map, maxFireSize, this);
             }
         }
     }

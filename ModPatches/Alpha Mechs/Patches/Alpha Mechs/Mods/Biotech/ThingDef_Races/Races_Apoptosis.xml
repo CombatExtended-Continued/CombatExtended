@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AM_Apoptosis"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/statBases</xpath>
+					<value>
+						<ArmorRating_Heat>0.75</ArmorRating_Heat>
+						<CarryWeight>75</CarryWeight>
+						<CarryBulk>40</CarryBulk>
+						<MeleeDodgeChance>0.1</MeleeDodgeChance>
+						<MeleeCritChance>0.13</MeleeCritChance>
+						<MeleeParryChance>0.13</MeleeParryChance>
+						<MaxHitPoints>600</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>64</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>26</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/statBases/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.525</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/statBases/EnergyShieldEnergyMax</xpath>
+					<value>
+						<EnergyShieldEnergyMax>3.75</EnergyShieldEnergyMax>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>wing blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>37</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>AM_WingBlades</linkedBodyPartsGroup>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>wing blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.25</cooldownTime>
+								<linkedBodyPartsGroup>AM_WingBlades</linkedBodyPartsGroup>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<armorPenetrationSharp>30</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.0</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_Apoptosis"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AM_Apoptosis"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>5250</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>525</MaxOverHeal>
+							<MinArmorPct>0.5</MinArmorPct>
+							<MinArmorValueSharp>14</MinArmorValueSharp>
+							<MinArmorValueBlunt>35</MinArmorValueBlunt>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="AM_Apoptosis"]/combatPower</xpath>
+					<value>
+						<combatPower>1000</combatPower>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AM_Gun_SoulDrainTurret</defName>
+					<statBases>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.2</ShotSpread><!-- Manually adjusted from 0.08 due to accuracy concerns. -->
+						<SwayFactor>0.56</SwayFactor>
+						<Bulk>6.00</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>AM_Bullet_SoulDrain_CE</defaultProjectile>
+						<range>55</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>AM_SoulDrain</soundCast>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<defaultCooldownTime>2.5</defaultCooldownTime>
+						<ticksBetweenBurstShots>150</ticksBetweenBurstShots>
+					</Properties>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

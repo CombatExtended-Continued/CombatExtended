@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GatlingRound"]/thingClass</xpath>
+		<value>
+			<thingClass>Bullet</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AutocannonRound"]/projectile</xpath>
+		<value>
+			<projectile>
+				<flyOverhead>true</flyOverhead>
+				<damageDef>MiningCo_Cannon</damageDef>
+				<explosionRadius>1.5</explosionRadius>
+				<speed>120</speed>
+				<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RocketAirstrike"]/projectile</xpath>
+		<value>
+			<projectile>
+				<flyOverhead>true</flyOverhead>
+				<damageDef>MiningCo_Rocket</damageDef>
+				<explosionRadius>3</explosionRadius>
+				<speed>64</speed>
+				<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="IncendiaryBomb"]/projectile</xpath>
+		<value>
+			<projectile>
+				<flyOverhead>true</flyOverhead>
+				<damageDef>Flame</damageDef>
+				<damageAmountBase>20</damageAmountBase>
+				<explosionRadius>6</explosionRadius>
+				<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+				<speed>20</speed>
+				<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

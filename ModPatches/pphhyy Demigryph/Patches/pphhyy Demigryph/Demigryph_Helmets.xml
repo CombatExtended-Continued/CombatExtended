@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Helm Bulk -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHelm" or defName="pphhyy_Human_DemigyryphChampionHelm" or defName="pphhyy_Human_DemigyryphGildedHelm"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHelm" or defName="pphhyy_Human_DemigyryphChampionHelm" or defName="pphhyy_Human_DemigyryphGildedHelm"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+	</Operation>
+
+	<!-- Staff Offsets -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHelm" or defName="pphhyy_Human_DemigyryphChampionHelm" or defName="pphhyy_Human_DemigyryphGildedHelm" or defName="pphhyy_Human_DemigyryphRaiderHelm" or defName="pphhyy_Human_DemigyryphHunterHelm"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>-0.4</AimingAccuracy>
+			<MeleeHitChance>-2</MeleeHitChance>
+			<Suppressability>-0.20</Suppressability>
+		</value>
+	</Operation>
+
+	<!--Demigryph Helm-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHelm"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHelm"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>80</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHelm"]/recipeMaker/researchPrerequisite</xpath>
+		<value>
+			<researchPrerequisite>PlateArmor</researchPrerequisite>
+		</value>
+	</Operation>
+
+	<!--Demigryph Champion Helm and DemigyryphGildedHelm-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphChampionHelm" or defName="pphhyy_Human_DemigyryphGildedHelm" or defName="pphhyy_Human_DemigyryphRaiderHelm"]/statBases/Mass</xpath>
+		<value>
+			<Mass>3.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphChampionHelm" or defName="pphhyy_Human_DemigyryphGildedHelm" or defName="pphhyy_Human_DemigyryphRaiderHelm"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphChampionHelm"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>90</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphRaiderHelm"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>95</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphGildedHelm" or defName="pphhyy_Human_DemigyryphHunterHelm"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>100</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHunterHelm"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.75</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+</Patch>

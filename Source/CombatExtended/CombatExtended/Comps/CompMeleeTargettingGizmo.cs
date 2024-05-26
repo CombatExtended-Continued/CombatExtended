@@ -92,9 +92,10 @@ namespace CombatExtended
 
             if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 16)
             {
-                targetBodyPart = BodyPartDefOf.Neck;
+                //TODO: 1.5 Should be neck?
+                targetBodyPart = BodyPartDefOf.Eye;
 
-                var neck = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == BodyPartDefOf.Neck).FirstOrFallback();
+                var neck = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == BodyPartDefOf.Eye).FirstOrFallback();
 
                 if (neck != null)
                 {
@@ -170,7 +171,8 @@ namespace CombatExtended
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             // Don't let people control melee targeting for non-colonist pawns or colonists in a mental state
-            if (!PawnParent.IsColonist || PawnParent.InAggroMentalState)
+            // Corpses are also auto-assigned this comp, but clearly they are not typeof(Pawn)
+            if (parent is Corpse || !PawnParent.IsColonist || PawnParent.InAggroMentalState)
             {
                 yield break;
             }
