@@ -70,7 +70,7 @@ namespace CombatExtended
                 // Append various ammo stats
                 stringBuilder.AppendLine(ammoSet.LabelCap);
                 var multiplier = Gun(req)?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
-                if (Mathf.Abs(1f -  multiplier) > 0.0001f)
+                if (Mathf.Abs(1f - multiplier) > 0.0001f)
                 {
                     stringBuilder.AppendLine("CE_RangedQualityMultiplier".Translate() + ": " + multiplier.ToStringByStyle(ToStringStyle.PercentOne));
                 }
