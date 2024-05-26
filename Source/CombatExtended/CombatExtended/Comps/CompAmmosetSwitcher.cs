@@ -185,7 +185,7 @@ namespace CombatExtended
                         defaultDesc = "CE_UBGLStats".Translate() +
                         "\n " + "WarmupTime".Translate() + ": " + Props.verbPropsUnderBarrel.warmupTime
                         + "\n " + "Range".Translate() + ": " + Props.verbPropsUnderBarrel.range
-                        + 
+                        +
                         (Props.oneAmmoHolder ? "" :
                          "\n " + "CE_AmmoSet".Translate() + ": " + Props.propsUnderBarrel.ammoSet.label
                         + "\n " + "CE_MagazineSize".Translate() + ": " + Props.propsUnderBarrel.magazineSize
