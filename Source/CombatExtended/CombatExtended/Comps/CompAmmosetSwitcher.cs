@@ -122,14 +122,14 @@ namespace CombatExtended
             {
                 mainGunLoadedAmmo = CompAmmo.CurrentAmmo;
                 mainGunMagCount = CompAmmo.CurMagCount;
+                CompAmmo.CurMagCount = UnderBarrelMagCount;
+                CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+                CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
+                CompAmmo.props = this.Props.propsUnderBarrel;
             }
 
-            CompAmmo.props = this.Props.propsUnderBarrel;
             CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
             CompFireModes.props = this.Props.propsFireModesUnderBarrel;
-            CompAmmo.CurMagCount = UnderBarrelMagCount;
-            CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
-            CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
             if (CompAmmo.Wielder != null)
             {
                 CompAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
@@ -150,14 +150,14 @@ namespace CombatExtended
             {
                 UnderBarrelLoadedAmmo = CompAmmo.CurrentAmmo;
                 UnderBarrelMagCount = CompAmmo.CurMagCount;
+                CompAmmo.CurMagCount = mainGunMagCount;
+                CompAmmo.CurrentAmmo = mainGunLoadedAmmo;
+                CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
+                CompAmmo.props = CompPropsAmmo;
             }
 
-            CompAmmo.props = CompPropsAmmo;
             CompEq.PrimaryVerb.verbProps = DefVerbProps.MemberwiseClone();
             CompFireModes.props = CompPropsFireModes;
-            CompAmmo.CurMagCount = mainGunMagCount;
-            CompAmmo.CurrentAmmo = mainGunLoadedAmmo;
-            CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
             if (CompAmmo.Wielder != null)
             {
                 CompAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
@@ -175,7 +175,7 @@ namespace CombatExtended
         {
             if (CompEq.Holder?.Faction == Faction.OfPlayer || DebugSettings.godMode)
             {
-                if (CompAmmo.Props.ammoSet == CompPropsAmmo.ammoSet)
+                if (!usingUnderBarrel)
                 {
                     yield return new Command_Action
                     {
@@ -247,9 +247,9 @@ namespace CombatExtended
                     {
                         CompAmmo.CurMagCount = UnderBarrelMagCount;
                         CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+                        CompAmmo.props = this.Props.propsUnderBarrel;
                     }
 
-                    CompAmmo.props = this.Props.propsUnderBarrel;
                     CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
                     CompFireModes.props = this.Props.propsFireModesUnderBarrel;
 
