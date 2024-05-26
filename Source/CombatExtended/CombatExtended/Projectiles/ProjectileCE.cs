@@ -202,7 +202,7 @@ namespace CombatExtended
                 return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
         }
-
+        public Vector3 PreLastPos;
         public Vector3 LastPos;
         protected DangerTracker _dangerTracker = null;
         protected DangerTracker DangerTracker
@@ -363,7 +363,7 @@ namespace CombatExtended
         #region Throw
         public virtual void Throw(Thing launcher, Vector3 origin, Vector3 heading, Thing equipment = null)
         {
-            this.ExactPosition = LastPos = origin;
+            this.ExactPosition = LastPos = PreLastPos = origin;
             this.shotHeight = origin.y;
             this.origin = new Vector2(origin.x, origin.z);
             this.OriginIV3 = new IntVec3(this.origin);
@@ -571,7 +571,7 @@ namespace CombatExtended
             }
             this.startingTicksToImpact = GetFlightTime() * GenTicks.TicksPerRealSecond;
             this.ticksToImpact = Mathf.CeilToInt(this.startingTicksToImpact);
-            this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
+            this.ExactPosition = this.LastPos = PreLastPos = new Vector3(origin.x, shotHeight, origin.y);
 
         }
         #endregion
@@ -636,7 +636,7 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - lastExactPos).sqrMagnitude <= radius * radius)
+                if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - LastPos).sqrMagnitude <= radius * radius)
                 {
                     continue;
                 }
@@ -659,7 +659,7 @@ namespace CombatExtended
         {
             landed = true;
             ExactPosition = newExactPos;
-            interceptorComp.lastInterceptAngle = lastExactPos.AngleToFlat(interceptorThing.TrueCenter());
+            interceptorComp.lastInterceptAngle = LastPos.AngleToFlat(interceptorThing.TrueCenter());
             interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
 
             var projectileProperties = def.projectile as ProjectilePropertiesCE;
@@ -1120,6 +1120,7 @@ namespace CombatExtended
             {
                 return;
             }
+            PreLastPos = LastPos;
             LastPos = ExactPosition;
             ticksToImpact--;
             FlightTicks++;
