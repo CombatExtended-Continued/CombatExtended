@@ -180,7 +180,7 @@ namespace CombatExtended
                     yield return new Command_Action
                     {
 
-                        defaultLabel = "CE_SwitchAmmmoSetToUnderBarrel".Translate(),
+                        defaultLabel = string.IsNullOrEmpty(Props.underBarrelLabel) ? "CE_SwitchAmmmoSetToUnderBarrel".Translate().ToString() : Props.underBarrelLabel,
                         icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
                         defaultDesc = "CE_UBGLStats".Translate() +
                         "\n " + "WarmupTime".Translate() + ": " + Props.verbPropsUnderBarrel.warmupTime
@@ -202,7 +202,7 @@ namespace CombatExtended
                     yield return new Command_Action
                     {
 
-                        defaultLabel = "CE_SwitchAmmmoSetToNormalRifle".Translate(),
+                        defaultLabel = string.IsNullOrEmpty(Props.standardLabel) ? "CE_SwitchAmmmoSetToNormalRifle".Translate().ToString() : Props.standardLabel,
                         icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
                         action = delegate
                         {
@@ -281,6 +281,10 @@ namespace CombatExtended
         public bool targetHighVal;
 
         public bool oneAmmoHolder = false;
+
+        public string underBarrelLabel;
+
+        public string standardLabel;
 
         public CompProperties_UnderBarrel()
         {
