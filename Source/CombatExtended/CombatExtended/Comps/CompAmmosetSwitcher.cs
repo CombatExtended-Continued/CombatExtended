@@ -181,7 +181,7 @@ namespace CombatExtended
                     {
 
                         defaultLabel = string.IsNullOrEmpty(Props.underBarrelLabel) ? "CE_SwitchAmmmoSetToUnderBarrel".Translate().ToString() : Props.underBarrelLabel,
-                        icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
+                        icon = ContentFinder<Texture2D>.Get(string.IsNullOrEmpty(Props.underBarrelIconTexPath) ? "UI/Buttons/Reload" : Props.underBarrelIconTexPath),
                         defaultDesc = "CE_UBGLStats".Translate() +
                         "\n " + "WarmupTime".Translate() + ": " + Props.verbPropsUnderBarrel.warmupTime
                         + "\n " + "Range".Translate() + ": " + Props.verbPropsUnderBarrel.range
@@ -203,7 +203,7 @@ namespace CombatExtended
                     {
 
                         defaultLabel = string.IsNullOrEmpty(Props.standardLabel) ? "CE_SwitchAmmmoSetToNormalRifle".Translate().ToString() : Props.standardLabel,
-                        icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
+                        icon = ContentFinder<Texture2D>.Get(string.IsNullOrEmpty(Props.standardIconTexPath) ? "UI/Buttons/Reload" : Props.standardIconTexPath),
                         action = delegate
                         {
                             SwithToB();
@@ -285,6 +285,10 @@ namespace CombatExtended
         public string underBarrelLabel;
 
         public string standardLabel;
+
+        public string underBarrelIconTexPath;
+
+        public string standardIconTexPath;
 
         public CompProperties_UnderBarrel()
         {
