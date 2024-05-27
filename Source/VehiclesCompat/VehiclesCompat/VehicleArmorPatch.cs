@@ -46,7 +46,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
         public static void ApplyDamageCE(this VehicleStatHandler stats, ref DamageInfo dinfo, IntVec2 hitCell, StringBuilder report)
         {
             DamageDef def = dinfo.Def;
-            VehiclePawn vehicle = Traverse.Create(stats).Field("vehicle").GetValue<VehiclePawn>();
+            VehiclePawn vehicle = stats.vehicle;
             float damage = dinfo.Amount;
             if (!def.harmsHealth)
             {
@@ -115,9 +115,9 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                     {
                         renderCell = renderCell.RotatedBy(vehicle.Rotation, vehicle.VehicleDef.Size, reverseRotate: true);
                     }
-                    Traverse.Create(stats).Field("debugCellHighlight").GetValue<List<Pair<IntVec2, int>>>().Add(new Pair<IntVec2, int>(renderCell, Traverse.Create<VehicleStatHandler>().Field("TicksHighlighted").GetValue<int>()));
+                    stats.debugCellHighlight.Add(new Pair<IntVec2, int>(renderCell, VehicleStatHandler.TicksHighlighted));
                 }
-                if (Traverse.Create(stats).Field("componentLocations").GetValue<Dictionary<IntVec2, List<VehicleComponent>>>().TryGetValue(cell2, out List<VehicleComponent> components))
+                if (stats.componentLocations.TryGetValue(cell2, out List<VehicleComponent> components))
                 {
                     bool penetrated = TryPenetrateComponents(stats, ref dinfo, components, hitDepth, report);
                     report?.AppendLine($"penetrated? {penetrated}");
@@ -161,9 +161,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                             }
                             else // Hit any pawns and then move on to the next cell
                             {
-                                Rot4 directionFromAngle = Traverse.Create(stats).Method("DirectionFromAngle", new Type[] { typeof(float) }).GetValue<Rot4>(dinfo.Angle);
-                                Pawn hitPawn = null;
-                                if (Traverse.Create(stats).Method("HitPawn", new Type[] { typeof(DamageInfo), typeof(VehicleComponent.VehiclePartDepth), typeof(IntVec2), typeof(Rot4), typeof(Pawn).MakeByRefType(), typeof(StringBuilder) }).GetValue<bool>(dinfo, hitDepth, cell2, directionFromAngle, hitPawn, report))
+                                if (stats.HitPawn(dinfo, hitDepth, cell2, stats.DirectionFromAngle(dinfo.Angle), out Pawn hitPawn))
                                 {
                                     report?.AppendLine($"Hit {hitPawn} for {dinfo.Amount}. Impact site = {hitCell}");
                                 }
