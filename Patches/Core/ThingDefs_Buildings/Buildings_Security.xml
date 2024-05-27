@@ -54,13 +54,20 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases/Mass</xpath>
 		<value>
-			<Mass>25</Mass>
-			<Bulk>15</Bulk>
+			<Mass>20</Mass>
+			<Bulk>20</Bulk>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/comps/li[@Class="CompProperties_Power"]/basePowerConsumption</xpath>
+		<value>
+			<basePowerConsumption>100</basePowerConsumption>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
@@ -70,7 +77,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/fillPercent</xpath>
 		<value>
-			<fillPercent>0.85</fillPercent>
+			<fillPercent>0.8</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/costList/ComponentIndustrial</xpath>
+		<value>
+			<ComponentIndustrial>6</ComponentIndustrial>
 		</value>
 	</Operation>
 
