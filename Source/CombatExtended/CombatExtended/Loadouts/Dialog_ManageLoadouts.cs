@@ -85,13 +85,13 @@ namespace CombatExtended
             _allSuitableDefs = DefDatabase<ThingDef>.AllDefs.Where(td => !td.IsMenuHidden() && IsSuitableThingDef(td)).ToList();
             _allDefsGeneric = DefDatabase<LoadoutGenericDef>.AllDefs.OrderBy(g => g.label).ToList();
             _selectableItems = new List<SelectableItem>();
+            List<ThingDef> mapSuitableDefs = Find.CurrentMap.listerThings.AllThings.Where((Thing thing) => !thing.PositionHeld.Fogged(thing.MapHeld) && !thing.GetInnerIfMinified().def.Minifiable).Select((Thing thing) => thing.def).Distinct().Intersect(_allSuitableDefs).ToList();
             foreach (var td in _allSuitableDefs)
             {
                 _selectableItems.Add(new SelectableItem()
                 {
                     thingDef = td,
-                    isGreyedOut = (Find.CurrentMap.listerThings.AllThings.Find(thing => thing.GetInnerIfMinified().def == td && !thing.def.Minifiable) == null)
-                    //!thing.PositionHeld.Fogged(thing.MapHeld) //check Thing is visible on map. CPU expensive!
+                    isGreyedOut = (mapSuitableDefs.Find((ThingDef def) => def == td) == null)
                 });
             }
             SetSource(SourceSelection.Ranged);
