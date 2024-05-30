@@ -23,7 +23,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="762x539mmRBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="762x539mmRShellBase" ParentName="AmmoBase" Abstract="True">
 		<description>Medium-velocity cannon shell fired by tank destroyer guns.</description>
 		<thingCategories>
 			<li>Ammo762x539mmR</li>
@@ -42,7 +42,7 @@
 		<cookOffSound>MortarBomb_Explode</cookOffSound>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x539mmRBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x539mmRShellBase">
 		<defName>Ammo_762x539mmR_AP</defName>
 		<label>76.2x539mmR cannon shell (AP)</label>
 		<graphicData>
@@ -56,7 +56,7 @@
 		<detonateProjectile>Bullet_762x539mmR_HE</detonateProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x539mmRBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x539mmRShellBase">
 		<defName>Ammo_762x539mmR_HE</defName>
 		<label>76.2x539mmR cannon shell (HE)</label>
 		<graphicData>
@@ -70,7 +70,7 @@
 		<detonateProjectile>Bullet_762x539mmR_HE</detonateProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x539mmRBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x539mmRShellBase">
 		<defName>Ammo_762x539mmR_APCR</defName>
 		<label>76.2x539mmR cannon shell (APCR)</label>
 		<graphicData>
@@ -87,7 +87,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base762x539mmR" ParentName="BaseExplosiveBullet" Abstract="true">
+	<ThingDef Name="Base762x539mmRBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -100,7 +100,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base762x539mmR">
+	<ThingDef ParentName="Base762x539mmRBullet">
 		<defName>Bullet_762x539mmR_AP</defName>
 		<label>76.2x539mmR cannon shell (AP)</label>
 		<graphicData>
@@ -116,7 +116,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base762x539mmR">
+	<ThingDef ParentName="Base762x539mmRBullet">
 		<defName>Bullet_762x539mmR_HE</defName>
 		<label>76.2x539mmR cannon shell (HE)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -141,7 +141,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base762x539mmR">
+	<ThingDef ParentName="Base762x539mmRBullet">
 		<defName>Bullet_762x539mmR_APCR</defName>
 		<label>75x350mmR cannon shell (APCR)</label>
 		<graphicData>
