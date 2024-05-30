@@ -1046,15 +1046,16 @@ namespace CombatExtended
         {
             int tick = GenTicks.TicksAbs;
             int position = 1;
-            foreach (LoadoutGenericDef def in _sourceGeneric)
+            List<ThingDef> mapDefs = Find.CurrentMap.listerThings.AllThings.Where((Thing thing) => !thing.PositionHeld.Fogged(thing.MapHeld) && !thing.GetInnerIfMinified().def.Minifiable).Select((Thing thing) => thing.def).Distinct().ToList();
+            foreach (LoadoutGenericDef loadoutDef in _sourceGeneric)
             {
-                if (!genericVisibility.ContainsKey(def))
+                if (!genericVisibility.ContainsKey(loadoutDef))
                 {
-                    genericVisibility.Add(def, new VisibilityCache());
+                    genericVisibility.Add(loadoutDef, new VisibilityCache());
                 }
-                genericVisibility[def].ticksToRecheck = tick;
-                genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
-                genericVisibility[def].position = position;
+                genericVisibility[loadoutDef].ticksToRecheck = tick;
+                genericVisibility[loadoutDef].check = mapDefs.Find((ThingDef def) => loadoutDef.lambda(def)) == null;
+                genericVisibility[loadoutDef].position = position;
                 position++;
                 tick += advanceTicks;
             }
