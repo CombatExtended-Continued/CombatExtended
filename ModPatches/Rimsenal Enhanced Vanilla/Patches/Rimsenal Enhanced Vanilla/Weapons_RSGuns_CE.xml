@@ -3,7 +3,17 @@
 
 	<!-- ========== Longgun Melee Tools =========== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_RSBattleRifle" or defName="Gun_RSCarbine" or defName="Gun_RSAMRifle" or defName="Gun_AutomaticRifle" or defName="Gun_Repeater" or defName="Gun_MilitiaRifle" or defName="Gun_MarksmanRifle" or defName="Gun_RSThumper"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="Gun_RSBattleRifle" or 
+		defName="Gun_RSCarbine" or 
+		defName="Gun_RSAMRifle" or 
+		defName="Gun_AutomaticRifle" or 
+		defName="Gun_Repeater" or 
+		defName="Gun_MilitiaRifle" or 
+		defName="Gun_MarksmanRifle" or 
+		defName="Gun_RSThumper" or 
+		defName="Gun_FragcatRifle" or 
+		defName="Gun_ThumpercatCarbine" or 
+		defName="Gun_ThundercatRifle"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -45,34 +55,34 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_RSBattleRifle</defName>
 		<statBases>
-			<WorkToMake>32500</WorkToMake>
+			<WorkToMake>36500</WorkToMake>
 			<SightsEfficiency>1.10</SightsEfficiency>
-			<ShotSpread>0.12</ShotSpread>
-			<SwayFactor>1.44</SwayFactor>
-			<Bulk>10.25</Bulk>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.51</SwayFactor>
+			<Bulk>9.90</Bulk>
 			<Mass>4.10</Mass>
 			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>55</Steel>
+			<Steel>50</Steel>
 			<ComponentIndustrial>6</ComponentIndustrial>
-			<Chemfuel>10</Chemfuel>
+			<Chemfuel>15</Chemfuel>
 		</costList>
 		<Properties>
-			<recoilAmount>2.07</recoilAmount>
+			<recoilAmount>1.97</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-			<warmupTime>1</warmupTime>
+			<warmupTime>1.0</warmupTime>
 			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 			<range>55</range>
 			<soundCast>RS_ShotBattleRifle</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>20</magazineSize>
+			<magazineSize>24</magazineSize>
 			<reloadTime>4</reloadTime>
 			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
 		</AmmoUser>
@@ -92,11 +102,11 @@
 		<statBases>
 			<WorkToMake>29000</WorkToMake>
 			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.12</ShotSpread>
-			<SwayFactor>1.03</SwayFactor>
-			<Bulk>6.8</Bulk>
-			<Mass>2.95</Mass>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<ShotSpread>0.13</ShotSpread>
+			<SwayFactor>1.02</SwayFactor>
+			<Bulk>4.9</Bulk>
+			<Mass>2.8</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<Steel>30</Steel>
@@ -104,22 +114,22 @@
 			<Chemfuel>5</Chemfuel>
 		</costList>
 		<Properties>
-			<recoilAmount>1.61</recoilAmount>
+			<recoilAmount>2.38</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ_SB</defaultProjectile>
 			<warmupTime>0.85</warmupTime>
 			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-			<range>44</range>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<range>40</range>
 			<soundCast>RS_ShotCarbine</soundCast>
 			<soundCastTail>GunTail_Light</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
 			<magazineSize>30</magazineSize>
-			<reloadTime>3.8</reloadTime>
-			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO_SB</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -545,6 +555,257 @@
 			<li>CE_AI_AOE</li>
 		</weaponTags>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- ========== Assault rifle ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_FragcatRifle</defName>
+		<statBases>
+			<Mass>4.62</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<Bulk>11.50</Bulk>
+			<WorkToMake>32000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>75</Steel>
+			<ComponentIndustrial>7</ComponentIndustrial>
+			<Chemfuel>15</Chemfuel>
+		</costList>
+		<Properties>
+			<recoilAmount>1.26</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Regular</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_FragcatRifle"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<propsUnderBarrel>
+					<magazineSize>1</magazineSize>
+					<reloadTime>3</reloadTime>
+					<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.51</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+					<warmupTime>0.55</warmupTime>
+					<range>35</range>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>5</muzzleFlashScale>
+					<burstShotCount>1</burstShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- ========== Battle Rifle =========== -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_ThundercatRifle</defName>
+		<statBases>
+			<WorkToMake>51500</WorkToMake>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.56</SwayFactor>
+			<Bulk>11.40</Bulk>
+			<Mass>4.60</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>50</Steel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Chemfuel>15</Chemfuel>
+			<Plasteel>15</Plasteel>
+		</costList>
+		<Properties>
+			<recoilAmount>1.86</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>55</range>
+			<soundCast>RS_ShotBattleRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+		</weaponTags>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_ThundercatRifle"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<propsUnderBarrel>
+					<magazineSize>15</magazineSize>
+					<reloadTime>3</reloadTime>
+					<ammoSet>AmmoSet_LaserEMP_Rimsenal</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<ammoConsumedPerShotCount>5</ammoConsumedPerShotCount>
+					<recoilAmount>2.51</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>EMP_Blast</defaultProjectile>
+					<warmupTime>0.55</warmupTime>
+					<range>35</range>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>5</muzzleFlashScale>
+					<burstShotCount>1</burstShotCount>
+					<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Carbine =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_ThumpercatCarbine</defName>
+		<statBases>
+			<WorkToMake>50000</WorkToMake>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.13</ShotSpread>
+			<SwayFactor>1.06</SwayFactor>
+			<Bulk>6.4</Bulk>
+			<Mass>3.2</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>35</Steel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Chemfuel>10</Chemfuel>
+			<Plasteel>10</Plasteel>
+		</costList>
+		<Properties>
+			<recoilAmount>2.23</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ_SB</defaultProjectile>
+			<warmupTime>0.85</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<range>40</range>
+			<soundCast>RS_ShotCarbine</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO_SB</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+		</weaponTags>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_ThumpercatCarbine"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<propsUnderBarrel>
+					<magazineSize>3</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_30x64mmFuel_RSThump</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.51</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_30x64mmFuel_RSThump</defaultProjectile>
+					<warmupTime>0.55</warmupTime>
+					<range>35</range>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>5</muzzleFlashScale>
+					<burstShotCount>1</burstShotCount>
+					<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</value>
 	</Operation>
 
 </Patch>

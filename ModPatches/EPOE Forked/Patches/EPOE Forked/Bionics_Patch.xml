@@ -34,6 +34,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="HookHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
@@ -51,6 +52,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
@@ -69,6 +71,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="AdvancedBionicArm" or defName="AdvancedBionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
@@ -87,6 +90,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="PowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
@@ -107,6 +111,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="AdvancedPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
@@ -127,51 +132,101 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="TacticalCorneaImplant" or defName="EPIA_TacticalBionicEye"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
 		<value>
 			<MeleeDodgeChance>0.05</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="TacticalCorneaImplant" or defName="EPIA_TacticalBionicEye"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<AimingAccuracy>0.5</AimingAccuracy>
 		</value>
 	</Operation>
+
+	<!-- Auxiliary AI (Sharpshooter) -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="EPIA_AuxiliaryAI_Sharpshooter"]/stages/li/statFactors</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="EPIA_AuxiliaryAI_Sharpshooter"]/stages/li/statOffsets</xpath>
 		<value>
 			<statOffsets>
-				<ShootingAccuracyPawn>+3</ShootingAccuracyPawn>
-				<AimingAccuracy>+1.5</AimingAccuracy>
-				<AimingDelayFactor>0.20</AimingDelayFactor>
+				<ShootingAccuracyPawn>3</ShootingAccuracyPawn>
+				<AimingAccuracy>1.5</AimingAccuracy>
+				<AimingDelayFactor>-0.20</AimingDelayFactor>
 				<MeleeHitChance>-3</MeleeHitChance>
 				<MeleeCritChance>-0.15</MeleeCritChance>
 				<MeleeParryChance>-0.15</MeleeParryChance>
 				<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+				<MortarMissRadiusFactor>-0.3</MortarMissRadiusFactor>
 			</statOffsets>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="EPIA_EMP_Disorientation_Sharpshooter"]/stages/li/statFactors</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EPIA_EMP_Disorientation_Sharpshooter"]/stages/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>-7.5</ShootingAccuracyPawn>
+				<AimingAccuracy>-3.75</AimingAccuracy>
+				<AimingDelayFactor>0.20</AimingDelayFactor>
+				<MeleeHitChance>-4</MeleeHitChance>
+				<MeleeCritChance>-0.2</MeleeCritChance>
+				<MeleeParryChance>-0.2</MeleeParryChance>
+				<MeleeDodgeChance>-0.2</MeleeDodgeChance>
+				<WorkSpeedGlobal>-0.80</WorkSpeedGlobal>
+				<MortarMissRadiusFactor>0.4</MortarMissRadiusFactor>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- Auxiliary AI (Commando) -->
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="EPIA_AuxiliaryAI_Commando"]/stages/li/statOffsets</xpath>
 		<value>
 			<statOffsets>
-				<ShootingAccuracyPawn>+1</ShootingAccuracyPawn>
+				<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 				<AimingAccuracy>0.5</AimingAccuracy>
 				<AimingDelayFactor>-0.15</AimingDelayFactor>
-				<MentalBreakThreshold>-0.06</MentalBreakThreshold>
+				<MentalBreakThreshold>-0.12</MentalBreakThreshold>
 				<Suppressability>-0.50</Suppressability>
 			</statOffsets>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EPIA_EMP_Disorientation_Commando"]/stages/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>-1.5</ShootingAccuracyPawn>
+				<AimingAccuracy>-0.75</AimingAccuracy>
+				<AimingDelayFactor>0.25</AimingDelayFactor>
+				<WorkSpeedGlobal>-0.25</WorkSpeedGlobal>
+				<Suppressability>0.50</Suppressability>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- Auxiliary AI (Brawler) -->
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="EPIA_AuxiliaryAI_Brawler"]/stages/li/statOffsets</xpath>
 		<value>
 			<statOffsets>
 				<ShootingAccuracyPawn>-1.2</ShootingAccuracyPawn>
 				<AimingAccuracy>-0.6</AimingAccuracy>
-				<MentalBreakThreshold>-0.14</MentalBreakThreshold>
+				<MentalBreakThreshold>-0.08</MentalBreakThreshold>
 				<MeleeHitChance>8</MeleeHitChance>
 				<MeleeCritChance>0.50</MeleeCritChance>
 				<MeleeParryChance>0.50</MeleeParryChance>
@@ -180,6 +235,23 @@
 			</statOffsets>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EPIA_EMP_Disorientation_Brawler"]/stages/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>-1.5</ShootingAccuracyPawn>
+				<AimingAccuracy>-0.75</AimingAccuracy>
+				<WorkSpeedGlobal>-0.80</WorkSpeedGlobal>
+				<MeleeHitChance>-10</MeleeHitChance>
+				<MeleeCritChance>-0.6</MeleeCritChance>
+				<MeleeParryChance>-0.6</MeleeParryChance>
+				<MeleeDodgeChance>-0.6</MeleeDodgeChance>
+				<Suppressability>1</Suppressability>
+			</statOffsets>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets/MeleeDodgeChance</xpath>
 		<value>
@@ -187,75 +259,58 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets/MeleeCritChance</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
-			<value>
-				<MeleeCritChance>0.075</MeleeCritChance>
-				<MeleeParryChance>0.075</MeleeParryChance>
-			</value>
-		</nomatch>
-		<match Class="PatchOperationAdd">
-			<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
-			<value>
-			</value>
-		</match>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.075</MeleeCritChance>
+			<MeleeParryChance>0.075</MeleeParryChance>
+		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[label="Optimizing"]/statOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<AimingAccuracy>0.1</AimingAccuracy>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedEyes"]/stages/li[minSeverity="0.99"]/statOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<AimingAccuracy>0.25</AimingAccuracy>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[label="Optimizing"]/statOffsets/MeleeCritChance</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[label="Optimizing"]/statOffsets</xpath>
-			<value>
-				<MeleeCritChance>0.15</MeleeCritChance>
-				<MeleeParryChance>0.15</MeleeParryChance>
-			</value>
-		</nomatch>
-		<match Class="PatchOperationAdd">
-			<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[label="Optimizing"]/statOffsets</xpath>
-			<value>
-			</value>
-		</match>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[label="Optimizing"]/statOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.15</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+		</value>
 	</Operation>
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[minSeverity="0.99"]/statOffsets/MeleeCritChance</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
-			<value>
-				<MeleeCritChance>0.25</MeleeCritChance>
-				<MeleeParryChance>0.25</MeleeParryChance>
-			</value>
-		</nomatch>
-		<match Class="PatchOperationAdd">
-			<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
-			<value>
-			</value>
-		</match>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedHand"]/stages/li[minSeverity="0.99"]/statOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.3</MeleeCritChance>
+			<MeleeParryChance>0.3</MeleeParryChance>
+		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedFoot"]/stages/li[label="Optimizing"]/statOffsets/MeleeDodgeChance</xpath>
 		<value>
 			<MeleeDodgeChance>0.075</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="EPOE_InstinctOptimizedFoot"]/stages/li[minSeverity="0.99"]/statOffsets/MeleeDodgeChance</xpath>
 		<value>
 			<MeleeDodgeChance>0.15</MeleeDodgeChance>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="SimpleProstheticHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
@@ -308,6 +363,22 @@
 					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<!-- Protective Exoskeleton -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EPIA_Harden_ProtectiveExoskeleton"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EPIA_Harden_ProtectiveExoskeleton"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
