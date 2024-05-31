@@ -178,7 +178,9 @@ Dumbs' Dachshunds   |
 Dusk Armory   |
 Eccentric Militors	|
 ED-Shields	|
+Edge of Descension - Hovercraft  |
 Edge of Descension - Monoblades  |
+Edge of Descension - Vanguard   |
 Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
