@@ -118,7 +118,7 @@ namespace CombatExtended
         [Compatibility.Multiplayer.SyncMethod]
         public void SwitchToUB()
         {
-            if (!Props.oneAmmoHolder)
+            if (!Props.oneAmmoHolder && Props.propsUnderBarrel != null)
             {
                 mainGunLoadedAmmo = CompAmmo.CurrentAmmo;
                 mainGunMagCount = CompAmmo.CurMagCount;
@@ -146,7 +146,7 @@ namespace CombatExtended
         [Compatibility.Multiplayer.SyncMethod]
         public void SwithToB()
         {
-            if (!Props.oneAmmoHolder)
+            if (!Props.oneAmmoHolder && Props.propsUnderBarrel != null)
             {
                 UnderBarrelLoadedAmmo = CompAmmo.CurrentAmmo;
                 UnderBarrelMagCount = CompAmmo.CurMagCount;
@@ -186,7 +186,7 @@ namespace CombatExtended
                         "\n " + "WarmupTime".Translate() + ": " + Props.verbPropsUnderBarrel.warmupTime
                         + "\n " + "Range".Translate() + ": " + Props.verbPropsUnderBarrel.range
                         +
-                        (Props.oneAmmoHolder ? "" :
+                        (Props.oneAmmoHolder || Props.underBarrelLabel != null ? "" :
                          "\n " + "CE_AmmoSet".Translate() + ": " + Props.propsUnderBarrel.ammoSet.label
                         + "\n " + "CE_MagazineSize".Translate() + ": " + Props.propsUnderBarrel.magazineSize
                         )
@@ -246,7 +246,7 @@ namespace CombatExtended
             {
                 if (usingUnderBarrel)
                 {
-                    if (!Props.oneAmmoHolder)
+                    if (!Props.oneAmmoHolder && Props.propsUnderBarrel != null)
                     {
                         CompAmmo.CurMagCount = UnderBarrelMagCount;
                         CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
