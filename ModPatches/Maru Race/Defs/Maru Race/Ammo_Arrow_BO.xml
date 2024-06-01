@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>MaruArrow</defName>
+		<label>Modded Arrow</label>
+		<labelShort>Arrow (Modded)</labelShort>
+		<description>Advanced arrows with various modifications</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CPB_BO</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_BO>Projectile_CPB_BO</Ammo_CPB_BO>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CPB_BOT</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_BO>Projectile_CPB_BOT</Ammo_CPB_BO>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- Has single and heavy -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+		<defName>Ammo_CPB_BO</defName>
+		<label>compound arrow (bomb)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/Arrow/Plasteel</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.80</Mass>
+			<MarketValue>7</MarketValue>
+			<Bulk>1</Bulk>
+		</statBases>
+		<ammoClass>MaruArrow</ammoClass>
+		<generateAllowChance>0.2</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_CPB_BO</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_CPB_BO_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>20</speed>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>25</damageAmountBase>
+				<explosiveDamageType>MRSE_Bomb</explosiveDamageType>
+				<explosiveRadius>1.4</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>20</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_CPB_BOT</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_CPB_BO_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<gravityFactor>5</gravityFactor>
+			<speed>20</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>12</armorPenetrationBlunt>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>80</damageAmountBase>
+				<explosiveDamageType>MRSE_Bomb</explosiveDamageType>
+				<explosiveRadius>2.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>75</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_CPB_BO</defName>
+		<label>make maru bomb arrows x10</label>
+		<description>Craft 10 maru bomb arrows.</description>
+		<jobString>Making maru bomb arrows.</jobString>
+		<workAmount>8000</workAmount>
+		<recipeUsers>
+			<li>MR_retrofittable</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CPB_BO>10</Ammo_CPB_BO>
+		</products>
+	</RecipeDef>
+	
+</Defs>
