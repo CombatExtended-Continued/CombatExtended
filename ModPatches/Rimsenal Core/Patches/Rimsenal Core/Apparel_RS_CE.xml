@@ -1154,55 +1154,46 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_AssaultArmor"]/verbs</xpath>
-		<match Class="PatchOperationSequence">
-			<operations>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_AssaultArmor"]/verbs</xpath>
-					<value>
-						<verbs>
-							<li Class="CombatExtended.VerbPropertiesCE">
-								<label>launch EMP grenade</label>
-								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
-								<hasStandardCommand>true</hasStandardCommand>
-								<onlyManualCast>True</onlyManualCast>
-								<warmupTime>1.5</warmupTime>
-								<range>40</range>
-								<minRange>5</minRange>
-								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-								<soundCast>Shot_IncendiaryLauncher</soundCast>
-								<soundCastTail>GunTail_Medium</soundCastTail>
-								<muzzleFlashScale>14</muzzleFlashScale>
-								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-								<targetParams>
-									<canTargetLocations>true</canTargetLocations>
-								</targetParams>
-								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-								<defaultProjectile>Bullet_30x29mmGrenade_EMP</defaultProjectile>
-								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
-							</li>
-						</verbs>
-					</value>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>launch EMP grenade</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>1.5</warmupTime>
+					<range>40</range>
+					<minRange>5</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>Shot_IncendiaryLauncher</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>Bullet_30x29mmGrenade_EMP</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
 				</li>
+			</verbs>
+		</value>
+	</Operation>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_AssaultArmor"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
-					<value>
-						<ammoDef>Ammo_30x29mmGrenade_EMP</ammoDef>
-					</value>
-				</li>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_AssaultArmor"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoDef</xpath>
+		<value>
+			<ammoDef>Ammo_30x29mmGrenade_EMP</ammoDef>
+		</value>
+	</Operation>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_AssaultArmor"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
-					<value>
-						<ammoCountPerCharge>1</ammoCountPerCharge>
-					</value>
-				</li>
-
-			</operations>
-		</match>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_AssaultArmor"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountPerCharge</xpath>
+		<value>
+			<ammoCountPerCharge>1</ammoCountPerCharge>
+		</value>
 	</Operation>
 
 	<!-- ========== Assault Helmet =========== -->
@@ -1461,18 +1452,21 @@
 			<WornBulk>20</WornBulk>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_Korp"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>15</ArmorRating_Sharp>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_Korp"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>37.5</ArmorRating_Blunt>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_Korp"]/equippedStatOffsets/MoveSpeed</xpath>
 		<value>
@@ -1497,55 +1491,46 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_Korp"]/verbs</xpath>
-		<match Class="PatchOperationSequence">
-			<operations>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_Korp"]/verbs</xpath>
-					<value>
-						<verbs>
-							<li Class="CombatExtended.VerbPropertiesCE">
-								<label>launch crow feeder</label>
-								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
-								<hasStandardCommand>true</hasStandardCommand>
-								<onlyManualCast>True</onlyManualCast>
-								<warmupTime>1.5</warmupTime>
-								<range>55</range>
-								<minRange>5</minRange>
-								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-								<soundCast>RS_ShotGrendel</soundCast>
-								<soundCastTail>GunTail_Medium</soundCastTail>
-								<muzzleFlashScale>16</muzzleFlashScale>
-								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-								<targetParams>
-									<canTargetLocations>true</canTargetLocations>
-								</targetParams>
-								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-								<defaultProjectile>Bullet_JICrowFeeder</defaultProjectile>
-								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
-							</li>
-						</verbs>
-					</value>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>launch crow feeder</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>1.5</warmupTime>
+					<range>55</range>
+					<minRange>5</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>RS_ShotGrendel</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>16</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>Bullet_JICrowFeeder</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
 				</li>
+			</verbs>
+		</value>
+	</Operation>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_Korp"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
-					<value>
-						<ammoDef>Ammo_JI_Alloy</ammoDef>
-					</value>
-				</li>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Korp"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoDef</xpath>
+		<value>
+			<ammoDef>Ammo_JI_Alloy</ammoDef>
+		</value>
+	</Operation>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Apparel_Korp"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
-					<value>
-						<ammoCountPerCharge>80</ammoCountPerCharge>
-					</value>
-				</li>
-
-			</operations>
-		</match>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Korp"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountPerCharge</xpath>
+		<value>
+			<ammoCountPerCharge>80</ammoCountPerCharge>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -1604,24 +1589,28 @@
 			<WornBulk>18</WornBulk>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_ReflactorArmor"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>18</ArmorRating_Sharp>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_ReflactorArmor"]/statBases/ArmorRating_Heat</xpath>
 		<value>
 			<ArmorRating_Heat>10</ArmorRating_Heat>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_ReflactorArmor"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>54</ArmorRating_Blunt>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_ReflactorArmor"]/equippedStatOffsets/MoveSpeed</xpath>
 		<value>
@@ -1710,18 +1699,21 @@
 			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_ReflactorArmorH"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>15</ArmorRating_Sharp>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_ReflactorArmorH"]/statBases/ArmorRating_Heat</xpath>
 		<value>
 			<ArmorRating_Heat>10</ArmorRating_Heat>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_ReflactorArmorH"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
@@ -1779,18 +1771,21 @@
 			<WornBulk>15</WornBulk>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_HazardCarapace"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>16</ArmorRating_Sharp>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_HazardCarapace"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>36</ArmorRating_Blunt>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_HazardCarapace"]/statBases/ArmorRating_Heat</xpath>
 		<value>
@@ -1798,6 +1793,7 @@
 			<ArmorRating_Electric>1</ArmorRating_Electric>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_HazardCarapace"]/equippedStatOffsets/MoveSpeed</xpath>
 		<value>
@@ -1805,6 +1801,7 @@
 			<CarryBulk>25</CarryBulk>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_HazardCarapace"]/costList/Plasteel</xpath>
 		<value>
@@ -1872,18 +1869,21 @@
 			<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_HazardCarapaceH"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>14</ArmorRating_Sharp>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_HazardCarapaceH"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>31.5</ArmorRating_Blunt>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_HazardCarapaceH"]/statBases/ArmorRating_Heat</xpath>
 		<value>
@@ -1941,6 +1941,7 @@
 			<WornBulk>20</WornBulk>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_CloseCombatArmor"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
@@ -1954,6 +1955,7 @@
 			<ArmorRating_Blunt>60</ArmorRating_Blunt>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Apparel_CloseCombatArmor"]/equippedStatOffsets</xpath>
 		<value>
@@ -2050,12 +2052,14 @@
 			<WornBulk>1</WornBulk>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_CloseCombatHelmet"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>16</ArmorRating_Sharp>
 		</value>
 	</Operation>
+	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_CloseCombatHelmet"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
