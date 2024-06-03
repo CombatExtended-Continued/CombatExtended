@@ -147,4 +147,41 @@
 			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
+
+  <!-- ======= Cuirass ======= -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="ODZ_WWII_SovietPlateArmor"]/statBases/ArmorRating_Sharp</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="ODZ_WWII_SovietPlateArmor"]/statBases/ArmorRating_Blunt</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="ODZ_WWII_SovietPlateArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_WWII_SovietPlateArmor"]/stuffCategories/li[contains(text(), 'Metallic')]</xpath>
+		<value>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_WWII_SovietPlateArmor"]/statBases</xpath>
+		<value>
+			<Bulk>18</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_WWII_SovietPlateArmor"]/statBases</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4.25</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+  
 </Patch>
