@@ -150,6 +150,7 @@
 
 	<!-- indirect fire-->
 	<ThingDef Name="Base105mmHowitzerShell" ParentName="BaseExplosiveBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -174,7 +175,6 @@
 	<ThingDef ParentName="Base105mmHowitzerShell">
 		<defName>Bullet_105mmHowitzerShell_HE</defName>
 		<label>105mm Howitzer shell (HE)</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -213,7 +213,7 @@
 			<aimHeightOffset>11</aimHeightOffset>
 			<shellingProps>
 				<damage>0.26</damage>
-			</shellingProps>			
+			</shellingProps>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
@@ -221,7 +221,7 @@
 					<Fragment_Large>40</Fragment_Large>
 					<Fragment_Small>44</Fragment_Small>
 				</fragments>
-				<fragAngleRange>-90~-40</fragAngleRange>	
+				<fragAngleRange>-90~-40</fragAngleRange>
 			</li>
 		</comps>
 	</ThingDef>
@@ -295,6 +295,7 @@
 
 	<!-- direct fire-->
 	<ThingDef Name="Base105mmHowitzerShellDirectfire" ParentName="BaseExplosiveBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -311,6 +312,7 @@
 	<ThingDef ParentName="Base105mmHowitzerShellDirectfire">
 		<defName>Bullet_105mmHowitzerShell_HEAT_directfire</defName>
 		<label>105mm cannon shell (HEAT)</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/Cannon/HEAT</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -416,13 +418,8 @@
 			<damageDef>Smoke</damageDef>
 			<suppressionFactor>0.0</suppressionFactor>
 			<dangerFactor>0.0</dangerFactor>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 			<explosionRadius>8.5</explosionRadius>
-			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
 			<soundExplode>Explosion_EMP</soundExplode>
-			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
-			<soundAmbient>MortarRound_Ambient</soundAmbient>
 			<postExplosionGasType>BlindSmoke</postExplosionGasType>
 			<preExplosionSpawnChance>1</preExplosionSpawnChance>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -432,11 +429,16 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
+	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_105mmHowitzerShell_HE</defName>
-		<label>make 105mm HE howitzer shells x2</label>
-		<description>Craft 2 105mm HE howitzer shells.</description>
-		<jobString>Making 105mm HE howitzer shells.</jobString>
+		<label>make 105mm (HE) howitzer shells x2</label>
+		<description>Craft 2 105mm (HE) howitzer shells.</description>
+		<jobString>Making 105mm (HE) howitzer shells.</jobString>
+		<researchPrerequisite Inherit="False" />
+		<researchPrerequisites>
+			<li>Mortars</li>
+			<li>CE_TurretHeavyWeapons</li>
+		</researchPrerequisites>
 		<workAmount>10000</workAmount>
 		<ingredients>
 			<li>
@@ -474,16 +476,18 @@
 		<products>
 			<Ammo_105mmHowitzerShell_HE>2</Ammo_105mmHowitzerShell_HE>
 		</products>
-		<skillRequirements>
-			<Crafting>4</Crafting>
-		</skillRequirements>
 	</RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
+	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_105mmHowitzerShell_HE_HFuzed</defName>
-		<label>make 105mm airburst howitzer shells x2</label>
-		<description>Craft 2 105mm airburst howitzer shells.</description>
-		<jobString>Making 105mm airburst howitzer shells.</jobString>
+		<label>make 105mm (Airburst) howitzer shells x2</label>
+		<description>Craft 2 105mm (Airburst) howitzer shells.</description>
+		<jobString>Making 105mm (Airburst) howitzer shells.</jobString>
+		<researchPrerequisite Inherit="False" />
+		<researchPrerequisites>
+			<li>Mortars</li>
+			<li>CE_TurretHeavyWeapons</li>
+		</researchPrerequisites>
 		<workAmount>11200</workAmount>
 		<ingredients>
 			<li>
@@ -526,11 +530,17 @@
 		</skillRequirements>
 	</RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
+	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_105mmHowitzerShell_HEAT</defName>
-		<label>make 105mm HEAT howitzer shells x2</label>
-		<description>Craft 2 105mm HEAT howitzer shells.</description>
-		<jobString>Making 105mm HEAT howitzer shells.</jobString>
+		<label>make 105mm (HEAT) howitzer shells x2</label>
+		<description>Craft 2 105mm (HEAT) howitzer shells.</description>
+		<jobString>Making 105mm (HEAT) howitzer shells.</jobString>
+		<researchPrerequisite Inherit="False" />
+		<researchPrerequisites>
+			<li>Mortars</li>
+			<li>CE_TurretHeavyWeapons</li>
+			<li>CE_Launchers</li>
+		</researchPrerequisites>
 		<workAmount>10400</workAmount>
 		<ingredients>
 			<li>
@@ -568,16 +578,18 @@
 		<products>
 			<Ammo_105mmHowitzerShell_HEAT>2</Ammo_105mmHowitzerShell_HEAT>
 		</products>
-		<skillRequirements>
-			<Crafting>4</Crafting>
-		</skillRequirements>
 	</RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
+	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_105mmHowitzerShell_Incendiary</defName>
-		<label>make 105mm Incendiary howitzer shells x2</label>
-		<description>Craft 2 105mm Incendiary howitzer shells.</description>
-		<jobString>Making 105mm Incendiary howitzer shells.</jobString>
+		<label>make 105mm (Incendiary) howitzer shells x2</label>
+		<description>Craft 2 105mm (Incendiary) howitzer shells.</description>
+		<jobString>Making 105mm (Incendiary) howitzer shells.</jobString>
+		<researchPrerequisite Inherit="False" />
+		<researchPrerequisites>
+			<li>Mortars</li>
+			<li>CE_TurretHeavyWeapons</li>
+		</researchPrerequisites>
 		<workAmount>8400</workAmount>
 		<ingredients>
 			<li>
@@ -615,17 +627,19 @@
 		<products>
 			<Ammo_105mmHowitzerShell_Incendiary>2</Ammo_105mmHowitzerShell_Incendiary>
 		</products>
-		<skillRequirements>
-			<Crafting>4</Crafting>
-		</skillRequirements>
 	</RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
+	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_105mmHowitzerShell_EMP</defName>
-		<label>make 105mm EMP howitzer shells x2</label>
-		<description>Craft 2 105mm EMP howitzer shells.</description>
-		<jobString>Making 105mm EMP howitzer shells.</jobString>
-		<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
+		<label>make 105mm (EMP) howitzer shells x2</label>
+		<description>Craft 2 105mm (EMP) howitzer shells.</description>
+		<jobString>Making 105mm (EMP) howitzer shells.</jobString>
+		<researchPrerequisite Inherit="False" />
+		<researchPrerequisites>
+			<li>Mortars</li>
+			<li>CE_TurretHeavyWeapons</li>
+			<li>MicroelectronicsBasics</li>
+		</researchPrerequisites>
 		<workAmount>12000</workAmount>
 		<ingredients>
 			<li>
@@ -654,16 +668,18 @@
 		<products>
 			<Ammo_105mmHowitzerShell_EMP>2</Ammo_105mmHowitzerShell_EMP>
 		</products>
-		<skillRequirements>
-			<Crafting>4</Crafting>
-		</skillRequirements>
 	</RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
+	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_105mmHowitzerShell_Smoke</defName>
-		<label>make 105mm Smoke howitzer shells x2</label>
-		<description>Craft 2 105mm Smoke howitzer shells.</description>
-		<jobString>Making 105mm Smoke howitzer shells.</jobString>
+		<label>make 105mm (Smoke) howitzer shells x2</label>
+		<description>Craft 2 105mm (Smoke) howitzer shells.</description>
+		<jobString>Making 105mm (Smoke) howitzer shells.</jobString>
+		<researchPrerequisite Inherit="False" />
+		<researchPrerequisites>
+			<li>Mortars</li>
+			<li>CE_TurretHeavyWeapons</li>
+		</researchPrerequisites>
 		<workAmount>8400</workAmount>
 		<ingredients>
 			<li>
@@ -701,9 +717,6 @@
 		<products>
 			<Ammo_105mmHowitzerShell_Smoke>2</Ammo_105mmHowitzerShell_Smoke>
 		</products>
-		<skillRequirements>
-			<Crafting>4</Crafting>
-		</skillRequirements>
 	</RecipeDef>
 
 </Defs>
