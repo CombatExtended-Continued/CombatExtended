@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CPB_AT</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_AT>Projectile_CPB_AT</Ammo_CPB_AT>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CPB_ATT</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_AT>Projectile_CPB_ATT</Ammo_CPB_AT>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- Has Sniper and Cluster Variant -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+		<defName>Ammo_CPB_AT</defName>
+		<label>compound arrow (charge)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/Arrow/Plasteel</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.25</Mass>
+			<MarketValue>3.5</MarketValue>
+			<Bulk>0.25</Bulk>
+		</statBases>
+		<ammoClass>MaruArrow</ammoClass>
+		<generateAllowChance>0.2</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_CPB_AT</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_CPB_AT_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>45</speed>
+			<damageAmountBase>22</damageAmountBase>
+			<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			<armorPenetrationSharp>30</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_CPB_ATT</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_CPB_AT_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>45</speed>
+			<gravityFactor>2.5</gravityFactor>
+			<explosionRadius>1</explosionRadius>
+			<damageDef>MR_Pulse_a</damageDef>
+			<damageAmountBase>50</damageAmountBase>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>1.4</aimHeightOffset>
+			<armingDelay>2</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Projectile_CPB_ATTc>12</Projectile_CPB_ATTc>
+				</fragments>
+				<fragAngleRange>-89~-5</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_CPB_ATTc</defName>
+		<label>pulse shard</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_CPB_AT_shotT</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>15</speed>
+			<gravityFactor>5</gravityFactor>
+			<explosionRadius>1</explosionRadius>
+			<damageDef>MR_Pulse_a</damageDef>
+			<damageAmountBase>50</damageAmountBase>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_CPB_AT</defName>
+		<label>make maru charged arrows x10</label>
+		<description>Craft 10 maru charged arrows.</description>
+		<jobString>Making maru charged arrows.</jobString>
+		<workAmount>5000</workAmount>
+		<recipeUsers>
+			<li>MR_retrofittable</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CPB_AT>10</Ammo_CPB_AT>
+		</products>
+	</RecipeDef>
+	
+</Defs>
