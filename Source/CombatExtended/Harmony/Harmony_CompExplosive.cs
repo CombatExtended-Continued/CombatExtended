@@ -56,13 +56,7 @@ namespace CombatExtended.HarmonyCE
         */
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            //TODO: 1.5
-            /* foreach (var code in instructions)
-            {
-                yield return code;
-            } */
             bool codeFound = false;
-            //bool codeChanged = false;
 
             foreach (var code in instructions)
             {
