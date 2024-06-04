@@ -521,6 +521,7 @@ Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
+Vanilla Races Expanded - Insector  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
