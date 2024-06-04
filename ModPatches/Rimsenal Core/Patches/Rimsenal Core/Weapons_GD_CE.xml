@@ -15,8 +15,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="GD_MSSH" or
 			defName="GD_MSST" or
-			defName="GD_MSSF" or
-			defName="GD_TacticalPistol"
+			defName="GD_MSSF"
 			]/tools </xpath>
 		<value>
 			<tools>
@@ -54,46 +53,6 @@
 			defName="GD_ModularLMG" or
 			defName="GD_GrenadeLauncher"
 			]/tools </xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>stock</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>muzzle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- Carcal -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/thingDef[defName="GD_HVSMG"]</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -250,13 +209,26 @@
 		</FireModes>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GD_MSST"]/weaponTags</xpath>
-		<value>
-			<li>CE_Sidearm</li>
-			<li>CE_AI_Pistol</li>
-			<li>CE_OneHandedWeapon</li>
-		</value>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GD_MSST"]/weaponTags</xpath>
+			<value>
+				<li>CE_Sidearm</li>
+				<li>CE_AI_Pistol</li>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GD_MSST"]</xpath>
+			<value>
+				<weaponTags>
+					<li>CE_Sidearm</li>
+					<li>CE_AI_Pistol</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ==========  Modular Spitfire =========== -->
@@ -312,13 +284,26 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/thingDef[defName="GD_MSSS"]/weaponTags</xpath>
-		<value>
-			<li>CE_Sidearm</li>
-			<li>CE_AI_Pistol</li>
-			<li>CE_OneHandedWeapon</li>
-		</value>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/thingDef[defName="GD_MSSS"]/weaponTags</xpath>
+			<value>
+				<li>CE_Sidearm</li>
+				<li>CE_AI_Pistol</li>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/thingDef[defName="GD_MSSS"]</xpath>
+			<value>
+				<weaponTags>
+					<li>CE_Sidearm</li>
+					<li>CE_AI_Pistol</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -381,56 +366,22 @@
 		<FireModes />
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GD_MSSF"]</xpath>
-		<value>
-			<weaponTags>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GD_MSSF"]/weaponTags</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GD_MSSF"]/weaponTags</xpath>
+			<value>
 				<li>CE_OneHandedWeapon</li>
-			</weaponTags>
-		</value>
-	</Operation>
-
-	<!-- ==========  Tactical Pistol =========== -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GD_TacticalPistol</defName>
-		<statBases>
-			<Mass>1.25</Mass>
-			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-			<SightsEfficiency>0.7</SightsEfficiency>
-			<ShotSpread>0.18</ShotSpread>
-			<SwayFactor>1.02</SwayFactor>
-			<Bulk>1.25</Bulk>
-		</statBases>
-		<Properties>
-			<recoilAmount>2</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
-			<warmupTime>0.6</warmupTime>
-			<range>12</range>
-			<soundCast>ShotLynx</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>14</magazineSize>
-			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_45ACP</ammoSet>
-		</AmmoUser>
-		<FireModes>
-		</FireModes>
-		<weaponTags>
-			<li>CE_OneHandedWeapon</li>
-		</weaponTags>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="GD_TacticalPistol"]</xpath>
-		<value>
-			<weaponTags>
-				<li>CE_OneHandedWeapon</li>
-			</weaponTags>
-		</value>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GD_MSSF"]</xpath>
+			<value>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ==========  Modular Carbine =========== -->
@@ -510,11 +461,22 @@
 		</FireModes>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="GD_ModularRifle"]/weaponTags</xpath>
-		<value>
-			<li>CE_AI_Rifle</li>
-		</value>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GD_ModularRifle"]/weaponTags</xpath>
+			<value>
+				<li>CE_AI_Rifle</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GD_ModularRifle"]</xpath>
+			<value>
+				<weaponTags>
+					<li>CE_AI_Rifle</li>
+				</weaponTags>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ==========  Modular DMR =========== -->

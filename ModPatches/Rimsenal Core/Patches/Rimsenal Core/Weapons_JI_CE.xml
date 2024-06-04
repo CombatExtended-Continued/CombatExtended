@@ -33,10 +33,11 @@
 	</Operation>
 	<!-- Long guns-->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/thingDef[defName="JI_Hrunting" or
+		<xpath>Defs/thingDef[
+			defName="JI_Hrunting" or
 			defName="JI_Gramr" or
 			defName="JI_Muspell"
-			] </xpath>
+			]</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -75,9 +76,7 @@
 	</Operation>
 	<!-- Heavy Weapons -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/thingDef[defName="JI_Grendel" or
-			defName="JI_Fafnir"
-			] </xpath>
+		<xpath>Defs/thingDef[defName="JI_Grendel" or defName="JI_Fafnir"] </xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -228,6 +227,7 @@
 			</statBases>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/thingDef[defName="JI_Gramr"]/verbs</xpath>
 		<value>
@@ -247,6 +247,7 @@
 			</verbs>
 		</value>
 	</Operation>
+	
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/thingDef[defName="JI_Gramr"]</xpath>
 		<value>
@@ -261,10 +262,9 @@
 					<aiAimMode>AimedShot</aiAimMode>
 				</li>
 			</comps>
-			<weaponTags>
-			</weaponTags>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/thingDef[defName="JI_Gramr"]</xpath>
 		<value>
@@ -274,11 +274,23 @@
 			</li>
 		</value>
 	</Operation>
-	<Operation Class="PatchOperationAdd">
+
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/thingDef[defName="JI_Gramr"]/weaponTags</xpath>
-		<value>
-			<li>Bipod_AMR</li>
-		</value>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/thingDef[defName="JI_Gramr"]/weaponTags</xpath>
+			<value>
+				<li>Bipod_AMR</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/thingDef[defName="JI_Gramr"]</xpath>
+			<value>
+				<weaponTags>
+					<li>Bipod_AMR</li>
+				</weaponTags>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- ========== Grendel Rocket Launcher =========== -->
@@ -296,6 +308,7 @@
 			</statBases>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/thingDef[defName="JI_Grendel"]/verbs</xpath>
 		<value>
@@ -318,6 +331,7 @@
 			</verbs>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/thingDef[defName="JI_Grendel"]</xpath>
 		<value>
@@ -332,8 +346,6 @@
 					<aiAimMode>AimedShot</aiAimMode>
 				</li>
 			</comps>
-			<weaponTags>
-			</weaponTags>
 		</value>
 	</Operation>
 
@@ -362,6 +374,7 @@
 			</statBases>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/thingDef[defName="JI_Muspell"]/verbs</xpath>
 		<value>
@@ -386,6 +399,7 @@
 			</verbs>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/thingDef[defName="JI_Muspell"]</xpath>
 		<value>
@@ -401,10 +415,9 @@
 					<aiAimMode>SuppressFire</aiAimMode>
 				</li>
 			</comps>
-			<weaponTags>
-			</weaponTags>
 		</value>
 	</Operation>
+	
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/thingDef[defName="JI_Muspell"]</xpath>
 		<value>
@@ -430,6 +443,7 @@
 			</statBases>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/thingDef[defName="JI_Fafnir"]/verbs</xpath>
 		<value>
@@ -449,6 +463,7 @@
 			</verbs>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/thingDef[defName="JI_Fafnir"]</xpath>
 		<value>
@@ -460,10 +475,9 @@
 				</li>
 				<li Class="CombatExtended.CompProperties_FireModes"/>
 			</comps>
-			<weaponTags>
-			</weaponTags>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/thingDef[defName="JI_Fafnir"]</xpath>
 		<value>
@@ -473,4 +487,5 @@
 			</li>
 		</value>
 	</Operation>
+
 </Patch>

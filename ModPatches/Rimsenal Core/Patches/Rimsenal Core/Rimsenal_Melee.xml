@@ -190,12 +190,23 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="YP_BingJu"]/weaponTags</xpath>
-		<value>
-			<li>CE_OneHandedWeapon</li>
-		</value>
-	</Operation>	
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="YP_BingJu"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="YP_BingJu"]</xpath>
+			<value>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</value>
+		</nomatch>
+	</Operation>
 
 	<!-- JI Assault Hammer -->
 	<Operation Class="PatchOperationReplace">
