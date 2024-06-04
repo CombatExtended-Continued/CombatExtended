@@ -48,6 +48,9 @@ namespace CombatExtended.HarmonyCE
             //var mortarAmmoSet = DefDatabase<AmmoSetDef>.GetNamed("AmmoSet_81mmMortarShell");
             var projectileDamageDef = ammoDef.projectile?.damageDef ?? CE_AmmoSetDefOf.AmmoSet_81mmMortarShell.ammoTypes.FirstOrDefault(t => t.ammo == ammoDef)?.projectile?.projectile?.damageDef;
 
+            // Get the number of fragments
+            var fragments = ammoDef.GetCompProperties<CompProperties_Fragments>()?.fragments.Count;
+
             // Ignore shells that don't have damage defs.
             if (explosiveDamageDef == null && projectileDamageDef == null)
             {
@@ -61,7 +64,7 @@ namespace CombatExtended.HarmonyCE
             }
 
             // Check if shell harms health.
-            if (___mustHarmHealth && explosiveDamageDef != null && !explosiveDamageDef.harmsHealth && projectileDamageDef != null && !projectileDamageDef.harmsHealth)
+            if (___mustHarmHealth && (explosiveDamageDef == null || !explosiveDamageDef.harmsHealth) && (projectileDamageDef == null || !projectileDamageDef.harmsHealth) && (fragments == null || fragments < 1))
             {
                 return;
             }
