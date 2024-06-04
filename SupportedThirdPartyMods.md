@@ -178,7 +178,9 @@ Dumbs' Dachshunds   |
 Dusk Armory   |
 Eccentric Militors	|
 ED-Shields	|
+Edge of Descension - Hovercraft  |
 Edge of Descension - Monoblades  |
+Edge of Descension - Vanguard   |
 Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
@@ -519,6 +521,7 @@ Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
+Vanilla Races Expanded - Insector  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |

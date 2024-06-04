@@ -95,37 +95,5 @@ namespace CombatExtended.HarmonyCE.Compatibility
         //
         //<==================================== Example end ====================================>
         //
-
-        private static Type TypeOf_HarmonyPatches
-        {
-            get
-            {
-                return AccessTools.TypeByName("AlienRace.HarmonyPatches");
-            }
-        }
-
-        [HarmonyPatch]
-        public static class Harmony_AlienPartGenerator_GetHumanlikeHeadSetForPawnHelper
-        {
-            public static bool Prepare()
-            {
-                return TypeOf_HarmonyPatches != null;
-            }
-
-            public static MethodBase TargetMethod()
-            {
-                return AccessTools.Method(typeof(Harmony_PawnRenderer), nameof(Harmony_PawnRenderer.GetHumanlikeHeadSetForPawnHelper));
-            }
-
-            public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
-            {
-                // GetHumanlikeHeadSetForPawnHelper() now expects an object rather than a float, so explicitly box lifeStageFactor before forwarding it
-                yield return new CodeInstruction(OpCodes.Ldarg_0);
-                yield return new CodeInstruction(OpCodes.Box, typeof(float));
-                yield return new CodeInstruction(OpCodes.Ldarg_1); // pawn
-                yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(TypeOf_HarmonyPatches, "GetHumanlikeHeadSetForPawnHelper"));
-                yield return new CodeInstruction(OpCodes.Ret);
-            }
-        }
     }
 }
