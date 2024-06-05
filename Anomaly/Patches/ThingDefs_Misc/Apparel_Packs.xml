@@ -86,10 +86,30 @@
 						<canTargetBuildings>false</canTargetBuildings>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
-					<defaultProjectile>Grenade_DisruptorFlare</defaultProjectile>
+					<defaultProjectile>Grenade_TurretPack</defaultProjectile>
 					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
 				</li>
 			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grenade_TurretPack"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_SpawnsThing</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grenade_TurretPack"]/projectile</xpath>
+		<value>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<dropsCasings>false</dropsCasings>
+			<dangerFactor>0</dangerFactor>
+			<airborneSuppressionFactor>0</airborneSuppressionFactor>
+			<speed>12</speed>
+			<spawnsThingDef>Turret_TacticalTurret</spawnsThingDef>
+		</projectile>
 		</value>
 	</Operation>
 
