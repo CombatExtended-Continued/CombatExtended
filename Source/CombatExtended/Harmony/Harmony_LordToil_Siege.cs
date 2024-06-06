@@ -42,7 +42,7 @@ namespace CombatExtended.HarmonyCE
             else
             {
                 codes[startIndex] = new CodeInstruction(OpCodes.Call, methodCustomCondition); // Call the new method for evaluation
-                codes.RemoveRange(startIndex+1, endIndex-startIndex); // Remove the default code
+                codes.RemoveRange(startIndex + 1, endIndex - startIndex); // Remove the default code
                 return codes;
             }
         }
