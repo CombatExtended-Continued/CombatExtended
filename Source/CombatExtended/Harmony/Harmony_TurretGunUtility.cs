@@ -18,6 +18,7 @@ namespace CombatExtended.HarmonyCE
         const string className = "DisplayClass";
         const string methodName = "<TryFindRandomShellDef>";
 
+        // This should be kept up to date with the check in CombatExtended.HarmonyCE.Harmony_LordToil_Siege
         public static void Postfix(object __instance, ThingDef x, ref bool __result, bool ___allowEMP, float ___maxMarketValue, bool ___mustHarmHealth)
         {
             // Ignore already true results.
@@ -48,9 +49,6 @@ namespace CombatExtended.HarmonyCE
             //var mortarAmmoSet = DefDatabase<AmmoSetDef>.GetNamed("AmmoSet_81mmMortarShell");
             var projectileDamageDef = ammoDef.projectile?.damageDef ?? CE_AmmoSetDefOf.AmmoSet_81mmMortarShell.ammoTypes.FirstOrDefault(t => t.ammo == ammoDef)?.projectile?.projectile?.damageDef;
 
-            // Get the number of fragments
-            var fragments = ammoDef.GetCompProperties<CompProperties_Fragments>()?.fragments.Count;
-
             // Ignore shells that don't have damage defs.
             if (explosiveDamageDef == null && projectileDamageDef == null)
             {
@@ -63,8 +61,14 @@ namespace CombatExtended.HarmonyCE
                 return;
             }
 
+            // Get the number of fragments
+            var fragments = ammoDef.GetCompProperties<CompProperties_Fragments>()?.fragments.Count;
+
+            // Get patched harmful damage for modded/toxic shells
+            var harmful = projectileDamageDef?.GetModExtension<DamageDefExtensionCE>()?.isHarmful ?? false;
+
             // Check if shell harms health.
-            if (___mustHarmHealth && (explosiveDamageDef == null || !explosiveDamageDef.harmsHealth) && (projectileDamageDef == null || !projectileDamageDef.harmsHealth) && (fragments == null || fragments < 1))
+            if (___mustHarmHealth && (explosiveDamageDef == null || !explosiveDamageDef.harmsHealth) && (projectileDamageDef == null || !projectileDamageDef.harmsHealth) && (fragments == null || fragments < 1) && !harmful)
             {
                 return;
             }
