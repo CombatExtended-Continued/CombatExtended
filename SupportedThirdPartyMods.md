@@ -387,6 +387,7 @@ Rakkle The Rattle Snake Race Mod  |
 Rambo Weapons Pack (Continued)  |
 Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
+ReBuild - Doors and Corners |
 Red Army (Continued) |
 Redcoat Apparel	|
 Recon Mechanoid |
