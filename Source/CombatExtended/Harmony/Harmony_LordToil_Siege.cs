@@ -49,38 +49,21 @@ namespace CombatExtended.HarmonyCE
 
         public static bool CustomCondition(Thing thing)
         {
-            // Ensure damage check is the same here as from CombatExtended.HarmonyCE.Harmony_TurretGunUtility
+            // Ensure check is the same here as from CombatExtended.HarmonyCE.Harmony_TurretGunUtility
             var ammoDef = thing.def as AmmoDef;
             if (ammoDef == null)
             {
                 return false;
             }
+
             // Ignore all non-shell defs.
             if (ammoDef == null || !AmmoUtility.IsShell(ammoDef))
             {
                 return false;
             }
 
-            // Get the explosive damage def.
-            var explosiveDamageDef = ammoDef.GetCompProperties<CompProperties_ExplosiveCE>()?.explosiveDamageType ?? ammoDef.GetCompProperties<CompProperties_Explosive>()?.explosiveDamageType;
-
-            // Get the projectile damage def via the mortar ammo set.
-            var projectileDamageDef = ammoDef.projectile?.damageDef ?? CE_AmmoSetDefOf.AmmoSet_81mmMortarShell.ammoTypes.FirstOrDefault(t => t.ammo == ammoDef)?.projectile?.projectile?.damageDef;
-
-            // Ignore shells that don't have damage defs.
-            if (explosiveDamageDef == null && projectileDamageDef == null)
-            {
-                return false;
-            }
-
-            // Get the number of fragments
-            var fragments = ammoDef.GetCompProperties<CompProperties_Fragments>()?.fragments.Count;
-
-            // Get patched harmful damage for modded/toxic shells
-            var harmful = projectileDamageDef?.GetModExtension<DamageDefExtensionCE>()?.isHarmful ?? false;
-
-            // Check if shell harms health.
-            if ((explosiveDamageDef == null || !explosiveDamageDef.harmsHealth) && (projectileDamageDef == null || !projectileDamageDef.harmsHealth) && (fragments == null || fragments < 1) && !harmful)
+            // Check if shell is blacklisted
+            if (!ammoDef.spawnAsSiegeAmmo)
             {
                 return false;
             }

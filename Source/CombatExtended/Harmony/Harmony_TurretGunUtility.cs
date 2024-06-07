@@ -19,7 +19,7 @@ namespace CombatExtended.HarmonyCE
         const string methodName = "<TryFindRandomShellDef>";
 
         // This should be kept up to date with the check in CombatExtended.HarmonyCE.Harmony_LordToil_Siege
-        public static void Postfix(object __instance, ThingDef x, ref bool __result, bool ___allowEMP, float ___maxMarketValue, bool ___mustHarmHealth)
+        public static void Postfix(object __instance, ThingDef x, ref bool __result, bool ___allowEMP, float ___maxMarketValue)
         {
             // Ignore already true results.
             if (__result)
@@ -61,14 +61,8 @@ namespace CombatExtended.HarmonyCE
                 return;
             }
 
-            // Get the number of fragments
-            var fragments = ammoDef.GetCompProperties<CompProperties_Fragments>()?.fragments.Count;
-
-            // Get patched harmful damage for modded/toxic shells
-            var harmful = projectileDamageDef?.GetModExtension<DamageDefExtensionCE>()?.isHarmful ?? false;
-
-            // Check if shell harms health.
-            if (___mustHarmHealth && (explosiveDamageDef == null || !explosiveDamageDef.harmsHealth) && (projectileDamageDef == null || !projectileDamageDef.harmsHealth) && (fragments == null || fragments < 1) && !harmful)
+            // Check if blacklisted
+            if (!ammoDef.spawnAsSiegeAmmo)
             {
                 return;
             }
