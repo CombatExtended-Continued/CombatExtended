@@ -105,7 +105,7 @@ namespace CombatExtended
             }
         }
 
-        public bool OneAmmoHolder => Props.oneAmmoHolder || Props.propsUnderBarrel == null;
+        public bool OneAmmoHolder => Props.oneAmmoHolder;
 
         public AmmoDef mainGunLoadedAmmo;
 
@@ -127,8 +127,8 @@ namespace CombatExtended
                 CompAmmo.CurMagCount = UnderBarrelMagCount;
                 CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
                 CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
-                CompAmmo.props = this.Props.propsUnderBarrel;
             }
+            CompAmmo.props = this.Props.propsUnderBarrel;
 
             CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
             CompFireModes.props = this.Props.propsFireModesUnderBarrel;
@@ -155,8 +155,8 @@ namespace CombatExtended
                 CompAmmo.CurMagCount = mainGunMagCount;
                 CompAmmo.CurrentAmmo = mainGunLoadedAmmo;
                 CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
-                CompAmmo.props = CompPropsAmmo;
             }
+            CompAmmo.props = CompPropsAmmo;
 
             CompEq.PrimaryVerb.verbProps = DefVerbProps.MemberwiseClone();
             CompFireModes.props = CompPropsFireModes;
