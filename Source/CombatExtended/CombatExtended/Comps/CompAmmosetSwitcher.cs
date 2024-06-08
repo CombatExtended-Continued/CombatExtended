@@ -254,9 +254,9 @@ namespace CombatExtended
                     {
                         CompAmmo.CurMagCount = UnderBarrelMagCount;
                         CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
-                        CompAmmo.props = this.Props.propsUnderBarrel;
                     }
 
+                    CompAmmo.props = this.Props.propsUnderBarrel;
                     CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
                     CompFireModes.props = this.Props.propsFireModesUnderBarrel;
 
