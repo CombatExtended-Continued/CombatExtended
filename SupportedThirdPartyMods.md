@@ -387,6 +387,7 @@ Rakkle The Rattle Snake Race Mod  |
 Rambo Weapons Pack (Continued)  |
 Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
+ReBuild - Doors and Corners |
 Red Army (Continued) |
 Redcoat Apparel	|
 Recon Mechanoid |
@@ -521,6 +522,7 @@ Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
+Vanilla Races Expanded - Insector  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
