@@ -143,6 +143,7 @@ namespace CombatExtended
             }
             CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.propsFireModesUnderBarrel.aimedBurstShotCount;
             usingUnderBarrel = true;
+            CompFireModes.InitAvailableFireModes();
         }
 
         [Compatibility.Multiplayer.SyncMethod]
@@ -171,6 +172,7 @@ namespace CombatExtended
             }
             CompEq.PrimaryVerb.verbProps.burstShotCount = DefVerbProps.burstShotCount;
             usingUnderBarrel = false;
+            CompFireModes.InitAvailableFireModes();
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
