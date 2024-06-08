@@ -1,67 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- === Moa === -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RG_Moa"]/statBases</xpath>
-		<value>
-			<MeleeDodgeChance>0.20</MeleeDodgeChance>
-			<MeleeCritChance>0.06</MeleeCritChance>
-			<MeleeParryChance>0.06</MeleeParryChance>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RG_Moa"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>claws</label>
-					<capacities>
-						<li>Cut</li>
-					</capacities>
-					<power>9</power>
-					<cooldownTime>1.42</cooldownTime>
-					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
-					<surpriseAttack>
-						<extraMeleeDamages>
-							<li>
-								<def>Stun</def>
-								<amount>20</amount>
-							</li>
-						</extraMeleeDamages>
-					</surpriseAttack>
-					<armorPenetrationSharp>0.08</armorPenetrationSharp>
-					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>beak</label>
-					<capacities>
-						<li>Bite</li>
-					</capacities>
-					<power>7</power>
-					<cooldownTime>1.89</cooldownTime>
-					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
-					<chanceFactor>0.5</chanceFactor>
-					<armorPenetrationSharp>0.01</armorPenetrationSharp>
-					<armorPenetrationBlunt>1.250</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>3</power>
-					<cooldownTime>1.78</cooldownTime>
-					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>1</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
 	<!-- ========== Neutrolope ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -145,6 +84,107 @@
 					<chanceFactor>0.5</chanceFactor>
 					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Rabbit ========== -->	
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RG_Rabbit"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RG_Rabbit"]</xpath>
+		<value>
+			<statBases>
+				<MeleeDodgeChance>0.24</MeleeDodgeChance>
+				<MeleeCritChance>0.02</MeleeCritChance>
+				<MeleeParryChance>0.06</MeleeParryChance>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RG_Rabbit"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Kiwi === -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RG_Neutrolope"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RG_KiwiBird"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.28</MeleeDodgeChance>
+			<MeleeCritChance>0.02</MeleeCritChance>
+			<MeleeParryChance>0</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_KiwiBird"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.39</cooldownTime>
+					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.096</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.39</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.096</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
 				</li>
 			</tools>
 		</value>

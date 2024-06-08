@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- === Projectiles === -->
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_Shuttle_Plasma_CE</defName>
+		<label>plasma toroid</label>
+		<graphicData>
+			<texPath>Things/Projectile/ShipTurretPlasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>1.2</explosionRadius>
+			<speed>160</speed>
+			<damageDef>ShipPlasmaSmall</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<extraDamages>
+				<li>
+					<def>Flame</def>
+					<amount>20</amount>
+					<chance>1</chance>
+				</li>
+			</extraDamages>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed"><!-- the projectile switching don't work, so damage is reduced -->
+		<defName>Bullet_Shuttle_Laser_CE</defName>
+		<label>laser beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>1.2</explosionRadius>
+			<speed>160</speed>
+			<damageDef>ShipLaserSmall</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+	</ThingDef>
+
+</Defs>
