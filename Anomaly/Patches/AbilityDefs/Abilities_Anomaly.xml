@@ -26,9 +26,12 @@
 	<!-- ========== Tough/Tri Spike ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="SpikeLaunch_Toughspike"]/verbProperties/range</xpath>
+		<xpath>Defs/AbilityDef[defName="SpikeLaunch_Toughspike"]/verbProperties</xpath>
 		<value>
-			<range>18.9</range>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<range>18.9</range>
+				<defaultProjectile>Spike_Toughspike</defaultProjectile>
+			</verbProperties>
 		</value>
 	</Operation>
 
@@ -46,9 +49,12 @@
 	<!-- ========== Finger Spike ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="SpikeLaunch_Fingerspike"]/verbProperties/range</xpath>
+		<xpath>Defs/AbilityDef[defName="SpikeLaunch_Fingerspike"]/verbProperties</xpath>
 		<value>
-			<range>18.9</range>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">
+				<range>18.9</range>
+				<defaultProjectile>Spike_Fingerspike</defaultProjectile>
+			</verbProperties>
 		</value>
 	</Operation>
 
