@@ -165,6 +165,7 @@ Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
 Det's Energy Weapons    |
+Det's Xenotypes - Boglegs   |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
