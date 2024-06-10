@@ -104,19 +104,29 @@
 	<!-- ========== Heatspikes ========== -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="Heatspikes"]/verbProperties/range</xpath>
+		<xpath>Defs/AbilityDef[defName="Heatspikes"]/verbProperties</xpath>
 		<value>
-			<range>44.9</range>
+			<verbProperties Class="CombatExtended.VerbPropertiesCE">		
+				<soundCast>Heatspikes_Shot</soundCast>
+				<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>				
+				<soundCastTail>Heatspikes_Tail</soundCastTail>
+				<range>44.9</range>
+				<defaultProjectile>Bullet_Heatspike</defaultProjectile>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<warmupTime>0</warmupTime>
+				<burstShotCount>12</burstShotCount>				
+			</verbProperties>	
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bullet_Heatspike"]/projectile</xpath>
 		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>	
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>EnergyBolt</damageDef>
 				<damageAmountBase>18</damageAmountBase>
-				<speed>180</speed>
+				<speed>54</speed>
 				<bulletChanceToStartFire>1</bulletChanceToStartFire>
 				<armorPenetrationSharp>20</armorPenetrationSharp>
 				<armorPenetrationBlunt>1</armorPenetrationBlunt>
