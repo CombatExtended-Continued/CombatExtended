@@ -12,7 +12,6 @@ namespace CombatExtended
     {
         public List<BodyPartGroupDef> shieldCoverage = new List<BodyPartGroupDef>();
         public List<BodyPartGroupDef> crouchCoverage = new List<BodyPartGroupDef>();
-        public bool drawAsTall = false;
 
         public bool PartIsCoveredByShield(BodyPartRecord part, Pawn pawn)
         {
