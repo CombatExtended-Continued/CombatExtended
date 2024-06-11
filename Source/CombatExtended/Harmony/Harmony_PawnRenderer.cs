@@ -468,55 +468,41 @@ namespace CombatExtended.HarmonyCE
              */
             internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
-                foreach (var c in instructions)
+                var codes = instructions.ToList();
+                var recoil_opcodes = new CodeInstruction[]
                 {
-                    yield return c;
+                                    new CodeInstruction(OpCodes.Ldarg_0),
+                                    new CodeInstruction(OpCodes.Ldarg_1),
+                                    new CodeInstruction(OpCodes.Ldarg_2),
+                                    new CodeInstruction(OpCodes.Ldloc_1),
+                                    new CodeInstruction(OpCodes.Ldloc_2),
+                                    new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)))
+                };
+                bool foundRecoil = false;
+                int index = 0;
+                for (int i = 0; i < codes.Count; i++)
+                {
+                    CodeInstruction code = codes[i];
+                    if (foundRecoil && code.opcode == OpCodes.Stloc_1)
+                    {
+                        index = i + 1;
+                        break;
+                    }
+                    else if (code.opcode == OpCodes.Call && ReferenceEquals(code.operand, typeof(EquipmentUtility).GetMethod(nameof(EquipmentUtility.Recoil))))
+                    {
+                        foundRecoil = true;
+                    }
                 }
-                //    var codes = instructions.ToList();
-                //                var recoil_opcodes = new CodeInstruction[]
-                //                {
-                //                    new CodeInstruction(OpCodes.Ldarg_1),
-                //                    new CodeInstruction(OpCodes.Ldarg_2),
-                //                    new CodeInstruction(OpCodes.Ldarg_3),
-                //                    new CodeInstruction(OpCodes.Ldloc_1),
-                //                    new CodeInstruction(OpCodes.Ldloc_2),
-                //                    new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(RecoilCE)))
-                //                };
-                //                bool foundRecoil = false;
-                //                int index = 0;
-                //                for (int i = 0; i < codes.Count; i++)
-                //                {
-                //                    CodeInstruction code = codes[i];
-                //                    if (foundRecoil && code.opcode == OpCodes.Stloc_1)
-                //                    {
-                //                        index = i + 1;
-                //                        break;
-                //                    }
-                //                    else if (code.opcode == OpCodes.Call && ReferenceEquals(code.operand, typeof(EquipmentUtility).GetMethod(nameof(EquipmentUtility.Recoil))))
-                //                    {
-                //                        foundRecoil = true;
-                //                    }
-                //                }
-                //                codes.InsertRange(index, recoil_opcodes);
-                //                codes[codes.Count - 2].operand =
-                //                    AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
-                //                codes.InsertRange(codes.Count - 2, new[]
-                //                {
-                //                    new CodeInstruction(OpCodes.Ldarg_1),
-                //                    new CodeInstruction(OpCodes.Ldarg_2),
-                //                    new CodeInstruction(OpCodes.Ldarg_3)
-                //                });
-                //                return codes;
-            }
-
-            internal static void Prefix(ref Vector3 drawLoc)
-            {
-                return;
-                //TODO 1.5
-                //                if (___pawn.Rotation == south)
-                //                {
-                //                    drawLoc.y++;
-                //                }
+                codes.InsertRange(index, recoil_opcodes);
+                codes[codes.Count - 2].operand =
+                    AccessTools.Method(typeof(Harmony_PawnRenderer_DrawEquipmentAiming), nameof(DrawMesh));
+                codes.InsertRange(codes.Count - 2, new[]
+                {
+                                    new CodeInstruction(OpCodes.Ldarg_0),
+                                    new CodeInstruction(OpCodes.Ldarg_1),
+                                    new CodeInstruction(OpCodes.Ldarg_2)
+                                });
+                return codes;
             }
         }
     }
