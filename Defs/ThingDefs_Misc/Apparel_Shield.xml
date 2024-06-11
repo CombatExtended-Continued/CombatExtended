@@ -64,10 +64,35 @@
 			<MeleeParryChance>1.0</MeleeParryChance>
 		</equippedStatOffsets>
 		<apparel>
-			<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+      <developmentalStageFilter>Child, Adult</developmentalStageFilter>
 			<tags>
 				<li>TribalShield</li>
 			</tags>
+      <renderNodeProperties>
+        <li>
+          <nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+          <workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+          <texPath>Things/Apparel/Shield/CE_Shield</texPath>
+          <shaderTypeDef>CutoutComplex</shaderTypeDef>
+          <drawData>
+            <scale>0.8</scale>
+            <defaultData>
+              <layer>91</layer>
+            </defaultData>
+            <dataEast>
+              <layer>-5</layer>
+            </dataEast>
+            <dataNorth>
+              <layer>-5</layer>
+              <offset>(.15, 0, -.1)</offset>
+            </dataNorth>
+            <dataSouth>
+              <offset>(.3, 0, -.2)</offset>
+            </dataSouth>
+          </drawData>
+        </li>
+      </renderNodeProperties>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
 		</apparel>
 		<modExtensions>
 			<li Class="CombatExtended.ShieldDefExtension">
