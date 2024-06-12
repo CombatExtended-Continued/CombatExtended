@@ -13,32 +13,32 @@
 		</graphicData>
 		<soundInteract>Interact_CBox</soundInteract>
 		<statBases>
-			<WorkToMake>38000</WorkToMake>
+			<WorkToMake>41000</WorkToMake>
 			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.04</ShotSpread>
-			<SwayFactor>1.66</SwayFactor>
-			<Bulk>9</Bulk>
-			<Mass>7.85</Mass>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.22</SwayFactor>
+			<Bulk>12.4</Bulk>
+			<Mass>7.2</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>50</Steel>
+			<Steel>65</Steel>
 			<ComponentIndustrial>6</ComponentIndustrial>
-			<Chemfuel>10</Chemfuel>
+			<Chemfuel>15</Chemfuel>
 		</costList>
 		<verbs>
 			<li Class="CombatExtended.VerbPropertiesCE">
-				<recoilAmount>1.65</recoilAmount>
+				<recoilAmount>1.24</recoilAmount>
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_77x49mmPC_FMJ</defaultProjectile>
 				<burstShotCount>10</burstShotCount>
 				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-				<warmupTime>1.1</warmupTime>
-				<range>72</range>
+				<warmupTime>1.3</warmupTime>
+				<range>75</range>
 				<soundCast>Shot_Minigun</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
-				<muzzleFlashScale>8</muzzleFlashScale>
+				<muzzleFlashScale>9</muzzleFlashScale>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -47,13 +47,13 @@
 		</verbs>
 		<comps>
 			<li Class="CombatExtended.CompProperties_AmmoUser">
-				<magazineSize>125</magazineSize>
-				<reloadTime>7.4</reloadTime>
+				<magazineSize>200</magazineSize>
+				<reloadTime>7.8</reloadTime>
 				<ammoSet>AmmoSet_77x49mmPC</ammoSet>
 			</li>
 			<li Class="CombatExtended.CompProperties_FireModes">
-				<aiUseBurstMode>TRUE</aiUseBurstMode>
-				<aiAimMode>AimedShot</aiAimMode>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>SuppressFire</aiAimMode>
 				<aimedBurstShotCount>5</aimedBurstShotCount>
 			</li>
 		</comps>
@@ -109,32 +109,33 @@
 	<ThingDef ParentName="CaselessGunBase">
 		<defName>Gun_Caseless_Carbine_GL</defName>
 		<label>BZ-4 + I2 Knight</label>
-		<description>With a touch of spacer ingenuity this weapon is significantly more effective than its midworld counterparts.\n\nThe Smart Defense Systems "I2 Knight" was a package for the CBZ-4 that attempted to extend the rifle's service life with the addition of a 30mm grenade launcher and advanced optics suite. Both the caliber and size of the grenades were quickly deemed ineffective for combat seen on most urbworlds. Corporate security on midworlds and the rim however find the weapon very useful.</description>
+		<description>With a touch of spacer ingenuity this weapon is significantly more effective than its midworld counterparts.\n\nThe Smart Defense Systems "I2 Knight" was a package for the CBZ-4 that attempted to extend the rifle's service life with the addition of a 30mm grenade launcher and advanced optics suite. Both the caliber and size of the grenades were quickly deemed ineffective for combat seen on most urbworlds. Corporate security on midworlds and the rim however denote it's strengths in industrial warfare.</description>
 		<graphicData>
 			<texPath>CaselessBonus/CARGL</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_CRifle</soundInteract>
 		<statBases>
-			<Mass>8.84</Mass>
+			<Mass>6.6</Mass>
 			<MaxHitPoints>75</MaxHitPoints>
-			<RangedWeapon_Cooldown>0.33</RangedWeapon_Cooldown>
-			<SightsEfficiency>2.17</SightsEfficiency>
-			<ShotSpread>0.1</ShotSpread>
-			<SwayFactor>1.0</SwayFactor>
-			<Bulk>12.89</Bulk>
-			<WorkToMake>48500</WorkToMake><!--52500-->
-			<NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.24</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.57</SwayFactor>
+			<Bulk>8.7</Bulk>
+			<WorkToMake>36000</WorkToMake><!-- 18250 + 17750 -->
+			<NightVisionEfficiency_Weapon>0.65</NightVisionEfficiency_Weapon>
+      <AimingAccuracy>0.35</AimingAccuracy>
 		</statBases>
 		<costList>
-			<Steel>75</Steel>
-			<ComponentIndustrial>11</ComponentIndustrial>
+			<Steel>105</Steel>
+			<ComponentIndustrial>13</ComponentIndustrial>
 			<Chemfuel>20</Chemfuel>
 			<Plasteel>25</Plasteel>
 		</costList>
 		<verbs>
 			<li Class="CombatExtended.VerbPropertiesCE">
-				<recoilAmount>1.5</recoilAmount>
+				<recoilAmount>0.97</recoilAmount>
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_473x33mmCaseless_FMJ</defaultProjectile>
@@ -149,6 +150,8 @@
 			</li>
 		</verbs>
 		<weaponTags>
+      <li>IndustrialGunAdvanced</li>
+      <li>AssaultRifle</li>
 			<li>CE_AI_AR</li>
 			<li>CE_AI_BROOM</li>
 		</weaponTags>
@@ -159,7 +162,7 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_AmmoUser">
 				<magazineSize>50</magazineSize>
-				<reloadTime>5.5</reloadTime>
+				<reloadTime>4</reloadTime>
 				<ammoSet>AmmoSet_473x33mmCaseless</ammoSet>
 			</li>
 			<li Class="CombatExtended.CompProperties_FireModes">
@@ -170,15 +173,20 @@
 			<li Class="CombatExtended.CompProperties_UnderBarrel">
 				<propsUnderBarrel>
 					<magazineSize>3</magazineSize>
-					<reloadTime>4</reloadTime>
+					<reloadTime>0.85</reloadTime>
 					<ammoSet>AmmoSet_20x42mmGrenade</ammoSet>
+          <reloadOneAtATime>true</reloadOneAtATime>
 				</propsUnderBarrel>
 				<verbPropsUnderBarrel>
+          <recoilAmount>3.84</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_20x42mmGrenade_HE</defaultProjectile>
-					<warmupTime>1.5</warmupTime>
-					<range>70</range>
+					<warmupTime>1.3</warmupTime>
+					<range>62</range>
+          <targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
 					<soundCast>Shot_GLA</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>0</muzzleFlashScale>
@@ -192,9 +200,13 @@
 		</comps>
 		<recipeMaker>
 			<skillRequirements>
-				<Crafting>6</Crafting>
+				<Crafting>7</Crafting>
 			</skillRequirements>
-			<researchPrerequisite>MultiAnalyzer</researchPrerequisite>
+			<researchPrerequisites>
+			  <li>CE_Launchers</li>
+				<li>GasOperation</li>
+				<li>MultiAnalyzer</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<tools>
 			<li Class="CombatExtended.ToolCE">
@@ -242,66 +254,67 @@
 	<ThingDef ParentName="CaselessGunBase">
 		<defName>Gun_Caseless_BattleRifle_Sixmm_GL</defName>
 		<label>EM72 + I9 Halberd</label>
-		<description>The EM72 with an advanced combat suite, what it lacks in style it makes up for in firepower.\n\n The realized vision of a convoluted urbworld infantry weapons program. Likely issued to cybernetically enhanced soldiers due to this weapon's weight and bulk.</description>
+		<description>The EM72 with an advanced combat suite including a magazine-fed 40mm grenade launcher and advanced optics.\n\n The realized vision of a convoluted urbworld infantry weapons program. Likely issued to cybernetically enhanced soldiers due to this weapon's weight and bulk.</description>
 		<graphicData>
 			<texPath>CaselessBonus/HBRGL/Standard</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<soundInteract>Interact_CRifle</soundInteract>
 		<statBases>
-			<WorkToMake>52500</WorkToMake>
+			<WorkToMake>46750</WorkToMake> <!-- 27750 + 19000 -->
 			<MaxHitPoints>75</MaxHitPoints>
-			<SightsEfficiency>2.5</SightsEfficiency>
+			<SightsEfficiency>2.36</SightsEfficiency>
 			<ShotSpread>0.04</ShotSpread>
-			<SwayFactor>1.42</SwayFactor>
-			<Bulk>16.8</Bulk>
+			<SwayFactor>1.68</SwayFactor>
+			<Bulk>9.09</Bulk>
 			<Mass>7.2</Mass>
-			<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>80</Steel>
-			<ComponentIndustrial>12</ComponentIndustrial>
-			<Chemfuel>25</Chemfuel>
+			<Steel>115</Steel>
+			<ComponentIndustrial>15</ComponentIndustrial>
+			<Chemfuel>20</Chemfuel>
 			<Plasteel>25</Plasteel>
 		</costList>
 		<verbs>
 			<li Class="CombatExtended.VerbPropertiesCE">
-				<recoilAmount>2.17</recoilAmount>
+				<recoilAmount>1.29</recoilAmount>
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_77x49mmPC_FMJ</defaultProjectile>
-				<burstShotCount>4</burstShotCount>
-				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-				<warmupTime>1.01</warmupTime>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				<warmupTime>1.4</warmupTime>
 				<range>65</range>
-				<soundCast>Shot_csniper</soundCast>
+				<soundCast>Shot_cbatrifle</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>8</muzzleFlashScale>
 			</li>
 		</verbs>
 		<comps>
 			<li Class="CombatExtended.CompProperties_AmmoUser">
-				<magazineSize>20</magazineSize>
-				<reloadTime>4</reloadTime>
+				<magazineSize>30</magazineSize>
+				<reloadTime>4.5</reloadTime>
 				<ammoSet>AmmoSet_77x49mmPC</ammoSet>
 			</li>
 			<li Class="CombatExtended.CompProperties_FireModes">
 				<aiUseBurstMode>TRUE</aiUseBurstMode>
 				<aiAimMode>AimedShot</aiAimMode>
-				<aimedBurstShotCount>2</aimedBurstShotCount>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
 			</li>
 			<li Class="CombatExtended.CompProperties_UnderBarrel">
 				<propsUnderBarrel>
-					<magazineSize>4</magazineSize>
+					<magazineSize>3</magazineSize>
 					<reloadTime>4.5</reloadTime>
 					<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
 				</propsUnderBarrel>
 				<verbPropsUnderBarrel>
+          <recoilAmount>3.84</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
-					<warmupTime>1.01</warmupTime>
-					<range>45</range>
+					<warmupTime>1.4</warmupTime>
+					<range>48</range>
 					<soundCast>Shot_GLA</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>5</muzzleFlashScale>
@@ -315,6 +328,7 @@
 		</comps>
 		<weaponTags>
 			<li>IndustrialGunAdvanced</li>
+      <li>AssaultRifle</li>
 			<li>CE_AI_AR</li>
 			<li>Bipod_Rifle</li>
 		</weaponTags>
@@ -323,9 +337,13 @@
 		</weaponClasses>
 		<recipeMaker>
 			<skillRequirements>
-				<Crafting>6</Crafting>
+				<Crafting>7</Crafting>
 			</skillRequirements>
-			<researchPrerequisite>MultiAnalyzer</researchPrerequisite>
+			<researchPrerequisites>
+				<li>MultiAnalyzer</li>
+				<li>PrecisionRifling</li>
+				<li>CE_Launchers</li>
+			</researchPrerequisites>
 		</recipeMaker>
 		<tools>
 			<li Class="CombatExtended.ToolCE">
