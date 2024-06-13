@@ -1,41 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!-- ========== Ammoset =========== -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_8x22mmNambu"]/ammoTypes</xpath>
-		<value>
-			<Ammo_8x22mmNambu_Miho>Bullet_8x22mmNambu_Miho</Ammo_8x22mmNambu_Miho>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_65x50mmSRArisaka"]/ammoTypes</xpath>
-		<value>
-			<Ammo_65x50mmSRArisaka_Miho>Bullet_65x50mmSRArisaka_Miho</Ammo_65x50mmSRArisaka_Miho>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_77x58mmArisaka"]/ammoTypes</xpath>
-		<value>
-			<Ammo_77x58mmArisaka_Miho>Bullet_77x58mmArisaka_Miho</Ammo_77x58mmArisaka_Miho>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_132x92mmSRTuF"]/ammoTypes</xpath>
-		<value>
-			<Ammo_132x92mmSRTuF_Miho>Bullet_132x92mmSRTuF_Miho</Ammo_132x92mmSRTuF_Miho>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_20x42mmGrenade"]/ammoTypes</xpath>
-		<value>
-			<Ammo_20x42mm_Miho>Bullet_20x42mm_Miho</Ammo_20x42mm_Miho>
-		</value>
-	</Operation>
 
 	<!-- ========== Remove other verbs =========== -->
 
@@ -527,6 +491,7 @@
 			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
 	</Operation>
+
 	<!-- ========== Miho_Weapon_Pistol =========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Miho_Weapon_Pistol</defName>
@@ -618,12 +583,12 @@
 			<li Class="CompProperties_Styleable"/>
 			<li Class="CompProperties_Biocodable"/>
 			<li>
-			<compClass>CompQuality</compClass>
+				<compClass>CompQuality</compClass>
 			</li>
 			<li Class="CompProperties_Art">
-			<nameMaker>NamerArtWeaponGun</nameMaker>
-			<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
-			<minQualityForArtistic>Excellent</minQualityForArtistic>
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
 			</li>
 			</comps>
 		</value>
@@ -661,13 +626,11 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 		</Properties>
-
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
 			<reloadTime>9.1</reloadTime>
 			<ammoSet>AmmoSet_MihoMissile_S</ammoSet>
 		</AmmoUser>
-
 		<FireModes>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -762,4 +725,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>

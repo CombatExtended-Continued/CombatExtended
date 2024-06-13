@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-
-	<!-- ========== Ammotypes =========== -->
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_47x398mmR"]/ammoTypes</xpath>
-		<value>
-			<Ammo_47x398mmR_Miho>Bullet_47x398mmR_Miho</Ammo_47x398mmR_Miho>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_57x280mmR"]/ammoTypes</xpath>
-		<value>
-			<Ammo_57x280mmR_Canister>Bullet_57x280mmR_Canister</Ammo_57x280mmR_Canister>
-			<Ammo_57x280mmR_Thermobaric>Bullet_57x280mmR_Thermobaric</Ammo_57x280mmR_Thermobaric>
-		</value>
-	</Operation>
 	
 	<!-- ========== Remove other verbs =========== -->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[
-			defName="Miho_MechWeapon_Heavygrenade"
-			]/verbs/li[@Class="TorgueMiho.Verb_Properties_ShotGun"] </xpath>
+		<xpath>Defs/ThingDef[defName="Miho_MechWeapon_Heavygrenade"]/verbs/li[@Class="TorgueMiho.Verb_Properties_ShotGun"] </xpath>
 	</Operation>
 	
 	<!-- ========== Rifle =========== -->
