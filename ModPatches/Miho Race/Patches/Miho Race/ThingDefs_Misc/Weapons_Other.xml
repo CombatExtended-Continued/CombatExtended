@@ -2,20 +2,14 @@
 <Patch>
 	<!-- ========== Common to all Defensive Turrets ========== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			@Name="Miho_DeployableHMG" or
-			@Name="Miho_DeployableMissile"
-			]/thingClass </xpath>
+		<xpath>Defs/ThingDef[@Name="Miho_DeployableHMG" or @Name="Miho_DeployableMissile"]/thingClass </xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="Miho_Turret_Machinegun" or
-			defName="Miho_Turret_Missile"
-			]/statBases </xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Turret_Machinegun" or defName="Miho_Turret_Missile"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.5</AimingAccuracy>
 		</value>
@@ -62,11 +56,11 @@
 
 	<!-- ========== Missile ========== -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName = "Miho_Turret_Missile"]/inspectorTabs</xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Turret_Missile"]/inspectorTabs</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[ defName="Miho_Turret_Missile"]/building/turretBurstCooldownTime </xpath>
+		<xpath>Defs/ThingDef[defName="Miho_Turret_Missile"]/building/turretBurstCooldownTime </xpath>
 		<value>
 			<turretBurstCooldownTime>1.5</turretBurstCooldownTime>
 		</value>
