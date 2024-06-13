@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- === Projectiles === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="SoS2ShuttlePlasma"]/projectile </xpath>
+		<value>
+			<projectile>Bullet_Shuttle_Plasma_CE</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="SoS2ShuttleLaser"]/projectile </xpath>
+		<value>
+			<projectile>Bullet_Shuttle_Laser_CE</projectile>
+		</value>
+	</Operation>
+
+	<!-- === Armor === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="SoS2ShuttleUpgradeTree"]/nodes/li[1]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats </xpath>
+		<value>
+			<stats>
+				<li>
+					<def>ArmorRating_Blunt</def>
+					<value>-5</value>
+					<type>Add</type>
+				</li>
+				<li>
+					<def>ArmorRating_Sharp</def>
+					<value>-3</value>
+					<type>Add</type>
+				</li>
+			</stats>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="SoS2ShuttleUpgradeTree"]/nodes/li[2]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats </xpath>
+		<value>
+			<stats>
+				<li>
+					<def>ArmorRating_Blunt</def>
+					<value>12</value>
+					<type>Add</type>
+				</li>
+				<li>
+					<def>ArmorRating_Sharp</def>
+					<value>8</value>
+					<type>Add</type>
+				</li>
+			</stats>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="SoS2ShuttleUpgradeTree"]/nodes/li[3]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats </xpath>
+		<value>
+			<stats>
+				<li>
+					<def>ArmorRating_Blunt</def>
+					<value>6</value>
+					<type>Add</type>
+				</li>
+				<li>
+					<def>ArmorRating_Sharp</def>
+					<value>4</value>
+					<type>Add</type>
+				</li>
+			</stats>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="SoS2ShuttleUpgradeTree"]/nodes/li[4]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats </xpath>
+		<value>
+			<stats>
+				<li>
+					<def>ArmorRating_Blunt</def>
+					<value>45</value>
+					<type>Add</type>
+				</li>
+				<li>
+					<def>ArmorRating_Sharp</def>
+					<value>13</value>
+					<type>Add</type>
+				</li>
+			</stats>
+		</value>
+	</Operation>
+</Patch>

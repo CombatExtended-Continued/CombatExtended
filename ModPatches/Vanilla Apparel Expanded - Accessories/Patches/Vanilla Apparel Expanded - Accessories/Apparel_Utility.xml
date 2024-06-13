@@ -2,14 +2,14 @@
 <Patch>
 	<!-- == Backpack == -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="VAEA_Apparel_Backpack"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Backpack"]/statBases</xpath>
 		<value>
 			<Bulk>3</Bulk>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="VAEA_Apparel_Backpack"]/carryingCapacity</xpath>
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Backpack"]/equippedStatOffsets</xpath>
 		<value>
 			<equippedStatOffsets>
 				<CarryBulk>30</CarryBulk>
@@ -18,7 +18,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="VAEA_Apparel_Backpack"]/apparel/bodyPartGroups</xpath>
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Backpack"]/apparel/bodyPartGroups</xpath>
 		<value>
 			<bodyPartGroups>
 				<li>Shoulders</li>
@@ -27,7 +27,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="VAEA_Apparel_Backpack"]/apparel/layers</xpath>
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Backpack"]/apparel/layers</xpath>
 		<value>
 			<layers>
 				<li>Backpack</li>
@@ -184,7 +184,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VAEA_Apparel_MiniTurretPack"]/comps</xpath>
 		<value>
-			<li Class="CompProperties_Reloadable">
+			<li Class="CompProperties_ApparelReloadable">
 				<maxCharges>25</maxCharges>
 				<ammoDef>Ammo_556x45mmNATO_FMJ</ammoDef>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
