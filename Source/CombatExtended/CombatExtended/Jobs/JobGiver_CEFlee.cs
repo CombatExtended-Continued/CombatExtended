@@ -59,14 +59,14 @@ namespace CombatExtended
                         float sharpOfAttacker = 0, bluntOfAttacker = 0;
                         if (dangerWeapon == null || dangerWeapon.PrimaryVerb.IsMeleeAttack || !dangerWeapon.parent.TryGetMaxPenetration(out sharpOfAttacker, out bluntOfAttacker))
                         {
-                            var verbs = dangerPawn.meleeVerbs.GetUpdatedAvailableVerbsList(false).Select(x=>x.verb).OfType<Verb_MeleeAttackCE>().ToArray();
+                            var verbs = dangerPawn.meleeVerbs.GetUpdatedAvailableVerbsList(false).Select(x => x.verb).OfType<Verb_MeleeAttackCE>().ToArray();
                             if (verbs.Length > 0)
                             {
                                 sharpOfAttacker = verbs.Max(x => x.ArmorPenetrationSharp);
                                 bluntOfAttacker = verbs.Max(x => x.ArmorPenetrationBlunt);
                             }
                         }
-                        
+
                         if (sharpOfAttacker < sharpOfPawn && bluntOfAttacker < bluntOfPawn)
                         {
                             continue;
