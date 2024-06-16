@@ -19,9 +19,17 @@ namespace CombatExtended
         private const float YOffsetStatus = 0.04296875f;
 
         public const string OneHandedTag = "CE_OneHandedWeapon";
-        private bool drawShield => Wearer.Drafted || (Wearer.CurJob?.def.alwaysShowWeapon ?? false) || (Wearer.mindState.duty?.def.alwaysShowWeapon ?? false);  // Copied from PawnRenderer.CarryWeaponOpenly(), we show the shield whenever weapons are drawn
+        private bool drawShield => this.def.apparel.renderNodeProperties.NullOrEmpty() && (Wearer.Drafted || (Wearer.CurJob?.def.alwaysShowWeapon ?? false) || (Wearer.mindState.duty?.def.alwaysShowWeapon ?? false));  // Copied from PawnRenderer.CarryWeaponOpenly(), we show the shield whenever weapons are drawn
         private bool IsTall => def.GetModExtension<ShieldDefExtension>()?.drawAsTall ?? false;
 
+        public override void PostMake()
+        {
+            base.PostMake();
+            if (this.def.apparel.renderNodeProperties.NullOrEmpty())
+            {
+                Log.WarningOnce($"{def.defName} using obsolete render system", def.defName.GetHashCodeSafe());
+            }
+        }
 
         public override bool AllowVerbCast(Verb verb)
         {
