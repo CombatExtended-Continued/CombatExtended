@@ -577,7 +577,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="pawn">Pawn to calculate speed of</param>
         /// <returns>Move speed in cells per second</returns>
-        public static float GetMoveSpeed(Pawn pawn)
+        public static float GetMoveSpeed(this Pawn pawn)
         {
             if (!pawn.pather.Moving)
             {
@@ -1536,5 +1536,24 @@ namespace CombatExtended
         }
 
         public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
+
+        public static bool TryGetMaxPenetration(this Thing thing, out float sharp, out float blunt)
+        {
+            sharp = 0; blunt = 0;
+            var ammoUser = thing.TryGetComp<CompAmmoUser>();
+            if (ammoUser != null)
+            {
+                sharp = ammoUser.Props.ammoSet.ammoTypes.Max(x => (x.projectile.projectile as ProjectilePropertiesCE).armorPenetrationSharp);
+                blunt = ammoUser.Props.ammoSet.ammoTypes.Max(x => (x.projectile.projectile as ProjectilePropertiesCE).armorPenetrationBlunt);
+                return true;
+            }
+            if (!thing.def.Verbs.NullOrEmpty())
+            {
+                sharp = thing.def.verbs.Select(x => x.defaultProjectile.projectile).OfType<ProjectilePropertiesCE>().Max(x => x.armorPenetrationSharp);
+                blunt = thing.def.verbs.Select(x => x.defaultProjectile.projectile).OfType<ProjectilePropertiesCE>().Max(x => x.armorPenetrationSharp);
+                return true;
+            }
+            return false;
+        }
     }
 }
