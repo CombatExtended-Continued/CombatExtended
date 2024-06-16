@@ -7,6 +7,7 @@ using RimWorld;
 using RimWorld.BaseGen;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace CombatExtended.AI
 {
@@ -188,6 +189,34 @@ namespace CombatExtended.AI
                 }
             }
             return center;
+        }
+        public static IEnumerable<Thing> EnemiesNear(Pawn p, float radius, bool meleeOnly = false, bool requireLos = false)
+        {
+            if (!p.Spawned)
+            {
+                yield break;
+            }
+            bool flag = p.Position.Fogged(p.Map);
+            List<IAttackTarget> potentialTargetsFor = p.Map.attackTargetsCache.GetPotentialTargetsFor(p);
+            for (int i = 0; i < potentialTargetsFor.Count; i++)
+            {
+                IAttackTarget attackTarget = potentialTargetsFor[i];
+                if (!attackTarget.ThreatDisabled(p) && (flag || !attackTarget.Thing.Position.Fogged(attackTarget.Thing.Map)) && (!requireLos || GenSight.LineOfSightToThing(p.Position, attackTarget.Thing, p.MapHeld, false, null)))
+                {
+                    if (meleeOnly && attackTarget is Pawn pawn && pawn.equipment != null)
+                    {
+                        CompEquippable primaryEq = pawn.equipment.PrimaryEq;
+                        if (primaryEq != null && !primaryEq.PrimaryVerb.IsMeleeAttack)
+                        {
+                            break;
+                        }
+                    }
+                    if (p.Position.InHorDistOf(((Thing)attackTarget).Position, radius))
+                    {
+                        yield return (Thing)attackTarget;
+                    }
+                }
+            }
         }
     }
 }
