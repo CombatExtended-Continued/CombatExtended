@@ -13,7 +13,7 @@ namespace CombatExtended
         public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
         {
             var pawn = node.tree.pawn;
-            return (pawn.Drafted || (pawn.CurJob?.def.alwaysShowWeapon ?? false) || (pawn.mindState.duty?.def.alwaysShowWeapon ?? false)) && base.CanDrawNow(node, parms);
+            return pawn != null && pawn.Spawned && (pawn.Drafted || (pawn.CurJob?.def.alwaysShowWeapon ?? false) || (pawn.mindState?.duty?.def.alwaysShowWeapon ?? false)) && base.CanDrawNow(node, parms);
         }
     }
 }
