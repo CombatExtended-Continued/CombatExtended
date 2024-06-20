@@ -68,7 +68,13 @@ namespace CombatExtended
             if (ShouldDisplayAmmoSet(ammoSet))
             {
                 // Append various ammo stats
-                stringBuilder.AppendLine(ammoSet.LabelCap + "\n");
+                stringBuilder.AppendLine(ammoSet.LabelCap);
+                var multiplier = Gun(req)?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
+                if (Mathf.Abs(1f - multiplier) > 0.0001f)
+                {
+                    stringBuilder.AppendLine("CE_RangedQualityMultiplier".Translate() + ": " + multiplier.ToStringByStyle(ToStringStyle.PercentOne));
+                }
+                stringBuilder.AppendLine();
                 foreach (var cur in ammoSet.ammoTypes)
                 {
                     string label = string.IsNullOrEmpty(cur.ammo.ammoClass.LabelCapShort) ? (string)cur.ammo.ammoClass.LabelCap : cur.ammo.ammoClass.LabelCapShort;
