@@ -383,7 +383,7 @@ namespace CombatExtended
         protected virtual bool OnCastSuccessful()
         {
             bool fromPawn = false;
-            GunDrawExtension ext = EquipmentSource.def.GetModExtension<GunDrawExtension>();
+            GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
             //Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
             if (ShooterPawn != null)
             {

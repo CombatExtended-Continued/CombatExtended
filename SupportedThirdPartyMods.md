@@ -484,8 +484,6 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
-Urbworld Weaponry: Caseless |
-Urbworld Weaponry SDS |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
 Vanilla Animals Expanded |
