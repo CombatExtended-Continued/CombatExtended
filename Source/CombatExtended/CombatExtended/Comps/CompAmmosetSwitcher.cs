@@ -105,6 +105,8 @@ namespace CombatExtended
             }
         }
 
+        public bool OneAmmoHolder => Props.oneAmmoHolder;
+
         public AmmoDef mainGunLoadedAmmo;
 
         public int mainGunMagCount;
@@ -118,18 +120,18 @@ namespace CombatExtended
         [Compatibility.Multiplayer.SyncMethod]
         public void SwitchToUB()
         {
-            if (!Props.oneAmmoHolder)
+            if (!OneAmmoHolder)
             {
                 mainGunLoadedAmmo = CompAmmo.CurrentAmmo;
                 mainGunMagCount = CompAmmo.CurMagCount;
+                CompAmmo.CurMagCount = UnderBarrelMagCount;
+                CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+                CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
             }
-
             CompAmmo.props = this.Props.propsUnderBarrel;
+
             CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
             CompFireModes.props = this.Props.propsFireModesUnderBarrel;
-            CompAmmo.CurMagCount = UnderBarrelMagCount;
-            CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
-            CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
             if (CompAmmo.Wielder != null)
             {
                 CompAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
@@ -141,23 +143,24 @@ namespace CombatExtended
             }
             CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.propsFireModesUnderBarrel.aimedBurstShotCount;
             usingUnderBarrel = true;
+            CompFireModes.InitAvailableFireModes();
         }
 
         [Compatibility.Multiplayer.SyncMethod]
         public void SwithToB()
         {
-            if (!Props.oneAmmoHolder)
+            if (!OneAmmoHolder)
             {
                 UnderBarrelLoadedAmmo = CompAmmo.CurrentAmmo;
                 UnderBarrelMagCount = CompAmmo.CurMagCount;
+                CompAmmo.CurMagCount = mainGunMagCount;
+                CompAmmo.CurrentAmmo = mainGunLoadedAmmo;
+                CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
             }
-
             CompAmmo.props = CompPropsAmmo;
+
             CompEq.PrimaryVerb.verbProps = DefVerbProps.MemberwiseClone();
             CompFireModes.props = CompPropsFireModes;
-            CompAmmo.CurMagCount = mainGunMagCount;
-            CompAmmo.CurrentAmmo = mainGunLoadedAmmo;
-            CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
             if (CompAmmo.Wielder != null)
             {
                 CompAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
@@ -169,24 +172,28 @@ namespace CombatExtended
             }
             CompEq.PrimaryVerb.verbProps.burstShotCount = DefVerbProps.burstShotCount;
             usingUnderBarrel = false;
+            CompFireModes.InitAvailableFireModes();
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (CompEq.Holder?.Faction == Faction.OfPlayer || DebugSettings.godMode)
             {
-                if (CompAmmo.Props.ammoSet == CompPropsAmmo.ammoSet)
+                if (!usingUnderBarrel)
                 {
                     yield return new Command_Action
                     {
 
-                        defaultLabel = "CE_SwitchAmmmoSetToUnderBarrel".Translate(),
-                        icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
+                        defaultLabel = string.IsNullOrEmpty(Props.underBarrelLabel) ? "CE_SwitchAmmmoSetToUnderBarrel".Translate().ToString() : Props.underBarrelLabel,
+                        icon = ContentFinder<Texture2D>.Get(string.IsNullOrEmpty(Props.underBarrelIconTexPath) ? "UI/Buttons/Reload" : Props.underBarrelIconTexPath),
                         defaultDesc = "CE_UBGLStats".Translate() +
                         "\n " + "WarmupTime".Translate() + ": " + Props.verbPropsUnderBarrel.warmupTime
                         + "\n " + "Range".Translate() + ": " + Props.verbPropsUnderBarrel.range
-                        + "\n " + "CE_AmmoSet".Translate() + ": " + Props.propsUnderBarrel.ammoSet.label
+                        +
+                        (Props.oneAmmoHolder || Props.propsUnderBarrel?.ammoSet?.label != null ? "" :
+                         "\n " + "CE_AmmoSet".Translate() + ": " + Props.propsUnderBarrel.ammoSet.label
                         + "\n " + "CE_MagazineSize".Translate() + ": " + Props.propsUnderBarrel.magazineSize
+                        )
                         ,
                         action = delegate
                         {
@@ -199,8 +206,8 @@ namespace CombatExtended
                     yield return new Command_Action
                     {
 
-                        defaultLabel = "CE_SwitchAmmmoSetToNormalRifle".Translate(),
-                        icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
+                        defaultLabel = string.IsNullOrEmpty(Props.standardLabel) ? "CE_SwitchAmmmoSetToNormalRifle".Translate().ToString() : Props.standardLabel,
+                        icon = ContentFinder<Texture2D>.Get(string.IsNullOrEmpty(Props.standardIconTexPath) ? "UI/Buttons/Reload" : Props.standardIconTexPath),
                         action = delegate
                         {
                             SwithToB();
@@ -243,7 +250,7 @@ namespace CombatExtended
             {
                 if (usingUnderBarrel)
                 {
-                    if (!Props.oneAmmoHolder)
+                    if (!OneAmmoHolder)
                     {
                         CompAmmo.CurMagCount = UnderBarrelMagCount;
                         CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
@@ -278,6 +285,14 @@ namespace CombatExtended
         public bool targetHighVal;
 
         public bool oneAmmoHolder = false;
+
+        public string underBarrelLabel;
+
+        public string standardLabel;
+
+        public string underBarrelIconTexPath;
+
+        public string standardIconTexPath;
 
         public CompProperties_UnderBarrel()
         {

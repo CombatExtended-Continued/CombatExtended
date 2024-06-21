@@ -29,6 +29,8 @@
 
 	<!-- ========== Fighters ========== -->
 
+	<!-- ====== Trooper ====== -->
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Trooper"]</xpath>
 		<value>
@@ -81,7 +83,16 @@
 		</value>
 	</Operation>
 
+	<!-- ====== Janissary ====== -->
+
 	<!--removed gunlink-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Janissary"]</xpath>
+		<value>
+			<apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Janissary"]/specificApparelRequirements/li[bodyPartGroup="UpperHead"]/alternateTagChoices/li[tag="Gunlink"]</xpath>
@@ -139,6 +150,8 @@
 		</value>
 	</Operation>
 
+	<!-- ====== Champion ====== -->
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]</xpath>
 		<value>
@@ -187,20 +200,26 @@
 		</value>
 	</Operation>
 
+	<!-- ====== Grenadier ====== -->
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]/weaponTags</xpath>
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Grenadier"]</xpath>
 		<value>
-			<li>Minigun</li>
+			<apparelIgnoreSeasons>true</apparelIgnoreSeasons>
 		</value>
 	</Operation>
 
-	<!--removed gunlink-->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]/specificApparelRequirements/li[1]</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Grenadier"]/weaponTags</xpath>
+		<value>
+			<weaponTags>
+				<li>GunHeavy</li>
+			</weaponTags>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]</xpath>
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Grenadier"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -251,17 +270,37 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Grenadier"]/weaponTags</xpath>
+	<!-- ====== Cataphracts ====== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="CataphractBase"]</xpath>
 		<value>
-			<weaponTags>
-				<li>GunHeavy</li>
-			</weaponTags>
+			<apparelIgnoreSeasons>true</apparelIgnoreSeasons>
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="CataphractBase"]</xpath>
+		<value>
+			<minGenerationAge>18</minGenerationAge>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]/weaponTags</xpath>
+		<value>
+			<li>Minigun</li>
+		</value>
+	</Operation>
+
+	<!--removed gunlink-->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]/specificApparelRequirements/li[1]</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Grenadier"]</xpath>
+		<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>

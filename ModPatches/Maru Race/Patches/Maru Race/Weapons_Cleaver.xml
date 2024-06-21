@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Basic Cleaver ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_C_O"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>1.62</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.54</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_O"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_O"]/statBases</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Hardening Cleaver ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_C_AO"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>1.62</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.62</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>MR_Hardening</def>
+							<amount>1</amount>
+						</li>
+					</extraMeleeDamages>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_AO"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_AO"]/statBases</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Crystallization Cleaver ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_C_AT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>1.62</armorPenetrationBlunt>
+					<armorPenetrationSharp>11.55</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>MR_Crystallization</def>
+							<amount>1</amount>
+						</li>
+					</extraMeleeDamages>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_AT"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.13</MeleeCritChance>
+				<MeleeParryChance>0.2</MeleeParryChance>
+				<MeleeDodgeChance>0.20</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_AT"]/statBases</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Crystallization Cleaver ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_C_ATT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>1.62</armorPenetrationBlunt>
+					<armorPenetrationSharp>11.55</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>MR_Crystallization</def>
+							<amount>1</amount>
+						</li>
+					</extraMeleeDamages>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_ATT"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.13</MeleeCritChance>
+				<MeleeParryChance>0.2</MeleeParryChance>
+				<MeleeDodgeChance>0.20</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_ATT"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Chainsaw Cleaver ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_C_BO"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>1.7</cooldownTime>
+					<armorPenetrationBlunt>3.84</armorPenetrationBlunt>
+					<armorPenetrationSharp>3.84</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>MR_Shredded</def>
+							<amount>1</amount>
+						</li>
+					</extraMeleeDamages>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_BO"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_BO"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Chainsmoke Cleaver ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_C_BT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>31</power>
+					<cooldownTime>1.74</cooldownTime>
+					<armorPenetrationBlunt>9.72</armorPenetrationBlunt>
+					<armorPenetrationSharp>12.96</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>MR_Shredded</def>
+							<amount>10</amount>
+						</li>
+					</extraMeleeDamages>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_BT"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_BT"]/statBases</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Smoke Cleaver ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_C_BTT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.25</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_BTT"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_BTT"]/statBases</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_C_BTT</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.3</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_Bullet_Smoke</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>9</range>
+			<soundCast>Shot_IncendiaryLauncher</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>3</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>10</reloadTime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_Bullet_Smoke"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseExplosiveBullet">
+				<defName>MR_Bullet_Smoke</defName>
+				<label>smoke shell</label>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				<graphicData>
+					<texPath>Things/Weapons/MR_CBT_Bullet</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>40</speed>
+					<damageDef>Smoke</damageDef>
+					<explosionRadius>2.4</explosionRadius>
+					<postExplosionGasType>BlindSmoke</postExplosionGasType>
+					<ai_IsIncendiary>true</ai_IsIncendiary>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Linked Cleaver ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_C_CO"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>0.79</cooldownTime>
+					<armorPenetrationBlunt>1.44</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.44</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_CO"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.80</MeleeCritChance>
+			<MeleeParryChance>2.3</MeleeParryChance>
+			<MeleeDodgeChance>1.2</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_CO"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Improved Linked Cleaver ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_C_CT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>0.49</cooldownTime>
+					<armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+					<armorPenetrationSharp>6.75</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_CT"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.00</MeleeCritChance>
+			<MeleeParryChance>2.8</MeleeParryChance>
+			<MeleeDodgeChance>1.7</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_C_CT"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>1.9</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+</Patch>

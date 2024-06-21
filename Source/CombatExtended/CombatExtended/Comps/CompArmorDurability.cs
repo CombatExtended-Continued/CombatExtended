@@ -176,7 +176,7 @@ namespace CombatExtended
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            if (durabilityProps.Repairable)
+            if (durabilityProps.Repairable && !this.parent.HostileTo(selPawn))
             {
                 var firstIngredientProvidedOrNotNeeded = true;
                 var secondIngredientProvidedOrNotNeeded = true;
