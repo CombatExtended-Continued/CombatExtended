@@ -54,6 +54,8 @@
 					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 					<armorPenetrationSharp>0.5</armorPenetrationSharp>
 					<cooldownTime>1.4</cooldownTime>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>					
 				</li>
 			</tools>
 		</value>
@@ -72,30 +74,38 @@
 					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
 					<armorPenetrationSharp>0.4</armorPenetrationSharp>
 					<cooldownTime>1.4</cooldownTime>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>					
 				</li>
 			</tools>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/HediffDef[defName="BionicJawAnimal"]</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="BionicTailAnimal"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
-			<comps>
-				<li Class="HediffCompProperties_VerbGiver">
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>bionic animal jaw</label>
-							<capacities>
-								<li>Bite</li>
-							</capacities>
-							<power>15</power>
-							<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.25</armorPenetrationSharp>
-							<cooldownTime>1.6</cooldownTime>
-						</li>
-					</tools>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic animal tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>18</power>
+					<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+					<cooldownTime>1.8</cooldownTime>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+					<chanceFactor>0.3</chanceFactor>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>					
 				</li>
-			</comps>
+			</tools>
 		</value>
 	</Operation>
 
