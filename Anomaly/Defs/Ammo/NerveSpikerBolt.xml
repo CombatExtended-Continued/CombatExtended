@@ -23,9 +23,9 @@
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
 		<defName>Ammo_NerveSpikerBolt</defName>
 		<label>nerve spiker bolt</label>
-		<description>A heavy bioferrite bolt, tipped with biotoxin and shaped to be fired from a nerve spiker.\n\nThough simple to make, these bolts are brittle and tend to deform or break on impact, making them impossible to reuse.</description>		
+		<description>A heavy bioferrite bolt, shaped to be fired from a nerve spiker.\n\nThough simple to make, these bolts are brittle and tend to deform or break on impact, making them impossible to reuse.</description>		
 		<graphicData>
-			<texPath>Things/Ammo/Neolithic/Arrow/Bioferrite</texPath>
+			<texPath>Things/Ammo/Medieval/Bolt/Bioferrite</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -53,13 +53,13 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Nerve</damageDef>
+			<damageDef>NerveBioferrite</damageDef>
 			<speed>34</speed>			
 			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationBlunt>7.08</armorPenetrationBlunt>
 			<armorPenetrationSharp>5</armorPenetrationSharp>
 			<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
-			<preExplosionSpawnThingDef>Bioferrite</preExplosionSpawnThingDef> <!-- The bolts crack/bend on impact and can't immediately be reused.-->
+			<preExplosionSpawnThingDef>Ammo_NerveSpikerBolt</preExplosionSpawnThingDef> <!-- The bolts crack/bend on impact and can't immediately be reused.-->
 		</projectile>
 	</ThingDef>
 
