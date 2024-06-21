@@ -3,6 +3,8 @@
 
 	<!-- Global -->
 
+ 	<!-- It would be preferable to apply the regen modifier is a factor, but that's not currently possible. -->
+
 	<HediffDef>
 		<defName>BioferriteToxicity</defName>
 		<label>Bioferrite toxicity</label>
@@ -10,7 +12,7 @@
 		<hediffClass>HediffWithComps</hediffClass>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-15</severityPerDay>
+				<severityPerDay>-20</severityPerDay>
 			</li>
 			<li Class="HediffCompProperties_DisappearsOnDeath" />
 		</comps>
@@ -21,28 +23,40 @@
 				<statFactors>
 					<IncomingDamageFactor>1.05</IncomingDamageFactor>
 				</statFactors>
+				<regeneration>-25</regeneration>
 			</li>
 			<li>
 				<minSeverity>0.40</minSeverity>
-				<label>major</label>
+				<label>moderate</label>
 				<statFactors>
-					<IncomingDamageFactor>1.15</IncomingDamageFactor>
+					<IncomingDamageFactor>1.05</IncomingDamageFactor>
 				</statFactors>
+				<regeneration>-50</regeneration>
 			</li>
 			<li>
 				<minSeverity>0.6</minSeverity>
-				<label>severe</label>
+				<label>major</label>
 				<statFactors>
-					<IncomingDamageFactor>1.25</IncomingDamageFactor>
+					<IncomingDamageFactor>1.2</IncomingDamageFactor>
 				</statFactors>
+				<regeneration>-100</regeneration> <!-- Offsets unnatural regeneration. -->
 			</li>
 			<li>
 				<minSeverity>0.8</minSeverity>
+				<label>severe</label>
+				<statFactors>
+					<IncomingDamageFactor>1.35</IncomingDamageFactor>
+				</statFactors>
+				<regeneration>-200</regeneration>
+			</li>
+			<li>
+				<minSeverity>0.9</minSeverity>
 				<label>extreme</label>
 				<statFactors>
 					<IncomingDamageFactor>1.40</IncomingDamageFactor>
 				</statFactors>
-			</li>
+				<regeneration>-350</regeneration> <!-- Offsets impossible regeneration. -->
+			</li>			
 		</stages>
 	</HediffDef>
 
