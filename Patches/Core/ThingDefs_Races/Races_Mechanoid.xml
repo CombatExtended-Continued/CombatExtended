@@ -146,7 +146,7 @@
 			<MeleeDodgeChance>0.03</MeleeDodgeChance>
 			<MeleeCritChance>0.26</MeleeCritChance>
 			<MeleeParryChance>0.52</MeleeParryChance>
-			<MaxHitPoints>865</MaxHitPoints>
+			<MaxHitPoints>500</MaxHitPoints>
 		</value>
 	</Operation>
 
@@ -272,23 +272,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="Mech_Scyther"]/statBases</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Mech_Scyther"]</xpath>
-			<value>
-				<statBases />
-			</value>
-		</nomatch>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Mech_Scyther"]/statBases</xpath>
-		<value>
-			<MaxHitPoints>265</MaxHitPoints>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Scyther"]/tools</xpath>
 		<value>
@@ -356,8 +339,11 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Lancer"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.0</baseHealthScale>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -494,6 +480,7 @@
 			<MeleeDodgeChance>0.04</MeleeDodgeChance>
 			<MeleeCritChance>0.13</MeleeCritChance>
 			<MeleeParryChance>0.15</MeleeParryChance>
+			<MaxHitPoints>200</MaxHitPoints>
 		</value>
 	</Operation>
 
@@ -616,7 +603,7 @@
 			<MeleeDodgeChance>0.04</MeleeDodgeChance>
 			<MeleeCritChance>0.14</MeleeCritChance>
 			<MeleeParryChance>0.24</MeleeParryChance>
-			<MaxHitPoints>430</MaxHitPoints>
+			<MaxHitPoints>350</MaxHitPoints>
 		</value>
 	</Operation>
 
