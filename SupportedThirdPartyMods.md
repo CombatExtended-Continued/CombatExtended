@@ -66,6 +66,7 @@ Mod |
 ↁ Elves |
 ↁ House Sanguin |
 A Dog Said...	|
+A Dog Said... Animal Prosthetics 2	|
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
@@ -165,6 +166,7 @@ Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
 Det's Energy Weapons    |
+Det's Xenotypes - Boglegs   |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
@@ -178,6 +180,7 @@ Dumbs' Dachshunds   |
 Dusk Armory   |
 Eccentric Militors	|
 ED-Shields	|
+Edge of Descension - Hovercraft  |
 Edge of Descension - Monoblades  |
 Edge of Descension - Vanguard   |
 Eltex Bodysuit  |
@@ -386,6 +389,7 @@ Rakkle The Rattle Snake Race Mod  |
 Rambo Weapons Pack (Continued)  |
 Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
+ReBuild - Doors and Corners |
 Red Army (Continued) |
 Redcoat Apparel	|
 Recon Mechanoid |
@@ -480,8 +484,6 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
-Urbworld Weaponry: Caseless |
-Urbworld Weaponry SDS |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
 Vanilla Animals Expanded |
@@ -520,6 +522,7 @@ Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
+Vanilla Races Expanded - Insector  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |

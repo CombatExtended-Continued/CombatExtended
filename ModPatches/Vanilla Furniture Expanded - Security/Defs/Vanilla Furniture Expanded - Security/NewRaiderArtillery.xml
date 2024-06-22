@@ -68,9 +68,11 @@
 		<uiIconPath>Things/Building/Artillery/TurretArtillery_MenuIcon</uiIconPath>
 		<uiIconScale>0.9</uiIconScale>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
-		<researchPrerequisites>
-			<li>VFES_Artillery_Debug</li>
-		</researchPrerequisites>
+		<modExtensions>
+			<li Class="CombatExtended.ThingDefExtensionCE">
+				<MenuHidden>True</MenuHidden>
+			</li>
+		</modExtensions>		
 	</ThingDef>
 
 	<ThingDef ParentName="BaseArtilleryWeapon">
@@ -144,19 +146,4 @@
 		</building>
 	</ThingDef>
 
-	<!-- Dummy research project. This allows raiders to spawn and build their own variation of the artillery gun without the player being able to access it. -->
-
-	<ResearchProjectDef ParentName="VFES_ResearchBase">
-		<defName>VFES_Artillery_Debug</defName>
-		<label>Combat Extended Artillery Debug</label>
-		<description>Ignore this project. A dummy research project as a workaround for raider artillery compatibility. Not intended for the player.</description>
-		<baseCost>99999</baseCost>
-		<techLevel>Ultra</techLevel>
-		<requiredResearchFacilities>
-			<li>MultiAnalyzer</li>
-		</requiredResearchFacilities>
-		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-		<researchViewX>10</researchViewX>
-		<researchViewY>0</researchViewY>
-	</ResearchProjectDef>
 </Defs>

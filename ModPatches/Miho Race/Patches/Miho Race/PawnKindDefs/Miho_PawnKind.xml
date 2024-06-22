@@ -3,51 +3,35 @@
 	<!--Ammo-->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[
-			defName="Miho_Soldier_Adventurer" or
-			defName="Miho_Soldier_Hunter" or
-			defName="Miho_Soldier_Militia"
-			] </xpath>
+		defName="Miho_Colonist" or
+		defName="Miho_Leader" or
+		defName="Miho_Trader" or
+		defName="Miho_Slave" or
+		defName="Miho_Refugee"
+		]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>2</min>
-					<max>5</max>
+					<min>0</min>
+					<max>2</max>
 				</primaryMagazineCount>
+				<forcedAmmoCategory>IncendiaryMiho</forcedAmmoCategory>
 			</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[
-			defName="Miho_Soldier_Marksman" or
-			defName="Miho_Soldier_PMC_Sniper"
-			] </xpath>
+		<xpath>Defs/PawnKindDef[@ParentName="MihoMilBase"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>10</min>
-					<max>15</max>
+					<min>3</min>
+					<max>8</max>
 				</primaryMagazineCount>
+				<forcedAmmoCategory>IncendiaryMiho</forcedAmmoCategory>
 			</li>
 		</value>
 	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[
-			defName="Miho_Soldier_Firepower" or
-			defName="Miho_Soldier_PMC_InfantryBasic" or
-			defName="Miho_Soldier_AssassinRanged"
-			] </xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>2</min>
-					<max>6</max>
-				</primaryMagazineCount>
-			</li>
-		</value>
-	</Operation>
-
 	<!--Backpack-->
 
 	<Operation Class="PatchOperationAdd">
@@ -58,15 +42,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[
-			defName="Miho_Soldier_Militia" or
-			defName="Miho_Soldier_Hunter" or
-			defName="Miho_Soldier_Marksman" or
-			defName="Miho_Soldier_Firepower" or
-			defName="Miho_Soldier_PMC_Infantry" or
-			defName="Miho_Soldier_PMC_Sniper" or
-			defName="Miho_Soldier_AssassinRanged"
-			]/apparelRequired </xpath>
+		<xpath>Defs/PawnKindDef[@ParentName="MihoMilBase"]/apparelRequired </xpath>
 		<value>
 			<li>CE_Apparel_Backpack</li>
 		</value>

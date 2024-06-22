@@ -27,8 +27,8 @@ namespace CombatExtended
                 return "CE_UnpatchedWeaponShort".Translate();
             }
 
+            var multiplier = weapon?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
             var stringBuilder = new StringBuilder();
-
             // Damage type/amount
             var dmgList = "   " + "CE_DescDamage".Translate() + ": ";
             if (!props.secondaryDamage.NullOrEmpty())
@@ -66,8 +66,8 @@ namespace CombatExtended
             }
             else
             {
-                stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + props.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
-                stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
+                stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + (props.armorPenetrationSharp * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
+                stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + (props.armorPenetrationBlunt * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
             }
 
             // Secondary explosion
