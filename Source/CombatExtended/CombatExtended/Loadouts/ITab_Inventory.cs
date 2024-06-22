@@ -514,28 +514,7 @@ namespace CombatExtended
         // RimWorld.ITab_Pawn_Gear
         private void RebuildArmorCache(Dictionary<BodyPartRecord, float> armorCache, StatDef stat)
         {
-            armorCache.Clear();
-            float naturalArmor = SelPawnForGear.GetStatValue(stat);
-            List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
-            foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
-            {
-                //TODO: 1.5 should be Neck
-                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Eye)))
-                {
-                    float armorValue = part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
-                    if (wornApparel != null)
-                    {
-                        foreach (var apparel in wornApparel)
-                        {
-                            if (apparel.def.apparel.CoversBodyPart(part))
-                            {
-                                armorValue += apparel.PartialStat(stat, part);
-                            }
-                        }
-                    }
-                    armorCache[part] = armorValue;
-                }
-            }
+            ArmorUtilityCE.GetArmorByBodyParts(this.SelPawnForGear, stat, armorCache);
         }
 
         private void TryDrawOverallArmor(Dictionary<BodyPartRecord, float> armorCache, ref float curY, float width, StatDef stat, string label, string unit)

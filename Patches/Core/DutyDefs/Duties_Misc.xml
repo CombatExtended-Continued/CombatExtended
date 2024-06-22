@@ -44,5 +44,17 @@
 		<attribute>Class</attribute>
 		<value>CombatExtended.JobGiver_ManTurretsNearPointCE</value>
 	</Operation>
+  
+  <!-- ========== Patch attack duties ========== -->
+
+  <Operation Class="PatchOperationInsert">
+    <xpath>Defs/DutyDef/thinkNode/subNodes/li[@Class="JobGiver_AIFightEnemies" or @Class="JobGiver_AIDefendEscortee" or @Class="JobGiver_AIDefendPoint"]</xpath>
+    <value>
+      <li Class="CombatExtended.JobGiver_CEFlee">
+        <enemyDistToFleeRange>0.9~7.9</enemyDistToFleeRange>
+        <fleeDistRange>13.5~20</fleeDistRange>
+      </li>
+    </value>
+  </Operation>
 
 </Patch>
