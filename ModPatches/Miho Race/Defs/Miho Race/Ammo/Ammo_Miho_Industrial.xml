@@ -64,8 +64,57 @@
 		<ammoClass>IncendiaryMiho</ammoClass>
 		<cookOffProjectile>Bullet_132x92mmSRTuF_Miho</cookOffProjectile>
 	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmCartridgeBase">
+		<defName>Ammo_20x42mm_Miho</defName>
+		<label>20x42mm (AP-IM)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.06</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryMiho</ammoClass>
+		<cookOffProjectile>Bullet_20x42mm_Miho</cookOffProjectile>
+	</ThingDef>
 
 	<!-- Projectiles -->
+	
+	<ThingDef ParentName="BaseFragment">
+		<defName>Fragment_Large_Miho</defName>
+		<label>large fragments</label>
+		<graphicData>
+			<texPath>Things/Projectile/Fragments/Fragment_Large</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MihoGunshotFrag</damageDef>
+			<damageAmountBase>34</damageAmountBase>
+			<speed>60</speed>
+			<armorPenetrationSharp>4.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>122.5</armorPenetrationBlunt>
+			<gravityFactor>5</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseFragment">
+		<defName>Fragment_Small_Miho</defName>
+		<label>small fragments</label>
+		<graphicData>
+			<texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MihoGunshotFrag</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<speed>40</speed>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+			<gravityFactor>5</gravityFactor>
+		</projectile>
+	</ThingDef>
+	
 	<ThingDef ParentName="Base8x22mmNambuBullet">
 		<defName>Bullet_8x22mmNambu_Miho</defName>
 		<label>8x22mm Nambu bullet (AP-IM)</label>
@@ -129,6 +178,23 @@
 				<li>
 					<def>Flame_Secondary</def>
 					<amount>16</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base20x42mmBullet">
+		<defName>Bullet_20x42mm_Miho</defName>
+		<label>20x42mm bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MihoGunshot</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>105.72</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>12</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -270,11 +336,12 @@
 		<workAmount>6000</workAmount>
 	</RecipeDef>
 
-	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_132x92mmSRTuF_Miho</defName>
 		<label>make 13.2x92mmSR TuF (AP-IM) cartridge x200</label>
 		<description>Craft 200 13.2x92mmSR TuF (AP-IM) cartridges.</description>
 		<jobString>Making 13.2x92mmSR TuF (AP-IM) cartridges.</jobString>
+		<researchPrerequisite>Miho_HeavyWeapon</researchPrerequisite>
 		<ingredients>
 			<li>
 				<filter>
@@ -314,6 +381,51 @@
 		<workAmount>9800</workAmount>
 	</RecipeDef>
 
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_20x42mm_Miho</defName>
+		<label>make 20x42mm (AP-IM) cartridge x100</label>
+		<description>Craft 100 20x42mm (AP-IM) cartridges.</description>
+		<jobString>Making 20x42mm (AP-IM) cartridges.</jobString>
+		<researchPrerequisite>Miho_HeavyWeapon</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>34</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Miho_MilitaryGradeBalisticCeramics</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>Miho_MilitaryGradeBalisticCeramics</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_20x42mm_Incendiary>100</Ammo_20x42mm_Incendiary>
+		</products>
+		<workAmount>5800</workAmount>
+	</RecipeDef>
+
 	<ThingCategoryDef>
 		<defName>AmmoMiho47x285mm</defName>
 		<label>47x285mm mihoic anti-tank shell</label>
@@ -321,110 +433,117 @@
 		<iconPath>UI/Icons/ThingCategories/CaliberAutocannonLarge</iconPath>
 	</ThingCategoryDef>
 
-	<!-- ==================== AmmoSet ========================== -->
-
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Miho47x285mm</defName>
-		<label>47x285mm anti-tank shell</label>
-		<ammoTypes>
-			<Ammo_Miho47x285mm_HE>Bullet_Miho47x285mm_HE</Ammo_Miho47x285mm_HE>
-			<Ammo_Miho47x285mm_AP>Bullet_Miho47x285mm_AP</Ammo_Miho47x285mm_AP>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
+	<!-- ==================== Cannon Shells ========================== -->
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoMiho47x285mmBase" ParentName="HeavyAmmoBase" Abstract="True">
-		<description>Large caliber cartridge used by autocannons and anti-aircraft cannons.</description>
-		<statBases>
-			<Mass>1.4</Mass>
-			<Bulk>3.98</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoMiho47x285mm</li>
-		</thingCategories>
-		<stackLimit>25</stackLimit>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho47x285mmBase">
-		<defName>Ammo_Miho47x285mm_HE</defName>
-		<label>47x285mm Mihoic anti-tank shell cartridge (HE)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo47x398mmRBase">
+		<defName>Ammo_47x398mmR_Miho</defName>
+		<label>47x398mmR cartridge (AP-IM)</label>
 		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/Bofors/HE</texPath>
+			<texPath>Things/Ammo/Cannon/Tank/APHE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>21.21</MarketValue>
+			<Mass>2.85</Mass>
+			<MarketValue>20.88</MarketValue>
 		</statBases>
-		<ammoClass>ExplosiveAP</ammoClass>
-		<cookOffProjectile>Bullet_Miho47x285mm_HE</cookOffProjectile>
+		<ammoClass>IncendiaryMiho</ammoClass>
+		<detonateProjectile>Bullet_47x398mmR_Miho</detonateProjectile>
 	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho47x285mmBase">
-		<defName>Ammo_Miho47x285mm_AP</defName>
-		<label>47x285mm Mihoic anti-tank shell cartridge (APHE)</label>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo57x280mmRBase">
+		<defName>Ammo_57x280mmR_Canister</defName>
+		<label>57x280mmR cartridge (Canister)</label>
 		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/Bofors/AP</texPath>
+			<texPath>Things/Ammo/Cannon/Tank/Canister</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>7.57</MarketValue>
+			<MarketValue>28.64</MarketValue>
 		</statBases>
-		<ammoClass>ArmorPiercing</ammoClass>
-		<cookOffProjectile>Bullet_Miho47x285mm_AP</cookOffProjectile>
+		<ammoClass>BuckShot</ammoClass>
+		<detonateProjectile>Bullet_57x280mmR_Canister</detonateProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo57x280mmRBase">
+		<defName>Ammo_57x280mmR_Thermobaric</defName>
+		<label>57x280mmR cartridge (Thermobaric)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Tank/APHE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>62.5</MarketValue>
+		</statBases>
+		<ammoClass>RocketThermobaric</ammoClass>
+		<detonateProjectile>Bullet_57x280mmR_Thermobaric</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
-
-	<ThingDef Name="BaseMiho47x285mmBullet" ParentName="BaseBulletCE" Abstract="true">
+	
+	<ThingDef ParentName="Base47x398mmRBullet">
+		<defName>Bullet_47x398mmR_Miho</defName>
+		<label>47x398mmR bullet (AP-IM)</label>
 		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<texPath>Things/Projectile/Cannon/APHE</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>155</speed>
-			<dropsCasings>true</dropsCasings>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseMiho47x285mmBullet">
-		<defName>Bullet_Miho47x285mm_HE</defName>
-		<label>47x285mm Mihoic anti-tank bullet (HE)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>195</damageAmountBase>
-			<armorPenetrationSharp>25</armorPenetrationSharp>
-			<armorPenetrationBlunt>8555.440</armorPenetrationBlunt>
+			<damageDef>MihoGunshot</damageDef>
+			<damageAmountBase>126</damageAmountBase>
+			<armorPenetrationSharp>76</armorPenetrationSharp>
+			<armorPenetrationBlunt>9279.12</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
-					<def>Bomb_Secondary</def>
-					<amount>117</amount>
+					<def>Flame_Secondary</def>
+					<amount>79</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
 	</ThingDef>
-
-	<ThingDef ParentName="BaseMiho47x285mmBullet">
-		<defName>Bullet_Miho47x285mm_AP</defName>
-		<label>47x285mm Mihoic anti-tank bullet (APHE)</label>
+	
+	<ThingDef ParentName="Base57x280mmRBullet">
+		<defName>Bullet_57x280mmR_Canister</defName>
+		<label>57x280mmR canister flechette</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>122</damageAmountBase>
-			<armorPenetrationSharp>57</armorPenetrationSharp>
-			<armorPenetrationBlunt>8555.440</armorPenetrationBlunt>
+			<damageDef>MihoGunshot</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>11.08</armorPenetrationBlunt>
+			<pelletCount>84</pelletCount>
+			<spreadMult>17.8</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base57x280mmRBullet">
+		<defName>Bullet_57x280mmR_Thermobaric</defName>
+		<label>57x280mmR bullet (Thermobaric)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/APHE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MihoGunshotDemo</damageDef>
+			<damageAmountBase>206</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
-
+	
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Miho47x285mm_HE</defName>
-		<label>make 47x285mm Miho (HE) cartridge x25</label>
-		<description>Craft 25 47x285mm Miho (HE) cartridges.</description>
-		<jobString>Making 47x285mm Miho (HE) cartridges.</jobString>
+		<defName>MakeAmmo_47x398mmR_Miho</defName>
+		<label>make 47x398mmR (AP-IM) shells x5</label>
+		<description>Craft 5 47x398mmR (AP-IM) shells.</description>
+		<jobString>Making 47x398mmR (AP-IM) shells.</jobString>
+		<researchPrerequisite>Miho_HeavyWeapon</researchPrerequisite>
 		<ingredients>
 			<li>
 				<filter>
@@ -432,7 +551,109 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>108</count>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Miho_MilitaryGradeBalisticCeramics</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>Miho_MilitaryGradeBalisticCeramics</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_47x398mmR_Miho>5</Ammo_47x398mmR_Miho>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>6480</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_57x280mmR_Canister</defName>
+		<label>make 57x280mmR (Canister) cartridge x5</label>
+		<description>Craft 5 57x280mmR (Canister) cartridges.</description>
+		<jobString>Making 57x280mmR (Canister) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Miho_MilitaryGradeBalisticCeramics</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>Miho_MilitaryGradeBalisticCeramics</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_57x280mmR_Canister>5</Ammo_57x280mmR_Canister>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>5000</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_57x280mmR_Thermobaric</defName>
+		<label>make 57x280mmR (Thermobaric) cartridge x5</label>
+		<description>Craft 5 57x280mmR (Thermobaric) cartridges.</description>
+		<jobString>Making 57x280mmR (Thermobaric) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
 			</li>
 			<li>
 				<filter>
@@ -440,45 +661,23 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>33</count>
+				<count>24</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
+				<li>ComponentIndustrial</li>
 				<li>FSX</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Miho47x285mm_HE>25</Ammo_Miho47x285mm_HE>
+			<Ammo_57x280mmR_Thermobaric>5</Ammo_57x280mmR_Thermobaric>
 		</products>
-		<workAmount>24000</workAmount>
-	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Miho47x285mm_AP</defName>
-		<label>make 47x285mm Miho (APHE) cartridge x25</label>
-		<description>Craft 25 47x285mm Miho (APHE) cartridges.</description>
-		<jobString>Making 47x285mm Miho (APHE) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>108</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_Miho47x285mm_AP>25</Ammo_Miho47x285mm_AP>
-		</products>
-		<workAmount>10800</workAmount>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>13800</workAmount>
 	</RecipeDef>
 
 	<!-- ==================== AmmoSet ========================== -->
@@ -529,9 +728,11 @@
 			<drawSize>0.90</drawSize>
 		</graphicData>
 		<statBases>
-			<MarketValue>41.52</MarketValue>
+			<MarketValue>102.28</MarketValue>
+			<Mass>5.76</Mass>
+			<Bulk>17.27</Bulk>
 		</statBases>
-		<ammoClass>GrenadeIncendiary</ammoClass>
+		<ammoClass>RocketThermobaric</ammoClass>
 		<detonateProjectile>Bullet_Miho100mm_Incendiary</detonateProjectile>
 	</ThingDef>
 
@@ -551,6 +752,31 @@
 			<dropsCasings>false</dropsCasings>
 			<gravityFactor>5</gravityFactor>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<cutoffTickRange>15~30</cutoffTickRange>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseMiho100mm_Incendiary">
@@ -561,24 +787,13 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>PrometheumFlame</damageDef>
-			<damageAmountBase>0</damageAmountBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>0</armorPenetrationBlunt>
-			<explosionRadius>5.9</explosionRadius>
+			<damageDef>MihoGunshotDemo</damageDef>
+			<damageAmountBase>300</damageAmountBase>
+			<explosionRadius>5</explosionRadius>
 			<flyOverhead>true</flyOverhead>
-			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
 			<soundExplode>MortarIncendiary_Explode</soundExplode>
 		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>75</damageAmountBase>
-				<explosiveDamageType>MihoGunshotDemo</explosiveDamageType>
-				<explosiveRadius>1.9</explosiveRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
@@ -588,22 +803,23 @@
 		<label>make 100mm Miho Rocket x5</label>
 		<description>Craft 5 100mm Miho Rocket cartridges.</description>
 		<jobString>Making 100mm Miho Rocket cartridges.</jobString>
+		<workAmount>12000</workAmount>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Prometheum</li>
-					</thingDefs>
-				</filter>
-				<count>3</count>
-			</li>
 			<li>
 				<filter>
 					<thingDefs>
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>64</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
 			</li>
 			<li>
 				<filter>
@@ -611,171 +827,232 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>6</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Prometheum</li>
 				<li>Steel</li>
+				<li>FSX</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_Miho100mm_Incendiary>5</Ammo_Miho100mm_Incendiary>
 		</products>
-		<workAmount>3730</workAmount>
 	</RecipeDef>
-
-	<!-- ==================== AmmoSet ========================== -->
-
+	
+	<!-- Multi-Launcher 57mm with altered damage -->
+	
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Miho57x93mmGrenade</defName>
-		<label>57x93mm Grenade</label>
+		<defName>AmmoSet_57mmMihoRocket_indirect</defName>
+		<label>57mm Rocket</label>
 		<ammoTypes>
-			<Ammo_Miho57x93mmGrenade_HE>Bullet_Miho57x93mmGrenade_HE</Ammo_Miho57x93mmGrenade_HE>
-			<Ammo_Miho57x93mmGrenade_HEDP>Bullet_Miho57x93mmGrenade_HEDP</Ammo_Miho57x93mmGrenade_HEDP>
-			<Ammo_Miho57x93mmGrenade_EMP>Bullet_Miho57x93mmGrenade_EMP</Ammo_Miho57x93mmGrenade_EMP>
+			<Ammo_57mmRocket_HE>Bullet_57mmMihoRocket_HE_indirect</Ammo_57mmRocket_HE>
+			<Ammo_57mmRocket_HEAT>Bullet_57mmMihoRocket_HEAT_indirect</Ammo_57mmRocket_HEAT>
+			<Ammo_57mmRocket_Thermobaric>Bullet_57mmMihoRocket_Thermobaric_indirect</Ammo_57mmRocket_Thermobaric>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	<ThingCategoryDef>
-		<defName>AmmoMiho57x93mmGrenade</defName>
-		<label>57x93mm mihoic Grenade</label>
-		<parent>AmmoGrenades</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
-	</ThingCategoryDef>
-	<!-- ==================== Ammo ========================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoMiho57x93mmGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
-		<description>High velocity grenade fired from mounted and crew-served grenade launchers.</description>
-		<statBases>
-			<Mass>1.6</Mass>
-			<Bulk>0.72</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_TableMachining</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoMiho57x93mmGrenade</li>
-		</thingCategories>
-		<stackLimit>150</stackLimit>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho57x93mmGrenadeBase">
-		<defName>Ammo_Miho57x93mmGrenade_HE</defName>
-		<label>57x93mm Mihoic Grenade (HE)</label>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base57mmRocket_indirect">
+		<defName>Bullet_57mmMihoRocket_HE_indirect</defName>
+		<label>57mm Rocket (HE)</label>
 		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>10.13</MarketValue>
-		</statBases>
-		<ammoClass>GrenadeHE</ammoClass>
-		<cookOffProjectile>Bullet_Miho57x93mmGrenade_HE</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho57x93mmGrenadeBase">
-		<defName>Ammo_Miho57x93mmGrenade_HEDP</defName>
-		<label>57x93mm Mihoic Grenade (HEDP)</label>
-		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/DP</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>10.13</MarketValue>
-		</statBases>
-		<ammoClass>GrenadeHEDP</ammoClass>
-		<cookOffProjectile>Bullet_Miho57x93mmGrenade_HEDP</cookOffProjectile>
-	</ThingDef>
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho57x93mmGrenadeBase">
-		<defName>Ammo_Miho57x93mmGrenade_EMP</defName>
-		<label>57x93mm Mihoic Grenade (EMP)</label>
-		<graphicData>
-			<texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>16.1</MarketValue>
-		</statBases>
-		<ammoClass>GrenadeEMP</ammoClass>
-		<cookOffProjectile>Bullet_Miho57x93mmGrenade_EMP</cookOffProjectile>
-	</ThingDef>
-	<!-- ================== Projectiles ================== -->
-
-	<ThingDef Name="BaseMiho57x93mmGrenadeBullett" ParentName="BaseExplosiveBullet" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectile/LauncherShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(0.5,0.5)</drawSize>
+			<texPath>Things/Projectile/Rocket/S5/HE</texPath>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>60</speed>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="BaseMiho57x93mmGrenadeBullett">
-		<defName>Bullet_Miho57x93mmGrenade_HE</defName>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<label>57x93mm Mihoic Grenade (HE)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>42</damageAmountBase>
-			<explosionRadius>1.5</explosionRadius>
+			<damageDef>MihoGunshotDemo</damageDef>
+			<damageAmountBase>187</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Small>40</Fragment_Small>
+					<Fragment_Large_Miho>13</Fragment_Large_Miho>
+					<Fragment_Small_Miho>34</Fragment_Small_Miho>
 				</fragments>
 			</li>
 		</comps>
-
 	</ThingDef>
 
-	<ThingDef ParentName="BaseMiho57x93mmGrenadeBullett">
-		<defName>Bullet_Miho57x93mmGrenade_HEDP</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base57mmRocket_indirect">
+		<defName>Bullet_57mmMihoRocket_HEAT_indirect</defName>
+		<label>57mm Rocket (HEAT)</label>
 		<thingClass>CombatExtended.BulletCE</thingClass>
-		<label>57x93mm Mihoic Grenade (HEDP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/S5/HEAT</texPath>
+		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>96</damageAmountBase>
-			<armorPenetrationSharp>76</armorPenetrationSharp>
-			<armorPenetrationBlunt>12.734</armorPenetrationBlunt>
+			<damageAmountBase>158</damageAmountBase>
+			<armorPenetrationSharp>172</armorPenetrationSharp>
+			<armorPenetrationBlunt>26.312</armorPenetrationBlunt>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>42</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>0.5</explosiveRadius>
+				<damageAmountBase>88</damageAmountBase>
+				<explosiveDamageType>MihoGunshotDemo</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Small>25</Fragment_Small>
+					<Fragment_Large_Miho>8</Fragment_Large_Miho>
+					<Fragment_Small_Miho>5</Fragment_Small_Miho>
 				</fragments>
 			</li>
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="BaseMiho57x93mmGrenadeBullett">
-		<defName>Bullet_Miho57x93mmGrenade_EMP</defName>
-		<label>57x93mm Mihoic Grenade (EMP)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base57mmRocket_indirect">
+		<defName>Bullet_57mmMihoRocket_Thermobaric_indirect</defName>
+		<label>57mm Rocket (Thermobaric)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket/S5/Thermobaric</texPath>
+		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>2.5</explosionRadius>
-			<damageDef>EMP</damageDef>
-			<damageAmountBase>42</damageAmountBase>
+			<damageDef>MihoGunshotDemo</damageDef>
+			<damageAmountBase>160</damageAmountBase>
+			<explosionRadius>3.5</explosionRadius>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
 		</projectile>
 	</ThingDef>
+	
+	<!-- MMAT -->
+	
+	<ThingCategoryDef>
+		<defName>AmmoMiho_MAT</defName>
+		<label/>
+		<parent>AmmoRockets</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+	</ThingCategoryDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MihoMissile</defName>
+		<label>Miho Missile</label>
+		<ammoTypes>
+			<Miho_Missile>Bullet_MihoMMAT</Miho_Missile>
+			<Miho_MissilePlasma>Bullet_MihoMPLA</Miho_MissilePlasma>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MihoMissile_S</defName>
+		<label>Miho AT RR</label>
+		<ammoTypes>
+			<Miho_Missile>Bullet_MihoMMAT</Miho_Missile>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" Name="MMAT_Base" ParentName="MediumAmmoBase" Abstract="True">
+		<description>Missiles designed for Miho direct fire launchers</description>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoMiho_MAT</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<cookOffFlashScale>40</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base_MihoMMAT" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Rocket_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>64</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<scale>1</scale>
+						<cutoffTickRange>15~30</cutoffTickRange>
+						<originOffset>0.8</originOffset>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>2</flecksPerEmission>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base_MihoMMAT">
+		<defName>Bullet_MihoMMAT</defName>
+		<label>Miho AP-I Missile</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MihoGunshot</damageDef>
+			<damageAmountBase>124</damageAmountBase>
+			<armorPenetrationSharp>250</armorPenetrationSharp>
+			<armorPenetrationBlunt>37.075</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>124</damageAmountBase>
+				<explosiveDamageType>MihoGunshotDemo</explosiveDamageType>
+				<explosiveRadius>2.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large_Miho>5</Fragment_Large_Miho>
+					<Fragment_Small_Miho>24</Fragment_Small_Miho>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base_MihoMMAT">
+		<defName>Bullet_MihoMPLA</defName>
+		<label>Miho Plasma Missile</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>1.5</explosionRadius>
+			<damageDef>MihoPlasma</damageDef>
+			<damageAmountBase>400</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+	</ThingDef>
+	
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Miho57x93mmGrenade_HE</defName>
-		<label>make 57x93mm Miho (HE) Grenade x50</label>
-		<description>Craft 50 57x93mm Miho (HE) Grenade.</description>
-		<jobString>Making 57x93mm Miho (HE) Grenade.</jobString>
+		<defName>MakeAmmo_Miho_Missile</defName>
+		<label>make Miho Missiles x5</label>
+		<description>Craft 5 Miho Missiles.</description>
+		<jobString>Making Miho Missiles.</jobString>
+		<workAmount>12000</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -783,7 +1060,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>160</count>
+				<count>64</count>
 			</li>
 			<li>
 				<filter>
@@ -791,7 +1068,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>12</count>
+				<count>8</count>
 			</li>
 			<li>
 				<filter>
@@ -799,7 +1076,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -810,32 +1087,36 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Miho57x93mmGrenade_HE>100</Ammo_Miho57x93mmGrenade_HE>
+			<Miho_Missile>5</Miho_Missile>
 		</products>
-		<workAmount>22000</workAmount>
+		<researchPrerequisite>Miho_HeavyWeapon</researchPrerequisite>
+		<recipeUsers Inherit="False">
+			<li>Miho_TableMachining</li>
+		</recipeUsers>
 	</RecipeDef>
-
+	
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Miho57x93mmGrenade_HEDP</defName>
-		<label>make 57x93mm Miho (HEDP) Grenade x50</label>
-		<description>Craft 50 57x93mm Miho (HEDP) Grenade.</description>
-		<jobString>Making 57x93mm Miho (HEDP) Grenade.</jobString>
+		<defName>MakeAmmo_Miho_MissilePlasma</defName>
+		<label>make Miho Plasma Missiles x5</label>
+		<description>Craft 5 Miho Plasma Missiles.</description>
+		<jobString>Making Miho Plasma Missiles.</jobString>
+		<workAmount>18000</workAmount>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Miho_MilitaryGradeBalisticCeramics</li>
 					</thingDefs>
 				</filter>
-				<count>160</count>
+				<count>64</count>
 			</li>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>FSX</li>
+						<li>Uranium</li>
 					</thingDefs>
 				</filter>
-				<count>12</count>
+				<count>50</count>
 			</li>
 			<li>
 				<filter>
@@ -843,54 +1124,23 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>10</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
-				<li>FSX</li>
+				<li>Miho_MilitaryGradeBalisticCeramics</li>
+				<li>Uranium</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Miho57x93mmGrenade_HEDP>50</Ammo_Miho57x93mmGrenade_HEDP>
+			<Miho_MissilePlasma>5</Miho_MissilePlasma>
 		</products>
-		<workAmount>17200</workAmount>
+		<researchPrerequisite>Miho_PlasmaWeapon</researchPrerequisite>
+		<recipeUsers Inherit="False">
+			<li>Miho_TableMachining</li>
+		</recipeUsers>
 	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Miho57x93mmGrenade_EMP</defName>
-		<label>make 57x93mm Miho (EMP) Grenade x50</label>
-		<description>Craft 50 57x93mm Miho (EMP) Grenade.</description>
-		<jobString>Making 57x93mm Miho (EMP) Grenade.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>160</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>15</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-				<li>ComponentIndustrial</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_Miho57x93mmGrenade_EMP>50</Ammo_Miho57x93mmGrenade_EMP>
-		</products>
-		<workAmount>25000</workAmount>
-	</RecipeDef>
+	
 </Defs>

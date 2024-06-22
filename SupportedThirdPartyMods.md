@@ -66,6 +66,7 @@ Mod |
 ↁ Elves |
 ↁ House Sanguin |
 A Dog Said...	|
+A Dog Said... Animal Prosthetics 2	|
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
@@ -165,6 +166,7 @@ Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
 Det's Energy Weapons    |
+Det's Xenotypes - Boglegs   |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
@@ -482,8 +484,6 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
-Urbworld Weaponry: Caseless |
-Urbworld Weaponry SDS |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
 Vanilla Animals Expanded |
