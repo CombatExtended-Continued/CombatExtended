@@ -456,7 +456,11 @@ namespace CombatExtended
 
                             if (damageInfo.HitPart != null)
                             {
-                                damageInfo.SetHitPart(damageInfo.HitPart.GetDirectChildParts().RandomElementByWeight(x => x.coverage));
+                                var children = damageInfo.HitPart.GetDirectChildParts();
+                                if (children.Count() > 0)
+                                {
+                                    damageInfo.SetHitPart(children.RandomElementByWeight(x => x.coverage));
+                                }
                             }
                         }
                     }
