@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Only active when Vanilla Expanded Framework is present ===== -->
+	<Operation Class="PatchOperationSequence">
+		<operations>
+
+			<!-- ===== Underbarrel Ammoset ===== -->
+			<li Class="PatchOperationAdd" MayRequire="OskarPotocki.VanillaFactionsExpanded.Core">
+				<xpath>Defs</xpath>
+				<value>
+
+					<!-- === Ammo Set === -->
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_12x72mmCharged_Demo</defName>
+						<label>12x72mm Charged (Demolition)</label>
+						<ammoTypes>
+							<Ammo_12x72mmCharged>Bullet_12x72mmCharged_Demo_Thump</Ammo_12x72mmCharged>
+							<Ammo_12x72mmCharged_AP>Bullet_12x72mmCharged_Demo_Thump</Ammo_12x72mmCharged_AP>
+							<Ammo_12x72mmCharged_Ion>Bullet_12x72mmCharged_Demo_Thump</Ammo_12x72mmCharged_Ion>
+						</ammoTypes>
+						<similarTo>AmmoSet_ChargedHeavy</similarTo>
+					</CombatExtended.AmmoSetDef>
+
+					<!-- === Projectile === -->
+					<ThingDef ParentName="BaseBulletCE">
+						<defName>Bullet_12x72mmCharged_Demo_Thump</defName>
+						<label>12x72mm Charged bullet (Demo.)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Charged/ChargeShot</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<drawSize>(1.3,1.3)</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Thump</damageDef>
+							<damageAmountBase>20</damageAmountBase>
+							<speed>165</speed>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>0</armorPenetrationBlunt>
+						</projectile>
+					</ThingDef>
+
+				</value>
+			</li>
+
+			<!-- ===== Charge Trapshot Rifle ===== -->
+			<li Class="PatchOperationReMove" MayRequire="OskarPotocki.VanillaFactionsExpanded.Core">
+				<xpath>Defs/ThingDef[defName="EoD_Gun_ChargeTrapshot"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible" MayRequire="OskarPotocki.VanillaFactionsExpanded.Core">
+				<defName>EoD_Gun_ChargeTrapshot</defName>
+				<statBases>
+					<Mass>8</Mass>
+					<Bulk>16</Bulk>
+					<RangedWeapon_Cooldown>0.83</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.6</SightsEfficiency>
+					<ShotSpread>0.03</ShotSpread>
+					<SwayFactor>1.47</SwayFactor>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.82</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12x72mmCharged</defaultProjectile>
+					<warmupTime>2.7</warmupTime>
+					<range>86</range>
+					<soundCast>EoD_Shot_ChargeTrapshotRifle</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_12x72mmCharged</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>SniperRifle</li>
+					<li>AdvancedGun</li>
+					<li>SpacerGun</li>
+					<li>CE_AI_SR</li>
+					<li>Bipod_DMR</li>
+				</weaponTags>
+			</li>
+		
+			<li Class="PatchOperationReplace" MayRequire="OskarPotocki.VanillaFactionsExpanded.Core">
+				<xpath>Defs/ThingDef[defName="EoD_Gun_ChargeTrapshot"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]</xpath>
+				<value>
+					<li Class="CombatExtended.CompProperties_UnderBarrel">
+						<oneAmmoHolder>True</oneAmmoHolder>
+						<propsUnderBarrel>
+							<magazineSize>10</magazineSize>
+							<reloadTime>4</reloadTime>
+							<ammoSet>AmmoSet_12x72mmCharged_Demo</ammoSet>
+						</propsUnderBarrel>
+						<verbPropsUnderBarrel>
+							<recoilAmount>1.82</recoilAmount>
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_12x72mmCharged_Demo_Thump</defaultProjectile>
+							<warmupTime>2.7</warmupTime>
+							<range>86</range>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<soundCast>ThumpCannon_Fire</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>9</muzzleFlashScale>
+						</verbPropsUnderBarrel>
+						<propsFireModesUnderBarrel>
+							<aiAimMode>AimedShot</aiAimMode>
+						</propsFireModesUnderBarrel>
+					</li>
+				</value>
+			</li>
+		
+			<li Class="PatchOperationReplace" MayRequire="OskarPotocki.VanillaFactionsExpanded.Core">
+				<xpath>Defs/ThingDef[defName="EoD_Gun_ChargeTrapshot"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</Operation>
+
+</Patch>
