@@ -401,7 +401,7 @@ namespace CombatExtended
                 {
                     //TODO: 1.5 Should be neck?
                     var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
-                               .FirstOrDefault(r => r.def == BodyPartDefOf.Eye);
+                               .FirstOrDefault(r => r.def == CE_BodyPartDefOf.Neck);
                     damageInfo.SetHitPart(neck);
                 }
                 //for some reason, when all parts of height are missing their incode count is 3
