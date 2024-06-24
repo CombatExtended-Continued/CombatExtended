@@ -400,9 +400,14 @@ namespace CombatExtended
                 if (caster.def.race.predator && IsTargetImmobile(target))
                 {
                     //TODO: 1.5 Should be neck?
-                    var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
-                               .FirstOrDefault(r => r.def == BodyPartDefOf.Eye);
-                    damageInfo.SetHitPart(neck);
+                    var hp = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
+                               .FirstOrDefault(r => r.def == CE_BodyPartDefOf.Neck);
+                    if (hp == null)
+                    {
+                        hp = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
+                               .FirstOrDefault(r => r.def == BodyPartDefOf.Head);
+                    }
+                    damageInfo.SetHitPart(hp);
                 }
                 //for some reason, when all parts of height are missing their incode count is 3
                 if (pawn.health.hediffSet.GetNotMissingParts(bodyRegion).Count() <= 3)
@@ -451,7 +456,11 @@ namespace CombatExtended
 
                             if (damageInfo.HitPart != null)
                             {
-                                damageInfo.SetHitPart(damageInfo.HitPart.GetDirectChildParts().RandomElementByWeight(x => x.coverage));
+                                var children = damageInfo.HitPart.GetDirectChildParts();
+                                if (children.Count() > 0)
+                                {
+                                    damageInfo.SetHitPart(children.RandomElementByWeight(x => x.coverage));
+                                }
                             }
                         }
                     }

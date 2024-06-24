@@ -520,7 +520,7 @@ namespace CombatExtended
             foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
             {
                 //TODO: 1.5 should be Neck
-                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Eye)))
+                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == CE_BodyPartDefOf.Neck || part.def == CE_BodyPartDefOf.Neck)))
                 {
                     float armorValue = part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
                     if (wornApparel != null)
