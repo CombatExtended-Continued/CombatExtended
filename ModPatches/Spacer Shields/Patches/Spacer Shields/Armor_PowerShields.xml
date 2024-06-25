@@ -146,7 +146,7 @@
 
 	<!--Add CE Shield Stuff-->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[@Name="LTS_Apparel_BasePowerShield"]</xpath>
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power"]</xpath>
 		<value>
 			<li Class="CombatExtended.ShieldDefExtension">
 				<shieldCoverage>
@@ -155,6 +155,21 @@
 					<li>Shoulders</li>
 					<li>Torso</li>
 					<li>Neck</li>
+				</shieldCoverage>
+				<crouchCoverage>
+					<li>Legs</li>
+				</crouchCoverage>				
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]</xpath>
+		<value>
+			<li Class="CombatExtended.ShieldDefExtension">
+				<shieldCoverage>
+					<li>Hands</li>
+					<li>Arms</li>
 				</shieldCoverage>
 			</li>
 		</value>
