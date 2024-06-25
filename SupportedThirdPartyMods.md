@@ -303,6 +303,7 @@ Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Tailor   |
 Megafauna	|
+Melee Animation	|
 Metal Gear Rimworld - Gekko	|
 MH: Android Tiers	|
 MH: Android Tiers Core	|
