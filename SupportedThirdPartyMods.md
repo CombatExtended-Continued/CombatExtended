@@ -74,6 +74,7 @@ All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
 Alpha Genes |
+Alpha Implants |
 Alpha Mechs |
 Alpha Memes |
 Alpha Mythology |
