@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+                <!-- ======= Prosthetics ======= -->
+                <li Class="PatchOperationRemove">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalSkinHardener"]/stages/li/capMods</xpath>
+                </li>
+                
+				<li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalSkinHardener"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>1</ArmorRating_Sharp>
+                    </value>
+                </li>
+            
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalSkinHardener"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalSkinHardener"]/stages/li/statOffsets</xpath>
+                    <value>
+                        <MoveSpeed>-0.25</MoveSpeed>
+                        <MeleeDodgeChance>-0.01</MeleeDodgeChance>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalVenomFangs"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>animal venom fangs</label>
+                                <capacities>
+                                    <li>ToxicBite</li>
+                                </capacities>
+                                <power>5</power>
+                                <cooldownTime>1.11</cooldownTime>
+                                <armorPenetrationBlunt>0.15</armorPenetrationBlunt>
+                                <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+
+                <!-- ======= Bionics ======= -->
+                <li Class="PatchOperationRemove">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalDermalArmorGland"]/stages/li/capMods</xpath>
+                </li>
+                
+				<li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalDermalArmorGland"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>2</ArmorRating_Sharp>
+                    </value>
+                </li>
+            
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalDermalArmorGland"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>3.5</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalDermalArmorGland"]/stages/li/statOffsets</xpath>
+                    <value>
+                        <MeleeDodgeChance>-0.02</MeleeDodgeChance>
+                    </value>
+                </li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
