@@ -56,7 +56,7 @@ namespace CombatExtended
         public static Verb_MeleeAttackCE LastAttackVerb
         {
             get;    // Hack to get around DamageInfo not passing the tool to ArmorUtilityCE
-            private set;
+            protected set;
         }
 
         protected virtual float PenetrationSkillMultiplier => 1f + (CasterPawn?.skills?.GetSkill(SkillDefOf.Melee).Level ?? 1 - 1) * StatWorker_MeleeArmorPenetration.skillFactorPerLevel;
@@ -87,7 +87,7 @@ namespace CombatExtended
             }
         }
 
-        bool isCrit;
+        protected bool isCrit;
 
         /// <summary>
         /// Backing field for <see cref="CompMeleeTargettingGizmo"/>.
@@ -332,7 +332,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="target">The target damage is to be applied to</param>
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
-        private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
+        protected virtual IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
             //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
             float damAmount = verbProps.AdjustedMeleeDamageAmount(this, CasterPawn);
@@ -612,7 +612,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="pawn">Pawn to check</param>
         /// <returns>True if pawn still has parries available or no parry tracker could be found, false otherwise</returns>
-        private bool CanDoParry(Pawn pawn)
+        protected virtual bool CanDoParry(Pawn pawn)
         {
             if (pawn == null
                     || pawn.Dead
@@ -641,7 +641,7 @@ namespace CombatExtended
         /// <param name="parryThing">Thing used to parry the blow (weapon/shield)</param>
         /// <param name="isRiposte">Whether to do a riposte</param>
         /// <param name="deflectChance">Chance of the weapon taking no damage from parrying</param>
-        private void DoParry(Pawn defender, Thing parryThing, bool isRiposte = false, bool deflected = false)
+        protected virtual void DoParry(Pawn defender, Thing parryThing, bool isRiposte = false, bool deflected = false)
         {
             if (parryThing != null)
             {
@@ -700,7 +700,7 @@ namespace CombatExtended
             }
         }
 
-        private static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance, float defenderSkillMult = 1)
+        protected static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance, float defenderSkillMult = 1)
         {
             if (attacker == null || defender == null)
             {
