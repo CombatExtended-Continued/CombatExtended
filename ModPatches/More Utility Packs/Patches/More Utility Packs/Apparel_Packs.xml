@@ -42,9 +42,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_Forklift"]/comps/li/compClass[.="CompQuality"]</xpath>
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_Forklift"]/comps/li/compClass[.="CompQuality"]</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_Forklift"]/comps</xpath>
+			<xpath>Defs/ThingDef[defName="SGC_Apparel_Forklift"]/comps</xpath>
 			<value>
 				<li>
 					<compClass>CompQuality</compClass>
@@ -54,9 +54,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_SurvivalPack"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_SurvivalPack"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_SurvivalPack"]</xpath>
+			<xpath>Defs/ThingDef[defName="SGC_Apparel_SurvivalPack"]</xpath>
 			<value>
 				<comps>
 					<li>
@@ -66,7 +66,7 @@
 			</value>
 		</nomatch>
 		<match Class="PatchOperationAdd">
-			<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_SurvivalPack"]/comps</xpath>
+			<xpath>Defs/ThingDef[defName="SGC_Apparel_SurvivalPack"]/comps</xpath>
 			<value>
 				<li>
 					<compClass>CompQuality</compClass>
@@ -91,7 +91,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[
+		<xpath>Defs/ThingDef[
 			defName="SGC_Apparel_Forklift" or
 			defName="SGC_Apparel_SurvivalPack"
 			]/apparel/layers </xpath>
@@ -138,7 +138,7 @@
 	<!-- Survival Pack -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_SurvivalPack"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_SurvivalPack"]/statBases</xpath>
 		<value>
 			<Bulk>10</Bulk>
 			<WornBulk>5</WornBulk>
@@ -146,7 +146,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_SurvivalPack"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_SurvivalPack"]/equippedStatOffsets</xpath>
 		<value>
 			<CarryBulk>25</CarryBulk>
 		</value>
@@ -187,7 +187,7 @@
 	<!-- Forklift Rig -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_Forklift"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_Forklift"]/statBases</xpath>
 		<value>
 			<Bulk>10</Bulk>
 			<WornBulk>7</WornBulk>
@@ -195,7 +195,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_Forklift"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_Forklift"]/equippedStatOffsets</xpath>
 		<value>
 			<CarryBulk>15</CarryBulk>
 			<CarryWeight>100</CarryWeight>
@@ -209,21 +209,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoDef</xpath>
 		<value>
 			<ammoDef>Shell_60mmMortar_HE</ammoDef>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/maxCharges</xpath>
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_ApparelReloadable"]/maxCharges</xpath>
 		<value>
 			<maxCharges>3</maxCharges>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountPerCharge</xpath>
 		<value>
 			<ammoCountPerCharge>1</ammoCountPerCharge>
 		</value>
