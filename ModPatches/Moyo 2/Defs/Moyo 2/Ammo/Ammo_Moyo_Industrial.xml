@@ -5,7 +5,7 @@
 	<CombatExtended.AmmoCategoryDef>
 		<defName>MoyoHarpoon</defName>
 		<label>Harpoon</label>
-		<labelShort>Cons.</labelShort>
+		<labelShort>Harpoon</labelShort>
 		<description>Metal rods converted for combat use.</description>
 	</CombatExtended.AmmoCategoryDef>
 
@@ -170,15 +170,17 @@
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Bioferrite</li>
 				<li>Steel</li>
-				<li>ComponentIndustrial</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_SmallMoyoHarpoon>100</Ammo_SmallMoyoHarpoon>
 		</products>
 		<workAmount>5000</workAmount>
+		<recipeUsers Inherit="False">
+			<li>Moyo2_FabricationBench</li>
+			<li>TableMachining</li>
+		</recipeUsers>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -205,6 +207,10 @@
 			<Ammo_LargeMoyoHarpoon>25</Ammo_LargeMoyoHarpoon>
 		</products>
 		<workAmount>10000</workAmount>
+		<recipeUsers Inherit="False">
+			<li>Moyo2_FabricationBench</li>
+			<li>TableMachining</li>
+		</recipeUsers>
 	</RecipeDef>
 	
 </Defs>
