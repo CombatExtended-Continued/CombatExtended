@@ -16,14 +16,14 @@
 		<ammoTypes>
 			<Ammo_Flamethrower_Napalm>Bullet_Flamethrower_Napalm</Ammo_Flamethrower_Napalm>
 			<Ammo_Flamethrower_Prometheum>Bullet_Flamethrower_Prometheum</Ammo_Flamethrower_Prometheum>
-			<Ammo_Flamethrower_Bioferrite MayRequire="Ludeon.Rimworld.Anomaly">Bullet_Flamethrower_Bioferrite</Ammo_Flamethrower_Bioferrite>			
+			<Ammo_Flamethrower_Bioferrite MayRequire="Ludeon.Rimworld.Anomaly">Bullet_Flamethrower_Bioferrite</Ammo_Flamethrower_Bioferrite>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="FlamethrowerBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
-		<description>Fuel for use with a flamethrower.</description>
+		<description>Fuel for a flamethrower.</description>
 		<statBases>
 			<MaxHitPoints>70</MaxHitPoints>
 			<Flammability>1.0</Flammability>
@@ -65,7 +65,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="FlamethrowerBase">
 		<defName>Ammo_Flamethrower_Prometheum</defName>
 		<label>jellied prometheum</label>
-		<description>Fuel for use with a flamethrower./n/This mixture applies a sticky coating of extremely flammable prometheum to target.</description>
+		<description>Fuel for a flamethrower./n/This mixture applies a sticky coating of extremely flammable prometheum to target.</description>
 		<graphicData>
 			<texPath>Things/Ammo/FuelTank/Prometheum</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -87,10 +87,10 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="FlamethrowerBase" MayRequire="Ludeon.Rimworld.Anomaly">
 		<defName>Ammo_Flamethrower_Bioferrite</defName>
-		<label>jellied bioferrite</label>
-		<description>Fuel for use with a flamethrower./n/An infusion of crystalline bioferrite attacks organic matter on a cellular level, disrupting regeneration and weakening tisue.</description>	
+		<label>infused chemfuel</label>
+		<description>Fuel for a flamethrower that burns at incredibly high temperature, leaving behind no puddles of fuel./n/An infusion of crystalline bioferrite attacks organic matter on a cellular level, disrupting regeneration and weakening tissue.</description>	
 		<graphicData>
-			<texPath>Things/Ammo/FuelTank/Incendiary</texPath>
+			<texPath>Things/Ammo/FuelTank/Bioferrite</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -176,12 +176,10 @@
 	<ThingDef ParentName="BaseFlamethrowerBullet" MayRequire="Ludeon.Rimworld.Anomaly">
 		<defName>Bullet_Flamethrower_Bioferrite</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<label>jellied bioferrite stream</label>
+		<label>infused chemfuel stream</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>BioferriteFlame</damageDef>
 			<damageAmountBase>3</damageAmountBase>
-			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.33</preExplosionSpawnChance>
 			<soundExplode>CE_FlamethrowerExplosion</soundExplode>
 			<explosionRadius>1.2</explosionRadius>
 			<ai_IsIncendiary>true</ai_IsIncendiary>
@@ -253,10 +251,18 @@
 
 	<RecipeDef ParentName="FlamethrowerAmmoRecipeBase" MayRequire="Ludeon.Rimworld.Anomaly">
 		<defName>MakeAmmo_Flamethrower_Bioferrite</defName>
-		<label>make jellied bioferrite x100</label>
-		<description>Craft 100 units of jellied bioferrite.</description>
-		<jobString>Making jellied bioferrite.</jobString>
+		<label>make bioferrite-infused x100</label>
+		<description>Craft 100 units of bioferrite-infused chemfuel.</description>
+		<jobString>Making bioferrite-infused chemfuel.</jobString>
 		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
 			<li>
 				<filter>
 					<thingDefs>
@@ -269,6 +275,7 @@
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Bioferrite</li>
+				<li>Chemfuel</li>				
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
