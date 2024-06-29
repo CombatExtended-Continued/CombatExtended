@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ========== Advanced Thermal Bolt Projector ========== -->
+
+	<ThingDef ParentName="BaseGun">
+		<defName>VFE_AdvancedThermalBoltProjector</defName>
+		<label>advanced thermal bolt projector</label>
+		<description>A medium-velocity, low-trajectory fire support system deployed by mechanoids. The advanced variant features a triple shot system, permitting saturation bombardment.</description>
+		<relicChance>0</relicChance>
+		<graphicData>
+			<texPath>Things/Weapons/ExplosiveBoltProjector</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<equippedAngleOffset>-45</equippedAngleOffset>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+			<Bulk>8.50</Bulk>
+			<Mass>12.00</Mass>
+			<RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+			<MarketValue>1600</MarketValue>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<tradeability>None</tradeability>
+		<destroyOnDrop>true</destroyOnDrop>
+		<weaponTags>
+			<li>VFE_AdvMechanoidGunIndirect</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
+				<warmupTime>3.3</warmupTime>
+				<minRange>10</minRange>
+				<range>62</range>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>Mortar_LaunchA</soundCast>
+				<muzzleFlashScale>16</muzzleFlashScale>
+				<circularError>2.5</circularError>
+				<indirectFirePenalty>0.2</indirectFirePenalty>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+			</li>
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>6</magazineSize>
+				<reloadTime>12</reloadTime>
+				<ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
+			</li>
+			<li Class="CombatExtended.CompProperties_FireModes">
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+			</li>
+		</comps>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2.44</cooldownTime>
+				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		<modExtensions>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>1.05,1.05</DrawSize>
+				<DrawOffset>-0.3,0.0</DrawOffset>
+			</li>
+			<li Class="CombatExtended.ThingDefExtensionCE">
+				<MenuHidden>True</MenuHidden>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+</Defs>
