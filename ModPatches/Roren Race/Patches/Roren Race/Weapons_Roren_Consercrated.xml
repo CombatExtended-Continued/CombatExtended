@@ -4,16 +4,15 @@
 	<!-- ========== Melee Tools =========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="Roren_Consecratio_Shotgun" or 
-			defName="Roren_Consecratio_SMG" or 
-			defName="Roren_Consecratio_InfantryRifle" or 
-			defName="Roren_Consecratio_MarksmanRifle" or 
-			defName="Roren_Consecratio_ATRifle" or 
-			defName="Roren_Consecratio_LMG" or 
-			defName="Roren_Consecratio_HMG" or 
-			defName="Roren_Consecratio_AutoCannon" or 
-			defName="Roren_Consecratio_GrenadeLauncher" or 
-			defName="Roren_Consecratio_RocketLauncher" or 
+			defName="Roren_Consecratio_Shotgun" or
+			defName="Roren_Consecratio_SMG" or
+			defName="Roren_Consecratio_MarksmanRifle" or
+			defName="Roren_Consecratio_ATRifle" or
+			defName="Roren_Consecratio_LMG" or
+			defName="Roren_Consecratio_HMG" or
+			defName="Roren_Consecratio_AutoCannon" or
+			defName="Roren_Consecratio_GrenadeLauncher" or
+			defName="Roren_Consecratio_RocketLauncher" or
 			defName="Roren_Consecratio_Flamer"
 		]/tools</xpath>
 		<value>
@@ -52,7 +51,48 @@
 			</tools>
 		</value>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_Consecratio_InfantryRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>bayonet</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationSharp>1.11</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Roren_Consecratio_InfantryPistol"]/tools</xpath>
 		<value>
