@@ -418,7 +418,168 @@ namespace CombatExtended.Compatibility
         {
             if (GroundDefenseMode)
             {
-                return base.TryCastShot(); // Default to SOS2 logic
+                Retarget();
+                repeating = true;
+                doRetarget = true;
+                storedShotReduction = null;
+                var props = VerbPropsCE;
+                var midBurst = numShotsFired > 0;
+                var suppressing = CompFireModes?.CurrentAimMode == AimMode.SuppressFire;
+
+                // Cases
+                // 1: Can hit target, set our previous shoot line
+                //    Cannot hit target
+                //      Target exists
+                //        Mid burst
+                // 2:       Interruptible -> stop shooting
+                // 3:       Not interruptible -> continue shooting at last position (do *not* shoot at target position as it will play badly with skip or other teleport effects)
+                // 4:     Suppressing fire -> set our shoot line and continue
+                // 5:     else -> stop
+                //      Target missing
+                //        Mid burst
+                // 6:       Interruptible -> stop shooting
+                // 7:       Not interruptible -> shoot along previous line
+                // 8:     else -> stop
+                if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // Case 1
+                {
+                    lastShootLine = shootLine;
+                }
+                else // We cannot hit the current target
+                {
+                    if (midBurst) // Case 2,3,6,7
+                    {
+                        if (props.interruptibleBurst && !suppressing) // Case 2, 6
+                        {
+                            return false;
+                        }
+                        // Case 3, 7
+                        if (lastShootLine == null)
+                        {
+                            return false;
+                        }
+                        shootLine = (ShootLine)lastShootLine;
+                        currentTarget = new LocalTargetInfo(lastTargetPos);
+                    }
+                    else // case 4,5,8
+                    {
+                        if (suppressing) // case 4,5
+                        {
+                            if (currentTarget.IsValid && !currentTarget.ThingDestroyed)
+                            {
+                                lastShootLine = shootLine = new ShootLine(caster.Position, currentTarget.Cell);
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                if (projectilePropsCE.pelletCount < 1)
+                {
+                    Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
+                    return false;
+                }
+                bool instant = false;
+
+                float spreadDegrees = 0;
+                float aperatureSize = 0;
+
+                if (Projectile.projectile is ProjectilePropertiesCE pprop)
+                {
+                    instant = pprop.isInstant;
+                    spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * pprop.spreadMult;
+                    aperatureSize = 0.03f;
+                }
+
+                ShiftVecReport report = ShiftVecReportFor(currentTarget);
+                bool pelletMechanicsOnly = false;
+                for (int i = 0; i < projectilePropsCE.pelletCount; i++)
+                {
+                    ProjectileCE projectileCE;
+                    if (instant)
+                    {
+                        projectileCE = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
+                    } else
+                    {
+                        projectileCE = (ShipProjectileCE)ThingMaker.MakeThing(Projectile, null);
+                    }
+                    GenSpawn.Spawn(projectileCE, shootLine.Source, caster.Map);
+                    ShiftTarget(report, pelletMechanicsOnly, instant, midBurst);
+
+                    //New aiming algorithm
+                    projectileCE.canTargetSelf = false;
+
+                    var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
+
+                    projectileCE.minCollisionDistance = GetMinCollisionDistance(targetDistance);
+                    projectileCE.intendedTarget = currentTarget;
+                    projectileCE.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
+                    projectileCE.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
+
+                    if (instant)
+                    {
+                        var shotHeight = ShotHeight;
+                        float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
+                        projectileCE.RayCast(
+                            Shooter,
+                            verbProps,
+                            sourceLoc,
+                            shotAngle + tsa,
+                            shotRotation,
+                            shotHeight,
+                            ShotSpeed,
+                            spreadDegrees,
+                            aperatureSize,
+                            EquipmentSource);
+
+                    }
+                    else
+                    {
+                        ShipProjectileCE shipProjectile = projectileCE as ShipProjectileCE;
+                        if (shipProjectile == null)
+                        {
+                            Log.Error("Ship Projectile cast failed");
+                            return false;
+                        }
+                        shipProjectile.Launch(
+                            Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
+                            sourceLoc,
+                            shotAngle,
+                            shotRotation,
+                            ShotHeight,
+                            ShotSpeed,
+                            EquipmentSource,
+                            distance);
+                    }
+                    pelletMechanicsOnly = true;
+                }
+
+                /*
+                 * Notify the lighting tracker that shots fired with muzzle flash value of VerbPropsCE.muzzleFlashScale
+                 */
+                LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: VerbPropsCE.muzzleFlashScale);
+                pelletMechanicsOnly = false;
+                numShotsFired++;
+                if (ShooterPawn != null)
+                {
+                    if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+                    {
+                        CompAmmo?.TryStartReload();
+                        resetRetarget();
+                    }
+                    if (CompReloadable != null)
+                    {
+                        CompReloadable.UsedOnce();
+                    }
+                }
+                lastShotTick = Find.TickManager.TicksGame;
+                return true;
+
             }
             ThingDef projectile = Projectile;
             if (projectile == null)
@@ -477,5 +638,44 @@ namespace CombatExtended.Compatibility
             return true;
         }
         #endregion
+    }
+    public class ShipProjectileCE : ProjectileCE_Explosive
+    {
+        // Need to override the projectile drawing since we are setting it so high up and the SOS2 turret graphics are fully top down
+        // so it looks cooked with the normal logic
+        // I can't think of another easy way to alter the drawing for just the projectiles shot by Verb_ShootShip
+
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
+        {
+            if (FlightTicks == 0 && launcher != null && launcher is Pawn)
+            {
+                //TODO: Draw at the end of the barrel on the pawn
+            }
+            else
+            {
+                Quaternion shadowRotation = ExactRotation;
+                Quaternion projectileRotation = ExactRotation;
+                if (def.projectile.spinRate != 0f)
+                {
+                    float num2 = GenTicks.TicksPerRealSecond / def.projectile.spinRate;
+                    var spinRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
+                    shadowRotation *= spinRotation;
+                    projectileRotation *= spinRotation;
+                }
+                //Projectile
+                Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), ExactPosition, projectileRotation, def.DrawMatSingle, 0);
+
+                //Shadow - Not going to bother drawing a shadow as we're essentially rendering as if we're looking directly down on the bullet
+                // (Despite the rest of rimworld not being directly top down it just matches the turrets better)
+                //if (castShadow)
+                //{
+                //    var shadowPos = new Vector3(ExactPosition.x, def.Altitude - 0.001f, ExactPosition.z);
+                    
+                //    Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), shadowPos, shadowRotation, ShadowMaterial, 0);
+                //}
+
+                Comps_PostDraw();
+            }
+        }
     }
 }

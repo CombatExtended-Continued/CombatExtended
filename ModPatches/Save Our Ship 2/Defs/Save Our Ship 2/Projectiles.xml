@@ -48,6 +48,7 @@
 	<!-- Ship Weapons -->
 	<!-- Plasma -->
 	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<thingClass>CombatExtended.Compatibility.ShipProjectileCE</thingClass>
 		<defName>Bullet_SOS2_Plasma_CE</defName>
 		<label>plasma toroid</label>
 		<graphicData>
@@ -74,8 +75,9 @@
 
 	<!-- Kinetic -->
 	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<thingClass>CombatExtended.Compatibility.ShipProjectileCE</thingClass>
 		<defName>Bullet_SOS2_Kinetic_CE</defName>
-		<label>plasma toroid</label>
+		<label>slug</label>
 		<graphicData>
 			<texPath>Things/Projectile/ShipTurretKinetic</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -99,19 +101,19 @@
 	</ThingDef>
 
 	<!-- Laser TODO: Make this a real laser--> 
-	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBulletTextured">
 		<defName>Bullet_SOS2_Laser_CE</defName>
-		<label>plasma toroid</label>
+		<label>laser beam</label>
 		<graphicData>
-			<texPath>Things/Building/Ship/HullPlateTransparent</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>4</drawSize>
+			<color>(255,87,103)</color>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>1.2</explosionRadius>
 			<speed>160</speed>
 			<damageDef>ShipLaserSmall</damageDef>
 			<damageAmountBase>40</damageAmountBase>
+			<isInstant>true</isInstant>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			<extraDamages>
 				<li>
@@ -125,8 +127,9 @@
 
 	<!-- Auto Cannon -->
 	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<thingClass>CombatExtended.Compatibility.ShipProjectileCE</thingClass>
 		<defName>Bullet_SOS2_ACI_CE</defName>
-		<label>plasma toroid</label>
+		<label>slug</label>
 		<graphicData>
 			<texPath>Things/Projectile/ShipTurretACI</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
