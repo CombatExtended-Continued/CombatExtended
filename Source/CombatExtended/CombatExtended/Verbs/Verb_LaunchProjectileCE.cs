@@ -129,7 +129,7 @@ namespace CombatExtended
                 return shotSpeed;
             }
         }
-        public float ShotHeight => (new CollisionVertical(caster)).shotHeight;
+        public virtual float ShotHeight => (new CollisionVertical(caster)).shotHeight;
         private Vector3 ShotSource
         {
             get
