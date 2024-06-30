@@ -80,11 +80,13 @@
 			<Bulk>12150</Bulk>
 		</statBases>
 		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 			<hasStandardCommand>true</hasStandardCommand>
+			<requireLineOfSight>false</requireLineOfSight>
 			<defaultProjectile>Bullet_203cmskCannonShell_HE</defaultProjectile>
 			<warmupTime>4.5</warmupTime>
-			<range>96</range>
+			<range>700</range>
 			<minRange>8.9</minRange>
 			<soundCast>Roren_Big_Cannon_Sound</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -105,5 +107,18 @@
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_Artillery_203mm"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
 </Patch>

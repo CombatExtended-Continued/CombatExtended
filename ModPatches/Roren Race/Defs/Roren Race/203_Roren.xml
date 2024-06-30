@@ -56,19 +56,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base203cmskCannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
-		<graphicData>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<flyOverhead>false</flyOverhead>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
-			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
-		</projectile>
-	</ThingDef>
-
-	<ThingDef ParentName="Base203cmskCannonShell">
+	<ThingDef ParentName="Base105mmHowitzerShell">
 		<defName>Bullet_203cmskCannonShell_HE</defName>
 		<label>203cmsk cannon shell (HE)</label>
 		<graphicData>
@@ -76,20 +64,17 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>185</speed>
-			<damageAmountBase>1072</damageAmountBase>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>527</damageAmountBase>
+			<explosionRadius>5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
-			<armorPenetrationSharp>1000</armorPenetrationSharp>
-			<armorPenetrationBlunt>1043862</armorPenetrationBlunt>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<shellingProps>
+				<tilesPerTick>0.12</tilesPerTick>
+				<range>35</range>
+			</shellingProps>			
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>490</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>5</explosiveRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>40</Fragment_Large>
