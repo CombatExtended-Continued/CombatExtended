@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+    <!-- Replace all ship turrets with the new turret class -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name='BaseShipTurretBuilding']/thingClass</xpath>
+        <value>
+            <thingClass>CombatExtended.Compatibility.Building_ShipTurretCE</thingClass>
+        </value>
+    </Operation>
+    <!-- 
+        NOTE: Do not use CombatExtended.PatchOperationMakeGunCECompatible for changing the verb properties, it will not remove the default SOS2 custom verb
+        Instead you need to replace the verb with one which has values for the ship combat as well as for CE ground defense/inspect panel
+        The class of the properties needs to be CombatExtended.Compatibility.VerbPropertiesShipWeaponCE and the verbClass should be CombatExtended.Compatibility.Verb_ShootShipCE
+     -->
+    <!-- Kinetic Weapons -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_KineticTop']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+					<recoilAmount>0.35</recoilAmount>
+					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+					<!-- <burstShotCount>5</burstShotCount> -->
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+                    <label>shoot slug</label>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <range>1500</range>
+                    <minRange>31.9</minRange>
+                    <warmupTime>0.5</warmupTime>
+                    <forcedMissRadius>1</forcedMissRadius>
+                    <noiseRadius>4</noiseRadius>
+                    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                    <soundCast>ShipCombatKinetic</soundCast>
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <defaultProjectileGround>Bullet_SOS2_Kinetic_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+                    <defaultProjectile>Proj_ShipTurretKinetic</defaultProjectile>
+                    <spawnDef>Bullet_Fake_Kinetic</spawnDef>
+                    <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_KineticTop_Large']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+					<recoilAmount>0.35</recoilAmount>
+					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+					<!-- <burstShotCount>5</burstShotCount> -->
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+                    <label>shoot slug</label>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <range>2500</range>
+                    <!-- <minRange>31.9</minRange> -->
+                    <warmupTime>0.5</warmupTime>
+                    <forcedMissRadius>1</forcedMissRadius>
+                    <noiseRadius>4</noiseRadius>
+                    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                    <soundCast>ShipCombatKineticLarge</soundCast>
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <defaultProjectileGround>Bullet_SOS2_Kinetic_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+                    <defaultProjectile>Proj_ShipTurretKinetic_Large</defaultProjectile>
+                    <spawnDef>Bullet_Fake_Kinetic_Large</spawnDef>
+                    <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+    <!-- Plasma Weapons -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_PlasmaTop']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+					<recoilAmount>0.35</recoilAmount>
+					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+					<!-- <burstShotCount>5</burstShotCount> -->
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+                    <label>fire plasma</label>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <range>1000</range>
+                    <minRange>31.9</minRange>
+                    <warmupTime>1.5</warmupTime>
+                    <forcedMissRadius>1</forcedMissRadius>
+                    <noiseRadius>4</noiseRadius>
+                    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                    <soundCast>ShipCombatPlasma</soundCast>
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <defaultProjectileGround>Bullet_SOS2_Plasma_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+                    <defaultProjectile>Proj_ShipTurretPlasma</defaultProjectile>
+                    <spawnDef>Bullet_Fake_Plasma</spawnDef>
+                    <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_PlasmaTop_Large']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+					<recoilAmount>0.35</recoilAmount>
+					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+					<!-- <burstShotCount>5</burstShotCount> -->
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+                    <label>fire plasma</label>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <range>1500</range>
+                    <!-- <minRange>31.9</minRange> -->
+                    <warmupTime>1.5</warmupTime>
+                    <forcedMissRadius>1</forcedMissRadius>
+                    <noiseRadius>4</noiseRadius>
+                    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                    <soundCast>ShipCombatPlasmaLarge</soundCast>
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <defaultProjectileGround>Bullet_SOS2_Plasma_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+                    <defaultProjectile>Proj_ShipTurretPlasma_Large</defaultProjectile>
+                    <spawnDef>Bullet_Fake_Plasma_Large</spawnDef>
+                    <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+
+    <!-- Laser Weapons -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_LaserTop']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+					<recoilAmount>0.35</recoilAmount>
+					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+                    <label>shoot laser</label>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <range>500</range>
+                    <minRange>31.9</minRange>
+                    <warmupTime>0</warmupTime>
+                    <forcedMissRadius>1</forcedMissRadius>
+                    <noiseRadius>4</noiseRadius>
+                    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                    <!-- <soundCast>ShipCombatPlasmaLarge</soundCast> -->
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <defaultProjectileGround>Bullet_Shuttle_Laser_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+                    <defaultProjectile>Proj_ShipTurretLaser</defaultProjectile>
+                    <spawnDef>Bullet_Fake_Laser</spawnDef>
+                    <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_LaserTop_Large']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+					<recoilAmount>0.35</recoilAmount>
+					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+					<burstShotCount>12</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+                    <label>shoot laser</label>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <range>1000</range>
+                    <minRange>31.9</minRange>
+                    <warmupTime>1.5</warmupTime>
+                    <forcedMissRadius>1</forcedMissRadius>
+                    <noiseRadius>4</noiseRadius>
+                    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                    <!-- <soundCast>ShipCombatPlasmaLarge</soundCast> -->
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <defaultProjectileGround>Bullet_Shuttle_Laser_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+                    <defaultProjectile>Proj_ShipTurretLaserTwo</defaultProjectile>
+                    <spawnDef>Bullet_Fake_Laser</spawnDef>
+                    <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+
+    <!-- Cannons -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_ACITop']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+					<recoilAmount>0.35</recoilAmount>
+					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+					<burstShotCount>8</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+                    <label>shoot slug</label>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <range>500</range>
+                    <minRange>31.9</minRange>
+                    <warmupTime>0.5</warmupTime>
+                    <forcedMissRadius>1</forcedMissRadius>
+                    <noiseRadius>8</noiseRadius>
+                    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                    <soundCast>ShipCombatACI</soundCast>
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <defaultProjectileGround>Bullet_SOS2_ACI_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+                    <defaultProjectile>Proj_ShipTurretACI</defaultProjectile>
+                    <spawnDef>Bullet_Fake_ACI</spawnDef>
+                    <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+        <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_ACIITop']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+					<recoilAmount>0.35</recoilAmount>
+					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+					<burstShotCount>8</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+                    <label>shoot slug</label>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <range>1000</range>
+                    <!-- <minRange>0</minRange> -->
+                    <warmupTime>0.5</warmupTime>
+                    <forcedMissRadius>1</forcedMissRadius>
+                    <noiseRadius>10</noiseRadius>
+                    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                    <soundCast>ShipCombatACII</soundCast>
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <defaultProjectileGround>Bullet_SOS2_ACI_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+                    <defaultProjectile>Proj_ShipTurretACII</defaultProjectile>
+                    <spawnDef>Bullet_Fake_ACII</spawnDef>
+                    <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_ACIIITop']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+					<recoilAmount>0.35</recoilAmount>
+					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<muzzleFlashScale>9</muzzleFlashScale>
+                    <label>shoot slug</label>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <range>1000</range>
+                    <!-- <minRange>0</minRange> -->
+                    <warmupTime>0.5</warmupTime>
+                    <forcedMissRadius>1</forcedMissRadius>
+                    <noiseRadius>10</noiseRadius>
+                    <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                    <soundCast>ShipCombatACIII</soundCast>
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <defaultProjectileGround>Bullet_SOS2_ACI_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+                    <defaultProjectile>Proj_ShipTurretACIII</defaultProjectile>
+                    <spawnDef>Bullet_Fake_ACIII</spawnDef>
+                    <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+    <!-- Torpedos -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name='BaseShipTorpedoWeapon']/verbs</xpath>
+        <value>
+			<verbs>
+				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+                    <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+                    <warmupTime>4.0</warmupTime>
+                    <requireLineOfSight>false</requireLineOfSight>
+                    <range>3000</range>
+                    <burstShotCount>1</burstShotCount>
+                    <soundCast>Mortar_LaunchA</soundCast>
+                    <muzzleFlashScale>16</muzzleFlashScale>
+                    <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                    </targetParams>
+                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <defaultProjectileGround>Bullet_SOS2_ACI_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
+				</li>
+			</verbs>
+        </value>
+    </Operation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>ShipTurret_KineticTop</defName>
+        <statBases>
+            <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+            <SightsEfficiency>1.5</SightsEfficiency>
+            <ShotSpread>0.05</ShotSpread>
+            <SwayFactor>0.63</SwayFactor>
+            <Bulk>174</Bulk>
+        </statBases>
+        <AmmoUser>
+            <magazineSize>980</magazineSize>
+            <reloadTime>20</reloadTime>
+            <ammoSet>AmmoSet_30x173mmNATO</ammoSet>
+        </AmmoUser>
+        <FireModes>
+            <noSingleShot>true</noSingleShot>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>SuppressFire</aiAimMode>
+            <aimedBurstShotCount>35</aimedBurstShotCount>
+        </FireModes>
+    </Operation> -->
+    
+</Patch>
