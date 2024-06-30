@@ -2,27 +2,38 @@
 <Patch>
 	<!--Ammo-->
 
+	<!-- Non-Combat -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[
 			defName="RorenMerchant" or
-			defName="RorenFeildDoc" or
 			defName="RorenBodyguard" or
-			defName="RorenLabor" or
-			defName="RorenSpecialist" or
 			defName="RorenMaid" or
-			defName="RorenNun" or
 			defName="RorenFuneralDirector" 
 		]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>0</min>
-					<max>2</max>
+					<min>2</min>
+					<max>3</max>
 				</primaryMagazineCount>
 			</li>
 		</value>
 	</Operation>
 
+	<!-- Light Combat -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="RorenFeildDoc"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>4</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Combat -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[
 			defName="RorenCombatant" or
@@ -43,8 +54,8 @@
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
-					<min>3</min>
-					<max>5</max>
+					<min>4</min>
+					<max>6</max>
 				</primaryMagazineCount>
 			</li>
 		</value>
