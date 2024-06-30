@@ -439,6 +439,7 @@ Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Rockmen race    |
+Roren, People of Rorensia   |
 Royal Arsenal |
 Royal Arsenal - Speciality Weapons  |
 Royal Warcaskets   |
