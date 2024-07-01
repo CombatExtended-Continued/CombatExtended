@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalTentacle"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>fleshy tentacle</label>
+                                <capacities>
+                                    <li>AI_Grapple</li>
+                                </capacities>
+                                <power>6</power>
+                                <armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+                                <armorPenetrationSharp>0.2</armorPenetrationSharp>
+                                <cooldownTime>0.9</cooldownTime>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+            
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalToughspikes"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>toughspikes</label>
+                                <capacities>
+                                    <li>Cut</li>
+                                </capacities>
+                                <power>5</power>
+                                <cooldownTime>0.89</cooldownTime>
+                                <armorPenetrationBlunt>2.12</armorPenetrationBlunt>
+                                <armorPenetrationSharp>1.04</armorPenetrationSharp>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

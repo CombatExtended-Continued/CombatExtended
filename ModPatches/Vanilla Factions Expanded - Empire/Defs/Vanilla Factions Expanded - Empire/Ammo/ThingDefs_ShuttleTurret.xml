@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Shuttle Turret -->
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>VFEI_TurretArmoredShuttle_CE</defName>
+		<label>double autocannon</label>
+		<description>A powerful, twin-linked autocannon.</description>
+		<graphicData>
+			<texPath>Shuttle/ImperialArmoredShuttle/ImperialArmoredShuttle_Autocannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<statBases>
+			<AccuracyTouch>0.4</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyLong>0.60</AccuracyLong>
+			<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>80</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_ArmoredShuttleTurret_CE</defaultProjectile>
+				<minRange>8.9</minRange>
+				<warmupTime>2.3</warmupTime>
+				<range>55</range>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>6</burstShotCount>
+				<soundCast>Shot_Autocannon</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- Shuttle Turret Projectile -->
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_ArmoredShuttleTurret_CE</defName>
+		<label>autocannon shell</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<speed>158</speed>
+			<armorPenetrationBase>25</armorPenetrationBase>
+		</projectile>
+	</ThingDef>
+
+</Defs>

@@ -9,7 +9,7 @@ namespace CombatExtended
         /// <summary>
         /// Multiplier used to scale the armor penetration of a given projectile's explosion
         /// </summary>
-        private const float ExplosiveArmorPenetrationMultiplier = 0.33f;
+        private const float ExplosiveArmorPenetrationMultiplier = 0.4f;
 
         /// <summary>
         ///     Generates a readout text for a projectile with the damage amount, type, secondary explosion and other CE stats for
@@ -27,8 +27,8 @@ namespace CombatExtended
                 return "CE_UnpatchedWeaponShort".Translate();
             }
 
+            var multiplier = weapon?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
             var stringBuilder = new StringBuilder();
-
             // Damage type/amount
             var dmgList = "   " + "CE_DescDamage".Translate() + ": ";
             if (!props.secondaryDamage.NullOrEmpty())
@@ -66,8 +66,8 @@ namespace CombatExtended
             }
             else
             {
-                stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + props.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
-                stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
+                stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + (props.armorPenetrationSharp * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
+                stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + (props.armorPenetrationBlunt * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
             }
 
             // Secondary explosion

@@ -66,6 +66,7 @@ Mod |
 ↁ Elves |
 ↁ House Sanguin |
 A Dog Said...	|
+A Dog Said... Animal Prosthetics 2	|
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
@@ -73,6 +74,7 @@ All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
 Alpha Genes |
+Alpha Implants |
 Alpha Mechs |
 Alpha Memes |
 Alpha Mythology |
@@ -165,6 +167,7 @@ Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
 Det's Energy Weapons    |
+Det's Xenotypes - Boglegs   |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
@@ -301,6 +304,7 @@ Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Tailor   |
 Megafauna	|
+Melee Animation	|
 Metal Gear Rimworld - Gekko	|
 MH: Android Tiers	|
 MH: Android Tiers Core	|
@@ -336,6 +340,7 @@ MorrowRim - Just the Animals	|
 Moyo - From the Depth   |
 Moyo - Light in the Abyss   |
 Moyo - The Cartel Arrives   |
+Moyo 2.0-Blood Stained Business |
 Multiplayer |
 Nakin Race  |
 Nanosuit    |
@@ -387,6 +392,7 @@ Rakkle The Rattle Snake Race Mod  |
 Rambo Weapons Pack (Continued)  |
 Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
+ReBuild - Doors and Corners |
 Red Army (Continued) |
 Redcoat Apparel	|
 Recon Mechanoid |
@@ -433,6 +439,7 @@ Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Rockmen race    |
+Roren, People of Rorensia   |
 Royal Arsenal |
 Royal Arsenal - Speciality Weapons  |
 Royal Warcaskets   |
@@ -448,6 +455,7 @@ Simple Ogre Race  |
 Simply More Melee	|
 Slime Rancher	|
 Solark Race |
+Spacer Shields	|
 Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
@@ -481,8 +489,6 @@ Turret Collection	|
 Twi'lek Race    |
 T's Conversion Staff |
 T's Samurai Faction |
-Urbworld Weaponry: Caseless |
-Urbworld Weaponry SDS |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
 Vanilla Animals Expanded |
@@ -521,6 +527,7 @@ Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
+Vanilla Races Expanded - Insector  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
