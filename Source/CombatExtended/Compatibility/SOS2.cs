@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Verse;
-using SaveOurShip2;
-using UnityEngine;
-using RimWorld;
-using Vehicles;
-using Verse.Sound;
 
 namespace CombatExtended.Compatibility
 {
