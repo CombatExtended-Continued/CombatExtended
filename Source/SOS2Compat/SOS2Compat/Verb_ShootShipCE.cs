@@ -13,14 +13,14 @@ using SaveOurShip2;
 using Vehicles;
 using SaveOurShip2.Vehicles;
 
-namespace CombatExtended.Compatibility
+namespace CombatExtended.Compatibility.SOS2Compat
 {
     public class Verb_ShootShipCE : Verb_ShootCE
     {
         // This class combines functionality from SaveOurShip2.Verb_LaunchProjectileShip with Verb_ShootCE essentially making a hybrid verb that chooses its logic based on
         // if the turret that is shooting it is on the ground or in space. Also tweaks the logic from Verb_ShootCE so that shots are fired from up above the roof height as Ship Turrets
         // are on top of the hull
-        public override float ShotHeight => 2.5f; // Set the height to be above roofs since ship guns are always mounted on top of roofs. Needed so we can shoot over the top of walls/roofs at targets
+        public override float ShotHeight => 3f; // Equivelant to 5.25m - Set the height to be above roofs since ship guns are always mounted on top of roofs. Needed so we can shoot over the top of walls/roofs at targets without treating our projectiles as mortars
         public bool GroundDefenseMode
         {
             get
@@ -380,7 +380,7 @@ namespace CombatExtended.Compatibility
 
         #endregion
 
-        #region SharedLogic
+        #region Shared Functionality
         public override bool CanHitTarget(LocalTargetInfo targ)
         {
             return true;  
@@ -639,6 +639,7 @@ namespace CombatExtended.Compatibility
         }
         #endregion
     }
+    // Including these classes in the bottom here as they are so small and should only be used by Verb_ShootShipCE
     public class ShipProjectileCE : ProjectileCE_Explosive
     {
         // Need to override the projectile drawing since we are setting it so high up and the SOS2 turret graphics are fully top down
@@ -667,15 +668,47 @@ namespace CombatExtended.Compatibility
 
                 //Shadow - Not going to bother drawing a shadow as we're essentially rendering as if we're looking directly down on the bullet
                 // (Despite the rest of rimworld not being directly top down it just matches the turrets better)
-                //if (castShadow)
-                //{
-                //    var shadowPos = new Vector3(ExactPosition.x, def.Altitude - 0.001f, ExactPosition.z);
-                    
-                //    Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), shadowPos, shadowRotation, ShadowMaterial, 0);
-                //}
 
                 Comps_PostDraw();
             }
         }
+        // To stop blowing up roofs, technically its cheating but gameplay feels too punishing if not added atm TODO: Figure out a way to just not shoot if likely to hit a roof instead of target
+        protected override bool TryCollideWithRoof(IntVec3 cell)
+        {
+            if (!cell.Roofed(Map))
+            {
+                return false;
+            }
+
+            var bounds = CE_Utility.GetBoundsFor(cell, cell.GetRoof(Map));
+
+            float dist;
+            if (!bounds.IntersectRay(ShotLine, out dist))
+            {
+                return false;
+            }
+            if (dist * dist > (ExactPosition - LastPos).sqrMagnitude)
+            {
+                return false;
+            }
+
+            var point = ShotLine.GetPoint(dist);
+            ExactPosition = point;
+            landed = true;
+
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                MoteMakerCE.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
+            }
+
+            InterceptProjectile(null, ExactPosition, true);
+            return true;
+        }
+
+    }
+    public class VerbPropertiesShipWeaponCE : VerbPropertiesCE
+    {
+        // New properties type that includes a seperate projectile for GroundDefenseMode.
+        public ThingDef defaultProjectileGround;
     }
 }
