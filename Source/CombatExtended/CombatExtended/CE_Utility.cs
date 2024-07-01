@@ -760,15 +760,15 @@ namespace CombatExtended
         private static readonly SimpleCurve RecoilCurveAxisY = new SimpleCurve
     {
         new CurvePoint(0f, 0f),
-        new CurvePoint(1f, 0.05f),
-        new CurvePoint(2f, 0.075f)
+        new CurvePoint(1f, 0.03f),
+        new CurvePoint(2f, 0.04f)
     };
 
         private static readonly SimpleCurve RecoilCurveRotation = new SimpleCurve
     {
         new CurvePoint(0f, 0f),
-        new CurvePoint(1f, 3f),
-        new CurvePoint(2f, 4f)
+        new CurvePoint(1f, 2.5f),
+        new CurvePoint(2f, 3f)
     };
 
         const float RecoilMagicNumber = 2.6f;
