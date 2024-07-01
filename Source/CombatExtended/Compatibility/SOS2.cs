@@ -12,8 +12,6 @@ namespace CombatExtended.Compatibility
 {
     public class SOS2 : IPatch
     {
-        
-
         const string ModName = "Save Our Ship 2";
         bool IPatch.CanInstall()
         {
@@ -29,11 +27,10 @@ namespace CombatExtended.Compatibility
         {
             Log.Message("Combat Extended :: Installing SOS2");
         }
+
         public IEnumerable<string> GetCompatList()
         {
             yield return "SOS2Compat";
         }
-
-        
     }
 }

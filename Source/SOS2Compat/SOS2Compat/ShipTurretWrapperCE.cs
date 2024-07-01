@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SaveOurShip2;
 using System.Reflection;
 
-namespace CombatExtended.Compatibility
+namespace CombatExtended.Compatibility.SOS2Compat
 {
     public class ShipTurretWrapperCE : Building_ShipTurret
     {
@@ -21,9 +21,9 @@ namespace CombatExtended.Compatibility
             this.shipTurretCE = turretCE;
             // Delegate properties and fields that share the same names
             DelegateFields();
-
             DelegateProperties();
         }
+
         private void DelegateFields()
         {
             var targetType = typeof(Building_ShipTurret);
@@ -52,7 +52,7 @@ namespace CombatExtended.Compatibility
             foreach (var property in properties)
             {
                 var sourceProperty = sourceType.GetProperty(property.Name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                if (sourceProperty != null && sourceProperty.CanRead && sourceProperty.CanWrite) // TODO: Check if this needs to be changed to an OR/removed
+                if (sourceProperty != null && sourceProperty.CanRead && sourceProperty.CanWrite)
                 {
                     var value = sourceProperty.GetValue(this.shipTurretCE);
                     property.SetValue(this, value);

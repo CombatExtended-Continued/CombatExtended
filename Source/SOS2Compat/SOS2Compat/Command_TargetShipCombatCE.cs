@@ -9,12 +9,11 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace CombatExtended.Compatibility
+namespace CombatExtended.Compatibility.SOS2Compat
 {
     public class Command_TargetShipCombatCE : Command
     {
         // Pretty much a copy of Command_TargetShipCombat from SOS2 except with Building_ShipTurret changed to Building_ShipTurretCE
-        // TODO: Test if new wrapper for ShipTurretCE makes this copy obsolete
         #region License
         // Any SOS2 Code used for compatibility has been taken from the following source and is licensed under the "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License"
         // https://github.com/KentHaeger/SaveOurShip2/blob/cf179981d242764af20c41440d69649e6ecd6450/Source/1.5/Verb/Command_TargetShipCombat.cs

@@ -13,7 +13,7 @@ using Verse;
 using Verse.Sound;
 using Vehicles;
 
-namespace CombatExtended.Compatibility
+namespace CombatExtended.Compatibility.SOS2Compat
 {
     public class SOS2Compat : IModPart
     {

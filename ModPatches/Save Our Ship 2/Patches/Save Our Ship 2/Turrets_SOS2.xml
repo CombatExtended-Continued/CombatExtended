@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-    <!-- Replace all ship turrets with the new turret class -->
+    <!-- Replace all ship turrets with the new turret classes -->
     <Operation Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[@Name='BaseShipTurretBuilding']/thingClass</xpath>
         <value>
-            <thingClass>CombatExtended.Compatibility.Building_ShipTurretCE</thingClass>
+            <thingClass>CombatExtended.Compatibility.SOS2Compat.Building_ShipTurretCE</thingClass>
         </value>
     </Operation>
+    <!-- Spinals don't need to use any CE logic as they are only in space so give them the right class -->
+    <Operation Class="PatchOperationAdd"> 
+        <xpath>/Defs/ThingDef[@Name='ShipSpinalTurretBuilding']</xpath>
+        <value>
+            <thingClass>SaveOurShip2.Building_ShipTurret</thingClass>
+        </value>
+    </Operation>
+    
     <!-- 
         NOTE: Do not use CombatExtended.PatchOperationMakeGunCECompatible for changing the verb properties, it will not remove the default SOS2 custom verb
         Instead you need to replace the verb with one which has values for the ship combat as well as for CE ground defense/inspect panel
-        The class of the properties needs to be CombatExtended.Compatibility.VerbPropertiesShipWeaponCE and the verbClass should be CombatExtended.Compatibility.Verb_ShootShipCE
+        The class of the properties needs to be CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE and the verbClass should be CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE
      -->
     <!-- Kinetic Weapons -->
     <Operation Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName='ShipTurret_KineticTop']/verbs</xpath>
         <value>
 			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+				<li Class="CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE">
 					<recoilAmount>0.35</recoilAmount>
 					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
-					<!-- <burstShotCount>5</burstShotCount> -->
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 					<muzzleFlashScale>9</muzzleFlashScale>
                     <label>shoot slug</label>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <verbClass>CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE</verbClass>
                     <hasStandardCommand>true</hasStandardCommand>
                     <range>1500</range>
                     <minRange>31.9</minRange>
@@ -50,17 +56,14 @@
         <xpath>/Defs/ThingDef[defName='ShipTurret_KineticTop_Large']/verbs</xpath>
         <value>
 			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+				<li Class="CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE">
 					<recoilAmount>0.35</recoilAmount>
 					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
-					<!-- <burstShotCount>5</burstShotCount> -->
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 					<muzzleFlashScale>9</muzzleFlashScale>
                     <label>shoot slug</label>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <verbClass>CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE</verbClass>
                     <hasStandardCommand>true</hasStandardCommand>
                     <range>2500</range>
-                    <!-- <minRange>31.9</minRange> -->
                     <warmupTime>0.5</warmupTime>
                     <forcedMissRadius>1</forcedMissRadius>
                     <noiseRadius>4</noiseRadius>
@@ -83,14 +86,12 @@
         <xpath>/Defs/ThingDef[defName='ShipTurret_PlasmaTop']/verbs</xpath>
         <value>
 			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+				<li Class="CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE">
 					<recoilAmount>0.35</recoilAmount>
 					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
-					<!-- <burstShotCount>5</burstShotCount> -->
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 					<muzzleFlashScale>9</muzzleFlashScale>
                     <label>fire plasma</label>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <verbClass>CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE</verbClass>
                     <hasStandardCommand>true</hasStandardCommand>
                     <range>1000</range>
                     <minRange>31.9</minRange>
@@ -115,17 +116,14 @@
         <xpath>/Defs/ThingDef[defName='ShipTurret_PlasmaTop_Large']/verbs</xpath>
         <value>
 			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+				<li Class="CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE">
 					<recoilAmount>0.35</recoilAmount>
 					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
-					<!-- <burstShotCount>5</burstShotCount> -->
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 					<muzzleFlashScale>9</muzzleFlashScale>
                     <label>fire plasma</label>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <verbClass>CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE</verbClass>
                     <hasStandardCommand>true</hasStandardCommand>
                     <range>1500</range>
-                    <!-- <minRange>31.9</minRange> -->
                     <warmupTime>1.5</warmupTime>
                     <forcedMissRadius>1</forcedMissRadius>
                     <noiseRadius>4</noiseRadius>
@@ -149,14 +147,13 @@
         <xpath>/Defs/ThingDef[defName='ShipTurret_LaserTop']/verbs</xpath>
         <value>
 			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+				<li Class="CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE">
 					<recoilAmount>0.35</recoilAmount>
 					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
 					<burstShotCount>6</burstShotCount>
-					<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
 					<muzzleFlashScale>9</muzzleFlashScale>
                     <label>shoot laser</label>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <verbClass>CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE</verbClass>
                     <hasStandardCommand>true</hasStandardCommand>
                     <range>500</range>
                     <minRange>31.9</minRange>
@@ -181,14 +178,13 @@
         <xpath>/Defs/ThingDef[defName='ShipTurret_LaserTop_Large']/verbs</xpath>
         <value>
 			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+				<li Class="CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE">
 					<recoilAmount>0.35</recoilAmount>
 					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
 					<burstShotCount>12</burstShotCount>
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 					<muzzleFlashScale>9</muzzleFlashScale>
                     <label>shoot laser</label>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <verbClass>CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE</verbClass>
                     <hasStandardCommand>true</hasStandardCommand>
                     <range>1000</range>
                     <minRange>31.9</minRange>
@@ -215,14 +211,13 @@
         <xpath>/Defs/ThingDef[defName='ShipTurret_ACITop']/verbs</xpath>
         <value>
 			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+				<li Class="CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE">
 					<recoilAmount>0.35</recoilAmount>
 					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
 					<burstShotCount>8</burstShotCount>
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 					<muzzleFlashScale>9</muzzleFlashScale>
                     <label>shoot slug</label>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <verbClass>CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE</verbClass>
                     <hasStandardCommand>true</hasStandardCommand>
                     <range>500</range>
                     <minRange>31.9</minRange>
@@ -247,17 +242,15 @@
         <xpath>/Defs/ThingDef[defName='ShipTurret_ACIITop']/verbs</xpath>
         <value>
 			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+				<li Class="CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE">
 					<recoilAmount>0.35</recoilAmount>
 					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
 					<burstShotCount>8</burstShotCount>
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 					<muzzleFlashScale>9</muzzleFlashScale>
                     <label>shoot slug</label>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <verbClass>CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE</verbClass>
                     <hasStandardCommand>true</hasStandardCommand>
                     <range>1000</range>
-                    <!-- <minRange>0</minRange> -->
                     <warmupTime>0.5</warmupTime>
                     <forcedMissRadius>1</forcedMissRadius>
                     <noiseRadius>10</noiseRadius>
@@ -279,17 +272,15 @@
         <xpath>/Defs/ThingDef[defName='ShipTurret_ACIIITop']/verbs</xpath>
         <value>
 			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
+				<li Class="CombatExtended.Compatibility.SOS2Compat.VerbPropertiesShipWeaponCE">
 					<recoilAmount>0.35</recoilAmount>
 					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
 					<burstShotCount>10</burstShotCount>
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 					<muzzleFlashScale>9</muzzleFlashScale>
                     <label>shoot slug</label>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
+                    <verbClass>CombatExtended.Compatibility.SOS2Compat.Verb_ShootShipCE</verbClass>
                     <hasStandardCommand>true</hasStandardCommand>
                     <range>1000</range>
-                    <!-- <minRange>0</minRange> -->
                     <warmupTime>0.5</warmupTime>
                     <forcedMissRadius>1</forcedMissRadius>
                     <noiseRadius>10</noiseRadius>
@@ -307,69 +298,160 @@
 			</verbs>
         </value>
     </Operation>
+
+    <!-- Copies of SOS2 Spinal and Torpedo Verbs as these are only used in space, just adds the Class="CombatExtended.VerbPropertiesCE" to stop errors with the inspect panel -->
     <!-- Torpedos -->
     <Operation Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[@Name='BaseShipTorpedoWeapon']/verbs</xpath>
         <value>
-			<verbs>
-				<li Class="CombatExtended.Compatibility.VerbPropertiesShipWeaponCE">
-                    <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-                    <warmupTime>4.0</warmupTime>
-                    <requireLineOfSight>false</requireLineOfSight>
-                    <range>3000</range>
-                    <burstShotCount>1</burstShotCount>
-                    <soundCast>Mortar_LaunchA</soundCast>
-                    <muzzleFlashScale>16</muzzleFlashScale>
-                    <targetParams>
-                        <canTargetLocations>true</canTargetLocations>
-                    </targetParams>
-                    <verbClass>CombatExtended.Compatibility.Verb_ShootShipCE</verbClass>
-                    <defaultProjectileGround>Bullet_SOS2_ACI_CE</defaultProjectileGround> <!-- New Property that should be set to ground projectile -->
-				</li>
-			</verbs>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>SaveOurShip2.Verb_LaunchProjectileShip</verbClass>
+				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+				<warmupTime>4.0</warmupTime>
+				<requireLineOfSight>false</requireLineOfSight>
+				<range>3000</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Mortar_LaunchA</soundCast>
+				<muzzleFlashScale>16</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</verbs>
         </value>
     </Operation>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>ShipTurret_KineticTop</defName>
-        <statBases>
-            <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
-            <SightsEfficiency>1.5</SightsEfficiency>
-            <ShotSpread>0.05</ShotSpread>
-            <SwayFactor>0.63</SwayFactor>
-            <Bulk>174</Bulk>
-        </statBases>
-        <AmmoUser>
-            <magazineSize>980</magazineSize>
-            <reloadTime>20</reloadTime>
-            <ammoSet>AmmoSet_30x173mmNATO</ammoSet>
-        </AmmoUser>
-        <FireModes>
-            <noSingleShot>true</noSingleShot>
-            <aiUseBurstMode>FALSE</aiUseBurstMode>
-            <aiAimMode>SuppressFire</aiAimMode>
-            <aimedBurstShotCount>35</aimedBurstShotCount>
-        </FireModes>
-    </Operation> -->
-    
+    <!-- Spinal Laser -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_SpinalMountTopLaser']/verbs</xpath>
+        <value>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<label>shoot</label>
+				<verbClass>SaveOurShip2.Verb_LaunchProjectileShip</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>1000</range>
+				<warmupTime>0</warmupTime>
+				<forcedMissRadius>1</forcedMissRadius>
+				<noiseRadius>4</noiseRadius>
+				<burstShotCount>40</burstShotCount>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				<requireLineOfSight>false</requireLineOfSight>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_ShipSpinalBeamLaser</defaultProjectile>
+				<spawnDef>Bullet_Fake_Laser</spawnDef>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+        </value>
+    </Operation>
+    <!-- Spinal Plasma -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_SpinalMountTopPlasma']/verbs</xpath>
+        <value>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<label>shoot</label>
+				<verbClass>SaveOurShip2.Verb_LaunchProjectileShip</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>1500</range>
+				<warmupTime>0</warmupTime>
+				<forcedMissRadius>1</forcedMissRadius>
+				<noiseRadius>4</noiseRadius>
+				<burstShotCount>5</burstShotCount>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				<requireLineOfSight>false</requireLineOfSight>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>ShipCombatPlasma</soundCast>
+				<defaultProjectile>Proj_ShipSpinalBeamPlasma</defaultProjectile>
+				<spawnDef>Bullet_Fake_Plasma_XL</spawnDef>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+        </value>
+    </Operation>
+    <!-- Spinal Kinetic -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_SpinalMountTopKinetic']/verbs</xpath>
+        <value>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<label>shoot</label>
+				<verbClass>SaveOurShip2.Verb_LaunchProjectileShip</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>2500</range>
+				<warmupTime>0</warmupTime>
+				<forcedMissRadius>1</forcedMissRadius>
+				<noiseRadius>4</noiseRadius>
+				<burstShotCount>12</burstShotCount>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				<requireLineOfSight>false</requireLineOfSight>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>ShipCombatKinetic</soundCast>
+				<defaultProjectile>Proj_ShipTurretKinetic_Large</defaultProjectile>
+				<spawnDef>Bullet_Fake_Kinetic</spawnDef>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+        </value>
+    </Operation>
+    <!-- Spinal Disassembler -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_SpinalMountTopMechanite']/verbs</xpath>
+        <value>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<label>shoot</label>
+				<verbClass>SaveOurShip2.Verb_LaunchProjectileShip</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>1500</range>
+				<warmupTime>0</warmupTime>
+				<forcedMissRadius>1</forcedMissRadius>
+				<noiseRadius>4</noiseRadius>
+				<burstShotCount>10</burstShotCount>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				<requireLineOfSight>false</requireLineOfSight>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>ShipCombatKinetic</soundCast>
+				<defaultProjectile>Proj_ShipTurretMechanite</defaultProjectile>
+				<spawnDef>Bullet_Fake_Mechanite</spawnDef>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+        </value>
+    </Operation>
+    <!-- Spinal Psychic Flayer -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName='ShipTurret_SpinalMountTopPsychic']/verbs</xpath>
+        <value>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<label>shoot</label>
+				<verbClass>SaveOurShip2.Verb_LaunchProjectileShip</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>1500</range>
+				<warmupTime>0</warmupTime>
+				<forcedMissRadius>1</forcedMissRadius>
+				<noiseRadius>4</noiseRadius>
+				<burstShotCount>10</burstShotCount>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				<requireLineOfSight>false</requireLineOfSight>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_ShipTurretPsychic</defaultProjectile>
+				<spawnDef>Bullet_Fake_Psychic</spawnDef>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			</li>
+		</verbs>
+        </value>
+    </Operation>
 </Patch>

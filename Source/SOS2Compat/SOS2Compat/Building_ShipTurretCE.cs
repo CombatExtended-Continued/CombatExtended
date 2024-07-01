@@ -15,18 +15,16 @@ using Verse.AI;
 using Verse.Noise;
 using Verse.Sound;
 
-namespace CombatExtended.Compatibility
+namespace CombatExtended.Compatibility.SOS2Compat
 {
     public class Building_ShipTurretCE : Building_Turret
     {
-        // TODO: Fix up the layout/formatting of this class
-        // TODO: Fix Autocannons not consuming ammo
         #region License
         // Any SOS2 Code used for compatibility has been taken from the following source and is licensed under the "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License"
         // https://github.com/KentHaeger/SaveOurShip2/blob/cf179981d242764af20c41440d69649e6ecd6450/Source/1.5/Building/Building_ShipTurret.cs
         #endregion
 
-        #region Shared
+        #region Shared Functionality
 
         public bool holdFire;
         public bool GroundDefenseMode;
@@ -374,6 +372,22 @@ namespace CombatExtended.Compatibility
 
                     ResetCurrentTarget();
                     return;
+                }
+                //ammo
+                if (fuelComp != null)
+                {
+                    if (fuelComp.Fuel <= 0)
+                    {
+                        if (!PointDefenseMode && PlayerControlled)
+                        {
+                            Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToAmmo", Label), this, MessageTypeDefOf.CautionInput);
+                        }
+
+                        shipTarget = LocalTargetInfo.Invalid;
+                        ResetCurrentTarget();
+                        return;
+                    }
+                    fuelComp.ConsumeFuel(1);
                 }
                 //draw the same percentage from each cap: needed*current/currenttotal
                 foreach (CompPowerBattery bat in powerComp.PowerNet.batteryComps)
@@ -949,12 +963,12 @@ namespace CombatExtended.Compatibility
         public override void SpawnSetup(Map map, bool respawningAfterLoad)      //Add mannableComp, ticksUntilAutoReload, register to GenClosestAmmo
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            Map.GetComponent<TurretTracker>().Register(this);
+            map.GetComponent<TurretTracker>().Register(this);
 
             dormantComp = GetComp<CompCanBeDormant>();
             initiatableComp = GetComp<CompInitiatable>();
             mannableComp = GetComp<CompMannable>();
-            mapComp = Map.GetComponent<ShipMapComp>();
+            mapComp = map.GetComponent<ShipMapComp>();
             powerComp = this.TryGetComp<CompPowerTrader>();
             heatComp = this.TryGetComp<CompShipHeat>();
             fuelComp = this.TryGetComp<CompRefuelable>();
@@ -1311,7 +1325,7 @@ namespace CombatExtended.Compatibility
                 float angleOffset = 0f;
                 if (Controller.settings.RecoilAnim)
                 {
-                    CE_Utility.Recoil(def.building.turretGunDef, AttackVerb, out drawOffset, out angleOffset, top.CurRotation, false); // TODO: Check
+                    CE_Utility.Recoil(def.building.turretGunDef, AttackVerb, out drawOffset, out angleOffset, top.CurRotation, false);
                 }
                 top.DrawTurret(drawLoc, drawOffset, angleOffset);
                 base.DrawAt(drawLoc, flip);
@@ -1325,7 +1339,7 @@ namespace CombatExtended.Compatibility
         }
         #endregion
 
-        #region CE
+        #region CE Functionality
         private const int minTicksBeforeAutoReload = 1800;              // This much time must pass before haulers will try to automatically reload an auto-turret
         private const int ticksBetweenAmmoChecks = 300;                 // Test nearby ammo every 5 seconds if there's many ammo changes
         private const int ticksBetweenSlowAmmoChecks = 3600;               // Test nearby ammo every minute if there's no ammo changes
@@ -1502,7 +1516,7 @@ namespace CombatExtended.Compatibility
         }
         #endregion
 
-        #region SOS2
+        #region SOS2 Functionality
         public bool PointDefenseMode;
         //public Thing gun;
         public float AmplifierDamageBonus = 0;
