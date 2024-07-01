@@ -1,14 +1,14 @@
-using HarmonyLib;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Verse;
-using System;
+using HarmonyLib;
 using RimWorld;
-using Verse.AI;
 using SaveOurShip2;
+using Verse.AI;
+using Verse;
 
-namespace CombatExtended.HarmonyCE.Compatibility
+namespace CombatExtended.Compatibility.SOS2Compat
 {
     [HarmonyPatch]
     class Harmony_Compatibility_SaveOurShip
