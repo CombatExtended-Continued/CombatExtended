@@ -30,7 +30,7 @@ namespace CombatExtended
 
         // Targeting factors
         private float estimatedTargDist = -1;           // Stores estimate target distance for each burst, so each burst shot uses the same
-        private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
+        protected int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
 
         // Angle in Vector2(degrees, radians)        
         protected Vector2 newTargetLoc = new Vector2(0, 0);
@@ -54,7 +54,7 @@ namespace CombatExtended
 
         private bool shootingAtDowned = false;
         private LocalTargetInfo lastTarget = null;
-        private IntVec3 lastTargetPos = IntVec3.Invalid;
+        protected IntVec3 lastTargetPos = IntVec3.Invalid;
 
         protected float lastShotAngle;
         protected float lastShotRotation;
@@ -62,7 +62,7 @@ namespace CombatExtended
         protected float? storedShotReduction = null;
         protected ShootLine? lastShootLine;
         protected bool repeating = false;
-        private bool doRetarget = true;
+        protected bool doRetarget = true;
 
         #endregion
 
@@ -129,7 +129,7 @@ namespace CombatExtended
                 return shotSpeed;
             }
         }
-        public float ShotHeight => (new CollisionVertical(caster)).shotHeight;
+        public virtual float ShotHeight => (new CollisionVertical(caster)).shotHeight;
         private Vector3 ShotSource
         {
             get
@@ -1166,7 +1166,7 @@ namespace CombatExtended
             return explosionRadiusForDisplay;
         }
 
-        private float GetMinCollisionDistance(float targetDistance)
+        protected float GetMinCollisionDistance(float targetDistance)
         {
             var shortRangeMinCollisionDistance = 1.5f;
             var longRangeMinCollisionDistMult = 0.2f;
