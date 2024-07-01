@@ -45,13 +45,14 @@ namespace CombatExtended.Compatibility
         {
             yield break;
         }
-        public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
+        public static IEnumerable<(Vector3 IntersectionPos, Action OnIntersection)> CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             /* Check if an active shield can block this projectile
              */
+            List<(Vector3, Action)> result = new List<(Vector3, Action)>();
             if (projectile.def.projectile.flyOverhead)
             {
-                return false;
+                return result;
             }
             Thing launcher = projectile.launcher;
             Map map = projectile.Map;
@@ -87,22 +88,9 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
 
-                Quaternion shieldProjAng = Quaternion.LookRotation(from - shieldPosition2D);
-                if ((Quaternion.Angle(targetAngle, shieldProjAng) > 90))
-                {
-                    HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));
-
-                    int damage = (projectile.def.projectile.GetDamageAmount(launcher));
-
-                    generator.FieldIntegrity_Current -= damage;
-
-                    exactPosition = nep;
-                    FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
-                    projectile.InterceptProjectile(shield, exactPosition, false);
-                    return true;
-                }
+                result.Add((nep, () => OnInterception(projectile, building, nep)));
             }
-            return false;
+            return result;
         }
         public static bool ImpactSomethingCallback(ProjectileCE projectile, Thing launcher)
         {
@@ -182,6 +170,17 @@ namespace CombatExtended.Compatibility
                 result.Add(GenRadial.RadialCellsAround(shield.Position, fieldRadius, true));
             }
             return result;
+        }
+        private static void OnInterception(ProjectileCE projectile, Building building, Vector3 exactPosition)
+        {
+            var generator = building.GetComp<Comp_ShieldGenerator>();
+            HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(building.Position, building.Map, false));
+
+            int damage = (projectile.def.projectile.GetDamageAmount(projectile.launcher));
+
+            generator.FieldIntegrity_Current -= damage;
+            FleckMakerCE.ThrowLightningGlow(exactPosition, building.Map, 0.5f);
+            projectile.InterceptProjectile(building, exactPosition, false);
         }
 
     }
