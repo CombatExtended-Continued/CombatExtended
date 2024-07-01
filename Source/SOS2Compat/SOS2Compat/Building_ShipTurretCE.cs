@@ -34,7 +34,6 @@ namespace CombatExtended.Compatibility.SOS2Compat
         public override LocalTargetInfo CurrentTarget => currentTargetInt;
         public LocalTargetInfo currentTargetInt = LocalTargetInfo.Invalid;
 
-        
         public bool PlayerControlled => (Faction == Faction.OfPlayer || MannedByColonist) && !MannedByNonColonist; // Manned part added by CE
         private bool CanToggleHoldFire => PlayerControlled;
         private bool WarmingUp => burstWarmupTicksLeft > 0;
@@ -91,7 +90,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
             return AttackVerb.verbProps.defaultCooldownTime;
         }
 
-        public void BurstComplete() 
+        public void BurstComplete()
         {
             burstCooldownTicksLeft = BurstCooldownTime().SecondsToTicks();
             if (GroundDefenseMode)
@@ -241,7 +240,8 @@ namespace CombatExtended.Compatibility.SOS2Compat
                 {
                     this.TryStartShootSomething(false);
                 }
-            } else
+            }
+            else
             {
                 shipTarget = LocalTargetInfo.Invalid;
                 burstWarmupTicksLeft = 0;
@@ -298,7 +298,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
             {
                 return LocalTargetInfo.Invalid;
             }
-            
+
         }
 
         private bool IsValidTarget(Thing t)
@@ -397,7 +397,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                 AttackVerb.TryStartCastOn(CurrentTarget, false, true);
 
                 OnAttackedTarget(CurrentTarget);
-            } 
+            }
             else // Space Logic
             {
                 if (spinalComp != null)
@@ -634,7 +634,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                             defaultLabel = "CommandSetForceAttackTarget".Translate(),
                             defaultDesc = "CommandSetForceAttackTargetDesc".Translate(),
                             icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
-                            verb = AttackVerb, 
+                            verb = AttackVerb,
                             hotKey = KeyBindingDefOf.Misc4
                         };
                         if (Spawned && IsMortarOrProjectileFliesOverhead && Position.Roofed(Map))
@@ -852,7 +852,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                     yield return command_Toggle;
                 }
             }
-            
+
         }
 
         public override string GetInspectString()       // Replaced vanilla loaded text with CE reloading
@@ -884,7 +884,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                     stringBuilder.AppendLine("CanFireIn".Translate() + ": " + this.burstCooldownTicksLeft.ToStringSecondsFromTicks());
                 }
                 return stringBuilder.ToString().TrimEndNewlines();
-            } 
+            }
             else
             {
                 StringBuilder stringBuilder = new StringBuilder();
@@ -978,7 +978,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
             if (!Map.IsSpace() && heatComp.Props.groundDefense) // Ground defense prop is used to disable large guns on ground
             {
                 GroundDefenseMode = true;
-            } 
+            }
             else
             {
                 GroundDefenseMode = false;
@@ -1003,7 +1003,8 @@ namespace CombatExtended.Compatibility.SOS2Compat
                         ticksUntilAutoReload = minTicksBeforeAutoReload;
                     }
                 }
-            } else
+            }
+            else
             {
                 if (!respawningAfterLoad)
                 {
@@ -1013,7 +1014,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                 }
             }
 
-            
+
         }
         public override void ExposeData()
         {
@@ -1256,7 +1257,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                 {
                     ResetCurrentTarget();
                 }
-            }  
+            }
         }
 
         public bool Active //needs power, heat and bridge on net

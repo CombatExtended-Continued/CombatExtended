@@ -383,14 +383,15 @@ namespace CombatExtended.Compatibility.SOS2Compat
         #region Shared Functionality
         public override bool CanHitTarget(LocalTargetInfo targ)
         {
-            return true;  
+            return true;
         }
 
         public override ThingDef Projectile
         {
             get
             {
-                if (GroundDefenseMode) {
+                if (GroundDefenseMode)
+                {
                     if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
                     {
                         return CompAmmo.CurAmmoProjectile;
@@ -504,7 +505,8 @@ namespace CombatExtended.Compatibility.SOS2Compat
                     if (instant)
                     {
                         projectileCE = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
-                    } else
+                    }
+                    else
                     {
                         projectileCE = (ShipProjectileCE)ThingMaker.MakeThing(Projectile, null);
                     }
