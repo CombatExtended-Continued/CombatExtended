@@ -67,4 +67,129 @@
 		</value>
 	</Operation>
 
+	<!-- ===== Only active when Vanilla Expanded Framework is present ===== -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Expanded Framework</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ===== Charge Trapshot Rifle ===== -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="EoD_Gun_ChargeTrapshot"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>EoD_Gun_ChargeTrapshot</defName>
+					<statBases>
+						<Mass>8</Mass>
+						<Bulk>16</Bulk>
+						<RangedWeapon_Cooldown>0.83</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.6</SightsEfficiency>
+						<ShotSpread>0.03</ShotSpread>
+						<SwayFactor>1.47</SwayFactor>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.82</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_12x72mmCharged</defaultProjectile>
+						<warmupTime>2.7</warmupTime>
+						<range>86</range>
+						<soundCast>EoD_Shot_ChargeTrapshotRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_12x72mmCharged</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>SniperRifle</li>
+						<li>AdvancedGun</li>
+						<li>SpacerGun</li>
+						<li>CE_AI_SR</li>
+						<li>Bipod_AMR</li>
+					</weaponTags>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="EoD_Gun_ChargeTrapshot"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_UnderBarrel">
+							<oneAmmoHolder>True</oneAmmoHolder>
+							<propsUnderBarrel>
+								<magazineSize>10</magazineSize>
+								<reloadTime>4</reloadTime>
+								<ammoSet>AmmoSet_12x72mmCharged_Demo</ammoSet>
+							</propsUnderBarrel>
+							<verbPropsUnderBarrel>
+								<recoilAmount>1.82</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_12x72mmCharged_Demo_Thump</defaultProjectile>
+								<warmupTime>2.7</warmupTime>
+								<range>86</range>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<soundCast>ThumpCannon_Fire</soundCast>
+								<soundCastTail>GunTail_Heavy</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</verbPropsUnderBarrel>
+							<propsFireModesUnderBarrel>
+								<aiAimMode>AimedShot</aiAimMode>
+							</propsFireModesUnderBarrel>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="EoD_Gun_ChargeTrapshot"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+
 </Patch>

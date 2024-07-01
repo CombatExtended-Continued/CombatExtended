@@ -1,4 +1,4 @@
-﻿using RimWorld;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -339,6 +339,7 @@ namespace CombatExtended
             damagedThings.Clear();
             addedCellsAffectedOnlyByDamage.Clear();
             //this.cellsToAffect.AddRange(this.damType.Worker.ExplosionCellsToHit(this));
+            // Do we need to add overrideCells to cellsToAffect?
             cellsToAffect.AddRange(ExplosionCellsToHit);
             if (applyDamageToExplosionCellsNeighbors)
             {

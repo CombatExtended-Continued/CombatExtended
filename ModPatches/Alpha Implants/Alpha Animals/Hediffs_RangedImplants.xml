@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+                
+				<li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalRangedSpinneret"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+                    <value>
+                        <verbs>
+                            <li Class="CombatExtended.VerbPropertiesCE">
+                                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                                <hasStandardCommand>true</hasStandardCommand>
+                                <defaultProjectile>AA_Web</defaultProjectile>
+                                <warmupTime>2</warmupTime>
+                                <burstShotCount>3</burstShotCount>
+                                <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+                                <minRange>1</minRange>
+                                <range>20</range>
+                                <soundCast>AA_Throw</soundCast>
+                                <muzzleFlashScale>0</muzzleFlashScale>
+                                <label>web</label>
+                                <commonality>0.8</commonality>
+                            </li>
+                        </verbs>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalVenomousSpitter"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+                    <value>
+                        <verbs>
+                            <li Class="CombatExtended.VerbPropertiesCE">
+                                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                                <hasStandardCommand>true</hasStandardCommand>
+                                <defaultProjectile>AA_PoisonBolt</defaultProjectile>
+                                <warmupTime>1.6</warmupTime>
+                                <burstShotCount>1</burstShotCount>
+                                <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+                                <minRange>2</minRange>
+                                <range>30</range>
+                                <soundCast>AA_PoisonBolt</soundCast>
+                                <muzzleFlashScale>0</muzzleFlashScale>
+                                <label>venomous spit</label>
+                                <commonality>0.8</commonality>
+                            </li>
+                        </verbs>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalAcidicSpitter"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+                    <value>
+                        <verbs>
+                            <li Class="CombatExtended.VerbPropertiesCE">
+                                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                                <hasStandardCommand>true</hasStandardCommand>
+                                <defaultProjectile>AA_AcidBolt</defaultProjectile>
+                                <warmupTime>1.1</warmupTime>
+                                <burstShotCount>1</burstShotCount>
+                                <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+                                <minRange>2</minRange>
+                                <range>20</range>
+                                <soundCast>AA_PoisonBolt</soundCast>
+                                <muzzleFlashScale>0</muzzleFlashScale>
+                                <label>acidic spit</label>
+                                <commonality>0.8</commonality>
+                            </li>
+                        </verbs>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalBarbedQuillThrower"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+                    <value>
+                        <verbs>
+                            <li Class="CombatExtended.VerbPropertiesCE">
+                                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                                <hasStandardCommand>true</hasStandardCommand>
+                                <defaultProjectile>AA_Quill</defaultProjectile>
+                                <warmupTime>2</warmupTime>
+                                <burstShotCount>1</burstShotCount>
+                                <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+                                <minRange>2</minRange>
+                                <range>20</range>
+                                <soundCast>AA_DartSound</soundCast>
+                                <muzzleFlashScale>0</muzzleFlashScale>
+                                <label>barbed quills</label>
+                                <commonality>0.8</commonality>
+                            </li>
+                        </verbs>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalQuadTeslaCannon"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+                    <value>
+                        <verbs>
+                            <li Class="CombatExtended.VerbPropertiesCE">
+                                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                                <hasStandardCommand>true</hasStandardCommand>
+                                <defaultProjectile>AA_Plasma</defaultProjectile>
+                                <warmupTime>3.6</warmupTime>
+                                <burstShotCount>4</burstShotCount>
+                                <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+                                <minRange>2</minRange>
+                                <range>20</range>
+                                <soundCast>AA_Plasma</soundCast>
+                                <muzzleFlashScale>0</muzzleFlashScale>
+                                <label>quad tesla cannon</label>
+                                <commonality>1</commonality>
+                            </li>
+                        </verbs>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalBioelectricOrgan"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+                    <value>
+                        <verbs>
+                            <li Class="CombatExtended.VerbPropertiesCE">
+                                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                                <hasStandardCommand>true</hasStandardCommand>
+                                <defaultProjectile>AA_ElectricBolt</defaultProjectile>
+                                <warmupTime>2.6</warmupTime>
+                                <burstShotCount>1</burstShotCount>
+                                <minRange>2</minRange>
+                                <range>15</range>
+                                <soundCast>AA_ElectricBolt</soundCast>
+                                <muzzleFlashScale>0</muzzleFlashScale>
+                                <label>electric bolt</label>
+                                <commonality>0.8</commonality>
+                            </li>
+                        </verbs>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalLightFocusingLens"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+                    <value>
+                        <verbs>
+                            <li Class="CombatExtended.VerbPropertiesCE">
+                                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                                <hasStandardCommand>true</hasStandardCommand>
+                                <defaultProjectile>AA_FireSpit</defaultProjectile>
+                                <warmupTime>3</warmupTime>
+                                <burstShotCount>1</burstShotCount>
+                                <minRange>1</minRange>
+                                <range>10</range>
+                                <soundCast>AA_LaserBullet</soundCast>
+                                <muzzleFlashScale>0</muzzleFlashScale>
+                                <label>laser</label>
+                                <commonality>0.8</commonality>
+                            </li>
+                        </verbs>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/HediffDef[defName="AI_AnimalHyperAcidicStomach"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+                    <value>
+                        <verbs>
+                            <li Class="CombatExtended.VerbPropertiesCE">
+                                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                                <hasStandardCommand>true</hasStandardCommand>
+                                <defaultProjectile>AA_AcidicVomit_CE</defaultProjectile>
+                                <warmupTime>2.6</warmupTime>
+                                <burstShotCount>1</burstShotCount>
+                                <minRange>1</minRange>
+                                <range>7</range>
+                                <soundCast>AA_PoisonBolt</soundCast>
+                                <muzzleFlashScale>0</muzzleFlashScale>
+                                <label>acidic vomit</label>
+                                <commonality>0.8</commonality>
+                            </li>
+                        </verbs>
+                    </value>
+                </li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

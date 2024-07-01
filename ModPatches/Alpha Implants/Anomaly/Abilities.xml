@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="AI_TrispikeLaunch"]/verbProperties</xpath>
+					<value>
+						<verbProperties Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_AbilityShootCE</verbClass>
+							<warmupTime>0.5</warmupTime>
+							<soundCast>Ability_SpineLaunch</soundCast>
+							<ai_IsWeapon>false</ai_IsWeapon>
+							<range>18.9</range>
+							<defaultProjectile>Spike_Toughspike</defaultProjectile>
+						</verbProperties>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
