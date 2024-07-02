@@ -4,7 +4,7 @@
 	<!-- === Wall Armor === -->
 	<!-- adjust damageMultipliers dealt by damage defs -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "RB_OverwallArmor"]/damageMultipliers/li[damageDef = "Bomb" or damageDef = "Thump"]/multiplier</xpath>
+		<xpath>Defs/ThingDef[defName = "RB_ReinforcedGlassWall" or defName = "RB_ReinforcedClerestoryWall"]/damageMultipliers/li[damageDef = "Bomb" or damageDef = "Thump"]/multiplier</xpath>
 		<value>
 			<multiplier>0.5</multiplier>
 		</value>
@@ -12,7 +12,7 @@
 
   <!-- add more damage defs -->
   <Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "RB_OverwallArmor"]/damageMultipliers</xpath>
+		<xpath>Defs/ThingDef[defName = "RB_ReinforcedGlassWall" or defName = "RB_ReinforcedClerestoryWall"]/damageMultipliers</xpath>
 		<value>
 			<li>
         <damageDef>Thermobaric</damageDef>
