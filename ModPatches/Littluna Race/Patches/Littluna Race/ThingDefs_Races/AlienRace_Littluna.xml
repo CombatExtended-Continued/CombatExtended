@@ -7,17 +7,27 @@
 		</value>
 	</Operation>
 
+	  <!-- add comps field to HAR_Littluna_BaseNRPawn ThingDef if it doesn't exist -->
+	  <Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+		  <xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]</xpath>
+		  <value>
+			<comps />
+		  </value>
+		</nomatch>
+	  </Operation>
+
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]</xpath>
+		<xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/comps</xpath>
 		<value>
-			<comps>
 				<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
 				</li>
 				<li Class="CombatExtended.CompProperties_Suppressable"/>
 				<li Class="CombatExtended.CompProperties_Inventory"/>
 				<li Class="CombatExtended.CompProperties_TacticalManager"/>
-			</comps>
 		</value>
 	</Operation>
 
