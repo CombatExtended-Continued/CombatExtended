@@ -30,7 +30,7 @@ namespace CombatExtended
 
         public override bool ShouldShowFor(StatRequest req)
         {
-            return base.ShouldShowFor(req) &&
+            return base.ShouldShowFor(req) && !GunDef(req).IsMeleeWeapon &&
             (((GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>() as CompProperties_AmmoUser)?.ammoSet?.ammoConsumedPerShot != 1) ||
              (GunDef(req)?.Verbs?.Any(x => ((x as VerbPropertiesCE)?.ammoConsumedPerShotCount ?? 1) > 1) ?? false));
         }
