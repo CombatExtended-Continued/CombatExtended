@@ -2,8 +2,8 @@
 <Defs>
 
 	<ThingCategoryDef>
-		<defName>Ammo120mmCannonShells</defName>
-		<label>120mm cannon shell</label>
+		<defName>AmmoBattleCannonShells</defName>
+		<label>battle cannon shell</label>
 		<parent>AmmoShells</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
 	</ThingCategoryDef>
@@ -11,20 +11,20 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_120mmCannonShell</defName>
-		<label>120mm cannon shells</label>
+		<defName>AmmoSet_BattleCannonShell</defName>
+		<label>battle cannon shells</label>
 		<ammoTypes>
-			<Ammo_120mmCannonShell_HEAT>Bullet_120mmCannonShell_HEAT</Ammo_120mmCannonShell_HEAT>
+			<Ammo_BattleCannonShell_HEAT>Bullet_BattleCannonShell_HEAT</Ammo_BattleCannonShell_HEAT>
 		</ammoTypes>
 		<similarTo>AmmoSet_HeavyCannon</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="120mmCannonShellBase" ParentName="HeavyAmmoBase" Abstract="True">
-		<description>Large cannon shells, typically used by 120mm smoothbore tank guns.</description>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BattleCannonShellBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>Large cannon shells, typically used by battle smoothbore tank guns.</description>
 		<thingCategories>
-			<li>Ammo120mmCannonShells</li>
+			<li>AmmoBattleCannonShells</li>
 		</thingCategories>
 		<stackLimit>25</stackLimit>
 		<tradeTags>
@@ -40,9 +40,9 @@
 		<cookOffSound>MortarBomb_Explode</cookOffSound>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="120mmCannonShellBase">
-		<defName>Ammo_120mmCannonShell_HEAT</defName>
-		<label>120mm cannon shell (HEAT)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BattleCannonShellBase">
+		<defName>Ammo_BattleCannonShell_HEAT</defName>
+		<label>battle cannon shell (HEAT)</label>
 		<graphicData>
 			<texPath>Things/Ammo/BattleCannon</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -51,12 +51,12 @@
 			<MarketValue>149.17</MarketValue>
 		</statBases>
 		<ammoClass>RocketHEAT</ammoClass>
-		<detonateProjectile>Bullet_120mmCannonShell_HEAT</detonateProjectile>
+		<detonateProjectile>Bullet_BattleCannonShell_HEAT</detonateProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base120mmCannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
+	<ThingDef Name="BaseBattleCannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -69,9 +69,9 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base120mmCannonShell">
-		<defName>Bullet_120mmCannonShell_HEAT</defName>
-		<label>120mm cannon shell (HEAT)</label>
+	<ThingDef ParentName="BaseBattleCannonShell">
+		<defName>Bullet_BattleCannonShell_HEAT</defName>
+		<label>battle cannon shell (HEAT)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Cannon/HEAT</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -102,10 +102,10 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_120mmCannonShell_HEAT</defName>
-		<label>make 120mm HEAT cannon shells x2</label>
-		<description>Craft 2 120mm HEAT cannon shells.</description>
-		<jobString>Making 120mm HEAT cannon shells.</jobString>
+		<defName>MakeAmmo_BattleCannonShell_HEAT</defName>
+		<label>make battle HEAT cannon shells x2</label>
+		<description>Craft 2 battle HEAT cannon shells.</description>
+		<jobString>Making battle HEAT cannon shells.</jobString>
 		<workAmount>13000</workAmount>
 		<ingredients>
 			<li>
@@ -141,7 +141,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_120mmCannonShell_HEAT>2</Ammo_120mmCannonShell_HEAT>
+			<Ammo_BattleCannonShell_HEAT>2</Ammo_BattleCannonShell_HEAT>
 		</products>
 		<skillRequirements>
 			<Crafting>4</Crafting>
