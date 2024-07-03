@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingCategoryDef>
+		<defName>AmmoLascannon</defName>
+		<label>Lascannon Power Pack</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>Things/Ammo/LasgunAmmo/LasgunAmmo_c</iconPath>
+    </ThingCategoryDef>
+
+	<!--Ammunition Set-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Lascannon</defName>
+		<label>Lascannon Power Pack</label>
+		<ammoTypes>
+			<Ammo_Lascannon>Bullet_Lascannon</Ammo_Lascannon>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!--Ammo-->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="LaserChargePackBase">
+		<defName>Ammo_Lascannon</defName>
+		<label>Lascannon Power Pack</label>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/Lascannons</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>3.015</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Lascannon</cookOffProjectile>
+		<ammoClass>Charged</ammoClass>
+	</ThingDef>
+
+		<!--Projectiles-->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+		<defName>Bullet_Lascannon</defName>
+		<label>Lascanon Bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame_Secondary</damageDef>
+			<damageAmountBase>80</damageAmountBase>
+			<armorPenetrationSharp>1000</armorPenetrationSharp>
+			<armorPenetrationBlunt>1</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb</def>
+					<amount>20</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!--Recipes-->
+
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Lascannon</defName>
+		<label>make Lascannon Power Pack x50</label>
+		<description>Craft 50 Lascannon Power Pack</description>
+		<jobString>Making 50 shots worth of Lascannon Power Pack</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Lascannon>50</Ammo_Lascannon>
+		</products>
+		<workAmount>10000</workAmount>
+		<researchPrerequisite>GW_LasCannonTurret</researchPrerequisite>
+	</RecipeDef>
+</Defs>

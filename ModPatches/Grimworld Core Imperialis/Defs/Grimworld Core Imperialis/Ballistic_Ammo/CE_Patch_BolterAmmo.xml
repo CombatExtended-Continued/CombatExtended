@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingCategoryDef>
+		<defName>AmmoBolter</defName>
+		<label>.75 Caliber</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>Things/Ammo/UI/BoltGunAmmoUI</iconPath>
+	</ThingCategoryDef>
+
+	<!--Ammunition Set-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Bolter</defName>
+		<label>.75 Caliber Bolt</label>
+		<ammoTypes>
+			<Ammo_Bolter>Bullet_Bolter</Ammo_Bolter>
+			<Ammo_Bolter_Kraken>Bullet_Bolter_Kraken</Ammo_Bolter_Kraken>
+			<Ammo_Bolter_Hellfire>Bullet_Bolter_Hellfire</Ammo_Bolter_Hellfire>
+			<Ammo_Bolter_Inferno>Bullet_Bolter_Inferno</Ammo_Bolter_Inferno>
+			<Ammo_Bolter_Korvidari>Bullet_Bolter_Korvidari</Ammo_Bolter_Korvidari>
+			<Ammo_Bolter_Vengeance>Bullet_Bolter_Vengeance</Ammo_Bolter_Vengeance>
+			<Ammo_Bolter_Tempest>Bullet_Bolter_Tempest</Ammo_Bolter_Tempest>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!--Ammo-->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BolterBase" ParentName="HP_AmmoBase" Abstract="True">
+		<description>.75 caliber bullets commonly used in bolter guns.</description>
+		<statBases>
+			<Mass>0.038</Mass>
+			<Bulk>0.042</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+		</tradeTags>
+		<stackLimit>500</stackLimit>
+		<thingCategories>
+			<li>AmmoBolter</li>
+		</thingCategories>
+	</ThingDef>
+	
+				<!-- ============ Standard ============ -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BolterBase">
+		<defName>Ammo_Bolter</defName>
+		<label>.75 Caliber cartridge (Standard)</label>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/Bolter/Standard</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.173</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Bolter</cookOffProjectile>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
+	
+				<!-- ============ Kraken ============ -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BolterBase">
+		<defName>Ammo_Bolter_Kraken</defName>
+		<label>.75 Caliber cartridge (Kraken)</label>
+		<description>Powerful armour-piercing rounds. The deuterium core is replaced by a solid adamantine core and uses a heavier main charge. Upon impact, the outer casing peels away and the high velocity adamantium needle accelerates into the victim, where the larger detonator propels shards of super hardened metal further into the wound</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/Bolter/Kraken</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.15</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Bolter_Kraken</cookOffProjectile>
+		<ammoClass>ArmorPiercing</ammoClass>
+	</ThingDef>
+	
+				<!-- ============ Hellfire ============ -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BolterBase">
+		<defName>Ammo_Bolter_Hellfire</defName>
+		<label>.75 Caliber cartridge (Hellfire)</label>
+		<description>Replaces the core and tip of the standard bolt round with a vial of mutagenic acid, and thousands of needles that fire into the target's flesh on impact, pumping the acid into the target. Developed specially to combat Tyranids.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/Bolter/Hellfire</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.2</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Bolter_Hellfire</cookOffProjectile>
+		<ammoClass>HollowPoint</ammoClass>
+	</ThingDef>
+	
+				<!-- ============ Inferno ============ -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BolterBase">
+		<defName>Ammo_Bolter_Inferno</defName>
+		<label>.75 Caliber cartridge (Inferno)</label>
+		<description>Designed to immolate their targets and destroy them with superheated chemical fire. The deuterium core is replaced with an oxy-phosphorus gel, known as Promethium.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/Bolter/Inferno</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.125</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Bolter_Inferno</cookOffProjectile>
+		<ammoClass>IncendiaryAP</ammoClass>
+	</ThingDef>
+	
+				<!-- ============ Korvidari ============ -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BolterBase">
+		<defName>Ammo_Bolter_Korvidari</defName>
+		<label>.75 Caliber cartridge (Korvidari)</label>
+		<description>Utilized by the Raven Guard. These are etched with raven-feather charms and sport an abnormally long range. The bolts are packed with extra propellant for superior range and accuracy. Each bolt also houses a minute, hyper-sensitive targeting and flight correction relay, allowing for a marksman's accuracy even against heavily obscured foes.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/Bolter/Korvidari</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.8</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Bolter_Korvidari</cookOffProjectile>
+		<ammoClass>ExplosiveAP</ammoClass>
+	</ThingDef>
+	
+				<!-- ============ Vengeance ============ -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BolterBase">
+		<defName>Ammo_Bolter_Vengeance</defName>
+		<label>.75 Caliber cartridge (Vengeance)</label>
+		<description>Utilise an unstable flux technology which makes them slightly hazardous to use but makes them very good against armoured targets. In fact, they were originally developed to combat Traitor Marines</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/Bolter/Vengeance</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.0</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Bolter_Vengeance</cookOffProjectile>
+		<ammoClass>Sabot</ammoClass>
+	</ThingDef>
+	
+				<!-- ============ Tempest ============ -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BolterBase">
+		<defName>Ammo_Bolter_Tempest</defName>
+		<label>.75 Caliber cartridge (Tempest)</label>
+		<description>Incorporate tiny plasma shock generators that emit electromagnetic and thermal radiation when the shell detonates. Produced only on Mars, Tempest shells are noted as particularly effective against machines and mechanical targets.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/Bolter/Tempest</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.8</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Bolter_Tempest</cookOffProjectile>
+		<ammoClass>Ionized</ammoClass>
+	</ThingDef>
+
+		<!--Projectiles-->
+
+	<ThingDef Name="BaseBolter" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectiles/Bolter_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>244</speed>
+			<damageDef>Bullet</damageDef>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+	
+				<!-- ============ Standard ============ -->
+	<ThingDef ParentName="BaseBolter">
+		<defName>Bullet_Bolter</defName>
+		<label>.75 Caliber Bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>63</damageAmountBase>
+			<armorPenetrationSharp>21</armorPenetrationSharp>
+			<armorPenetrationBlunt>540.51</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>18</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+	
+				<!-- ============ Kraken ============ -->
+	<ThingDef ParentName="BaseBolter">
+		<defName>Bullet_Bolter_Kraken</defName>
+		<label>.75 Caliber Bolt (Kraken)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>27</damageAmountBase>
+			<armorPenetrationSharp>36.75</armorPenetrationSharp>
+			<armorPenetrationBlunt>540.51</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>36</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+	
+				<!-- ============ Hellfire ============ -->
+	<ThingDef ParentName="BaseBolter">
+		<defName>Bullet_Bolter_Hellfire</defName>
+		<label>.75 Caliber Bolt (Hellfire)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>10.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>540.51</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>4</amount>
+				</li>
+				<li>
+					<def>GW_Hellfire</def>
+					<amount>44</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+	
+				<!-- ============ Inferno ============ -->
+	<ThingDef ParentName="BaseBolter">
+		<defName>Bullet_Bolter_Inferno</defName>
+		<label>.75 Caliber Bolt (Inferno)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>10.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>540.51</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>PrometheumFlame</def>
+					<amount>54</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+	
+				<!-- ============ Korvidari ============ -->
+	<ThingDef ParentName="BaseBolter">
+		<defName>Bullet_Bolter_Korvidari</defName>
+		<label>.75 Caliber Bolt (Korvidari)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>1.5</explosionRadius>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>10.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>540.51</armorPenetrationBlunt>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>12</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+	
+				<!-- ============ Vengeance ============ -->
+	<ThingDef ParentName="BaseBolter">
+		<defName>Bullet_Bolter_Vengeance</defName>
+		<label>.75 Caliber Bolt (Vengeance)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>33</damageAmountBase>
+			<speed>288</speed>
+			<armorPenetrationSharp>73.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>637.98</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+	
+				<!-- ============ Tempest ============ -->
+	<ThingDef ParentName="BaseBolter">
+		<defName>Bullet_Bolter_Tempest</defName>
+		<label>.75 Caliber Bolt (Tempest)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<empShieldBreakChance>0.4</empShieldBreakChance>
+			<damageAmountBase>36</damageAmountBase>
+			<armorPenetrationSharp>5.55</armorPenetrationSharp>
+			<armorPenetrationBlunt>540.51</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>4</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!--Recipes-->
+	
+			<!-- ============ Standard ============ -->
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Bolter</defName>
+		<label>make bolter (Standard) cartridges x500</label>
+		<description>Craft 500 bolter (Standard) cartridges</description>
+		<jobString>Making 500 shots worth of bolter (Standard) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>75</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Bolter>500</Ammo_Bolter>
+		</products>
+		<workAmount>4200</workAmount>
+		<researchPrerequisite>GW_Bolters</researchPrerequisite>
+	</RecipeDef>
+	
+			<!-- ============ Kraken ============ -->
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Bolter_Kraken</defName>
+		<label>make bolter (Kraken) cartridges x500</label>
+		<description>Craft 500 bolter (Kraken) cartridges</description>
+		<jobString>Making 500 shots worth of bolter (Kraken) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>75</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>35</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Bolter_Kraken>500</Ammo_Bolter_Kraken>
+		</products>
+		<workAmount>5040</workAmount>
+		<researchPrerequisite>GW_AdvancedBolterMunitions</researchPrerequisite>
+	</RecipeDef>
+	
+			<!-- ============ Hellfire ============ -->
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Bolter_Hellfire</defName>
+		<label>make bolter (Hellfire) cartridges x500</label>
+		<description>Craft 500 bolter (Hellfire) cartridges</description>
+		<jobString>Making 500 shots worth of bolter (Hellfire) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>70</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Flake</li>
+					</thingDefs>
+				</filter>
+				<count>32</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Flake</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Bolter_Hellfire>500</Ammo_Bolter_Hellfire>
+		</products>
+		<workAmount>4200</workAmount>
+		<researchPrerequisite>GW_AdvancedBolterMunitions</researchPrerequisite>
+	</RecipeDef>
+	
+			<!-- ============ Inferno ============ -->
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Bolter_Inferno</defName>
+		<label>make bolter (Inferno) cartridges x500</label>
+		<description>Craft 500 bolter (Inferno) cartridges</description>
+		<jobString>Making 500 shots worth of bolter (Inferno) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>70</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>32</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Bolter_Inferno>500</Ammo_Bolter_Inferno>
+		</products>
+		<workAmount>6720</workAmount>
+		<researchPrerequisite>GW_AdvancedBolterMunitions</researchPrerequisite>
+	</RecipeDef>
+	
+			<!-- ============ Korvidari ============ -->
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Bolter_Korvidari</defName>
+		<label>make bolter (Korvidari) cartridges x500</label>
+		<description>Craft 500 bolter (Korvidari) cartridges</description>
+		<jobString>Making 500 shots worth of bolter (Korvidari) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>70</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>54</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Bolter_Korvidari>500</Ammo_Bolter_Korvidari>
+		</products>
+		<workAmount>6360</workAmount>
+		<researchPrerequisite>GW_AdvancedBolterMunitions</researchPrerequisite>
+	</RecipeDef>
+	
+			<!-- ============ Vengeance ============ -->
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Bolter_Vengeance</defName>
+		<label>make bolter (Vengeance) cartridges x500</label>
+		<description>Craft 500 bolter (Vengeance) cartridges</description>
+		<jobString>Making 500 shots worth of bolter (Vengeance) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>70</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Bolter_Vengeance>500</Ammo_Bolter_Vengeance>
+		</products>
+		<workAmount>4000</workAmount>
+		<researchPrerequisite>GW_AdvancedBolterMunitions</researchPrerequisite>
+	</RecipeDef>
+	
+			<!-- ============ Tempest ============ -->
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Bolter_Tempest</defName>
+		<label>make bolter (Tempest) cartridges x500</label>
+		<description>Craft 500 bolter (Tempest) cartridges</description>
+		<jobString>Making 500 shots worth of bolter (Tempest) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>70</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Bolter_Tempest>500</Ammo_Bolter_Tempest>
+		</products>
+		<workAmount>6400</workAmount>
+		<researchPrerequisite>GW_AdvancedBolterMunitions</researchPrerequisite>
+	</RecipeDef>
+</Defs>

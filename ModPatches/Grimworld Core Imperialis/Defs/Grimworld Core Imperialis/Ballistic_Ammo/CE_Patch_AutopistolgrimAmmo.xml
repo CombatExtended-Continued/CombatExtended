@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingCategoryDef>
+		<defName>AmmoAutopistolgrim</defName>
+		<label>hiveworld autopistol</label>
+		<parent>AmmoPistols</parent>
+		<iconPath>Things/Ammo/AutogunAmmo/AutogunAmmo_c</iconPath></ThingCategoryDef>
+
+	<!--Ammunition Set-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Autopistolgrim</defName>
+		<label>4.10mm HIVE</label>
+		<ammoTypes>
+			<Ammo_Autopistolgrim>Bullet_Autopistolgrim</Ammo_Autopistolgrim>
+			<Ammo_Autopistolgrim_AP>Bullet_Autopistolgrim_AP</Ammo_Autopistolgrim_AP>
+			<Ammo_Autopistolgrim_HP>Bullet_Autopistolgrim_HP</Ammo_Autopistolgrim_HP>
+		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!--Ammo-->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AutopistolgrimBase" ParentName="HP_AM_AmmoBase" Abstract="True">
+		<description>4.10mm HIVE ammunition that is most commonly used by pistol weapons</description>
+		<statBases>
+			<Mass>0.015</Mass>
+			<Bulk>0.017</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+		</tradeTags>
+		<stackLimit>500</stackLimit>
+		<thingCategories>
+			<li>AmmoAutopistolgrim</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AutopistolgrimBase">
+		<defName>Ammo_Autopistolgrim</defName>
+		<label>4.10mm HIVE cartridge (FMJ)</label>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/AutogunAmmo</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.069</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Autopistolgrim</cookOffProjectile>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AutopistolgrimBase">
+		<defName>Ammo_Autopistolgrim_AP</defName>
+		<label>4.10mm HIVE cartridge (AP)</label>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/AutogunAmmo</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.069</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Autopistolgrim_AP</cookOffProjectile>
+		<ammoClass>ArmorPiercing</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AutopistolgrimBase">
+		<defName>Ammo_Autopistolgrim_HP</defName>
+		<label>4.10mm HIVE cartridge (HP)</label>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/AutogunAmmo</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.069</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Autopistolgrim_HP</cookOffProjectile>
+		<ammoClass>HollowPoint</ammoClass>
+	</ThingDef>
+
+		<!--Projectiles-->
+
+	<ThingDef Name="BaseAutopistolgrim" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseAutopistolgrim">
+		<defName>Bullet_Autopistolgrim</defName>
+		<label>4.10mm HIVE (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<speed>55</speed>
+			<armorPenetrationSharp>2.82</armorPenetrationSharp>
+			<armorPenetrationBlunt>12.37</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseAutopistolgrim">
+		<defName>Bullet_Autopistolgrim_AP</defName>
+		<label>4.10mm HIVE (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<speed>55</speed>
+			<armorPenetrationSharp>5.64</armorPenetrationSharp>
+			<armorPenetrationBlunt>12.37</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseAutopistolgrim">
+		<defName>Bullet_Autopistolgrim_HP</defName>
+		<label>hiveworld autopistol bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<speed>55</speed>
+			<armorPenetrationSharp>1.61</armorPenetrationSharp>
+			<armorPenetrationBlunt>12.37</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!--Recipes-->
+
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Autopistolgrim</defName>
+		<label>make 4.10mm HIVE (FMJ) cartridges x500</label>
+		<description>Craft 500 4.10mm HIVE (FMJ) cartridges</description>
+		<jobString>Making 500 shots worth of 4.10mm HIVE (FMJ) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>17</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Autopistolgrim>500</Ammo_Autopistolgrim>
+		</products>
+		<workAmount>1700</workAmount>
+		<researchPrerequisite>GW_Autoguns</researchPrerequisite>
+	</RecipeDef>
+
+
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Autopistolgrim_AP</defName>
+		<label>make 4.10mm HIVE (AP) cartridges x500</label>
+		<description>Craft 500 4.10mm HIVE (AP) cartridges</description>
+		<jobString>Making 500 shots worth of 4.10mm HIVE (AP) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>17</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Autopistolgrim_AP>500</Ammo_Autopistolgrim_AP>
+		</products>
+		<workAmount>2040</workAmount>
+		<researchPrerequisite>GW_Autoguns</researchPrerequisite>
+	</RecipeDef>
+
+
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Autopistolgrim_HP</defName>
+		<label>make 4.10mm HIVE (HP) cartridges x500</label>
+		<description>Craft 500 4.10mm HIVE (HP) cartridges</description>
+		<jobString>Making 500 shots worth of 4.10mm HIVE (HP) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>17</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Autopistolgrim_HP>500</Ammo_Autopistolgrim_HP>
+		</products>
+		<workAmount>1700</workAmount>
+		<researchPrerequisite>GW_Autoguns</researchPrerequisite>
+	</RecipeDef>
+</Defs>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingCategoryDef>
+		<defName>AmmoLasboltsmall</defName>
+		<label>Laspistol Power Pack</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>Things/Ammo/LasgunAmmo/LasgunAmmo_c</iconPath></ThingCategoryDef>
+
+	<!--Ammunition Set-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Lasboltsmall</defName>
+		<label>Laspistol Power Pack</label>
+		<ammoTypes>
+			<Ammo_Lasboltsmall>Bullet_Lasboltsmall</Ammo_Lasboltsmall>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!--Ammo-->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="LaserChargePackBase">
+		<defName>Ammo_Lasboltsmall</defName>
+		<label>Laspistol Power Pack</label>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/LasgunAmmo</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.288</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_Lasboltsmall</cookOffProjectile>
+		<ammoClass>Charged</ammoClass>
+	</ThingDef>
+
+		<!--Projectiles-->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+		<defName>Bullet_Lasboltsmall</defName>
+		<label>Pistol Lasbolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame_Secondary</damageDef>
+			<damageAmountBase>13.0</damageAmountBase>
+			<armorPenetrationSharp>19.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>1</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb</def>
+					<amount>5</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!--Recipes-->
+
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_Lasboltsmall</defName>
+		<label>make Laspistol Power Pack x500</label>
+		<description>Craft 500 Laspistol Power Pack</description>
+		<jobString>Making 500 shots worth of Laspistol Power Pack</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Lasboltsmall>500</Ammo_Lasboltsmall>
+		</products>
+		<workAmount>3600</workAmount>
+		<researchPrerequisite>GW_Lasguns</researchPrerequisite>
+	</RecipeDef>
+</Defs>
