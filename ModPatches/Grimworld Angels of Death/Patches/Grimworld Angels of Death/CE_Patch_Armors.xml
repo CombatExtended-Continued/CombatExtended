@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+			<!-- ============ Light ============ -->
+				<!-- Helmets -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[@Name="GW_SM_HelmetBase"]/apparel/layers/li[text()="EyeCover"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverHelmet_Simple" or defName="GW_SM_PhobosHelmet_Simple"]/statBases</xpath>
+		<value>
+			<Bulk>7.8</Bulk>
+			<WornBulk>1.8</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverHelmet_Simple" or defName="GW_SM_PhobosHelmet_Simple"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverHelmet_Simple" or defName="GW_SM_PhobosHelmet_Simple"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9.6</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverHelmet_Simple" or defName="GW_SM_PhobosHelmet_Simple"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>24.6</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverHelmet_Simple" or defName="GW_SM_PhobosHelmet_Simple"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>246</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverHelmet_Simple" or defName="GW_SM_PhobosHelmet_Simple"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.25</AimingAccuracy>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+	
+				<!-- Armors -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverArmor" or defName="GW_SM_PhobosArmor"]/statBases</xpath>
+		<value>
+			<Bulk>125</Bulk>
+			<WornBulk>18.75</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverArmor" or defName="GW_SM_PhobosArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>95.4</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverArmor" or defName="GW_SM_PhobosArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36.0</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverArmor" or defName="GW_SM_PhobosArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>360</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverArmor" or defName="GW_SM_PhobosArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>120.0</CarryWeight>
+			<CarryBulk>25</CarryBulk>
+		</value>
+	</Operation>
+
+				<!-- Backpacks -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverBackpack" or defName="GW_SM_PhobosBackpack"]/statBases</xpath>
+		<value>
+			<Bulk>7.8</Bulk>
+			<WornBulk>1.8</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverBackpack" or defName="GW_SM_PhobosBackpack"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverBackpack" or defName="GW_SM_PhobosBackpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9.6</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverBackpack" or defName="GW_SM_PhobosBackpack"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>12.3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_ReiverBackpack" or defName="GW_SM_PhobosBackpack"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>123</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+				<!-- Shoulder Pads -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXReiverShoulderPads" or @Name="GW_SM_MKXPhobosShoulderPads"]/statBases</xpath>
+		<value>
+			<Bulk>7.8</Bulk>
+			<WornBulk>1.8</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXReiverShoulderPads" or @Name="GW_SM_MKXPhobosShoulderPads"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXReiverShoulderPads" or @Name="GW_SM_MKXPhobosShoulderPads"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9.6</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXReiverShoulderPads" or @Name="GW_SM_MKXPhobosShoulderPads"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>12.3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXReiverShoulderPads" or @Name="GW_SM_MKXPhobosShoulderPads"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>123</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+			<!-- ============ Heavy (Lower) Armors with stats equal to Aquilla ============ -->
+				<!-- Helmets -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusHelmet_Simple" or defName="GW_SM_CorvusHelmet_Simple" or defName="GW_SM_AquillaHelmet_Simple"]/statBases</xpath>
+		<value>
+			<Bulk>7.8</Bulk>
+			<WornBulk>1.8</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusHelmet_Simple" or defName="GW_SM_CorvusHelmet_Simple" or defName="GW_SM_AquillaHelmet_Simple"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusHelmet_Simple" or defName="GW_SM_CorvusHelmet_Simple" or defName="GW_SM_AquillaHelmet_Simple"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9.6</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusHelmet_Simple" or defName="GW_SM_CorvusHelmet_Simple" or defName="GW_SM_AquillaHelmet_Simple"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>26.4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusHelmet_Simple" or defName="GW_SM_CorvusHelmet_Simple" or defName="GW_SM_AquillaHelmet_Simple"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>264</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusHelmet_Simple" or defName="GW_SM_CorvusHelmet_Simple" or defName="GW_SM_AquillaHelmet_Simple"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.25</AimingAccuracy>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+				<!-- Armors -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusArmor" or defName="GW_SM_CorvusArmor" or defName="GW_SM_AquillaArmor"]/statBases</xpath>
+		<value>
+			<Bulk>125</Bulk>
+			<WornBulk>18.75</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusArmor" or defName="GW_SM_CorvusArmor" or defName="GW_SM_AquillaArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>95.4</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusArmor" or defName="GW_SM_CorvusArmor" or defName="GW_SM_AquillaArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36.0</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusArmor" or defName="GW_SM_CorvusArmor" or defName="GW_SM_AquillaArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>360</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusArmor" or defName="GW_SM_CorvusArmor" or defName="GW_SM_AquillaArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>120.0</CarryWeight>
+			<CarryBulk>25</CarryBulk>
+		</value>
+	</Operation>
+	
+					<!-- Backpacks -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusBackpack" or defName="GW_SM_CorvusBackpack" or defName="GW_SM_AquillaBackpack"]/statBases</xpath>
+		<value>
+			<Bulk>7.8</Bulk>
+			<WornBulk>1.8</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusBackpack" or defName="GW_SM_CorvusBackpack" or defName="GW_SM_AquillaBackpack"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusBackpack" or defName="GW_SM_CorvusBackpack" or defName="GW_SM_AquillaBackpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9.6</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusBackpack" or defName="GW_SM_CorvusBackpack" or defName="GW_SM_AquillaBackpack"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>13.2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_MaximusBackpack" or defName="GW_SM_CorvusBackpack" or defName="GW_SM_AquillaBackpack"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>132</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+				<!-- Shoulder Pads -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKIVShoulderPads" or @Name="GW_SM_MKVIShoulderPads" or @Name="GW_SM_MKVIIShoulderPads"]/statBases</xpath>
+		<value>
+			<Bulk>7.8</Bulk>
+			<WornBulk>1.8</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKIVShoulderPads" or @Name="GW_SM_MKVIShoulderPads" or @Name="GW_SM_MKVIIShoulderPads"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKIVShoulderPads" or @Name="GW_SM_MKVIShoulderPads" or @Name="GW_SM_MKVIIShoulderPads"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9.6</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKIVShoulderPads" or @Name="GW_SM_MKVIShoulderPads" or @Name="GW_SM_MKVIIShoulderPads"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>13.2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKIVShoulderPads" or @Name="GW_SM_MKVIShoulderPads" or @Name="GW_SM_MKVIIShoulderPads"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>132</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+			<!-- ============ Heavy (Upper) Armors with stats equal to tacticus ============ -->
+				<!-- Helmets -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusHelmet_Simple"]/statBases</xpath>
+		<value>
+			<Bulk>6.8</Bulk>
+			<WornBulk>1.6</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusHelmet_Simple"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusHelmet_Simple"]/statBases/Mass</xpath>
+		<value>
+			<Mass>8.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusHelmet_Simple"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>28.64</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusHelmet_Simple"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>286.4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusHelmet_Simple"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.35</AimingAccuracy>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+	
+				<!-- Armors -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusArmor"]/statBases</xpath>
+		<value>
+			<Bulk>115</Bulk>
+			<WornBulk>16.65</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>90.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>44.0</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>440</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>135</CarryWeight>
+			<CarryBulk>40</CarryBulk>
+		</value>
+	</Operation>
+
+					<!-- Backpacks -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusBackpack"]/statBases</xpath>
+		<value>
+			<Bulk>6.8</Bulk>
+			<WornBulk>1.6</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusBackpack"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusBackpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>8.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusBackpack"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14.32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TacticusBackpack"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>143.2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+				<!-- Shoulder Pads -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXShoulderPads"]/statBases</xpath>
+		<value>
+			<Bulk>6.8</Bulk>
+			<WornBulk>1.6</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXShoulderPads"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXShoulderPads"]/statBases/Mass</xpath>
+		<value>
+			<Mass>8.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXShoulderPads"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14.32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_MKXShoulderPads"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>143.2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+			<!-- ============ Gravis ============ -->
+				<!-- Helmets -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisHelmet_Simple"]/statBases</xpath>
+		<value>
+			<Bulk>10.8</Bulk>
+			<WornBulk>2.2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisHelmet_Simple"]/statBases/Mass</xpath>
+		<value>
+			<Mass>12.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisHelmet_Simple"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisHelmet_Simple"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>365</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisHelmet_Simple"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.48</AimingAccuracy>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+	
+				<!-- Armors -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisArmor"]/statBases</xpath>
+		<value>
+			<Bulk>150</Bulk>
+			<WornBulk>22.45</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>101.4</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>54.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>545</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>155</CarryWeight>
+			<CarryBulk>60</CarryBulk>
+		</value>
+	</Operation>
+
+					<!-- Backpacks -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisBackpack"]/statBases</xpath>
+		<value>
+			<Bulk>10.8</Bulk>
+			<WornBulk>2.2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisBackpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>12.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisBackpack"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>18.3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_GravisBackpack"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>183</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+				<!-- Shoulder Pads -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="GW_SM_GravisShoulderPads"]/statBases</xpath>
+		<value>
+			<Bulk>10.8</Bulk>
+			<WornBulk>2.2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_GravisShoulderPads"]/statBases/Mass</xpath>
+		<value>
+			<Mass>12.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_GravisShoulderPads"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>18.3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_GravisShoulderPads"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>183</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+			<!-- ============ Terminator ============ -->
+				<!-- Helmets -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_TerminatorHelmet_Simple"]/statBases</xpath>
+		<value>
+			<Bulk>12.8</Bulk>
+			<WornBulk>3.2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TerminatorHelmet_Simple"]/statBases/Mass</xpath>
+		<value>
+			<Mass>15.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TerminatorHelmet_Simple"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>44.4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_TerminatorHelmet_Simple"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>444</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_TerminatorHelmet_Simple"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.48</AimingAccuracy>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+	
+				<!-- Armors -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_IndomitusTerminatorArmor"]/statBases</xpath>
+		<value>
+			<Bulk>180</Bulk>
+			<WornBulk>28.25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IndomitusTerminatorArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>123.0</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IndomitusTerminatorArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>66.0</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IndomitusTerminatorArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>660</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_IndomitusTerminatorArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>120</CarryBulk>
+		</value>
+	</Operation>
+
+					<!-- Backpacks --> <!--Uncomment this if the terminator backpack is separated from the torso.-->
+	<!--<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_IndomitusTerminatorBackpack"]/statBases</xpath>
+		<value>
+			<Bulk>12.8</Bulk>
+			<WornBulk>3.2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IndomitusTerminatorBackpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>15.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IndomitusTerminatorBackpack"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22.2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IndomitusTerminatorBackpack"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>222</ArmorRating_Blunt>
+		</value>
+	</Operation>-->
+
+				<!-- Shoulder Pads -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="GW_SM_TerminatorShoulderPads"]/statBases</xpath>
+		<value>
+			<Bulk>12.8</Bulk>
+			<WornBulk>3.2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_TerminatorShoulderPads"]/statBases/Mass</xpath>
+		<value>
+			<Mass>15.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_TerminatorShoulderPads"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22.2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="GW_SM_TerminatorShoulderPads"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>222</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+				<!--OnSkin-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="HP_AoD_OnSkinBase"]/statBases</xpath>
+		<value>
+			<Bulk>0.5</Bulk>
+			<WornBulk>0.3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="HP_AoD_OnSkinBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>35</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="HP_AoD_OnSkinBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>30</ArmorRating_Blunt>
+		</value>
+	</Operation>
+</Patch>

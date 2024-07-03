@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThingCategoryDef>
+		<defName>AmmoAutoGun</defName>
+		<label>8.25mm</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>Things/Ammo/AutogunAmmo/AutogunAmmo_c</iconPath></ThingCategoryDef>
+
+	<!--Ammunition Set-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_AutoGun</defName>
+		<label>8.25mm</label>
+		<ammoTypes>
+			<Ammo_AutoGun>Bullet_AutoGun</Ammo_AutoGun>
+			<Ammo_AutoGun_AP>Bullet_AutoGun_AP</Ammo_AutoGun_AP>
+			<Ammo_AutoGun_HP>Bullet_AutoGun_HP</Ammo_AutoGun_HP>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!--Ammo-->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AutoGunBase" ParentName="HP_AM_AmmoBase" Abstract="True">
+		<description>8.25mm autogun ammunition.</description>
+		<statBases>
+			<Mass>0.019</Mass>
+			<Bulk>0.021</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+		</tradeTags>
+		<stackLimit>500</stackLimit>
+		<thingCategories>
+			<li>AmmoAutoGun</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AutoGunBase">
+		<defName>Ammo_AutoGun</defName>
+		<label>8.25mm cartridge (FMJ)</label>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/AutogunAmmo</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.087</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_AutoGun</cookOffProjectile>
+		<ammoClass>FullMetalJacket</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AutoGunBase">
+		<defName>Ammo_AutoGun_AP</defName>
+		<label>8.25mm cartridge (AP)</label>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/AutogunAmmo</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.087</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_AutoGun_AP</cookOffProjectile>
+		<ammoClass>ArmorPiercing</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AutoGunBase">
+		<defName>Ammo_AutoGun_HP</defName>
+		<label>8.25mm cartridge (HP)</label>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/AutogunAmmo</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.087</MarketValue>
+		</statBases>
+		<cookOffProjectile>Bullet_AutoGun_HP</cookOffProjectile>
+		<ammoClass>HollowPoint</ammoClass>
+	</ThingDef>
+
+		<!--Projectiles-->
+
+	<ThingDef Name="BaseAutoGun" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseAutoGun">
+		<defName>Bullet_AutoGun</defName>
+		<label>8.25mm cartridge (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<speed>70</speed>
+			<armorPenetrationSharp>3.59</armorPenetrationSharp>
+			<armorPenetrationBlunt>15.46</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseAutoGun">
+		<defName>Bullet_AutoGun_AP</defName>
+		<label>8.25mm cartridge (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<speed>70</speed>
+			<armorPenetrationSharp>7.18</armorPenetrationSharp>
+			<armorPenetrationBlunt>15.46</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseAutoGun">
+		<defName>Bullet_AutoGun_HP</defName>
+		<label>8.25mm cartridge (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+			<speed>70</speed>
+			<armorPenetrationSharp>2.05</armorPenetrationSharp>
+			<armorPenetrationBlunt>15.46</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!--Recipes-->
+
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_AutoGun</defName>
+		<label>make 8.25mm (FMJ) cartridges x500</label>
+		<description>Craft 500 8.25mm (FMJ) cartridges</description>
+		<jobString>Making 500 shots worth of 8.25mm (FMJ) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>21</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AutoGun>500</Ammo_AutoGun>
+		</products>
+		<workAmount>2100</workAmount>
+		<researchPrerequisite>GW_Autoguns</researchPrerequisite>
+	</RecipeDef>
+
+
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_AutoGun_AP</defName>
+		<label>make 8.25mm (AP) cartridges x500</label>
+		<description>Craft 500 8.25mm (AP) cartridges</description>
+		<jobString>Making 500 shots worth of 8.25mm (AP) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>21</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AutoGun_AP>500</Ammo_AutoGun_AP>
+		</products>
+		<workAmount>2520</workAmount>
+		<researchPrerequisite>GW_Autoguns</researchPrerequisite>
+	</RecipeDef>
+
+
+	<RecipeDef ParentName="HP_AmmoRecipeBase">
+		<defName>MakeAmmo_AutoGun_HP</defName>
+		<label>make 8.25mm (HP) cartridges x500</label>
+		<description>Craft 500 8.25mm (HP) cartridges</description>
+		<jobString>Making 500 shots worth of 8.25mm (HP) cartridges</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>21</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_AutoGun_HP>500</Ammo_AutoGun_HP>
+		</products>
+		<workAmount>2100</workAmount>
+		<researchPrerequisite>GW_Autoguns</researchPrerequisite>
+	</RecipeDef>
+</Defs>

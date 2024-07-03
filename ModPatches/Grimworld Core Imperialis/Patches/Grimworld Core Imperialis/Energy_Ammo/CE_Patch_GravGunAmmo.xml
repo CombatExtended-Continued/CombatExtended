@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>AmmoGravCell</defName>
+		<label>Graviton Power Cell</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>Things/Ammo/Grav/GravGun_c</iconPath>
+	</ThingCategoryDef>
+
+	<!--===== AmmoSet =====-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GravCell</defName>
+		<label>Graviton Power Cell</label>
+		<ammoTypes>
+			<Ammo_GravCell>Bullet_GravCell</Ammo_GravCell>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!--===== Ammo =====-->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="GravCellBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
+		<description>A Graviton Power Cell used to recharge the rare graviton weapons.</description>
+		<statBases>
+			<Mass>3.4</Mass>
+			<Bulk>4.1</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>AmmoGravCell</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="GravCellBase">
+		<defName>Ammo_GravCell</defName>
+		<label>Graviton Power Cell</label>
+		<graphicData>
+			<texPath>Things/Ammo/FuelCell/Large</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>5.78</MarketValue>
+		</statBases>
+		<ammoClass>Demolition</ammoClass>
+		<detonateProjectile>Bullet_GravCell</detonateProjectile>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>3</explosiveRadius>
+				<damageAmountBase>23</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.15</startWickHitPointsPercent>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>60~300</wickTicks>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!--===== Projectiles =====-->
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_GravCell</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>Graviton Particle Stream</label>
+		<graphicData>
+			<texPath>Things/Projectiles/Grav_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Thump</damageDef>
+			<damageAmountBase>35</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<speed>50</speed>
+			<flyOverhead>false</flyOverhead>
+			<explosionRadius>2</explosionRadius>
+			<soundExplode>ThumpCannon_Impact</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Bullet_GravCell_A>1</Bullet_GravCell_A>
+					<Bullet_GravCell_B>1</Bullet_GravCell_B>
+				</fragments>
+				<fragXZAngleRange>-5~5</fragXZAngleRange>
+				<fragAngleRange>0~5</fragAngleRange>
+				<fragSpeedFactor>0.01</fragSpeedFactor>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_GravCell_A</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>Graviton Particle Fragment</label>
+		<graphicData>
+			<texPath>Things/Projectiles/Grav_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Thump</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<speed>1</speed>
+			<gravityFactor>50</gravityFactor>
+			<flyOverhead>false</flyOverhead>
+			<explosionRadius>2</explosionRadius>
+			<soundExplode>ThumpCannon_Impact</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Bullet_GravCell_B>2</Bullet_GravCell_B>
+				</fragments>
+				<fragXZAngleRange>-5~5</fragXZAngleRange>
+				<fragAngleRange>0~1</fragAngleRange>
+				<fragSpeedFactor>0.01</fragSpeedFactor>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_GravCell_B</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>Graviton Particle Fragment</label>
+		<graphicData>
+			<texPath>Things/Projectiles/Grav_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Thump</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<speed>1</speed>
+			<gravityFactor>50</gravityFactor>
+			<flyOverhead>false</flyOverhead>
+			<explosionRadius>2</explosionRadius>
+			<soundExplode>ThumpCannon_Impact</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<fuze_delay>1</fuze_delay>
+			<explosionDelay>15</explosionDelay>
+			<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+		</projectile>
+	</ThingDef>
+
+	<!--===== Recipes =====-->
+
+	<RecipeDef ParentName="HP_AmmoRecipeBase" MayRequire="redherring.cantmakethisyet"><!--HappyPurging.AgeofDarkness-->
+		<defName>MakeAmmo_GravCell</defName>
+		<label>make graviton power cell x5</label>
+		<description>Craft 5 graviton power cells</description>
+		<jobString>Making 5 graviton power cells</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>105</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>HP_Ceramite</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>HP_Ceramite</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_GravCell>5</Ammo_GravCell>
+		</products>
+		<workAmount>5940</workAmount>
+		<researchPrerequisite>GW_SM_GravWeapons</researchPrerequisite>
+	</RecipeDef>
+
+</Defs>

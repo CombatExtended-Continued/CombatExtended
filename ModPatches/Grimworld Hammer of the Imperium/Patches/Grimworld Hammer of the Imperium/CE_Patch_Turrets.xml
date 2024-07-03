@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter" or 
+			defName="GW_Building_Autocannon" or 
+			defName="GW_Building_Lascannon" or 
+			defName="GW_Building_TarantulaHeavyBolter" or
+			defName="GW_Building_TarantulaLascannon"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+		<!--Heavy Bolter-->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.75</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_HeavyBolter"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>50</Steel>
+				<Plasteel>40</Plasteel>
+				<HP_Ceramite>30</HP_Ceramite>
+				<ComponentIndustrial>9</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_BuildingGun_HeavyBolter"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseTurretGun">
+				<defName>GW_BuildingGun_HeavyBolter</defName>
+				<label>Heavy bolter turret</label>
+				<graphicData>
+					<texPath>Things/Building/Emplacement/HeavyBolter</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<description>An automated heavy machine gun designed to be mounted on a turret, effective against infantry and light vehicles.</description>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.61</SwayFactor>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<DeteriorationRate>0</DeteriorationRate>
+					<Mass>30</Mass>
+				</statBases>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<recoilAmount>1.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_HeavyBolter</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>58</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>GW_AM_HeavyBolter</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</li>
+				</verbs>
+				<comps>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>200</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_HeavyBolter</ammoSet>
+				</li>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+		<!--Autocannon-->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.75</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_Autocannon"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>260</Steel>
+				<Plasteel>40</Plasteel>
+				<ComponentIndustrial>9</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_BuildingGun_AutoCannon"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseTurretGun">
+				<defName>GW_BuildingGun_AutoCannon</defName>
+				<label>Autocannon turret</label>
+				<graphicData>
+					<texPath>Things/Building/Emplacement/AutoCannon</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<description>A mannable autocannon.</description>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.61</SwayFactor>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<DeteriorationRate>0</DeteriorationRate>
+					<Mass>30</Mass>
+				</statBases>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<recoilAmount>1.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_GW_Autocannon_AP</defaultProjectile>
+						<warmupTime>0.9</warmupTime>
+						<range>72</range>
+						<ticksBetweenBurstShots>13</ticksBetweenBurstShots>
+						<burstShotCount>3</burstShotCount>
+						<soundCast>GW_AM_Autocannon</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</li>
+				</verbs>
+				<comps>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>90</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_GW_Autocannon</ammoSet>
+				</li>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+		<!--Lascannon-->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<value>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>500</basePowerConsumption>	<!--Power lowered because the turret gets physical ammo now-->
+			</li>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.75</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_Lascannon"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>350</Steel>
+				<Plasteel>30</Plasteel>
+				<Uranium>60</Uranium>
+				<ComponentIndustrial>20</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_BuildingGun_Lascannon"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseTurretGun">
+				<defName>GW_BuildingGun_Lascannon</defName>
+				<label>Lascannon turret cannon</label>
+				<description>The turret portion of a lascannon turret.</description>
+				<soundInteract>Artillery_ShellLoaded</soundInteract>
+				<graphicData>
+					<texPath>Things/Building/Emplacement/Lascannon</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>(1,1)</drawSize>
+				</graphicData>
+				<statBases>
+					<SightsEfficiency>2.36</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.89</SwayFactor>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
+					<DeteriorationRate>0</DeteriorationRate>
+					<Mass>30</Mass>
+				</statBases>
+				<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<recoilAmount>4.15</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>GW_BuildingBullet_LascanonShot</defaultProjectile>
+					<warmupTime>1.8</warmupTime>
+					<minRange>5</minRange>
+					<range>86</range>
+					<soundCast>GW_AM_Lascannon</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>20</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</li>
+				</verbs>
+				<comps>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>40</magazineSize>
+					<reloadTime>6.8</reloadTime>
+					<ammoSet>AmmoSet_Lascannon</ammoSet>
+				</li>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+				</li>
+				</comps>
+			</ThingDef>
+		</value>
+  	</Operation>
+
+		<!--Tarantula Heavy Bolter-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.75</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaHeavyBolter"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>50</Steel>
+				<Plasteel>40</Plasteel>
+				<HP_Ceramite>30</HP_Ceramite>
+				<ComponentIndustrial>9</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_BuildingGun_TarantulaHeavyBolter"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseTurretGun">
+				<defName>GW_BuildingGun_TarantulaHeavyBolter</defName>
+				<label>An automated bolter turret</label>
+				<graphicData>
+					<texPath>Things/Building/Emplacement/TarantulaTurret_Top</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<description>An automated heavy machine gun designed to be mounted on a turret, effective against infantry and light vehicles.</description>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.61</SwayFactor>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<DeteriorationRate>0</DeteriorationRate>
+					<Mass>30</Mass>
+				</statBases>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<recoilAmount>1.2</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_HeavyBolter</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>58</range>
+						<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>GW_AM_HeavyBolter</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<recoilPattern>Mounted</recoilPattern>
+					</li>
+				</verbs>
+				<comps>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>200</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_HeavyBolter</ammoSet>
+				</li>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+		<!--Tarantula Lascannon-->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<value>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>500</basePowerConsumption>	<!--Power lowered because the turret gets physical ammo now-->
+			</li>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.75</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_Building_TarantulaLascannon"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>350</Steel>
+				<Plasteel>30</Plasteel>
+				<Uranium>60</Uranium>
+				<ComponentIndustrial>20</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_BuildingGun_TarantulaLascannon"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseTurretGun">
+				<defName>GW_BuildingGun_TarantulaLascannon</defName>
+				<label>An automated lascannon turret</label>
+				<description>The turret portion of a tarantula lascannon turret.</description>
+				<soundInteract>Artillery_ShellLoaded</soundInteract>
+				<graphicData>
+					<texPath>Things/Building/Emplacement/TarantulaTurret_LasCannon_Top</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>(1,1)</drawSize>
+				</graphicData>
+				<statBases>
+					<SightsEfficiency>2.36</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.89</SwayFactor>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
+					<DeteriorationRate>0</DeteriorationRate>
+					<Mass>30</Mass>
+				</statBases>
+				<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<recoilAmount>4.15</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>GW_BuildingBullet_LascanonShot</defaultProjectile>
+					<warmupTime>1.8</warmupTime>
+					<minRange>5</minRange>
+					<range>86</range>
+					<soundCast>GW_AM_Lascannon</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>20</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</li>
+				</verbs>
+				<comps>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>40</magazineSize>
+					<reloadTime>6.8</reloadTime>
+					<ammoSet>AmmoSet_Lascannon</ammoSet>
+				</li>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+				</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+</Patch>

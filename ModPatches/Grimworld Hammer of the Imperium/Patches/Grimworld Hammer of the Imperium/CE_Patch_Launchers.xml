@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!--===== Remove Extra Launchers =====-->
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="GW_AM_Gun_EMPLauncher"]</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="GW_AM_Gun_SmokeLauncher"]</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="GW_AM_Gun_StunLauncher"]</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove" MayRequire="Ludeon.RimWorld.Biotech">
+		<xpath>Defs/ThingDef[defName="GW_AM_Gun_ToxLauncher"]</xpath>
+	</Operation>
+	
+	<!--===== Melee Attacks =====-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/ThingDef[defName="GW_AM_Gun_FragLauncher"]
+		</xpath>
+		<value>
+			<tools Inherit="False">
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!--===== Grenade Launcher =====-->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_Gun_FragLauncher"]/label</xpath>
+		<value>
+			<label>Voss Pattern Launcher</label>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_AM_Gun_FragLauncher"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_AM_Gun_FragLauncher"]</xpath>
+			<value><weaponTags /></value>
+		</nomatch>
+	</Operation>
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_AM_Gun_FragLauncher</defName>
+		<statBases>
+			<Mass>8.4</Mass>
+			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.6</SwayFactor>
+			<Bulk>14.6</Bulk>
+			<WorkToMake>65000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+			<warmupTime>3.4</warmupTime>
+			<range>56</range>
+			<burstShotCount>0</burstShotCount>
+			<soundCast>HP_AM_Plasma_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilAmount>4.6</recoilAmount>
+			<ticksBetweenBurstShots>21</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>1.2</reloadTime>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>AdvancedGun</li>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>
