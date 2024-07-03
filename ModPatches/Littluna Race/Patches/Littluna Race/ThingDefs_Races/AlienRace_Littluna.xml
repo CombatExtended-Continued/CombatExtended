@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
 		<value>
@@ -7,27 +8,27 @@
 		</value>
 	</Operation>
 
-	  <!-- add comps field to HAR_Littluna_BaseNRPawn ThingDef if it doesn't exist -->
-	  <Operation Class="PatchOperationConditional">
+	<!-- add comps field to HAR_Littluna_BaseNRPawn ThingDef if it doesn't exist -->
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-		  <xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]</xpath>
-		  <value>
-			<comps />
-		  </value>
+			<xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]</xpath>
+			<value>
+				<comps />
+			</value>
 		</nomatch>
-	  </Operation>
+	</Operation>
 
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/comps</xpath>
 		<value>
-				<li>
-					<compClass>CombatExtended.CompPawnGizmo</compClass>
-				</li>
-				<li Class="CombatExtended.CompProperties_Suppressable"/>
-				<li Class="CombatExtended.CompProperties_Inventory"/>
-				<li Class="CombatExtended.CompProperties_TacticalManager"/>
+			<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+			</li>
+			<li Class="CombatExtended.CompProperties_Suppressable"/>
+			<li Class="CombatExtended.CompProperties_Inventory"/>
+			<li Class="CombatExtended.CompProperties_TacticalManager"/>
 		</value>
 	</Operation>
 
