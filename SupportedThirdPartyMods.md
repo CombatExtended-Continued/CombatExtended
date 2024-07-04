@@ -166,6 +166,7 @@ Cybernetic Warfare and Special Weapons (Continued)  |
 Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
+Deployable Turret   |
 Det's Energy Weapons    |
 Det's Xenotypes - Boglegs   |
 Devilstrand Animals |
