@@ -166,6 +166,7 @@ Cybernetic Warfare and Special Weapons (Continued)  |
 Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
+Deployable Turret   |
 Det's Energy Weapons    |
 Det's Xenotypes - Boglegs   |
 Devilstrand Animals |
@@ -374,6 +375,7 @@ Poleepkwa Race	|
 Possessed Weapons	|
 pphhyy's Demigryphs   |
 phynilla Expanded Mechs Scyther |
+pphhyy's Lightless Empyrean |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
@@ -439,6 +441,7 @@ Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Rockmen race    |
+Roren, People of Rorensia   |
 Royal Arsenal |
 Royal Arsenal - Speciality Weapons  |
 Royal Warcaskets   |
