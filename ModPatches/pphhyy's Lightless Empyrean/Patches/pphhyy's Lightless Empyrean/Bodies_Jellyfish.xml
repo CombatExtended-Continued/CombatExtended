@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ==================== Cnidarian Body ==================== -->
+
+	<!-- ========== Add groups entry if it doesn't exist already ========== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/parts/li[def="Head"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/parts/li[def="Head"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/parts/li[def="Head"]/parts/li[def="AnimalJaw"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/parts/li[def="Head"]/parts/li[def="AnimalJaw"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/parts/li[def="pphhyy_LightlessEmpyrean_CnidarianTentacle"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/parts/li[def="pphhyy_LightlessEmpyrean_CnidarianTentacle"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ========== Add armor coverage ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/parts/li[def="pphhyy_LightlessEmpyrean_CnidarianTentacle"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/parts/li[def="Head"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="pphhyy_LightlessEmpyrean_CnidarianBody"]/corePart/parts/li[def="Head"]/parts/li[def="AnimalJaw"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Set parts as squishy ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyPartDef[defName="pphhyy_LightlessEmpyrean_CnidarianTentacle" or defName="pphhyy_LightlessEmpyrean_CnidarianSensoryOrgan" or defName="AnimalJaw"]/tags</xpath>
+		<value>
+			<li>OutsideSquishy</li>
+		</value>
+	</Operation>
+
+</Patch>
