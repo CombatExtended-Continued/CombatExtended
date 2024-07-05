@@ -35,7 +35,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
             }
             if (targetMethod == null)
             {
-                Log.Error($"Failed to find target method while attempting to patch SaveOurShip.");
+                Log.Error($"Combat Extended :: Failed to find target method while attempting to patch SaveOurShip.");
                 return false;
             }
             return true;

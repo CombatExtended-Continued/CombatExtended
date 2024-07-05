@@ -17,6 +17,8 @@ namespace CombatExtended.Compatibility.SOS2Compat
 {
     public class SOS2Compat : IModPart
     {
+        private static Harmony harmony;
+
         public Type GetSettingsType()
         {
             return null;
@@ -28,6 +30,8 @@ namespace CombatExtended.Compatibility.SOS2Compat
         public void PostLoad(ModContentPack content, ISettingsCE _)
         {
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckCollision); // For Shields
+            harmony = new Harmony("CombatExtended.Compatibility.SOS2Compat");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
         #region Shield Logic
         // Shield Implementation is a combination of the patch for VFE Security and SOS2 Logic
