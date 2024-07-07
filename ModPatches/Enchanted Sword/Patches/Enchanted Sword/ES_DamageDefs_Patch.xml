@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Slash_EnchantedSword"]/defaultArmorPenetration</xpath>
+		<value>
+				<defaultArmorPenetration>24</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="SwordBolt"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="SwordBolt"]/defaultArmorPenetration</xpath>
+		<value>
+				<defaultArmorPenetration>1</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+</Patch>

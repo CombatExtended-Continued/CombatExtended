@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Melee_EnchantedSword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<armorPenetrationBlunt>24</armorPenetrationBlunt>
+					<armorPenetrationSharp>60</armorPenetrationSharp>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<cooldownTime>1.0</cooldownTime>
+					<soundMeleeHit>Impact_EnchantedSword</soundMeleeHit>
+					<soundMeleeMiss>Miss_EnchantedSword</soundMeleeMiss>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade tip</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>0.75</cooldownTime>
+					<armorPenetrationBlunt>32</armorPenetrationBlunt>
+					<armorPenetrationSharp>72</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					<soundMeleeHit>Impact_EnchantedSword</soundMeleeHit>
+					<soundMeleeMiss>Miss_EnchantedSword</soundMeleeMiss>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>12</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Melee_EnchantedSword_Awakened"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<armorPenetrationBlunt>24</armorPenetrationBlunt>
+					<armorPenetrationSharp>60</armorPenetrationSharp>
+					<cooldownTime>1.0</cooldownTime>
+					<soundMeleeHit>Impact_EnchantedSword</soundMeleeHit>
+					<soundMeleeMiss>Miss_EnchantedSword</soundMeleeMiss>
+					<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>15</amount>
+							<chance>0.5</chance>
+						</li>
+					</extraMeleeDamages>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade tip</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>0.75</cooldownTime>
+					<armorPenetrationBlunt>32</armorPenetrationBlunt>
+					<armorPenetrationSharp>72</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					<soundMeleeHit>Impact_EnchantedSword</soundMeleeHit>
+					<soundMeleeMiss>Miss_EnchantedSword</soundMeleeMiss>
+					<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>15</amount>
+							<chance>0.5</chance>
+						</li>
+					</extraMeleeDamages>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>12</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Melee_EnchantedSword_Ranged_Awakened"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>2.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName = "Melee_EnchantedSword_Ranged_Awakened"]/weaponTags</xpath>
+		<value>
+			<li>Patched</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName = "Melee_EnchantedSword_Ranged_Awakened"]/verbs/li[@Class="Pandora.Verb_Properties_ClusterShot"]/range</xpath>
+		<value>
+			<range>36</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName = "Bullet_MagicArrow"]/projectile/armorPenetrationBase</xpath>
+		<value>
+			<armorPenetrationBase>35</armorPenetrationBase>
+		</value>
+	</Operation>
+</Patch>
