@@ -165,7 +165,6 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
         {
             var ammoComp = AutoLoader.CompAmmoUser;
             AmmoDef requestedAmmo = ammoComp.SelectedAmmo;
-            Log.Message(requestedAmmo.defName);
             var bestAmmo = FindBestAmmo(pawn, requestedAmmo);   // try to find currently selected ammo first
             if (bestAmmo == null && ammoComp.EmptyMagazine && requestedAmmo.AmmoSetDefs != null && AutoLoader.Faction != Faction.OfPlayer)
             {
