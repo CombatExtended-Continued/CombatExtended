@@ -845,13 +845,13 @@ namespace CombatExtended
         #endregion Misc
 
         #region MoteThrower
-        public static void GenerateAmmoCasings(ProjectilePropertiesCE projProps, Vector3 drawPosition, Map map, float shotRotation = -180f, float recoilAmount = 2f, bool fromPawn = false, float casingAngleOffset = 0)
+        public static void GenerateAmmoCasings(ProjectilePropertiesCE projProps, Vector3 drawPosition, Map map, float shotRotation = -180f, float recoilAmount = 2f, bool fromPawn = false, GunDrawExtension extension = null)
         {
             if (projProps.dropsCasings)
             {
                 if (Controller.settings.ShowCasings)
                 {
-                    ThrowEmptyCasing(drawPosition, map, DefDatabase<FleckDef>.GetNamed(projProps.casingMoteDefname), recoilAmount, shotRotation, 1f, fromPawn, casingAngleOffset);
+                    ThrowEmptyCasing(drawPosition, map, DefDatabase<FleckDef>.GetNamed(projProps.casingMoteDefname), recoilAmount, shotRotation, 1f, fromPawn, extension);
                 }
                 if (Controller.settings.CreateCasingsFilth)
                 {
@@ -861,7 +861,28 @@ namespace CombatExtended
         }
 
 
-        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f, bool fromPawn = false, float casingAngleOffset = 0)
+
+        static Vector3 CasingOffsetRotated(GunDrawExtension ext, float shotRotation)
+        {
+            if (ext == null || ext.CasingOffset == Vector2.zero)
+            {
+                return Vector3.zero;
+            }
+            return (new Vector3(ext.CasingOffset.x, 0, ext.CasingOffset.y) + RandomOriginOffset(ext.CasingOffsetRandomRange)).RotatedBy(shotRotation);
+        }
+
+        //No need to null check as the function calling it already handled it
+        static Vector3 RandomOriginOffset(Vector2 randRange)
+        {
+            if (randRange.y == 0 && randRange.x == 0)
+            {
+                return Vector3.zero;
+            }
+            return new Vector3(Rand.Range(-randRange.x, randRange.x), 0, Rand.Range(-randRange.y, randRange.y));
+        }
+
+
+        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f, bool fromPawn = false, GunDrawExtension extension = null)
         {
             if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
@@ -894,9 +915,48 @@ namespace CombatExtended
             {
                 flip = true;
             }
-            creationData.velocityAngle = flip ? shotRotation - 90 - casingAngleOffset + randomAngle : shotRotation + 90 + casingAngleOffset + randomAngle;
+
+
             creationData.rotation = (flip ? shotRotation - 90 : shotRotation + 90) + Rand.Range(-3f, 4f);
             creationData.rotationRate = (float)Rand.Range(-150, 150) / recoilAmount;
+
+
+            float casingAngleOffset = 0;
+            //Extension overrides
+            if (extension != null)
+            {
+                creationData.spawnPosition += CasingOffsetRotated(extension, shotRotation);
+                casingAngleOffset = extension.CasingAngleOffset;
+
+                if (extension.AdvancedCasingVariables)
+                {
+                    casingAngleOffset += extension.CasingAngleOffsetRange.RandomInRange;
+
+                    if (extension.CasingLifeTimeOverrideRange.min > 0)
+                    {
+                        creationData.airTimeLeft = extension.CasingLifeTimeOverrideRange.RandomInRange;
+                    }
+                    else if (extension.CasingLifeTimeMultiplier > 0)
+                    {
+                        creationData.airTimeLeft *= extension.CasingLifeTimeMultiplier;
+                    }
+
+                    if (extension.CasingSpeedOverrideRange.min > 0)
+                    {
+                        creationData.velocitySpeed = extension.CasingSpeedOverrideRange.RandomInRange;
+                    }
+                    else if (extension.CasingSpeedMultiplier > 0)
+                    {
+                        creationData.velocitySpeed *= extension.CasingSpeedMultiplier;
+                    }
+                }
+
+                creationData.scale *= extension.CasingSizeOffset;
+
+                creationData.rotation += Rand.Range(-extension.CasingRotationRandomRange, extension.CasingRotationRandomRange);
+            }
+
+            creationData.velocityAngle = flip ? shotRotation - 90 - casingAngleOffset + randomAngle : shotRotation + 90 + casingAngleOffset + randomAngle;
             map.flecks.CreateFleck(creationData);
             Rand.PopState();
         }
