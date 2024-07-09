@@ -861,7 +861,7 @@ namespace CombatExtended
         }
 
 
-
+        //Don't use it when frompawn since pawn gun draw harmony patch handled it.
         static Vector3 CasingOffsetRotated(GunDrawExtension ext, float shotRotation, bool flip)
         {
             if (ext == null || ext.CasingOffset == Vector2.zero)
@@ -917,7 +917,7 @@ namespace CombatExtended
             }
 
 
-            creationData.rotation = (flip ? shotRotation - 90 : shotRotation + 90) + Rand.Range(-3f, 4f);
+            creationData.rotation = (flip ? shotRotation + 90 : shotRotation + 90) + Rand.Range(-3f, 4f);
             creationData.rotationRate = (float)Rand.Range(-150, 150) / recoilAmount;
 
 
@@ -925,7 +925,14 @@ namespace CombatExtended
             //Extension overrides
             if (extension != null)
             {
-                creationData.spawnPosition += CasingOffsetRotated(extension, shotRotation, flip);
+                if (fromPawn)
+                {
+                    creationData.spawnPosition += RandomOriginOffset(extension.CasingOffsetRandomRange).RotatedBy(shotRotation);
+                }
+                else
+                {
+                    creationData.spawnPosition += CasingOffsetRotated(extension, shotRotation, flip);
+                }
                 casingAngleOffset = extension.CasingAngleOffset;
 
                 if (extension.AdvancedCasingVariables)
