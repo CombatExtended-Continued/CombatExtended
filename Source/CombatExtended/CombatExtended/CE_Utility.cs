@@ -862,13 +862,13 @@ namespace CombatExtended
 
 
 
-        static Vector3 CasingOffsetRotated(GunDrawExtension ext, float shotRotation)
+        static Vector3 CasingOffsetRotated(GunDrawExtension ext, float shotRotation, bool flip)
         {
             if (ext == null || ext.CasingOffset == Vector2.zero)
             {
                 return Vector3.zero;
             }
-            return (new Vector3(ext.CasingOffset.x, 0, ext.CasingOffset.y) + RandomOriginOffset(ext.CasingOffsetRandomRange)).RotatedBy(shotRotation);
+            return (new Vector3(flip ? -ext.CasingOffset.x : ext.CasingOffset.x, 0, ext.CasingOffset.y) + RandomOriginOffset(ext.CasingOffsetRandomRange)).RotatedBy(shotRotation);
         }
 
         //No need to null check as the function calling it already handled it
@@ -925,7 +925,7 @@ namespace CombatExtended
             //Extension overrides
             if (extension != null)
             {
-                creationData.spawnPosition += CasingOffsetRotated(extension, shotRotation);
+                creationData.spawnPosition += CasingOffsetRotated(extension, shotRotation, flip);
                 casingAngleOffset = extension.CasingAngleOffset;
 
                 if (extension.AdvancedCasingVariables)
