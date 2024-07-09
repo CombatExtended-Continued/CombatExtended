@@ -15,6 +15,7 @@ namespace CombatExtended
 
         public Vector2 CasingOffset = Vector2.zero;
         public float CasingAngleOffset = 0;
-
+        public FloatRange CasingRotationOffsetRange = new FloatRange(0, 0);
+        public float CasingSpeedOverride = -1;
     }
 }

@@ -875,6 +875,14 @@ namespace CombatExtended
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
             creationData.velocitySpeed = Rand.Range(1.5f, 2f) * recoilAmount;
             creationData.airTimeLeft = Rand.Range(1f, 1.5f) / creationData.velocitySpeed;
+
+            //Just in case a super low recoil caused the airtimeleft to be super high.
+            if (creationData.airTimeLeft > 1.5f)
+            {
+                creationData.airTimeLeft = Rand.Range(1f, 1.5f);
+            }
+
+
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
             creationData.spawnPosition = loc;
             int randomAngle = Rand.Range(-20, 20);
