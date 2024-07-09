@@ -13,10 +13,10 @@ namespace CombatExtended
     {
         public DamageDef damageDef;
 
-        public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
+        public override void PostPreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             damageDef = dinfo.Def;
-            base.PostPreApplyDamage(dinfo, out absorbed);
+            base.PostPreApplyDamage(ref dinfo, out absorbed);
         }
         public void PostDamageResult(DamageWorker.DamageResult damage)
         {

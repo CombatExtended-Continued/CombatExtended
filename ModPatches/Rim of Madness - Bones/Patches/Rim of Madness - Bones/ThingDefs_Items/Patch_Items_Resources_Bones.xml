@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ======== BoneItem ======== -->
+	<!-- ==== As material ==== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BoneItem"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>0.6</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BoneItem"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BoneItem"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+	<!-- ==== As a weapon ==== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BoneItem"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>0.99</cooldownTime>
+					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ======== BonePlastic ======== -->
+	<!-- ==== As material ==== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BonePlastic"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.5</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+</Patch>

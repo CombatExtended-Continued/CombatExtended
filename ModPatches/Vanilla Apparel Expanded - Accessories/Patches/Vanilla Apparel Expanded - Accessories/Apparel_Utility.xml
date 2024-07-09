@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- == Backpack == -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Backpack"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Backpack"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>30</CarryBulk>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Backpack"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Shoulders</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Backpack"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>Backpack</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<!-- == Banner == -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_BattleBanner"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_BattleBanner"]/equippedStatOffsets</xpath>
+		<value>
+			<Suppressability>-0.25</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- == Medbag, Toolbelt == -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_MedicBag" or defName="VAEA_Apparel_ToolBelt"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_MedicBag" or defName="VAEA_Apparel_ToolBelt"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>5</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- == Quiver, Ammobag == -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Quiver" or defName="VAEA_Apparel_AmmoPack"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_Quiver"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>2.5</CarryBulk>
+				<ReloadSpeed>0.1</ReloadSpeed>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_AmmoPack"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>3.5</CarryBulk>
+				<ReloadSpeed>0.1</ReloadSpeed>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- == Explosive Belt == -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_ExplosiveBelt"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_ExplosiveBelt"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>5</Steel>
+				<FSX>2</FSX>
+				<ComponentIndustrial>1</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<!-- == Ranged Shield Pack == -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_RangedShieldBelt"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_RangedShieldBelt"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.195</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_RangedShieldBelt"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>1.35</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<!-- == Mini-Turret Pack == -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_MiniTurretPack"]/statBases/RangedWeapon_Cooldown</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.82</SwayFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_MiniTurretPack"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>Gun</label>
+					<recoilAmount>0.76</recoilAmount>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>0.5</warmupTime>
+					<range>40</range>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<minRange>1</minRange>
+					<soundCast>GunShotA</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEA_Apparel_MiniTurretPack"]/comps</xpath>
+		<value>
+			<li Class="CompProperties_ApparelReloadable">
+				<maxCharges>25</maxCharges>
+				<ammoDef>Ammo_556x45mmNATO_FMJ</ammoDef>
+				<ammoCountPerCharge>1</ammoCountPerCharge>
+				<baseReloadTicks>60</baseReloadTicks>
+				<soundReload>Standard_Reload</soundReload>
+				<hotKey>Misc4</hotKey>
+				<chargeNoun>turret</chargeNoun>
+				<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+			</li>
+		</value>
+	</Operation>
+</Patch>

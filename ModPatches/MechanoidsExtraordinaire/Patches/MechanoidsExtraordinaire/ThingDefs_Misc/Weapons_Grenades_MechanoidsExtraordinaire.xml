@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeLauncher_ME"]/label</xpath>
+		<value>
+			<label>Mechanoid Grenade Launcher</label>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Weapon_GrenadeLauncher_ME</defName>
+		<statBases>
+			<Mass>30.00</Mass>
+			<RangedWeapon_Cooldown>0.42</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>1.28</SwayFactor>
+			<Bulk>14.50</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_70mmMechanoidGrenade_HE</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>75</range>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<soundCast>ThrowGrenade</soundCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_70mmMechanoidGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Launcher</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+</Patch>

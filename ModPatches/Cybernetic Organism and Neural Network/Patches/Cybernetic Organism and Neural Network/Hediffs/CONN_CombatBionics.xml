@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Zomm (eye replacement) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_Zoom"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+			<AimingAccuracy>0.6</AimingAccuracy><!-- I did the math, and with an aiming accuracy bonus of this, with two of these, a level 20 shooter basically has a sniper rifle scope on 100% sight efficiency guns. -->
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CONN_Zoom"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+		</value>
+	</Operation>
+
+	<!-- Energy fist -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_EnergyFist"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>0.3</cooldownTime>
+					<armorPenetrationBlunt>1.531</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Elastic achilles (foot? replacement) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_ElasticAchilles"]/stages/li/statOffsets/MeleeHitChance</xpath><!-- Why does it have an increased melee hit chance in vanilla and not increased dodge chance? -->
+		<value>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance><!-- A bit better than an archotech leg at giving dodge chance -->
+		</value>
+	</Operation>
+
+	<!-- Cyclops visor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_CyclopsVisor"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<AimingAccuracy>0.1</AimingAccuracy>
+			<ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<!-- Laser detection (ear implant) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_LaserDetection"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<AimingAccuracy>0.15</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- Sensoric earside (ear replacement) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_SensoricEarside"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.2</MeleeDodgeChance>
+		</value>
+	</Operation>
+</Patch>

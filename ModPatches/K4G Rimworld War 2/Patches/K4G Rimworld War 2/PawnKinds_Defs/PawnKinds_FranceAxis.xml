@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Private & Medic === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2FrenchPrivateAxis" or
+			defName="K4G_WW2FrenchPrivateSharedAxis" or
+			defName="K4G_WW2FrenchMedicAxis" or
+			defName="K4G_WW2FrenchMedicSharedAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Rifleman & Infantry === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2FrenchRiflemanAxis" or
+			defName="K4G_WW2FrenchRiflemanSharedAxis" or
+			defName="K4G_WW2FrenchInfantryAxis" or
+			defName="K4G_WW2FrenchInfantrySharedAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.25</generateChance>
+						<sidearmMoney>
+							<min>75</min>
+							<max>185</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2FranceMelee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Machine Gunner === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2FrenchMachineGunnerAxis" or
+			defName="K4G_WW2FrenchMachineGunnerSharedAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.5</generateChance>
+						<sidearmMoney>
+							<min>85</min>
+							<max>195</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2FranceMelee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Sniper === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="K4G_WW2FrenchSniperSharedAxis" or defName="K4G_WW2FrenchGrenadierSharedAxis"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.75</generateChance>
+						<sidearmMoney>
+							<min>95</min>
+							<max>195</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2FranceMelee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Grenadier === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2FrenchGrenadierAxis" or
+			defName="K4G_WW2FrenchGrenadierSharedAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>8</min>
+					<max>14</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.75</generateChance>
+						<sidearmMoney>
+							<min>25</min>
+							<max>100</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2FrancePistol</li>
+						</weaponTags>
+						<magazineCount>
+							<min>3</min>
+							<max>5</max>
+						</magazineCount>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Anti-Tank === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2FrenchAntiTankSharedAxis" or
+			defName="K4G_WW2FrenchAntiTankBSharedAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.75</generateChance>
+						<sidearmMoney>
+							<min>25</min>
+							<max>100</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2FrancePistol</li>
+						</weaponTags>
+						<magazineCount>
+							<min>3</min>
+							<max>5</max>
+						</magazineCount>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Officers === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="K4G_WW2FrenchOfficerAxis" or
+			defName="K4G_WW2FrenchOfficerSharedAxis" or
+			defName="K4G_WW2FrenchOfficerBSharedAxis" or
+			defName="K4G_WW2FrenchLogisticsOfficerAxis" or
+			defName="K4G_WW2FrenchLogisticsOfficerSharedAxis" or
+			defName="K4G_WW2FrenchLogisticsOfficerBSharedAxis" or
+			defName="K4G_WW2FrenchLeaderAxis" or
+			defName="K4G_WW2FrenchLeaderSharedAxis" or
+			defName="K4G_WW2FrenchLeaderBSharedAxis"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.33</generateChance>
+						<sidearmMoney>
+							<min>20</min>
+							<max>120</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>K4GWW2FranceMelee</li>
+						</weaponTags>
+					</li>
+					<li>
+						<generateChance>0.1</generateChance>
+						<sidearmMoney>
+							<min>100</min>
+							<max>300</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_FlareLauncher</li>
+						</weaponTags>
+						<magazineCount>
+							<min>2</min>
+							<max>4</max>
+						</magazineCount>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

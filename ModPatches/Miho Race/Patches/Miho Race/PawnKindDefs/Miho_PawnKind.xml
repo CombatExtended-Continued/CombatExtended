@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Ammo-->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+		defName="Miho_Colonist" or
+		defName="Miho_Leader" or
+		defName="Miho_Trader" or
+		defName="Miho_Slave" or
+		defName="Miho_Refugee"
+		]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>0</min>
+					<max>2</max>
+				</primaryMagazineCount>
+				<forcedAmmoCategory>IncendiaryMiho</forcedAmmoCategory>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@ParentName="MihoMilBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<forcedAmmoCategory>IncendiaryMiho</forcedAmmoCategory>
+			</li>
+		</value>
+	</Operation>
+	<!--Backpack-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CE_Apparel_Backpack"]/apparel/tags</xpath>
+		<value>
+			<li>MihoCommonNecessary</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@ParentName="MihoMilBase"]/apparelRequired </xpath>
+		<value>
+			<li>CE_Apparel_Backpack</li>
+		</value>
+	</Operation>
+</Patch>

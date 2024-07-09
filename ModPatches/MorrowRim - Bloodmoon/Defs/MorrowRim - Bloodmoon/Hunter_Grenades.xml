@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ================== Item ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
+		<defName>Weapon_GrenadeWolfBane</defName>
+		<equipmentType>Primary</equipmentType>
+		<label>wolfsbane vessel</label>
+		<description>Glass vessels filled with a potent mixture of wolfsbane extract. Shatters upon impact, releasing a short lived cloud of gas that burns any werewolves within.</description>
+		<graphicData>
+			<texPath>Things/Projectile/MorrowRim_WolfsBaneBombThrown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Grenade</soundInteract>
+		<techLevel>Medieval</techLevel>
+		<stackLimit>50</stackLimit>
+		<statBases>
+			<Mass>0.436</Mass>
+			<Bulk>1.55</Bulk>
+			<MarketValue>12.4</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<generateCommonality>2.0</generateCommonality>
+		<weaponTags>
+			<li>CE_AI_AOE</li>
+			<li>GrenadeDestructive</li>
+		</weaponTags>
+		<thingCategories>
+			<li>Grenades</li>
+		</thingCategories>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<label>throw wolfsbane vessel</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>12.9</range>
+				<minRange>2.9</minRange>
+				<warmupTime>0.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeWolfBane</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				<ai_AvoidFriendlyFireRadius>6</ai_AvoidFriendlyFireRadius>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseGrenadeProjectile">
+		<defName>Proj_GrenadeWolfBane</defName>
+		<label>wolfsbane vessel</label>
+		<graphicData>
+			<texPath>Things/Projectile/MorrowRim_WolfsBaneBombThrown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>3.5</explosionRadius>
+			<damageDef>Burn</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<explosionDelay>0</explosionDelay>
+			<postExplosionSpawnThingDef>MorrowRim_Gas_Wolfsbane</postExplosionSpawnThingDef>
+			<postExplosionSpawnChance>1</postExplosionSpawnChance>
+			<speed>10</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ================== Recipe ================== -->
+
+	<RecipeDef ParentName="GrenadeRecipeBase">
+		<defName>MakeGrenadeWolfBane</defName>
+		<label>make wolfsbane vessel x5</label>
+		<description>Craft 10 wolfsbane vessels.</description>
+		<jobString>Making wolfsbane vessels.</jobString>
+		<researchPrerequisite>MorrowRim_LycanthropicElixirs</researchPrerequisite>
+		<workAmount>2100</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MorrowRim_WolfsbaneExtract</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>MorrowRim_WolfsbaneExtract</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Weapon_GrenadeWolfBane>5</Weapon_GrenadeWolfBane>
+		</products>
+	</RecipeDef>
+
+</Defs>

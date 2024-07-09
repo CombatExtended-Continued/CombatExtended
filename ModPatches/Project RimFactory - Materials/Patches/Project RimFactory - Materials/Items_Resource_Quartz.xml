@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Quartz -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="PRF_quartz"]/statBases</xpath>
+		<value>
+			<Bulk>0.03</Bulk>
+		</value>
+	</Operation>
+	<!-- Crystal Powder -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="PRF_CrystalPowder"]/statBases</xpath>
+		<value>
+			<Bulk>0.02</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="PRF_CrystalPowder"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.01</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="PRF_CrystalPowder"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.004</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+</Patch>

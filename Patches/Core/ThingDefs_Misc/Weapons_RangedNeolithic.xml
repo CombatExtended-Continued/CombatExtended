@@ -114,6 +114,22 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bow_Recurve"]/graphicData</xpath>
+		<value>
+			<drawSize>1.15</drawSize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Bow_Recurve"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawOffset>-0.05,0.17</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- ========== Great bow ========== -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -147,6 +163,13 @@
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bow_Great"]/graphicData</xpath>
+		<value>
+			<drawSize>1.5</drawSize>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bow_Great"]/tools</xpath>
 		<value>
@@ -160,6 +183,15 @@
 					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Bow_Great"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawOffset>0.0,0.25</DrawOffset>
+			</li>
 		</value>
 	</Operation>
 

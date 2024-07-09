@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_HandCannon</defName>
+		<statBases>
+			<Mass>1.50</Mass>
+			<RangedWeapon_Cooldown>12.0</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.9</SightsEfficiency>
+			<ShotSpread>0.22</ShotSpread>
+			<SwayFactor>1.50</SwayFactor>
+			<Bulk>1.50</Bulk>
+			<WorkToMake>22000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>400</Steel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>0.60</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_CannonBall_Round</defaultProjectile>
+			<warmupTime>4.6</warmupTime>
+			<range>40</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>6.75</reloadTime>
+			<ammoSet>AmmoSet_CannonBall</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_HandCannon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Javelin"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseWeaponAndAmmoNeolithic">
+				<defName>Javelin</defName>
+				<label>javelin</label>
+				<description>light spears designed for throwing. Its weight allows for quick throwing, useful for skirmishing at close range.</description>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/Javelin</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+				</graphicData>
+				<soundInteract>Interact_BeatFire</soundInteract>
+				<statBases>
+					<MarketValue>7.26</MarketValue>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>1.5</ShotSpread>
+					<SwayFactor>2.5</SwayFactor>
+					<Bulk>3.5</Bulk>
+					<Mass>2.00</Mass>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				</statBases>
+				<equippedAngleOffset>30</equippedAngleOffset>
+				<stackLimit>25</stackLimit>
+				<weaponTags>
+					<li>NeolithicRangedHeavy</li>
+					<li>CE_Pila</li>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+				<tradeability>All</tradeability>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Javelin_Thrown_CE</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<range>14</range>
+						<!--<soundCast>Interact_BeatFire</soundCast>-->
+					</li>
+				</verbs>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>shaft</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.35</cooldownTime>
+						<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>15</power>
+						<cooldownTime>1.37</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.34</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+				</tools>
+				<ammoClass>Javelin</ammoClass>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HeavySling</defName>
+		<statBases>
+			<Mass>0.5</Mass>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.1</ShotSpread>
+			<SwayFactor>1</SwayFactor>
+			<Bulk>2</Bulk>
+			<WorkToMake>12000</WorkToMake>
+		</statBases>
+		<Properties>
+			<recoilAmount>0</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Ammo_SlingBullet_Stone</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>20</range>
+			<soundAiming>Sling_Aiming</soundAiming>
+			<soundCast>Sling_Firing</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>3.25</reloadTime>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HeavySling"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>sling</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>hammer</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2.0</cooldownTime>
+					<armorPenetrationBlunt>0.45</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>pick</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>3.5</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.5</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.4</MeleeCritChance>
+			<MeleeParryChance>0.25</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/weaponTags</xpath>
+		<value>
+			<li>GiantMelee</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.0</cooldownTime>
+					<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.46</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.4</MeleeCritChance>
+			<MeleeParryChance>0.25</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/weaponTags</xpath>
+		<value>
+			<li>GiantMelee</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>40</power>
+					<cooldownTime>3.2</cooldownTime>
+					<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.43</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.4</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/weaponTags</xpath>
+		<value>
+			<li>GiantMelee</li>
+		</value>
+	</Operation>
+</Patch>

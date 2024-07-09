@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Black pearl -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_BlackPearl"]</xpath>
+		<value>
+			<stages>
+				<li>
+					<statOffsets>
+						<NightVisionEfficiency_Implant>0.4</NightVisionEfficiency_Implant><!-- With both eyes, the same night vision as mechanoids -->
+					</statOffsets>
+				</li>
+			</stages>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CONN_BlackPearl"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Implant>0.4</NightVisionEfficiency_Implant>
+		</value>
+	</Operation>
+</Patch>

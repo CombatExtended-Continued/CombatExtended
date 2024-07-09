@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Change the damagedefs ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="UAC_Plasm"]/label</xpath>
+		<value>
+			<label>Plasma</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="UAC_GAUSS"]/label</xpath>
+		<value>
+			<label>Plasma</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="UAC_BFG"]/label</xpath>
+		<value>
+			<label>BFG Plasma</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="UAC_Plasm" or defName="UAC_GAUSS" or defName="UAC_BFG"]/hediff</xpath>
+		<value>
+			<hediff>BurnSecondary</hediff>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="UAC_Plasm"]</xpath>
+		<value>
+			<explosionCellMote>UACMote_BlastGAUSS</explosionCellMote>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="UAC_GAUSS"]</xpath>
+		<value>
+			<minDamageToFragment>15</minDamageToFragment>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="UAC_BFG"]</xpath>
+		<value>
+			<minDamageToFragment>150</minDamageToFragment>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="UAC_Plasm"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+</Patch>

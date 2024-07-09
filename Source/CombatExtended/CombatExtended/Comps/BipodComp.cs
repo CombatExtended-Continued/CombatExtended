@@ -32,7 +32,8 @@ namespace CombatExtended
                 if (Controller.settings.AutoSetUp)
                 {
                     var varA = this.parent.TryGetComp<CompFireModes>();
-                    result = (((varA.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && varA.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn);
+                    Pawn pawn = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
+                    result = (((varA.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && varA.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn && !PawnUtility.IsCarryingPawn(pawn));
                 }
                 else
                 {
@@ -188,7 +189,7 @@ namespace CombatExtended
 
             AssignVerbProps(source, changed);
 
-            BipodDefsOfs.Interact_Bipod.PlayOneShot(new TargetInfo(source.PositionHeld, source.Map));
+            CE_SoundDefOf.Interact_Bipod.PlayOneShot(new TargetInfo(source.PositionHeld, source.Map));
         }
 
         public void SetUpStart(Pawn pawn = null)
@@ -205,7 +206,7 @@ namespace CombatExtended
                 if (pawn != null && (pawn.jobs?.curJob?.def?.HasModExtension<JobDefBipodCancelExtension>() ?? false) && !pawn.pather.MovingNow && ShouldSetUp)
                 {
                     pawn.jobs.StopAll();
-                    pawn.jobs.StartJob(new Job { def = BipodDefsOfs.JobDef_SetUpBipod, targetA = this.parent }, JobCondition.InterruptForced);
+                    pawn.jobs.StartJob(new Job { def = CE_JobDefOf.JobDef_SetUpBipod, targetA = this.parent }, JobCondition.InterruptForced);
                 }
 
                 if (pawn.pather.MovingNow)

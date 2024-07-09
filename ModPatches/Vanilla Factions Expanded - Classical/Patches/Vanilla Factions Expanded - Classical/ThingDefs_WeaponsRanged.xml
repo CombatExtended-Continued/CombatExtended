@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Javelin === -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeAdd">
+		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/costList</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+		<value>
+			<techLevel>Neolithic</techLevel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/statBases</xpath>
+		<value>
+			<statBases>
+				<MarketValue>7.26</MarketValue>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+				<Bulk>3.5</Bulk>
+				<Mass>2</Mass>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<stackLimit>25</stackLimit>
+			<ammoClass>HeavyJavelin</ammoClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Classical_Javelin_Thrown</defaultProjectile>
+					<warmupTime>0.8</warmupTime>
+					<range>12</range>
+					<soundCast>Interact_BeatFire</soundCast>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.37</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.34</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_Javelins"]/ammoTypes</xpath>
+		<value>
+			<VFEC_Javelin>Classical_Javelin_Fired</VFEC_Javelin>
+		</value>
+	</Operation>
+
+	<!-- === Can't remove it entirely without causing errors, but make the mobile "Scorpion" weapon inaccessible. === -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEC_Weapon_Scorpion"]/weaponTags</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEC_Turret_Scorpion"]/minifiedDef</xpath>
+		<value>
+			<minifiedDef>MinifiedThing</minifiedDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEC_Turret_Scorpion" or defName="VFEC_TurretGun_Scorpion"]/description</xpath>
+		<value>
+			<description>A ballista-like turret capable of firing rapidly when set up and manned. Very effective against enemy infantry.</description>
+		</value>
+	</Operation>
+</Patch>

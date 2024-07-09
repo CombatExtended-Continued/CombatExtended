@@ -414,6 +414,25 @@ namespace CombatExtended
         #endregion
 
         #region Misc
+        /// <summary>
+        /// Returns the last occurance (instead of first) of a modextension
+        /// </summary>
+
+        public static T GetLastModExtension<T>(this Def def) where T : DefModExtension
+        {
+            if (def.modExtensions == null)
+            {
+                return null;
+            }
+            for (int i = def.modExtensions.Count - 1; i >= 0; i--)
+            {
+                if (def.modExtensions[i] is T)
+                {
+                    return def.modExtensions[i] as T;
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Gets the true rating of armor with partial stats taken into account
@@ -887,6 +906,10 @@ namespace CombatExtended
 
         public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
         {
+            if (pawn.Map == null)
+            {
+                return;
+            }
             MoteThrownAttached moteThrown = (MoteThrownAttached)ThingMaker.MakeThing(moteDef);
             moteThrown.Attach(pawn);
             moteThrown.exactPosition = pawn.DrawPos;
@@ -930,30 +953,13 @@ namespace CombatExtended
                               new Vector3(1f, height, 1f));
         }
 
-        public static CollisionVertical GetCollisionVertical(this Thing thing)
-        {
-            if (thing is Pawn pawn)
-            {
-                return pawn.GetTacticalManager().Collision;
-            }
-            return new CollisionVertical(thing);
-        }
-
         public static Bounds GetBoundsFor(Thing thing)
         {
             if (thing == null)
             {
                 return new Bounds();
             }
-            CollisionVertical height;
-            if (thing is Pawn pawn)
-            {
-                height = pawn.GetTacticalManager().Collision;
-            }
-            else
-            {
-                height = new CollisionVertical(thing);
-            }
+            var height = new CollisionVertical(thing);
             float length;
             float width;
             var thingPos = thing.DrawPos;
@@ -1160,7 +1166,7 @@ namespace CombatExtended
             {
                 RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
 
-                var shape = props.bodyShape;
+                var shape = props.bodyShape ?? CE_BodyShapeDefOf.Invalid;
 
                 if (shape == CE_BodyShapeDefOf.Invalid)
                 {
@@ -1447,34 +1453,43 @@ namespace CombatExtended
         {
             var hitPart = dinfo.HitPart;
 
-            if (dinfo.Def != DamageDefOf.SurgicalCut && dinfo.Def != DamageDefOf.ExecutionCut && hitPart.IsInGroup(CE_BodyPartGroupDefOf.OutsideSquishy))
+            if (hitPart.depth != BodyPartDepth.Outside
+                    || dinfo.Def == DamageDefOf.SurgicalCut
+                    || dinfo.Def == DamageDefOf.ExecutionCut
+                    || !hitPart.def.tags.Contains(CE_BodyPartTagDefOf.OutsideSquishy))
             {
-                var parent = hitPart.parent;
-                if (parent != null)
-                {
-                    float hitPartHealth = lastHitPartHealth;
-                    if (hitPartHealth > totalDamage)
-                    {
-                        return;
-                    }
-
-                    dinfo.SetHitPart(parent);
-                    float parentPartHealth = pawn.health.hediffSet.GetPartHealth(parent);
-                    if (parentPartHealth != 0f && parent.coverageAbs > 0f)
-                    {
-                        Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, parent), pawn, null);
-                        hediff_Injury.Part = parent;
-                        hediff_Injury.source = dinfo.Weapon;
-                        hediff_Injury.sourceBodyPartGroup = dinfo.WeaponBodyPartGroup;
-                        hediff_Injury.Severity = totalDamage - (hitPartHealth * hitPartHealth / totalDamage);
-                        if (hediff_Injury.Severity <= 0f)
-                        {
-                            hediff_Injury.Severity = 1f;
-                        }
-                        __instance.FinalizeAndAddInjury(pawn, hediff_Injury, dinfo, result);
-                    }
-                }
+                return;
             }
+
+            var parent = hitPart.parent;
+            if (parent == null)
+            {
+                return;
+            }
+
+            float hitPartHealth = lastHitPartHealth;
+            if (hitPartHealth > totalDamage)
+            {
+                return;
+            }
+
+            dinfo.SetHitPart(parent);
+            float parentPartHealth = pawn.health.hediffSet.GetPartHealth(parent);
+            if (parentPartHealth <= 0f || parent.coverageAbs <= 0f)
+            {
+                return;
+            }
+
+            Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, parent), pawn, null);
+            hediff_Injury.Part = parent;
+            hediff_Injury.sourceDef = dinfo.Weapon;
+            hediff_Injury.sourceBodyPartGroup = dinfo.WeaponBodyPartGroup;
+            hediff_Injury.Severity = totalDamage - (hitPartHealth * hitPartHealth / totalDamage);
+            if (hediff_Injury.Severity <= 0f)
+            {
+                hediff_Injury.Severity = 1f;
+            }
+            __instance.FinalizeAndAddInjury(pawn, hediff_Injury, dinfo, result);
         }
 
         private static readonly List<PawnKindDef> _validPawnKinds = new List<PawnKindDef>();
@@ -1521,8 +1536,5 @@ namespace CombatExtended
         }
 
         public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
-
-        public static CompTacticalManager GetTacticalManager(this Pawn pawn) => pawn.TryGetComp<CompTacticalManager>();
-
     }
 }

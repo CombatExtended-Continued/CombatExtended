@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ====== Giant Javelin ====== -->
+
+	<!-- == Weapon == -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+		<value>
+			<stackLimit>5</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<techLevel>Medieval</techLevel>
+			<tradeNeverStack>true</tradeNeverStack>
+			<burnableByRecipe>true</burnableByRecipe>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BS_JotunJavelin</defName>
+		<statBases>
+			<MarketValue>50</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<Bulk>5</Bulk>
+			<Mass>5</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.36</MeleeCounterParryBonus>
+		</statBases>
+		<Properties>
+			<label>Throw huge javelin</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_GiantThrown</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>20</range>
+			<soundCast>BS_JotunJavelinThrow_Sound</soundCast>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeDodgeChance>0.6</MeleeDodgeChance>
+				<MeleeParryChance>0.5</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BS_JotunJavelin"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>2.95</cooldownTime>
+					<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>37</power>
+					<cooldownTime>3.4</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+					<armorPenetrationSharp>4</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/RecipeDef[defName="BS_OgreThrowinRockRecipe"]/workAmount</xpath>
+		<value>
+			<workAmount>1600</workAmount>
+		</value>
+	</Operation>
+
+</Patch>

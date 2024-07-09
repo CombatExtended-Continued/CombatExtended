@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Add tribal grenadies ========== -->
+
+	<Operation Class="PatchOperationAdd"><!-- Combat -->
+		<xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[1]/options</xpath>
+		<value>
+			<LizoGrenadier>10</LizoGrenadier>
+			<LizoGunner>20</LizoGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Normal fights, ranged only -->
+		<xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[2]/options</xpath>
+		<value>
+			<LizoGrenadier>15</LizoGrenadier>
+			<LizoGunner>30</LizoGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!--Peaceful-->
+		<xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[4]/options</xpath>
+		<value>
+			<LizoGrenadier>5</LizoGrenadier>
+			<LizoGunner>20</LizoGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!--Trader-->
+		<xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[5]/guards</xpath>
+		<value>
+			<LizoGrenadier>7</LizoGrenadier>
+			<LizoGunner>20</LizoGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Settlement -->
+		<xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[6]/options</xpath>
+		<value>
+			<LizoGrenadier>20</LizoGrenadier>
+			<LizoGunner>40</LizoGunner>
+		</value>
+	</Operation>
+</Patch>

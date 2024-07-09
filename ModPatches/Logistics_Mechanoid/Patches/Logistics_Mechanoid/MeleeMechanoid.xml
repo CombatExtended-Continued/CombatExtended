@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Hydraulic Claws -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "MeleeWeapon_HydraulicClaw"]/statBases</xpath>
+		<value>
+			<MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+			<Bulk>0</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_HydraulicClaw"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>base</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>3.51</cooldownTime>
+					<armorPenetrationBlunt>13</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>pincer</label>
+					<labelUsedInLogging>false</labelUsedInLogging>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>3.51</cooldownTime>
+					<armorPenetrationBlunt>13</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AM_WarEmpress"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>QuadrupedLow</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/statBases/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.9</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/statBases/EnergyShieldEnergyMax</xpath>
+					<value>
+						<EnergyShieldEnergyMax>6.0</EnergyShieldEnergyMax>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/statBases</xpath>
+					<value>
+						<ArmorRating_Heat>0.75</ArmorRating_Heat>
+						<CarryWeight>75</CarryWeight>
+						<CarryBulk>50</CarryBulk>
+						<AimingAccuracy>1.3</AimingAccuracy>
+						<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.02</MeleeDodgeChance>
+						<MeleeCritChance>0.22</MeleeCritChance>
+						<MeleeParryChance>0.64</MeleeParryChance>
+						<MaxHitPoints>600</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left rending claws</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>LeftPowerClaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+								<armorPenetrationSharp>10</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right rending claws</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>1.5</cooldownTime>
+								<linkedBodyPartsGroup>RightPowerClaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+								<armorPenetrationSharp>10</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>3.6</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<armorPenetrationBlunt>16</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AM_WarEmpress"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AM_WarEmpress"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>5750</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>1250</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<Repairable>true</Repairable>
+							<RepairIngredients>
+								<Steel>5</Steel>
+								<Plasteel>5</Plasteel>
+							</RepairIngredients>
+							<RepairTime>300</RepairTime>
+							<RepairValue>200</RepairValue>
+							<CanOverHeal>true</CanOverHeal>
+							<MaxOverHeal>575</MaxOverHeal>
+							<MinArmorPct>0.5</MinArmorPct>
+							<MinArmorValueSharp>14</MinArmorValueSharp>
+							<MinArmorValueBlunt>35</MinArmorValueBlunt>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="AM_WarEmpress"]/combatPower</xpath>
+					<value>
+						<combatPower>1100</combatPower>
+					</value>
+				</li>
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>AM_Gun_SniperTurret</defName>
+					<statBases>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.2</ShotSpread><!-- Manually adjusted from 0.08 due to accuracy concerns. -->
+						<SwayFactor>1.89</SwayFactor>
+						<Bulk>20.00</Bulk>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_40x311mmR_AP</defaultProjectile>
+						<range>75</range>
+						<minRange>5.9</minRange>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>AM_Shot</soundCast>
+						<muzzleFlashScale>18</muzzleFlashScale>
+						<defaultCooldownTime>4.5</defaultCooldownTime>
+						<ticksBetweenBurstShots>150</ticksBetweenBurstShots>
+					</Properties>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

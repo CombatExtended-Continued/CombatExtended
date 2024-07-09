@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ================= Pawnkinds ================== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[ @Name="MechanentBase" or @Name="PersonaBase" or@Name="MechanentPirateTierBase"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_Backpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[ @Name="MechanentBase"]</xpath>
+		<value>
+			<invFoodDef>Chemfuel</invFoodDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[ defName="Mechanent_Villager" or defName="Persona_Villager" or defName="Mechanent_Guard" or defName="Mechanent_Trader" or @Name="MechanentGunnerBase" or @Name="MechanentSniperBase" or defName="Mechanent_Heavy" or defName="Mechanent_Spacer_Trooper" or defName="Mechanent_Scavenger" or defName="Mechanent_Pirate" or defName="Persona_Spacer_Trooper" or defName="Persona_Pirate" ]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>3</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>100</min>
+						<max>150</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>MedievalMeleeBasic</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[ @Name="MechanentEliteBase" or defName="Mechanent_Spacer_Marine" or defName="Persona_Spacer_Marine" or defName="Personae_Nexus"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>350</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>MedievalMeleeAdvanced</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Mechanent_Grenadier_EMP"]/label</xpath>
+		<value>
+			<label>advanced grenadier</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="Mechanent_Grenadier_EMP"]/weaponTags</xpath>
+		<value>
+			<li>CE_GrenadeFlashbang</li>
+			<li>GrenadeSmoke</li>
+			<li>GrenadeDestructive</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Mechanent_Grenadier_EMP"]/combatPower</xpath>
+		<value>
+			<combatPower>85</combatPower>
+		</value>
+	</Operation>
+</Patch>

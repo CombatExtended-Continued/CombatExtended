@@ -23,7 +23,7 @@ namespace CombatExtended
         #region Properties
 
 
-        private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, DefDatabase<StuffCategoryDef>.GetNamed("Leathery") };
+        private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, StuffCategoryDefOf.Leathery };
 
         #endregion
 
@@ -300,6 +300,7 @@ namespace CombatExtended
         {
             // Calculate deflection
             var isSharpDmg = def.armorCategory == DamageArmorCategoryDefOf.Sharp;
+            var isFireDmg = def.armorCategory == CE_DamageArmorCategoryDefOf.Heat;
             //var rand = UnityEngine.Random.Range(penAmount - PenetrationRandVariation, penAmount + PenetrationRandVariation);
             var deflected = isSharpDmg && armorAmount > penAmount;
 
@@ -321,6 +322,10 @@ namespace CombatExtended
                 if (isSoftArmor)
                 {
                     // Soft armor takes absorbed damage from sharp and no damage from blunt
+                    if (isFireDmg)
+                    {
+                        armorDamage = armor.GetStatValue(StatDefOf.Flammability, true) * dmgAmount;
+                    }
                     if (isSharpDmg)
                     {
                         armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
@@ -339,7 +344,24 @@ namespace CombatExtended
                     }
                     else
                     {
-                        armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+                        if (isFireDmg)
+                        {
+                            armorDamage = armor.GetStatValue(StatDefOf.Flammability, true) * dmgAmount;
+                        }
+                        else
+                        {
+                            if (penAmount == 0 || armorAmount == 0)
+                            {
+                                if (armor.GetStatValue(StatDefOf.ArmorRating_Sharp) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Blunt) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Heat) == 0)
+                                {
+                                    Log.ErrorOnce($"penAmount or armorAmount are zero for {def.armorCategory} on {armor}", armor.def.GetHashCode() + 846532021);
+                                }
+                            }
+                            else
+                            {
+                                armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+                            }
+                        }
                         armorDamage *= HardArmorDamageFactor;
                     }
 

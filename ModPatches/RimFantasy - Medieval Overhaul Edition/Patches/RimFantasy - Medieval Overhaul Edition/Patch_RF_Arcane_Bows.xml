@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Tools ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RF_BaseWeapon_ArcaneBows"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ===== Statbases ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RF_BaseWeapon_ArcaneBows"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>18000</WorkToMake>
+				<Mass>2.75</Mass>
+				<Bulk>5.00</Bulk>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<ShotSpread>1</ShotSpread>
+				<SwayFactor>2</SwayFactor>
+				<RangedWeapon_Cooldown>0.7</RangedWeapon_Cooldown>
+			</statBases>
+		</value>
+	</Operation>
+
+	<!-- ======= Emerald Bow ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_EmeraldBow</defName>
+		<costList>
+			<DankPyon_Emerald>55</DankPyon_Emerald>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicArrow_Emerald</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>32</range>
+			<soundCast>ChargeLance_Fire</soundCast>
+		</Properties>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ======= Sapphire Bow ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_SapphireBow</defName>
+		<costList>
+			<DankPyon_Sapphire>55</DankPyon_Sapphire>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicArrow_Sapphire</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>32</range>
+			<soundCast>ChargeLance_Fire</soundCast>
+		</Properties>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ======= Ruby Bow ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_RubyBow</defName>
+		<costList>
+			<DankPyon_Ruby>55</DankPyon_Ruby>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicArrow_Ruby</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>32</range>
+			<soundCast>ChargeLance_Fire</soundCast>
+		</Properties>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+</Patch>

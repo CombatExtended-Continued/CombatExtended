@@ -25,19 +25,12 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Mech_Lancer" or defName="Mech_Pikeman"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>8</min>
-					<max>10</max>
-				</primaryMagazineCount>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Mech_Termite_Breach" or @Name="MechCentipedeBase"]</xpath>
+		<xpath>Defs/PawnKindDef[
+			defName="Mech_Lancer" or
+			defName="Mech_Pikeman" or
+			defName="Mech_Termite_Breach" or
+			@Name="MechCentipedeBase"
+			]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -107,14 +100,14 @@
 				<stats>
 					<li>
 						<useStatic>false</useStatic>
-						<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
 						<parts>
 							<li>SightSensor</li>
 						</parts>
 					</li>
 					<li>
 						<useStatic>false</useStatic>
-						<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
 						<parts>
 							<li>SightSensor</li>
 						</parts>
@@ -148,12 +141,11 @@
 			<ArmorRating_Heat>0.25</ArmorRating_Heat>
 			<CarryWeight>150</CarryWeight>
 			<CarryBulk>60</CarryBulk>
-			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+			<AimingAccuracy>1.3</AimingAccuracy>
+			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
 			<MeleeDodgeChance>0.03</MeleeDodgeChance>
 			<MeleeCritChance>0.26</MeleeCritChance>
 			<MeleeParryChance>0.52</MeleeParryChance>
-			<AimingDelayFactor>1.25</AimingDelayFactor>
 			<MaxHitPoints>500</MaxHitPoints>
 		</value>
 	</Operation>
@@ -257,7 +249,7 @@
 		<value>
 			<CarryWeight>50</CarryWeight>
 			<CarryBulk>20</CarryBulk>
-			<AimingAccuracy>1.0</AimingAccuracy>
+			<AimingAccuracy>1.7</AimingAccuracy>
 			<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
 			<MeleeDodgeChance>0.13</MeleeDodgeChance>
 			<MeleeCritChance>0.12</MeleeCritChance>
@@ -344,6 +336,13 @@
 					<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Lancer"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.0</baseHealthScale>
 		</value>
 	</Operation>
 
@@ -599,12 +598,11 @@
 			<ArmorRating_Heat>0.25</ArmorRating_Heat>
 			<CarryWeight>150</CarryWeight>
 			<CarryBulk>60</CarryBulk>
-			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+			<AimingAccuracy>1.3</AimingAccuracy>
+			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
 			<MeleeDodgeChance>0.04</MeleeDodgeChance>
 			<MeleeCritChance>0.14</MeleeCritChance>
 			<MeleeParryChance>0.24</MeleeParryChance>
-			<AimingDelayFactor>1.25</AimingDelayFactor>
 			<MaxHitPoints>350</MaxHitPoints>
 		</value>
 	</Operation>

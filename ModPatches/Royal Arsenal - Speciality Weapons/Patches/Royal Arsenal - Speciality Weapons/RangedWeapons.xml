@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Thunder Javelins -->
+
+<Operation Class="PatchOperationAttributeSet">
+	<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]</xpath>
+	<attribute>ParentName</attribute>
+	<value>BaseWeapon</value>
+</Operation>
+
+<Operation Class="PatchOperationRemove">
+	<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]/costList</xpath>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]/graphicData</xpath>
+	<value>
+		<graphicData>
+			<texPath>ThirdParty/RoyalArsenal/ThunderJavelin</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]</xpath>
+	<value>
+		<thingCategories>
+			<li>WeaponsRanged</li>
+		</thingCategories>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]/weaponTags</xpath>
+	<value>
+		<li>CE_OneHandedWeapon</li>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationRemove">
+	<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]/recipeMaker</xpath>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]/statBases</xpath>
+	<value>
+		<statBases>
+			<MarketValue>7.26</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>3</Bulk>
+			<Mass>1.75</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<stackLimit>25</stackLimit>
+		<techLevel>Ultra</techLevel>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]/verbs</xpath>
+	<value>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>ThunderJavelin_Thrown</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>20</range>
+				<soundCast>Interact_BeatFire</soundCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>									
+			</li>
+		</verbs>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="RA_ThunderJavelins"]/tools</xpath>
+	<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>shaft</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>7</power>
+				<cooldownTime>1.35</cooldownTime>
+				<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+			</li>
+		</tools>
+	</value>
+</Operation>
+	
+</Patch>

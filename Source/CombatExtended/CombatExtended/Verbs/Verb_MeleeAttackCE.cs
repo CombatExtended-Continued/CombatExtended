@@ -56,11 +56,13 @@ namespace CombatExtended
         public static Verb_MeleeAttackCE LastAttackVerb
         {
             get;    // Hack to get around DamageInfo not passing the tool to ArmorUtilityCE
-            private set;
+            protected set;
         }
 
-        public float ArmorPenetrationSharp => (tool as ToolCE)?.armorPenetrationSharp * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
-        public float ArmorPenetrationBlunt => (tool as ToolCE)?.armorPenetrationBlunt * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
+        protected virtual float PenetrationSkillMultiplier => 1f + (CasterPawn?.skills?.GetSkill(SkillDefOf.Melee).Level ?? 1 - 1) * StatWorker_MeleeArmorPenetration.skillFactorPerLevel;
+        protected virtual float PenetrationOtherMultipliers => CasterIsPawn ? Mathf.Pow(this.verbProps.GetDamageFactorFor(this, CasterPawn), StatWorker_MeleeArmorPenetration.powerForOtherFactors) : 1f;
+        public float ArmorPenetrationSharp => (tool as ToolCE)?.armorPenetrationSharp * PenetrationOtherMultipliers * PenetrationSkillMultiplier * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
+        public float ArmorPenetrationBlunt => (tool as ToolCE)?.armorPenetrationBlunt * PenetrationOtherMultipliers * PenetrationSkillMultiplier * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
 
         public bool Enabled
         {
@@ -85,7 +87,7 @@ namespace CombatExtended
             }
         }
 
-        bool isCrit;
+        protected bool isCrit;
 
         /// <summary>
         /// Backing field for <see cref="CompMeleeTargettingGizmo"/>.
@@ -330,7 +332,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="target">The target damage is to be applied to</param>
         /// <returns>Collection with primary DamageInfo, followed by secondary types</returns>
-        private IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
+        protected virtual IEnumerable<DamageInfo> DamageInfosToApply(LocalTargetInfo target, bool isCrit = false)
         {
             //START 1:1 COPY Verb_MeleeAttack.DamageInfosToApply
             float damAmount = verbProps.AdjustedMeleeDamageAmount(this, CasterPawn);
@@ -397,9 +399,15 @@ namespace CombatExtended
                 // Predators get a neck bite on immobile targets
                 if (caster.def.race.predator && IsTargetImmobile(target))
                 {
-                    var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
-                               .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
-                    damageInfo.SetHitPart(neck);
+                    //TODO: 1.5 Should be neck?
+                    var hp = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
+                               .FirstOrDefault(r => r.def == CE_BodyPartDefOf.Neck);
+                    if (hp == null)
+                    {
+                        hp = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
+                               .FirstOrDefault(r => r.def == BodyPartDefOf.Head);
+                    }
+                    damageInfo.SetHitPart(hp);
                 }
                 //for some reason, when all parts of height are missing their incode count is 3
                 if (pawn.health.hediffSet.GetNotMissingParts(bodyRegion).Count() <= 3)
@@ -448,7 +456,11 @@ namespace CombatExtended
 
                             if (damageInfo.HitPart != null)
                             {
-                                damageInfo.SetHitPart(damageInfo.HitPart.GetDirectChildParts().RandomElementByWeight(x => x.coverage));
+                                var children = damageInfo.HitPart.GetDirectChildParts();
+                                if (children.Count() > 0)
+                                {
+                                    damageInfo.SetHitPart(children.RandomElementByWeight(x => x.coverage));
+                                }
                             }
                         }
                     }
@@ -600,7 +612,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="pawn">Pawn to check</param>
         /// <returns>True if pawn still has parries available or no parry tracker could be found, false otherwise</returns>
-        private bool CanDoParry(Pawn pawn)
+        protected virtual bool CanDoParry(Pawn pawn)
         {
             if (pawn == null
                     || pawn.Dead
@@ -629,7 +641,7 @@ namespace CombatExtended
         /// <param name="parryThing">Thing used to parry the blow (weapon/shield)</param>
         /// <param name="isRiposte">Whether to do a riposte</param>
         /// <param name="deflectChance">Chance of the weapon taking no damage from parrying</param>
-        private void DoParry(Pawn defender, Thing parryThing, bool isRiposte = false, bool deflected = false)
+        protected virtual void DoParry(Pawn defender, Thing parryThing, bool isRiposte = false, bool deflected = false)
         {
             if (parryThing != null)
             {
@@ -688,7 +700,7 @@ namespace CombatExtended
             }
         }
 
-        private static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance, float defenderSkillMult = 1)
+        protected static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance, float defenderSkillMult = 1)
         {
             if (attacker == null || defender == null)
             {

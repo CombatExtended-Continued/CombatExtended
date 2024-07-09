@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Arm Groups-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="CM_Golem"]//*[
+			customLabel="left shoulder"
+			]/groups
+		</xpath>
+		<value>
+			<li>LeftShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="CM_Golem"]//*[
+			customLabel="right shoulder"
+			]/groups
+		</xpath>
+		<value>
+			<li>RightShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="CM_Golem"]//*[
+			customLabel="left arm"
+			]/groups
+		</xpath>
+		<value>
+			<li>LeftArm</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="CM_Golem"]//*[
+			customLabel="right arm"
+			]/groups
+		</xpath>
+		<value>
+			<li>RightArm</li>
+		</value>
+	</Operation>
+
+	<!--Natural Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="CM_Golem"]//*[
+			def="CM_Torso" or
+			def="CM_Neck" or
+			def="Head" or
+			def="CM_Ear" or
+			def="CM_Nose" or
+			def="CM_Jaw" or
+			def="CM_Shoulder" or
+			def="CM_Arm" or
+			def="CM_Hand" or
+			def="CM_Finger" or
+			def="CM_Leg" or
+			def="CM_Foot" or
+			def="CM_Toe"
+			]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>

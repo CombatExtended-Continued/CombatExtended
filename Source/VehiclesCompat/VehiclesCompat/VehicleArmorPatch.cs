@@ -16,15 +16,16 @@ using CombatExtended;
 namespace CombatExtended.Compatibility.VehiclesCompat
 {
     [HarmonyPatch(typeof(VehicleStatHandler),
-                  nameof(VehicleStatHandler.ApplyDamageToComponent))]
+                  nameof(VehicleStatHandler.ApplyDamage))]
     public static class VehicleArmorPatch
     {
-        public static bool Prefix(VehicleStatHandler __instance, ref DamageInfo dinfo, IntVec2 hitCell, StringBuilder report)
+        public static bool Prefix(VehicleStatHandler __instance, ref DamageInfo dinfo, IntVec2 hitCell)
         {
             if (!Controller.settings.patchArmorDamage)
             {
                 return true;
             }
+            StringBuilder report = VehicleMod.settings.debug.debugLogging ? new StringBuilder() : null;
             __instance.ApplyDamageCE(ref dinfo, hitCell, report);
             return false;
         }
@@ -116,7 +117,6 @@ namespace CombatExtended.Compatibility.VehiclesCompat
                     }
                     stats.debugCellHighlight.Add(new Pair<IntVec2, int>(renderCell, VehicleStatHandler.TicksHighlighted));
                 }
-
                 if (stats.componentLocations.TryGetValue(cell2, out List<VehicleComponent> components))
                 {
                     bool penetrated = TryPenetrateComponents(stats, ref dinfo, components, hitDepth, report);
@@ -272,7 +272,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             report?.AppendLine($"Applying Damage = {dinfo.Amount} to {component.props.key}");
 
             DamageArmorCategoryDef armorCategoryDef = dinfo.Def.armorCategory;
-            float armorAmount = component.Efficiency * component.ArmorRating(armorCategoryDef);
+            float armorAmount = component.Efficiency * component.ArmorRating(armorCategoryDef, out _);
             float penAmount = dinfo.ArmorPenetrationInt;
             var dmgAmount = dinfo.Amount;
             var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;

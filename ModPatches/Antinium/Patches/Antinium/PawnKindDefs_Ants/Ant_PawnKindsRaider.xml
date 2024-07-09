@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Ant_CannonFodder -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Ant_CannonFodder"]/combatPower</xpath>
+		<value>
+			<combatPower>20</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Ant_Combatant -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Ant_Combatant"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>40</min>
+					<max>100</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.6</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Ant_Combatant"]/combatPower</xpath>
+		<value>
+			<combatPower>25</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Ant_Soldier -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Ant_Soldier"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>200</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.9</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Ant_Soldier"]/combatPower</xpath>
+		<value>
+			<combatPower>35</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Ant_Bowman -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Ant_Bowman"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>15</min>
+					<max>30</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>80</min>
+					<max>120</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.6</shieldChance>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>60</min>
+							<max>120</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Ant_Bowman"]/combatPower</xpath>
+		<value>
+			<combatPower>35</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Ant_Archer -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Ant_Archer"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>100</min>
+					<max>175</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.6</shieldChance>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>80</min>
+							<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Ant_Archer"]/combatPower</xpath>
+		<value>
+			<combatPower>45</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Ant_SpecialArcher -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Ant_SpecialArcher"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>10</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>100</min>
+					<max>180</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.6</shieldChance>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>120</min>
+							<max>360</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+	<!-- Removing the smokepop belt requirement -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="Ant_SpecialArcher"]/apparelRequired</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Ant_SpecialArcher"]/combatPower</xpath>
+		<value>
+			<combatPower>65</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Ant_Warrior -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Ant_Warrior"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>180</min>
+					<max>300</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.9</shieldChance>
+			</li>
+		</value>
+	</Operation>
+	<!-- Removing the shield belt requirement -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="Ant_Warrior"]/apparelRequired</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Ant_Warrior"]/combatPower</xpath>
+		<value>
+			<combatPower>65</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Ant_ArmoredAntinium -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Ant_ArmoredAntinium"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>120</min>
+					<max>240</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.9</shieldChance>
+			</li>
+		</value>
+	</Operation>
+</Patch>

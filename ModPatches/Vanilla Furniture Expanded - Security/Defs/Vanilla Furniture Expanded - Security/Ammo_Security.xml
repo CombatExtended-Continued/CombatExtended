@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ========== EMP Ammo ========== -->
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_EMPCannon</defName>
+		<label>EMP Blast</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_EMPCannon</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>42</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<speed>129</speed>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+	</ThingDef>
+
+	<!-- ========== Raider Artillery (To circumvent the issue with vanilla shells.) ========== -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_RaiderArtillery</defName>
+		<label>Raider Artillery</label>
+		<ammoTypes>
+			<Shell_HighExplosive>Bullet_155mmHowitzerShell_HE</Shell_HighExplosive>
+			<Shell_Incendiary>Bullet_155mmHowitzerShell_Incendiary</Shell_Incendiary>
+			<Shell_Toxic MayRequire="Ludeon.RimWorld.Biotech">Bullet_81mmMortarShell_Tox</Shell_Toxic>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+</Defs>

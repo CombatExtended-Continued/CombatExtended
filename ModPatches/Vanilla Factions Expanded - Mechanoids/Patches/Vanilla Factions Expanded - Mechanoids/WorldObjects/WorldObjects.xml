@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--VFEM_Frigate-->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Frigate"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/WorldObjectDef[defName="VFEM_Frigate"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Frigate"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Health">
+				<healthModifier>2.6</healthModifier>
+				<techLevelNoImpact>true</techLevelNoImpact>
+				<chanceToNegateDamage>0.12</chanceToNegateDamage>
+			</li>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Hostility"/>
+		</value>
+	</Operation>
+
+	<!--VFEM_Destroyer-->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Destroyer"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/WorldObjectDef[defName="VFEM_Destroyer"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Destroyer"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Health">
+				<healthModifier>3.6</healthModifier>
+				<techLevelNoImpact>true</techLevelNoImpact>
+				<chanceToNegateDamage>0.22</chanceToNegateDamage>
+			</li>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Hostility"/>
+		</value>
+	</Operation>
+
+	<!--VFEM_Cruiser-->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Cruiser"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/WorldObjectDef[defName="VFEM_Cruiser"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Cruiser"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Health">
+				<healthModifier>4.6</healthModifier>
+				<techLevelNoImpact>true</techLevelNoImpact>
+				<chanceToNegateDamage>0.3</chanceToNegateDamage>
+			</li>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Hostility"/>
+		</value>
+	</Operation>
+
+	<!--VFEM_Troopship-->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Troopship"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/WorldObjectDef[defName="VFEM_Troopship"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Troopship"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Health">
+				<healthModifier>5.2</healthModifier>
+				<techLevelNoImpact>true</techLevelNoImpact>
+				<chanceToNegateDamage>0.45</chanceToNegateDamage>
+			</li>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Hostility"/>
+		</value>
+	</Operation>
+
+	<!--VFEM_Carrier-->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Carrier"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/WorldObjectDef[defName="VFEM_Carrier"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/WorldObjectDef[defName="VFEM_Carrier"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Health">
+				<healthModifier>6.0</healthModifier>
+				<techLevelNoImpact>true</techLevelNoImpact>
+				<chanceToNegateDamage>0.75</chanceToNegateDamage>
+			</li>
+			<li Class="CombatExtended.WorldObjects.WorldObjectCompProperties_Hostility"/>
+		</value>
+	</Operation>
+
+</Patch>

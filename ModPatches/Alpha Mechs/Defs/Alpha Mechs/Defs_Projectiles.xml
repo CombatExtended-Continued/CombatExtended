@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="AM_BaseMechProjectile">
+		<defName>AM_CryoBulletCE</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>cryogenic pellet</label>
+		<graphicData>
+			<texPath>Things/Projectiles/AM_Cryo</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<speed>40</speed>
+			<damageDef>Frostbite</damageDef>
+			<damageAmountBase>3</damageAmountBase>
+			<explosionRadius>2.9</explosionRadius>
+			<soundExplode>AM_Cryogun</soundExplode>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBulletCE" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>AM_Bullet_SoulDrain_CE</defName>
+		<label>soul drain</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Things/Projectiles/AM_SoulDrain</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>(3,3)</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>AM_SoulDrain</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			<speed>90</speed>
+		</projectile>
+	</ThingDef>
+
+</Defs>

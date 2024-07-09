@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- More Javelins for Giant-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="BS_Ogre_Hunter"]</xpath>
+		<value>
+			<modExtensions Inherit="False">
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>3</min>
+						<max>4</max>
+					</primaryMagazineCount>
+					<forcedSidearm>
+						<sidearmMoney>
+							<min>100</min>
+							<max>600</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>NeolithicMeleeGiant</li>
+						</weaponTags>
+					</forcedSidearm>
+				</li>
+			</modExtensions>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="BS_Ogre_Warrior"]/weaponTags/li[.="NeolithicMeleeBasic"]</xpath>
+	</Operation>
+
+</Patch>

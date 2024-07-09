@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="ROM_MiGoBody"]//*[
+			def="Body" or
+			def="Pronotum" or
+			def="ROM_SporeHead"]
+		</xpath>
+		<value>
+			<groups/>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="ROM_MiGoBody"]//*[
+			def="Body" or
+			def="Pronotum" or
+			def="ROM_SporeHead" or
+			def="InsectLeg"]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>

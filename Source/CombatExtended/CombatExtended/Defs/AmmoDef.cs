@@ -23,6 +23,7 @@ namespace CombatExtended
 
         // mortar ammo should still availabe when the ammo system is off        
         public bool isMortarAmmo = false;
+        public bool spawnAsSiegeAmmo = true;
 
         public int ammoCount = 1;
         public ThingDef partialUnloadAmmoDef = null;
@@ -143,7 +144,7 @@ namespace CombatExtended
             {
                 yield return s;
             }
-            if (HasComp(typeof(CompReloadable)) && stackLimit > 1)
+            if (HasComp(typeof(CompApparelReloadable)) && stackLimit > 1)
             {
                 yield return "has compreloadable and a stack limit higher than 1. this is not recommended.";
             }

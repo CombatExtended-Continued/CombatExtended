@@ -52,7 +52,7 @@ namespace CombatExtended.HarmonyCE
 
             if (Rand.Chance(CatchFireChance * pawn.GetStatValue(StatDefOf.Flammability)))
             {
-                pawn.TryAttachFire(fireSize);
+                pawn.TryAttachFire(fireSize, null);
             }
         }
     }

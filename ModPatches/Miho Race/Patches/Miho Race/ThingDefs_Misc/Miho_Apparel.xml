@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--========= Stuffable =========-->
+
+	<!--Simple Wear-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Simple"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+			<Bulk>2</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Miho_Apparel_OnSkin_Regular" or 
+		defName="Miho_Apparel_OnSkin_Hoodie" or 
+		defName="Miho_Apparel_OnSkin_Maid"
+		]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1.75</StuffEffectMultiplierArmor>
+			<Bulk>2</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<!--Milita-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Militia"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+			<Bulk>2</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Militia"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Militia"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!--Milita Vests-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Miho_Apparel_Middle_Militia" or
+			defName="Miho_Apparel_Middle_Militia_Tan" or
+			defName="Miho_Apparel_Middle_MilitiaMedic" or
+			defName="Miho_Apparel_Middle_MilitiaMedic"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+			<Bulk>6</Bulk>
+			<WornBulk>2.7</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Miho_Apparel_Middle_Militia" or
+			defName="Miho_Apparel_Middle_Militia_Tan" or
+			defName="Miho_Apparel_Middle_MilitiaMedic"
+			]/statBases/Mass </xpath>
+		<value>
+			<Mass>10.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="Miho_Apparel_Middle_Militia" or
+			defName="Miho_Apparel_Middle_Militia_Tan" or
+			defName="Miho_Apparel_Middle_MilitiaMedic"
+			]/statBases/ArmorRating_Sharp </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_Militia" or defName="Miho_Apparel_Middle_Militia_Tan"]/costList/ComponentIndustrial</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_Militia" or defName="Miho_Apparel_Middle_Militia_Tan"]/equippedStatOffsets/AimingDelayFactor</xpath>
+		<value>
+			<CarryBulk>8</CarryBulk>
+			<ReloadSpeed>0.1</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<!--Light Milita Vest-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_MilitiaVest"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+			<Bulk>4</Bulk>
+			<WornBulk>2.7</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_MilitiaVest"]/statBases/Mass</xpath>
+		<value>
+			<Mass>2.7</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_MilitiaVest"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_MilitiaVest"]/equippedStatOffsets/AimingDelayFactor</xpath>
+		<value>
+			<CarryBulk>8</CarryBulk>
+			<ReloadSpeed>0.1</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_MilitiaVest"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>SoftArmor</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<!--Exosuit-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_Powered"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>9</StuffEffectMultiplierArmor>
+			<Bulk>25</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_Powered"]/statBases/Mass</xpath>
+		<value>
+			<Mass>15</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_Powered"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_Powered"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>20</CarryBulk>
+			<CarryWeight>35</CarryWeight>
+		</value>
+	</Operation>
+	
+	<!--Mechniator Exo-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_PoweredMechanitor"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>6.75</StuffEffectMultiplierArmor>
+			<Bulk>25</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_PoweredMechanitor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>15</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_PoweredMechanitor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_PoweredMechanitor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>20</CarryBulk>
+			<CarryWeight>35</CarryWeight>
+		</value>
+	</Operation>
+
+	<!--Worker Exo-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_PoweredWorker"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>0.5</StuffEffectMultiplierArmor>
+			<Bulk>25</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace"><!-- Not actually required, but kept for consistency-->
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_PoweredWorker"]/statBases/Mass</xpath>
+		<value>
+			<Mass>8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Middle_PoweredWorker"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>10</CarryBulk>
+			<CarryWeight>35</CarryWeight>
+		</value>
+	</Operation>
+
+	<!--Pariah-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Pariah"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+			<Bulk>40</Bulk>
+			<WornBulk>18</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Pariah"]/statBases/Mass</xpath>
+		<value>
+			<Mass>25</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Pariah"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Pariah"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Pariah"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>28</CarryBulk>
+			<CarryWeight>40</CarryWeight>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_Pariah"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<!--Pariah Helmet-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Pariah"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>4</WornBulk>
+			<NightVisionEfficiency_Apparel>0.65</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Pariah"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Pariah"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Pariah"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Pariah"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+			<AimingAccuracy>1.25</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- Winter -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_Winter"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_Winter"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- Padding -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_Padding"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>2.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_Padding"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_Padding"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<!-- Ornated Coat -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_Sorceress"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_Sorceress"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_Sorceress"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<!-- Tuque -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Winter"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			<Bulk>1</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- Worker Helmet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Worker"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Worker"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.25</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Worker"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Worker"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Shooter Helmet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_ShooterCap"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<Bulk>3</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_ShooterCap"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_ShooterCap"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.20</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<!-- Milita Helmet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Miho_Apparel_Hat_Militia" or
+		defName="Miho_Apparel_Hat_MilitiaShoot" or
+		defName="Miho_Apparel_Hat_MilitiaMedic"
+		]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			<Bulk>3</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Militia" or
+		defName="Miho_Apparel_Hat_MilitiaShoot" or
+		defName="Miho_Apparel_Hat_MilitiaMedic"
+		]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_Militia" or
+		defName="Miho_Apparel_Hat_MilitiaShoot" or
+		defName="Miho_Apparel_Hat_MilitiaMedic"
+		]/statBases/Mass</xpath>
+		<value>
+			<Mass>2</Mass>
+		</value>
+	</Operation>
+
+	<!-- Miho_Apparel_Hat_MilitiaEar - little better protectin than other Militia series-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_MilitiaEar" or defName="Miho_Apparel_Hat_MilitiaVegi"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			<Bulk>3</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_MilitiaEar" or defName="Miho_Apparel_Hat_MilitiaVegi"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_MilitiaEar" or defName="Miho_Apparel_Hat_MilitiaVegi"]/statBases/Mass</xpath>
+		<value>
+			<Mass>2.1</Mass>
+		</value>
+	</Operation>
+
+	<!-- PMC Helmet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_PMC"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			<Bulk>3</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_PMC"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_PMC"]/statBases/Mass</xpath>
+		<value>
+			<Mass>2.5</Mass>
+		</value>
+	</Operation>
+
+	<!--========= Fixed Armor Value =========-->
+
+	<!--Ornated-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+		defName="Miho_Apparel_OnSkin_OrnatedOne" or 
+		defName="Miho_Apparel_OnSkin_OrnatedTwo" or 
+		defName="Miho_Apparel_OnSkin_OrnatedMiho"
+		]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Miho_Apparel_OnSkin_OrnatedOne" or 
+		defName="Miho_Apparel_OnSkin_OrnatedTwo" or 
+		defName="Miho_Apparel_OnSkin_OrnatedMiho"
+		]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="Miho_Apparel_OnSkin_OrnatedOne" or 
+		defName="Miho_Apparel_OnSkin_OrnatedTwo" or 
+		defName="Miho_Apparel_OnSkin_OrnatedMiho"
+		]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!--Eltex Mask-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Mask_Eltex"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Mask_Eltex"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Mask_Eltex"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!-- Captain Hat -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_EltexCaptain"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_EltexCaptain"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Hat_EltexCaptain"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!--PMC-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_PMC"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>6</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_PMC"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_PMC"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_PMC"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!--Captain-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_OrnatedCaptain"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>6</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_OrnatedCaptain"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_PMC"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>0.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_OnSkin_PMC"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!--PMC Shell-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_PMC"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>6</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_PMC"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_PMC"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Apparel_Shell_PMC"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+</Patch>

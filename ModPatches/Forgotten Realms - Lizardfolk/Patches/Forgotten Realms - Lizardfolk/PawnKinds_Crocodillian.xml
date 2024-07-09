@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Add tribal grenadies ========== -->
+
+	<Operation Class="PatchOperationAdd"><!-- Combat -->
+		<xpath>Defs/FactionDef[defName="FR_CrocoTribes"]/pawnGroupMakers/li[1]/options</xpath>
+		<value>
+			<CrocoGrenadier>10</CrocoGrenadier>
+			<CrocoGunner>20</CrocoGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Normal fights, ranged only -->
+		<xpath>Defs/FactionDef[defName="FR_CrocoTribes"]/pawnGroupMakers/li[2]/options</xpath>
+		<value>
+			<CrocoGrenadier>20</CrocoGrenadier>
+			<CrocoGunner>25</CrocoGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!--Peaceful-->
+		<xpath>Defs/FactionDef[defName="FR_CrocoTribes"]/pawnGroupMakers/li[4]/options</xpath>
+		<value>
+			<CrocoGrenadier>5</CrocoGrenadier>
+			<CrocoGunner>20</CrocoGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!--Trader-->
+		<xpath>Defs/FactionDef[defName="FR_CrocoTribes"]/pawnGroupMakers/li[5]/guards</xpath>
+		<value>
+			<CrocoGrenadier>7</CrocoGrenadier>
+			<CrocoGunner>20</CrocoGunner>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Settlement -->
+		<xpath>Defs/FactionDef[defName="FR_CrocoTribes"]/pawnGroupMakers/li[6]/options</xpath>
+		<value>
+			<CrocoGrenadier>20</CrocoGrenadier>
+			<CrocoGunner>40</CrocoGunner>
+		</value>
+	</Operation>
+</Patch>

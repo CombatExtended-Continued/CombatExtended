@@ -201,7 +201,7 @@ namespace CombatExtended
                  * wether this apparel is a radio pack
                  */
                 isRadioArray[def.index] = extension.isRadioPack;
-                if (extension.isRadioPack)
+                if (Prefs.DevMode && extension.isRadioPack)
                 {
                     Log.Message($"{def}");
                 }

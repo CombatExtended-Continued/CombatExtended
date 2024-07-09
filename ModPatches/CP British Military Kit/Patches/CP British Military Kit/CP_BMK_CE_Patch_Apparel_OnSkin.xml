@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Combat Uniform MTP, Combat Uniform MTP UBAC, RAF Nomex flight suit ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RNApparel_combats_MTP_British" or
+			defName="RNApparel_combats_MTP_UBAC_British" or
+			defName="RNApparel_Nomex_FlightSuit_RAF"
+			]/statBases </xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>3</WornBulk>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="RNApparel_combats_MTP_British" or
+			defName="RNApparel_combats_MTP_UBAC_British" or
+			defName="RNApparel_Nomex_FlightSuit_RAF"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<!-- Slightly tougher than vanilla pants, T-shirt and button-down shirt -->
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+</Patch>

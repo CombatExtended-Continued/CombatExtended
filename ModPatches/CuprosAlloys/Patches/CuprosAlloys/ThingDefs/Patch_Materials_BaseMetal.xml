@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ======== CAL_OreBase ======== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="CAL_OreBase"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="CAL_OreBase"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>1</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="CAL_OreBase"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.5</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<!-- ======== CAL_Copper ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Copper"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>0.86</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Copper"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.7</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Copper"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.46</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Copper"]/statBases/SharpDamageMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Copper"]/statBases/BluntDamageMultiplier</xpath>
+	</Operation>
+
+	<!-- ======== CAL_Lead ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Lead"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>0.8</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Lead"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.6</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Lead"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.14</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Lead"]/statBases/StuffPower_Armor_Heat</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Lead"]/statBases/SharpDamageMultiplier</xpath>
+		<value>
+			<SharpDamageMultiplier>0.909</SharpDamageMultiplier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Lead"]/statBases/BluntDamageMultiplier</xpath>
+		<value>
+			<BluntDamageMultiplier>1.1</BluntDamageMultiplier>
+		</value>
+	</Operation>
+
+	<!-- ======== CAL_Tin ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Tin"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>0.82</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Tin"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.55</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Tin"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.45</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Tin"]/statBases/StuffPower_Armor_Heat</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Tin"]/statBases/SharpDamageMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Tin"]/statBases/BluntDamageMultiplier</xpath>
+	</Operation>
+
+	<!-- ======== CAL_Aluminum ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Aluminum"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>0.7</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Aluminum"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.325</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Aluminum"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.33</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Aluminum"]/statBases/StuffPower_Armor_Heat</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Aluminum"]/statBases/SharpDamageMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Aluminum"]/statBases/BluntDamageMultiplier</xpath>
+	</Operation>
+
+	<!-- ======== CAL_Nickel ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Nickel"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>0.92</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Nickel"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.55</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+	<!-- !! Nickel already has the correct sharp protection lol !! -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Nickel"]/statBases/StuffPower_Armor_Heat</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Nickel"]/statBases/SharpDamageMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Nickel"]/statBases/BluntDamageMultiplier</xpath>
+	</Operation>
+
+	<!-- ======== CAL_Zinc ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Zinc"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>0.8</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Zinc"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.525</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CAL_Zinc"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.38</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Zinc"]/statBases/StuffPower_Armor_Heat</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Zinc"]/statBases/SharpDamageMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Zinc"]/statBases/BluntDamageMultiplier</xpath>
+	</Operation>
+
+	<!-- ======== CAL_Bismuth ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Bismuth"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>0.76</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Bismuth"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.95</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Bismuth"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.16</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<!-- ======== CAL_Chromium ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Chromium"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>1.02</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Chromium"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>1.01</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CAL_Chromium"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>1.08</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Chromium"]/statBases/SharpDamageMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="CAL_Chromium"]/statBases/BluntDamageMultiplier</xpath>
+	</Operation>
+</Patch>

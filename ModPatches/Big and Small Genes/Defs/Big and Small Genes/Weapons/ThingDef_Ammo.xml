@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- === Tools === -->
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>Projectile_GiantThrown</defName>
+		<label>giant javelin (thrown)</label>
+		<graphicData>
+			<texPath>Item/GiantJavelin_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>37</damageAmountBase>
+			<speed>30</speed>
+			<armorPenetrationBlunt>486</armorPenetrationBlunt>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.9</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>BS_JotunJavelin</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_BS_JotunJavelin</defName>
+		<label>make giant javeln</label>
+		<description>Craft a giant javelin.</description>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<skillRequirements>
+			<Crafting>3</Crafting>
+		</skillRequirements>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<effectWorking>Smelt</effectWorking>
+		<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+		<workAmount>18000</workAmount>
+		<jobString>Making pila.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>140</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>80</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<BS_JotunJavelin>1</BS_JotunJavelin>
+		</products>
+		<displayPriority>500</displayPriority>
+	</RecipeDef>
+
+	<!-- === Shrink Ray Ammo === -->
+	<!-- === Ammo Set === -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_ShrinkRay</defName>
+		<label>Shrink Ray Power Cell</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Projectile_ShrinkRay</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- === Projectile === -->
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>Projectile_ShrinkRay</defName>
+		<label>shrink ray</label>
+		<graphicData>
+			<texPath>Things/Projectile/ChargeLanceShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.5</drawSize>
+			<color>(180, 180, 255)</color>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>ShrinkRay</damageDef>
+			<damageAmountBase>1</damageAmountBase><!-- -2 -->
+			<armorPenetrationBlunt>0.5</armorPenetrationBlunt><!-- -0.5 -->
+			<armorPenetrationSharp>0.5</armorPenetrationSharp><!-- -0.2 -->
+			<speed>70</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- === Damage Def === -->
+	<DamageDef>
+		<defName>ShrinkRay</defName>
+		<label>vaporize</label>
+		<workerClass>DamageWorker_Vaporize</workerClass>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} has been vaporized by extreme heat.</deathMessage>
+		<hediff>Burn</hediff>
+		<additionalHediffs>
+			<li>
+				<hediff>BS_Affliction_ShrinkRay</hediff>
+				<severityPerDamageDealt>0.12</severityPerDamageDealt>
+			</li>
+		</additionalHediffs>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<defaultDamage>800</defaultDamage>
+		<defaultStoppingPower>1.5</defaultStoppingPower>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+		<buildingDamageFactorImpassable>4</buildingDamageFactorImpassable>
+		<buildingDamageFactorPassable>2</buildingDamageFactorPassable>
+		<plantDamageFactor>2</plantDamageFactor>
+		<explosionHeatEnergyPerCell>20</explosionHeatEnergyPerCell>
+		<explosionCellFleck>Fleck_Vaporize</explosionCellFleck>
+		<armorCategory>Sharp</armorCategory>
+		<minDamageToFragment>15</minDamageToFragment>
+		<makesAnimalsFlee>true</makesAnimalsFlee>
+		<explosionColorCenter>(1, 1, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>Explosion_Vaporize</soundExplosion>
+		<expolosionPropagationSpeed>0.3</expolosionPropagationSpeed>
+		<hasForcefulImpact>true</hasForcefulImpact>
+		<corpseDamageFactor>0.1</corpseDamageFactor>
+	</DamageDef>
+
+	<!-- === Growth Ray Ammo === -->
+	<!-- === Ammo Set === -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GrowthRay</defName>
+		<label>Growth Ray Power Cell</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Projectile_GrowthRay</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- === Projectile === -->
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>Projectile_GrowthRay</defName>
+		<label>growth ray</label>
+		<graphicData>
+			<texPath>Things/Projectile/ChargeLanceShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.5</drawSize>
+			<color>(255, 180, 255)</color>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>GrowthRay</damageDef>
+			<damageAmountBase>1</damageAmountBase><!-- -2 -->
+			<armorPenetrationBlunt>0.5</armorPenetrationBlunt><!-- -0.5 -->
+			<armorPenetrationSharp>0.5</armorPenetrationSharp><!-- -0.2 -->
+			<speed>70</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- === Damage Def === -->
+	<DamageDef>
+		<defName>GrowthRay</defName>
+		<label>vaporize</label>
+		<workerClass>DamageWorker_Vaporize</workerClass>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} has been vaporized by extreme heat.</deathMessage>
+		<hediff>Burn</hediff>
+		<additionalHediffs>
+			<li>
+				<hediff>BS_Affliction_GrowthRay</hediff>
+				<severityPerDamageDealt>0.12</severityPerDamageDealt>
+			</li>
+		</additionalHediffs>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<defaultDamage>800</defaultDamage>
+		<defaultStoppingPower>1.5</defaultStoppingPower>
+		<defaultArmorPenetration>1</defaultArmorPenetration>
+		<buildingDamageFactorImpassable>4</buildingDamageFactorImpassable>
+		<buildingDamageFactorPassable>2</buildingDamageFactorPassable>
+		<plantDamageFactor>2</plantDamageFactor>
+		<explosionHeatEnergyPerCell>20</explosionHeatEnergyPerCell>
+		<explosionCellFleck>Fleck_Vaporize</explosionCellFleck>
+		<armorCategory>Sharp</armorCategory>
+		<minDamageToFragment>15</minDamageToFragment>
+		<makesAnimalsFlee>true</makesAnimalsFlee>
+		<explosionColorCenter>(1, 1, 1)</explosionColorCenter>
+		<explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+		<soundExplosion>Explosion_Vaporize</soundExplosion>
+		<expolosionPropagationSpeed>0.3</expolosionPropagationSpeed>
+		<hasForcefulImpact>true</hasForcefulImpact>
+		<corpseDamageFactor>0.1</corpseDamageFactor>
+	</DamageDef>
+
+	<!-- === Thrown Rock === -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseWeaponAndAmmoNeolithic">
+		<defName>BS_OgreThrowinRock</defName>
+		<label>Throwing Chunks</label>
+		<description>These large rocks have been crudely chiseled for throwing at enemies.\n\nCan be wielded by giant, herculean, or warcasket pawns.</description>
+		<graphicData>
+			<texPath>Item/BS_ThrowableChunk_projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.4</drawSize>
+		</graphicData>
+		<soundInteract>Interact_BeatFire</soundInteract>
+		<relicChance>0</relicChance>
+		<statBases>
+			<MarketValue>50</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>5</Bulk>
+			<Mass>20</Mass>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedAngleOffset>30</equippedAngleOffset>
+		<stackLimit>25</stackLimit>
+		<weaponClasses Inherit="False">
+			<li>BS_GiantWeapon</li>
+		</weaponClasses>
+		<weaponTags Inherit="False">
+			<li>RangedMedievalGiant</li>
+		</weaponTags>
+		<tradeability>All</tradeability>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Rock_GiantThrown</defaultProjectile>
+				<soundCast>BS_JotunJavelinThrow_Sound</soundCast>
+				<warmupTime>3</warmupTime>
+				<range>12</range>
+				<!--<soundCast>Interact_BeatFire</soundCast>-->
+			</li>
+		</verbs>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>rock</label>
+				<capacities>
+					<li>Demolish</li>
+				</capacities>
+				<power>13.4</power>
+				<cooldownTime>2.95</cooldownTime>
+				<armorPenetrationBlunt>10</armorPenetrationBlunt>
+			</li>
+		</tools>
+		<ammoClass>Javelin</ammoClass>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>Rock_GiantThrown</defName>
+		<label>rock (thrown)</label>
+		<graphicData>
+			<texPath>Item/BS_ThrowableChunk_projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.4</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Demolish</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<speed>25</speed>
+			<armorPenetrationBlunt>60</armorPenetrationBlunt>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<arcHeightFactor>1.5</arcHeightFactor>
+			<explosionRadius>0.9</explosionRadius>
+			<soundExplode>BuildingDestroyed_Stone_Medium</soundExplode>
+			<preExplosionSpawnThingDef>Filth_RubbleRock</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+</Defs>

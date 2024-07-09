@@ -114,9 +114,29 @@ namespace CombatExtended.HarmonyCE
                                        && !(x.Worker is StatWorker_MeleeStats))
                                 .Where(x => !cache.Any(y => y.stat == x))
                                 .Select(x => new StatDrawEntry(StatCategoryDefOf.Weapon, x, turretGunDef.GetStatValueAbstract(x), statRequestGun, ToStringNumberSense.Undefined))
-                                .Where(x => x.ShouldDisplay);
+                                .Where(x => x.ShouldDisplay());
 
                 __result = __result.Concat(newStats1);
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(ThingDef), "PostLoad")]
+    static class PostLoad_PostFix
+    {
+        [HarmonyPostfix]
+        public static void Postfix(ThingDef __instance)
+        {
+            if (__instance.HasModExtension<PartialArmorExt>())
+            {
+                List<DefModExtension> list = __instance.modExtensions.Where(e => e.GetType() == typeof(PartialArmorExt)).ToList();
+                if (list.Count > 1)
+                {
+                    for (int i = 0; i < list.Count - 1; i++)
+                    {
+                        __instance.modExtensions.Remove(list[i]);
+                    }
+                }
             }
         }
     }

@@ -7,6 +7,7 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 using CombatExtended.AI;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -242,6 +243,10 @@ namespace CombatExtended
                     tauntThrower?.TryThrowTaunt(CE_RulePackDefOf.SuppressedMote, pawn);
                 }
             }
+        }
+        public bool IgnoreSuppresion(IntVec3 origin)
+        {
+            return BlockerRegistry.PawnUnsuppressableFromCallback(parent as Pawn, origin) || SuppressionUtility.InterceptorZonesFor((Pawn)parent).Where(x => x.Contains(parent.Position)).Any(x => !x.Contains(origin));
         }
 
         public override void CompTick()

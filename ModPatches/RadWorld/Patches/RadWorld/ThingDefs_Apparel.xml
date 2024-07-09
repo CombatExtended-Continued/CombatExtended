@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Hazard Suits -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "RW_Apparel_PatchWork_HazardSuit" or defName="RW_Apparel_HazardSuit_Black" or defName="RW_Apparel_HazardSuit_Yellow"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "RW_Apparel_PatchWork_HazardSuit" or defName="RW_Apparel_HazardSuit_Black" or defName="RW_Apparel_HazardSuit_Yellow"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.08</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "RW_Apparel_PatchWork_HazardSuit" or defName="RW_Apparel_HazardSuit_Black" or defName="RW_Apparel_HazardSuit_Yellow"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Armored Hazard Suits -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RW_Apparel_ArmoredHazardSuit_Black" or defName="RW_Apparel_ArmoredHazardSuit_Yellow"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- Stated to have added plasteel plates for protection. We'll say they're 3mm thick.-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RW_Apparel_ArmoredHazardSuit_Black" or defName="RW_Apparel_ArmoredHazardSuit_Yellow"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RW_Apparel_ArmoredHazardSuit_Black" or defName="RW_Apparel_ArmoredHazardSuit_Yellow"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>9</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Environment Shield -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "RW_Apparel_ArchotechEnvironmentShield"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+</Patch>

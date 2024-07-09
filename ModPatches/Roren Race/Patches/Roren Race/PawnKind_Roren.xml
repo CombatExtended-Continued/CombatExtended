@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Ammo-->
+
+	<!-- Non-Combat -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="RorenMerchant" or
+			defName="RorenBodyguard" or
+			defName="RorenMaid" or
+			defName="RorenFuneralDirector" 
+		]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>3</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Light Combat -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="RorenFeildDoc"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>4</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Combat -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="RorenCombatant" or
+			defName="RorenSoldier" or
+			defName="RorenRearSoldier" or
+			defName="RorenHeavySoldier" or
+			defName="RorenFiremoth" or
+			defName="RorenEliteSoldier" or
+			defName="RorenRearEliteSoldier" or
+			defName="RorenShockTrooper" or
+			defName="RorenMeleeCombatant" or
+			defName="RorenEliteMeleeSoldier" or
+			defName="RorenBloodTrooper" or
+			defName="RorenBerserkr" or
+			defName="RorenOfficer" or
+			defName="RorenGeneral"
+		]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CE_Apparel_Backpack"]/apparel/tags</xpath>
+		<value>
+			<li>CE_RorenBackpack</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@ParentName="RorenBasePawnKind"]/apparelTags</xpath>
+		<value>
+			<li>CE_RorenBackpack</li>
+		</value>
+	</Operation>
+	
+</Patch>

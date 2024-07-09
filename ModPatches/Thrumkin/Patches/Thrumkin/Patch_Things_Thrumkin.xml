@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- WoodLog_GhostAsh -->
+	<!-- As a weapon -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>0.99</cooldownTime>
+					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+				<MeleeDodgeChance>0.13</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/statBases</xpath>
+		<value>
+			<Bulk>0.07</Bulk>
+			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	<!-- As a material -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.2</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.4</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/statBases/SharpDamageMultiplier</xpath>
+		<value>
+			<SharpDamageMultiplier>0.8</SharpDamageMultiplier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/statBases/BluntDamageMultiplier</xpath>
+		<value>
+			<BluntDamageMultiplier>0.6</BluntDamageMultiplier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoodLog_GhostAsh"]/stuffProps/statFactors</xpath>
+		<value>
+			<Mass>0.5</Mass>
+			<MeleePenetrationFactor>0.4</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<!-- Thrumkin_Crossbow -->
+	<!-- as a gun -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Thrumkin_Crossbow</defName>
+		<statBases>
+			<Mass>5.44</Mass><!-- bolt-action rfile has mass of 4.19. since this is supposed to be used by thrumkin, it should be a bit more heavier -->
+			<RangedWeapon_Cooldown>1.404</RangedWeapon_Cooldown><!-- a bit slower than the bolt-action rifle -->
+			<SightsEfficiency>0.9</SightsEfficiency><!-- worse than the bolt-action rifle -->
+			<ShotSpread>0.2</ShotSpread><!-- not a gun, but better than a bow -->
+			<SwayFactor>1.58</SwayFactor><!-- a bit more unwieldy than the bolt-action rifle -->
+			<Bulk>6.40</Bulk><!-- similar bulk to a great bow -->
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Stone</defaultProjectile>
+			<warmupTime>3.0</warmupTime>
+			<range>50</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>6</AmmoGenPerMagOverride>
+			<reloadTime>3.8</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NeolithicThrumkinRanged</li>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+		<researchPrerequisite>Greatbow</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	<!-- in melee -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Thrumkin_Crossbow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Thrumkin_Sword -->
+	<!-- Used as a weapon -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Thrumkin_Sword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>2.12</cooldownTime>
+					<chanceFactor>0.1</chanceFactor>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>2.12</cooldownTime>
+					<chanceFactor>0.5</chanceFactor>
+					<armorPenetrationSharp>8</armorPenetrationSharp>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>56</power>
+					<cooldownTime>2.1</cooldownTime>
+					<chanceFactor>0.4</chanceFactor>
+					<armorPenetrationSharp>2.88</armorPenetrationSharp>
+					<armorPenetrationBlunt>6.48</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Thrumkin_Sword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>0.35</MeleeParryChance>
+				<MeleeDodgeChance>0.47</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Thrumkin_Sword"]/statBases/Mass</xpath>
+		<value>
+			<Mass>4</Mass>
+			<Bulk>12</Bulk>
+			<MeleeCounterParryBonus>0.47</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+</Patch>

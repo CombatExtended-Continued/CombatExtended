@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]</xpath>
+			<value>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!--
+      Juanfrank
+      https://github.com/Juanfrank/Revia4Nalesh-and-someoneinapt/
+      
+Making them less suppressible the more tails they get (See mod page for what that means, for comparison it takes 100 corpses sacrificed to get to tier 9)
+Soulreap tier 1 is their base state, weaker than a normal human so not adding any for that. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier2"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.05</Suppressability>
+			<!-- Once they got their first upgrade they become a bit more fearless -->
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier3"]/stages/li</xpath>
+		<value>
+			<statOffsets>
+				<Suppressability>-0.1</Suppressability>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier4"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.20</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier5"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.30</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier6"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.4</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier7"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.5</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier8"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.7</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier9"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.9</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/statBases</xpath>
+		<value>
+			<MeleeCritChance>1.1</MeleeCritChance>
+			<MeleeParryChance>1.15</MeleeParryChance>
+			<Suppressability>1</Suppressability>
+			<SmokeSensitivity>0.85</SmokeSensitivity>
+			<CarryBulk>25</CarryBulk>
+			<CarryWeight>40</CarryWeight>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
+		<value>
+			<li>
+				<defName>Bravery</defName>
+				<degree>-1</degree>
+				<chance>0</chance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/statBases/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>1.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.350</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.350</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Bite</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.75</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.180</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.350</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>4.49</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- === Civilians / Royals === -->
+
+<Operation Class="PatchOperationAddModExtension">
+	<xpath>Defs/PawnKindDef[
+	defName="K4G_Guild_Common_Trader" or
+	defName="K4G_Guild_Common_Worker" or
+	@Name="K4GGuildRoyalBase"
+	]</xpath>
+	<value>
+		<li Class="CombatExtended.LoadoutPropertiesExtension">
+			<primaryMagazineCount>
+				<min>3</min>
+				<max>4</max>
+			</primaryMagazineCount>
+		</li>
+	</value>
+</Operation>
+
+<!-- === Fighters === -->
+
+<Operation Class="PatchOperationAddModExtension">
+	<xpath>Defs/PawnKindDef[@Name="K4GGuildGruntBase" or @Name="K4GGuildTrooperBase"]</xpath>
+	<value>
+		<li Class="CombatExtended.LoadoutPropertiesExtension">
+			<primaryMagazineCount>
+				<min>4</min>
+				<max>6</max>
+			</primaryMagazineCount>
+		</li>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationAddModExtension">
+	<xpath>Defs/PawnKindDef[defName="K4G_Guild_Fighter_Cataphract" or defName="K4G_Guild_Fighter_SentinelGuardRanged"]</xpath>
+	<value>
+		<li Class="CombatExtended.LoadoutPropertiesExtension">
+			<primaryMagazineCount>
+				<min>5</min>
+				<max>7</max>
+			</primaryMagazineCount>
+		</li>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationAddModExtension">
+	<xpath>Defs/PawnKindDef[defName="K4G_Guild_Fighter_Grenadier"]</xpath>
+	<value>
+		<li Class="CombatExtended.LoadoutPropertiesExtension">
+			<primaryMagazineCount>
+				<min>8</min>
+				<max>12</max>
+			</primaryMagazineCount>
+		</li>
+	</value>
+</Operation>
+</Patch>

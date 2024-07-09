@@ -257,7 +257,7 @@ namespace CombatExtended
             float glow = glowGridCache[source.x * map.Size.y + source.y];
             if (glow == -1)
             {
-                glowGridCache[source.x * map.Size.y + source.y] = glow = map.glowGrid.GameGlowAt(source);
+                glowGridCache[source.x * map.Size.y + source.y] = glow = map.glowGrid.GroundGlowAt(source);
             }
             return glow;
         }

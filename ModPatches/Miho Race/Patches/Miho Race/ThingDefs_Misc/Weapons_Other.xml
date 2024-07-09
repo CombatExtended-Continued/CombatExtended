@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Common to all Defensive Turrets ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Miho_DeployableHMG" or @Name="Miho_DeployableMissile"]/thingClass </xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Turret_Machinegun" or defName="Miho_Turret_Missile"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.5</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== MG ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_BuildingWeapon_Machinegun</defName>
+		<statBases>
+			<SightsEfficiency>1.80</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.01</SwayFactor>
+			<Bulk>13.50</Bulk>
+			<Mass>15</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.97</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_77x58mmArisaka_FMJ</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<range>44</range>
+			<soundCast>Miho_SevenSevenRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_77x58mmArisaka</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Missile ========== -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Miho_Turret_Missile"]/inspectorTabs</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Turret_Missile"]/building/turretBurstCooldownTime </xpath>
+		<value>
+			<turretBurstCooldownTime>1.5</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_BuildingWeapon_Missile</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+			<SightsEfficiency>3</SightsEfficiency>
+			<ShotSpread>0.0</ShotSpread>
+			<SwayFactor>0.14</SwayFactor>
+			<Bulk>20</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.13</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MihoMMAT</defaultProjectile>
+			<warmupTime>2.5</warmupTime>
+			<range>86</range>
+			<soundCast>Miho_ATRocket</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_MihoMissile</ammoSet>
+		</AmmoUser>
+		<FireModes>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>

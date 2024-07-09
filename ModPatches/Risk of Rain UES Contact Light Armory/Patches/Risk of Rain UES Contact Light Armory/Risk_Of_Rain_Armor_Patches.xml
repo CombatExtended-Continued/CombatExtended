@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Add new layer coverage to all Helmets -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Helmet" or defName="RoRA_Conscript_Helmet" or defName="RoRA_Enforcer_Helmet" or defName="RoRA_Miner_Helmet" or defName="RoRA_Engineer_Helmet" or defName="RoRA_Ranger_Helmet" or defName="RoRA_Specialist_Helmet"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+	<!-- Add SmokeSensitivity to all Helmets -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Helmet" or defName="RoRA_Conscript_Helmet" or defName="RoRA_Enforcer_Helmet" or defName="RoRA_Miner_Helmet" or defName="RoRA_Engineer_Helmet" or defName="RoRA_Ranger_Helmet" or defName="RoRA_Specialist_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+	<!-- Add Partial Armor to Helmets -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Helmet" or defName="RoRA_Conscript_Helmet" or defName="RoRA_Enforcer_Helmet" or defName="RoRA_Miner_Helmet" or defName="RoRA_Engineer_Helmet" or defName="RoRA_Ranger_Helmet" or defName="RoRA_Specialist_Helmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+	<!-- Add partial armor for all armors-->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Armor" or defName="RoRA_Conscript_Armor" or defName="RoRA_Enforcer_Armor" or defName="RoRA_Miner_Armor" or defName="RoRA_Engineer_Armor" or defName="RoRA_Ranger_Armor" or defName="RoRA_Specialist_Armor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+	<!-- ================================ BLADEMARINE  ================================ -->
+	<Operation Class="PatchOperationReplace">
+		<!-- Blademarine Helmet -->
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Helmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>260</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>0.25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>23</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.20</MeleeCritChance>
+			<MeleeParryChance>0.25</MeleeParryChance>
+			<ToxicEnvironmentResistance>0.80</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<!-- Blademarine Armor -->
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Armor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>490</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Armor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>45</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Armor"]/statBases</xpath>
+		<value>
+			<Bulk>90</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Armor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>75</CarryWeight>
+			<CarryBulk>10</CarryBulk>
+			<ToxicEnvironmentResistance>0.20</ToxicEnvironmentResistance>
+			<MeleeCritChance>0.55</MeleeCritChance>
+			<MeleeParryChance>0.5</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Armor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_BladeMarine_Armor"]/apparel/layers</xpath>
+		<value>
+			<li>Middle</li>
+		</value>
+	</Operation>
+	<!-- ================================ CONSCRIPT  ================================ -->
+	<Operation Class="PatchOperationReplace">
+		<!-- Conscript Helmet -->
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Helmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>200</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>0.25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>17</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>39</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.08</AimingAccuracy>
+			<ToxicEnvironmentResistance>0.9</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<!-- Conscript Armor -->
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Armor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>440</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Armor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>40</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Armor"]/statBases</xpath>
+		<value>
+			<Bulk>70</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Armor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Armor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>60</CarryWeight>
+			<CarryBulk>15</CarryBulk>
+			<ToxicEnvironmentResistance>0.10</ToxicEnvironmentResistance>
+			<ReloadSpeed>0.5</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>18</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Armor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Conscript_Armor"]/apparel/layers</xpath>
+		<value>
+			<li>Middle</li>
+		</value>
+	</Operation>
+	<!-- ================================ ENFORCER helmet  ================================ -->
+	<Operation Class="PatchOperationReplace">
+		<!-- Enforcer Helmet -->
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Helmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>260</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<Suppressability>-0.25</Suppressability>
+			<ToxicEnvironmentResistance>0.80</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<!-- Emforcer Armor -->
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Armor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>560</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Armor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>60</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Armor"]/statBases</xpath>
+		<value>
+			<Bulk>100</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>29</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>52</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Armor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Armor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>90</CarryWeight>
+			<CarryBulk>15</CarryBulk>
+			<ToxicEnvironmentResistance>0.20</ToxicEnvironmentResistance>
+			<Suppressability>-0.50</Suppressability>
+			<ReloadSpeed>0.25</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Armor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Enforcer_Armor"]/apparel/layers</xpath>
+		<value>
+			<li>Middle</li>
+		</value>
+	</Operation>
+	<!-- ================================ ENGINEER  ================================ -->
+	<!-- Engineer Helmet -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Helmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>220</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>0.25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>17</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>42</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.70</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<!-- Engineer Armor -->
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Armor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>440</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Armor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>40</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Armor"]/statBases</xpath>
+		<value>
+			<Bulk>80</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>19</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Armor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Armor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>85</CarryWeight>
+			<CarryBulk>10</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Armor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Engineer_Armor"]/apparel/layers</xpath>
+		<value>
+			<li>Middle</li>
+		</value>
+	</Operation>
+	<!-- ================================ SPECIALIST  ================================ -->
+	<!-- Specialist Helmet -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Helmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>220</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.25</AimingAccuracy>
+			<Suppressability>-0.15</Suppressability>
+			<ToxicEnvironmentResistance>0.60</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<!-- Specialist Armor -->
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Armor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>520</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Armor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>55</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Armor"]/statBases</xpath>
+		<value>
+			<Bulk>100</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Armor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Armor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>100</CarryWeight>
+			<CarryBulk>25</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			<Suppressability>-0.35</Suppressability>
+			<ReloadSpeed>0.25</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Armor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Specialist_Armor"]/apparel/layers</xpath>
+		<value>
+			<li>Middle</li>
+		</value>
+	</Operation>
+	<!-- ================================ RANGER  ================================ -->
+	<Operation Class="PatchOperationReplace">
+		<!-- Ranger Helmet -->
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Helmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>200</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.25</AimingAccuracy>
+			<ToxicEnvironmentResistance>0.60</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>19</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>0.25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<!-- Ranger Armor -->
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Armor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>480</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Armor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>40</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>42</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Armor"]/statBases</xpath>
+		<value>
+			<Bulk>70</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Armor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>75</CarryWeight>
+			<CarryBulk>10</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Armor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Ranger_Armor"]/apparel/layers</xpath>
+		<value>
+			<li>Middle</li>
+		</value>
+	</Operation>
+	<!-- ================================ MINER  ================================ -->
+	<Operation Class="PatchOperationReplace">
+		<!-- Miner Helmet -->
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Helmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>200</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.10</AimingAccuracy>
+			<ToxicEnvironmentResistance>0.60</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<!-- Miner Armor -->
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>510</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>23</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/statBases</xpath>
+		<value>
+			<Bulk>95</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>90</CarryWeight>
+			<CarryBulk>20</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/apparel/layers</xpath>
+		<value>
+			<li>Middle</li>
+		</value>
+	</Operation>
+</Patch>

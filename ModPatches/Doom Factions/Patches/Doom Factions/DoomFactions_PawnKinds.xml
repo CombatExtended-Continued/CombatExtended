@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="UAC_FBase" or defName="UAC_Scientist" or defName="UAC_Wildcat" or defName="UAC_Sheperd" or defName="UAC_Raven" or defName="UAC_ASP" or defName="UAC_XO" or defName="UAC_EliteLight" or defName="UAC_EliteSniper" or defName="UAC_EliteHeavy"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>10</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>300</min>
+						<max>1200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>UACMelee</li>
+						<li>CE_Sidearm_Melee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="SpaceMarine_FBase" or defName="Doom_MarineBerserker" or defName="Doom_MarineLight" or defName="Doom_MarineHeavy" or defName="Doom_MarineSniper" or defName="Doom_MarineBoss"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>7</min>
+					<max>13</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>300</min>
+						<max>1200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>UACMelee</li>
+						<li>CE_Sidearm_Melee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+</Patch>

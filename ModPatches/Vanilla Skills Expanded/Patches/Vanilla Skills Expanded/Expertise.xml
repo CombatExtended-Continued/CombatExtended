@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Sharpshooting expertise -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="Precision"]/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>0.075</ShootingAccuracyPawn>
+				<AimingAccuracy>0.025</AimingAccuracy>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- Aiming expertise -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="CloseQuarters"]/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<AimingDelayFactor>-0.025</AimingDelayFactor>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- Reloading expertise -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="Gunner"]/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ReloadSpeed>0.025</ReloadSpeed>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- Piercing expertise -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="Sharp"]/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<MeleeCritChance>0.05</MeleeCritChance>
+			</statOffsets>
+		</value>
+	</Operation>
+
+</Patch>

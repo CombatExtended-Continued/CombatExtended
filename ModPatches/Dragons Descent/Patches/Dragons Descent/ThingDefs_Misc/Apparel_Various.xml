@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- scale mail -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_ScaleMail"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_ScaleMail"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_ScaleMail"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.1</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+	<!-- wing cape -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_WingCape"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>7</Bulk>
+			<WornBulk>2.5</WornBulk>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+</Patch>

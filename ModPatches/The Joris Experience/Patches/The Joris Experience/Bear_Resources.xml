@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Remove tusk as a weapon -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="JE_GoldenUniJorisHorn"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="JE_GoldenUniJorisHorn"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
+
+	<!--wooly wool -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="JE_JorisHair"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+</Patch>

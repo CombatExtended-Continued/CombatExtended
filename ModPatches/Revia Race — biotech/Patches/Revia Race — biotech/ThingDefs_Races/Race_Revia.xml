@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--      
+	Making them less suppressible the more tails they get (See mod page for what that means, for comparison it takes 100 corpses sacrificed to get to tier 9)
+	Soulreap tier 1 is their base state, weaker than a normal human so not adding any for that. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier2"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.05</Suppressability>
+			<!-- Once they got their first upgrade they become a bit more fearless -->
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier3"]/stages/li</xpath>
+		<value>
+			<statOffsets>
+				<Suppressability>-0.1</Suppressability>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier4"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.20</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier5"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.30</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier6"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.4</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier7"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.5</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier8"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.7</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ReviaRaceSoulreapTier9"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.9</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ReviaClaws"]/comps/li/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.350</armorPenetrationBlunt>
+
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ReviaTeeth"]/comps/li/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.75</cooldownTime>
+					<armorPenetrationSharp>0.180</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.350</armorPenetrationBlunt>
+
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>
