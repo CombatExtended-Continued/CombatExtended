@@ -383,6 +383,10 @@ namespace CombatExtended.Compatibility.SOS2Compat
         #region Shared Functionality
         public override bool CanHitTarget(LocalTargetInfo targ)
         {
+            if (GroundDefenseMode)
+            {
+                return base.CanHitTarget(targ);
+            }
             return true;
         }
 
