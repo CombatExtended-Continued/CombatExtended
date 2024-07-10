@@ -403,6 +403,10 @@ namespace CombatExtended.Compatibility.SOS2Compat
         {
             foreach (Gizmo gizmo in base.GetGizmos())
             {
+                if (!GroundDefenseMode && (gizmo as Command_VerbTarget != null))
+                {
+                    continue; // Only show the CE ground attack gizmo when in ground defense mode (otherwise it conflicts with the space attack gizmo)
+                }
                 yield return gizmo;
             }
             if (!GroundDefenseMode)
