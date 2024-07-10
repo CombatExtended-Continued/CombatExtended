@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CombatExtended.CombatExtended.Jobs.Utils;
-using CombatExtended.CombatExtended.LoggerUtils;
-using CombatExtended.WorldObjects;
 using RimWorld;
-using RimWorld.Planet;
 using SaveOurShip2;
 using UnityEngine;
 using Verse;
-using Verse.AI;
-using Verse.Noise;
 using Verse.Sound;
 
 namespace CombatExtended.Compatibility.SOS2Compat
