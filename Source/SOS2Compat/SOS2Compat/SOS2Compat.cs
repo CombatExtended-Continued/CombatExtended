@@ -12,6 +12,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using Vehicles;
+using Verse.Noise;
 
 namespace CombatExtended.Compatibility.SOS2Compat
 {
@@ -30,6 +31,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
         public void PostLoad(ModContentPack content, ISettingsCE _)
         {
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckCollision); // For Shields
+            BlockerRegistry.RegisterShieldZonesCallback(ShieldZonesCallback);
             harmony = new Harmony("CombatExtended.Compatibility.SOS2Compat");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
@@ -63,6 +65,25 @@ namespace CombatExtended.Compatibility.SOS2Compat
                 }
             }
             return false;
+        }
+        // Adapted from VanillaExpandedFramework patch
+        private IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
+        {
+            refreshShields(pawnToSuppress.Map);
+            List<IEnumerable<IntVec3>> result = new List<IEnumerable<IntVec3>>();
+            if (!shields.Any())
+            {
+                return result;
+            }
+            foreach (var shield in shields)
+            {
+                if (shield.shutDown)
+                {
+                    continue;
+                }
+                result.Add(GenRadial.RadialCellsAround(shield.parent.Position, shield.radius, true));
+            }
+            return result;
         }
 
         private static bool ShieldInterceptsProjectile(CompShipHeatShield shield, ProjectileCE projectile, Thing launcher)
