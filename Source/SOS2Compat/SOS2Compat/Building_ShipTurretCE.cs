@@ -654,7 +654,6 @@ namespace CombatExtended.Compatibility.SOS2Compat
 
         public override void Tick()
         {
-            base.Tick();
             if (GroundDefenseMode)
             {
                 base.Tick();
