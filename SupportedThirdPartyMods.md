@@ -500,6 +500,7 @@ Vanilla Animals Expanded - Waste Animals |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
+Vanilla Arsenal |
 Vanilla Base Generation Expanded    |
 Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
