@@ -64,14 +64,24 @@ namespace CombatExtended
             }
             else
             {
-                selectedAmmo = CurAmmoSet.ammoTypes.Where(l => l.ammo.ammoClass == currentAmmoInt.ammoClass).First().ammo;
+                //turned out it was bold to assume similar ammosets always have same ammo types
+                var tempAmmoLink = CurAmmoSet.ammoTypes.Where(l => l.ammo.ammoClass == currentAmmoInt.ammoClass);
+                if (tempAmmoLink.Any())
+                {
+                    selectedAmmo = tempAmmoLink.First().ammo;
+                }
+                else
+                {
+                    selectedAmmo = CurAmmoSet.ammoTypes.First().ammo;
+                }
             }
         }
 
         [Compatibility.Multiplayer.SyncMethod]
         private void SyncedSelectAmmoSet(AmmoSetDef caliber)
         {
-            SelectedAmmoSet = caliber; RegenSelectedAmmo();
+            SelectedAmmoSet = caliber;
+            RegenSelectedAmmo();
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()

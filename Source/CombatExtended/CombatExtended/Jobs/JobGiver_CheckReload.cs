@@ -132,7 +132,7 @@ namespace CombatExtended
             {
                 // Get key stats of the weapon.
                 tmpComp = gun.TryGetComp<CompAmmoUser>();
-                AmmoDef ammoType = tmpComp.CurrentAmmo;
+                AmmoDef ammoType = tmpComp.SelectedAmmo;
                 int ammoAmount = tmpComp.CurMagCount;
                 int magazineSize = tmpComp.MagSize;
 
