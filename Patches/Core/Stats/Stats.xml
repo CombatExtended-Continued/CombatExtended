@@ -404,9 +404,9 @@
 	<!-- Ranged weapon cooldown quality factor  -->
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/StatDef[defName="RangedWeapon_DamageMultiplier"]/parts</xpath>
+		<xpath>Defs/StatDef[defName="RangedWeapon_Cooldown"]/parts</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/StatDef[defName="RangedWeapon_DamageMultiplier"]</xpath>
+			<xpath>Defs/StatDef[defName="RangedWeapon_Cooldown"]</xpath>
 			<value>
 				<parts>
 					<li Class="StatPart_Quality">
@@ -422,7 +422,7 @@
 			</value>
 		</nomatch>
 		<match Class="PatchOperationReplace">
-			<xpath>Defs/StatDef[defName="RangedWeapon_DamageMultiplier"]/parts</xpath>
+			<xpath>Defs/StatDef[defName="RangedWeapon_Cooldown"]/parts</xpath>
 			<value>
 				<parts>
 					<li Class="StatPart_Quality">
