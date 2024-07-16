@@ -48,7 +48,27 @@ namespace CombatExtended
 
         public ModExtension_AutoLoaderGraphics graphicsExt;
 
-        public bool shouldBeOn => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated) && (mannableComp == null || mannableComp.MannedNow);
+        public bool shouldBeOn
+        {
+            get
+            {
+                if (manningRequiredButUnmanned)
+                {
+                    Messages.Message(string.Format("CE_AutoLoader_Unmanned".Translate(), Label), this, MessageTypeDefOf.RejectInput, historical: false);
+                    return false;
+                }
+                if (powerRequiredButUnpowered)
+                {
+                    Messages.Message(string.Format("CE_AutoLoader_Unpowered".Translate(), Label), this, MessageTypeDefOf.RejectInput, historical: false);
+                    return false;
+                }
+                return (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
+            }
+        }
+
+        public bool manningRequiredButUnmanned => mannableComp != null && !mannableComp.MannedNow;
+
+        public bool powerRequiredButUnpowered => powerComp != null && !powerComp.PowerOn;
 
         public override void ExposeData()
         {
@@ -306,6 +326,10 @@ namespace CombatExtended
             if (!inspectString.NullOrEmpty())
             {
                 stringBuilder.AppendLine(inspectString);
+            }
+            if (manningRequiredButUnmanned)
+            {
+                stringBuilder.AppendLine("CE_AutoLoader_ManningRequired".Translate());
             }
             if (isActive)
             {
