@@ -1,14 +1,14 @@
-using HarmonyLib;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Verse;
-using System.Reflection.Emit;
-using System;
+using HarmonyLib;
 using RimWorld;
+using SaveOurShip2;
 using Verse.AI;
+using Verse;
 
-namespace CombatExtended.HarmonyCE.Compatibility
+namespace CombatExtended.Compatibility.SOS2Compat
 {
     [HarmonyPatch]
     class Harmony_Compatibility_SaveOurShip
@@ -35,7 +35,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
             }
             if (targetMethod == null)
             {
-                Log.Error($"Failed to find target method while attempting to patch SaveOurShip.");
+                Log.Error($"Combat Extended :: Failed to find target method while attempting to patch SaveOurShip.");
                 return false;
             }
             return true;
@@ -46,14 +46,13 @@ namespace CombatExtended.HarmonyCE.Compatibility
             return targetMethod;
         }
 
-        public static void Postfix(Pawn pawn, Building_Turret tube, ref Thing __result)
+        public static void Postfix(Pawn pawn, Building_ShipTurretTorpedo tube, ref Thing __result)
         {
             if (__result != null)
             {
                 return;
             }
-            var turret = tube as Building_ShipTurret;
-            StorageSettings allowedShellsSettings = ThingCompUtility.TryGetComp<CompChangeableProjectilePlural>(turret.gun).allowedShellsSettings;
+            StorageSettings allowedShellsSettings = ThingCompUtility.TryGetComp<SaveOurShip2.CompChangeableProjectile>(tube.gun).allowedShellsSettings;
             Predicate<Thing> pred = (Thing x) =>
             {
                 if (ForbidUtility.IsForbidden(x, pawn) || !ReservationUtility.CanReserve(pawn, x, 1, -1, (ReservationLayerDef)null, false))
