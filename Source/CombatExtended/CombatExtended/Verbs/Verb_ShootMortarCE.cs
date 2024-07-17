@@ -38,7 +38,7 @@ namespace CombatExtended
         private int destinationTile;
         private int globalDistance;
         private Vector3 direction;
-        private int numShotsFired;
+        private new int numShotsFired;
 
         public override void ExposeData()
         {
