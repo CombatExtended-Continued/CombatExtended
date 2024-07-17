@@ -186,6 +186,7 @@ Edge of Descension - Hovercraft  |
 Edge of Descension - Monoblades  |
 Edge of Descension - Vanguard   |
 Eltex Bodysuit  |
+Enchanted Sword  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
