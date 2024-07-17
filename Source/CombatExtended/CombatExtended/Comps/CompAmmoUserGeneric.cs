@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -10,13 +11,15 @@ namespace CombatExtended
 {
     public class CompAmmoUserGeneric : CompAmmoUser
     {
-        private List<AmmoSetDef> usableAmmoSets = new List<AmmoSetDef>();
+        protected List<AmmoSetDef> usableAmmoSets = new List<AmmoSetDef>();
 
         public AmmoSetDef SelectedAmmoSet;
 
         public AmmoSetDef UsedGenericAmmoSet => Props.ammoSet.similarTo ?? Props.ammoSet;
 
-        public List<AmmoSetDef> UsableAmmoSets
+        const float margin = 4f;
+
+        public virtual List<AmmoSetDef> UsableAmmoSets
         {
             get
             {
@@ -28,7 +31,7 @@ namespace CombatExtended
                         {
                             continue;
                         }
-                        if (def.similarTo == UsedGenericAmmoSet && !def.ammoTypes.First().ammo.menuHidden)
+                        if (def.similarTo == UsedGenericAmmoSet && !def.ammoTypes.First().ammo.menuHidden && !IsIdenticalToAny(def))
                         {
                             usableAmmoSets.Add(def);
                         }
@@ -37,6 +40,45 @@ namespace CombatExtended
                 return usableAmmoSets;
             }
         }
+
+        //Merge ammosets with identical ammo usage. I'm worried about its performance and I might want to caculate this during game start up.
+        protected bool IsIdenticalToAny(AmmoSetDef def)
+        {
+            if (usableAmmoSets.NullOrEmpty())
+            {
+                return false;
+            }
+            foreach (var v in usableAmmoSets)
+            {
+                if (IsIdenticalTo(v, def))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        protected bool IsIdenticalTo(AmmoSetDef a, AmmoSetDef b)
+        {
+            if (a.ammoTypes.Count != b.ammoTypes.Count)
+            {
+                return false;
+            }
+            HashSet<AmmoDef> list = new HashSet<AmmoDef>();
+            foreach (var v in a.ammoTypes)
+            {
+                list.Add(v.ammo);
+            }
+            foreach (var n in b.ammoTypes)
+            {
+                if (!list.Contains(n.ammo))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         public override AmmoSetDef CurAmmoSet => SelectedAmmoSet;
 
@@ -104,13 +146,42 @@ namespace CombatExtended
                         FloatMenuOption item = new FloatMenuOption(caliber.LabelCap, delegate
                         {
                             SyncedSelectAmmoSet(caliber);
-                        }, MenuOptionPriority.Default, null, null);
+                        }, MenuOptionPriority.Default,
+                        delegate (Rect rect)
+                        {
+                            ContainedAmmoPopOut(rect, caliber);
+                        }
+                        , null);
                         list.Add(item);
                     }
                     Find.WindowStack.Add(new FloatMenu(list));
                 };
                 yield return command_Action;
             }
+        }
+
+        AmmoSetDef currentlyHoveredOverAmmoSet = null;
+
+        string ammoSetContentDescCache;
+
+        public void ContainedAmmoPopOut(Rect rect, AmmoSetDef ammoSet)
+        {
+            if (ammoSet != currentlyHoveredOverAmmoSet)
+            {
+                BuildAmmosetString(ammoSet);
+            }
+            TooltipHandler.TipRegion(rect, ammoSetContentDescCache);
+
+        }
+
+        public void BuildAmmosetString(AmmoSetDef ammoSetDef)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var v in ammoSetDef.ammoTypes)
+            {
+                stringBuilder.AppendLine(v.ammo.label);
+            }
+            ammoSetContentDescCache = stringBuilder.ToString();
         }
     }
 }
