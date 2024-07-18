@@ -25,7 +25,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
 
         #region Shared
         // Changed to always return true to support ship battles
-        protected override bool CanSetForcedTarget 
+        protected override bool CanSetForcedTarget
         {
             get
             {
