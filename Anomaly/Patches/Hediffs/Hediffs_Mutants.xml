@@ -18,6 +18,27 @@
 		<xpath>Defs/HediffDef[defName="Ghoul"]/stages/li/statFactors</xpath>
 		<value>
 			<Suppressability>0</Suppressability>
+			<SmokeSensitivity>0.5</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="GhoulPlating"]/stages/li/statFactors/IncomingDamageFactor</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="GhoulPlating"]/stages/li/statOffsets</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="GhoulBarbs"]/stages/li/statOffsets</xpath>
+		<value>
+			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+			<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
