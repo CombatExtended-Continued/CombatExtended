@@ -48,22 +48,21 @@ namespace CombatExtended
 
         public ModExtension_AutoLoaderGraphics graphicsExt;
 
-        public bool shouldBeOn
+        public bool shouldBeOn => ShouldBeOn();
+
+        public bool ShouldBeOn(bool failureNotify = false)
         {
-            get
+            if (manningRequiredButUnmanned)
             {
-                if (manningRequiredButUnmanned)
-                {
-                    Messages.Message(string.Format("CE_AutoLoader_Unmanned".Translate(), Label), this, MessageTypeDefOf.RejectInput, historical: false);
-                    return false;
-                }
-                if (powerRequiredButUnpowered)
-                {
-                    Messages.Message(string.Format("CE_AutoLoader_Unpowered".Translate(), Label), this, MessageTypeDefOf.RejectInput, historical: false);
-                    return false;
-                }
-                return (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
+                if (failureNotify) { Messages.Message(string.Format("CE_AutoLoader_Unmanned".Translate(), Label), this, MessageTypeDefOf.RejectInput, historical: false); }
+                return false;
             }
+            if (powerRequiredButUnpowered)
+            {
+                if (failureNotify) { Messages.Message(string.Format("CE_AutoLoader_Unpowered".Translate(), Label), this, MessageTypeDefOf.RejectInput, historical: false); }
+                return false;
+            }
+            return (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
         }
 
         public bool manningRequiredButUnmanned => mannableComp != null && !mannableComp.MannedNow;
@@ -238,17 +237,20 @@ namespace CombatExtended
                         List<Thing> adjThings = new List<Thing>();
                         GenAdjFast.AdjacentThings8Way(this, adjThings);
                         bool success = false;
-                        foreach (Thing building in adjThings)
+                        if (ShouldBeOn(true))
                         {
-                            if (building is Building_TurretGunCE turret && StartReload(turret.GetAmmo()))
+                            foreach (Thing building in adjThings)
                             {
-                                success = true;
-                                break;
+                                if (building is Building_TurretGunCE turret && StartReload(turret.GetAmmo()))
+                                {
+                                    success = true;
+                                    break;
+                                }
                             }
-                        }
-                        if (!success)
-                        {
-                            Messages.Message(string.Format("CE_AutoLoader_NoTurretToReload".Translate(), Label, CompAmmoUser.Props.ammoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
+                            if (!success)
+                            {
+                                Messages.Message(string.Format("CE_AutoLoader_NoTurretToReload".Translate(), Label, CompAmmoUser.Props.ammoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
+                            }
                         }
                     };
                     yield return reload;
