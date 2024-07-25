@@ -193,79 +193,80 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Kijin_SmokeBomb"]</xpath>
-		<value>
-			<ThingDef ParentName="KijinWeapon">
-				<defName>Kijin_SmokeBomb</defName>
-				<equipmentType>Primary</equipmentType>
-				<label>kijin smokebomb</label>
-				<tickerType>Normal</tickerType>
-				<description>It will release a cloud of smoke, obscuring incoming shots and preventing turrets from locking on.</description>
-				<graphicData>
-					<texPath>Kijin/Item/SmokeBomb</texPath>
-					<graphicClass>Graphic_Single</graphicClass>
-				</graphicData>
-				<soundInteract>Interact_Grenade</soundInteract>
-				<statBases>
-					<Mass>0.539</Mass>
-					<Bulk>1.05</Bulk>
-					<MarketValue>8.88</MarketValue>
-					<SightsEfficiency>1.0</SightsEfficiency>
-					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-					<WorkToMake>24000</WorkToMake>
-				</statBases>
-				<recipeMaker>
-					<researchPrerequisite>KijinSmokeWeapons</researchPrerequisite>
-					<skillRequirements>
-						<Crafting>6</Crafting>
-					</skillRequirements>
-					<soundWorking>Recipe_Tailor</soundWorking>
-					<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
-				</recipeMaker>
-				<costStuffCount>25</costStuffCount>
-				<stuffCategories>
-					<li>Fabric</li>
-					<li>Leathery</li>
-				</stuffCategories>
-				<costList>
-					<SmokeleafLeaves>25</SmokeleafLeaves>
-				</costList>
-				<weaponTags>
-					<li>KijinGrenadeSmoke</li>
-				</weaponTags>
-				<thingCategories>
-					<li>Grenades</li>
-				</thingCategories>
-				<verbs>
-					<li Class="CombatExtended.VerbPropertiesCE">
-						<label>throw smoke grenade</label>
-						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-						<hasStandardCommand>true</hasStandardCommand>
-						<range>10</range>
-						<warmupTime>0.8</warmupTime>
-						<noiseRadius>4</noiseRadius>
-						<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
-						<soundCast>ThrowGrenade</soundCast>
-						<targetParams>
-							<canTargetLocations>true</canTargetLocations>
-						</targetParams>
-						<defaultProjectile>Proj_KijinSmoke</defaultProjectile>
-						<onlyManualCast>true</onlyManualCast>
-						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-					</li>
-				</verbs>
-				<comps>
-					<li Class="CombatExtended.CompProperties_ExplosiveCE">
-						<explosiveDamageType>Smoke</explosiveDamageType>
-						<explosiveRadius>3</explosiveRadius>
-						<postExplosionGasType>BlindSmoke</postExplosionGasType>
-						<preExplosionSpawnChance>1</preExplosionSpawnChance>
-					</li>
-				</comps>
-			</ThingDef>
-		</value>
-	</Operation>
+	<!--Was replaced with Kijin_SmokeBombBelt which doesn't need patch-->
+	<!-- <Operation Class="PatchOperationReplace"> -->
+		<!-- <xpath>Defs/ThingDef[defName="Kijin_SmokeBomb"]</xpath> -->
+		<!-- <value> -->
+			<!-- <ThingDef ParentName="KijinWeapon"> -->
+				<!-- <defName>Kijin_SmokeBomb</defName> -->
+				<!-- <equipmentType>Primary</equipmentType> -->
+				<!-- <label>kijin smokebomb</label> -->
+				<!-- <tickerType>Normal</tickerType> -->
+				<!-- <description>It will release a cloud of smoke, obscuring incoming shots and preventing turrets from locking on.</description> -->
+				<!-- <graphicData> -->
+					<!-- <texPath>Kijin/Item/SmokeBomb</texPath> -->
+					<!-- <graphicClass>Graphic_Single</graphicClass> -->
+				<!-- </graphicData> -->
+				<!-- <soundInteract>Interact_Grenade</soundInteract> -->
+				<!-- <statBases> -->
+					<!-- <Mass>0.539</Mass> -->
+					<!-- <Bulk>1.05</Bulk> -->
+					<!-- <MarketValue>8.88</MarketValue> -->
+					<!-- <SightsEfficiency>1.0</SightsEfficiency> -->
+					<!-- <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown> -->
+					<!-- <WorkToMake>24000</WorkToMake> -->
+				<!-- </statBases> -->
+				<!-- <recipeMaker> -->
+					<!-- <researchPrerequisite>KijinSmokeWeapons</researchPrerequisite> -->
+					<!-- <skillRequirements> -->
+						<!-- <Crafting>6</Crafting> -->
+					<!-- </skillRequirements> -->
+					<!-- <soundWorking>Recipe_Tailor</soundWorking> -->
+					<!-- <unfinishedThingDef>UnfinishedGun</unfinishedThingDef> -->
+				<!-- </recipeMaker> -->
+				<!-- <costStuffCount>25</costStuffCount> -->
+				<!-- <stuffCategories> -->
+					<!-- <li>Fabric</li> -->
+					<!-- <li>Leathery</li> -->
+				<!-- </stuffCategories> -->
+				<!-- <costList> -->
+					<!-- <SmokeleafLeaves>25</SmokeleafLeaves> -->
+				<!-- </costList> -->
+				<!-- <weaponTags> -->
+					<!-- <li>KijinGrenadeSmoke</li> -->
+				<!-- </weaponTags> -->
+				<!-- <thingCategories> -->
+					<!-- <li>Grenades</li> -->
+				<!-- </thingCategories> -->
+				<!-- <verbs> -->
+					<!-- <li Class="CombatExtended.VerbPropertiesCE"> -->
+						<!-- <label>throw smoke grenade</label> -->
+						<!-- <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass> -->
+						<!-- <hasStandardCommand>true</hasStandardCommand> -->
+						<!-- <range>10</range> -->
+						<!-- <warmupTime>0.8</warmupTime> -->
+						<!-- <noiseRadius>4</noiseRadius> -->
+						<!-- <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer> -->
+						<!-- <soundCast>ThrowGrenade</soundCast> -->
+						<!-- <targetParams> -->
+							<!-- <canTargetLocations>true</canTargetLocations> -->
+						<!-- </targetParams> -->
+						<!-- <defaultProjectile>Proj_KijinSmoke</defaultProjectile> -->
+						<!-- <onlyManualCast>true</onlyManualCast> -->
+						<!-- <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker> -->
+					<!-- </li> -->
+				<!-- </verbs> -->
+				<!-- <comps> -->
+					<!-- <li Class="CombatExtended.CompProperties_ExplosiveCE"> -->
+						<!-- <explosiveDamageType>Smoke</explosiveDamageType> -->
+						<!-- <explosiveRadius>3</explosiveRadius> -->
+						<!-- <postExplosionGasType>BlindSmoke</postExplosionGasType> -->
+						<!-- <preExplosionSpawnChance>1</preExplosionSpawnChance> -->
+					<!-- </li> -->
+				<!-- </comps> -->
+			<!-- </ThingDef> -->
+		<!-- </value> -->
+	<!-- </Operation> -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>KijinDarkMatter</defName>

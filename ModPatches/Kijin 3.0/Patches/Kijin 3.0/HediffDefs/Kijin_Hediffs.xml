@@ -1,61 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Kijin"]/comps</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Kijin"]</xpath>
+		<xpath>Defs/HediffDef[defName="KijinAbyssalArm"]</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="KijinAbyssalArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 			<value>
-				<comps/>
-			</value>
-		</nomatch>
-		<match Class="PatchOperationAdd">
-			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Kijin"]</xpath>
-			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>claw</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<!-- supposed to be 2.5x normal fist power, which is only 1 in CE. Rebalancing for something between a bionic arm and a power claw -->
+						<power>14</power>
+						<armorPenetrationSharp>0.65</armorPenetrationSharp>
+						<armorPenetrationBlunt>3</armorPenetrationBlunt>
+						<cooldownTime>2</cooldownTime>
+					</li>
+				</tools>
 			</value>
 		</match>
 	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Kijin"]</xpath>
+	
+	
+	<Operation  Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="KijinFireFistGene"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
-			<li Class="CombatExtended.RacePropertiesExtensionCE">
-				<bodyShape>Humanoid</bodyShape>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Kijin"]/comps</xpath>
-		<value>
-			<li>
-				<compClass>CombatExtended.CompPawnGizmo</compClass>
-			</li>
-			<li Class="CombatExtended.CompProperties_Suppressable"/>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Kijin"]/statBases</xpath>
-		<value>
-			<MeleeCritChance>1</MeleeCritChance>
-			<MeleeParryChance>1.25</MeleeParryChance>
-			<Suppressability>1</Suppressability>
-			<SmokeSensitivity>1</SmokeSensitivity>
-			<CarryBulk>30</CarryBulk>
-			<CarryWeight>60</CarryWeight>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Kijin"]/statBases/MeleeDodgeChance</xpath>
-		<value>
-			<MeleeDodgeChance>1.10</MeleeDodgeChance>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Kijin"]/tools</xpath>
-		<value>
+			<!--Directly copied from 2.0 race tools patch-->
 			<tools>
 				<li Class="CombatExtended.ToolCE">
 					<label>left fist</label>
@@ -105,7 +76,7 @@
 			</tools>
 		</value>
 	</Operation>
-
+	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ManeuverDef[defName="KijinFlameSmash"]/verb/meleeDamageDef</xpath>
 		<value>
