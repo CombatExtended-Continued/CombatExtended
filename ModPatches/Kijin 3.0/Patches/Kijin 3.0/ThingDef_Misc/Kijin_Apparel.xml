@@ -230,4 +230,15 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
+	
+	<!--Add bulk and token armor values to prevent errors-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Kijin_FirewardCharm" or defName="Kijin_SmokeBombBelt"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>2</WornBulk>
+			<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+		</value>
+	</Operation>
 </Patch>
