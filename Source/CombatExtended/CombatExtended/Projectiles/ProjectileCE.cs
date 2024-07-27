@@ -93,6 +93,24 @@ namespace CombatExtended
                 return ((float)this.damageAmount) * (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
             }
         }
+        public virtual float PenetrationAmount
+        {
+            get
+            {
+                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
+                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
+                return (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
+            }
+        }
+        public virtual DamageInfo DamageInfo => new DamageInfo(
+                    def.projectile.damageDef,
+                    DamageAmount,
+                    PenetrationAmount, //Armor Penetration
+                    ExactRotation.eulerAngles.y,
+                    launcher,
+                    null,
+                    def,
+                    instigatorGuilty: InstigatorGuilty);
 
         /// <summary>
         /// Reference to the weapon that fired this projectile, may be null.
