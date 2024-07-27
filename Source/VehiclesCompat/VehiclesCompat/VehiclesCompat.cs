@@ -181,14 +181,46 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             projectile.intendedTarget = target;
             projectile.mount = null;
             projectile.AccuracyFactor = 1;
-            projectile.Launch(
-                vehicle,
-                origin,
-                shotAngle,
-                shotRotation,
-                shotHeight,
-                shotSpeed,
-                vehicle);
+
+            ProjectilePropertiesCE pprop = projectileDef.projectile as ProjectilePropertiesCE;
+            bool instant = false;
+            float spreadDegrees = 0;
+            float aperatureSize = 0.03f;
+            // Hard coded as a super high max range - TODO: change in 1.6 to pass the range from the turret to this function.
+            // Should also update ProjectileCE.RayCast to not need a VerbPropertiesCE input just a float for range (Since thats all its used for).
+            VerbPropertiesCE verbPropsRange = new VerbPropertiesCE
+            {
+                range = 1000
+            };
+            if (pprop != null)
+            {
+                instant = pprop.isInstant;
+            }
+            if (instant)
+            {
+                projectile.RayCast(
+                    vehicle,
+                    verbPropsRange,
+                    origin,
+                    shotAngle,
+                    shotRotation,
+                    shotHeight,
+                    shotSpeed,
+                    spreadDegrees,
+                    aperatureSize,
+                    vehicle);
+            }
+            else
+            {
+                projectile.Launch(
+                    vehicle,
+                    origin,
+                    shotAngle,
+                    shotRotation,
+                    shotHeight,
+                    shotSpeed,
+                    vehicle);
+            }
             return projectile;
         }
         private static Tuple<bool, Vector2> _GetCollisionBodyFactors(Pawn pawn)
