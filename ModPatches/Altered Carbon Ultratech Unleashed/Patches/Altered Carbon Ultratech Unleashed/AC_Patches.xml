@@ -785,6 +785,126 @@
 		</weaponTags>
 	</Operation>
 
+	<!-- === Charge Incursionar === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AC_Gun_ChargeIncursionar</defName>
+		<statBases>
+			<WorkToMake>55000</WorkToMake>
+			<Mass>6</Mass>
+			<Bulk>11.50</Bulk>
+			<SwayFactor>1.25</SwayFactor>
+			<ShotSpread>0.10</ShotSpread>
+			<SightsEfficiency>1.15</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>20</Steel>
+			<Chemfuel>10</Chemfuel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+			<Plasteel>70</Plasteel>
+			<ComponentSpacer>3</ComponentSpacer>
+		</costList>
+		<Properties>
+			<recoilAmount>1.46</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+			<li>AdvancedGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Gun_ChargeIncursionar"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<propsUnderBarrel>
+					<magazineSize>4</magazineSize>
+					<reloadOneAtATime>true</reloadOneAtATime>
+					<reloadTime>0.85</reloadTime>
+					<ammoSet>AmmoSet_12GaugeCharged</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12GaugeCharged</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<burstShotCount>1</burstShotCount>
+					<range>20</range>
+					<recoilAmount>2.75</recoilAmount>
+					<soundCast>AC_Shot_ChargeShotgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>Snapshot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="AC_Gun_ChargeIncursionar"]/comps/li[Class="MVCF.Comps.CompProperties_VerbProps"]</xpath>
+	</Operation>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "AC_Gun_ChargeIncursionar"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AC_Gun_Autorevolver"]/tools</xpath>
 		<value>
