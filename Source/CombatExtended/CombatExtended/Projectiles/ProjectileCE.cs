@@ -171,20 +171,10 @@ namespace CombatExtended
         #endregion
 
         #region Position
-        protected virtual Vector2 Vec2Position(float ticks = -1f)
+        protected virtual Vector2 Vec2Position(int ticks = -1)
         {
-            Log.ErrorOnce("Vec2Position(float) is deprecated and will be removed in 1.5", 50021);
-            if (ticks < 0)
-            {
-                return Vec2Position();
+            return Vector2.Lerp(origin, Destination, (ticks < 0 ? FlightTicks : ticks) / startingTicksToImpact);
             }
-            return Vector2.Lerp(origin, Destination, ticks / startingTicksToImpact);
-        }
-        protected virtual Vector2 Vec2Position()
-        {
-            return Vector2.Lerp(origin, Destination, FlightTicks / startingTicksToImpact);
-        }
-
         private Vector3 exactPosition;
 
         /// <summary>
@@ -1078,7 +1068,26 @@ namespace CombatExtended
 
         // If anyone wants to override how projectiles move, this can be made virtual.
         // For now, it is non-virtual for performance.
-        protected Vector3 MoveForward()
+        public Vector3 MoveForward(ref Vector3 velocity, ref float shotSpeed, ref int flightTicks)
+        {
+            flightTicks++;
+            if (lerpPosition)
+            {
+                return LerpedMoveForward(flightTicks);
+            }
+            else
+            {
+                return NonLerpedMoveForward(ref velocity, ref shotSpeed);
+            }
+
+        }
+        protected virtual Vector3 LerpedMoveForward(int flightTicks)
+        {
+            var v = Vec2Position(flightTicks);
+            return new Vector3(v.x, GetHeightAtTicks(flightTicks), v.y);
+
+        }
+        protected virtual Vector3 NonLerpedMoveForward(ref Vector3 velocity, ref float shotSpeed)
         {
             Vector3 curPosition = ExactPosition;
             float sr = shotRotation * Mathf.Deg2Rad + 3.14159f / 2.0f;
@@ -1095,12 +1104,12 @@ namespace CombatExtended
                 initialSpeed = sspt;
             }
             Vector3 newPosition = curPosition + velocity;
-            Accelerate();
+            Accelerate(ref velocity, ref shotSpeed);
             return newPosition;
         }
 
         // This can also be made virtual, and would be the ideal entry point for guided ammunition and rockets.
-        protected void Accelerate()
+        protected void Accelerate(ref Vector3 velocity, ref float shotSpeed)
         {
             float crossSectionalArea = radius;
             crossSectionalArea *= crossSectionalArea * 3.14159f;
@@ -1117,6 +1126,17 @@ namespace CombatExtended
             shotSpeed = velocity.magnitude;
         }
 
+        public IEnumerable<Vector3> NextPositions()
+        {
+            int flightTicks = FlightTicks;
+            float shotSpeed = this.shotSpeed;
+            Vector3 velocity = this.velocity;
+            for (int ticksToImpact = this.ticksToImpact - 1; ticksToImpact >= 0; ticksToImpact--)
+            {
+                yield return MoveForward(ref velocity, ref shotSpeed, ref flightTicks);
+            }
+        }
+
         #region Tick/Draw
         public override void Tick()
         {
@@ -1127,17 +1147,7 @@ namespace CombatExtended
             }
             LastPos = ExactPosition;
             ticksToImpact--;
-            FlightTicks++;
-            Vector3 nextPosition;
-            if (lerpPosition)
-            {
-                var v = Vec2Position();
-                nextPosition = new Vector3(v.x, GetHeightAtTicks(FlightTicks), v.y);
-            }
-            else
-            {
-                nextPosition = MoveForward();
-            }
+            Vector3 nextPosition = MoveForward(ref velocity, ref shotSpeed, ref FlightTicks);
             if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
