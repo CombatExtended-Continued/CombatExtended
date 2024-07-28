@@ -269,6 +269,7 @@ Infusion 2  |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
 Jernalk's Skeletal Legion (Continued)	|
+Jin-Roh Kerberos Panzer Cop Armor   |
 Kaiser Armory	|
 Kemomimihouse |
 Kemomimihouse Kz |
