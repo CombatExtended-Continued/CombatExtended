@@ -1090,9 +1090,9 @@ namespace CombatExtended
         protected virtual Vector3 NonLerpedMoveForward(ref Vector3 velocity, ref float shotSpeed)
         {
             Vector3 curPosition = ExactPosition;
-            float sr = shotRotation * Mathf.Deg2Rad + 3.14159f / 2.0f;
             if (!kinit)
             {
+                float sr = shotRotation * Mathf.Deg2Rad + 3.14159f / 2.0f;
                 kinit = true;
                 var projectileProperties = def.projectile as ProjectilePropertiesCE;
                 ballisticCoefficient = projectileProperties.ballisticCoefficient.RandomInRange;
