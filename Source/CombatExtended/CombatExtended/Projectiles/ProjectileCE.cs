@@ -698,7 +698,7 @@ namespace CombatExtended
         }
 
         //Removed minimum collision distance
-        protected bool CheckForCollisionBetween()
+        protected virtual bool CheckForCollisionBetween()
         {
             bool collided = false;
             Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
