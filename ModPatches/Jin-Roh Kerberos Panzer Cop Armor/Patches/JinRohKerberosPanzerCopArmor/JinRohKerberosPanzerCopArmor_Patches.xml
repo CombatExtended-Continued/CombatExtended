@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <!-- =============================== HELMET =============================================================================-->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Helmet"]/equippedStatOffsets</xpath>
+        <value>
+          <ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
+          <SmokeSensitivity>-1</SmokeSensitivity>
+          <NightVisionEfficiency_Apparel>0.5</NightVisionEfficiency_Apparel>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Helmet"]/statBases/MaxHitPoints</xpath>
+        <value>
+          <MaxHitPoints>200</MaxHitPoints>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Helmet"]/statBases</xpath>
+        <value>
+          <Bulk>2</Bulk>
+          <WornBulk>1</WornBulk>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>14</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>30</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Helmet"]/apparel/layers</xpath>
+        <value>
+          <li>OnHead</li>
+          <li>StrappedHead</li>
+          <!-- <li>MiddleHead</li> -->
+        </value>
+      </li>
+      <!-- =============================== ARMOR =============================================================================-->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Armor"]/equippedStatOffsets</xpath>
+        <value>
+          <CarryWeight>40</CarryWeight>
+          <CarryBulk>10</CarryBulk>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Armor"]/statBases/MaxHitPoints</xpath>
+        <value>
+          <MaxHitPoints>450</MaxHitPoints>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Armor"]/statBases</xpath>
+        <value>
+          <Bulk>15</Bulk>
+          <WornBulk>9</WornBulk>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Armor"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>16</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Armor"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>32</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="JRA_Police_Armor"]/apparel/bodyPartGroups</xpath>
+        <value>
+          <li>Hands</li>
+          <li>Feet</li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>
