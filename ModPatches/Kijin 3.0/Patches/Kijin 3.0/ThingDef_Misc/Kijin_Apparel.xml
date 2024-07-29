@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!--========= Vest =========-->
 
+	<!--========= Vest =========-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Kijin_FlakVest"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
@@ -231,14 +231,15 @@
 		</value>
 	</Operation>
 
-  <!--Add bulk and token armor values to prevent errors-->
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Kijin_FirewardCharm" or defName="Kijin_SmokeBombBelt"]/statBases</xpath>
-    <value>
-      <Bulk>4</Bulk>
-      <WornBulk>2</WornBulk>
-      <ArmorRating_Sharp>0.01</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.01</ArmorRating_Blunt>
-    </value>
-  </Operation>
+	<!-- Add bulk and token armor values to prevent errors -->
+	<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="Kijin_FirewardCharm" or defName="Kijin_SmokeBombBelt"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>1</WornBulk>
+			<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
 </Patch>
