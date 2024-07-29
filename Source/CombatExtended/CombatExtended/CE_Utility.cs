@@ -811,7 +811,7 @@ namespace CombatExtended
 
                 if (handheld)
                 {
-                    if (weaponDef.weaponTags.Contains("CE_OneHandedWeapon"))
+                    if (weaponDef.weaponTags != null && weaponDef.weaponTags.Contains("CE_OneHandedWeapon"))
                     {
                         recoil /= 3;
                         muzzleJumpModifier *= 1.5f;
