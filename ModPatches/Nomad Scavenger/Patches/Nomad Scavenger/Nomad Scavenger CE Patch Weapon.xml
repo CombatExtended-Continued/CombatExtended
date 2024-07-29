@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Nomad Rifle : Meant to be a scrapped version of the Charge Rifle, so pretty much everything has been nerfed.
+
+
+	I used Rimsenal Augmented Pack Charged Infantry Rifle for bayonet 
+	And Vanilla charge rifle for anything else -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>NS_NomadRifle</defName>
+		<statBases>
+			<WorkToMake>40000</WorkToMake>
+			<SightsEfficiency>0.99</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>6.70</Bulk>
+			<Mass>2.5</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>			
+		</statBases>
+		<costList>
+			<Plasteel>20</Plasteel>
+			<Steel>30</Steel>			
+			<WoodLog>10</WoodLog>
+			<ComponentIndustrial>3</ComponentIndustrial>
+			<Chemfuel>10</Chemfuel>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<Properties>
+			<recoilAmount>1.51</recoilAmount>			
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>40</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>18</magazineSize> 
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>			
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li> <!-- probably needs other proper tags -->
+		</weaponTags>
+		<researchPrerequisite>AdvancedFabrication</researchPrerequisite> <!-- Need help to figure accurate tech level for a makeshift charge weapon -->
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_NomadRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.5</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>bayonet</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.25</armorPenetrationSharp> <!-- Need help to figure out correct value here, I used Vanilla spear as a quick dirty ref, due to the lack of example of steel bayonet in CE -->
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>							
+		
+</Patch>

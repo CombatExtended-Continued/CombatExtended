@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+
+<!-- To do : gun, tags, balance -->
+
+<!-- Headgears -->
+
+	<!-- Hoods  -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName = "NS_TechnopathHood" or
+			defName = "NS_NomadHood"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Teeth</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName = "NS_TechnopathHood" or
+			defName = "NS_NomadHood"]/apparel/layers</xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>	
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName = "NS_TechnopathHood" or
+			defName = "NS_NomadHood"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>			
+			<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>	
+		</value>
+	</Operation>	
+
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName = "NS_TechnopathHood" or
+			defName = "NS_NomadHood"]/statBases</xpath>
+		<value>			
+			<Bulk>3.5</Bulk>
+			<WornBulk>1</WornBulk>					
+		</value>
+	</Operation>	
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName = "NS_TechnopathHood" or
+			defName = "NS_NomadHood"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-0.3</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<!-- Guard Helmet -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardHelmet"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Teeth</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardHelmet"]/apparel/layers</xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>	
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardHelmet"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardHelmet"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardHelmet"]/statBases</xpath>
+		<value>			
+			<Bulk>5.5</Bulk>
+			<WornBulk>2</WornBulk>					
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_GuardHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>			
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>	
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-0.3</SmokeSensitivity>
+		</value>
+	</Operation>
+
+
+<!-- Technopath Robes and Nomad Rags -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_TechnopathRobe" or defName="NS_NomadRags"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Neck</li>
+			<li>Shoulders</li>
+			<li>Arms</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_TechnopathRobe" or defName="NS_NomadRags"]/statBases</xpath>
+		<value>			
+			<Bulk>9</Bulk>
+			<WornBulk>2.5</WornBulk>					
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_TechnopathRobe" or defName="NS_NomadRags"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>			
+			<StuffEffectMultiplierArmor>5.45</StuffEffectMultiplierArmor>	
+		</value>
+	</Operation>	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_TechnopathRobe" or defName="NS_NomadRags"]/statBases/Mass</xpath>
+		<value>			
+			<Mass>3.25</Mass>	
+		</value>
+	</Operation>
+
+<!-- Guard Cloack -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardCloak"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Neck</li>
+			<li>Shoulders</li>
+			<li>Arms</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_GuardCloak"]/statBases/Mass</xpath>
+		<value>			
+			<Mass>11.5</Mass>	
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_GuardCloak"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>			
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardCloak"]/statBases</xpath>
+		<value>			
+			<Bulk>9.5</Bulk>
+			<WornBulk>2</WornBulk>					
+		</value>
+	</Operation>	
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardCloak"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>8.75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_GuardCloak"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>5.8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="NS_GuardCloak"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.45</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+							<li>Shoulder</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+							<li>Shoulder</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+
+<!-- Nomad Wear -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_NomadWear"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_NomadWear"]/statBases/Mass</xpath>
+		<value>			
+			<Mass>2.80</Mass>	
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_NomadWear"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>			
+			<StuffEffectMultiplierArmor>3.9</StuffEffectMultiplierArmor>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_NomadWear"]/statBases</xpath>
+		<value>			
+			<Bulk>7.5</Bulk>
+			<WornBulk>2.8</WornBulk>					
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="NS_NomadWear"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+						<parts>
+							<li>Foot</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+						<parts>
+							<li>Foot</li>
+						</parts>
+					</li>					
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+<!-- Recipes balance tweaks -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_NomadWear"]/costStuffCount</xpath>
+		<value>			
+			<costStuffCount>75</costStuffCount>
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_NomadRags"]/costStuffCount</xpath>
+		<value>			
+			<costStuffCount>85</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_GuardCloak"]/costStuffCount</xpath>
+		<value>			
+			<costStuffCount>85</costStuffCount>
+		</value>
+	</Operation>	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_TechnopathRobe"]/costStuffCount</xpath>
+		<value>			
+			<costStuffCount>85</costStuffCount>
+		</value>
+	</Operation>	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_NomadWear" or
+			defName="NS_NomadRags" or
+			defName="NS_GuardCloak"]/statBases/WorkToMake</xpath>
+		<value>			
+			<WorkToMake>8500</WorkToMake>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="NS_TechnopathRobe"]/statBases/WorkToMake</xpath>
+		<value>			
+			<WorkToMake>10000</WorkToMake>	
+		</value>
+	</Operation>	
+
+</Patch>
