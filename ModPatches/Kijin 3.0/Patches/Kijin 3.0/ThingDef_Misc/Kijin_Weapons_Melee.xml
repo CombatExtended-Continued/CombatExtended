@@ -252,4 +252,57 @@
 			</operations>
 		</match>
 	</Operation>
+
+  <!--Abyssal Blade : Anomaly Only-->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Kijin_AbyssalBladelink"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="Kijin_AbyssalBladelink"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>edge</label>
+                <capacities>
+                  <li>KijinCleave</li>
+                </capacities>
+                <power>33</power>
+                <cooldownTime>1.5</cooldownTime>
+                <armorPenetrationBlunt>6.3</armorPenetrationBlunt>
+                <armorPenetrationSharp>10.89</armorPenetrationSharp>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ManeuverDef[defName="Kijin_Cleave"]/verb/verbClass</xpath>
+          <value>
+            <verbClass>CombatExtended.Verb_MeleeAttackCE</verbClass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Kijin_AbyssalBladelink"]/statBases</xpath>
+          <value>
+            <Bulk>8.5</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Kijin_AbyssalBladelink"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>1.10</MeleeCritChance>
+              <MeleeParryChance>0.90</MeleeParryChance>
+              <MeleeDodgeChance>0.60</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
 </Patch>
