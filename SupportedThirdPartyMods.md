@@ -186,6 +186,7 @@ Edge of Descension - Hovercraft  |
 Edge of Descension - Monoblades  |
 Edge of Descension - Vanguard   |
 Eltex Bodysuit  |
+Enchanted Sword  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
@@ -268,6 +269,7 @@ Infusion 2  |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
 Jernalk's Skeletal Legion (Continued)	|
+Jin-Roh Kerberos Panzer Cop Armor   |
 Kaiser Armory	|
 Kemomimihouse |
 Kemomimihouse Kz |
@@ -500,6 +502,7 @@ Vanilla Animals Expanded - Waste Animals |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
+Vanilla Arsenal |
 Vanilla Base Generation Expanded    |
 Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |

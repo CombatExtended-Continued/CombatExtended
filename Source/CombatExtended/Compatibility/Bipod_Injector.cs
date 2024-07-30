@@ -28,13 +28,13 @@ namespace CombatExtended
                 List<ThingDef> defs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(k => (k.weaponTags?.Any(O => O == bipod_def.bipod_id) ?? false) && (!k.Verbs?.Any(P => P.verbClass == typeof(CompProperties_BipodComp)) ?? false));
                 foreach (ThingDef def in defs)
                 {
-                    if (def.Verbs?.Any(PP => PP.verbClass == typeof(Verb_ShootCE)) ?? false)
+                    if (def.Verbs?.Any(PP => PP.verbClass == typeof(Verb_ShootCE) || PP.verbClass.IsSubclassOf(typeof(Verb_ShootCE))) ?? false)
                     {
-                        var dar = def.Verbs.Find(PP => PP.verbClass == typeof(Verb_ShootCE)).MemberwiseClone();
-
+                        var tempVP = def.Verbs.Find(PP => PP.verbClass == typeof(Verb_ShootCE) || PP.verbClass.IsSubclassOf(typeof(Verb_ShootCE)));
+                        var dar = tempVP.MemberwiseClone();
                         if (dar != null)
                         {
-                            dar.verbClass = typeof(Verb_ShootCE);
+                            dar.verbClass = tempVP.verbClass;
                             def.Verbs.Clear();
                             def.comps.Add(new CompProperties_BipodComp { catDef = bipod_def, swayMult = bipod_def.swayMult, swayPenalty = bipod_def.swayPenalty, additionalrange = bipod_def.ad_Range, recoilMulton = bipod_def.recoil_mult_setup, recoilMultoff = bipod_def.recoil_mult_NOT_setup, ticksToSetUp = bipod_def.setuptime, warmupMult = bipod_def.warmup_mult_setup, warmupPenalty = bipod_def.warmup_mult_NOT_setup });
                             def.Verbs.Add(dar);
