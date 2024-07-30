@@ -101,7 +101,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_PlasmaGun</defaultProjectile>
+			<defaultProjectile>Bullet_PlasmaRifle</defaultProjectile>
 			<warmupTime>1.3</warmupTime>
 			<range>54</range>
 			<burstShotCount>1</burstShotCount>
@@ -117,7 +117,7 @@
 		<AmmoUser>
 			<magazineSize>10</magazineSize>
 			<reloadTime>3</reloadTime>
-			<ammoSet>AmmoSet_PlasmaGun</ammoSet>
+			<ammoSet>AmmoSet_PlasmaCanister_Rifle</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -154,7 +154,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_PlasmaGun</defaultProjectile>
+			<defaultProjectile>Bullet_PlasmaRifle</defaultProjectile>
 			<warmupTime>1.3</warmupTime>
 			<range>58</range>
 			<burstShotCount>3</burstShotCount>
@@ -169,7 +169,7 @@
 		</Properties>
 		<AmmoUser>
 			<magazineSize>15</magazineSize>
-			<reloadTime>3</reloadTime>
+			<reloadTime>5.5</reloadTime>
 			<ammoSet>AmmoSet_PlasmaIncinerator</ammoSet>
 		</AmmoUser>
 		<FireModes>
@@ -180,8 +180,46 @@
 			<li>CE_AI_Rifle</li>
 		</weaponTags>
 	</Operation>
-	
-		<!-- ============ Melta Gun ============ -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to standard mode</standardLabel>
+				<underBarrelLabel>switch to overcharge mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>15</magazineSize>
+					<reloadTime>5.5</reloadTime>
+					<ammoSet>AmmoSet_PlasmaIncinerator</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_PlasmaCannon_Overcharged</defaultProjectile>
+					<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+					<warmupTime>1.2</warmupTime>
+					<range>58</range>
+					<soundCast>HP_Incinerator_Gun_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSingleShot>true</noSingleShot>	
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ============ Melta Gun ============ -->
 			
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="HP_Gun_MeltaGun"]/weaponTags</xpath>
@@ -639,7 +677,7 @@
 		<AmmoUser>
 			<magazineSize>45</magazineSize>
 			<reloadTime>13</reloadTime>
-			<ammoSet>AmmoSet_PlasmaCannon</ammoSet>
+			<ammoSet>AmmoSet_PlasmaCanister_Cannon</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -791,7 +829,7 @@
 		<AmmoUser>
 			<magazineSize>25</magazineSize>
 			<reloadTime>13</reloadTime>
-			<ammoSet>AmmoSet_PlasmaCannon</ammoSet>
+			<ammoSet>AmmoSet_PlasmaCanister_Cannon</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -1032,7 +1070,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_PlasmaGun</defaultProjectile>
+			<defaultProjectile>Bullet_PlasmaRifle</defaultProjectile>
 			<warmupTime>1.3</warmupTime>
 			<range>27</range>
 			<burstShotCount>1</burstShotCount>
@@ -1048,7 +1086,7 @@
 		<AmmoUser>
 			<magazineSize>4</magazineSize>
 			<reloadTime>2.4</reloadTime>
-			<ammoSet>AmmoSet_PlasmaGun</ammoSet>
+			<ammoSet>AmmoSet_PlasmaCanister_Rifle</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
