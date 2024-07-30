@@ -495,7 +495,7 @@ namespace CombatExtended
                     Log.Message(shotsFiredBeforeReload.ToString());
                     for (int i = 0; i < Props.magazineSize; i++)
                     {
-                        verbCE.ExternalCallDropCasing();
+                        verbCE.ExternalCallDropCasing(i);
                     }
                 }
                 shotsFiredBeforeReload = 0;

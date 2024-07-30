@@ -845,13 +845,13 @@ namespace CombatExtended
         #endregion Misc
 
         #region MoteThrower
-        public static void GenerateAmmoCasings(ProjectilePropertiesCE projProps, Vector3 drawPosition, Map map, float shotRotation = -180f, float recoilAmount = 2f, bool fromPawn = false, float casingAngleOffset = 0)
+        public static void GenerateAmmoCasings(ProjectilePropertiesCE projProps, Vector3 drawPosition, Map map, float shotRotation = -180f, float recoilAmount = 2f, bool fromPawn = false, float casingAngleOffset = 0, int randomSeedOffset = -1)
         {
             if (projProps.dropsCasings)
             {
                 if (Controller.settings.ShowCasings)
                 {
-                    ThrowEmptyCasing(drawPosition, map, DefDatabase<FleckDef>.GetNamed(projProps.casingMoteDefname), recoilAmount, shotRotation, 1f, fromPawn, casingAngleOffset);
+                    ThrowEmptyCasing(drawPosition, map, DefDatabase<FleckDef>.GetNamed(projProps.casingMoteDefname), recoilAmount, shotRotation, 1f, fromPawn, casingAngleOffset, randomSeedOffset);
                 }
                 if (Controller.settings.CreateCasingsFilth)
                 {
@@ -861,7 +861,7 @@ namespace CombatExtended
         }
 
 
-        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f, bool fromPawn = false, float casingAngleOffset = 0)
+        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float recoilAmount, float shotRotation, float size = 1f, bool fromPawn = false, float casingAngleOffset = 0, int randomSeedOffset = -1)
         {
             if (!loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
@@ -871,7 +871,15 @@ namespace CombatExtended
             {
                 recoilAmount = 1; //avoid division errors in case of guns without recoil
             }
-            Rand.PushState();
+            if (randomSeedOffset > 0)
+            {
+                Rand.PushState(randomSeedOffset);
+            }
+            else
+            {
+                Rand.PushState();
+            }
+
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
             creationData.velocitySpeed = Rand.Range(1.5f, 2f) * recoilAmount;
             creationData.airTimeLeft = Rand.Range(1f, 1.5f) / creationData.velocitySpeed;

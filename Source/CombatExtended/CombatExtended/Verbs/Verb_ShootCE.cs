@@ -365,7 +365,7 @@ namespace CombatExtended
         }
 
         //For revolvers and break actions. Intended to be called by compammouser on reload
-        public void ExternalCallDropCasing()
+        public void ExternalCallDropCasing(int randomSeedOffset = -1)
         {
             bool fromPawn = false;
             GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
@@ -373,7 +373,7 @@ namespace CombatExtended
             {
                 fromPawn = drawPos != Vector3.zero;
             }
-            CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos + CasingOffsetRotated(ext), caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, casingAngleOffset: EquipmentSource?.def.GetModExtension<GunDrawExtension>()?.CasingAngleOffset ?? 0);
+            CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos + CasingOffsetRotated(ext), caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, casingAngleOffset: EquipmentSource?.def.GetModExtension<GunDrawExtension>()?.CasingAngleOffset ?? 0, randomSeedOffset);
         }
 
         public override bool TryCastShot()
