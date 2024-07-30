@@ -139,7 +139,17 @@
 			</value>
 		</nomatch>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Plasma_Incinerator</defName>
 		<statBases>
@@ -181,8 +191,8 @@
 		</weaponTags>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Plasma_Incinerator"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_UnderBarrel">
 				<standardLabel>switch to standard mode</standardLabel>
