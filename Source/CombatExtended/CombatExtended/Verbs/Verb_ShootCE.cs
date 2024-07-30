@@ -405,7 +405,7 @@ namespace CombatExtended
             }
 
             //Drop casings
-            if (VerbPropsCE.ejectsCasings && !ext.DropCasingWhenReload)
+            if (VerbPropsCE.ejectsCasings && (!ext?.DropCasingWhenReload ?? true))
             {
                 CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext);
             }
