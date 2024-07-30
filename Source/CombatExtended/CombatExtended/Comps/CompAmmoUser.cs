@@ -21,8 +21,6 @@ namespace CombatExtended
         private AmmoDef currentAmmoInt = null;
         private AmmoDef selectedAmmo;
 
-        public int shotsFiredBeforeReload = 0;
-
         private Thing ammoToBeDeleted;
 
         public Building_Turret turret;         // Cross-linked from CE turret
@@ -128,6 +126,8 @@ namespace CombatExtended
             }
         }
         public bool IsEquippedGun => Wielder != null;
+
+        GunDrawExtension gunDrawExt => parent.def.GetModExtension<GunDrawExtension>();
         public Pawn Holder
         {
             get
@@ -268,8 +268,6 @@ namespace CombatExtended
             }
         }
         public bool ShouldThrowMote => Props.throwMote && MagSize > 1;
-
-        GunDrawExtension gunDrawExt => parent.def.GetModExtension<GunDrawExtension>();
 
         public AmmoDef SelectedAmmo
         {
@@ -418,7 +416,6 @@ namespace CombatExtended
 
 
             // Original: curMagCountInt--;
-            shotsFiredBeforeReload += ammoConsumedPerShot;
             if (curMagCountInt < 0)
             {
                 TryStartReload();
@@ -489,16 +486,6 @@ namespace CombatExtended
             if (UseAmmo)
             {
                 TryUnload();
-                //For revolvers and 
-                if (gunDrawExt != null && gunDrawExt.DropCasingWhenReload && CompEquippable?.PrimaryVerb is Verb_ShootCE verbCE && verbCE.VerbPropsCE.ejectsCasings)
-                {
-                    Log.Message(shotsFiredBeforeReload.ToString());
-                    for (int i = 0; i < Props.magazineSize; i++)
-                    {
-                        verbCE.ExternalCallDropCasing(i);
-                    }
-                }
-                shotsFiredBeforeReload = 0;
 
                 // Check for ammo
                 if (IsEquippedGun && !HasAmmo)
@@ -525,6 +512,18 @@ namespace CombatExtended
                 _lastReloadJobTick = GenTicks.TicksGame;
                 reloadJob.playerForced = true;
                 Wielder.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, Wielder.CurJob?.def != reloadJob.def, true);
+            }
+        }
+
+        public void DropCasing(int count)
+        {
+            //For revolvers and break actions
+            if (gunDrawExt != null && gunDrawExt.DropCasingWhenReload && CompEquippable?.PrimaryVerb is Verb_ShootCE verbCE && verbCE.VerbPropsCE.ejectsCasings)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    verbCE.ExternalCallDropCasing(i);
+                }
             }
         }
 

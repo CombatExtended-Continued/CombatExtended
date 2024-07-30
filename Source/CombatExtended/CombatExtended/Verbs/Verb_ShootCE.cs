@@ -373,7 +373,8 @@ namespace CombatExtended
             {
                 fromPawn = drawPos != Vector3.zero;
             }
-            CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos + CasingOffsetRotated(ext), caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, casingAngleOffset: EquipmentSource?.def.GetModExtension<GunDrawExtension>()?.CasingAngleOffset ?? 0, randomSeedOffset);
+            //No aim angle because casing eject happens when pawn lowers its gun to reload
+            CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, 0, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext, randomSeedOffset);
         }
 
         public override bool TryCastShot()

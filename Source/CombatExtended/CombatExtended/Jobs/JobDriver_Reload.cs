@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Mono.Unix.Native;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -186,6 +187,12 @@ namespace CombatExtended
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             waitToil.defaultDuration = Mathf.CeilToInt(weapon.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            //If we're some way through the reload timer, drop casings if dropcasingwhenreload.
+            waitToil.AddPreTickAction(() =>
+            {
+                if (waitToil.actor.jobs.curDriver.ticksLeftThisToil == (int)(waitToil.defaultDuration * 0.8f))
+                { compReloader.DropCasing(compReloader.Props.magazineSize); }
+            });
             yield return waitToil.WithProgressBarToilDelay(indReloader);
 
             //Actual reloader

@@ -18,6 +18,7 @@ namespace CombatExtended
 
         public Vector2 CasingOffset = Vector2.zero;
         public float CasingAngleOffset = 0;
+        public bool DropCasingWhenReload;
 
         public bool AdvancedCasingVariables = false;
 
