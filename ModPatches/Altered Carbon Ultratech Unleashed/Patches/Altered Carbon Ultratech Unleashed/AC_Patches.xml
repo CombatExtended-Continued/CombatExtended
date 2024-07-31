@@ -26,8 +26,8 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet" or
-							 defName="VFEU_Apparel_ProtectorHelmet" or
-							 defName="AC_Apparel_FusilierHelmet"]/statBases/VEF_RangedCooldownFactor</xpath>
+			defName="VFEU_Apparel_ProtectorHelmet" or
+			defName="AC_Apparel_FusilierHelmet"]/statBases/VEF_RangedCooldownFactor</xpath>
 	</Operation>
 
 	<!-- Overseer Helmet -->
@@ -102,6 +102,13 @@
 		<value>
 			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>4</ShootingAccuracyPawn>
 		</value>
 	</Operation>
 
@@ -193,6 +200,13 @@
 		<value>
 			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>2.5</ShootingAccuracyPawn>
 		</value>
 	</Operation>
 
@@ -423,6 +437,13 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>5</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/costList/ComponentSpacer</xpath>
 		<value>
 			<ComponentSpacer>3</ComponentSpacer>
@@ -570,104 +591,6 @@
 		</value>
 	</Operation>
 
-	<!-- Dragoon Helmet -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases</xpath>
-		<value>
-			<Bulk>6</Bulk>
-			<WornBulk>1</WornBulk>
-			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/Flammability</xpath>
-		<value>
-			<Flammability>0</Flammability>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>300</MaxHitPoints>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/Mass</xpath>
-		<value>
-			<Mass>6.6</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>28</ArmorRating_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>62</ArmorRating_Blunt>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]</xpath>
-		<value>
-			<li Class="CombatExtended.PartialArmorExt">
-				<stats>
-					<li>
-						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-						<parts>
-							<li>Eye</li>
-							<li>Nose</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-						<parts>
-							<li>Eye</li>
-							<li>Nose</li>
-						</parts>
-					</li>
-				</stats>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/equippedStatOffsets</xpath>
-		<value>
-			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
-			<SmokeSensitivity>-1</SmokeSensitivity>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/ComponentSpacer</xpath>
-		<value>
-			<ComponentSpacer>2</ComponentSpacer>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/Plasteel</xpath>
-		<value>
-			<Plasteel>125</Plasteel>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList</xpath>
-		<value>
-			<DevilstrandCloth>35</DevilstrandCloth>
-		</value>
-	</Operation>
-
 	<!-- Dragoon armor and jump wings require Royalty -->
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -675,6 +598,104 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
+				<!-- Dragoon Helmet -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>1</WornBulk>
+						<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>300</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/Mass</xpath>
+					<value>
+						<Mass>6.6</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>28</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>62</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Eye</li>
+										<li>Nose</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Eye</li>
+										<li>Nose</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/equippedStatOffsets</xpath>
+					<value>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/ComponentSpacer</xpath>
+					<value>
+						<ComponentSpacer>2</ComponentSpacer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>125</Plasteel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>35</DevilstrandCloth>
+					</value>
+				</li>
 
 				<!-- Dragoon Armor -->
 				<li Class="PatchOperationAdd">
