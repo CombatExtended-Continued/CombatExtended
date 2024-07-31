@@ -24,6 +24,95 @@
 		</value>
 	</Operation>
 
+	<!-- Overseer Helmet -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>250</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>3.0</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>50</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_OverseerHelmet"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>25</DevilstrandCloth>
+		</value>
+	</Operation>
+
 	<!-- Protector Helmet -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/statBases</xpath>
