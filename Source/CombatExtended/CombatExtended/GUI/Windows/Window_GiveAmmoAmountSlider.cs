@@ -12,7 +12,7 @@ namespace CombatExtended
 {
     public class Window_GiveAmmoAmountSlider : Window
     {
-        public int ammoToGiveAmount = 1;
+        public float ammoToGiveAmount = 1;
 
         public CompAmmoGiver sourceComp;
 
@@ -35,9 +35,7 @@ namespace CombatExtended
         }
         public override void DoWindowContents(Rect inRect)
         {
-            Widgets.Label(inRect.TopHalf().TopHalf(), "CE_AmmoAmount".Translate() + " " + ammoToGiveAmount.ToString());
-            //TODO: 1.5
-            ammoToGiveAmount = 1; // (int)Widgets.HorizontalSlider_NewTemp(inRect.TopHalf().BottomHalf(), ammoToGiveAmount, 0, maxAmmoCount);
+            Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf(), ref ammoToGiveAmount, new FloatRange(0, maxAmmoCount), "CE_AmmoAmount".Translate() + " " + ammoToGiveAmount.ToString(), 1);
 
             if (Widgets.ButtonText(inRect.BottomHalf().LeftHalf(), "Cancel".Translate()))
             {
@@ -55,7 +53,7 @@ namespace CombatExtended
         {
             if (finalized)
             {
-                sourceComp.GiveAmmo(selPawn, sourceAmmo, this.ammoToGiveAmount);
+                sourceComp.GiveAmmo(selPawn, sourceAmmo, (int)this.ammoToGiveAmount);
             }
 
             base.Close(doCloseSound);
