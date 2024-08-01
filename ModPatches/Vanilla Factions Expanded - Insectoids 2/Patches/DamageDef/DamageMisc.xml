@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="VFEI2_AcidSpit"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="VFEI2_ToxicSting"]/additionalHediffs/li[hediff="VFEI2_ToxicBuildup"]/severityPerDamageDealt</xpath>
+		<value>
+			<severityPerDamageDealt>0.08</severityPerDamageDealt>
+		</value>
+	</Operation>
+
+</Patch>
