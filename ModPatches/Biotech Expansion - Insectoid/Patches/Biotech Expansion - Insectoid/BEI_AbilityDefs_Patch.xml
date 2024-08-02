@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="BTEIst_VolatileStingLauncher" or defName="BTEIst_ToxicStingLauncher"]/verbProperties/range</xpath>
+		<value>
+			<range>21</range>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BTEIst_ToxicSting"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>BTEIst_ToxicStab</damageDef>
+				<speed>120</speed>
+				<damageAmountBase>5</damageAmountBase>
+				<armorPenetrationSharp>6</armorPenetrationSharp>
+				<armorPenetrationBlunt>9</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BTEIst_ToxicStingBuffed"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>BTEIst_ToxicStab</damageDef>
+				<speed>120</speed>
+				<damageAmountBase>10</damageAmountBase>
+				<armorPenetrationSharp>9</armorPenetrationSharp>
+				<armorPenetrationBlunt>12</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BTEIst_VolatileSting"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>BTEIst_VolatileStab</damageDef>
+				<speed>120</speed>
+				<damageAmountBase>1</damageAmountBase>
+				<armorPenetrationSharp>12</armorPenetrationSharp>
+				<armorPenetrationBlunt>18</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BTEIst_ToxicStingBuffed"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>BTEIst_ToxicStab</damageDef>
+				<speed>120</speed>
+				<damageAmountBase>2</damageAmountBase>
+				<armorPenetrationSharp>12</armorPenetrationSharp>
+				<armorPenetrationBlunt>18</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+</Patch>
