@@ -3,23 +3,28 @@
 
 	<!-- Nomad Rifle : Meant to be a scrapped version of the Charge Rifle, so pretty much everything has been nerfed.
 
+	Balance Pass :
 
-	I used Rimsenal Augmented Pack Charged Infantry Rifle for bayonet 
-	And Vanilla charge rifle for anything else -->
+
+		-> Nerfed magazine count for the weapon from 18 to 6 because it was OP and for realism
+		-> fixed steel Bayonet values with accurate stats
+		-> fixed tools attack with accurate stats
+		-> minor balance tweaks
+		-> Research Prerequisites : buffed from Adv Fab to Gunsmithing, because charge ammo at early game are uncraftable and expensive, it makes sense to narrow down research prerequisite to ensure this gun a use. Also keep it mind the gun is pretty expensive to craft at early game. -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>NS_NomadRifle</defName>
 		<statBases>
-			<WorkToMake>40000</WorkToMake>
-			<SightsEfficiency>0.99</SightsEfficiency>
+			<WorkToMake>18500</WorkToMake>
+			<SightsEfficiency>0.98</SightsEfficiency>
 			<ShotSpread>0.09</ShotSpread>
 			<SwayFactor>1.35</SwayFactor>
-			<Bulk>6.70</Bulk>
+			<Bulk>7.70</Bulk>
 			<Mass>2.5</Mass>
 			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>			
 		</statBases>
 		<costList>
-			<Plasteel>20</Plasteel>
+			<Plasteel>15</Plasteel>
 			<Steel>30</Steel>			
 			<WoodLog>10</WoodLog>
 			<ComponentIndustrial>3</ComponentIndustrial>
@@ -32,13 +37,13 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
 			<warmupTime>1.1</warmupTime>
-			<range>40</range>
+			<range>43</range>
 			<soundCast>Shot_ChargeRifle</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>6</magazineSize> <!-- Heavily nerf mag size due to the lack of proper magazine on the sprite, seems legit -->
+			<magazineSize>6</magazineSize> 
 			<reloadTime>4</reloadTime>
 			<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
 		</AmmoUser>
@@ -48,23 +53,23 @@
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 		<weaponTags>
-			<li>CE_AI_AR</li> <!-- probably needs other proper tags -->
+			<li>CE_AI_AR</li>
 		</weaponTags>
-		<researchPrerequisite>AdvancedFabrication</researchPrerequisite> <!-- Need help to figure accurate tech level for a makeshift charge weapon -->
+		<researchPrerequisite>Gunsmithing</researchPrerequisite>
 	</Operation>
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="NS_NomadRifle"]/tools</xpath>
 		<value>
 			<tools>
-				<li Class="CombatExtended.ToolCE">
+				<li Class="CombatExtended.ToolCE"> <!-- Stock is a wood log -->
 					<label>stock</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>7</power>
-					<cooldownTime>1.35</cooldownTime>
-					<chanceFactor>0.15</chanceFactor>
-					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<power>2</power>
+					<cooldownTime>0.99</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -73,9 +78,8 @@
 						<li>Blunt</li>
 					</capacities>
 					<power>5</power>
-					<cooldownTime>1.78</cooldownTime>
-					<chanceFactor>0.5</chanceFactor>
-					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.415</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -83,10 +87,10 @@
 					<capacities>
 						<li>Stab</li>
 					</capacities>
-					<power>16</power>
-					<cooldownTime>2</cooldownTime>
-					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
-					<armorPenetrationSharp>2.25</armorPenetrationSharp> <!-- Need help to figure out correct value here, I used Vanilla spear as a quick dirty ref, due to the lack of example of steel bayonet in CE -->
+					<power>17</power>
+					<cooldownTime>1.38</cooldownTime>
+					<armorPenetrationBlunt>1.08</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.72</armorPenetrationSharp> 
 					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 				</li>
 			</tools>
