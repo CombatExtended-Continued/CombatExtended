@@ -364,6 +364,19 @@ namespace CombatExtended
 
         }
 
+        //For revolvers and break actions. Intended to be called by compammouser on reload
+        public void ExternalCallDropCasing(int randomSeedOffset = -1)
+        {
+            bool fromPawn = false;
+            GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
+            if (ShooterPawn != null)
+            {
+                fromPawn = drawPos != Vector3.zero;
+            }
+            //No aim angle because casing eject happens when pawn lowers its gun to reload
+            CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, 0, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext, randomSeedOffset);
+        }
+
         public override bool TryCastShot()
         {
             //Reduce ammunition
@@ -392,7 +405,7 @@ namespace CombatExtended
             }
 
             //Drop casings
-            if (VerbPropsCE.ejectsCasings)
+            if (VerbPropsCE.ejectsCasings && (!ext?.DropCasingWhenReload ?? true))
             {
                 CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext);
             }
