@@ -74,7 +74,7 @@ namespace CombatExtended
             }
             foreach (IModPart modPart in modParts)
             {
-		Log.Message("CE: Loading Mod Part");
+                Log.Message("CE: Loading Mod Part");
                 Type settingsType = modPart.GetSettingsType();
                 ISettingsCE settings = null;
                 if (settingsType != null)
@@ -118,10 +118,10 @@ namespace CombatExtended
 
         }
 
-	public override string SettingsCategory()
-	{
-	    return "Combat Extended";
-	}
+        public override string SettingsCategory()
+        {
+            return "Combat Extended";
+        }
 
         private static void DoTutorialPopup()
         {
