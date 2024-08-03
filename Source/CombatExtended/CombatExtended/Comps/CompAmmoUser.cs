@@ -17,9 +17,9 @@ namespace CombatExtended
     {
         #region Fields
 
-        private int curMagCountInt = 0;
-        private AmmoDef currentAmmoInt = null;
-        private AmmoDef selectedAmmo;
+        protected int curMagCountInt = 0;
+        protected AmmoDef currentAmmoInt = null;
+        protected AmmoDef selectedAmmo;
 
         private Thing ammoToBeDeleted;
 
@@ -46,7 +46,7 @@ namespace CombatExtended
                 {
                     CompInventory.UpdateInventory();
                     int count = 0;
-                    foreach (AmmoLink link in Props.ammoSet.ammoTypes)
+                    foreach (AmmoLink link in CurAmmoSet.ammoTypes)
                     {
                         count += CompInventory.AmmoCountOfDef(link.ammo);
                     }
@@ -139,7 +139,7 @@ namespace CombatExtended
         {
             get
             {
-                return Props.ammoSet != null && AmmoUtility.IsAmmoSystemActive(Props.ammoSet);
+                return CurAmmoSet != null && AmmoUtility.IsAmmoSystemActive(CurAmmoSet);
             }
         }
         public bool IsAOEWeapon
@@ -174,7 +174,7 @@ namespace CombatExtended
         {
             get
             {
-                return CompInventory != null && CompInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
+                return CompInventory != null && CompInventory.ammoList.Any(x => CurAmmoSet.ammoTypes.Any(a => a.ammo == x.def));
             }
         }
         public bool HasMagazine => MagSize > 0;
@@ -219,7 +219,9 @@ namespace CombatExtended
             }
         }
 
-        public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
+        public virtual AmmoSetDef CurAmmoSet => Props.ammoSet;
+
+        public virtual ThingDef CurAmmoProjectile => CurAmmoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
         public CompInventory CompInventory
         {
             get
@@ -269,7 +271,7 @@ namespace CombatExtended
         }
         public bool ShouldThrowMote => Props.throwMote && MagSize > 1;
 
-        public AmmoDef SelectedAmmo
+        public virtual AmmoDef SelectedAmmo
         {
             get
             {
@@ -299,7 +301,7 @@ namespace CombatExtended
             // Initialize ammo with default if none is set
             if (UseAmmo)
             {
-                if (Props.ammoSet.ammoTypes.NullOrEmpty())
+                if (CurAmmoSet.ammoTypes.NullOrEmpty())
                 {
                     Log.Error(parent.Label + " has no available ammo types");
                 }
@@ -307,7 +309,7 @@ namespace CombatExtended
                 {
                     if (currentAmmoInt == null)
                     {
-                        currentAmmoInt = (AmmoDef)Props.ammoSet.ammoTypes[0].ammo;
+                        currentAmmoInt = (AmmoDef)CurAmmoSet.ammoTypes[0].ammo;
                     }
                     if (selectedAmmo == null)
                     {
@@ -683,7 +685,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
+            IEnumerable<AmmoDef> supportedAmmo = CurAmmoSet.ammoTypes.Select(a => a.ammo);
             foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo
                      && supportedAmmo.Contains(ammo.AmmoDef)
                      && (!Holder.IsColonist || (!ammo.IsForbidden(Holder) && ammo.Position.AdjacentTo8WayOrInside(Holder)))))
@@ -843,7 +845,7 @@ namespace CombatExtended
             }
 
             // Try finding ammo from different type
-            foreach (AmmoLink link in Props.ammoSet.ammoTypes)
+            foreach (AmmoLink link in CurAmmoSet.ammoTypes)
             {
                 ammoThing = CompInventory.ammoList.Find(thing => thing.def == link.ammo);
                 if (ammoThing != null)
@@ -939,7 +941,7 @@ namespace CombatExtended
 
         public override string TransformLabel(string label)
         {
-            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)Props.ammoSet.LabelCap + ") " : "";
+            string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)CurAmmoSet.LabelCap + ") " : "";
             return label + ammoSet;
         }
 
