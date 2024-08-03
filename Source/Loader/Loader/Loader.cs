@@ -39,9 +39,6 @@ namespace CombatExtended.Loader
             return "Combat Extended";
         }
 
-        
-
-        //Unused method is only here for reference, the repository assembly uses it to warn users to get a compiled build.
         private static void ShowUncompiledBuildWarning()
         {
             Log.Error("You are running CE Uncompiled.  See https://github.com/CombatExtended-Continued/CombatExtended#development-version for details");
