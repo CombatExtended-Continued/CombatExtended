@@ -11,15 +11,16 @@ ec = 0
 def process(node):
     global ec
     mod = c.getAttribute("IfModActive")
-    if (mod, c.firstChild.data) in mods:
+    dp = c.firstChild.data.replace('&apos;', "'")
+    if (mod, dp) in mods:
         ec += 1
         msg = f"Mod {mod} is listed in LoadFolders.xml twice, both pointing to {c.firstChild.data}"
         if err:
             raise RuntimeError(msg)
         else:
             print(msg)
-    mods.add((mod, c.firstChild.data))
-    root = FilePath(c.firstChild.data)
+    mods.add((mod, dp))
+    root = FilePath(dp)
     if not ModPatches in root.parents():
         return
     for fd in root.walk():
