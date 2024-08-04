@@ -11,6 +11,8 @@ ec = 0
 def process(node):
     global ec
     mod = c.getAttribute("IfModActive")
+    if not mod:
+        mod = "CETeam.CombatExtended"
     dp = c.firstChild.data.replace('&apos;', "'")
     if (mod, dp) in mods:
         ec += 1
