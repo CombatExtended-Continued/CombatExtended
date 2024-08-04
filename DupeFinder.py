@@ -32,13 +32,13 @@ def process(node):
             continue
         relative = tuple(fd.segmentsFrom(root))
         if relative in used:
-            msg = f"Mod {mod} is trying to use {relative}, but {used[relative]} already owns that path"
+            msg = f"""Relative paths collision found: {str.join("/", fd.segmentsFrom(ContentRoot))} overrides {str.join("/", used[relative].segmentsFrom(ContentRoot))}"""
             if err:
                 raise RuntimeError(msg)
             else:
                 ec += 1
                 print(msg)
-        used[relative] = mod
+        used[relative] = fd
 
 with XMLOpen("LoadFolders.xml") as x:
     v1_5 = x.getElementsByTagName("v1.5")
