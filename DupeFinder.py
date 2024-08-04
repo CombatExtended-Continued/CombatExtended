@@ -5,7 +5,7 @@ err = "-c" not in sys.argv
 
 used = {}
 mods = set()
-ModPatches = FilePath("ModPatches")
+ContentRoot = FilePath(".")
 ec = 0
 
 def process(node):
@@ -21,7 +21,7 @@ def process(node):
             print(msg)
     mods.add((mod, dp))
     root = FilePath(dp)
-    if not ModPatches in root.parents():
+    if not ContentRoot in root.parents():
         return
     for fd in root.walk():
         if fd.isdir():
