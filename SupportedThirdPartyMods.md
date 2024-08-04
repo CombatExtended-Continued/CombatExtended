@@ -539,6 +539,7 @@ Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
+Vanilla Vehicles Expanded	- Upgrades |
 Vanilla Vehicles Expanded - Tier 3  |
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |
