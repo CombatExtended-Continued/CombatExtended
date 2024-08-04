@@ -44,8 +44,7 @@ with XMLOpen("LoadFolders.xml") as x:
     v1_5 = x.getElementsByTagName("v1.5")
     for n in v1_5:
         for c in n.getElementsByTagName("li"):
-            if c.getAttribute("IfModActive"):
-                process(c)
+            process(c)
 
 
 raise SystemExit(ec)
