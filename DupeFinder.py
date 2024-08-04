@@ -22,7 +22,7 @@ def process(node):
         else:
             print(msg)
     mods.add((mod, dp))
-    root = FilePath(dp)
+    root = FilePath("./" + dp)
     if not ContentRoot in root.parents():
         return
     for fd in root.walk():
