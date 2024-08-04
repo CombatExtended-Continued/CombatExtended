@@ -7,12 +7,35 @@
 		<xpath>Defs/AbilityDef[defName="PiercingSpine"]/verbProperties/range</xpath>
 		<value>
 			<range>5.9</range>
+			<ai_IsWeapon>false</ai_IsWeapon>
+			<defaultProjectile>PiercingSpine</defaultProjectile>
 		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="PiercingSpine"]/verbProperties/verbClass</xpath>
+		<value>
+			<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="PiercingSpine"]/verbProperties/verbClass</xpath>
+		<value>
+			<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/AbilityDef[defName="PiercingSpine"]/verbProperties</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.VerbPropertiesCE</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile</xpath>
 		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>RangedStab</damageDef>
 				<speed>30</speed>
