@@ -10,27 +10,24 @@
 			defName="NS_TechnopathHood" or
 			defName="NS_NomadHood" or 
 			defName="NS_GuardHelmet"
-			]/apparel/bodyPartGroups</xpath>
-		<value>
-			<li>Teeth</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="NS_TechnopathHood" or
-			defName="NS_NomadHood" or 
-			defName="NS_GuardHelmet"
-			]/apparel/layers/li[.="Overhead"]</xpath>
+			]/apparel/layers</xpath>
 		<value>
 			<li>StrappedHead</li>
 		</value>
 	</Operation>	
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="NS_TechnopathHood" or defName="NS_NomadHood"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>1.25</ArmorRating_Sharp>
+			<ArmorRating_Blunt>1.88</ArmorRating_Blunt>			
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="NS_TechnopathHood" or defName="NS_NomadHood"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>			
-			<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>	
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>	
 		</value>
 	</Operation>	
 
@@ -110,7 +107,7 @@
 		<xpath>Defs/ThingDef[defName="NS_TechnopathRobe" or defName="NS_NomadRags"]/statBases</xpath>
 		<value>			
 			<Bulk>7.5</Bulk>
-			<WornBulk>3</WornBulk>					
+			<WornBulk>3.5</WornBulk>					
 		</value>
 	</Operation>
 
