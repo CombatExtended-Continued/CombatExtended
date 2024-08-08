@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Expanded Framework</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[
+						defName="pphhyy_Human_DemigyryphBanner" or
+						defName="pphhyy_Human_DemigyryphHunterBanner" or
+						defName="pphhyy_Human_DemigyryphRaiderBanner" or
+						defName="pphhyy_Human_DemigyryphGildedBanner" or
+						defName="pphhyy_Human_DemigyryphChampionBanner"]
+					</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<ThingDef ParentName="ShieldBase">
+							<defName>pphhyy_Human_DemigyryphBanner</defName>
+							<label>Demigyryph Banner</label>
+							<description>A Cavalry Banner made from Leather materials.</description>
+							<techLevel>Medieval</techLevel>
+							<graphicData>
+								<texPath>Weapons/DemigyryphBanner/DemigyryphBanner</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<costStuffCount>30</costStuffCount>
+							<stuffCategories Inherit="False">
+								<li>Fabric</li>
+								<li>Leathery</li>
+							</stuffCategories>
+							<costList>
+								<WoodLog>10</WoodLog>
+							</costList>
+							<statBases>
+								<WorkToMake>6000</WorkToMake>
+								<MaxHitPoints>200</MaxHitPoints>
+								<Mass>2</Mass>
+								<Bulk>10</Bulk>
+								<WornBulk>4</WornBulk>
+								<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+							</statBases>
+							<recipeMaker>
+								<researchPrerequisite>Smithing</researchPrerequisite>
+								<recipeUsers>
+									<li>ElectricSmithy</li>
+									<li>FueledSmithy</li>
+									<li MayRequire="DankPyon.Medieval.Overhaul">DankPyon_Anvil</li>
+								</recipeUsers>
+							</recipeMaker>
+							<equippedStatOffsets>
+								<Suppressability>-0.25</Suppressability>
+								<PainShockThreshold>0.1</PainShockThreshold>
+								<ReloadSpeed>-0.05</ReloadSpeed>
+								<MeleeHitChance>-0.5</MeleeHitChance>
+								<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+								<AimingAccuracy>-0.15</AimingAccuracy>
+								<MeleeCritChance>-0.1</MeleeCritChance>
+								<MeleeParryChance>0.5</MeleeParryChance>
+							</equippedStatOffsets>
+							<apparel>
+								<tags>
+									<li>TribalShield</li>
+								</tags>
+								<renderNodeProperties>
+									<li>
+										<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+										<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+										<texPath>Weapons/DemigyryphBanner/DemigyryphBanner</texPath>
+										<shaderTypeDef>CutoutComplex</shaderTypeDef>
+										<parentTagDef>ApparelBody</parentTagDef>
+										<drawData>
+											<scale>2.5</scale>
+											<defaultData>
+												<layer>80</layer>
+											</defaultData>
+											<dataEast>
+												<layer>-5</layer>
+												<offset>(0, 0, -0.1)</offset>
+												<rotationOffset>30</rotationOffset>
+											</dataEast>
+											<dataWest>
+												<rotationOffset>-30</rotationOffset>
+											</dataWest>
+											<dataNorth>
+												<layer>-5</layer>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataNorth>
+											<dataSouth>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataSouth>
+										</drawData>
+									</li>
+								</renderNodeProperties>
+							</apparel>
+							<modExtensions>
+								<li Class="CombatExtended.ShieldDefExtension">
+									<shieldCoverage>
+										<li>Hands</li>
+									</shieldCoverage>
+								</li>
+							</modExtensions>
+							<tradeTags>
+								<li>Armor</li>
+							</tradeTags>
+						</ThingDef>
+
+						<ThingDef ParentName="ShieldBase">
+							<defName>pphhyy_Human_DemigyryphHunterBanner</defName>
+							<label>Demigyryph Hunter Banner</label>
+							<description>A Cavalry Hunter Banner made from Leather materials and slain demigyphs.</description>
+							<techLevel>Medieval</techLevel>
+							<graphicData>
+								<texPath>Weapons/DemigyryphHunterBanner/DemigyryphHunterBanner</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<costStuffCount>30</costStuffCount>
+							<stuffCategories Inherit="False">
+								<li>Fabric</li>
+								<li>Leathery</li>
+							</stuffCategories>
+							<costList>
+								<WoodLog>10</WoodLog>
+								<pphhyy_AnimalProduct_DemigryphClaw>1</pphhyy_AnimalProduct_DemigryphClaw>
+							</costList>
+							<statBases>
+								<WorkToMake>6000</WorkToMake>
+								<MaxHitPoints>200</MaxHitPoints>
+								<Mass>2</Mass>
+								<Bulk>10</Bulk>
+								<WornBulk>4</WornBulk>
+								<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+							</statBases>
+							<recipeMaker>
+								<researchPrerequisite>PlateArmor</researchPrerequisite>
+								<recipeUsers>
+									<li>ElectricSmithy</li>
+									<li>FueledSmithy</li>
+									<li MayRequire="DankPyon.Medieval.Overhaul">DankPyon_Anvil</li>
+								</recipeUsers>
+							</recipeMaker>
+							<equippedStatOffsets>
+								<Suppressability>-0.25</Suppressability>
+								<PainShockThreshold>0.1</PainShockThreshold>
+								<ReloadSpeed>-0.05</ReloadSpeed>
+								<MeleeHitChance>-0.5</MeleeHitChance>
+								<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+								<AimingAccuracy>-0.15</AimingAccuracy>
+								<MeleeCritChance>-0.1</MeleeCritChance>
+								<MeleeParryChance>0.5</MeleeParryChance>
+							</equippedStatOffsets>
+							<apparel>
+								<tags>
+									<li>TribalShield</li>
+								</tags>
+								<renderNodeProperties>
+									<li>
+										<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+										<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+										<texPath>Weapons/DemigyryphHunterBanner/DemigyryphHunterBanner</texPath>
+										<shaderTypeDef>CutoutComplex</shaderTypeDef>
+										<parentTagDef>ApparelBody</parentTagDef>
+										<drawData>
+											<scale>2.5</scale>
+											<defaultData>
+												<layer>80</layer>
+											</defaultData>
+											<dataEast>
+												<layer>-5</layer>
+												<offset>(0, 0, -0.1)</offset>
+												<rotationOffset>30</rotationOffset>
+											</dataEast>
+											<dataWest>
+												<rotationOffset>-30</rotationOffset>
+											</dataWest>
+											<dataNorth>
+												<layer>-5</layer>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataNorth>
+											<dataSouth>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataSouth>
+										</drawData>
+									</li>
+								</renderNodeProperties>
+							</apparel>
+							<modExtensions>
+								<li Class="CombatExtended.ShieldDefExtension">
+									<shieldCoverage>
+										<li>Hands</li>
+									</shieldCoverage>
+								</li>
+							</modExtensions>
+							<tradeTags>
+								<li>Armor</li>
+							</tradeTags>
+						</ThingDef>
+
+						<ThingDef ParentName="ShieldBase">
+							<defName>pphhyy_Human_DemigyryphRaiderBanner</defName>
+							<label>Demigyryph Raider Banner</label>
+							<description>A Cavalry Raider Banner made from Leather materials and slain Foes.</description>
+							<techLevel>Medieval</techLevel>
+							<graphicData>
+								<texPath>Weapons/DemigyryphRaiderBanner/DemigyryphRaiderBanner</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<costStuffCount>30</costStuffCount>
+							<stuffCategories Inherit="False">
+								<li>Fabric</li>
+								<li>Leathery</li>
+							</stuffCategories>
+							<costList>
+								<WoodLog>10</WoodLog>
+								<Skull MayRequire="Ludeon.RimWorld.Ideology">1</Skull>
+							</costList>
+							<statBases>
+								<WorkToMake>6000</WorkToMake>
+								<MaxHitPoints>200</MaxHitPoints>
+								<Mass>2</Mass>
+								<Bulk>10</Bulk>
+								<WornBulk>4</WornBulk>
+								<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+							</statBases>
+							<recipeMaker>
+								<researchPrerequisite>PlateArmor</researchPrerequisite>
+								<recipeUsers>
+									<li>ElectricSmithy</li>
+									<li>FueledSmithy</li>
+									<li MayRequire="DankPyon.Medieval.Overhaul">DankPyon_Anvil</li>
+								</recipeUsers>
+							</recipeMaker>
+							<equippedStatOffsets>
+								<Suppressability>-0.25</Suppressability>
+								<PainShockThreshold>0.1</PainShockThreshold>
+								<ReloadSpeed>-0.05</ReloadSpeed>
+								<MeleeHitChance>-0.5</MeleeHitChance>
+								<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+								<AimingAccuracy>-0.15</AimingAccuracy>
+								<MeleeCritChance>-0.1</MeleeCritChance>
+								<MeleeParryChance>0.5</MeleeParryChance>
+							</equippedStatOffsets>
+							<apparel>
+								<tags>
+									<li>TribalShield</li>
+								</tags>
+								<renderNodeProperties>
+									<li>
+										<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+										<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+										<texPath>Weapons/DemigyryphRaiderBanner/DemigyryphRaiderBanner</texPath>
+										<shaderTypeDef>CutoutComplex</shaderTypeDef>
+										<parentTagDef>ApparelBody</parentTagDef>
+										<drawData>
+											<scale>2.5</scale>
+											<defaultData>
+												<layer>80</layer>
+											</defaultData>
+											<dataEast>
+												<layer>-5</layer>
+												<offset>(0, 0, -0.1)</offset>
+												<rotationOffset>30</rotationOffset>
+											</dataEast>
+											<dataWest>
+												<rotationOffset>-30</rotationOffset>
+											</dataWest>
+											<dataNorth>
+												<layer>-5</layer>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataNorth>
+											<dataSouth>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataSouth>
+										</drawData>
+									</li>
+								</renderNodeProperties>
+							</apparel>
+							<modExtensions>
+								<li Class="CombatExtended.ShieldDefExtension">
+									<shieldCoverage>
+										<li>Hands</li>
+									</shieldCoverage>
+								</li>
+							</modExtensions>
+							<tradeTags>
+								<li>Armor</li>
+							</tradeTags>
+						</ThingDef>
+
+						<ThingDef ParentName="ShieldBase">
+							<defName>pphhyy_Human_DemigyryphGildedBanner</defName>
+							<label>Demigyryph Gilded Banner</label>
+							<description>A Cavalry Gilded Banner made from Leather materials and God, wielded by wealthy knights.</description>
+							<techLevel>Medieval</techLevel>
+							<graphicData>
+								<texPath>Weapons/DemigyryphGildedBanner/DemigyryphGildedBanner</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<costStuffCount>30</costStuffCount>
+							<stuffCategories Inherit="False">
+								<li>Fabric</li>
+								<li>Leathery</li>
+							</stuffCategories>
+							<costList>
+								<WoodLog>10</WoodLog>
+								<Gold>10</Gold>
+							</costList>
+							<statBases>
+								<WorkToMake>6000</WorkToMake>
+								<MaxHitPoints>200</MaxHitPoints>
+								<Mass>2</Mass>
+								<Bulk>10</Bulk>
+								<WornBulk>4</WornBulk>
+								<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+							</statBases>
+							<recipeMaker>
+								<researchPrerequisite>PlateArmor</researchPrerequisite>
+								<recipeUsers>
+									<li>ElectricSmithy</li>
+									<li>FueledSmithy</li>
+									<li MayRequire="DankPyon.Medieval.Overhaul">DankPyon_Anvil</li>
+								</recipeUsers>
+							</recipeMaker>
+							<equippedStatOffsets>
+								<Suppressability>-0.25</Suppressability>
+								<PainShockThreshold>0.1</PainShockThreshold>
+								<ReloadSpeed>-0.05</ReloadSpeed>
+								<MeleeHitChance>-0.5</MeleeHitChance>
+								<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+								<AimingAccuracy>-0.15</AimingAccuracy>
+								<MeleeCritChance>-0.1</MeleeCritChance>
+								<MeleeParryChance>0.5</MeleeParryChance>
+							</equippedStatOffsets>
+							<apparel>
+								<tags>
+									<li>TribalShield</li>
+								</tags>
+								<renderNodeProperties>
+									<li>
+										<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+										<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+										<texPath>Weapons/DemigyryphGildedBanner/DemigyryphGildedBanner</texPath>
+										<shaderTypeDef>CutoutComplex</shaderTypeDef>
+										<parentTagDef>ApparelBody</parentTagDef>
+										<drawData>
+											<scale>2.5</scale>
+											<defaultData>
+												<layer>80</layer>
+											</defaultData>
+											<dataEast>
+												<layer>-5</layer>
+												<offset>(0, 0, -0.1)</offset>
+												<rotationOffset>30</rotationOffset>
+											</dataEast>
+											<dataWest>
+												<rotationOffset>-30</rotationOffset>
+											</dataWest>
+											<dataNorth>
+												<layer>-5</layer>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataNorth>
+											<dataSouth>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataSouth>
+										</drawData>
+									</li>
+								</renderNodeProperties>
+							</apparel>
+							<modExtensions>
+								<li Class="CombatExtended.ShieldDefExtension">
+									<shieldCoverage>
+										<li>Hands</li>
+									</shieldCoverage>
+								</li>
+							</modExtensions>
+							<tradeTags>
+								<li>Armor</li>
+							</tradeTags>
+						</ThingDef>
+
+						<ThingDef ParentName="ShieldBase">
+							<defName>pphhyy_Human_DemigyryphChampionBanner</defName>
+							<label>Demigyryph Champion Banner</label>
+							<description>A Cavalry Champion Banner made from Leather materials and, wielded by veteran knights.</description>
+							<techLevel>Medieval</techLevel>
+							<graphicData>
+								<texPath>Weapons/DemigyryphChampionBanner/DemigyryphChampionBanner</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<costStuffCount>30</costStuffCount>
+							<stuffCategories Inherit="False">
+								<li>Fabric</li>
+								<li>Leathery</li>
+							</stuffCategories>
+							<costList>
+								<WoodLog>10</WoodLog>
+							</costList>
+							<statBases>
+								<WorkToMake>6000</WorkToMake>
+								<MaxHitPoints>200</MaxHitPoints>
+								<Mass>2</Mass>
+								<Bulk>10</Bulk>
+								<WornBulk>4</WornBulk>
+								<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+							</statBases>
+							<recipeMaker>
+								<researchPrerequisite>PlateArmor</researchPrerequisite>
+								<recipeUsers>
+									<li>ElectricSmithy</li>
+									<li>FueledSmithy</li>
+									<li MayRequire="DankPyon.Medieval.Overhaul">DankPyon_Anvil</li>
+								</recipeUsers>
+							</recipeMaker>
+							<equippedStatOffsets>
+								<Suppressability>-0.25</Suppressability>
+								<PainShockThreshold>0.1</PainShockThreshold>
+								<ReloadSpeed>-0.05</ReloadSpeed>
+								<MeleeHitChance>-0.5</MeleeHitChance>
+								<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+								<AimingAccuracy>-0.15</AimingAccuracy>
+								<MeleeCritChance>-0.1</MeleeCritChance>
+								<MeleeParryChance>0.5</MeleeParryChance>
+							</equippedStatOffsets>
+							<apparel>
+								<tags>
+									<li>TribalShield</li>
+								</tags>
+								<renderNodeProperties>
+									<li>
+										<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+										<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+										<texPath>Weapons/DemigyryphChampionBanner/DemigyryphChampionBanner</texPath>
+										<shaderTypeDef>CutoutComplex</shaderTypeDef>
+										<parentTagDef>ApparelBody</parentTagDef>
+										<drawData>
+											<scale>2.5</scale>
+											<defaultData>
+												<layer>80</layer>
+											</defaultData>
+											<dataEast>
+												<layer>-5</layer>
+												<offset>(0, 0, -0.1)</offset>
+												<rotationOffset>30</rotationOffset>
+											</dataEast>
+											<dataWest>
+												<rotationOffset>-30</rotationOffset>
+											</dataWest>
+											<dataNorth>
+												<layer>-5</layer>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataNorth>
+											<dataSouth>
+												<offset>(0.15, 0, -0.1)</offset>
+											</dataSouth>
+										</drawData>
+									</li>
+								</renderNodeProperties>
+							</apparel>
+							<modExtensions>
+								<li Class="CombatExtended.ShieldDefExtension">
+									<shieldCoverage>
+										<li>Hands</li>
+									</shieldCoverage>
+								</li>
+							</modExtensions>
+							<tradeTags>
+								<li>Armor</li>
+							</tradeTags>
+						</ThingDef>
+
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
