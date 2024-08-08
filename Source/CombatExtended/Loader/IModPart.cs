@@ -10,6 +10,5 @@ namespace CombatExtended.Loader
     {
         public void PostLoad(ModContentPack content, ISettingsCE settings);
         public Type GetSettingsType();
-        public IEnumerable<string> GetCompatList();
     }
 }

@@ -35,11 +35,6 @@ namespace CombatExtended.Compatibility
             BlockerRegistry.RegisterShieldZonesCallback(Rimatomics.ShieldZonesCallback);
         }
 
-        public IEnumerable<string> GetCompatList()
-        {
-            yield break;
-        }
-
         public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             Map map = projectile.Map;

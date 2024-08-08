@@ -20,10 +20,6 @@ namespace CombatExtended.Compatibility
             return ModLister.HasActiveModWithName(ModName);
         }
 
-        public IEnumerable<string> GetCompatList()
-        {
-            yield break;
-        }
         public void Install()
         {
 

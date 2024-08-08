@@ -22,11 +22,6 @@ namespace CombatExtended.Compatibility
             }
             return true;
         }
-        public IEnumerable<string> GetCompatList()
-        {
-            yield return "SRTSCompat";
-        }
-
         public void Install()
         {
             Log.Message("Combat Extended :: Installing SRTS Expanded");

@@ -21,13 +21,5 @@ namespace CombatExtended.Compatibility
         {
             Log.Message("Combat Extended :: Installing Misc Turrets");
         }
-
-        public IEnumerable<string> GetCompatList()
-        {
-            yield return "MiscTurretsCompat";
-        }
-
-
-
     }
 }

@@ -23,11 +23,6 @@ namespace CombatExtended.Compatibility
             }
             return true;
         }
-        public IEnumerable<string> GetCompatList()
-        {
-            yield return "VehiclesCompat";
-        }
-
 
         public void Install()
         {
