@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_BarbBannerI" or
+			defName="pphhyy_Barbarian_BarbBannerII" or
+			defName="pphhyy_Barbarian_BarbBannerIII" or
+			defName="pphhyy_Barbarian_BarbBannerIV"]
+		</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+			<ThingDef ParentName="ShieldBase">
+				<defName>pphhyy_Barbarian_BarbBannerI</defName>
+				<label>Barbarian Banner I</label>
+				<description>The barbarian banner is a fierce and intimidating symbol, crafted from a sturdy wooden shield and adorned with the skulls and horns of defeated foes. The banner is mounted on a tall standard, and is sure to strike fear into the hearts of any who behold it. The skull and bones design on the banner represents the ferocity and power of the barbarian tribe, and serves as a warning to all who would dare to challenge them.</description>
+				<techLevel>Medieval</techLevel>
+				<graphicData>
+					<texPath>Shields/BarbBannerI</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<statBases>
+					<MaxHitPoints>200</MaxHitPoints>
+					<Mass>2</Mass>
+					<Bulk>10</Bulk>
+					<WornBulk>4</WornBulk>
+					<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+				</statBases>
+				<equippedStatOffsets>
+					<Suppressability>-0.25</Suppressability>
+					<PainShockThreshold>0.1</PainShockThreshold>
+					<ReloadSpeed>-0.05</ReloadSpeed>
+					<MeleeHitChance>-0.5</MeleeHitChance>
+					<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+					<AimingAccuracy>-0.15</AimingAccuracy>
+					<MeleeCritChance>-0.1</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+				</equippedStatOffsets>
+				<apparel>
+					<tags>
+						<li>TribalShield</li>
+					</tags>
+					<renderNodeProperties>
+						<li>
+							<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+							<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+							<texPath>Shields/BarbBannerI</texPath>
+							<shaderTypeDef>CutoutComplex</shaderTypeDef>
+							<parentTagDef>ApparelBody</parentTagDef>
+							<drawData>
+								<scale>2.5</scale>
+								<defaultData>
+									<layer>80</layer>
+								</defaultData>
+								<dataEast>
+									<layer>-5</layer>
+									<offset>(0, 0, -0.1)</offset>
+									<rotationOffset>30</rotationOffset>
+								</dataEast>
+								<dataWest>
+									<rotationOffset>-30</rotationOffset>
+								</dataWest>
+								<dataNorth>
+									<layer>-5</layer>
+									<offset>(0.15, 0, -0.1)</offset>
+								</dataNorth>
+								<dataSouth>
+									<offset>(0.15, 0, -0.1)</offset>
+								</dataSouth>
+							</drawData>
+						</li>
+					</renderNodeProperties>
+				</apparel>
+				<modExtensions>
+					<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+						</shieldCoverage>
+					</li>
+				</modExtensions>
+				<tradeTags>
+					<li>Armor</li>
+				</tradeTags>
+			</ThingDef>
+
+			<ThingDef ParentName="ShieldBase">
+				<defName>pphhyy_Barbarian_BarbBannerII</defName>
+				<label>Barbarian Banner II</label>
+				<description>The barbarian banner is a fierce and intimidating symbol, crafted from a sturdy wooden shield and adorned with the skulls and horns of defeated foes. The banner is mounted on a tall standard, and is sure to strike fear into the hearts of any who behold it. The skull and bones design on the banner represents the ferocity and power of the barbarian tribe, and serves as a warning to all who would dare to challenge them.</description>
+				<techLevel>Medieval</techLevel>
+				<graphicData>
+					<texPath>Shields/BarbBannerII</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<statBases>
+					<MaxHitPoints>200</MaxHitPoints>
+					<Mass>2</Mass>
+					<Bulk>10</Bulk>
+					<WornBulk>4</WornBulk>
+					<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+				</statBases>
+				<equippedStatOffsets>
+					<Suppressability>-0.25</Suppressability>
+					<PainShockThreshold>0.1</PainShockThreshold>
+					<ReloadSpeed>-0.05</ReloadSpeed>
+					<MeleeHitChance>-0.5</MeleeHitChance>
+					<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+					<AimingAccuracy>-0.15</AimingAccuracy>
+					<MeleeCritChance>-0.1</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+				</equippedStatOffsets>
+				<apparel>
+					<tags>
+						<li>TribalShield</li>
+					</tags>
+					<renderNodeProperties>
+						<li>
+							<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+							<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+							<texPath>Shields/BarbBannerII</texPath>
+							<shaderTypeDef>CutoutComplex</shaderTypeDef>
+							<parentTagDef>ApparelBody</parentTagDef>
+							<drawData>
+								<scale>2.5</scale>
+								<defaultData>
+									<layer>80</layer>
+								</defaultData>
+								<dataEast>
+									<layer>-5</layer>
+									<offset>(0, 0, -0.1)</offset>
+									<rotationOffset>30</rotationOffset>
+								</dataEast>
+								<dataWest>
+									<rotationOffset>-30</rotationOffset>
+								</dataWest>
+								<dataNorth>
+									<layer>-5</layer>
+									<offset>(0.15, 0, -0.1)</offset>
+								</dataNorth>
+								<dataSouth>
+									<offset>(0.15, 0, -0.1)</offset>
+								</dataSouth>
+							</drawData>
+						</li>
+					</renderNodeProperties>
+				</apparel>
+				<modExtensions>
+					<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+						</shieldCoverage>
+					</li>
+				</modExtensions>
+				<tradeTags>
+					<li>Armor</li>
+				</tradeTags>
+			</ThingDef>
+
+			<ThingDef ParentName="ShieldBase">
+				<defName>pphhyy_Barbarian_BarbBannerIII</defName>
+				<label>Barbarian Banner III</label>
+				<description>The barbarian banner is a fierce and intimidating symbol, crafted from a sturdy wooden shield and adorned with the skulls and horns of defeated foes. The banner is mounted on a tall standard, and is sure to strike fear into the hearts of any who behold it. The skull and bones design on the banner represents the ferocity and power of the barbarian tribe, and serves as a warning to all who would dare to challenge them.</description>
+				<techLevel>Medieval</techLevel>
+				<graphicData>
+					<texPath>Shields/BarbBannerIII</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<statBases>
+					<MaxHitPoints>200</MaxHitPoints>
+					<Mass>2</Mass>
+					<Bulk>10</Bulk>
+					<WornBulk>4</WornBulk>
+					<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+				</statBases>
+				<equippedStatOffsets>
+					<Suppressability>-0.25</Suppressability>
+					<PainShockThreshold>0.1</PainShockThreshold>
+					<ReloadSpeed>-0.05</ReloadSpeed>
+					<MeleeHitChance>-0.5</MeleeHitChance>
+					<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+					<AimingAccuracy>-0.15</AimingAccuracy>
+					<MeleeCritChance>-0.1</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+				</equippedStatOffsets>
+				<apparel>
+					<tags>
+						<li>TribalShield</li>
+					</tags>
+					<renderNodeProperties>
+						<li>
+							<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+							<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+							<texPath>Shields/BarbBannerIII</texPath>
+							<shaderTypeDef>CutoutComplex</shaderTypeDef>
+							<parentTagDef>ApparelBody</parentTagDef>
+							<drawData>
+								<scale>2.5</scale>
+								<defaultData>
+									<layer>80</layer>
+								</defaultData>
+								<dataEast>
+									<layer>-5</layer>
+									<offset>(0, 0, -0.1)</offset>
+									<rotationOffset>30</rotationOffset>
+								</dataEast>
+								<dataWest>
+									<rotationOffset>-30</rotationOffset>
+								</dataWest>
+								<dataNorth>
+									<layer>-5</layer>
+									<offset>(0.15, 0, -0.1)</offset>
+								</dataNorth>
+								<dataSouth>
+									<offset>(0.15, 0, -0.1)</offset>
+								</dataSouth>
+							</drawData>
+						</li>
+					</renderNodeProperties>
+				</apparel>
+				<modExtensions>
+					<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+						</shieldCoverage>
+					</li>
+				</modExtensions>
+				<tradeTags>
+					<li>Armor</li>
+				</tradeTags>
+			</ThingDef>
+
+			<ThingDef ParentName="ShieldBase">
+				<defName>pphhyy_Barbarian_BarbBannerIV</defName>
+				<label>Barbarian Banner IV</label>
+				<description>The barbarian banner is a fierce and intimidating symbol, crafted from a sturdy wooden shield and adorned with the skulls and horns of defeated foes. The banner is mounted on a tall standard, and is sure to strike fear into the hearts of any who behold it. The skull and bones design on the banner represents the ferocity and power of the barbarian tribe, and serves as a warning to all who would dare to challenge them.</description>
+				<techLevel>Medieval</techLevel>
+				<graphicData>
+					<texPath>Shields/BarbBannerIV</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<statBases>
+					<MaxHitPoints>200</MaxHitPoints>
+					<Mass>2</Mass>
+					<Bulk>10</Bulk>
+					<WornBulk>4</WornBulk>
+					<StuffEffectMultiplierArmor>1.0</StuffEffectMultiplierArmor>
+				</statBases>
+				<equippedStatOffsets>
+					<Suppressability>-0.25</Suppressability>
+					<PainShockThreshold>0.1</PainShockThreshold>
+					<ReloadSpeed>-0.05</ReloadSpeed>
+					<MeleeHitChance>-0.5</MeleeHitChance>
+					<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+					<AimingAccuracy>-0.15</AimingAccuracy>
+					<MeleeCritChance>-0.1</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+				</equippedStatOffsets>
+				<apparel>
+					<tags>
+						<li>TribalShield</li>
+					</tags>
+					<renderNodeProperties>
+						<li>
+							<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+							<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+							<texPath>Shields/BarbBannerIV</texPath>
+							<shaderTypeDef>CutoutComplex</shaderTypeDef>
+							<parentTagDef>ApparelBody</parentTagDef>
+							<drawData>
+								<scale>2.5</scale>
+								<defaultData>
+									<layer>80</layer>
+								</defaultData>
+								<dataEast>
+									<layer>-5</layer>
+									<offset>(0, 0, -0.1)</offset>
+									<rotationOffset>30</rotationOffset>
+								</dataEast>
+								<dataWest>
+									<rotationOffset>-30</rotationOffset>
+								</dataWest>
+								<dataNorth>
+									<layer>-5</layer>
+									<offset>(0.15, 0, -0.1)</offset>
+								</dataNorth>
+								<dataSouth>
+									<offset>(0.15, 0, -0.1)</offset>
+								</dataSouth>
+							</drawData>
+						</li>
+					</renderNodeProperties>
+				</apparel>
+				<modExtensions>
+					<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+						</shieldCoverage>
+					</li>
+				</modExtensions>
+				<tradeTags>
+					<li>Armor</li>
+				</tradeTags>
+			</ThingDef>
+
+		</value>
+	</Operation>
+
+</Patch>
