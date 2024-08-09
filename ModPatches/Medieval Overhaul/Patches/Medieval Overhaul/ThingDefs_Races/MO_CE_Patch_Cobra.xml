@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Large Cobra === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LargeCobraBase"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.19</MeleeDodgeChance>
+			<MeleeCritChance>0.18</MeleeCritChance>
+			<MeleeParryChance>0.17</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LargeCobraBase"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>venom-fangs</label>
+					<capacities>
+						<li>ToxicBite</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetrationSharp>0.25</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.20</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>14</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>2</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LargeCobraBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Serpentine</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

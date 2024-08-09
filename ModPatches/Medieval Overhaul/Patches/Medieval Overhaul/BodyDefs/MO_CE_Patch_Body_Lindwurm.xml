@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ==================== DankPyon_LindwurmBody ==================== -->
+
+	<!-- ========== Add groups entry if it doesn't exist already ========== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmTail"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmTail"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmNeck"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmNeck"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmNeck"]/parts/li[def="SnakeHead"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmNeck"]/parts/li[def="SnakeHead"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmNeck"]/parts/li[def="SnakeHead"]/parts/li[def="SnakeMouth"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmNeck"]/parts/li[def="SnakeMouth"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Hand"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Hand"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Hand"]/parts/li[def="FrontClaw"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Hand"]/parts/li[def="FrontClaw"]</xpath>
+			<value>
+				<groups/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ========== Add armor coverage ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmTail"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmNeck"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmNeck"]/parts/li[def="SnakeHead"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="DankPyon_LindwurmNeck"]/parts/li[def="SnakeHead"]/parts/li[def="SnakeMouth"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Hand"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_LindwurmBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Hand"]/parts/li[def="FrontClaw"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>

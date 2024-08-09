@@ -323,5 +323,84 @@
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
 	</Operation>
+	
+	<!-- ========== Acidflask Bomb ========== -->
+
+	<!-- Projectile -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_Proj_AcidFlask"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>DankPyon_LindwurmAcidBurn</damageDef>
+				<explosionDelay>100</explosionDelay>
+				<speed>10</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Grenade -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DankPyon_Weapon_AcidFlask"]/costList</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Weapon_AcidFlask"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="DankPyon_Weapon_AcidFlask"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Weapon_AcidFlask"]/comps</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.5</explosiveRadius>
+				<explosiveDamageType>Stun</explosiveDamageType>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>60~100</wickTicks>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DankPyon_Weapon_AcidFlask</defName>
+		<statBases>
+			<Mass>0.6</Mass>
+			<Bulk>1.8</Bulk>
+			<MarketValue>3</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw flash pot</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10</range>
+			<minRange>3</minRange>
+			<warmupTime>1.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>DankPyon_Proj_AcidFlask</defaultProjectile>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
 
 </Patch>
