@@ -47,17 +47,15 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_ShieldBase"]/equippedStatOffsets</xpath>
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_ShieldBase"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 					<value>
-						<equippedStatOffsets>
-							<ReloadSpeed>-0.2</ReloadSpeed>
-							<MeleeHitChance>-1</MeleeHitChance>
-							<ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
-							<AimingAccuracy>-0.08</AimingAccuracy>
-							<Suppressability>-0.25</Suppressability>
-							<MeleeCritChance>-0.05</MeleeCritChance>
-							<MeleeParryChance>1.0</MeleeParryChance>
-						</equippedStatOffsets>
+						<ReloadSpeed>-0.2</ReloadSpeed>
+						<MeleeHitChance>-1</MeleeHitChance>
+						<ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
+						<AimingAccuracy>-0.08</AimingAccuracy>
+						<Suppressability>-0.25</Suppressability>
+						<MeleeCritChance>-0.05</MeleeCritChance>
+						<MeleeParryChance>1.0</MeleeParryChance>
 					</value>
 				</li>
 
@@ -74,6 +72,7 @@
 				</li>
 
 				<!-- All Shields -->
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
 					defName="pphhyy_Human_DemigyryphShield" or
@@ -106,8 +105,9 @@
 				</li>
 
 				<!-- Demigyryph Shield -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphShield"]/statBases/StuffEffectMultiplierArmor</xpath>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphShield"]/statBases</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>7</StuffEffectMultiplierArmor>	
 						<Bulk>12</Bulk>
@@ -145,10 +145,10 @@
 										</dataWest>
 										<dataNorth>
 											<layer>-5</layer>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataNorth>
 										<dataSouth>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataSouth>
 									</drawData>
 								</li>
@@ -158,19 +158,14 @@
 				</li>
 
 				<!-- Raider Shield -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphRaiderShield"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
-						<Bulk>12</Bulk>
-						<WornBulk>8</WornBulk>
-					</value>
-				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphRaiderShield"]/statBases/Mass</xpath>
 					<value>
 						<Mass>3</Mass>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
+						<Bulk>12</Bulk>
+						<WornBulk>8</WornBulk>						
 					</value>
 				</li>
 
@@ -204,10 +199,10 @@
 										</dataWest>
 										<dataNorth>
 											<layer>-5</layer>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataNorth>
 										<dataSouth>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataSouth>
 									</drawData>
 								</li>
@@ -217,12 +212,6 @@
 				</li>
 
 				<!-- Gilded Shield -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphGildedShield"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
-					</value>
-				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphGildedShield"]/statBases/Mass</xpath>
@@ -230,6 +219,7 @@
 						<Mass>3</Mass>
 						<Bulk>12</Bulk>
 						<WornBulk>8</WornBulk>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
 					</value>
 				</li>
 
@@ -263,10 +253,10 @@
 										</dataWest>
 										<dataNorth>
 											<layer>-5</layer>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataNorth>
 										<dataSouth>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataSouth>
 									</drawData>
 								</li>
@@ -276,12 +266,6 @@
 				</li>
 
 				<!-- Hunter Shield -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHunterShield"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
-					</value>
-				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHunterShield"]/statBases/Mass</xpath>
@@ -289,6 +273,7 @@
 						<Mass>3.5</Mass>
 						<Bulk>12</Bulk>
 						<WornBulk>8</WornBulk>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
 					</value>
 				</li>
 
@@ -322,10 +307,10 @@
 										</dataWest>
 										<dataNorth>
 											<layer>-5</layer>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataNorth>
 										<dataSouth>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataSouth>
 									</drawData>
 								</li>
@@ -335,12 +320,6 @@
 				</li>
 
 				<!-- Champion Shield -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphChampionShield"]/statBases/StuffEffectMultiplierArmor</xpath>
-					<value>
-						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
-					</value>
-				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphChampionShield"]/statBases/Mass</xpath>
@@ -348,6 +327,7 @@
 						<Mass>3.5</Mass>
 						<Bulk>12</Bulk>
 						<WornBulk>8</WornBulk>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
 					</value>
 				</li>
 
@@ -381,10 +361,10 @@
 										</dataWest>
 										<dataNorth>
 											<layer>-5</layer>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataNorth>
 										<dataSouth>
-											<offset>(0.15, 0, -0.1)</offset>
+											<offset>(0.15, 0, -0.15)</offset>
 										</dataSouth>
 									</drawData>
 								</li>

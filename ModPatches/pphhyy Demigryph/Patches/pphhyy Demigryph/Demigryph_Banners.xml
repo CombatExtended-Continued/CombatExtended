@@ -10,28 +10,21 @@
 			<operations>
 
 				<!-- Flag Base -->
-
 				<li Class="PatchOperationAttributeSet">
 					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_BannerBase"]</xpath>
 					<attribute>ParentName</attribute>
 					<value>ArmorSmithableBase</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_BannerBase"]/thingClass</xpath>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_BannerBase"]</xpath>
 					<value>
-						<thingClass>CombatExtended.Apparel_Shield</thingClass>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_BannerBase"]/apparel</xpath>
-					<value>
+						<thingClass>CombatExtended.Apparel_Shield</thingClass>					
 						<apparel>
 							<countsAsClothingForNudity>false</countsAsClothingForNudity>
 							<careIfWornByCorpse>false</careIfWornByCorpse>
 							<bodyPartGroups>
-								<li>LeftHand</li>
+								<li>LeftShoulder</li>
 							</bodyPartGroups>
 							<layers>
 								<li>Shield</li>
@@ -43,8 +36,8 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_BannerBase"]/equippedStatOffsets</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_BannerBase"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 					<value>
 						<ReloadSpeed>-0.15</ReloadSpeed>
 						<MeleeHitChance>-0.85</MeleeHitChance>
@@ -59,7 +52,7 @@
 				</li>
 
 				<!-- All Banners -->
-<!--
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[
 					defName="pphhyy_Human_DemigyryphBanner" or
@@ -86,11 +79,11 @@
 						</li>
 					</value>
 				</li>
--->
+
 				<!-- Demigyryph Banner -->
-<!--
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphBanner"]/statBases/StuffEffectMultiplierArmor</xpath>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphBanner"]/statBases</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>	
 						<Bulk>10</Bulk>
@@ -101,48 +94,49 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphBanner"]</xpath>
 					<value>
-							<apparel>
-								<tags>
-									<li>TribalShield</li>
-								</tags>
-								<renderNodeProperties>
-									<li>
-										<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
-										<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-										<texPath>Weapons/DemigyryphBanner/DemigyryphBanner</texPath>
-										<shaderTypeDef>CutoutComplex</shaderTypeDef>
-										<parentTagDef>ApparelBody</parentTagDef>
-										<drawData>
-											<scale>2.5</scale>
-											<defaultData>
-												<layer>80</layer>
-											</defaultData>
-											<dataEast>
-												<layer>-5</layer>
-												<offset>(0, 0, -0.1)</offset>
-												<rotationOffset>30</rotationOffset>
-											</dataEast>
-											<dataWest>
-												<rotationOffset>-30</rotationOffset>
-											</dataWest>
-											<dataNorth>
-												<layer>-5</layer>
-												<offset>(0.15, 0, -0.1)</offset>
-											</dataNorth>
-											<dataSouth>
-												<offset>(0.15, 0, -0.1)</offset>
-											</dataSouth>
-										</drawData>
-									</li>
-								</renderNodeProperties>
-							</apparel>
+						<apparel>
+							<tags>
+								<li>TribalShield</li>
+							</tags>
+							<renderNodeProperties>
+								<li>
+									<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+									<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+									<texPath>Weapons/DemigyryphBanner/DemigyryphBanner</texPath>
+									<shaderTypeDef>CutoutComplex</shaderTypeDef>
+									<parentTagDef>ApparelBody</parentTagDef>
+									<drawData>
+										<scale>1.3</scale>
+										<defaultData>
+											<layer>80</layer>
+										</defaultData>
+										<dataEast>
+											<layer>-5</layer>
+											<offset>(0.35, 0, 0.2)</offset>
+											<rotationOffset>30</rotationOffset>
+										</dataEast>
+										<dataWest>
+											<rotationOffset>-30</rotationOffset>
+											<offset>(-0.35, 0, 0.2)</offset>
+										</dataWest>
+										<dataNorth>
+											<layer>-5</layer>
+											<offset>(0.15, 0, 0.2)</offset>
+										</dataNorth>
+										<dataSouth>
+											<offset>(0.2, 0, 0.2)</offset>
+										</dataSouth>
+									</drawData>
+								</li>
+							</renderNodeProperties>
+						</apparel>
 					</value>
 				</li>
--->
+
 				<!-- Hunter Banner -->
-<!--
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHunterBanner"]/statBases/StuffEffectMultiplierArmor</xpath>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHunterBanner"]/statBases</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>	
 						<Bulk>10</Bulk>
@@ -161,28 +155,29 @@
 									<li>
 										<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
 										<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-										<texPath>Weapons/DemigyryphBanner/DemigyryphBanner</texPath>
+										<texPath>Weapons/DemigyryphHunterBanner/DemigyryphHunterBanner</texPath>
 										<shaderTypeDef>CutoutComplex</shaderTypeDef>
 										<parentTagDef>ApparelBody</parentTagDef>
 										<drawData>
-											<scale>2.5</scale>
+											<scale>1.3</scale>
 											<defaultData>
 												<layer>80</layer>
 											</defaultData>
 											<dataEast>
 												<layer>-5</layer>
-												<offset>(0, 0, -0.1)</offset>
+												<offset>(0.35, 0, 0.2)</offset>
 												<rotationOffset>30</rotationOffset>
 											</dataEast>
 											<dataWest>
 												<rotationOffset>-30</rotationOffset>
+												<offset>(-0.35, 0, 0.2)</offset>
 											</dataWest>
 											<dataNorth>
 												<layer>-5</layer>
-												<offset>(0.15, 0, -0.1)</offset>
+												<offset>(0.15, 0, 0.2)</offset>
 											</dataNorth>
 											<dataSouth>
-												<offset>(0.15, 0, -0.1)</offset>
+												<offset>(0.2, 0, 0.2)</offset>
 											</dataSouth>
 										</drawData>
 									</li>
@@ -190,11 +185,11 @@
 							</apparel>
 					</value>
 				</li>
--->
+
 				<!-- Raider Banner -->
-<!--
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphRaiderBanner"]/statBases/StuffEffectMultiplierArmor</xpath>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphRaiderBanner"]/statBases</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>	
 						<Bulk>10</Bulk>
@@ -217,24 +212,25 @@
 										<shaderTypeDef>CutoutComplex</shaderTypeDef>
 										<parentTagDef>ApparelBody</parentTagDef>
 										<drawData>
-											<scale>2.5</scale>
+											<scale>1.3</scale>
 											<defaultData>
 												<layer>80</layer>
 											</defaultData>
 											<dataEast>
 												<layer>-5</layer>
-												<offset>(0, 0, -0.1)</offset>
+												<offset>(0.35, 0, 0.2)</offset>
 												<rotationOffset>30</rotationOffset>
 											</dataEast>
 											<dataWest>
 												<rotationOffset>-30</rotationOffset>
+												<offset>(-0.35, 0, 0.2)</offset>
 											</dataWest>
 											<dataNorth>
 												<layer>-5</layer>
-												<offset>(0.15, 0, -0.1)</offset>
+												<offset>(0.15, 0, 0.2)</offset>
 											</dataNorth>
 											<dataSouth>
-												<offset>(0.15, 0, -0.1)</offset>
+												<offset>(0.2, 0, 0.2)</offset>
 											</dataSouth>
 										</drawData>
 									</li>
@@ -242,11 +238,11 @@
 							</apparel>
 					</value>
 				</li>
--->
+
 				<!-- Gilded Banner -->
-<!--
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphGildedBanner"]/statBases/StuffEffectMultiplierArmor</xpath>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphGildedBanner"]/statBases</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>	
 						<Bulk>10</Bulk>
@@ -265,28 +261,29 @@
 									<li>
 										<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
 										<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-										<texPath>Weapons/DemigyryphRaiderBanner/DemigyryphRaiderBanner</texPath>
+										<texPath>Weapons/DemigyryphGildedBanner/DemigyryphGildedBanner</texPath>
 										<shaderTypeDef>CutoutComplex</shaderTypeDef>
 										<parentTagDef>ApparelBody</parentTagDef>
 										<drawData>
-											<scale>2.5</scale>
+											<scale>1.3</scale>
 											<defaultData>
 												<layer>80</layer>
 											</defaultData>
 											<dataEast>
 												<layer>-5</layer>
-												<offset>(0, 0, -0.1)</offset>
+												<offset>(0.35, 0, 0.2)</offset>
 												<rotationOffset>30</rotationOffset>
 											</dataEast>
 											<dataWest>
 												<rotationOffset>-30</rotationOffset>
+												<offset>(-0.35, 0, 0.2)</offset>
 											</dataWest>
 											<dataNorth>
 												<layer>-5</layer>
-												<offset>(0.15, 0, -0.1)</offset>
+												<offset>(0.15, 0, 0.2)</offset>
 											</dataNorth>
 											<dataSouth>
-												<offset>(0.15, 0, -0.1)</offset>
+												<offset>(0.2, 0, 0.2)</offset>
 											</dataSouth>
 										</drawData>
 									</li>
@@ -294,11 +291,11 @@
 							</apparel>
 					</value>
 				</li>
--->
+
 				<!-- Champion Banner -->
-<!--
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphChampionBanner"]/statBases/StuffEffectMultiplierArmor</xpath>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphChampionBanner"]/statBases</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>	
 						<Bulk>10</Bulk>
@@ -317,28 +314,29 @@
 									<li>
 										<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
 										<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-										<texPath>Weapons/DemigyryphRaiderBanner/DemigyryphRaiderBanner</texPath>
+										<texPath>Weapons/DemigyryphChampionBanner/DemigyryphChampionBanner</texPath>
 										<shaderTypeDef>CutoutComplex</shaderTypeDef>
 										<parentTagDef>ApparelBody</parentTagDef>
 										<drawData>
-											<scale>2.5</scale>
+											<scale>1.3</scale>
 											<defaultData>
 												<layer>80</layer>
 											</defaultData>
 											<dataEast>
 												<layer>-5</layer>
-												<offset>(0, 0, -0.1)</offset>
+												<offset>(0.35, 0, 0.2)</offset>
 												<rotationOffset>30</rotationOffset>
 											</dataEast>
 											<dataWest>
 												<rotationOffset>-30</rotationOffset>
+												<offset>(-0.35, 0, 0.2)</offset>
 											</dataWest>
 											<dataNorth>
 												<layer>-5</layer>
-												<offset>(0.15, 0, -0.1)</offset>
+												<offset>(0.15, 0, 0.2)</offset>
 											</dataNorth>
 											<dataSouth>
-												<offset>(0.15, 0, -0.1)</offset>
+												<offset>(0.2, 0, 0.2)</offset>
 											</dataSouth>
 										</drawData>
 									</li>
@@ -346,7 +344,7 @@
 							</apparel>
 					</value>
 				</li>
--->
+
 			</operations>
 		</match>
 	</Operation>
