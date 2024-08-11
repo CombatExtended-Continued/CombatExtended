@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,6 +56,91 @@ namespace CombatExtended
         public float aimHeightOffset = 0;
 
         public float empShieldBreakChance = 1f;
+        public float collideDistance = 1f;
+        public float impactChance = 1f;
+
         public float Gravity => CE_Utility.GravityConst * gravityFactor;
+        #region Moving methods
+        public virtual Vector2 Vec2Position(Vector2 origin, Vector2 destination, float startingTicksToImpact, int ticks)
+        {
+            return Vector2.Lerp(origin, destination, ticks / startingTicksToImpact);
+        }
+        public Vector3 MoveForward(float shotRotation,
+            float shotAngle,
+            Vector2 origin,
+            Vector2 destination,
+            float startingTicksToImpact,
+            float shotHeight,
+            ref bool kinit,
+            ref Vector3 velocity,
+            ref float shotSpeed,
+            ref Vector3 curPosition,
+            ref float mass,
+            ref float ballisticCoefficient,
+            ref float radius,
+            ref float gravity,
+            ref float initialSpeed,
+            ref int flightTicks)
+        {
+            flightTicks++;
+            if (lerpPosition)
+            {
+                return LerpedMoveForward(origin, destination, startingTicksToImpact, shotHeight, shotSpeed, shotAngle, flightTicks);
+            }
+            else
+            {
+                return NonLerpedMoveForward(shotRotation, shotAngle, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed);
+            }
+
+        }
+        protected Vector3 LerpedMoveForward(Vector2 origin, Vector2 destination, float startingTicksToImpact, float shotHeight, float shotSpeed, float shotAngle, int ticks)
+        {
+            var v = Vec2Position(origin, destination, startingTicksToImpact, ticks);
+            return new Vector3(v.x, GetHeightAtTicks(shotHeight, shotSpeed, shotAngle, ticks), v.y);
+
+        }
+        protected virtual Vector3 NonLerpedMoveForward(float shotRotation, float shotAngle, ref bool kinit, ref Vector3 velocity, ref float shotSpeed, ref  Vector3 curPosition, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity, ref float initialSpeed)
+        {
+            if (!kinit)
+            {
+                float sr = shotRotation * Mathf.Deg2Rad + 3.14159f / 2.0f;
+                kinit = true;
+                ballisticCoefficient = this.ballisticCoefficient.RandomInRange;
+                mass = this.mass.RandomInRange;
+                radius = diameter.RandomInRange / 2000;
+                gravity = Gravity;
+                float sspt = shotSpeed / GenTicks.TicksPerRealSecond;
+                velocity = new Vector3(Mathf.Cos(sr) * Mathf.Cos(shotAngle) * sspt, Mathf.Sin(shotAngle) * sspt, Mathf.Sin(sr) * Mathf.Cos(shotAngle) * sspt);
+                initialSpeed = sspt;
+            }
+            Vector3 newPosition = curPosition + velocity;
+            Accelerate(radius, ballisticCoefficient, mass, gravity, ref velocity, ref shotSpeed);
+            return newPosition;
+        }
+
+        // This can also be made virtual, and would be the ideal entry point for guided ammunition and rockets.
+        protected void Accelerate(float radius, float ballisticCoefficient, float mass, float gravity, ref Vector3 velocity, ref float shotSpeed)
+        {
+            float crossSectionalArea = radius;
+            crossSectionalArea *= crossSectionalArea * 3.14159f;
+            // 2.5f is half the mass of 1m² x 1cell of air.
+            var q = 2.5f * shotSpeed * shotSpeed;
+            var dragForce = q * crossSectionalArea / ballisticCoefficient;
+            // F = mA
+            // A = F / m
+            var a = (float)((-dragForce / (float)mass));
+            var normalized = velocity.normalized;
+            velocity.x += a * normalized.x;
+            velocity.y += a * normalized.y - (float)(1 / ballisticCoefficient) * (float)gravity / GenTicks.TicksPerRealSecond;
+            velocity.z += a * normalized.z;
+            shotSpeed = velocity.magnitude;
+        }
+
+        protected float GetHeightAtTicks(float shotHeight, float shotSpeed, float shotAngle, int ticks)
+        {
+            var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
+            return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (CE_Utility.GravityConst * seconds * seconds) / 2f, 3);
+        }
+        #endregion
     }
 }

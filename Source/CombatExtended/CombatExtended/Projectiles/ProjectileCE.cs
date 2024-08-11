@@ -171,10 +171,6 @@ namespace CombatExtended
         #endregion
 
         #region Position
-        protected virtual Vector2 Vec2Position(int ticks = -1)
-        {
-            return Vector2.Lerp(origin, Destination, (ticks < 0 ? FlightTicks : ticks) / startingTicksToImpact);
-            }
         private Vector3 exactPosition;
 
         /// <summary>
@@ -1066,74 +1062,16 @@ namespace CombatExtended
             }
         }
 
-        // If anyone wants to override how projectiles move, this can be made virtual.
-        // For now, it is non-virtual for performance.
-        public Vector3 MoveForward(ref Vector3 velocity, ref float shotSpeed, ref int flightTicks)
-        {
-            flightTicks++;
-            if (lerpPosition)
-            {
-                return LerpedMoveForward(flightTicks);
-            }
-            else
-            {
-                return NonLerpedMoveForward(ref velocity, ref shotSpeed);
-            }
+        
 
-        }
-        protected virtual Vector3 LerpedMoveForward(int flightTicks)
-        {
-            var v = Vec2Position(flightTicks);
-            return new Vector3(v.x, GetHeightAtTicks(flightTicks), v.y);
-
-        }
-        protected virtual Vector3 NonLerpedMoveForward(ref Vector3 velocity, ref float shotSpeed)
-        {
-            Vector3 curPosition = ExactPosition;
-            if (!kinit)
-            {
-                float sr = shotRotation * Mathf.Deg2Rad + 3.14159f / 2.0f;
-                kinit = true;
-                var projectileProperties = def.projectile as ProjectilePropertiesCE;
-                ballisticCoefficient = projectileProperties.ballisticCoefficient.RandomInRange;
-                mass = projectileProperties.mass.RandomInRange;
-                radius = projectileProperties.diameter.RandomInRange / 2000;
-                gravity = projectileProperties.Gravity;
-                float sspt = shotSpeed / GenTicks.TicksPerRealSecond;
-                velocity = new Vector3(Mathf.Cos(sr) * Mathf.Cos(shotAngle) * sspt, Mathf.Sin(shotAngle) * sspt, Mathf.Sin(sr) * Mathf.Cos(shotAngle) * sspt);
-                initialSpeed = sspt;
-            }
-            Vector3 newPosition = curPosition + velocity;
-            Accelerate(ref velocity, ref shotSpeed);
-            return newPosition;
-        }
-
-        // This can also be made virtual, and would be the ideal entry point for guided ammunition and rockets.
-        protected void Accelerate(ref Vector3 velocity, ref float shotSpeed)
-        {
-            float crossSectionalArea = radius;
-            crossSectionalArea *= crossSectionalArea * 3.14159f;
-            // 2.5f is half the mass of 1m² x 1cell of air.
-            var q = 2.5f * shotSpeed * shotSpeed;
-            var dragForce = q * crossSectionalArea / ballisticCoefficient;
-            // F = mA
-            // A = F / m
-            var a = (float)((-dragForce / (float)mass));
-            var normalized = velocity.normalized;
-            velocity.x += a * normalized.x;
-            velocity.y += a * normalized.y - (float)(1 / ballisticCoefficient) * (float)gravity / GenTicks.TicksPerRealSecond;
-            velocity.z += a * normalized.z;
-            shotSpeed = velocity.magnitude;
-        }
-
-        public IEnumerable<Vector3> NextPositions()
+        public virtual IEnumerable<Vector3> NextPositions()
         {
             int flightTicks = FlightTicks;
             float shotSpeed = this.shotSpeed;
             Vector3 velocity = this.velocity;
             for (int ticksToImpact = this.ticksToImpact - 1; ticksToImpact >= 0; ticksToImpact--)
             {
-                yield return MoveForward(ref velocity, ref shotSpeed, ref flightTicks);
+                yield return (def.projectile as ProjectilePropertiesCE).MoveForward(shotRotation, shotAngle, origin, Destination, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
             }
         }
 
@@ -1147,7 +1085,7 @@ namespace CombatExtended
             }
             LastPos = ExactPosition;
             ticksToImpact--;
-            Vector3 nextPosition = MoveForward(ref velocity, ref shotSpeed, ref FlightTicks);
+            Vector3 nextPosition = (def.projectile as ProjectilePropertiesCE).MoveForward(shotRotation, shotAngle, origin, Destination, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
             if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
@@ -1413,7 +1351,7 @@ namespace CombatExtended
 
                 var suppressThings = new List<Pawn>();
                 float dangerAmount = 0f;
-                var dir = new float?(origin.AngleTo(Vec2Position()));
+                var dir = new float?(origin.AngleTo((def.projectile as ProjectilePropertiesCE).Vec2Position(origin, Destination, startingTicksToImpact, FlightTicks)));
 
                 // Opt-out for things without explosionRadius
                 if (def.projectile.explosionRadius > 0f)
