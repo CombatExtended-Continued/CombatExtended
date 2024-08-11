@@ -46,12 +46,12 @@ namespace CombatExtended
                 }
             }
         }
-        public virtual void OnImpact(Projectile projectile, DamageInfo dinfo)
+        public virtual void OnImpact(ProjectileCE projectile, DamageInfo dinfo)
         {
             parent.Position = projectile.Position;
             if (parent is IThingHolder pod)
             {
-                var containedThings = Utils.ContainedThings(pod).ToList();
+                var containedThings = pod.ContainedThings().ToList();
 
                 foreach (var thing in containedThings)
                 {
@@ -94,14 +94,8 @@ namespace CombatExtended
             Thing thing2;
             if (contents?.spawnWipeMode == null)
             {
-                GenPlace.TryPlaceThing(thing, position, map, ThingPlaceMode.Near, out thing2, delegate (Thing placedThing, int count)
-                {
-                    if (Find.TickManager.TicksGame < 1200 && TutorSystem.TutorialMode && placedThing.def.category == ThingCategory.Item)
-                    {
-                        Find.TutorialState.AddStartingItem(placedThing);
+                GenPlace.TryPlaceThing(thing, position, map, ThingPlaceMode.Near, out thing2, null, null, rot);
                     }
-                }, null, rot);
-            }
             else if (contents?.setRotation != null)
             {
                 thing2 = GenSpawn.Spawn(thing, position, map, contents.setRotation.Value, contents.spawnWipeMode.Value, false, false);
