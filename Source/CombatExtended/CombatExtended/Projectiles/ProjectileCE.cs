@@ -1062,19 +1062,6 @@ namespace CombatExtended
             }
         }
 
-        
-
-        public virtual IEnumerable<Vector3> NextPositions()
-        {
-            int flightTicks = FlightTicks;
-            float shotSpeed = this.shotSpeed;
-            Vector3 velocity = this.velocity;
-            for (int ticksToImpact = this.ticksToImpact - 1; ticksToImpact >= 0; ticksToImpact--)
-            {
-                yield return (def.projectile as ProjectilePropertiesCE).MoveForward(shotRotation, shotAngle, origin, Destination, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
-            }
-        }
-
         #region Tick/Draw
         public override void Tick()
         {

@@ -5,6 +5,10 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using Rimatomics;
+using static UnityEngine.UI.CanvasScaler;
+using static UnityEngine.UI.Image;
+using System.Security.Cryptography;
 
 namespace CombatExtended
 {
@@ -140,6 +144,30 @@ namespace CombatExtended
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
             return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (CE_Utility.GravityConst * seconds * seconds) / 2f, 3);
+        }
+
+        public virtual IEnumerable<Vector3> NextPositions(float shotRotation,
+            float shotAngle,
+            Vector2 origin,
+            Vector2 destination,
+            float startingTicksToImpact,
+            float shotHeight,
+            bool kinit,
+            Vector3 velocity,
+            float shotSpeed,
+            Vector3 curPosition,
+            float mass,
+            float ballisticCoefficient,
+            float radius,
+            float gravity,
+            float initialSpeed,
+            int flightTicks,
+            int ticksToImpact)
+        {
+            for (; ticksToImpact >= 0; ticksToImpact--)
+            {
+                yield return MoveForward(shotRotation, shotAngle, origin, destination, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
+            }
         }
         #endregion
     }
