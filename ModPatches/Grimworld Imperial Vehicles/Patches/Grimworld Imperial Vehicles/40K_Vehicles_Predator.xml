@@ -57,13 +57,13 @@
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Predator_HeavyBolter"]</xpath>
 		<value>
-			<Operation Class="Vehicles.CETurretDataDefModExtension">
+			<li Class="Vehicles.CETurretDataDefModExtension">
 				<ammoSet>AmmoSet_Bolter998</ammoSet>
 				<shotHeight>1.5</shotHeight>
 				<speed>229</speed>
 				<sway>1.0</sway>
 				<spread>0.01</spread>
-			</Operation>
+			</li>
 		</value>
 	</Operation>
 
@@ -73,7 +73,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Predator_MainTurret"]/projectile</xpath>
 		<value>
-			<projectile>Bullet_57x483mmBofors_HE</projectile>
+			<projectile>Bullet_57x438mmBofors_HE</projectile>
 		</value>
 	</Operation>
 
@@ -119,21 +119,21 @@
 					<ticksBetweenBursts>60</ticksBetweenBursts>
 					<label>Single</label>
 					<texPath>UI/Gizmos/FireRate_Single</texPath>
-				</Operation>
+				</li>
 				<li>
 					<shotsPerBurst>2</shotsPerBurst>
 					<ticksBetweenShots>6</ticksBetweenShots>
 					<ticksBetweenBursts>60</ticksBetweenBursts>
 					<label>Burst</label>
 					<texPath>UI/Gizmos/FireRate_Burst</texPath>
-				</Operation>
+				</li>
 				<li>
 					<shotsPerBurst>5</shotsPerBurst>
 					<ticksBetweenShots>6</ticksBetweenShots>
 					<ticksBetweenBursts>60</ticksBetweenBursts>
 					<label>Auto</label>
 					<texPath>UI/Gizmos/FireRate_Auto</texPath>
-				</Operation>
+				</li>
 			</fireModes>
 		</value>
 	</Operation>
@@ -142,7 +142,10 @@
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Predator_MainTurret"]/ammunition/thingDefs</xpath>
 		<value>
 			<thingDefs>
-				<li>Ammo_57x483mmBofors_HE</li>
+				<li>Ammo_57x438mmBofors_AP</li>
+				<li>Ammo_57x438mmBofors_HE</li>
+				<li>Ammo_57x438mmBofors_HE_TFuzed</li>
+				<li>Ammo_57x438mmBofors_Sabot</li>
 			</thingDefs>
 		</value>
 	</Operation>
@@ -150,13 +153,13 @@
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Predator_MainTurret"]</xpath>
 		<value>
-			<Operation Class="Vehicles.CETurretDataDefModExtension">
-				<ammoSet>AmmoSet_57x483mmBofors</ammoSet>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_57x438mmBofors</ammoSet>
 				<shotHeight>3.0</shotHeight>
 				<speed>193</speed>
 				<sway>0.75</sway>
 				<spread>0.01</spread>
-			</Operation>
+			</li>
 		</value>
 	</Operation>
 
