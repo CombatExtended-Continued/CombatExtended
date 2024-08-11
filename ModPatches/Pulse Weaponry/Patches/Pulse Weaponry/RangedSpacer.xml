@@ -65,6 +65,24 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Melee</li>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName = "DV_PulseSMG" or defName = "DV_PulseSuppressor"]/tools</xpath>
 		<value>
