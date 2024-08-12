@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- scale helmet -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="DD_Apparel_ScaleHelm"]/statBases</xpath>
@@ -24,7 +25,16 @@
 			</bodyPartGroups>
 		</value>
 	</Operation>
+
 	<!-- dragon crown -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DD_Apparel_DragonCrown"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="DD_Apparel_DragonCrown"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
@@ -38,4 +48,5 @@
 			<AimingAccuracy>-0.1</AimingAccuracy>
 		</value>
 	</Operation>
+
 </Patch>

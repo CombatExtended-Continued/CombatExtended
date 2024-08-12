@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Mono.Unix.Native;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -183,9 +184,17 @@ namespace CombatExtended
             {
                 actor = pawn
             }; // actor was always null in testing...
+            //We only eject casing once if it was reload one at once. Track if we already throwed casing
+            bool hasCasing = true;
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             waitToil.defaultDuration = Mathf.CeilToInt(weapon.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            //If we're 30 ticks through the reload timer or if reload was too fast, before it completes, drop casings if dropcasingwhenreload.
+            waitToil.AddPreTickAction(() =>
+            {
+                if (hasCasing && (waitToil.actor.jobs.curDriver.ticksLeftThisToil == waitToil.defaultDuration - 30 || waitToil.actor.jobs.curDriver.ticksLeftThisToil == 1))
+                { compReloader.DropCasing(compReloader.Props.magazineSize); hasCasing = false; }
+            });
             yield return waitToil.WithProgressBarToilDelay(indReloader);
 
             //Actual reloader

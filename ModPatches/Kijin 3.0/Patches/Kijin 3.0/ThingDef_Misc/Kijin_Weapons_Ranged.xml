@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--========= Ranged =========-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Kijin_Fan</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>30</WoodLog>
+			<DevilstrandCloth>60</DevilstrandCloth>
+			<Prometheum>10</Prometheum>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_CE_KijinFlame</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>12</range>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes/>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Kijin_Fan"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.102</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.075</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Kijin_FlameBow</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>35</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_StreamlinedArrow_Flame</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<range>32</range>
+			<soundCast>Bow_Small</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_ArrowKijinFlame</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Kijin_FlameBow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>limb</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.102</armorPenetration>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>nock</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.075</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Kijin_PosionBow</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>35</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_StreamlinedArrow_Venom</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>35</range>
+			<soundCast>Bow_Small</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_ArrowKijinVenom</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Kijin_PosionBow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>limb</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.102</armorPenetration>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>nock</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.075</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Kijin_PosionBow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>limb</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.102</armorPenetration>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>nock</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetration>0.075</armorPenetration>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!--<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Kijin_SmokeBomb"]</xpath>
+		<value>
+			<ThingDef ParentName="KijinWeapon">
+				<defName>Kijin_SmokeBomb</defName>
+				<equipmentType>Primary</equipmentType>
+				<label>kijin smokebomb</label>
+				<tickerType>Normal</tickerType>
+				<description>It will release a cloud of smoke, obscuring incoming shots and preventing turrets from locking on.</description>
+				<graphicData>
+					<texPath>Kijin/Item/SmokeBomb</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<soundInteract>Interact_Grenade</soundInteract>
+				<statBases>
+					<Mass>0.539</Mass>
+					<Bulk>1.05</Bulk>
+					<MarketValue>8.88</MarketValue>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<WorkToMake>24000</WorkToMake>
+				</statBases>
+				<recipeMaker>
+					<researchPrerequisite>KijinSmokeWeapons</researchPrerequisite>
+					<skillRequirements>
+						<Crafting>6</Crafting>
+					</skillRequirements>
+					<soundWorking>Recipe_Tailor</soundWorking>
+					<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+				</recipeMaker>
+				<costStuffCount>25</costStuffCount>
+				<stuffCategories>
+					<li>Fabric</li>
+					<li>Leathery</li>
+				</stuffCategories>
+				<costList>
+					<SmokeleafLeaves>25</SmokeleafLeaves>
+				</costList>
+				<weaponTags>
+					<li>KijinGrenadeSmoke</li>
+				</weaponTags>
+				<thingCategories>
+					<li>Grenades</li>
+				</thingCategories>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>throw smoke grenade</label>
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<range>10</range>
+						<warmupTime>0.8</warmupTime>
+						<noiseRadius>4</noiseRadius>
+						<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+						<soundCast>ThrowGrenade</soundCast>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<defaultProjectile>Proj_KijinSmoke</defaultProjectile>
+						<onlyManualCast>true</onlyManualCast>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					</li>
+				</verbs>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<explosiveDamageType>Smoke</explosiveDamageType>
+						<explosiveRadius>3</explosiveRadius>
+						<postExplosionGasType>BlindSmoke</postExplosionGasType>
+						<preExplosionSpawnChance>1</preExplosionSpawnChance>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KijinDarkMatter</defName>
+		<statBases>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>1</Bulk>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<label>throw dark matter</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10</range>
+			<warmupTime>0.8</warmupTime>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<defaultProjectile>Projectile_CE_KijinDarkmatter</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+		</Properties>
+		<FireModes/>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="KijinDarkMatter"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>throw dark matter</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<range>10</range>
+					<warmupTime>0.8</warmupTime>
+					<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<defaultProjectile>Projectile_CE_KijinDarkmatter</defaultProjectile>
+					<onlyManualCast>true</onlyManualCast>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+</Patch>
