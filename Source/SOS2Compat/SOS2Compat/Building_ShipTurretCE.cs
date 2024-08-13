@@ -159,96 +159,53 @@ namespace CombatExtended.Compatibility.SOS2Compat
 
         public override void BeginBurst()
         {
-            if (GroundDefenseMode) // CE Logic - Added power and heat consumption per shot
+            // Shared Power/Heat/Ammo checks
+            if (powerComp != null && powerComp.PowerNet.CurrentStoredEnergy() < EnergyToFire)
             {
-                if (powerComp != null && powerComp.PowerNet.CurrentStoredEnergy() < EnergyToFire)
+                if (PlayerControlled)
                 {
-                    if (PlayerControlled)
+                    Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToPower", Label), this, MessageTypeDefOf.CautionInput);
+                }
+                ResetCurrentTarget();
+                return;
+            }
+            if (heatComp.Props.heatPerPulse > 0 && !heatComp.AddHeatToNetwork(HeatToFire))
+            {
+                if (PlayerControlled)
+                {
+                    Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToHeat", Label), this, MessageTypeDefOf.CautionInput);
+                }
+                ResetCurrentTarget();
+                return;
+            }
+            //ammo
+            if (fuelComp != null)
+            {
+                if (fuelComp.Fuel <= 0)
+                {
+                    if (!PointDefenseMode && PlayerControlled)
                     {
-                        Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToPower", Label), this, MessageTypeDefOf.CautionInput);
+                        Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToAmmo", Label), this, MessageTypeDefOf.CautionInput);
                     }
+                    shipTarget = LocalTargetInfo.Invalid;
                     ResetCurrentTarget();
                     return;
                 }
-                if (heatComp.Props.heatPerPulse > 0 && !heatComp.AddHeatToNetwork(HeatToFire))
-                {
-                    if (PlayerControlled)
-                    {
-                        Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToHeat", Label), this, MessageTypeDefOf.CautionInput);
-                    }
-                    ResetCurrentTarget();
-                    return;
-                }
-                //ammo
-                if (fuelComp != null)
-                {
-                    if (fuelComp.Fuel <= 0)
-                    {
-                        if (!PointDefenseMode && PlayerControlled)
-                        {
-                            Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToAmmo", Label), this, MessageTypeDefOf.CautionInput);
-                        }
-                        shipTarget = LocalTargetInfo.Invalid;
-                        ResetCurrentTarget();
-                        return;
-                    }
-                    fuelComp.ConsumeFuel(1);
-                }
-                //draw the same percentage from each cap: needed*current/currenttotal
-                foreach (CompPowerBattery bat in powerComp.PowerNet.batteryComps)
-                {
-                    bat.DrawPower(Mathf.Min(EnergyToFire * bat.StoredEnergy / powerComp.PowerNet.CurrentStoredEnergy(), bat.StoredEnergy));
-                }
-                base.BeginBurst(); // Call Original CE Logic after checking power/heat
+                fuelComp.ConsumeFuel(1);
+            }
+            //draw the same percentage from each cap: needed*current/currenttotal
+            foreach (CompPowerBattery bat in powerComp.PowerNet.batteryComps)
+            {
+                bat.DrawPower(Mathf.Min(EnergyToFire * bat.StoredEnergy / powerComp.PowerNet.CurrentStoredEnergy(), bat.StoredEnergy));
+            }
+            if (GroundDefenseMode) // CE Logic
+            {
+                base.BeginBurst();
             }
             else // Space Logic
             {
                 // CE PATCH: Removed Spinal Logic here as spinals dont need patching
-                //check if we have power to fire
-                if (powerComp != null && powerComp.PowerNet.CurrentStoredEnergy() < EnergyToFire)
-                {
-                    if (!PointDefenseMode && PlayerControlled)
-                    {
-                        Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToPower", Label), this, MessageTypeDefOf.CautionInput);
-                    }
-
-                    shipTarget = LocalTargetInfo.Invalid;
-                    ResetCurrentTarget();
-                    return;
-                }
-                //if we do not have enough heatcap, vent heat to room/fail to fire in vacuum
-                if (heatComp.Props.heatPerPulse > 0 && !heatComp.AddHeatToNetwork(HeatToFire))
-                {
-                    if (!PointDefenseMode && PlayerControlled)
-                    {
-                        Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToHeat", Label), this, MessageTypeDefOf.CautionInput);
-                    }
-
-                    shipTarget = LocalTargetInfo.Invalid;
-                    ResetCurrentTarget();
-                    return;
-                }
-                //ammo
-                if (fuelComp != null)
-                {
-                    if (fuelComp.Fuel <= 0)
-                    {
-                        if (!PointDefenseMode && PlayerControlled)
-                        {
-                            Messages.Message(TranslatorFormattedStringExtensions.Translate("SoS.CannotFireDueToAmmo", Label), this, MessageTypeDefOf.CautionInput);
-                        }
-
-                        shipTarget = LocalTargetInfo.Invalid;
-                        ResetCurrentTarget();
-                        return;
-                    }
-                    fuelComp.ConsumeFuel(1);
-                }
-                //draw the same percentage from each cap: needed*current/currenttotal
-                foreach (CompPowerBattery bat in powerComp.PowerNet.batteryComps)
-                {
-                    bat.DrawPower(Mathf.Min(EnergyToFire * bat.StoredEnergy / powerComp.PowerNet.CurrentStoredEnergy(), bat.StoredEnergy));
-                }
+                // CE PATCH: Also moved power/heat checks to earlier in this function to cover ground defense mode aswell
                 //sfx
                 heatComp.Props.singleFireSound?.PlayOneShot(this);
                 //cast
@@ -561,7 +518,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
             }
         }
 
-        public override void DrawExtraSelectionOverlays() // SOS2 Only has an implementation for ground defense mode so its not included here.
+        public override void DrawExtraSelectionOverlays() // Don't draw in ship combat mode
         {
             if (GroundDefenseMode)
             {
