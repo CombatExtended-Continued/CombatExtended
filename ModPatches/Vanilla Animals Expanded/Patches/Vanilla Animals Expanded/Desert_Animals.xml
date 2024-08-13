@@ -40,7 +40,7 @@
 		<xpath>Defs/ThingDef[defName="AEXP_DesertTortoise"]/statBases/ArmorRating_Blunt</xpath>
 
 		<value>
-			<ArmorRating_Blunt>10</ArmorRating_Blunt>
+			<ArmorRating_Blunt>3.25</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -48,7 +48,7 @@
 		<xpath>Defs/ThingDef[defName="AEXP_DesertTortoise"]/statBases/ArmorRating_Sharp</xpath>
 
 		<value>
-			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+			<ArmorRating_Sharp>1.15</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -79,6 +79,29 @@
 					<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AEXP_DesertTortoise"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AEXP_DesertTortoise"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_DesertTortoise"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>330</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 

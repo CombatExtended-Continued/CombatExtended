@@ -126,6 +126,8 @@ namespace CombatExtended
             }
         }
         public bool IsEquippedGun => Wielder != null;
+
+        GunDrawExtension gunDrawExt => parent.def.GetModExtension<GunDrawExtension>();
         public Pawn Holder
         {
             get
@@ -414,7 +416,6 @@ namespace CombatExtended
 
 
             // Original: curMagCountInt--;
-
             if (curMagCountInt < 0)
             {
                 TryStartReload();
@@ -514,6 +515,18 @@ namespace CombatExtended
             }
         }
 
+        public void DropCasing(int count)
+        {
+            //For revolvers and break actions
+            if (gunDrawExt != null && gunDrawExt.DropCasingWhenReload && CompEquippable?.PrimaryVerb is Verb_ShootCE verbCE && verbCE.VerbPropsCE.ejectsCasings)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    verbCE.ExternalCallDropCasing(i);
+                }
+            }
+        }
+
         // used by both turrets (JobDriver_ReloadTurret) and pawns (JobDriver_Reload).
         /// <summary>
         /// Used to unload the weapon.  Ammo will be dumped to the unloading Pawn's inventory or the ground if insufficient space.  Any ammo that can't be dropped
@@ -602,7 +615,6 @@ namespace CombatExtended
             }
             // don't forget to set the clip to empty...
             CurMagCount = 0;
-
             return true;
         }
 
