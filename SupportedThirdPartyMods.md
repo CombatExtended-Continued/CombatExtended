@@ -352,7 +352,6 @@ Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
 New Mech: Mini-Miner    |
-NewRatkinPlus |
 Ni'Hal	|
 Nukes   |
 Nyaron Race |
@@ -487,6 +486,7 @@ The Tuffalo |
 Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
+Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
 Tribal Warrior Set! |
