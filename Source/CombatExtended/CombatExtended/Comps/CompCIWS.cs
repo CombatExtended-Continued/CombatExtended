@@ -92,25 +92,31 @@ namespace CombatExtended
             if (parent.IsHashIntervalTick(10) && Active && Verb.state != VerbState.Bursting && Turret.burstCooldownTicksLeft <= 0 && TryFindNewTarget(out var target))
             {
                 Turret.currentTargetInt = target;
-                Turret.BeginBurst();
-                Turret.Top.TurretTopTick();
+                //Turret.BeginBurst();
+                //Turret.Top.TurretTopTick();
             }
         }
         public virtual bool TryFindNewTarget(out LocalTargetInfo target)
         {
+            if (!(Verb is Verb_LaunchProjectileCE))
+            {
+                target = LocalTargetInfo.Invalid;
+                return false;
+            }
             float range = this.Verb.verbProps.range;
             var _target = Targets.Where(x => Props.Interceptable(x.def) && !IgnoredDefs.Contains(x.def)).Where(x => !IsFriendlyTo(x)).FirstOrDefault(t =>
             {
-                if (CIWS[parent.Map].Any(turret => turret.currentTargetInt.Thing == t) || CIWSProjectile.ProjectilesAt(parent.Map).Any(x => x.intendedTarget.Thing == t))
+                var verb = Verb as Verb_LaunchProjectileCE;
+                if (CIWS[parent.Map].Any(turret => turret.currentTargetInt.Thing == t) || ProjectileCE_CIWS.ProjectilesAt(parent.Map).Any(x => x.intendedTarget.Thing == t))
                 {
                     return false;
                 }
-                float num = this.Verb.verbProps.EffectiveMinRange(t, this.parent);
-                var intersectionPoint = t.TryGetComp<CompCIWSTarget>()?.CalculatePointForPreemptiveFire(Verb.GetProjectile(), parent.DrawPos, (int)Verb.verbProps.warmupTime) ?? t.CalculatePointForPreemptiveFire(Verb.GetProjectile(), parent.DrawPos, (int)Verb.verbProps.warmupTime);
-                if (!intersectionPoint.IsValid)
+                float num = verb.verbProps.EffectiveMinRange(t, this.parent);
+                if (!verb.TryFindCEShootLineFromTo(parent.Position, t, out var shootLine))
                 {
                     return false;
                 }
+                var intersectionPoint = shootLine.Dest;
                 float num2 = intersectionPoint.DistanceToSquared(this.parent.Position);
                 return num2 > num * num && num2 < range * range;
             });
