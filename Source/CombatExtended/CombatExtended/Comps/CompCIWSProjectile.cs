@@ -21,7 +21,7 @@ namespace CombatExtended
         {
             get
             {
-                return Turret.GunCompEq.AllVerbs.OfType<Verb_CIWS_Shoot>().FirstOrDefault() ?? base.Verb;
+                return Turret.GunCompEq.AllVerbs.OfType<Verb_ShootCE_CIWS>().FirstOrDefault() ?? base.Verb;
             }
         }
         protected override bool IsFriendlyTo(Projectile thing) => base.IsFriendlyTo(thing) && !thing.Launcher.HostileTo(parent);
