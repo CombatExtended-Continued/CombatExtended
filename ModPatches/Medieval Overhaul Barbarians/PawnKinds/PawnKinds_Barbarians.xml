@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- No VE shield system -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[
+			defName="pphhyy_Barbarian_Thrall" or
+			defName="pphhyy_Barbarian_MarauderShield" or
+			defName="pphhyy_Barbarian_WarriorShield" or
+			defName="pphhyy_Barbarian_ChosenShield" or
+			defName="pphhyy_Barbarian_WarlordFactionLeader"
+			]/modExtensions/li[@Class="VFECore.PawnKindDefExtension"]</xpath>
+	</Operation>
+
+	<!-- <Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_MarauderShield" or defName="pphhyy_Barbarian_WarriorShield" or defName="pphhyy_Barbarian_ChosenShield"]/weaponTags/li[.="pphhyy_Barbarian_BarbThrown"]</xpath>
+	</Operation> -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_Thrall"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>12</min>
+					<max>20</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>10</min>
+						<max>50</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+					</weaponTags>
+				</forcedSidearm>
+				<shieldMoney>
+					<min>0</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>pphhyy_Barbarian_BarbRoundShield1</li>
+				</shieldTags>
+				<shieldChance>1</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_Thrall"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+				<li>DankPyon_Apparel_Quiver</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_MarauderShield"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>4</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>25</min>
+						<max>75</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>NeolithicMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+				<shieldMoney>
+					<min>0</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>pphhyy_Barbarian_BarbRoundShield1</li>
+				</shieldTags>
+				<shieldChance>1</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_MarauderShield" or defName="pphhyy_Barbarian_WarriorShield" or defName="pphhyy_Barbarian_ChosenShield"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_WarriorShield"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>4</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>100</min>
+						<max>200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>NeolithicMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+				<shieldMoney>
+					<min>100</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>pphhyy_Barbarian_BarbRoundShield1</li>
+					<li>pphhyy_Barbarian_BarbRoundShield2</li>
+					<li>pphhyy_Barbarian_BarbTallShield1</li>
+				</shieldTags>
+				<shieldChance>1</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_ChosenShield"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>4</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>100</min>
+						<max>200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>NeolithicMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+				<shieldMoney>
+					<min>100</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>pphhyy_Barbarian_BarbRoundShield1</li>
+					<li>pphhyy_Barbarian_BarbRoundShield2</li>
+					<li>pphhyy_Barbarian_BarbRoundShield3</li>
+					<li>pphhyy_Barbarian_BarbTallShield1</li>
+					<li>pphhyy_Barbarian_BarbTallShield2</li>
+					<li>pphhyy_Barbarian_BarbTallShield3</li>
+					<li>pphhyy_Barbarian_BarbMetalShield1</li>
+				</shieldTags>
+				<shieldChance>1</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="pphhyy_Barbarian_WarlordFactionLeader"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>pphhyy_Barbarian_BarbMetalShield1</li>
+					<li>pphhyy_Barbarian_BarbMetalShield2</li>
+					<li>pphhyy_Barbarian_BarbMetalShield3</li>
+				</shieldTags>
+				<shieldChance>0.50</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
