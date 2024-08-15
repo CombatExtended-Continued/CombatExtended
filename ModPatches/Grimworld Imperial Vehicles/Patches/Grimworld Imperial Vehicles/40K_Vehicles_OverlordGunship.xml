@@ -4,13 +4,6 @@
 	<!--===== Heavy Bolter Turret =====-->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lasgun"]/projectile</xpath>
-		<value>
-			<projectile>Bullet_Lasgun_Cannon</projectile>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/projectile</xpath>
 		<value>
 			<projectile>Bullet_Bolter998_Standard</projectile>
@@ -35,10 +28,15 @@
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/chargePerAmmoCount</xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lasgun"]</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/ammunition/thingDefs</xpath>
 		<value>
-			<chargePerAmmoCount>5</chargePerAmmoCount>
+			<thingDefs>
+				<li>Ammo_Bolter998_Standard</li>
+				<li>Ammo_Bolter998_MetalStorm</li>
+				<li>Ammo_Bolter998_Kraken</li>
+				<li>Ammo_Bolter998_Inferno</li>
+			</thingDefs>
 		</value>
 	</Operation>
 
@@ -63,22 +61,30 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lasgun"]/maxRange</xpath>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]</xpath>
 		<value>
-			<maxRange>75</maxRange>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_Bolter998</ammoSet>
+				<shotHeight>1.5</shotHeight>
+				<speed>229</speed>
+				<sway>1.0</sway>
+				<spread>0.01</spread>
+			</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]/ammunition/thingDefs</xpath>
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lasgun"]/projectile</xpath>
 		<value>
-			<thingDefs>
-				<li>Ammo_Bolter998_Standard</li>
-				<li>Ammo_Bolter998_MetalStorm</li>
-				<li>Ammo_Bolter998_Kraken</li>
-				<li>Ammo_Bolter998_Inferno</li>
-			</thingDefs>
+			<projectile>Bullet_Lasgun_Cannon</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lasgun"]/maxRange</xpath>
+		<value>
+			<maxRange>75</maxRange>
 		</value>
 	</Operation>
 
@@ -91,16 +97,10 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Bolter"]</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Overlord_Lasgun"]</xpath>
 		<value>
-			<li Class="Vehicles.CETurretDataDefModExtension">
-				<ammoSet>AmmoSet_Bolter998</ammoSet>
-				<shotHeight>1.5</shotHeight>
-				<speed>229</speed>
-				<sway>1.0</sway>
-				<spread>0.01</spread>
-			</li>
+			<chargePerAmmoCount>5</chargePerAmmoCount>
 		</value>
 	</Operation>
 
