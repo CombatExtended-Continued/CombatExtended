@@ -3,6 +3,77 @@
 
 	<!--===== Twin Las Cannon =====-->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Lasgun"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>600</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Lasgun"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Lasgun"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Lasgun_Cannon</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Lasgun"]/fireModes</xpath>
+		<value>
+			<fireModes>
+				<li>
+					<shotsPerBurst>2</shotsPerBurst>
+					<ticksBetweenShots>2</ticksBetweenShots>
+					<ticksBetweenBursts>100</ticksBetweenBursts>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Lasgun"]/maxRange</xpath>
+		<value>
+			<maxRange>75</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Lasgun"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_LasgunPowerPack</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Lasgun"]</xpath>
+		<value>
+			<chargePerAmmoCount>5</chargePerAmmoCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Lasgun"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_Lasgun_Cannon</ammoSet>
+				<shotHeight>3.0</shotHeight>
+				<sway>1.0</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
 	<!--===== Twin Heavy Bolter Turret =====-->
 
 	<Operation Class="PatchOperationReplace">
