@@ -1062,6 +1062,8 @@ namespace CombatExtended
             }
         }
 
+        public virtual IEnumerable<Vector3> NextPositions => (def.projectile as ProjectilePropertiesCE).NextPositions(shotRotation, shotAngle, origin, Destination, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, FlightTicks);
+
         #region Tick/Draw
         public override void Tick()
         {
