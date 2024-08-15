@@ -150,7 +150,7 @@ namespace CombatExtended
             float shotAngle,
             Vector2 origin,
             Vector2 destination,
-            float startingTicksToImpact,
+            float ticksToImpact,
             float shotHeight,
             bool kinit,
             Vector3 velocity,
@@ -161,12 +161,11 @@ namespace CombatExtended
             float radius,
             float gravity,
             float initialSpeed,
-            int flightTicks,
-            int ticksToImpact)
+            int flightTicks)
         {
             for (; ticksToImpact >= 0; ticksToImpact--)
             {
-                yield return MoveForward(shotRotation, shotAngle, origin, destination, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
+                yield return MoveForward(shotRotation, shotAngle, origin, destination, ticksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
             }
         }
         #endregion
