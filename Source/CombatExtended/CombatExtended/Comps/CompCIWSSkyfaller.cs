@@ -19,10 +19,10 @@ namespace CombatExtended
         {
             get
             {
-                return Turret.GunCompEq.AllVerbs.OfType<Verb_CIWS_Shoot>().FirstOrDefault() ?? base.Verb;
+                return Turret.GunCompEq.AllVerbs.OfType<Verb_ShootCE_CIWS>().FirstOrDefault() ?? base.Verb;
             }
         }
-        protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && Utils.ContainedThings(thing).All(x => !x.HostileTo(parent));
+        protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && thing.ContainedThings().All(x => !x.HostileTo(parent));
         public override bool HasTarget => Turret.currentTargetInt.Thing is Skyfaller;
 
     }
