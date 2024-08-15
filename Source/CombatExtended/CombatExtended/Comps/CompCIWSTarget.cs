@@ -95,7 +95,7 @@ namespace CombatExtended
             if (contents?.spawnWipeMode == null)
             {
                 GenPlace.TryPlaceThing(thing, position, map, ThingPlaceMode.Near, out thing2, null, null, rot);
-                    }
+            }
             else if (contents?.setRotation != null)
             {
                 thing2 = GenSpawn.Spawn(thing, position, map, contents.setRotation.Value, contents.spawnWipeMode.Value, false, false);
@@ -117,9 +117,10 @@ namespace CombatExtended
             }
             return thing2;
         }
-        public virtual IntVec3 CalculatePointForPreemptiveFire(ThingDef projectile, Vector3 source, int tickOffset = 0)
+        public virtual bool CalculatePointForPreemptiveFire(ThingDef projectile, Vector3 source, out Vector3 result, int tickOffset = 0)
         {
-            return parent.CalculatePointForPreemptiveFire(projectile, source, tickOffset);
+            result = Vector3.zero;
+            return true;
         }
 
     }
