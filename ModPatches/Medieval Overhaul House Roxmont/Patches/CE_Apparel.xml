@@ -1,92 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- ==================== PawnKinds ==================== -->
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_HedgeKnightRox"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>3</min>
-					<max>5</max>
-				</primaryMagazineCount>
-				<shieldMoney>
-					<min>150</min>
-					<max>250</max>
-				</shieldMoney>
-				<shieldTags>
-					<li>DankPyon_ShieldHeater_Roxmont</li>
-				</shieldTags>
-				<shieldChance>0.5</shieldChance>
-				<forcedSidearm>
-					<sidearmMoney>
-						<min>50</min>
-						<max>200</max>
-					</sidearmMoney>
-					<weaponTags>
-						<li>CE_Sidearm_Tribal</li>
-					</weaponTags>
-				</forcedSidearm>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanRoxmont"]/apparelRequired/li[.="DankPyon_ShieldHeater_Roxmont"]</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanRoxmont"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>100</min>
-					<max>350</max>
-				</shieldMoney>
-				<shieldTags>
-					<li>DankPyon_ShieldHeater_Roxmont</li>
-				</shieldTags>
-				<shieldChance>0.65</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_StandardRoxmont"] </xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>100</min>
-					<max>350</max>
-				</shieldMoney>
-				<shieldTags>
-					<li>KiteShield</li>
-					<li>HeaterShield</li>
-					<li>Buckler</li>
-				</shieldTags>
-				<shieldChance>0.65</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_KnightRoxmont" or defName="DankPyon_Medieval_LordRoxmont"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>200</min>
-					<max>600</max>
-				</shieldMoney>
-				<shieldTags>
-					<li>HeaterShield</li>
-					<li>KiteShield</li>
-				</shieldTags>
-				<shieldChance>0.5</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
 	<!-- ==================== Apparel ==================== -->
 
 	<!-- ========== Helmet ========== -->
@@ -140,7 +54,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/statBases</xpath>
 		<value>
-			<Bulk>20</Bulk>
+			<Bulk>25</Bulk>
 			<WornBulk>5</WornBulk>
 		</value>
 	</Operation>
@@ -148,7 +62,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>4.5</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>3.2</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
@@ -162,25 +76,25 @@
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
 					<li>
-						<ArmorRating_Sharp>0.40</ArmorRating_Sharp>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
 						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
 						<parts>
 							<li>Shoulder</li>
 						</parts>
 					</li>
 					<li>
-						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
 						<parts>
 							<li>Shoulder</li>
 						</parts>
@@ -194,15 +108,15 @@
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/statBases/Mass</xpath>
 		<value>
 			<Bulk>100</Bulk>
-			<WornBulk>12</WornBulk>
-			<Mass>17</Mass>
+			<WornBulk>10</WornBulk>
+			<Mass>15</Mass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
@@ -213,7 +127,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/equippedStatOffsets</xpath>
 		<value>
-			<MeleeDodgeChance>-0.2</MeleeDodgeChance>
+			<MeleeDodgeChance>-0.15</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -327,111 +241,6 @@
 					</li>
 				</renderNodeProperties>
 			</apparel>
-		</value>
-	</Operation>
-
-	<!-- ==================== Weapons ==================== -->
-
-	<!-- ========== Pike ========== -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DankPyon_MeleeWeapon_PikeRoxmont"]</xpath>
-		<value>
-			<statBases>
-				<Bulk>12</Bulk>
-				<MeleeCounterParryBonus>1.27</MeleeCounterParryBonus>
-			</statBases>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.08</MeleeCritChance>
-				<MeleeParryChance>0.95</MeleeParryChance>
-				<MeleeDodgeChance>1.27</MeleeDodgeChance>
-			</equippedStatOffsets>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>shaft</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.3</cooldownTime>
-					<chanceFactor>0.1</chanceFactor>
-					<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>20</power>
-					<cooldownTime>1.5</cooldownTime>
-					<armorPenetrationBlunt>6</armorPenetrationBlunt>
-					<armorPenetrationSharp>3</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<!-- ========== Waraxe ========== -->
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DankPyon_MeleeWeapon_RoxWaraxe"]/statBases</xpath>
-		<value>
-			<Bulk>7</Bulk>
-			<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DankPyon_MeleeWeapon_RoxWaraxe"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.30</MeleeCritChance>
-				<MeleeParryChance>0.40</MeleeParryChance>
-				<MeleeDodgeChance>0.23</MeleeDodgeChance>
-			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DankPyon_MeleeWeapon_RoxWaraxe"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>shaft</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>3</power>
-					<cooldownTime>1.3</cooldownTime>
-					<chanceFactor>0.1</chanceFactor>
-					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>point</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>22</power>
-					<cooldownTime>1.7</cooldownTime>
-					<armorPenetrationBlunt>5</armorPenetrationBlunt>
-					<armorPenetrationSharp>2.5</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>edge</label>
-					<capacities>
-						<li>Cut</li>
-					</capacities>
-					<power>37</power>
-					<cooldownTime>2.18</cooldownTime>
-					<armorPenetrationBlunt>9.6</armorPenetrationBlunt>
-					<armorPenetrationSharp>1.0</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-				</li>
-			</tools>
 		</value>
 	</Operation>
 
