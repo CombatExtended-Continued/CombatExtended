@@ -40,6 +40,7 @@ Mod |
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
+[RH2] Faction: Gruppa Krovi   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: Utilitarian  |
