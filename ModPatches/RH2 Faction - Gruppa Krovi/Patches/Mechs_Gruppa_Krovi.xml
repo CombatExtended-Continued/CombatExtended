@@ -2,7 +2,7 @@
 <Patch>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>	Defs/ThingDef[
+		<xpath>Defs/ThingDef[
 			defName="RH2Mech_KV2Walker" or
 			defName="RH2Mech_TeslaDrone" or
 			defName="RH2Mech_PlasmaDrone"
@@ -10,7 +10,6 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
-				<!--or Vehicle?-->
 			</li>
 		</value>
 	</Operation>
@@ -62,6 +61,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RH2Mech_KV2Walker"]/butcherProducts</xpath>
+		<value>
+			<Ammo_127x108mm_FMJ>100</Ammo_127x108mm_FMJ>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="RH2Mech_KV2Walker"]</xpath>
 		<value>
@@ -92,13 +98,13 @@
 						</parts>
 					</li>
 					<li>
-						<ArmorRating_Sharp>.6</ArmorRating_Sharp>
+						<ArmorRating_Sharp>0.6</ArmorRating_Sharp>
 						<parts>
 							<li>MechanicalLeg</li>
 						</parts>
 					</li>
 					<li>
-						<ArmorRating_Blunt>.5</ArmorRating_Blunt>
+						<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
 						<parts>
 							<li>MechanicalLeg</li>
 						</parts>
@@ -332,4 +338,5 @@
 			<combatPower>450</combatPower>
 		</value>
 	</Operation>
+
 </Patch>
