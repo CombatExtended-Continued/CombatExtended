@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/HediffDef[defName="KijinAbyssalArm"]</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="KijinAbyssalArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+				<label>claw</label>
+				<capacities>
+					<li>Cut</li>
+				</capacities>
+				<!-- supposed to be 2.5x normal fist power, which is only 1 in CE. Rebalancing for something between a bionic arm and a power claw -->
+				<power>14</power>
+				<armorPenetrationSharp>0.65</armorPenetrationSharp>
+				<armorPenetrationBlunt>3</armorPenetrationBlunt>
+				<cooldownTime>2</cooldownTime>
+				</li>
+			</tools>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="KijinFireFistGene"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<!--Directly copied from 2.0 race tools patch-->
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>left fist</label>
+				<capacities>
+				<li>KijinFlameSmash</li>
+				</capacities>
+				<extraMeleeDamages>
+				<li>
+					<def>Flame</def>
+					<amount>1</amount>
+					<chance>0.3</chance>
+				</li>
+				</extraMeleeDamages>
+				<power>2</power>
+				<cooldownTime>1.12</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>0.586</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>right fist</label>
+				<capacities>
+				<li>KijinStunPunch</li>
+				</capacities>
+				<extraMeleeDamages>
+				<li>
+					<def>Stun</def>
+					<amount>5</amount>
+					<chance>0.3</chance>
+				</li>
+				</extraMeleeDamages>
+				<power>2</power>
+				<cooldownTime>1.12</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>0.586</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>2.99</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<chanceFactor>0.2</chanceFactor>
+				<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+			</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ManeuverDef[defName="KijinFlameSmash"]/verb/meleeDamageDef</xpath>
+		<value>
+			<meleeDamageDef>Flame_Secondary</meleeDamageDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ManeuverDef[defName="KijinStunPunch"]/verb/meleeDamageDef</xpath>
+		<value>
+			<meleeDamageDef>Blunt</meleeDamageDef>
+		</value>
+	</Operation>
+
+</Patch>

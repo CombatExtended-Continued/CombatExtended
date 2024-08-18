@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Dragonfire Ammo Sets -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_DragonFireArrow</defName>
+		<label>great arrows</label>
+		<ammoTypes>
+			<Ammo_GreatArrow_Stone>Projectile_DragonFireArrow</Ammo_GreatArrow_Stone>
+			<Ammo_GreatArrow_Steel>Projectile_DragonFireArrow</Ammo_GreatArrow_Steel>
+			<Ammo_GreatArrow_Venom>Projectile_DragonFireArrow</Ammo_GreatArrow_Venom>
+			<Ammo_GreatArrow_Flame>Projectile_DragonFireArrow</Ammo_GreatArrow_Flame>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_DragonFireArrow</defName>
+		<label>dragon fire arrow</label>
+		<graphicData>
+			<texPath>Things/Projectile/DragonfireArrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>30</speed>
+			<damageDef>BotchJob_DragonfireArrow</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.33</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+
+	<!-- Verdant Bow -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VerdantArrow</defName>
+		<label>verdant arrows</label>
+		<ammoTypes>
+			<Ammo_Arrow_Stone>Projectile_VerdantArrow_Stone</Ammo_Arrow_Stone>
+			<Ammo_Arrow_Steel>Projectile_VerdantArrow_Steel</Ammo_Arrow_Steel>
+			<Ammo_Arrow_Plasteel>Projectile_VerdantArrow_Plasteel</Ammo_Arrow_Plasteel>
+			<Ammo_Arrow_Venom>Projectile_VerdantArrow_Venom</Ammo_Arrow_Venom>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VerdantMOArrow</defName>
+		<label>verdant arrows</label>
+		<ammoTypes>
+			<Ammo_Arrow_Stone>Projectile_VerdantArrow_Stone</Ammo_Arrow_Stone>
+			<Ammo_Arrow_Steel>Projectile_VerdantArrow_Steel</Ammo_Arrow_Steel>
+			<Ammo_Arrow_Venom>Projectile_VerdantArrow_Venom</Ammo_Arrow_Venom>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_VerdantArrow_Stone</defName>
+		<label>verdant arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/VerdantBowArrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>40</speed>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>0.6</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.9</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_VerdantArrow_Steel</defName>
+		<label>verdant arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/VerdantBowArrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>1.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>6.4</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_VerdantArrow_Plasteel</defName>
+		<label>verdant arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/VerdantBowArrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>50</speed>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.54</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_Arrow_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_VerdantArrow_Venom</defName>
+		<label>verdant arrow (venom)</label>
+		<graphicData>
+			<texPath>Things/Projectile/VerdantBowArrow</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>ArrowVenom</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>1.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>6.4</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<!-- Ammo for Ghostly Flintlock -->
+
+	<!-- Ghostly Flintlock -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GhostFlintlock_MusketBall</defName>
+		<label>musket ball</label>
+		<ammoTypes>
+			<Ammo_MusketBall>Projectile_GhostFlintlock_MusketBall</Ammo_MusketBall>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_GhostFlintlock_MusketBall</defName>
+		<label>musket ball</label>
+		<graphicData>
+			<texPath>Things/Projectile/BotchJob_GhostBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>BotchJob_GhostBlast</damageDef>
+			<speed>35</speed>
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationSharp>3.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			<explosionRadius>1</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+</Defs>

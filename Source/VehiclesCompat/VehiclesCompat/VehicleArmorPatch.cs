@@ -214,7 +214,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
 
         public static bool TryPenetrateComponents(VehicleStatHandler stats, ref DamageInfo dinfo, List<VehicleComponent> components, VehicleComponent.VehiclePartDepth hitDepth, StringBuilder report)
         {
-            var componentsAtHitDepth = components.Where(comp => comp.props.depth == hitDepth && comp.HealthPercent > 0).OrderBy(x => Rand.Value * x.props.hitWeight);
+            var componentsAtHitDepth = components.Where(comp => comp.Depth == hitDepth && comp.HealthPercent > 0).OrderBy(x => Rand.Value * x.props.hitWeight);
             report?.AppendLine($"components=({string.Join(",", components.Select(c => c.props.label))})");
             report?.AppendLine($"hitDepth = {hitDepth}");
             report?.AppendLine($"components at hitDepth {hitDepth}: ({string.Join(",", componentsAtHitDepth.Select(comp => comp.props.label))})");
