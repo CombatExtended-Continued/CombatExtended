@@ -5,17 +5,17 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase" Name="HP_AmmoRecipeBase" Abstract="true">
 		<recipeUsers>
-			<li>GW_AmmoBench</li>
+			<li>GWAmmoBench</li>
 		</recipeUsers>
 	</RecipeDef>
 
 	<!--Production Bench -->
 
     <ThingDef ParentName="BenchBase">
-		<defName>GW_AmmoBench</defName>
+		<defName>GWAmmoBench</defName>
 		<label>imperium loading bench</label>
 		<thingClass>Building_WorkTable</thingClass>
-		<description>A workstation for creating ammuntion for imperium weapons.</description>
+		<description>A workstation for creating ammunition for imperium weapons.</description>
 		<graphicData>
 			<texPath>Things/Building/Bench/GW_LoadingBench</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>
@@ -57,6 +57,9 @@
 		<inspectorTabs>
 			<li>ITab_Bills</li>
 		</inspectorTabs>
+        <researchPrerequisites>
+            <li>MicroelectronicsBasics</li>
+        </researchPrerequisites>
 		<comps>
 			<li Class="CompProperties_AffectedByFacilities">
 				<linkableFacilities>
@@ -81,7 +84,7 @@
         <workType>Smithing</workType>
         <priorityInType>60</priorityInType>
         <fixedBillGiverDefs>
-            <li>GW_AmmoBench</li>
+            <li>GWAmmoBench</li>
         </fixedBillGiverDefs>
         <verb>produce ammo</verb>
         <gerund>producing ammo at</gerund>
