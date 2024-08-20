@@ -118,11 +118,11 @@ def makePublicizer(p, verbose):
         os.chdir(p)
         downloadLib("Mono.Options", "6.6.0.161",f"{tdir}/downloads/mono.options.zip", verbose=verbose)
         downloadLib("Mono.Cecil", "0.11.4",f"{tdir}/downloads/mono.cecil.zip", verbose=verbose)
-        system(f"unzip", *quiet, "-o", "{tdir}/downloads/mono.cecil.zip", "-d", ".")
-        system(f"unzip", *quiet, "-o", "{tdir}/downloads/mono.options.zip", "-d", ".")
+        system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.cecil.zip", "-d", ".")
+        system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.options.zip", "-d", ".")
         os.system("cp lib/net40/*dll .")
-        os.system("csc -out:AssemblyPublicizer.exe ./AssemblyPublicizer/AssemblyPublicizer.cs ./AssemblyPublicizer/Properties/AssemblyInfo.cs -r:Mono.Options.dll -r:Mono.Cecil.dll")
-        os.system("mono --aot AssemblyPublicizer.exe")
+        system("csc", "-out:AssemblyPublicizer.exe", "./AssemblyPublicizer/AssemblyPublicizer.cs", "./AssemblyPublicizer/Properties/AssemblyInfo.cs", "-r:Mono.Options.dll", "-r:Mono.Cecil.dll")
+        system("mono", "--aot", "AssemblyPublicizer.exe")
         os.chdir(cwd)
     return ap_path
 
@@ -251,8 +251,8 @@ def main(argv=sys.argv):
     options = parseArgs(argv)
     verbose = options.verbose
 
-    os.system(f"mkdir -p {tdir}/downloads/unpack")
-    os.system(f"mkdir -p {options.reference}")
+    system(f"mkdir", "-p", f"{tdir}/downloads/unpack")
+    system(f"mkdir", "-p", options.reference)
         
     packages, libraries, removed_libraries, publicized_libraries, sources = parse_csproj(options.csproj, options.verbose)
     if publicized_libraries:
@@ -267,7 +267,7 @@ def main(argv=sys.argv):
             downloadLib(package.name, package.version, package.destination, verbose=verbose)
             unpackLib(package.destination, f"{tdir}/downloads/unpack", verbose=verbose)
             time.sleep(1)
-        os.system(f"chmod -R +r {tdir}/downloads/unpack")
+        system(f"chmod", "-R", "+r", f"{tdir}/downloads/unpack")
         os.system(f"cp -r {tdir}/downloads/unpack/ref/net472/* {options.reference}")
         os.system(f"cp -r {tdir}/downloads/unpack/lib/net472/* {options.reference}")
 
