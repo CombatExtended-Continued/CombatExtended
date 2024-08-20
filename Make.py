@@ -6,11 +6,18 @@ from xml.dom.minidom import parse as XMLOpen
 import tempfile
 import time
 from dataclasses import dataclass
+import subprocess
 
 tdir = tempfile.gettempdir()
 
 args = ["csc", "-unsafe", "-warnaserror", "-nostdlib", "-target:library"]
 
+
+def system(*cmd):
+    sp = subprocess.Popen(cmd)
+    sp.wait()
+    return sp.poll()
+    
 
 @dataclass
 class PackageReference(object):
@@ -60,15 +67,16 @@ def parseArgs(argv):
 def downloadLib(name, version, dest, verbose):
     if verbose:
         print(f"Downloading {version} of {name} from nuget")
-    quiet = "-q" if verbose < 5 else ""
-    if os.system(f"wget {quiet} https://www.nuget.org/api/v2/package/{name}/{version} -O {dest}"):
+    quiet = ["-q"] if verbose < 5 else []
+    args = ["wget", *quiet, f"https://www.nuget.org/api/v2/package/{name}/{version}", "-O", dest]
+    if system(*args):
         raise Exception(f"Can't find version {version} of {name} on nuget")
 
 
 def unpackLib(path, dest, verbose):
     cwd = os.getcwd()
-    quiet = "-q" if verbose < 6 else ""
-    os.system(f"unzip {quiet} -o {path} -d {dest}")
+    quiet = ["-q"] if verbose < 6 else []
+    system("unzip", *quiet, "-o", path, "-d", dest)
     
 
 def resolveLibrary(library, reference, csproj, verbose):
@@ -91,7 +99,7 @@ def publicize(p, publicizer, verbose):
         print(f"Publicizing Assembly: {p}")
     cwd = os.getcwd()
     os.chdir(p.rsplit('/',1)[0])
-    os.system(f"mono {publicizer} --exit -i {p} -o {p[:-4]}_publicized.dll")
+    system(f"mono", publicizer, "--exit", "-i", p, "-o", f"{p[:-4]}_publicized.dll")
     os.chdir(cwd)
     return p[:-4]+'_publicized.dll'
 
@@ -105,13 +113,13 @@ def makePublicizer(p, verbose):
     else:
         if verbose:
             print("Making AssemblyPublicizer")
-        quiet = "-q" if verbose < 5 else ""
+        quiet = ["-q"] if verbose < 5 else []
         cwd = os.getcwd()
         os.chdir(p)
         downloadLib("Mono.Options", "6.6.0.161",f"{tdir}/downloads/mono.options.zip", verbose=verbose)
         downloadLib("Mono.Cecil", "0.11.4",f"{tdir}/downloads/mono.cecil.zip", verbose=verbose)
-        os.system(f"unzip {quiet} -o {tdir}/downloads/mono.cecil.zip -d .")
-        os.system(f"unzip {quiet} -o {tdir}/downloads/mono.options.zip -d .")
+        system(f"unzip", *quiet, "-o", "{tdir}/downloads/mono.cecil.zip", "-d", ".")
+        system(f"unzip", *quiet, "-o", "{tdir}/downloads/mono.options.zip", "-d", ".")
         os.system("cp lib/net40/*dll .")
         os.system("csc -out:AssemblyPublicizer.exe ./AssemblyPublicizer/AssemblyPublicizer.cs ./AssemblyPublicizer/Properties/AssemblyInfo.cs -r:Mono.Options.dll -r:Mono.Cecil.dll")
         os.system("mono --aot AssemblyPublicizer.exe")
