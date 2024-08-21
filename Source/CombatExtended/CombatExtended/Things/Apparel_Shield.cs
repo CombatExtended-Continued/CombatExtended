@@ -57,7 +57,7 @@ namespace CombatExtended
             if (shieldCoverage != null)
             {
                 yield return new StatDrawEntry(StatCategoryDefOf.Apparel, "CE_Shield_Coverage".Translate(), ShieldDefExtension.GetShieldProtectedAreas(BodyDefOf.Human, this.def), "CE_Shield_Coverage_Desc".Translate(), 800, null);
-            }               
+            }
             yield break;
         }
         public override void DrawWornExtras()

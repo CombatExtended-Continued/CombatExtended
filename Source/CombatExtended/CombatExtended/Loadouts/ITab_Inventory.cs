@@ -518,7 +518,7 @@ namespace CombatExtended
             armorCache.Clear();
             float naturalArmor = SelPawnForGear.GetStatValue(stat);
             List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
-            var shield = wornApparel.FirstOrDefault(x => x is Apparel_Shield);            
+            var shield = wornApparel.FirstOrDefault(x => x is Apparel_Shield);
             foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
             {
                 //TODO: 1.5 should be Neck
@@ -538,7 +538,7 @@ namespace CombatExtended
                     if (shield != null)
                     {
                         var shieldCoverage = shield.def.GetModExtension<ShieldDefExtension>().PartIsCoveredByShield(part, SelPawnForGear);
-                        if(shieldCoverage)
+                        if (shieldCoverage)
                         {
                             armorValue += shield.GetStatValue(stat);
                         }

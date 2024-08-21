@@ -209,10 +209,10 @@ namespace CombatExtended.HarmonyCE
             {
                 code[startIndex].opcode = OpCodes.Nop;
                 //code[endIndex].opcode = OpCodes.Nop;
-                code.RemoveRange(startIndex + 1, endIndex-startIndex-1);
-                code.Insert(startIndex+1, new CodeInstruction(OpCodes.Ldarg_0));
-                code.Insert(startIndex+2, new CodeInstruction(OpCodes.Ldloc_0));
-                code.Insert(startIndex+3, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingDef_DescriptionDetailed), "AddShieldCover", null, null)));
+                code.RemoveRange(startIndex + 1, endIndex - startIndex - 1);
+                code.Insert(startIndex + 1, new CodeInstruction(OpCodes.Ldarg_0));
+                code.Insert(startIndex + 2, new CodeInstruction(OpCodes.Ldloc_0));
+                code.Insert(startIndex + 3, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingDef_DescriptionDetailed), "AddShieldCover", null, null)));
             }
             foreach (var c in code)
             {
