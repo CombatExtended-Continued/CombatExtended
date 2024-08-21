@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Expanded Framework</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Shield Base -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_ShieldBase"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>ArmorSmithableBase</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_ShieldBase"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Apparel_Shield</thingClass>
+						<thingCategories>
+							<li>Shields</li>
+						</thingCategories>
+						<storedConceptLearnOpportunity>CE_Shields</storedConceptLearnOpportunity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_ShieldBase"]/apparel</xpath>
+					<value>
+						<apparel>
+							<countsAsClothingForNudity>false</countsAsClothingForNudity>
+							<careIfWornByCorpse>false</careIfWornByCorpse>
+							<bodyPartGroups>
+								<li>LeftShoulder</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Shield</li>
+							</layers>
+						</apparel>
+						<tradeTags>
+							<li>Armor</li>
+						</tradeTags>						
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_ShieldBase"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+					<value>
+						<ReloadSpeed>-0.2</ReloadSpeed>
+						<MeleeHitChance>-1</MeleeHitChance>
+						<ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
+						<AimingAccuracy>-0.08</AimingAccuracy>
+						<Suppressability>-0.25</Suppressability>
+						<MeleeCritChance>-0.05</MeleeCritChance>
+						<MeleeParryChance>1.0</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_ShieldBase"]/tools</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_ShieldBase"]/weaponTags</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[@Name="pphhyy_Demigryph_ShieldBase"]/equippedAngleOffset</xpath>
+				</li>
+
+				<!-- All Shields -->
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[
+					defName="pphhyy_Human_DemigyryphShield" or
+					defName="pphhyy_Human_DemigyryphRaiderShield" or
+					defName="pphhyy_Human_DemigyryphGildedShield" or
+					defName="pphhyy_Human_DemigyryphHunterShield" or
+					defName="pphhyy_Human_DemigyryphChampionShield"
+					]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[
+					defName="pphhyy_Human_DemigyryphShield" or
+					defName="pphhyy_Human_DemigyryphRaiderShield" or
+					defName="pphhyy_Human_DemigyryphGildedShield" or
+					defName="pphhyy_Human_DemigyryphHunterShield" or
+					defName="pphhyy_Human_DemigyryphChampionShield"
+					]</xpath>
+					<value>
+						<li Class="CombatExtended.ShieldDefExtension">
+							<shieldCoverage>
+								<li>Hands</li>
+								<li>Arms</li>
+								<li>Shoulders</li>
+								<li>Torso</li>
+								<li>Neck</li>
+							</shieldCoverage>
+						</li>
+					</value>
+				</li>
+
+				<!-- Demigyryph Shield -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphShield"]/statBases</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>7</StuffEffectMultiplierArmor>	
+						<Bulk>12</Bulk>
+						<WornBulk>8</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphShield"]</xpath>
+					<value>
+						<apparel>
+							<tags>
+								<li>pphhyy_DemigyryphShield</li>
+								<li>DemigyryphShield</li>
+							</tags>
+							<renderNodeProperties>
+								<li>
+									<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+									<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+									<texPath>Weapons/DemigyryphShield/DemigyryphShield</texPath>
+									<shaderTypeDef>CutoutComplex</shaderTypeDef>
+									<parentTagDef>ApparelBody</parentTagDef>
+									<drawData>
+										<scale>0.6</scale>
+										<defaultData>
+											<layer>80</layer>
+										</defaultData>
+										<dataEast>
+											<layer>-5</layer>
+											<offset>(0, 0, -0.1)</offset>
+											<rotationOffset>30</rotationOffset>
+										</dataEast>
+										<dataWest>
+											<rotationOffset>-30</rotationOffset>
+										</dataWest>
+										<dataNorth>
+											<layer>-5</layer>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataNorth>
+										<dataSouth>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataSouth>
+									</drawData>
+								</li>
+							</renderNodeProperties>
+						</apparel>
+					</value>
+				</li>
+
+				<!-- Raider Shield -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphRaiderShield"]/statBases/Mass</xpath>
+					<value>
+						<Mass>3</Mass>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
+						<Bulk>12</Bulk>
+						<WornBulk>8</WornBulk>						
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphRaiderShield"]</xpath>
+					<value>
+						<apparel>
+							<tags>
+								<li>pphhyy_DemigyryphShield</li>
+								<li>DemigyryphRaiderShield</li>
+							</tags>
+							<renderNodeProperties>
+								<li>
+									<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+									<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+									<texPath>Weapons/DemigyryphRaiderShield/DemigyryphRaiderShield</texPath>
+									<shaderTypeDef>CutoutComplex</shaderTypeDef>
+									<parentTagDef>ApparelBody</parentTagDef>
+									<drawData>
+										<scale>0.6</scale>
+										<defaultData>
+											<layer>80</layer>
+										</defaultData>
+										<dataEast>
+											<layer>-5</layer>
+											<offset>(0, 0, -0.1)</offset>
+											<rotationOffset>30</rotationOffset>
+										</dataEast>
+										<dataWest>
+											<rotationOffset>-30</rotationOffset>
+										</dataWest>
+										<dataNorth>
+											<layer>-5</layer>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataNorth>
+										<dataSouth>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataSouth>
+									</drawData>
+								</li>
+							</renderNodeProperties>
+						</apparel>
+					</value>
+				</li>
+
+				<!-- Gilded Shield -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphGildedShield"]/statBases/Mass</xpath>
+					<value>
+						<Mass>3</Mass>
+						<Bulk>12</Bulk>
+						<WornBulk>8</WornBulk>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphGildedShield"]</xpath>
+					<value>
+						<apparel>
+							<tags>
+								<li>pphhyy_DemigyryphShield</li>
+								<li>DemigyryphGildedShield</li>
+							</tags>
+							<renderNodeProperties>
+								<li>
+									<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+									<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+									<texPath>Weapons/DemigyryphGildedShield/DemigyryphGildedShield</texPath>
+									<shaderTypeDef>CutoutComplex</shaderTypeDef>
+									<parentTagDef>ApparelBody</parentTagDef>
+									<drawData>
+										<scale>0.6</scale>
+										<defaultData>
+											<layer>80</layer>
+										</defaultData>
+										<dataEast>
+											<layer>-5</layer>
+											<offset>(0, 0, -0.1)</offset>
+											<rotationOffset>30</rotationOffset>
+										</dataEast>
+										<dataWest>
+											<rotationOffset>-30</rotationOffset>
+										</dataWest>
+										<dataNorth>
+											<layer>-5</layer>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataNorth>
+										<dataSouth>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataSouth>
+									</drawData>
+								</li>
+							</renderNodeProperties>
+						</apparel>
+					</value>
+				</li>
+
+				<!-- Hunter Shield -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHunterShield"]/statBases/Mass</xpath>
+					<value>
+						<Mass>3.5</Mass>
+						<Bulk>12</Bulk>
+						<WornBulk>8</WornBulk>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphHunterShield"]</xpath>
+					<value>
+						<apparel>
+							<tags>
+								<li>pphhyy_DemigyryphShield</li>
+								<li>DemigyryphHunterShield</li>
+							</tags>
+							<renderNodeProperties>
+								<li>
+									<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+									<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+									<texPath>Weapons/DemigyryphHunterShield/DemigyryphHunterShield</texPath>
+									<shaderTypeDef>CutoutComplex</shaderTypeDef>
+									<parentTagDef>ApparelBody</parentTagDef>
+									<drawData>
+										<scale>0.6</scale>
+										<defaultData>
+											<layer>80</layer>
+										</defaultData>
+										<dataEast>
+											<layer>-5</layer>
+											<offset>(0, 0, -0.1)</offset>
+											<rotationOffset>30</rotationOffset>
+										</dataEast>
+										<dataWest>
+											<rotationOffset>-30</rotationOffset>
+										</dataWest>
+										<dataNorth>
+											<layer>-5</layer>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataNorth>
+										<dataSouth>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataSouth>
+									</drawData>
+								</li>
+							</renderNodeProperties>
+						</apparel>
+					</value>
+				</li>
+
+				<!-- Champion Shield -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphChampionShield"]/statBases/Mass</xpath>
+					<value>
+						<Mass>3.5</Mass>
+						<Bulk>12</Bulk>
+						<WornBulk>8</WornBulk>
+						<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>	
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="pphhyy_Human_DemigyryphChampionShield"]</xpath>
+					<value>
+						<apparel>
+							<tags>
+								<li>pphhyy_DemigyryphShield</li>
+								<li>DemigyryphChampionShield</li>
+							</tags>
+							<renderNodeProperties>
+								<li>
+									<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+									<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+									<texPath>Weapons/DemigyryphChampionShield/DemigyryphChampionShield</texPath>
+									<shaderTypeDef>CutoutComplex</shaderTypeDef>
+									<parentTagDef>ApparelBody</parentTagDef>
+									<drawData>
+										<scale>0.6</scale>
+										<defaultData>
+											<layer>80</layer>
+										</defaultData>
+										<dataEast>
+											<layer>-5</layer>
+											<offset>(0, 0, -0.1)</offset>
+											<rotationOffset>30</rotationOffset>
+										</dataEast>
+										<dataWest>
+											<rotationOffset>-30</rotationOffset>
+										</dataWest>
+										<dataNorth>
+											<layer>-5</layer>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataNorth>
+										<dataSouth>
+											<offset>(0.15, 0, -0.15)</offset>
+										</dataSouth>
+									</drawData>
+								</li>
+							</renderNodeProperties>
+						</apparel>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

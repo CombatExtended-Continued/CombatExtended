@@ -20,10 +20,5 @@ namespace CombatExtended.Compatibility
         {
             Log.Message("Combat Extended :: Installing SOS2");
         }
-
-        public IEnumerable<string> GetCompatList()
-        {
-            yield return "SOS2Compat";
-        }
     }
 }

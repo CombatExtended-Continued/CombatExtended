@@ -40,11 +40,6 @@ namespace CombatExtended.Compatibility
             HitSoundDef = (SoundDef)t.GetField("HitSoundDef", BindingFlags.Static | BindingFlags.Public).GetValue(null);
         }
 
-
-        public IEnumerable<string> GetCompatList()
-        {
-            yield break;
-        }
         public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
         {
             /* Check if an active shield can block this projectile
