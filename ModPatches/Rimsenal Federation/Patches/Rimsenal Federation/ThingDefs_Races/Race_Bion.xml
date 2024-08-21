@@ -9,41 +9,120 @@
 			</li>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="BaseBion"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+			<ArmorRating_Blunt>30</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Heat</xpath>
 		<value>
-			<ArmorRating_Heat>0.70</ArmorRating_Heat>
+			<ArmorRating_Heat>1.40</ArmorRating_Heat>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bion_Base"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+			<ArmorRating_Sharp>44</ArmorRating_Sharp>
 			<NightVisionEfficiency>0.70</NightVisionEfficiency>
+			<PainShockThreshold>1</PainShockThreshold>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bion_Stalker"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>18</ArmorRating_Sharp>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+			<ArmorRating_Blunt>15</ArmorRating_Blunt>
 			<NightVisionEfficiency>0.90</NightVisionEfficiency>
+			<PainShockThreshold>1</PainShockThreshold>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bion_Stalker"]/statBases/ArmorRating_Heat</xpath>
 		<value>
-			<ArmorRating_Heat>0.70</ArmorRating_Heat>
+			<ArmorRating_Heat>1.40</ArmorRating_Heat>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Bion_Base"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Bion_Base"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bion_Base"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>700</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0</MinArmorPct>
+				<MinArmorValueSharp>16.5</MinArmorValueSharp>
+				<MinArmorValueBlunt>6</MinArmorValueBlunt>
+				<MinArmorValueHeat>0.7</MinArmorValueHeat>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Bion_Stalker"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Bion_Stalker"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Bion_Stalker"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>375</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0</MinArmorPct>
+				<MinArmorValueSharp>13.5</MinArmorValueSharp>
+				<MinArmorValueBlunt>3</MinArmorValueBlunt>
+				<MinArmorValueHeat>0.7</MinArmorValueHeat>
+			</li>
 		</value>
 	</Operation>
 
@@ -52,8 +131,8 @@
 		<value>
 			<CarryWeight>50</CarryWeight>
 			<CarryBulk>50</CarryBulk>
-			<AimingAccuracy>1.2</AimingAccuracy>
-			<ShootingAccuracyPawn>1.2</ShootingAccuracyPawn>
+			<AimingAccuracy>1.3</AimingAccuracy>
+			<ShootingAccuracyPawn>1.3</ShootingAccuracyPawn>
 			<MeleeDodgeChance>0.15</MeleeDodgeChance>
 			<MeleeCritChance>0.15</MeleeCritChance>
 			<MeleeParryChance>0.1</MeleeParryChance>
@@ -82,7 +161,7 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>2</power>
+					<power>8</power>
 					<cooldownTime>1.5</cooldownTime>
 					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
 					<surpriseAttack>
@@ -93,14 +172,14 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
-					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right fist</label>
 					<capacities>
-						<li>Blunt</li>
+						<li>Stab</li>
 					</capacities>
-					<power>2</power>
+					<power>12</power>
 					<cooldownTime>1.5</cooldownTime>
 					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
 					<surpriseAttack>
@@ -111,7 +190,8 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
-					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>5</armorPenetrationSharp>
 				</li>
 			</tools>
 		</value>

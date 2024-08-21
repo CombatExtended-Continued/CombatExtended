@@ -13,21 +13,22 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+			<ArmorRating_Blunt>200</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>35</ArmorRating_Sharp>
+			<ArmorRating_Sharp>75</ArmorRating_Sharp>
+			<PainShockThreshold>1</PainShockThreshold>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]/statBases/ArmorRating_Heat</xpath>
 		<value>
-			<ArmorRating_Heat>0.95</ArmorRating_Heat>
+			<ArmorRating_Heat>1.90</ArmorRating_Heat>
 		</value>
 	</Operation>
 
@@ -36,13 +37,63 @@
 		<value>
 			<CarryWeight>60</CarryWeight>
 			<CarryBulk>60</CarryBulk>
-			<AimingAccuracy>1.1</AimingAccuracy>
-			<ShootingAccuracyPawn>1.1</ShootingAccuracyPawn>
+			<AimingAccuracy>1.4</AimingAccuracy>
+			<ShootingAccuracyPawn>1.4</ShootingAccuracyPawn>
 			<MeleeDodgeChance>0.05</MeleeDodgeChance>
 			<MeleeCritChance>0.4</MeleeCritChance>
 			<MeleeParryChance>0.3</MeleeParryChance>
 			<SmokeSensitivity>0</SmokeSensitivity>
 			<NightVisionEfficiency>0.80</NightVisionEfficiency>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Federator"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Federator"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Federator"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1875</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0</MinArmorPct>
+				<MinArmorValueSharp>26.25</MinArmorValueSharp>
+				<MinArmorValueBlunt>20</MinArmorValueBlunt>
+				<MinArmorValueHeat>0.7</MinArmorValueHeat>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_Federator"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+						<parts>
+							<li>SightSensor</li>
+						</parts>
+					</li>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+						<parts>
+							<li>SightSensor</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
 		</value>
 	</Operation>
 
@@ -83,9 +134,9 @@
 				<li Class="CombatExtended.ToolCE">
 					<label>right fist</label>
 					<capacities>
-						<li>Blunt</li>
+						<li>Stab</li>
 					</capacities>
-					<power>35</power>
+					<power>45</power>
 					<cooldownTime>2.67</cooldownTime>
 					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
 					<surpriseAttack>
@@ -97,6 +148,7 @@
 						</extraMeleeDamages>
 					</surpriseAttack>
 					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+					<armorPenetrationSharp>10</armorPenetrationSharp>
 				</li>
 			</tools>
 		</value>
