@@ -106,6 +106,7 @@ namespace CombatExtended
         public bool canTargetSelf;
         public bool castShadow = true;
         public bool logMisses = true;
+        protected bool ignoreRoof;
 
         public GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
         public GlobalTargetInfo globalSourceInfo = GlobalTargetInfo.Invalid;
@@ -348,6 +349,7 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
             Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
+            Scribe_Values.Look(ref ignoreRoof, "ignoreRoof", true);
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
@@ -550,6 +552,10 @@ namespace CombatExtended
                 this.castShadow = props.castShadow;
                 this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
+            }
+            if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Position.Roofed(launcher.Map))
+            {
+                ignoreRoof = true;
             }
             Launch(launcher, origin, equipment);
         }
@@ -867,7 +873,7 @@ namespace CombatExtended
 
         protected virtual bool TryCollideWithRoof(IntVec3 cell)
         {
-            if (!cell.Roofed(Map))
+            if (!cell.Roofed(Map) || ignoreRoof)
             {
                 return false;
             }
