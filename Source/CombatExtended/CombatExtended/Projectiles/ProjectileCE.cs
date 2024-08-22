@@ -553,7 +553,7 @@ namespace CombatExtended
                 this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
             }
-            if (shotHeight >= CollisionVertical.WallCollisionHeight && Position.Roofed(launcher.Map) && !def.projectile.flyOverhead)
+            if (shotHeight >= CollisionVertical.WallCollisionHeight && Position.Roofed(launcher.Map))
             {
                 ignoreRoof = true;
             }
@@ -1199,6 +1199,11 @@ namespace CombatExtended
             if (dangerFactor > 0f && nextPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
             {
                 DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * dangerFactor);
+            }
+            //If a flyoverhead ignore roof projectile is descending, enable roof check.
+            if (ignoreRoof && def.projectile.flyOverhead && shotAngle < 0)
+            {
+                ignoreRoof = false;
             }
         }
 
