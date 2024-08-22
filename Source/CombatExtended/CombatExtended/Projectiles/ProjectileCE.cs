@@ -553,7 +553,7 @@ namespace CombatExtended
                 this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
             }
-            if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Position.Roofed(launcher.Map) && !def.projectile.flyOverhead)
+            if (shotHeight >= CollisionVertical.WallCollisionHeight && Position.Roofed(launcher.Map) && !def.projectile.flyOverhead)
             {
                 ignoreRoof = true;
             }
