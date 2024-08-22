@@ -847,7 +847,7 @@ namespace CombatExtended
             }
             if (caster?.Map == null || !targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
             {
-                report = "Out of bounds";
+                report = "CE_OutofBounds".Translate();
                 return false;
             }
             // Check target self
@@ -855,7 +855,7 @@ namespace CombatExtended
             {
                 if (!verbProps.targetParams.canTargetSelf)
                 {
-                    report = "Can't target self";
+                    report = "CE_NoSelfTarget".Translate();
                     return false;
                 }
                 return true;
@@ -866,7 +866,7 @@ namespace CombatExtended
                 RoofDef roofDef = caster.Map.roofGrid.RoofAt(targ.Cell);
                 if (roofDef != null && roofDef.isThickRoof)
                 {
-                    report = "Blocked by roof";
+                    report = "CE_BlockedRoof".Translate();
                     return false;
                 }
             }
@@ -889,7 +889,7 @@ namespace CombatExtended
                         //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
                         if (!current.AllowVerbCast(this) && !(current.TryGetComp<CompShield>() != null && isTurretOperator))
                         {
-                            report = "Shooting disallowed by " + current.LabelShort;
+                            report = "CE_BlockedShield".Translate() + current.LabelShort;
                             return false;
                         }
                     }
@@ -902,15 +902,15 @@ namespace CombatExtended
                 float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
                 if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
                 {
-                    report = "Out of range";
+                    report = "CE_BlockedMaxRange".Translate();
                 }
                 else if (lengthHorizontalSquared < verbProps.minRange * verbProps.minRange)
                 {
-                    report = "Within minimum range";
+                    report = "CE_BlockedMinRange".Translate();
                 }
                 else
                 {
-                    report = "No line of sight";
+                    report = "CE_NoLoS".Translate();
                 }
                 return false;
             }
