@@ -62,7 +62,7 @@
 		</projectile>
 	</ThingDef>
 
-	<!-- ==========  Plasma Bombard Projectile =========== -->
+	<!-- ==========  Plasma Artillery Projectile =========== -->
 
 	<ThingDef ParentName="BaseExplosiveBullet">
 		<defName>Bullet_PlasmaTurretBombard</defName>
@@ -78,9 +78,98 @@
 			<speed>0</speed>
 			<flyOverhead>true</flyOverhead>
 			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>25</damageAmountBase>
+			<damageAmountBase>30</damageAmountBase>
+			<explosionRadius>2.5</explosionRadius>
+			<gravityFactor>2.5</gravityFactor>
+			<pelletCount>10</pelletCount>
+			<spreadMult>10</spreadMult>
+			<shellingProps>
+				<tilesPerTick>0.10</tilesPerTick>
+				<range>30</range>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_Federation_PlasmaBlast</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/MFlux</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Plasma</damageDef>
+			<speed>0</speed>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>120</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+			<gravityFactor>5</gravityFactor>
+			<shellingProps>
+				<tilesPerTick>0.005</tilesPerTick>
+				<range>50</range>
+				<iconPath>Things/Projectile/MFlux</iconPath>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_Federation_PlasmaCluster</defName>
+		<thingClass>CombatExtended.ProjectileCE_HeightFuse</thingClass>
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/MFlux</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<soundExplode>Explosion_OpticBurst</soundExplode>
+			<damageAmountBase>0</damageAmountBase>
+			<explosionRadius>0.9</explosionRadius>
+			<speed>0</speed>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>0</damageAmountBase>
 			<explosionRadius>2.5</explosionRadius>
 			<gravityFactor>5</gravityFactor>
+			<aimHeightOffset>11</aimHeightOffset>
+			<shellingProps>
+				<tilesPerTick>0.005</tilesPerTick>
+				<range>50</range>
+				<damage>0.46</damage>
+				<iconPath>Things/Projectile/MFlux</iconPath>
+			</shellingProps>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Bullet_Federation_PlasmaSub>15</Bullet_Federation_PlasmaSub>
+				</fragments>
+				<fragAngleRange>-90~-10</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_Federation_PlasmaSub</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Plasma</damageDef>
+			<speed>3</speed>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>30</damageAmountBase>
+			<explosionRadius>2.5</explosionRadius>
+			<gravityFactor>0.01</gravityFactor>
 		</projectile>
 	</ThingDef>
 
@@ -95,8 +184,8 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>40</damageAmountBase>
-			<explosionRadius>0.9</explosionRadius>
+			<damageAmountBase>36</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
 		</projectile>
 	</ThingDef>
 
@@ -117,6 +206,10 @@
 			<dropsCasings>false</dropsCasings>
 			<damageAmountBase>120</damageAmountBase>
 			<explosionRadius>4</explosionRadius>
+			<shellingProps>
+				<tilesPerTick>0.01</tilesPerTick>
+				<range>45</range>
+			</shellingProps>
 		</projectile>
 	</ThingDef>
 
