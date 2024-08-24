@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- Keep original faction commonality total -->
 	<!-- Add Ranged Drudge to faction -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/FactionDef[defName="BotchJob_ProfanedFaction"]/pawnGroupMakers/li/options/BotchJob_ProfanedDrudge</xpath>
 		<value>
 			<BotchJob_ProfanedDrudge>20</BotchJob_ProfanedDrudge>
 			<BotchJob_ProfanedDrudge_Ranged>20</BotchJob_ProfanedDrudge_Ranged>
+		</value>
+	</Operation>
+	
+	<!-- Add Ranged Scourge Lord to faction -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/FactionDef[defName="BotchJob_ProfanedFaction"]/pawnGroupMakers/li/options/BotchJob_ScourgeLord</xpath>
+		<value>
+			<BotchJob_ScourgeLord>0.75</BotchJob_ScourgeLord>
+			<BotchJob_ScourgeLord_Ranged>0.25</BotchJob_ScourgeLord_Ranged>
 		</value>
 	</Operation>
 
