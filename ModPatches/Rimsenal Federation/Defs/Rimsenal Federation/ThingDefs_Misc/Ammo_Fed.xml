@@ -35,6 +35,7 @@
 		<graphicData>
 			<texPath>Things/Projectile/Plasma</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<suppressionFactor>6.0</suppressionFactor>
@@ -135,7 +136,7 @@
 			<gravityFactor>0.01</gravityFactor>
 			<dropsCasings>false</dropsCasings>
 			<damageAmountBase>30</damageAmountBase>
-			<explosionRadius>1.5</explosionRadius>
+			<explosionRadius>2.1</explosionRadius>
 		</projectile>
 	</ThingDef>
 
@@ -271,10 +272,32 @@
 		</projectile>
 	</ThingDef>
 
-	<!-- ==========  Plasma Caster Projectile =========== -->
+	<!-- ========== Plasma Caster Projectile =========== -->
 
 	<ThingDef ParentName="BasePlasmaBombCE">
 		<defName>Bullet_PlasmaCaster</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>plasma sphere</label>
+		<graphicData>
+			<texPath>Things/Projectile/Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Plasma</damageDef>
+			<speed>20</speed>
+			<gravityFactor>0.01</gravityFactor>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>25</damageAmountBase>
+			<explosionRadius>2.1</explosionRadius>
+			<pelletCount>4</pelletCount>
+			<spreadMult>4.45</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<!-- ========== Federation Plasma Caster Projectile =========== -->
+
+	<ThingDef ParentName="BasePlasmaBombCE">
+		<defName>Bullet_PlasmaCaster_Fed</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>plasma sphere</label>
 		<graphicData>
@@ -287,7 +310,7 @@
 			<speed>8</speed>
 			<gravityFactor>0.01</gravityFactor>
 			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>75</damageAmountBase>
+			<damageAmountBase>90</damageAmountBase>
 			<explosionRadius>3.5</explosionRadius>
 		</projectile>
 	</ThingDef>
