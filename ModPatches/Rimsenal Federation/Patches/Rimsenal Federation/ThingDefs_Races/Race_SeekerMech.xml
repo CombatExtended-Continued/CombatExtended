@@ -13,14 +13,14 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_Seeker"]/statBases</xpath>
 		<value>
-			<ArmorRating_Blunt>5</ArmorRating_Blunt>
+			<ArmorRating_Blunt>8</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Seeker"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -36,6 +36,31 @@
 			<MeleeParryChance>0.025</MeleeParryChance>
 			<SmokeSensitivity>0</SmokeSensitivity>
 			<NightVisionEfficiency>1</NightVisionEfficiency>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Seeker"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Seeker"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Seeker"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>125</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0</MinArmorPct>
+				<MinArmorValueSharp>2</MinArmorValueSharp>
+				<MinArmorValueBlunt>0</MinArmorValueBlunt>
+			</li>
 		</value>
 	</Operation>
 

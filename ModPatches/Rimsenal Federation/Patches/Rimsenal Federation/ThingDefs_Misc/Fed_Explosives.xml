@@ -221,4 +221,28 @@
 			</ThingDef>
 		</value>
 	</Operation>
+	
+	<!-- ========== Tools + Tradetag ========== -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AD_FedPlasmaGrenades" or defName="AD_PBomb"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Body</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.75</cooldownTime>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
+			</tools>
+			<tradeTags Inherit="False">
+				<li>CE_MediumAmmo</li>
+			</tradeTags>
+			<allowedArchonexusCount>5</allowedArchonexusCount>
+		</value>
+	</Operation>
 </Patch>
