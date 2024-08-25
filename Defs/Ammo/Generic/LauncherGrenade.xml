@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- Relabeled 40x46mm grenades -->
+	<!-- Relabeled launcher grenades -->
 
 	<ThingCategoryDef>
 		<defName>AmmoLauncherGrenade</defName>
@@ -16,11 +16,11 @@
 		<defName>AmmoSet_LauncherGrenade</defName>
 		<label>launcher grenade</label>
 		<ammoTypes>
-			<Ammo_LauncherGrenade_HE>Bullet_40x46mmGrenade_HE</Ammo_LauncherGrenade_HE>
-			<Ammo_LauncherGrenade_HE_TFuzed>Bullet_40x46mmGrenade_HE_TFuzed</Ammo_LauncherGrenade_HE_TFuzed>
-			<Ammo_LauncherGrenade_HEDP>Bullet_40x46mmGrenade_HEDP</Ammo_LauncherGrenade_HEDP>
-			<Ammo_LauncherGrenade_EMP>Bullet_40x46mmGrenade_EMP</Ammo_LauncherGrenade_EMP>
-			<Ammo_LauncherGrenade_Smoke>Bullet_40x46mmGrenade_Smoke</Ammo_LauncherGrenade_Smoke>
+			<Ammo_LauncherGrenade_HE>Bullet_launcherGrenade_HE</Ammo_LauncherGrenade_HE>
+			<Ammo_LauncherGrenade_HE_TFuzed>Bullet_launcherGrenade_HE_TFuzed</Ammo_LauncherGrenade_HE_TFuzed>
+			<Ammo_LauncherGrenade_HEDP>Bullet_launcherGrenade_HEDP</Ammo_LauncherGrenade_HEDP>
+			<Ammo_LauncherGrenade_EMP>Bullet_launcherGrenade_EMP</Ammo_LauncherGrenade_EMP>
+			<Ammo_LauncherGrenade_Smoke>Bullet_launcherGrenade_Smoke</Ammo_LauncherGrenade_Smoke>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -54,7 +54,7 @@
 			<MarketValue>2.27</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
-		<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
+		<detonateProjectile>Bullet_launcherGrenade_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
@@ -68,7 +68,7 @@
 			<MarketValue>3.25</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHETF</ammoClass>
-		<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
+		<detonateProjectile>Bullet_launcherGrenade_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
@@ -82,7 +82,7 @@
 			<MarketValue>2.12</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHEDP</ammoClass>
-		<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
+		<detonateProjectile>Bullet_launcherGrenade_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
@@ -96,7 +96,7 @@
 			<MarketValue>4.57</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
-		<detonateProjectile>Bullet_40x46mmGrenade_EMP</detonateProjectile>
+		<detonateProjectile>Bullet_launcherGrenade_EMP</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
@@ -111,7 +111,7 @@
 		</statBases>
 		<ammoClass>Smoke</ammoClass>
 		<generateAllowChance>0</generateAllowChance>
-		<detonateProjectile>Bullet_40x46mmGrenade_Smoke</detonateProjectile>
+		<detonateProjectile>Bullet_launcherGrenade_Smoke</detonateProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
@@ -158,6 +158,51 @@
 			<Ammo_LauncherGrenade_HE>100</Ammo_LauncherGrenade_HE>
 		</products>
 		<workAmount>9000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase">
+		<defName>MakeAmmo_LauncherGrenade_HE_TFuzed</defName>
+		<label>make launcher HE Time-Fuzed grenades x100</label>
+		<description>Craft 100 launcher HE Time-Fuzed grenades.</description>
+		<jobString>Making launcher HE Time-Fuzed grenades.</jobString>
+		<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_LauncherGrenade_HE_TFuzed>100</Ammo_LauncherGrenade_HE_TFuzed>
+		</products>
+		<workAmount>11200</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="LauncherAmmoRecipeBase">
@@ -283,6 +328,54 @@
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_LauncherGrenade_Smoke>100</Ammo_LauncherGrenade_Smoke>
+		</products>
+		<workAmount>7400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="LauncherAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_LauncherGrenade_Tox</defName>
+		<label>make launcher tox grenades x100</label>
+		<description>Craft 100 launcher tox grenades.</description>
+		<jobString>Making launcher tox grenades.</jobString>
+		<researchPrerequisites>
+			<li>CE_Launchers</li>
+			<li>ToxGas</li>
+		</researchPrerequisites>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_LauncherGrenade_Tox>100</Ammo_LauncherGrenade_Tox>
 		</products>
 		<workAmount>7400</workAmount>
 	</RecipeDef>
