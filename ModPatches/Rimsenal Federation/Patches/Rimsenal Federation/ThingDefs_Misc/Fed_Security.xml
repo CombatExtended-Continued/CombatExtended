@@ -4,9 +4,19 @@
 		<xpath>Defs/ThingDef[
 			@Name="FedHarvester" or
 			@Name="Harmonizer"
-			]/thingClass </xpath>
+			]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Turret_FedHarvester" or
+			defName="Turret_PB"
+			]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>0.4</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
@@ -20,17 +30,17 @@
 			<SwayFactor>0.80</SwayFactor>
 			<Bulk>22.00</Bulk>
 			<Mass>18.50</Mass>
-			<RangedWeapon_Cooldown>1.55</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.12</recoilAmount>
+			<recoilAmount>0.54</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_HarvesterCannon</defaultProjectile>
 			<warmupTime>1.55</warmupTime>
-			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-			<burstShotCount>10</burstShotCount>
-			<range>55</range>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+			<burstShotCount>13</burstShotCount>
+			<range>75</range>
 			<soundCast>RS_ShotCR</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
@@ -39,9 +49,13 @@
 			</targetParams>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
+		<AmmoUser>
+			<magazineSize>65</magazineSize>
+			<reloadTime>8</reloadTime>
+		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>5</aimedBurstShotCount>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
 	</Operation>
 
@@ -53,13 +67,24 @@
 			<comps>
 				<li Class="CombatExtended.CompProperties_Charges">
 					<chargeSpeeds>
-						<li>30</li>
-						<li>50</li>
-						<li>70</li>
-						<li>90</li>
+						<li>15</li>
+						<li>25</li>
+						<li>35</li>
+						<li>45</li>
 					</chargeSpeeds>
 				</li>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>1</magazineSize>
+					<reloadTime>20</reloadTime>
+				</li>
 			</comps>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Gun_PB"]/statBases</xpath>
+		<value>
+			<ShotSpread>0.4</ShotSpread>
 		</value>
 	</Operation>
 
@@ -73,9 +98,9 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_PlasmaTurretBombard</defaultProjectile>
 					<warmupTime>3.55</warmupTime>
-					<range>500</range>
+					<range>900</range>
 					<minRange>25</minRange>
-					<burstShotCount>10</burstShotCount>
+					<burstShotCount>1</burstShotCount>
 					<soundCast>RS_ShotHarmonizer</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>26</muzzleFlashScale>
@@ -95,6 +120,7 @@
 			<weaponTags>
 				<li>Artillery</li>
 				<li>TurretGun</li>
+				<li>Artillery_BaseDestroyer</li>
 			</weaponTags>
 		</value>
 	</Operation>
