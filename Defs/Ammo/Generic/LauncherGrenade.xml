@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- Relabeled launcher grenades -->
+	<!-- Relabeled 40x46mm grenades -->
 
 	<ThingCategoryDef>
 		<defName>AmmoLauncherGrenade</defName>
@@ -16,11 +16,11 @@
 		<defName>AmmoSet_LauncherGrenade</defName>
 		<label>launcher grenade</label>
 		<ammoTypes>
-			<Ammo_LauncherGrenade_HE>Bullet_launcherGrenade_HE</Ammo_LauncherGrenade_HE>
-			<Ammo_LauncherGrenade_HE_TFuzed>Bullet_launcherGrenade_HE_TFuzed</Ammo_LauncherGrenade_HE_TFuzed>
-			<Ammo_LauncherGrenade_HEDP>Bullet_launcherGrenade_HEDP</Ammo_LauncherGrenade_HEDP>
-			<Ammo_LauncherGrenade_EMP>Bullet_launcherGrenade_EMP</Ammo_LauncherGrenade_EMP>
-			<Ammo_LauncherGrenade_Smoke>Bullet_launcherGrenade_Smoke</Ammo_LauncherGrenade_Smoke>
+			<Ammo_LauncherGrenade_HE>Bullet_40x46mmGrenade_HE</Ammo_LauncherGrenade_HE>
+			<Ammo_LauncherGrenade_HE_TFuzed>Bullet_40x46mmGrenade_HE_TFuzed</Ammo_LauncherGrenade_HE_TFuzed>
+			<Ammo_LauncherGrenade_HEDP>Bullet_40x46mmGrenade_HEDP</Ammo_LauncherGrenade_HEDP>
+			<Ammo_LauncherGrenade_EMP>Bullet_40x46mmGrenade_EMP</Ammo_LauncherGrenade_EMP>
+			<Ammo_LauncherGrenade_Smoke>Bullet_40x46mmGrenade_Smoke</Ammo_LauncherGrenade_Smoke>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -54,7 +54,7 @@
 			<MarketValue>2.27</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
-		<detonateProjectile>Bullet_launcherGrenade_HE</detonateProjectile>
+		<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
@@ -68,7 +68,7 @@
 			<MarketValue>3.25</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHETF</ammoClass>
-		<detonateProjectile>Bullet_launcherGrenade_HE</detonateProjectile>
+		<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
@@ -82,7 +82,7 @@
 			<MarketValue>2.12</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHEDP</ammoClass>
-		<detonateProjectile>Bullet_launcherGrenade_HE</detonateProjectile>
+		<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
@@ -96,7 +96,7 @@
 			<MarketValue>4.57</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
-		<detonateProjectile>Bullet_launcherGrenade_EMP</detonateProjectile>
+		<detonateProjectile>Bullet_40x46mmGrenade_EMP</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
@@ -111,7 +111,22 @@
 		</statBases>
 		<ammoClass>Smoke</ammoClass>
 		<generateAllowChance>0</generateAllowChance>
-		<detonateProjectile>Bullet_launcherGrenade_Smoke</detonateProjectile>
+		<detonateProjectile>Bullet_40x46mmGrenade_Smoke</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Ammo_LauncherGrenade_Tox</defName>
+		<label>launcher grenade (Tox)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/Tox</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.84</MarketValue>
+		</statBases>
+		<ammoClass>Toxic</ammoClass>
+		<generateAllowChance>0</generateAllowChance>
+		<detonateProjectile>Bullet_40x46mmGrenade_Tox</detonateProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
