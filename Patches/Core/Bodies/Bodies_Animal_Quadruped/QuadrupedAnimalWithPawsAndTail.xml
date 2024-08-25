@@ -26,6 +26,27 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPawsAndTail"]/corePart/parts/li[def="Tail"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPawsAndTail"]/corePart/parts/li[def="Tail"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPawsAndTail"]/corePart/parts/li[def="Neck"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPawsAndTail"]/corePart/parts/li[def="Neck"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPawsAndTail"]/corePart/parts/li[def="Neck"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPawsAndTail"]/corePart/parts/li[def="Neck"]</xpath>
@@ -103,6 +124,14 @@
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPawsAndTail"]/corePart/parts/li[def="Tail"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPawsAndTail"]/corePart/parts/li[def="Neck"]/groups</xpath>
