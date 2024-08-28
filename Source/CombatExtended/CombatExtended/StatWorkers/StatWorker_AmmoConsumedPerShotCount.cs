@@ -31,19 +31,24 @@ namespace CombatExtended
         public override bool ShouldShowFor(StatRequest req)
         {
             return base.ShouldShowFor(req) && !GunDef(req).IsMeleeWeapon &&
-            (((GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>() as CompProperties_AmmoUser)?.ammoSet?.ammoConsumedPerShot != 1) ||
+            (((GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>())?.ammoSet?.ammoConsumedPerShot != 1) ||
              (GunDef(req)?.Verbs?.Any(x => ((x as VerbPropertiesCE)?.ammoConsumedPerShotCount ?? 1) > 1) ?? false));
         }
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
-            return ((GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>() as CompProperties_AmmoUser)?.ammoSet?.ammoConsumedPerShot ?? 1 *
-            ((VerbPropertiesCE)GunDef(req)?.Verbs?.FirstOrDefault(x => ((VerbPropertiesCE)x).ammoConsumedPerShotCount > 1))?.ammoConsumedPerShotCount ?? 1);
+            return (GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>())?.ammoSet?.ammoConsumedPerShot ?? 1 *
+                (GunDef(req)?.Verbs?.OfType<VerbPropertiesCE>().FirstOrDefault(x => x.ammoConsumedPerShotCount > 1)?.ammoConsumedPerShotCount ?? 0);
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             StringBuilder stringBuilder = new StringBuilder();
+            var verbs = GunDef(req)?.Verbs;
+            if (!verbs.NullOrEmpty() && !verbs.OfType<VerbPropertiesCE>().Any())
+            {
+                stringBuilder.AppendLine("Not patched for CE");
+            }
             stringBuilder.AppendLine("");
             return stringBuilder.ToString().TrimEndNewlines();
         }

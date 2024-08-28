@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Turret === -->
+
+	<!-- Long Barrel -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret_LongBarrel"]/maxRange</xpath>
+		<value>
+			<maxRange>78</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret_LongBarrel"]</xpath>
+		<value>
+			<modExtensions Inherit="False">
+				<li Class="Vehicles.CETurretDataDefModExtension">
+					<ammoSet>AmmoSet_57x307mmR</ammoSet>
+					<shotHeight>2.5</shotHeight>
+					<speed>92</speed>
+					<sway>0.68</sway>
+					<spread>0.01</spread>
+				</li>
+			</modExtensions>
+		</value>
+	</Operation>
+
+	<!-- Short Barrel -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret_ShortBarrel"]/maxRange</xpath>
+		<value>
+			<maxRange>48</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret_ShortBarrel"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>6.4</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret_ShortBarrel"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.5</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret_ShortBarrel"]</xpath>
+		<value>
+			<modExtensions Inherit="False">
+				<li Class="Vehicles.CETurretDataDefModExtension">
+					<ammoSet>AmmoSet_57x307mmR</ammoSet>
+					<shotHeight>2.5</shotHeight>
+					<speed>92</speed>
+					<sway>0.87</sway>
+					<spread>0.02</spread>
+				</li>
+			</modExtensions>
+		</value>
+	</Operation>
+
+	<!-- === Upgrade === -->
+
+	<!-- Engine Cover -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Roadkill_UpgradeTree"]/nodes/li[key="EngineCover"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>4</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Roadkill_UpgradeTree"]/nodes/li[key="EngineCover"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>8</value>
+		</value>
+	</Operation>
+
+	<!-- Reinforced Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Roadkill_UpgradeTree"]/nodes/li[key="ReinforcedArmor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>5</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Roadkill_UpgradeTree"]/nodes/li[key="ReinforcedArmor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>10</value>
+		</value>
+	</Operation>
+
+	<!-- Cargo Capacity -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Roadkill_UpgradeTree"]/nodes/li[key="CargoCapacity"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/vehicleStats/li[def="CargoCapacity"]/value</xpath>
+		<value>
+			<value>40</value>
+		</value>
+	</Operation>
+
+	<!-- Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Roadkill_UpgradeTree"]/nodes/li[key="Armor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>4</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Roadkill_UpgradeTree"]/nodes/li[key="Armor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>8</value>
+		</value>
+	</Operation>
+
+</Patch>

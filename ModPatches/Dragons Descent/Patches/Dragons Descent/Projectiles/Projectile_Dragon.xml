@@ -2,14 +2,14 @@
 <Patch>
 	<!-- Spit Blunt -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Projectile_DragonSpitBlunt"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="DD_Projectile_DragonSpitBlunt"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Projectile_DragonSpitBlunt"]/projectile</xpath>
+		<xpath>Defs/ThingDef[defName="DD_Projectile_DragonSpitBlunt"]/projectile</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<speed>26</speed>
@@ -28,14 +28,14 @@
 	</Operation>
 	<!-- Fire Spit (Probably not used) -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Projectile_DragonSpit"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[defName="DD_Projectile_DragonSpit"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Projectile_DragonSpit"]/projectile</xpath>
+		<xpath>Defs/ThingDef[defName="DD_Projectile_DragonSpit"]/projectile</xpath>
 		<value>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<speed>38</speed>
@@ -51,32 +51,6 @@
 				<shadowSize>1</shadowSize>
 				<explosionDamageFalloff>false</explosionDamageFalloff>
 				<armorPenetrationBase>20</armorPenetrationBase>
-			</projectile>
-		</value>
-	</Operation>
-	<!-- Placeholder Spit -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Projectile_DragonBreath_AOE"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Projectile_DragonBreath_AOE"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<speed>38</speed>
-				<damageDef>DraconicFlame</damageDef>
-				<explosionRadius>4.5</explosionRadius>
-				<suppressionFactor>3.0</suppressionFactor>
-				<dangerFactor>2.0</dangerFactor>
-				<damageAmountBase>27</damageAmountBase>
-				<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
-				<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
-				<ai_IsIncendiary>true</ai_IsIncendiary>
-				<arcHeightFactor>0.2</arcHeightFactor>
-				<shadowSize>1</shadowSize>
 			</projectile>
 		</value>
 	</Operation>

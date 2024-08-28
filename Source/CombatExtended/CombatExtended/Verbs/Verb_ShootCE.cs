@@ -364,6 +364,19 @@ namespace CombatExtended
 
         }
 
+        //For revolvers and break actions. Intended to be called by compammouser on reload
+        public void ExternalCallDropCasing(int randomSeedOffset = -1)
+        {
+            bool fromPawn = false;
+            GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
+            if (ShooterPawn != null)
+            {
+                fromPawn = drawPos != Vector3.zero;
+            }
+            //No aim angle because casing eject happens when pawn lowers its gun to reload
+            CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, 0, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext, randomSeedOffset);
+        }
+
         public override bool TryCastShot()
         {
             //Reduce ammunition
@@ -392,9 +405,9 @@ namespace CombatExtended
             }
 
             //Drop casings
-            if (VerbPropsCE.ejectsCasings)
+            if (VerbPropsCE.ejectsCasings && (!ext?.DropCasingWhenReload ?? true))
             {
-                CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos + CasingOffsetRotated(ext), caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, casingAngleOffset: EquipmentSource?.def.GetModExtension<GunDrawExtension>()?.CasingAngleOffset ?? 0);
+                CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext);
             }
             // This needs to here for weapons without magazine to ensure their last shot plays sounds
             if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
@@ -424,16 +437,6 @@ namespace CombatExtended
                 return CompAmmo.Notify_PostShotFired();
             }
             return true;
-        }
-
-        Vector3 CasingOffsetRotated(GunDrawExtension ext)
-        {
-            if (ext == null || ext.CasingOffset == Vector2.zero)
-            {
-                return Vector3.zero;
-            }
-            return new Vector3(ext.CasingOffset.x, 0, ext.CasingOffset.y).RotatedBy(AimAngle);
-
         }
         #endregion
     }

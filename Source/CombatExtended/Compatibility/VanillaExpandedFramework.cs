@@ -18,11 +18,6 @@ namespace CombatExtended.Compatibility
             return ModLister.HasActiveModWithName(ModName);
         }
 
-        IEnumerable<string> IPatch.GetCompatList()
-        {
-            yield break;
-        }
-
         void IPatch.Install()
         {
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckIntercept);

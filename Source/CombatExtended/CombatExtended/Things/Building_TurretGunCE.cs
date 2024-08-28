@@ -34,7 +34,7 @@ namespace CombatExtended
         public int burstCooldownTicksLeft;
         public int burstWarmupTicksLeft;                                // Need this public so aim mode can modify it
         public LocalTargetInfo currentTargetInt = LocalTargetInfo.Invalid;
-        private bool holdFire;
+        protected bool holdFire;
         private Thing gunInt;                                           // Better to be private, because Gun is used for access, instead
         public TurretTop top;
         public CompPowerTrader powerComp;
@@ -58,15 +58,15 @@ namespace CombatExtended
 
         #region Properties
         // Core properties
-        public bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
+        public virtual bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
         public CompEquippable GunCompEq => Gun.TryGetComp<CompEquippable>();
         public override LocalTargetInfo CurrentTarget => currentTargetInt;
-        private bool WarmingUp => burstWarmupTicksLeft > 0;
+        protected bool WarmingUp => burstWarmupTicksLeft > 0;
         public override Verb AttackVerb => Gun == null ? null : GunCompEq.verbTracker.PrimaryVerb;
         public bool IsMannable => mannableComp != null;
         public bool PlayerControlled => (Faction == Faction.OfPlayer || MannedByColonist) && !MannedByNonColonist;
-        private bool CanSetForcedTarget => mannableComp != null && PlayerControlled;
-        private bool CanToggleHoldFire => PlayerControlled;
+        protected virtual bool CanSetForcedTarget => mannableComp != null && PlayerControlled;
+        protected bool CanToggleHoldFire => PlayerControlled;
         public bool IsMortar => def.building.IsMortar;
         public bool IsMortarOrProjectileFliesOverhead => Projectile.projectile.flyOverhead || IsMortar;
         //Not included: CanExtractShell
@@ -96,7 +96,7 @@ namespace CombatExtended
             }
         }
 
-        public ThingDef Projectile
+        public virtual ThingDef Projectile
         {
             get
             {
@@ -367,7 +367,7 @@ namespace CombatExtended
             }
         }
 
-        public void TryStartShootSomething(bool canBeginBurstImmediately)    // Added ammo check and use verb warmup time instead of turret's
+        public virtual void TryStartShootSomething(bool canBeginBurstImmediately)    // Added ammo check and use verb warmup time instead of turret's
         {
             // Check for ammo first
             if (!Spawned
@@ -417,7 +417,7 @@ namespace CombatExtended
             burstWarmupTicksLeft = 1;
         }
 
-        public LocalTargetInfo TryFindNewTarget()    // Core method
+        public virtual LocalTargetInfo TryFindNewTarget()    // Core method
         {
             IAttackTargetSearcher attackTargetSearcher = this.TargSearcher();
             Faction faction = attackTargetSearcher.Thing.Faction;
@@ -484,7 +484,7 @@ namespace CombatExtended
             return true;
         }
 
-        public void BeginBurst()                     // Added handling for ticksUntilAutoReload
+        public virtual void BeginBurst()                     // Added handling for ticksUntilAutoReload
         {
             ticksUntilAutoReload = minTicksBeforeAutoReload;
             if (AttackVerb is Verb_ShootMortarCE shootMortar)
@@ -784,7 +784,7 @@ namespace CombatExtended
         [Compatibility.Multiplayer.SyncMethod]
         private void SyncedResetForcedTarget() => ResetForcedTarget();
 
-        public void ResetForcedTarget()                // Core method
+        public virtual void ResetForcedTarget()                // Core method
         {
             this.targetingWorldMap = false;
             this.forcedTarget = LocalTargetInfo.Invalid;
