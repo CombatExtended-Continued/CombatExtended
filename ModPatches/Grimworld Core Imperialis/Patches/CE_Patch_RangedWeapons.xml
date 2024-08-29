@@ -92,158 +92,228 @@
 	</Operation>
 
 	<!-- === Volk Culverin === -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SS_VolkCulverin</defName>
-		<statBases>
-			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.5</SightsEfficiency>
-			<ShotSpread>0.07</ShotSpread>
-			<SwayFactor>1.2</SwayFactor>
-			<Bulk>14</Bulk>
-		</statBases>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_Laser_MeltaCharge</defaultProjectile>
-			<warmupTime>0.6</warmupTime>
-			<range>58</range>
-			<burstShotCount>1</burstShotCount>
-			<soundCast>GW_SS_VokiteLight</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>12</muzzleFlashScale>
-			<recoilAmount>2.7</recoilAmount>
-			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>5</magazineSize>
-			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_MeltaCharge</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>Snapshot</aiAimMode>
-		</FireModes>
-		<weaponTags>
-            <li>GW_SS_VolkCulverin</li>
-		</weaponTags>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkCulverin"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>61000</WorkToMake>
+				<MarketValue>10000</MarketValue>
+				<Mass>15</Mass>			
+				<RangedWeapon_Cooldown>1.4</RangedWeapon_Cooldown>
+				<SightsEfficiency>1.3</SightsEfficiency>
+				<ShotSpread>0.07</ShotSpread>
+				<SwayFactor>1.2</SwayFactor>
+				<Bulk>14</Bulk>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkCulverin"]/verbs/li</xpath>
+		<value>
+			<li>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_Volk_Cannon</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<range>48</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>GW_SS_VokiteLight</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<recoilAmount>2.7</recoilAmount>
+				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkCulverin"]</xpath>
+		<value>
+			<comps>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_Volk_Cannon</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>			
+			</comp>
+		</value>
 	</Operation>
 
 	<!-- === Volk Pistol === -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SM_VolkSerpenta</defName>
-		<statBases>
-			<Bulk>2.30</Bulk>
-			<SwayFactor>1.17</SwayFactor>
-			<ShotSpread>0.06</ShotSpread>
-			<SightsEfficiency>0.8</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-		</statBases>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_Laser_LaserPistol</defaultProjectile>
-			<warmupTime>0.5</warmupTime>
-			<range>22</range>
-			<soundCast>GW_SS_VokiteLight</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>20</magazineSize>
-			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_LaserPistol</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-		</FireModes>
-		<weaponTags>
-			<li>GW_SM_VolkSerpenta</li>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_VolkSerpenta"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>30000</WorkToMake>
+				<MarketValue>10000</MarketValue>
+				<Mass>5</Mass>
+				<Bulk>2.30</Bulk>
+				<SwayFactor>1.17</SwayFactor>
+				<ShotSpread>0.06</ShotSpread>
+				<SightsEfficiency>0.8</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>				
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_VolkSerpenta"]/verbs/li</xpath>
+		<value>
+			<li>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_Volk_Pistol</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>22</range>
+				<soundCast>GW_SS_VokiteLight</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_VolkSerpenta"]</xpath>
+		<value>
+			<comps>
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_Volk_Pistol</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>		
+			</comp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_VolkSerpenta"]/weaponTags</xpath>
+		<value>
 			<li>CE_OneHandedWeapon</li>
-		</weaponTags>
+		</value>
 	</Operation>
 
 	<!-- === Volk Caliver === -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SS_VolkCaliver</defName>
-		<statBases>
-			<Bulk>12.50</Bulk>
-			<SwayFactor>1.35</SwayFactor>
-			<ShotSpread>0.06</ShotSpread>
-			<SightsEfficiency>1.10</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-		</statBases>
-		<Properties>
-			<recoilAmount>0.01</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_Laser_LaserRifle</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>42</range>
-			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-			<soundCast>GW_SS_VokiteMedium</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>60</magazineSize>
-			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_LaserRifle</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aiUseBurstMode>True</aiUseBurstMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
-		</FireModes>
-		<weaponTags>
-			<li>GW_SS_VolkCaliver</li>
-		</weaponTags>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkCaliver"]/statBases</xpath>
+		<value>
+			<statBases>
+				<Bulk>12.50</Bulk>
+				<SwayFactor>1.35</SwayFactor>
+				<ShotSpread>0.06</ShotSpread>
+				<SightsEfficiency>1.10</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				<WorkToMake>38000</WorkToMake>
+				<MarketValue>10000</MarketValue>
+				<Mass>10</Mass>				
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkCaliver"]/verbs/li</xpath>
+		<value>
+			<li>
+				<recoilAmount>0.01</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_Volk_Rifle</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>42</range>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				<soundCast>GW_SS_VokiteMedium</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkCaliver"]</xpath>
+		<value>
+			<comps>
+				<AmmoUser>
+					<magazineSize>60</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_Volk_Rifle</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>True</aiUseBurstMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>			
+			</comp>
+		</value>
 	</Operation>
 
 	<!-- === Volk Blaster === -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>GW_SS_VolkBlast</defName>
-		<statBases>
-			<Bulk>10.00</Bulk>
-			<SwayFactor>1.35</SwayFactor>
-			<ShotSpread>0.06</ShotSpread>
-			<SightsEfficiency>1.10</SightsEfficiency>
-			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-		</statBases>
-		<Properties>
-			<recoilAmount>0.01</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_Laser_LaserRifle</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>42</range>
-			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-			<soundCast>GW_SS_VokiteHeavy</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>60</magazineSize>
-			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_LaserRifle</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aiUseBurstMode>True</aiUseBurstMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
-		</FireModes>
-		<weaponTags>
-			<li>GW_SM_VolkBlast</li>
-		</weaponTags>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkBlast"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>62000</WorkToMake>
+				<MarketValue>10000</MarketValue>
+				<Mass>7</Mass>
+				<Bulk>10.00</Bulk>
+				<SwayFactor>1.35</SwayFactor>
+				<ShotSpread>0.06</ShotSpread>
+				<SightsEfficiency>1.10</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkBlast"]/verbs/li</xpath>
+		<value>
+			<li>
+				<recoilAmount>0.01</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_Volk_Rifle</defaultProjectile>
+				<warmupTime>1</warmupTime>
+				<range>42</range>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				<soundCast>GW_SS_VokiteMedium</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkBlast"]</xpath>
+		<value>
+			<comps>
+				<AmmoUser>
+					<magazineSize>60</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_Volk_Rifle</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>True</aiUseBurstMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>			
+			</comp>
+		</value>
 	</Operation>
 
 </Patch>
