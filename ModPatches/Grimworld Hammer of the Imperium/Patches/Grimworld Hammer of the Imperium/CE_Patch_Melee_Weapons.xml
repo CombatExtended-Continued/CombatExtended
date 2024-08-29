@@ -483,7 +483,58 @@
 			<MeleeDodgeChance>0.04</MeleeDodgeChance>
 		</value>
 	</Operation>
-	
+
+	<!--===== Eviscerator =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_Eviscerator"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.85</cooldownTime>
+					<chanceFactor>0.33</chanceFactor>
+					<armorPenetrationBlunt>1.825</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>56</power>
+					<cooldownTime>2.2</cooldownTime>
+					<armorPenetrationSharp>24</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_Eviscerator"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.15</MeleeCritChance>
+				<MeleeParryChance>0.54</MeleeParryChance>
+				<MeleeDodgeChance>0.40</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_AM_MeleeWeapon_Eviscerator"]/statBases</xpath>
+		<value>
+			<Bulk>11</Bulk>
+			<MeleeCounterParryBonus>0.82</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
 	<!--===== Power Maul =====-->
 	
 	<Operation Class="PatchOperationReplace">
