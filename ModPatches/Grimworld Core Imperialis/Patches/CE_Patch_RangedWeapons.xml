@@ -63,7 +63,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="GW_SS_VolkCulverin"]</xpath>
+		<xpath>Defs/ThingDef[defName="GW_SS_VolkCulverin"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -91,6 +91,16 @@
 		</value>
 	</Operation>
 
+	<!-- === Remove Move Speed Penalty === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+		defName="GW_SS_VolkCulverin" or
+		defName="GW_SS_VolkCaliver" or
+		defName="GW_SM_VolkSerpenta" or
+		defName="GW_SS_VolkBlast"						
+		]/equippedStatOffsets</xpath>
+	</Operation>
+
 	<!-- === Volk Culverin === -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="GW_SS_VolkCulverin"]/statBases</xpath>
@@ -111,7 +121,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="GW_SS_VolkCulverin"]/verbs/li</xpath>
 		<value>
-			<li>
+			<li Class="CombatExtended.VerbPropertiesCE">
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_Volk_Cannon</defaultProjectile>
@@ -166,7 +176,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="GW_SM_VolkSerpenta"]/verbs/li</xpath>
 		<value>
-			<li>
+			<li Class="CombatExtended.VerbPropertiesCE">
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>True</hasStandardCommand>
 				<defaultProjectile>Bullet_Volk_Pistol</defaultProjectile>
@@ -222,7 +232,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="GW_SS_VolkCaliver"]/verbs/li</xpath>
 		<value>
-			<li>
+			<li Class="CombatExtended.VerbPropertiesCE">
 				<recoilAmount>0.01</recoilAmount>
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>True</hasStandardCommand>
@@ -279,7 +289,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="GW_SS_VolkBlast"]/verbs/li</xpath>
 		<value>
-			<li>
+			<li Class="CombatExtended.VerbPropertiesCE">
 				<recoilAmount>0.01</recoilAmount>
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>True</hasStandardCommand>

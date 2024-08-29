@@ -315,7 +315,6 @@
 		</value>
 	</Operation>
 
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_Helmet"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
@@ -537,6 +536,25 @@
 		</value>
 	</Operation>
 
+	<!-- Commissar Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_CommissarMiddle"]/stuffCategories </xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_CommissarMiddle"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<Bulk>5</Bulk>
+			<WornBulk>2.5</WornBulk>			
+		</value>
+	</Operation>
+
 	<!-- Catachan Armor -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="GW_AM_CatachanArmor"]/statBases</xpath>
@@ -728,6 +746,13 @@
 		<xpath>Defs/ThingDef[defName="GW_AM_CatachanOuter" or defName="GW_AM_RatlingCloak"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_AM_CommissarOuter"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
