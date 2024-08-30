@@ -17,7 +17,8 @@
 		defName="GW_SM_Gun_GravPistol" or
 		defName="GW_SM_HeavyBoltPistol" or
 		defName="GW_SM_InfernoPistol" or
-		defName="GW_SM_PlasmaPistol"
+		defName="GW_SM_PlasmaPistol" or
+		defName="GW_SM_RocketLauncher"
 		]/tools</xpath>
 		<value>
 			<tools>
@@ -1159,5 +1160,57 @@
 			<li>CE_AI_BROOM</li>
 		</weaponTags>
 	</Operation>
-	
+
+	<!-- ============ Rocket Launcher ============ -->
+			
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_SM_RocketLauncher"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_SM_RocketLauncher"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_SM_RocketLauncher</defName>
+		<statBases>
+			<Mass>8</Mass>
+			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1</SwayFactor>
+			<Bulk>11</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_84x246mmR_HEAT</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>52</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>HP_Plasma_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilAmount>0.8</recoilAmount>
+			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>4.2</reloadTime>
+			<ammoSet>AmmoSet_84x246mmR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>AdvancedGun</li>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+	</Operation>
+
 </Patch>
