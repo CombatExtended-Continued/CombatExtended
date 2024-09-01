@@ -49,10 +49,19 @@ namespace CombatExtended.HarmonyCE
 
         private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle)
         {
+            CompEquippable compEquippable = eq.TryGetComp<CompEquippable>();
             GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension() { DrawSize = eq.def.graphicData.drawSize };
             if (drawData.DrawSize == Vector2.one) { drawData.DrawSize = eq.def.graphicData.drawSize; }
             Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
             Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
+            if (compEquippable != null && compEquippable.PrimaryVerb is Verb_LaunchProjectileCE verbLPCE)
+            {
+                VerbPropertiesCE vpce = verbLPCE.VerbPropsCE;
+                if (verbLPCE.ShooterPawn != null && verbLPCE.WarmingUp || muzzleJump != 0)
+                {
+                    posVec.z += verbLPCE.ShotHeight * vpce.firingOffset * Mathf.Abs(Mathf.Sin(aimAngle * 2 * 3.14f / 360f));
+                }
+            }
             Vector3 casingOffset = new Vector3(drawData.CasingOffset.x, 0, drawData.CasingOffset.y);
             if (aimAngle > 200 && aimAngle < 340)
             {
@@ -61,7 +70,6 @@ namespace CombatExtended.HarmonyCE
                 casingOffset.x *= -1;
             }
             matrix.SetTRS(position + posVec.RotatedBy(matrix.rotation.eulerAngles.y) + recoilOffset, Quaternion.AngleAxis(matrix.rotation.eulerAngles.y + muzzleJump, Vector3.up), scale);
-            CompEquippable compEquippable = eq.TryGetComp<CompEquippable>();
             if (compEquippable != null && compEquippable.PrimaryVerb is Verb_ShootCE verbCE)
             {
                 verbCE.drawPos = casingDrawPos + (casingOffset + posVec).RotatedBy(matrix.rotation.eulerAngles.y);
