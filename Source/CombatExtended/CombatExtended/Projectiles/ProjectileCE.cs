@@ -90,9 +90,11 @@ namespace CombatExtended
                 {
                     return (float)this.damageAmount;
                 }
-                return ((float)this.damageAmount) * (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
+                return ((float)this.damageAmount) * RemainingKineticEnergyPct;
             }
         }
+
+        public float RemainingKineticEnergyPct => (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
 
         /// <summary>
         /// Reference to the weapon that fired this projectile, may be null.
