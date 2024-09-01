@@ -1078,11 +1078,23 @@ namespace CombatExtended
             }
             Vector3 newPosition = curPosition + velocity;
             Accelerate();
+            shotSpeed = velocity.magnitude;
             return newPosition;
         }
 
-        // This can also be made virtual, and would be the ideal entry point for guided ammunition and rockets.
-        protected void Accelerate()
+        // This is the ideal entry point for guided ammunition and rockets.
+        protected virtual void Accelerate()
+        {
+            AffectedByDrag();
+            AffectedByGravity();
+        }
+
+        protected void AffectedByGravity()
+        {
+            velocity.y -= gravity / GenTicks.TicksPerRealSecond;
+        }
+
+        protected void AffectedByDrag()
         {
             float crossSectionalArea = radius;
             crossSectionalArea *= crossSectionalArea * 3.14159f;
@@ -1091,12 +1103,11 @@ namespace CombatExtended
             var dragForce = q * crossSectionalArea / ballisticCoefficient;
             // F = mA
             // A = F / m
-            var a = (float)((-dragForce / (float)mass));
+            var a = (float)-dragForce / mass;
             var normalized = velocity.normalized;
             velocity.x += a * normalized.x;
-            velocity.y += a * normalized.y - (float)(1 / ballisticCoefficient) * (float)gravity / GenTicks.TicksPerRealSecond;
+            velocity.y += a * normalized.y;
             velocity.z += a * normalized.z;
-            shotSpeed = velocity.magnitude;
         }
 
         #region Tick/Draw
