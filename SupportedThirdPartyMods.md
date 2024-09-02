@@ -407,6 +407,7 @@ ReGrowth: Core |
 ReGrowth: Extinct Animals |
 ReGrowth: Wastelands |
 Remote Detonator	|
+Remove Industrial Stuff |
 Revia Race |
 Revia Race - biotech |
 Rim Contractors Arsenal	|
