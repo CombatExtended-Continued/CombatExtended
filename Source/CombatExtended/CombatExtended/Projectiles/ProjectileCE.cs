@@ -239,6 +239,12 @@ namespace CombatExtended
         {
             get
             {
+                if (!lerpPosition)
+                {
+                    return Quaternion.AngleAxis(
+                           Mathf.Rad2Deg * Mathf.Atan2(-velocity.y, velocity.x) + 90f
+                           , Vector3.up);
+                }
                 Vector2 w = (Destination - origin);
 
                 var vx = w.x / startingTicksToImpact;
@@ -894,7 +900,6 @@ namespace CombatExtended
             {
                 MoteMakerCE.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
             }
-
             Impact(null);
             return true;
         }
@@ -974,7 +979,6 @@ namespace CombatExtended
             {
                 MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
             }
-
             Impact(thing);
             return true;
         }
@@ -1078,8 +1082,8 @@ namespace CombatExtended
                 velocity = new Vector3(Mathf.Cos(sr) * Mathf.Cos(shotAngle) * sspt, Mathf.Sin(shotAngle) * sspt, Mathf.Sin(sr) * Mathf.Cos(shotAngle) * sspt);
                 initialSpeed = sspt;
             }
-            Vector3 newPosition = curPosition + velocity;
             Accelerate();
+            Vector3 newPosition = curPosition + velocity;
             shotSpeed = velocity.magnitude;
             return newPosition;
         }
@@ -1177,7 +1181,7 @@ namespace CombatExtended
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }
             //TODO : It appears that the final steps in the arc (past ticksToImpact == 0) don't CheckForCollisionBetween.
-            if (ticksToImpact <= 0 || nextPosition.y <= 0f)
+            if ((lerpPosition && ticksToImpact <= 0) || nextPosition.y <= 0f)
             {
                 ImpactSomething();
                 return;
