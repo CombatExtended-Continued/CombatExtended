@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Projectiles -->
+
+	<ThingDef ParentName="Base40x365mmBoforsBullet">
+		<defName>Bullet_SuviBusterProjectile</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_SuviBuster</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame</damageDef>
+			<speed>90</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBlunt>5</armorPenetrationBlunt>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<explosionRadius>1</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>Monojavelin_Thrown</defName>
+		<label>Monojavelin (thrown)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>28</damageAmountBase>
+			<speed>52</speed>
+			<armorPenetrationBlunt>10</armorPenetrationBlunt>
+			<armorPenetrationSharp>22</armorPenetrationSharp>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>AOC_Monojavelin</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+
+</Defs>

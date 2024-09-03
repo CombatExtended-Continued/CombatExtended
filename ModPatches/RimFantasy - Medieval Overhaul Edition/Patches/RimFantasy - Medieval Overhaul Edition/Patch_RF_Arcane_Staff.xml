@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Tools ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RF_BaseWeapon_ArcaneStaffs"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>limb</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ===== Statbases ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RF_BaseWeapon_ArcaneStaffs"]/statBases</xpath>
+		<value>
+			<statBases>
+				<WorkToMake>18000</WorkToMake>
+				<Mass>3</Mass>
+				<Bulk>3</Bulk>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>0.14</ShotSpread>
+				<SwayFactor>1.01</SwayFactor>
+				<RangedWeapon_Cooldown>2.6</RangedWeapon_Cooldown>
+			</statBases>
+		</value>
+	</Operation>
+
+	<!-- ======= Emerald Staff ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_EmeraldStaff</defName>
+		<costList>
+			<DankPyon_Emerald>55</DankPyon_Emerald>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicBolt_Staff_Emerald</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>45</range>
+			<recoilAmount>1.53</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>7</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ======= Sapphire Staff ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_SapphireStaff</defName>
+		<costList>
+			<DankPyon_Sapphire>55</DankPyon_Sapphire>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicBolt_Staff_Sapphire</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>45</range>
+			<recoilAmount>1.53</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>7</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ======= Ruby Staff ======= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_RubyStaff</defName>
+		<costList>
+			<DankPyon_Ruby>55</DankPyon_Ruby>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>RF_MagicBolt_Staff_Ruby</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>45</range>
+			<recoilAmount>1.53</recoilAmount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>7</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- === Beanie === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RD_GRUBeanie"
+			or defName="RD_HoodNormal"
+			or defName="RD_HoodZKS"
+			or defName="RD_HoodKLMK"
+			or defName="RD_Panama"
+			or defName="RD_Afgcap"
+			or defName="RD_Facemask"
+			or defName="RD_Mabutacap"
+			or defName="RD_Sovhat"]/costStuffCount </xpath>
+		<value>
+			<costStuffCount>20</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RD_TKDVDHelmet"
+			or defName="RD_SovEurTankerHelm"
+			or defName="RD_TankerHelmCamo"]/costStuffCount </xpath>
+		<value>
+			<costStuffCount>30</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RD_GRUBeanie"
+			or defName="RD_HoodNormal"
+			or defName="RD_HoodZKS"
+			or defName="RD_HoodKLMK"
+			or defName="RD_Panama"
+			or defName="RD_Afgcap"
+			or defName="RD_OfficerCap"
+			or defName="RD_NCOCap"
+			or defName="RD_Facemask"
+			or defName="RD_Mabutacap"
+			or defName="RD_SovUshanka"
+			or defName="RD_SovBeret"
+			or defName="RD_Sovhat"
+			or defName="RD_SovEurTankerHelm"
+			or defName="RD_TKDVDHelmet"
+			or defName="RD_TankerHelmCamo"]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+			<Bulk>0.5</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RD_HoodNormal"
+			or defName="RD_HoodZKS"
+			or defName="RD_HoodKLMK"
+			or defName="RD_HoodZKS"]/equippedStatOffsets </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RD_Facemask"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<ToxicEnvironmentResistance>0.05</ToxicEnvironmentResistance>
+				<SmokeSensitivity>-0.1</SmokeSensitivity>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "RD_Facemask" ]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName = "RD_Facemask"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApperalRenderingExtension">
+				<HideHair>false</HideHair>
+				<HideBeard>false</HideBeard>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RD_PVNHelmet"]/equippedStatOffsets</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RD_PVNHelmet"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Apparel>0.4</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "RD_PVNHelmet" ]/apparel/layers</xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName = "RD_PVNHelmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApperalRenderingExtension">
+				<HideHair>true</HideHair>
+				<HideBeard>false</HideBeard>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "RD_PVNHelmet" ]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>40</Steel>
+				<ComponentIndustrial>5</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "RD_PVNHelmet" ]/recipeMaker/researchPrerequisite</xpath>
+		<value>
+			<researchPrerequisite>CE_SimpleNV</researchPrerequisite>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "RD_PVNHelmet" ]/recipeMaker/skillRequirements</xpath>
+		<value>
+			<skillRequirements>
+				<Crafting>6</Crafting>
+			</skillRequirements>
+		</value>
+	</Operation>
+</Patch>

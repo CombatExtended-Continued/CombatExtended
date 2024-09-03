@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Tribal -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Poleepkwa_Warrior" or defName="Poleepkwa_Worker" ]/combatPower</xpath>
+		<value>
+			<combatPower>30</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Poleepkwa_Archer"]/combatPower</xpath>
+		<value>
+			<combatPower>30</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Poleepkwa_CaravanSoldier"]/combatPower</xpath>
+		<value>
+			<combatPower>40</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Poleepkwa_Leader"]/combatPower</xpath>
+		<value>
+			<combatPower>75</combatPower>
+		</value>
+	</Operation>
+
+	<!-- Hive_Archer -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Poleepkwa_Archer" or defName="Poleepkwa_CaravanSoldier"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>100</min>
+					<max>140</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.6</shieldChance>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>40</min>
+							<max>80</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Hiver_Warrior -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Poleepkwa_Warrior" or defName="Poleepkwa_CaravanSoldier"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>200</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>TribalShield</li>
+				</shieldTags>
+				<shieldChance>0.75</shieldChance>
+			</li>
+		</value>
+	</Operation>
+</Patch>

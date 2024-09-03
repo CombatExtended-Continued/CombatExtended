@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Melee Tools -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_NihalPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_NihalShotgun" or defName="Gun_NihalRifle" or defName="Gun_NihalLMG" or defName="Gun_NihalSniper" or defName="Gun_NihalThoober" or defName="Gun_NihalCarbine"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_NihalRocket" or defName="Gun_NihalTripleRocket"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- NiHal Bardiche -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_fishytooth"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>3.52</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.68</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_fishytooth"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_fishytooth"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.10</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.20</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Nihal Rocket Launcher -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_NihalRocket</defName>
+		<statBases>
+			<Bulk>3.1</Bulk>
+			<Mass>1.0</Mass>
+			<SwayFactor>1.1</SwayFactor>
+			<ShotSpread>1</ShotSpread>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<WorkToMake>32000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_RPG7Grenade_HEAT</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>38</range>
+			<burstShotCount>1</burstShotCount>
+			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<minRange>5</minRange>
+			<soundCast>OLaunchers</soundCast>
+			<muzzleFlashScale>14</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>8</reloadTime>
+			<ammoSet>AmmoSet_RPG7Grenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+		</FireModes>
+		<weaponTags>
+			<li>NiHalMissile</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Nihal Triple Rocket Launcher -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_NihalTripleRocket</defName>
+		<statBases>
+			<Bulk>3.1</Bulk>
+			<Mass>1.0</Mass>
+			<SwayFactor>1.5</SwayFactor>
+			<ShotSpread>1</ShotSpread>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<WorkToMake>32000</WorkToMake>
+		</statBases>
+		<Properties>
+			<recoilAmount>20</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_RPG7Grenade_HEAT</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>38</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<minRange>5</minRange>
+			<soundCast>OLaunchers</soundCast>
+			<muzzleFlashScale>14</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>8</reloadTime>
+			<ammoSet>AmmoSet_RPG7Grenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+		</FireModes>
+		<weaponTags>
+			<li>NiHalMissile</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Nihal Big Pistol -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_NihalPistol</defName>
+		<statBases>
+			<Mass>3.3</Mass>
+			<RangedWeapon_Cooldown>1.9</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.75</SightsEfficiency>
+			<ShotSpread>0.38</ShotSpread>
+			<SwayFactor>1.3</SwayFactor>
+			<Bulk>4</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>10</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
+			<warmupTime>0.40</warmupTime>
+			<range>18</range>
+			<soundCast>OTFalcon</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_12x64mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>NiHalPistol</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Nihal Shotgun -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_NihalShotgun</defName>
+		<statBases>
+			<Mass>3</Mass>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>1.1</SwayFactor>
+			<Bulk>7</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12GaugeCharged</defaultProjectile>
+			<warmupTime>0.3</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<range>27</range>
+			<soundCast>OShotgun</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>2</reloadTime>
+			<ammoSet>AmmoSet_12GaugeCharged</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>AdvancedGun</li>
+			<li>NiHalRifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Nihal Rifle -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_NihalRifle</defName>
+		<statBases>
+			<Mass>2.7</Mass>
+			<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.20</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.15</SwayFactor>
+			<Bulk>8.00</Bulk>
+			<WorkToMake>62000</WorkToMake>
+		</statBases>
+		<costList>
+			<Uranium>5</Uranium>
+			<Steel>100</Steel>
+			<Plasteel>100</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>58</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>ORifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NiHalRifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Nihal LMG -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_NihalLMG</defName>
+		<statBases>
+			<Mass>3.2</Mass>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.25</SightsEfficiency>
+			<ShotSpread>0.1</ShotSpread>
+			<SwayFactor>1.17</SwayFactor>
+			<Bulk>8.00</Bulk>
+			<WorkToMake>62000</WorkToMake>
+		</statBases>
+		<costList>
+			<Uranium>5</Uranium>
+			<Steel>100</Steel>
+			<Plasteel>100</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>3</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>58</range>
+			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+			<burstShotCount>50</burstShotCount>
+			<soundCast>OLMG</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>150</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>25</aimedBurstShotCount>
+			<aiUseBurstMode>false</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Nihal Sniper -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_NihalSniper</defName>
+		<statBases>
+			<Mass>3.0</Mass>
+			<RangedWeapon_Cooldown>0.32</RangedWeapon_Cooldown>
+			<SightsEfficiency>3</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.7</SwayFactor>
+			<Bulk>12</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.60</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<soundCast>OSniper</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>2</reloadTime>
+			<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NiHalSniper</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- NiHal Thoober -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_NihalThoober</defName>
+		<statBases>
+			<WorkToMake>14000</WorkToMake>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+			<Bulk>7.31</Bulk>
+			<Mass>2.70</Mass>
+			<RangedWeapon_Cooldown>0.93</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Plasteel>20</Plasteel>
+			<Uranium>5</Uranium>
+			<Steel>40</Steel>
+			<ComponentSpacer>1</ComponentSpacer>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<warmupTime>1.1</warmupTime>
+			<range>44</range>
+			<minRange>5</minRange>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<soundCast>InfernoCannon_Fire</soundCast>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+			<reloadTime>0.85</reloadTime>
+			<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NiHalRifle</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- NiHal Carbine -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_NihalCarbine</defName>
+		<statBases>
+			<Mass>2.7</Mass>
+			<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.05</SwayFactor>
+			<Bulk>5.50</Bulk>
+			<WorkToMake>42000</WorkToMake>
+		</statBases>
+		<costList>
+			<Uranium>5</Uranium>
+			<Steel>80</Steel>
+			<Plasteel>80</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>46</range>
+			<soundCast>ORifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NiHalRifle</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_NihalCarbine"]/tools</xpath>
+		<value>
+			<li Class="CombatExtended.ToolCE">
+				<label>bayonet</label>
+				<capacities>
+					<li>Stab</li>
+				</capacities>
+				<power>17</power>
+				<cooldownTime>1.38</cooldownTime>
+				<armorPenetrationBlunt>1.08</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.72</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

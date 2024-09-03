@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Uniforms ======= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2Uniform" or @Name="WW2OfficerUniform"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Uniform" or @Name="WW2OfficerUniform"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Uniform" or @Name="WW2OfficerUniform"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.045</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ======= Coat ======= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Coat"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>						
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Coat"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ======= Rain Cape ======= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2RainCape" or @Name="WW2StuffableRainCape"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2StuffableRainCape"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2RainCape"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2RainCape"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.015</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ======= Winter Parka ======= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2WinterParka"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2WinterParka"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.04</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2WinterParka"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.06</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ======= Winter Coat ======= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2WinterCoat"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<WornBulk>7</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2WinterCoat"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2WinterCoat"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.08</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ======= Loadbearings ======= -->
+
+	<!-- === Backpack === -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2Rucksack"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Rucksack"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Shoulders</li>
+			</bodyPartGroups>
+			<careIfDamaged>false</careIfDamaged>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Rucksack"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>Backpack</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Rucksack"]/costList</xpath>
+		<value>
+			<costStuffCount>40</costStuffCount>
+			<stuffCategories>
+				<li>Fabric</li>
+				<li>Leathery</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Rucksack"]/thingCategories</xpath>
+		<value>
+			<thingCategories>
+				<li>Loadout</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Rucksack"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>40</CarryBulk>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- === Satchel === -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2Satchel"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Satchel"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Shoulders</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Satchel"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>Webbing</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2Satchel"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>15</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- === Field Gear === -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2FieldGear"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2FieldGear"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Shoulders</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2FieldGear"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>Webbing</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2FieldGear"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>15</CarryBulk>
+				<ReloadSpeed>0.1</ReloadSpeed>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- ======= Helmets ======= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			@Name="WW2Helmet" or
+			@Name="WW2StuffableHelmet" or
+			@Name="WW2StuffablePithHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2StuffableHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2StuffablePithHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2StuffablePithHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Helmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- ======= Gas Masks ======= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2GasMask"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2GasMask"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2GasMask"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>Overhead</li>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2GasMask"]/apparel</xpath>
+		<value>
+			<tags>
+				<li>IndustrialMilitaryBasic</li>
+				<li>GasMask</li>
+			</tags>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="WW2GasMask"]</xpath>
+		<value>
+			<modExtensions>
+				<li Class="CombatExtended.ApparelHediffExtension">
+					<hediff>WearingGasMask</hediff>
+				</li>
+				<li Class="CombatExtended.ApperalRenderingExtension">
+					<HideHair>false</HideHair>
+					<HideBeard>true</HideBeard>
+				</li>
+			</modExtensions>
+		</value>
+	</Operation>
+
+	<!-- ======= Caps ======= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			@Name="WW2PeakedCap" or
+			@Name="WW2FieldCap" or
+			@Name="WW2SideCap" or
+			@Name="WW2FurHat" or
+			@Name="WW2Kepi"
+			]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- === Stuffable Hats === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			@Name="WW2StuffableKepi" or
+			@Name="WW2StuffablePeakedCap" or
+			@Name="WW2StuffableFieldCap" or
+			@Name="WW2StuffableSideCap"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="WW2StuffableFurHat"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			<Bulk>1</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+</Patch>

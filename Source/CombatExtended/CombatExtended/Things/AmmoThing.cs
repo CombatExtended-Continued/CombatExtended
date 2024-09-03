@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -169,6 +169,8 @@ namespace CombatExtended
                         doSoundEffects: true,
                         detProps.postExplosionSpawnThingDefWater,
                         detProps.screenShakeFactor,
+                        null,
+                        null,
                         height: 0f,
                         Mathf.Pow(stackCountScale, 0.333f));
                     }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Helmet === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>6.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_Helmet"]</xpath>
+		<value>
+			<costList>
+				<Hyperweave>15</Hyperweave><!-- Hyperweave instead of Devilstrand.-->
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_Helmet"]/stuffCategories/li[.="Metallic"]</xpath>
+		<value>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+
+	<!-- === Grenadier Helmet === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierHelmet"]</xpath>
+		<value>
+			<costList>
+				<Hyperweave>20</Hyperweave>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierHelmet"]/stuffCategories/li[.="Metallic"]</xpath>
+		<value>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+
+	<!-- === Gas Mask === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_Gasmask"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_Gasmask"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<!-- === Grenadier Gas Mask === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierGasmask"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_DKOK_GrenadierGasmask"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+</Patch>

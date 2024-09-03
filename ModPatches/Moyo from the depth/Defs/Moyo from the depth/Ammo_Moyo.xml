@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Boltcaster ========================== -->
+
+	<!-- ==================== AmmoSets ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MoyoBallista</defName>
+		<label>Moyo charge bolt</label>
+		<ammoTypes>
+			<Ammo_MoyoBallista>Bullet_MoyoBallista</Ammo_MoyoBallista>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>MoyoBolt</defName>
+		<label>Charged Ion Bolt</label>
+		<description>High velocity charged bolt.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerAmmoBase">
+		<defName>Ammo_MoyoBallista</defName>
+		<label>Moyo charge bolt</label>
+		<description>High power ion charge bolt for use against heavy targets such as mechanoids or power armor.</description>
+		<statBases>
+			<Mass>1.92</Mass>
+			<Bulk>2.87</Bulk>
+			<MarketValue>27.22</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoAdvanced</li>
+		</thingCategories>
+		<stackLimit>100</stackLimit>
+		<graphicData>
+			<texPath>Things/Ammo/Railgun/HighCaliber</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>MoyoBolt</ammoClass>
+		<comps>
+			<!-- Arbitarily defined cookoff explosive stats; represents power cells detonating -->
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>20</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>2</Fragment_Large>
+					<Fragment_Small>10</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_MoyoBallista</defName>
+		<label>moyo heavy chargebolt</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.5</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>500</speed>
+			<damageDef>Moyo_ChargeBolt</damageDef>
+			<damageAmountBase>100</damageAmountBase>
+			<armorPenetrationSharp>125</armorPenetrationSharp>
+			<armorPenetrationBlunt>7500</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>60</damageAmountBase>
+				<explosiveDamageType>EMP</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>Explosion_EMP</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_MoyoBallista</defName>
+		<label>make Moyo charge bolts x25</label>
+		<description>Craft 25 Moyo charge bolts.</description>
+		<jobString>Making Moyo charge bolts.</jobString>
+		<workAmount>21000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>90</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_MoyoBallista>25</Ammo_MoyoBallista>
+		</products>
+	</RecipeDef>
+
+	<!-- ==================== Cryoblaster ========================== -->
+
+	<!-- ==================== AmmoSets ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Cryoblaster</defName>
+		<label>Moyo Cryocell</label>
+		<ammoTypes>
+			<Ammo_MoyoCryocell>Bullet_MoyoCryocell</Ammo_MoyoCryocell>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CryoRifle</defName>
+		<label>Moyo Cryocell</label>
+		<ammoTypes>
+			<Ammo_MoyoCryocell>Bullet_MoyoCryocannon</Ammo_MoyoCryocell>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>MoyoCryo</defName>
+		<label>Cryo Cell</label>
+		<description>Cryo fuel cell.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_MoyoCryocell</defName>
+		<label>Moyo cryocell</label>
+		<description>Weaponized cryofreezing cell for Moyo cryotech weapons.</description>
+		<statBases>
+			<Mass>0.02</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>1.56</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoAdvanced</li>
+		</thingCategories>
+		<stackLimit>2000</stackLimit>
+		<graphicData>
+			<texPath>Things/Ammo/FuelCell/Foam</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>MoyoCryo</ammoClass>
+		<comps>
+			<!-- Cell failure releases cryoblast at 1/4 efficency -->
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>2</damageAmountBase>
+				<explosiveDamageType>Moyo_Cryo</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseFlamethrowerBullet">
+		<defName>Bullet_MoyoCryocell</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>moyo cryoblast</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoCBBlast2</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.5</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Moyo_Cryo</damageDef>
+			<speed>20</speed>
+			<damageAmountBase>4</damageAmountBase>
+			<soundExplode>MoyoCryoShatter</soundExplode>
+			<explosionRadius>1.4</explosionRadius>
+			<ai_IsIncendiary>false</ai_IsIncendiary>
+			<gravityFactor>1.5</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseFlamethrowerBullet">
+		<defName>Bullet_MoyoCryocannon</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>moyo cryoblast</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoCBBlast3</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.5</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Moyo_Cryo</damageDef>
+			<speed>90</speed>
+			<damageAmountBase>60</damageAmountBase>
+			<soundExplode>MoyoCryoShatter</soundExplode>
+			<explosionRadius>3.5</explosionRadius>
+			<ai_IsIncendiary>false</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_MoyoCryocell</defName>
+		<label>make Moyo cryocells x500</label>
+		<description>Craft 500 Moyo cryocells.</description>
+		<jobString>Making Moyo cryocells.</jobString>
+		<workAmount>7000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_MoyoCryocell>500</Ammo_MoyoCryocell>
+		</products>
+	</RecipeDef>
+
+
+	<!-- ==================== Abysteel Nail ========================== -->
+
+	<!-- ==================== AmmoSets ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Abyssnail</defName>
+		<label>Moyo alloy nail</label>
+		<ammoTypes>
+			<Ammo_Abyssnail>Bullet_Abyssnail</Ammo_Abyssnail>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>MoyoNail</defName>
+		<label>Nail</label>
+		<description>High velocity alloy nail.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_Abyssnail</defName>
+		<label>Abyssal Nail</label>
+		<description>Machined alloy nails.</description>
+		<statBases>
+			<Mass>0.02</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.05</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoAdvanced</li>
+		</thingCategories>
+		<stackLimit>500</stackLimit>
+		<graphicData>
+			<texPath>Things/Ammo/Railgun/Pistol</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>MoyoNail</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_Abyssnail</defName>
+		<label>abyssal nail</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoNail</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>200</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationSharp>11</armorPenetrationSharp>
+			<armorPenetrationBlunt>8</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Abyssnail</defName>
+		<label>make abyssal nails x500</label>
+		<description>Craft 500 abyssal nails.</description>
+		<jobString>Making abyssal nails.</jobString>
+		<workAmount>2500</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Abyssnail>500</Ammo_Abyssnail>
+		</products>
+	</RecipeDef>
+
+	<!-- ==================== Moyo Specific Ammosets ========================== -->
+
+	<!--6x18 Moyo-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_6x18mmMoyo</defName>
+		<label>6x18mm Charged Bullet</label>
+		<ammoTypes>
+			<Ammo_6x18mmCharged>Bullet_6x18mmMoyo</Ammo_6x18mmCharged>
+			<Ammo_6x18mmCharged_AP>Bullet_6x18mmMoyo_AP</Ammo_6x18mmCharged_AP>
+			<Ammo_6x18mmCharged_Ion>Bullet_6x18mmMoyo_Ion</Ammo_6x18mmCharged_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+
+	<ThingDef ParentName="Base6x18mmChargedBullet">
+		<defName>Bullet_6x18mmMoyo</defName>
+		<label>6x18mm Charged bullet</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>3</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x18mmChargedBullet">
+		<defName>Bullet_6x18mmMoyo_AP</defName>
+		<label>6x18mm Charged bullet (Conc.)</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>1</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>24</armorPenetrationSharp>
+			<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x18mmChargedBullet">
+		<defName>Bullet_6x18mmMoyo_Ion</defName>
+		<label>6x18mm Charged bullet (Ion)</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>5</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+			<empShieldBreakChance>1</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+	<!--6x24 Moyo-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_6x24mmMoyo</defName>
+		<label>6x24mm Charged Bullet</label>
+		<ammoTypes>
+			<Ammo_6x24mmCharged>Bullet_6x24mmMoyo</Ammo_6x24mmCharged>
+			<Ammo_6x24mmCharged_AP>Bullet_6x24mmMoyo_AP</Ammo_6x24mmCharged_AP>
+			<Ammo_6x24mmCharged_Ion>Bullet_6x24mmMoyo_Ion</Ammo_6x24mmCharged_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_6x24mmMoyo</defName>
+		<label>6x24mm Charged bullet</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>4</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_6x24mmMoyo_AP</defName>
+		<label>6x24mm Charged bullet (Conc.)</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>2</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>30</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base6x24mmChargedBullet">
+		<defName>Bullet_6x24mmMoyo_Ion</defName>
+		<label>6x24mm Charged bullet (Ion)</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>22.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+			<empShieldBreakChance>0.2</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+	<!--8x35 Moyo-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_8x35mmMoyo</defName>
+		<label>8x35mm Charged Bullet</label>
+		<ammoTypes>
+			<Ammo_8x35mmCharged>Bullet_8x35mmMoyo</Ammo_8x35mmCharged>
+			<Ammo_8x35mmCharged_AP>Bullet_8x35mmMoyo_AP</Ammo_8x35mmCharged_AP>
+			<Ammo_8x35mmCharged_Ion>Bullet_8x35mmMoyo_Ion</Ammo_8x35mmCharged_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+
+	<ThingDef ParentName="Base8x35mmChargedBullet">
+		<defName>Bullet_8x35mmMoyo</defName>
+		<label>8x35mm Charged bullet</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>6</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x35mmChargedBullet">
+		<defName>Bullet_8x35mmMoyo_AP</defName>
+		<label>8x35mm Charged bullet (Conc.)</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>2</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>30</armorPenetrationSharp>
+			<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x35mmChargedBullet">
+		<defName>Bullet_8x35mmMoyo_Ion</defName>
+		<label>8x35mm Charged bullet (Ion)</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>15</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>9</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>22.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+			<empShieldBreakChance>0.2</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+
+	<!--8x50 Moyo-->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_8x50mmMoyo</defName>
+		<label>8x50mm Charged Bullet</label>
+		<ammoTypes>
+			<Ammo_8x50mmCharged>Bullet_8x50mmMoyo</Ammo_8x50mmCharged>
+			<Ammo_8x50mmCharged_AP>Bullet_8x50mmMoyo_AP</Ammo_8x50mmCharged_AP>
+			<Ammo_8x50mmCharged_Ion>Bullet_8x50mmMoyo_Ion</Ammo_8x50mmCharged_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+
+	<ThingDef ParentName="Base8x50mmChargedBullet">
+		<defName>Bullet_8x50mmMoyo</defName>
+		<label>8x50mm Charged bullet</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>24</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>7</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>120</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmChargedBullet">
+		<defName>Bullet_8x50mmMoyo_AP</defName>
+		<label>8x50mm Charged bullet (Conc.)</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>3</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>36</armorPenetrationSharp>
+			<armorPenetrationBlunt>120</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmChargedBullet">
+		<defName>Bullet_8x50mmMoyo_Ion</defName>
+		<label>8x50mm Charged bullet (Ion)</label>
+		<graphicData>
+			<texPath>Things/Weapons/MoyoSmallBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>19</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>11</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>27</armorPenetrationSharp>
+			<armorPenetrationBlunt>120</armorPenetrationBlunt>
+			<empShieldBreakChance>1</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+</Defs>

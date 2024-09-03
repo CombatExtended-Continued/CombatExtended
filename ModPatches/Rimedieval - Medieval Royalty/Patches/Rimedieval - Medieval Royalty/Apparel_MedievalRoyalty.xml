@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Varangian Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZT_VarangianArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2.75</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZT_VarangianArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4.25</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="BZT_VarangianArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BZT_VarangianArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeDodgeChance>-0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BZT_VarangianArmor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<!-- Varangian Helmet -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZN_VarangianHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BZN_VarangianHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZN_VarangianHelmet"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZN_VarangianHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>-0.4</AimingAccuracy>
+				<MeleeHitChance>-2</MeleeHitChance>
+				<PainShockThreshold>0.15</PainShockThreshold>
+				<SocialImpact>0.35</SocialImpact>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Footman / Scout Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZT_ScoutArmor" or defName="BZT_FootmanArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1.65</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZT_ScoutArmor" or defName="BZT_FootmanArmor"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BZT_ScoutArmor" or defName="BZT_FootmanArmor"]/statBases</xpath>
+		<value>
+			<Bulk>25</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BZT_ScoutArmor" or defName="BZT_FootmanArmor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<!-- Footman / Scout Helmet -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZN_ScoutHelmet" or defName="BZN_FootmanHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZN_ScoutHelmet" or defName="BZN_FootmanHelmet"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BZN_ScoutHelmet" or defName="BZN_FootmanHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZN_ScoutHelmet" or defName="BZN_FootmanHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>-0.3</AimingAccuracy>
+				<MeleeHitChance>-1.5</MeleeHitChance>
+				<PainShockThreshold>0.10</PainShockThreshold>
+				<SocialImpact>0.3</SocialImpact>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+</Patch>

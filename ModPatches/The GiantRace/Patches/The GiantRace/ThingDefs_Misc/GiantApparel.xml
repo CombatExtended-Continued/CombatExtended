@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_GiantRags"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			<Bulk>6</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Clothes"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+			<Bulk>8</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Coverall"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+			<Bulk>12</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GI_Coverall"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GI_Coverall"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GI_Coverall"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<CarryBulk>2.5</CarryBulk>
+				</equippedStatOffsets>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GI_Coverall"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryBulk>2.5</CarryBulk>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Brigandine"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+			<Bulk>140</Bulk>
+			<WornBulk>25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Brigandine"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Brigandine"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Brigandine"]/statBases/Mass</xpath>
+		<value>
+			<Mass>35</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="GI_Brigandine"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Shadehat"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Potlid"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<Bulk>8</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<!--Note, techincally a thrumbohorn weighs like, 50kg, but we're not going to bother changing the mass for this-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Thrumboskull"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+			<Bulk>8</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Thrumboskull"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>9</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_MaskandhelmF" or defName="GI_MaskandhelmM"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			<Bulk>25</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_MaskandhelmF" or defName="GI_MaskandhelmM"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_MaskandhelmF" or defName="GI_MaskandhelmM"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Insignia"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			<Bulk>8</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Bonepauldron"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+			<Bulk>18</Bulk>
+			<WornBulk>6</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Bonepauldron"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Booty"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			<Bulk>8</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Pauldron"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			<Bulk>140</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Powerarmour"]/statBases/Mass</xpath>
+		<value>
+			<Mass>130</Mass>
+			<Bulk>300</Bulk>
+			<WornBulk>80</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Powerarmour"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Powerarmour"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>81</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GI_Powerarmour"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>15</CarryBulk>
+			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+			<CarryWeight>35</CarryWeight>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GI_Powerarmour"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Powerhelmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>8</Mass>
+			<Bulk>20</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Powerhelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Powerhelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>72</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GI_Powerhelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GI_Powerhelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GI_Powerhelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.15</AimingAccuracy>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<!-- Armor launched mortar Projectile -->>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GI_Powerarmour"]/verbs</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="GI_Powerarmour"]/verbs</xpath>
+			<value>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>launch 81mm shell</label>
+						<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<onlyManualCast>True</onlyManualCast>
+						<warmupTime>2.1</warmupTime>
+						<range>75</range>
+						<minRange>10</minRange>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<defaultProjectile>Bullet_81mmMortarShell_GiantArmor</defaultProjectile>
+						<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+					</li>
+				</verbs>
+			</value>
+		</match>
+	</Operation>
+</Patch>

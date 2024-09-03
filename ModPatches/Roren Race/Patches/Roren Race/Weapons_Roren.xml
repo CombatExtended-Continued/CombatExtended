@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Melee Tools =========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Roren_Shotgun" or 
+			defName="Roren_SMG" or 
+			defName="Roren_MarksmanRifle" or 
+			defName="Roren_ATRifle" or 
+			defName="Roren_LMG" or 
+			defName="Roren_HMG" or 
+			defName="Roren_AutoCannon" or 
+			defName="Roren_GrenadeLauncher" or 
+			defName="Roren_RocketLauncher" or 
+			defName="Roren_Flamer"
+		]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_InfantryRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>bayonet</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationSharp>1.11</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_InfantryPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_RocketLauncher"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Roren Pistol === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_InfantryPistol</defName>
+		<statBases>
+			<WorkToMake>7500</WorkToMake>
+			<Mass>2</Mass>
+			<Bulk>1.80</Bulk>
+			<SwayFactor>1.27</SwayFactor>
+			<ShotSpread>0.18</ShotSpread>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>30</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.21</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Roren_Pistol_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>7</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>9</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Roren Shotgun === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_Shotgun</defName>
+		<statBases>
+			<WorkToMake>18000</WorkToMake>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.49</RangedWeapon_Cooldown>
+			<Bulk>8</Bulk>
+		</statBases>
+		<costList>
+			<Steel>50</Steel>
+			<WoodLog>5</WoodLog>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.73</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>15</range>
+			<soundCast>Roren_Shotgun_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadOneAtATime>false</reloadOneAtATime>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+	
+	<!-- === Roren SMG === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_SMG</defName>
+		<statBases>
+			<WorkToMake>26000</WorkToMake>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>0.85</SwayFactor>
+			<Bulk>5.50</Bulk>
+		</statBases>
+		<costList>
+			<Steel>40</Steel>
+			<WoodLog>5</WoodLog>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.79</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Roren_SMG_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- === Infantry Rifle === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_InfantryRifle</defName>
+		<statBases>
+			<WorkToMake>11500</WorkToMake>
+			<Mass>4.10</Mass>
+			<Bulk>11.10</Bulk>
+			<SwayFactor>1.52</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>55</Steel>
+			<WoodLog>15</WoodLog>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.16</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>62</range>
+			<soundCast>Roren_BoltAction_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+	
+	<!-- === Roren Marksman Rifle === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_MarksmanRifle</defName>
+		<statBases>
+			<WorkToMake>27000</WorkToMake>
+			<Mass>13.80</Mass>
+			<Bulk>13.70</Bulk>
+			<SwayFactor>2.81</SwayFactor>
+			<ShotSpread>0.03</ShotSpread>
+			<SightsEfficiency>2.36</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>100</Steel>
+			<WoodLog>10</WoodLog>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.42</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_132x92mmSRTuF_FMJ</defaultProjectile>
+			<warmupTime>2.9</warmupTime>
+			<range>75</range>
+			<soundCast>Roren_HeavyGun_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_132x92mmSRTuF</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- === Roren ATR === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_ATRifle</defName>
+		<statBases>
+			<WorkToMake>29500</WorkToMake>
+			<Mass>19.00</Mass>
+			<Bulk>19.00</Bulk>
+			<SwayFactor>2.62</SwayFactor>
+			<ShotSpread>0.01</ShotSpread>
+			<SightsEfficiency>2.24</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.41</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>145</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>3.36</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_20x82mmMauser_AP</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>62</range>
+			<soundCast>Roren_Single_30mm_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_20x82mmMauser</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>Bipod_AMR</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- === LMG === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_LMG</defName>
+		<statBases>
+			<WorkToMake>39000</WorkToMake>
+			<Mass>12.10</Mass>
+			<Bulk>16.00</Bulk>
+			<SwayFactor>1.76</SwayFactor>
+			<ShotSpread>0.04</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>100</Steel>
+			<WoodLog>5</WoodLog>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.22</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>1.3</warmupTime>
+			<range>62</range>
+			<soundCast>Roren_LMG_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>13</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aiUseBurstMode>False</aiUseBurstMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>Bipod_LMG</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- === HMG === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_HMG</defName>
+		<statBases>
+			<WorkToMake>42000</WorkToMake>
+			<Mass>16.60</Mass>
+			<Bulk>17.00</Bulk>
+			<SwayFactor>3.63</SwayFactor>
+			<ShotSpread>0.06</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>130</Steel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.24</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_132x92mmSRTuF_FMJ</defaultProjectile>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<soundCast>Roren_HMG_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>13</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>50</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_132x92mmSRTuF</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aiUseBurstMode>False</aiUseBurstMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- === Autocannon === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_AutoCannon</defName>
+		<statBases>
+			<WorkToMake>48000</WorkToMake>
+			<Mass>26.30</Mass>
+			<Bulk>21.50</Bulk>
+			<SwayFactor>5.27</SwayFactor>
+			<ShotSpread>0.01</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>180</Steel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.48</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_20x82mmMauser_AP</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>1.1</warmupTime>
+			<range>40</range>
+			<soundCast>Roren_Auto_20mm_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>13</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_20x82mmMauser</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aiUseBurstMode>False</aiUseBurstMode>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+		</FireModes>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- === Grenade Launcher === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_GrenadeLauncher</defName>
+		<statBases>
+			<WorkToMake>14500</WorkToMake>
+			<Mass>4.40</Mass>
+			<Bulk>5.10</Bulk>
+			<SwayFactor>1.13</SwayFactor>
+			<ShotSpread>0.18</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.48</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>45</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.57</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>40</range>
+			<minRange>5</minRange>
+			<soundCast>Roren_GL_Pom_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<ai_IsBuildingDestroyer>True</ai_IsBuildingDestroyer>
+			<ignorePartialLoSBlocker>True</ignorePartialLoSBlocker>
+			<targetParams>
+				<canTargetLocations>True</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>5.1</reloadTime>
+			<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aiUseBurstMode>False</aiUseBurstMode>
+		</FireModes>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- ========== Rocket Launcher ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_RocketLauncher</defName>
+		<statBases>
+			<WorkToMake>31500</WorkToMake>
+			<Mass>11.00</Mass>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.16</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>2.74</SwayFactor>
+			<Bulk>16.40</Bulk>
+		</statBases>
+		<costList>
+			<Steel>110</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_88mmRPzB_HEAT</defaultProjectile>
+			<warmupTime>1.90</warmupTime>
+			<range>35</range>
+			<minRange>3</minRange>
+			<soundCast>Roren_Rocket_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<onlyManualCast>true</onlyManualCast>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<muzzleFlashScale>15</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>8.6</reloadTime>
+			<ammoSet>AmmoSet_88mmRPzBRocket</ammoSet>
+		</AmmoUser>
+
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- ========== Flamethrower ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_Flamer</defName>
+		<statBases>
+			<Mass>6.5</Mass>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.45</SwayFactor>
+			<Bulk>9</Bulk>
+			<WorkToMake>29500</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>80</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>0.39</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+			<hasStandardCommand>true</hasStandardCommand>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<warmupTime>1.1</warmupTime>
+			<range>11</range>
+			<minRange>3</minRange>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<soundCast>Roren_Flame_Sound</soundCast>
+			<soundCastTail>Roren_Flametail_Sound</soundCastTail>
+			<muzzleFlashScale>20</muzzleFlashScale>
+			<burstShotCount>8</burstShotCount>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>40</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_Flamethrower</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aimedBurstShotCount>4</aimedBurstShotCount>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

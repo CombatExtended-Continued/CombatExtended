@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AA_Barbslinger"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_Barbslinger"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.1</MeleeDodgeChance>
+			<MeleeCritChance>0.4</MeleeCritChance>
+			<MeleeParryChance>0.4</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Barbslinger"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Barbslinger"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Barbslinger"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left pincer</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>1.68</cooldownTime>
+					<linkedBodyPartsGroup>AA_PincerAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right pincer</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>1.68</cooldownTime>
+					<linkedBodyPartsGroup>AA_PincerAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>AA_ToxicSting</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.8</cooldownTime>
+					<linkedBodyPartsGroup>AA_Sting</linkedBodyPartsGroup>
+					<armorPenetrationSharp>10</armorPenetrationSharp>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<chanceFactor>0.1</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AA_Barbslinger"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+						<parts>
+							<li>AA_LeftPincer</li>
+							<li>AA_RightPincer</li>
+						</parts>
+					</li>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+						<parts>
+							<li>AA_LeftPincer</li>
+							<li>AA_RightPincer</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AA_Barbslinger"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AA_Barbslinger"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_Barbslinger"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1125</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

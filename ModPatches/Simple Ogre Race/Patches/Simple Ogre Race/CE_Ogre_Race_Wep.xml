@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FP_OGRE_meleeone" or defName="FP_OGRE_meleetwo"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>100</costStuffCount>
+		</value>
+	</Operation>
+
+	<!-- Very High damage and Blunt penetration as it can only be made of woody material -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FP_OGRE_meleeone"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>60</power>
+					<chanceFactor>4</chanceFactor>
+					<cooldownTime>2.7</cooldownTime>
+					<armorPenetrationBlunt>68</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>31</power>
+					<chanceFactor>1</chanceFactor>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetrationBlunt>36</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="FP_OGRE_meleeone"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>2.0</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+				<MeleeDodgeChance>0.1</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="FP_OGRE_meleeone"]/statBases</xpath>
+		<value>
+			<Bulk>16</Bulk>
+			<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- Spiked Club -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FP_OGRE_meleetwo"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>54</power>
+					<extraMeleeDamages>
+						<li>
+							<def>Cut</def>
+							<amount>18</amount>
+						</li>
+					</extraMeleeDamages>
+					<chanceFactor>4</chanceFactor>
+					<cooldownTime>2.88</cooldownTime>
+					<armorPenetrationBlunt>68</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>26</power>
+					<chanceFactor>1</chanceFactor>
+					<cooldownTime>2.55</cooldownTime>
+					<armorPenetrationBlunt>24</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="FP_OGRE_meleetwo"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>2.0</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+				<MeleeDodgeChance>0.1</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FP_OGRE_meleetwo"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9.8</Mass>
+			<Bulk>18</Bulk>
+			<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- === The Rock === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FPOGRE_Rock"]/statBases</xpath>
+		<value>
+			<statBases>
+				<MarketValue>0.1</MarketValue>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<ShotSpread>1.4</ShotSpread>
+				<SwayFactor>2.4</SwayFactor>
+				<Bulk>7</Bulk>
+				<Mass>14</Mass>
+				<RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
+			</statBases>
+			<stackLimit>12</stackLimit>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FPOGRE_Rock"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>FPOGRE_RockFlying</defaultProjectile>
+					<warmupTime>1.4</warmupTime>
+					<range>13</range>
+					<soundCast>ThrowGrenade</soundCast>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FPOGRE_Rock"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>rock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.9</cooldownTime>
+					<armorPenetrationBlunt>7</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/RecipeDef[defName="Make_FP_OGRE_rock"]/products</xpath>
+		<value>
+			<products>
+				<FPOGRE_Rock>3</FPOGRE_Rock>
+			</products>
+		</value>
+	</Operation>
+
+</Patch>

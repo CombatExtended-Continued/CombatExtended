@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Remove other verbs =========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="Miho_Weapon_Shotgun" or
+			defName="Miho_Weapon_ShotgunPsychic" or
+			defName="Miho_Weapon_AutoShotgun"
+			]/verbs/li[@Class="TorgueMiho.Verb_Properties_ShotGun"] </xpath>
+	</Operation>
+
+	<!-- ========== SMG =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_RifleCQB</defName>
+		<statBases>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>0.77</SwayFactor>
+			<Bulk>2.7</Bulk>
+			<Mass>2.5</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>30</Steel>
+			<WoodLog>5</WoodLog>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_8x22mmNambu_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<range>21</range>
+			<soundCast>Miho_Pistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_8x22mmNambu</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Rifle =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_RifleDefence</defName>
+		<statBases>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.22</SwayFactor>
+			<Bulk>8.15</Bulk>
+			<Mass>3.60</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>40</Steel>
+			<WoodLog>10</WoodLog>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.87</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_65x50mmSRArisaka_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>48</range>
+			<soundCast>Miho_DefenceRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_65x50mmSRArisaka</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+	
+	<!-- ========== Launcher Rifle =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_RifleDefenceGrenade</defName>
+		<statBases>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.32</SwayFactor>
+			<Bulk>9.15</Bulk>
+			<Mass>4.00</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>60</Steel>
+			<WoodLog>10</WoodLog>
+			<ComponentIndustrial>7</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.86</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_65x50mmSRArisaka_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>48</range>
+			<soundCast>Miho_DefenceRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_65x50mmSRArisaka</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Weapon_RifleDefenceGrenade"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<propsUnderBarrel>
+					<magazineSize>2</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_20x42mmGrenade</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.51</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_20x42mmGrenade_HE</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>35</range>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>Miho_GrenadeLauncher</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>5</muzzleFlashScale>
+					<burstShotCount>1</burstShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== MG =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_RifleMachinegun</defName>
+		<statBases>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.38</SwayFactor>
+			<Bulk>11.70</Bulk>
+			<Mass>9.00</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>70</Steel>
+			<WoodLog>15</WoodLog>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.21</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_65x50mmSRArisaka_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<range>62</range>
+			<soundCast>Miho_DefenceRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_65x50mmSRArisaka</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>Bipod_LMG</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Rifle Old =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_RifleOld</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.48</SwayFactor>
+			<Bulk>10.73</Bulk>
+		</statBases>
+		<costList>
+			<Steel>55</Steel>
+			<WoodLog>10</WoodLog>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_77x58mmArisaka_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>66</range>
+			<soundCast>Miho_SevenSevenRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_77x58mmArisaka</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Rifle Grenade =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_RifleGrenade</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.12</ShotSpread>
+			<SwayFactor>1.48</SwayFactor>
+			<Bulk>9.73</Bulk>
+		</statBases>
+		<costList>
+			<Steel>55</Steel>
+			<WoodLog>10</WoodLog>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20x42mmGrenade_HE</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>46</range>
+			<soundCast>Miho_GrenadeLauncher</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_20x42mmGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Shotgun =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_Shotgun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.89</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.45</SwayFactor>
+			<Bulk>10.50</Bulk>
+		</statBases>
+		<costList>
+			<Steel>65</Steel>
+			<WoodLog>10</WoodLog>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.77</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<burstShotCount>2</burstShotCount>
+			<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+			<range>17</range>
+			<soundCast>Miho_Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>1.7</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+	
+	<!-- ========== Auto Shotgun =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_AutoShotgun</defName>
+		<statBases>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>0.77</SwayFactor>
+			<Bulk>11.93</Bulk>
+			<Mass>3.6</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>55</Steel>
+			<WoodLog>15</WoodLog>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.88</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<range>18</range>
+			<soundCast>Miho_Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>0.85</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Plamsa Rifle =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_RiflePlasma</defName>
+		<statBases>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>8.15</Bulk>
+			<Mass>4.00</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.27</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MihoPlasma</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<soundAiming>Miho_Charging</soundAiming>
+			<burstShotCount>4</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>48</range>
+			<soundCast>Miho_RiflePlasmaGun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>32</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_MihoPlasma</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Plamsa Sniper =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_SniperPlasma</defName>
+		<statBases>
+			<SightsEfficiency>2.60</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.44</SwayFactor>
+			<Bulk>11.15</Bulk>
+			<Mass>7.50</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.27</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MihoPlasma</defaultProjectile>
+			<warmupTime>2.5</warmupTime>
+			<soundAiming>Miho_Charging</soundAiming>
+			<burstShotCount>1</burstShotCount>
+			<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>75</range>
+			<soundCast>Miho_CannonPlasma</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>16</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_MihoPlasmaSniper</ammoSet>
+		</AmmoUser>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Shotgun =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_ShotgunPsychic</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.28</SwayFactor>
+			<Bulk>6.80</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.08</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MechPsyShot</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<burstShotCount>5</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<range>49.5</range>
+			<soundCast>Miho_SilencedPistol</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>25</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_MechPsyShot</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Miho_Weapon_Pistol =========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_Pistol</defName>
+		<statBases>
+			<SightsEfficiency>0.80</SightsEfficiency>
+			<ShotSpread>0.35</ShotSpread>
+			<SwayFactor>0.75</SwayFactor>
+			<Bulk>2.2</Bulk>
+			<Mass>0.9</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.41</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Nail_HV</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<range>12</range>
+			<soundCast>Miho_Pistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_Nail_HV</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Miho_Weapon_Pistol"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+	
+	<!-- ========== Psy Sniper =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_RiflePsychic</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>3.00</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.40</SwayFactor>
+			<Bulk>11.80</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.82</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MechPsyShot</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>75</range>
+			<soundCast>Miho_SilencedRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>16</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_MechPsyRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+	
+	<!-- ========== AT Weapon =========== -->
+	
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Miho_Weapon_RifleRecoillessSharp"]/comps</xpath>
+		<value>
+			<comps>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Styleable"/>
+			<li Class="CompProperties_Biocodable"/>
+			<li>
+				<compClass>CompQuality</compClass>
+			</li>
+			<li Class="CompProperties_Art">
+				<nameMaker>NamerArtWeaponGun</nameMaker>
+				<descriptionMaker>ArtDescription_WeaponGun</descriptionMaker>
+				<minQualityForArtistic>Excellent</minQualityForArtistic>
+			</li>
+			</comps>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Miho_Weapon_RifleRecoillessSharp</defName>
+		<statBases>
+			<Mass>8.80</Mass>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.83</SwayFactor>
+			<Bulk>10.50</Bulk>
+			<WorkToMake>25500</WorkToMake>
+		</statBases>
+		<costList>
+			<WoodLog>5</WoodLog>
+			<Steel>70</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_RPG7Grenade_HEAT</defaultProjectile>
+			<warmupTime>1.9</warmupTime>
+			<range>48</range>
+			<minRange>3</minRange>
+			<soundCast>Miho_ATRocket</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<onlyManualCast>true</onlyManualCast>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<muzzleFlashScale>15</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>9.1</reloadTime>
+			<ammoSet>AmmoSet_MihoMissile_S</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+
+	<!-- ========== Melee Attacks =========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Miho_Weapon_RifleDefence" or
+			defName="Miho_Weapon_RifleMachinegun" or
+			defName="Miho_Weapon_RifleOld" or
+			defName="Miho_Weapon_RifleGrenade" or
+			defName="Miho_Weapon_Shotgun" or
+			defName="Miho_Weapon_RiflePlasma" or
+			defName="Miho_Weapon_ShotgunPsychic" or
+			defName="Miho_Weapon_SniperPlasma" or
+			defName="Miho_Weapon_RiflePsychic" or
+			defName="Miho_Weapon_RifleRecoillessSharp" or
+			defName="Miho_Weapon_RifleDefenceGrenade"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Miho_Weapon_HeavyPistol" or
+			defName="Miho_Weapon_HeavyPistolFlechette" or
+			defName="Miho_Weapon_HeavyPistolHardkill" or
+			defName="Miho_Weapon_RifleCQB" or
+			defName="Miho_Weapon_Pistol"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

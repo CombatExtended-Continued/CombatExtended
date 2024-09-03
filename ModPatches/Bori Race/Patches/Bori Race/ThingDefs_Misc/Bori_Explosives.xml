@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Remove Recipe Maker & Verbs ========== -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/costList</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/verbs</xpath>
+	</Operation>
+
+	<!-- ========== Projectile thingClass ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ========== Projectile ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1.5</explosionRadius>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>80</damageAmountBase>
+				<explosionDelay>80</explosionDelay>
+				<dropsCasings>false</dropsCasings>
+				<speed>10</speed>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ========== Check Comp ========== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ========== Add Fragmentation ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>60</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+	<!-- Weapon Stack and Appearance -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/graphicData</xpath>
+		<value>
+			<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<!-- Weapon Check Comps -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Weapon Values -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>80</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>60</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BD_GrenadeFrag</defName>
+		<statBases>
+			<Mass>1.08</Mass>
+			<MarketValue>7.42</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw grenade</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+			<minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_BR_Fr</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>

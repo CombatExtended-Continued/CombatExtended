@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======== BaseDragon (Dragon Base) ======== -->
+	<!-- ====== ModExtension ====== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="NebulaDragonRaceBase" or @Name="AurelionDragonRaceBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ======== Void Base ======== -->
+	<!-- ====== statBases ====== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase"]/statBases/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.24</MeleeDodgeChance>
+			<MeleeCritChance>2</MeleeCritChance>
+			<MeleeParryChance>0.64</MeleeParryChance>
+			<SightsEfficiency>1</SightsEfficiency>
+			<AimingAccuracy>1</AimingAccuracy>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="NebulaDragonRaceBase" or @Name="StarDragonRaceBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase" or @Name="NebulaDragonRaceBase" or @Name="StarDragonRaceBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="NebulaDragonRaceBase"]/statBases/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.57</MeleeDodgeChance>
+			<MeleeCritChance>1.1</MeleeCritChance>
+			<MeleeParryChance>0.36</MeleeParryChance>
+			<SightsEfficiency>1</SightsEfficiency>
+			<AimingAccuracy>1</AimingAccuracy>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="StarDragonRaceBase"]/statBases/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.66</MeleeDodgeChance>
+			<MeleeCritChance>1.56</MeleeCritChance>
+			<MeleeParryChance>0.64</MeleeParryChance>
+			<SightsEfficiency>1</SightsEfficiency>
+			<AimingAccuracy>1</AimingAccuracy>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<!-- Natural Armor Comp -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase" or @Name="VoidDragonWWRaceBase"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>16500</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="NebulaDragonRaceBase"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>15250</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="StarDragonRaceBase"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>14000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ====== race (Race Properties) ====== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VoidDragonRaceBase"]/race/manhunterOnTameFailChance</xpath>
+		<value>
+			<manhunterOnTameFailChance>0.6</manhunterOnTameFailChance>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ==============================              Implants       ====================== -->
+	<!-- Self-Alloyed Plating -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RR_SelfAlloyingPlating"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RR_SelfAlloyingPlating"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="RR_SelfAlloyingPlating"]/stages/li/statOffsets</xpath>
+		<value>
+			<MoveSpeed>-0.25</MoveSpeed>
+			<MeleeDodgeChance>-0.07</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="RR_SelfAlloyingPlating"]/stages/li/capMods</xpath>
+	</Operation>
+	<!-- Self-Alloyed Helm -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RR_SelfAlloyingHelm"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RR_SelfAlloyingHelm"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RR_SelfAlloyingHelm"]/stages/li/statOffsets/PawnBeauty</xpath>
+		<value>
+			<PawnBeauty>-1</PawnBeauty>
+		</value>
+	</Operation>
+	<!-- Plasteel Scythe -->
+	<!-- the original had -49% manipulation to "simulate" loss of Work speed but turns out you need manipulation to actually hit someone in Melee, so these changes make the scythe not a meme"-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RR_AddedScythes"]/stages/li/capMods</xpath>
+		<value>
+			<capMods>
+				<li>
+					<capacity>Manipulation</capacity>
+					<offset>0.15</offset>
+				</li>
+			</capMods>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RR_AddedScythes"]/stages/li/statOffsets</xpath>
+		<value>
+			<!-- had to lower each work stat individually because WorkSpeedGlobal has a minimum value of 30% for some reason -->
+			<statOffsets>
+				<WorkSpeedGlobal>-0.35</WorkSpeedGlobal>
+				<MiningSpeed>-0.49</MiningSpeed>
+				<DeepDrillingSpeed>-0.49</DeepDrillingSpeed>
+				<MiningYield>-0.49</MiningYield>
+				<SmoothingSpeed>-0.49</SmoothingSpeed>
+				<ResearchSpeed>-0.25</ResearchSpeed>
+				<AnimalGatherSpeed>-0.49</AnimalGatherSpeed>
+				<AnimalGatherYield>-0.49</AnimalGatherYield>
+				<PlantWorkSpeed>-0.25</PlantWorkSpeed>
+				<PlantHarvestYield>-0.25</PlantHarvestYield>
+				<ConstructionSpeed>-0.25</ConstructionSpeed>
+				<ConstructSuccessChance>-0.25</ConstructSuccessChance>
+				<FixBrokenDownBuildingSuccessChance>-0.25</FixBrokenDownBuildingSuccessChance>
+				<MedicalTendSpeed>-0.49</MedicalTendSpeed>
+				<MedicalTendQuality>-0.49</MedicalTendQuality>
+				<MedicalOperationSpeed>0.15</MedicalOperationSpeed>
+				<MedicalSurgerySuccessChance>-0.15</MedicalSurgerySuccessChance>
+				<SmeltingSpeed>-0.49</SmeltingSpeed>
+				<GeneralLaborSpeed>-0.4</GeneralLaborSpeed>
+				<DrugSynthesisSpeed>-0.49</DrugSynthesisSpeed>
+				<CookSpeed>-0.1</CookSpeed>
+				<DrugCookingSpeed>-0.49</DrugCookingSpeed>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RR_AddedScythes"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>scythe</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationSharp>5</armorPenetrationSharp>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

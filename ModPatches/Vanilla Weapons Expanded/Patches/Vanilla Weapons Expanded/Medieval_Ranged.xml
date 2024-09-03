@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Tools === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Bow_Crossbow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VWE_Gun_Flintlock"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VWE_Gun_Musket"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Crossbow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWE_Bow_Crossbow</defName>
+		<statBases>
+			<Bulk>6</Bulk>
+			<SwayFactor>1.2</SwayFactor>
+			<ShotSpread>0.5</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>70</WoodLog>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>20</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NeolithicRangedHeavy</li>
+			<li>NeolithicRangedChief</li>
+			<li>CE_Bow</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Flintlock === -->
+	<!-- 
+          - VWE uses a custom verb to trigger smoke effects after the gun is fired, this causes trouble with CE and just overriding it doesn't work.
+          - Has to be replaced in vanilla too 
+        -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Gun_Flintlock"]/verbs/li/verbClass</xpath>
+		<value>
+			<verbClass>Verb_Shoot</verbClass>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWE_Gun_Flintlock</defName>
+		<statBases>
+			<WorkToMake>3500</WorkToMake>
+			<Mass>1.25</Mass>
+			<Bulk>3.90</Bulk>
+			<SwayFactor>1.22</SwayFactor>
+			<ShotSpread>0.36</ShotSpread>
+			<SightsEfficiency>0.5</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>25</Steel>
+			<WoodLog>5</WoodLog>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
+			<warmupTime>1.66</warmupTime>
+			<range>12</range>
+			<soundCast>VWE_Shot_Musket</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>6.5</reloadTime>
+			<ammoSet>AmmoSet_SlowMusketBall</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NeolithicRangedHeavy</li>
+			<li>NeolithicRangedChief</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Musket === -->
+	<!-- 
+          - VWE uses a custom verb to trigger smoke effects after the gun is fired, this causes trouble with CE and just overriding it doesn't work.
+          - Has to be replaced in vanilla too 
+        -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Gun_Musket"]/verbs/li/verbClass</xpath>
+		<value>
+			<verbClass>Verb_Shoot</verbClass>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWE_Gun_Musket</defName>
+		<statBases>
+			<WorkToMake>20000</WorkToMake>
+			<Mass>4.8</Mass>
+			<Bulk>14.9</Bulk>
+			<SwayFactor>1.92</SwayFactor>
+			<ShotSpread>0.30</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>65</Steel>
+			<WoodLog>15</WoodLog>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+			<warmupTime>2.5</warmupTime>
+			<range>45</range>
+			<soundCast>VWE_Shot_Musket</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>10</reloadTime>
+			<ammoSet>AmmoSet_FastMusketBall</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NeolithicRangedHeavy</li>
+			<li>NeolithicRangedChief</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Throwing Knives === -->
+	<!-- == Projectile == -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_FlyingBlade"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>11</damageAmountBase>
+				<flyOverhead>false</flyOverhead>
+				<speed>12</speed>
+				<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.4</armorPenetrationSharp>
+				<preExplosionSpawnChance>0.80</preExplosionSpawnChance>
+				<preExplosionSpawnThingDef>VWE_Throwing_Knives</preExplosionSpawnThingDef>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- == Weapon == -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>Things/Projectile/KnifeThrown</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/costStuffCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/stuffCategories</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltProducts>
+				<Steel>1</Steel>
+			</smeltProducts>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWE_Throwing_Knives</defName>
+		<statBases>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>0.35</Bulk>
+			<Mass>0.15</Mass>
+			<RangedWeapon_Cooldown>0.48</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<label>Throw knife</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>VWE_FlyingBlade</defaultProjectile>
+			<warmupTime>0.66</warmupTime>
+			<range>10</range>
+			<soundCast>ThrowGrenade</soundCast>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Throwing_Knives"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.26</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.42</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Whip === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWE_Tool_Whip</defName>
+		<statBases>
+			<WorkToMake>6800</WorkToMake>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>0.26</SwayFactor>
+			<Bulk>1.5</Bulk>
+			<Mass>0.9</Mass>
+			<RangedWeapon_Cooldown>.48</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_VWE_Whip</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>6</range>
+			<soundCast>VWE_Shot_Whip</soundCast>
+		</Properties>
+	</Operation>
+
+	<!-- Tools -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Tool_Whip"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>2</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

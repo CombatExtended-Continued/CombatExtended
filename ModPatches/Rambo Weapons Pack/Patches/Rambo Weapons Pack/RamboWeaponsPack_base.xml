@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[@ParentName = "BaseRamboGun"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name = "BaseRamboGun"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.8</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Mercenary_Sniper" or defName="Mercenary_Sniper_Acidifier"]/weaponMoney</xpath>
+		<value>
+			<weaponMoney>475~600</weaponMoney>
+		</value>
+	</Operation>
+
+</Patch>

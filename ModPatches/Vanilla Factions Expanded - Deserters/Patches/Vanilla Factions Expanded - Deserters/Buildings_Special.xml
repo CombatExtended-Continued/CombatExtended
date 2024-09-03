@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- VFED Ammo Box Base -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="VFED_AmmoBoxBase"]</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_AutoLoaderCE</thingClass>
+			<drawerType>MapMeshAndRealTime</drawerType>
+		</value>
+	</Operation>
+
+	<!-- Uranium Slug Turret -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>180</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_40x311mmR</ammoSet>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>40</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]</xpath>
+		<value>
+			<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
+				<allowedTurrets>
+					<li>Turret_Sniper</li>
+					<li>VFED_Turret_Kontarion</li>
+				</allowedTurrets>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Autocannon Turret -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>600</magazineSize>
+				<reloadTime>7.8</reloadTime>
+				<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>40</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]</xpath>
+		<value>
+			<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
+				<allowedTurrets>
+					<li>Turret_Autocannon</li>
+					<li>VFED_Turret_Palintone</li>
+				</allowedTurrets>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Missile Turret -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>72</magazineSize>
+				<reloadTime>7.8</reloadTime>
+				<ammoSet>AmmoSet_50mmRocket</ammoSet>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>40</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]</xpath>
+		<value>
+			<li Class="CombatExtended.ModExtension_AutoLoaderGraphics">
+				<allowedTurrets>
+					<li>Turret_RocketswarmLauncher</li>
+					<li>VFED_Turret_Onager</li>
+				</allowedTurrets>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Aerodrone Munition Crate -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFED_AerodroneMunitionsCrate"]/comps/li[@Class="VFED.CompProperties_Explosive_Shells"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<wickTicks>1000</wickTicks>
+				<explosiveRadius>4</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<chanceNeverExplodeFromDamage>0.2</chanceNeverExplodeFromDamage>
+				<startWickHitPointsPercent>0.25</startWickHitPointsPercent>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Bomblet>6</Fragment_Bomblet>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

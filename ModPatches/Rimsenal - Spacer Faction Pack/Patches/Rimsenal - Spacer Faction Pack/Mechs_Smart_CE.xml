@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Tagma =========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseMechanoidTagma"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>11</ArmorRating_Sharp>
+			<AimingAccuracy>1.3</AimingAccuracy>
+			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeCritChance>0.20</MeleeCritChance>
+			<MeleeParryChance>0.50</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseMechanoidTagma"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>22</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Tagmaton"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.11</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
+					<chanceFactor>0.1</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.11</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
+					<chanceFactor>0.1</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.85</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.1</chanceFactor>
+					<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseMechanoidTagma"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>1160</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>1250</RegenInterval>
+					<RegenValue>5</RegenValue>
+					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>116</MaxOverHeal>
+					<MinArmorPct>0.50</MinArmorPct>
+					<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+					<MinArmorValueBlunt>22</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</comps>
+		</value>
+	</Operation>
+	
+	<!-- ========== Skutaton =========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Skutaton"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14</ArmorRating_Sharp>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeCritChance>0.40</MeleeCritChance>
+			<MeleeParryChance>0.70</MeleeParryChance>
+			<MeleeHitChance>6</MeleeHitChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Skutaton"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>28</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Skutaton"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left hammer fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.50</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>17.5</armorPenetrationBlunt>
+					<chanceFactor>3</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right hammer fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.50</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>17.5</armorPenetrationBlunt>
+					<chanceFactor>3</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.85</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.1</chanceFactor>
+					<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Omniservant =========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RSMechanoid"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RSMechanoid"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="RSMechanoid"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.11</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.11</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.85</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.1</chanceFactor>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RSMechanoid"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>860</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>1250</RegenInterval>
+					<RegenValue>5</RegenValue>
+					<Repairable>true</Repairable>
+					<RepairIngredients>
+						<Steel>5</Steel>
+						<Plasteel>5</Plasteel>
+					</RepairIngredients>
+					<RepairTime>300</RepairTime>
+					<RepairValue>200</RepairValue>
+					<CanOverHeal>true</CanOverHeal>
+					<MaxOverHeal>86</MaxOverHeal>
+					<MinArmorPct>0.75</MinArmorPct>
+					<!-- <MinArmorValueSharp>10</MinArmorValueSharp>
+					<MinArmorValueBlunt>22</MinArmorValueBlunt>
+					<MinArmorValueHeat>0.2</MinArmorValueHeat>
+					<MinArmorValueElectric>0.1</MinArmorValueElectric> -->
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- ========== Borer =========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Borer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>drill</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Stab</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>2.5</cooldownTime>
+					<armorPenetrationSharp>0.85</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Psiloid =========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Psiloid"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Psiloid"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+</Patch>

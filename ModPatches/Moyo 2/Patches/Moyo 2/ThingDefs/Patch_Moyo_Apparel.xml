@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--========= Fixed Armor Value =========-->
+
+	<!--Bodysuit-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_BasicSuit"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_BasicSuit"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.15</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_BasicSuit"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_BasicSuit"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+	
+	<!--Hood-->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_CartelHood"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_CartelHood"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.30</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_CartelHood"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!--Engineering Suit-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_EGHarness" or defName="Moyo2_EGJacket"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_EGHarness" or defName="Moyo2_EGJacket"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.3</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_EGHarness" or defName="Moyo2_EGJacket"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!--Engineering Mask-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_EGHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>4</WornBulk>
+			<NightVisionEfficiency_Apparel>0.1</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_EGHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.25</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_EGHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_EGHelmet"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>OnHead</li>
+				<li>StrappedHead</li>
+				<li>Overhead</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<!--Adv Suit-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_AdvancedSuit"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_AdvancedSuit" or defName="Moyo2_HoloSuit"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3.5</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.30</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_AdvancedSuit" or defName="Moyo2_HoloSuit"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_AdvancedSuit" or defName="Moyo2_HoloSuit"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+	
+	<!--Royal suits-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_RoyalSuit"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_HoloSuit"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_RoyalSuit"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>5</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.40</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_RoyalSuit"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6.25</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_RoyalSuit"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<!--Deepdiving Gear-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingShell"]/statBases</xpath>
+		<value>
+			<Bulk>125</Bulk>
+			<WornBulk>20</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingShell"]/statBases/Mass</xpath>
+		<value>
+			<Mass>75</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingShell"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.60</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingShell"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>64</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingShell"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingShell"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>85</CarryWeight>
+			<CarryBulk>10</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingShell"]/costList/Moyo2_Abyssteel</xpath>
+		<value>
+			<Moyo2_Abyssteel>190</Moyo2_Abyssteel>
+			<DevilstrandCloth>40</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingShell"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingShell"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Deepdiving Helmet-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>3</WornBulk>
+			<NightVisionEfficiency_Apparel>0.4</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.55</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>64</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/costList/Moyo2_Abyssteel</xpath>
+		<value>
+			<Moyo2_Abyssteel>60</Moyo2_Abyssteel>
+			<DevilstrandCloth>20</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_DeepDivingHelmet"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>OnHead</li>
+				<li>StrappedHead</li>
+				<li>Overhead</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<!--Diving Gear-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingShell"]/statBases</xpath>
+		<value>
+			<Bulk>125</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingShell"]/statBases/Mass</xpath>
+		<value>
+			<Mass>60</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingShell"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.50</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingShell"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingShell"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingShell"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryWeight>75</CarryWeight>
+				<CarryBulk>10</CarryBulk>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingShell"]/costList/Moyo2_Abyssteel</xpath>
+		<value>
+			<Moyo2_Abyssteel>150</Moyo2_Abyssteel>
+			<DevilstrandCloth>30</DevilstrandCloth>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingShell"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingShell"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Diving Helmet-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>2</WornBulk>
+			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.35</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>42</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]/costList/Moyo2_Abyssteel</xpath>
+		<value>
+			<Moyo2_Abyssteel>50</Moyo2_Abyssteel>
+			<DevilstrandCloth>15</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+							<li>Jaw</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_StreamlineDivingHelmet"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>OnHead</li>
+				<li>StrappedHead</li>
+				<li>Overhead</li>
+			</layers>
+		</value>
+	</Operation>
+
+</Patch>

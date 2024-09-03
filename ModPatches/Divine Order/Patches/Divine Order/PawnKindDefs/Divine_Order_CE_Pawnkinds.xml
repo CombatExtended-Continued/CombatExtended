@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Give ammo to crosbowman-->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderScout"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>12</min>
+					<max>20</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>100</min>
+						<max>200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderSharpshooter" or defName="BotchJob_DivineOrderInquisitor"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>12</min>
+					<max>20</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>100</min>
+						<max>200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderHerald" or defName="BotchJob_DivineOrderMerchant"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>10</min>
+					<max>30</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>100</min>
+						<max>200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderConscript"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>30</min>
+					<max>40</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="BotchJob_DivineOrderScout" or
+			defName="BotchJob_DivineOrderSharpshooter" or
+			defName="BotchJob_DivineOrderInquisitor" or
+			defName="BotchJob_DivineOrderMerchant" or
+			defName="BotchJob_DivineOrderConscript"]
+		</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Expanded Framework</li>
+		</mods>
+		<match Class="PatchOperationAddModExtension">
+			<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderKnight"]</xpath>
+			<value>
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<shieldMoney>
+						<min>100</min>
+						<max>350</max>
+					</shieldMoney>
+					<shieldTags>
+						<li>BotchJob_DivineOrderShield</li>
+					</shieldTags>
+					<shieldChance>0.65</shieldChance>
+				</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="BotchJob_DivineOrderHerald"]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
+
+</Patch>

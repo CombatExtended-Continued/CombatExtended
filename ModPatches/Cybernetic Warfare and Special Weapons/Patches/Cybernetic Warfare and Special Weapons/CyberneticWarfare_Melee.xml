@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- =========== DamageDefs =========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="CW_ElectroBurn"]</xpath>
+		<value>
+			<soundExplosion>CW_PowerSpark</soundExplosion>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="CW_ElectroCharge"]</xpath>
+		<value>
+			<soundExplosion>CW_ContinousSpark</soundExplosion>
+		</value>
+	</Operation>
+
+	<!-- =========== Melee Weapons =========== -->
+
+	<!-- =============== Power Fist =============== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CW_PowerFist"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Pummel</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<armorPenetrationBlunt>70</armorPenetrationBlunt>
+					<cooldownTime>0.25</cooldownTime>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Crush</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9.3</power>
+					<armorPenetrationBlunt>150</armorPenetrationBlunt>
+					<cooldownTime>0.25</cooldownTime>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Knockback</label>
+					<capacities>
+						<li>BluntKnockback</li>
+					</capacities>
+					<power>11.3</power>
+					<armorPenetrationBlunt>90</armorPenetrationBlunt>
+					<cooldownTime>0.25</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_PowerFist"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_PowerFist"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.25</MeleeCritChance>
+			<MeleeParryChance>0.75</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName = "CW_PowerFist"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "CW_PowerFist"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_PowerFist"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- =============== Energy Claw =============== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CW_EnergyClaw"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>energy burst</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>50</armorPenetrationSharp>
+					<cooldownTime>0.25</cooldownTime>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>0.25</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+					<armorPenetrationSharp>50</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>claw</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>10</power>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+					<armorPenetrationSharp>50</armorPenetrationSharp>
+					<cooldownTime>0.25</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>sidestep stab</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>12</power>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+					<armorPenetrationSharp>40</armorPenetrationSharp>
+					<cooldownTime>0.25</cooldownTime>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_EnergyClaw"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_EnergyClaw"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.25</MeleeCritChance>
+				<MeleeParryChance>0.75</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName = "CW_EnergyClaw"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "CW_EnergyClaw"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_EnergyClaw"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- =============== Energy Sword =============== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CW_EnergySword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+					<cooldownTime>1</cooldownTime>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1</cooldownTime>
+					<armorPenetrationBlunt>11.250</armorPenetrationBlunt>
+					<armorPenetrationSharp>90</armorPenetrationSharp>
+					<armorPenetration>0.33</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1</cooldownTime>
+					<armorPenetrationBlunt>45</armorPenetrationBlunt>
+					<armorPenetrationSharp>80</armorPenetrationSharp>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetration>0.33</armorPenetration>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_EnergySword"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_EnergySword"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.25</MeleeCritChance>
+			<MeleeParryChance>0.5</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName = "CW_EnergySword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "CW_EnergySword"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_EnergySword"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Melee</li>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- =============== Chain Sword =============== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_ChainSword"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_ChainSword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleeParryChance>0.25</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName = "CW_ChainSword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "CW_ChainSword"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CW_ChainSword"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Melee</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CW_ChainSword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Uppercut</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+					<cooldownTime>0.5</cooldownTime>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Shocker</label>
+					<capacities>
+						<li>CW_Shock</li>
+					</capacities>
+					<power>5</power>
+					<armorPenetrationBlunt>7.250</armorPenetrationBlunt>
+					<armorPenetrationSharp>75</armorPenetrationSharp>
+					<cooldownTime>0.5</cooldownTime>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Punch</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>7</power>
+					<armorPenetrationBlunt>35</armorPenetrationBlunt>
+					<armorPenetrationSharp>70</armorPenetrationSharp>
+					<cooldownTime>0.5</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

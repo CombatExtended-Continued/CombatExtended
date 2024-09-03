@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Ammo Category -->
+	<CombatExtended.AmmoCategoryDef>
+		<defName>Catapult_TarBoulder</defName>
+		<label>tarred boulder</label>
+		<labelShort>tarred boulder</labelShort>
+		<description>A large, heavy boulder covered in tar.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- AmmoSet -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Trebuchet</defName>
+		<label>siege engine ammunition</label>
+		<ammoTypes>
+			<Ammo_Catapult_Boulder>Projectile_CatapultBullet_Boulder</Ammo_Catapult_Boulder>
+			<Ammo_Catapult_TarBoulder>Projectile_CatapultBullet_TarBoulder</Ammo_Catapult_TarBoulder>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- Ammo -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="CatapultShellBase">
+		<defName>Ammo_Catapult_TarBoulder</defName>
+		<label>tarred boulder</label>
+		<description>A heavy stone, cut to an appropriate size and shape to be thrown by a siege engine. \n\nCovered with tar, which can be lit once ready to be thrown.</description>
+		<graphicData>
+			<texPath>Resources/STarredStoneBoulder</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>15</Mass>
+			<DeteriorationRate>0</DeteriorationRate>
+		</statBases>
+		<ammoClass>Catapult_TarBoulder</ammoClass>
+	</ThingDef>
+
+	<!-- Projectile -->
+	<ThingDef ParentName="BaseCatapultBullet">
+		<defName>Projectile_CatapultBullet_TarBoulder</defName>
+		<label>tar covered boulder</label>
+		<graphicData>
+			<texPath>Projectile/BoulderFlamingBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>(2.5,2.5)</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Blunt</damageDef>
+			<damageAmountBase>250</damageAmountBase>
+			<explosionRadius>1.5</explosionRadius>
+			<soundExplode>DankPyon_Explosion_Boulder</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosiveDamageType>Flame</explosiveDamageType>
+				<damageAmountBase>80</damageAmountBase>
+				<explosiveRadius>3</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<preExplosionSpawnChance>0.4</preExplosionSpawnChance>
+				<preExplosionSpawnThingDef>DankPyon_Filth_Tar</preExplosionSpawnThingDef>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Recipe -->
+	<RecipeDef ParentName="MakeStoneBlocksBase">
+		<defName>MakeAmmo_Catapult_BoulderBulk</defName>
+		<label>cut stone chunk into boulder x5</label>
+		<workAmount>8000</workAmount>
+		<description>Cuts a stone chunk down to size to be thrown by a siege engine.</description>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>StoneChunks</li>
+					</categories>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>StoneChunks</li>
+			</categories>
+		</fixedIngredientFilter>
+		<recipeUsers Inherit="False">
+			<li>TableStonecutter</li>
+		</recipeUsers>
+		<products>
+			<Ammo_Catapult_Boulder>5</Ammo_Catapult_Boulder>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="MakeStoneBlocksBase">
+		<defName>MakeAmmo_Catapult_TarBoulder</defName>
+		<label>tar a stone boulder</label>
+		<description>Cuts a stone chunk down to size and covers in tar to be thrown by a siege engine.</description>
+		<workAmount>400</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<workSkillLearnFactor>0.25</workSkillLearnFactor>
+		<effectWorking>Smith</effectWorking>
+		<soundWorking>Recipe_Smith</soundWorking>
+		<researchPrerequisites>
+			<li>DankPyon_Tar</li>
+		</researchPrerequisites>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Ammo_Catapult_Boulder</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>DankPyon_Tar</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Ammo_Catapult_Boulder</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<recipeUsers Inherit="False">
+			<li>DankPyon_Workbench</li>
+		</recipeUsers>
+		<products>
+			<Ammo_Catapult_TarBoulder>1</Ammo_Catapult_TarBoulder>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="MakeStoneBlocksBase">
+		<defName>MakeAmmo_Catapult_TarBoulderBulk</defName>
+		<label>tar a stone boulder x5</label>
+		<description>Cuts a stone chunk down to size and covers in tar to be thrown by a siege engine.</description>
+		<workAmount>2000</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<workSkillLearnFactor>0.25</workSkillLearnFactor>
+		<effectWorking>Smith</effectWorking>
+		<soundWorking>Recipe_Smith</soundWorking>
+		<researchPrerequisites>
+			<li>DankPyon_Tar</li>
+		</researchPrerequisites>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Ammo_Catapult_Boulder</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>DankPyon_Tar</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Ammo_Catapult_Boulder</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<recipeUsers Inherit="False">
+			<li>DankPyon_Workbench</li>
+		</recipeUsers>
+		<products>
+			<Ammo_Catapult_TarBoulder>5</Ammo_Catapult_TarBoulder>
+		</products>
+	</RecipeDef>
+
+</Defs>

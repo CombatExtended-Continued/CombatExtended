@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="MM_Quill" or
+			defName="MM_Tremor" or
+			defName="MM_WispProjectile" or
+			defName="MM_AcidicBreath" or
+			defName="MM_RazorSharpFeathers"
+			]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MM_Quill"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>MM_ToxicSting</damageDef>
+				<damageAmountBase>20</damageAmountBase>
+				<speed>20</speed>
+				<!-- Roughly equal to steel neolithic arrows -->
+				<armorPenetrationSharp>0.5</armorPenetrationSharp>
+				<armorPenetrationBlunt>3.02</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MM_Tremor"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>Blunt</damageDef>
+				<damageAmountBase>20</damageAmountBase>
+				<speed>12</speed>
+				<armorPenetrationBlunt>100</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MM_WispProjectile"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>Burn</damageDef>
+				<damageAmountBase>2</damageAmountBase>
+				<speed>10</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MM_AcidicBreath"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>20</speed>
+				<damageDef>MM_AcidicBreath</damageDef>
+				<damageAmountBase>2</damageAmountBase>
+				<flyOverhead>false</flyOverhead>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MM_RazorSharpFeathers"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>24</speed>
+				<damageDef>Cut</damageDef>
+				<damageAmountBase>12</damageAmountBase>
+				<flyOverhead>false</flyOverhead>
+				<!-- Roughly equal to plasteel neolithic arrows -->
+				<armorPenetrationSharp>1.0</armorPenetrationSharp>
+				<armorPenetrationBlunt>1.66</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="MM_PetrifyingGaze"]/additionalHediffs/li[hediff="MM_Petrification"]/severityPerDamageDealt</xpath>
+		<value>
+			<severityPerDamageDealt>0.035</severityPerDamageDealt>
+		</value>
+	</Operation>
+</Patch>

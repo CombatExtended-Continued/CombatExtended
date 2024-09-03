@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Ammo-->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HAR_Silkiera_Player"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>0</min>
+					<max>2</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase_NPC"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="HAR_SK_Mechanoid_Kind_Base"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>10</min>
+					<max>10</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Backpack-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CE_Apparel_Backpack"]/apparel/tags</xpath>
+		<value>
+			<li>HAR_SK_Apparel</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase"]/apparelRequired</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase"]</xpath>
+			<value>
+				<apparelRequired>
+					<li>CE_Apparel_Backpack</li>
+				</apparelRequired>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase"]/apparelRequired</xpath>
+			<value>
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="PlasmaPowerCell"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>81mmMortarShellBaseCraftableBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="PlasmaPowerCell"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="PlasmaPowerCell"]</xpath>
+		<value>
+			<ammoClass>Plasma</ammoClass>
+			<destroyOnDrop>False</destroyOnDrop>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="PlasmaPowerCell"]/costList</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="PlasmaPowerCell"]/recipeMaker</xpath>
+	</Operation>
+
+</Patch>

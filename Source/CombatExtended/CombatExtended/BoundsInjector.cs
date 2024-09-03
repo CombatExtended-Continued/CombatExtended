@@ -364,13 +364,14 @@ namespace CombatExtended
 
                 if (!pawn.kindDef.alternateGraphics.NullOrEmpty())
                 {
-                    if (!pawn.Drawer.renderer.graphics.AllResolved)
-                    {
-                        pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-                    }
+                    //TODO: 1.5
+                    //if (!pawn.Drawer.renderer.graphics.AllResolved)
+                    //{
+                    //pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+                    //}
 
-                    name = "alternateGraphics";
-                    graphic = pawn.Drawer.renderer.graphics.nakedGraphic;
+                    //name = "alternateGraphics";
+                    //graphic = pawn.Drawer.renderer.graphics.nakedGraphic;
                 }
 
                 if (graphic == null)

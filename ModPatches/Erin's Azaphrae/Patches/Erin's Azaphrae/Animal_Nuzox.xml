@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ======= Nuzox Animal Stats ======= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ERN_Nuzox"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ERN_Nuzox"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.28</MeleeDodgeChance>
+			<MeleeCritChance>0.02</MeleeCritChance>
+			<MeleeParryChance>0.02</MeleeParryChance>
+			<SightsEfficiency>1</SightsEfficiency>
+			<AimingAccuracy>0.8</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ERN_Nuzox"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>false</hasStandardCommand>
+					<defaultProjectile>ERN_NuzoxSpit</defaultProjectile>
+					<burstShotCount>1</burstShotCount>
+					<warmupTime>1.5</warmupTime>
+					<range>10</range>
+					<minRange>2</minRange>
+					<muzzleFlashScale>1</muzzleFlashScale>
+					<label>Nuzox Spit</label>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- ======= Nuzox Projectile Stats ======= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ERN_NuzoxSpit"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ERN_NuzoxSpit"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>ERN_NuzoxSpit</damageDef>
+				<damageAmountBase>2</damageAmountBase>
+				<explosionRadius>0.5</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<speed>18</speed>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<postExplosionSpawnThingDef>ERN_NuzoxSlime</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<postExplosionSpawnThingCount>2</postExplosionSpawnThingCount>
+				<explosionEffect>ExtinguisherExplosion</explosionEffect>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

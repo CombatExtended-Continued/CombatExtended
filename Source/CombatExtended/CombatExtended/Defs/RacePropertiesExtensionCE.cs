@@ -11,6 +11,6 @@ namespace CombatExtended
 
     public class RacePropertiesExtensionCE : DefModExtension
     {
-        public BodyShapeDef bodyShape = CE_BodyShapeDefOf.Invalid;
+        public BodyShapeDef bodyShape;
     }
 }

@@ -96,7 +96,7 @@ namespace CombatExtended
                     ammoDefs.UnionWith(props.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }
                 CompProperties_UnderBarrel propsGL = weaponDef.GetCompProperties<CompProperties_UnderBarrel>();
-                if (propsGL != null && propsGL.propsUnderBarrel.ammoSet != null && !propsGL.propsUnderBarrel.ammoSet.ammoTypes.NullOrEmpty())
+                if (propsGL?.propsUnderBarrel != null && propsGL.propsUnderBarrel.ammoSet != null && !propsGL.propsUnderBarrel.ammoSet.ammoTypes.NullOrEmpty())
                 {
                     ammoDefs.UnionWith(propsGL.propsUnderBarrel.ammoSet.ammoTypes.Select<AmmoLink, ThingDef>(x => x.ammo));
                 }

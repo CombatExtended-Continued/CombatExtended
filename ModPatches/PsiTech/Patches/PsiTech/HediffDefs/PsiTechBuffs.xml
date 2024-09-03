@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- == PTMeleeMastery == -->
+	<!-- statOffsets -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="PTMeleeMastery"]/stages/li/statOffsets[MeleeDodgeChance="30"]</xpath>
+		<value>
+			<statOffsets>
+				<MeleeDodgeChance>1</MeleeDodgeChance>
+				<MeleePenetrationFactor>0.5</MeleePenetrationFactor>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- == PTRangedMastery == -->
+	<!-- statFactors -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="PTRangedMastery"]/stages/li[statOffsets/ShootingAccuracyPawn="10"]</xpath>
+		<value>
+			<statFactors>
+				<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+				<AimingAccuracy>1.25</AimingAccuracy>
+			</statFactors>
+		</value>
+	</Operation>
+	<!-- statOffsets -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="PTRangedMastery"]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
+	</Operation>
+</Patch>

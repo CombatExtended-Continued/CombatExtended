@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AA_Needleroll"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Needleroll"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_Needleroll"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+			<MeleeDodgeChance>0.25</MeleeDodgeChance>
+			<MeleeCritChance>0.04</MeleeCritChance>
+			<MeleeParryChance>0</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Needleroll"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stings</label>
+					<capacities>
+						<li>AA_ToxicSting</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationSharp>0.14</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.55</cooldownTime>
+					<linkedBodyPartsGroup>AA_Mouth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.14</armorPenetrationSharp>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AA_Needleroll"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AA_Needleroll"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_Needleroll"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>100</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

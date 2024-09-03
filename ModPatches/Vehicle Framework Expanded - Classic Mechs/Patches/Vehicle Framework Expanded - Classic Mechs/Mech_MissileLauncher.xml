@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Missile Launcher -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_83mmSMAW_HEAT</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>18.6</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>3</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>16</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]/maxRange</xpath>
+		<value>
+			<maxRange>75</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]/fireModes</xpath>
+		<value>
+			<fireModes>
+				<li>
+					<shotsPerBurst>1</shotsPerBurst>
+					<ticksBetweenShots>6</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>4</shotsPerBurst>
+					<ticksBetweenShots>12</ticksBetweenShots>
+					<ticksBetweenBursts>120</ticksBetweenBursts>
+					<label>Burst</label>
+					<texPath>UI/Gizmos/FireRate_Burst</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="HighMacs_MissileLauncher"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_83mmSMAW</ammoSet>
+				<shotHeight>3</shotHeight>
+				<speed>58</speed>
+				<sway>0.82</sway>
+				<spread>0.03</spread>
+			</li>
+		</value>
+	</Operation>
+</Patch>

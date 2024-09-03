@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Crawler ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_Crawler"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.26</MeleeDodgeChance>
+			<MeleeCritChance>0.06</MeleeCritChance>
+			<MeleeParryChance>0</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Crawler"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>plasma cutter</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>3.1</cooldownTime>
+					<linkedBodyPartsGroup>PlasmaCutter</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<armorPenetrationSharp>25</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>front legs</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>FrontLegs</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationSharp>0.45</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>front legs</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>FrontLegs</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationSharp>0.84</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Crawler"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Crawler"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Crawler"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>275</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>27</MaxOverHeal>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Skullywag ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_Skullywag"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.19</MeleeDodgeChance>
+			<MeleeCritChance>0.15</MeleeCritChance>
+			<MeleeParryChance>0.08</MeleeParryChance>
+			<MaxHitPoints>200</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Skullywag"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>front paralyze component</label>
+					<capacities>
+						<li>ParalyzingPoke</li>
+						<li>UnlockDoor</li>
+					</capacities>
+					<power>2.0</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>FrontParalyzeComponent</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<armorPenetration>0.0</armorPenetration>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5.0</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Skullywag"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Skullywag"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Skullywag"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>850</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>85</MaxOverHeal>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Flamebot ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_Flamebot"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+			<CarryWeight>50</CarryWeight>
+			<CarryBulk>100</CarryBulk>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.10</MeleeDodgeChance>
+			<MeleeCritChance>0.04</MeleeCritChance>
+			<MeleeParryChance>0.0</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Flamebot"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>igniter</label>
+					<capacities>
+						<li>Stab</li>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>Igniter</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Flamebot"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Flamebot"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Flamebot"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>400</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>40</MaxOverHeal>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Mammoth ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_Mammoth"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+			<MeleeDodgeChance>0.04</MeleeDodgeChance>
+			<MeleeCritChance>0.64</MeleeCritChance>
+			<MeleeParryChance>0.58</MeleeParryChance>
+			<MaxHitPoints>800</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Ram</li>
+					</capacities>
+					<power>72</power>
+					<cooldownTime>7</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>25</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>33.750</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>3.51</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>tusk</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>52</power>
+					<cooldownTime>2.34</cooldownTime>
+					<linkedBodyPartsGroup>Tusk</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>33.750</armorPenetrationBlunt>
+					<armorPenetrationSharp>67.5</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>3.51</cooldownTime>
+					<linkedBodyPartsGroup>FrontLegs</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Mammoth"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Mammoth"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>5500</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>550</MaxOverHeal>
+				<MinArmorPct>0.5</MinArmorPct>
+				<MinArmorValueSharp>12</MinArmorValueSharp>
+				<MinArmorValueBlunt>27</MinArmorValueBlunt>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Assaulter ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_Assaulter"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>18</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>42</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>0.25</ArmorRating_Heat>
+			<CarryWeight>50</CarryWeight>
+			<CarryBulk>40</CarryBulk>
+			<AimingAccuracy>1.7</AimingAccuracy>
+			<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.12</MeleeDodgeChance>
+			<MeleeCritChance>0.16</MeleeCritChance>
+			<MeleeParryChance>0.12</MeleeParryChance>
+			<MaxHitPoints>300</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Assaulter"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shield</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>2.95</cooldownTime>
+					<linkedBodyPartsGroup>CoveredByShield</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>14</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>gun protrusion</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>2.24</cooldownTime>
+					<linkedBodyPartsGroup>GunProtrusion</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Assaulter"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Assaulter"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Assaulter"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1525</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>152</MaxOverHeal>
+				<MinArmorPct>0.5</MinArmorPct>
+				<MinArmorValueSharp>10</MinArmorValueSharp>
+				<MinArmorValueBlunt>22</MinArmorValueBlunt>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

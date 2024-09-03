@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- C4 -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "RNTrap_C4Charge"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>2</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+				<FSX>12</FSX>
+			</costList>
+		</value>
+	</Operation>
+
+	<!-- Claymore -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName = "RNTrap_Claymore"]</xpath>
+	</Operation>
+
+	<!-- AT Mine -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "RNTrap_ATMine"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>20</Steel>
+				<ComponentIndustrial>1</ComponentIndustrial>
+				<FSX>8</FSX>
+			</costList>
+		</value>
+	</Operation>
+</Patch>

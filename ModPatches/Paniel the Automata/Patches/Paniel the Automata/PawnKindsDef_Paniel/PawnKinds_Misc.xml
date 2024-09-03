@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="PN_AssociateH" or
+			defName="PN_AssociateP_EngineerA" or
+			defName="PN_AssociateP_EngineerB" or
+			defName="PN_AssociateP_DomesticA" or
+			defName="PN_AssociateP_DomesticB"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>3</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="PN_ManagerH" or
+			defName="PN_ManageUnit_Enginer" or
+			defName="PN_ManageUnit_Domestic" or
+			defName="PN_Director" or
+			@Name="PN_NPCBasePawnKind"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="PN_GrenadePBase"]</xpath>
+		<value>
+			<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>10</min>
+					<max>20</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>50</min>
+						<max>500</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>CE_Sidearm</li>
+					</weaponTags>
+					<magazineCount>
+						<min>1</min>
+						<max>2</max>
+					</magazineCount>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="PN_EliteCannonUnit"]</xpath>
+		<value>
+			<li Inherit="False" Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>15</min>
+					<max>20</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>500</min>
+						<max>1200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>PN_Revolver</li>
+					</weaponTags>
+					<magazineCount>
+						<min>2</min>
+						<max>3</max>
+					</magazineCount>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="PN_SecurityGuardH" or
+			defName="PN_SecurityUnit" or
+			@Name="PN_MidUnitBase"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="PN_EliteUnitBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+</Patch>

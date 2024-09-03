@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Quality Comp -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[
+			defName="SGC_Apparel_RoboticRig" or
+			defName="SGC_Apparel_TraumaKit" or
+			defName="SGC_Apparel_FieldMortar"
+			]/comps/li/compClass[.="CompQuality"] </xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="SGC_Apparel_RoboticRig" or defName="SGC_Apparel_TraumaKit" or defName="SGC_Apparel_FieldMortar"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>CompQuality</compClass>
+				</li>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_RescueFrame"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="SGC_Apparel_RescueFrame"]</xpath>
+			<value>
+				<comps>
+					<li>
+						<compClass>CompQuality</compClass>
+					</li>
+				</comps>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="SGC_Apparel_RescueFrame"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>CompQuality</compClass>
+				</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_Forklift"]/comps/li/compClass[.="CompQuality"]</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="SGC_Apparel_Forklift"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>CompQuality</compClass>
+				</li>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_SurvivalPack"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="SGC_Apparel_SurvivalPack"]</xpath>
+			<value>
+				<comps>
+					<li>
+						<compClass>CompQuality</compClass>
+					</li>
+				</comps>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="SGC_Apparel_SurvivalPack"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>CompQuality</compClass>
+				</li>
+			</value>
+		</match>
+	</Operation>
+
+	<!-- Change Layer -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="SGC_Apparel_RoboticRig" or
+			defName="SGC_Apparel_TraumaKit" or
+			defName="SGC_Apparel_SurvivalPack" or
+			defName="SGC_Apparel_RescueFrame" or
+			defName="SGC_Apparel_FieldMortar"
+			]/apparel/layers </xpath>
+		<value>
+			<li>Backpack</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="SGC_Apparel_Forklift" or
+			defName="SGC_Apparel_SurvivalPack"
+			]/apparel/layers </xpath>
+		<value>
+			<li>Backpack</li>
+		</value>
+	</Operation>
+
+	<!-- Robot Rig -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_RoboticRig"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>7</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_RoboticRig"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>15</CarryBulk>
+			<CarryWeight>25</CarryWeight>
+		</value>
+	</Operation>
+
+	<!-- Medical Bag -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_TraumaKit"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_TraumaKit"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>20</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- Survival Pack -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_SurvivalPack"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_SurvivalPack"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>25</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- Rescue Frame -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<WornBulk>8</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>10</CarryBulk>
+			<CarryWeight>20</CarryWeight>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.75</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>9.0</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<!-- Forklift Rig -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_Forklift"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>7</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "SGC_Apparel_Forklift"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>15</CarryBulk>
+			<CarryWeight>100</CarryWeight>
+		</value>
+	</Operation>
+
+	<!-- Mortar Pack -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/equippedStatOffsets</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoDef</xpath>
+		<value>
+			<ammoDef>Shell_60mmMortar_HE</ammoDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_ApparelReloadable"]/maxCharges</xpath>
+		<value>
+			<maxCharges>3</maxCharges>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountPerCharge</xpath>
+		<value>
+			<ammoCountPerCharge>1</ammoCountPerCharge>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>launch 60mm shell</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>2</warmupTime>
+					<range>40</range>
+					<minRange>5</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>Mortar_LaunchA</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+</Patch>

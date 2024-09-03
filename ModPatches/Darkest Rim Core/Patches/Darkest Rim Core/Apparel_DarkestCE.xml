@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Highwayman Mask === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_HighwaymanMask"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+			<Bulk>1</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_HighwaymanMask"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>FullHead</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_HighwaymanMask"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>StrappedHead</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_HighwaymanMask"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-0.3</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<!-- === Highwayman Apparel === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Highwayman"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>7</StuffEffectMultiplierArmor>
+			<Bulk>8</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_Highwayman"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- === Crusader Helmet === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_CrusaderHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_CrusaderHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_CrusaderHelmet"]/recipeMaker/skillRequirements</xpath>
+		<value>
+			<skillRequirements>
+				<Crafting>8</Crafting>
+			</skillRequirements>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_CrusaderHelmet"]/statBases/WorkToMake</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_CrusaderHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>-0.4</AimingAccuracy>
+			<MeleeHitChance>-2</MeleeHitChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_CrusaderHelmet"]/apparel/layers</xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<!-- === Crusader Armour === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmorCrusader"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmorCrusader"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+			<Bulk>100</Bulk>
+			<WornBulk>8</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmorCrusader"]/recipeMaker/skillRequirements</xpath>
+		<value>
+			<skillRequirements>
+				<Crafting>7</Crafting>
+			</skillRequirements>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmorCrusader"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmorCrusader"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<!-- === Vestal Hood === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_VestalHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>1.2</ArmorRating_Sharp>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_VestalHelmet"]/recipeMaker/skillRequirements</xpath>
+		<value>
+			<skillRequirements>
+				<Crafting>3</Crafting>
+			</skillRequirements>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_VestalHelmet"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<!-- === Vestal Armor === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmorVestal"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>1.85</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmorVestal"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>2.35</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmorVestal"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeDodgeChance>-0.07</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmorVestal"]/statBases/Mass</xpath>
+		<value>
+			<Mass>10</Mass>
+			<Bulk>50</Bulk>
+			<WornBulk>8</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- === Plague Doctor Mask === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlagueMask"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<Bulk>2</Bulk>
+			<WornBulk>1.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlagueMask"]/recipeMaker/skillRequirements</xpath>
+		<value>
+			<skillRequirements>
+				<Crafting>5</Crafting>
+			</skillRequirements>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_PlagueMask"]/apparel/layers</xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlagueMask"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.33</ToxicEnvironmentResistance>
+			<SmokeSensitivity>-0.60</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<!-- === Plague Doctor Apparel === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_PlagueDoctor"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+			<Bulk>8</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+</Patch>

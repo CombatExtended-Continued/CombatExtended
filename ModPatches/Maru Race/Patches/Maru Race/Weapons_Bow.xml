@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Melee Tools ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="MR_CPB_O" or
+			defName="MR_CPB_OT" or
+			defName="MR_CPB_AO" or
+			defName="MR_CPB_AOT" or
+			defName="MR_CPB_AT" or
+			defName="MR_CPB_ATT" or
+			defName="MR_CPB_BO" or
+			defName="MR_CPB_BOT" or
+			defName="MR_CPB_BT" or
+			defName="MR_CPB_BTT" or
+			defName="MR_HSI"
+			]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Basic Bow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_O</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>7.00</Bulk>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_O</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>31</range>
+			<soundCast>ShotmarubowSE_O</soundCast>
+			<soundAiming>AimingmarubowSE_O</soundAiming>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_O</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_OT</defName>
+		<statBases>
+			<SightsEfficiency>1.40</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>7.00</Bulk>
+			<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_OT</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<range>45</range>
+			<soundCast>ShotmarubowSE_O</soundCast>
+			<soundAiming>AimingmarubowSE_O</soundAiming>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_OT</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Explosive Bow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_BO</defName>
+		<statBases>
+			<SightsEfficiency>1.4</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.55</SwayFactor>
+			<Bulk>8.50</Bulk>
+			<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_BO</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>31</range>
+			<soundCast>ShotmarubowSE_E</soundCast>
+			<soundAiming>AimingmarubowSE_M</soundAiming>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_BO</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_BOT</defName>
+		<statBases>
+			<SightsEfficiency>1.9</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.55</SwayFactor>
+			<Bulk>8.50</Bulk>
+			<RangedWeapon_Cooldown>3.75</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_BOT</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>45</range>
+			<soundCast>ShotmarubowSE_E</soundCast>
+			<soundAiming>AimingmarubowSE_M</soundAiming>
+			<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_BOT</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Spear Bow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_AO</defName>
+		<statBases>
+			<SightsEfficiency>1.40</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.55</SwayFactor>
+			<Bulk>7.50</Bulk>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_AO</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>35</range>
+			<soundCast>ShotmarubowSE_O</soundCast>
+			<soundAiming>AimingmarubowSE_O</soundAiming>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_AO</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_AOT</defName>
+		<statBases>
+			<SightsEfficiency>1.90</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.55</SwayFactor>
+			<Bulk>7.50</Bulk>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_AOT</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>51</range>
+			<soundCast>ShotmarubowSE_O</soundCast>
+			<soundAiming>AimingmarubowSE_O</soundAiming>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_AOT</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Charge Bow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_AT</defName>
+		<statBases>
+			<SightsEfficiency>1.8</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.15</SwayFactor>
+			<Bulk>8.00</Bulk>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_AT</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<soundCast>ShotmarubowSE_PU</soundCast>
+			<soundAiming>AimingmarubowSE_P</soundAiming>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_AT</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_ATT</defName>
+		<statBases>
+			<SightsEfficiency>2.20</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.15</SwayFactor>
+			<Bulk>8.00</Bulk>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_ATT</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>60</range>
+			<soundCast>ShotmarubowSE_PU</soundCast>
+			<soundAiming>AimingmarubowSE_P</soundAiming>
+			<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_ATT</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+	<!-- ========== Rocket Bow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_BT</defName>
+		<statBases>
+			<SightsEfficiency>1.5</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.15</SwayFactor>
+			<Bulk>9.00</Bulk>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_BT</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>55</range>
+			<soundCast>ShotmarubowSE_PR</soundCast>
+			<soundAiming>AimingmarubowSE_M</soundAiming>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_BT</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_CPB_BTT</defName>
+		<statBases>
+			<SightsEfficiency>1.9</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.15</SwayFactor>
+			<Bulk>9.00</Bulk>
+			<RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_CPB_BTT</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>60</range>
+			<soundCast>ShotmarubowSE_PR</soundCast>
+			<soundAiming>AimingmarubowSE_M</soundAiming>
+			<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_CPB_BTT</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Basic Crossbow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_BG_O</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>7.00</Bulk>
+			<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_BG_O</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>20</range>
+			<soundCast>ShotmarubowSE_O</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>6.8</reloadTime>
+			<ammoSet>AmmoSet_BG_O</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Dual Shot Crossbow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_BG_AO</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>7.00</Bulk>
+			<RangedWeapon_Cooldown>1.05</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_BG_O</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>22</range>
+			<soundCast>ShotmarubowSE_O</soundCast>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>5.8</reloadTime>
+			<ammoSet>AmmoSet_BG_O</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Adv. Crossbow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_BG_AT</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>7.00</Bulk>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_BG_AT</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>26</range>
+			<soundCast>ShotmarubowSE_O</soundCast>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4.8</reloadTime>
+			<ammoSet>AmmoSet_BG_AT</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

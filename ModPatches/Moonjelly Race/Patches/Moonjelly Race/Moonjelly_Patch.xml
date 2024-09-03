@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Add the Humanoid Body Shape to the Moonjelly-->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Add Stats to the Moonjelly-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/statBases</xpath>
+		<value>
+			<!--They aren't as good at range, have terrible meele, and are easily suppressed-->
+			<!--However, they reload quickly and are very reistant to smoke-->
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<MeleeDodgeChance>0.9</MeleeDodgeChance>
+			<MeleeCritChance>0.8</MeleeCritChance>
+			<MeleeParryChance>0.7</MeleeParryChance>
+			<ReloadSpeed>1.3</ReloadSpeed>
+			<Suppressability>2.35</Suppressability>
+			<SmokeSensitivity>0.35</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<!--Give the Moon Gelly A toxic sting-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>poison sting</label>
+					<capacities>
+						<li>Tentacletox</li>
+					</capacities>
+					<power>0.2</power>
+					<cooldownTime>0.8</cooldownTime>
+					<linkedBodyPartsGroup>Tentacles</linkedBodyPartsGroup>
+					<armorPenetration>0.09</armorPenetration>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+				<!-- had to add both tentacles hits here because they were not applying the anesthetic effect-->
+				<li Class="CombatExtended.ToolCE">
+					<label>left tentacle</label>
+					<capacities>
+						<li>Tentacletox</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.3</cooldownTime>
+					<armorPenetration>0.09</armorPenetration>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Tentacles</linkedBodyPartsGroup>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<label>right tentacle</label>
+					<capacities>
+						<li>Tentacletox</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.3</cooldownTime>
+					<armorPenetration>0.09</armorPenetration>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Tentacles</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!--Had to lower the severity of anesthethic by 10 because they were just downing living creatures in one hit-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="TentacleStrikeDmg"]/additionalHediffs/li[hediff="Anesthetic"]/severityPerDamageDealt</xpath>
+		<value>
+			<severityPerDamageDealt>0.03</severityPerDamageDealt>
+		</value>
+	</Operation>
+
+	<!--Checks if the Race has comps and if they don't then it adds them-->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!--Adds the suppresibility to the moonjellyies-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+			</li>
+			<li Class="CombatExtended.CompProperties_Suppressable"/>
+		</value>
+	</Operation>
+</Patch>

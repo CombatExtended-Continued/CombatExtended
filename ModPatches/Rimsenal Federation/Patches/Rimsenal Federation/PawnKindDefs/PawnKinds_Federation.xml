@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Auxiliary ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="FPCAuxiliary"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Commander ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="FPCCommander"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Assassin ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="FPCAssassin"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>6</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<magazineCount>
+							<min>1</min>
+							<max>5</max>
+						</magazineCount>
+						<generateChance>0.7</generateChance>
+						<sidearmMoney>
+							<min>275</min>
+							<max>525</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>FedCC</li>
+							<li>AuxPistol</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Unity Guard ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="FPCUnityGuard"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>8</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<magazineCount>
+							<min>2</min>
+							<max>5</max>
+						</magazineCount>
+						<generateChance>0.7</generateChance>
+						<sidearmMoney>
+							<min>100</min>
+							<max>450</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>FedCC</li>
+							<li>AuxPistol</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+</Patch>

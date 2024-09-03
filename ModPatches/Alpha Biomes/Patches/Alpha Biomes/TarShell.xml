@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AB_Shell_Tar"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+				<defName>AB_Shell_Tar</defName>
+				<label>81mm mortar shell (Tar)</label>
+				<graphicData>
+					<texPath>Things/Item/Resource/AB_Shell_Tar</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>30.03</MarketValue>
+					<Mass>5</Mass>
+					<Bulk>8.34</Bulk>
+				</statBases>
+				<ammoClass>Tar</ammoClass>
+				<detonateProjectile>Bullet_81mmMortarShell_Tar</detonateProjectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+		<value>
+			<AB_Shell_Tar>Bullet_81mmMortarShell_Tar</AB_Shell_Tar>
+		</value>
+	</Operation>
+
+</Patch>

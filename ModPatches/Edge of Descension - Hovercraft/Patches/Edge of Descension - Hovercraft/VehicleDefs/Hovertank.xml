@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Main Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Hovertank_MainTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_105x617mmRCannonShell_HE</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Hovertank_MainTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>8.8</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Hovertank_MainTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>3.1</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Hovertank_MainTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>89</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Hovertank_MainTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_105x617mmRCannonShell</ammoSet>
+				<shotHeight>2.5</shotHeight>
+				<speed>182</speed>
+				<sway>0.82</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Vehicle -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]</xpath>
+		<value>
+			<descriptionHyperlinks>
+				<CombatExtended.AmmoSetDef>AmmoSet_105x617mmRCannonShell</CombatExtended.AmmoSetDef>
+			</descriptionHyperlinks>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/vehicleStats/CargoCapacity</xpath>
+		<value>
+			<CargoCapacity>325</CargoCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="FrontArmorPlating"]/health</xpath>
+		<value>
+			<health>900</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>24</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="LeftArmorPlating"]/health</xpath>
+		<value>
+			<health>1000</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>56</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>28</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="RightArmorPlating"]/health</xpath>
+		<value>
+			<health>1000</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>56</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>28</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="BackArmorPlating"]/health</xpath>
+		<value>
+			<health>700</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="RoofPlating"]/health</xpath>
+		<value>
+			<health>700</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="RoofPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="Hovertank"]/components/li[key="RoofPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+</Patch>

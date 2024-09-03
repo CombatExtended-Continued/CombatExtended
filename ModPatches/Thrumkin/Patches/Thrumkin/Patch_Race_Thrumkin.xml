@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Combat -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Thrumkin"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Thrumkin"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+			</li>
+			<li Class="CombatExtended.CompProperties_Suppressable"/>
+		</value>
+	</Operation>
+	<!-- thrumkin rebalances -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases</xpath>
+		<value>
+			<!-- combat stats -->
+			<AimingAccuracy>0.9</AimingAccuracy>
+			<MeleeCritChance>1.34</MeleeCritChance>
+			<MeleeParryChance>1.27</MeleeParryChance>
+			<Suppressability>0.8</Suppressability>
+			<ReloadSpeed>0.9</ReloadSpeed>
+			<MeleeDodgeChance>1.06</MeleeDodgeChance>
+			<!-- other stats -->
+			<CarryWeight>50</CarryWeight>
+		</value>
+	</Operation>
+	<!-- should've modified the values sooner -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases/Mass</xpath>
+		<value>
+			<Mass>120</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/statBases/LeatherAmount</xpath>
+		<value>
+			<LeatherAmount>20</LeatherAmount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/comps/li[@Class="CompProperties_Shearable"]/woolAmount</xpath>
+		<value>
+			<woolAmount>10</woolAmount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Thrumkin"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.5</baseHealthScale>
+		</value>
+	</Operation>
+	<!-- Unarmed -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Thrumkin"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>horn</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>1.73</cooldownTime>
+					<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.4</chanceFactor>
+					<armorPenetrationSharp>0.2</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.996</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>horn</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>2.08</cooldownTime>
+					<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.4</chanceFactor>
+					<armorPenetrationSharp>1.39</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.081</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.16</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>0.595</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.16</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>0.595</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.94</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.561</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>3.12</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.3</chanceFactor>
+					<armorPenetrationBlunt>0.925</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

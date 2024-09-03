@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- New CE projectile to try to counter DD's animation -->
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>Projectile_RedDragonBreath_Fire_CE</defName>
+		<label>Fire_Breath</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<!-- Not sure if comps is needed, only kept for the MoteGlow -->
+		<comps>
+			<li Class="CompProperties_Glower">
+				<overlightRadius>1.0</overlightRadius>
+				<glowRadius>1</glowRadius>
+				<glowColor>(255, 161, 0, 0.19)</glowColor>
+			</li>
+		</comps>
+		<graphicData>
+			<texPath>AnimalProjectile/DragonBreath_Fire</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<damageDef>DraconicFlame</damageDef>
+			<explosionRadius>3</explosionRadius>
+			<suppressionFactor>3.0</suppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+			<damageAmountBase>8</damageAmountBase>
+			<stoppingPower>3.5</stoppingPower>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+			<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>.3</preExplosionSpawnChance>
+			<speed>30</speed>
+			<extraDamages>
+				<li>
+					<def>Flame</def>
+					<amount>6</amount>
+					<armorPenetration>4</armorPenetration>
+					<chance>0.3</chance>
+				</li>
+			</extraDamages>
+		</projectile>
+	</ThingDef>
+
+</Defs>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- Ammo Categories -->
+
+	<!-- Ammoset -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MihoPlasma</defName>
+		<label>Rifle Plasma Cell</label>
+		<ammoTypes>
+			<Ammo_PlasmaCellRifle>Bullet_MihoPlasma</Ammo_PlasmaCellRifle>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MihoPlasmaSniper</defName>
+		<label>Rifle Plasma Cell</label>
+		<ammoTypes>
+			<Ammo_PlasmaCellRifle>Bullet_MihoPlasmaSniper</Ammo_PlasmaCellRifle>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- Ammoset -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MihoPlasmaThermo</defName>
+		<label>Thermobaric</label>
+		<ammoTypes>
+			<Ammo_80x256mmFuel_Incendiary>Bullet_75x300mmMiho_Thermobaric</Ammo_80x256mmFuel_Incendiary>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- Psy Shot -->
+
+	<ThingCategoryDef>
+		<defName>AmmoMechPsyShot</defName>
+		<label>Mechite Shot</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>MechaniteMiho</defName>
+		<label>Mechanite (Miholic)</label>
+		<labelShort>MEC-M</labelShort>
+		<description>Mechanite enhanced munitions that are psychically charged. Capable of exotic or distruptive effects to a range of targets.</description>
+	</CombatExtended.AmmoCategoryDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MechPsyShot</defName>
+		<label>Psychic Shot</label>
+		<ammoTypes>
+			<Ammo_MechPsyShot>Bullet_MechPsyShot</Ammo_MechPsyShot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_MechPsyRifle</defName>
+		<label>Psychic Shot</label>
+		<ammoTypes>
+			<Ammo_MechPsyShot>Bullet_MechPsyRifle</Ammo_MechPsyShot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<description>Variable use mech shot cartridge designed for advanced weapons.</description>
+		<thingCategories>
+			<li>AmmoMechPsyShot</li>
+		</thingCategories>
+		<defName>Ammo_MechPsyShot</defName>
+		<label>Mechanite Psyshot</label>
+		<graphicData>
+			<texPath>Things/Ammo/Charged/ShotgunMech</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>4.29</MarketValue>
+			<Mass>0.047</Mass>
+			<Bulk>0.07</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+		</tradeTags>
+		<ammoClass>MechaniteMiho</ammoClass>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12GaugeChargedBullet">
+		<defName>Bullet_MechPsyShot</defName>
+		<label>pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/MihoThunderSpear</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.75</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>9</damageAmountBase>
+			<damageDef>Miho_MagicBombEMP</damageDef>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>1</amount>
+					<chance>0.08</chance>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>2</amount>
+					<chance>0.05</chance>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base12GaugeChargedBullet">
+		<defName>Bullet_MechPsyRifle</defName>
+		<label>accelerated pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/MihoThunderSpear</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.92</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>150</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<damageDef>Miho_MagicBombEMP</damageDef>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>1</amount>
+					<chance>0.09</chance>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>2</amount>
+					<chance>0.09</chance>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<pelletCount>3</pelletCount>
+			<spreadMult>0</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_MechPsyShot</defName>
+		<label>make Mechanite Psychic shell x200</label>
+		<description>Craft 200 Mechanite Psychic shells.</description>
+		<jobString>Making Mechanite Psychic shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Miho_MilitaryGradeBalisticCeramics</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Miho_MilitaryGradeBalisticCeramics</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_MechPsyShot>200</Ammo_MechPsyShot>
+		</products>
+		<workAmount>21000</workAmount>
+		<researchPrerequisite>Miho_MechHack</researchPrerequisite>
+		<recipeUsers Inherit="False">
+			<li>Miho_TableMachining</li>
+		</recipeUsers>
+	</RecipeDef>
+
+	<!-- Ammoless Projectile -->
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_MihoPlasma</defName>
+		<label>Plasma Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/MihoPlasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>100</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<damageDef>MihoPlasma</damageDef>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>200</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_MihoPlasmaSniper</defName>
+		<label>Plasma Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/MihoPlasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>100</speed>
+			<damageAmountBase>30</damageAmountBase>
+			<damageDef>MihoPlasma</damageDef>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>400</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>60</damageAmountBase>
+				<explosiveDamageType>MihoPlasma</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>Explosion_Bomb</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+		<defName>Bullet_Laser_MihoMiniGun</defName>
+		<label>laser beam</label>
+		<graphicData>
+			<color>(255,160,46)</color>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MihoPlasma</damageDef>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>200</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_60x180mmMiho_Thermobaric</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>60x180mm fuel shell (Thermobaric)</label>
+		<graphicData>
+			<texPath>Things/Projectile/LauncherShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Thermobaric</damageDef>
+			<damageAmountBase>160</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<speed>60</speed>
+			<flyOverhead>false</flyOverhead>
+			<explosionRadius>3.5</explosionRadius>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_75x300mmMiho_Thermobaric</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>75x300mm plasmanized thermobaric shell</label>
+		<graphicData>
+			<texPath>Things/Projectile/LauncherShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MihoPlasma</damageDef>
+			<damageAmountBase>280</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>1000</armorPenetrationBlunt>
+			<speed>60</speed>
+			<flyOverhead>false</flyOverhead>
+			<explosionRadius>3.5</explosionRadius>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseFragment">
+		<defName>Fragment_Mihomech</defName>
+		<label>fragments</label>
+		<graphicData>
+			<texPath>Things/Projectile/MihoThunderSpear</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.88</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Miho_MagicBomb</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<speed>35</speed>
+			<gravityFactor>5</gravityFactor>
+		</projectile>
+	</ThingDef>
+</Defs>

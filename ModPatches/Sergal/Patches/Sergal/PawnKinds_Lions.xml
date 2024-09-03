@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Add backpacks to list of allowed apparel for Lion race -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Lion"]/alienRace/raceRestriction/whiteApparelList</xpath>
+		<value>
+			<li>CE_Apparel_Backpack</li>
+		</value>
+	</Operation>
+
+	<!-- Spawn backpacks for selected Lion pawntypes -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="LionColonist" or
+			defName="LionCommando" or
+			defName="LionCommandoElite" or
+			defName="LionHunter" or
+			defName="LionPackLeader" or
+			defName="LionRecruit" or
+			defName="LionSecurityGuard" or
+			defName="LionTrader"
+			] </xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_Backpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<!-- Spawn different combinations of primary ammo, secondary weapon and ammo for various Lion pawntypes -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="LionCivBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>4</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="LionMilBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>7</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.5</generateChance>
+						<magazineCount>
+							<min>2</min>
+							<max>3</max>
+						</magazineCount>
+						<weaponTags>
+							<li>CE_Sidearm</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Tiger Leather === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[defName="AEXP_Leather_Tiger"]/statBases/StuffPower_Armor_Sharp |
+			Defs/ThingDef[defName="AEXP_Leather_Tiger"]/statBases/StuffPower_Armor_Blunt
+		</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_Leather_Tiger"]/statBases</xpath>
+
+		<value>
+			<StuffPower_Armor_Sharp>0.07</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Blunt>0.056</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+</Patch>

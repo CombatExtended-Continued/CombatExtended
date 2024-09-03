@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- == VAE_Apparel_Tunic == -->
+	<!-- statBases -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Tunic"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
+			<WornBulk>0.5</WornBulk>
+			<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- == VAE_Apparel_Blouse == -->
+	<!-- statBases -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Blouse"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>0.8</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- == VAE_Apparel_Apron == -->
+	<!-- statBases -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Apron"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- == costStuffCounts == -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Blouse" or defName="VAE_Apparel_Apron"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>20</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Apparel_Tunic"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>25</costStuffCount>
+		</value>
+	</Operation>
+</Patch>

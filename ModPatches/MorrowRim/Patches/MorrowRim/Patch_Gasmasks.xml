@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MorrowRim_RetchingNetchShell"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="CE_Apparel_GasMask"]</xpath>
+		<value>
+			<li Class="MorrowRim.ExtendedRaceProperties">
+				<ashResistant>Resistant</ashResistant>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="CE_Apparel_ImprovGasMask"]</xpath>
+		<value>
+			<li Class="MorrowRim.ExtendedRaceProperties">
+				<ashResistant>Resistant</ashResistant>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MorrowRim_AshInEyes"]/stages/li/partEfficiencyOffset</xpath>
+		<value>
+			<partEfficiencyOffset>-0.5</partEfficiencyOffset>
+		</value>
+	</Operation>
+</Patch>

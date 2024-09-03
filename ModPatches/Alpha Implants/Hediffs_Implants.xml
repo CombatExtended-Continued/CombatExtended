@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Prosthetics ======= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalProstheticLeg"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>prosthetic animal leg</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>8</power>
+					<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.15</armorPenetrationSharp>
+					<cooldownTime>1.8</cooldownTime>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalProstheticArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>prosthetic animal arm</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<cooldownTime>1.8</cooldownTime>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalPowerClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>animal power claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>0.89</cooldownTime>
+					<armorPenetrationSharp>0.8</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					<soundMeleeHit>Pawn_Melee_PowerClaw_Hit</soundMeleeHit>
+					<soundMeleeMiss>Pawn_Melee_PowerClaw_Miss</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalProstheticShell"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalProstheticShell"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalProstheticWing"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalProstheticWing"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalProstheticBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>prosthetic animal blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.19</cooldownTime>
+					<armorPenetrationBlunt>0.15</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.12</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalProstheticStinger"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>prosthetic animal stinger</label>
+					<capacities>
+						<li>ToxicBite</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>0.12</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.2</armorPenetrationSharp>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalProstheticHorn"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>prosthetic animal horn</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.18</cooldownTime>
+					<armorPenetrationBlunt>0.46</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.48</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ======= Bionics ======= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalBionicLeg"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic animal leg</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>20</power>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.5</armorPenetrationSharp>
+					<cooldownTime>1.4</cooldownTime>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>					
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalBionicArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic animal arm</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.4</armorPenetrationSharp>
+					<cooldownTime>1.4</cooldownTime>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>					
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AI_AnimalBionicEye"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="AI_AnimalBionicEye"]</xpath>
+		<value>
+			<stages>
+				<li>
+					<statOffsets>
+						<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+					</statOffsets>
+				</li>
+			</stages>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalBionicShell"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalBionicShell"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalBionicBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic animal blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.19</cooldownTime>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.18</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalBionicStinger"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic animal stinger</label>
+					<capacities>
+						<li>ToxicBite</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>0.15</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalBionicHorn"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bionic animal horn</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.18</cooldownTime>
+					<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.58</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ======= Archotech ======= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalArchotechLeg"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>archotech animal leg</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>30</power>
+					<armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.75</armorPenetrationSharp>
+					<cooldownTime>1.4</cooldownTime>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>					
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AI_AnimalArchotechArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>archotech animal arm</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>22</power>
+					<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.6</armorPenetrationSharp>
+					<cooldownTime>1.4</cooldownTime>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>					
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,2177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- You can find the spreadsheet here https://drive.google.com/open?id=1JZAjvzealI189OofkxwUCif3yA4-u6yP3DilsmIEQJA -->
+
+	<!-- SMM_Bardiche -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Bardiche"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.27</cooldownTime>
+					<armorPenetrationBlunt>2.925</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>42</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetrationBlunt>1.3</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.3</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>51</power>
+					<cooldownTime>2.29</cooldownTime>
+					<armorPenetrationBlunt>8.125</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.63</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Bardiche"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<MeleeCounterParryBonus>0.54</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Bardiche"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.15</MeleeCritChance>
+				<MeleeParryChance>0.62</MeleeParryChance>
+				<MeleeDodgeChance>0.43</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Bat -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Bat"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.46</cooldownTime>
+					<armorPenetrationBlunt>0.45</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.1</cooldownTime>
+					<armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+					<chanceFactor>1.33</chanceFactor>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Bat"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.56</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Bat"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.3</MeleeCritChance>
+				<MeleeParryChance>0.56</MeleeParryChance>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_BatChained -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_BatChained"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.63</cooldownTime>
+					<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.22</cooldownTime>
+					<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
+					<chanceFactor>1.33</chanceFactor>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_BatChained"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.36</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_BatChained"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.4</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_BatChained"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.47</MeleeCritChance>
+				<MeleeParryChance>0.36</MeleeParryChance>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_BatSpiked -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_BatSpiked"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.13</cooldownTime>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.45</armorPenetrationSharp>
+					<chanceFactor>1.33</chanceFactor>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_BatSpiked"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_BatSpiked"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_BatSpiked"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.67</MeleeCritChance>
+				<MeleeParryChance>0.5</MeleeParryChance>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Baton -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Baton"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>0.91</cooldownTime>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Baton"]/statBases</xpath>
+		<value>
+			<Bulk>2.5</Bulk>
+			<MeleeCounterParryBonus>0.9</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Baton"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>0.9</MeleeParryChance>
+				<MeleeDodgeChance>0.3</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Baton"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Melee</li>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Billhook -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Billhook"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.16</cooldownTime>
+					<armorPenetrationBlunt>0.54</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.54</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.18</cooldownTime>
+					<armorPenetrationBlunt>0.844</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.38</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Billhook"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Billhook"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.33</MeleeCritChance>
+				<MeleeParryChance>0.2</MeleeParryChance>
+				<MeleeDodgeChance>0.1</MeleeDodgeChance>
+				<PlantWorkSpeed>0.15</PlantWorkSpeed>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Billhook"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Cleaver -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Cleaver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.23</cooldownTime>
+					<armorPenetrationBlunt>0.225</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.05</cooldownTime>
+					<armorPenetrationBlunt>0.38</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.34</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Cleaver"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Cleaver"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.28</MeleeCritChance>
+				<MeleeParryChance>0.11</MeleeParryChance>
+				<MeleeDodgeChance>0.05</MeleeDodgeChance>
+				<ButcheryFleshEfficiency>0.05</ButcheryFleshEfficiency>
+				<ButcheryFleshSpeed>0.10</ButcheryFleshSpeed>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Cleaver"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Melee</li>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Crowbar -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Crowbar"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.32</cooldownTime>
+					<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.02</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>0.63</cooldownTime>
+					<armorPenetrationBlunt>5.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Crowbar"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Crowbar"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.42</MeleeCritChance>
+				<MeleeParryChance>0.24</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Crowbar"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Fireaxe -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Fireaxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.3</cooldownTime>
+					<armorPenetrationBlunt>3.263</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>pick</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.96</cooldownTime>
+					<armorPenetrationBlunt>13.05</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.31</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>41</power>
+					<cooldownTime>2.41</cooldownTime>
+					<armorPenetrationBlunt>13.05</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.16</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Fireaxe"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Fireaxe"]/statBases/Mass</xpath>
+		<value>
+			<Mass>2.9</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Fireaxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.11</MeleeCritChance>
+				<MeleeParryChance>0.28</MeleeParryChance>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Glaive -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Glaive"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.36</cooldownTime>
+					<armorPenetrationBlunt>2.363</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>40</power>
+					<cooldownTime>1.2</cooldownTime>
+					<armorPenetrationBlunt>2.363</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.37</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>51</power>
+					<cooldownTime>3.01</cooldownTime>
+					<armorPenetrationBlunt>9.45</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.89</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Glaive"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<MeleeCounterParryBonus>1.02</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Glaive"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.19</MeleeCritChance>
+				<MeleeParryChance>1.19</MeleeParryChance>
+				<MeleeDodgeChance>0.67</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Halberd -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Halberd"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.52</cooldownTime>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>38</power>
+					<cooldownTime>1.34</cooldownTime>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>3.6</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>50</power>
+					<cooldownTime>3.34</cooldownTime>
+					<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.88</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Halberd"]/statBases</xpath>
+		<value>
+			<Bulk>13</Bulk>
+			<MeleeCounterParryBonus>0.67</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Halberd"]/statBases/Mass</xpath>
+		<value>
+			<Mass>3.2</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Halberd"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.13</MeleeCritChance>
+				<MeleeParryChance>0.78</MeleeParryChance>
+				<MeleeDodgeChance>0.67</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Hatchet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Hatchet"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>0.95</cooldownTime>
+					<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>hammerhead</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.58</cooldownTime>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>1.58</cooldownTime>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.32</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Hatchet"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Hatchet"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.31</MeleeCritChance>
+				<MeleeParryChance>0.22</MeleeParryChance>
+				<MeleeDodgeChance>0.12</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Hatchet"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Hooksword -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Hooksword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.42</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.3</cooldownTime>
+					<armorPenetrationBlunt>0.844</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.38</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Hooksword"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Hooksword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.67</MeleeCritChance>
+				<MeleeParryChance>0.4</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Hooksword"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Karambit -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Karambit"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>knuckle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.53</cooldownTime>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.14</cooldownTime>
+					<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.36</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.26</cooldownTime>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.42</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Karambit"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Karambit"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1</MeleeCritChance>
+				<MeleeParryChance>0.1</MeleeParryChance>
+				<MeleeDodgeChance>0.03</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Karambit"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Melee</li>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Kukri -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Kukri"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>0.84</cooldownTime>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.67</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.38</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Kukri"]/statBases</xpath>
+		<value>
+			<Bulk>2.5</Bulk>
+			<MeleeCounterParryBonus>0.27</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Kukri"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.27</MeleeCritChance>
+				<MeleeParryChance>0.27</MeleeParryChance>
+				<MeleeDodgeChance>0.13</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Kukri"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Machete -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Machete"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.43</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.43</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Machete"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>0.26</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Machete"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.29</MeleeCritChance>
+				<MeleeParryChance>0.26</MeleeParryChance>
+				<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Machete"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Mallet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Mallet"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2.12</cooldownTime>
+					<armorPenetrationBlunt>3.125</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Mallet"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.23</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Mallet"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.33</MeleeCritChance>
+				<MeleeParryChance>0.23</MeleeParryChance>
+				<MeleeDodgeChance>0.15</MeleeDodgeChance>
+				<GeneralLaborSpeed>0.08</GeneralLaborSpeed>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Mallet"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Maul -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Maul"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>sledge</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>2.52</cooldownTime>
+					<armorPenetrationBlunt>12.6</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>axe</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>42</power>
+					<cooldownTime>2.52</cooldownTime>
+					<armorPenetrationBlunt>12.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.02</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Maul"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<MeleeCounterParryBonus>0.32</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Maul"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.4</MeleeCritChance>
+				<MeleeParryChance>0.43</MeleeParryChance>
+				<MeleeDodgeChance>0.3</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Pickaxe -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Pickaxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.69</cooldownTime>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.69</cooldownTime>
+					<armorPenetrationBlunt>7.2</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.72</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Pickaxe"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Pickaxe"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.06</MeleeCritChance>
+				<MeleeParryChance>0.22</MeleeParryChance>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+				<MiningSpeed>0.15</MiningSpeed>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Pitchfork -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Pitchfork"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.69</cooldownTime>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.05</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Pitchfork"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Pitchfork"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.44</MeleeCritChance>
+				<MeleeParryChance>1.33</MeleeParryChance>
+				<MeleeDodgeChance>0.5</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Pollaxe -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Pollaxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>2.925</armorPenetrationBlunt>
+					<chanceFactor>0.1</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>37</power>
+					<cooldownTime>1.27</cooldownTime>
+					<armorPenetrationBlunt>2.925</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.93</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>39</power>
+					<cooldownTime>3.66</cooldownTime>
+					<armorPenetrationBlunt>8.125</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.63</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>hammer</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>2.86</cooldownTime>
+					<armorPenetrationBlunt>11.7</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Pollaxe"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<MeleeCounterParryBonus>0.58</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Pollaxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.13</MeleeCritChance>
+				<MeleeParryChance>0.77</MeleeParryChance>
+				<MeleeDodgeChance>0.5</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Sickle -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Sickle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.15</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.31</cooldownTime>
+					<armorPenetrationBlunt>0.54</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.48</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Sickle"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>0.1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Sickle"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.44</MeleeCritChance>
+				<MeleeParryChance>0.1</MeleeParryChance>
+				<MeleeDodgeChance>0.05</MeleeDodgeChance>
+				<PlantHarvestYield>0.15</PlantHarvestYield>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Sickle"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Sledgehammer -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Sledgehammer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.87</cooldownTime>
+					<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>2.43</cooldownTime>
+					<armorPenetrationBlunt>10.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Sledgehammer"]/statBases</xpath>
+		<value>
+			<Bulk>7</Bulk>
+			<MeleeCounterParryBonus>0.38</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Sledgehammer"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.2</MeleeCritChance>
+				<MeleeParryChance>0.5</MeleeParryChance>
+				<MeleeDodgeChance>0.3</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_TrenchKnife -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_TrenchKnife"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>knuckle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.62</cooldownTime>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.31</cooldownTime>
+					<armorPenetrationBlunt>0.54</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.48</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.63</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_TrenchKnife"]/statBases</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_TrenchKnife"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.33</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_TrenchKnife"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Melee</li>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_TrenchClub -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_TrenchClub"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.7</cooldownTime>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_TrenchClub"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.18</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_TrenchClub"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_TrenchClub"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.33</MeleeCritChance>
+				<MeleeParryChance>0.23</MeleeParryChance>
+				<MeleeDodgeChance>0.13</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_TrenchClub"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Zweihander -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Zweihander"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.99</cooldownTime>
+					<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>60</power>
+					<cooldownTime>1.99</cooldownTime>
+					<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.87</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>47</power>
+					<cooldownTime>3.1</cooldownTime>
+					<armorPenetrationBlunt>3.488</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.39</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Zweihander"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Zweihander"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.08</MeleeCritChance>
+				<MeleeParryChance>0.52</MeleeParryChance>
+				<MeleeDodgeChance>0.5</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Claymore -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Claymore"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.89</cooldownTime>
+					<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>34</power>
+					<cooldownTime>1.89</cooldownTime>
+					<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.39</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>44</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>3.613</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.73</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Claymore"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Claymore"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.18</MeleeCritChance>
+				<MeleeParryChance>0.56</MeleeParryChance>
+				<MeleeDodgeChance>0.47</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Pike -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Pike"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.41</cooldownTime>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Pike"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<MeleeCounterParryBonus>1.27</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Pike"]/statBases/Mass</xpath>
+		<value>
+			<Mass>4</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Pike"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.08</MeleeCritChance>
+				<MeleeParryChance>0.95</MeleeParryChance>
+				<MeleeDodgeChance>1.27</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Scythe -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Scythe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.74</cooldownTime>
+					<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.74</cooldownTime>
+					<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.36</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>6.79</cooldownTime>
+					<armorPenetrationBlunt>0.576</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.52</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Scythe"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>1.26</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Scythe"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Scythe"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.28</MeleeCritChance>
+				<MeleeParryChance>0.94</MeleeParryChance>
+				<MeleeDodgeChance>0.57</MeleeDodgeChance>
+				<PlantWorkSpeed>0.15</PlantWorkSpeed>
+				<PlantHarvestYield>0.15</PlantHarvestYield>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Warclub -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Warclub"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.66</cooldownTime>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2.47</cooldownTime>
+					<armorPenetrationBlunt>4.688</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Warclub"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Warclub"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Warclub"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleeParryChance>0.2</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Warclub"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_Sidearm_Tribal</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Dagger -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Dagger"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.32</cooldownTime>
+					<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.52</cooldownTime>
+					<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.27</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>1.1</cooldownTime>
+					<armorPenetrationBlunt>0.432</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.72</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Dagger"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Dagger"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.05</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Dagger"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Melee</li>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Quarterstaff -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Quarterstaff"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.37</cooldownTime>
+					<armorPenetrationBlunt>5.313</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>0.86</cooldownTime>
+					<armorPenetrationBlunt>3.4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Quarterstaff"]/statBases</xpath>
+		<value>
+			<Bulk>9</Bulk>
+			<MeleeCounterParryBonus>1.96</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Quarterstaff"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.7</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Quarterstaff"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>70</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Quarterstaff"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.85</MeleeCritChance>
+				<MeleeParryChance>1.47</MeleeParryChance>
+				<MeleeDodgeChance>0.83</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- SMM_Khopesh -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Khopesh"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.37</cooldownTime>
+					<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.37</cooldownTime>
+					<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.18</armorPenetrationSharp>
+					<chanceFactor>0.25</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.09</cooldownTime>
+					<armorPenetrationBlunt>1.012</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.45</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Khopesh"]/statBases</xpath>
+		<value>
+			<Bulk>3.5</Bulk>
+			<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Khopesh"]/statBases/Mass</xpath>
+		<value>
+			<Mass>0.7</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Khopesh"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>40</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Khopesh"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.29</MeleeCritChance>
+				<MeleeParryChance>0.35</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Khopesh"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- SMM_Scimitar -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Scimitar"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.31</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationBlunt>1.782</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.8</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Scimitar"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.38</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SMM_Scimitar"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.1</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Scimitar"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.24</MeleeCritChance>
+				<MeleeParryChance>0.38</MeleeParryChance>
+				<MeleeDodgeChance>0.28</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="SMM_Scimitar"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+</Patch>

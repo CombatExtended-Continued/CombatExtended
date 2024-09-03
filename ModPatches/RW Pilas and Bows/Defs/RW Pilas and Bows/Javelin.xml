@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--PILA/PILUM/JAVELIN-->
+	<!--Add the ammo to the AmmoSet (for javelin/Pila launchers like atlatl)-->
+	<!--li Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_Javelins"]/ammoTypes</xpath>
+		<value>
+			<PilaHighExplosive>PilumHE_Fired</PilaHighExplosive>
+			<PilaHighIncendiary>PilumHI_Fired</PilaHighIncendiary>
+			<PilaEMP>PilumEMP_Fired</PilaEMP>
+			<PilaSmoke>PilumSmoke_Fired</PilaSmoke>
+			<PilaFirefoam>PilumFirefoam_Fired</PilaFirefoam>
+			<PilaAntigrain>PilumAntigrain_Fired</PilaAntigrain>
+		</value>
+    </li-->
+
+	<!--Overwrite the Pilas added by the mod-->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseWeaponAndAmmoNeolithic" Name="PilaStrappedBased">
+		<defName>PilaHighExplosive</defName>
+		<label>HEla</label>
+		<description>This shell won't miss 9 tiles away from its target (It might miss 2 but that's still valid).</description>
+		<graphicData>
+			<texPath>HEla</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_BeatFire</soundInteract>
+		<statBases>
+			<MarketValue>62.35</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>3.5</Bulk>
+			<Mass>2.00</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<!--equippedAngleOffset>30</equippedAngleOffset-->
+		<stackLimit>25</stackLimit>
+		<weaponTags Inherit="False">
+			<!--li>NeolithicRangedHeavy</li>
+                     <li>CE_Pila</li--><!-- tribal tags -->
+			<li>CE_OneHandedWeapon</li>
+			<li>IndustrialRangedHeavy</li>
+			<li>GrenadeDestructive</li>
+			<li>EmpireGrenadeDestructive</li><!-- Base tags from the mod -->
+		</weaponTags>
+		<tradeability>All</tradeability>
+		<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>PilumHE_Thrown</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>9</range>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>Interact_BeatFire</soundCast>
+			</li>
+		</verbs>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>shaft</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>7</power>
+				<cooldownTime>1.35</cooldownTime>
+				<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>point</label>
+				<capacities>
+					<li>Stab</li>
+				</capacities>
+				<power>15</power>
+				<cooldownTime>1.37</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.34</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		<ammoClass>Javelin</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="PilaStrappedBased">
+		<defName>PilaHighIncendiary</defName>
+		<label>HIla</label>
+		<description>No, there is no baby to reveal its gender with.</description>
+		<graphicData>
+			<texPath>HIla</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_BeatFire</soundInteract>
+		<statBases>
+			<MarketValue>49.6</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>3.5</Bulk>
+			<Mass>2.00</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs Inherit="False">
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>PilumHI_Thrown</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>9</range>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>Interact_BeatFire</soundCast>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="PilaStrappedBased">
+		<defName>PilaEMP</defName>
+		<label>MPila</label>
+		<description>Five feet apart from mechanoids (or whatever it is you're aiming at).</description>
+		<graphicData>
+			<texPath>MPila</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_BeatFire</soundInteract>
+		<statBases>
+			<MarketValue>119.68</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>3.5</Bulk>
+			<Mass>2.00</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<verbs Inherit="False">
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>PilumEMP_Thrown</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>9</range>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>Interact_BeatFire</soundCast>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="PilaStrappedBased">
+		<defName>PilaSmoke</defName>
+		<label>Smola</label>
+		<description>Unfortunately, it is not, in fact, smokeleaf.</description>
+		<graphicData>
+			<texPath>Smola</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_BeatFire</soundInteract>
+		<statBases>
+			<MarketValue>44.29</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>3.5</Bulk>
+			<Mass>2.00</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<generateAllowChance>0</generateAllowChance>
+		<verbs Inherit="False">
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>PilumSmoke_Thrown</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>9</range>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>Interact_BeatFire</soundCast>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="PilaStrappedBased">
+		<defName>PilaFirefoam</defName>
+		<label>Fola</label>
+		<description>"Only you can prevent forest fires!"</description>
+		<graphicData>
+			<texPath>Fola</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_BeatFire</soundInteract>
+		<statBases>
+			<MarketValue>44.29</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>3.5</Bulk>
+			<Mass>2.00</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<generateAllowChance>0</generateAllowChance>
+		<verbs Inherit="False">
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>PilumFirefoam_Thrown</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>9</range>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>Interact_BeatFire</soundCast>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="PilaStrappedBased">
+		<defName>PilaAntigrain</defName>
+		<label>Sayonala</label>
+		<description>You can barely feel the singe.</description>
+		<graphicData>
+			<texPath>Fola</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_BeatFire</soundInteract>
+		<statBases>
+			<MarketValue>1507.26</MarketValue>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>3.5</Bulk>
+			<Mass>2.00</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<generateAllowChance>0.1</generateAllowChance><!-- carried over from base mod, generate commonality 0.1 -->
+		<verbs Inherit="False">
+			<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>PilumAntigrain_Thrown</defaultProjectile>
+				<warmupTime>0.8</warmupTime>
+				<range>9</range>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>Interact_BeatFire</soundCast>
+			</li>
+		</verbs>
+	</ThingDef>
+
+	<!--Add Projectiles-->
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>PilumHE_Thrown</defName>
+		<label>pilum with HE shell on the tip</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<speed>27</speed>
+			<armorPenetrationBlunt>5.44</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>156</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>2.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>27</Fragment_Large>
+					<Fragment_Small>100</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>PilumHI_Thrown</defName>
+		<label>pilum with incendiary shell on the tip</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<speed>27</speed>
+			<armorPenetrationBlunt>5.44</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>5</damageAmountBase>
+				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+				<explosiveRadius>6.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.20</preExplosionSpawnChance>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>PilumEMP_Thrown</defName>
+		<label>pilum with EMP shell on the tip</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<speed>27</speed>
+			<armorPenetrationBlunt>5.44</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>156</damageAmountBase>
+				<explosiveDamageType>EMP</explosiveDamageType>
+				<explosiveRadius>5.5</explosiveRadius>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>PilumSmoke_Thrown</defName>
+		<label>pilum with smoke shell on the tip</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<speed>27</speed>
+			<armorPenetrationBlunt>5.44</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<explosiveRadius>6</explosiveRadius>
+				<explosionSound>Explosion_EMP</explosionSound>
+				<postExplosionGasType>BlindSmoke</postExplosionGasType>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>PilumFirefoam_Thrown</defName>
+		<label>pilum with smoke shell on the tip</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<speed>27</speed>
+			<armorPenetrationBlunt>5.44</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosiveDamageType>Extinguish</explosiveDamageType>
+				<explosiveRadius>9.5</explosiveRadius>
+				<explosionSound>Explosion_EMP</explosionSound>
+				<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>PilumAntigrain_Thrown</defName>
+		<label>pilum with antigrain shell on the tip</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>800</damageAmountBase>
+			<speed>27</speed>
+			<explosionRadius>50</explosionRadius>
+			<explosionChanceToStartFire>0.22</explosionChanceToStartFire>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>GiantExplosion</explosionEffect>
+			<soundExplode>Explosion_GiantBomb</soundExplode>
+		</projectile>
+	</ThingDef>
+
+	<!--Add Recipes-->
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_PilaHighExplosive</defName>
+		<label>make HEla x5</label>
+		<description>Craft 5 HEla.</description>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<effectWorking>Smelt</effectWorking>
+		<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+		<workAmount>2500</workAmount>
+		<jobString>Making HEla.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>19</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Shell_HighExplosive</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+				<li>Shell_HighExplosive</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<PilaHighExplosive>5</PilaHighExplosive>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_PilaHighIncendiary</defName>
+		<label>make HIla x5</label>
+		<description>Craft 5 HIla.</description>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<effectWorking>Smelt</effectWorking>
+		<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+		<workAmount>2500</workAmount>
+		<jobString>Making HIla.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>19</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Shell_Incendiary</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+				<li>Shell_Incendiary</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<PilaHighIncendiary>5</PilaHighIncendiary>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_PilaEMP</defName>
+		<label>make MPila x5</label>
+		<description>Craft 5 MPila.</description>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<effectWorking>Smelt</effectWorking>
+		<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+		<workAmount>2500</workAmount>
+		<jobString>Making MPila.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>19</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Shell_EMP</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+				<li>Shell_EMP</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<PilaEMP>5</PilaEMP>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_PilaSmoke</defName>
+		<label>make Smola x5</label>
+		<description>Craft 5 Smola.</description>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<effectWorking>Smelt</effectWorking>
+		<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+		<workAmount>2500</workAmount>
+		<jobString>Making Smola.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>19</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Shell_Smoke</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+				<li>Shell_Smoke</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<PilaSmoke>5</PilaSmoke>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_PilaFirefoam</defName>
+		<label>make Fola x5</label>
+		<description>Craft 5 Fola.</description>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<effectWorking>Smelt</effectWorking>
+		<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+		<workAmount>2500</workAmount>
+		<jobString>Making Fola.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>19</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Shell_Firefoam</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+				<li>Shell_Firefoam</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<PilaFirefoam>5</PilaFirefoam>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_PilaAntigrain</defName>
+		<label>make Sayonala</label>
+		<description>Craft a Sayonala.</description>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<workSkill>Crafting</workSkill>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<effectWorking>Smelt</effectWorking>
+		<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+		<workAmount>500</workAmount>
+		<jobString>Making Sayonala.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Shell_AntigrainWarhead</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+				<li>Shell_AntigrainWarhead</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<PilaAntigrain>1</PilaAntigrain>
+		</products>
+	</RecipeDef>
+</Defs>

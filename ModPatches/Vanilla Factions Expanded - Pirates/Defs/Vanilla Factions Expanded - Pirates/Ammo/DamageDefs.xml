@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- While these Defs are only used conditionally with other mods active, they don't actually do anything by themselves, so there's no harm loading them. -->
+
+	<DamageDef ParentName="Frostbite">
+		<defName>CE_Cryptofuel</defName>
+		<label>frostbite</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<additionalHediffs>
+			<li>
+				<hediff>Hypothermia</hediff>
+				<severityPerDamageDealt>0.01</severityPerDamageDealt>
+			</li>
+		</additionalHediffs>
+		<hasForcefulImpact>true</hasForcefulImpact>
+		<makesBlood>false</makesBlood>
+		<canInterruptJobs>true</canInterruptJobs>
+		<externalViolence>true</externalViolence>
+		<armorCategory>Heat</armorCategory>
+		<minDamageToFragment>15</minDamageToFragment>
+		<defaultArmorPenetration>0.5</defaultArmorPenetration>
+		<explosionHeatEnergyPerCell>-20</explosionHeatEnergyPerCell>
+		<soundExplosion>Explosion_Stun</soundExplosion>
+		<combatLogRules>Damage_Flame</combatLogRules>
+		<explosionColorCenter>(0,1,1,1)</explosionColorCenter>
+		<explosionColorEdge>(0,0.70,1,1)</explosionColorEdge>
+	</DamageDef>
+
+</Defs>

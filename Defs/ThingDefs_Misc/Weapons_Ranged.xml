@@ -57,7 +57,7 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_AmmoUser">
 				<magazineSize>1</magazineSize>
-				<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+				<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
 				<reloadTime>2.2</reloadTime>
 				<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
 			</li>
@@ -198,7 +198,6 @@
 		</tools>
 		<modExtensions>
 			<li Class="CombatExtended.GunDrawExtension">
-				<DrawSize>1.0,1.0</DrawSize>
 				<DrawOffset>-0.3,0.0</DrawOffset>
 			</li>
 		</modExtensions>
@@ -322,7 +321,7 @@
 			<SwayFactor>1.00</SwayFactor>
 			<Bulk>7.5</Bulk>
 			<Mass>10.00</Mass>
-			<RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
 			<MarketValue>1400</MarketValue>
 		</statBases>
 		<techLevel>Spacer</techLevel>
@@ -334,14 +333,15 @@
 				<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
-				<warmupTime>4</warmupTime>
+				<warmupTime>3</warmupTime>
 				<minRange>10</minRange>
-				<range>55</range>
-				<burstShotCount>1</burstShotCount>
+				<range>62</range>
 				<soundCast>Mortar_LaunchA</soundCast>
 				<muzzleFlashScale>16</muzzleFlashScale>
 				<circularError>3</circularError>
 				<indirectFirePenalty>0.3</indirectFirePenalty>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				<ignorePartialLoSBlocker>True</ignorePartialLoSBlocker>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
@@ -358,7 +358,8 @@
 			</li>
 			<li Class="CombatExtended.CompProperties_AmmoUser">
 				<magazineSize>3</magazineSize>
-				<reloadTime>12</reloadTime>
+				<reloadOneAtATime>true</reloadOneAtATime>
+				<reloadTime>1.6</reloadTime>
 				<ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
 			</li>
 			<li Class="CombatExtended.CompProperties_FireModes">
@@ -400,7 +401,7 @@
 		</graphicData>
 		<soundInteract>Interact_Autopistol</soundInteract>
 		<statBases>
-			<WorkToMake>6000</WorkToMake>
+			<WorkToMake>4000</WorkToMake>
 			<SightsEfficiency>0.7</SightsEfficiency>
 			<ShotSpread>0.18</ShotSpread>
 			<SwayFactor>0.87</SwayFactor>
@@ -478,14 +479,6 @@
 				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 			</li>
 		</tools>
-		<modExtensions>
-			<!--	
-      <li Class="CombatExtended.GunDrawExtension">
-<DrawSize>0.93,0.93</DrawSize>
-<DrawOffset>0.0,0.0</DrawOffset>
-      </li>
-    -->
-		</modExtensions>
 	</ThingDef>
 
 	<!-- ==================== Minigun (Mechanoid) ==================== -->
@@ -498,6 +491,7 @@
 		<graphicData>
 			<texPath>Things/Weapons/MechanoidMinigun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.4,1.4)</drawSize>
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
@@ -555,10 +549,6 @@
 			</li>
 		</tools>
 		<modExtensions>
-			<li Class="CombatExtended.GunDrawExtension">
-				<DrawSize>1.4,1.4</DrawSize>
-				<DrawOffset>0.0,0.0</DrawOffset>
-			</li>
 			<li Class="CombatExtended.ThingDefExtensionCE">
 				<MenuHidden>True</MenuHidden>
 			</li>

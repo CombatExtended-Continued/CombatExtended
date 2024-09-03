@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Webbing PLCE ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNApparel_Harness_PLCE_MTP"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNApparel_Harness_PLCE_MTP"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>10</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNApparel_Harness_PLCE_MTP"]/apparel
+		</xpath>
+		<value>
+			<apparel>
+				<bodyPartGroups>
+					<li>Shoulders</li>
+				</bodyPartGroups>
+				<layers>
+					<li>Webbing</li>
+				</layers>
+				<tags>
+					<li>IndustrialAdvanced</li>
+				</tags>
+				<defaultOutfitTags>
+					<li>Soldier</li>
+				</defaultOutfitTags>
+				<wornGraphicPath>Things/Apparel/Belt/PLCE_MTP_Harness</wornGraphicPath>
+			</apparel>
+		</value>
+	</Operation>
+</Patch>

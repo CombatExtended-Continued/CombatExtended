@@ -1,0 +1,2654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spreadsheets for this patch can be found here: https://drive.google.com/open?id=1YHXVEMYF5HC62COJoguEQQ8l5P6O7_FIeNbnokURlnM
+https://drive.google.com/open?id=1ah4ESB3nCYnbxtD4sf7uyXvWi301o0vr1yNwt1jS6io
+--><Patch>
+	<!-- ========= TYRANNOSAURUS REX ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="TyrannosaurusRex"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TyrannosaurusRex"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.06</MeleeDodgeChance>
+			<MeleeCritChance>1.15</MeleeCritChance>
+			<MeleeParryChance>0.83</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TyrannosaurusRex"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TyrannosaurusRex"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TyrannosaurusRex"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TyrannosaurusRex"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>129</power>
+					<cooldownTime>3.85</cooldownTime>
+					<linkedBodyPartsGroup>LeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>64.8</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>129</power>
+					<cooldownTime>3.85</cooldownTime>
+					<linkedBodyPartsGroup>RightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>64.8</armorPenetrationBlunt>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>136</power>
+					<cooldownTime>3.7</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>2.07</armorPenetrationSharp>
+					<armorPenetrationBlunt>207</armorPenetrationBlunt>
+					<chanceFactor>0.7</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= YUTYRANNUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Yutyrannus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Yutyrannus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.16</MeleeDodgeChance>
+			<MeleeCritChance>0.62</MeleeCritChance>
+			<MeleeParryChance>0.42</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Yutyrannus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>6.5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Yutyrannus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Yutyrannus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Yutyrannus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>LeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>11.76</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>RightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>11.76</armorPenetrationBlunt>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>44</power>
+					<cooldownTime>2.8</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>17.664</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.23</armorPenetrationSharp>
+					<chanceFactor>0.7</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= CARNOTAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Carnotaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Carnotaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.14</MeleeDodgeChance>
+			<MeleeCritChance>0.66</MeleeCritChance>
+			<MeleeParryChance>0.53</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Carnotaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>6</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Carnotaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Carnotaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Carnotaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>34</power>
+					<cooldownTime>2.35</cooldownTime>
+					<linkedBodyPartsGroup>LeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>14.486</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>34</power>
+					<cooldownTime>2.35</cooldownTime>
+					<linkedBodyPartsGroup>RightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>14.486</armorPenetrationBlunt>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>51</power>
+					<cooldownTime>3.05</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.32</armorPenetrationSharp>
+					<armorPenetrationBlunt>25.234</armorPenetrationBlunt>
+					<chanceFactor>0.7</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= ALLOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Allosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Allosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.12</MeleeDodgeChance>
+			<MeleeCritChance>0.43</MeleeCritChance>
+			<MeleeParryChance>0.43</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Allosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Allosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Allosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Allosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2.6</cooldownTime>
+					<linkedBodyPartsGroup>LeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>7.779</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2.6</cooldownTime>
+					<linkedBodyPartsGroup>RightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>7.779</armorPenetrationBlunt>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>45</power>
+					<cooldownTime>2.85</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.24</armorPenetrationSharp>
+					<armorPenetrationBlunt>18.926</armorPenetrationBlunt>
+					<chanceFactor>0.7</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= SPINOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Spinosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Spinosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+			<MeleeCritChance>0.35</MeleeCritChance>
+			<MeleeParryChance>0.75</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Spinosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>2.6</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Spinosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Spinosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.12</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Spinosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>43</power>
+					<cooldownTime>5.2</cooldownTime>
+					<linkedBodyPartsGroup>LeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>19.2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>43</power>
+					<cooldownTime>5.2</cooldownTime>
+					<linkedBodyPartsGroup>RightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>19.2</armorPenetrationBlunt>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>111</power>
+					<cooldownTime>3.3</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>1.38</armorPenetrationSharp>
+					<armorPenetrationBlunt>138</armorPenetrationBlunt>
+					<chanceFactor>0.7</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= BARYONYX ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Baryonyx"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Baryonyx"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.14</MeleeDodgeChance>
+			<MeleeCritChance>0.53</MeleeCritChance>
+			<MeleeParryChance>0.42</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Baryonyx"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Baryonyx"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>2.3</cooldownTime>
+					<linkedBodyPartsGroup>LeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>8.64</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>2.3</cooldownTime>
+					<linkedBodyPartsGroup>RightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>8.64</armorPenetrationBlunt>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>44</power>
+					<cooldownTime>2.8</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.23</armorPenetrationSharp>
+					<armorPenetrationBlunt>17.664</armorPenetrationBlunt>
+					<chanceFactor>0.7</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= ANKYLOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Ankylosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Ankylosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+			<MeleeCritChance>0.42</MeleeCritChance>
+			<MeleeParryChance>0.54</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Ankylosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Ankylosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>18</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Ankylosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Ankylosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>63</power>
+					<cooldownTime>5.1</cooldownTime>
+					<linkedBodyPartsGroup>TailAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>29.153</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>5.9</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>8.957</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= MINMI ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Minmi"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Minmi"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.13</MeleeDodgeChance>
+			<MeleeCritChance>0.18</MeleeCritChance>
+			<MeleeParryChance>0.17</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Minmi"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>10</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Minmi"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Minmi"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.95</cooldownTime>
+					<linkedBodyPartsGroup>TailAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>7.2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= BRACHIOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Brachiosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Brachiosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.03</MeleeDodgeChance>
+			<MeleeCritChance>0.77</MeleeCritChance>
+			<MeleeParryChance>0.156</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Brachiosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>2.4</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Brachiosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Brachiosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Brachiosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>151</power>
+					<cooldownTime>11.4</cooldownTime>
+					<linkedBodyPartsGroup>TailAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>77.4</armorPenetrationBlunt>
+					<chanceFactor>0.3</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>61</power>
+					<cooldownTime>8.8</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>27.864</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>61</power>
+					<cooldownTime>8.8</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>27.864</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= BRONTOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Brontosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Brontosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.04</MeleeDodgeChance>
+			<MeleeCritChance>0.44</MeleeCritChance>
+			<MeleeParryChance>1.18</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Brontosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>2.4</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Brontosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Brontosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Brontosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>55</power>
+					<cooldownTime>8.6</cooldownTime>
+					<linkedBodyPartsGroup>TailAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>25.2</armorPenetrationBlunt>
+					<chanceFactor>0.3</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>6.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>9.072</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>6.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>9.072</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= DIPLODOCUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Diplodocus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Diplodocus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.04</MeleeDodgeChance>
+			<MeleeCritChance>0.42</MeleeCritChance>
+			<MeleeParryChance>1.15</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Diplodocus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>2.4</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Diplodocus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Diplodocus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Diplodocus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>52</power>
+					<cooldownTime>8.45</cooldownTime>
+					<linkedBodyPartsGroup>TailAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>23.4</armorPenetrationBlunt>
+					<chanceFactor>0.5</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>6.5</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>8.424</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>6.5</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>8.424</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= MAGYAROSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Magyarosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Magyarosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.10</MeleeDodgeChance>
+			<MeleeCritChance>0.27</MeleeCritChance>
+			<MeleeParryChance>0.35</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Magyarosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Magyarosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Magyarosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.00</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Magyarosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>3.25</cooldownTime>
+					<linkedBodyPartsGroup>TailAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>11</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>2.7</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>2.7</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= UTAHRAPTOR ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Utahraptor"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Utahraptor"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeCritChance>0.31</MeleeCritChance>
+			<MeleeParryChance>0.19</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Utahraptor"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>6</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Utahraptor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Utahraptor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Utahraptor"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>41</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.94</armorPenetrationSharp>
+					<armorPenetrationBlunt>8.438</armorPenetrationBlunt>
+					<chanceFactor>0.25</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>41</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.94</armorPenetrationSharp>
+					<armorPenetrationBlunt>8.438</armorPenetrationBlunt>
+					<chanceFactor>0.25</chanceFactor>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>29</power>
+					<cooldownTime>1.7</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>1.41</armorPenetrationSharp>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+					<chanceFactor>0.5</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= DAKOTARAPTOR ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Dakotaraptor"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dakotaraptor"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			<MeleeCritChance>0.23</MeleeCritChance>
+			<MeleeParryChance>0.16</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dakotaraptor"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>6</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dakotaraptor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dakotaraptor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dakotaraptor"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>1.4</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.52</armorPenetrationSharp>
+					<armorPenetrationBlunt>4.68</armorPenetrationBlunt>
+					<chanceFactor>0.25</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>1.4</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.52</armorPenetrationSharp>
+					<armorPenetrationBlunt>4.68</armorPenetrationBlunt>
+					<chanceFactor>0.25</chanceFactor>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.45</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.79</armorPenetrationSharp>
+					<armorPenetrationBlunt>5</armorPenetrationBlunt>
+					<chanceFactor>0.5</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= DILOPHOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Dilophosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dilophosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.16</MeleeDodgeChance>
+			<MeleeCritChance>0.27</MeleeCritChance>
+			<MeleeParryChance>0.18</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dilophosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>6</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dilophosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dilophosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dilophosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>1.55</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.73</armorPenetrationSharp>
+					<armorPenetrationBlunt>6.525</armorPenetrationBlunt>
+					<chanceFactor>0.25</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>1.55</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.73</armorPenetrationSharp>
+					<armorPenetrationBlunt>6.525</armorPenetrationBlunt>
+					<chanceFactor>0.25</chanceFactor>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>1.6</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>1.1</armorPenetrationSharp>
+					<armorPenetrationBlunt>7.031</armorPenetrationBlunt>
+					<chanceFactor>0.5</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= VELOCIRAPTOR ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Velociraptor"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Velociraptor"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.31</MeleeDodgeChance>
+			<MeleeCritChance>0.07</MeleeCritChance>
+			<MeleeParryChance>0.03</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Velociraptor"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>7.2</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Velociraptor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.00</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Velociraptor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.00</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Velociraptor"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.7</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.281</armorPenetrationBlunt>
+					<chanceFactor>0.3</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.7</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.281</armorPenetrationBlunt>
+					<chanceFactor>0.3</chanceFactor>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.7</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.05</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+					<chanceFactor>0.4</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Velociraptor"]/race/manhunterOnDamageChance</xpath>
+		<value>
+			<manhunterOnDamageChance>0.75</manhunterOnDamageChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Velociraptor"]/combatPower</xpath>
+		<value>
+			<combatPower>70</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Velociraptor"]/wildGroupSize/min</xpath>
+		<value>
+			<min>5</min>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Velociraptor"]/wildGroupSize/max</xpath>
+		<value>
+			<max>7</max>
+		</value>
+	</Operation>
+
+	<!-- ========= COMPSOGNATHUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Compsognathus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Compsognathus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.32</MeleeDodgeChance>
+			<MeleeCritChance>0.03</MeleeCritChance>
+			<MeleeParryChance>0.00</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Compsognathus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>6</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Compsognathus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>0.5</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>5</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.02</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.049</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>0.5</cooldownTime>
+					<linkedBodyPartsGroup>FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>5</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.02</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.049</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>0.6</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.038</armorPenetrationBlunt>
+					<chanceFactor>0.5</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Compsognathus"]/combatPower</xpath>
+		<value>
+			<combatPower>25</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Compsognathus"]/wildGroupSize/min</xpath>
+		<value>
+			<min>2</min>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Compsognathus"]/wildGroupSize/max</xpath>
+		<value>
+			<max>3</max>
+		</value>
+	</Operation>
+
+	<!-- ========= GALLIMIMUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gallimimus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gallimimus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.17</MeleeDodgeChance>
+			<MeleeCritChance>0.29</MeleeCritChance>
+			<MeleeParryChance>0.24</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gallimimus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5.8</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gallimimus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>2.1</cooldownTime>
+					<linkedBodyPartsGroup>LeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.39</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.91</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>2.1</cooldownTime>
+					<linkedBodyPartsGroup>RightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.39</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.91</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Gallimimus"]/combatPower</xpath>
+		<value>
+			<combatPower>150</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gallimimus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========= GIGANTORAPTOR ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gigantoraptor"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gigantoraptor"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.12</MeleeDodgeChance>
+			<MeleeCritChance>0.47</MeleeCritChance>
+			<MeleeParryChance>0.32</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gigantoraptor"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5.4</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gigantoraptor"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left leg</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>31</power>
+					<cooldownTime>2.8</cooldownTime>
+					<linkedBodyPartsGroup>LeftLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>1.22</armorPenetrationSharp>
+					<armorPenetrationBlunt>6.085</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right leg</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>31</power>
+					<cooldownTime>2.8</cooldownTime>
+					<linkedBodyPartsGroup>RightLeg</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>1.22</armorPenetrationSharp>
+					<armorPenetrationBlunt>6.085</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= IGUANODON ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Iguanodon"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Iguanodon"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			<MeleeCritChance>0.36</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Iguanodon"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Iguanodon"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Iguanodon"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Iguanodon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>37</power>
+					<cooldownTime>4.2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>12</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>16.2</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= PARASAUR ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Parasaur"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Parasaur"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			<MeleeCritChance>0.33</MeleeCritChance>
+			<MeleeParryChance>0.43</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Parasaur"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Parasaur"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Parasaur"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Parasaur"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>4</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>12</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>13.478</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= CORYTHOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Corythosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Corythosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.09</MeleeDodgeChance>
+			<MeleeCritChance>0.69</MeleeCritChance>
+			<MeleeParryChance>0.48</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Corythosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Corythosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Corythosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Corythosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>55</power>
+					<cooldownTime>4</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>12</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>25.2</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= DEINOCHEIRUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Deinocheirus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Deinocheirus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.06</MeleeDodgeChance>
+			<MeleeCritChance>0.52</MeleeCritChance>
+			<MeleeParryChance>0.61</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Deinocheirus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.5</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Deinocheirus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Deinocheirus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Deinocheirus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>33</power>
+					<cooldownTime>2.7</cooldownTime>
+					<linkedBodyPartsGroup>ArmClawAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>1.09</armorPenetrationSharp>
+					<armorPenetrationBlunt>5.425</armorPenetrationBlunt>
+					<chanceFactor>0.4</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>33</power>
+					<cooldownTime>2.7</cooldownTime>
+					<linkedBodyPartsGroup>ArmClawAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>1.09</armorPenetrationSharp>
+					<armorPenetrationBlunt>5.425</armorPenetrationBlunt>
+					<chanceFactor>0.4</chanceFactor>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>2.8</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>6.2</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= THERIZINOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Therizinosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Therizinosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			<MeleeCritChance>0.46</MeleeCritChance>
+			<MeleeParryChance>0.56</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Therizinosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.6</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Therizinosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Therizinosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Therizinosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>41</power>
+					<cooldownTime>2.5</cooldownTime>
+					<linkedBodyPartsGroup>ArmClawAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.99</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.938</armorPenetrationBlunt>
+					<chanceFactor>0.4</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>41</power>
+					<cooldownTime>2.5</cooldownTime>
+					<linkedBodyPartsGroup>ArmClawAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.99</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.938</armorPenetrationBlunt>
+					<chanceFactor>0.4</chanceFactor>
+				</li>
+
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>2.5</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= PACHYCEPHALOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Pachycephalosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Pachycephalosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.14</MeleeDodgeChance>
+			<MeleeCritChance>0.31</MeleeCritChance>
+			<MeleeParryChance>0.16</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Pachycephalosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Pachycephalosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>2.95</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= STYGIMOLOCH ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Stygimoloch"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Stygimoloch"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			<MeleeCritChance>0.15</MeleeCritChance>
+			<MeleeParryChance>0.04</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Stygimoloch"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>2.1</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>1.95</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= DRYOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Dryosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Dryosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			<MeleeCritChance>0.15</MeleeCritChance>
+			<MeleeParryChance>0.04</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dryosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.9</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.3</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= STEGOSAURUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Stegosaurus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Stegosaurus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.03</MeleeDodgeChance>
+			<MeleeCritChance>0.22</MeleeCritChance>
+			<MeleeParryChance>0.57</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Stegosaurus"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>2</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Stegosaurus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>7</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Stegosaurus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.12</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Stegosaurus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>63</power>
+					<cooldownTime>2.8</cooldownTime>
+					<linkedBodyPartsGroup>TailAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>29.153</armorPenetrationBlunt>
+					<chanceFactor>0.8</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>4.7</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>12</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>12.8</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= TRICERATOPS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Triceratops"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Triceratops"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.06</MeleeDodgeChance>
+			<MeleeCritChance>0.76</MeleeCritChance>
+			<MeleeParryChance>0.70</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Triceratops"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4</MoveSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Triceratops"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Triceratops"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.13</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Triceratops"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>horns</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>38</power>
+					<cooldownTime>2.5</cooldownTime>
+					<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>4</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<chanceFactor>0.8</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>3.5</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= PROTOCERATOPS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Protoceratops"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Protoceratops"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.09</MeleeDodgeChance>
+			<MeleeCritChance>0.07</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Protoceratops"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2.35</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= QUETZALCOATLUS ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Quetzalcoatlus"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Quetzalcoatlus"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.09</MeleeDodgeChance>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.29</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Quetzalcoatlus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Quetzalcoatlus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Quetzalcoatlus"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>beak</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2.3</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>7.92</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========= PTERANODON ========= -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Pteranodon"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Pteranodon"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			<MeleeCritChance>0.02</MeleeCritChance>
+			<MeleeParryChance>0.04</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Pteranodon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>beak</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>2.24</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

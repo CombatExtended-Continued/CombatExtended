@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Messenger Bag Tactical ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RHApparel_Backpack_Tactical_ShoulderBag"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RHApparel_Backpack_Tactical_ShoulderBag"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>15</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RHApparel_Backpack_Tactical_ShoulderBag"]/apparel
+		</xpath>
+		<value>
+			<apparel>
+				<careIfWornByCorpse>false</careIfWornByCorpse>
+				<bodyPartGroups>
+					<li>Shoulders</li>
+				</bodyPartGroups>
+				<layers>
+					<li>Backpack</li>
+				</layers>
+				<tags>
+					<li>RH_Backpack_ShoulderBag</li>
+					<li>PassiveCamo_Desert_Med</li>
+				</tags>
+				<defaultOutfitTags>
+					<li>Soldier</li>
+				</defaultOutfitTags>
+				<wornGraphicPath>Things/Apparel/Belt/MessengerBag_Tactical</wornGraphicPath>
+			</apparel>
+		</value>
+	</Operation>
+</Patch>

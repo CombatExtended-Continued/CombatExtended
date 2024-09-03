@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Tools ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_NailGun" or @Name="Moyo2_LMRPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Moyo2_LMRRifle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_SpearGun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>pile</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>3.3</cooldownTime>
+					<armorPenetrationSharp>9</armorPenetrationSharp>
+					<armorPenetrationBlunt>100</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_HarpoonGun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>pile</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>75</power>
+					<cooldownTime>7</cooldownTime>
+					<armorPenetrationSharp>18</armorPenetrationSharp>
+					<armorPenetrationBlunt>800</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			@Name="Moyo2_LMRBalista" or
+			@Name="Moyo_LMRAutoCannon"
+			]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<!-- ========== Nailgun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Moyo2_NailGun</defName>
+		<statBases>
+			<Mass>1.20</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.07</SwayFactor>
+			<Bulk>2.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.24</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Nail_HV</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>18</range>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Industrial_Nailgun</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_Nail_HV</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_SMG</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- ========== Light Harpoon ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Moyo2_SpearGun</defName>
+		<statBases>
+			<Mass>3.60</Mass>
+			<RangedWeapon_Cooldown>0.99</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.71</SwayFactor>
+			<Bulk>11.25</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>5.28</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_SmallMoyoHarpoon</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>31</range>
+			<soundCast>Industrial_SpearGun</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>2.2</reloadTime>
+			<ammoSet>AmmoSet_SmallMoyoHarpoon</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- ========== Heavy Harpoon ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Moyo2_HarpoonGun</defName>
+		<statBases>
+			<Mass>9.00</Mass>
+			<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>2.59</SwayFactor>
+			<Bulk>13.50</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>9.44</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_LargeMoyoHarpoon</defaultProjectile>
+			<warmupTime>2.6</warmupTime>
+			<range>31</range>
+			<soundCast>Industrial_HarpoonGun</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>4.4</reloadTime>
+			<ammoSet>AmmoSet_LargeMoyoHarpoon</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Laminar Pistol ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Moyo2_LMRPistol</defName>
+		<statBases>
+			<Mass>2.50</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>1.69</SwayFactor>
+			<Bulk>2.50</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.47</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MoyoLaminarSlug</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>31</range>
+			<soundCast>Laminar_Pistol</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_MoyoLaminarSlug</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_LMRPistol"]/comps/li[@Class="Moyo2_ItemFormChange.CompPropertiesFormChange"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to normal mode</standardLabel>
+				<underBarrelLabel>switch to overclock mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>7</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_MoyoLaminarSlug_OC</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>4.94</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MoyoLaminarSlug_OC</defaultProjectile>
+					<warmupTime>3.6</warmupTime>
+					<range>37</range>
+					<soundCast>Laminar_Pistol</soundCast>
+					<soundAiming>Laminar_Chargeup2</soundAiming>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Laminar Rifle ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Moyo2_LMRRifle</defName>
+		<statBases>
+			<Mass>6.50</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.60</SwayFactor>
+			<Bulk>9.50</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.75</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MoyoLaminarSlug</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<soundCast>Laminar_Rifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_MoyoLaminarSlug</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+		</weaponTags>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_LMRRifle"]/comps/li[@Class="Moyo2_ItemFormChange.CompPropertiesFormChange"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to normal mode</standardLabel>
+				<underBarrelLabel>switch to overclock mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>15</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_MoyoLaminarSlug_OC_HV</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>3.5</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MoyoLaminarSlug_OC_HV</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<range>65</range>
+					<soundCast>Laminar_Rifle</soundCast>
+					<soundAiming>Laminar_Chargeup2</soundAiming>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- ========== Laminar Autocannon ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Moyo2_LMRAutoCannon</defName>
+		<statBases>
+			<Mass>9.50</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.37</SwayFactor>
+			<Bulk>13.50</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.31</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MoyoLaminarSlug</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>51</range>
+			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>Laminar_Rifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_MoyoLaminarSlug</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_MachineGun</li>
+			<li>CE_AI_LMG</li>
+		</weaponTags>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_LMRAutoCannon"]/comps/li[@Class="Moyo2_ItemFormChange.CompPropertiesFormChange"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to normal mode</standardLabel>
+				<underBarrelLabel>switch to overclock mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>60</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_MoyoLaminarSlug</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.61</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MoyoLaminarSlug</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<range>51</range>
+					<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+					<burstShotCount>20</burstShotCount>
+					<soundCast>Laminar_Rifle</soundCast>
+					<soundAiming>Laminar_Chargeup2</soundAiming>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<noSingleShot>true</noSingleShot>
+					<aimedBurstShotCount>20</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- ========== Laminar Boltgun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Moyo2_LMRBalista</defName>
+		<statBases>
+			<Mass>9.50</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>2.53</SwayFactor>
+			<Bulk>12.50</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>7.96</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MoyoLaminarBolt</defaultProjectile>
+			<warmupTime>2.5</warmupTime>
+			<range>48</range>
+			<soundAiming>Laminar_Chargeup2</soundAiming>
+			<soundCast>Laminar_Balista</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>4</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_MoyoLaminarBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+		</weaponTags>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Moyo2_LMRBalista"]/comps/li[@Class="Moyo2_ItemFormChange.CompPropertiesFormChange"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to normal mode</standardLabel>
+				<underBarrelLabel>switch to overclock mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>4</magazineSize>
+					<reloadTime>4.9</reloadTime>
+					<ammoSet>AmmoSet_MoyoLaminarBolt_OC</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>15.92</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MoyoLaminarBolt_OC</defaultProjectile>
+					<warmupTime>5.5</warmupTime>
+					<range>52</range>
+					<soundAiming>Laminar_Chargeup2</soundAiming>
+					<soundCast>Laminar_Balista</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

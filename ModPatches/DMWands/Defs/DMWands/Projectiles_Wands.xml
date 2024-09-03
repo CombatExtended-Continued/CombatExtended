@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<defName>DM_MagicBolt</defName>
+		<label>magic bolt</label>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DM_MagicBolts/DM_LesserMagicBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<color>(120,255,255)</color>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>DM_Arcane</damageDef>
+			<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<speed>50</speed>
+			<dropsCasings>false</dropsCasings>
+			<ai_IsIncendiary>false</ai_IsIncendiary>
+			<arcHeightFactor>1</arcHeightFactor>
+			<shadowSize>1</shadowSize>
+			<explosionRadius>1</explosionRadius>
+			<damageAmountBase>8</damageAmountBase>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<thingClass>CombatExtended.Projectile_FireTrail</thingClass>
+		<defName>DM_FireBolt</defName>
+		<label>fire bolt</label>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DM_MagicBolts/DM_FireBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<color>(254,189,58)</color>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>DM_Fire</damageDef>
+			<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<speed>20</speed>
+			<dropsCasings>false</dropsCasings>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+			<arcHeightFactor>1</arcHeightFactor>
+			<shadowSize>1.5</shadowSize>
+			<damageAmountBase>5</damageAmountBase>
+			<explosionRadius>2</explosionRadius>
+			<flyOverhead>false</flyOverhead>
+			<soundExplode>Explosion_Flame</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<defName>DM_PoisonBolt</defName>
+		<label>poison bolt</label>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/DM_MagicBolts/DM_PoisonBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<color>(100,255,100)</color>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>DM_Poison</damageDef>
+			<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<speed>17.5</speed>
+			<dropsCasings>false</dropsCasings>
+			<ai_IsIncendiary>false</ai_IsIncendiary>
+			<arcHeightFactor>-1</arcHeightFactor>
+			<shadowSize>0.5</shadowSize>
+			<damageAmountBase>3</damageAmountBase>
+			<explosionRadius>3</explosionRadius>
+			<soundExplode>Hive_Spawn</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+		</projectile>
+	</ThingDef>
+
+</Defs>

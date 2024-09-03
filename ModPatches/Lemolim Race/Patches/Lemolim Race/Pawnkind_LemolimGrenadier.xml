@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Adding Lemonim Boomers -->
+
+	<Operation Class="PatchOperationAdd"><!-- Combat -->
+		<xpath>Defs/FactionDef[@Name="LemolimFactionTribalBase"]/pawnGroupMakers/li[1]/options</xpath>
+		<value>
+			<Lemolim_Grenadier>10</Lemolim_Grenadier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Normal fights, ranged only -->
+		<xpath>Defs/FactionDef[@Name="LemolimFactionTribalBase"]/pawnGroupMakers/li[2]/options</xpath>
+		<value>
+			<Lemolim_Grenadier>15</Lemolim_Grenadier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!--Peaceful-->
+		<xpath>Defs/FactionDef[@Name="LemolimFactionTribalBase"]/pawnGroupMakers/li[4]/options</xpath>
+		<value>
+			<Lemolim_Grenadier>5</Lemolim_Grenadier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!--Trader-->
+		<xpath>Defs/FactionDef[@Name="LemolimFactionTribalBase"]/pawnGroupMakers/li[5]/guards</xpath>
+		<value>
+			<Lemolim_Grenadier>7</Lemolim_Grenadier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"><!-- Settlement -->
+		<xpath>Defs/FactionDef[@Name="LemolimFactionTribalBase"]/pawnGroupMakers/li[6]/options</xpath>
+		<value>
+			<Lemolim_Grenadier>20</Lemolim_Grenadier>
+		</value>
+	</Operation>
+
+</Patch>

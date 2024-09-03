@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Psycasts Expanded</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ======= Ability Range Adjustment ======= -->
+
+				<!-- ===== Herald Path ===== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_VenomSpit"]/range</xpath>
+					<value>
+						<range>19.9</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_VenomSpit"]/modExtensions/li[@Class="VFECore.Abilities.AbilityExtension_Projectile"]/projectile</xpath>
+					<value>
+						<projectile>AA_PoisonBolt_V</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_SummonBlackScarab" or defName="AAVPE_SummonBlackSpelopede" or defName="AAVPE_SummonBlackSpider" or defName="AAVPE_SummonMammothWorm" or defName="AAVPE_SummonBlackQueen"]/range</xpath>
+					<value>
+						<range>24</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_StrengthenInsect"]/range</xpath>
+					<value>
+						<range>11.9</range>
+					</value>
+				</li>
+
+				<!-- ===== Ocultist Path ===== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_SummonEyeling" or defName="AAVPE_SummonOcularOriginator" or AAVPE_SummonEyelingHorde]/range</xpath>
+					<value>
+						<range>24</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_StrikeEyes" or defName="AAVPE_EyeEruption"]/range</xpath>
+					<value>
+						<range>11.9</range>
+					</value>
+				</li>
+
+				<!-- ===== Ravager Path ===== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_Slice"]/range</xpath>
+					<value>
+						<range>6</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_Slice"]/modExtensions/li[@Class="AlphaBehavioursAndEvents.Ability_Damage_Extension"]/armourPen</xpath>
+					<value>
+						<armourPen>6.0</armourPen>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_ClawFrenzy"]/modExtensions/li[@Class="AlphaBehavioursAndEvents.Ability_Damage_Extension"]/armourPen</xpath>
+					<value>
+						<armourPen>3.0</armourPen>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_DisablingStrike"]/modExtensions/li[@Class="AlphaBehavioursAndEvents.Ability_Damage_Extension"]/armourPen</xpath>
+					<value>
+						<armourPen>1.0</armourPen>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_Skewer"]/modExtensions/li[@Class="AlphaBehavioursAndEvents.Ability_Damage_Extension"]/armourPen</xpath>
+					<value>
+						<armourPen>9.0</armourPen>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_Charge"]/range</xpath>
+					<value>
+						<range>12</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_Charge"]/modExtensions/li[@Class="AlphaBehavioursAndEvents.Ability_Damage_Extension"]/armourPen</xpath>
+					<value>
+						<armourPen>1.0</armourPen>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_ChargeAndSkewer"]/range</xpath>
+					<value>
+						<range>19</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_ChargeAndSkewer"]/modExtensions/li[@Class="AlphaBehavioursAndEvents.Ability_Damage_Extension"]/armourPen</xpath>
+					<value>
+						<armourPen>9.0</armourPen>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_EmpBlow"]/modExtensions/li[@Class="AlphaBehavioursAndEvents.Ability_Damage_Extension"]/armourPen</xpath>
+					<value>
+						<armourPen>10.0</armourPen>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_SpinCut"]/range</xpath>
+					<value>
+						<range>10</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_SpinCut"]/modExtensions/li[@Class="AlphaBehavioursAndEvents.Ability_Damage_Extension"]/armourPen</xpath>
+					<value>
+						<armourPen>4.0</armourPen>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_LegSkip"]/range</xpath>
+					<value>
+						<range>6</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_LegSkip"]/modExtensions/li[@Class="AlphaBehavioursAndEvents.Ability_Damage_Extension"]/armourPen</xpath>
+					<value>
+						<armourPen>10000</armourPen>
+					</value>
+				</li>
+
+				<!-- ===== Xenoseer Path ===== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_ChemfuelNodules"]/range</xpath>
+					<value>
+						<range>29</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_Hover" or defName="AAVPE_FungalSkin"]/range</xpath>
+					<value>
+						<range>24</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_WebSlinging"]/range</xpath>
+					<value>
+						<range>19.9</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_AcidSpit"]/range</xpath>
+					<value>
+						<range>12</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_Laser"]/range</xpath>
+					<value>
+						<range>18</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_Electrify"]/range</xpath>
+					<value>
+						<range>29</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VFECore.Abilities.AbilityDef[defName="AAVPE_Regeneration"]/range</xpath>
+					<value>
+						<range>12</range>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Ori"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Ori"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left hand</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.19</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right hand</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.19</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.11</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.19</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Ori"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+			<MeleeDodgeChance>0.24</MeleeDodgeChance>
+			<MeleeCritChance>0.03</MeleeCritChance>
+			<MeleeParryChance>0.01</MeleeParryChance>
+		</value>
+	</Operation>
+
+</Patch>

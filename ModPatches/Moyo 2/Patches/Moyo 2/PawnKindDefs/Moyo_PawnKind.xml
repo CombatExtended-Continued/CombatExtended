@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Ammo-->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@ParentName="Moyo2_NPCBase"] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>0</min>
+					<max>2</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@ParentName="Moyo2_NPCFighterMid"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="Moyo2_NPCDiverLight"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="Moyo2_NPCDiverheavy"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Backpack-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			@ParentName="Moyo2_NPCFighterMid" or
+			@Name="Moyo2_NPCDiverLight" or
+			@Name="Moyo2_NPCDiverheavy"
+			]/apparelRequired </xpath>
+		<value>
+			<li>CE_Apparel_Backpack</li>
+		</value>
+	</Operation>
+
+</Patch>

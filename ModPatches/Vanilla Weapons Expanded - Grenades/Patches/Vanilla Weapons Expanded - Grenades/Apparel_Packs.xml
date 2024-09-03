@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Frag Grenade Belt -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeFragBelt"]/costList</xpath>
+		<value>
+			<costList>
+				<Weapon_GrenadeFrag>5</Weapon_GrenadeFrag>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeFragBelt"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountToRefill</xpath>
+		<value>
+			<ammoCountPerCharge>1</ammoCountPerCharge>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeFragBelt"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>throw frag grenade</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>0.8</warmupTime>
+					<range>10</range>
+					<minRange>3</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>Proj_GrenadeFrag</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- Molotov Belt -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeMolotovBelt"]/costList</xpath>
+		<value>
+			<costList>
+				<Weapon_GrenadeMolotov>5</Weapon_GrenadeMolotov>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeMolotovBelt"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountToRefill</xpath>
+		<value>
+			<ammoCountPerCharge>1</ammoCountPerCharge>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeMolotovBelt"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>throw molotov</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>0.8</warmupTime>
+					<range>10</range>
+					<minRange>3</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowMolotovCocktail</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>10</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>Proj_GrenadeMolotov</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- EMP Grenade Belt -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeEMPBelt"]/costList</xpath>
+		<value>
+			<costList>
+				<Weapon_GrenadeEMP>5</Weapon_GrenadeEMP>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeEMPBelt"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountToRefill</xpath>
+		<value>
+			<ammoCountPerCharge>1</ammoCountPerCharge>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadeEMPBelt"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>throw EMP grenade</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>0.8</warmupTime>
+					<range>10</range>
+					<minRange>3</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>Proj_GrenadeEMP</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+</Patch>

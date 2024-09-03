@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+    <!-- Knuckle Dusters -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "DV_Handwear_KnuckleDusters"]/statBases</xpath>
+		<value>
+            <Bulk>0.6</Bulk>
+            <WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName = "DV_KnuckleDusters"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>knuckles</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>2</power>
+                    <cooldownTime>1.5</cooldownTime>
+                    <soundMeleeHit>MeleeHit_Metal_Blunt</soundMeleeHit>
+                    <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+                </li>
+			</tools>
+		</value>
+	</Operation>
+
+    <!-- Stored Blubber -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName = "Bogleg_FatHediff"]/comps/li[@Class="Boglegs.HediffCompProperties_Fat"]/bluntProtectionCurve/points</xpath>
+		<value>
+              <points>
+                <li>(0, 0)</li>
+                <li>(0.10, 0.08)</li>
+                <li>(0.20, 0.26)</li>
+                <li>(0.30, 0.42)</li>
+                <li>(0.40, 0.60)</li>
+              </points>
+		</value>
+	</Operation>
+
+</Patch>

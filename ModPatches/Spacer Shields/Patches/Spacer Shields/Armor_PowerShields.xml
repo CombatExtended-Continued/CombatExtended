@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Replace ThingClass-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="LTS_Apparel_BasePowerShield"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Apparel_Shield</thingClass>
+		</value>
+	</Operation>
+
+	<!--Replace Parent-->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[@Name="LTS_Apparel_BasePowerShield"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ArmorSmithableBase</value>
+	</Operation>
+
+	<!--Replace Apparel Layer & BodyPart Group -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="LTS_Apparel_BasePowerShield"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>Shield</li>
+			</layers>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="LTS_Apparel_BasePowerShield"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>LeftShoulder</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<!--Replace graphicClass -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power" or defName="LTS_Apparel_Shield_Energy"]/graphicData/graphicClass</xpath>
+		<value>
+			<graphicClass>Graphic_Multi</graphicClass>
+		</value>
+	</Operation>
+
+	<!--Remove VFE Shield Stuff-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[@Name="LTS_Apparel_BasePowerShield"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power" or defName="LTS_Apparel_Shield_Energy"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
+	</Operation>
+
+	<!--Add apparel node if not exist-->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power"]/apparel</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power"]</xpath>
+			<value>
+				<apparel />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/apparel</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]</xpath>
+			<value>
+				<apparel />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!--Add renderNodeProperties-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power"]/apparel</xpath>
+		<value>
+			<renderNodeProperties>
+				<li>
+					<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+					<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+					<texPath>Things/Apparel/PowerShield/PowerShield</texPath>
+					<shaderTypeDef>CutoutComplex</shaderTypeDef>
+					<parentTagDef>ApparelBody</parentTagDef>
+					<drawData>
+						<scale>1</scale>
+						<defaultData>
+							<layer>91</layer>
+						</defaultData>
+						<dataEast>
+							<layer>-5</layer>
+							<offset>(-0.1, 0, -0.1)</offset>
+						</dataEast>
+						<dataNorth>
+							<layer>-5</layer>
+							<offset>(-0.3, 0, 0.3)</offset>
+						</dataNorth>
+						<dataSouth>
+							<offset>(0.3, 0, -0.1)</offset>
+						</dataSouth>
+						<dataWest>
+							<offset>(0.1, 0, -0.1)</offset>
+						</dataWest>
+					</drawData>
+				</li>
+			</renderNodeProperties>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/apparel</xpath>
+		<value>
+			<renderNodeProperties>
+				<li>
+					<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+					<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+					<texPath>Things/Apparel/EnergyShield/EnergyShield</texPath>
+					<shaderTypeDef>CutoutComplex</shaderTypeDef>
+					<parentTagDef>ApparelBody</parentTagDef>
+					<drawData>
+						<scale>1</scale>
+						<defaultData>
+							<layer>91</layer>
+						</defaultData>
+						<dataEast>
+							<layer>-5</layer>
+							<offset>(-0.1, 0, 0.3)</offset>
+						</dataEast>
+						<dataNorth>
+							<layer>-5</layer>
+							<offset>(-0.3, 0, 0.3)</offset>
+						</dataNorth>
+						<dataSouth>
+							<offset>(0.3, 0, -0.1)</offset>
+						</dataSouth>
+						<dataWest>
+							<offset>(0.1, 0, -0.1)</offset>
+						</dataWest>
+					</drawData>
+				</li>
+			</renderNodeProperties>
+		</value>
+	</Operation>
+
+	<!--Add CE Shield Stuff-->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power"]</xpath>
+		<value>
+			<li Class="CombatExtended.ShieldDefExtension">
+				<shieldCoverage>
+					<li>Hands</li>
+					<li>Arms</li>
+					<li>Shoulders</li>
+					<li>Torso</li>
+					<li>Neck</li>
+				</shieldCoverage>
+				<crouchCoverage>
+					<li>Legs</li>
+				</crouchCoverage>				
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]</xpath>
+		<value>
+			<li Class="CombatExtended.ShieldDefExtension">
+				<shieldCoverage>
+					<li>Hands</li>
+					<li>Arms</li>
+				</shieldCoverage>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Add Bulk-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<!--Replace Stat Offsets-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<ReloadSpeed>-0.35</ReloadSpeed>
+				<MeleeHitChance>-4</MeleeHitChance>
+				<ShootingAccuracyPawn>-0.4</ShootingAccuracyPawn>
+				<AimingAccuracy>-0.2</AimingAccuracy>
+				<Suppressability>-0.6</Suppressability>
+				<MeleeCritChance>-0.25</MeleeCritChance>
+				<MeleeParryChance>1.0</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!--Replace Armor Thickness-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>24</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Power"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!--Adjust shield bubble value-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>265</EnergyShieldEnergyMax> <!-- about 2.65x from base value -->
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Apparel_Shield_Energy"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>1.2</EnergyShieldRechargeRate> <!-- about 6 hours for 265hp full recharge -->
+		</value>
+	</Operation>
+
+</Patch>

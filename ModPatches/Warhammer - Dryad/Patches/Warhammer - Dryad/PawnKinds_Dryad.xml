@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Give ammo to pawns with ranged weapons. ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>
+			Defs/PawnKindDef[
+			defName="DryadGood" or
+			defName="DryadBad" or
+			defName="WildDryadGood" or
+			defName="WildDryadBad" or
+			defName="DryadPlayer" or
+			defName="BranchHunter"
+			]
+		</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>14</min>
+					<max>20</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>80</min>
+						<max>160</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>CE_Sidearm_Tribal</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+</Patch>

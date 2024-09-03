@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Fatigues === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_Fatigues"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_Fatigues"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- === Flak Armor === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_FlakArmor"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_FlakArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>12</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_FlakArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>18</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_FlakArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>30</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_FlakArmor"]/apparel/layers</xpath>
+		<value>
+			<li>Webbing</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_FlakArmor"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_Cadian_FlakArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+						<parts>
+							<li>Shoulder</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
+						<parts>
+							<li>Shoulder</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Heavy Flak Armor === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_FlakArmor"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_FlakArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_FlakArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>22</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_FlakArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>30</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_FlakArmor"]/apparel/layers</xpath>
+		<value>
+			<li>Webbing</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_FlakArmor"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ODZ_40k_IG_CadianKasrkin_FlakArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

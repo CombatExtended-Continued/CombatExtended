@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Synthamide === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Synthamide"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Synthamide"]/statBases</xpath>
+		<value>
+			<WornBulk>0.25</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Synthamide"]/stuffProps/statFactors</xpath>
+		<value>
+			<Mass>0.9</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Synthamide"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.6</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Synthamide"]/stuffProps/categories</xpath>
+		<value>
+			<li>SoftArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Synthamide"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.12</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Synthamide"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.1</StuffPower_Armor_Heat>
+			<StuffPower_Armor_Electric>0.05</StuffPower_Armor_Electric>
+		</value>
+	</Operation>
+
+	<!-- === Fiber Composite === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FiberComposite"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>2.2</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FiberComposite"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>3.1</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="FiberComposite"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.2</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="FiberComposite"]/stuffProps/statFactors</xpath>
+		<value>
+			<Mass>0.75</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="FiberComposite"]/stuffProps/categories</xpath>
+		<value>
+			<li>Metallic_Weapon</li>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+
+	<!-- === Synthylene === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="SynthyleneBase"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="SynthyleneBase"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="SynthyleneBase"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.01</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="SynthyleneBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.StuffToughnessMultiplierExtensionCE">
+				<toughnessMultiplier>4</toughnessMultiplier>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

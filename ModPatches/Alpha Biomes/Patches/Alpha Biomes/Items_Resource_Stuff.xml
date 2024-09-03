@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======== Psychotropic Fungus ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AB_PsychotropicFungus"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
+
+	<!-- ======== Propane Fuel Tank ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AB_Propane"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
+
+	<!-- ======== Alcyonite Chunk ======== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AB_AlcyoniteChunk"]/statBases</xpath>
+		<value>
+			<Bulk>0.03</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AB_AlcyoniteChunk"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>1.1</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AB_AlcyoniteChunk"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>1.7</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AB_AlcyoniteChunk"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<!-- ======== Red, Crystal and Mushroom Wood ======== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>0.99</cooldownTime>
+					<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AB_MushroomWoodLog" or defName="AB_CrystalWood" or defName="GU_RedWood"]</xpath>
+		<value>
+			<li Class="CombatExtended.StuffToughnessMultiplierExtensionCE">
+				<toughnessMultiplier>4</toughnessMultiplier>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+				<MeleeDodgeChance>0.13</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AB_MushroomWoodLog" or defName="AB_CrystalWood" or defName="GU_RedWood"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<Bulk>0.07</Bulk>
+			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+			<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+</Patch>

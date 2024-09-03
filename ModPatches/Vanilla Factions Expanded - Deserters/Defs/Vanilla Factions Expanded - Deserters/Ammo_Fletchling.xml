@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- === Fletchling === -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_FletchlingDart</defName>
+		<label>Fletchling Dart</label>
+		<ammoTypes>
+			<Ammo_FletcherDart>Bullet_FletchlingDart</Ammo_FletcherDart>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>Bullet_FletchlingDart</defName>
+		<label>fletchling dart</label>
+		<graphicData>
+			<texPath>Projectile/Bullet_Fletcher</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>2</damageAmountBase>
+			<speed>62</speed>
+			<damageDef>VFED_Fletchling</damageDef>
+			<pelletCount>3</pelletCount>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>18</armorPenetrationBlunt>
+			<spreadMult>8.9</spreadMult>
+		</projectile>
+	</ThingDef>
+
+</Defs>

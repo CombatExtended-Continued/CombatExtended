@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+
+	<!-- == Recipes == -->
+
+	<!-- === Tomahawk === -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>Make_VFES_Tomahawk</defName>
+		<label>make tomahawk x10</label>
+		<description>Craft 10 tomahawks.</description>
+		<jobString>Making tomahawk.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>100</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<VFES_Tomahawk>10</VFES_Tomahawk>
+		</products>
+		<recipeUsers>
+			<li>FueledSmithy</li>
+			<li>ElectricSmithy</li>
+			<li>CraftingSpot</li>
+		</recipeUsers>
+		<researchPrerequisite>Smithing</researchPrerequisite>
+	</RecipeDef>
+
+	<!-- === Dynamite === -->
+	<RecipeDef ParentName="GrenadeRecipeBase">
+		<defName>Make_VFES_Weapon_GrenadeDynamite</defName>
+		<label>make dynamite sticks x10</label>
+		<description>Craft 10 dynamite sticks.</description>
+		<jobString>Making dynamite sticks.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<stuffCategoriesToAllow>
+						<li>Woody</li>
+					</stuffCategoriesToAllow>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<stuffCategoriesToAllow>
+				<li>Woody</li>
+			</stuffCategoriesToAllow>
+			<thingDefs>
+				<li>Chemfuel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<VFES_Weapon_GrenadeDynamite>10</VFES_Weapon_GrenadeDynamite>
+		</products>
+	</RecipeDef>
+
+</Defs>

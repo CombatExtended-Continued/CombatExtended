@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_MantoLauncher"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGreatArrowProjectile">
+				<defName>Bullet_MantoLauncher</defName>
+				<label>incendiary slime</label>
+				<graphicData>
+					<texPath>Things/Weapon/MantoCannonShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>TransparentPostLight</shaderType>
+				</graphicData>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>49</speed>
+					<damageDef>MantoPoison</damageDef>
+					<damageAmountBase>7</damageAmountBase>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>0</armorPenetrationBlunt>
+					<preExplosionSpawnThingDef>Filth_Slime</preExplosionSpawnThingDef>
+					<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+					<explosionRadius>1</explosionRadius>
+					<gravityFactor>4</gravityFactor>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="MantoPoison"]/additionalHediffs/li[hediff="ToxicBuildup"]/severityPerDamageDealt</xpath>
+		<value>
+			<severityPerDamageDealt>0.02</severityPerDamageDealt>
+		</value>
+	</Operation>
+
+</Patch>

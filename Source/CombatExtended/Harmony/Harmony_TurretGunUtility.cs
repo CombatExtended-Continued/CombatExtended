@@ -18,7 +18,8 @@ namespace CombatExtended.HarmonyCE
         const string className = "DisplayClass";
         const string methodName = "<TryFindRandomShellDef>";
 
-        public static void Postfix(object __instance, ThingDef x, ref bool __result, bool ___allowEMP, float ___maxMarketValue, bool ___mustHarmHealth)
+        // This should be kept up to date with the check in CombatExtended.HarmonyCE.Harmony_LordToil_Siege
+        public static void Postfix(object __instance, ThingDef x, ref bool __result, bool ___allowEMP, float ___maxMarketValue)
         {
             // Ignore already true results.
             if (__result)
@@ -45,8 +46,8 @@ namespace CombatExtended.HarmonyCE
                                      ammoDef.GetCompProperties<CompProperties_Explosive>()?.explosiveDamageType;
 
             // Get the projectile damage def via the mortar ammo set.
-            var mortarAmmoSet = DefDatabase<AmmoSetDef>.GetNamed("AmmoSet_81mmMortarShell");
-            var projectileDamageDef = ammoDef.projectile?.damageDef ?? mortarAmmoSet.ammoTypes.FirstOrDefault(t => t.ammo == ammoDef)?.projectile?.projectile?.damageDef;
+            //var mortarAmmoSet = DefDatabase<AmmoSetDef>.GetNamed("AmmoSet_81mmMortarShell");
+            var projectileDamageDef = ammoDef.projectile?.damageDef ?? CE_AmmoSetDefOf.AmmoSet_81mmMortarShell.ammoTypes.FirstOrDefault(t => t.ammo == ammoDef)?.projectile?.projectile?.damageDef;
 
             // Ignore shells that don't have damage defs.
             if (explosiveDamageDef == null && projectileDamageDef == null)
@@ -60,8 +61,8 @@ namespace CombatExtended.HarmonyCE
                 return;
             }
 
-            // Check if shell harms health.
-            if (___mustHarmHealth && explosiveDamageDef != null && !explosiveDamageDef.harmsHealth && projectileDamageDef != null && !projectileDamageDef.harmsHealth)
+            // Check if blacklisted
+            if (!ammoDef.spawnAsSiegeAmmo)
             {
                 return;
             }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="BaseRabbitgaroo"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseRabbitgaroo"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			<MeleeCritChance>0.01</MeleeCritChance>
+			<MeleeParryChance>0.01</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BaseRabbitgaroo"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>0.8</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.4</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.85</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

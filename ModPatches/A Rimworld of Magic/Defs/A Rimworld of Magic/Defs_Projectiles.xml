@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== Wand Projectiles ==================== -->
+
+	<ThingDef Name="WandBoltProjectile" ParentName="Base6x24mmChargedBullet" Class="AbilityUser.ProjectileDef_Ability">
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>65</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="WandBoltProjectile" Class="AbilityUser.ProjectileDef_Ability">
+		<defName>Projectile_IceWand</defName>
+		<label>ice shard</label>
+		<graphicData>
+			<texPath>Spells/Icebolt</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Iceshard</damageDef>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationBlunt>50</armorPenetrationBlunt>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="WandBoltProjectile" Class="AbilityUser.ProjectileDef_Ability">
+		<defName>Projectile_FireWand</defName>
+		<label>fire blast</label>
+		<graphicData>
+			<texPath>Spells/seer_ring_fire</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBlunt>30</armorPenetrationBlunt>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<explosionRadius>1.2</explosionRadius>
+			<suppressionFactor>3.0</suppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="WandBoltProjectile" Class="AbilityUser.ProjectileDef_Ability">
+		<defName>Projectile_LightningWand</defName>
+		<label>lightning bolt</label>
+		<graphicData>
+			<texPath>Spells/LightningBolt</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>TM_Lightning</damageDef>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBlunt>30</armorPenetrationBlunt>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<explosionRadius>1.2</explosionRadius>
+			<suppressionFactor>3.0</suppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+			<speed>200</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="WandBoltProjectile" Class="AbilityUser.ProjectileDef_Ability">
+		<defName>Projectile_BlazingPower</defName>
+		<label>blazing power</label>
+		<graphicData>
+			<texPath>Spells/blazingpower</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>TM_BlazingPower</damageDef>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationBlunt>30</armorPenetrationBlunt>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<explosionRadius>0.5</explosionRadius>
+			<suppressionFactor>3.0</suppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+		</projectile>
+	</ThingDef>
+
+
+	<!-- ==================== AmmoSets ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GreatArrowRoMThrumbo</defName>
+		<label>great arrows</label>
+		<ammoTypes>
+			<Ammo_GreatArrow_Stone>Projectile_GreatArrowRoMThrumbo_Stone</Ammo_GreatArrow_Stone>
+			<Ammo_GreatArrow_Steel>Projectile_GreatArrowRoMThrumbo_Steel</Ammo_GreatArrow_Steel>
+			<Ammo_GreatArrow_Plasteel>Projectile_GreatArrowRoMThrumbo_Plasteel</Ammo_GreatArrow_Plasteel>
+			<Ammo_GreatArrow_Venom>Projectile_GreatArrowRoMThrumbo_Venom</Ammo_GreatArrow_Venom>
+			<Ammo_GreatArrow_Flame>Projectile_GreatArrowRoMThrumbo_Flame</Ammo_GreatArrow_Flame>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrowRoMThrumbo_Stone</defName>
+		<label>great arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>29</speed>
+			<damageAmountBase>17</damageAmountBase><!--Artifically reduced from 33-->
+			<armorPenetrationBlunt>14.98</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.1</preExplosionSpawnChance><!-- All values are halved from original great arrow -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrowRoMThrumbo_Steel</defName>
+		<label>great arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>34</speed>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBlunt>21.06</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrowRoMThrumbo_Plasteel</defName>
+		<label>great arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>38</speed>
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationBlunt>19.26</armorPenetrationBlunt>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.375</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrowRoMThrumbo_Venom</defName>
+		<label>great arrow (venom)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>34</speed>
+			<damageDef>Arrow</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>ArrowVenom</def>
+					<amount>4</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationBlunt>21.06</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_GreatArrowRoMThrumbo_Flame</defName>
+		<label>great arrow (flame)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>29</speed>
+			<damageDef>Arrow</damageDef>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationBlunt>10.54</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<secondaryDamage>
+				<li>
+					<def>Flame</def>
+					<amount>1</amount>
+					<chance>0.33</chance>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+</Defs>

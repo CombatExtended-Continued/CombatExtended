@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Matter_Manipulator_Archotech" or
+			defName="Matter_Manipulator_Standard" or
+			defName="Matter_Manipulator_Ultra" or
+			defName="Matter_Manipulator_Prototype"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Matter_Manipulator_Archotech</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<Bulk>2.15</Bulk>
+			<SwayFactor>1.00</SwayFactor>
+			<ShotSpread>0.15</ShotSpread>
+			<SightsEfficiency>1.5</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCellRifle</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>0.5</warmupTime>
+			<range>15</range>
+			<soundCast>ChargeLance_Fire</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>65</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCellRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Matter_Manipulator_Ultra</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<Bulk>2.15</Bulk>
+			<SwayFactor>1.00</SwayFactor>
+			<ShotSpread>0.15</ShotSpread>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCellPistol</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>0.5</warmupTime>
+			<range>15</range>
+			<soundCast>ChargeLance_Fire</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>45</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCellPistol</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Matter_Manipulator_Standard</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<Bulk>2.15</Bulk>
+			<SwayFactor>1.00</SwayFactor>
+			<ShotSpread>0.15</ShotSpread>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCellPistol</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>0.5</warmupTime>
+			<range>15</range>
+			<soundCast>ChargeLance_Fire</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCellPistol</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Matter_Manipulator_Prototype</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<Bulk>2.15</Bulk>
+			<SwayFactor>1.00</SwayFactor>
+			<ShotSpread>0.15</ShotSpread>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCellPistol</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>0.5</warmupTime>
+			<range>15</range>
+			<soundCast>ChargeLance_Fire</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCellPistol</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

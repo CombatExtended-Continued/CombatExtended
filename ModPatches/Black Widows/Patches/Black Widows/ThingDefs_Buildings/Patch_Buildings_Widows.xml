@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ==== Turret_BWWebcannon ==== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Turret_BWWebcannon"]/statBases</xpath>
+		<value>
+			<Bulk>200</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Turret_BWWebcannon"]</xpath>
+		<value>
+			<tradeTags>
+				<li>CE_Turret</li>
+			</tradeTags>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Turret_BWWebcannon"]/researchPrerequisites</xpath>
+		<value>
+			<researchPrerequisites>
+				<li>GunTurrets</li>
+			</researchPrerequisites>
+		</value>
+	</Operation>
+</Patch>

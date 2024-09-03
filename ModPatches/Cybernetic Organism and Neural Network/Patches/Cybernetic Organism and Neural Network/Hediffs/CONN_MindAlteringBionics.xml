@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Berserker chip -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_BerserkerChip"]/stages/li/statOffsets/MeleeHitChance</xpath>
+		<value>
+			<MeleeHitChance>12</MeleeHitChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_BerserkerChip"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.4</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_BerserkerChip"]/stages/li</xpath>
+		<value>
+			<statFactors>
+				<Suppressability>0</Suppressability>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<!-- Combat AI -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="CONN_hediff_CombatAI"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.25</Suppressability>
+		</value>
+	</Operation>
+</Patch>

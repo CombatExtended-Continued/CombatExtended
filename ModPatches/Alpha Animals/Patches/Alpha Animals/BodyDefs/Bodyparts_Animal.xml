@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyPartDef[
+			defName="AA_PlantVibrationSensor" or
+			defName="AA_InsectMouth" or
+			defName="AA_CrocodileJaw" or
+			defName="AA_SentientPlantMouth" or
+			defName="AA_VibrationReceptor" or
+			defName="AA_EcholocationOrgan" or
+			defName="AA_BoatEye"]/tags</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyPartDef[
+				defName="AA_PlantVibrationSensor" or
+				defName="AA_InsectMouth" or
+				defName="AA_CrocodileJaw" or
+				defName="AA_SentientPlantMouth" or
+				defName="AA_VibrationReceptor" or
+				defName="AA_EcholocationOrgan" or
+				defName="AA_BoatEye"]/tags</xpath>
+			<value>
+				<li>OutsideSquishy</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyPartDef[
+				defName="AA_PlantVibrationSensor" or
+				defName="AA_InsectMouth" or
+				defName="AA_CrocodileJaw" or
+				defName="AA_SentientPlantMouth" or
+				defName="AA_VibrationReceptor" or
+				defName="AA_EcholocationOrgan" or
+				defName="AA_BoatEye"]</xpath>
+			<value>
+				<tags>
+					<li>OutsideSquishy</li>
+				</tags>
+			</value>
+		</nomatch>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Tools -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="CodZP_Gun_RayGun" or
+			defName="CodZP_Gun_RayGunMkThree" or
+			defName="CODZP_Gun_Zapgun_Red" or
+			defName="CODZP_Gun_Zapgun_Blue" or
+			defName="CodZP_Gun_WintersHowl" or
+			defName="CodZP_Gun_GKZ"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="CodZP_Gun_Blundergat" or
+			defName="CodZP_Gun_Acidgat" or
+			defName="CodZP_Gun_Magmagat" or
+			defName="CodZP_Gun_RayGunMkTwo" or
+			defName="CodZP_Gun_RayGunMkTwo-V" or
+			defName="CodZP_Gun_RayGunMkTwo-X" or
+			defName="CodZP_Gun_RayGunMkTwo-Y" or
+			defName="CodZP_Gun_RayGunMkTwo-Z" or
+			defName="CodZP_Gun_Wunderwaffe" or
+			defName="CodZP_Gun_Wunderwaffe_Scharf" or
+			defName="CodZP_Gun_Wavegun"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="CodZP_Gun_Thundergun" or
+			defName="CodZP_Gun_Tundragun"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="CodZP_Gun_Staff-Ice" or
+			defName="CodZP_Gun_Staff-Wind" or
+			defName="CodZP_Gun_Staff-Fire" or
+			defName="CodZP_Gun_Staff-Lightning"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Sekhmet's Vigor</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="CodZP_Hells_Retriever"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Retriever's Cinder</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>60</power>
+					<cooldownTime>9</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	<!--Wonder Weapons-->
+	<!--Blunders-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Blundergat</defName>
+		<statBases>
+			<Mass>3.94</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.49</SwayFactor>
+			<Bulk>10.92</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Blundergat_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<soundCast>CodZP_Shot_Blundergat</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Blundergat</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Acidgat</defName>
+		<statBases>
+			<Mass>3.94</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.49</SwayFactor>
+			<Bulk>10.92</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Acidgat_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<soundCast>CodZP_Shot_Blundergat</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Acidgat</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Magmagat</defName>
+		<statBases>
+			<Mass>3.94</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.49</SwayFactor>
+			<Bulk>10.92</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Magmagat_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<soundCast>CodZP_Shot_Blundergat</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Magmagat</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+	<!--Elemental Staffs-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Staff-Ice</defName>
+		<statBases>
+			<Mass>8</Mass>
+			<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>2.1</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Elemental_Staff_Ice</defaultProjectile>
+			<warmupTime>2.6</warmupTime>
+			<range>20</range>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Elemental_Staff_Ice</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Staff-Wind</defName>
+		<statBases>
+			<Mass>8</Mass>
+			<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>2.1</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Elemental_Staff_Wind</defaultProjectile>
+			<warmupTime>2.6</warmupTime>
+			<range>20</range>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Elemental_Staff_Wind</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Staff-Fire</defName>
+		<statBases>
+			<Mass>8</Mass>
+			<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>2.1</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Elemental_Staff_Fire</defaultProjectile>
+			<warmupTime>2.6</warmupTime>
+			<range>20</range>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>9</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Elemental_Staff_Fire</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Staff-Lightning</defName>
+		<statBases>
+			<Mass>8</Mass>
+			<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>2.1</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Elemental_Staff_Lightning</defaultProjectile>
+			<warmupTime>2.6</warmupTime>
+			<range>20</range>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>9</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Elemental_Staff_Lightning</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+	</Operation>
+	<!--Hells-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Hells_Retriever</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<RangedWeapon_Cooldown>10</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>0.83</SwayFactor>
+			<Bulk>0.5</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Hells_Retriever</defaultProjectile>
+			<warmupTime>0.2</warmupTime>
+			<range>46</range>
+			<soundCast>CodZP_Shot_Hells</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_Pistol</li>
+		</weaponTags>
+	</Operation>
+	<!--Ray Guns-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_RayGun</defName>
+		<statBases>
+			<Mass>1.36</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.67</SwayFactor>
+			<Bulk>3</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Raygun</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>55</range>
+			<soundCast>CodZP_Shot_Raygun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_Raygun</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_Pistol</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_RayGunMkTwo</defName>
+		<statBases>
+			<Mass>3.45</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>1.3</SwayFactor>
+			<Bulk>10.03</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.41</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Raygun_two</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<soundCast>CodZP_Shot_Raygun2</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>21</magazineSize>
+			<reloadTime>2.98</reloadTime>
+			<ammoSet>AmmoSet_Raygun_two</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_RayGunMkThree</defName>
+		<statBases>
+			<Mass>1.36</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>2.33</SwayFactor>
+			<Bulk>3</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Raygun_three</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>75</range>
+			<soundCast>CodZP_Shot_Raygun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_Raygun_three</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_Pistol</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_GKZ</defName>
+		<statBases>
+			<Mass>2.67</Mass>
+			<RangedWeapon_Cooldown>0.96</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>2.22</SwayFactor>
+			<Bulk>4</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Raygun_three_GKZ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>29</range>
+			<soundCast>CodZP_Shot_Raygun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_Raygun_three_GKZ</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_Pistol</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_RayGunMkTwo-V</defName>
+		<statBases>
+			<Mass>3.45</Mass>
+			<RangedWeapon_Cooldown>9</RangedWeapon_Cooldown><!--Would normally be 0.35-->
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>1.3</SwayFactor>
+			<Bulk>10.03</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Raygun_two_v</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<soundCast>CodZP_Shot_Raygun2</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<burstShotCount>3</burstShotCount>
+		</Properties><!--
+                    <AmmoUser>
+                        <magazineSize>100</magazineSize>
+                        <reloadTime>9</reloadTime>
+                        <AmmoSet>SlowPassiveRefilling</AmmoSet>
+                    </AmmoUser>-->
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li/>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_RayGunMkTwo-X</defName>
+		<statBases>
+			<Mass>3.45</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>1.3</SwayFactor>
+			<Bulk>10.03</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.41</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Raygun_two_x</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<soundCast>CodZP_Shot_Raygun2</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>33</magazineSize>
+			<reloadTime>2.98</reloadTime>
+			<ammoSet>AmmoSet_Raygun_two_x</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_RayGunMkTwo-Y</defName>
+		<statBases>
+			<Mass>3.45</Mass>
+			<RangedWeapon_Cooldown>0.96</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.18</ShotSpread>
+			<SwayFactor>1.3</SwayFactor>
+			<Bulk>10.03</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Raygun_two_y</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>40</range>
+			<soundCast>CodZP_Shot_Raygun2</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>2.98</reloadTime>
+			<ammoSet>AmmoSet_Raygun_two_y</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li/>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_RayGunMkTwo-Z</defName>
+		<statBases>
+			<Mass>3.45</Mass>
+			<RangedWeapon_Cooldown>0.96</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.3</SwayFactor>
+			<Bulk>10.03</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Raygun_two_z</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>40</range>
+			<soundCast>CodZP_Shot_Raygun2</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>9</magazineSize>
+			<reloadTime>2.98</reloadTime>
+			<ammoSet>AmmoSet_Raygun_two_z</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+	<!--Thunder Guns-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Thundergun</defName>
+		<statBases>
+			<Mass>10.7</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.13</ShotSpread>
+			<SwayFactor>2.37</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Thunder</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>12</range>
+			<soundCast>CodZP_Shot_Thundergun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>2</reloadTime>
+			<ammoSet>AmmoSet_Thunder</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li/>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Tundragun</defName>
+		<statBases>
+			<Mass>10.7</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.13</ShotSpread>
+			<SwayFactor>2.37</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Tundra</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>12</range>
+			<soundCast>CodZP_Shot_Thundergun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>2</reloadTime>
+			<ammoSet>AmmoSet_Tundra</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li/>
+		</weaponTags>
+	</Operation>
+	<!--Winters-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_WintersHowl</defName>
+		<statBases>
+			<Mass>1.78</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.18</ShotSpread>
+			<SwayFactor>1.59</SwayFactor>
+			<Bulk>3</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Winters_Cryo</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>51</range>
+			<soundCast>CodZP_Shot_Wintershowl</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>3.8</reloadTime>
+			<ammoSet>AmmoSet_Winters</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_Pistol</li>
+		</weaponTags>
+	</Operation>
+	<!--Wunderwaffes-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Wunderwaffe</defName>
+		<statBases>
+			<Mass>4.3</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.73</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Wunder</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>51</range>
+			<soundCast>CodZP_Shot_Wunderwaffe</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>6.2</reloadTime>
+			<ammoSet>AmmoSet_Wunder</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li/>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Wunderwaffe_Scharf</defName>
+		<statBases>
+			<Mass>4.3</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>2.73</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Wunder_s</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>51</range>
+			<soundCast>CodZP_Shot_Wunderwaffe</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>6.2</reloadTime>
+			<ammoSet>AmmoSet_Wunder_s</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li/>
+		</weaponTags>
+	</Operation>
+	<!--Zap Guns-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CODZP_Gun_Zapgun_Red</defName>
+		<statBases>
+			<Mass>2.63</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.88</SwayFactor>
+			<Bulk>3</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Zapgun_red</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>48</range>
+			<soundCast>CodZP_Shot_Zapgun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Zapgun_red</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_Pistol</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CODZP_Gun_Zapgun_Blue</defName>
+		<statBases>
+			<Mass>2.63</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.88</SwayFactor>
+			<Bulk>3</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Zapgun_blue</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>48</range>
+			<soundCast>CodZP_Shot_Zapgun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Zapgun_blue</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_Pistol</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>CodZP_Gun_Wavegun</defName>
+		<statBases>
+			<Mass>5.26</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.13</SwayFactor>
+			<Bulk>6</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Wavegun</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>31</range>
+			<soundCast>CodZP_Shot_Zapgun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_Wavegun</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li/>
+		</weaponTags>
+	</Operation>
+</Patch>

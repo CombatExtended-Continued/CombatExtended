@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AA_Mantrap"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Mantrap"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1.8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_Mantrap"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+			<MeleeDodgeChance>0.14</MeleeDodgeChance>
+			<MeleeCritChance>0.04</MeleeCritChance>
+			<MeleeParryChance>0.11</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Mantrap"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>razor barbs</label>
+					<capacities>
+						<li>AA_Acid</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationSharp>0.3</armorPenetrationSharp>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>AA_Mouth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.3</armorPenetrationSharp>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<chanceFactor>0.1</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AA_Mantrap"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AA_Mantrap"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_Mantrap"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>875</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.75</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ================= Setting it so that the Animal is shooting using CE code ================= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VDE_AcidBolt"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VDE_AcidBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>VDE_AcidSpit</damageDef>
+				<damageAmountBase>5</damageAmountBase>
+				<speed>21</speed>
+				<armorPenetrationSharp>2</armorPenetrationSharp>
+				<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

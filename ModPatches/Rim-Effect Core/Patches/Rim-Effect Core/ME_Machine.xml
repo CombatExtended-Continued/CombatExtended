@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKIBase"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>40</Steel>
+				<Plasteel>40</Plasteel>
+				<RE_PrefabComponent>7</RE_PrefabComponent>
+				<ComponentSpacer>4</ComponentSpacer>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_LOKIBase"]/comps/li[@Class ="VFE.Mechanoids.CompProperties_MachineChargingStation"]/spawnWithWeapon</xpath>
+		<value>
+			<spawnWithWeapon>ME_LokiPistol</spawnWithWeapon>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIRBase"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>300</Steel>
+				<Plasteel>300</Plasteel>
+				<Uranium>60</Uranium>
+				<RE_PrefabComponent>25</RE_PrefabComponent>
+				<ComponentSpacer>16</ComponentSpacer>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIRBase"]/constructionSkillPrerequisite</xpath>
+		<value>
+			<constructionSkillPrerequisite>12</constructionSkillPrerequisite>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Mechanoids_YMIRBase"]/comps/li[@Class ="VFE.Mechanoids.CompProperties_MachineChargingStation"]/spawnWithWeapon</xpath>
+		<value>
+			<spawnWithWeapon>RE_YMIRMassAccelerator</spawnWithWeapon>
+		</value>
+	</Operation>
+</Patch>

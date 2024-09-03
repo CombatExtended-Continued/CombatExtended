@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Infantry Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_Infantryarmor"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_Infantryarmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_Infantryarmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!--Elite Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_Veteranarmor"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>5.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_Veteranarmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>10</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_Veteranarmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>15</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<!--Elite Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_EliteArmor"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>6</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_EliteArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_EliteArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>21</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!--Infantry Helmet-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_InfantryHelm"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_InfantryHelmGasmask"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_InfantryHelm" or defName="Roren_InfantryHelmGasmask"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_InfantryHelm" or defName="Roren_InfantryHelmGasmask"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_InfantryHelmGasmask"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Roren_InfantryHelmGasmask"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+			<li Class="CombatExtended.ApperalRenderingExtension">
+				<HideHair>false</HideHair>
+				<HideBeard>true</HideBeard>
+			</li>
+		</value>
+	</Operation>
+	
+	<!--Elite Helmet-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_EliteHelm"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_EliteHelm" or defName="Moyo2_HoloSuit"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>10</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_EliteHelm" or defName="Moyo2_HoloSuit"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>15</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!--Light Powered Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_LightPoweredArmor"]/statBases</xpath>
+		<value>
+			<Bulk>80</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LightPoweredArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>30</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LightPoweredArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>26</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.175</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LightPoweredArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>58.50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LightPoweredArmor"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_LightPoweredArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>52</CarryWeight>
+			<CarryBulk>9</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LightPoweredArmor"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>140</Plasteel>
+			<DevilstrandCloth>40</DevilstrandCloth>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_LightPoweredArmor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Roren_LightPoweredArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Light Powered Helmet-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>2</WornBulk>
+			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20.80</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.175</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>46.80</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>116</Plasteel>
+			<DevilstrandCloth>15</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+							<li>Jaw</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_LPowerHelmet"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>OnHead</li>
+				<li>StrappedHead</li>
+				<li>Overhead</li>
+			</layers>
+		</value>
+	</Operation>
+	
+
+	<!--Heavy Powered Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_HeavyPoweredArmor"]/statBases</xpath>
+		<value>
+			<Bulk>125</Bulk>
+			<WornBulk>20</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HeavyPoweredArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>80</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HeavyPoweredArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36.40</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.195</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HeavyPoweredArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>78</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HeavyPoweredArmor"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_HeavyPoweredArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>105</CarryWeight>
+			<CarryBulk>22</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HeavyPoweredArmor"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>180</Plasteel>
+			<DevilstrandCloth>50</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_HeavyPoweredArmor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Roren_HeavyPoweredArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Heavy Powered Helmet-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>3</WornBulk>
+			<NightVisionEfficiency_Apparel>0.4</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>28.60</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.195</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>65</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>135</Plasteel>
+			<DevilstrandCloth>20</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_HPowerHelmet"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>OnHead</li> 
+				<li>StrappedHead</li>
+				<li>Overhead</li>
+			</layers>
+		</value>
+	</Operation>
+	
+	<!--Bombard Powered Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_BombardPoweredArmor"]/statBases</xpath>
+		<value>
+			<Bulk>80</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_BombardPoweredArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_BombardPoweredArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20.80</ArmorRating_Sharp>
+			<ArmorRating_Electric>0.15</ArmorRating_Electric>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_BombardPoweredArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>44.20</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_BombardPoweredArmor"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_BombardPoweredArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>120</CarryWeight>
+			<CarryBulk>40</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Roren_BombardPoweredArmor"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>140</Plasteel>
+			<DevilstrandCloth>40</DevilstrandCloth>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_BombardPoweredArmor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Roren_BombardPoweredArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

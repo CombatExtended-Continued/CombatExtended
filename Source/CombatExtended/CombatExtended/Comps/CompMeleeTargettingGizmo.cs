@@ -25,8 +25,19 @@ namespace CombatExtended
             }
         }
     }
+
+    [StaticConstructorOnStartup]
     public class CompMeleeTargettingGizmo : ThingComp
     {
+        static CompMeleeTargettingGizmo()
+        {
+            priorityList = new List<BodyPartDef>() {
+                CE_BodyPartDefOf.Neck,
+                BodyPartDefOf.Eye,
+                BodyPartDefOf.Head
+            };
+        }
+        private static List<BodyPartDef> priorityList = null;
         #region Fields
         public Pawn PawnParent => (Pawn)this.parent;
 
@@ -92,25 +103,26 @@ namespace CombatExtended
 
             if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 16)
             {
-                targetBodyPart = BodyPartDefOf.Neck;
-
-                var neck = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == BodyPartDefOf.Neck).FirstOrFallback();
-
-                if (neck != null)
+                foreach (var bpd in priorityList)
                 {
-                    var neckApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(neck));
+                    targetBodyPart = bpd;
+                    var bp = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == bpd).FirstOrFallback();
 
-                    if (neckApparel != null && maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                    if (bp != null)
                     {
-                        targetBodyPart = null;
-                        return BodyPartHeight.Bottom;
-                    }
-                    else
-                    {
-                        targetBodyPart = neck.def;
+                        var bpApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(bp));
+
+                        if (bpApparel != null && maxWeaponPen < bpApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                        {
+                            targetBodyPart = null;
+                            return BodyPartHeight.Bottom;
+                        }
+                        else
+                        {
+                            targetBodyPart = bp.def;
+                        }
                     }
                 }
-
                 return BodyPartHeight.Top;
             }
 
@@ -170,7 +182,8 @@ namespace CombatExtended
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             // Don't let people control melee targeting for non-colonist pawns or colonists in a mental state
-            if (!PawnParent.IsColonist || PawnParent.InAggroMentalState)
+            // Corpses are also auto-assigned this comp, but clearly they are not typeof(Pawn)
+            if (parent is Corpse || !PawnParent.IsColonist || PawnParent.InAggroMentalState)
             {
                 yield break;
             }

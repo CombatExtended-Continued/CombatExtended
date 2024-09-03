@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CPB_O</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_O>Projectile_CPB_O</Ammo_CPB_O>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CPB_OT</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_O>Projectile_CPB_OT</Ammo_CPB_O>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_BG_O</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_O>Projectile_BG_O</Ammo_CPB_O>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_BG_AT</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_O>Projectile_BG_AT</Ammo_CPB_O>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+		<defName>Ammo_CPB_O</defName>
+		<label>compound arrow (basic maru)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/Arrow/Plasteel</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.13</Mass>
+			<MarketValue>1</MarketValue>
+			<Bulk>0.25</Bulk>
+		</statBases>
+		<ammoClass>MaruArrow</ammoClass>
+		<generateAllowChance>0.2</generateAllowChance>
+	</ThingDef>
+
+	<!-- Has Regular and High Angle Variant -->
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_CPB_O</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_CPB_O_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>30</speed>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.45</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_CPB_O</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_CPB_OT</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_CPB_O_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>45</speed>
+			<gravityFactor>5</gravityFactor>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>4.5</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.45</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_CPB_O</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_CPB_O</defName>
+		<label>make maru compound arrows x10</label>
+		<description>Craft 10 maru compound arrows.</description>
+		<jobString>Making maru compound arrows.</jobString>
+		<workAmount>2000</workAmount>
+		<recipeUsers>
+			<li>MR_retrofittable</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CPB_O>10</Ammo_CPB_O>
+		</products>
+	</RecipeDef>
+
+	<!-- Same performance on crossbow -->
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_BG_O</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_BG_O_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>30</speed>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.45</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_CPB_O</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_BG_AT</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_BG_AT_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>30</speed>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.45</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_CPB_O</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+	
+</Defs>

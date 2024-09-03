@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="ZXT_Turret_Pulsemachinegunturret" or
+			defName="ZXT_Turret_Sniperpulseturret" or
+			defName="ZXT_Turret_Armoredpowerpulseturret" or
+			defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+			]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="ZXT_Turret_Pulsemachinegunturret" or
+			defName="ZXT_Turret_Sniperpulseturret" or
+			defName="ZXT_Turret_Armoredpowerpulseturret" or
+			defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+			]/thingClass </xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+	<!-- Same label??? wth? -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="ZXT_Turret_Sniperpulseturret"
+			]/label </xpath>
+		<value>
+			<label>Armored Gauss Lance</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="ZXT_Turret_Pulsemachinegunturret" or
+			defName="ZXT_Turret_Sniperpulseturret" or
+			defName="ZXT_Turret_Armoredpowerpulseturret" or
+			defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+			]/fillPercent </xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<!-- Increasing power requirement -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="ZXT_Turret_Pulsemachinegunturret" or
+			defName="ZXT_Turret_Sniperpulseturret" or
+			defName="ZXT_Turret_Armoredpowerpulseturret"
+			]/comps/li[@Class = "CompProperties_Power"]/basePowerConsumption </xpath>
+		<value>
+			<basePowerConsumption>1050</basePowerConsumption>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+			]/comps/li[@Class = "CompProperties_Power"]/basePowerConsumption </xpath>
+		<value>
+			<basePowerConsumption>1450</basePowerConsumption>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="ZXT_Turret_Pulsemachinegunturret" or
+			defName="ZXT_Turret_Sniperpulseturret" or
+			defName="ZXT_Turret_Armoredpowerpulseturret" or
+			defName="ZXT_Turret_Advancedrotarypulsemachinegunturret"
+			]/statBases/ShootingAccuracyTurret </xpath>
+		<value>
+			<AimingAccuracy>1</AimingAccuracy>
+			<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+	<!-- ========== Pulse HMG Turret ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>ZXT_Gun_Pulsemachinegunturret</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.18</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.03</SwayFactor>
+			<Bulk>37.08</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.55</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+			<warmupTime>1.4</warmupTime>
+			<range>72</range>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<burstShotCount>20</burstShotCount>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>200</magazineSize>
+			<reloadTime>15.8</reloadTime>
+			<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Charged SNiper Pulse Turret ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>ZXT_Gun_Sniperpulseturret</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>1.02</SwayFactor>
+			<Bulk>10.66</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.51</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<range>102</range>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>ChargeLance_Fire</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>45</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<requireLineOfSight>false</requireLineOfSight>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>15.8</reloadTime>
+			<ammoSet>AmmoSet_12mmRailgun</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Armored Pulse Turrets, one caliber higher PLUS========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>ZXT_Gun_Armoredpowerpulseturret</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.22</SwayFactor>
+			<Bulk>37.08</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.75</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_8x50mmCharged</defaultProjectile>
+			<warmupTime>1.4</warmupTime>
+			<range>78</range>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<burstShotCount>20</burstShotCount>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>22</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>16.5</reloadTime>
+			<ammoSet>AmmoSet_8x50mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	<!-- ========== Armored Gatling Gun, ========= -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>ZXT_Gun_Advancedrotarypulsemachinegunturret</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>1.25</SwayFactor>
+			<Bulk>37.08</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.725</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
+			<warmupTime>1.25</warmupTime>
+			<range>77</range>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<burstShotCount>30</burstShotCount>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>22</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>300</magazineSize>
+			<reloadTime>18.5</reloadTime>
+			<ammoSet>AmmoSet_MechCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+</Patch>

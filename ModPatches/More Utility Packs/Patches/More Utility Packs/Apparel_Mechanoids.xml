@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Mechanoids</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Quality Comp -->
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[
+						defName="SGC_Apparel_CombatMechPack" or
+						defName="SGC_Apparel_INDMechPack"
+						]/comps/li/compClass[.="CompQuality"] </xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="SGC_Apparel_CombatMechPack" or defName="SGC_Apparel_INDMechPack"]/comps</xpath>
+						<value>
+							<li>
+								<compClass>CompQuality</compClass>
+							</li>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[
+						defName="SGC_Apparel_CombatMechPack" or
+						defName="SGC_Apparel_INDMechPack"
+						]/apparel/layers </xpath>
+					<value>
+						<li>Backpack</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "SGC_Apparel_CombatMechPack"]/statBases/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.225</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "SGC_Apparel_CombatMechPack"]/statBases/EnergyShieldEnergyMax</xpath>
+					<value>
+						<EnergyShieldEnergyMax>1.95</EnergyShieldEnergyMax>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "SGC_Apparel_INDMechPack"]/statBases</xpath>
+					<value>
+						<Bulk>9</Bulk>
+						<WornBulk>6</WornBulk>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

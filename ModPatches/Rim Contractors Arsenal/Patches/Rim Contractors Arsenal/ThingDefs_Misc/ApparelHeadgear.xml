@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_ContractorArmorHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>19</ArmorRating_Sharp>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_ContractorArmorHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>42.75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Apparel_ContractorArmorHelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_ContractorArmorHelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_ContractorArmorHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+			<AimingAccuracy>0.10</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_ContractorArmorHelmet"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>70</Plasteel>
+			<DevilstrandCloth>20</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_ContractorArmorHelmet"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+</Patch>

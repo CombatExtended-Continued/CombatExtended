@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Maru"]/comps</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Maru"]/comps</xpath>
+			<value>
+				<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Maru"]</xpath>
+			<value>
+				<comps>
+					<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</comps>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Maru"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Maru"]/statBases</xpath>
+			<value>
+			<Suppressability>1</Suppressability>
+			<SmokeSensitivity>1</SmokeSensitivity>
+			</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Maru"]/tools</xpath> 
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>left claws</label>
+				<capacities>
+					<li>Cut</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.05</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<armorPenetrationSharp>0.750</armorPenetrationSharp>
+				<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>right claws</label>
+				<capacities>
+					<li>Cut</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.05</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<armorPenetrationSharp>0.750</armorPenetrationSharp>
+				<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>4.49</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<chanceFactor>0.2</chanceFactor>
+				<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+			</li>
+		</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Maru"]/alienRace/raceRestriction/whiteApparelList</xpath>
+		<value>
+			<li>CE_Apparel_TacVest</li>
+			<li>CE_Apparel_Backpack</li>
+			<li>CE_Apparel_TribalBackpack</li>
+			<li>CE_Apparel_BallisticShield</li>
+			<li>CE_Apparel_MeleeShield</li>
+			<li>CE_Apparel_GasMask</li>
+			<li>CE_Apparel_ImprovGasMask</li>
+		</value>
+	</Operation>
+	
+	<!-- ========== Snow Leopard ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="MR_HPBsnowleopard"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HPBsnowleopard"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			<MeleeCritChance>0.09</MeleeCritChance>
+			<MeleeParryChance>0.07</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HPBsnowleopard"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>0.9</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>24</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.2</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>0.84</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>24</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.2</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.35</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>28</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.75</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>0.97</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

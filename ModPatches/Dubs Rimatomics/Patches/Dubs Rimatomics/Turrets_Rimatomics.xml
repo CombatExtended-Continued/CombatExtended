@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Sabots : Damage Stuff-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="Bomb_Sabot"]/defaultDamage</xpath>
+		<value>
+			<defaultDamage>200</defaultDamage>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="Bomb_Sabot"]/defaultArmorPenetration</xpath>
+		<value>
+			<defaultArmorPenetration>120000</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="Bomb_DUSabot"]/defaultDamage</xpath>
+		<value>
+			<defaultDamage>800</defaultDamage>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="Bomb_DUSabot"]/defaultArmorPenetration</xpath>
+		<value>
+			<defaultArmorPenetration>240000</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<!--Sabots : Projectile Tweaks-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_Sabot"]/projectile/speed</xpath>
+		<value>
+			<speed>500</speed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_Sabot_DU"]/projectile/speed</xpath>
+		<value>
+			<speed>500</speed>
+		</value>
+	</Operation>
+
+	<!--Sabots : Fire Mission Tweaks-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="SabotRoundIncoming"]/skyfaller/explosionDamage</xpath>
+		<value>
+			<explosionDamage>Bomb_Sabot</explosionDamage>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DUSabotRoundIncoming"]/skyfaller/explosionDamage</xpath>
+		<value>
+			<explosionDamage>Bomb_DUSabot</explosionDamage>
+		</value>
+	</Operation>
+
+	<!--Marauder : Damage Stuff-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="Bomb_PlasmaToroid"]/defaultDamage</xpath>
+		<value>
+			<defaultDamage>70</defaultDamage>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="Bomb_PlasmaToroid"]/defaultArmorPenetration</xpath>
+		<value>
+			<defaultArmorPenetration>80</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_PlasmaToroid"]/projectile/speed</xpath>
+		<value>
+			<speed>300</speed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Bullet_PlasmaToroid"]/projectile/damageAmountBase</xpath>
+	</Operation>
+
+	<!--Marauder : Range-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Marauder_Railgun"]/verbs/li/range</xpath>
+		<value>
+			<range>86</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Marauder_Railgun"]/EnergyWep/range</xpath>
+		<value>
+			<range>86</range>
+		</value>
+	</Operation>
+
+	<!--Turrets : Stats-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="PPCMarauder" or defName="PPCRailgun"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>5</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="PPCMarauder"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HEL_Laser"]/EnergyWep/range</xpath>
+		<value>
+			<range>62</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HEL_Laser"]/EnergyWep/cooldownForShot</xpath>
+		<value>
+			<cooldownForShot>8</cooldownForShot>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HEL_Laser"]/verbs/li/ticksBetweenBurstShots</xpath>
+		<value>
+			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+		</value>
+	</Operation>
+
+</Patch>

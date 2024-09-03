@@ -23,7 +23,7 @@ namespace CombatExtended
         #region Properties
 
 
-        private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, DefDatabase<StuffCategoryDef>.GetNamed("Leathery") };
+        private static readonly StuffCategoryDef[] softStuffs = { StuffCategoryDefOf.Fabric, StuffCategoryDefOf.Leathery };
 
         #endregion
 
@@ -352,7 +352,10 @@ namespace CombatExtended
                         {
                             if (penAmount == 0 || armorAmount == 0)
                             {
-                                Log.ErrorOnce($"penAmount or armorAmount are zero for {def.armorCategory} on {armor}", 846532021);
+                                if (armor.GetStatValue(StatDefOf.ArmorRating_Sharp) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Blunt) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Heat) == 0)
+                                {
+                                    Log.ErrorOnce($"penAmount or armorAmount are zero for {def.armorCategory} on {armor}", armor.def.GetHashCode() + 846532021);
+                                }
                             }
                             else
                             {

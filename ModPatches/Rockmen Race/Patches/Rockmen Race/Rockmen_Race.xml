@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Melee Tool & Basestats Defs -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>1</MeleeDodgeChance>
+			<MeleeCritChance>1</MeleeCritChance>
+			<MeleeParryChance>1</MeleeParryChance>
+			<CarryWeight>40</CarryWeight>
+			<CarryBulk>30</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1.75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>14</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>14</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<chanceFactor>0.07</chanceFactor>
+					<soundMeleeHit>Pawn_Melee_HumanBite_Hit</soundMeleeHit>
+					<soundMeleeMiss>Pawn_Melee_HumanBite_Miss</soundMeleeMiss>
+					<armorPenetrationSharp>0.15</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>4.49</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Checking if "Alien_Rockman" has a <comps> node and adding it if it doesn't exist -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+			</li>
+			<li Class="CombatExtended.CompProperties_Suppressable"/>
+		</value>
+	</Operation>
+
+	<!-- === Rockman Leather === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Rockman"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Rockman"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.055</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Rockman"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.15</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Leather_Rockman"]/stuffProps</xpath>
+		<value>
+			<categories>
+				<li>SoftArmor</li>
+			</categories>
+		</value>
+	</Operation>
+
+</Patch>

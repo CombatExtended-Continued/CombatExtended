@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Found Fenni ========== -->
+
+	<!-- ========== Turn our dog boys into dog *boys* ========== -->
+	<!-- ========== To be human is to be a tall brick ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<!-- === Note to future furball compatibility nerds: 		=== -->
+		<!-- === Paste the defName of your horrible alien there   |	=== -->
+		<!-- === 												  V	=== -->
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Fennex"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Gives Gun Gizmos to Fennex HUD thing ========== -->
+	<!-- ========== Also Makes Em Suppressable		   ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<!-- === Shouldn't need to change this at all		  === -->
+		<!-- === Unless you changed the name of your BasePawn === -->
+		<!-- === In which case change "BasePawn" to that name === -->
+		<xpath>Defs/ThingDef[@Name="BaseFnnxPawn"]</xpath>
+		<value>
+			<comps>
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable"/>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- === Patch Fennex default melee attacks === -->
+	<!-- === For the most part, it adds the CE melee handler thing 	=== -->
+	<!-- === And also defines armor penetration, which allows them	=== -->
+	<!-- === to actually do damage. Try attacking a raccoon with an === -->
+	<!-- === unpatched melee attack. I'll wait.						=== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Fennex"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>1</AimingAccuracy>
+			<MeleeDodgeChance>1.6</MeleeDodgeChance>
+			<MeleeCritChance>1</MeleeCritChance>
+			<MeleeParryChance>0.75</MeleeParryChance>
+			<ReloadSpeed>1</ReloadSpeed>
+			<Suppressability>1</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Fennex"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>0.8</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.10</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.10</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>0.8</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.10</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.10</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.2</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.16</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.16</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	<!-- === BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth should already be set. I think. === -->
+	<!-- ===================================== -->
+
+</Patch>

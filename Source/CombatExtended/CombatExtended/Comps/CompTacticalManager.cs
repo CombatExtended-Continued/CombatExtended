@@ -69,31 +69,6 @@ namespace CombatExtended
         {
             get
             {
-                if (_targetedByTick != GenTicks.TicksGame || _targetedByTick == -1)
-                {
-                    _targetedByTick = GenTicks.TicksGame;
-                    _targetedByCache.Clear();
-
-                    Job job;
-                    for (int i = 0; i < targetedBy.Count; i++)
-                    {
-                        try
-                        {
-                            Verse.WeakReference<Pawn> reference = targetedBy[i];
-                            Pawn pawn;
-                            if (reference.SafeGetIsAlive() && (job = (pawn = (Pawn)reference.SafeGetTarget())?.jobs.curJob) != null && (pawn?.Spawned ?? false))
-                            {
-                                if (job.AnyTargetIs(parent))
-                                {
-                                    _targetedByCache.Add(pawn);
-                                }
-                            }
-                        }
-                        catch
-                        {
-                        }
-                    }
-                }
                 return _targetedByCache;
             }
         }

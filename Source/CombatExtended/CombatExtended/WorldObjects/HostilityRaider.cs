@@ -113,7 +113,7 @@ namespace CombatExtended.WorldObjects
                 }
                 else if (Rand.Chance(0.25f))
                 {
-                    parms.raidArrivalMode = PawnsArrivalModeDefOf.RandomDrop;
+                    parms.raidArrivalMode = PawnsArrivalModeDefOf.EmergeFromWater;
                 }
                 else
                 {

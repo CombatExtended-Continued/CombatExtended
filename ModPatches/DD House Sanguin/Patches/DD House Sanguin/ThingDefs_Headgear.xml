@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Hood === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_Hood"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_Hood"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- === Great & Armet Helmets === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="DevDesigner_Blood_Apparel_HeraldicGreatHelm" or
+			defName="DevDesigner_Blood_Apparel_ArmetNormal" or
+			defName="DevDesigner_Blood_Apparel_Armet" or
+			defName="DevDesigner_Blood_Apparel_ArmetWinged"
+			]/statBases </xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="DevDesigner_Blood_Apparel_HeraldicGreatHelm" or
+			defName="DevDesigner_Blood_Apparel_ArmetNormal" or
+			defName="DevDesigner_Blood_Apparel_Armet" or
+			defName="DevDesigner_Blood_Apparel_ArmetWinged"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_HeraldicGreatHelm"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>-0.4</AimingAccuracy>
+				<MeleeHitChance>-2</MeleeHitChance>
+				<PainShockThreshold>0.15</PainShockThreshold>
+				<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+				<NegotiationAbility>0.05</NegotiationAbility>
+				<SocialImpact>0.30</SocialImpact>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="DevDesigner_Blood_Apparel_ArmetNormal" or
+			defName="DevDesigner_Blood_Apparel_Armet" or
+			defName="DevDesigner_Blood_Apparel_ArmetWinged"
+			]/equippedStatOffsets </xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>-0.4</AimingAccuracy>
+				<MeleeHitChance>-2</MeleeHitChance>
+				<PainShockThreshold>0.15</PainShockThreshold>
+				<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+				<NegotiationAbility>0.05</NegotiationAbility>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[
+			defName="DevDesigner_Blood_Apparel_HeraldicGreatHelm" or
+			defName="DevDesigner_Blood_Apparel_ArmetNormal" or
+			defName="DevDesigner_Blood_Apparel_Armet" or
+			defName="DevDesigner_Blood_Apparel_ArmetWinged"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Lord Armet Helmet === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_ArmetLord"]/statBases</xpath>
+		<value>
+			<Bulk>7</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_ArmetLord"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>-0.4</AimingAccuracy>
+				<MeleeHitChance>-2</MeleeHitChance>
+				<PainShockThreshold>0.20</PainShockThreshold>
+				<MentalBreakThreshold>-0.18</MentalBreakThreshold>
+				<NegotiationAbility>0.10</NegotiationAbility>
+				<SocialImpact>0.35</SocialImpact>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_ArmetLord"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

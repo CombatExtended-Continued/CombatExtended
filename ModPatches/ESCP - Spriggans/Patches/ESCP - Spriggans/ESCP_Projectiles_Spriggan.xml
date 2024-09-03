@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Spriggan Fireball -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ESCP_SprigganFireball"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ESCP_SprigganFireball"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>Flame</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<speed>50</speed>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

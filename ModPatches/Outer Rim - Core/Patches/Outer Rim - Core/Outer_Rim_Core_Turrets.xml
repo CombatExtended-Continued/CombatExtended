@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="OuterRim_TurretBase"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="OuterRim_TurretBase"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="OuterRim_LightLaserCannon_Coruscant" or defName="OuterRim_LightLaserCannon_Tatooine" or defName="OuterRim_LightLaserCannon_Corellia" or defName="OuterRim_LightIonCannon"]/placeWorkers</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_LightLaserCannon_Coruscant" or defName="OuterRim_LightLaserCannon_Tatooine" or defName="OuterRim_LightLaserCannon_Corellia" or defName="OuterRim_LightIonCannon"]</xpath>
+		<value>
+			<placeWorkers>
+				<li>PlaceWorker_ShowTurretRadius</li>
+			</placeWorkers>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OuterRim_LightLaserCannon_Coruscant" or defName="OuterRim_LightLaserCannon_Tatooine" or defName="OuterRim_LightLaserCannon_Corellia"]/description</xpath>
+		<value>
+			<description>A mid-sized automatic blaster turret, small enough to be placed indoors. It runs on Tibanna and must be kept fueled. It may explode when damaged.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OuterRim_LightIonCannon"]/description</xpath>
+		<value>
+			<description>A mid-sized automatic blaster turret, small enough to be placed indoors. It fires ion bolts that are highly effective against electronics. It runs on Tibanna and must be kept fueled. It may explode when damaged.</description>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_MediumLaserCannon" or defName="OuterRim_Turbolaser" or defName="OuterRim_LightLaserCannon_Corellia" or defName="OuterRim_HeavyTurbolaser" or defName="OuterRim_HeavyLaserCannon" or defName="OuterRim_HeavyIonCannon" or defName="OuterRim_HeavyImperialTurbolaser"]/placeWorkers</xpath>
+		<value>
+			<li>PlaceWorker_ShowTurretRadius</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_LightLaserCannon_Coruscant</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretSmall_Yellow</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<range>30</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>OuterRim_Turret_Standard</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>0.25</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_LightLaserCannon_Corellia</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretSmall_Red</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<range>30</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>OuterRim_Turret_Standard</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>0.25</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_LightLaserCannon_Tatooine</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretSmall_Green</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<range>30</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>OuterRim_Turret_Standard</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>0.25</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_LightIonCannon</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretSmall_Ion</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<range>30</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<soundCast>OuterRim_Turret_Standard</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>0.5</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_PTowerTurret</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretLarge_Red</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>4</minRange>
+			<range>33</range>
+			<soundCast>OuterRim_Shot_ATTBlasterBolt</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>1</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<!-- Medium Turrets -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_MediumLaserCannon</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretMedium_Yellow</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>6.9</minRange>
+			<range>40</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>OuterRim_Shot_HeavyMinigunBlasterBolt</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>0.3</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_Turbolaser</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretLarge_Green</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>6.9</minRange>
+			<range>39.9</range>
+			<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<soundCast>OuterRim_Turret_Turbolaser</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>1</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<!-- Large Turrets -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_HeavyTurbolaser</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretLarge_Green</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>6.9</minRange>
+			<range>54.9</range>
+			<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<soundCast>OuterRim_Turret_Turbolaser</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>1</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_HeavyLaserCannon</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretMedium_Yellow</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>6.9</minRange>
+			<range>51.9</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>OuterRim_Shot_HeavyMinigunBlasterBolt</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>0.5</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_HeavyImperialTurbolaser</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretLarge_Green</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>6.9</minRange>
+			<range>54.9</range>
+			<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<soundCast>OuterRim_Turret_Turbolaser</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>1</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_AnaxesTurret</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretLarge_Red</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>2.9</minRange>
+			<range>32.9</range>
+			<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>OuterRim_Turret_Turbolaser</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>0.75</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_HeavyIonCannon</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterTurretLarge_Ion</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>6.9</minRange>
+			<range>80</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<soundCast>OuterRim_Shot_ATTLightBlasterBolt</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>1.5</consumeFuelPerShot>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<!-- Proton Artillery Turrets -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_ProtonMortar</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_OR_ProtonMortar</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>12.9</minRange>
+			<range>500</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>OuterRim_Turret_ProtonTorpedo</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>1</consumeFuelPerShot>
+			<requireLineOfSight>false</requireLineOfSight>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>OuterRim_Gun_ProtonArtillery</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>0.69</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.91</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_OR_ProtonArtillery</defaultProjectile>
+			<warmupTime>0</warmupTime>
+			<minRange>21.9</minRange>
+			<range>500</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>OuterRim_Turret_ProtonTorpedo</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>32</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<consumeFuelPerShot>1</consumeFuelPerShot>
+			<requireLineOfSight>false</requireLineOfSight>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="OuterRim_Gun_ProtonMortar" or defName="OuterRim_Gun_ProtonArtillery"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OuterRim_Gun_ProtonMortar"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_OR_ProtonMortar</defaultProjectile>
+					<warmupTime>0</warmupTime>
+					<minRange>12.9</minRange>
+					<range>700</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>OuterRim_Turret_ProtonTorpedo</soundCast>
+					<muzzleFlashScale>16</muzzleFlashScale>
+					<circularError>1</circularError>
+					<indirectFirePenalty>0.2</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="OuterRim_Gun_ProtonArtillery"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_OR_ProtonArtillery</defaultProjectile>
+					<warmupTime>0</warmupTime>
+					<minRange>32</minRange>
+					<range>700</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>OuterRim_Turret_ProtonTorpedo</soundCast>
+					<muzzleFlashScale>32</muzzleFlashScale>
+					<circularError>1</circularError>
+					<indirectFirePenalty>0.2</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+</Patch>

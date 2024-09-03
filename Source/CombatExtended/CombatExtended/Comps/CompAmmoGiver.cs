@@ -30,7 +30,7 @@ namespace CombatExtended
                             selPawn.inventory.innerContainer.Where(x => x is AmmoThing).Any(x => ((AmmoDef)x.def).AmmoSetDefs.Contains(user.Props.ammoSet))
                        )
                     {
-                        yield return new FloatMenuOption("CE_GiveAmmoToThing".Translate() + (dad.Name?.ToStringShort ?? dad.def.label),
+                        yield return new FloatMenuOption("CE_GiveAmmoToThing".Translate(dad.Name?.ToStringShort ?? dad.def.label),
                                                          delegate
                         {
                             List<FloatMenuOption> options = new List<FloatMenuOption>();

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ScenarioDef[defName="ReviaExclave"]/scenario/parts/li[thingDef="ReviaThrowingKnife" and @Class="ScenPart_StartingThing_Defined"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ScenarioDef[defName="ReviaExclave"]/scenario/parts</xpath>
+		<value>
+			<li Class="ScenPart_StartingThing_Defined">
+				<def>StartingThing_Defined</def>
+				<thingDef>ReviaThrowingKnife</thingDef>
+				<count>20</count>
+			</li>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Plate Armor -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AnimalPlateArmorBase"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.1</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AnimalPlateArmorBase"]/statBases</xpath>
+		<value>
+			<Bulk>35</Bulk>
+			<WornBulk>7</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AnimalPlateArmorBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- Plate Helmet -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AnimalPlateHelmBase"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeHitChance>-1.0</MeleeHitChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AnimalPlateHelmBase"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AnimalPlateHelmBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+</Patch>

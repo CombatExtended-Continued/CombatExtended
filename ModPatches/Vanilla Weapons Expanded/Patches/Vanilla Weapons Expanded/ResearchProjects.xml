@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Prerequisite Replacement === -->
+	<!-- == Laser Targeting Systems == -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ResearchProjectDef[defName="VWE_LaserTargetingSystems"]/prerequisites</xpath>
+		<value>
+			<prerequisites>
+				<li>CE_AdvancedLaunchers</li>
+				<li>ChargedShot</li>
+			</prerequisites>
+		</value>
+	</Operation>
+
+	<!-- === Remove Unused Research Defs === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ResearchProjectDef[
+			defName="VWE_HeavyWeapons" or
+			defName="VWE_DesignatedMarksmanRifle" or
+			defName="VWE_Flamethrower" or
+			defName="VWE_HeavyWeapons"]
+		</xpath>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Shell Production ========== -->
+	<!--Patch Artillery Foundry to use 3 inputs-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry"]/comps/li[@Class="ItemProcessor.CompProperties_ItemProcessor"]/numberOfInputs</xpath>
+		<value>
+			<numberOfInputs>3</numberOfInputs>
+		</value>
+	</Operation>
+
+	<!--HE-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_HighExplosive"]</xpath>
+		<value>
+			<thirdItems>
+				<li>ComponentIndustrial</li>
+			</thirdItems>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_HighExplosive"]/secondItems/li</xpath>
+		<value>
+			<li>FSX</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_HighExplosive"]/amount</xpath>
+		<value>
+			<amount>
+				<li>54</li>
+				<li>10</li>
+				<li>2</li>
+			</amount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_HighExplosive"]/yield</xpath>
+		<value>
+			<yield>5</yield>
+		</value>
+	</Operation>
+
+	<!--Incendiary-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_Incendiary"]</xpath>
+		<value>
+			<thirdItems>
+				<li>ComponentIndustrial</li>
+			</thirdItems>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_Incendiary"]/secondItems/li</xpath>
+		<value>
+			<li>Prometheum</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_Incendiary"]/amount</xpath>
+		<value>
+			<amount>
+				<li>58</li>
+				<li>4</li>
+				<li>2</li>
+			</amount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_Incendiary"]/yield</xpath>
+		<value>
+			<yield>5</yield>
+		</value>
+	</Operation>
+
+	<!--EMP : The factory stuff is very sensitive about input count. 20 chemfuel is a nice discount compared to the 2 extra components-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_EMP"]</xpath>
+		<value>
+			<thirdItems>
+				<li>ComponentIndustrial</li>
+			</thirdItems>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_EMP"]/amount</xpath>
+		<value>
+			<amount>
+				<li>54</li>
+				<li>20</li>
+				<li>12</li>
+			</amount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_EMP"]/yield</xpath>
+		<value>
+			<yield>5</yield>
+		</value>
+	</Operation>
+
+	<!-- Alpha Biomes -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Biomes</li>
+		</mods>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_AB_Shell_Tar"]/result</xpath>
+			<value>
+				<result>AB_Shell_Tar</result>
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

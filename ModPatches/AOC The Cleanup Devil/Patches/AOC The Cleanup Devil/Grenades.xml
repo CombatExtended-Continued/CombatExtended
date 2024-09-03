@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="AOC_B2H" or
+			defName="AOC_Trash_Grenade"
+			] </xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>25</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[
+			defName="AOC_B2H" or
+			defName="AOC_Trash_Grenade"
+			] </xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AOC_B2H"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AOC_B2H"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AOC_Trash_Grenade"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AOC_Trash_Grenade"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Proj_GrenadeDevEraser" or
+			defName="Proj_AOC_Trash_Bag"
+			]/thingClass </xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeDevEraser"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_GrenadeDevEraser"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Proj_AOC_Trash_Bag"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_AOC_Trash_Bag"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ========== B2H ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AOC_B2H</defName>
+		<statBases>
+			<Mass>1</Mass>
+			<Bulk>1</Bulk>
+			<MarketValue>10.95</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw EMP grenade</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>12.0</range>
+			<minRange>2</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_GrenadeDevEraser</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeDevEraser"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>3.55</explosionRadius>
+				<damageDef>DevModeEraser</damageDef>
+				<explosionDelay>100</explosionDelay>
+				<speed>14</speed>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ========== Trash Grenade ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AOC_Trash_Grenade</defName>
+		<statBases>
+			<Mass>1</Mass>
+			<Bulk>4</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw trash bag</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+			<minRange>2</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_AOC_Trash_Bag</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_AOC_Trash_Bag"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>3.5</explosionRadius>
+				<damageAmountBase>5</damageAmountBase>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+				<damageDef>AOC_Trash_Boom</damageDef>
+				<preExplosionSpawnThingDef>Filth_DDong</preExplosionSpawnThingDef>
+				<speed>12</speed>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

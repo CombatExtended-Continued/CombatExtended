@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_20x102mmNATO_AP</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.8</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.3</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>50</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>78</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]/fireModes</xpath>
+		<value>
+			<fireModes>
+				<li>
+					<shotsPerBurst>1</shotsPerBurst>
+					<ticksBetweenShots>6</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>2</shotsPerBurst>
+					<ticksBetweenShots>6</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Burst</label>
+					<texPath>UI/Gizmos/FireRate_Burst</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>5</shotsPerBurst>
+					<ticksBetweenShots>6</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Auto</label>
+					<texPath>UI/Gizmos/FireRate_Auto</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Tango_MainTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+				<shotHeight>2.25</shotHeight>
+				<speed>182</speed>
+				<sway>1.61</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Vehicle -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]</xpath>
+		<value>
+			<descriptionHyperlinks>
+				<CombatExtended.AmmoSetDef>AmmoSet_20x102mmNATO</CombatExtended.AmmoSetDef>
+			</descriptionHyperlinks>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="FrontArmorPlating"]/health</xpath>
+		<value>
+			<health>660</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="LeftArmorPlating"]/health</xpath>
+		<value>
+			<health>660</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="RightArmorPlating"]/health</xpath>
+		<value>
+			<health>660</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="BackArmorPlating"]/health</xpath>
+		<value>
+			<health>510</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="Roof"]/health</xpath>
+		<value>
+			<health>390</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="Roof"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Tango"]/components/li[key="Roof"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Natural Armor-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Tagmaton" or defName="Omniservant"]//*[
+			def="MechanicalThorax" or
+			def="MechanicalNeck" or
+			def="MechanicalShoulder" or
+			def="MechanicalArm" or
+			def="MechanicalHand" or
+			def="MechanicalLeg" or
+			def="MechanicalFoot"
+			]
+		</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Tagmaton" or defName="Omniservant"]//*[
+			def="MechanicalFinger" or
+			def="MechanicalHead"
+			]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>

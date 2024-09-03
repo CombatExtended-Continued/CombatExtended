@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--  Survival Belt -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSurvivalBelt"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<!--  EVA Suit -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBody"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBody"]/equippedStatOffsets</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<!-- Kid EVA Suit -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyChild"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyChild"]/equippedStatOffsets</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<!--  EVA Helmet -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>20</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmet"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<!-- Kid EVA Helmet -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetChild"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetChild"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetChild"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>20</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetChild"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetChild"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetChild"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetChild"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<!--  Heavy EVA Helmet -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>14</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>65</Plasteel>
+			<DevilstrandCloth>20</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitHelmetHeavy"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>200</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<!--  Heavy EVA Suit -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>230</Plasteel>
+			<DevilstrandCloth>20</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/statBases</xpath>
+		<value>
+			<Bulk>100</Bulk>
+			<WornBulk>15</WornBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>400</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SpaceSuitBodyHeavy"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>10</CarryBulk>
+			<CarryWeight>80</CarryWeight>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+</Patch>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,6 +46,8 @@ namespace CombatExtended
             bool doSoundEffects = true,
             ThingDef postExplosionSpawnThingDefWater = null,
             float screenShakeFactor = 1f,
+            SimpleCurve flammabilityChanceCurve = null,
+            List<IntVec3> overrideCells = null,
 
             // CE parameters
             float height = 0f, float scaleFactor = 1f, bool destroyAfterwards = false, ThingWithComps explosionParentToDestroy = null)
@@ -122,6 +124,8 @@ namespace CombatExtended
             explosion.doSoundEffects = doSoundEffects;
             explosion.postExplosionSpawnThingDefWater = postExplosionSpawnThingDefWater;
             explosion.screenShakeFactor = screenShakeFactor;
+            explosion.flammabilityChanceCurve = flammabilityChanceCurve;
+            explosion.overrideCells = overrideCells;
             explosion.StartExplosionCE(explosionSound, ignoredThings);
 
             // Needed to allow CompExplosive to use stackCount

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Arm Groups-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Centaur"]//*[
+			customLabel="왼쪽 어깨"
+			]/groups
+		</xpath>
+		<value>
+			<li>LeftShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Centaur"]//*[
+			customLabel="오른쪽 어깨"
+			]/groups
+		</xpath>
+		<value>
+			<li>RightShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Centaur"]//*[
+			customLabel="왼팔"
+			]/groups
+		</xpath>
+		<value>
+			<li>LeftArm</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Centaur"]//*[
+			customLabel="오른팔"
+			]/groups
+		</xpath>
+		<value>
+			<li>RightArm</li>
+		</value>
+	</Operation>
+
+	<!--Natural Armor-->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Centaur"]//*[
+			def="Torso" or
+			def="CentaurTail" or
+			def="Neck" or
+			def="Head" or
+			def="Nose" or
+			def="Jaw" or
+			def="Shoulder" or
+			def="Arm" or
+			def="Hand" or
+			def="Finger" or
+			def="Leg" or
+			def="Foot"
+			]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+</Patch>

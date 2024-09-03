@@ -27,7 +27,7 @@ namespace CombatExtended
                 Fire fire = Pawn.GetAttachment(ThingDefOf.Fire) as Fire;
                 if (fire == null && Pawn.Spawned)
                 {
-                    Pawn.TryAttachFire(parent.Severity * 0.5f);
+                    Pawn.TryAttachFire(parent.Severity * 0.5f, null);
                 }
                 else if (fire != null)
                 {

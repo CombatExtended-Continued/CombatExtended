@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Shemagh scarf (Walker) & Shemagh mask (Walker) ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="RHApparel_Shemagh_Scarf_Delta" or
+			defName="RHApparel_Shemagh_Mask_Delta"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<!-- Equivalent to vanilla pants, T-shirt and button-down shirt -->
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- ========== Baseball Cap Backwards (Delta), Baseball Cap (Lugo), Boonie Hat A-TACS AU (Delta) ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RHApparel_BackwardsCap_ATACSAU_Delta" or
+			defName="RHApparel_LugoCap" or
+			defName="RHApparel_ATACSAUBoonie_Delta"
+			]/statBases </xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="RHApparel_BackwardsCap_ATACSAU_Delta" or
+			defName="RHApparel_LugoCap" or
+			defName="RHApparel_ATACSAUBoonie_Delta"
+			]/statBases/StuffEffectMultiplierArmor </xpath>
+		<value>
+			<!-- Equivalent to vanilla fabric hats -->
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+</Patch>

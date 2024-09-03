@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Main Vehicle -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>20</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>10</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/vehicleStats/CargoCapacity</xpath>
+		<value>
+			<CargoCapacity>2950</CargoCapacity>
+		</value>
+	</Operation>
+
+	<!-- Front Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li [key="FrontArmor"]/health</xpath>
+		<value>
+			<health>200</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li [key="FrontArmor"]/armor</xpath>
+		<value>
+			<armor>
+				<ArmorRating_Blunt>80</ArmorRating_Blunt>
+				<ArmorRating_Sharp>40</ArmorRating_Sharp>
+			</armor>
+		</value>
+	</Operation>
+
+	<!-- Left Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li [key="LeftArmor"]/health</xpath>
+		<value>
+			<health>200</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li [key="LeftArmor"]/armor</xpath>
+		<value>
+			<armor>
+				<ArmorRating_Blunt>64</ArmorRating_Blunt>
+				<ArmorRating_Sharp>32</ArmorRating_Sharp>
+			</armor>
+		</value>
+	</Operation>
+
+	<!-- Right Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li [key="RightArmor"]/health</xpath>
+		<value>
+			<health>150</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li [key="RightArmor"]/armor</xpath>
+		<value>
+			<armor>
+				<ArmorRating_Blunt>64</ArmorRating_Blunt>
+				<ArmorRating_Sharp>32</ArmorRating_Sharp>
+			</armor>
+		</value>
+	</Operation>
+
+	<!-- Back Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li [key="BackArmor"]/health</xpath>
+		<value>
+			<health>150</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li [key="BackArmor"]/armor</xpath>
+		<value>
+			<armor>
+				<ArmorRating_Blunt>52</ArmorRating_Blunt>
+				<ArmorRating_Sharp>24</ArmorRating_Sharp>
+			</armor>
+		</value>
+	</Operation>
+
+	<!-- Leg Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li[key="FrontLeftLeg" or key="FrontRightLeg"]/health</xpath>
+		<value>
+			<health>150</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleDef[@Name="HighMacsBase"]/components/li[key="FrontLeftLeg" or key="FrontRightLeg"]</xpath>
+		<value>
+			<armor>
+				<ArmorRating_Sharp>15</ArmorRating_Sharp>
+				<ArmorRating_Blunt>12</ArmorRating_Blunt>
+			</armor>
+		</value>
+	</Operation>
+</Patch>

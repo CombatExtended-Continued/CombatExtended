@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
@@ -44,17 +44,14 @@ namespace CombatExtended
                 Log.Error("Command_ArtilleryTarget selected turrets collection is invalid");
                 return;
             }
-            int tile = turret.Map.Tile;
+            int turretTile = turret.Map.Tile;
             int radius = (int)turret.MaxWorldRange;
             Find.WorldTargeter.BeginTargeting((targetInfo) =>
             {
-                if (!targetInfo.HasWorldObject || targetInfo.Tile == tile || targetInfo.WorldObject.GetComponent<WorldObjects.HealthComp>() == null)
-                {
-                    return false;
-                }
                 IEnumerable<Building_TurretGunCE> turrets = SelectedTurrets;
                 Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;
-                if (map != null)
+                // We only want player to target world object when there's no colonist in the map
+                if (map != null && map.mapPawns.AnyPawnBlockingMapRemoval)
                 {
                     IntVec3 selectedCell = IntVec3.Invalid;
                     Find.WorldTargeter.StopTargeting();
@@ -69,7 +66,7 @@ namespace CombatExtended
                         targetInfo.mapInt = map;
                         targetInfo.tileInt = map.Tile;
                         targetInfo.cellInt = target.cellInt;
-                        targetInfo.thingInt = target.thingInt;
+                        //targetInfo.thingInt = target.thingInt;
                         TryAttack(turrets, targetInfo, target);
                     }, highlightAction: (target) =>
                     {
@@ -77,7 +74,16 @@ namespace CombatExtended
                     }, targetValidator: (target) =>
                     {
                         RoofDef roof = map.roofGrid.RoofAt(target.Cell);
-                        return roof == null || roof == RoofDefOf.RoofConstructed;
+                        if ((roof == null || roof == RoofDefOf.RoofConstructed) &&
+                                target.Cell.GetFirstThing<ArtilleryMarker>(map) != null)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            Messages.Message("CE_ArtilleryTarget_MustTargetMark".Translate(), MessageTypeDefOf.RejectInput);
+                            return false;
+                        }
                     });
                     return false;
                 }
@@ -122,14 +128,14 @@ namespace CombatExtended
                     {
                         if (t.MaxWorldRange != radius)
                         {
-                            GenDraw.DrawWorldRadiusRing(tile, (int)t.MaxWorldRange);
+                            GenDraw.DrawWorldRadiusRing(turretTile, (int)t.MaxWorldRange);
                         }
                     }
                 }
-                GenDraw.DrawWorldRadiusRing(tile, radius);
+                GenDraw.DrawWorldRadiusRing(turretTile, radius);
             }, extraLabelGetter: (targetInfo) =>
             {
-                int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(tile, targetInfo.Tile, true);
+                int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(turretTile, targetInfo.Tile, true);
                 string distanceMessage = null;
                 if (others != null)
                 {
@@ -169,6 +175,15 @@ namespace CombatExtended
                     }
                 }
                 return distanceMessage + "\n" + "CE_ArtilleryTarget_ClickToOrderAttack".Translate() + extra;
+            }, canSelectTarget: (targetInfo) =>
+            {
+                if (!targetInfo.HasWorldObject || targetInfo.Tile == turretTile ||
+                        (targetInfo.WorldObject as MapParent)?.Map == null &&
+                        targetInfo.WorldObject.GetComponent<WorldObjects.HealthComp>() == null)
+                {
+                    return false;
+                }
+                return true;
             });
             base.ProcessInput(ev);
         }

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Tools === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName = "AA_CAS" or
+			defName = "AA_Ripper" or
+			defName = "AA_Brigador" or
+			defName = "WarcasketGun_Confessor"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ===  CAS === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="AA_CAS"]/verbs</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="AA_CAS"]/comps/li[@Class="CompToggleFireMode.CompProperties_ToggleFireMode"]</xpath>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AA_CAS</defName>
+		<statBases>
+			<Bulk>25</Bulk>
+			<SwayFactor>1.2</SwayFactor>
+			<ShotSpread>0.08</ShotSpread>
+			<SightsEfficiency>2.20</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.60</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.19</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_SPG9Rocket_HEAT</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<range>68</range>
+			<soundCast>Brigador_ShotHeavy</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>6.0</reloadTime>
+			<ammoSet>AmmoSet_SPG9Rocket</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="AA_CAS"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>1.4,1.4</DrawSize>
+				<DrawOffset>0.0,0.0</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ===  Ripper === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="AA_Ripper"]/verbs</xpath>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AA_Ripper</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.9</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>2.32</SwayFactor>
+			<Bulk>8</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.22</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_50AE_FMJ</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>28</range>
+			<burstShotCount>20</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<soundCast>Ripper_Shots</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>4.2</reloadTime>
+			<ammoSet>AmmoSet_50AE</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aimedBurstShotCount>12</aimedBurstShotCount>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="AA_Ripper"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>0.8,0.8</DrawSize>
+				<DrawOffset>0.0,0.0</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ===  Brigador === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="AA_Brigador"]/verbs</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="AA_Brigador"]/comps/li[@Class="CompToggleFireMode.CompProperties_ToggleFireMode"]</xpath>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AA_Brigador</defName>
+		<statBases>
+			<Mass>12.5</Mass>
+			<Bulk>12.5</Bulk>
+			<SwayFactor>1.00</SwayFactor>
+			<ShotSpread>0.05</ShotSpread>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.22</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<range>45</range>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<soundCast>Brigador_ShotHeavy</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>2.2</reloadTime>
+			<ammoSet>AmmoSet_Bolter75</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="AA_Brigador"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>0.9,0.9</DrawSize>
+				<DrawOffset>0.0,0.0</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ===  Confessor === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="WarcasketGun_Confessor"]/verbs</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName="WarcasketGun_Confessor"]/comps/li[@Class="CompToggleFireMode.CompProperties_ToggleFireMode"]</xpath>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>WarcasketGun_Confessor</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.9</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.12</SwayFactor>
+			<Bulk>35</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.52</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_600NitroExpress_FMJ</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<range>57</range>
+			<burstShotCount>50</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<soundCast>VFEP_Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>500</magazineSize>
+			<reloadTime>6.2</reloadTime>
+			<ammoSet>AmmoSet_600NitroExpress</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aimedBurstShotCount>25</aimedBurstShotCount>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WarcasketGun_Confessor"]/comps</xpath>
+		<value>
+
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<propsUnderBarrel>
+					<magazineSize>200</magazineSize>
+					<reloadTime>3.5</reloadTime>
+					<ammoSet>AmmoSet_Flamethrower</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Flamethrower_Napalm</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>32</range>
+					<burstShotCount>20</burstShotCount>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<soundCast>HissFlamethrower</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>true</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>10</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="WarcasketGun_Confessor"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>1.4,1.4</DrawSize>
+				<DrawOffset>0.0,0.0</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

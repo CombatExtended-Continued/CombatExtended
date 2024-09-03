@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CPB_AO</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_AO>Projectile_CPB_AO</Ammo_CPB_AO>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CPB_AOT</defName>
+		<label>Maru Arrows</label>
+		<ammoTypes>
+			<Ammo_CPB_AO>Projectile_CPB_AOT</Ammo_CPB_AO>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- Has Regular and High Angle Variant -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+		<defName>Ammo_CPB_AO</defName>
+		<label>compound arrow (spear)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/Arrow/Plasteel</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.8</Mass>
+			<MarketValue>1.5</MarketValue>
+			<Bulk>0.55</Bulk>
+		</statBases>
+		<ammoClass>MaruArrow</ammoClass>
+		<generateAllowChance>0.2</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_CPB_AO</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_CPB_AO_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>20</speed>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationBlunt>65</armorPenetrationBlunt>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_CPB_AO</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_CPB_AOT</defName>
+		<label>arrow</label>
+		<graphicData>
+			<texPath>Things/Weapons/MR_CPB_AO_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>20</speed>
+			<gravityFactor>5</gravityFactor>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationBlunt>80</armorPenetrationBlunt>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_CPB_AO</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_CPB_AO</defName>
+		<label>make maru heavy arrows x10</label>
+		<description>Craft 10 maru heavy arrows.</description>
+		<jobString>Making maru heavy arrows.</jobString>
+		<workAmount>3500</workAmount>
+		<recipeUsers>
+			<li>MR_retrofittable</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CPB_AO>10</Ammo_CPB_AO>
+		</products>
+	</RecipeDef>
+	
+</Defs>

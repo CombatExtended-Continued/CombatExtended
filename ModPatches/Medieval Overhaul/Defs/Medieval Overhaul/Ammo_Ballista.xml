@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <!-- Ammo Set -->
+    <CombatExtended.AmmoSetDef>
+        <defName>AmmoSet_BallistaJavelins</defName>
+        <label>javelins</label>
+        <ammoTypes>
+            <Pila>BallistaPilum_Fired</Pila>
+        </ammoTypes>
+    </CombatExtended.AmmoSetDef>
+
+    <!-- Projectile -->
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+        <defName>BallistaPilum_Fired</defName>
+        <label>pilum (fired)</label>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>45</damageAmountBase>
+            <speed>60</speed>
+            <armorPenetrationBlunt>141.12</armorPenetrationBlunt>
+            <armorPenetrationSharp>13</armorPenetrationSharp>
+            <preExplosionSpawnChance>0.4</preExplosionSpawnChance>
+            <preExplosionSpawnThingDef>Pila</preExplosionSpawnThingDef>
+        </projectile>
+    </ThingDef>
+
+</Defs>

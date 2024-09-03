@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Scarlet Edge ===== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AM_Weebstick"]/statBases</xpath>
+		<value>
+			<Bulk>7</Bulk>
+			<MeleeCounterParryBonus>0.60</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AM_Weebstick"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.25</MeleeCritChance>
+			<MeleeParryChance>0.4</MeleeParryChance>
+			<MeleeDodgeChance>0.66</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AM_Weebstick"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>0.65</cooldownTime>
+					<armorPenetrationBlunt>1.72</armorPenetrationBlunt>
+					<armorPenetrationSharp>30.75</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>0.57</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>3.58</armorPenetrationBlunt>
+					<armorPenetrationSharp>22.3</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+</Patch>

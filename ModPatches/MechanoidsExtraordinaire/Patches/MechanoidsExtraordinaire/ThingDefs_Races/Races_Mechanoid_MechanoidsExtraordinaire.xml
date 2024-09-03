@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Vespa ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Vespa"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Vespa"]/statBases</xpath>
+		<value>
+			<CarryWeight>55</CarryWeight>
+			<CarryBulk>22</CarryBulk>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.25</MeleeDodgeChance>
+			<MeleeCritChance>0.25</MeleeCritChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Vespa"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Vespa"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Vespa"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.35</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.35</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	<!-- ========== Hound ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Hound"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Hound"]/statBases</xpath>
+		<value>
+			<CarryWeight>200</CarryWeight>
+			<CarryBulk>100</CarryBulk>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+			<MeleeCritChance>0.15</MeleeCritChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Hound"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>27</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Hound"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>12</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Hound"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<armorPenetrationSharp>4.5</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<armorPenetrationSharp>4.5</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	<!-- ========== Chimera ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Chimera"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Chimera"]/statBases</xpath>
+		<value>
+			<CarryWeight>200</CarryWeight>
+			<CarryBulk>120</CarryBulk>
+			<AimingAccuracy>1.3</AimingAccuracy>
+			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.10</MeleeDodgeChance>
+			<MeleeCritChance>0.15</MeleeCritChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Chimera"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>30</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Chimera"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>12</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Chimera"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>1.7</cooldownTime>
+					<linkedBodyPartsGroup>TailBladeME</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<armorPenetrationSharp>12</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.45</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<armorPenetrationSharp>2</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	<!-- ========== Goliath ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Goliath"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Goliath"]/statBases</xpath>
+		<value>
+			<CarryWeight>150</CarryWeight>
+			<CarryBulk>40</CarryBulk>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeCritChance>0.50</MeleeCritChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Goliath"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Goliath"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>18</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Goliath"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>12</armorPenetrationBlunt>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.65</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>12</armorPenetrationBlunt>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	<!-- ========== Kraken ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Kraken"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Kraken"]/statBases</xpath>
+		<value>
+			<CarryWeight>200</CarryWeight>
+			<CarryBulk>150</CarryBulk>
+			<AimingAccuracy>1.3</AimingAccuracy>
+			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeCritChance>0.40</MeleeCritChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Kraken"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Kraken"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mechanoid_Kraken"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>first left tentacle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.1</cooldownTime>
+					<linkedBodyPartsGroup>UpperLeftMechaTentacleME</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>first right tentacle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.1</cooldownTime>
+					<linkedBodyPartsGroup>UpperRightMechaTentacleME</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>second left tentacle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.1</cooldownTime>
+					<linkedBodyPartsGroup>LowerLeftMechaTentacleME</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>second right tentacle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.1</cooldownTime>
+					<linkedBodyPartsGroup>LowerRightMechaTentacleME</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

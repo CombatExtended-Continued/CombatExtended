@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Servitor Ranged Ammo -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="BS_ServitorRanged"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>7</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>400</min>
+							<max>800</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>MedievalMeleeAdvanced</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="BS_ServitorRanged"]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_Backpack</li>
+		</value>
+	</Operation>
+	
+	<!-- Add Weapons to PawnKinds. Natural weapons do not cut it in CE -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="BS_Satan"]/weaponTags</xpath>
+		<value>
+			<li>MedievalMeleeAdvanced</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[defName="BS_SatanGreat"]/weaponTags</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[defName="BS_SatanGreat"]/weaponTags</xpath>
+			<value>
+				<li>MedievalMeleeAdvanced</li>
+				<li>UltratechMelee</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[defName="BS_SatanGreat"]</xpath>
+			<value>
+				<weaponTags Inherit="false">
+					<li>MedievalMeleeAdvanced</li>
+					<li>UltratechMelee</li>
+				</weaponTags>
+			</value>
+		</nomatch>
+	</Operation>
+
+</Patch>

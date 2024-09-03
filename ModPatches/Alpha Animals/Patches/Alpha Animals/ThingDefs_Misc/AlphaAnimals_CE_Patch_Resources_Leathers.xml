@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Remove GallatrossHorn as a weapon -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="AA_GallatrossHorn"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="AA_GallatrossHorn"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_GallatrossHorn"]/description</xpath>
+		<value>
+			<description>A single horn of the mighty Gallatross. Proof that you're a warrior worthy of the title of Aberration Killer. Traders and collectors might pay a high price for this.</description>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_GallatrossHorn"]/statBases/MarketValue</xpath>
+		<value>
+			<MarketValue>1800</MarketValue>
+		</value>
+	</Operation>
+
+	<!-- SkySteel -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_SkySteel"]/statBases</xpath>
+		<value>
+			<Bulk>0.025</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_SkySteel"]/stuffProps/statFactors</xpath>
+		<value>
+			<Mass>0.9</Mass>
+			<MeleePenetrationFactor>1.10</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="AA_SkySteel"]/statBases/SharpDamageMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_SkySteel"]/stuffProps/categories</xpath>
+		<value>
+			<li>Metallic_Weapon</li>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_SkySteel"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>1.35</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_SkySteel"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>2.0</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_SkySteel"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>-0.05</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<!-- Nehemoth leather -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Leather_Behemoth"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.5</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_Leather_Behemoth"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!--aerofleet stuff and plant leather -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Leather_Aerofleet"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_Leather_Aerofleet"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.032</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Cactus"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Leather_Cactus"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Lion Leather -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_ArcticLion_Leather" or defName="AA_SandLion_Leather"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_ArcticLion_Leather" or defName="AA_SandLion_Leather"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Night Leather -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Night"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.01</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Leather_Night"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Chitin stuff-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Chitin"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.15</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_BlackChitin"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.5</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_BlackChitin"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.16</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Leather_Chitin"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_RaptorPlates" or defName="Leather_IronChitin"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.36</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Leather_RaptorPlates" or defName="Leather_IronChitin"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.09</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Gallatross Leather-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Gallatross"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.9</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Leather_Gallatross"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.125</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!--Chameleon Yak -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_ChameleonYakWoolDesert" or defName="AA_ChameleonYakWoolTemperate"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.06</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_ChameleonYakWoolDesert" or defName="AA_ChameleonYakWoolTemperate"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_ChameleonYakWoolJungle"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.12</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_ChameleonYakWoolJungle"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_ChameleonYakWoolWinter"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.04</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_ChameleonYakWoolWinter"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- CinderSilk -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_CinderSilk"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.2</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_CinderSilk"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_CinderSilk"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.02</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AA_CinderSilk"]/stuffProps/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AA_CinderSilk"]/stuffProps</xpath>
+			<value>
+				<categories>
+					<li>SoftArmor</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AA_CinderSilk"]/stuffProps/categories</xpath>
+			<value>
+				<li>SoftArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<!-- MothSilk -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_MothSilk"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.32</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_MothSilk"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.09</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_MothSilk"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.015</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AA_MothSilk"]/stuffProps/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AA_MothSilk"]/stuffProps</xpath>
+			<value>
+				<categories>
+					<li>SoftArmor</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AA_MothSilk"]/stuffProps/categories</xpath>
+			<value>
+				<li>SoftArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<!-- Wools -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AA_GreyCoatedMouflonWool" or defName="AA_GiantCrownedSilkieSilk"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.01</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Blunt>0.045</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_NightWool"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.04</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_NightWool"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_NightWool"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.06</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DR_BattleMace"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.37</cooldownTime>
+					<armorPenetrationBlunt>0.87</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Demolish</li>
+					</capacities>
+					<power>38</power>
+					<cooldownTime>2.59</cooldownTime>
+					<armorPenetrationBlunt>16.38</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DR_BattleMace"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName = "DR_BattleMace"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "DR_BattleMace"]</xpath>
+			<value>
+				<equippedStatOffsets/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DR_BattleMace"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.50</MeleeCritChance>
+			<MeleeParryChance>0.30</MeleeParryChance>
+			<MeleeDodgeChance>0.30</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DR_Battlesword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.37</cooldownTime>
+					<armorPenetrationBlunt>0.87</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Blunt blade</label>
+					<labelUsedInLogging>false</labelUsedInLogging>
+					<capacities>
+						<li>Blunt</li>
+						<li>Demolish</li>
+						<li>Cut</li>
+					</capacities>
+					<power>40</power>
+					<cooldownTime>2.23</cooldownTime>
+					<armorPenetrationBlunt>11.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.32</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DR_Battlesword"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>0.67</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName = "DR_Battlesword"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "DR_Battlesword"]</xpath>
+			<value>
+				<equippedStatOffsets/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DR_Battlesword"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.16</MeleeCritChance>
+			<MeleeParryChance>0.50</MeleeParryChance>
+			<MeleeDodgeChance>0.50</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DR_BattleStaff"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.37</cooldownTime>
+					<armorPenetrationBlunt>0.87</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Demolish</li>
+					</capacities>
+					<power>45</power>
+					<extraMeleeDamages>
+						<li>
+							<def>EMP</def>
+							<amount>4.5</amount>
+						</li>
+						<li>
+							<def>Stun</def>
+							<amount>1.5</amount>
+							<chance>0.25</chance>
+						</li>
+					</extraMeleeDamages>
+					<cooldownTime>5.14</cooldownTime>
+					<armorPenetrationBlunt>22.94</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DR_BattleStaff"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>0.50</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName = "DR_BattleStaff"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "DR_BattleStaff"]</xpath>
+			<value>
+				<equippedStatOffsets/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DR_BattleStaff"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>1.60</MeleeCritChance>
+			<MeleeParryChance>0.38</MeleeParryChance>
+			<MeleeDodgeChance>0.40</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+</Patch>

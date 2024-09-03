@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- == VAE_Footwear_Boots == -->
+	<!-- statBases -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/statBases/Mass</xpath>
+		<value>
+			<WornBulk>0.5</WornBulk>
+			<Mass>0.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+	<!-- Miscellaneous -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VAE_Footwear_Boots"]/equippedStatOffsets</xpath>
+	</Operation>
+
+	<!-- == VAE_Footwear_Shoes == -->
+	<!-- statBases -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Footwear_Shoes"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+	<!-- Miscellaneous -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VAE_Footwear_Shoes"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>20</costStuffCount>
+		</value>
+	</Operation>
+</Patch>

@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Siegebreaker Warcasket ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Siegebreaker"]/statBases</xpath>
+		<value>
+			<Bulk>275</Bulk>
+			<WornBulk>35</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Siegebreaker"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Siegebreaker"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>90</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Siegebreaker"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>225</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Siegebreaker"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>225</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Siegebreaker"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>8</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- === Energy Shield === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Siegebreaker"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>375</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Siegebreaker"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>1.5</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<!-- ========== Siegebreaker Warcasket - Shoulders ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Siegebreaker"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Siegebreaker"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Siegebreaker"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>90</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Siegebreaker"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>90</Plasteel>
+		</value>
+	</Operation>
+
+	<!-- === Siegebreaker Warcasket Helmet === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Siegebreaker"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>10</WornBulk>
+			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Siegebreaker"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Siegebreaker"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Siegebreaker"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Siegebreaker"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Siegebreaker"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>72</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Siegebreaker"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>75</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Siegebreaker"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>4</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- ========== Guardian Warcasket ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Guardian"]/statBases</xpath>
+		<value>
+			<Bulk>275</Bulk>
+			<WornBulk>35</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Guardian"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Guardian"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>110</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Guardian"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>225</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Guardian"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>300</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Guardian"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>8</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- === Energy Shield === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Guardian"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>225</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Guardian"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>1.5</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<!-- ========== Guardian Warcasket - Shoulders ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Guardian"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Guardian"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Guardian"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>110</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Guardian"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>120</Plasteel>
+		</value>
+	</Operation>
+
+	<!-- === Guardian Warcasket Helmet === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Guardian"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>10</WornBulk>
+			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Guardian"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Guardian"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Guardian"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Guardian"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Guardian"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>86</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Guardian"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>105</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Guardian"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>4</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- ========== Controller Warcasket ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Controller"]/statBases</xpath>
+		<value>
+			<Bulk>275</Bulk>
+			<WornBulk>35</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Controller"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Controller"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>90</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Controller"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>225</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Controller"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>225</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Controller"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>14</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- === Energy Shield === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Controller"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>225</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Controller"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>1.5</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<!-- ========== Controller Warcasket - Shoulders ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Controller"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Controller"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Controller"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>90</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Controller"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>90</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Controller"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>1</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- === Siegebreaker Warcasket Helmet === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Controller"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>10</WornBulk>
+			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Controller"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Controller"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Controller"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Controller"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Controller"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>72</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Controller"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>90</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Controller"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>6</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- ========== Sarcophagus Warcasket ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Sarcophagus"]/statBases</xpath>
+		<value>
+			<Bulk>275</Bulk>
+			<WornBulk>35</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Sarcophagus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Sarcophagus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>90</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Sarcophagus"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>225</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Sarcophagus"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>225</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Sarcophagus"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>8</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- === Energy Shield === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Sarcophagus"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>225</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Sarcophagus"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>1.5</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<!-- ========== Sarcophagus Warcasket - Shoulders ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Sarcophagus"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Sarcophagus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Sarcophagus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>90</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Sarcophagus"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>90</Plasteel>
+		</value>
+	</Operation>
+
+	<!-- === Sarcophagus Warcasket Helmet === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Sarcophagus"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>10</WornBulk>
+			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Sarcophagus"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Sarcophagus"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Sarcophagus"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Sarcophagus"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Sarcophagus"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>72</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Sarcophagus"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>90</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Sarcophagus"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>4</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- ========== Brute Warcasket ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Brute"]/statBases</xpath>
+		<value>
+			<Bulk>275</Bulk>
+			<WornBulk>35</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Brute"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Brute"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>110</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Brute"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>250</CarryWeight>
+			<CarryBulk>225</CarryBulk>
+			<Suppressability>-100</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Brute"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>240</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Brute"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>6</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- === Energy Shield === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Brute"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>750</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Brute"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.75</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<!-- ========== Brute Warcasket - Shoulders ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Brute"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Brute"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>36</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Brute"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>110</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Brute"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>90</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Brute"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>6</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<!-- === Brute Warcasket Helmet === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Brute"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>10</WornBulk>
+			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Brute"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Brute"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Brute"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Brute"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Brute"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>86</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Increase Cost -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Brute"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>90</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Brute"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>6</ComponentSpacer>
+		</value>
+	</Operation>
+</Patch>

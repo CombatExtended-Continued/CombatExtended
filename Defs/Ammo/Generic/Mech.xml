@@ -25,7 +25,7 @@
 		<defName>AmmoSet_MechCharged</defName>
 		<label>mech charged ammo</label>
 		<ammoTypes>
-			<Ammo_Mech_Charged>Bullet_5x35mmCharged</Ammo_Mech_Charged>
+			<Ammo_Mech_Charged>Bullet_8x40mmCharged</Ammo_Mech_Charged>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -52,9 +52,9 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="MechChargedAmmo" ParentName="SpacerAmmoBase" Abstract="True">
 		<description>Charged shot ammo used by mechanoid weaponry.</description>
 		<statBases>
-			<Mass>0.058</Mass>
-			<Bulk>0.04</Bulk>
-			<MarketValue>3.39</MarketValue>
+			<Mass>0.021</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.49</MarketValue>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade_Sellable</li>
@@ -81,9 +81,9 @@
 	<ThingDef Class="CombatExtended.AmmoDef" Name="MechShellAmmo" ParentName="SpacerMediumAmmoBase" Abstract="True">
 		<description>Large shell used by mechanoid cannons and heavy weapons.</description>
 		<statBases>
-			<Mass>0.85</Mass>
+			<Mass>2.0</Mass>
 			<Bulk>3.87</Bulk>
-			<MarketValue>10.38</MarketValue>
+			<MarketValue>14.03</MarketValue>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade_Sellable</li>
@@ -106,8 +106,8 @@
 		<detonateProjectile>Bullet_80x256mmFuel_Incendiary</detonateProjectile>
 		<comps>
 			<li Class="CompProperties_Explosive">
-				<explosiveRadius>1.9</explosiveRadius>
-				<damageAmountBase>5</damageAmountBase>
+				<explosiveRadius>2.0</explosiveRadius>
+				<damageAmountBase>7</damageAmountBase>
 				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
 				<explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
 				<startWickHitPointsPercent>0.33</startWickHitPointsPercent>
@@ -148,8 +148,8 @@
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>MakeAmmo_Mech_Charged</defName>
-		<label>make Mech Charged cartridge x200</label>
-		<description>Craft 200 Mech Charged cartridges.</description>
+		<label>make Mech Charged cartridge x500</label>
+		<description>Craft 500 Mech Charged cartridges.</description>
 		<jobString>Making Mech Charged cartridges.</jobString>
 		<ingredients>
 			<li>
@@ -158,7 +158,7 @@
 						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
-				<count>32</count>
+				<count>12</count>
 			</li>
 			<li>
 				<filter>
@@ -166,7 +166,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>8</count>
+				<count>18</count>
 			</li>
 			<li>
 				<filter>
@@ -174,7 +174,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>32</count>
+				<count>9</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -185,12 +185,12 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Mech_Charged>200</Ammo_Mech_Charged>
+			<Ammo_Mech_Charged>500</Ammo_Mech_Charged>
 		</products>
 		<skillRequirements>
 			<Crafting>8</Crafting>
 		</skillRequirements>
-		<workAmount>36080</workAmount><!-- 10% more work -->
+		<workAmount>15180</workAmount><!-- 10% more work -->
 	</RecipeDef>
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
@@ -205,7 +205,7 @@
 						<li>Prometheum</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>5</count>
 			</li>
 			<li>
 				<filter>
@@ -213,7 +213,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>22</count>
 			</li>
 			<li>
 				<filter>
@@ -237,7 +237,7 @@
 		<skillRequirements>
 			<Crafting>8</Crafting>
 		</skillRequirements>
-		<workAmount>3730</workAmount><!-- 10% more work -->
+		<workAmount>5950</workAmount><!-- 10% more work -->
 	</RecipeDef>
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
@@ -252,7 +252,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>5</count>
 			</li>
 			<li>
 				<filter>
@@ -260,7 +260,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>16</count>
 			</li>
 			<li>
 				<filter>
@@ -268,7 +268,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>4</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -284,7 +284,7 @@
 		<skillRequirements>
 			<Crafting>8</Crafting>
 		</skillRequirements>
-		<workAmount>3730</workAmount><!-- 10% more work -->
+		<workAmount>6600</workAmount><!-- 10% more work -->
 	</RecipeDef>
 
 </Defs>

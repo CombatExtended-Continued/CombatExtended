@@ -71,15 +71,15 @@ namespace CombatExtended
                 {
                     if (CompAmmoUser.CurMagCount > CompAmmoUser.MagSize * 0.75f)
                     {
-                        graphic = graphicsExt.fullGraphic?.Graphic;
+                        graphic = graphicsExt.fullGraphic?.GraphicColoredFor(this);
                     }
                     else if (CompAmmoUser.EmptyMagazine)
                     {
-                        graphic = graphicsExt.emptyGraphic?.Graphic;
+                        graphic = graphicsExt.emptyGraphic?.GraphicColoredFor(this);
                     }
                     else
                     {
-                        graphic = graphicsExt.halfFullGraphic?.Graphic;
+                        graphic = graphicsExt.halfFullGraphic?.GraphicColoredFor(this);
                     }
                 }
                 return graphic ?? base.Graphic;
@@ -282,9 +282,9 @@ namespace CombatExtended
 
         }
 
-        public override void Draw()
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
-            base.Draw();
+            base.DrawAt(drawLoc, flip);
             if (isActive)
             {
                 GenDraw.FillableBarRequest r = default(GenDraw.FillableBarRequest);

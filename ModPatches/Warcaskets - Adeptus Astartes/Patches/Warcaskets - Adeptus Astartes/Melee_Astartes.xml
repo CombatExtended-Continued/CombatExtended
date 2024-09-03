@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- "They are my Space Marines and they shall know no fear." -->
+
+	<!-- Power Sword -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_PowerSword"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+			<ToughnessRating>24</ToughnessRating>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_PowerSword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.02</MeleeCritChance>
+				<MeleeParryChance>0.44</MeleeParryChance>
+				<MeleeDodgeChance>0.22</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_PowerSword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>HP_Power_Stab</li>
+					</capacities>
+					<power>43</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+					<armorPenetrationSharp>46</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>Electrical</def>
+							<amount>10</amount>
+							<chance>0.15</chance>
+						</li>
+					</extraMeleeDamages>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>HP_Power_Cut</li>
+					</capacities>
+					<power>52</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationBlunt>17</armorPenetrationBlunt>
+					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>Electrical</def>
+							<amount>10</amount>
+							<chance>0.5</chance>
+						</li>
+					</extraMeleeDamages>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Chain Sword -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ChainSword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>HP_Chain_Stab</li>
+					</capacities>
+					<power>56</power>
+					<cooldownTime>2.5</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>11.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>12</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>HP_Power_Cut</label>
+					<capacities>
+						<li>HP_Chain_Cut</li>
+					</capacities>
+					<power>68</power>
+					<cooldownTime>3.45</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>17</armorPenetrationBlunt>
+					<armorPenetrationSharp>18</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ChainSword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.11</MeleeCritChance>
+				<MeleeParryChance>0.47</MeleeParryChance>
+				<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ChainSword"]/statBases</xpath>
+		<value>
+			<Bulk>18</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+			<ToughnessRating>20</ToughnessRating>
+		</value>
+	</Operation>
+
+	<!-- Thunder Hammer -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ThunderHammer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>HP_Thunder_Hit</li>
+					</capacities>
+					<power>62</power>
+					<cooldownTime>5.73</cooldownTime>
+					<chanceFactor>0.70</chanceFactor>
+					<armorPenetrationBlunt>580</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>2.11</cooldownTime>
+					<chanceFactor>0.20</chanceFactor>
+					<armorPenetrationBlunt>22.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ThunderHammer"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.8</MeleeCritChance>
+				<MeleeParryChance>0.1</MeleeParryChance>
+				<MeleeDodgeChance>0.12</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HP_WarcasketMeleeWeapon_ThunderHammer"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
+			<ToughnessRating>25</ToughnessRating>
+		</value>
+	</Operation>
+</Patch>

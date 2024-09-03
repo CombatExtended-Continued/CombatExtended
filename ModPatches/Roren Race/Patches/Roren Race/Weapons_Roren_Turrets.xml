@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Turrets === -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName = "Roren_Turret_57mm" or
+			defName = "Roren_Turret_203mm"
+			]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name = "Roren_Turret"]/thingClass </xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName = "Roren_Turret_57mm" or
+			defName = "Roren_Turret_203mm"
+			]/fillPercent </xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<!-- === 57 Autocannon === -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_Artillery_57mm</defName>
+		<statBases>
+			<Mass>1000</Mass>
+			<Bulk>50</Bulk>
+			<SwayFactor>2</SwayFactor>
+			<ShotSpread>0.01</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.48</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_57x438mmBofors_AP</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+			<warmupTime>4</warmupTime>
+			<range>86</range>
+			<soundCast>Roren_Small_Cannon_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>25</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>9.8</reloadTime>
+			<ammoSet>AmmoSet_57x438mmBofors</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>False</aiUseBurstMode>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+	
+	<!-- ========== 20.3cm Cannon ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Roren_Artillery_203mm</defName>
+		<statBases>
+			<Mass>20700</Mass>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.16</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>2.74</SwayFactor>
+			<Bulk>12150</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<hasStandardCommand>true</hasStandardCommand>
+			<requireLineOfSight>false</requireLineOfSight>
+			<defaultProjectile>Bullet_203cmskCannonShell_HE</defaultProjectile>
+			<warmupTime>4.5</warmupTime>
+			<range>700</range>
+			<minRange>8.9</minRange>
+			<soundCast>Roren_Big_Cannon_Sound</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>45</muzzleFlashScale>
+			<onlyManualCast>true</onlyManualCast>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>12</reloadTime>
+			<ammoSet>AmmoSet_203cmskCannonShell</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Roren_Artillery_203mm"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

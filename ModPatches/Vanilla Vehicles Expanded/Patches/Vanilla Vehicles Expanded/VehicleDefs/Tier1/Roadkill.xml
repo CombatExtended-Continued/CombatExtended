@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_57x307mmR_HE</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>8.2</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>3.5</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>62</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Roadkill_MainTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_57x307mmR</ammoSet>
+				<shotHeight>2.5</shotHeight>
+				<speed>92</speed>
+				<sway>0.82</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Vehicle -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]</xpath>
+		<value>
+			<descriptionHyperlinks>
+				<CombatExtended.AmmoSetDef>AmmoSet_57x307mmR</CombatExtended.AmmoSetDef>
+			</descriptionHyperlinks>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>10</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/vehicleStats/CargoCapacity</xpath>
+		<value>
+			<CargoCapacity>180</CargoCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="FrontArmorPlating"]/health</xpath>
+		<value>
+			<health>300</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>20</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>10</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="LeftArmorPlating"]/health</xpath>
+		<value>
+			<health>300</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="RightArmorPlating"]/health</xpath>
+		<value>
+			<health>300</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="Roof"]/health</xpath>
+		<value>
+			<health>300</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="Roof"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>16</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="VVE_Roadkill"]/components/li[key="Roof"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+</Patch>

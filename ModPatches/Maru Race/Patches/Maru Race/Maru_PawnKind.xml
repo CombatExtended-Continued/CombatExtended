@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@ParentName="marunpcBasePawnKind"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>24</min>
+					<max>36</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Backpack-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="CE_Apparel_Backpack"]/apparel/tags</xpath>
+		<value>
+			<li>MR_Starting</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			@Name="MRP_Deciphers" or
+			@Name="MRP_Hunter" or
+			@ParentName="marunpcBasePawnKind"]/apparelRequired </xpath>
+		<value>
+			<li>CE_Apparel_Backpack</li>
+		</value>
+	</Operation>
+	
+</Patch>

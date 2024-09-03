@@ -48,7 +48,10 @@ namespace CombatExtended
         _iconPickupDrop = ContentFinder<Texture2D>.Get("UI/Icons/loadoutPickupDrop"),
         _iconDropExcess = ContentFinder<Texture2D>.Get("UI/Icons/loadoutDropExcess");
 
-        private static Regex validNameRegex = Outfit.ValidNameRegex;
+        //TODO: 1.5
+        //private static Regex validNameRegex = Outfit.ValidNameRegex;
+
+        private static Regex validNameRegex = new Regex("^.*$");
         private Vector2 _availableScrollPosition = Vector2.zero;
         private const float _barHeight = 24f;
         private Vector2 _countFieldSize = new Vector2(40f, 24f);
@@ -82,13 +85,13 @@ namespace CombatExtended
             _allSuitableDefs = DefDatabase<ThingDef>.AllDefs.Where(td => !td.IsMenuHidden() && IsSuitableThingDef(td)).ToList();
             _allDefsGeneric = DefDatabase<LoadoutGenericDef>.AllDefs.OrderBy(g => g.label).ToList();
             _selectableItems = new List<SelectableItem>();
+            List<ThingDef> suitableMapDefs = Find.CurrentMap.listerThings.AllThings.Where((Thing thing) => !thing.PositionHeld.Fogged(thing.MapHeld) && !thing.GetInnerIfMinified().def.Minifiable).Select((Thing thing) => thing.def).Distinct().Intersect(_allSuitableDefs).ToList();
             foreach (var td in _allSuitableDefs)
             {
                 _selectableItems.Add(new SelectableItem()
                 {
                     thingDef = td,
-                    isGreyedOut = (Find.CurrentMap.listerThings.AllThings.Find(thing => thing.GetInnerIfMinified().def == td && !thing.def.Minifiable) == null)
-                    //!thing.PositionHeld.Fogged(thing.MapHeld) //check Thing is visible on map. CPU expensive!
+                    isGreyedOut = (suitableMapDefs.Find((ThingDef def) => def == td) == null)
                 });
             }
             SetSource(SourceSelection.Ranged);
@@ -1043,15 +1046,16 @@ namespace CombatExtended
         {
             int tick = GenTicks.TicksAbs;
             int position = 1;
-            foreach (LoadoutGenericDef def in _sourceGeneric)
+            List<ThingDef> mapDefs = Find.CurrentMap.listerThings.AllThings.Where((Thing thing) => !thing.PositionHeld.Fogged(thing.MapHeld) && !thing.GetInnerIfMinified().def.Minifiable).Select((Thing thing) => thing.def).Distinct().ToList();
+            foreach (LoadoutGenericDef loadoutDef in _sourceGeneric)
             {
-                if (!genericVisibility.ContainsKey(def))
+                if (!genericVisibility.ContainsKey(loadoutDef))
                 {
-                    genericVisibility.Add(def, new VisibilityCache());
+                    genericVisibility.Add(loadoutDef, new VisibilityCache());
                 }
-                genericVisibility[def].ticksToRecheck = tick;
-                genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
-                genericVisibility[def].position = position;
+                genericVisibility[loadoutDef].ticksToRecheck = tick;
+                genericVisibility[loadoutDef].check = mapDefs.Find((ThingDef def) => loadoutDef.lambda(def)) == null;
+                genericVisibility[loadoutDef].position = position;
                 position++;
                 tick += advanceTicks;
             }

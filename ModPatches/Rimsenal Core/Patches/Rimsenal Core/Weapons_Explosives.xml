@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Remove Recipe Maker & Verbs ========== -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief" or
+			@Name="BaseRSGrenade"
+			]/recipeMaker </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			]/costList </xpath>
+	</Operation>
+
+	<!-- Without this mod, Grief and Bobcat don't work, and it logs at ForcedMissRadius error.-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			]/verbs </xpath>
+	</Operation>
+
+	<!-- Change TickerType.-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			] </xpath>
+		<value>
+			<tickerType>Normal</tickerType>
+		</value>
+	</Operation>
+
+	<!-- ========== Projectile thingClass ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_BaegYa" or
+			defName="Proj_Dunder" or
+			defName="Proj_Bobcat" or
+			defName="Proj_Grief"
+			]/thingClass </xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<!-- ========== Projectile ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_BaegYa"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>5</explosionRadius>
+				<damageDef>Microwave</damageDef>
+				<damageAmountBase>1</damageAmountBase>
+				<explosionDelay>50</explosionDelay>
+				<dropsCasings>false</dropsCasings>
+				<speed>12</speed>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_Dunder"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>4.5</explosionRadius>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>200</damageAmountBase>
+				<explosionDelay>500</explosionDelay>
+				<dropsCasings>false</dropsCasings>
+				<speed>10</speed>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_Bobcat"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1</explosionRadius>
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<explosionDelay>80</explosionDelay>
+				<dropsCasings>true</dropsCasings>
+				<speed>12</speed>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Proj_Grief"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>4</explosionRadius>
+				<damageDef>KineticImpact</damageDef>
+				<explosionDelay>80</explosionDelay>
+				<dropsCasings>false</dropsCasings>
+				<speed>12</speed>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ========== Check Comp ========== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Proj_BaegYa"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_BaegYa"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Proj_Dunder"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_Dunder"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Proj_Bobcat"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_Bobcat"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Proj_Grief"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Proj_Grief"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ========== Add Fragmentation ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_BaegYa"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>0</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_Dunder"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>0</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_Bobcat"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>27</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Proj_Grief"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>0</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Weapon Stack and Appearance -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			]/graphicData </xpath>
+		<value>
+			<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			] </xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="YP_BaegYa" or
+			defName="JI_Dunder" or
+			defName="GD_Bobcat" or
+			defName="TE_Grief"
+			] </xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<!-- Weapon Check Comps -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="YP_BaegYa"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="YP_BaegYa"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="JI_Dunder"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="JI_Dunder"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GD_Bobcat"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GD_Bobcat"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="TE_Grief"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="TE_Grief"]</xpath>
+			<value>
+				<comps/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Weapon Values -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="YP_BaegYa"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>40</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>20</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>YP_BaegYa</defName>
+		<statBases>
+			<Mass>0.4</Mass>
+			<MarketValue>4.75</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw microwave grenade</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+			<minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_BaegYa</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="JI_Dunder"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>40</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>50</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>JI_Dunder</defName>
+		<statBases>
+			<Mass>2.5</Mass>
+			<MarketValue>7.25</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw satchel charge</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+			<minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_Dunder</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GD_Bobcat"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>40</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>50</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GD_Bobcat</defName>
+		<statBases>
+			<Mass>0.4</Mass>
+			<MarketValue>4.75</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>1.0</ShotSpread>
+		</statBases>
+		<Properties>
+			<label>throw mini grenades</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>11.0</range>
+			<minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_Bobcat</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TE_Grief"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>40</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>20</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TE_Grief</defName>
+		<statBases>
+			<Mass>0.4</Mass>
+			<MarketValue>4.75</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw impact grenade</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>10.0</range>
+			<minRange>4</minRange>
+			<warmupTime>0.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowGrenade</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>Proj_Grief</defaultProjectile>
+			<onlyManualCast>true</onlyManualCast>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_AI_Grenade</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>

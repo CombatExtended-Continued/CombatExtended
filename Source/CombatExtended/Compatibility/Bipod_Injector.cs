@@ -38,7 +38,7 @@ namespace CombatExtended
                             def.Verbs.Clear();
                             def.comps.Add(new CompProperties_BipodComp { catDef = bipod_def, swayMult = bipod_def.swayMult, swayPenalty = bipod_def.swayPenalty, additionalrange = bipod_def.ad_Range, recoilMulton = bipod_def.recoil_mult_setup, recoilMultoff = bipod_def.recoil_mult_NOT_setup, ticksToSetUp = bipod_def.setuptime, warmupMult = bipod_def.warmup_mult_setup, warmupPenalty = bipod_def.warmup_mult_NOT_setup });
                             def.Verbs.Add(dar);
-                            def.statBases.Add(new StatModifier { value = 0f, stat = BipodDefsOfs.BipodStats });
+                            def.statBases.Add(new StatModifier { value = 0f, stat = CE_StatDefOf.BipodStats });
                         }
                     }
                     else

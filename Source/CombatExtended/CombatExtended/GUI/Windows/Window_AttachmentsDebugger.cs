@@ -158,13 +158,15 @@ namespace CombatExtended
                     collapsible.Lambda(20, (rect) =>
                     {
                         Text.Font = GameFont.Tiny;
-                        link.drawOffset.x = Widgets.HorizontalSlider_NewTemp(rect, link.drawOffset.x, -0.75f, 0.75f, true, $"drawOffset.x={Math.Round(link.drawOffset.x, 3)}");
+                        //TODO: 1.5
+                        link.drawOffset.x = 1; //Widgets.HorizontalSlider_NewTemp(rect, link.drawOffset.x, -0.75f, 0.75f, true, $"drawOffset.x={Math.Round(link.drawOffset.x, 3)}");
                     }, useMargins: true);
                     collapsible.Gap(2);
                     collapsible.Lambda(20, (rect) =>
                     {
                         Text.Font = GameFont.Tiny;
-                        link.drawOffset.y = Widgets.HorizontalSlider_NewTemp(rect, link.drawOffset.y, -0.75f, 0.75f, true, $"drawOffset.y={Math.Round(link.drawOffset.y, 3)}");
+                        //TODO: 1.5
+                        link.drawOffset.y = 1; // Widgets.HorizontalSlider_NewTemp(rect, link.drawOffset.y, -0.75f, 0.75f, true, $"drawOffset.y={Math.Round(link.drawOffset.y, 3)}");
                     }, useMargins: true);
                     collapsible.Gap(2);
                     collapsible.Label($"current drawScale value:", fontSize: GameFont.Tiny);
@@ -178,13 +180,15 @@ namespace CombatExtended
                     collapsible.Lambda(20, (rect) =>
                     {
                         Text.Font = GameFont.Tiny;
-                        link.drawScale.x = Widgets.HorizontalSlider_NewTemp(rect, link.drawScale.x, 0.6f, 1.6f, true, $"drawScale.x={Math.Round(link.drawScale.x, 3)}");
+                        // TODO: 1.5
+                        link.drawScale.x = 1; // = Widgets.HorizontalSlider_NewTemp(rect, link.drawScale.x, 0.6f, 1.6f, true, $"drawScale.x={Math.Round(link.drawScale.x, 3)}");
                     }, useMargins: true);
                     collapsible.Gap(2);
                     collapsible.Lambda(20, (rect) =>
                     {
                         Text.Font = GameFont.Tiny;
-                        link.drawScale.y = Widgets.HorizontalSlider_NewTemp(rect, link.drawScale.y, 0.6f, 1.6f, true, $"drawScale.y={Math.Round(link.drawScale.y, 3)}");
+                        // TODO: 1.5
+                        link.drawScale.y = 1; //Widgets.HorizontalSlider_NewTemp(rect, link.drawScale.y, 0.6f, 1.6f, true, $"drawScale.y={Math.Round(link.drawScale.y, 3)}");
                     }, useMargins: true);
                 }
                 collapsible.Line(1);

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo47x398mmR</defName>
+		<label>47x398mmR</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberAutocannonLarge</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_47x398mmR</defName>
+		<label>47x398mmR</label>
+		<ammoTypes>
+			<Ammo_47x398mmR_AP>Bullet_47x398mmR_AP</Ammo_47x398mmR_AP>
+			<Ammo_47x398mmR_HE>Bullet_47x398mmR_HE</Ammo_47x398mmR_HE>
+			<Ammo_47x398mmR_EMP>Bullet_47x398mmR_EMP</Ammo_47x398mmR_EMP>
+		</ammoTypes>
+		<similarTo>AmmoSet_LightCannon</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo47x398mmRBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>Large caliber shell used by tank guns.</description>
+		<thingCategories>
+			<li>Ammo47x398mmR</li>
+		</thingCategories>
+		<stackLimit>50</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+		</tradeTags>
+		<statBases>
+			<Mass>2.71</Mass>
+			<Bulk>4.87</Bulk>
+		</statBases>
+		<cookOffFlashScale>20</cookOffFlashScale>
+		<cookOffSound>MortarBomb_Explode</cookOffSound>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo47x398mmRBase">
+		<defName>Ammo_47x398mmR_AP</defName>
+		<label>47x398mmR cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Tank/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>2.85</Mass>
+			<MarketValue>12</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<detonateProjectile>Bullet_47x398mmR_AP</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo47x398mmRBase">
+		<defName>Ammo_47x398mmR_HE</defName>
+		<label>47x398mmR cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Tank/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>26.47</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeHE</ammoClass>
+		<detonateProjectile>Bullet_47x398mmR_HE</detonateProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo47x398mmRBase">
+		<defName>Ammo_47x398mmR_EMP</defName>
+		<label>47x398mmR cartridge (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/Tank/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>31.4</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeEMP</ammoClass>
+		<detonateProjectile>Bullet_47x398mmR_HE</detonateProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base47x398mmRBullet" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>164</speed>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
+			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base47x398mmRBullet">
+		<defName>Bullet_47x398mmR_AP</defName>
+		<label>47x398mmR bullet (AP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/AP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>126</damageAmountBase>
+			<armorPenetrationSharp>76</armorPenetrationSharp>
+			<armorPenetrationBlunt>9279.12</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base47x398mmRBullet">
+		<defName>Bullet_47x398mmR_HE</defName>
+		<label>47x398mmR bullet (HE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>32</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>5</Fragment_Large>
+					<Fragment_Small>2</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base47x398mmRBullet">
+		<defName>Bullet_47x398mmR_EMP</defName>
+		<label>47x398mmR bullet (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>32</damageAmountBase>
+			<explosionRadius>2</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_47x398mmR_AP</defName>
+		<label>make 47x398mmR (AP) shells x5</label>
+		<description>Craft 5 47x398mmR (AP) shells.</description>
+		<jobString>Making 47x398mmR (AP) shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_47x398mmR_AP>5</Ammo_47x398mmR_AP>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>3600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_47x398mmR_HE</defName>
+		<label>make 47x398mmR (HE) cartridge x5</label>
+		<description>Craft 5 47x398mmR (HE) cartridges.</description>
+		<jobString>Making 47x398mmR (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_47x398mmR_HE>5</Ammo_47x398mmR_HE>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>4600</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_47x398mmR_EMP</defName>
+		<label>make 47x398mmR (EMP) cartridge x5</label>
+		<description>Craft 5 47x398mmR (EMP) cartridges.</description>
+		<jobString>Making 47x398mmR (EMP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_47x398mmR_EMP>5</Ammo_47x398mmR_EMP>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>5520</workAmount>
+	</RecipeDef>
+
+</Defs>

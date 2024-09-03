@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="archotechmatteraddingsomecraptoavoidproblems"]/statBases</xpath>
+		<value>
+			<Bulk>0.01</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="archotechmatteraddingsomecraptoavoidproblems"]/stuffProps/categories</xpath>
+		<value>
+			<li>Metallic_Weapon</li>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="archotechmatteraddingsomecraptoavoidproblems"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>4</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="archotechmatteraddingsomecraptoavoidproblems"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>6</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="archotechmatteraddingsomecraptoavoidproblems"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>2</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="archotechmatteraddingsomecraptoavoidproblems"]/statBases/SharpDamageMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="archotechmatteraddingsomecraptoavoidproblems"]/statBases/BluntDamageMultiplier</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="archotechmatteraddingsomecraptoavoidproblems"]/statBases/ShootingAccuracyTurret</xpath>
+	</Operation>
+</Patch>

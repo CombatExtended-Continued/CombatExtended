@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== Body Type ===== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RG_Dodo" or defName="RG_TerrorBird" or defName="RG_ArcticDrak" or defName="RG_Velociraptor"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Dodo === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RG_Dodo"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			<MeleeCritChance>0.03</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_Dodo"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.55</cooldownTime>
+					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.08</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.15</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.16</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RG_Dodo"]/combatPower</xpath>
+		<value>
+			<combatPower>30</combatPower>
+		</value>
+	</Operation>
+
+	<!-- === Terror Bird === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RG_TerrorBird"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+			<MeleeCritChance>0.06</MeleeCritChance>
+			<MeleeParryChance>0.06</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_TerrorBird"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claws</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.42</cooldownTime>
+					<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.08</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.89</cooldownTime>
+					<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+					<chanceFactor>0.5</chanceFactor>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.250</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.78</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RG_TerrorBird"]/combatPower</xpath>
+		<value>
+			<combatPower>80</combatPower>
+		</value>
+	</Operation>
+
+	<!-- === Arctic Drak === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RG_ArcticDrak"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.37</MeleeDodgeChance>
+			<MeleeCritChance>0.2</MeleeCritChance>
+			<MeleeParryChance>0.08</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_ArcticDrak"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.2</cooldownTime>
+					<linkedBodyPartsGroup>RG_FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.37</armorPenetrationSharp>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.2</cooldownTime>
+					<linkedBodyPartsGroup>RG_FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.37</armorPenetrationSharp>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.75</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>1.78</cooldownTime>
+					<linkedBodyPartsGroup>RG_TailAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+					<chanceFactor>0.5</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RG_ArcticDrak"]/combatPower</xpath>
+		<value>
+			<combatPower>120</combatPower>
+		</value>
+	</Operation>
+
+	<!-- === Velociraptor === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RG_Velociraptor"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.31</MeleeDodgeChance>
+			<MeleeCritChance>0.07</MeleeCritChance>
+			<MeleeParryChance>0.03</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_Velociraptor"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+						<li>Stab</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>0.7</cooldownTime>
+					<linkedBodyPartsGroup>RG_FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.281</armorPenetrationBlunt>
+					<chanceFactor>0.3</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+						<li>Stab</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>0.7</cooldownTime>
+					<linkedBodyPartsGroup>RG_FootClawAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>10</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.281</armorPenetrationBlunt>
+					<chanceFactor>0.3</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>0.7</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.05</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+					<chanceFactor>0.7</chanceFactor>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.5</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_Velociraptor"]/race/manhunterOnDamageChance</xpath>
+		<value>
+			<manhunterOnDamageChance>0.75</manhunterOnDamageChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RG_Velociraptor"]/combatPower</xpath>
+		<value>
+			<combatPower>85</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="RG_Velociraptor"]/wildGroupSize</xpath>
+		<value>
+			<wildGroupSize>4~6</wildGroupSize>
+		</value>
+	</Operation>
+
+</Patch>

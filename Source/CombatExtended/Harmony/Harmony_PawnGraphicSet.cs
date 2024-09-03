@@ -9,7 +9,7 @@ using Verse;
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(PawnGraphicSet), "MatsBodyBaseAt")]
+    //[HarmonyPatch(typeof(PawnGraphicSet), "MatsBodyBaseAt")]
     internal static class Harmony_PawnGraphicSet
     {
         private static bool RenderSpecial(ApparelLayerDef layer)

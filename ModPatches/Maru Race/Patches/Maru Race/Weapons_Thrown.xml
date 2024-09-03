@@ -1,0 +1,1491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Tech Level ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="MR_HA_O" or
+			defName="MR_HA_AO" or
+			defName="MR_HA_AT" or
+			defName="MR_HA_BO" or
+			defName="MR_WH_O" or
+			defName="MR_WH_AO" or
+			defName="MR_WH_AT" or
+			defName="MR_WH_ATT" or
+			defName="MR_WH_BO" or
+			defName="MR_WH_BT" or
+			defName="MR_WH_BTT"
+			]</xpath>
+		<value>
+			<techLevel>Industrial</techLevel>
+		</value>
+	</Operation>
+
+	<!-- ========== Basic Axe ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HA_O"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.27</cooldownTime>
+					<armorPenetrationBlunt>2.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.94</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_HA_O"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_O"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_HA_O"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_HA_O"]/costList</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_HA_O"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_O"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_HA_O</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.3</ShotSpread>
+			<SwayFactor>0.85</SwayFactor>
+			<Bulk>3.00</Bulk>
+			<RangedWeapon_Cooldown>1.27</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>20</MarketValue>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_HandaxeO_Thrown</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shotmaruaxe_O</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HandaxeO_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_HandaxeO_Thrown</defName>
+				<label>Hand Axe</label>
+				<graphicData>
+					<texPath>Things/Weapons/MR_HA_O_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>RangedStab</damageDef>
+					<damageAmountBase>23</damageAmountBase>
+					<flyOverhead>false</flyOverhead>
+					<speed>10</speed>
+					<armorPenetrationBlunt>2.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.94</armorPenetrationSharp>
+					<preExplosionSpawnChance>1</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>MR_HA_O</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Delay Axe ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HA_AO"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>0.89</cooldownTime>
+					<armorPenetrationBlunt>2.31</armorPenetrationBlunt>
+					<armorPenetrationSharp>4.64</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_HA_AO"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_AO"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_HA_AO"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_HA_AO"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_AO"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_HA_AO</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.3</ShotSpread>
+			<SwayFactor>0.95</SwayFactor>
+			<Bulk>3.00</Bulk>
+			<RangedWeapon_Cooldown>0.89</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>22.5</MarketValue>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_HandaxeAO_Thrown</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>16</range>
+			<soundCast>Shotmaruaxe_O</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HandaxeAO_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_HandaxeAO_Thrown</defName>
+				<label>Hand Axe</label>
+				<graphicData>
+					<texPath>Things/Weapons/MR_HA_AO_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>RangedStab</damageDef>
+					<damageAmountBase>25</damageAmountBase>
+					<flyOverhead>false</flyOverhead>
+					<speed>20</speed>
+					<armorPenetrationBlunt>2.3</armorPenetrationBlunt>
+					<armorPenetrationSharp>4.64</armorPenetrationSharp>
+					<preExplosionSpawnChance>1</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>MR_HA_AO</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Throw Axe ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HA_AT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>0.74</cooldownTime>
+					<armorPenetrationBlunt>3.12</armorPenetrationBlunt>
+					<armorPenetrationSharp>14.7</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_HA_AT"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_AT"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_HA_AT"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_HA_AT"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_AT"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_HA_AT</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>0.85</SwayFactor>
+			<Bulk>3.00</Bulk>
+			<RangedWeapon_Cooldown>0.74</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>91.5</MarketValue>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_HandaxeAT_Thrown</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<range>24</range>
+			<soundCast>Shotmaruaxe_O</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HandaxeAT_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_HandaxeAT_Thrown</defName>
+				<label>Hand Axe</label>
+				<graphicData>
+					<texPath>Things/Weapons/MR_HA_AT_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>RangedStab</damageDef>
+					<damageAmountBase>24</damageAmountBase>
+					<flyOverhead>false</flyOverhead>
+					<speed>30</speed>
+					<armorPenetrationBlunt>3.12</armorPenetrationBlunt>
+					<armorPenetrationSharp>14.71</armorPenetrationSharp>
+					<preExplosionSpawnChance>1</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>MR_HA_AT</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Track Axe ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HA_BO"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>29</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>4.86</armorPenetrationBlunt>
+					<armorPenetrationSharp>4.86</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_HA_BO"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_BO"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_HA_BO"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_HA_BO"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_BO"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_HA_BO</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.3</ShotSpread>
+			<SwayFactor>0.85</SwayFactor>
+			<Bulk>3.00</Bulk>
+			<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>25</MarketValue>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_HandaxeBO_Thrown</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<range>12</range>
+			<soundCast>Shotmaruaxe_O</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HandaxeBO_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_HandaxeBO_Thrown</defName>
+				<label>Hand Axe</label>
+				<graphicData>
+					<texPath>Things/Weapons/MR_HA_BO_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>RangedStab</damageDef>
+					<damageAmountBase>29</damageAmountBase>
+					<flyOverhead>false</flyOverhead>
+					<speed>10</speed>
+					<armorPenetrationBlunt>4.86</armorPenetrationBlunt>
+					<armorPenetrationSharp>4.86</armorPenetrationSharp>
+					<preExplosionSpawnChance>1</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>MR_HA_BO</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Hunting Axe ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_HA_BT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>50</power>
+					<cooldownTime>3.25</cooldownTime>
+					<armorPenetrationBlunt>14</armorPenetrationBlunt>
+					<armorPenetrationSharp>16.88</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_BT"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.2</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_HA_BT"]/statBases</xpath>
+		<value>
+			<Bulk>5.00</Bulk>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Basic Harpoon ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_O"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.41</cooldownTime>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_O"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_O"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_WH_O"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_O"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_O"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.07</MeleeCritChance>
+				<MeleeParryChance>1.25</MeleeParryChance>
+				<MeleeDodgeChance>0.8</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_WH_O</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>5.00</Bulk>
+			<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>15</MarketValue>
+			<Mass>2</Mass>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_WhalingHarpoon_Thrown</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>20</range>
+			<soundCast>Interact_BeatFire</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoon_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_WhalingHarpoon_Thrown</defName>
+				<label>Whaling Harpoon</label>
+				<graphicData>
+					<texPath>Things/Weapons/MR_WH_O_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1.6</drawSize>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>RangedStab</damageDef>
+					<damageAmountBase>11</damageAmountBase>
+					<flyOverhead>false</flyOverhead>
+					<speed>12</speed>
+					<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+					<preExplosionSpawnChance>0.95</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>MR_WH_O</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Improvement Harpoon ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_AO"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.46</cooldownTime>
+					<armorPenetrationBlunt>5.06</armorPenetrationBlunt>
+					<armorPenetrationSharp>6.76</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_AO"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_AO"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_WH_AO"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_AO"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_AO"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.12</MeleeCritChance>
+				<MeleeParryChance>1.35</MeleeParryChance>
+				<MeleeDodgeChance>0.85</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_WH_AO</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1.75</SwayFactor>
+			<Bulk>6.00</Bulk>
+			<RangedWeapon_Cooldown>1.46</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>35</MarketValue>
+			<Mass>2.25</Mass>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_WhalingHarpoonAO_Thrown</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>22</range>
+			<soundCast>Interact_BeatFire</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonAO_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_WhalingHarpoonAO_Thrown</defName>
+				<label>Whaling Harpoon</label>
+				<graphicData>
+					<texPath>Things/Weapons/MR_WH_AO_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1.6</drawSize>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>RangedStab</damageDef>
+					<damageAmountBase>21</damageAmountBase>
+					<flyOverhead>false</flyOverhead>
+					<speed>14</speed>
+					<armorPenetrationBlunt>5.06</armorPenetrationBlunt>
+					<armorPenetrationSharp>6.76</armorPenetrationSharp>
+					<preExplosionSpawnChance>0.95</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>MR_WH_O</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Abduct Harpoon ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_AT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>5.625</armorPenetrationBlunt>
+					<armorPenetrationSharp>15</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_AT"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_AT"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_WH_AT"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_AT"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_AT"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>1.45</MeleeParryChance>
+				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_WH_AT</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.25</ShotSpread>
+			<SwayFactor>1.5</SwayFactor>
+			<Bulk>6.00</Bulk>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>94</MarketValue>
+			<Mass>2.5</Mass>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_WhalingHarpoonAT_Thrown</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>24</range>
+			<soundCast>Interact_BeatFire</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonAT_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_WhalingHarpoonAT_Thrown</defName>
+				<label>Whaling Harpoon</label>
+				<graphicData>
+					<texPath>Things/Weapons/MR_WH_AT_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1.6</drawSize>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>RangedStab</damageDef>
+					<damageAmountBase>25</damageAmountBase>
+					<flyOverhead>false</flyOverhead>
+					<speed>15</speed>
+					<armorPenetrationBlunt>5.625</armorPenetrationBlunt>
+					<armorPenetrationSharp>11.25</armorPenetrationSharp>
+					<preExplosionSpawnChance>0.95</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>MR_WH_O</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Abduct B Harpoon ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationBlunt>5.625</armorPenetrationBlunt>
+					<armorPenetrationSharp>11.25</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>1.45</MeleeParryChance>
+				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_ATT"]/statBases</xpath>
+		<value>
+			<Bulk>6.00</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Internal Anti-Gravity Harpoon ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_BO"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.34</cooldownTime>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>7.2</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_BO"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_BO"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_WH_BO"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_BO"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_BO"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.12</MeleeCritChance>
+				<MeleeParryChance>1.35</MeleeParryChance>
+				<MeleeDodgeChance>0.85</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_WH_BO</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>1</SwayFactor>
+			<Bulk>3.00</Bulk>
+			<RangedWeapon_Cooldown>1.34</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>37</MarketValue>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_WhalingHarpoonBO_Thrown</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<range>33</range>
+			<soundCast>Interact_BeatFire</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonBO_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_WhalingHarpoonBO_Thrown</defName>
+				<label>Whaling Harpoon</label>
+				<graphicData>
+					<texPath>Things/Weapons/MR_WH_AO_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1.6</drawSize>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>RangedStab</damageDef>
+					<damageAmountBase>13</damageAmountBase>
+					<flyOverhead>false</flyOverhead>
+					<speed>18</speed>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>7.2</armorPenetrationSharp>
+					<preExplosionSpawnChance>0.95</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>MR_WH_BO</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Internal External Anti-Gravity ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_BT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.12</cooldownTime>
+					<armorPenetrationBlunt>4.9</armorPenetrationBlunt>
+					<armorPenetrationSharp>14.4</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_BT"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_BT"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="MR_WH_BT"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_BT"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_BT"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>1.45</MeleeParryChance>
+				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_WH_BT</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.75</ShotSpread>
+			<SwayFactor>1</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>94</MarketValue>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_WhalingHarpoonBTT_Thrown</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>40</range>
+			<minRange>4</minRange>
+			<soundCast>Interact_BeatFire</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonBT_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_WhalingHarpoonBT_Thrown</defName>
+				<label>Whaling Harpoon</label>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				<graphicData>
+					<texPath>Things/Weapons/MR_WH_BT_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1.6</drawSize>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<flyOverhead>false</flyOverhead>
+					<speed>18</speed>
+					<damageDef>MR_AGBomb</damageDef>
+					<damageAmountBase>0</damageAmountBase>
+					<ai_IsIncendiary>true</ai_IsIncendiary>
+					<postExplosionSpawnChance>1</postExplosionSpawnChance>
+					<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+					<explosionRadius>0.1</explosionRadius>
+					<postExplosionSpawnThingDef>MR_WH_BTT</postExplosionSpawnThingDef>
+				</projectile>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>3</damageAmountBase>
+						<explosiveDamageType>MR_AGBomb</explosiveDamageType>
+						<explosiveRadius>3.4</explosiveRadius>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Internal External Anti-Gravity ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>1.12</cooldownTime>
+					<armorPenetrationBlunt>4.9</armorPenetrationBlunt>
+					<armorPenetrationSharp>14.4</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.35</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<smeltable>False</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_BTT"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>1.45</MeleeParryChance>
+				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MR_WH_BTT</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>0.75</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>1.12</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+			<MarketValue>94</MarketValue>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>MR_WhalingHarpoonBT_Thrown</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>40</range>
+			<minRange>4</minRange>
+			<soundCast>Interact_BeatFire</soundCast>
+			<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+		</Properties>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WhalingHarpoonBTT_Thrown"]</xpath>
+		<value>
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>MR_WhalingHarpoonBTT_Thrown</defName>
+				<label>Whaling Harpoon</label>
+				<graphicData>
+					<texPath>Things/Weapons/MR_WH_BT_shot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1.6</drawSize>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>RangedStab</damageDef>
+					<damageAmountBase>13</damageAmountBase>
+					<flyOverhead>false</flyOverhead>
+					<speed>18</speed>
+					<armorPenetrationBlunt>4.9</armorPenetrationBlunt>
+					<armorPenetrationSharp>14.4</armorPenetrationSharp>
+					<preExplosionSpawnChance>1</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>MR_WH_BT</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<!-- ========== Chain ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_CO"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>31</power>
+					<cooldownTime>2.67</cooldownTime>
+					<armorPenetrationBlunt>4.9</armorPenetrationBlunt>
+					<armorPenetrationSharp>6.54</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>2.25</cooldownTime>
+					<armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_COT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>2.33</cooldownTime>
+					<armorPenetrationBlunt>15.36</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>2.25</cooldownTime>
+					<armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_CO" or defName="MR_WH_COT"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.78</MeleeCritChance>
+			<MeleeParryChance>1.0</MeleeParryChance>
+			<MeleeDodgeChance>0.9</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_CO" or defName="MR_WH_COT"]/statBases</xpath>
+		<value>
+			<Bulk>8.00</Bulk>
+			<MeleeCounterParryBonus>0.9</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Firewheel ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_CT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>38</power>
+					<cooldownTime>2.33</cooldownTime>
+					<armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>18.42</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>2.25</cooldownTime>
+					<armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MR_WH_CTT"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>31</power>
+					<cooldownTime>2.15</cooldownTime>
+					<armorPenetrationBlunt>31.1</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>2.25</cooldownTime>
+					<armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_CT" or defName="MR_WH_CTT"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.98</MeleeCritChance>
+			<MeleeParryChance>1.2</MeleeParryChance>
+			<MeleeDodgeChance>1.1</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MR_WH_CT" or defName="MR_WH_CTT"]/statBases</xpath>
+		<value>
+			<Bulk>8.00</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+	
+</Patch>

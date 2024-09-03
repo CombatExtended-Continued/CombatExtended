@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Add armor coverage ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "KrakenME"]/corePart</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "KrakenME"]/corePart/parts/li[def = "MechanicalHeadME"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "KrakenME"]/corePart/parts/li[def = "LimbPortME"]</xpath>
+		<value>
+			<groups>
+				<li>CoveredByNaturalArmor</li>
+			</groups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName = "KrakenME"]/corePart/parts/li[def = "LimbPortME"]/parts/li[def = "MechaTentacleME"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+</Patch>

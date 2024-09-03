@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Private === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEP_Private"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>4</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Corporal, Sergeant, Sergeant Major, Lieutenant, Captain  === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEP_Corporal" or defName="VFEP_Sergeant" or defName="VFEP_SergeantMajor" or defName="VFEP_Lieutenant" or defName="VFEP_Captain"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>5</min>
+					<max>7</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<generateChance>0.50</generateChance>
+						<sidearmMoney>
+							<min>125</min>
+							<max>215</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>MedievalMeleeDecent</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Major, General === -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="VFEP_Major" or defName="VFEP_General"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>8</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === combatPower Patches === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="VFEP_Major"]/combatPower</xpath>
+		<value>
+			<combatPower>500</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="VFEP_General"]/combatPower</xpath>
+		<value>
+			<combatPower>550</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="VFEP_MercenariesBase"]/skills</xpath>
+		<value>
+			<skills>
+				<li>
+					<skill>Shooting</skill>
+					<range>6~18</range>
+				</li>
+				<li>
+					<skill>Melee</skill>
+					<range>6~16</range>
+				</li>
+			</skills>
+		</value>
+	</Operation>
+
+</Patch>

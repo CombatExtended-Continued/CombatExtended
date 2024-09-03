@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Arm Groups-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Roren_body"]//*[
+			woundAnchorTag="LeftShoulder"
+			]/groups
+		</xpath>
+		<value>
+			<li>LeftShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Roren_body"]//*[
+			woundAnchorTag="RightShoulder"
+			]/groups
+		</xpath>
+		<value>
+			<li>RightShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Roren_body"]//*[
+			customLabel="Left arm"
+			]/groups
+		</xpath>
+		<value>
+			<li>LeftArm</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Roren_body"]//*[
+			customLabel="Right arm"
+			]/groups
+		</xpath>
+		<value>
+			<li>RightArm</li>
+		</value>
+	</Operation>
+
+	<!--Natural Armor-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Roren_body"]//*[
+			def="Torso" or
+			def="Neck" or
+			def="Head" or
+			def="Nose" or
+			def="Jaw" or
+			def="Shoulder" or
+			def="Ear" or
+			def="Arm" or
+			def="Hand" or
+			def="Finger" or
+			def="Waist" or
+			def="Leg" or
+			def="Foot" or
+			def="Toe" or
+			def="Roren_SinyctirL" or
+			def="Roren_SinyctirR"
+			]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+	
+</Patch>

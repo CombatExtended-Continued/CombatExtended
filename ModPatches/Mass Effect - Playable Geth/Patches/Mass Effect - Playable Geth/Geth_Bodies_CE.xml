@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Shoulder & Arm Groups -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="Geth"]//*[customLabel="right shoulder"]/groups</xpath>
+		<value>
+			<li>RightShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="Geth"]//*[customLabel="left shoulder"]/groups</xpath>
+		<value>
+			<li>LeftShoulder</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="Geth"]//*[customLabel="right arm"]/groups</xpath>
+		<value>
+			<li>RightArm</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="Geth"]//*[customLabel="left arm"]/groups</xpath>
+		<value>
+			<li>LeftArm</li>
+		</value>
+	</Operation>
+
+	<!-- Natural Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Geth"]//*[
+			def="GethTorso" or
+			def="GethShoulder" or
+			def="GethHead" or
+			def="GethLeg"
+			]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Geth"]//*[def="GethVisualReceptor" or
+			def="GethSpeaker"]/groups
+		</xpath>
+		<value>
+			<li>OutsideSquishy</li>
+		</value>
+	</Operation>
+
+</Patch>

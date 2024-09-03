@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Super Jump -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFECore.Abilities.AbilityDef[defName="VFEA_SuperJump"]/range</xpath>
+		<value>
+			<range>20</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFECore.Abilities.AbilityDef[defName="VFEA_SuperJump"]/description</xpath>
+		<value>
+			<description>Jump over a medium distance (20 cells) within line of sight to close the distance to the enemy.</description>
+		</value>
+	</Operation>
+
+	<!-- Weapon Expert -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEAncients.PowerDef[defName="WeaponExpert"]/statFactors</xpath>
+		<value>
+			<ReloadSpeed>2</ReloadSpeed>
+			<ShootingAccuracyPawn>2</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<!-- Marksmanship -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFEAncients.PowerDef[defName="Marksmanship"]/setStats/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>20</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEAncients.PowerDef[defName="Marksmanship"]</xpath>
+		<value>
+			<statFactors>
+				<AimingAccuracy>5</AimingAccuracy>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<!-- Assassin -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEAncients.PowerDef[defName="Assassin"]</xpath>
+		<value>
+			<statOffsets>
+				<MeleeCritChance>100</MeleeCritChance>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<!-- Super Strength -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEAncients.PowerDef[defName="SuperStrength"]/statFactors</xpath>
+		<value>
+			<CarryWeight>2</CarryWeight>
+			<CarryBulk>2</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- Darkvision -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFEAncients.PowerDef[defName="Darkvision"]</xpath>
+		<value>
+			<statOffsets>
+				<NightVisionEfficiency>1</NightVisionEfficiency>
+			</statOffsets>
+		</value>
+	</Operation>
+</Patch>

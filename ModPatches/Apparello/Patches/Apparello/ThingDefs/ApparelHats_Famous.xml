@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Doom helmet ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Apparello_Doom"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Doom"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Doom"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName = "Apparello_Doom"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+	<!-- ========== Quote hat ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Quotee"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Quotee"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	<!-- ========== PsyCo mask ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparel_Psymask"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparel_Psymask"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName = "Apparel_Psymask"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Apparel_Psymask"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Apparel_Psymask"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName = "Apparel_Psymask"]</xpath>
+		<value>
+			<li Class="CombatExtended.ApparelHediffExtension">
+				<hediff>WearingGasMask</hediff>
+			</li>
+		</value>
+	</Operation>
+	<!-- ========== Zorro, foot clan ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Zorro" or defName="Apparello_Footy"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Zorro" or defName="Apparello_Footy"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	<!-- ========== Tali ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Apparello_Meffect" or defName = "Apparello_Meffectwo"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Meffect" or defName = "Apparello_Meffectwo"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>18</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Meffect" or defName = "Apparello_Meffectwo"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>9</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName = "Apparello_Meffect" or defName = "Apparello_Meffectwo"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+	<!-- ========== Aerocowl ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Kurt" or defName="Apparello_Kurtlite"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Kurt" or defName="Apparello_Kurtlite"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	<!-- ========== Scrap mask ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Apparello_Raideroos"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Raideroos"]/stuffCategories/li[.="Metallic"]</xpath>
+		<value>
+			<li>Steeled</li>
+		</value>
+	</Operation>
+	<!-- ========== Infiltrator headgear ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Apparello_Yi"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Yi"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<AimingAccuracy>0.05</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName = "Apparello_Yi"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+	<!-- ========== Raz ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Raz"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.08</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Apparello_Raz"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+		</value>
+	</Operation>
+</Patch>

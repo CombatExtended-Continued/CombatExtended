@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Tools === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DevDesigner_DarkElves_Crossbow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DevDesigner_WoodElves_Bow" or defName="DevDesigner_WoodElves_Greatbow" or defName="DevDesigner_WoodElves_RecurveBow" or defName="DevDesigner_HighElves_Longbow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Dark Elves Repeating Crossbow === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DevDesigner_DarkElves_Crossbow"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DevDesigner_DarkElves_Crossbow</defName>
+		<statBases>
+			<Bulk>10</Bulk>
+			<SwayFactor>1.2</SwayFactor>
+			<ShotSpread>0.25</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>23</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+
+	<!-- === Wood Elves Bow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DevDesigner_WoodElves_Bow</defName>
+		<statBases>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.85</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>5.00</Bulk>
+			<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>50</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>26</range>
+			<soundCast>Bow_Recurve</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- === Wood Elves Greatbow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DevDesigner_WoodElves_Greatbow</defName>
+		<statBases>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.85</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>5.00</Bulk>
+			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>70</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>33</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_GreatArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- === Wood Elves Recurve Bow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DevDesigner_WoodElves_RecurveBow</defName>
+		<statBases>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.85</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>6.00</Bulk>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>50</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>35</range>
+			<soundCast>Bow_Recurve</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- === High Elves Longbow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DevDesigner_HighElves_Longbow</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.9</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>7.50</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>85</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>37</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_GreatArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+</Patch>

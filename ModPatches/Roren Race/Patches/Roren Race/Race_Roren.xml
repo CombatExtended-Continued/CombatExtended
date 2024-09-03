@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Roren"]/comps</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Roren"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable"/>
+				<li Class="CombatExtended.CompProperties_ArmorDurability">
+					<Durability>500</Durability>
+					<Regenerates>true</Regenerates>
+					<RegenInterval>600</RegenInterval>
+					<RegenValue>5</RegenValue>
+					<MinArmorPct>0.75</MinArmorPct>
+				</li>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Roren"]</xpath>
+			<value>
+				<comps>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable"/>
+					<li Class="CombatExtended.CompProperties_ArmorDurability">
+						<Durability>500</Durability>
+						<Regenerates>true</Regenerates>
+						<RegenInterval>600</RegenInterval>
+						<RegenValue>5</RegenValue>
+						<MinArmorPct>0.75</MinArmorPct>
+					</li>
+				</comps>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Roren"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Roren"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<chanceFactor>0.07</chanceFactor>
+					<armorPenetrationSharp>0.15</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>4.49</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Roren"]/alienRace/raceRestriction/whiteApparelList</xpath>
+		<value>
+			<li>CE_Apparel_TacVest</li>
+			<li>CE_Apparel_Backpack</li>
+			<li>CE_Apparel_TribalBackpack</li>
+			<li>CE_Apparel_BallisticShield</li>
+			<li>CE_Apparel_MeleeShield</li>
+			<li>CE_Apparel_GasMask</li>
+			<li>CE_Apparel_ImprovGasMask</li>
+		</value>
+	</Operation>
+	
+</Patch>

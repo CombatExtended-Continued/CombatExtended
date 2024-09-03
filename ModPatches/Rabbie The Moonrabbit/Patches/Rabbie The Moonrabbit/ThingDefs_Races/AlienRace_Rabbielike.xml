@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationConditional">
+	<xpath>Defs/ThingDef[@Name="RB_PawnBase"]/comps</xpath>
+	<nomatch Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RB_PawnBase"]</xpath>
+		<value>
+			<comps/>
+		</value>
+	</nomatch>
+	<match Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="RB_PawnBase"]</xpath>
+		<value>
+		</value>
+	</match>
+</Operation>
+
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[@Name="RB_PawnBase"]/comps</xpath>
+	<value>
+		<li>
+			<compClass>CombatExtended.CompPawnGizmo</compClass>
+		</li>
+		<li Class="CombatExtended.CompProperties_Suppressable"/>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationAddModExtension">
+	<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]</xpath>
+	<value>
+		<li Class="CombatExtended.RacePropertiesExtensionCE">
+			<bodyShape>Humanoid</bodyShape>
+		</li>
+	</value>
+</Operation>
+
+<!--Better shooting, Worse melee-->
+
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/statBases</xpath>
+	<value>
+		<!--Same as shooting offset-->
+		<AimingAccuracy>1.2</AimingAccuracy>
+		<!--Same as hit offset-->
+		<MeleeCritChance>0.9</MeleeCritChance>
+		<!--Same as dodge offset-->
+		<MeleeParryChance>0.8</MeleeParryChance>
+		<Suppressability>1</Suppressability>
+		<SmokeSensitivity>1</SmokeSensitivity>
+	</value>
+</Operation>
+
+<!--Base has no headbut, only bite-->
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/tools</xpath>
+	<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>left fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1.33</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>0.162</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>right fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1.33</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>0.162</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>teeth</label>
+				<capacities>
+					<li>Bite</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>2.52</cooldownTime>
+				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				<chanceFactor>0.2</chanceFactor>
+				<armorPenetrationSharp>0.01</armorPenetrationSharp>
+				<armorPenetrationBlunt>0.245</armorPenetrationBlunt>
+			</li>
+		</tools>
+	</value>
+</Operation>
+
+</Patch>

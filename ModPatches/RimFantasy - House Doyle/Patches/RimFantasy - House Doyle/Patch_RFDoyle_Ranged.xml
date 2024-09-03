@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= House Doyle Ranged Weapon ======= -->
+
+	<!-- ===== Tools ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_RangedWeapon_Greatbow_Doyle" or defName="RF_RangedWeapon_WarBow_Doyle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ===== Bows ===== -->
+
+	<!-- === Great Bow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_RangedWeapon_Greatbow_Doyle</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>5.00</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>40</WoodLog>
+			<RF_Amethyst>1</RF_Amethyst>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>30</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_GreatArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<researchPrerequisite>Greatbow</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- === War Bow === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RF_RangedWeapon_WarBow_Doyle</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>5.00</Bulk>
+			<RangedWeapon_Cooldown>0.7</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>20</WoodLog>
+			<RF_Amethyst>1</RF_Amethyst>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_WarArrow_Stone</defaultProjectile>
+			<warmupTime>1.5</warmupTime>
+			<range>32</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_WarArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<researchPrerequisite>DankPyon_WarBow</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+</Patch>

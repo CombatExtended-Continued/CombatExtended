@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Power Armor -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerArmorBase"]/statBases</xpath>
+		<value>
+			<Bulk>50</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerArmorBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerArmorBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerArmorBase"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<CarryWeight>60</CarryWeight>
+			<CarryBulk>10</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SmallAnimalPowerArmor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>450</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_LargeAnimalPowerArmor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>550</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_SmallAnimalPowerArmor"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>30</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_LargeAnimalPowerArmor"]/costList/Plasteel</xpath>
+		<value>
+			<DevilstrandCloth>60</DevilstrandCloth>
+			<Plasteel>150</Plasteel>
+		</value>
+	</Operation>
+
+	<!-- Power Helm -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AnimalSpacerHelmBase"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SmallAnimalPowerArmorHelmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>220</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_LargeAnimalPowerArmorHelmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>260</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_SmallAnimalPowerArmorHelmet"]/costList/Plasteel</xpath>
+		<value>
+			<DevilstrandCloth>10</DevilstrandCloth>
+			<Plasteel>50</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_LargeAnimalPowerArmorHelmet"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>30</DevilstrandCloth>
+		</value>
+	</Operation>
+
+</Patch>

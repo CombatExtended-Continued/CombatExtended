@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+	<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]</xpath>
+	<value>
+		<li Class="CombatExtended.RacePropertiesExtensionCE">
+			<bodyShape>Humanoid</bodyShape>
+		</li>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationAdd">
+	<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]/statBases</xpath>
+	<value>
+		<MeleeCritChance>1</MeleeCritChance>
+		<MeleeParryChance>1</MeleeParryChance>
+		<Suppressability>1</Suppressability>
+		<SmokeSensitivity>1</SmokeSensitivity>
+	</value>
+</Operation>
+
+<!--Powerful Bite, slightly faster regular attacks-->
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]/tools</xpath>
+	<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>left fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.33</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>0.456</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>right fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.33</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>0.456</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>snake tail</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>1.16</cooldownTime>
+				<linkedBodyPartsGroup>tail</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>1.094</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>fangs</label>
+				<capacities>
+					<li>Bite</li>
+				</capacities>
+				<power>4</power>
+				<cooldownTime>1.4</cooldownTime>
+				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				<armorPenetrationSharp>1.52</armorPenetrationSharp>
+				<armorPenetrationBlunt>2.278</armorPenetrationBlunt>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+			</li>
+		</tools>
+	</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+	<xpath>Defs/HediffDef[defName="Hediff_VenomGlands"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+	<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>venom fangs</label>
+				<capacities>
+					<li>ToxicBite</li>
+				</capacities>
+				<power>7</power>
+				<cooldownTime>1.4</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				<armorPenetrationSharp>1.52</armorPenetrationSharp>
+				<armorPenetrationBlunt>2.278</armorPenetrationBlunt>
+			</li>
+		</tools>
+	</value>
+</Operation>
+
+</Patch>

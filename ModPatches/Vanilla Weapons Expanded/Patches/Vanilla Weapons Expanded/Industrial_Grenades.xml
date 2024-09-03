@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Remove Flashbang / Smoke as they're redundant === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[
+			defName = "VWE_Projectile_FlashGrenade" or
+			defName = "VWE_Projectile_SmokeGrenade" or
+			defName = "VWE_FlashGrenade" or
+			defName = "VWE_SmokeGrenade"]
+		</xpath>
+	</Operation>
+</Patch>

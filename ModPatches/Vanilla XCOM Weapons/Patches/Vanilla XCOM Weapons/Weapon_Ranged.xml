@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName="XCOM_Gun_CVRifle" or
+			defName="XCOM_Gun_CVSniperRifle" or
+			defName="XCOM_Gun_CVShotgun" or
+			defName="XCOM_Gun_CVCannon" or
+			defName="XCOM_Gun_CVGrenadeLauncher" or
+			defName="XCOM_Gun_CVVektorRifle" or
+			defName="XCOM_Gun_CVBullpup" or
+			defName="XCOM_Gun_CVHeavyAutocannon"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="XCOM_Gun_CVPistol" or defName="XCOM_Gun_TemplarPistol" or defName="XCOM_Gun_ArcThrower"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[defName="XCOM_Gun_BoltCaster"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>2.18</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.72</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- XCOM Conventional Rifle -->
+	<!--5 burst instead of 3 in vanilla, as for the better penetration, we have AP ammo already-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_CVRifle</defName>
+		<statBases>
+			<Mass>3.26</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<Bulk>10.03</Bulk>
+			<WorkToMake>30000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>70</Steel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Chemfuel>10</Chemfuel>
+		</costList>
+		<Properties>
+			<recoilAmount>1.70</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<burstShotCount>8</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<soundCast>CV_Rifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>32</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+		<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Conventional Sniper Rifle -->
+	<!-- DMG and accuracy slightly better than vanilla SR which is full power...so magnum?-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_CVSniperRifle</defName>
+		<statBases>
+			<Mass>9.7</Mass>
+			<RangedWeapon_Cooldown>1.55</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.6</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>12.77</Bulk>
+			<WorkToMake>40000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>120</Steel>
+			<ComponentIndustrial>8</ComponentIndustrial>
+			<Chemfuel>15</Chemfuel>
+		</costList>
+		<Properties>
+			<recoilAmount>3.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
+			<warmupTime>2</warmupTime>
+			<range>65</range>
+			<soundCast>CV_SniperRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_338Lapua</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+		<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- XCOM Conventional Shotgun -->
+	<!-- so this one is very straight forward. a KSG, that's it. the vanilla stats are of negalible difference from vanilla pump action-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_CVShotgun</defName>
+		<statBases>
+			<Mass>3.10</Mass>
+			<RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>0.97</SwayFactor>
+			<Bulk>6.60</Bulk>
+			<WorkToMake>18000</WorkToMake>
+		</statBases>
+		<costList>
+			<Chemfuel>25</Chemfuel>
+			<Steel>55</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>3.10</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>16</range>
+			<soundCast>CV_Shotgun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Regular</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>0.85</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+		<researchPrerequisite>Gunsmithing</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Conventional Cannon -->
+	<!-- bruh, cannon? the vanilla data suggests it deal less damage than minigun, but xcom stats say it hit as hard as sniper
+A magnum rifle with 20 burst and 60 round mag then-->
+
+	<!-- It says faster spin up and is three barreled, so I assume it's lighter than minigun despite firing magnum-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_CVCannon</defName>
+		<statBases>
+			<Mass>17.5</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>3.22</SwayFactor>
+			<Bulk>14.5</Bulk>
+			<WorkToMake>60000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>170</Steel>
+			<ComponentIndustrial>20</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.80</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<burstShotCount>20</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<range>62</range>
+			<soundCast>CV_Cannon</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_338Lapua</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Suppressive</li>
+			<li>Bipod_LMG</li>
+		</weaponTags>
+		<researchPrerequisite>MultibarrelWeapons</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- XCOM Conventional Pistol -->
+	<!-- "Slightly more powerful" than out normal revolver which is .44magnum.... .500SW there you go-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_CVPistol</defName>
+		<statBases>
+			<Mass>1.88</Mass>
+			<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.4</SwayFactor>
+			<Bulk>2.9</Bulk>
+			<WorkToMake>8000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>40</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>3.55</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_500SWMagnum_FMJ</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>15</range>
+			<soundCast>CV_Pistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4.6</reloadTime>
+			<ammoSet>AmmoSet_500SWMagnum</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<researchPrerequisite>Gunsmithing</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Conventional Grenade Launcher -->
+	<!-- Copy-pasty, Milkor launchy-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_CVGrenadeLauncher</defName>
+		<statBases>
+			<WorkToMake>25500</WorkToMake>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.18</ShotSpread>
+			<SwayFactor>1.31</SwayFactor>
+			<Bulk>5.65</Bulk>
+			<Mass>6.3</Mass>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>80</Steel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>2.93</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<warmupTime>1</warmupTime>
+			<range>40</range>
+			<minRange>5</minRange>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<soundCast>CV_GrenadeLauncher</soundCast>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>5.1</reloadTime>
+			<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>GunHeavy</li>
+			<li>CE_AI_AOE</li>
+		</weaponTags>
+		<researchPrerequisite>CE_Launchers</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Conventional Autopistol -->
+	<!--MP7 or MAC-10 whatsoever...slightly more powerful than vanilla MP, 10mmAuto then-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_TemplarPistol</defName>
+		<statBases>
+			<Mass>3</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.93</SwayFactor>
+			<Bulk>3</Bulk>
+			<WorkToMake>28900</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>45</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.81</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_10mmAuto_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<soundCast>CV_TemplarPistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_10mmAuto</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_SMG</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<researchPrerequisite>BlowbackOperation</researchPrerequisite>
+	</Operation>
+
+	<!-- XCOM Arc Thrower -->
+	<!-- Stun gun, how Imba-->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="XCOM_Gun_ArcThrower"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseGun</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="XCOM_Gun_ArcThrower"]/recipeMaker</xpath>
+		<value>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>TableMachining</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+			<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_ArcThrower</defName>
+		<statBases>
+			<Mass>2</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.9</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>0.93</SwayFactor>
+			<Bulk>2</Bulk>
+			<WorkToMake>32000</WorkToMake>
+		</statBases>
+		<costList>
+			<Plasteel>40</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>XCOM_Bullet_ArcThrowerCE</defaultProjectile>
+			<warmupTime>2</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- XCOM Vektor Rifle -->
+	<!-- SVD. again, ctrl-cv-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_CVVektorRifle</defName>
+		<statBases>
+			<WorkToMake>23000</WorkToMake>
+			<SightsEfficiency>2.24</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.70</SwayFactor>
+			<Bulk>12.25</Bulk>
+			<Mass>4.30</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>60</Steel>
+			<ComponentIndustrial>4</ComponentIndustrial>
+			<WoodLog>10</WoodLog>
+		</costList>
+		<Properties>
+			<recoilAmount>1.94</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>75</range>
+			<soundCast>CV_VektorRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_762x54mmR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>SniperRifle</li>
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+		<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+	</Operation>
+
+	<!-- Kal-7 Bullpup -->
+	<!-- Tavor? do we have any tavor mod around? So, does not end turn when firing? I assume that translate into faster warm up and cool down-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_CVBullpup</defName>
+		<statBases>
+			<WorkToMake>37500</WorkToMake>
+			<Mass>4.10</Mass>
+			<Bulk>7.30</Bulk>
+			<ShotSpread>0.1</ShotSpread>
+			<SwayFactor>1.55</SwayFactor>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>45</Steel>
+			<Chemfuel>10</Chemfuel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<recoilAmount>2.11</recoilAmount>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<warmupTime>0.9</warmupTime>
+			<range>55</range>
+			<soundCast>CV_Bullpup</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+		<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+	</Operation>
+
+	<!-- SPARK Heavy Autocannon -->
+	<!-- Yet another handheld autocannon...but it looks more like a heavy battle rifle. 4-6 dmg? 338Lapua here you go.-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_CVHeavyAutocannon</defName>
+		<statBases>
+			<WorkToMake>48000</WorkToMake>
+			<SightsEfficiency>1.2</SightsEfficiency>
+			<ShotSpread>0.12</ShotSpread>
+			<SwayFactor>1.7</SwayFactor>
+			<Bulk>13.90</Bulk>
+			<Mass>6.30</Mass>
+			<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>80</Steel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<recoilAmount>3.2</recoilAmount>
+			<defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
+			<burstShotCount>5</burstShotCount>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<warmupTime>1.4</warmupTime>
+			<range>55</range>
+			<soundCast>CV_HeavyAutocannon</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_338Lapua</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+			<li>Bipod_LMG</li>
+		</weaponTags>
+		<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>XCOM_Gun_BoltCaster</defName>
+		<statBases>
+			<Mass>12.5</Mass>
+			<RangedWeapon_Cooldown>1.55</RangedWeapon_Cooldown>
+			<SightsEfficiency>3.5</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>2.07</SwayFactor>
+			<Bulk>12.40</Bulk>
+			<Mass>14.50</Mass>
+		</statBases>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>12</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>3</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_50BMG_FMJStun</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>62</range>
+			<soundCast>CV_SniperRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>5</AmmoGenPerMagOverride>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_XCOMBoltCaster</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>SniperRifle</li>
+			<li>Bipod_AMR</li>
+			<li>CE_AI_SR</li>
+		</weaponTags>
+		<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="XCOM_MeleeWeapon_ShardGauntlet"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.69</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.80</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>1.17</cooldownTime>
+					<chanceFactor>0.66</chanceFactor>
+					<armorPenetrationBlunt>4.06</armorPenetrationBlunt>
+					<armorPenetrationSharp>25</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.05</cooldownTime>
+					<armorPenetrationBlunt>2.048</armorPenetrationBlunt>
+					<armorPenetrationSharp>25</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="XCOM_MeleeWeapon_ShardGauntlet"]/statBases</xpath>
+		<value>
+			<Bulk>2.5</Bulk>
+			<MeleeCounterParryBonus>0.9</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="XCOM_MeleeWeapon_ShardGauntlet"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.00</MeleeCritChance>
+				<MeleeParryChance>0</MeleeParryChance>
+				<MeleeDodgeChance>0.60</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+</Patch>

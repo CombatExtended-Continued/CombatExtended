@@ -1,5 +1,4 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace CombatExtended
@@ -7,6 +6,10 @@ namespace CombatExtended
     [DefOf]
     public class CE_FleckDefOf
     {
+        static CE_FleckDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(CE_FleckDefOf));
+        }
         //public static FleckDef Fleck_SuppressIcon;
 
         //public static FleckDef Fleck_HunkerIcon;
@@ -19,5 +22,6 @@ namespace CombatExtended
         public static FleckDef Fleck_BulletHole;
         public static FleckDef Fleck_ElectricGlow_EMP;
         public static FleckDef Fleck_SparkThrownFast;
+        public static FleckDef Fleck_EmptyCasing;
     }
 }

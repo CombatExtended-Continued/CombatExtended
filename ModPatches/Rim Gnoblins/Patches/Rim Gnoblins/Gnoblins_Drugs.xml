@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Patch statOffsets ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ShardHigh"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.5</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="DregHigh"]/stages/li</xpath>
+		<value>
+			<statFactors>
+				<Suppressability>0.75</Suppressability>
+			</statFactors>
+		</value>
+	</Operation>
+
+	<!-- ========== Patch item bulk ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ShardMethamphetamine"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DregMethamphetamine"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
+
+</Patch>

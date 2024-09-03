@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="GnollTribalBase"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			defName="Gnoll_Archer" or
+			defName="Gnoll_ChiefRanged" or
+			defName="Gnoll_HeavyArcher" or
+			defName="Gnoll_Hunter"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<sidearms>
+					<li>
+						<sidearmMoney>
+							<min>100</min>
+							<max>600</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+</Patch>

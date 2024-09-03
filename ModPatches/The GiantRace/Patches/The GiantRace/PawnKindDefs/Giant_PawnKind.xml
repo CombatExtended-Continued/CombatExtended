@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--Ammo-->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[
+			@Name="GIBasePawnKind"
+			] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>6</min>
+					<max>20</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!--Points reductions across the board, along the same lines as tribals-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Gi_Warrior"]/combatPower</xpath>
+		<value>
+			<combatPower>210</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Gi_Thrower"]/combatPower</xpath>
+		<value>
+			<combatPower>240</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Gi_ExpertWarrior"]/combatPower</xpath>
+		<value>
+			<combatPower>285</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Gi_ExpertThrower"]/combatPower</xpath>
+		<value>
+			<combatPower>300</combatPower>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Gi_Champion"]/combatPower</xpath>
+		<value>
+			<combatPower>375</combatPower>
+		</value>
+	</Operation>
+</Patch>

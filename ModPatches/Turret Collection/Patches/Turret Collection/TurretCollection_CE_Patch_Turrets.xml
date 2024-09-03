@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Advanced Naval Gun Turret ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TC_AdvancedNavalGun_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>3.31</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>4.44</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_57x483mmBofors_HE</defaultProjectile>
+			<warmupTime>4.3</warmupTime>
+			<range>86</range>
+			<minRange>15</minRange>
+			<ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>TC_ShotAdvancedNavalGun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>25</magazineSize>
+			<reloadTime>9.8</reloadTime>
+			<ammoSet>AmmoSet_57x483mmBofors</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_AdvancedNavalGun"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>165500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_AdvancedNavalGun"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>1045</Steel>
+				<ComponentIndustrial>9</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_AdvancedNavalGun"]</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_AdvancedNavalGun"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Anti-Materiel Turret ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TC_AntiMaterielTurret_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>2.08</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.61</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20x128mmOerlikon_HE</defaultProjectile>
+			<warmupTime>4.3</warmupTime>
+			<range>86</range>
+			<minRange>8</minRange>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<burstShotCount>5</burstShotCount>
+			<soundCast>TC_ShotAntiMaterielTurret</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_20x128mmOerlikon</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_AntiMaterielTurret"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>83000</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_AntiMaterielTurret"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>440</Steel>
+				<ComponentIndustrial>9</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_AntiMaterielTurret"]</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_AntiMaterielTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Avenger Turret ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TC_AvengerTurret_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>3.55</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.58</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_30x173mmNATO_Sabot</defaultProjectile>
+			<warmupTime>2.3</warmupTime>
+			<range>86</range>
+			<minRange>12</minRange>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<burstShotCount>100</burstShotCount>
+			<soundCast>TC_ShotAvengerTurret</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1350</magazineSize>
+			<reloadTime>9.2</reloadTime>
+			<ammoSet>AmmoSet_30x173mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>50</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_AvengerTurret"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>180500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_AvengerTurret"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>1195</Steel>
+				<ComponentIndustrial>7</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_AvengerTurret"]</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_AvengerTurret"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Cannon Turret ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TC_CannonTurret_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2.65</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>3.23</SwayFactor>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_120mmCannonShell_HEAT</defaultProjectile>
+			<warmupTime>4.3</warmupTime>
+			<range>270</range>
+			<minRange>12</minRange>
+			<soundCast>TC_ShotCannonTurret</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>18</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>9.8</reloadTime>
+			<ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_CannonTurret"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>94500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_CannonTurret"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>535</Steel>
+				<ComponentIndustrial>5</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_CannonTurret"]</xpath>
+		<value>
+			<!-- Set to 0 as CE cannot draw range circles with radiuses larger than 90 cells -->
+			<specialDisplayRadius>0</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_CannonTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Howitzer ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TC_Howitzer_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>11.38</SwayFactor>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
+			<warmupTime>4.3</warmupTime>
+			<range>700</range>
+			<!-- Same as CE 81mm mortar -->
+			<minRange>33</minRange>
+			<requireLineOfSight>false</requireLineOfSight>
+			<soundCast>TC_ShotHowitzer</soundCast>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>9.8</reloadTime>
+			<ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_Howitzer"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>257000</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_Howitzer"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>1835</Steel>
+				<ComponentIndustrial>5</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<!-- Do not draw max range display circle (as it is larger than the upper limit of 90 cells) -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_Howitzer"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Incendiary Launcher ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TC_IncendiaryLauncher_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>0.72</SwayFactor>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_M74_Incendiary_TC</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>72</range>
+			<minRange>15</minRange>
+			<requireLineOfSight>false</requireLineOfSight>
+			<burstShotCount>4</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<soundCast>TC_ShotIncendiaryLauncher</soundCast>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>4</magazineSize>
+			<reloadTime>8.6</reloadTime>
+			<ammoSet>AmmoSet_M74_TC</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>1</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_IncendiaryLauncher"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>26000</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_IncendiaryLauncher"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>100</Steel>
+				<ComponentIndustrial>3</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_IncendiaryLauncher"]</xpath>
+		<value>
+			<specialDisplayRadius>72</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_IncendiaryLauncher"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Multi-Barrel Rocket Launcher ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TC_RocketLauncher_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>14.47</SwayFactor>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_130mmType63_HE</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>700</range>
+			<!-- Same as CE 81mm mortar -->
+			<minRange>37</minRange>
+			<requireLineOfSight>false</requireLineOfSight>
+			<burstShotCount>19</burstShotCount>
+			<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+			<soundCast>TC_ShotRocketLauncher</soundCast>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>19</magazineSize>
+			<reloadTime>8.6</reloadTime>
+			<ammoSet>AmmoSet_130mmType63</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>6</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_RocketLauncher"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>2429500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TC_RocketLauncher"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>19330</Steel>
+				<ComponentIndustrial>3</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<!-- Do not draw max range display circle (as it is larger than the upper limit of 90 cells) -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TC_RocketLauncher"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Pre-charged Mini-Turret (Removed as CE currently does not support preloaded turrets) ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="TCEE_ChargedMiniTurret" or
+			defName="TCEE_ChargedMiniTurret_Crate"
+			] </xpath>
+	</Operation>
+
+	<!-- ========== Gatling Gun Turret ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TCEE_GatlingGunTurret_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.23</SwayFactor>
+			<Bulk>8.02</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.65</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>2.3</warmupTime>
+			<range>86</range>
+			<minRange>15</minRange>
+			<burstShotCount>300</burstShotCount>
+			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<soundCast>GunShotA</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1500</magazineSize>
+			<reloadTime>9.2</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>150</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_GatlingGunTurret"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>54000</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_GatlingGunTurret"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>180</Steel>
+				<ComponentIndustrial>7</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_GatlingGunTurret"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_GatlingGunTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Machine Gun Turret ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TCEE_MachineGunTurret_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>1.59</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.25</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>86</range>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<requireLineOfSight>false</requireLineOfSight>
+			<soundCast>GunShotA</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_50BMG</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_MachineGunTurret"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>60500</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_MachineGunTurret"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>280</Steel>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_MachineGunTurret"]/specialDisplayRadius</xpath>
+		<value>
+			<specialDisplayRadius>86</specialDisplayRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_MachineGunTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.999</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Naval Gun Turret ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>TCEE_NavalGunTurret_Gun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2.50</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.0</ShotSpread>
+			<SwayFactor>13.03</SwayFactor>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_28cmSpgrShell_HE</defaultProjectile>
+			<warmupTime>4.3</warmupTime>
+			<range>700</range>
+			<!-- Same as CE 81mm mortar -->
+			<minRange>35</minRange>
+			<requireLineOfSight>false</requireLineOfSight>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>TCEE_ShotNavalGunTurret</soundCast>
+			<muzzleFlashScale>20</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>9.8</reloadTime>
+			<ammoSet>AmmoSet_28cmSpgrShell</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_NavalGunTurret"]/statBases/WorkToBuild</xpath>
+		<value>
+			<WorkToBuild>2597000</WorkToBuild>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TCEE_NavalGunTurret"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>20555</Steel>
+				<ComponentIndustrial>5</ComponentIndustrial>
+			</costList>
+		</value>
+	</Operation>
+
+	<!-- Do not draw max range display circle (as it is larger than the upper limit of 90 cells) -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TCEE_NavalGunTurret"]/statBases</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<!-- ========== Common to all Turrets ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			@Name="TC_BaseArtilleryBuilding" or
+			@Name="TC_BaseAutoBuilding" or
+			@Name="TC_BaseMannedBuilding"
+			]/thingClass </xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			@Name="TC_BaseArtilleryBuilding" or
+			@Name="TC_BaseAutoBuilding" or
+			@Name="TC_BaseMannedBuilding"
+			]/fillPercent </xpath>
+		<value>
+			<!-- Needs to be at least 0.85 in order to shoot out from CE embrasures -->
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="TC_AdvancedNavalGun" or
+			defName="TC_AntiMaterielTurret" or
+			defName="TC_AvengerTurret" or
+			defName="TC_IncendiaryLauncher" or
+			defName="TC_RocketLauncher" or
+			defName="TCEE_GatlingGunTurret" or
+			defName="TCEE_MachineGunTurret" or
+			defName="TCEE_NavalGunTurret"
+			]/comps/li[@Class = "CompProperties_Refuelable"] </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="TC_AvengerTurret" or
+			defName="TC_CannonTurret" or
+			defName="TC_Howitzer" or
+			defName="TC_IncendiaryLauncher" or
+			defName="TC_RocketLauncher" or
+			defName="TCEE_NavalGunTurret" or
+			@Name="TC_BaseAutoBuilding"
+			]/comps/li[@Class = "CompProperties_Explosive"] </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="TC_CannonTurret" or
+			defName="TC_Howitzer"
+			]/inspectorTabs </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="TC_CannonTurret_Gun" or
+			defName="TC_Howitzer_Gun"
+			]/comps/li[@Class = "CompProperties_ChangeableProjectile"] </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="TC_BaseArtilleryWeapon"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>0</li>
+					<li>5</li>
+					<li>10</li>
+					<li>15</li>
+					<li>20</li>
+					<li>25</li>
+					<li>30</li>
+					<li>35</li>
+					<li>40</li>
+					<li>45</li>
+					<li>50</li>
+					<li>55</li>
+					<li>60</li>
+					<li>65</li>
+					<li>70</li>
+					<li>75</li>
+					<li>80</li>
+					<li>85</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="TC_CannonTurret_Gun" or
+			defName="TC_Howitzer_Gun"
+			]/building </xpath>
+	</Operation>
+
+	<!-- ========== Remove original non-CE ammo and projectiles ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="TC_Bullet_AntiMaterielTurret" or
+			defName="TC_Bullet_AvengerTurret" or
+			defName="TC_Bullet_Shell_AdvancedNavalGun" or
+			defName="TC_Bullet_Shell_CannonTurret_HEAT" or
+			defName="TC_Bullet_Shell_CannonTurret_HighExplosive" or
+			defName="TC_Bullet_Shell_Howitzer_EMP" or
+			defName="TC_Bullet_Shell_Howitzer_HighExplosive" or
+			defName="TC_Bullet_Shell_Howitzer_Incendiary" or
+			defName="TC_Bullet_Shell_IncendiaryLauncher_Incendiary" or
+			defName="TC_Bullet_Shell_RocketLauncher_HighExplosive" or
+			defName="TC_Shell_CannonTurret_HEAT" or
+			defName="TC_Shell_CannonTurret_HighExplosive" or
+			defName="TC_Shell_EMP" or
+			defName="TC_Shell_Howitzer_HighExplosive" or
+			defName="TC_Shell_Howitzer_Incendiary" or
+			defName="TC_Shell_IncendiaryLauncher_Incendiary" or
+			defName="TC_Shell_RocketLauncher_HighExplosive" or
+			defName="TCEE_Bullet_GatlingGunTurret" or
+			defName="TCEE_Bullet_MachineGunTurret" or
+			defName="TCEE_Bullet_Shell_Howitzer_ClusterBomb" or
+			defName="TCEE_Bullet_Shell_NavalGunTurret_HighExplosive" or
+			defName="TCEE_Shell_Howitzer_ClusterBomb" or
+			defName="TCEE_Shell_NavalGunTurret_HighExplosive" or
+			defName="TCEE_Submunition"
+			] </xpath>
+	</Operation>
+
+	<!-- ========== Replace research projects with CE equivalents ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ResearchProjectDef[
+			defName="TC_AvengerTurret"
+			]/prerequisites </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ResearchProjectDef[defName="TC_Artillery"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ResearchProjectDef[defName="TC_AutoTurret"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ResearchProjectDef[defName="TC_AvengerTurret"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ResearchProjectDef[defName="TCEE_ClusterMunition"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="TCEE_Shell_Howitzer_ClusterBomb" or
+			@Name="TC_MakeableShellBase"
+			]/recipeMaker/researchPrerequisite </xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="TC_AvengerTurret" or
+			defName="TC_CannonTurret" or
+			defName="TCEE_GatlingGunTurret" or
+			defName="TCEE_MachineGunTurret" or
+			@Name="TC_BaseArtilleryBuilding"
+			]/researchPrerequisites </xpath>
+		<value>
+			<researchPrerequisites>
+				<li>CE_TurretHeavyWeapons</li>
+			</researchPrerequisites>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			@Name="TC_BaseAutoBuilding"
+			]/researchPrerequisites </xpath>
+		<value>
+			<researchPrerequisites>
+				<li>CE_HeavyTurret</li>
+				<li>CE_TurretHeavyWeapons</li>
+			</researchPrerequisites>
+		</value>
+	</Operation>
+</Patch>

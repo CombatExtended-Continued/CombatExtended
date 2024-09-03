@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--
+	While these Defs are only used conditionally with other mods active,
+	they don't actually do anything by themselves, so there's no harm loading them.
+	 -->
+
+	<!-- ==================== Thing Categories ========================== -->
+
+	<!-- Vikings -->
+	<ThingCategoryDef>
+		<defName>AmmoCryptoCannon</defName>
+		<label>Crypto Fuel</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+	</ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+	<!-- Vikings -->
+	<CombatExtended.AmmoSetDef MayRequire="OskarPotocki.VFE.Vikings">
+		<defName>AmmoSet_CryptoCannon</defName>
+		<label>Crypto Cannon</label>
+		<ammoTypes>
+			<Ammo_CryptoCannon>Bullet_Flamethrower_CryptoCannon</Ammo_CryptoCannon>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- Lasers -->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserEradicatorCE</defName>
+		<label>laser charge</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserEradicatorCE</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<!-- Vikings -->
+	<ThingDef ParentName="Base6x24mmChargedBullet" MayRequire="OskarPotocki.VFE.Vikings">
+		<defName>Bullet_Flamethrower_CryptoCannon</defName>
+		<graphicData>
+			<texPath>Things/Projectile/CryptoBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.50</drawSize>
+		</graphicData>
+		<label>Crygenic stream</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Cryptofuel</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<soundExplode>CE_FlamethrowerExplosion</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>CE_Cryptofuel</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Lasers -->
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+		<defName>Bullet_Laser_SalvagedLaserEradicatorCE</defName>
+		<label>eradicator laser beam</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>15.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<!-- The overall pressure exerted by a laser beam striking something is, unsuprisingly, negligable. -->
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>40</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>3.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

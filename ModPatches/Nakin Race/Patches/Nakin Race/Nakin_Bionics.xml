@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- Nakin Claw -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Nakin_ARClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<!-- Compared to a Power Claw, Deals more damage, is slower, no movement penalty, slightly more Sharp Penetration and slightly less Blunt Penetration | Is exclusive to Nakins-->
+				<li Class="CombatExtended.ToolCE">
+					<label>claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationSharp>1.2</armorPenetrationSharp>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	<!-- Nakin Bionic Arm -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Bionic_Nakin_Arm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<!-- Is exclusive to Nakins-->
+				<li Class="CombatExtended.ToolCE">
+					<label>claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationSharp>0.85</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.2</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+</Patch>

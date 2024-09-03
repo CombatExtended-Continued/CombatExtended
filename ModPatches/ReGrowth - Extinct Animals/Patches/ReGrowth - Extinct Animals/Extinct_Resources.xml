@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Remove tusk as a weapon === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RG_MammothTusk"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="RG_MammothTusk"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_MammothTusk"]/statBases/MarketValue</xpath>
+		<value>
+			<MarketValue>120</MarketValue>
+		</value>
+	</Operation>
+
+	<!-- === Dinosaur Hides === -->
+
+	<!-- Thin -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_DinosaursHideThin"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_DinosaursHideThin"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.02</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Medium -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_DinosaursHideMedium"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.26</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_DinosaursHideMedium"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Heavy -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_DinosaursHideHeavy"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.52</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_DinosaursHideHeavy"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- === Wooly Wool === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG_WoolRhinoceros" or defName="RG_WoolStegosaurus"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.036</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+</Patch>
