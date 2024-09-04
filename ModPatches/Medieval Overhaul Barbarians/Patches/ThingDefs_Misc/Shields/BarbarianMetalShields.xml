@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- All Shields -->
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[
 			defName="pphhyy_Barbarian_MetalShield" or
 			defName="pphhyy_Barbarian_MetalShieldII" or
 			defName="pphhyy_Barbarian_MetalShieldIII"]</xpath>
 		<attribute>ParentName</attribute>
-		<value>ShieldBase</value>
+		<value>pphhyy_BaseShield</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -40,30 +41,6 @@
 				<MeleeCritChance>-0.05</MeleeCritChance>
 				<MeleeParryChance>1.0</MeleeParryChance>
 			</equippedStatOffsets>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_MetalShield"]/equippedStatOffsets</xpath>
-		<value>
-			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
-			<ArmorRating_Blunt>3.75</ArmorRating_Blunt>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_MetalShieldII"]/equippedStatOffsets</xpath>
-		<value>
-			<ArmorRating_Sharp>2.75</ArmorRating_Sharp>
-			<ArmorRating_Blunt>4</ArmorRating_Blunt>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_MetalShieldIII"]/equippedStatOffsets</xpath>
-		<value>
-			<ArmorRating_Sharp>3</ArmorRating_Sharp>
-			<ArmorRating_Blunt>4.25</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -118,6 +95,30 @@
 				<Bulk>8</Bulk>
 				<WornBulk>5</WornBulk>
 			</statBases>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_MetalShield"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>3.75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_MetalShieldII"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>2.75</ArmorRating_Sharp>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_MetalShieldIII"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+			<ArmorRating_Blunt>4.25</ArmorRating_Blunt>
 		</value>
 	</Operation>
 

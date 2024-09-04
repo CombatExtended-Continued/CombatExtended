@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- All Shields -->
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[
 			defName="pphhyy_Barbarian_TallShield" or
 			defName="pphhyy_Barbarian_TallShieldII" or
 			defName="pphhyy_Barbarian_TallShieldIII"]</xpath>
 		<attribute>ParentName</attribute>
-		<value>ShieldBase</value>
+		<value>pphhyy_BaseShield</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -42,9 +43,24 @@
 			</equippedStatOffsets>
 		</value>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_TallShield" or
+			defName="pphhyy_Barbarian_TallShieldII" or
+			defName="pphhyy_Barbarian_TallShieldIII"]/statBases</xpath>
+		<value>
+			<statBases>
+				<MaxHitPoints>150</MaxHitPoints>
+				<Mass>5</Mass>
+				<Bulk>8</Bulk>
+				<WornBulk>5</WornBulk>
+			</statBases>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_TallShield"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_TallShield"]/statBases</xpath>
 		<value>
 			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
 			<ArmorRating_Blunt>3.75</ArmorRating_Blunt>
@@ -52,7 +68,7 @@
 	</Operation>
 	
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_TallShieldII"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_TallShieldII"]/statBases</xpath>
 		<value>
 			<ArmorRating_Sharp>2.75</ArmorRating_Sharp>
 			<ArmorRating_Blunt>4</ArmorRating_Blunt>
@@ -60,7 +76,7 @@
 	</Operation>
 	
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_TallShieldIII"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_TallShieldIII"]/statBases</xpath>
 		<value>
 			<ArmorRating_Sharp>3</ArmorRating_Sharp>
 			<ArmorRating_Blunt>4.25</ArmorRating_Blunt>
@@ -110,21 +126,7 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="pphhyy_Barbarian_TallShield" or
-			defName="pphhyy_Barbarian_TallShieldII" or
-			defName="pphhyy_Barbarian_TallShieldIII"]/statBases</xpath>
-		<value>
-			<statBases>
-				<MaxHitPoints>150</MaxHitPoints>
-				<Mass>5</Mass>
-				<Bulk>8</Bulk>
-				<WornBulk>5</WornBulk>
-			</statBases>
-		</value>
-	</Operation>
-
+	<!-- Tall Shield 1 -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_TallShield"]</xpath>
 		<value>
@@ -166,6 +168,7 @@
 		</value>
 	</Operation>
 
+	<!-- Tall Shield 2 -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_TallShieldII"]</xpath>
 		<value>
@@ -207,6 +210,7 @@
 		</value>
 	</Operation>
 
+	<!-- Tall Shield 3 -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_TallShieldIII"]</xpath>
 		<value>
