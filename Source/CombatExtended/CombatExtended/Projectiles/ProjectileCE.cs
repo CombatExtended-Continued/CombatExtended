@@ -239,12 +239,6 @@ namespace CombatExtended
         {
             get
             {
-                if (!lerpPosition)
-                {
-                    return Quaternion.AngleAxis(
-                           Mathf.Rad2Deg * Mathf.Atan2(-velocity.y, velocity.x) + 90f
-                           , Vector3.up);
-                }
                 Vector2 w = (Destination - origin);
 
                 var vx = w.x / startingTicksToImpact;
