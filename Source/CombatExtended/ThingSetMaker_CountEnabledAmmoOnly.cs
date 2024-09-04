@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
@@ -20,7 +21,7 @@ namespace CombatExtended
             return true;
         }
 
-        protected override void Generate(ThingSetMakerParams parms, List<Thing> outThings)
+        public override void Generate(ThingSetMakerParams parms, List<Thing> outThings)
         {
             parms.validator = delegate (ThingDef d)
             {
@@ -48,7 +49,7 @@ namespace CombatExtended
             return true;
         }
 
-        protected override void Generate(ThingSetMakerParams parms, List<Thing> outThings)
+        public override void Generate(ThingSetMakerParams parms, List<Thing> outThings)
         {
             parms.validator = delegate (ThingDef d)
             {
@@ -65,11 +66,11 @@ namespace CombatExtended
     {
         IntRange magCount = new IntRange(2, 5);
 
-        bool random;
+        bool random = false;
 
-        bool canGenerateAdvanced;
+        bool canGenerateAdvanced = false;
 
-        protected override void Generate(ThingSetMakerParams parms, List<Thing> outThings)
+        public override void Generate(ThingSetMakerParams parms, List<Thing> outThings)
         {
             base.Generate(parms, outThings);
             List<Thing> ammos = new List<Thing>();
