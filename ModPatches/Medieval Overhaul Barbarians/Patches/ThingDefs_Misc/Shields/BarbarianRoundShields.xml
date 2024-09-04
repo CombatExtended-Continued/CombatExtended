@@ -1,42 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- All Shields -->
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[
-			defName="pphhyy_Barbarian_MetalShield" or
-			defName="pphhyy_Barbarian_MetalShieldII" or
-			defName="pphhyy_Barbarian_MetalShieldIII"]</xpath>
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]</xpath>
 		<attribute>ParentName</attribute>
-		<value>ShieldBase</value>
+		<value>pphhyy_BaseShield</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName="pphhyy_Barbarian_MetalShield" or
-			defName="pphhyy_Barbarian_MetalShieldII" or
-			defName="pphhyy_Barbarian_MetalShieldIII"]</xpath>
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]</xpath>
 		<value>
-			<apparel>
-				<countsAsClothingForNudity>false</countsAsClothingForNudity>
-				<careIfWornByCorpse>false</careIfWornByCorpse>
-				<bodyPartGroups>
-					<li>LeftShoulder</li>
-				</bodyPartGroups>
-				<layers>
-					<li>Shield</li>
-				</layers>
-			</apparel>
 			<tradeTags>
 				<li>Armor</li>
 			</tradeTags>
+			<costList>
+				<Steel>50</Steel>
+			</costList>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="pphhyy_Barbarian_MetalShield" or
-			defName="pphhyy_Barbarian_MetalShieldII" or
-			defName="pphhyy_Barbarian_MetalShieldIII"]/equippedStatOffsets</xpath>
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/equippedStatOffsets</xpath>
 		<value>
 			<equippedStatOffsets>
 				<ReloadSpeed>-0.2</ReloadSpeed>
@@ -50,32 +44,71 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="pphhyy_Barbarian_MetalShield" or
-			defName="pphhyy_Barbarian_MetalShieldII" or
-			defName="pphhyy_Barbarian_MetalShieldIII"]/weaponTags</xpath>
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/statBases</xpath>
+		<value>
+			<statBases>
+				<MaxHitPoints>150</MaxHitPoints>
+				<Mass>4.5</Mass>
+				<Bulk>7</Bulk>
+				<WornBulk>5</WornBulk>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShield"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>3.75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShieldII"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>2.75</ArmorRating_Sharp>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShieldIII"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+			<ArmorRating_Blunt>4.25</ArmorRating_Blunt>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName="pphhyy_Barbarian_MetalShield" or
-			defName="pphhyy_Barbarian_MetalShieldII" or
-			defName="pphhyy_Barbarian_MetalShieldIII"]/tools</xpath>
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/weaponTags</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName="pphhyy_Barbarian_MetalShield" or
-			defName="pphhyy_Barbarian_MetalShieldII" or
-			defName="pphhyy_Barbarian_MetalShieldIII"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[
-			defName="pphhyy_Barbarian_MetalShield" or
-			defName="pphhyy_Barbarian_MetalShieldII" or
-			defName="pphhyy_Barbarian_MetalShieldIII"]</xpath>
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]</xpath>
 		<value>
 			<li Class="CombatExtended.ShieldDefExtension">
 				<shieldCoverage>
@@ -89,34 +122,19 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="pphhyy_Barbarian_MetalShield" or
-			defName="pphhyy_Barbarian_MetalShieldII" or
-			defName="pphhyy_Barbarian_MetalShieldIII"]/statBases</xpath>
-		<value>
-			<statBases>
-				<MaxHitPoints>125</MaxHitPoints>
-				<Mass>7</Mass>
-				<Bulk>8</Bulk>
-				<WornBulk>5</WornBulk>
-				<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
-			</statBases>
-		</value>
-	</Operation>
-
+	<!-- Round Shield 1 -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_MetalShield"]</xpath>
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShield"]</xpath>
 		<value>
 			<apparel>
 				<tags>
-					<li>pphhyy_Barbarian_BarbMetalShield1</li>
+					<li>pphhyy_Barbarian_BarbRoundShield1</li>
 				</tags>
 				<renderNodeProperties>
 					<li>
 						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
 						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-						<texPath>Shields/Barbarian_MetalShield</texPath>
+						<texPath>Shields/Barbarian_RoundShield</texPath>
 						<shaderTypeDef>CutoutComplex</shaderTypeDef>
 						<parentTagDef>ApparelBody</parentTagDef>
 						<drawData>
@@ -146,18 +164,19 @@
 		</value>
 	</Operation>
 
+	<!-- Round Shield 2 -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_MetalShieldII"]</xpath>
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShieldII"]</xpath>
 		<value>
 			<apparel>
 				<tags>
-					<li>pphhyy_Barbarian_BarbMetalShield2</li>
+					<li>pphhyy_Barbarian_BarbRoundShield2</li>
 				</tags>
 				<renderNodeProperties>
 					<li>
 						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
 						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-						<texPath>Shields/Barbarian_MetalShieldII</texPath>
+						<texPath>Shields/Barbarian_RoundShieldII</texPath>
 						<shaderTypeDef>CutoutComplex</shaderTypeDef>
 						<parentTagDef>ApparelBody</parentTagDef>
 						<drawData>
@@ -187,18 +206,19 @@
 		</value>
 	</Operation>
 
+	<!-- Round Shield 3 -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_MetalShieldIII"]</xpath>
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShieldIII"]</xpath>
 		<value>
 			<apparel>
 				<tags>
-					<li>pphhyy_Barbarian_BarbMetalShield3</li>
+					<li>pphhyy_Barbarian_BarbRoundShield3</li>
 				</tags>
 				<renderNodeProperties>
 					<li>
 						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
 						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
-						<texPath>Shields/Barbarian_MetalShieldIII</texPath>
+						<texPath>Shields/Barbarian_RoundShieldIII</texPath>
 						<shaderTypeDef>CutoutComplex</shaderTypeDef>
 						<parentTagDef>ApparelBody</parentTagDef>
 						<drawData>
