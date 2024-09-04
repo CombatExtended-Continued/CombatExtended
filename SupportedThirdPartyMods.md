@@ -251,6 +251,10 @@ GouRIMet	|
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
 Grimworld: Melee	|
+GrimWorld 40,000 - Angels of Death |
+GrimWorld 40,000 - Core Imperialis |
+GrimWorld 40,000 - Hammer of the Imperium |
+GrimWorld 40,000 - Imperial Vehicles of Grimworld |
 Gulden Mod  |
 Half Dragons    |
 HALO: UNSC Armoury |
