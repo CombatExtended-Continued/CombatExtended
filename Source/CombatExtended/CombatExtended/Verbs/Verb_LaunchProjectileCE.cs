@@ -243,7 +243,7 @@ namespace CombatExtended
         {
             get
             {
-                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0)
+                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0 || _lightingTracker.map != caster.Map)
                 {
                     _lightingTracker = caster.Map.GetLightingTracker();
                 }
