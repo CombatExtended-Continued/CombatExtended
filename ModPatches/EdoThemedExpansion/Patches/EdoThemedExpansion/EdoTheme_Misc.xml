@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HS_BlackPowderBarrel"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<damageAmountBase>180</damageAmountBase>
+				<explosiveRadius>3</explosiveRadius>
+       				<preExplosionSpawnThingDef>Filth_RubbleBuilding</preExplosionSpawnThingDef>
+       				<preExplosionSpawnChance>0.4</preExplosionSpawnChance>
+				<startWickOnDamageTaken>
+					<li>Bullet</li>
+					<li>Arrow</li>
+					<li>ArrowHighVelocity</li>
+				</startWickOnDamageTaken>
+				<wickTicks>
+					<min>0</min>
+					<max>20</max>
+				</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>32</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
