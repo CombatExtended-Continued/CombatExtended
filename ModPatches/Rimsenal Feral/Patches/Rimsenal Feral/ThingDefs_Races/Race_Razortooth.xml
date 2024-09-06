@@ -15,11 +15,60 @@
 		<xpath>Defs/ThingDef[defName="Mutant_Razortooth"]/statBases</xpath>
 		<value>
 			<ArmorRating_Blunt>20</ArmorRating_Blunt>
-			<ArmorRating_Sharp>2</ArmorRating_Sharp>
-			<MeleeDodgeChance>1</MeleeDodgeChance>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+			<MeleeDodgeChance>0.25</MeleeDodgeChance>
 			<MeleeCritChance>0.18</MeleeCritChance>
 			<MeleeParryChance>0.05</MeleeParryChance>
 			<SmokeSensitivity>0.4</SmokeSensitivity>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mutant_Razortooth"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mutant_Razortooth"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mutant_Razortooth"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>800</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mutant_Razortooth"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+							<li>Paw</li>
+						</parts>
+					</li>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+							<li>Paw</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
 		</value>
 	</Operation>
 

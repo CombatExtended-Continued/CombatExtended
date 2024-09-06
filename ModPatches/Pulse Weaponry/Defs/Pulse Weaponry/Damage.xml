@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ManeuverDef>
+    <defName>StunstickSmash</defName>
+    <requiredCapacity>PW_Taser</requiredCapacity>
+	<verb>
+		<verbClass Class="CombatExtended.VerbPropertiesCE">CombatExtended.Verb_MeleeAttackCE</verbClass>
+		<meleeDamageDef>PW_Taser</meleeDamageDef>
+	</verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+	<ToolCapacityDef>
+		<defName>PW_Taser</defName>
+		<label>shock</label>
+	</ToolCapacityDef>
+
+	<DamageDef ParentName="Electrical">
+		<defName>PW_Taser</defName>
+		<label>shock</label>
+		<deathMessage>{0} has been shocked to death.</deathMessage>
+		<hediff>StunstickBurn</hediff>
+		<defaultArmorPenetration>0.45</defaultArmorPenetration>
+    	<causeStun>true</causeStun>		
+		<modExtensions>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+			</li>
+		</modExtensions>
+	</DamageDef>
+
+	<HediffDef ParentName="ElectricalBurn">
+		<defName>StunstickBurn</defName>
+		<label>stunstick burn</label>
+		<labelNoun>a stunstick burn</labelNoun>
+		<comps>
+			<li Class="CombatExtended.HediffCompProperties_Beanbag" />
+		</comps>
+	</HediffDef>
+
+</Defs>

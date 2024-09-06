@@ -101,22 +101,29 @@
 			<SwayFactor>1.34</SwayFactor>
 			<Bulk>10.80</Bulk>
 			<Mass>5.60</Mass>
-			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.48</recoilAmount>
+			<recoilAmount>0.74</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_PlasmaRifle_Fed</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
+			<warmupTime>1.35</warmupTime>
 			<range>55</range>
 			<soundCast>RS_ShotCR</soundCast>
 			<muzzleFlashScale>12</muzzleFlashScale>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
 		</Properties>
 		<FireModes>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>5</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<!-- ==========  Aux Pistol  =========== -->
@@ -131,11 +138,11 @@
 			<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>2</recoilAmount>
+			<recoilAmount>1</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_AuxiliaryPistol</defaultProjectile>
-			<warmupTime>0.55</warmupTime>
+			<warmupTime>0.8</warmupTime>
 			<burstShotCount>2</burstShotCount>
 			<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
 			<range>18</range>
@@ -145,6 +152,10 @@
 		<FireModes>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>3</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<!-- ==========  Makeshift Crucible Rifle  =========== -->
@@ -160,17 +171,21 @@
 			<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.56</recoilAmount>
+			<recoilAmount>0.78</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_MakeshiftCrucibleRifle</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
+			<warmupTime>1.7</warmupTime>
 			<range>55</range>
 			<soundCast>RS_ShotCP</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<FireModes/>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>6</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<!-- ==========  AD Crucible Rifle  =========== -->
@@ -184,15 +199,15 @@
 			<SwayFactor>1.44</SwayFactor>
 			<Bulk>9.50</Bulk>
 			<Mass>4.80</Mass>
-			<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.56</recoilAmount>
+			<recoilAmount>0.78</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_CrucibleRifle</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
-			<burstShotCount>6</burstShotCount>
+			<warmupTime>1.6</warmupTime>
+			<burstShotCount>5</burstShotCount>
 			<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
 			<range>55</range>
 			<soundCast>RS_ShotCR</soundCast>
@@ -203,6 +218,10 @@
 			<aiUseBurstMode>TRUE</aiUseBurstMode>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -214,15 +233,15 @@
 			<SwayFactor>1.44</SwayFactor>
 			<Bulk>9.50</Bulk>
 			<Mass>4.80</Mass>
-			<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.56</recoilAmount>
+			<recoilAmount>0.78</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_CrucibleRifle</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
-			<burstShotCount>6</burstShotCount>
+			<defaultProjectile>Bullet_CrucibleRifleAD</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<burstShotCount>5</burstShotCount>
 			<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
 			<range>55</range>
 			<soundCast>RS_ShotCR</soundCast>
@@ -233,6 +252,10 @@
 			<aiUseBurstMode>TRUE</aiUseBurstMode>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<!-- ==========  AD Crucible Pistol  =========== -->
@@ -245,17 +268,17 @@
 			<SwayFactor>1.08</SwayFactor>
 			<Bulk>3.90</Bulk>
 			<Mass>2.40</Mass>
-			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.78</recoilAmount>
+			<recoilAmount>0.89</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_CruciblePistol</defaultProjectile>
-			<warmupTime>0.6</warmupTime>
+			<warmupTime>0.7</warmupTime>
 			<burstShotCount>5</burstShotCount>
-			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-			<range>12</range>
+			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<range>21</range>
 			<soundCast>RS_ShotCP</soundCast>
 			<muzzleFlashScale>12</muzzleFlashScale>
 		</Properties>
@@ -266,6 +289,10 @@
 			<aimedBurstShotCount>3</aimedBurstShotCount>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>3</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -277,17 +304,17 @@
 			<SwayFactor>1.08</SwayFactor>
 			<Bulk>3.90</Bulk>
 			<Mass>2.40</Mass>
-			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.78</recoilAmount>
+			<recoilAmount>0.89</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_CruciblePistol</defaultProjectile>
-			<warmupTime>0.6</warmupTime>
+			<defaultProjectile>Bullet_CruciblePistolAD</defaultProjectile>
+			<warmupTime>0.7</warmupTime>
 			<burstShotCount>5</burstShotCount>
-			<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-			<range>12</range>
+			<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+			<range>21</range>
 			<soundCast>RS_ShotCP</soundCast>
 			<muzzleFlashScale>12</muzzleFlashScale>
 		</Properties>
@@ -298,6 +325,10 @@
 			<aimedBurstShotCount>3</aimedBurstShotCount>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>3</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<!-- ==========  AD Heat Cannon  =========== -->
@@ -309,16 +340,16 @@
 			<SwayFactor>1.48</SwayFactor>
 			<Bulk>12.70</Bulk>
 			<Mass>7.50</Mass>
-			<RangedWeapon_Cooldown>0.90</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.58</recoilAmount>
+			<recoilAmount>0.79</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_HeatCannon</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
+			<warmupTime>1.35</warmupTime>
 			<burstShotCount>5</burstShotCount>
-			<ticksBetweenBurstShots>50</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>40</ticksBetweenBurstShots>
 			<range>55</range>
 			<soundCast>RS_ShotHC</soundCast>
 			<muzzleFlashScale>12</muzzleFlashScale>
@@ -330,6 +361,10 @@
 			<aimedBurstShotCount>3</aimedBurstShotCount>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>6</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -340,16 +375,16 @@
 			<SwayFactor>1.48</SwayFactor>
 			<Bulk>12.70</Bulk>
 			<Mass>7.50</Mass>
-			<RangedWeapon_Cooldown>0.90</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.58</recoilAmount>
+			<recoilAmount>0.79</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_HeatCannon</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
+			<warmupTime>1.35</warmupTime>
 			<burstShotCount>5</burstShotCount>
-			<ticksBetweenBurstShots>50</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>40</ticksBetweenBurstShots>
 			<range>55</range>
 			<soundCast>RS_ShotHC</soundCast>
 			<muzzleFlashScale>12</muzzleFlashScale>
@@ -361,6 +396,10 @@
 			<aimedBurstShotCount>3</aimedBurstShotCount>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>6</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<!-- ==========  AD Crucible Precision Rifle  =========== -->
@@ -372,14 +411,14 @@
 			<SwayFactor>1.46</SwayFactor>
 			<Bulk>12.40</Bulk>
 			<Mass>5.20</Mass>
-			<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.06</recoilAmount>
+			<recoilAmount>0.53</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_CruciblePrecisionRifle</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
+			<warmupTime>1.6</warmupTime>
 			<range>75</range>
 			<soundCast>RS_ShotCPR</soundCast>
 			<muzzleFlashScale>12</muzzleFlashScale>
@@ -387,6 +426,10 @@
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>4</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -397,14 +440,14 @@
 			<SwayFactor>1.46</SwayFactor>
 			<Bulk>12.40</Bulk>
 			<Mass>5.20</Mass>
-			<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.06</recoilAmount>
+			<recoilAmount>0.53</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_CruciblePrecisionRifle</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
+			<defaultProjectile>Bullet_CruciblePrecisionRifleAD</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
 			<range>75</range>
 			<soundCast>RS_ShotCPR</soundCast>
 			<muzzleFlashScale>12</muzzleFlashScale>
@@ -412,6 +455,10 @@
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>4</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<!-- ==========  AD Plasma Caster  =========== -->
@@ -423,26 +470,29 @@
 			<SwayFactor>1.96</SwayFactor>
 			<Bulk>18.20</Bulk>
 			<Mass>10.00</Mass>
-			<RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>5</recoilAmount>
+			<recoilAmount>0.50</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_PlasmaCaster</defaultProjectile>
-			<warmupTime>3.25</warmupTime>
+			<warmupTime>1.9</warmupTime>
 			<minRange>3</minRange>
-			<burstShotCount>3</burstShotCount>
-			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-			<range>40</range>
+			<range>35</range>
 			<soundCast>RS_ShotHarmonizer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>18</muzzleFlashScale>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 		</Properties>
 		<FireModes/>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>5</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -453,26 +503,29 @@
 			<SwayFactor>1.96</SwayFactor>
 			<Bulk>18.20</Bulk>
 			<Mass>10.00</Mass>
-			<RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>5</recoilAmount>
+			<recoilAmount>0.50</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_PlasmaCaster</defaultProjectile>
-			<warmupTime>4.25</warmupTime>
+			<defaultProjectile>Bullet_PlasmaCaster_Fed</defaultProjectile>
+			<warmupTime>1.9</warmupTime>
 			<minRange>3</minRange>
-			<burstShotCount>3</burstShotCount>
-			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-			<range>40</range>
+			<range>35</range>
 			<soundCast>RS_ShotHarmonizer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>18</muzzleFlashScale>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 		</Properties>
 		<FireModes/>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>5</reloadTime>
+		</AmmoUser>
 	</Operation>
 
 	<!-- ==========  AD Crucible Carbine  =========== -->
@@ -485,14 +538,14 @@
 			<SwayFactor>1.11</SwayFactor>
 			<Bulk>8.20</Bulk>
 			<Mass>4.10</Mass>
-			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.38</recoilAmount>
+			<recoilAmount>0.69</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_CrucibleCarbine</defaultProjectile>
-			<warmupTime>0.85</warmupTime>
+			<defaultProjectile>Bullet_CrucibleCarbine_CE</defaultProjectile>
+			<warmupTime>1.07</warmupTime>
 			<burstShotCount>5</burstShotCount>
 			<ticksBetweenBurstShots>22</ticksBetweenBurstShots>
 			<range>32</range>
@@ -503,5 +556,9 @@
 			<aimedBurstShotCount>3</aimedBurstShotCount>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4</reloadTime>
+		</AmmoUser>
 	</Operation>
 </Patch>

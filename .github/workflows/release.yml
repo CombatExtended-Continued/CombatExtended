@@ -16,13 +16,11 @@ jobs:
         rm -rf AssemblyPublicizer
         git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
         mkdir -p Assemblies
-        mkdir -p AssembliesCore
-        mkdir -p AssembliesCompat
         mkdir -p ${{ runner.temp }}/downloads
         
-    - name: build loader
+    - name: remove loader
       run: |
-        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/Loader/Loader.csproj --output Assemblies/0CombatExtendedLoader.dll --download-libs --all-libs        
+        rm Assemblies/CombatExtendedLoader.dll
     - name: build core
       run: |
         TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
@@ -32,7 +30,7 @@ jobs:
     - name: package
       run: |
         mkdir CombatExtended
-        cp -r Assemblies/ AssembliesCore/ AssembliesCompat/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Biotech/ Anomaly/ Sounds/ Textures/ ModPatches/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
+        cp -r Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Biotech/ Anomaly/ Sounds/ Textures/ ModPatches/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
         zip -9 -r CombatExtended.zip CombatExtended
     - name: Upload Package
       id: upload-package

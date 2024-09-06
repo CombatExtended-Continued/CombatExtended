@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Warchief Main Turret -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_WarchiefMainCannon"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_120mmCannonShell_HE</projectile>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_WarchiefMainCannon"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>8</reloadTimer>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_WarchiefMainCannon"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2</warmUpTimer>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_WarchiefMainCannon"]/maxRange</xpath>
+		<value>
+			<maxRange>80</maxRange>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_WarchiefMainCannon"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>15</magazineCapacity>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_WarchiefMainCannon"]/projectileShifting</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_WarchiefMainCannon"]/fireModes</xpath>
+		<value>
+			<fireModes>
+					<li>
+						<shotsPerBurst>1</shotsPerBurst>
+						<spreadRadius>3</spreadRadius>
+						<label>Single Shot</label>
+						<texPath>UI/Gizmos/FireRate_Single</texPath>
+					</li>
+			</fireModes>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_WarchiefMainCannon"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+				<shotHeight>2.5</shotHeight>
+				<speed>200</speed>
+				<sway>0.74</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- Warchief MG Turrets -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_Warchief_Turret_Autocannon"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_20x102mmNATO_AP</projectile>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_Warchief_Turret_Autocannon"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>6</reloadTimer>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_Warchief_Turret_Autocannon"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2</warmUpTimer>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_Warchief_Turret_Autocannon"]/maxRange</xpath>
+		<value>
+			<maxRange>60</maxRange>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_Warchief_Turret_Autocannon"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>100</magazineCapacity>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_Warchief_Turret_Autocannon"]/projectileShifting</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_Warchief_Turret_Autocannon"]/fireModes</xpath>
+		<value>
+			<fireModes>
+				<li>
+					<shotsPerBurst>1</shotsPerBurst>
+					<ticksBetweenShots>5</ticksBetweenShots>
+					<ticksBetweenBursts>15</ticksBetweenBursts>
+					<spreadRadius>4</spreadRadius>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>5</shotsPerBurst>
+					<ticksBetweenShots>15</ticksBetweenShots>
+					<ticksBetweenBursts>30</ticksBetweenBursts>
+					<spreadRadius>4</spreadRadius>
+					<label>Burst</label>
+					<texPath>UI/Gizmos/FireRate_Burst</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>10</shotsPerBurst>
+					<ticksBetweenShots>15</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<spreadRadius>4</spreadRadius>
+					<label>Auto</label>
+					<texPath>UI/Gizmos/FireRate_Auto</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JASV_Warchief_Turret_Autocannon"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+				<shotHeight>2.5</shotHeight>
+				<speed>156</speed>
+				<sway>0.7</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- Warchief Tank -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/vehicleStats/CargoCapacity</xpath>
+		<value>
+			<CargoCapacity>1500</CargoCapacity>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="FrontArmorPlating"]/health</xpath>
+		<value>
+			<health>540</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>170</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>85</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="LeftArmorPlating"]/health</xpath>
+		<value>
+			<health>340</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>140</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>70</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="RightArmorPlating"]/health</xpath>
+		<value>
+			<health>340</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>140</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>70</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="RoofArmorPlating"]/health</xpath>
+		<value>
+			<health>300</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="RoofArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>52</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="RoofArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>26</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="Roof"]/health</xpath>
+		<value>
+			<health>170</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="Roof"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>32</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JASV_Warchief"]/components/li[key="Roof"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+</Patch>

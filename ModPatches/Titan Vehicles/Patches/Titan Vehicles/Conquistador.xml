@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+		<!-- Conquistador Turret -->
+		
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JAHV_Conquistador_MainTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_57x438mmBofors_AP</projectile>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JAHV_Conquistador_MainTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>6</reloadTimer>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JAHV_Conquistador_MainTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2</warmUpTimer>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JAHV_Conquistador_MainTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>100</maxRange>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JAHV_Conquistador_MainTurret"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>10</magazineCapacity>
+		</value>
+	</Operation>	
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JAHV_Conquistador_MainTurret"]/fireModes</xpath>
+		<value>
+			<fireModes>
+				<li>
+					<shotsPerBurst>1</shotsPerBurst>
+					<ticksBetweenBursts>50</ticksBetweenBursts>
+					<spreadRadius>4</spreadRadius>
+					<label>Single Shot</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>5</shotsPerBurst>
+					<ticksBetweenShots>30</ticksBetweenShots>
+					<ticksBetweenBursts>90</ticksBetweenBursts>
+					<spreadRadius>1</spreadRadius>
+					<label>Burst</label>
+					<texPath>UI/Gizmos/FireRate_Burst</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="JAHV_Conquistador_MainTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_57x438mmBofors</ammoSet>
+				<shotHeight>2.5</shotHeight>
+				<speed>200</speed>
+				<sway>0.64</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- Conquistador Vehicle -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>120</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>40</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Bow"]/health</xpath>
+		<value>
+			<health>280</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Bow"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>60</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Bow"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Port"]/health</xpath>
+		<value>
+			<health>280</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Port"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>60</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Port"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Starbord"]/health</xpath>
+		<value>
+			<health>280</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Starbord"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>60</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Starbord"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Stern"]/health</xpath>
+		<value>
+			<health>280</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Stern"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>60</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Stern"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Rudder"]/health</xpath>
+		<value>
+			<health>280</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Rudder"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>60</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="Rudder"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="JAHV_Conquistador"]/components/li[key="hydrogen condenser"]/health</xpath>
+		<value>
+			<health>280</health>
+		</value>
+	</Operation>
+	
+</Patch>

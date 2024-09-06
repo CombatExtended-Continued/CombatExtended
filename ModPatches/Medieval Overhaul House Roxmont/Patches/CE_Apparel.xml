@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ==================== Apparel ==================== -->
+
+	<!-- ========== Helmet ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Headgear_HeraldicGreatHelmRoxmont"]</xpath>
+		<value>
+			<statBases>
+				<Bulk>6</Bulk>
+				<WornBulk>1</WornBulk>
+				<Mass>4</Mass>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Headgear_HeraldicGreatHelmRoxmont"]</xpath>
+		<value>
+			<equippedStatOffsets Inherit="False">
+				<AimingAccuracy>-0.4</AimingAccuracy>
+				<MeleeHitChance>-2</MeleeHitChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="DankPyon_Headgear_HeraldicGreatHelmRoxmont"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Armors ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/statBases</xpath>
+		<value>
+			<Bulk>25</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Shoulder</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Shoulder</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/statBases/Mass</xpath>
+		<value>
+			<Bulk>100</Bulk>
+			<WornBulk>10</WornBulk>
+			<Mass>15</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ==================== Shield ==================== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DankPyon_ShieldHeater_Roxmont"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_ShieldHeater_Roxmont"]</xpath>
+		<value>
+			<apparel>
+				<tags>
+					<li>DankPyon_ShieldHeater_Roxmont</li>
+				</tags>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+						<texPath>HouseRoxmont/Apparel/Utility/HeaterRoxmont/HeaterRoxmont</texPath>
+						<shaderTypeDef>CutoutComplex</shaderTypeDef>
+						<parentTagDef>ApparelBody</parentTagDef>
+						<drawData>
+							<scale>0.55</scale>
+							<defaultData>
+								<layer>80</layer>
+							</defaultData>
+							<dataEast>
+								<layer>-5</layer>
+								<offset>(0, 0, -0.1)</offset>
+								<rotationOffset>30</rotationOffset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>-30</rotationOffset>
+							</dataWest>
+							<dataNorth>
+								<layer>-5</layer>
+								<offset>(0.2, 0, -0.2)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0.2, 0, -0.2)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</apparel>
+		</value>
+	</Operation>
+
+</Patch>
