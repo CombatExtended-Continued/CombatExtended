@@ -34,7 +34,7 @@ namespace CombatExtended
         public int burstCooldownTicksLeft;
         public int burstWarmupTicksLeft;                                // Need this public so aim mode can modify it
         public LocalTargetInfo currentTargetInt = LocalTargetInfo.Invalid;
-        private bool holdFire;
+        protected bool holdFire;
         private Thing gunInt;                                           // Better to be private, because Gun is used for access, instead
         public TurretTop top;
         public CompPowerTrader powerComp;
@@ -61,12 +61,12 @@ namespace CombatExtended
         public virtual bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
         public CompEquippable GunCompEq => Gun.TryGetComp<CompEquippable>();
         public override LocalTargetInfo CurrentTarget => currentTargetInt;
-        private bool WarmingUp => burstWarmupTicksLeft > 0;
+        protected bool WarmingUp => burstWarmupTicksLeft > 0;
         public override Verb AttackVerb => Gun == null ? null : GunCompEq.verbTracker.PrimaryVerb;
         public bool IsMannable => mannableComp != null;
         public bool PlayerControlled => (Faction == Faction.OfPlayer || MannedByColonist) && !MannedByNonColonist;
         protected virtual bool CanSetForcedTarget => mannableComp != null && PlayerControlled;
-        private bool CanToggleHoldFire => PlayerControlled;
+        protected bool CanToggleHoldFire => PlayerControlled;
         public bool IsMortar => def.building.IsMortar;
         public bool IsMortarOrProjectileFliesOverhead => Projectile.projectile.flyOverhead || IsMortar;
         //Not included: CanExtractShell

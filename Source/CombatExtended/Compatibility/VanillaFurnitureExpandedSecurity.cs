@@ -44,11 +44,6 @@ namespace CombatExtended.Compatibility
             BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
         }
 
-        public IEnumerable<string> GetCompatList()
-        {
-            yield break;
-        }
-
         private static bool CheckCollision(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             if (projectile.def.projectile.flyOverhead)

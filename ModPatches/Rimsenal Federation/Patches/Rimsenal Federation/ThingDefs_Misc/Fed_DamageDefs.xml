@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/DamageDef[defName="Optic"]</xpath>
-		<value>
-			<li Class="CombatExtended.DamageDefExtensionCE">
-				<isAmbientDamage>true</isAmbientDamage>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/DamageDef[defName="Plasma"]</xpath>
+		<xpath>Defs/DamageDef[
+		defName="Optic" or
+		defName="Crucible" or
+		defName="Plasma"
+		]</xpath>
 		<value>
 			<li Class="CombatExtended.DamageDefExtensionCE">
 				<isAmbientDamage>true</isAmbientDamage>

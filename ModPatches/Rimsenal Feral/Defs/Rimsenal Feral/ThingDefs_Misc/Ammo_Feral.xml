@@ -27,6 +27,14 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Feral_Rivet</defName>
+		<label>nail</label>
+		<ammoTypes>
+			<Ammo_Feral_Scrap>Bullet_Feral_Rivet</Ammo_Feral_Scrap>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseScrap" ParentName="SmallAmmoBase" Abstract="True">
@@ -74,22 +82,26 @@
 			<dropsCasings>false</dropsCasings>
 		</projectile>
 	</ThingDef>
+	
+
+	<ThingDef ParentName="Base556x45mmNATOBullet">
+		<defName>Bullet_Feral_Rivet</defName>
+		<label>rivet</label>
+		<graphicData>
+			<texPath>Projectile/Crucifier</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>73</speed>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationBlunt>41</armorPenetrationBlunt>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+		</projectile>
+	</ThingDef>
 
 	<!-- ==================== Nails ========================== -->
-
-	<ThingCategoryDef>
-		<defName>AmmoFeralNail</defName>
-		<label>nail</label>
-		<parent>AmmoRifles</parent>
-		<iconPath>Things/Ammo/Nail/Nail_c</iconPath>
-	</ThingCategoryDef>
-
-	<CombatExtended.AmmoCategoryDef>
-		<defName>FeralNail</defName>
-		<label>nail</label>
-		<labelShort>nail</labelShort>
-		<description>Rusty, pointy nails arranged in strips.</description>
-	</CombatExtended.AmmoCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
@@ -97,43 +109,13 @@
 		<defName>AmmoSet_Feral_Nail</defName>
 		<label>nail</label>
 		<ammoTypes>
-			<Ammo_Feral_Nail>Bullet_Feral_Nail</Ammo_Feral_Nail>
+			<Ammo_Nail>Bullet_Feral_Nail</Ammo_Nail>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- ==================== Ammo ========================== -->
-
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFeralNail" ParentName="SmallAmmoBase" Abstract="True">
-		<description>A pointed, slightly rusty carpentry nail a few inches long. While an extremely inaccurate projectile at best, its shape means it tends to tumble when it strikes a target, leaving large wounds.</description>
-		<statBases>
-			<Mass>0.02</Mass>
-			<Bulk>0.02</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoFeralNail</li>
-		</thingCategories>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFeralNail">
-		<defName>Ammo_Feral_Nail</defName>
-		<label>nail</label>
-		<graphicData>
-			<texPath>Things/Ammo/Nail</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.02</MarketValue>
-		</statBases>
-		<ammoClass>FeralNail</ammoClass>
-	</ThingDef>
-
 	<!-- ================== Projectiles ================== -->
-
-	<ThingDef ParentName="Base556x45mmNATOBullet">
+	
+	<ThingDef ParentName="NailShotBullet">
 		<defName>Bullet_Feral_Nail</defName>
 		<label>nail</label>
 		<graphicData>
@@ -141,41 +123,12 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>73</speed>
-			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationBlunt>10</armorPenetrationBlunt>
-			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<speed>32</speed>
+			<damageAmountBase>3</damageAmountBase>
+			<armorPenetrationBlunt>0.82</armorPenetrationBlunt>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
 		</projectile>
 	</ThingDef>
-
-	<!-- ==================== Recipes ========================== -->
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Feral_Nail</defName>
-		<label>make nails x500</label>
-		<description>Craft 500 steel nails.</description>
-		<jobString>Making nails.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>15</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_Feral_Nail>500</Ammo_Feral_Nail>
-		</products>
-	</RecipeDef>
 
 	<!-- ==================== Twin 9x19mm Para ========================== -->
 
