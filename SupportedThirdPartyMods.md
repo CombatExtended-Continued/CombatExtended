@@ -40,7 +40,6 @@ Mod |
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
-[RH2] Faction: Gruppa Krovi   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: Utilitarian  |
@@ -220,6 +219,7 @@ Expanded Woodworking (Forked)   |
 Extended Storage	|
 Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
+Fallout: Vault 111 Starter Pack |
 Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
@@ -251,10 +251,6 @@ GouRIMet	|
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
 Grimworld: Melee	|
-GrimWorld 40,000 - Angels of Death |
-GrimWorld 40,000 - Core Imperialis |
-GrimWorld 40,000 - Hammer of the Imperium |
-GrimWorld 40,000 - Imperial Vehicles of Grimworld |
 Gulden Mod  |
 Half Dragons    |
 HALO: UNSC Armoury |
@@ -311,8 +307,6 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Overhaul   |
-Medieval Overhaul: Barbarians   |
-Medieval Overhaul: House Roxmont  |
 Medieval Tailor   |
 Megafauna	|
 Melee Animation	|
@@ -358,6 +352,7 @@ Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
 New Mech: Mini-Miner    |
+NewRatkinPlus |
 Ni'Hal	|
 Nukes   |
 Nyaron Race |
@@ -411,7 +406,6 @@ ReGrowth: Core |
 ReGrowth: Extinct Animals |
 ReGrowth: Wastelands |
 Remote Detonator	|
-Remove Industrial Stuff |
 Revia Race |
 Revia Race - biotech |
 Rim Contractors Arsenal	|
@@ -493,7 +487,6 @@ The Tuffalo |
 Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
-Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
 Tribal Warrior Set! |
@@ -542,14 +535,12 @@ Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Insector  |
-Vanilla Races Expanded - Lycanthrope  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
 Vanilla Vehicles Expanded - Tier 3  |
-Vanilla Vehicles Expanded - Upgrades    |
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|
