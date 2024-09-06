@@ -255,13 +255,13 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
             list.Gap();
 
-            list.CheckboxLabeled("Enable autopatcher verbose logging", ref debugAutopatcherLogger, "This will enable verbose logging of the autopatcher.");
+            list.CheckboxLabeled("CE_Settings_VerboseAutopatcher_Title".Translate(), ref debugAutopatcherLogger, "CE_Settings_VerboseAutopatcher_Desc".Translate());
 
-            list.CheckboxLabeled("Enable apparel autopatcher", ref enableApparelAutopatcher, "This will enable the apparel autopatcher.");
-            list.CheckboxLabeled("Enable race autopatcher", ref enableRaceAutopatcher, "This will enable the race autopatcher.");
-            list.CheckboxLabeled("Enable weapon autopatcher", ref enableWeaponAutopatcher, "This will enable the weapon autopatcher.");
-            list.CheckboxLabeled("Enable weapon toughness autopatcher", ref enableWeaponToughnessAutopatcher, "This will enable the weapon toughness autopatcher.");
-            list.CheckboxLabeled("Enable PawnKind autopatcher", ref enablePawnKindAutopatcher, "This will enable the PawnKind autopatcher.");
+            list.CheckboxLabeled("CE_Settings_ApparelAutopatcher_Title".Translate(), ref enableApparelAutopatcher, "CE_Settings_ApparelAutopatcher_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_RaceAutopatcher_Title".Translate(), ref enableRaceAutopatcher, "CE_Settings_RaceAutopatcher_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_WeaponAutopatcher_Title".Translate(), ref enableWeaponAutopatcher, "CE_Settings_WeaponAutopatcher_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_ToughnessAutopatcher_Title".Translate(), ref enableWeaponToughnessAutopatcher, "CE_Settings_ToughnessAutopatcher_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_PawnkindAutopatcher_Title".Translate(), ref enablePawnKindAutopatcher, "CE_Settings_PawnkindAutopatcher_Desc".Translate());
 
             // Do ammo settings
             list.NewColumn();

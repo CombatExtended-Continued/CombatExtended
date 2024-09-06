@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="RNGun_KV2_Howitzer" or
+			defName="RNGun_Tesla_Coil" or
+			defName="RNGun_RedStar_PlasmaCannon"
+			]/weaponTags</xpath>
+		<value>
+			<li>NoSwitch</li>
+		</value>
+	</Operation>
+
+	<!-- DShK 1938 sentry turret -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RN2Gun_KV2_DSHKMachineGun</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.2</ShotSpread>
+			<SwayFactor>1.36</SwayFactor>
+			<Bulk>20.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.27</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_127x108mm_FMJ</defaultProjectile>
+			<range>55</range>
+			<!--reduced from proper 112 for balance reasons-->
+			<burstShotCount>10</burstShotCount>
+			<soundCast>RNShot_DSHK</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<defaultCooldownTime>2.5</defaultCooldownTime>
+			<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+			<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+		</Properties>
+	</Operation>
+
+	<!--Kroha Launcher-->
+	<!--Disabled for balance reasons, infinite missiles is too strong-->
+	<!--
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_KV2_KrohaLauncher</defName>
+		<statBases>
+			<Mass>12.00</Mass>
+			<Bulk>15.20</Bulk>
+			<SwayFactor>1.13</SwayFactor>
+			<ShotSpread>0.01</ShotSpread>
+			<SightsEfficiency>2.0</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<recoilAmount>3.46</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_SPG9Rocket_HEAT</defaultProjectile>
+			<burstShotCount>1</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<range>112</range>
+			<soundCast>RNTac50Shot</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+	</Operation>-->
+
+	<!--ML-20 Cannon-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_KV2_Howitzer</defName>
+		<statBases>
+			<!--Integrated into the chassis of the KV2, so giving token values to prevent errors-->
+			<Mass>50.00</Mass>
+			<Bulk>20.00</Bulk>
+			<SwayFactor>0.75</SwayFactor>
+			<ShotSpread>0.10</ShotSpread>
+			<SightsEfficiency>0.5</SightsEfficiency>
+			<RangedWeapon_Cooldown>2.55</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>3.24</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_120mmCannonShell_HE</defaultProjectile>
+			<warmupTime>4.3</warmupTime>
+			<range>125</range>
+			<soundCast>RN_152mmHowitzer_Shot</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<ai_AvoidFriendlyFireRadius>6</ai_AvoidFriendlyFireRadius>
+			<onlyManualCast>false</onlyManualCast>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<muzzleFlashScale>16</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>8.4</reloadTime>
+			<ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNGun_KV2_Howitzer"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>giant barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>45</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationBlunt>10.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!--Tesla Coil-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_Tesla_Coil</defName>
+		<statBases>
+			<Mass>50.00</Mass>
+			<Bulk>20.00</Bulk>
+			<SwayFactor>1.59</SwayFactor>
+			<ShotSpread>0.15</ShotSpread>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.0</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_CE_RNBullet_Tesla_Charge</defaultProjectile>
+			<warmupTime>2.5</warmupTime>
+			<range>62</range>
+			<soundCast>RN_Tesla_Shot</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<ai_AvoidFriendlyFireRadius>6</ai_AvoidFriendlyFireRadius>
+			<onlyManualCast>false</onlyManualCast>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<targetParams>
+				<canTargetLocations>false</canTargetLocations>
+			</targetParams>
+			<muzzleFlashScale>16</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>4.15</reloadTime>
+			<ammoSet>AmmoSet_RNTeslaCharge</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RNBullet_Tesla_Charge"]</xpath>
+	</Operation>
+
+	<!--Red Star Plasma Cannon-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>RNGun_RedStar_PlasmaCannon</defName>
+		<statBases>
+			<Mass>50.00</Mass>
+			<Bulk>20.00</Bulk>
+			<SwayFactor>1.59</SwayFactor>
+			<ShotSpread>0.15</ShotSpread>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.36</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_CE_RNBullet_RedStar_Plasma</defaultProjectile>
+			<warmupTime>3.15</warmupTime>
+			<range>66</range>
+			<ticksBetweenBurstShots>27</ticksBetweenBurstShots>
+			<soundCast>RN_RedStar_Shot</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<ai_AvoidFriendlyFireRadius>6</ai_AvoidFriendlyFireRadius>
+			<onlyManualCast>false</onlyManualCast>
+			<burstShotCount>2</burstShotCount>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<targetParams>
+				<canTargetLocations>false</canTargetLocations>
+			</targetParams>
+			<muzzleFlashScale>16</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>5.1</reloadTime>
+			<ammoSet>AmmoSet_RNPlasmaCharge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RNBullet_RedStar_Plasma"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName="RNGun_Tesla_Coil" or
+			defName="RNGun_RedStar_PlasmaCannon"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>giant barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>2.0</cooldownTime>
+					<armorPenetrationBlunt>7</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="RN2_RedStarBomb"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Blunt</armorCategory>
+		</value>
+	</Operation>
+
+</Patch>
