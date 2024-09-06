@@ -40,6 +40,7 @@ Mod |
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
+[RH2] Faction: Gruppa Krovi   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: Utilitarian  |
@@ -306,6 +307,8 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Overhaul   |
+Medieval Overhaul: Barbarians   |
+Medieval Overhaul: House Roxmont  |
 Medieval Tailor   |
 Megafauna	|
 Melee Animation	|
@@ -404,6 +407,7 @@ ReGrowth: Core |
 ReGrowth: Extinct Animals |
 ReGrowth: Wastelands |
 Remote Detonator	|
+Remove Industrial Stuff |
 Revia Race |
 Revia Race - biotech |
 Rim Contractors Arsenal	|
@@ -534,6 +538,7 @@ Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Insector  |
+Vanilla Races Expanded - Lycanthrope  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |

@@ -16,11 +16,6 @@ namespace CombatExtended.Compatibility
         {
             Building_FuelingMachine.RegisterRefuelable(typeof(Building_TurretGunCE), FindCompAmmoUser, TestAmmo, ReloadAction);
         }
-        public IEnumerable<string> GetCompatList()
-        {
-            yield break;
-        }
-
         private static int TestAmmo(object compObject, Thing ammo)
         {
             var comp = compObject as CompAmmoUser;
