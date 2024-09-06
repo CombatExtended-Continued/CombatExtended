@@ -20,8 +20,6 @@ namespace CombatExtended
         public SoundDef cookOffSound = null;
         public SoundDef cookOffTailSound = null;
         public ThingDef detonateProjectile = null;
-        [MustTranslate]
-        public string genericLabelOverride = null;
 
         // mortar ammo should still availabe when the ammo system is off        
         public bool isMortarAmmo = false;
