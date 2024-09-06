@@ -219,6 +219,7 @@ Expanded Woodworking (Forked)   |
 Extended Storage	|
 Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
+Fallout: Vault 111 Starter Pack |
 Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
