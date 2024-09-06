@@ -15,7 +15,7 @@ namespace CombatExtended
                 if (comp is CompPawnGizmo && comp != this)
                 {
                     duplicate = true;
-                    Log.ErrorOnce($"{parent.def.defName} has multiple CompPawnGizmo, duplicates has been deactivated. Please report this to the patch provider of ${parent.def.modContentPack.Name} or CE team if the patch is integrated in CE.", parent.def.GetHashCode());
+                    Log.ErrorOnce($"{parent.def.defName} has multiple CompPawnGizmo, duplicates has been deactivated. Please report this to the patch provider of {parent.def.modContentPack.Name} or CE team if the patch is integrated in CE.", parent.def.GetHashCode());
                 }
             }
         }
