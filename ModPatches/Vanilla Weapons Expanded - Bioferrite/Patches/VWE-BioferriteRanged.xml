@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Tools ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[defName="VWEB_Gun_FlarestrikeRifle" or
+			defName="VWEB_Gun_FirestormShotgun"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[defName="VWEB_Gun_PiercerRifle"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>bayonet</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.62</cooldownTime>
+					<armorPenetrationBlunt>2.304</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== G36 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWEB_Gun_FlarestrikeRifle</defName>
+		<statBases>
+			<Mass>3.63</Mass>
+			<Bulk>7.58</Bulk>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.25</SwayFactor>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.38</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>58</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="VWEB_FlarestrikeFlare"]/verbProperties</xpath>
+		<value>
+			<verbProperties>
+				<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+				<defaultProjectile>Grenade_DisruptorFlare</defaultProjectile>
+				<label>launch flare</label>
+				<warmupTime>0.5</warmupTime>
+				<range>40</range>
+				<burstShotCount>1</burstShotCount>
+				<onlyManualCast>true</onlyManualCast>
+				<hasStandardCommand>true</hasStandardCommand>
+				<targetable>true</targetable>
+				<violent>false</violent>
+				<targetParams>
+					<canTargetPawns>false</canTargetPawns>
+					<canTargetBuildings>false</canTargetBuildings>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<soundCast>FlareLaunch</soundCast>
+				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				<canGoWild>false</canGoWild>
+				<explosionRadiusRingColor>(0.8, 0.8, 0.4, 1)</explosionRadiusRingColor><!-- Keep in sync with PlaceWorker_GlowRadius.RingColor -->
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+			</verbProperties>
+		</value>
+	</Operation>
+
+	<!-- ========== SPAS-12 ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWEB_Gun_FirestormShotgun</defName>
+		<statBases>
+			<Mass>4.40</Mass>
+			<RangedWeapon_Cooldown>0.44</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.13</ShotSpread>
+			<SwayFactor>1.48</SwayFactor>
+			<Bulk>8.20</Bulk>
+			<WorkToMake>17500</WorkToMake>
+		</statBases>
+		<costList>
+			<Chemfuel>5</Chemfuel>
+			<Steel>55</Steel>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>16</range>
+			<soundCast>Shot_Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+
+		<AmmoUser>
+			<magazineSize>9</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>0.8</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+
+		<weaponTags>
+			<li>CE_AI_AssaultWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWEB_Gun_FirestormShotgun"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoDef</xpath>
+		<value>
+			<ammoDef>Ammo_Flamethrower_Bioferrite</ammoDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName ="VWEB_Gun_CycloneMinigun"]/equippedStatOffsets</xpath>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWEB_Gun_CycloneMinigun</defName>
+		<statBases>
+			<Mass>25.00</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>3.22</SwayFactor>
+			<Bulk>12</Bulk>
+			<WorkToMake>60000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>15</ComponentIndustrial>
+			<Bioferrite>20</Bioferrite>
+		</costList>
+		<Properties>
+			<recoilAmount>0.97</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>62</range>
+			<burstShotCount>50</burstShotCount>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>250</magazineSize>
+			<reloadTime>9.2</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>25</aimedBurstShotCount>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Suppressive</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWEB_Gun_CycloneMinigun"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoDef</xpath>
+		<value>
+			<ammoDef>Ammo_762x51mmNATO_FMJ</ammoDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWEB_Gun_CycloneMinigun"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoCountPerCharge</xpath>
+		<value>
+			<ammoCountPerCharge>50</ammoCountPerCharge>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="VWEB_CycloneRapidBurst"]/verbProperties</xpath>
+		<value>
+			<verbProperties>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>62</range>
+					<burstShotCount>50</burstShotCount>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<onlyManualCast>true</onlyManualCast>
+					<hasStandardCommand>true</hasStandardCommand>
+					<targetable>true</targetable>
+					<violent>true</violent>
+					<targetParams>
+						<canTargetPawns>true</canTargetPawns>
+						<canTargetBuildings>true</canTargetBuildings>
+						<canTargetLocations>false</canTargetLocations>
+					</targetParams>
+					<soundCast>Shot_Minigun</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+			</verbProperties>
+		</value>
+	</Operation>
+
+	<!-- ========== Bolt-action rifle ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VWEB_Gun_PiercerRifle</defName>
+		<statBases>
+			<Mass>4.19</Mass>
+			<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.68</SwayFactor>
+			<Bulk>12.60</Bulk>
+			<WorkToMake>16000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>55</Steel>
+			<WoodLog>15</WoodLog>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<Bioferrite>20</Bioferrite>
+		</costList>
+		<Properties>
+			<recoilAmount>2.04</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<soundCast>Shot_BoltActionRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_303British</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>SimpleGun</li>
+			<li>CE_AI_SR</li>
+		</weaponTags>
+		<researchPrerequisite>Gunsmithing</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+</Patch>
