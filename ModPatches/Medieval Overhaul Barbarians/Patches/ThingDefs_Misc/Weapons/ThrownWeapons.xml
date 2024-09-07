@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Rusted Javelins, similar to the vanilla one but worse stat-wise === -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedJavalin"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedJavalin"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>25</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<techLevel>Medieval</techLevel>
+			<tradeNeverStack>true</tradeNeverStack>
+			<burnableByRecipe>true</burnableByRecipe>
+			<thingSetMakerTags>
+				<li>RewardStandardLowFreq</li>
+			</thingSetMakerTags>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedJavalin"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>pphhyy_Barbarian_RustedJavalin</defName>
+		<statBases>
+			<SightsEfficiency>0.45</SightsEfficiency>
+			<ShotSpread>1.5</ShotSpread>
+			<SwayFactor>2.5</SwayFactor>
+			<Bulk>4.5</Bulk>
+			<Mass>2.25</Mass>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.36</MeleeCounterParryBonus>
+		</statBases>
+		<Properties>
+			<label>Throw rusted axe</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>pphhyy_RustedJavalin_Thrown_CE</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<range>9</range>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+		</Properties>
+		<weaponTags>
+			<li>NeolithicRangedHeavy</li>
+			<li>CE_Pila</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedJavalin"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedJavalin"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>0.5</MeleeParryChance>
+				<MeleeDodgeChance>0.57</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedJavalin"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.73</cooldownTime>
+					<armorPenetrationBlunt>1.44</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.49</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>1.32</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.49</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Rusted Throwing Axe, similar to the rimsenal one but worse stat-wise === -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedThrowingAxe"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedThrowingAxe"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>5</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<techLevel>Medieval</techLevel>
+			<tradeNeverStack>true</tradeNeverStack>
+			<burnableByRecipe>true</burnableByRecipe>
+			<thingSetMakerTags>
+				<li>RewardStandardLowFreq</li>
+			</thingSetMakerTags>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedThrowingAxe"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>pphhyy_Barbarian_RustedThrowingAxe</defName>
+		<statBases>
+			<SightsEfficiency>0.45</SightsEfficiency>
+			<ShotSpread>1.0</ShotSpread>
+			<SwayFactor>2.0</SwayFactor>
+			<Bulk>1.5</Bulk>
+			<Mass>0.75</Mass>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<label>Throw rusted axe</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>pphhyy_RustedThrowingAxe_Thrown_CE</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>12</range>
+			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedThrowingAxe"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedThrowingAxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>0.5</MeleeParryChance>
+				<MeleeDodgeChance>0.57</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RustedThrowingAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.4</cooldownTime>
+					<armorPenetrationBlunt>0.375</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2.18</cooldownTime>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.92</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

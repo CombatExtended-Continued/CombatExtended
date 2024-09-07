@@ -94,6 +94,13 @@
 			<li>CE_AI_AssaultWeapon</li>
 		</weaponTags>
 	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_RSBattleRifle"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.2,1.2)</drawSize>
+		</value>
+	</Operation>
 
 	<!-- ========== Carbine =========== -->
 
@@ -140,6 +147,13 @@
 			<li>CE_AI_AssaultWeapon</li>
 		</weaponTags>
 	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_RSCarbine"]/graphicData</xpath>
+		<value>
+			<drawSize>(0.98,0.98)</drawSize>
+		</value>
+	</Operation>
 
 	<!-- ========== Heavy Revolver =========== -->
 
@@ -155,10 +169,12 @@
 			<RangedWeapon_Cooldown>0.41</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>35</Steel>
-			<ComponentIndustrial>2</ComponentIndustrial>
+			<Steel>25</Steel>
+			<WoodLog>5</WoodLog>
+			<ComponentIndustrial>3</ComponentIndustrial>
 		</costList>
 		<Properties>
+			<recoilAmount>3.28</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_500SWMagnum_FMJ</defaultProjectile>
@@ -211,29 +227,38 @@
 			</tools>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_PistolHeavyRevolver"]/graphicData</xpath>
+		<value>
+			<drawSize>(0.94,0.94)</drawSize>
+		</value>
+	</Operation>
 
 	<!-- ========== AM Rifle =========== -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_RSAMRifle</defName>
 		<statBases>
-			<WorkToMake>35000</WorkToMake>
+			<WorkToMake>47500</WorkToMake>
 			<SightsEfficiency>3.0</SightsEfficiency>
 			<ShotSpread>0.03</ShotSpread>
-			<SwayFactor>1.84</SwayFactor>
-			<Bulk>13</Bulk>
-			<Mass>13.5</Mass>
-			<RangedWeapon_Cooldown>0.58</RangedWeapon_Cooldown>
+			<SwayFactor>1.81</SwayFactor>
+			<Bulk>14.7</Bulk>
+			<Mass>10</Mass>
+			<RangedWeapon_Cooldown>0.59</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>105</Steel>
-			<ComponentIndustrial>5</ComponentIndustrial>
+			<Steel>70</Steel>
+			<ComponentIndustrial>7</ComponentIndustrial>
+			<Chemfuel>20</Chemfuel>
 		</costList>
 		<Properties>
+			<recoilAmount>2.83</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
-			<warmupTime>3</warmupTime>
+			<warmupTime>3.8</warmupTime>
 			<range>86</range>
 			<soundCast>RS_ShotAMRifle</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -255,6 +280,13 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="Gun_RSAMRifle"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_RSAMRifle"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.4,1.4)</drawSize>
+		</value>
 	</Operation>
 
 	<!-- ========== Automatic Rfile =========== -->
@@ -301,40 +333,48 @@
 			<li>Tag</li>
 		</weaponTags>
 	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_AutomaticRifle"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.1,1.1)</drawSize>
+		</value>
+	</Operation>
 
 	<!-- ========== Repeater =========== -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_Repeater</defName>
 		<statBases>
-			<WorkToMake>11500</WorkToMake>
+			<WorkToMake>9500</WorkToMake>
 			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.02</ShotSpread>
-			<SwayFactor>1.68</SwayFactor>
-			<Bulk>12.50</Bulk>
-			<Mass>4.30</Mass>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>9.15</Bulk>
+			<Mass>2.80</Mass>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<Steel>60</Steel>
+			<Steel>45</Steel>
 			<ComponentIndustrial>1</ComponentIndustrial>
 			<WoodLog>10</WoodLog>
 		</costList>
 		<Properties>
+			<recoilAmount>2.48</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_44-40Winchester_FMJ</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
-			<range>55</range>
+			<defaultProjectile>Bullet_44Magnum_HV_FMJ</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>44</range>
 			<soundCast>Shot_Revolver</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>15</magazineSize>
+			<magazineSize>9</magazineSize>
 			<reloadOneAtATime>true</reloadOneAtATime>
 			<reloadTime>0.85</reloadTime>
-			<ammoSet>AmmoSet_44-40Winchester</ammoSet>
+			<ammoSet>AmmoSet_44Magnum_HV</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -342,6 +382,13 @@
 		<weaponTags>
 			<li>CE_AI_Rifle</li>
 		</weaponTags>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_Repeater"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.15,1.15)</drawSize>
+		</value>
 	</Operation>
 
 	<!-- ========== Militia Rifle =========== -->
@@ -388,6 +435,13 @@
 			<li>CE_AI_AssaultWeapon</li>
 		</weaponTags>
 	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_MilitiaRifle"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.1,1.1)</drawSize>
+		</value>
+	</Operation>
 
 	<!-- ========== Frontier Rifle =========== -->
 
@@ -396,10 +450,10 @@
 		<statBases>
 			<WorkToMake>17500</WorkToMake>
 			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.08</ShotSpread>
-			<SwayFactor>1.14</SwayFactor>
-			<Bulk>9.50</Bulk>
-			<Mass>2.70</Mass>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.34</SwayFactor>
+			<Bulk>11.80</Bulk>
+			<Mass>3.6</Mass>
 			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
@@ -408,11 +462,12 @@
 			<WoodLog>10</WoodLog>
 		</costList>
 		<Properties>
+			<recoilAmount>2.10</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
 			<warmupTime>1.1</warmupTime>
-			<range>51</range>
+			<range>55</range>
 			<soundCast>Shot_BoltActionRifle</soundCast>
 			<muzzleFlashScale>9</muzzleFlashScale>
 		</Properties>
@@ -460,13 +515,20 @@
 					<capacities>
 						<li>Stab</li>
 					</capacities>
-					<power>17</power>
-					<cooldownTime>1.38</cooldownTime>
-					<armorPenetrationBlunt>1.08</armorPenetrationBlunt>
-					<armorPenetrationSharp>0.72</armorPenetrationSharp>
+					<power>18</power>
+					<cooldownTime>1.79</cooldownTime>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.25</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_FR"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.1,1.1)</drawSize>
 		</value>
 	</Operation>
 
@@ -489,6 +551,7 @@
 			<WoodLog>10</WoodLog>
 		</costList>
 		<Properties>
+			<recoilAmount>1.92</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
@@ -512,25 +575,36 @@
 		<researchPrerequisite>PrecisionRifling</researchPrerequisite>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_MarksmanRifle"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.1,1.1)</drawSize>
+		</value>
+	</Operation>
+	
+	<!-- ========== Thumper =========== -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_RSThumper</defName>
 		<statBases>
 			<Mass>8</Mass>
 			<RangedWeapon_Cooldown>0.43</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
+			<SightsEfficiency>1.1</SightsEfficiency>
 			<ShotSpread>0.15</ShotSpread>
 			<SwayFactor>1.8</SwayFactor>
 			<Bulk>10</Bulk>
-			<WorkToMake>39500</WorkToMake>
+			<WorkToMake>35500</WorkToMake>
 		</statBases>
 		<costList>
 			<Steel>65</Steel>
 			<Plasteel>30</Plasteel>
-			<ComponentIndustrial>7</ComponentIndustrial>
+			<ComponentIndustrial>1</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
 			<Chemfuel>10</Chemfuel>
 		</costList>
 		<Properties>
+			<recoilAmount>3.87</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_30x64mmFuel_RSThump</defaultProjectile>
@@ -657,7 +731,8 @@
 		</statBases>
 		<costList>
 			<Steel>50</Steel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
 			<Chemfuel>15</Chemfuel>
 			<Plasteel>15</Plasteel>
 		</costList>
@@ -725,6 +800,13 @@
 			</li>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_ThundercatRifle"]/graphicData</xpath>
+		<value>
+			<drawSize>(1.2,1.2)</drawSize>
+		</value>
+	</Operation>
 
 	<!-- ========== Carbine =========== -->
 
@@ -732,7 +814,7 @@
 		<defName>Gun_ThumpercatCarbine</defName>
 		<statBases>
 			<WorkToMake>50000</WorkToMake>
-			<SightsEfficiency>1</SightsEfficiency>
+			<SightsEfficiency>1.1</SightsEfficiency>
 			<ShotSpread>0.13</ShotSpread>
 			<SwayFactor>1.06</SwayFactor>
 			<Bulk>6.4</Bulk>
@@ -741,7 +823,8 @@
 		</statBases>
 		<costList>
 			<Steel>35</Steel>
-			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentIndustrial>7</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
 			<Chemfuel>10</Chemfuel>
 			<Plasteel>10</Plasteel>
 		</costList>
@@ -750,7 +833,7 @@
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_556x45mmNATO_FMJ_SB</defaultProjectile>
-			<warmupTime>0.85</warmupTime>
+			<warmupTime>0.75</warmupTime>
 			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 			<range>40</range>
@@ -807,6 +890,13 @@
 			<li>
 				<compClass>CompEquippable</compClass>
 			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_ThumpercatCarbine"]/graphicData</xpath>
+		<value>
+			<drawSize>(0.98,0.98)</drawSize>
 		</value>
 	</Operation>
 
