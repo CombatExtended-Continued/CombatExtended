@@ -8,6 +8,31 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name = "AmmoBolter998Base"]/tradeTags</xpath>
+					<value>
+						<li>CE_AutoEnableCrafting_FabricationBench</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "VWEB_Warbolter"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>35</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>16</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName = "VWEB_Warbolter"]/tools</xpath>
 					<value>
