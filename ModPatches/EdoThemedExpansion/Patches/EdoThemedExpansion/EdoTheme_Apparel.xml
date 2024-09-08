@@ -44,8 +44,28 @@
 		<xpath>Defs/ThingDef[defName="HS_Tenbinbo" or defName="HS_Straw_Backpack"]/equippedStatOffsets</xpath>
 		<value>
 			<equippedStatOffsets>
-				<CarryBulk>20</CarryBulk>
+				<CarryBulk>25</CarryBulk>
 			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="HS_Straw_Backpack"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ApparelCarryGearBase</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HS_Straw_Backpack"]/apparel/layers/li[.="Belt"]</xpath>
+		<value>
+			<li>Backpack</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HS_Straw_Backpack"]/apparel/bodyPartGroups/li[.="Torso"]</xpath>
+		<value>
+			<li>Shoulders</li>
 		</value>
 	</Operation>
 
