@@ -1064,6 +1064,7 @@ namespace CombatExtended
 
             float spreadDegrees = 0;
             float aperatureSize = 0;
+            int ticksToTruePosition = VerbPropsCE.ticksToTruePosition;
 
             if (Projectile.projectile is ProjectilePropertiesCE pprop)
             {
@@ -1118,7 +1119,8 @@ namespace CombatExtended
                         ShotHeight,
                         ShotSpeed,
                         EquipmentSource,
-                        distance);
+                        distance,
+                        ticksToTruePosition);
                 }
                 pelletMechanicsOnly = true;
             }
