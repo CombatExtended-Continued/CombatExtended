@@ -537,8 +537,8 @@ namespace CombatExtended
                     }
                     if (shield != null)
                     {
-                        var shieldCoverage = shield.def.GetModExtension<ShieldDefExtension>().PartIsCoveredByShield(part, SelPawnForGear);
-                        if (shieldCoverage)
+                        var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                        if (shieldCoverage == true)
                         {
                             armorValue += shield.GetStatValue(stat);
                         }
