@@ -10,7 +10,7 @@
 			<operations>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]</xpath>
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackQueen"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Birdlike</bodyShape>
@@ -19,7 +19,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackQueen"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.03</MeleeDodgeChance>
 						<MeleeCritChance>0.30</MeleeCritChance>
@@ -28,27 +28,27 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackQueen"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<ArmorRating_Blunt>30</ArmorRating_Blunt>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackQueen"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>12</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackQueen"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
 								<label>head claw</label>
 								<capacities>
-									<li>Stab</li>
+									<li>AA_ExtraDamageMechanoidsClaws</li>
 								</capacities>
 								<power>37</power>
 								<cooldownTime>1.48</cooldownTime>
@@ -57,15 +57,15 @@
 								<armorPenetrationBlunt>30</armorPenetrationBlunt>
 							</li>
 							<li Class="CombatExtended.ToolCE">
-								<label>infected mandibles</label>
+								<label>head claw</label>
 								<capacities>
-									<li>AAVPE_InfectedMandibles</li>
+									<li>Cut</li>
 								</capacities>
 								<power>65</power>
 								<cooldownTime>1.65</cooldownTime>
 								<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
-								<armorPenetrationSharp>3.38</armorPenetrationSharp>
-								<armorPenetrationBlunt>8.438</armorPenetrationBlunt>
+								<armorPenetrationSharp>5</armorPenetrationSharp>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
 							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>head</label>
@@ -83,9 +83,9 @@
 				</li>
 
 				<li Class="PatchOperationConditional">
-					<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]/comps</xpath>
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackQueen"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]</xpath>
+						<xpath>Defs/ThingDef[defName="VFEI2_BlackQueen"]</xpath>
 						<value>
 							<comps />
 						</value>
@@ -93,14 +93,14 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]/comps</xpath>
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackQueen"]/comps</xpath>
 					<value>
 						<li Class="CombatExtended.CompProperties_ArmorDurability">
 							<Durability>3000</Durability>
 							<Regenerates>true</Regenerates>
 							<RegenInterval>400</RegenInterval>
 							<RegenValue>5</RegenValue>
-							<MinArmorPct>0.5</MinArmorPct>
+							<MinArmorPct>0.25</MinArmorPct>
 						</li>
 					</value>
 				</li>
