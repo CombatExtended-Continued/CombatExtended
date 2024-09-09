@@ -2,7 +2,7 @@
 using RimWorld;
 using Verse;
 
-namespace CombatExtended.CombatExtended
+namespace CombatExtended
 {
     public class ThingSetMaker_CountEnabledAmmoOnly : ThingSetMaker_Count
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
-namespace CombatExtended.CombatExtended
+namespace CombatExtended
 {
     public static class CE_ThingSetMakerUtility
     {
