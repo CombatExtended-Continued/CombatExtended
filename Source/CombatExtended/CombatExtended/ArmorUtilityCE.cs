@@ -422,6 +422,10 @@ namespace CombatExtended
         /// <returns>The post-armor damage ranging from 0 to the original amount</returns>
         private static float GetAmbientPostArmorDamage(float dmgAmount, float penAmount, StatDef armorRatingStat, Pawn pawn, BodyPartRecord part)
         {
+            if (penAmount < 0f)
+            {
+                penAmount = 0f;
+            }
             var dmgMult = 1f + penAmount;
             if (part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor))
             {
