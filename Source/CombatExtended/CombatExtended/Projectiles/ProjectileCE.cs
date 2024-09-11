@@ -37,6 +37,10 @@ namespace CombatExtended
         protected float initialSpeed;
         #endregion
 
+        #region Drawing
+        protected int ticksToTruePosition;
+        #endregion
+
         #region Origin destination
         public bool OffMapOrigin = false;
 
@@ -199,6 +203,10 @@ namespace CombatExtended
             get
             {
                 var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
+                if (FlightTicks < ticksToTruePosition)
+                {
+                    sh *= FlightTicks / ticksToTruePosition;
+                }
                 return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
         }
@@ -539,12 +547,14 @@ namespace CombatExtended
         /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
         /// <param name="equipment">The equipment used to fire the projectile.</param>
         /// <param name="distance">The distance to the estimated intercept point</param>
-        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
+        /// <param name="ticksToTruePosition">The number of ticks before the bullet is drawn at its true height instead of the muzzle height</param>
+        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1, int ticksToTruePosition = 3)
         {
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
             this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            this.ticksToTruePosition = ticksToTruePosition;
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 this.castShadow = props.castShadow;

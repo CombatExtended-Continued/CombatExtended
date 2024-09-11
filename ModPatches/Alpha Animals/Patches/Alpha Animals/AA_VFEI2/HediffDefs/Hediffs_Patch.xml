@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Insectoids 2</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_MechanoidRendingClaws"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>mechanoid rending claws</label>
+								<capacities>
+									<li>AA_EMPSlash</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>1.5</cooldownTime>
+								<armorPenetrationSharp>2.0</armorPenetrationSharp>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

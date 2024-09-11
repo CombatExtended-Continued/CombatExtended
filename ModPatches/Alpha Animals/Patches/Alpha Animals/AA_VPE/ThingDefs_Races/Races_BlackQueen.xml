@@ -3,11 +3,20 @@
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Vanilla Psycasts Expanded</li>
+			<li>Vanilla Factions Expanded - Insectoids 2</li>
 		</mods>
 
 		<match Class="PatchOperationSequence">
 			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Birdlike</bodyShape>
+						</li>
+					</value>
+				</li>
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]/statBases</xpath>
@@ -48,9 +57,9 @@
 								<armorPenetrationBlunt>30</armorPenetrationBlunt>
 							</li>
 							<li Class="CombatExtended.ToolCE">
-								<label>AAVPE_InfectedMandibles</label>
+								<label>infected mandibles</label>
 								<capacities>
-									<li>Cut</li>
+									<li>AAVPE_InfectedMandibles</li>
 								</capacities>
 								<power>65</power>
 								<cooldownTime>1.65</cooldownTime>
@@ -78,7 +87,7 @@
 					<nomatch Class="PatchOperationAdd">
 						<xpath>Defs/ThingDef[defName="AAVPE_BlackQueen"]</xpath>
 						<value>
-							<comps/>
+							<comps />
 						</value>
 					</nomatch>
 				</li>
