@@ -3,30 +3,64 @@
 
 	<!-- === Wall Armor === -->
 	<!-- adjust damageMultipliers dealt by damage defs -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "RB_ReinforcedGlassWall" or defName = "RB_ReinforcedClerestoryWall"]/damageMultipliers/li[damageDef = "Bomb" or damageDef = "Thump"]/multiplier</xpath>
-		<value>
-			<multiplier>0.5</multiplier>
-		</value>
+	<Operation Class="PatchOperationConditional">
+	    <xpath>Defs/ThingDef[defName="RB_OverwallArmor"]/damageMultipliers</xpath>
+		<nomatch Class="PatchOperationAdd">
+		  <xpath>Defs/ThingDef[defName="RB_OverwallArmor"]/</xpath>
+		  <value>
+			<damageMultipliers>
+			  <li>
+				<damageDef>Bomb</damageDef>
+				<multiplier>0.5</multiplier>
+			  </li>
+			  <li>
+				<damageDef>Thump</damageDef>
+				<multiplier>0.5</multiplier>
+			  </li>
+			  <li>
+				<damageDef>Thermobaric</damageDef>
+				<multiplier>0.5</multiplier>
+			  </li>
+			  <li>
+				<damageDef>Bomb_Secondary</damageDef>
+				<multiplier>0.5</multiplier>
+			  </li>
+			  <li>
+				<damageDef>Demolish</damageDef>
+				<multiplier>0.5</multiplier>
+			  </li>
+			</damageMultipliers>
+			</value>
+		</nomatch>
+		<match Class = "PatchOperationSequence">
+			<operations>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName = "RB_OverwallArmor"]/damageMultipliers/li[damageDef = "Bomb" or damageDef = "Thump"]/multiplier</xpath>
+				<value>
+					<multiplier>0.5</multiplier>
+				</value>
+			</li>
+			<li Class = "PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "RB_OverwallArmor"]/damageMultipliers</xpath>
+				<value>
+				<li>
+					<damageDef>Thermobaric</damageDef>
+					<multiplier>0.5</multiplier>
+				  </li>
+				  <li>
+					<damageDef>Bomb_Secondary</damageDef>
+					<multiplier>0.5</multiplier>
+				  </li>
+				  <li>
+					<damageDef>Demolish</damageDef>
+					<multiplier>0.5</multiplier>
+				  </li>
+				</value>
+			</li>
+
+			</operations>
+		</match>
 	</Operation>
 
-  <!-- add more damage defs -->
-  <Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "RB_ReinforcedGlassWall" or defName = "RB_ReinforcedClerestoryWall"]/damageMultipliers</xpath>
-		<value>
-		<li>
-			<damageDef>Thermobaric</damageDef>
-			<multiplier>0.5</multiplier>
-		</li>
-		<li>
-			<damageDef>Bomb_Secondary</damageDef>
-			<multiplier>0.5</multiplier>
-		</li>
-		<li>
-			<damageDef>Demolish</damageDef>
-			<multiplier>0.5</multiplier>
-    	</li>
-		</value>
-	</Operation>
 
 </Patch>
