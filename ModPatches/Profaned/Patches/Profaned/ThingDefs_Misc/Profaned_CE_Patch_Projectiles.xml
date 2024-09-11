@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
-
-	<!-- <Operation Class="PatchOperationRemove"> -->
-		<!-- <xpath>Defs/ThingDef[ -->
-			<!-- defName="AA_FrostWeb" or -->
-			<!-- defName="AA_FireWeb" or -->
-			<!-- defName="AA_AcidicWeb" or -->
-			<!-- defName="AA_ElectricBolt" or -->
-			<!-- defName="AA_FrostBolt" -->
-			<!-- ]/thingClass </xpath> -->
-	<!-- </Operation> -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="BotchJob_BoneProjectile"]/thingClass</xpath>
+			defName="BotchJob_BoneProjectile" or
+			defName="BotchJob_SoulShard"]/thingClass
+		</xpath>
 		<value>
 			<thingClass>CombatExtended.BulletCE</thingClass>
 		</value>
@@ -25,7 +17,10 @@
 			defName="BotchJob_ColossusSmashProj" or
 			defName="BotchJob_WraithClaw" or
 			defName="BotchJob_DragonToxicBreath" or
-			defName="BotchJob_PutridMass"]/thingClass </xpath>
+			defName="BotchJob_PutridMass" or
+			defName="BotchJob_BloodflameStaffBolt" or
+			defName="BotchJob_ProfanedStaffBolt"]/thingClass
+		</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		</value>
@@ -68,21 +63,6 @@
 			</projectile>
 		</value>
 	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BotchJob_BoneProjectile"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<flyOverhead>true</flyOverhead>
-				<damageDef>BotchJob_BoneImpact</damageDef>
-				<damageAmountBase>15</damageAmountBase>
-				<speed>19</speed>
-				<armorPenetrationSharp>0</armorPenetrationSharp>
-				<armorPenetrationBlunt>3</armorPenetrationBlunt>
-				<arcHeightFactor>1.2</arcHeightFactor>
-			</projectile>
-		</value>
-	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BotchJob_PutridMass"]/projectile</xpath>
@@ -102,6 +82,67 @@
 		</value>
 	</Operation>
 	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_BloodflameStaffBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>3</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<damageDef>BotchJob_BloodflameRotstinkBlast</damageDef>
+				<damageAmountBase>27</damageAmountBase>
+				<speed>16</speed>
+				<postExplosionGasType>RotStink</postExplosionGasType>
+				<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
 	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedStaffBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<damageDef>BotchJob_BloodflameRotstinkBlast</damageDef>
+				<damageAmountBase>27</damageAmountBase>
+				<speed>16</speed>
+				<postExplosionGasType>RotStink</postExplosionGasType>
+				<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Non Explosives -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_BoneProjectile"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>true</flyOverhead>
+				<damageDef>BotchJob_BoneImpact</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<speed>19</speed>
+				<armorPenetrationSharp>0</armorPenetrationSharp>
+				<armorPenetrationBlunt>3</armorPenetrationBlunt>
+				<arcHeightFactor>1.2</arcHeightFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_SoulShard"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>true</flyOverhead>
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<speed>19</speed>
+				<armorPenetrationSharp>3</armorPenetrationSharp>
+				<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				<arcHeightFactor>1.2</arcHeightFactor>
+			</projectile>
+		</value>
+	</Operation>	
 
 </Patch>
