@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!-- TEMPLATE
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName=""]</xpath>
-		<value>
-		</value>
-	</Operation>
-	
-	-->
 
 	<!-- APPAREL TWEAKS -->
 	
 	<!-- Give all of our ranged weapon spawning pawns basic straw backpacks, since most clothing and armour lacks bulk or carry cap bonuses and they need the extra bulk for ammo and sidearm -->
 	
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="HS_RangedSamurai" or defName="HS_RangedSamuraiGunner" or defName="HS_RangedNoviceSamurai" or defName="HS_NoviceShinobi" or defName="HS_ShinobiMaster" or defName="HS_RangedNoviceSamurai_Shogun" or defName="HS_RangedSamurai_Shogun" or defName="HS_RangedSamuraiGunner_Shogun"]/apparelRequired</xpath>
+		<xpath>Defs/PawnKindDef[
+			defName="HS_RangedSamurai" or
+			defName="HS_RangedSamuraiGunner" or
+			defName="HS_RangedNoviceSamurai" or
+			defName="HS_NoviceShinobi" or
+			defName="HS_ShinobiMaster" or
+			defName="HS_RangedNoviceSamurai_Shogun" or
+			defName="HS_RangedSamurai_Shogun" or
+			defName="HS_RangedSamuraiGunner_Shogun"
+			]/apparelRequired</xpath>
 		<value>
 			<li>HS_Straw_Backpack</li>
 		</value>
@@ -214,4 +214,5 @@
 			</li>
 		</value>
 	</Operation>
+
 </Patch>
