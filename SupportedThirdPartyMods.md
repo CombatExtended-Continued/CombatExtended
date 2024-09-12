@@ -187,6 +187,7 @@ ED-Shields	|
 Edge of Descension - Hovercraft  |
 Edge of Descension - Monoblades  |
 Edge of Descension - Vanguard   |
+Edo Themed Expansion	|
 Eltex Bodysuit  |
 Enchanted Sword  |
 Epona The centaur race  |
