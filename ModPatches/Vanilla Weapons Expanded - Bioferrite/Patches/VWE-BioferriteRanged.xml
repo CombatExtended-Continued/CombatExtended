@@ -138,6 +138,12 @@
 			<SightsEfficiency>1.10</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		</statBases>
+		<costList>
+			<Chemfuel>10</Chemfuel>
+			<Steel>55</Steel>
+			<ComponentIndustrial>7</ComponentIndustrial>
+			<Bioferrite>20</Bioferrite>
+		</costList>
 		<Properties>
 			<recoilAmount>1.38</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -211,6 +217,7 @@
 			<Chemfuel>5</Chemfuel>
 			<Steel>55</Steel>
 			<ComponentIndustrial>3</ComponentIndustrial>
+			<Bioferrite>20</Bioferrite>
 		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -248,7 +255,7 @@
 	</Operation>
 
 	<!-- ========== Cyclone ========== -->
-	 
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName ="VWEB_Gun_CycloneMinigun"]/equippedStatOffsets</xpath>
 	</Operation>
@@ -266,8 +273,8 @@
 		</statBases>
 		<costList>
 			<Steel>150</Steel>
-			<ComponentIndustrial>15</ComponentIndustrial>
-			<Bioferrite>20</Bioferrite>
+			<ComponentIndustrial>20</ComponentIndustrial>
+			<Bioferrite>40</Bioferrite>
 		</costList>
 		<Properties>
 			<recoilAmount>0.97</recoilAmount>
@@ -314,24 +321,24 @@
 		<xpath>Defs/AbilityDef[defName="VWEB_CycloneRapidBurst"]/verbProperties</xpath>
 		<value>
 			<verbProperties>
-					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
-					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-					<warmupTime>0.5</warmupTime>
-					<range>62</range>
-					<burstShotCount>50</burstShotCount>
-					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
-					<onlyManualCast>true</onlyManualCast>
-					<hasStandardCommand>true</hasStandardCommand>
-					<targetable>true</targetable>
-					<violent>true</violent>
-					<targetParams>
-						<canTargetPawns>true</canTargetPawns>
-						<canTargetBuildings>true</canTargetBuildings>
-						<canTargetLocations>false</canTargetLocations>
-					</targetParams>
-					<soundCast>Shot_Minigun</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>9</muzzleFlashScale>
+				<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+				<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>62</range>
+				<burstShotCount>50</burstShotCount>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<onlyManualCast>true</onlyManualCast>
+				<hasStandardCommand>true</hasStandardCommand>
+				<targetable>true</targetable>
+				<violent>true</violent>
+				<targetParams>
+					<canTargetPawns>true</canTargetPawns>
+					<canTargetBuildings>true</canTargetBuildings>
+					<canTargetLocations>false</canTargetLocations>
+				</targetParams>
+				<soundCast>Shot_Minigun</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
 			</verbProperties>
 		</value>
 	</Operation>
