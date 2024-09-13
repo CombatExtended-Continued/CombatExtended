@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Vault suit, balanced to be a mix between FNV and FO4 -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Phaneron_VaultSuit"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Phaneron_VaultSuit"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>	
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Phaneron_VaultSuit"]/statBases</xpath>
+		<value>
+			<Bulk>2.25</Bulk>
+			<WornBulk>1.5</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- Pip-Boy -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Phaneron_FalloutPipBoy"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>0.5</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Phaneron_FalloutPipBoy"]/equippedStatOffsets</xpath> 
+		<value>
+			<equippedStatOffsets>
+				<AimingDelayFactor>0.1</AimingDelayFactor>
+				<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+				<AimingAccuracy>0.1</AimingAccuracy>
+				<CarryBulk>10</CarryBulk>
+			</equippedStatOffsets>	
+		</value>
+	</Operation>	
+
+	<!-- Increase cost -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Phaneron_FalloutPipBoy"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>35</Plasteel>
+		</value>
+	</Operation>
+
+	<!-- Increase work to make -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Phaneron_FalloutPipBoy"]/statBases/WorkToMake</xpath>
+		<value>
+			<WorkToMake>12500</WorkToMake>
+		</value>
+	</Operation>
+
+</Patch>
