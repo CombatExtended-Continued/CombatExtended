@@ -36,15 +36,6 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- Bioferrites -->
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_50mmRocket_DF</defName>
-		<label>50mm rocket(Direct fire)</label>
-		<ammoTypes>
-			<Ammo_50mmRocket_HE>Bullet_50mmRocket_HEDF</Ammo_50mmRocket_HE>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-
 	<!-- ================== Projectiles ================== -->
 
 	<!-- Vikings -->
@@ -90,64 +81,6 @@
 				<explosiveRadius>3.5</explosiveRadius>
 				<explosionSound>MortarBomb_Explode</explosionSound>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
-	</ThingDef>
-
-	<!-- Bioferrites -->
-	<ThingDef ParentName="Base50mmRocket">
-		<defName>Bullet_50mmRocket_HEDF</defName>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<label>50mm direct fire rocket (HE)</label>
-		<graphicData>
-			<texPath>Things/Projectile/Rocket/70mmAPKWS</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>0.70</drawSize>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>147</damageAmountBase>
-			<explosionRadius>2.5</explosionRadius>
-			<speed>80</speed>
-			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
-			<dropsCasings>false</dropsCasings>
-			<flyOverhead>false</flyOverhead>
-			<shellingProps>
-				<iconPath>Things/WorldObjects/Munitions/Rocket</iconPath>
-				<tilesPerTick>0.35</tilesPerTick>
-				<range>12</range>
-				<damage>0.43</damage>
-			</shellingProps>
-		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_Fragments">
-				<fragments>
-					<Fragment_Small>23</Fragment_Small>
-				</fragments>
-			</li>
-			<li Class="CombatExtended.CompProperties_ProjectileFleck">
-				<FleckDatas>
-					<li>
-						<fleck>Fleck_CERocketFlame</fleck>
-						<emissionsPerTick>7</emissionsPerTick>
-						<flecksPerEmission>3</flecksPerEmission>
-						<cutoffTickRange>60~120</cutoffTickRange>
-					</li>
-					<li>
-						<fleck>Fleck_CERocketSmokeTrail</fleck>
-						<emissionsPerTick>0.5</emissionsPerTick>
-						<rotation>0~360</rotation>
-						<scale>2</scale>
-						<flecksPerEmission>1</flecksPerEmission>
-					</li>
-					<li>
-						<fleck>Fleck_CERocketSmoke</fleck>
-						<emissionsPerTick>0.5</emissionsPerTick>
-						<rotation>0~360</rotation>
-						<flecksPerEmission>1</flecksPerEmission>
-						<cutoffTickRange>120~240</cutoffTickRange>
-					</li>
-				</FleckDatas>
 			</li>
 		</comps>
 	</ThingDef>
