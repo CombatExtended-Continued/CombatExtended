@@ -243,7 +243,7 @@ namespace CombatExtended
         {
             get
             {
-                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0 || _lightingTracker.map != caster.Map)
+                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0)
                 {
                     _lightingTracker = caster.Map.GetLightingTracker();
                 }
@@ -1064,7 +1064,6 @@ namespace CombatExtended
 
             float spreadDegrees = 0;
             float aperatureSize = 0;
-            int ticksToTruePosition = VerbPropsCE.ticksToTruePosition;
 
             if (Projectile.projectile is ProjectilePropertiesCE pprop)
             {
@@ -1119,8 +1118,7 @@ namespace CombatExtended
                         ShotHeight,
                         ShotSpeed,
                         EquipmentSource,
-                        distance,
-                        ticksToTruePosition);
+                        distance);
                 }
                 pelletMechanicsOnly = true;
             }

@@ -39,8 +39,6 @@ namespace CombatExtended
         public ThingDef detonateMoteDef;
         public FleckDef detonateFleckDef;
         public float detonateEffectsScaleOverride = -1;
-        [MustTranslate]
-        public string genericLabelOverride = null;
 
         #region Bunker Buster fields
         /// <summary>

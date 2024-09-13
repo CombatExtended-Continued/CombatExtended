@@ -2,10 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
-using System.Text;
 using HarmonyLib;
-using Mono.Cecil.Cil;
 using RimWorld;
 using Verse;
 using Verse.Noise;
@@ -140,83 +137,6 @@ namespace CombatExtended.HarmonyCE
                         __instance.modExtensions.Remove(list[i]);
                     }
                 }
-            }
-        }
-    }
-    [HarmonyPatch(typeof(ThingDef), "DescriptionDetailed", MethodType.Getter)]
-
-    internal static class ThingDef_DescriptionDetailed
-    {
-        private static StringBuilder AddShieldCover(ThingDef thingDef, StringBuilder stringBuilder)
-        {
-            if (thingDef.GetModExtension<ShieldDefExtension>()?.shieldCoverage != null)
-            {
-                stringBuilder.Append(string.Format("{0}: {1}", "CE_Shield_Coverage".Translate(), ShieldDefExtension.GetShieldProtectedAreas(BodyDefOf.Human, thingDef)));
-            }
-            else
-            {
-                stringBuilder.Append(string.Format("{0}: {1}", "Covers".Translate(), thingDef.apparel.GetCoveredOuterPartsString(BodyDefOf.Human)));
-            }
-            return stringBuilder;
-        }
-        internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions,
-                                                       ILGenerator generator)
-        {
-            var code = new List<CodeInstruction>(instructions);
-            int startIndex = -1;
-            int endIndex = -1;
-            bool foundCovers = false;
-
-            for (int i = 0; i < code.Count; i++)
-            {
-                if (code[i].opcode == OpCodes.Ldloc_0)
-                {
-                    startIndex = i;
-
-                    // Search for the next Pop, and check if "Covers" is in between
-                    for (int j = i + 1; j < code.Count; j++)
-                    {
-                        if (code[j].opcode == OpCodes.Ldstr && code[j].operand as string == "Covers")
-                        {
-                            foundCovers = true;
-                        }
-
-                        if (code[j].opcode == OpCodes.Pop)
-                        {
-                            if (foundCovers)
-                            {
-                                endIndex = j;
-                                break;
-                            }
-                            else
-                            {
-                                // If no "Covers" was found, reset startIndex and move to the next possible sequence
-                                startIndex = -1;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                if (endIndex > -1)
-                {
-                    break;
-                }
-            }
-
-            // Remove the code between startIndex and endIndex if a valid range was found
-            if (startIndex > -1 && endIndex > -1)
-            {
-                code[startIndex].opcode = OpCodes.Nop;
-                //code[endIndex].opcode = OpCodes.Nop;
-                code.RemoveRange(startIndex + 1, endIndex - startIndex - 1);
-                code.Insert(startIndex + 1, new CodeInstruction(OpCodes.Ldarg_0));
-                code.Insert(startIndex + 2, new CodeInstruction(OpCodes.Ldloc_0));
-                code.Insert(startIndex + 3, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingDef_DescriptionDetailed), "AddShieldCover", null, null)));
-            }
-            foreach (var c in code)
-            {
-                yield return c;
             }
         }
     }

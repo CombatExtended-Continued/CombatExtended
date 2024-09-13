@@ -17,7 +17,6 @@ namespace CombatExtended
         public XmlContainer AmmoUser;
         public XmlContainer FireModes;
         public XmlContainer weaponTags;
-        public XmlContainer weaponClasses;
         public XmlContainer costList;
         public XmlContainer researchPrerequisite;
         public XmlContainer attachmentLinks;
@@ -67,10 +66,6 @@ namespace CombatExtended
                 if (AmmoUser != null || FireModes != null)
                 {
                     AddOrReplaceCompsCE(xml, xmlNode);
-                }
-                if (weaponClasses != null && weaponClasses.node.HasChildNodes)
-                {
-                    AddOrReplaceWeaponClasses(xml, xmlNode);
                 }
                 if (weaponTags != null && weaponTags.node.HasChildNodes)
                 {
@@ -216,13 +211,6 @@ namespace CombatExtended
             {
                 comps.AppendChild(CreateListElementAndPopulate(xml, FireModes.node, "CombatExtended.CompProperties_FireModes"));
             }
-        }
-        private void AddOrReplaceWeaponClasses(XmlDocument xml, XmlNode xmlNode)
-        {
-            XmlElement weaponClassesElement;
-            GetOrCreateNode(xml, xmlNode, "weaponClasses", out weaponClassesElement);
-
-            Populate(xml, this.weaponClasses.node, ref weaponClassesElement);
         }
 
         private void AddOrReplaceWeaponTags(XmlDocument xml, XmlNode xmlNode)

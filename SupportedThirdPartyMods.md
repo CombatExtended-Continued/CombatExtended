@@ -220,7 +220,6 @@ Expanded Woodworking (Forked)   |
 Extended Storage	|
 Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
-Fallout: Vault 111 Starter Pack |
 Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
@@ -552,7 +551,6 @@ Vanilla Vehicles Expanded	|
 Vanilla Vehicles Expanded - Tier 3  |
 Vanilla Vehicles Expanded - Upgrades    |
 Vanilla Weapons Expanded |
-Vanilla Weapons Expanded - Bioferrite   |
 Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|
 Vanilla Weapons Expanded - Grenades |
