@@ -153,6 +153,7 @@ Censored Armory  |
 Charge-Loading Lee-Enfield  |
 Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
+Colonial Shuttle |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
