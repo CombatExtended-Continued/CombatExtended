@@ -13,7 +13,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]/maxRange</xpath>
 		<value>
-			<maxRange>62</maxRange>
+			<maxRange>42</maxRange>
 		</value>
 	</Operation>
 	
@@ -21,15 +21,43 @@
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]</xpath>
 		<value>
 			<li Class="Vehicles.CETurretDataDefModExtension">
-				<ammoSet>AmmoSet_ShuttleSmoker</ammoSet>
-				<shotHeight>2.5</shotHeight>
-				<speed>70</speed>
+				<ammoSet>AmmoSet_20x42mmGrenade</ammoSet>
+				<shotHeight>1.8</shotHeight>
+				<speed>74</speed>
 				<sway>0.3</sway>
 				<spread>3.5</spread>
 			</li>
 		</value>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>12</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_20x42mm_AP</li>
+				<li>Ammo_20x42mm_Incendiary</li>
+				<li>Ammo_20x42mm_APHE</li>
+				<li>Ammo_20x42mmGrenade_HE</li>
+				<li>Ammo_20x42mmGrenade_EMP</li>
+				<li>Ammo_20x42mmGrenade_Smoke</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
 	<!-- Reinforced Alloy Upgrade -->
 	
 	<Operation Class="PatchOperationReplace">
