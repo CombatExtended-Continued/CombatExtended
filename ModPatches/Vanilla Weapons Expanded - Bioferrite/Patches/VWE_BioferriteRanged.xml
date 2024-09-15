@@ -115,7 +115,7 @@
 					<power>10</power>
 					<cooldownTime>1.62</cooldownTime>
 					<armorPenetrationBlunt>2.304</armorPenetrationBlunt>
-					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+					<armorPenetrationSharp>1.85</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 				</li>
 			</tools>
@@ -241,9 +241,43 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VWEB_Gun_FirestormShotgun"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoDef</xpath>
+		<xpath>Defs/ThingDef[defName="VWEB_Gun_FirestormShotgun"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
 		<value>
-			<ammoDef>Ammo_Flamethrower_Bioferrite</ammoDef>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to shotgun</standardLabel>
+				<underBarrelLabel>switch to flamethrower</underBarrelLabel>
+				<propsUnderBarrel>
+					<magazineSize>20</magazineSize>
+					<reloadTime>5</reloadTime>
+					<ammoSet>AmmoSet_Flamethrower</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>0.35</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+					<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+					<warmupTime>1.1</warmupTime>
+					<range>8</range>
+					<minRange>1</minRange>
+					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+					<burstShotCount>20</burstShotCount>
+					<soundCast>HissFlamethrower</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<noSingleShot>true</noSingleShot>
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>			
 		</value>
 	</Operation>
 
