@@ -22,13 +22,13 @@ public class PsychicBlasterRocketCE : ProjectileCE_Explosive
             {
                 return def.projectile.GetDamageAmount(
                            equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) +
-                       (int)((((Pawn)launcher).psychicEntropy.MaxPotentialEntropy -
-                              ((Pawn)launcher).psychicEntropy.EntropyValue) * _psyBlasterBulletComp.PsyDamageMulti);
+                       ((((Pawn)launcher).psychicEntropy.MaxPotentialEntropy -
+                         ((Pawn)launcher).psychicEntropy.EntropyValue) * _psyBlasterBulletComp.PsyDamageMulti);
             }
             return 0;
         }
     }
-    
+
     public override void Impact(Thing hitThing) //that's also copied from the original
     {
         base.Impact(hitThing);
@@ -36,6 +36,7 @@ public class PsychicBlasterRocketCE : ProjectileCE_Explosive
         if (!CanConsumeResources(launcher as Pawn)) return;
 
         var launcherPawn = (Pawn)launcher;
-        Traverse.Create(launcherPawn).Field("psychicEntropy").Field("currentEntropy").SetValue(launcherPawn.psychicEntropy.MaxPotentialEntropy * 5.5f);
+        Traverse.Create(launcherPawn).Field("psychicEntropy").Field("currentEntropy")
+            .SetValue(launcherPawn.psychicEntropy.MaxPotentialEntropy * 5.5f);
     }
 }
