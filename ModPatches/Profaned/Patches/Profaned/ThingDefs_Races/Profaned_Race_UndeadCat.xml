@@ -2,6 +2,16 @@
 <Patch>
 
 	<!-- ========== Undead Cat ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="BotchJob_UndeadCat"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="BotchJob_UndeadCat"]/statBases</xpath>
 		<value>
@@ -84,15 +94,6 @@
 					<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
 				</li>
 			</tools>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="BotchJob_UndeadCat"]</xpath>
-		<value>
-			<li Class="CombatExtended.RacePropertiesExtensionCE">
-				<bodyShape>Quadruped</bodyShape>
-			</li>
 		</value>
 	</Operation>
 
