@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
-        <AssemblyName>PsyblastersCompat</AssemblyName>
+        <AssemblyName>PsyBlastersCompat</AssemblyName>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <FileVersion>1.0.0.0</FileVersion>
         <Version>1.0.0</Version>
@@ -12,7 +12,7 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <OutputPath>..\..\ModPatches\Psyblasters\Assemblies</OutputPath>
+        <OutputPath>..\..\ModPatches\PsyBlasters\Assemblies</OutputPath>
         <DebugType>portable</DebugType>
         <DebugSymbols>true</DebugSymbols>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -20,7 +20,7 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <OutputPath>..\..\ModPatches\Psyblasters\Assemblies</OutputPath>
+        <OutputPath>..\..\ModPatches\PsyBlasters\Assemblies</OutputPath>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <DebugType>none</DebugType>
         <DebugSymbols>false</DebugSymbols>
@@ -36,12 +36,8 @@
         </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-        <Reference Include="SOS2">
-            <HintPath>..\packages\ShipsHaveInsides-reference.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="Vehicles">
-            <HintPath>..\packages\Vehicles-reference.dll</HintPath>
+        <Reference Include="PsyBlasters">
+            <HintPath>..\packages\PsyBlasters-reference.dll</HintPath>
             <Private>False</Private>
         </Reference>
     </ItemGroup>
