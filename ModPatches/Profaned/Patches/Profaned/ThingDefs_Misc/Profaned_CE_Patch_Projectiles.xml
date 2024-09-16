@@ -5,7 +5,8 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="BotchJob_BoneProjectile" or
-			defName="BotchJob_SoulShard"]/thingClass
+			defName="BotchJob_SoulShard" or
+			defName="BotchJob_SpectralGreatbowArrow"]/thingClass
 		</xpath>
 		<value>
 			<thingClass>CombatExtended.BulletCE</thingClass>
@@ -81,7 +82,7 @@
 			</projectile>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BotchJob_BloodflameStaffBolt"]/projectile</xpath>
 		<value>
@@ -97,7 +98,7 @@
 			</projectile>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedStaffBolt"]/projectile</xpath>
 		<value>
@@ -143,6 +144,19 @@
 				<arcHeightFactor>1.2</arcHeightFactor>
 			</projectile>
 		</value>
-	</Operation>	
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_SpectralGreatbowArrow"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Arrow</damageDef>
+				<damageAmountBase>8</damageAmountBase>
+				<speed>26</speed>
+				<armorPenetrationBlunt>2.96</armorPenetrationBlunt>
+				<armorPenetrationSharp>3</armorPenetrationSharp>
+			</projectile>
+		</value>
+	</Operation>
 
 </Patch>
