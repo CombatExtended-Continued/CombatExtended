@@ -11,7 +11,7 @@ public class PsychicBlasterBulletCE : BulletCE //Basically just duplicating the 
     private bool CanConsumeResources(Pawn launcherPawn)
     {
         return _psyBlasterBulletComp != null &&
-               launcherPawn is { HasPsylink: true, psychicEntropy.currentEntropy: > 0 };
+               launcherPawn is { HasPsylink: true, psychicEntropy.CurrentPsyfocus: > 0 };
     }
 
     public override float DamageAmount
