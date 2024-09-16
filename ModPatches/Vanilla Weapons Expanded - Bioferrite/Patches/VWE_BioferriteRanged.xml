@@ -169,30 +169,42 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="VWEB_FlarestrikeFlare"]/verbProperties</xpath>
+		<xpath>Defs/ThingDef[defName="VWEB_Gun_FlarestrikeRifle"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
 		<value>
-			<verbProperties>
-				<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
-				<defaultProjectile>Grenade_DisruptorFlare</defaultProjectile>
-				<label>launch flare</label>
-				<warmupTime>0.5</warmupTime>
-				<range>40</range>
-				<burstShotCount>1</burstShotCount>
-				<onlyManualCast>true</onlyManualCast>
-				<hasStandardCommand>true</hasStandardCommand>
-				<targetable>true</targetable>
-				<violent>false</violent>
-				<targetParams>
-					<canTargetPawns>false</canTargetPawns>
-					<canTargetBuildings>false</canTargetBuildings>
-					<canTargetLocations>true</canTargetLocations>
-				</targetParams>
-				<soundCast>FlareLaunch</soundCast>
-				<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
-				<canGoWild>false</canGoWild>
-				<explosionRadiusRingColor>(0.8, 0.8, 0.4, 1)</explosionRadiusRingColor><!-- Keep in sync with PlaceWorker_GlowRadius.RingColor -->
-				<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-			</verbProperties>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to rifle</standardLabel>
+				<underBarrelLabel>switch to flaregun</underBarrelLabel>
+				<propsUnderBarrel>
+					<magazineSize>1</magazineSize>
+					<reloadTime>3</reloadTime>
+					<ammoSet>AmmoSet_DisruptorFlare</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>0.35</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Grenade_DisruptorFlare</defaultProjectile>
+					<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+					<warmupTime>0.5</warmupTime>
+					<range>40</range>
+					<minRange>1</minRange>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>FlareLaunch</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<noSingleShot>true</noSingleShot>
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>			
 		</value>
 	</Operation>
 
@@ -299,9 +311,9 @@
 			<WorkToMake>60000</WorkToMake>
 		</statBases>
 		<costList>
-			<Steel>150</Steel>
-			<ComponentIndustrial>20</ComponentIndustrial>
-			<Bioferrite>40</Bioferrite>
+			<Steel>200</Steel>
+			<ComponentIndustrial>25</ComponentIndustrial>
+			<Bioferrite>25</Bioferrite>
 		</costList>
 		<Properties>
 			<recoilAmount>0.97</recoilAmount>
@@ -331,42 +343,38 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VWEB_Gun_CycloneMinigun"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoDef</xpath>
+		<xpath>Defs/ThingDef[defName="VWEB_Gun_CycloneMinigun"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
 		<value>
-			<ammoDef>Ammo_762x51mmNATO_FMJ</ammoDef>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VWEB_Gun_CycloneMinigun"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoCountPerCharge</xpath>
-		<value>
-			<ammoCountPerCharge>50</ammoCountPerCharge>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="VWEB_CycloneRapidBurst"]/verbProperties</xpath>
-		<value>
-			<verbProperties>
-				<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
-				<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-				<warmupTime>0.5</warmupTime>
-				<range>62</range>
-				<burstShotCount>50</burstShotCount>
-				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
-				<onlyManualCast>true</onlyManualCast>
-				<hasStandardCommand>true</hasStandardCommand>
-				<targetable>true</targetable>
-				<violent>true</violent>
-				<targetParams>
-					<canTargetPawns>true</canTargetPawns>
-					<canTargetBuildings>true</canTargetBuildings>
-					<canTargetLocations>false</canTargetLocations>
-				</targetParams>
-				<soundCast>Shot_Minigun</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
-				<muzzleFlashScale>9</muzzleFlashScale>
-			</verbProperties>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to normalfire</standardLabel>
+				<underBarrelLabel>switch to cyclone engine</underBarrelLabel>
+				<propsUnderBarrel>
+					<magazineSize>250</magazineSize>
+					<reloadTime>9.2</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>0.49</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>2.1</warmupTime>
+					<range>62</range>
+					<burstShotCount>100</burstShotCount>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<soundCast>Shot_Minigun</soundCast>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>50</aimedBurstShotCount>
+					<noSingleShot>true</noSingleShot>
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>			
 		</value>
 	</Operation>
 
@@ -412,7 +420,6 @@
 			<li>SimpleGun</li>
 			<li>CE_AI_SR</li>
 		</weaponTags>
-		<researchPrerequisite>Gunsmithing</researchPrerequisite>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
