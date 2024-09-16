@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ColossusHeart"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="BotchJob_LuminousDust" or
+			defName="BotchJob_CorruptedBlood" or
+			defName="BotchJob_TaintedBone"]/statBases
+		</xpath>
+		<value>
+			<Bulk>0.5</Bulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BotchJob_ProfanePotionBase"]/statBases</xpath>
+		<value>
+			<Bulk>0.2</Bulk>
+		</value>
+	</Operation>
+	
+</Patch>
