@@ -38,27 +38,13 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="PPSa"]/equippedStatOffsets/ToxicSensitivity</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="PPSa"]/equippedStatOffsets/ToxicSensitivity</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="PPSa"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
-		<match Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="PPSa"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
-			<value>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="PPSa"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<equippedStatOffsets>
 				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
-			</value>
-		</match>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="PPSa"]/equippedStatOffsets</xpath>
-			<value>
-				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
-			</value>
-		</nomatch>
+			</equippedStatOffsets>	
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -158,35 +144,13 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="PPSH"]/equippedStatOffsets</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="PPSH"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
 		<value>
+			<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 			<AimingAccuracy>0.15</AimingAccuracy>
 			<SmokeSensitivity>-1</SmokeSensitivity>
 		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="PPSH"]/equippedStatOffsets/ToxicSensitivity</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="PPSH"]/equippedStatOffsets/ToxicSensitivity</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="PPSH"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
-		<match Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="PPSH"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
-			<value>
-				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
-			</value>
-		</match>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="PPSH"]/equippedStatOffsets</xpath>
-			<value>
-				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
-			</value>
-		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -226,4 +190,5 @@
 			</li>
 		</value>
 	</Operation>
+
 </Patch>
