@@ -38,15 +38,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="PPSa"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
-			</equippedStatOffsets>	
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="PPSa"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
@@ -83,11 +74,12 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="PPSa"]/equippedStatOffsets</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="PPSa"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
 		<value>
 			<CarryWeight>225</CarryWeight>
 			<CarryBulk>50</CarryBulk>
+			<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 		</value>
 	</Operation>
 
