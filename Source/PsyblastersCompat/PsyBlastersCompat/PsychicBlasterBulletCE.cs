@@ -48,11 +48,15 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
         public override void Impact(Thing hitThing)
         {
             base.Impact(hitThing);
-            
+
             if (hitThing is not Pawn && Rand.Chance(0.66f) //don't look at me, it was like that in the original code
                 || launcher is not Pawn launcherPawn
                 || !CanConsumeResources(launcherPawn)
-                || launcherPawn.psychicEntropy.limitEntropyAmount && launcherPawn.psychicEntropy.WouldOverflowEntropy(_psyBlasterBulletComp.EntropyCost)) return;
+                || launcherPawn.psychicEntropy.limitEntropyAmount &&
+                launcherPawn.psychicEntropy.WouldOverflowEntropy(_psyBlasterBulletComp.EntropyCost))
+            {
+                return;
+            }
             
             launcherPawn.psychicEntropy.OffsetPsyfocusDirectly(-_psyBlasterBulletComp.PsyCost);
             launcherPawn.psychicEntropy.TryAddEntropy(_psyBlasterBulletComp.EntropyCost);

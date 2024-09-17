@@ -32,8 +32,11 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
         public override void Impact(Thing hitThing) //that's also copied from the original
         {
             base.Impact(hitThing);
-    
-            if (!CanConsumeResources(launcher as Pawn)) return;
+
+            if (!CanConsumeResources(launcher as Pawn))
+            {
+                return;
+            }
     
             var launcherPawn = (Pawn)launcher;
             Traverse.Create(launcherPawn).Field("psychicEntropy").Field("currentEntropy")
