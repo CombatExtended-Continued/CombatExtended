@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="BotchJob_BoneProjectile" or
+			defName="BotchJob_SoulShard" or
+			defName="BotchJob_SpectralGreatbowArrow"]/thingClass
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="BotchJob_ColossusSmashProj" or
+			defName="BotchJob_WraithClaw" or
+			defName="BotchJob_DragonToxicBreath" or
+			defName="BotchJob_PutridMass" or
+			defName="BotchJob_BloodflameStaffBolt" or
+			defName="BotchJob_ProfanedStaffBolt"]/thingClass
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<!-- =============== Now defining Projectiles in CE Procedure ============= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ColossusSmashProj"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>3</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<damageDef>BotchJob_ColossusSmash</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+				<speed>30</speed>
+				<armorPenetrationSharp>5</armorPenetrationSharp>
+				<armorPenetrationBlunt>25</armorPenetrationBlunt>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<explosionEffect>BotchJob_ColossusSmashEffect</explosionEffect>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_WraithClaw"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1.5</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<damageDef>BotchJob_WraithClawBlast</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+				<speed>20</speed>
+				<armorPenetrationSharp>20</armorPenetrationSharp>
+				<armorPenetrationBlunt>40</armorPenetrationBlunt>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_PutridMass"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>4.5</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<damageDef>BotchJob_RotstinkBlast</damageDef>
+				<damageAmountBase>27</damageAmountBase>
+				<speed>38</speed>
+				<postExplosionGasType>RotStink</postExplosionGasType>
+				<preExplosionSpawnThingDef>BotchJob_Filth_Undead</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+				<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_BloodflameStaffBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>3</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<damageDef>BotchJob_BloodflameRotstinkBlast</damageDef>
+				<damageAmountBase>27</damageAmountBase>
+				<speed>16</speed>
+				<postExplosionGasType>RotStink</postExplosionGasType>
+				<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedStaffBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2</explosionRadius>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<damageDef>BotchJob_BloodflameRotstinkBlast</damageDef>
+				<damageAmountBase>27</damageAmountBase>
+				<speed>16</speed>
+				<postExplosionGasType>RotStink</postExplosionGasType>
+				<armorPenetrationBlunt>20</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- Non Explosives -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_BoneProjectile"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>true</flyOverhead>
+				<damageDef>BotchJob_BoneImpact</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<speed>19</speed>
+				<armorPenetrationSharp>0</armorPenetrationSharp>
+				<armorPenetrationBlunt>3</armorPenetrationBlunt>
+				<arcHeightFactor>1.2</arcHeightFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_SoulShard"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>true</flyOverhead>
+				<damageDef>RangedStab</damageDef>
+				<damageAmountBase>15</damageAmountBase>
+				<speed>19</speed>
+				<armorPenetrationSharp>3</armorPenetrationSharp>
+				<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				<arcHeightFactor>1.2</arcHeightFactor>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_SpectralGreatbowArrow"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Arrow</damageDef>
+				<damageAmountBase>8</damageAmountBase>
+				<speed>26</speed>
+				<armorPenetrationBlunt>2.96</armorPenetrationBlunt>
+				<armorPenetrationSharp>3</armorPenetrationSharp>
+			</projectile>
+		</value>
+	</Operation>
+
+</Patch>

@@ -27,7 +27,10 @@ namespace CombatExtended
             {
                 var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
                 var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                return (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
+
+                float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
+
+                return lerpPosition ? penetrationAmount : penetrationAmount * RemainingKineticEnergyPct;
             }
         }
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="BotchJob_Wraith"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_Wraith"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.45</MeleeDodgeChance>
+			<MeleeCritChance>0.2</MeleeCritChance>
+			<AimingAccuracy>0.7</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_Wraith"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>3.2</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Frostbite</def>
+							<amount>2</amount>
+						</li>
+					</extraMeleeDamages>
+					<armorPenetrationSharp>20</armorPenetrationSharp>
+					<armorPenetrationBlunt>40</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>3.2</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Frostbite</def>
+							<amount>2</amount>
+						</li>
+					</extraMeleeDamages>
+					<armorPenetrationSharp>20</armorPenetrationSharp>
+					<armorPenetrationBlunt>40</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

@@ -94,9 +94,11 @@ namespace CombatExtended
                 {
                     return (float)this.damageAmount;
                 }
-                return ((float)this.damageAmount) * (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
+                return ((float)this.damageAmount) * RemainingKineticEnergyPct;
             }
         }
+
+        public float RemainingKineticEnergyPct => (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
 
         /// <summary>
         /// Reference to the weapon that fired this projectile, may be null.
@@ -902,7 +904,6 @@ namespace CombatExtended
             {
                 MoteMakerCE.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
             }
-
             Impact(null);
             return true;
         }
@@ -982,7 +983,6 @@ namespace CombatExtended
             {
                 MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
             }
-
             Impact(thing);
             return true;
         }
@@ -1086,13 +1086,25 @@ namespace CombatExtended
                 velocity = new Vector3(Mathf.Cos(sr) * Mathf.Cos(shotAngle) * sspt, Mathf.Sin(shotAngle) * sspt, Mathf.Sin(sr) * Mathf.Cos(shotAngle) * sspt);
                 initialSpeed = sspt;
             }
-            Vector3 newPosition = curPosition + velocity;
             Accelerate();
+            Vector3 newPosition = curPosition + velocity;
+            shotSpeed = velocity.magnitude;
             return newPosition;
         }
 
-        // This can also be made virtual, and would be the ideal entry point for guided ammunition and rockets.
-        protected void Accelerate()
+        // This is the ideal entry point for guided ammunition and rockets.
+        protected virtual void Accelerate()
+        {
+            AffectedByDrag();
+            AffectedByGravity();
+        }
+
+        protected void AffectedByGravity()
+        {
+            velocity.y -= gravity / GenTicks.TicksPerRealSecond;
+        }
+
+        protected void AffectedByDrag()
         {
             float crossSectionalArea = radius;
             crossSectionalArea *= crossSectionalArea * 3.14159f;
@@ -1101,12 +1113,11 @@ namespace CombatExtended
             var dragForce = q * crossSectionalArea / ballisticCoefficient;
             // F = mA
             // A = F / m
-            var a = (float)((-dragForce / (float)mass));
+            var a = (float)-dragForce / mass;
             var normalized = velocity.normalized;
             velocity.x += a * normalized.x;
-            velocity.y += a * normalized.y - (float)(1 / ballisticCoefficient) * (float)gravity / GenTicks.TicksPerRealSecond;
+            velocity.y += a * normalized.y;
             velocity.z += a * normalized.z;
-            shotSpeed = velocity.magnitude;
         }
 
         #region Tick/Draw
@@ -1174,7 +1185,7 @@ namespace CombatExtended
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }
             //TODO : It appears that the final steps in the arc (past ticksToImpact == 0) don't CheckForCollisionBetween.
-            if (ticksToImpact <= 0 || nextPosition.y <= 0f)
+            if ((lerpPosition && ticksToImpact <= 0) || nextPosition.y <= 0f)
             {
                 ImpactSomething();
                 return;
