@@ -7,13 +7,13 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
     public class PsychicBlasterBulletCE : BulletCE //Basically just duplicating the original behavior to the CE class
     {
         private PsyBlasterBulletComp _psyBlasterBulletComp => GetComp<PsyBlasterBulletComp>();
-    
+
         private bool CanConsumeResources(Pawn launcherPawn)
         {
             return _psyBlasterBulletComp != null &&
                    launcherPawn is { HasPsylink: true, psychicEntropy.CurrentPsyfocus: > 0 };
         }
-    
+
         public override float DamageAmount
         {
             get
@@ -23,11 +23,11 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
                 {
                     damMulti += _psyBlasterBulletComp.PsyDamageMulti;
                 }
-    
+
                 return def.projectile.GetDamageAmount(damMulti);
             }
         }
-    
+
         public override float PenetrationAmount
         {
             get
@@ -39,12 +39,12 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
                 {
                     penMulti += _psyBlasterBulletComp.PsyPenMulti;
                 }
-    
+
                 return penMulti *
                        (isSharp ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
             }
         }
-    
+
         public override void Impact(Thing hitThing)
         {
             base.Impact(hitThing);
@@ -57,7 +57,7 @@ namespace CombatExtended.Compatibility.PsyBlastersCompat
             {
                 return;
             }
-            
+
             launcherPawn.psychicEntropy.OffsetPsyfocusDirectly(-_psyBlasterBulletComp.PsyCost);
             launcherPawn.psychicEntropy.TryAddEntropy(_psyBlasterBulletComp.EntropyCost);
         }
