@@ -394,6 +394,7 @@ Project RimFactory - Materials |
 Prostheses+ |
 Protoswords |
 PsiTech	|
+PsyBlasters |
 Pulsefire Turret (Continued)    |
 Pulse Weaponry  |
 Rabbie The Moonrabbit race	|
