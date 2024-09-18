@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Shuttle Turret Upgade -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_20x42mmGrenade_Smoke</projectile>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]/maxRange</xpath>
+		<value>
+			<maxRange>42</maxRange>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_20x42mmGrenade</ammoSet>
+				<shotHeight>1.8</shotHeight>
+				<speed>74</speed>
+				<sway>0.3</sway>
+				<spread>3.5</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>12</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="ColonialShuttle_Turret_Smoke"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_20x42mm_AP</li>
+				<li>Ammo_20x42mm_Incendiary</li>
+				<li>Ammo_20x42mm_APHE</li>
+				<li>Ammo_20x42mmGrenade_HE</li>
+				<li>Ammo_20x42mmGrenade_EMP</li>
+				<li>Ammo_20x42mmGrenade_Smoke</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<!-- Reinforced Alloy Upgrade -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="ColonialShuttle_UpgradeTree"]/nodes/li[key="ReinforcedAlloy"]/upgrades/li[@Class="Vehicles.VehicleUpgrade"]/armor/li[key="HullFront"]/statModifiers</xpath>
+		<value>
+			<statModifiers>
+				<ArmorRating_Sharp>5</ArmorRating_Sharp>
+				<ArmorRating_Blunt>10</ArmorRating_Blunt>
+			</statModifiers>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="ColonialShuttle_UpgradeTree"]/nodes/li[key="ReinforcedAlloy"]/upgrades/li[@Class="Vehicles.VehicleUpgrade"]/armor/li[key="HullRear"]/statModifiers</xpath>
+		<value>
+			<statModifiers>
+				<ArmorRating_Sharp>5</ArmorRating_Sharp>
+				<ArmorRating_Blunt>10</ArmorRating_Blunt>
+			</statModifiers>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="ColonialShuttle_UpgradeTree"]/nodes/li[key="ReinforcedAlloy"]/upgrades/li[@Class="Vehicles.VehicleUpgrade"]/armor/li[key="HullLeft"]/statModifiers</xpath>
+		<value>
+			<statModifiers>
+				<ArmorRating_Sharp>5</ArmorRating_Sharp>
+				<ArmorRating_Blunt>10</ArmorRating_Blunt>
+			</statModifiers>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="ColonialShuttle_UpgradeTree"]/nodes/li[key="ReinforcedAlloy"]/upgrades/li[@Class="Vehicles.VehicleUpgrade"]/armor/li[key="HullRight"]/statModifiers</xpath>
+		<value>
+			<statModifiers>
+				<ArmorRating_Sharp>5</ArmorRating_Sharp>
+				<ArmorRating_Blunt>10</ArmorRating_Blunt>
+			</statModifiers>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="ColonialShuttle_UpgradeTree"]/nodes/li[key="ReinforcedAlloy"]/upgrades/li[@Class="Vehicles.VehicleUpgrade"]/armor/li[key="HullTop"]/statModifiers</xpath>
+		<value>
+			<statModifiers>
+				<ArmorRating_Sharp>5</ArmorRating_Sharp>
+				<ArmorRating_Blunt>10</ArmorRating_Blunt>
+			</statModifiers>
+		</value>
+	</Operation>
+
+</Patch>

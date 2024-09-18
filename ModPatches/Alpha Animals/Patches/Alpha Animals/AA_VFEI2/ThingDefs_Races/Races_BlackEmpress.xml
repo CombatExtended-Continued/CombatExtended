@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Insectoids 2</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackEmpress"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackEmpress"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						<MeleeCritChance>0.33</MeleeCritChance>
+						<MeleeParryChance>0.57</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackEmpress"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>25</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackEmpress"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackEmpress"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head claw</label>
+								<capacities>
+									<li>AA_ExtraDamageMechanoidsClaws</li>
+								</capacities>
+								<power>25</power>
+								<cooldownTime>1.28</cooldownTime>
+								<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>50</armorPenetrationSharp>
+								<armorPenetrationBlunt>30</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>front claw</label>
+								<capacities>
+									<li>AA_ExtraDamageMechanoidsClaws</li>
+								</capacities>
+								<power>51</power>
+								<cooldownTime>1.45</cooldownTime>
+								<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>7.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>2.64</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>5.1</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackEmpress"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VFEI2_BlackEmpress"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VFEI2_BlackEmpress"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>2750</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>400</RegenInterval>
+							<RegenValue>5</RegenValue>
+							<MinArmorPct>0.25</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
