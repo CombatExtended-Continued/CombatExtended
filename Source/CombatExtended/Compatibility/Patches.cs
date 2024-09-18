@@ -82,20 +82,6 @@ namespace CombatExtended.Compatibility
             }
         }
 
-        public IEnumerable<string> GetCompatList()
-        {
-            foreach (IPatch patch in patches)
-            {
-                if (patch.CanInstall())
-                {
-                    foreach (string s in patch.GetCompatList())
-                    {
-                        yield return s;
-                    }
-                }
-            }
-        }
-
         private static bool _gcbfactive = false;
 
         public static void RegisterCollisionBodyFactorCallback(Func<Pawn, Tuple<bool, Vector2>> f)

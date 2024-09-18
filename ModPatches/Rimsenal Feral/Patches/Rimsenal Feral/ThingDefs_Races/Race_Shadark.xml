@@ -13,10 +13,35 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mutant_Shadark"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>1</MeleeDodgeChance>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+			<MeleeDodgeChance>0.5</MeleeDodgeChance>
 			<MeleeCritChance>1</MeleeCritChance>
 			<MeleeParryChance>1</MeleeParryChance>
 			<SmokeSensitivity>0</SmokeSensitivity>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mutant_Shadark"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mutant_Shadark"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mutant_Shadark"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>650</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
@@ -77,4 +102,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>

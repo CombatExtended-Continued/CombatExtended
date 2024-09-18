@@ -286,8 +286,10 @@ namespace CombatExtended
 
         public bool oneAmmoHolder = false;
 
+        [MustTranslate]
         public string underBarrelLabel;
 
+        [MustTranslate]
         public string standardLabel;
 
         public string underBarrelIconTexPath;

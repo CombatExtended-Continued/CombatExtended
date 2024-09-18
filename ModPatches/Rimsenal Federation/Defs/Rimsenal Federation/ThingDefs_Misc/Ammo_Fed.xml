@@ -1,9 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
+	<!-- ==========  Bases =========== -->
+	
+	<ThingDef Name="BaseOpticBoltCE" ParentName="BaseBulletCE" Abstract="true">
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mlaser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Optic</damageDef>
+			<speed>100</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef Name="BaseCrucibleBoltCE" ParentName="BaseBulletCE" Abstract="true">
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cruciblebolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Crucible</damageDef>
+			<speed>100</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef Name="BasePlasmaBombCE" ParentName="BaseExplosiveBullet" Abstract="true">
+		<label>plasma sphere</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<suppressionFactor>6.0</suppressionFactor>
+			<dangerFactor>4.0</dangerFactor>
+			<damageDef>Plasma</damageDef>
+			<speed>16</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+	
 	<!-- ==========  Harvester Cannon =========== -->
 
-	<ThingDef ParentName="Base40x365mmBoforsBullet">
+	<ThingDef ParentName="BaseOpticBoltCE">
 		<defName>Bullet_HarvesterCannon</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>energy bolt</label>
@@ -12,17 +57,12 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Optic</damageDef>
-			<speed>106</speed>
-			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationBlunt>5</armorPenetrationBlunt>
-			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<damageAmountBase>36</damageAmountBase>
 			<explosionRadius>1</explosionRadius>
 		</projectile>
 	</ThingDef>
 
-	<!-- ==========  Plasma Bombard Projectile =========== -->
+	<!-- ==========  Plasma Artillery Projectile =========== -->
 
 	<ThingDef ParentName="BaseExplosiveBullet">
 		<defName>Bullet_PlasmaTurretBombard</defName>
@@ -38,39 +78,20 @@
 			<speed>0</speed>
 			<flyOverhead>true</flyOverhead>
 			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationBlunt>5</armorPenetrationBlunt>
-			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<damageAmountBase>30</damageAmountBase>
 			<explosionRadius>2.5</explosionRadius>
-			<gravityFactor>5</gravityFactor>
+			<gravityFactor>2.5</gravityFactor>
+			<pelletCount>10</pelletCount>
+			<spreadMult>10</spreadMult>
+			<shellingProps>
+				<tilesPerTick>0.10</tilesPerTick>
+				<range>30</range>
+			</shellingProps>
 		</projectile>
 	</ThingDef>
-
-	<!-- ==========  Crucible Cannon Projectile =========== -->
-
-	<ThingDef ParentName="Base40x365mmBoforsBullet">
-		<defName>Bullet_CrucibleCannon_CE</defName>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<label>energy bolt</label>
-		<graphicData>
-			<texPath>Things/Projectile/Mlaser</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Optic</damageDef>
-			<speed>98</speed>
-			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>20</damageAmountBase>
-			<armorPenetrationBlunt>5</armorPenetrationBlunt>
-			<armorPenetrationSharp>20</armorPenetrationSharp>
-			<explosionRadius>1</explosionRadius>
-		</projectile>
-	</ThingDef>
-
-	<!-- ==========  Mech Plasma Bombard Projectile =========== -->
-
+	
 	<ThingDef ParentName="BaseExplosiveBullet">
-		<defName>Bullet_PlasmaMechBombard</defName>
+		<defName>Bullet_Federation_PlasmaBlast</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>energy bolt</label>
 		<graphicData>
@@ -80,18 +101,119 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Plasma</damageDef>
-			<speed>63</speed>
+			<speed>0</speed>
+			<flyOverhead>true</flyOverhead>
 			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>50</damageAmountBase>
-			<armorPenetrationBlunt>5</armorPenetrationBlunt>
-			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<damageAmountBase>120</damageAmountBase>
 			<explosionRadius>4</explosionRadius>
+			<gravityFactor>5</gravityFactor>
+			<shellingProps>
+				<tilesPerTick>0.005</tilesPerTick>
+				<range>50</range>
+				<iconPath>Things/Projectile/MFlux</iconPath>
+			</shellingProps>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_Federation_PlasmaCluster</defName>
+		<thingClass>CombatExtended.ProjectileCE_HeightFuse</thingClass>
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/MFlux</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<soundExplode>Explosion_OpticBurst</soundExplode>
+			<speed>0</speed>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>0</damageAmountBase>
+			<explosionRadius>2.5</explosionRadius>
+			<gravityFactor>5</gravityFactor>
+			<aimHeightOffset>11</aimHeightOffset>
+			<shellingProps>
+				<tilesPerTick>0.005</tilesPerTick>
+				<range>50</range>
+				<damage>0.46</damage>
+				<iconPath>Things/Projectile/MFlux</iconPath>
+			</shellingProps>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Bullet_Federation_PlasmaSub>15</Bullet_Federation_PlasmaSub>
+				</fragments>
+				<fragAngleRange>-90~-10</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_Federation_PlasmaSub</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Plasma</damageDef>
+			<speed>3</speed>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>30</damageAmountBase>
+			<explosionRadius>2.5</explosionRadius>
+			<gravityFactor>0.01</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==========  Crucible Cannon Projectile =========== -->
+
+	<ThingDef ParentName="BaseCrucibleBoltCE">
+		<defName>Bullet_CrucibleCannon_CE</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>energy bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mlaser</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>36</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==========  Mech Plasma Bombard Projectile =========== -->
+
+	<ThingDef ParentName="BasePlasmaBombCE">
+		<defName>Bullet_PlasmaMechBombard</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/MFlux</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Plasma</damageDef>
+			<speed>8</speed>
+			<gravityFactor>0.01</gravityFactor>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>120</damageAmountBase>
+			<explosionRadius>4</explosionRadius>
+			<shellingProps>
+				<tilesPerTick>0.01</tilesPerTick>
+				<range>45</range>
+			</shellingProps>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==========  Plasma Rifle Projectile =========== -->
 
-	<ThingDef ParentName="Base556x45mmNATOBullet">
+	<ThingDef ParentName="BasePlasmaBombCE">
 		<defName>Bullet_PlasmaRifle_Fed</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>plasma sphere</label>
@@ -101,12 +223,11 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Plasma</damageDef>
-			<speed>54</speed>
+			<speed>20</speed>
+			<gravityFactor>0.01</gravityFactor>
 			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationBlunt>5</armorPenetrationBlunt>
-			<armorPenetrationSharp>16</armorPenetrationSharp>
-			<explosionRadius>1.5</explosionRadius>
+			<damageAmountBase>30</damageAmountBase>
+			<explosionRadius>2.1</explosionRadius>
 		</projectile>
 	</ThingDef>
 
@@ -133,7 +254,7 @@
 
 	<!-- ==========  Auxiliary Pistol Projectile =========== -->
 
-	<ThingDef ParentName="Base45ACPBullet">
+	<ThingDef ParentName="BaseOpticBoltCE">
 		<defName>Bullet_AuxiliaryPistol</defName>
 		<label>energy bolt</label>
 		<graphicData>
@@ -141,18 +262,13 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Optic</damageDef>
-			<speed>90</speed>
-			<dropsCasings>false</dropsCasings>
 			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
-			<armorPenetrationSharp>8</armorPenetrationSharp>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==========  Makeshift Crucible Rifle Projectile =========== -->
 
-	<ThingDef ParentName="Base556x45mmNATOBullet">
+	<ThingDef ParentName="BaseOpticBoltCE">
 		<defName>Bullet_MakeshiftCrucibleRifle</defName>
 		<label>energy bolt</label>
 		<graphicData>
@@ -164,52 +280,52 @@
 			<speed>90</speed>
 			<dropsCasings>false</dropsCasings>
 			<damageAmountBase>13</damageAmountBase>
-			<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
-			<armorPenetrationSharp>10</armorPenetrationSharp>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==========  Crucible Rifle Projectile =========== -->
 
-	<ThingDef ParentName="Base556x45mmNATOBullet">
+	<ThingDef ParentName="BaseCrucibleBoltCE">
 		<defName>Bullet_CrucibleRifle</defName>
-		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseOpticBoltCE">
+		<defName>Bullet_CrucibleRifleAD</defName>
 		<graphicData>
 			<texPath>Things/Projectile/Laser</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Optic</damageDef>
-			<speed>90</speed>
-			<dropsCasings>false</dropsCasings>
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationBlunt>3</armorPenetrationBlunt>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==========  Crucible Pistol Projectile =========== -->
-
-	<ThingDef ParentName="Base45ACPBullet">
+	
+	<ThingDef ParentName="BaseCrucibleBoltCE">
 		<defName>Bullet_CruciblePistol</defName>
-		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseOpticBoltCE">
+		<defName>Bullet_CruciblePistolAD</defName>
 		<graphicData>
 			<texPath>Things/Projectile/Laser</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Optic</damageDef>
-			<speed>90</speed>
-			<dropsCasings>false</dropsCasings>
 			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
-			<armorPenetrationSharp>10</armorPenetrationSharp>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==========  Heat Cannon Projectile =========== -->
 
-	<ThingDef ParentName="Base40x365mmBoforsBullet">
+	<ThingDef ParentName="BaseOpticBoltCE">
 		<defName>Bullet_HeatCannon</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>heat bolt</label>
@@ -222,36 +338,57 @@
 			<damageDef>Flame</damageDef>
 			<speed>90</speed>
 			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>5</damageAmountBase>
-			<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<damageAmountBase>12</damageAmountBase>
 			<explosionRadius>0.5</explosionRadius>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==========  Crucible Precision Rifle Projectile =========== -->
-
-	<ThingDef ParentName="Base556x45mmNATOBullet">
+	
+	<ThingDef ParentName="BaseCrucibleBoltCE">
 		<defName>Bullet_CruciblePrecisionRifle</defName>
-		<label>energy bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseOpticBoltCE">
+		<defName>Bullet_CruciblePrecisionRifleAD</defName>
 		<graphicData>
 			<texPath>Things/Projectile/Laser</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Optic</damageDef>
-			<speed>90</speed>
-			<dropsCasings>false</dropsCasings>
 			<damageAmountBase>20</damageAmountBase>
-			<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
-			<armorPenetrationSharp>10</armorPenetrationSharp>
 		</projectile>
 	</ThingDef>
 
-	<!-- ==========  Plasma Caster Projectile =========== -->
+	<!-- ========== Plasma Caster Projectile =========== -->
 
-	<ThingDef ParentName="Base40x365mmBoforsBullet">
+	<ThingDef ParentName="BasePlasmaBombCE">
 		<defName>Bullet_PlasmaCaster</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>plasma sphere</label>
+		<graphicData>
+			<texPath>Things/Projectile/Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Plasma</damageDef>
+			<speed>20</speed>
+			<gravityFactor>0.01</gravityFactor>
+			<dropsCasings>false</dropsCasings>
+			<damageAmountBase>25</damageAmountBase>
+			<explosionRadius>2.1</explosionRadius>
+			<pelletCount>4</pelletCount>
+			<spreadMult>4.45</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<!-- ========== Federation Plasma Caster Projectile =========== -->
+
+	<ThingDef ParentName="BasePlasmaBombCE">
+		<defName>Bullet_PlasmaCaster_Fed</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>plasma sphere</label>
 		<graphicData>
@@ -261,18 +398,17 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Plasma</damageDef>
-			<speed>32</speed>
+			<speed>8</speed>
+			<gravityFactor>0.01</gravityFactor>
 			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationBlunt>30</armorPenetrationBlunt>
-			<armorPenetrationSharp>8</armorPenetrationSharp>
-			<explosionRadius>2.5</explosionRadius>
+			<damageAmountBase>90</damageAmountBase>
+			<explosionRadius>3.5</explosionRadius>
 		</projectile>
 	</ThingDef>
 
 	<!-- ==========  Plasma Bomb Projectile =========== -->
 
-	<ThingDef ParentName="Base40x365mmBoforsBullet">
+	<ThingDef ParentName="BasePlasmaBombCE">
 		<defName>Bullet_PlasmaBomb</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<label>plasma bomb</label>
@@ -294,20 +430,16 @@
 
 	<!-- ==========  Crucible Carbine Projectile =========== -->
 
-	<ThingDef ParentName="Base556x45mmNATOBullet">
-		<defName>Bullet_CrucibleCarbine</defName>
+	<ThingDef ParentName="BaseOpticBoltCE">
+		<defName>Bullet_CrucibleCarbine_CE</defName>
 		<label>energy bolt</label>
 		<graphicData>
-			<texPath>Things/Projectile/Laser</texPath>
+			<texPath>Things/Projectile/Mlaser</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Optic</damageDef>
-			<speed>90</speed>
-			<dropsCasings>false</dropsCasings>
-			<damageAmountBase>8</damageAmountBase>
-			<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<damageAmountBase>10</damageAmountBase>
 		</projectile>
 	</ThingDef>
+
 </Defs>

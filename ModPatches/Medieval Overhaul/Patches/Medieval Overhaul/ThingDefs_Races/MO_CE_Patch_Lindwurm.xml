@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Lindwurm === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LindwurmBase"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+			<MeleeCritChance>0.25</MeleeCritChance>
+			<MeleeParryChance>0.08</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LindwurmBase"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>2.6</cooldownTime>
+					<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.7</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>0.97</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.823</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.18</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.823</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>2</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.18</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.823</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>tail</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>4</cooldownTime>
+					<linkedBodyPartsGroup>DankPyon_TailAttackTool</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>14</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="DankPyon_LindwurmBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

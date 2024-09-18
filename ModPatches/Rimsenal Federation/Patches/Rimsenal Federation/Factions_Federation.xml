@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Custom shelling response for mechs ========== -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/FactionDef[defName="FPC"]</xpath>
+		<value>
+			<li Class="CombatExtended.FactionDefExtensionCE">
+				<shellingResponse>CE_ShellingPreset_Federation</shellingResponse>
+			</li>
+			<li Class="CombatExtended.WorldObjectHealthExtension">
+				<chanceToNegateDamage>0.2</chanceToNegateDamage>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
