@@ -439,66 +439,88 @@ namespace CombatExtended
         /// </summary>
         public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartRecord part)
         {
+            float result = apparel.GetStatValue(stat);
+            if (part == null)
+            {
+                return result;
+            }
+
             if (!apparel.def.apparel.CoversBodyPart(part))
             {
-                return 0;
-            }
-
-            float result = apparel.GetStatValue(stat);
-
-            if (Controller.settings.PartialStat)
-            {
-                if (apparel.def.HasModExtension<PartialArmorExt>())
+                var shieldDef = apparel.def.GetModExtension<ShieldDefExtension>();
+                if (shieldDef == null || !shieldDef.PartIsCoveredByShield(part, true))
                 {
-                    foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
-                    {
-                        if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
-                        {
-
-                            if (partial.staticValue > 0f)
-                            {
-                                return partial.staticValue;
-                            }
-                            result *= partial.mult;
-                            break;
-
-                        }
-                    }
+                    return 0f;
                 }
             }
+
+            if (!Controller.settings.PartialStat)
+            {
+                return result;
+            }
+
+            PartialArmorExt partialExt = apparel.def.GetModExtension<PartialArmorExt>();
+            if (partialExt == null)
+            {
+                return result;
+            }
+            foreach (ApparelPartialStat partial in partialExt.stats)
+            {
+                if (partial.stat != stat || (!partial.parts?.Contains(part.def) ?? true))
+                {
+                    continue;
+                }
+
+                if (partial.staticValue > 0f)
+                {
+                    return partial.staticValue;
+                }
+                return result * partial.mult;
+            }
+
             return result;
         }
 
         /// <summary>
         /// Gets the true rating of armor with partial stats taken into account
         /// </summary>
-        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartRecord part, float damage = 0f, float AP = 0f)
+        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartRecord part)
         {
             float result = pawn.GetStatValue(stat);
-
-            if (Controller.settings.PartialStat)
+            if (part == null)
             {
-                if (pawn.def.HasModExtension<PartialArmorExt>())
-                {
-                    foreach (ApparelPartialStat partial in pawn.def.GetModExtension<PartialArmorExt>().stats)
-                    {
-                        if (partial.stat == stat)
-                        {
-                            if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
-                            {
-
-                                if (partial.staticValue > 0f)
-                                {
-                                    return partial.staticValue;
-                                }
-                                result *= partial.mult;
-                                break;
-
-                            }
-                        }
-                    }
-                }
+                return result;
             }
+
+            if (!part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor))
+            {
+                return 0f;
+            }
+
+            if (!Controller.settings.PartialStat)
+            {
+                return result;
+            }
+
+            var partialExt = pawn.def.GetModExtension<PartialArmorExt>();
+            if (partialExt == null)
+            {
+                return result;
+            }
+            foreach (ApparelPartialStat partial in partialExt.stats)
+            {
+                if (partial.stat != stat || (!partial.parts?.Contains(part.def) ?? true))
+                {
+                    continue;
+                }
+
+                if (partial.staticValue > 0f)
+                {
+                    return partial.staticValue;
+                }
+                return result * partial.mult;
+            }
+
             return result;
         }
 
@@ -508,23 +530,26 @@ namespace CombatExtended
         public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartDef part)
         {
             float result = apparel.GetStatValue(stat);
-            if (apparel.def.HasModExtension<PartialArmorExt>())
+
+            var partialExt = apparel.def.GetModExtension<PartialArmorExt>();
+            if (partialExt == null)
             {
-                foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
-                {
-                    if ((partial?.parts?.Contains(part) ?? false))
-                    {
-
-                        if (partial.staticValue > 0f)
-                        {
-                            return partial.staticValue;
-                        }
-                        result *= partial.mult;
-                        break;
-
-                    }
-                }
+                return result;
             }
+            foreach (ApparelPartialStat partial in partialExt.stats)
+            {
+                if (partial.stat != stat || (!partial.parts?.Contains(part) ?? true))
+                {
+                    continue;
+                }
+
+                if (partial.staticValue > 0f)
+                {
+                    return partial.staticValue;
+                }
+                return result * partial.mult;
+            }
+
             return result;
         }
 
@@ -534,21 +559,26 @@ namespace CombatExtended
         public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartDef part)
         {
             float result = pawn.GetStatValue(stat);
-            if (pawn.def.HasModExtension<PartialArmorExt>())
-            {
-                foreach (ApparelPartialStat partial in pawn.def.GetModExtension<PartialArmorExt>().stats)
-                {
-                    if ((partial?.parts?.Contains(part) ?? false))
-                    {
-                        if (partial.staticValue > 0f)
-                        {
-                            return partial.staticValue;
-                        }
-                        result *= partial.mult;
-                        break;
 
-                    }
+            if (!pawn.health.hediffSet.GetBodyPartRecord(part)
+                    .IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor))
+            {
+                return 0f;
+            }
+
+            var partialExt = pawn.def.GetModExtension<PartialArmorExt>();
+            foreach (ApparelPartialStat partial in partialExt.stats)
+            {
+                if (partial.stat != stat || (!partial.parts?.Contains(part) ?? true))
+                {
+                    continue;
                 }
+
+                if (partial.staticValue > 0f)
+                {
+                    return partial.staticValue;
+                }
+                return result * partial.mult;
             }
             return result;
         }
