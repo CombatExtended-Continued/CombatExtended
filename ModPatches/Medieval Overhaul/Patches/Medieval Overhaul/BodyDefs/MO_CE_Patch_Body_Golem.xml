@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Add groups entry if it doesn't exist already ========== -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemNeck"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemNeck"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemNeck"]/parts/li[def="DankPyon_GolemHead"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemNeck"]/parts/li[def="DankPyon_GolemHead"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]/parts/li[def="DankPyon_GolemArm"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]/parts/li[def="DankPyon_GolemArm"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]/parts/li[def="DankPyon_GolemArm"]/parts/li[def="DankPyon_GolemHand"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]/parts/li[def="DankPyon_GolemArm"]/parts/li[def="DankPyon_GolemHand"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemLeg"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemLeg"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemLeg"]/parts/li[def="DankPyon_GolemFoot"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemLeg"]/parts/li[def="DankPyon_GolemFoot"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- ========== Add armor coverage ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemNeck"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemNeck"]/parts/li[def="DankPyon_GolemHead"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]/parts/li[def="DankPyon_GolemArm"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]/parts/li[def="DankPyon_GolemArm"]/parts/li[def="DankPyon_GolemHand"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemShoulder"]/parts/li[def="DankPyon_GolemArm"]/parts/li[def="DankPyon_GolemHand"]/parts/li[def="DankPyon_GolemFinger"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemLeg"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="DankPyon_Golem"]/corePart/parts/li[def="DankPyon_GolemLeg"]/parts/li[def="DankPyon_GolemFoot"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>

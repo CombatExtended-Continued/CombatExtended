@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Undead Colossus -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_UndeadColossus"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>BotchJob_ColossusSmashProj</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<burstShotCount>1</burstShotCount>
+					<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+					<minRange>1</minRange>
+					<range>5</range>
+					<soundCast>BotchJob_ColossusRoar</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<label>colossus smash</label>
+					<commonality>0.5</commonality>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- Undead Wraith -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_Wraith"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>BotchJob_WraithClaw</defaultProjectile>
+					<warmupTime>2.4</warmupTime>
+					<burstShotCount>1</burstShotCount>
+					<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+					<minRange>1</minRange>
+					<range>20</range>
+					<soundCast>Interact_BeatFire</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<label>project wraith claw</label>
+					<commonality>0.8</commonality>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+	
+	<!-- Skeleton -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_Skeleton"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>BotchJob_BoneProjectile</defaultProjectile>
+					<warmupTime>2</warmupTime>
+					<burstShotCount>1</burstShotCount>
+					<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+					<minRange>1</minRange>
+					<range>14</range>
+					<soundCast>Interact_BeatFire</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<label>bone</label>
+					<commonality>0.8</commonality>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+	
+	<!-- Undead Dragon -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[defName="BotchJob_UndeadDragon"]/verbs
+		</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_ProfanedDragon_ToxicBreath_CE</defaultProjectile>
+					<warmupTime>1.4</warmupTime>
+					<burstShotCount>10</burstShotCount>
+					<minRange>4</minRange>
+					<range>24</range>
+					<soundCast>BotchJob_ProfanedStaffCast</soundCast>
+					<muzzleFlashScale>2</muzzleFlashScale>
+					<label>toxic dragon breath</label>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<commandIcon>UI/Icons/Misc/BotchJob_ToxicflameSurgeIcon</commandIcon>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<commonality>0.8</commonality>
+				</li>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>BotchJob_PutridMass</defaultProjectile>
+					<warmupTime>2.2</warmupTime>
+					<minRange>5</minRange>
+					<range>32</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+					<soundCast>CocoonDestroyed</soundCast>
+					<muzzleFlashScale>1</muzzleFlashScale>
+					<label>spew putrid mass</label>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<commandIcon>UI/Icons/Misc/BotchJob_PutridMassIcon</commandIcon>
+					<commonality>0.8</commonality>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+</Patch>

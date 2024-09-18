@@ -16,6 +16,8 @@ namespace CombatExtended
         public float indirectFirePenalty = 0;
         public float circularError = 0;
         public float meleeArmorPenetration = 0;
+        public float firingOffset = 0.19f;
+        public int ticksToTruePosition = 5;
         public bool ejectsCasings = true;
         public bool ignorePartialLoSBlocker = false;
         public bool interruptibleBurst = true;

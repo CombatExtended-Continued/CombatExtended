@@ -40,6 +40,7 @@ Mod |
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
+[RH2] Faction: Gruppa Krovi   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: Utilitarian  |
@@ -152,6 +153,7 @@ Censored Armory  |
 Charge-Loading Lee-Enfield  |
 Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
+Colonial Shuttle |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
@@ -186,6 +188,7 @@ ED-Shields	|
 Edge of Descension - Hovercraft  |
 Edge of Descension - Monoblades  |
 Edge of Descension - Vanguard   |
+Edo Themed Expansion	|
 Eltex Bodysuit  |
 Enchanted Sword  |
 Epona The centaur race  |
@@ -219,6 +222,7 @@ Expanded Woodworking (Forked)   |
 Extended Storage	|
 Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
+Fallout: Vault 111 Starter Pack |
 Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
@@ -250,6 +254,10 @@ GouRIMet	|
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
 Grimworld: Melee	|
+GrimWorld 40,000 - Angels of Death |
+GrimWorld 40,000 - Core Imperialis |
+GrimWorld 40,000 - Hammer of the Imperium |
+GrimWorld 40,000 - Imperial Vehicles of Grimworld |
 Gulden Mod  |
 Half Dragons    |
 HALO: UNSC Armoury |
@@ -306,6 +314,8 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Overhaul   |
+Medieval Overhaul: Barbarians   |
+Medieval Overhaul: House Roxmont  |
 Medieval Tailor   |
 Megafauna	|
 Melee Animation	|
@@ -404,6 +414,7 @@ ReGrowth: Core |
 ReGrowth: Extinct Animals |
 ReGrowth: Wastelands |
 Remote Detonator	|
+Remove Industrial Stuff |
 Revia Race |
 Revia Race - biotech |
 Rim Contractors Arsenal	|
@@ -476,6 +487,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
+The Profaned	|
 The Vanity Project - Shiba Inu  |
 The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
@@ -511,7 +523,7 @@ Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Classical   |
 Vanilla Factions Expanded - Deserters  |
 Vanilla Factions Expanded - Empire  |
-Vanilla Factions Expanded - Insectoids |
+Vanilla Factions Expanded - Insectoids 2|
 Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Pirates |
@@ -534,6 +546,7 @@ Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Insector  |
+Vanilla Races Expanded - Lycanthrope  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
