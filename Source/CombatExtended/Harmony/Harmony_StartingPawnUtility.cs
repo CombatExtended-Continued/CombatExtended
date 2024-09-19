@@ -2,6 +2,7 @@
 using Verse;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -23,7 +24,7 @@ namespace CombatExtended.HarmonyCE
                         int count = ammoUser.AmmoGenPerMagOverride;
                         if (count <= 0)
                         {
-                            count = ammoUser.magazineSize;
+                            count = Mathf.Max(ammoUser.magazineSize, 1);
                         }
                         count *= magRange.RandomInRange;
 
