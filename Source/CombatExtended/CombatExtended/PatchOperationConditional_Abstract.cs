@@ -5,9 +5,9 @@ namespace CombatExtended.CombatExtended
 {
     public abstract class PatchOperationConditional_Abstract : PatchOperation
     {
-        private PatchOperation match;
+        protected PatchOperation match;
 
-        private PatchOperation nomatch;
+        protected PatchOperation nomatch;
 
         protected abstract bool Applicable(XmlDocument xml);
 
