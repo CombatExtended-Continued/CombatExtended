@@ -22,7 +22,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git pull --no-ff --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}/head:
         git status
-        rm *.py *.so ./*/*.py ./*/*.so
+        rm -rf *.py *.so ./*/*.py ./*/*.so
         wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Make.py -O Make.py
         wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/BuildCompat.py -O BuildCompat.py
         mkdir -p Assemblies
