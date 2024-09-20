@@ -10,6 +10,8 @@ tm = '-m' in sys.argv
 
 parallel = '-j' in sys.argv
 
+csc = sys.argv[sys.argv.index("--csc") + 1]
+
 PROJECT_PATTERN = re.compile(r'''Project.".[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{12}.". = '''
                              r'''"([0-9a-zA-Z]+Compat)", '''
                              r'''"([0-9A-zA-Z\/]+.csproj)", '''
@@ -52,7 +54,7 @@ with open("Source/CombatExtended.sln") as f:
                             output = od.child(name+".dll")
 
             print(f"Building {name}")
-            system("python3", "Make.py", "--csproj", csproj.path, "--output", output.path, DOWNLOAD_LIBS, "--all-libs", "--publicizer", PUBLICIZER, "--", "-r:Assemblies/CombatExtended.dll")
+            system("python3", "Make.py", "--csproj", csproj.path, "--output", output.path, DOWNLOAD_LIBS, "--all-libs", "--publicizer", PUBLICIZER, "--csc", csc, "--", "-r:Assemblies/CombatExtended.dll")
 
 for t in tasks:
     t.wait()
