@@ -28,7 +28,7 @@ jobs:
         
     - name: build compat
       run: |
-        TEMP=${{ runner.temp }}/ python BuildCompat.py
+        TEMP=${{ runner.temp }}/ python BuildCompat.py --csc $PWD/csc
         
     - name: package
       run: |
