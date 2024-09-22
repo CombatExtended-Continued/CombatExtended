@@ -556,6 +556,7 @@ Vanilla Vehicles Expanded	|
 Vanilla Vehicles Expanded - Tier 3  |
 Vanilla Vehicles Expanded - Upgrades    |
 Vanilla Weapons Expanded |
+Vanilla Weapons Expanded - Bioferrite   |
 Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|
 Vanilla Weapons Expanded - Grenades |
