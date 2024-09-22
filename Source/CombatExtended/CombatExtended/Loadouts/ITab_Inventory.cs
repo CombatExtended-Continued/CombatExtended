@@ -516,35 +516,20 @@ namespace CombatExtended
         private void RebuildArmorCache(Dictionary<BodyPartRecord, float> armorCache, StatDef stat)
         {
             armorCache.Clear();
-            float naturalArmor = SelPawnForGear.GetStatValue(stat);
             List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
             var shield = wornApparel.FirstOrDefault(x => x is Apparel_Shield);
             foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
             {
-                //TODO: 1.5 should be Neck
-                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == CE_BodyPartDefOf.Neck || part.def == CE_BodyPartDefOf.Neck)))
+                var armorValue = SelPawnForGear.PartialStat(stat, part);
+                if (shield != null)
                 {
-                    float armorValue = part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
-                    if (wornApparel != null)
+                    var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                    if (shieldCoverage == true)
                     {
-                        foreach (var apparel in wornApparel)
-                        {
-                            if (apparel.def.apparel.CoversBodyPart(part))
-                            {
-                                armorValue += apparel.PartialStat(stat, part);
-                            }
-                        }
+                        armorValue += shield.GetStatValue(stat);
                     }
-                    if (shield != null)
-                    {
-                        var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
-                        if (shieldCoverage == true)
-                        {
-                            armorValue += shield.GetStatValue(stat);
-                        }
-                    }
-                    armorCache[part] = armorValue;
                 }
+                armorCache[part] = armorValue;
             }
         }
 
