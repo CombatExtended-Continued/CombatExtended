@@ -19,6 +19,49 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Human"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>100</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Human"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Human"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>100</ArmorRating_Sharp>
+						<parts>
+							<li>Head</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>100</ArmorRating_Blunt>
+						<parts>
+							<li>Head</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Human"]/statBases</xpath>
+		<value>
+			<PartialArmorBody>0</PartialArmorBody>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Human"]/tools</xpath>
 		<value>
@@ -102,7 +145,6 @@
 				<RepairValue>200</RepairValue>
 				<CanOverHeal>true</CanOverHeal>
 				<MaxOverHeal>500</MaxOverHeal> -->
-				<MinArmorPct>0.5</MinArmorPct><!-- The default minimal armor percentage for all armor kinds. Will be overriden by any below -->
 				<!-- <MinArmorValueSharp>14</MinArmorValueSharp>
 				<MinArmorValueBlunt>30</MinArmorValueBlunt>
 				<MinArmorValueHeat>0.2</MinArmorValueHeat>
