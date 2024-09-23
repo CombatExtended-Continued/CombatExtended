@@ -12,6 +12,10 @@ namespace CombatExtended
 
         public AmmoSetDef SelectedAmmoSet;
 
+        private AmmoSetDef currentlyHoveredOverAmmoSet = null;
+
+        private string ammoSetContentDescCache;
+
         public virtual List<AmmoSetDef> UsableAmmoSets
         {
             get
@@ -139,10 +143,6 @@ namespace CombatExtended
                 yield return command_Action;
             }
         }
-
-        AmmoSetDef currentlyHoveredOverAmmoSet = null;
-
-        string ammoSetContentDescCache;
 
         public void ContainedAmmoPopOut(Rect rect, AmmoSetDef ammoSet)
         {
