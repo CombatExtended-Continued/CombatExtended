@@ -520,13 +520,16 @@ namespace CombatExtended
             var shield = wornApparel.FirstOrDefault(x => x is Apparel_Shield);
             foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
             {
-                var armorValue = SelPawnForGear.PartialStat(stat, part);
-                if (shield != null)
+                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == CE_BodyPartDefOf.Neck || BodyPartDefOf.Eye)))
                 {
-                    var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
-                    if (shieldCoverage == true)
+                    var armorValue = SelPawnForGear.PartialStat(stat, part);
+                    if (shield != null)
                     {
-                        armorValue += shield.GetStatValue(stat);
+                        var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                        if (shieldCoverage == true)
+                        {
+                            armorValue += shield.GetStatValue(stat);
+                        }
                     }
                 }
                 armorCache[part] = armorValue;
