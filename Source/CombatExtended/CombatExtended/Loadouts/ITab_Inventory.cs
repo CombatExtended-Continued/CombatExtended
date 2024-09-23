@@ -531,8 +531,8 @@ namespace CombatExtended
                             armorValue += shield.GetStatValue(stat);
                         }
                     }
+                    armorCache[part] = armorValue;
                 }
-                armorCache[part] = armorValue;
             }
         }
 
