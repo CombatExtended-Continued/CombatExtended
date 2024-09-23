@@ -125,6 +125,8 @@
 			<MeleeDodgeChance>0.06</MeleeDodgeChance>
 			<MeleeCritChance>0.25</MeleeCritChance>
 			<MeleeParryChance>0.23</MeleeParryChance>
+			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.075</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -157,6 +159,29 @@
 					<armorPenetrationBlunt>9</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AEXP_Walrus"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AEXP_Walrus"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_Walrus"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1700</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
