@@ -51,23 +51,29 @@ namespace CombatExtended
             {
                 stringBuilder.AppendLine("   " + "CE_DescExplosionRadius".Translate() + ": " + props.explosionRadius.ToStringByStyle(ToStringStyle.FloatOne));
             }
-
-            // Sharp / blunt AP
-            if (props.explosionRadius > 0)
+            // Thermal/Electric Penetration
+            if ((props.damageDef.armorCategory == CE_DamageArmorCategoryDefOf.Heat
+                        || props.damageDef.armorCategory == CE_DamageArmorCategoryDefOf.Electric) && props.damageDef.defaultArmorPenetration > 0f)
             {
-                if (props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Heat
-                        && props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Electric
-                        && props.damageDef != DamageDefOf.Stun
-                        && props.damageDef != DamageDefOf.Extinguish
-                        && props.damageDef != DamageDefOf.Smoke)
+                stringBuilder.AppendLine("   " + "CE_DescAmbientPenetration".Translate() + ": " + (props.damageDef.defaultArmorPenetration).ToStringByStyle(ToStringStyle.PercentZero));
+            }
+            // Sharp / blunt AP
+            if (props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Heat
+                    && props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Electric
+                    && props.damageDef != DamageDefOf.Stun
+                    && props.damageDef != DamageDefOf.Extinguish
+                    && props.damageDef != DamageDefOf.Smoke
+                    && props.GetDamageAmount(weapon) != 0)
+            {
+                if (props.explosionRadius > 0)
                 {
                     stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.GetExplosionArmorPenetration() + " " + "CE_MPa".Translate());
                 }
-            }
-            else
-            {
-                stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + (props.armorPenetrationSharp * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
-                stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + (props.armorPenetrationBlunt * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
+                else
+                {
+                    stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + (props.armorPenetrationSharp * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
+                    stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + (props.armorPenetrationBlunt * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
+                }
             }
 
             // Secondary explosion

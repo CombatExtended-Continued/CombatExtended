@@ -58,13 +58,15 @@ namespace CombatExtended
 
             var dinfo = new DamageInfo(originalDinfo);
             var dmgAmount = dinfo.Amount;
+            var penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
             var involveArmor = dinfo.Def.harmAllLayersUntilOutside || hitPart.depth == BodyPartDepth.Outside;
             bool isAmbientDamage = dinfo.IsAmbientDamage();
 
-            // In case of ambient damage (fire, electricity) we apply a percentage reduction formula based on the sum of all applicable armor
+            // In case of ambient damage (fire, electricity) we apply a percentage reduction formula based on the sum of all applicable armor, using the penetration from the type of damagedef
             if (isAmbientDamage)
             {
-                dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.armorRatingStat, pawn, hitPart)));
+                penAmount = dinfo.defInt.defaultArmorPenetration;
+                dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, penAmount, originalDinfo.Def.armorCategory.armorRatingStat, pawn, hitPart)));
                 armorDeflected = dinfo.Amount <= 0;
                 return dinfo;
             }
@@ -73,7 +75,6 @@ namespace CombatExtended
                 deflectionComp.deflectedSharp = false;
             }
 
-            var penAmount = originalDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
 
             // Apply worn armor
             if (involveArmor && pawn.apparel != null && !pawn.apparel.WornApparel.NullOrEmpty())
@@ -419,9 +420,13 @@ namespace CombatExtended
         /// <param name="pawn">The damaged pawn</param>
         /// <param name="part">The body part affected</param>
         /// <returns>The post-armor damage ranging from 0 to the original amount</returns>
-        private static float GetAmbientPostArmorDamage(float dmgAmount, StatDef armorRatingStat, Pawn pawn, BodyPartRecord part)
+        private static float GetAmbientPostArmorDamage(float dmgAmount, float penAmount, StatDef armorRatingStat, Pawn pawn, BodyPartRecord part)
         {
-            var dmgMult = 1f;
+            if (penAmount < 0f)
+            {
+                penAmount = 0f;
+            }
+            var dmgMult = 1f + penAmount;
             if (part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor))
             {
                 dmgMult -= pawn.GetStatValue(armorRatingStat);
@@ -447,7 +452,10 @@ namespace CombatExtended
                     }
                 }
             }
-
+            if (dmgMult > 1f)
+            {
+                dmgMult = 1f;
+            }
             var deflectionComp = pawn.TryGetComp<Comp_BurnDamageCalc>();
             if (deflectionComp != null)
             {
