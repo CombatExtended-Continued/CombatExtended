@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Gunslinger Arm ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="GunslingerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.83</cooldownTime>
+					<armorPenetrationBlunt>2.80</armorPenetrationBlunt>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Micro turret Pack ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Apparel_PackDeployableMicroTurret"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- ========== Micro-turret ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DeployableMicroTurret"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DeployableMicroTurret"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.20</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DeployableMicroTurret"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>0.4</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DeployableMicroTurret"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DeployableMicroTurret"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<!-- ========== Micro=turret gun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_MicroTurret</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>0.63</SwayFactor>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.55</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ_SB</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<range>32</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>GunShotA</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO_SB</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<noSnapshot>true</noSnapshot>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+
+</Patch>

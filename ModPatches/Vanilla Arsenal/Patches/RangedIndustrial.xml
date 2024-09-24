@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Tools ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DV_Gun_BurstPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName="DV_Gun_LeverShotgun" or
+			defName="DV_Gun_LightCarbine" or
+			defName="DV_Gun_CombatShotgun" or
+			defName="DV_Gun_DMR"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DV_Gun_Chaingun"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrels</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrels</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Chaingun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_Chaingun</defName>
+		<statBases>
+			<Mass>22.50</Mass>
+			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>3.5</SwayFactor>
+			<Bulk>15</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>2.1</warmupTime>
+			<range>62</range>
+			<burstShotCount>75</burstShotCount>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<soundCast>Shot_Minigun</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>375</magazineSize>
+			<reloadTime>10</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>25</aimedBurstShotCount>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Suppressive</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- ========== Burst Pistol ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_BurstPistol</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.93</SwayFactor>
+			<Bulk>3</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.71</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>20</range>
+			<burstShotCount>4</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<soundCast>Shot_MachinePistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_45ACP</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>4</aimedBurstShotCount>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Lever Action ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_LeverShotgun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>9.0</Bulk>
+			<SightsEfficiency>1</SightsEfficiency>
+			<WorkToMake>9500</WorkToMake>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.75</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>20</range>
+			<soundCast>Shot_Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>1</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Combat Shotgun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_CombatShotgun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.05</SwayFactor>
+			<Bulk>7</Bulk>
+			<Mass>3.2</Mass>
+			<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.75</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>20</range>
+			<soundCast>Shot_Shotgun_NoRack</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>0.85</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Light Carbine ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_LightCarbine</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.32</SwayFactor>
+			<Bulk>5</Bulk>
+			<Mass>3</Mass>
+			<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.8</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>45</range>
+			<burstShotCount>5</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== DMR ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_DMR</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.60</RangedWeapon_Cooldown>
+			<ShotSpread>0.9</ShotSpread>
+			<SwayFactor>1.14</SwayFactor>
+			<SightsEfficiency>1.30</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.3</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.8</warmupTime>
+			<range>60</range>
+			<burstShotCount>2</burstShotCount>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

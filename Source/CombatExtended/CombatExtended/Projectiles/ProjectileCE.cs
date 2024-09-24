@@ -37,6 +37,10 @@ namespace CombatExtended
         protected float initialSpeed;
         #endregion
 
+        #region Drawing
+        protected int ticksToTruePosition;
+        #endregion
+
         #region Origin destination
         public bool OffMapOrigin = false;
 
@@ -90,9 +94,11 @@ namespace CombatExtended
                 {
                     return (float)this.damageAmount;
                 }
-                return ((float)this.damageAmount) * (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
+                return ((float)this.damageAmount) * RemainingKineticEnergyPct;
             }
         }
+
+        public float RemainingKineticEnergyPct => (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
 
         /// <summary>
         /// Reference to the weapon that fired this projectile, may be null.
@@ -106,6 +112,7 @@ namespace CombatExtended
         public bool canTargetSelf;
         public bool castShadow = true;
         public bool logMisses = true;
+        protected bool ignoreRoof;
 
         public GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
         public GlobalTargetInfo globalSourceInfo = GlobalTargetInfo.Invalid;
@@ -199,6 +206,10 @@ namespace CombatExtended
             get
             {
                 var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
+                if (FlightTicks < ticksToTruePosition)
+                {
+                    sh *= FlightTicks / ticksToTruePosition;
+                }
                 return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
         }
@@ -348,6 +359,7 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
             Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
+            Scribe_Values.Look(ref ignoreRoof, "ignoreRoof", true);
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
@@ -539,17 +551,23 @@ namespace CombatExtended
         /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
         /// <param name="equipment">The equipment used to fire the projectile.</param>
         /// <param name="distance">The distance to the estimated intercept point</param>
-        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
+        /// <param name="ticksToTruePosition">The number of ticks before the bullet is drawn at its true height instead of the muzzle height</param>
+        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1, int ticksToTruePosition = 3)
         {
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
             this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            this.ticksToTruePosition = ticksToTruePosition;
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 this.castShadow = props.castShadow;
                 this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
+            }
+            if (shotHeight >= CollisionVertical.WallCollisionHeight && Position.Roofed(launcher.Map))
+            {
+                ignoreRoof = true;
             }
             Launch(launcher, origin, equipment);
         }
@@ -865,9 +883,9 @@ namespace CombatExtended
             return false;
         }
 
-        protected bool TryCollideWithRoof(IntVec3 cell)
+        protected virtual bool TryCollideWithRoof(IntVec3 cell)
         {
-            if (!cell.Roofed(Map))
+            if (!cell.Roofed(Map) || ignoreRoof)
             {
                 return false;
             }
@@ -892,7 +910,6 @@ namespace CombatExtended
             {
                 MoteMakerCE.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
             }
-
             Impact(null);
             return true;
         }
@@ -972,7 +989,6 @@ namespace CombatExtended
             {
                 MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
             }
-
             Impact(thing);
             return true;
         }
@@ -1076,13 +1092,25 @@ namespace CombatExtended
                 velocity = new Vector3(Mathf.Cos(sr) * Mathf.Cos(shotAngle) * sspt, Mathf.Sin(shotAngle) * sspt, Mathf.Sin(sr) * Mathf.Cos(shotAngle) * sspt);
                 initialSpeed = sspt;
             }
-            Vector3 newPosition = curPosition + velocity;
             Accelerate();
+            Vector3 newPosition = curPosition + velocity;
+            shotSpeed = velocity.magnitude;
             return newPosition;
         }
 
-        // This can also be made virtual, and would be the ideal entry point for guided ammunition and rockets.
-        protected void Accelerate()
+        // This is the ideal entry point for guided ammunition and rockets.
+        protected virtual void Accelerate()
+        {
+            AffectedByDrag();
+            AffectedByGravity();
+        }
+
+        protected void AffectedByGravity()
+        {
+            velocity.y -= gravity / GenTicks.TicksPerRealSecond;
+        }
+
+        protected void AffectedByDrag()
         {
             float crossSectionalArea = radius;
             crossSectionalArea *= crossSectionalArea * 3.14159f;
@@ -1091,12 +1119,11 @@ namespace CombatExtended
             var dragForce = q * crossSectionalArea / ballisticCoefficient;
             // F = mA
             // A = F / m
-            var a = (float)((-dragForce / (float)mass));
+            var a = (float)-dragForce / mass;
             var normalized = velocity.normalized;
             velocity.x += a * normalized.x;
-            velocity.y += a * normalized.y - (float)(1 / ballisticCoefficient) * (float)gravity / GenTicks.TicksPerRealSecond;
+            velocity.y += a * normalized.y;
             velocity.z += a * normalized.z;
-            shotSpeed = velocity.magnitude;
         }
 
         #region Tick/Draw
@@ -1164,7 +1191,7 @@ namespace CombatExtended
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }
             //TODO : It appears that the final steps in the arc (past ticksToImpact == 0) don't CheckForCollisionBetween.
-            if (ticksToImpact <= 0 || nextPosition.y <= 0f)
+            if ((lerpPosition && ticksToImpact <= 0) || nextPosition.y <= 0f)
             {
                 ImpactSomething();
                 return;
@@ -1193,6 +1220,11 @@ namespace CombatExtended
             if (dangerFactor > 0f && nextPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
             {
                 DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * dangerFactor);
+            }
+            //If a flyoverhead ignore roof projectile is descending, enable roof check.
+            if (ignoreRoof && def.projectile.flyOverhead && shotAngle < 0)
+            {
+                ignoreRoof = false;
             }
         }
 
@@ -1480,7 +1512,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="ticks">Integer ticks, since the only time value which is not an integer (accessed by StartingTicksToImpact) has height zero by definition.</param>
         /// <returns>Projectile height at time ticks in ticks.</returns>
-        private float GetHeightAtTicks(int ticks)
+        protected float GetHeightAtTicks(int ticks)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
             return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityFactor * seconds * seconds) / 2f, 3);
@@ -1506,7 +1538,7 @@ namespace CombatExtended
         /// <param name="angle">Shot angle in radians off the ground.</param>
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Distance in cells that the projectile will fly at the given arc.</returns>
-        private float DistanceTraveled => CE_Utility.MaxProjectileRange(shotHeight, shotSpeed, shotAngle, GravityFactor);
+        protected float DistanceTraveled => CE_Utility.MaxProjectileRange(shotHeight, shotSpeed, shotAngle, GravityFactor);
 
         /// <summary>
         /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.

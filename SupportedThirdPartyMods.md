@@ -40,6 +40,7 @@ Mod |
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
+[RH2] Faction: Gruppa Krovi   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: Utilitarian  |
@@ -132,6 +133,7 @@ Big and Small - Vampires and the Undead  |
 Big and Small - Weapons	|
 Biomes! Caverns	|
 Biomes! Core	|
+Biotech Expansion - Insectoid   |
 Biotech Expansion - Mammalia  |
 Biotech Expansion - Mythic  |
 Biotech Mech Stuff Elongated - Mechanoid Upgrades V2  |
@@ -151,6 +153,7 @@ Censored Armory  |
 Charge-Loading Lee-Enfield  |
 Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
+Colonial Shuttle |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
@@ -166,6 +169,7 @@ Cybernetic Warfare and Special Weapons (Continued)  |
 Dark Ages : Medieval Tools  |
 Darkest Night SK Steam	|
 Darkest Rim: Apparel	|
+Deployable Turret   |
 Det's Energy Weapons    |
 Det's Xenotypes - Boglegs   |
 Devilstrand Animals |
@@ -184,7 +188,9 @@ ED-Shields	|
 Edge of Descension - Hovercraft  |
 Edge of Descension - Monoblades  |
 Edge of Descension - Vanguard   |
+Edo Themed Expansion	|
 Eltex Bodysuit  |
+Enchanted Sword  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
@@ -216,6 +222,7 @@ Expanded Woodworking (Forked)   |
 Extended Storage	|
 Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
+Fallout: Vault 111 Starter Pack |
 Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
@@ -247,6 +254,10 @@ GouRIMet	|
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
 Grimworld: Melee	|
+GrimWorld 40,000 - Angels of Death |
+GrimWorld 40,000 - Core Imperialis |
+GrimWorld 40,000 - Hammer of the Imperium |
+GrimWorld 40,000 - Imperial Vehicles of Grimworld |
 Gulden Mod  |
 Half Dragons    |
 HALO: UNSC Armoury |
@@ -267,12 +278,13 @@ Infusion 2  |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
 Jernalk's Skeletal Legion (Continued)	|
+Jin-Roh Kerberos Panzer Cop Armor   |
 Kaiser Armory	|
 Kemomimihouse |
 Kemomimihouse Kz |
 Kenshi Armory |
 K.L.K - Styles Apparel Pack	|
-Kijin Race 2.0     	|     
+Kijin Race 3.0     	|     
 Kill la Kill Styles Pack    |
 Killzone Concept Armor Set  |
 Kit's Gunpowder Weapons |
@@ -302,6 +314,8 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Overhaul   |
+Medieval Overhaul: Barbarians   |
+Medieval Overhaul: House Roxmont  |
 Medieval Tailor   |
 Megafauna	|
 Melee Animation	|
@@ -347,10 +361,10 @@ Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
 New Mech: Mini-Miner    |
-NewRatkinPlus |
 Ni'Hal	|
 Nukes   |
 Nyaron Race |
+Nomad Scavengers    |
 Not Only Just a Cannon  |
 Obsidia Expansion - Mothoids Xenotype   |
 ODZ Suits |
@@ -374,12 +388,14 @@ Poleepkwa Race	|
 Possessed Weapons	|
 pphhyy's Demigryphs   |
 phynilla Expanded Mechs Scyther |
+pphhyy's Lightless Empyrean |
 pphhyy Sanguinary Animals   |
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
 Protoswords |
 PsiTech	|
+PsyBlasters |
 Pulsefire Turret (Continued)    |
 Pulse Weaponry  |
 Rabbie The Moonrabbit race	|
@@ -400,6 +416,7 @@ ReGrowth: Core |
 ReGrowth: Extinct Animals |
 ReGrowth: Wastelands |
 Remote Detonator	|
+Remove Industrial Stuff |
 Revia Race |
 Revia Race - biotech |
 Rim Contractors Arsenal	|
@@ -472,6 +489,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
+The Profaned	|
 The Vanity Project - Shiba Inu  |
 The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
@@ -481,6 +499,7 @@ The Tuffalo |
 Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
+Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
 Tribal Warrior Set! |
@@ -498,6 +517,7 @@ Vanilla Animals Expanded - Waste Animals |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
+Vanilla Arsenal |
 Vanilla Base Generation Expanded    |
 Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
@@ -505,7 +525,7 @@ Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Classical   |
 Vanilla Factions Expanded - Deserters  |
 Vanilla Factions Expanded - Empire  |
-Vanilla Factions Expanded - Insectoids |
+Vanilla Factions Expanded - Insectoids 2|
 Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Pirates |
@@ -528,13 +548,16 @@ Vanilla Races Expanded - Fungoid |
 Vanilla Races Expanded - Highmate  |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Insector  |
+Vanilla Races Expanded - Lycanthrope  |
 Vanilla Races Expanded - Phytokin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
 Vanilla Vehicles Expanded - Tier 3  |
+Vanilla Vehicles Expanded - Upgrades    |
 Vanilla Weapons Expanded |
+Vanilla Weapons Expanded - Bioferrite   |
 Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|
 Vanilla Weapons Expanded - Grenades |

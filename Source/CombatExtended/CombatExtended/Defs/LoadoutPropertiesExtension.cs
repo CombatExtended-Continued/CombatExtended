@@ -253,7 +253,7 @@ namespace CombatExtended
             var compAmmo = gun.TryGetComp<CompAmmoUser>();
             if (compAmmo == null || !compAmmo.UseAmmo)
             {
-                if (gun.TryGetComp<CompEquippable>().PrimaryVerb.verbProps.verbClass == typeof(Verb_ShootCEOneUse))
+                if (gun.TryGetComp<CompEquippable>().PrimaryVerb.verbProps.verbClass == typeof(Verb_ShootCEOneUse) || (gun.def.weaponTags?.Contains("CE_AmmoGen_Disposable") ?? false))
                 {
                     thingToAdd = gun.def;   // For one-time use weapons such as grenades, add duplicates instead of ammo
                 }

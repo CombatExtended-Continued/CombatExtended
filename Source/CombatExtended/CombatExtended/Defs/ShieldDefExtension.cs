@@ -38,5 +38,12 @@ namespace CombatExtended
             }
             return false;
         }
+        public static string GetShieldProtectedAreas(BodyDef body, ThingDef thingDef)
+        {
+            return (from part in (from x in body.AllParts
+                                  where x.depth == BodyPartDepth.Outside && x.groups.Any((BodyPartGroupDef y) => thingDef.GetModExtension<ShieldDefExtension>().shieldCoverage.Contains(y))
+                                  select x).Distinct<BodyPartRecord>()
+                    select part.Label).ToCommaList(false, false).CapitalizeFirst();
+        }
     }
 }

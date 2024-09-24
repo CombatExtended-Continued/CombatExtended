@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HSApparel_ChildStrawcloak" or defName="HSApparel_Strawcloak"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.025</ArmorRating_Sharp>
+			<Bulk>2</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HSApparel_ChildStrawcloak" or defName="HSApparel_Strawcloak"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.04</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="HSApparel_Hachimaki" or
+			defName="HSApparel_Roningasa" or
+			defName="HSApparel_Amigasa" or
+			defName="HSApparel_Soheiheadwrap" or
+			defName="HSApparel_ShinobiHalfmask" or
+			defName="HSApparel_HannyaMask" or 
+			defName="HSApparel_WorkersHeadband" or
+			defName="HSApparel_ChildKimono" or
+			defName="HSApparel_Kimono" or
+			defName="HSApparel_Hakama" or
+			defName="HSApparel_Kataginu" or
+			defName="HSApparel_Hanten" or
+			defName="HSApparel_Haori"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="HSApparel_Hachimaki" or
+			defName="HSApparel_Roningasa" or
+			defName="HSApparel_Amigasa" or
+			defName="HSApparel_Soheiheadwrap" or
+			defName="HSApparel_ShinobiHalfmask" or
+			defName="HSApparel_HannyaMask" or
+			defName="HSApparel_WorkersHeadband"
+			]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<WornBulk>0</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="HSApparel_ChildKimono" or
+			defName="HSApparel_Kimono" or
+			defName="HSApparel_Hakama" or
+			defName="HSApparel_Kataginu" or
+			defName="HSApparel_Hanten" or
+			defName="HSApparel_Haori"
+			]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HSApparel_Kimono" or defName="HSApparel_ChildKimono"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Shoulders</li>
+			<li>Legs</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="HSApparel_Amigasa" or
+			defName="HSApparel_Roningasa" or
+			defName="HSApparel_Tengai" or
+			defName="HSApparel_Strawcloak" or
+			defName="HSApparel_ChildStrawcloak" or
+			defName="HSApparel_Soheiheadwrap"
+			]/equippedStatOffsets</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HS_Tenbinbo" or defName="HS_Straw_Backpack"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>25</CarryBulk>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HS_Tenbinbo" or defName="HS_Straw_Backpack"]/apparel</xpath>
+		<value>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HS_Straw_Backpack"]/apparel/layers/li[.="Belt"]</xpath>
+		<value>
+			<li>Backpack</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HS_Straw_Backpack"]/apparel/bodyPartGroups/li[.="Torso"]</xpath>
+		<value>
+			<li>Shoulders</li>
+		</value>
+	</Operation>
+
+</Patch>

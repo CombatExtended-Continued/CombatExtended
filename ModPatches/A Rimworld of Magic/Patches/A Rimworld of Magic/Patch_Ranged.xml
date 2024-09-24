@@ -40,7 +40,7 @@
 					</capacities>
 					<power>2</power>
 					<cooldownTime>0.5</cooldownTime>
-					<armorPenetrationBlunt>.2</armorPenetrationBlunt>
+					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -49,7 +49,6 @@
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="Projectile_IceWand"]</xpath>
 	</Operation>
-
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="Projectile_FireWand"]</xpath>
@@ -67,13 +66,13 @@
 			<SwayFactor>1.01</SwayFactor>
 			<Bulk>1</Bulk>
 			<Mass>1</Mass>
-			<RangedWeapon_Cooldown>.6</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
 			<recoilAmount>1.53</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_IceWand</defaultProjectile>
+			<defaultProjectile>Projectile_CE_IceWand</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
 			<range>40</range>
 			<soundCast>TM_Woosh</soundCast>
@@ -93,12 +92,12 @@
 			<SwayFactor>0.10</SwayFactor>
 			<Bulk>0.5</Bulk>
 			<Mass>1</Mass>
-			<RangedWeapon_Cooldown>.3</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_IceWand</defaultProjectile>
+			<defaultProjectile>Projectile_CE_IceWand</defaultProjectile>
 			<warmupTime>0.25</warmupTime>
 			<range>40</range>
 			<soundCast>Shot_ChargeRifle</soundCast>
@@ -124,7 +123,7 @@
 			<recoilAmount>1.53</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_LightningWand</defaultProjectile>
+			<defaultProjectile>Projectile_CE_LightningWand</defaultProjectile>
 			<warmupTime>2.8</warmupTime>
 			<range>32</range>
 			<soundCast>TM_Thunder_OnMap</soundCast>
@@ -144,12 +143,12 @@
 			<SwayFactor>0.10</SwayFactor>
 			<Bulk>0.5</Bulk>
 			<Mass>1</Mass>
-			<RangedWeapon_Cooldown>.8</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_LightningWand</defaultProjectile>
+			<defaultProjectile>Projectile_CE_LightningWand</defaultProjectile>
 			<warmupTime>1.4</warmupTime>
 			<range>32</range>
 			<soundCast>TM_Thunder_OnMap</soundCast>
@@ -175,7 +174,7 @@
 			<recoilAmount>1.53</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_FireWand</defaultProjectile>
+			<defaultProjectile>Projectile_CE_FireWand</defaultProjectile>
 			<warmupTime>1.5</warmupTime>
 			<range>32</range>
 			<burstShotCount>3</burstShotCount>
@@ -197,12 +196,12 @@
 			<SwayFactor>0.10</SwayFactor>
 			<Bulk>0.5</Bulk>
 			<Mass>1</Mass>
-			<RangedWeapon_Cooldown>.95</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_FireWand</defaultProjectile>
+			<defaultProjectile>Projectile_CE_FireWand</defaultProjectile>
 			<warmupTime>0.75</warmupTime>
 			<range>32</range>
 			<burstShotCount>3</burstShotCount>
@@ -224,6 +223,13 @@
 		<xpath>Defs/ThingDef[defName="TM_DefenderStaff" or defName="TM_BlazingPowerStaff"]/verbs/li[verbClass="TorannMagic.Weapon.Verb_BlazingPower"]</xpath>
 	</Operation>
 
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName= "TM_Ruunbled" or defName="TM_BlazingPowerStaff" or defName="TM_DefenderStaff"]/comps/li[@Class="CompDeflector.CompProperties_Deflector"]/DeflectVerb/defaultProjectile</xpath>
+    <value>
+      <defaultProjectile>Projectile_CE_BlazingPower</defaultProjectile>
+    </value>
+  </Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>TM_DefenderStaff</defName>
 		<statBases>
@@ -238,7 +244,7 @@
 			<recoilAmount>1.53</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_BlazingPower</defaultProjectile>
+			<defaultProjectile>Projectile_CE_BlazingPower</defaultProjectile>
 			<warmupTime>0.5</warmupTime>
 			<range>40</range>
 			<soundCast>TM_Woosh</soundCast>
@@ -267,7 +273,7 @@
 			<recoilAmount>1.53</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Projectile_BlazingPower</defaultProjectile>
+			<defaultProjectile>Projectile_CE_BlazingPower</defaultProjectile>
 			<warmupTime>1</warmupTime>
 			<range>40</range>
 			<soundCast>TM_Woosh</soundCast>

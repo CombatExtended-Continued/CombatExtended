@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Turret === -->
+
+	<!-- Improved -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret_Improved"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>6.3</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret_Improved"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>0.9</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret_Improved"]/maxRange</xpath>
+		<value>
+			<maxRange>65</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret_Improved"]/fireModes</xpath>
+		<value>
+			<fireModes Inherit="False">
+				<li>
+					<shotsPerBurst>1</shotsPerBurst>
+					<ticksBetweenShots>4</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>5</shotsPerBurst>
+					<ticksBetweenShots>4</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Burst</label>
+					<texPath>UI/Gizmos/FireRate_Burst</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>10</shotsPerBurst>
+					<ticksBetweenShots>4</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Auto</label>
+					<texPath>UI/Gizmos/FireRate_Auto</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Highwayman_MainTurret_Improved"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				<shotHeight>2.0</shotHeight>
+				<speed>156</speed>
+				<sway>0.84</sway>
+				<spread>0.03</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Upgrade === -->
+
+	<!-- Engine Cover -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Highwayman_UpgradeTree"]/nodes/li[key="EngineCover"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>2</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Highwayman_UpgradeTree"]/nodes/li[key="EngineCover"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>4</value>
+		</value>
+	</Operation>
+
+	<!-- Reinforced Bumper -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Highwayman_UpgradeTree"]/nodes/li[key="ReinforcedBumper"]/upgrades/li[@Class="Vehicles.VehicleUpgrade"]/health/li[key="FrontBumper"]/value</xpath>
+		<value>
+			<value>100</value>
+		</value>
+	</Operation>
+
+	<!-- Cargo Capacity -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Highwayman_UpgradeTree"]/nodes/li[key="CargoCapacity"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/vehicleStats/li[def="CargoCapacity"]/value</xpath>
+		<value>
+			<value>40</value>
+		</value>
+	</Operation>
+
+	<!-- Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Highwayman_UpgradeTree"]/nodes/li[key="Armor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>1</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Highwayman_UpgradeTree"]/nodes/li[key="Armor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>2</value>
+		</value>
+	</Operation>
+
+</Patch>

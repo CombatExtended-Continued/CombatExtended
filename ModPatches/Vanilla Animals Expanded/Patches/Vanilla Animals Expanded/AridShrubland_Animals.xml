@@ -143,6 +143,8 @@
 			<MeleeDodgeChance>0.1</MeleeDodgeChance>
 			<MeleeCritChance>0.24</MeleeCritChance>
 			<MeleeParryChance>0.31</MeleeParryChance>
+			<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -195,6 +197,29 @@
 					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AEXP_Crocodile"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AEXP_Crocodile"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_Crocodile"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>800</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
@@ -269,6 +294,8 @@
 			<MeleeDodgeChance>0.07</MeleeDodgeChance>
 			<MeleeCritChance>0.6</MeleeCritChance>
 			<MeleeParryChance>0.35</MeleeParryChance>
+			<ArmorRating_Blunt>0.085</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -321,6 +348,29 @@
 					<armorPenetrationBlunt>6.4</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AEXP_Hippopotamus"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AEXP_Hippopotamus"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_Hippopotamus"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1850</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 

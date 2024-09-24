@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEI2_Tankroach"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.1</MoveSpeed>
+			<MeleeDodgeChance>0.06</MeleeDodgeChance>
+			<MeleeCritChance>0.1</MeleeCritChance>
+			<MeleeParryChance>0.09</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEI2_Tankroach"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEI2_Tankroach"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>23</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEI2_Tankroach"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head claw</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>1.4</cooldownTime>
+					<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>14</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>40</armorPenetrationSharp>
+					<armorPenetrationBlunt>20</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head claw</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>47</power>
+					<cooldownTime>3.28</cooldownTime>
+					<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>14</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>2.43</armorPenetrationSharp>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>mandibles</label>
+					<capacities>
+						<li>ToxicBite</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>3.4</cooldownTime>
+					<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>14</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>10.56</armorPenetrationSharp>
+					<armorPenetrationBlunt>39.6</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>40</power>
+					<cooldownTime>3.65</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>17.5</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEI2_Tankroach"]/comps/li[@Class="AnimalBehaviours.CompProperties_HediffAfterHealthLoss"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEI2_Tankroach"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1530</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.1</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

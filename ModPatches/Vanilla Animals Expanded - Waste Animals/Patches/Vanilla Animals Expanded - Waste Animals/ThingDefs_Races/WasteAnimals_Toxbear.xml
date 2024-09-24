@@ -17,6 +17,8 @@
 			<MeleeDodgeChance>0.1</MeleeDodgeChance>
 			<MeleeCritChance>0.3</MeleeCritChance>
 			<MeleeParryChance>0.25</MeleeParryChance>
+			<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -93,6 +95,29 @@
 					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VAEWaste_Toxbear"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VAEWaste_Toxbear"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VAEWaste_Toxbear"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1625</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 

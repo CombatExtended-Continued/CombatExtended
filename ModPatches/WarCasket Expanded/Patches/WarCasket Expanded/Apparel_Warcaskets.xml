@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!-- ========== Remove Vanilla Carry Capacity ========== -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/VFEPirates.WarcasketDef[
-			defName="Warcasket_Sentinel" or
-			defName="Warcasket_GuardianX" or
-			defName="Warcasket_Tyrant"
-			]/modExtensions/li/carryingCapacity </xpath>
-	</Operation>
-
 	<!-- ========== Sentinel Warcasket ========== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/VFEPirates.WarcasketDef[defName="Warcasket_Sentinel"]/statBases</xpath>
@@ -257,14 +248,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketShoulders_Tyrant"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketShoulders_Tyrant"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoDef</xpath>
 		<value>
 			<ammoDef>Ammo_40x53mmGrenade_Smoke</ammoDef>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketShoulders_Tyrant"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+		<xpath>Defs/VFEPirates.WarcasketDef[defName="WarcasketShoulders_Tyrant"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountPerCharge</xpath>
 		<value>
 			<ammoCountPerCharge>1</ammoCountPerCharge>
 		</value>

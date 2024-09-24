@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="BotchJob_Skeleton"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_Skeleton"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>1</MeleeDodgeChance>
+			<MeleeCritChance>1</MeleeCritChance>
+			<MeleeParryChance>1</MeleeParryChance>
+			<AimingAccuracy>0.7</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_Skeleton"]/tools</xpath>
+		<value>
+			<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.44</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>1.44</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>4.49</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

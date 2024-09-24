@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--===== Heavy Bolter Turret =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HeavyBolter"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Bolter998_Standard</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HeavyBolter"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.8</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HeavyBolter"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.3</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HeavyBolter"]/chargePerAmmoCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HeavyBolter"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HeavyBolter"]/maxRange</xpath>
+		<value>
+			<maxRange>62</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HeavyBolter"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_Bolter998_Standard</li>
+				<li>Ammo_Bolter998_MetalStorm</li>
+				<li>Ammo_Bolter998_Kraken</li>
+				<li>Ammo_Bolter998_Inferno</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_HeavyBolter"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_Bolter998</ammoSet>
+				<shotHeight>1.5</shotHeight>
+				<speed>229</speed>
+				<sway>1.0</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Battle Cannon Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MainTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_120mmCannonShell_HEAT</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MainTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.2</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MainTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.8</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MainTurret"]/chargePerAmmoCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MainTurret"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MainTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>86</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MainTurret"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_120mmCannonShell_HEAT</li>
+				<li>Ammo_120mmCannonShell_HE</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LemanRuss_MainTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+				<shotHeight>2</shotHeight>
+				<speed>96</speed>
+				<sway>1.0</sway>
+				<spread>0.05</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!--===== Leman Russ =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>44</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/vehicleStats/CargoCapacity</xpath>
+		<value>
+			<CargoCapacity>1250</CargoCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="FrontArmorPlating"]/health</xpath>
+		<value>
+			<health>1250</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>68</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>34</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="LeftArmorPlating"]/health</xpath>
+		<value>
+			<health>850</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="RightArmorPlating"]/health</xpath>
+		<value>
+			<health>850</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="BackArmorPlating"]/health</xpath>
+		<value>
+			<health>750</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="BackArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="BackArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="Roof"]/health</xpath>
+		<value>
+			<health>650</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="Roof"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_LemanRuss"]/components/li[key="Roof"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>18</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+</Patch>
