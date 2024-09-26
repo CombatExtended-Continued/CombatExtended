@@ -1119,8 +1119,7 @@ namespace CombatExtended
                         ShotHeight,
                         ShotSpeed,
                         EquipmentSource,
-                        distance,
-                        ticksToTruePosition);
+                        distance);
                 }
                 pelletMechanicsOnly = true;
             }
