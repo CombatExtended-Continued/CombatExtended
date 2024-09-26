@@ -16,10 +16,7 @@ namespace CombatExtended
         private Verb verbInt = null;
 
         private List<FireMode> availableFireModes = new List<FireMode>(Enum.GetNames(typeof(FireMode)).Length);
-        private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length)
-        {
-            AimMode.AimedShot
-        };
+        private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length);
         private FireMode currentFireModeInt;
         private AimMode currentAimModeInt;
         private bool newComp = true;
@@ -147,6 +144,7 @@ namespace CombatExtended
         public void InitAvailableFireModes()
         {
             availableFireModes.Clear();
+            availableAimModes.Add(AimMode.AimedShot);
             // Calculate available fire modes
             if (parent.GetStatValue(CE_StatDefOf.BurstShotCount) > 1 || Props.noSingleShot)
             {
