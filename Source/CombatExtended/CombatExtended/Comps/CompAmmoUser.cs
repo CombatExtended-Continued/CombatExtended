@@ -718,7 +718,7 @@ namespace CombatExtended
             return false;
         }
 
-        public void LoadAmmo(Thing ammo = null)
+        public void LoadAmmo(Thing ammo = null, bool emptyMag = false)
         {
             Building_AutoloaderCE AutoLoader = null;
             if (parent is Building_AutoloaderCE)
@@ -770,7 +770,7 @@ namespace CombatExtended
                 else
                 {
                     int newAmmoCount = ammoThing.stackCount;
-                    if (turret != null || AutoLoader != null)   //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
+                    if (!emptyMag)   //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                     {
                         newAmmoCount += curMagCountInt;
                     }
@@ -789,7 +789,7 @@ namespace CombatExtended
             {
                 newMagCount = (Props.reloadOneAtATime) ? (curMagCountInt + 1) : MagSize;
             }
-            CurMagCount += newMagCount;
+            CurMagCount = newMagCount;
             if (turret != null)
             {
                 turret.SetReloading(false);

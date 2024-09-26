@@ -220,7 +220,7 @@ namespace CombatExtended
 
         void DoReload()
         {
-            compReloader.LoadAmmo(initAmmo);
+            compReloader.LoadAmmo(initAmmo, true);
             if (!(compReloader.Props.reloadOneAtATime || compReloader.FullMagazine))
             {
                 while (!compReloader.FullMagazine && compReloader.TryFindAmmoInInventory(out initAmmo))
