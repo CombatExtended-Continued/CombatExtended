@@ -789,7 +789,7 @@ namespace CombatExtended
             {
                 newMagCount = (Props.reloadOneAtATime) ? (curMagCountInt + 1) : MagSize;
             }
-            CurMagCount = newMagCount;
+            CurMagCount += newMagCount;
             if (turret != null)
             {
                 turret.SetReloading(false);
