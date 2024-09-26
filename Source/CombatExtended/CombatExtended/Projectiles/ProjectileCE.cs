@@ -552,13 +552,13 @@ namespace CombatExtended
         /// <param name="equipment">The equipment used to fire the projectile.</param>
         /// <param name="distance">The distance to the estimated intercept point</param>
         /// <param name="ticksToTruePosition">The number of ticks before the bullet is drawn at its true height instead of the muzzle height</param>
-        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1, int ticksToTruePosition = 3)
+        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
         {
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
             this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
-            this.ticksToTruePosition = ticksToTruePosition;
+            this.ticksToTruePosition = (def.projectile as ProjectilePropertiesCE).TickToTruePos;
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 this.castShadow = props.castShadow;
