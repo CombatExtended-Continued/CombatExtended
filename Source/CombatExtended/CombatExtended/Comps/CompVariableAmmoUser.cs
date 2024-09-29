@@ -123,7 +123,7 @@ namespace CombatExtended
             {
                 Command_Action command_Action = new Command_Action();
                 command_Action.defaultLabel = "CE_SelectAmmoSet".Translate();
-                command_Action.defaultDesc = "CommandSelectMineralToScanForDesc".Translate();
+                command_Action.defaultDesc = "CE_SelectAmmoSetDesc".Translate();
                 command_Action.icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload", reportFailure: false);
                 command_Action.action = delegate
                 {
