@@ -22,12 +22,15 @@ jobs:
         git config --global user.name "GitHub Actions"
         git pull --no-ff --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}/head:
         git status
+        rm -rf *.py *.so ./*/*.py ./*/*.so
         wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Make.py -O Make.py
         wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/BuildCompat.py -O BuildCompat.py
         mkdir -p Assemblies
         mkdir -p ${{ runner.temp }}/downloads
-        rm -rf AssemblyPublicizer
+        rm -rf AssemblyPublicizer csc.zip csc
         git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
+        wget https://github.com/CombatExtended-Continued/roslyn/releases/download/CSC-13/csc.zip
+        unzip csc.zip
         
     - name: remove loader
       run: |
@@ -35,11 +38,11 @@ jobs:
         
     - name: build core
       run: |
-        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer --csc $PWD/csc
 
     - name: build compat
       run: |
-        TEMP=${{ runner.temp }}/ python BuildCompat.py
+        TEMP=${{ runner.temp }}/ python BuildCompat.py --csc $PWD/csc
         
     - name: package
       run: |

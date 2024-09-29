@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo8x50mmPsychic</defName>
+		<label>8x50mm Psychic</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>ThirdParty/PsyBlasters/MediumPsy/MediumPsy_c</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_8x50mmPsychic</defName>
+		<label>8x50mm Psychic</label>
+		<ammoTypes>
+			<Ammo_8x50mmPsychic>Bullet_8x50mmPsychic</Ammo_8x50mmPsychic>
+			<Ammo_8x50mmPsychic_Focus>Bullet_8x50mmPsychic_Focus</Ammo_8x50mmPsychic_Focus>
+			<Ammo_8x50mmPsychic_Neuro>Bullet_8x50mmPsychic_Neuro</Ammo_8x50mmPsychic_Neuro>
+		</ammoTypes>
+		<!--<similarTo>AmmoSet_PsychicRifle</similarTo>-->
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="8x50mmPsychicBase" ParentName="SpacerAmmoBase" Abstract="True">
+		<description>High power charged shot ammo used by psychically enhanced advanced battle rifles, machineguns and sniper rifles.</description>
+		<statBases>
+			<Mass>0.027</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo8x50mmPsychic</li>
+		</thingCategories>
+		<stackLimit>5000</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x50mmPsychicBase">
+		<defName>Ammo_8x50mmPsychic</defName>
+		<label>8x50mm Psychic</label>
+		<graphicData>
+			<texPath>ThirdParty/PsyBlasters/MediumPsy</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.23</MarketValue>
+		</statBases>
+		<ammoClass>ChargedPsychic</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x50mmPsychicBase">
+		<defName>Ammo_8x50mmPsychic_Focus</defName>
+		<label>8x50mm Psychic (Focus)</label>
+		<graphicData>
+			<texPath>ThirdParty/PsyBlasters/MediumFocus</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.23</MarketValue>
+		</statBases>
+		<ammoClass>ChargedPsychicFocus</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x50mmPsychicBase">
+		<defName>Ammo_8x50mmPsychic_Neuro</defName>
+		<label>8x50mm Psychic (Neuro)</label>
+		<graphicData>
+			<texPath>ThirdParty/PsyBlasters/MediumNeuro</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.23</MarketValue>
+		</statBases>
+		<ammoClass>ChargedPsychicNeuro</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base8x50mmPsychicBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/PB_wide_shot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.15,1.15)</drawSize>
+		</graphicData>
+		<thingClass>CombatExtended.Compatibility.PsyBlastersCompat.PsychicBlasterBulletCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>178</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmPsychicBullet">
+		<defName>Bullet_8x50mmPsychic</defName>
+		<label>8x50mm Psychic bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>24</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>90</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
+				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
+				<psyDamageMulti>0.5</psyDamageMulti>
+				<psyPenMulti>0.5</psyPenMulti>
+				<psyCost>0.08</psyCost>
+				<entropyCost>12</entropyCost>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmPsychicBullet">
+		<defName>Bullet_8x50mmPsychic_Focus</defName>
+		<label>8x50mm Psychic bullet (Focus)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>25</armorPenetrationSharp>
+			<armorPenetrationBlunt>90</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
+				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
+				<psyDamageMulti>0.8</psyDamageMulti>
+				<psyPenMulti>0.6</psyPenMulti>
+				<psyCost>0.12</psyCost>
+				<entropyCost>6</entropyCost>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmPsychicBullet">
+		<defName>Bullet_8x50mmPsychic_Neuro</defName>
+		<label>8x50mm Psychic bullet (Neuro)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>29</damageAmountBase>
+			<armorPenetrationSharp>7</armorPenetrationSharp>
+			<armorPenetrationBlunt>90</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
+				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
+				<psyDamageMulti>0.5</psyDamageMulti>
+				<psyPenMulti>0.5</psyPenMulti>
+				<psyCost>0.04</psyCost>
+				<entropyCost>18</entropyCost>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_8x50mmPsychic</defName>
+		<label>make 8x50mm Psychic cartridge x500</label>
+		<description>Craft 500 8x50mm Psychic cartridges.</description>
+		<jobString>Making 8x50mm Psychic cartridges.</jobString>
+		<researchPrerequisite>PB_Psyblasters</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>16</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>11</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x50mmPsychic>500</Ammo_8x50mmPsychic>
+		</products>
+		<workAmount>17800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_8x50mmPsychic_Focus</defName>
+		<label>make 8x50mm Psychic (Focus) cartridge x500</label>
+		<description>Craft 500 8x50mm Psychic (Focus) cartridges.</description>
+		<jobString>Making 8x50mm Psychic (Focus) cartridges.</jobString>
+		<researchPrerequisite>PB_Focusblasters</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>16</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>11</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x50mmPsychic_Focus>500</Ammo_8x50mmPsychic_Focus>
+		</products>
+		<workAmount>17800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_8x50mmPsychic_Neuro</defName>
+		<label>make 8x50mm Psychic (Neuro) cartridge x500</label>
+		<description>Craft 500 8x50mm Psychic (Neuro) cartridges.</description>
+		<jobString>Making 8x50mm Psychic (Neuro) cartridges.</jobString>
+		<researchPrerequisite>PB_Neuroblasters</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>24</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>16</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>11</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8x50mmPsychic_Neuro>500</Ammo_8x50mmPsychic_Neuro>
+		</products>
+		<workAmount>17800</workAmount>
+	</RecipeDef>
+	
+</Defs>

@@ -55,6 +55,7 @@ namespace CombatExtended
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
             this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            this.ticksToTruePosition = (def.projectile as ProjectilePropertiesCE).TickToTruePos;
             Launch(launcher, origin, equipment);
         }
 

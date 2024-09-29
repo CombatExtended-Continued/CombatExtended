@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo12GaugePsychic</defName>
+		<label>12Gauge Psychic</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>ThirdParty/PsyBlasters/ShotgunPsy/ShotgunPsy_c</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_12GaugePsychic</defName>
+		<label>12 Gauge Psychic</label>
+		<ammoTypes>
+			<Ammo_12GaugePsychic>Bullet_12GaugePsychic</Ammo_12GaugePsychic>
+			<Ammo_12GaugePsychic_Focus>Bullet_12GaugePsychic_Focus</Ammo_12GaugePsychic_Focus>
+			<Ammo_12GaugePsychic_Neuro>Bullet_12GaugePsychic_Neuro</Ammo_12GaugePsychic_Neuro>
+		</ammoTypes>
+		<!--<similarTo>AmmoSet_PsychicShotgun</similarTo>-->
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="12GaugePsychicBase" ParentName="SpacerAmmoBase" Abstract="True">
+		<description>Multi-pellet charge shot cartridge designed for psychically enhanced shotgun-type weapons.</description>
+		<statBases>
+			<Mass>0.047</Mass>
+			<Bulk>0.06</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo12GaugePsychic</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugePsychicBase">
+		<defName>Ammo_12GaugePsychic</defName>
+		<label>12 gauge psychic</label>
+		<graphicData>
+			<texPath>ThirdParty/PsyBlasters/ShotgunPsy</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.66</MarketValue>
+		</statBases>
+		<ammoClass>ChargedPsychic</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugePsychicBase">
+		<defName>Ammo_12GaugePsychic_Focus</defName>
+		<label>12 gauge psychic (Focus)</label>
+		<graphicData>
+			<texPath>ThirdParty/PsyBlasters/ShotgunFocus</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.66</MarketValue>
+		</statBases>
+		<ammoClass>ChargedPsychicFocus</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugePsychicBase">
+		<defName>Ammo_12GaugePsychic_Neuro</defName>
+		<label>12 gauge psychic (Neuro)</label>
+		<graphicData>
+			<texPath>ThirdParty/PsyBlasters/ShotgunNeuro</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.66</MarketValue>
+		</statBases>
+		<ammoClass>ChargedPsychicNeuro</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base12GaugePsychicBullet" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/BlasterShot</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>CombatExtended.Compatibility.PsyBlastersCompat.PsychicBlasterBulletCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>122</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12GaugePsychicBullet">
+		<defName>Bullet_12GaugePsychic</defName>
+		<label>psychic shot pellet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.8</armorPenetrationBlunt>
+			<pelletCount>6</pelletCount>
+			<spreadMult>8.9</spreadMult>
+		</projectile>
+		<comps>
+			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
+				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
+				<psyDamageMulti>0.5</psyDamageMulti>
+				<psyPenMulti>0.5</psyPenMulti>
+				<psyCost>0.01</psyCost> <!-- Roughly divided by the 6 pellets-->
+				<entropyCost>2</entropyCost>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12GaugePsychicBullet">
+		<defName>Bullet_12GaugePsychic_Focus</defName>
+		<label>psychic shot pellet (Focus)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.8</armorPenetrationBlunt>
+			<pelletCount>6</pelletCount>
+			<spreadMult>8.9</spreadMult>
+		</projectile>
+		<comps>
+			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
+				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
+				<psyDamageMulti>0.8</psyDamageMulti>
+				<psyPenMulti>0.6</psyPenMulti>
+				<psyCost>0.02</psyCost>
+				<entropyCost>1</entropyCost>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12GaugePsychicBullet">
+		<defName>Bullet_12GaugePsychic_Neuro</defName>
+		<label>psychic shot pellet (Neuro)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>9.8</armorPenetrationBlunt>
+			<pelletCount>6</pelletCount>
+			<spreadMult>8.9</spreadMult>
+		</projectile>
+		<comps>
+			<li Class="PsyBlasters.CompProperties_PsyBlasterBullet">
+				<compClass>PsyBlasters.PsyBlasterBulletComp</compClass>
+				<psyDamageMulti>0.5</psyDamageMulti>
+				<psyPenMulti>0.5</psyPenMulti>
+				<psyCost>0.005</psyCost>
+				<entropyCost>3</entropyCost>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_12GaugePsychic</defName>
+		<label>make 12 gauge Psychic shell x200</label>
+		<description>Craft 200 12Gauge Psychic shells.</description>
+		<jobString>Making 12Gauge Psychic shells.</jobString>
+		<researchPrerequisite>PB_Psyblasters</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_12GaugePsychic>200</Ammo_12GaugePsychic>
+		</products>
+		<workAmount>15000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_12GaugePsychic_Focus</defName>
+		<label>make 12 gauge Psychic (Focus) shell x200</label>
+		<description>Craft 200 12Gauge Psychic (Focus) shells.</description>
+		<jobString>Making 12Gauge Psychic (Focus) shells.</jobString>
+		<researchPrerequisite>PB_Focusblasters</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_12GaugePsychic_Focus>200</Ammo_12GaugePsychic_Focus>
+		</products>
+		<workAmount>15000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_12GaugePsychic_Neuro</defName>
+		<label>make 12 gauge Psychic (Neuro) shell x200</label>
+		<description>Craft 200 12Gauge Psychic (Neuro) shells.</description>
+		<jobString>Making 12Gauge Psychic (Neuro) shells.</jobString>
+		<researchPrerequisite>PB_Neuroblasters</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_12GaugePsychic_Neuro>200</Ammo_12GaugePsychic_Neuro>
+		</products>
+		<workAmount>15000</workAmount>
+	</RecipeDef>
+</Defs>

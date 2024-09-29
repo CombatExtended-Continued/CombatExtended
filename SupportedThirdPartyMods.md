@@ -153,6 +153,7 @@ Censored Armory  |
 Charge-Loading Lee-Enfield  |
 Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
+Colonial Shuttle |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
@@ -187,6 +188,7 @@ ED-Shields	|
 Edge of Descension - Hovercraft  |
 Edge of Descension - Monoblades  |
 Edge of Descension - Vanguard   |
+Edo Themed Expansion	|
 Eltex Bodysuit  |
 Enchanted Sword  |
 Epona The centaur race  |
@@ -220,6 +222,7 @@ Expanded Woodworking (Forked)   |
 Extended Storage	|
 Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
+Fallout: Vault 111 Starter Pack |
 Fantasy Metals Reforged |
 Farming Expansion   |
 FashionRIMsta	|
@@ -251,6 +254,10 @@ GouRIMet	|
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
 Grimworld: Melee	|
+GrimWorld 40,000 - Angels of Death |
+GrimWorld 40,000 - Core Imperialis |
+GrimWorld 40,000 - Hammer of the Imperium |
+GrimWorld 40,000 - Imperial Vehicles of Grimworld |
 Gulden Mod  |
 Half Dragons    |
 HALO: UNSC Armoury |
@@ -277,7 +284,7 @@ Kemomimihouse |
 Kemomimihouse Kz |
 Kenshi Armory |
 K.L.K - Styles Apparel Pack	|
-Kijin Race 2.0     	|     
+Kijin Race 3.0     	|     
 Kill la Kill Styles Pack    |
 Killzone Concept Armor Set  |
 Kit's Gunpowder Weapons |
@@ -357,6 +364,7 @@ New Mech: Mini-Miner    |
 Ni'Hal	|
 Nukes   |
 Nyaron Race |
+Nomad Scavengers    |
 Not Only Just a Cannon  |
 Obsidia Expansion - Mothoids Xenotype   |
 ODZ Suits |
@@ -387,6 +395,7 @@ Project RimFactory - Materials |
 Prostheses+ |
 Protoswords |
 PsiTech	|
+PsyBlasters |
 Pulsefire Turret (Continued)    |
 Pulse Weaponry  |
 Rabbie The Moonrabbit race	|
@@ -407,6 +416,7 @@ ReGrowth: Core |
 ReGrowth: Extinct Animals |
 ReGrowth: Wastelands |
 Remote Detonator	|
+Remove Industrial Stuff |
 Revia Race |
 Revia Race - biotech |
 Rim Contractors Arsenal	|
@@ -479,6 +489,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
+The Profaned	|
 The Vanity Project - Shiba Inu  |
 The Wild Fields - apparel and weapons   |
 T-45b Power Armor	|
@@ -514,7 +525,7 @@ Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Classical   |
 Vanilla Factions Expanded - Deserters  |
 Vanilla Factions Expanded - Empire  |
-Vanilla Factions Expanded - Insectoids |
+Vanilla Factions Expanded - Insectoids 2|
 Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Pirates |
@@ -546,6 +557,7 @@ Vanilla Vehicles Expanded	|
 Vanilla Vehicles Expanded - Tier 3  |
 Vanilla Vehicles Expanded - Upgrades    |
 Vanilla Weapons Expanded |
+Vanilla Weapons Expanded - Bioferrite   |
 Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|
 Vanilla Weapons Expanded - Grenades |
