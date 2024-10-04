@@ -9,7 +9,7 @@ using Verse;
 namespace CombatExtended
 {
     [HarmonyLib.HarmonyPatch(typeof(Designator_Dropdown), nameof(Designator.Visible), HarmonyLib.MethodType.Getter)]
-    internal static class Designator_Dropdown_Patch
+    internal static class Harmony_Designator_Dropdown
     {
         static void Postfix(Designator_Dropdown __instance, bool __result)
         {
