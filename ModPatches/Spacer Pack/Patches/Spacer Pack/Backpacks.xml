@@ -47,16 +47,11 @@
 	<!-- Venting Pack -->
 	
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/equippedStatOffsets</xpath>
 		<value>
-			<CarryBulk>40</CarryBulk>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/statBases</xpath>
-		<value>
-			<Bulk>8</Bulk>
+			<equippedStatOffsets>
+				<CarryBulk>25</CarryBulk>
+			</equippedStatOffsets>	
 		</value>
 	</Operation>
 
@@ -64,9 +59,17 @@
 		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/statBases/Mass</xpath>
 		<value>
 			<Mass>6</Mass>
+			<Bulk>8</Bulk>
 		</value>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/statBases/JumpRange</xpath>
+		<value>
+			<JumpRange>20</JumpRange>
+		</value>
+	</Operation>
+
 	<!-- Spacer Pack -->
 	
 	<Operation Class="PatchOperationReplace">
@@ -78,17 +81,11 @@
 		</value>
 	</Operation>
 	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="dvd_spacerpack"]/statBases</xpath>
-		<value>
-			<Bulk>5</Bulk>
-		</value>
-	</Operation>
-	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="dvd_spacerpack"]/statBases/Mass</xpath>
 		<value>
 			<Mass>4</Mass>
+			<Bulk>5</Bulk>
 		</value>
 	</Operation>
 	
@@ -114,20 +111,15 @@
 		<xpath>Defs/ThingDef[defName="dvd_archopack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
 		<value>
 			<CarryBulk>120</CarryBulk>
+			<CarryWeight>100</CarryWeight>
 		</value>
 	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="dvd_archopack"]/statBases</xpath>
-		<value>
-			<Bulk>8</Bulk>
-		</value>
-	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="dvd_archopack"]/statBases/Mass</xpath>
 		<value>
 			<Mass>6</Mass>
+			<Bulk>6</Bulk>
 		</value>
 	</Operation>
 	
