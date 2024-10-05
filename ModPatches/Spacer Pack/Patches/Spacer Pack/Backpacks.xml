@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	
+	<!-- ThingDef Editing -->
+	
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[@Name="BackpackBase"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ApparelBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BackpackBase"]/apparel</xpath>
+		<value>
+			<apparel>
+				<careIfWornByCorpse>true</careIfWornByCorpse>
+				<countsAsClothingForNudity>false</countsAsClothingForNudity>
+				<careIfDamaged>true</careIfDamaged>
+				<bodyPartGroups>
+					<li>Shoulders</li>
+				</bodyPartGroups>
+				<layers>
+					<li>Backpack</li>
+				</layers>
+			</apparel>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BackpackBase"]/thingCategories</xpath>
+		<value>
+			<thingCategories>
+				<li>Loadout</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BackpackBase"]/tradeTags</xpath>
+		<value>
+			<tradeTags>
+				<li>Clothing</li>
+			</tradeTags>
+		</value>
+	</Operation>
+	
+	<!-- Venting Pack -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>25</CarryBulk>
+			</equippedStatOffsets>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>6</Mass>
+			<Bulk>8</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/statBases/JumpRange</xpath>
+		<value>
+			<JumpRange>20</JumpRange>
+		</value>
+	</Operation>
+
+	<!-- Spacer Pack -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_spacerpack"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>80</CarryBulk>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_spacerpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>4</Mass>
+			<Bulk>5</Bulk>
+		</value>
+	</Operation>
+	
+	<!-- Med Pack -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_medpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>50</CarryBulk>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="dvd_medpack"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+		</value>
+	</Operation>
+	
+	<!-- Archotech Skippack -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_archopack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>120</CarryBulk>
+			<CarryWeight>100</CarryWeight>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_archopack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>6</Mass>
+			<Bulk>6</Bulk>
+		</value>
+	</Operation>
+	
+</Patch>
