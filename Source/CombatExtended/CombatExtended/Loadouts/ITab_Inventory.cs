@@ -529,10 +529,13 @@ namespace CombatExtended
                     }
                     if (shield != null)
                     {
-                        var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
-                        if (shieldCoverage == true)
+                        if (!shield.def.apparel.CoversBodyPart(part))
                         {
-                            armorValue += shield.GetStatValue(stat);
+                            var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                            if (shieldCoverage == true)
+                            {
+                                armorValue += shield.GetStatValue(stat);
+                            }
                         }
                     }
                     armorCache[part] = armorValue;
