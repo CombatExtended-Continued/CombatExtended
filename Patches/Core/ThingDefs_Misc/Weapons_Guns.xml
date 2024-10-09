@@ -287,18 +287,12 @@
 		<researchPrerequisite>Gunsmithing</researchPrerequisite>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Gun_PumpShotgun"]/graphicData</xpath>
-		<value>
-			<drawSize>(1.03,1.03)</drawSize>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Gun_PumpShotgun"]</xpath>
 		<value>
 			<li Class="CombatExtended.GunDrawExtension">
-				<DrawOffset>0.06,-0.02</DrawOffset>
+				<DrawSize>1.03,1.25</DrawSize>
+				<DrawOffset>0.05,0.0</DrawOffset>
 			</li>
 		</value>
 	</Operation>
@@ -543,17 +537,11 @@
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Gun_SniperRifle"]/graphicData</xpath>
-		<value>
-			<drawSize>(1.25,1.25)</drawSize>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Gun_SniperRifle"]</xpath>
 		<value>
 			<li Class="CombatExtended.GunDrawExtension">
+				<DrawSize>1.25,1.45</DrawSize>
 				<DrawOffset>0.16,-0.05</DrawOffset>
 				<CasingOffset>-0.3,0.1</CasingOffset>
 			</li>
