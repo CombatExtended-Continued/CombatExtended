@@ -523,12 +523,19 @@ namespace CombatExtended
                 if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def.tags.Contains(BodyPartTagDefOf.BreathingPathway) || part.def.tags.Contains(BodyPartTagDefOf.SightSource))))
                 {
                     var armorValue = SelPawnForGear.PartialStat(stat, part);
+                    foreach (Apparel apparel in wornApparel)
+                    {
+                        armorValue += apparel.PartialStat(stat, part);
+                    }
                     if (shield != null)
                     {
-                        var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
-                        if (shieldCoverage == true)
+                        if (!shield.def.apparel.CoversBodyPart(part))
                         {
-                            armorValue += shield.GetStatValue(stat);
+                            var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                            if (shieldCoverage == true)
+                            {
+                                armorValue += shield.GetStatValue(stat);
+                            }
                         }
                     }
                     armorCache[part] = armorValue;
