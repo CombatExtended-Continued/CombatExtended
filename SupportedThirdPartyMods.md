@@ -7,6 +7,7 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 Mod |
 --- |
 [Cosplay Equipment]	Blue Archive |
+[AV] Work Queen |
 [CP] DOOM	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
