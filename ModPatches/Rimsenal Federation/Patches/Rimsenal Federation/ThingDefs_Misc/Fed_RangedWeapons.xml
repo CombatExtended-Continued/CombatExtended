@@ -223,6 +223,49 @@
 			<reloadTime>4</reloadTime>
 		</AmmoUser>
 	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AD_CrucibleRifle"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AD_CrucibleRifle"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AD_CrucibleRifle"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to crucible mode</standardLabel>
+				<underBarrelLabel>switch to optical mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>15</magazineSize>
+					<reloadTime>4</reloadTime>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>0.78</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_CrucibleRifleAD</defaultProjectile>
+					<warmupTime>1.6</warmupTime>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+					<range>55</range>
+					<soundCast>RS_ShotCR</soundCast>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSingleShot>false</noSingleShot>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>AD_FedRifle</defName>
@@ -294,6 +337,49 @@
 			<reloadTime>3</reloadTime>
 		</AmmoUser>
 	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AD_CruciblePistol"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AD_CruciblePistol"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AD_CruciblePistol"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to crucible mode</standardLabel>
+				<underBarrelLabel>switch to optical mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>15</magazineSize>
+					<reloadTime>3</reloadTime>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>0.89</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_CruciblePistolAD</defaultProjectile>
+					<warmupTime>0.7</warmupTime>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+					<range>21</range>
+					<soundCast>RS_ShotCP</soundCast>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSingleShot>false</noSingleShot>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>AD_FedPistol</defName>
@@ -322,7 +408,7 @@
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
 		<FireModes>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
 		</FireModes>
 		<AmmoUser>
@@ -431,6 +517,46 @@
 			<reloadTime>4</reloadTime>
 		</AmmoUser>
 	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AD_CruciblePresicionRifle"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AD_CruciblePresicionRifle"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AD_CruciblePresicionRifle"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to crucible mode</standardLabel>
+				<underBarrelLabel>switch to optical mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>15</magazineSize>
+					<reloadTime>4</reloadTime>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>0.53</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_CruciblePrecisionRifleAD</defaultProjectile>
+					<warmupTime>1.6</warmupTime>
+					<range>75</range>
+					<soundCast>RS_ShotCPR</soundCast>
+					<muzzleFlashScale>12</muzzleFlashScale>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSingleShot>false</noSingleShot>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
+	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>AD_FedSniperRifle</defName>
@@ -493,6 +619,50 @@
 			<magazineSize>3</magazineSize>
 			<reloadTime>5</reloadTime>
 		</AmmoUser>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AD_PlasmaCaliver"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AD_PlasmaCaliver"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AD_PlasmaCaliver"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to cluster mode</standardLabel>
+				<underBarrelLabel>switch to siege mode</underBarrelLabel>
+				<oneAmmoHolder>True</oneAmmoHolder>
+				<propsUnderBarrel>
+					<magazineSize>3</magazineSize>
+					<reloadTime>5</reloadTime>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>0.50</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_PlasmaCaster_Fed</defaultProjectile>
+					<warmupTime>1.9</warmupTime>
+					<minRange>3</minRange>
+					<range>35</range>
+					<soundCast>RS_ShotHarmonizer</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>18</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+		</value>
 	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
