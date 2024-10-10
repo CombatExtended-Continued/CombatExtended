@@ -213,7 +213,7 @@ namespace CombatExtended
                 return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
         }
-
+        public Vector3 PreLastPos;
         public Vector3 LastPos;
         protected DangerTracker _dangerTracker = null;
         protected DangerTracker DangerTracker
@@ -375,7 +375,7 @@ namespace CombatExtended
         #region Throw
         public virtual void Throw(Thing launcher, Vector3 origin, Vector3 heading, Thing equipment = null)
         {
-            this.ExactPosition = LastPos = origin;
+            this.ExactPosition = LastPos = PreLastPos = origin;
             this.shotHeight = origin.y;
             this.origin = new Vector2(origin.x, origin.z);
             this.OriginIV3 = new IntVec3(this.origin);
@@ -589,7 +589,7 @@ namespace CombatExtended
             }
             this.startingTicksToImpact = GetFlightTime() * GenTicks.TicksPerRealSecond;
             this.ticksToImpact = Mathf.CeilToInt(this.startingTicksToImpact);
-            this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
+            this.ExactPosition = this.LastPos = PreLastPos = new Vector3(origin.x, shotHeight, origin.y);
 
         }
         #endregion
@@ -614,51 +614,69 @@ namespace CombatExtended
             InterceptProjectile(interceptor, BlockerRegistry.GetExactPosition(OriginIV3.ToVector3(), ExactPosition, shieldPosition, shieldRadius * shieldRadius));
         }
 
-        protected bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
+        protected virtual (Vector3 IntersectionPos, Action OnInterception)? CheckIntercept(IEnumerable<Thing> interceptorThings)
         {
-            Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
-            float radius = interceptorComp.Props.radius;
-            float blockRadius = radius + def.projectile.SpeedTilesPerTick + 0.1f;
-            float radiusSq = blockRadius * blockRadius;
-
+            (Vector3 IntersectionPos, Action OnInterception)? result = null;
+            float distToResult = float.MaxValue;
             var newExactPos = ExactPosition;
+            foreach (var interceptorThing in interceptorThings)
+            {
+                var interceptorComp = interceptorThing.TryGetComp<CompProjectileInterceptor>();
+                if (interceptorComp == null)
+                {
+                    continue;
+                }
+                Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
+                float radius = interceptorComp.Props.radius;
+                float radiusSq = radius * radius;
 
-            if ((newExactPos - shieldPosition).sqrMagnitude > radiusSq)
-            {
-                return false;
-            }
-            if (!interceptorComp.Active)
-            {
-                return false;
-            }
 
-            if (interceptorComp.Props.interceptGroundProjectiles && def.projectile.flyOverhead)
-            {
-                return false;
-            }
+                if ((newExactPos - shieldPosition).sqrMagnitude > radiusSq)
+                {
+                    continue;
+                }
+                if (!interceptorComp.Active)
+                {
+                    continue;
+                }
 
-            if (interceptorComp.Props.interceptAirProjectiles && !def.projectile.flyOverhead)
-            {
-                return false;
-            }
+                if (interceptorComp.Props.interceptGroundProjectiles && def.projectile.flyOverhead)
+                {
+                    continue;
+                }
 
-            if ((launcher == null || !launcher.HostileTo(interceptorThing)) && !interceptorComp.debugInterceptNonHostileProjectiles && !interceptorComp.Props.interceptNonHostileProjectiles)
-            {
-                return false;
+                if (interceptorComp.Props.interceptAirProjectiles && !def.projectile.flyOverhead)
+                {
+                    continue;
+                }
+
+                if ((launcher == null || !launcher.HostileTo(interceptorThing)) && !interceptorComp.debugInterceptNonHostileProjectiles && !interceptorComp.Props.interceptNonHostileProjectiles)
+                {
+                    continue;
+                }
+                if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - LastPos).sqrMagnitude <= radius * radius)
+                {
+                    continue;
+                }
+                if (CE_Utility.IntersectionPoint(PreLastPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
+                {
+                    newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                    float dist = (PreLastPos - newExactPos).MagnitudeHorizontalSquared();
+                    if (dist < distToResult)
+                    {
+                        result = (newExactPos, () => OnCompProjectileInterceptorInterception(interceptorThing, interceptorComp, newExactPos));
+                        distToResult = dist;
+                    }
+                }
+
             }
-            if (!interceptorComp.Props.interceptOutgoingProjectiles && (shieldPosition - LastPos).sqrMagnitude <= radius * radius)
-            {
-                return false;
-            }
-            if (CE_Utility.IntersectionPoint(LastPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
-            {
-                ExactPosition = newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
-                landed = true;
-            }
-            else
-            {
-                return false;
-            }
+            return result;
+
+        }
+        private void OnCompProjectileInterceptorInterception(Thing interceptorThing, CompProjectileInterceptor interceptorComp, Vector3 newExactPos)
+        {
+            landed = true;
+            ExactPosition = newExactPos;
             interceptorComp.lastInterceptAngle = LastPos.AngleToFlat(interceptorThing.TrueCenter());
             interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
 
@@ -697,38 +715,33 @@ namespace CombatExtended
                     interceptorComp.currentHitPoints = 0;
                     interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
                     interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, this.DamageAmount));
-                    return true;
+                    this.Impact(null);
+                    return;
                 }
             }
 
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
-            eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptorThing.Map, false), TargetInfo.Invalid);
+            eff.Trigger(new TargetInfo(Position, interceptorThing.Map, false), TargetInfo.Invalid);
             eff.Cleanup();
-            return true;
+            this.Impact(null);
         }
 
-        //Removed minimum collision distance
         protected bool CheckForCollisionBetween()
         {
+            return CheckForCollisionBetween(LastPos, ExactPosition, PreLastPos);
+        }
+        public bool CheckForCollisionBetween(Vector3 from, Vector3 to, Vector3? preLast = null)
+        {
+            (Vector3 IntersectionPos, Action OnInterception)? interception = null;
+            float dist = float.MaxValue;
             bool collided = false;
             Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
-            var lastPosIV3 = LastPos.ToIntVec3();
-            var newPosIV3 = ExactPosition.ToIntVec3();
+            var lastPosIV3 = from.ToIntVec3();
+            var newPosIV3 = to.ToIntVec3();
 
             List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
-                {
-                    landed = true;
-                    this.Impact(null);
-                    return true;
-                }
-            }
-            if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition))
-            {
-                return true;
-            }
+            var newInterceptor = CheckIntercept(list);
+            CheckNewInterceptor(newInterceptor);
 
             #region Sanity checks
             if (ticksToImpact < 0 || def.projectile.flyOverhead)
@@ -746,36 +759,55 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(lastPosIV3, newPosIV3);
             }
             #endregion
-
+            newInterceptor = BlockerRegistry.CheckForCollisionBetweenCallback(this, preLast ?? from, to);
+            CheckNewInterceptor(newInterceptor);
+            if (interception.HasValue)
+            {
+                newPosIV3 = interception.Value.IntersectionPos.ToIntVec3();
+            }
             // Iterate through all cells between the last and the new position
             // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
-            var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
-
+            var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - from).MagnitudeHorizontalSquared());
             //Order cells by distance from the last position
             foreach (var cell in cells)
             {
-                if (CheckCellForCollision(cell))
-                {
-                    newPosIV3 = cell;
-                    collided = true;
-                    break;
-                }
+                newInterceptor = PossibleTargetForCell(cell);
 
                 if (Controller.settings.DebugDrawInterceptChecks)
                 {
                     Map.debugDrawer.FlashCell(cell, 1, "o");
                 }
+                if (CheckNewInterceptor(newInterceptor))//if we found any target close, we don't need to check other
+                {
+                    break;
+                }
+            }
+            if (interception.HasValue)
+            {
+                interception.Value.OnInterception();
+                newPosIV3 = interception.Value.IntersectionPos.ToIntVec3();
+                collided = true;
             }
 
             // Apply suppression. The height here is NOT that of the bullet in CELL,
             // it is the height at the END OF THE PATH. This is because SuppressionRadius
             // is not considered an EXACT limit.
-            if (ExactPosition.y <= SuppressionRadius)
+            if (to.y <= SuppressionRadius)
             {
                 RayCastSuppression(lastPosIV3, newPosIV3, localMap);
             }
-
             return collided;
+            bool CheckNewInterceptor((Vector3 IntersectionPos, Action OnInterception)? newValue)
+            {
+                float newDist;
+                if (newValue.HasValue && (newDist = (from - newValue.Value.IntersectionPos).MagnitudeHorizontalSquared()) < dist)
+                {
+                    interception = newInterceptor;
+                    dist = newDist;
+                    return true;
+                }
+                return false;
+            }
         }
 
         /// <summary>
@@ -783,14 +815,20 @@ namespace CombatExtended
         /// </summary>
         /// <param name="cell">Where to check for collisions in</param>
         /// <returns>True if collision occured, false otherwise</returns>
-        protected bool CheckCellForCollision(IntVec3 cell)
+        protected (Vector3 IntersectionPos, Action OnIntersection)? PossibleTargetForCell(IntVec3 cell)
         {
-            if (BlockerRegistry.CheckCellForCollisionCallback(this, cell, launcher))
+            Vector3 roofIntersectionPos;
+            bool roofChecked = false;
+            //If the last position is above the wallCollisionHeight, we should check for roof intersections first
+            if (LastPos.y > CollisionVertical.WallCollisionHeight)
             {
-                return true;
-            }
-            var roofChecked = false;
+                if (CanCollideWithRoof(cell, out roofIntersectionPos))
+                {
+                    return (roofIntersectionPos, () => CollideWithRoof(roofIntersectionPos));
 
+                }
+                roofChecked = true;
+            }
             var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell)).Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
 
             //Find pawns in adjacent cells and append them to main list
@@ -802,11 +840,6 @@ namespace CombatExtended
                 rot4 = rot4.Opposite;
             }
             adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, rot4, new IntVec2(collisionCheckSize, 0)).ToList());
-            if (Controller.settings.DebugDrawInterceptChecks)
-            {
-                Map.debugDrawer.debugCells.Clear();
-                Map.debugDrawer.DebugDrawerUpdate();
-            }
             //Iterate through adjacent cells and find all the pawns
             foreach (var curCell in adjList)
             {
@@ -821,17 +854,9 @@ namespace CombatExtended
                     }
                 }
             }
-
-            //If the last position is above the wallCollisionHeight, we should check for roof intersections first
-            if (LastPos.y > CollisionVertical.WallCollisionHeight)
-            {
-                if (TryCollideWithRoof(cell))
-                {
-                    return true;
-                }
-                roofChecked = true;
-            }
-
+            (Vector3 IntersectionPos, Action OnIntersection)? result = null;
+            float resultDist = float.MaxValue;
+            float dist;
             foreach (var thing in mainThingList.Distinct().Where(x => !(x is ProjectileCE)).OrderBy(x => (x.DrawPos - LastPos).sqrMagnitude))
             {
                 if ((thing == launcher || thing == mount) && !canTargetSelf)
@@ -842,49 +867,35 @@ namespace CombatExtended
                 // Check for collision
                 if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
-                    if (!CanCollideWith(thing, out _))
+                    if (!CanCollideWith(thing, out _, out var thingIntersectionPoint))
                     {
                         continue;
                     }
-                    if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thing.TrueCenter()))
+
+                    dist = (LastPos - thingIntersectionPoint).MagnitudeHorizontalSquared();
+                    if (dist < resultDist)
                     {
-                        return true;
-                    }
-                    var lastPosIV3 = LastPos.ToIntVec3();
-                    var newPosIV3 = thing.TrueCenter().ToIntVec3();
-                    // Iterate through all cells between the last and the THING
-                    // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
-                    var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
-                    foreach (var _cell in cells)
-                    {
-                        bool colided = false;
-                        colided = BlockerRegistry.CheckCellForCollisionCallback(this, _cell, launcher);
-                        if (Controller.settings.DebugDrawInterceptChecks && Map != null)
-                        {
-                            Map.debugDrawer.FlashCell(_cell, 1, "a");
-                        }
-                        if (colided)
-                        {
-                            return true;
-                        }
-                    }
-                    if (TryCollideWith(thing))
-                    {
-                        return true;
+                        resultDist = dist;
+                        result = (thingIntersectionPoint, () => TryCollideWith(thing));
                     }
                 }
             }
 
             //Finally check for intersecting with a roof (again).
-            if (!roofChecked && TryCollideWithRoof(cell))
+            if (!roofChecked && CanCollideWithRoof(cell, out roofIntersectionPos))
             {
-                return true;
+                dist = (LastPos - roofIntersectionPos).MagnitudeHorizontalSquared();
+                if (dist < resultDist)
+                {
+                    result = (roofIntersectionPos, () => CollideWithRoof(roofIntersectionPos));
+                }
             }
-            return false;
+            return result;
         }
 
-        protected virtual bool TryCollideWithRoof(IntVec3 cell)
+        protected virtual bool CanCollideWithRoof(IntVec3 cell, out Vector3 point)
         {
+            point = Vector3.negativeInfinity;
             if (!cell.Roofed(Map) || ignoreRoof)
             {
                 return false;
@@ -901,21 +912,24 @@ namespace CombatExtended
             {
                 return false;
             }
-
-            var point = ShotLine.GetPoint(dist);
+            point = ShotLine.GetPoint(dist);
+            return true;
+        }
+        public virtual void CollideWithRoof(Vector3 point)
+        {
             ExactPosition = point;
             landed = true;
 
             if (Controller.settings.DebugDrawInterceptChecks)
             {
-                MoteMakerCE.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
+                MoteMakerCE.ThrowText(point, Map, "x", Color.red);
             }
             Impact(null);
-            return true;
         }
-        protected bool CanCollideWith(Thing thing, out float dist)
+        protected bool CanCollideWith(Thing thing, out float dist, out Vector3 point)
         {
             dist = -1f;
+            point = Vector3.negativeInfinity;
             if (globalTargetInfo.IsValid)
             {
                 return false;
@@ -934,17 +948,18 @@ namespace CombatExtended
             {
                 return false;
             }
+            point = ShotLine.GetPoint(dist);
             return true;
         }
         /// <summary>
         /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection.
         /// </summary>
         /// <param name="thing">What to impact</param>
-        /// <returns>True if impact occured, false otherwise</returns>
+        /// <returns>True if impact occurred, false otherwise</returns>
         protected bool TryCollideWith(Thing thing)
         {
 
-            if (!CanCollideWith(thing, out var dist))
+            if (!CanCollideWith(thing, out var dist, out var point))
             {
                 return false;
             }
@@ -964,7 +979,6 @@ namespace CombatExtended
                 }
             }
 
-            var point = ShotLine.GetPoint(dist);
             if (!point.InBounds(Map))
             {
                 if (OffMapOrigin)
@@ -1129,11 +1143,15 @@ namespace CombatExtended
         #region Tick/Draw
         public override void Tick()
         {
+#if DEBUG
+            CleanUpDebug(Map);
+#endif
             base.Tick();
             if (landed)
             {
                 return;
             }
+            PreLastPos = LastPos;
             LastPos = ExactPosition;
             ticksToImpact--;
             FlightTicks++;
@@ -1177,7 +1195,7 @@ namespace CombatExtended
                 return;
             }
             ExactPosition = nextPosition;
-            if (CheckForCollisionBetween())
+            if (CheckForCollisionBetween() && landed)
             {
                 return;
             }
@@ -1569,6 +1587,22 @@ namespace CombatExtended
 
             return shadows;
         }
+#if DEBUG
+
+        protected static int lastDebugCleanUpTick = -1;
+        protected static void CleanUpDebug(Map map)
+        {
+            var currentTick = Find.TickManager.TicksGame;
+            if (currentTick == lastDebugCleanUpTick)
+            {
+                return;
+            }
+            map?.debugDrawer.debugCells.Clear();
+            map?.debugDrawer.debugLines.Clear();
+            map?.debugDrawer.DebugDrawerUpdate();
+            lastDebugCleanUpTick = currentTick;
+        }
+#endif
 
         #endregion
     }

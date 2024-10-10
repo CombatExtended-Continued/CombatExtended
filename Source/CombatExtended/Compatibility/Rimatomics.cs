@@ -31,25 +31,27 @@ namespace CombatExtended.Compatibility
         public void Install()
         {
             BlockerRegistry.RegisterCheckForCollisionBetweenCallback(Rimatomics.CheckForCollisionBetweenCallback);
-            BlockerRegistry.RegisterImpactSomethingCallback(Rimatomics.ImpactSomethingCallback);
             BlockerRegistry.RegisterShieldZonesCallback(Rimatomics.ShieldZonesCallback);
         }
 
-        public static bool CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
+        public IEnumerable<string> GetCompatList()
         {
+            yield break;
+        }
+
+        public static IEnumerable<(Vector3 IntersectionPos, Action OnIntersection)> CheckForCollisionBetweenCallback(ProjectileCE projectile, Vector3 from, Vector3 to)
+        {
+            List<(Vector3, Action)> result = new List<(Vector3, Action)>();
             Map map = projectile.Map;
             getShields(map);
             if (!found)
             {
-                return false;
+                return result;
             }
-            Vector3 exactPosition = projectile.ExactPosition;
-            IntVec3 origin = projectile.OriginIV3;
-            Quaternion targetAngle = projectile.ExactRotation;
 
             if (projectile.launcher == null)
             {
-                return false;
+                return result;
             }
 
             foreach (ThingComp thingComp in shields)
@@ -65,84 +67,41 @@ namespace CombatExtended.Compatibility
                 }
                 bool interceptOutgoing = shield.Props.interceptOutgoingProjectiles;
 
-                int fieldRadius = (int)shield.Radius;
-                Vector3 shieldPosition2d = new Vector3(shield.parent.Position.x, 0, shield.parent.Position.z);
+                float fieldRadius = shield.Radius;
 
-                if (!CE_Utility.IntersectionPoint(from, to, shieldPosition2d, fieldRadius, out Vector3[] sect, map: map, spherical: false, catchOutbound: interceptOutgoing))
+                if (CE_Utility.IntersectionPoint(from, to, thingComp.parent.Position.ToVector3Shifted(), fieldRadius, out Vector3[] sect, map: map, spherical: false, catchOutbound: interceptOutgoing))
                 {
-                    continue;
-                }
-                Vector3 nep = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
-                Quaternion shieldProjAng = Quaternion.LookRotation(new Vector3(from.x - shieldPosition2d.x, 0, from.z - shieldPosition2d.z));
-                var angle = Quaternion.Angle(targetAngle, shieldProjAng);
-                if (angle > 90 || interceptOutgoing)
-                {
-                    int damage = (projectile.def.projectile.GetDamageAmount(projectile.launcher));
+                    var exactPosition = sect.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
+                    result.Add((exactPosition, () => OnIntercepted(projectile, thingComp, exactPosition)));
 
-                    exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.parent.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
-                    FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
-                    projectile.ExactPosition = exactPosition;
-
-                    Effecter effecter = new Effecter(shield.Props.interceptEffect ?? EffecterDefOf.Interceptor_BlockedProjectile);
-                    effecter.Trigger(new TargetInfo(IntVec3Utility.ToIntVec3(exactPosition), shield.parent.Map, false), TargetInfo.Invalid);
-                    effecter.Cleanup();
-                    shield.energy -= damage * shield.EnergyLossPerDamage;
-                    if (shield.energy < 0f)
-                    {
-                        DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, (float)damage, 0f, -1f, null, null, null, 0, null, true, true);
-                        shield.BreakShield(dinfo);
-                    }
-
-
-                    projectile.InterceptProjectile(shield, exactPosition, true);
-
-                    return true;
                 }
             }
-            return false;
+            return result;
         }
-        public static bool ImpactSomethingCallback(ProjectileCE projectile, Thing launcher)
+        private static void OnIntercepted(ProjectileCE projectile, ThingComp interceptor, Vector3 exactPosition)
         {
-            bool flyOverhead = projectile.def.projectile.flyOverhead;
-            if (!flyOverhead)
-            {
-                return false;
-            }
-            Map map = projectile.Map;
-            getShields(map);
-            Vector3 destination = projectile.ExactPosition;
-            foreach (CompRimatomicsShield shield in shields)
-            {
-                if (!shield.Active || shield.ShieldState != ShieldState.Active)
-                {
-                    continue;
-                }
-                if (!GenHostility.HostileTo(projectile.launcher, shield.parent) && !shield.debugInterceptNonHostileProjectiles && !shield.Props.interceptNonHostileProjectiles)
-                {
-                    continue;
-                }
-                int fieldRadius = (int)shield.Radius;
-                int fieldRadiusSq = fieldRadius * fieldRadius;
-                float DistanceSq = projectile.Position.DistanceToSquared(shield.parent.Position) - fieldRadiusSq;
-                if (DistanceSq > 0)
-                {
-                    continue;
-                }
+            CompRimatomicsShield shield = interceptor as CompRimatomicsShield;
+            var lastExactPos = projectile.LastPos;
+            var map = projectile.Map;
+            int damage = (projectile.def.projectile.GetDamageAmount(projectile.launcher));
 
-                int damage = (projectile.def.projectile.GetDamageAmount(launcher));
-                Effecter effecter = new Effecter(shield.Props.interceptEffect ?? EffecterDefOf.Interceptor_BlockedProjectile);
-                effecter.Trigger(new TargetInfo(projectile.Position, shield.parent.Map, false), TargetInfo.Invalid);
-                effecter.Cleanup();
-                shield.energy -= damage * shield.EnergyLossPerDamage;
-                if (shield.energy < 0f)
-                {
-                    DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, (float)damage, 0f, -1f, null, null, null, 0, null, true, true);
-                    shield.BreakShield(dinfo);
-                }
-                projectile.InterceptProjectile(shield, projectile.ExactPosition, true);
-                return true;
+            DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, damage, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, true, true);
+            shield.lastInterceptAngle = lastExactPos.AngleToFlat(shield.parent.TrueCenter());
+            shield.lastInterceptTicks = Find.TickManager.TicksGame;
+            if (projectile.def.projectile.damageDef == DamageDefOf.EMP && shield.Props.disarmedByEmpForTicks > 0)
+            {
+                shield.BreakShield(dinfo);
             }
-            return false;
+            FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
+            Effecter effecter = new Effecter(shield.Props.interceptEffect ?? EffecterDefOf.Interceptor_BlockedProjectile);
+            effecter.Trigger(new TargetInfo(exactPosition.ToIntVec3(), shield.parent.Map, false), TargetInfo.Invalid, -1);
+            effecter.Cleanup();
+            shield.energy -= dinfo.Amount * shield.EnergyLossPerDamage;
+            if (shield.energy < 0f)
+            {
+                shield.BreakShield(dinfo);
+            }
+            projectile.InterceptProjectile(shield, exactPosition, true);
         }
 
         private static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)

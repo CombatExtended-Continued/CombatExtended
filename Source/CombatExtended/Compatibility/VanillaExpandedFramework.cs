@@ -20,7 +20,7 @@ namespace CombatExtended.Compatibility
 
         void IPatch.Install()
         {
-            BlockerRegistry.RegisterCheckForCollisionCallback(CheckIntercept);
+            BlockerRegistry.RegisterCheckForCollisionBetweenCallback(CheckIntercept);
             BlockerRegistry.RegisterShieldZonesCallback(ShieldZonesCallback);
         }
 
@@ -43,23 +43,22 @@ namespace CombatExtended.Compatibility
             return result;
         }
 
-        private static bool CheckIntercept(ProjectileCE projectile, IntVec3 cell, Thing launcher)
+        private static IEnumerable<(Vector3, Action)> CheckIntercept(ProjectileCE projectile, Vector3 lastExactPos, Vector3 newExactPos)
         {
+            List<(Vector3, Action)> result = new List<(Vector3, Action)>();
             if (projectile.def.projectile.flyOverhead)
             {
-                return false;
+                return result;
             }
             IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(projectile.Map).ToList();
             if (!interceptors.Any())
             {
-                return false;
+                return result;
             }
             var def = projectile.def;
-            Vector3 lastExactPos = projectile.LastPos.Yto0();
-            var newExactPos = projectile.ExactPosition.Yto0();
-            foreach (var interceptor in interceptors)
+            foreach (ThingComp comp in interceptors)
             {
-
+                var interceptor = comp as CompShieldField;
                 if (!interceptor.CanFunction)
                 {
                     continue;
@@ -72,14 +71,20 @@ namespace CombatExtended.Compatibility
                 {
                     continue;
                 }
+                var exactPosition = intersectionPoints.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
 
-                projectile.ExactPosition = intersectionPoints.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
-                projectile.landed = true;
-                projectile.InterceptProjectile(interceptor.HostThing, projectile.ExactPosition, true);
-                interceptor.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, launcher);
-                return true;
+
+                result.Add((exactPosition, () => OnIntercepted(projectile, comp, exactPosition)));
             }
-            return false;
+            return result;
+        }
+        private static void OnIntercepted(ProjectileCE projectile, ThingComp comp, Vector3 newExactPos)
+        {
+            var interceptor = comp as CompShieldField;
+            projectile.ExactPosition = newExactPos;
+            projectile.landed = true;
+            projectile.InterceptProjectile(interceptor.HostThing, projectile.ExactPosition, true);
+            interceptor.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, projectile.launcher);
         }
 
     }
