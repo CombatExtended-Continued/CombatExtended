@@ -582,29 +582,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="VulcanCannon" or
-			defName="VulcanCannonManned" or
-			defName="ChargeCannon"
-			]/passability </xpath>
-		<value>
-			<!-- Turrets must be passable to allow reloading -->
-			<passability>PassThroughOnly</passability>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="VulcanCannon" or
-			defName="VulcanCannonManned" or
-			defName="ChargeCannon"
-			] </xpath>
-		<value>
-			<!-- Workaround to replace passability=Impassable -->
-			<pathCost>200</pathCost>
-		</value>
-	</Operation>
 
 	<!-- ========== Devastator Mortar ========== -->
 

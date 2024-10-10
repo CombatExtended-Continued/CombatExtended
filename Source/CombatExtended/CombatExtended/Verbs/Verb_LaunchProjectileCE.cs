@@ -30,7 +30,7 @@ namespace CombatExtended
 
         // Targeting factors
         private float estimatedTargDist = -1;           // Stores estimate target distance for each burst, so each burst shot uses the same
-        private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
+        protected int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
 
         // Angle in Vector2(degrees, radians)        
         protected Vector2 newTargetLoc = new Vector2(0, 0);
@@ -54,7 +54,7 @@ namespace CombatExtended
 
         private bool shootingAtDowned = false;
         private LocalTargetInfo lastTarget = null;
-        private IntVec3 lastTargetPos = IntVec3.Invalid;
+        protected IntVec3 lastTargetPos = IntVec3.Invalid;
 
         protected float lastShotAngle;
         protected float lastShotRotation;
@@ -62,7 +62,7 @@ namespace CombatExtended
         protected float? storedShotReduction = null;
         protected ShootLine? lastShootLine;
         protected bool repeating = false;
-        private bool doRetarget = true;
+        protected bool doRetarget = true;
 
         #endregion
 
@@ -129,7 +129,7 @@ namespace CombatExtended
                 return shotSpeed;
             }
         }
-        public float ShotHeight => (new CollisionVertical(caster)).shotHeight;
+        public virtual float ShotHeight => (new CollisionVertical(caster)).shotHeight;
         private Vector3 ShotSource
         {
             get
@@ -243,7 +243,7 @@ namespace CombatExtended
         {
             get
             {
-                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0)
+                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0 || _lightingTracker.map != caster.Map)
                 {
                     _lightingTracker = caster.Map.GetLightingTracker();
                 }
@@ -847,7 +847,7 @@ namespace CombatExtended
             }
             if (caster?.Map == null || !targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
             {
-                report = "Out of bounds";
+                report = "CE_OutofBounds".Translate();
                 return false;
             }
             // Check target self
@@ -855,7 +855,7 @@ namespace CombatExtended
             {
                 if (!verbProps.targetParams.canTargetSelf)
                 {
-                    report = "Can't target self";
+                    report = "CE_NoSelfTarget".Translate();
                     return false;
                 }
                 return true;
@@ -866,7 +866,7 @@ namespace CombatExtended
                 RoofDef roofDef = caster.Map.roofGrid.RoofAt(targ.Cell);
                 if (roofDef != null && roofDef.isThickRoof)
                 {
-                    report = "Blocked by roof";
+                    report = "CE_BlockedRoof".Translate();
                     return false;
                 }
             }
@@ -889,7 +889,7 @@ namespace CombatExtended
                         //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
                         if (!current.AllowVerbCast(this) && !(current.TryGetComp<CompShield>() != null && isTurretOperator))
                         {
-                            report = "Shooting disallowed by " + current.LabelShort;
+                            report = "CE_BlockedShield".Translate() + current.LabelShort;
                             return false;
                         }
                     }
@@ -902,15 +902,15 @@ namespace CombatExtended
                 float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
                 if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
                 {
-                    report = "Out of range";
+                    report = "CE_BlockedMaxRange".Translate();
                 }
                 else if (lengthHorizontalSquared < verbProps.minRange * verbProps.minRange)
                 {
-                    report = "Within minimum range";
+                    report = "CE_BlockedMinRange".Translate();
                 }
                 else
                 {
-                    report = "No line of sight";
+                    report = "CE_NoLoS".Translate();
                 }
                 return false;
             }
@@ -1064,6 +1064,7 @@ namespace CombatExtended
 
             float spreadDegrees = 0;
             float aperatureSize = 0;
+            int ticksToTruePosition = VerbPropsCE.ticksToTruePosition;
 
             if (Projectile.projectile is ProjectilePropertiesCE pprop)
             {
@@ -1166,7 +1167,7 @@ namespace CombatExtended
             return explosionRadiusForDisplay;
         }
 
-        private float GetMinCollisionDistance(float targetDistance)
+        protected float GetMinCollisionDistance(float targetDistance)
         {
             var shortRangeMinCollisionDistance = 1.5f;
             var longRangeMinCollisionDistMult = 0.2f;
@@ -1319,7 +1320,7 @@ namespace CombatExtended
         }
 
         // Added targetThing to parameters so we can calculate its height
-        private bool CanHitCellFromCellIgnoringRange(Vector3 shotSource, IntVec3 targetLoc, Thing targetThing = null)
+        protected virtual bool CanHitCellFromCellIgnoringRange(Vector3 shotSource, IntVec3 targetLoc, Thing targetThing = null)
         {
             // Vanilla checks
             if (verbProps.mustCastOnOpenGround && (!targetLoc.Standable(caster.Map) || caster.Map.thingGrid.CellContains(targetLoc, ThingCategory.Pawn)))

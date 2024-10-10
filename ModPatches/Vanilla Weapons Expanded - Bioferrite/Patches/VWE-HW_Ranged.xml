@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Heavy Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- === verbClass === -->
+				<li Class="PatchOperationReplace">
+					<xpath>	Defs/ThingDef[defName = "VWEB_HeavyIncinerator"]/verbs/li/verbClass</xpath>
+					<value>
+						<verbClass>Verb_Shoot</verbClass>
+					</value>
+				</li>
+
+				<!-- === Tools === -->
+				<li Class="PatchOperationReplace">
+					<xpath>	Defs/ThingDef[defName = "VWEB_HeavyIncinerator"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Heavy Flamer === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>VWEB_HeavyIncinerator</defName>
+					<statBases>
+						<Bulk>18</Bulk>
+						<SwayFactor>7.10</SwayFactor>
+						<ShotSpread>0.5</ShotSpread>
+						<SightsEfficiency>0.60</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<recoilAmount>0.85</recoilAmount>
+						<hasStandardCommand>True</hasStandardCommand>
+						<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+						<burstShotCount>40</burstShotCount>
+						<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+						<warmupTime>1</warmupTime>
+						<range>26</range>
+						<minRange>3</minRange>
+						<soundCast>HissFlamethrower</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>200</magazineSize>
+						<reloadTime>5.6</reloadTime>
+						<ammoSet>AmmoSet_Flamethrower</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aimedBurstShotCount>20</aimedBurstShotCount>
+						<noSingleShot>True</noSingleShot>
+					</FireModes>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VWEB_HeavyIncinerator"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_UnderBarrel">
+							<standardLabel>switch to flamethrower</standardLabel>
+							<underBarrelLabel>switch to vaporizer</underBarrelLabel>
+							<propsUnderBarrel>
+								<magazineSize>120</magazineSize>
+								<reloadTime>6</reloadTime>
+								<ammoSet>AmmoSet_Flamethrower</ammoSet>
+							</propsUnderBarrel>
+							<verbPropsUnderBarrel>
+								<recoilAmount>0.35</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+								<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+								<warmupTime>1.1</warmupTime>
+								<range>16</range>
+								<minRange>1</minRange>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<burstShotCount>40</burstShotCount>
+								<soundCast>HissFlamethrower</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+							</verbPropsUnderBarrel>
+							<propsFireModesUnderBarrel>
+								<aiUseBurstMode>FALSE</aiUseBurstMode>
+								<aiAimMode>AimedShot</aiAimMode>
+								<aimedBurstShotCount>10</aimedBurstShotCount>
+								<noSingleShot>true</noSingleShot>
+							</propsFireModesUnderBarrel>
+						</li>
+						<li>
+							<compClass>CompEquippable</compClass>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

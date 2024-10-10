@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef ParentName="BaseStreamlinedArrowProjectile">
+		<defName>Projectile_EarthenGauntlet_RockBlast</defName>
+		<label>rock blast</label>
+		<graphicData>
+			<texPath>Things/Projectile/BotchJob_RockSmash</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>BotchJob_RockSmash</damageDef>
+			<speed>18</speed>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBlunt>60</armorPenetrationBlunt>
+			<explosionRadius>2.7</explosionRadius>
+			<arcHeightFactor>1.2</arcHeightFactor>
+		</projectile>
+	</ThingDef>
+
+	<!-- Shrouded Dagger -->
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>Projectile_ThrownShroudedDagger</defName>
+		<label>shrouded dagger</label>
+		<graphicData>
+			<texPath>Things/Projectile/ShroudedDaggerThrown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>32</damageAmountBase>
+			<flyOverhead>false</flyOverhead>
+			<speed>26</speed>
+			<damageDef>RangedStab</damageDef>
+			<armorPenetrationBlunt>4.52</armorPenetrationBlunt>
+			<armorPenetrationSharp>7.52</armorPenetrationSharp>
+			<!--preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>BotchJob_ShroudedDagger</preExplosionSpawnThingDef-->
+		</projectile>
+	</ThingDef>
+
+	<!-- Lightning Javelin -->
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>Projectile_ThrownPossessedLightningJavelin</defName>
+		<label>lightning javelin</label>
+		<graphicData>
+			<texPath>Things/Projectile/LightningJavelinThrown</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>36</damageAmountBase>
+			<flyOverhead>false</flyOverhead>
+			<speed>20</speed>
+			<damageDef>EMP</damageDef>
+			<armorPenetrationBlunt>10</armorPenetrationBlunt>
+			<armorPenetrationSharp>8.34</armorPenetrationSharp>
+			<!--preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>BotchJob_LightningJavelin</preExplosionSpawnThingDef-->
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>30</damageAmountBase>
+				<explosiveDamageType>EMP</explosiveDamageType>
+				<explosiveRadius>4</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Archmage Bolt -->
+	<ThingDef ParentName="BasePilumProjectile">
+		<defName>Projectile_ArchmageStaffBolt</defName>
+		<label>archmage staff bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/ArchmageStaffBolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<speed>20</speed>
+			<damageDef>BotchJob_ArchmageStaffBolt</damageDef>
+			<explosionRadius>1</explosionRadius>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<explosiveDamageType>Flame</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

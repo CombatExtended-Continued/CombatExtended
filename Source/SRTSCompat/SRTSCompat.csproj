@@ -12,7 +12,7 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<OutputPath>..\..\AssembliesCompat\</OutputPath>
+		<OutputPath>..\..\ModPatches\SRTS\Assemblies\</OutputPath>
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -20,7 +20,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<OutputPath>..\..\AssembliesCompat\</OutputPath>
+		<OutputPath>..\..\ModPatches\SRTS\Assemblies\</OutputPath>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
@@ -40,19 +40,13 @@
 	  </ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <Reference Include="0CombatExtendedLoader">
-	    <HintPath>..\..\Assemblies\0CombatExtendedLoader.dll</HintPath>
-	    <Private>False</Private>
-	  </Reference>
-	</ItemGroup>
-	<ItemGroup>
 	  <Reference Include="SRTS">
 	    <HintPath>..\packages\SRTS-reference.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
 	</ItemGroup>
 	<ItemGroup>
-          <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4061" GeneratePathProperty="true" />
+          <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4104" GeneratePathProperty="true" />
           <PackageReference Include="Lib.Harmony" Version="2.3.3" ExcludeAssets="runtime" />
 	</ItemGroup>
 </Project>

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--===== Las Cannon =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Lasgun"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>600</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Lasgun"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Lasgun"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Lasgun_Cannon</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Lasgun"]/maxRange</xpath>
+		<value>
+			<maxRange>75</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Lasgun"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_LasgunPowerPack</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Lasgun"]</xpath>
+		<value>
+			<chargePerAmmoCount>5</chargePerAmmoCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Lasgun"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_Lasgun_Cannon</ammoSet>
+				<shotHeight>2</shotHeight>
+				<sway>1.0</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!--===== Heavy Bolter Turret =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_BoltersecondaryTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Bolter998_Standard</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_BoltersecondaryTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.8</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_BoltersecondaryTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.3</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_BoltersecondaryTurret"]/chargePerAmmoCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_BoltersecondaryTurret"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_BoltersecondaryTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>62</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_BoltersecondaryTurret"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_Bolter998_Standard</li>
+				<li>Ammo_Bolter998_MetalStorm</li>
+				<li>Ammo_Bolter998_Kraken</li>
+				<li>Ammo_Bolter998_Inferno</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_HeavyBolter"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_Bolter998</ammoSet>
+				<shotHeight>1.5</shotHeight>
+				<speed>229</speed>
+				<sway>1.0</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!--===== Twin Heavy Bolter Turret =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_HeavyBolter"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Bolter998_Standard</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_HeavyBolter"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.8</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_HeavyBolter"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.3</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_HeavyBolter"]/chargePerAmmoCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_HeavyBolter"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_HeavyBolter"]/maxRange</xpath>
+		<value>
+			<maxRange>62</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_HeavyBolter"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_Bolter998_Standard</li>
+				<li>Ammo_Bolter998_MetalStorm</li>
+				<li>Ammo_Bolter998_Kraken</li>
+				<li>Ammo_Bolter998_Inferno</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_HeavyBolter"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_Bolter998</ammoSet>
+				<shotHeight>1.5</shotHeight>
+				<speed>229</speed>
+				<sway>1.0</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!--===== Co-ax Turret =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_CoaaxTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_20x102mmNATO_AP</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_CoaaxTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.2</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_CoaaxTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.8</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_CoaaxTurret"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_CoaaxTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>66</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_CoaaxTurret"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_20x102mmNATO_AP</li>
+				<li>Ammo_20x102mmNATO_Incendiary</li>
+				<li>Ammo_20x102mmNATO_HE</li>
+				<li>Ammo_20x102mmNATO_Sabot</li>				
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_CoaaxTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+				<shotHeight>2</shotHeight>
+				<speed>96</speed>
+				<sway>1.0</sway>
+				<spread>0.05</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Mega Battle Cannon Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_PrimaryTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_120mmCannonShell_HEAT</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_PrimaryTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.2</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_PrimaryTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.8</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_PrimaryTurret"]/chargePerAmmoCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_PrimaryTurret"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_PrimaryTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>106</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_PrimaryTurret"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_120mmCannonShell_HEAT</li>
+				<li>Ammo_120mmCannonShell_HE</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_PrimaryTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+				<shotHeight>2</shotHeight>
+				<speed>102</speed>
+				<sway>1.0</sway>
+				<spread>0.03</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Demolisher Cannon Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Demolisher"]/projectile</xpath>
+		<value>
+			<projectile>Ammo_155mmHowitzerShell_HE</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Demolisher"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>9.6</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Demolisher"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.8</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Demolisher"]/chargePerAmmoCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Demolisher"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Demolisher"]/maxRange</xpath>
+		<value>
+			<maxRange>86</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Demolisher"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+                <li>Ammo_155mmHowitzerShell_HE</li>
+                <li>Ammo_155mmHowitzerShell_HE_HFuzed</li>
+                <li>Ammo_155mmHowitzerShell_Incendiary</li>
+                <li>Ammo_155mmHowitzerShell_EMP</li>
+                <li>Ammo_155mmHowitzerShell_Smoke</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_Baneblade_Demolisher"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
+				<shotHeight>2</shotHeight>
+				<speed>102</speed>
+				<sway>1.0</sway>
+				<spread>0.03</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!--===== Baneblade =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>52</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>26</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/vehicleStats/CargoCapacity</xpath>
+		<value>
+			<CargoCapacity>1250</CargoCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/components/li[key="FrontArmorPlating"]/health</xpath>
+		<value>
+			<health>1500</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>76</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/components/li[key="FrontArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>38</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/components/li[key="LeftArmorPlating"]/health</xpath>
+		<value>
+			<health>1250</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/components/li[key="LeftArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/components/li[key="RightArmorPlating"]/health</xpath>
+		<value>
+			<health>1150</health>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>50</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleDef[defName="GW_Baneblade"]/components/li[key="RightArmorPlating"]/armor/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>25</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+</Patch>

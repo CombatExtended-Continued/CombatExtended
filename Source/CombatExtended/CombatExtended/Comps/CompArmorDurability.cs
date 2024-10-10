@@ -164,7 +164,7 @@ namespace CombatExtended
         public override void PostPreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(ref dinfo, out absorbed);
-            if (curDurability > 0)
+            if (curDurability > 0 && dinfo.Def.harmsHealth && dinfo.Def.ExternalViolenceFor(parent))
             {
                 curDurability -= dinfo.Amount;
                 if (curDurability < 0)
@@ -176,7 +176,7 @@ namespace CombatExtended
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            if (durabilityProps.Repairable)
+            if (durabilityProps.Repairable && !this.parent.HostileTo(selPawn))
             {
                 var firstIngredientProvidedOrNotNeeded = true;
                 var secondIngredientProvidedOrNotNeeded = true;

@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
+using CombatExtended.HarmonyCE;
 
 namespace CombatExtended
 {
@@ -515,21 +516,25 @@ namespace CombatExtended
         private void RebuildArmorCache(Dictionary<BodyPartRecord, float> armorCache, StatDef stat)
         {
             armorCache.Clear();
-            float naturalArmor = SelPawnForGear.GetStatValue(stat);
             List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
+            var shield = wornApparel.FirstOrDefault(x => x is Apparel_Shield);
             foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
             {
-                //TODO: 1.5 should be Neck
-                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Eye)))
+                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def.tags.Contains(BodyPartTagDefOf.BreathingPathway) || part.def.tags.Contains(BodyPartTagDefOf.SightSource))))
                 {
-                    float armorValue = part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
-                    if (wornApparel != null)
+                    var armorValue = SelPawnForGear.PartialStat(stat, part);
+                    foreach (Apparel apparel in wornApparel)
                     {
-                        foreach (var apparel in wornApparel)
+                        armorValue += apparel.PartialStat(stat, part);
+                    }
+                    if (shield != null)
+                    {
+                        if (!shield.def.apparel.CoversBodyPart(part))
                         {
-                            if (apparel.def.apparel.CoversBodyPart(part))
+                            var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                            if (shieldCoverage == true)
                             {
-                                armorValue += apparel.PartialStat(stat, part);
+                                armorValue += shield.GetStatValue(stat);
                             }
                         }
                     }

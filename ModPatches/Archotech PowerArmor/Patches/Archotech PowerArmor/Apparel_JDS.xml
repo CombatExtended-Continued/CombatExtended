@@ -27,6 +27,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Helmet"]/costList</xpath>
+		<value>
+			<Uranium>30</Uranium>
+			<Hyperweave>45</Hyperweave>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/costList</xpath>
 		<value>
 			<Uranium>45</Uranium>
@@ -34,29 +42,24 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Armor"]/costList</xpath>
+		<value>
+			<Uranium>70</Uranium>
+			<Hyperweave>135</Hyperweave>
+		</value>
+	</Operation>
+
 	<!-- ===== Stats Adjustment ===== -->
 
 	<!-- === Archotech Power Helmet === -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/statBases/WorkToMake</xpath>
-		<value>
-			<WorkToMake>26250</WorkToMake>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/statBases/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>360</MaxHitPoints>
-			<Bulk>5.5</Bulk>
-			<WornBulk>1.25</WornBulk>
-		</value>
-	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="APA_HelmetBase"]/statBases/Mass</xpath>
 		<value>
 			<Mass>5</Mass>
+			<Bulk>5.5</Bulk>
+			<WornBulk>1</WornBulk>
 		</value>
 	</Operation>
 
@@ -116,27 +119,81 @@
 		</value>
 	</Operation>
 
-	<!-- === Archotech Power Armor === -->
+	<!-- === Palatine Helmet === -->
+
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/statBases/WorkToMake</xpath>
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Helmet"]/statBases/Mass</xpath>
 		<value>
-			<WorkToMake>80000</WorkToMake>
+			<Mass>5</Mass>
+			<Bulk>7.5</Bulk>
+			<WornBulk>1</WornBulk>			
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Helmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Helmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Helmet"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.20</AimingAccuracy>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+			<NightVisionEfficiency_Apparel>1.0</NightVisionEfficiency_Apparel>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/statBases/MaxHitPoints</xpath>
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Helmet"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<MaxHitPoints>650</MaxHitPoints>
-			<Bulk>100</Bulk>
-			<WornBulk>15</WornBulk>
+			<ArmorRating_Sharp>32</ArmorRating_Sharp>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>64</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Helmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>1.05</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>1.05</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Archotech Power Armor === -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/statBases/Mass</xpath>
 		<value>
 			<Mass>60</Mass>
+			<Bulk>100</Bulk>
+			<WornBulk>15</WornBulk>			
 		</value>
 	</Operation>
 
@@ -144,7 +201,7 @@
 		<xpath>Defs/ThingDef[@Name="APA_ArmorBase"]/equippedStatOffsets</xpath>
 		<value>
 			<CarryWeight>90</CarryWeight>
-			<CarryBulk>12.5</CarryBulk>
+			<CarryBulk>15</CarryBulk>
 			<ShootingAccuracyPawn>0.20</ShootingAccuracyPawn>
 		</value>
 	</Operation>
@@ -165,6 +222,62 @@
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[@Name="APA_ArmorBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.95</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.95</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Palatine Power Armor === -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Armor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>60</Mass>
+			<Bulk>110</Bulk>
+			<WornBulk>15</WornBulk>			
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Armor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>110</CarryWeight>
+			<CarryBulk>30</CarryBulk>
+			<ShootingAccuracyPawn>0.20</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>45</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>94</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="APA_Archotech_Palatine_Armor"]</xpath>
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>

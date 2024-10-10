@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RH2_Dima_Cigarette"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[
+			defName="RHBase_GruppaKrovi_Standard" or
+			defName="RHCaravan_GruppaKrovi_BlackMarket"
+			]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Ammo</tradeTag>
+				<countRange>
+					<min>1000</min>
+					<max>3000</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>5</min>
+					<max>12</max>
+				</thingDefCountRange>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

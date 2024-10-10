@@ -122,7 +122,7 @@
 				<RepairValue>200</RepairValue>
 				<CanOverHeal>true</CanOverHeal>
 				<MaxOverHeal>100</MaxOverHeal>
-				<MinArmorPct>0.75</MinArmorPct>
+				<MinArmorPct>0.5</MinArmorPct>
 			</li>
 		</value>
 	</Operation>
@@ -146,6 +146,13 @@
 			<MeleeDodgeChance>0.13</MeleeDodgeChance>
 			<MeleeCritChance>0.12</MeleeCritChance>
 			<MeleeParryChance>0.09</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Scorcher"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.0</baseHealthScale>
 		</value>
 	</Operation>
 
@@ -204,7 +211,7 @@
 		<xpath>Defs/ThingDef[defName="Mech_Scorcher"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ArmorDurability">
-				<Durability>850</Durability>
+				<Durability>1000</Durability>
 				<Regenerates>true</Regenerates>
 				<RegenInterval>1250</RegenInterval>
 				<RegenValue>5</RegenValue>
@@ -216,8 +223,8 @@
 				<RepairTime>300</RepairTime>
 				<RepairValue>200</RepairValue>
 				<CanOverHeal>true</CanOverHeal>
-				<MaxOverHeal>85</MaxOverHeal>
-				<MinArmorPct>0.75</MinArmorPct>
+				<MaxOverHeal>100</MaxOverHeal>
+				<MinArmorPct>0.5</MinArmorPct>
 			</li>
 		</value>
 	</Operation>

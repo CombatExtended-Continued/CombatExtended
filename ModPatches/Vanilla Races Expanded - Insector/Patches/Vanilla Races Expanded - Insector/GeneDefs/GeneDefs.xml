@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Stats the same as megaspider armor in vanilla, adjusted for CE -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="VRE_InsectSkin"]/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ArmorRating_Blunt>3</ArmorRating_Blunt>
+				<ArmorRating_Sharp>2.35</ArmorRating_Sharp>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VanillaRacesExpandedInsector.GenelineGeneDef[defName="VRE_WeakenedChitin"]/statFactors</xpath>
+		<value>
+			<statFactors>
+				<IncomingDamageFactor>1.25</IncomingDamageFactor>
+			</statFactors>
+		</value>
+	</Operation>
+
+</Patch>

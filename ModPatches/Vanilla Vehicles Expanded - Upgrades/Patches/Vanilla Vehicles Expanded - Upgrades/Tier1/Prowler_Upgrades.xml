@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Turret === -->
+
+	<!-- Mini Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Prowler_MiniTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_556x45mmNATO_FMJ</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Prowler_MiniTurret"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>100</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Prowler_MiniTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>1.2</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Prowler_MiniTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>0.5</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Prowler_MiniTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>40</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Prowler_MiniTurret"]/fireModes</xpath>
+		<value>
+			<fireModes>
+				<li>
+					<shotsPerBurst>1</shotsPerBurst>
+					<ticksBetweenBursts>15</ticksBetweenBursts>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="Prowler_MiniTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				<shotHeight>1.5</shotHeight>
+				<speed>142</speed>
+				<sway>0.90</sway>
+				<spread>0.05</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Upgrade === -->
+
+	<!-- Reinforced Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Prowler_UpgradeTree"]/nodes/li[key="ReinforcedArmor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>0.85</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Prowler_UpgradeTree"]/nodes/li[key="ReinforcedArmor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>1.75</value>
+		</value>
+	</Operation>
+
+	<!-- Cargo Capacity -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Prowler_UpgradeTree"]/nodes/li[key="CargoCapacity"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/vehicleStats/li[def="CargoCapacity"]/value</xpath>
+		<value>
+			<value>40</value>
+		</value>
+	</Operation>
+
+	<!-- Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Prowler_UpgradeTree"]/nodes/li[key="Armor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>0.4</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Prowler_UpgradeTree"]/nodes/li[key="Armor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>0.8</value>
+		</value>
+	</Operation>
+
+</Patch>

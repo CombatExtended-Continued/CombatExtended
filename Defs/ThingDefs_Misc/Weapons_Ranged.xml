@@ -57,7 +57,7 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_AmmoUser">
 				<magazineSize>1</magazineSize>
-				<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+				<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
 				<reloadTime>2.2</reloadTime>
 				<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
 			</li>
@@ -105,6 +105,17 @@
 				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 			</li>
 		</tools>
+		<modExtensions>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DropCasingWhenReload>true</DropCasingWhenReload>
+				<AdvancedCasingVariables>true</AdvancedCasingVariables>
+				<CasingRotationRandomRange>20</CasingRotationRandomRange>
+				<CasingOffset>-0.1,0.05</CasingOffset>
+				<CasingSpeedOverrideRange>1.5~2</CasingSpeedOverrideRange>
+				<CasingAngleOffset>-135</CasingAngleOffset>
+				<CasingLifeTimeMultiplier>2</CasingLifeTimeMultiplier>
+			</li>
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ==================== M72 LAW ==================== -->
@@ -198,7 +209,6 @@
 		</tools>
 		<modExtensions>
 			<li Class="CombatExtended.GunDrawExtension">
-				<DrawSize>1.0,1.0</DrawSize>
 				<DrawOffset>-0.3,0.0</DrawOffset>
 			</li>
 		</modExtensions>
@@ -480,14 +490,6 @@
 				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 			</li>
 		</tools>
-		<modExtensions>
-			<!--	
-      <li Class="CombatExtended.GunDrawExtension">
-<DrawSize>0.93,0.93</DrawSize>
-<DrawOffset>0.0,0.0</DrawOffset>
-      </li>
-    -->
-		</modExtensions>
 	</ThingDef>
 
 	<!-- ==================== Minigun (Mechanoid) ==================== -->
@@ -500,6 +502,7 @@
 		<graphicData>
 			<texPath>Things/Weapons/MechanoidMinigun</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1.4,1.4)</drawSize>
 		</graphicData>
 		<soundInteract>Interact_Rifle</soundInteract>
 		<statBases>
@@ -557,10 +560,6 @@
 			</li>
 		</tools>
 		<modExtensions>
-			<li Class="CombatExtended.GunDrawExtension">
-				<DrawSize>1.4,1.4</DrawSize>
-				<DrawOffset>0.0,0.0</DrawOffset>
-			</li>
 			<li Class="CombatExtended.ThingDefExtensionCE">
 				<MenuHidden>True</MenuHidden>
 			</li>

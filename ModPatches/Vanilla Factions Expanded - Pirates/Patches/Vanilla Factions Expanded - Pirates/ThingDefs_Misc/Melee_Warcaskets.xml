@@ -152,4 +152,68 @@
 			<ToughnessRating>25</ToughnessRating>
 		</value>
 	</Operation>
+
+	<!-- === Warcasket Plasma Sword === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_PlasmaSword"]/statBases</xpath>
+		<value>
+			<Bulk>35</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+			<ToughnessRating>24</ToughnessRating>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_PlasmaSword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.02</MeleeCritChance>
+				<MeleeParryChance>0.47</MeleeParryChance>
+				<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_PlasmaSword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>46</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+					<armorPenetrationSharp>64</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>10</amount>
+							<chance>0.15</chance>
+						</li>
+					</extraMeleeDamages>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>58</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationBlunt>17</armorPenetrationBlunt>
+					<armorPenetrationSharp>48</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>10</amount>
+							<chance>0.5</chance>
+						</li>
+					</extraMeleeDamages>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
 </Patch>

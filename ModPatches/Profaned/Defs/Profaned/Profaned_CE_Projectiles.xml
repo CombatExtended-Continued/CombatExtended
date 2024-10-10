@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef ParentName="BaseBulletCE">
+		<defName>Projectile_ProfanedDragon_ToxicBreath_CE</defName>
+		<label>toxic dragon breath</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<!-- Not sure if comps is needed, only kept for the MoteGlow -->
+		<comps>
+			<li Class="CompProperties_Glower">
+				<overlightRadius>1.0</overlightRadius>
+				<glowRadius>1</glowRadius>
+				<glowColor>(255, 161, 0, 0.19)</glowColor>
+			</li>
+		</comps>
+		<graphicData>
+			<texPath>Things/Projectiles/ToxicflameSurge/ToxicflameSurgeA</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<damageDef>BotchJob_DragonToxicBreathDamage</damageDef>
+			<explosionRadius>3</explosionRadius>
+			<suppressionFactor>3.0</suppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+			<damageAmountBase>30</damageAmountBase>
+			<stoppingPower>3.5</stoppingPower>
+			<ai_IsIncendiary>true</ai_IsIncendiary>
+			<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>.3</preExplosionSpawnChance>
+			<speed>30</speed>
+		</projectile>
+	</ThingDef>
+
+</Defs>

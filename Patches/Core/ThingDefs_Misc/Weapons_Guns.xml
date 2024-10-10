@@ -126,7 +126,8 @@
 			<ShotSpread>0.18</ShotSpread>
 			<SwayFactor>1.27</SwayFactor>
 			<Bulk>2.41</Bulk>
-			<!-- <ToughnessRating>2.5</ToughnessRating> --> <!-- Base toughness rating of a weapon -->
+			<!-- <ToughnessRating>2.5</ToughnessRating> -->
+			<!-- Base toughness rating of a weapon -->
 			<WorkToMake>7000</WorkToMake>
 		</statBases>
 		<costList>
@@ -167,6 +168,15 @@
 			<li Class="CombatExtended.GunDrawExtension">
 				<DrawSize>1.00,1.00</DrawSize>
 				<DrawOffset>0.0,0.0</DrawOffset>
+				<DropCasingWhenReload>true</DropCasingWhenReload>
+				<AdvancedCasingVariables>true</AdvancedCasingVariables>
+				<CasingRotationRandomRange>20</CasingRotationRandomRange>
+				<!--You'll want a lower casing speed and longer casing life time for this case-->
+				<CasingOffset>-0.1,0.05</CasingOffset>
+				<CasingSpeedOverrideRange>1.5~2</CasingSpeedOverrideRange>
+				<!--Reload drop casings doesn't follow aiming angle. negative 135 degrees make it eject up left.-->
+				<CasingAngleOffset>-135</CasingAngleOffset>
+				<CasingLifeTimeMultiplier>2</CasingLifeTimeMultiplier>
 			</li>
 		</value>
 	</Operation>
@@ -231,21 +241,21 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_PumpShotgun</defName>
 		<statBases>
-			<Mass>3.00</Mass>
-			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+			<Mass>3.05</Mass>
+			<RangedWeapon_Cooldown>0.99</RangedWeapon_Cooldown>
 			<ShotSpread>0.14</ShotSpread>
-			<SwayFactor>1.20</SwayFactor>
-			<Bulk>9.0</Bulk>
+			<SwayFactor>1.31</SwayFactor>
+			<Bulk>10.0</Bulk>
 			<SightsEfficiency>1</SightsEfficiency>
-			<WorkToMake>9500</WorkToMake>
+			<WorkToMake>10000</WorkToMake>
 		</statBases>
 		<costList>
-			<Steel>45</Steel>
+			<Steel>50</Steel>
 			<WoodLog>10</WoodLog>
 			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<Properties>
-			<recoilAmount>2.75</recoilAmount>
+			<recoilAmount>2.72</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
@@ -834,10 +844,11 @@
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 			<SightsEfficiency>1</SightsEfficiency>
 			<ShotSpread>0.07</ShotSpread>
-			<SwayFactor>0.69</SwayFactor>
+			<SwayFactor>0.67</SwayFactor>
+			<Mass>4</Mass>
 		</statBases>
 		<Properties>
-			<recoilAmount>0.91</recoilAmount>
+			<recoilAmount>1.02</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
@@ -938,7 +949,7 @@
 			<li Class="CombatExtended.GunDrawExtension">
 				<DrawSize>1.00,1.00</DrawSize>
 				<DrawOffset>0.1,-0.15</DrawOffset>
-				<CasingOffset>-0.2,0</CasingOffset>
+				<CasingOffset>-0.2,-0.1</CasingOffset>
 				<CasingAngleOffset>-30</CasingAngleOffset>
 			</li>
 		</value>
@@ -1287,7 +1298,7 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_ThumpCannon</defName>
 		<statBases>
-			<Mass>75.00</Mass>
+			<Mass>50.00</Mass>
 			<RangedWeapon_Cooldown>2.2</RangedWeapon_Cooldown>
 			<SightsEfficiency>1</SightsEfficiency>
 			<ShotSpread>0.01</ShotSpread>
@@ -1311,7 +1322,7 @@
 		</Properties>
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
-			<AmmoGenPerMagOverride>2</AmmoGenPerMagOverride>
+			<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
 			<reloadTime>9.8</reloadTime>
 			<ammoSet>AmmoSet_164x284mmDemo</ammoSet>
 		</AmmoUser>

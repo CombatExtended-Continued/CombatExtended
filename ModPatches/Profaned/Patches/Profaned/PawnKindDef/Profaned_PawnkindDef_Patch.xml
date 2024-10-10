@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="BotchJob_ProfanedDrudge"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>15</min>
+					<max>30</max>
+				</primaryMagazineCount>
+				<minAmmoCount>15</minAmmoCount>
+				<sidearms>
+					<li>
+						<generateChance>0.25</generateChance>
+						<sidearmMoney>
+							<min>20</min>
+							<max>120</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="BotchJob_ProfanedHeadhunter"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<minAmmoCount>20</minAmmoCount>
+				<sidearms>
+					<li>
+						<generateChance>0.5</generateChance>
+						<sidearmMoney>
+							<min>150</min>
+							<max>350</max>
+						</sidearmMoney>
+						<weaponTags>
+							<li>CE_Sidearm_Melee</li>
+						</weaponTags>
+					</li>
+				</sidearms>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[defName="BotchJob_ProfanedDrudge"]/apparelRequired</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[defName="BotchJob_ProfanedDrudge"]</xpath>
+			<value>
+				<apparelRequired>
+					<li>CE_Apparel_TribalBackpack</li>
+				</apparelRequired>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[defName="BotchJob_ProfanedDrudge"]/apparelRequired</xpath>
+			<value>
+				<li>CE_Apparel_TribalBackpack</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[defName="BotchJob_ProfanedHeadhunter"]/apparelRequired</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[defName="BotchJob_ProfanedHeadhunter"]</xpath>
+			<value>
+				<apparelRequired>
+					<li>CE_Apparel_TribalBackpack</li>
+				</apparelRequired>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[defName="BotchJob_ProfanedHeadhunter"]/apparelRequired</xpath>
+			<value>
+				<li>CE_Apparel_TribalBackpack</li>
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

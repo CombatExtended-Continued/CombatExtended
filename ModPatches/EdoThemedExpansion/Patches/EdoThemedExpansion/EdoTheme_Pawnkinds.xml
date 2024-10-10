@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- APPAREL TWEAKS -->
+	
+	<!-- Give all of our ranged weapon spawning pawns basic straw backpacks, since most clothing and armour lacks bulk or carry cap bonuses and they need the extra bulk for ammo and sidearm -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="HS_RangedSamurai" or
+			defName="HS_RangedSamuraiGunner" or
+			defName="HS_RangedNoviceSamurai" or
+			defName="HS_NoviceShinobi" or
+			defName="HS_ShinobiMaster" or
+			defName="HS_RangedNoviceSamurai_Shogun" or
+			defName="HS_RangedSamurai_Shogun" or
+			defName="HS_RangedSamuraiGunner_Shogun"
+			]/apparelRequired</xpath>
+		<value>
+			<li>HS_Straw_Backpack</li>
+		</value>
+	</Operation>
+	
+	<!-- AMMO AND SIDEARMS -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HS_RangedNoviceSamurai"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>15</min>
+					<max>30</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>400</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>HSBasicSamuraiMelee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HS_RangedSamurai"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>400</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>HSBasicSamuraiMelee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HS_RangedSamuraiGunner"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>400</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>HSBasicSamuraiMelee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HS_NoviceShinobi"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>400</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>HSBasicSamuraiMelee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HS_ShinobiMaster"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>400</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>HSBasicSamuraiMelee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HS_Ashigaru"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>400</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>HSBasicSamuraiMelee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HS_RangedNoviceSamurai_Shogun"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>15</min>
+					<max>30</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>400</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>HSBasicSamuraiMelee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HS_RangedSamurai_Shogun"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>30</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>400</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>HSBasicSamuraiMelee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="HS_RangedSamuraiGunner_Shogun"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>40</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>200</min>
+						<max>400</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>HSBasicSamuraiMelee</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

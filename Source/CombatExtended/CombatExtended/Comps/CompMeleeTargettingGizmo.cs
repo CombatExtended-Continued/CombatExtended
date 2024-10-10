@@ -25,8 +25,19 @@ namespace CombatExtended
             }
         }
     }
+
+    [StaticConstructorOnStartup]
     public class CompMeleeTargettingGizmo : ThingComp
     {
+        static CompMeleeTargettingGizmo()
+        {
+            priorityList = new List<BodyPartDef>() {
+                CE_BodyPartDefOf.Neck,
+                BodyPartDefOf.Eye,
+                BodyPartDefOf.Head
+            };
+        }
+        private static List<BodyPartDef> priorityList = null;
         #region Fields
         public Pawn PawnParent => (Pawn)this.parent;
 
@@ -92,26 +103,26 @@ namespace CombatExtended
 
             if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 16)
             {
-                //TODO: 1.5 Should be neck?
-                targetBodyPart = BodyPartDefOf.Eye;
-
-                var neck = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == BodyPartDefOf.Eye).FirstOrFallback();
-
-                if (neck != null)
+                foreach (var bpd in priorityList)
                 {
-                    var neckApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(neck));
+                    targetBodyPart = bpd;
+                    var bp = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == bpd).FirstOrFallback();
 
-                    if (neckApparel != null && maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                    if (bp != null)
                     {
-                        targetBodyPart = null;
-                        return BodyPartHeight.Bottom;
-                    }
-                    else
-                    {
-                        targetBodyPart = neck.def;
+                        var bpApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(bp));
+
+                        if (bpApparel != null && maxWeaponPen < bpApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                        {
+                            targetBodyPart = null;
+                            return BodyPartHeight.Bottom;
+                        }
+                        else
+                        {
+                            targetBodyPart = bp.def;
+                        }
                     }
                 }
-
                 return BodyPartHeight.Top;
             }
 

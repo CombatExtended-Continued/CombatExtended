@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>VFEP_GauntletChargeCanon_CE</defName>
+		<label>gauntlet charge cannon</label>
+		<description>Ship mounted anti-armor charge cannon, often utilised in ship-to-ship combat in low atmosphere.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/GauntletTurret_Top</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.9</AccuracyTouch>
+			<AccuracyShort>0.85</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>5</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<defaultProjectile>VFEP_Bullet_GauntletChargeCanon</defaultProjectile>
+				<warmupTime>2.3</warmupTime>
+				<range>62</range>
+				<minRange>8.9</minRange>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>VFEP_Shot_GauntletCannon</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+
+</Defs>

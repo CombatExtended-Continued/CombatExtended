@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ==================== PawnKinds ==================== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_HedgeKnightRox"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>3</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				<shieldMoney>
+					<min>150</min>
+					<max>250</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Roxmont</li>
+				</shieldTags>
+				<shieldChance>0.5</shieldChance>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>50</min>
+						<max>200</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>CE_Sidearm_Tribal</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanRoxmont"]/apparelRequired/li[.="DankPyon_ShieldHeater_Roxmont"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanRoxmont"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>350</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Roxmont</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_StandardRoxmont"] </xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>350</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>KiteShield</li>
+					<li>HeaterShield</li>
+					<li>Buckler</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_KnightRoxmont" or defName="DankPyon_Medieval_LordRoxmont"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>200</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>HeaterShield</li>
+					<li>KiteShield</li>
+				</shieldTags>
+				<shieldChance>0.5</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

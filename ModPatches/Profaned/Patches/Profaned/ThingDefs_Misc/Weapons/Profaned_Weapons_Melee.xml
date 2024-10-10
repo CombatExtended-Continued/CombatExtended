@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- 1H War Axe -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedWarAxe"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedWarAxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.31</MeleeCritChance>
+				<MeleeParryChance>0.22</MeleeParryChance>
+				<MeleeDodgeChance>0.22</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedWarAxe"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedWarAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>0.95</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>BotchJob_RotCut</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.25</chanceFactor>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.32</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>BotchJob_RotCut</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.58</cooldownTime>
+					<chanceFactor>0.70</chanceFactor>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.75</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Scimitar -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedScimitar"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.38</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedScimitar"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.1</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedScimitar"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.24</MeleeCritChance>
+				<MeleeParryChance>0.38</MeleeParryChance>
+				<MeleeDodgeChance>0.28</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedScimitar"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedScimitar"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>BotchJob_CE_RotStab</li>
+					</capacities>
+					<power>23</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.31</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>BotchJob_RotCut</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationBlunt>1.782</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.8</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Shotel -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedShotel"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.27</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedShotel"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedShotel"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.19</MeleeCritChance>
+				<MeleeParryChance>0.17</MeleeParryChance>
+				<MeleeDodgeChance>0.3</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedShotel"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedShotel"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<chanceFactor>0.15</chanceFactor>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>BotchJob_CE_RotStab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.74</cooldownTime>
+					<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+					<armorPenetrationSharp>1</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>BotchJob_RotCut</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>1.62</cooldownTime>
+					<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.90</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!--  Profaned Club  -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedClub"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<chanceFactor>0.33</chanceFactor>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>3.48</cooldownTime>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedClub"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedClub"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.67</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedClub"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="BotchJob_ProfanedClub"]</xpath>
+			<value>
+				<weaponTags/>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedClub"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Tribal</li>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- Greatsword -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ScourgeknightGreatsword" or defName="BotchJob_GraspingDeadGreatsword"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<MeleeCounterParryBonus>0.70</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ScourgeknightGreatsword" or defName="BotchJob_GraspingDeadGreatsword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.30</MeleeCritChance>
+				<MeleeParryChance>1.20</MeleeParryChance>
+				<MeleeDodgeChance>0.50</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ScourgeknightGreatsword" or defName="BotchJob_GraspingDeadGreatsword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.97</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>BotchJob_CE_RotStab</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.98</cooldownTime>
+					<chanceFactor>0.50</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.90</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>BotchJob_RotCut</li>
+					</capacities>
+					<power>48</power>
+					<cooldownTime>2.86</cooldownTime>
+					<chanceFactor>0.45</chanceFactor>
+					<armorPenetrationBlunt>3.592</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.58</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Profaned Greataxe -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ScourgeknightGreataxe"]/statBases</xpath>
+		<value>
+			<Bulk>7</Bulk>
+			<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ScourgeknightGreataxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.30</MeleeCritChance>
+				<MeleeParryChance>0.40</MeleeParryChance>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ScourgeknightGreataxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.3</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>2.18</cooldownTime>
+					<chanceFactor>0.25</chanceFactor>
+					<armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>BotchJob_RotCut</li>
+					</capacities>
+					<power>37</power>
+					<cooldownTime>2.18</cooldownTime>
+					<chanceFactor>0.70</chanceFactor>
+					<armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.95</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Frostbound Greataxe -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_FrostboundGreataxe"]/statBases</xpath>
+		<value>
+			<Bulk>7</Bulk>
+			<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_FrostboundGreataxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.30</MeleeCritChance>
+				<MeleeParryChance>0.40</MeleeParryChance>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_FrostboundGreataxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.3</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>2.18</cooldownTime>
+					<chanceFactor>0.25</chanceFactor>
+					<armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>37</power>
+					<cooldownTime>2.18</cooldownTime>
+					<chanceFactor>0.70</chanceFactor>
+					<armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.95</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+						<li>
+							<def>Frostbite</def>
+							<amount>10</amount>
+						</li>
+					</extraMeleeDamages>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Scythe -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BotchJob_FadingSoulScythe</defName>
+		<statBases>
+			<Bulk>12</Bulk>
+			<SwayFactor>0</SwayFactor>
+			<ShotSpread>0.0</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+		</statBases>
+		<Properties>
+			<verbClass>Verb_Shoot</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>BotchJob_SoulShard</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<range>12</range>
+			<burstShotCount>1</burstShotCount>
+			<targetParams>
+				<canTargetLocations>false</canTargetLocations>
+				<canTargetPawns>true</canTargetPawns>
+			</targetParams>
+			<soundCast>BotchJob_ProfanedStaffCast</soundCast>
+			<minRange>0</minRange>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedScythe"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedScythe" or defName="BotchJob_FadingSoulScythe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.30</MeleeCritChance>
+				<MeleeParryChance>0.40</MeleeParryChance>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedScythe" or defName="BotchJob_FadingSoulScythe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>BotchJob_CE_RotStab</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>3.57</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.5</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>BotchJob_RotCut</li>
+					</capacities>
+					<power>29</power>
+					<cooldownTime>3.57</cooldownTime>
+					<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.5</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="BotchJob_FadingSoulScythe"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]</xpath>
+	</Operation>
+
+	<!-- Glaive -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedGlaive" or defName="BotchJob_AbyssalGlaive"]/statBases</xpath>
+		<value>
+			<Bulk>12</Bulk>
+			<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedGlaive" or defName="BotchJob_AbyssalGlaive"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.30</MeleeCritChance>
+				<MeleeParryChance>0.40</MeleeParryChance>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedGlaive" or defName="BotchJob_AbyssalGlaive"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>BotchJob_CE_RotStab</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>3.57</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.5</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>BotchJob_RotCut</li>
+					</capacities>
+					<power>29</power>
+					<cooldownTime>3.57</cooldownTime>
+					<armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.5</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Profaned Staff -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BotchJob_ProfanedStaff</defName>
+		<statBases>
+			<Bulk>6</Bulk>
+			<SwayFactor>0</SwayFactor>
+			<ShotSpread>0.0</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.93</MeleeCounterParryBonus>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>BotchJob_BloodflameStaffBolt</defaultProjectile>
+			<warmupTime>4.5</warmupTime>
+			<range>35</range>
+			<burstShotCount>1</burstShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+				<canTargetPawns>true</canTargetPawns>
+			</targetParams>
+			<soundCast>BotchJob_ProfanedStaffCast</soundCast>
+			<minRange>3.9</minRange>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedStaff"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.85</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_ProfanedStaff"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.00</MeleeCritChance>
+				<MeleeParryChance>0.70</MeleeParryChance>
+				<MeleeDodgeChance>0.47</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- Blood Flame Staff -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BotchJob_BloodflameStaff</defName>
+		<statBases>
+			<Bulk>6</Bulk>
+			<SwayFactor>0</SwayFactor>
+			<ShotSpread>0.0</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
+			<MeleeCounterParryBonus>0.93</MeleeCounterParryBonus>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>BotchJob_BloodflameStaffBolt</defaultProjectile>
+			<warmupTime>4.5</warmupTime>
+			<range>35</range>
+			<burstShotCount>1</burstShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+				<canTargetPawns>true</canTargetPawns>
+			</targetParams>
+			<soundCast>BotchJob_ProfanedStaffCast</soundCast>
+			<minRange>3.9</minRange>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_BloodflameStaff"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.85</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_BloodflameStaff"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.00</MeleeCritChance>
+				<MeleeParryChance>0.70</MeleeParryChance>
+				<MeleeDodgeChance>0.47</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_BloodflameStaff"]/verbs</xpath>
+		<value>
+			<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core">
+				<verbClass>Verb_LaunchProjectile</verbClass>
+				<label>bloodflame surge</label>
+				<hasStandardCommand>true</hasStandardCommand>
+				<onlyManualCast>true</onlyManualCast>
+				<defaultProjectile>BotchJob_BloodflameSurgeProj</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>0.5</warmupTime>
+				<range>12</range>
+				<soundCast>BotchJob_ProfanedStaffCast</soundCast>
+				<stopBurstWithoutLos>false</stopBurstWithoutLos>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<commandIcon>UI/Icons/Misc/BotchJob_BloodflameSurgeIcon</commandIcon>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
