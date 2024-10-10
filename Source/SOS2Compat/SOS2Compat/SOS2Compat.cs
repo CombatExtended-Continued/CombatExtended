@@ -123,7 +123,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                 projectile.InterceptProjectile(shield, newExactPos, true);
             }
         }
-        
+
         // Adapted from VanillaExpandedFramework patch
         private IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
         {
