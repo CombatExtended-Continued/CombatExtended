@@ -889,7 +889,7 @@ namespace CombatExtended
             return result;
         }
 
-        protected virtual bool TryCollideWithRoof(IntVec3 cell, out Vector3 point)
+        protected virtual bool CanCollideWithRoof(IntVec3 cell, out Vector3 point)
         {
             point = Vector3.negativeInfinity;
             if (!cell.Roofed(Map) || ignoreRoof)
@@ -911,7 +911,7 @@ namespace CombatExtended
             point = ShotLine.GetPoint(dist);
             return true;
         }
-        public void CollideWithRoof(Vector3 point)
+        public virtual void CollideWithRoof(Vector3 point)
         {
             ExactPosition = point;
             landed = true;
