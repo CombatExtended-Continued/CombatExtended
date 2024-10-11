@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- Tool Capacity Def -->
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ToolCapacityDef[
-			defName="BifurcatorCleave" or
-			defName="CrustbreakerSmash"
-			]
-		</xpath>
-		<value>
-			<li Class="CombatExtended.ModExtensionMeleeToolPenetration">
-				<canHitInternal>true</canHitInternal>
-			</li>
-		</value>
-	</Operation>
-
 	<!-- Kyokatana -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="WP_Kyokatana"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Kyokatana"]/statBases</xpath>
 		<value>
 			<Bulk>35</Bulk>
 			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
@@ -25,17 +11,19 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="WP_Kyokatana"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GS_Kyokatana"]</xpath>
 		<value>
-			<MeleeCritChance>0.02</MeleeCritChance>
-			<MeleeParryChance>0.47</MeleeParryChance>
-			<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.02</MeleeCritChance>
+				<MeleeParryChance>0.47</MeleeParryChance>
+				<MeleeDodgeChance>0.18</MeleeDodgeChance>
+			</equippedStatOffsets>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="WP_Kyokatana"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Kyokatana"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -48,10 +36,6 @@
 					<armorPenetrationBlunt>9</armorPenetrationBlunt>
 					<armorPenetrationSharp>64</armorPenetrationSharp>
 					<extraMeleeDamages>
-						<li>
-							<def>WP_WhiteHotBurn</def>
-							<amount>10</amount>
-						</li>
 						<li>
 							<def>Flame</def>
 							<amount>10</amount>
@@ -70,10 +54,6 @@
 					<armorPenetrationSharp>48</armorPenetrationSharp>
 					<extraMeleeDamages>
 						<li>
-							<def>WP_WhiteHotBurn</def>
-							<amount>10</amount>
-						</li>
-						<li>
 							<def>Flame</def>
 							<amount>10</amount>
 							<chance>0.5</chance>
@@ -86,13 +66,13 @@
 
 	<!-- Bifurcator -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="WP_Bifurcator"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Bifurcator"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<label>blade</label>
+					<label>head</label>
 					<capacities>
-						<li>BifurcatorCleave</li>
+						<li>Blunt</li>
 					</capacities>
 					<power>62</power>
 					<cooldownTime>5.73</cooldownTime>
@@ -105,7 +85,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="WP_Bifurcator"]</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Bifurcator"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.8</MeleeCritChance>
@@ -116,7 +96,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="WP_Bifurcator"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Bifurcator"]/statBases</xpath>
 		<value>
 			<Bulk>16</Bulk>
 			<MeleeCounterParryBonus>1.75</MeleeCounterParryBonus>
@@ -126,7 +106,7 @@
 
 	<!-- Voltrender -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="WP_Voltrender"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Voltrender"]/statBases</xpath>
 		<value>
 			<Bulk>15</Bulk>
 			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
@@ -135,7 +115,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="WP_Voltrender"]</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Voltrender"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.02</MeleeCritChance>
@@ -146,18 +126,42 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="WP_Voltrender"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Voltrender"]/tools</xpath>
 		<value>
 			<tools>
+				<li>
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>46</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+					<armorPenetrationSharp>38</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>EMP</def>
+							<amount>10</amount>
+							<chance>0.5</chance>
+						</li>
+					</extraMeleeDamages>
+				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>blade</label>
 					<capacities>
-						<li>VoltaicSlash</li>
+						<li>Cut</li>
 					</capacities>
 					<power>52</power>
 					<cooldownTime>2.6</cooldownTime>
 					<armorPenetrationBlunt>17</armorPenetrationBlunt>
 					<armorPenetrationSharp>28</armorPenetrationSharp>
+					<extraMeleeDamages>
+						<li>
+							<def>EMP</def>
+							<amount>10</amount>
+							<chance>0.5</chance>
+						</li>
+					</extraMeleeDamages>
 				</li>
 			</tools>
 		</value>
@@ -165,13 +169,13 @@
 
 	<!-- Crustbreaker -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="WP_Crustbreaker"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Crustbreaker"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
-						<li>CrustbreakerSmash</li>
+						<li>Blunt</li>
 					</capacities>
 					<power>92</power>
 					<cooldownTime>5.73</cooldownTime>
@@ -183,7 +187,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="WP_Crustbreaker"]</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Crustbreaker"]</xpath>
 		<value>
 			<equippedStatOffsets>
 				<MeleeCritChance>0.8</MeleeCritChance>
@@ -194,7 +198,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="WP_Crustbreaker"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="GS_Crustbreaker"]/statBases</xpath>
 		<value>
 			<Bulk>18</Bulk>
 			<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
