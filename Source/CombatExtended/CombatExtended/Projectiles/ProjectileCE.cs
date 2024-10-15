@@ -208,7 +208,7 @@ namespace CombatExtended
                 var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
                 if (FlightTicks < ticksToTruePosition)
                 {
-                    sh *= FlightTicks / ticksToTruePosition;
+                    sh *= (float)FlightTicks / ticksToTruePosition;
                 }
                 return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
