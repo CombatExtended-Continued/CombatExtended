@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- ========== Tools ========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -45,7 +46,6 @@
 		defName="K4G_Gun_HeavyShotgun" or
 		defName="K4G_Gun_LightSMG" or
 		defName="K4G_Gun_AdvancedSMG" or
-		defName="K4G_Gun_CompactRifle" or
 		defName="K4G_Gun_BattleRifle"
 		]/tools</xpath>
 		<value>
@@ -507,43 +507,6 @@
 		</FireModes>
 	</Operation>
 
-	<!-- ========== Compact Rifle (M4A1) ========== -->
-
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>K4G_Gun_CompactRifle</defName>
-		<statBases>
-			<Mass>2.90</Mass>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.00</SightsEfficiency>
-			<ShotSpread>0.1</ShotSpread>
-			<SwayFactor>1.13</SwayFactor>
-			<Bulk>7.56</Bulk>
-		</statBases>
-		<Properties>
-			<recoilAmount>1.58</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
-			<range>55</range>
-			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-			<soundCast>Shot_AssaultRifle</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>30</magazineSize>
-			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
-		</FireModes>
-	</Operation>
-
 	<!-- ========== Batttle Rifle (G3A2) ========== -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -579,6 +542,48 @@
 			<aiAimMode>AimedShot</aiAimMode>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
 		</FireModes>
+	</Operation>
+
+	<!-- ========== Comrade Pistol (Makarov) ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>K4G_Gun_ComradePistol</defName>
+		<statBases>
+			<Mass>0.73</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.18</ShotSpread>
+			<SwayFactor>0.78</SwayFactor>
+			<Bulk>1.62</Bulk>
+			<WorkToMake>7000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>30</Steel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x18mmMakarov_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Autopistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_9x18mmMakarov</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Pistol</li>
+			<li>CE_Sidearm</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
 	</Operation>
 
 </Patch>
