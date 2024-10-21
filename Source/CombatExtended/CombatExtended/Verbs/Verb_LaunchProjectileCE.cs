@@ -1348,7 +1348,44 @@ namespace CombatExtended
                 {
                     targetPos = targetLoc.ToVector3Shifted();
                 }
+
                 Ray shotLine = new Ray(shotSource, (targetPos - shotSource));
+
+                foreach (Pawn pawn in shotSource.ToIntVec3().PawnsNearSegment(targetLoc, caster.Map, 1, behind: false, infront: true))
+                {
+                    Log.Message($"Pawn: {pawn} may be in the way");
+                    if (pawn.Faction != null && ShooterPawn != null && !ShooterPawn.HostileTo(pawn))
+                    {
+                        if (pawn == ShooterPawn || pawn.Downed)
+                        {
+                            continue;
+                        }
+                        var bounds = CE_Utility.GetBoundsFor(pawn);
+                        if (bounds.IntersectRay(shotLine, out var dist))
+                        {
+                            Log.Message($"intersects? {dist}");
+                            return false;
+                        }
+                    }
+                }
+
+                foreach (Pawn pawn in shotSource.ToIntVec3().PawnsNearSegment(targetLoc, caster.Map, 2, behind: false, infront: true))
+                {
+                    Log.Message($"Pawn: {pawn} may be in the way (2)");
+                    if (pawn.Faction != null && ShooterPawn != null && !ShooterPawn.HostileTo(pawn))
+                    {
+                        if (pawn == ShooterPawn || pawn.Downed)
+                        {
+                            continue;
+                        }
+                        var bounds = CE_Utility.GetBoundsFor(pawn);
+                        if (bounds.IntersectRay(shotLine, out var dist))
+                        {
+                            Log.Message($"intersects? {dist}");
+                            return false;
+                        }
+                    }
+                }
 
                 // Create validator to check for intersection with partial cover
                 var aimMode = CompFireModes?.CurrentAimMode;
