@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- === Coal === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="EM_Coal"]/statBases</xpath>
@@ -7,6 +8,7 @@
 			<Bulk>0.03</Bulk>
 		</value>
 	</Operation>
+
 	<!-- === Charcoal === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="EM_Charcoal"]/statBases</xpath>
@@ -14,6 +16,7 @@
 			<Bulk>0.03</Bulk>
 		</value>
 	</Operation>
+
 	<!-- === Iron === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="EM_Iron"]/statBases</xpath>
@@ -63,14 +66,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="EM_MildSteel"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
-			<StuffPower_Armor_Sharp>1.1</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Sharp>0.95</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="EM_MildSteel"]/statBases/StuffPower_Armor_Blunt</xpath>
 		<value>
-			<StuffPower_Armor_Blunt>1.6</StuffPower_Armor_Blunt>
+			<StuffPower_Armor_Blunt>1.43</StuffPower_Armor_Blunt>
 		</value>
 	</Operation>
 
@@ -93,14 +96,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="EM_TemperedSteel"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
-			<StuffPower_Armor_Sharp>0.9</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Sharp>1.05</StuffPower_Armor_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="EM_TemperedSteel"]/statBases/StuffPower_Armor_Blunt</xpath>
 		<value>
-			<StuffPower_Armor_Blunt>1.3</StuffPower_Armor_Blunt>
+			<StuffPower_Armor_Blunt>1.6</StuffPower_Armor_Blunt>
 		</value>
 	</Operation>
 
@@ -179,20 +182,7 @@
 			<Bulk>0.03</Bulk>
 		</value>
 	</Operation>
-<!--
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="EM_Tin"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.13</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="EM_Tin"]/statBases/StuffPower_Armor_Blunt</xpath>
-		<value>
-			<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
-		</value>
-	</Operation> no longer usable for weapons n armor -->
 
 	<!-- === Copper === -->
 	<Operation Class="PatchOperationAdd">
@@ -216,57 +206,6 @@
 		</value>
 	</Operation>
 
-	<!-- === Tungsten === rip tungsten :pensive:
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VMEu_Tungsten"]/statBases</xpath>
-		<value>
-			<Bulk>0.03</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VMEu_Tungsten"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>1.3</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VMEu_Tungsten"]/statBases/StuffPower_Armor_Blunt</xpath>
-		<value>
-			<StuffPower_Armor_Blunt>1.8</StuffPower_Armor_Blunt>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VMEu_Tungsten"]/stuffProps/statFactors/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>3</MaxHitPoints>
-			<Mass>2.1</Mass>
-		</value>
-	</Operation> -->
-
-	<!-- === Chromium === 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VMEu_Chromium"]/statBases</xpath>
-		<value>
-			<Bulk>0.03</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VMEu_Chromium"]/statBases/StuffPower_Armor_Sharp</xpath>
-		<value>
-			<StuffPower_Armor_Sharp>0.6</StuffPower_Armor_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VMEu_Chromium"]/statBases/StuffPower_Armor_Blunt</xpath>
-		<value>
-			<StuffPower_Armor_Blunt>0.8</StuffPower_Armor_Blunt>
-		</value>
-	</Operation> -->
 
 	<!-- === Stainless Steel === -->
 	<Operation Class="PatchOperationAdd">
@@ -344,12 +283,5 @@
 		</value>
 	</Operation>
 
-	<!-- === Concrete, Rock Powder, and Fossil === 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VMEu_Concrete" or defName="VMEu_RockPowder" or defName="VMEu_Fossil"]/statBases</xpath>
-		<value>
-			<Bulk>0.2</Bulk>
-		</value>
-	</Operation> -->
 
 </Patch>
