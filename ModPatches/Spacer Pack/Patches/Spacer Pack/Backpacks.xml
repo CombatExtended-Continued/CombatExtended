@@ -135,7 +135,7 @@
 					<range>35</range>
 					<minRange>5</minRange>
 					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-					<soundCast>Mortar_LaunchA</soundCast>
+					<soundCast>SpitterSpit</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>14</muzzleFlashScale>
 					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
@@ -201,6 +201,29 @@
 		<value>
 			<Mass>6</Mass>
 			<Bulk>6</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_archopack"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>archotech skipbolt</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>true</onlyManualCast>
+					<warmupTime>0.5</warmupTime>
+					<range>55</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<soundCast>dvd_Sound_SkipBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<defaultProjectile>dvd_SkipBolt_CE</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
 		</value>
 	</Operation>
 

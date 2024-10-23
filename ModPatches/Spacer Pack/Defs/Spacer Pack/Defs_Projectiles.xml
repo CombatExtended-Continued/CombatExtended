@@ -31,4 +31,24 @@
 			<doExplosionVFX>false</doExplosionVFX>
 		</projectile>
 	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmChargedBullet">
+		<defName>archopack_bolt_CE</defName>
+		<label>skipbolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/ArchoPack_Bolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>dvd_SkipBolt</damageDef>
+			<damageAmountBase>26</damageAmountBase>
+			<armorPenetrationSharp>120</armorPenetrationSharp>
+			<armorPenetrationBlunt>120</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CompProperties_ProjectileEffecter">
+				<effecterDef>dvd_ArchoPack_Stream</effecterDef>
+			</li>
+		</comps>
+	</ThingDef>
 </Defs>
