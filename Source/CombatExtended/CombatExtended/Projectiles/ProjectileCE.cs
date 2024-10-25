@@ -958,7 +958,7 @@ namespace CombatExtended
                 {
                     MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
                 }
-                if (!Rand.ChanceSeeded(chance,thing.HashOffsetTicks()))
+                if (!Rand.ChanceSeeded(chance, thing.HashOffsetTicks()))
                 {
                     return false;
                 }
