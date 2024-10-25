@@ -7,6 +7,7 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 Mod |
 --- |
 [Cosplay Equipment]	Blue Archive |
+[AV] Work Queen |
 [CP] DOOM	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
@@ -383,6 +384,7 @@ Outer Rim - Tatooine    |
 Palm Cats   |
 Paniel the Automata |
 Pawnbold Race   |
+Persona Warcasket Weapons   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
 Possessed Weapons	|
@@ -472,6 +474,7 @@ Simple Ogre Race  |
 Simply More Melee	|
 Slime Rancher	|
 Solark Race |
+Spacer Pack |
 Spacer Shields	|
 Space Worms (Continued) |
 Spartan Foundry	|
@@ -580,7 +583,6 @@ Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Barbatos Gundam Addon  |
-Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
 Warhammer 40.000 - Imperium Weaponry    |
 Warhammer 40.000 - Imperium Materials   |

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Work Urchins -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AV_WorkerUrchin_Base"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+			<MeleeDodgeChance>0.14</MeleeDodgeChance>
+			<MeleeCritChance>0.06</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[
+		defName="AV_Mech_MinerUrchin" or
+		defName="AV_Mech_HaulerUrchin" or
+		defName="AV_Mech_BuilderUrchin" or
+		defName="AV_Mech_GrowerUrchin" or
+		defName="AV_Mech_CleanerUrchin"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Vehicle</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+		defName="AV_Mech_MinerUrchin" or
+		defName="AV_Mech_HaulerUrchin" or
+		defName="AV_Mech_BuilderUrchin" or
+		defName="AV_Mech_GrowerUrchin" or
+		defName="AV_Mech_CleanerUrchin"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>500</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>2</Steel>
+					<Plasteel>2</Plasteel>
+				</RepairIngredients>
+				<RepairTime>200</RepairTime>
+				<RepairValue>100</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>100</MaxOverHeal>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+	
+	<!-- Miner Urchin claw attacks -->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_MinerUrchin"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>left power claw</label>
+						<labelNoLocation>power claw</labelNoLocation>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>20</power>
+						<cooldownTime>3</cooldownTime>
+						<armorPenetrationSharp>1</armorPenetrationSharp>
+						<armorPenetrationBlunt>5</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>LeftPowerClaw</linkedBodyPartsGroup>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>right power claw</label>
+						<labelNoLocation>power claw</labelNoLocation>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>20</power>
+						<cooldownTime>3</cooldownTime>
+						<armorPenetrationSharp>1</armorPenetrationSharp>
+						<armorPenetrationBlunt>5</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>RightPowerClaw</linkedBodyPartsGroup>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					</li>
+				</tools>
+			</value>
+	</Operation>
+	
+</Patch>
