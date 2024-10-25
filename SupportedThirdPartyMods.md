@@ -192,6 +192,7 @@ Edge of Descension - Vanguard   |
 Edo Themed Expansion	|
 Eltex Bodysuit  |
 Enchanted Sword  |
+Epochs - Pyrinth    |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
