@@ -10,9 +10,12 @@ namespace CombatExtended
 
         public override bool ApplyWorker(XmlDocument xml)
         {
-            if (Controller.settings.GenericAmmo && generic != null)
+            if (Controller.settings.GenericAmmo)
             {
-                return generic.Apply(xml);
+                if (generic != null)
+                {
+                    return generic.Apply(xml);
+                }
             }
             else if (standard != null)
             {
