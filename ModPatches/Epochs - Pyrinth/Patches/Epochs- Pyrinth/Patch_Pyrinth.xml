@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Pyrinth ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Pyrinth"]/statBases</xpath>
+		<value>
+			<Bulk>0.03</Bulk>
+		</value>
+	</Operation>
+
+	<!-- ========== Pyrinth Blade ========== -->
+
+	<!-- Patch stats -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_PyrinthBlade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.62</cooldownTime>
+					<armorPenetrationBlunt>1.05</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.05</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+					<li>
+						<def>Flame</def>
+						<amount>6</amount>
+						<chance>0.5</chance>
+					</li>
+					</extraMeleeDamages>					
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>40</power>
+					<cooldownTime>1.64</cooldownTime>
+					<armorPenetrationBlunt>3.27</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.74</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					<extraMeleeDamages>
+					<li>
+						<def>Flame</def>
+						<amount>6</amount>
+						<chance>0.4</chance>
+					</li>
+					</extraMeleeDamages>					
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_PyrinthBlade"]/statBases/Mass</xpath>
+		<value>
+			<Mass>1.95</Mass>
+			<Bulk>8</Bulk>
+			<MeleeCounterParryBonus>0.7</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_PyrinthBlade"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.45</MeleeCritChance>
+				<MeleeParryChance>0.55</MeleeParryChance>
+				<MeleeDodgeChance>0.45</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+</Patch>
