@@ -551,7 +551,9 @@ namespace CombatExtended
         /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
         /// <param name="equipment">The equipment used to fire the projectile.</param>
         /// <param name="distance">The distance to the estimated intercept point</param>
-        /// <param name="ticksToTruePosition">The number of ticks before the bullet is drawn at its true height instead of the muzzle height</param>
+        /// <remarks>
+        /// Note that the launcher may not be spawned at all, e.g. for projectiles launched by enemy bases as retaliation.
+        /// </remarks>
         public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
         {
             this.shotAngle = shotAngle;
@@ -565,7 +567,7 @@ namespace CombatExtended
                 this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
             }
-            if (shotHeight >= CollisionVertical.WallCollisionHeight && Position.Roofed(launcher.Map))
+            if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Spawned && Position.Roofed(launcher.Map))
             {
                 ignoreRoof = true;
             }
