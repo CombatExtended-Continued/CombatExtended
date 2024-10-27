@@ -652,7 +652,17 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (CE_Utility.IntersectionPoint(LastPos, newExactPos, shieldPosition, radius, out Vector3[] sect))
+            if (CE_Utility.IntersectionPoint(
+                    LastPos,
+                    newExactPos,
+                    shieldPosition,
+                    radius,
+                    out Vector3[] sect,
+                    // Don't normalize away the 3D component of the projectile position when checking for collisions
+                    // between indirect fire projectiles and shields that protect against them
+                    // (e.g. mortar shells targeting a high-shield).
+                    spherical: interceptorComp.Props.interceptAirProjectiles && def.projectile.flyOverhead
+            ))
             {
                 ExactPosition = newExactPos = sect.OrderBy(x => (OriginIV3.ToVector3() - x).sqrMagnitude).First();
                 landed = true;
@@ -720,12 +730,23 @@ namespace CombatExtended
             List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
             for (int i = 0; i < list.Count; i++)
             {
-                if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
+                if (!CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
-                    landed = true;
-                    this.Impact(null);
+                    continue;
+                }
+
+                // Have high-shields absorb intercepted indirect fire projectiles without detonating them.
+                // Since CE simulates a 3D trajectory for such shells but explosions occur on ground level,
+                // detonating the shell would cause damage to objects under the high-shield.
+                if (def.projectile.flyOverhead)
+                {
+                    this.Destroy();
                     return true;
                 }
+
+                landed = true;
+                this.Impact(null);
+                return true;
             }
             if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, ExactPosition))
             {
