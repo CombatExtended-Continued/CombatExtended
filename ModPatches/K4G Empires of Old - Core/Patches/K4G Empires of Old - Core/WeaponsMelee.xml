@@ -482,7 +482,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_Pickaxe"]/statBases</xpath>
 		<value>
-			<Bulk>10</Bulk>
+			<Bulk>8</Bulk>
 			<MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
 		</value>
 	</Operation>
@@ -512,7 +512,7 @@
 					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
 				</li>
 				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
+					<label>point</label>
 					<capacities>
 						<li>Stab</li>
 					</capacities>
@@ -523,6 +523,18 @@
 					<armorPenetrationSharp>0.72</armorPenetrationSharp>
 					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Demolish</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2.3</cooldownTime>
+					<chanceFactor>0.95</chanceFactor>
+					<armorPenetrationBlunt>8.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.72</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>				
 			</tools>
 		</value>
 	</Operation>
@@ -715,6 +727,76 @@
 					<power>2</power>
 					<cooldownTime>1.5</cooldownTime>
 					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+				</li>				
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Ice Axe === -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_IceAxe"]/statBases</xpath>
+		<value>
+			<Bulk>4.5</Bulk>
+			<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_IceAxe"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.19</MeleeCritChance>
+			<MeleeParryChance>0.23</MeleeParryChance>
+			<MeleeDodgeChance>0.3</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_IceAxe"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_IceAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.46</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.45</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Stab</li>
+						<li>Cut</li>	
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.83</cooldownTime>
+					<chanceFactor>0.95</chanceFactor>
+					<armorPenetrationBlunt>0.648</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.29</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>spike</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.22</cooldownTime>
+					<chanceFactor>0.95</chanceFactor>
+					<armorPenetrationBlunt>0.648</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.29</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 				</li>				
 			</tools>
 		</value>
