@@ -76,7 +76,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="IW_Gun_IonLMG"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="IW_Gun_IonLMG" or defName="IW_Gun_HeavyIonLance"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -369,6 +369,20 @@
 			<li>SpacerGun</li>
 			<li>Bipod_DMR</li>
 		</weaponTags>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "IW_Gun_HeavyIonLance"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoDef</xpath>
+		<value>
+			<ammoDef>Ammo_12mmRailgun_Ion</ammoDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "IW_Gun_HeavyIonLance"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoCountPerCharge</xpath>
+		<value>
+			<ammoCountPerCharge>50</ammoCountPerCharge>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
