@@ -271,6 +271,7 @@ High Tech Laboratory Facilities	|
 Hive Armory |
 Idhale Race	|
 Impact Weaponry	|
+Ion Weaponry	|
 Imperial Arsenal: Royal Warcasket 	|
 Individuality 	|
 Industrial Melee Weaponry	|
