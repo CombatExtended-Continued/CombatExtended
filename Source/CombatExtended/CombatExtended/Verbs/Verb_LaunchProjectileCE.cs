@@ -562,11 +562,11 @@ namespace CombatExtended
                 {
                     if (projectilePropsCE.isInstant)
                     {
-                        lastShotAngle = Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+                        lastShotAngle = Mathf.Atan2(targetHeight - report.AdjustedShotHeight, (newTargetLoc - sourceLoc).magnitude);
                     }
                     else
                     {
-                        lastShotAngle = ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                        lastShotAngle = ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - report.AdjustedShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
                     }
                 }
                 angleRadians += lastShotAngle;
@@ -584,7 +584,7 @@ namespace CombatExtended
                 lastShotRotation = -90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x);
             }
             shotRotation = (lastShotRotation + rotationDegrees + spreadVec.x) % 360;
-            shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
+            shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad + report.ShotAngleAdjustment;
             distance = (newTargetLoc - sourceLoc).magnitude;
         }
 
@@ -648,6 +648,7 @@ namespace CombatExtended
             report.swayDegrees = SwayAmplitude;
             float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
             report.spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * spreadmult;
+
             Thing cover;
             float smokeDensity;
             bool roofed;
@@ -656,6 +657,7 @@ namespace CombatExtended
             report.cover = cover;
             report.smokeDensity = smokeDensity;
             report.roofed = roofed;
+            report.ShotAngleAdjustment = AdjustShotHeight(caster, target, cover, ref report.AdjustedShotHeight);
             return report;
         }
 
@@ -706,15 +708,22 @@ namespace CombatExtended
             return report;
         }
 
-        public float AdjustShotHeight(Thing caster, LocalTargetInfo target, ref float shotHeight)
+        /// <summary>
+        /// Adjust the shot height if needed, to compensate for tall or partially hidden targets.
+        /// </summary>
+        /// <param name="caster">The caster of the shot.</param>
+        /// <param name="target">The target of the shot.</param>
+        /// <param name="highestCover">The highest cover object on the shot line between the caster and the target.</param>
+        /// <param name="shotHeight">Out parameter for the adjusted shot height.</param>
+        /// <remarks>TODO:  This really should determine how much the shooter needs to rise up for a *good* shot.
+        /// If we're shooting at something tall, we might not need to rise at all, if we're shooting at
+        /// something short, we might need to rise *more* than just above the cover.  This at least handles
+        /// cases where we're below cover, but the target is taller than the cover</remarks>
+        /// <returns>Adjustment to be made the shot angle, measured in radians.</returns>
+        protected float AdjustShotHeight(Thing caster, LocalTargetInfo target, Thing highestCover, ref float shotHeight)
         {
-            /* TODO:  This really should determine how much the shooter needs to rise up for a *good* shot.
-               If we're shooting at something tall, we might not need to rise at all, if we're shooting at
-               something short, we might need to rise *more* than just above the cover.  This at least handles
-               cases where we're below cover, but the taret is taller than the cover */
-            GetHighestCoverAndSmokeForTarget(target, out Thing cover, out float smoke, out bool roofed);
             var shooterHeight = CE_Utility.GetBoundsFor(caster).max.y;
-            var coverHeight = CE_Utility.GetBoundsFor(cover).max.y;
+            var coverHeight = CE_Utility.GetBoundsFor(highestCover).max.y;
             var centerOfVisibleTarget = (CE_Utility.GetBoundsFor(target.Thing).max.y - coverHeight) / 2 + coverHeight;
             if (centerOfVisibleTarget > shotHeight)
             {
@@ -725,7 +734,7 @@ namespace CombatExtended
                 float distance = target.Thing.Position.DistanceTo(caster.Position);
                 // float wobble = Mathf.Atan2(UnityEngine.Random.Range(shotHeight-centerOfVisibleTarget, centerOfVisibleTarget - shotHeight), distance);
                 float triangleHeight = centerOfVisibleTarget - shotHeight;
-                float wobble = -Mathf.Atan2(triangleHeight, distance);
+                float wobble = Mathf.Atan2(triangleHeight, distance);
                 // TODO: Add inaccuracy for not standing in as natural a position
                 shotHeight = centerOfVisibleTarget;
                 return wobble;
@@ -739,7 +748,7 @@ namespace CombatExtended
         /// <param name="target">The target of which to find cover of</param>
         /// <param name="cover">Output parameter, filled with the highest cover object found</param>
         /// <returns>True if cover was found, false otherwise</returns>
-        private bool GetHighestCoverAndSmokeForTarget(LocalTargetInfo target, out Thing cover, out float smokeDensity, out bool roofed)
+        protected bool GetHighestCoverAndSmokeForTarget(LocalTargetInfo target, out Thing cover, out float smokeDensity, out bool roofed)
         {
             Map map = caster.Map;
             Thing targetThing = target.Thing;
@@ -1094,15 +1103,13 @@ namespace CombatExtended
 
                 if (instant)
                 {
-                    var shotHeight = ShotHeight;
-                    float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
                     projectile.RayCast(
                         Shooter,
                         verbProps,
                         sourceLoc,
-                        shotAngle + tsa,
+                        shotAngle,
                         shotRotation,
-                        shotHeight,
+                        report.AdjustedShotHeight,
                         ShotSpeed,
                         spreadDegrees,
                         aperatureSize,
@@ -1116,7 +1123,7 @@ namespace CombatExtended
                         sourceLoc,
                         shotAngle,
                         shotRotation,
-                        ShotHeight,
+                        report.AdjustedShotHeight,
                         ShotSpeed,
                         EquipmentSource,
                         distance);
@@ -1334,7 +1341,8 @@ namespace CombatExtended
                 if (targetThing != null)
                 {
                     float shotHeight = shotSource.y;
-                    AdjustShotHeight(caster, targetThing, ref shotHeight);
+                    GetHighestCoverAndSmokeForTarget(targetThing, out Thing highestCover, out _, out _);
+                    AdjustShotHeight(caster, targetThing, highestCover, ref shotHeight);
                     shotSource.y = shotHeight;
                     Vector3 targDrawPos = targetThing.DrawPos;
                     targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);

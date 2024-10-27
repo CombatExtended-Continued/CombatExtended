@@ -177,15 +177,13 @@ namespace CombatExtended.Compatibility.SOS2Compat
 
                     if (instant)
                     {
-                        var shotHeight = ShotHeight;
-                        float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
                         projectileCE.RayCast(
                             Shooter,
                             verbProps,
                             sourceLoc,
-                            shotAngle + tsa,
+                            shotAngle,
                             shotRotation,
-                            shotHeight,
+                            report.AdjustedShotHeight,
                             ShotSpeed,
                             spreadDegrees,
                             aperatureSize,
@@ -204,7 +202,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                             sourceLoc,
                             shotAngle,
                             shotRotation,
-                            ShotHeight,
+                            report.AdjustedShotHeight,
                             ShotSpeed,
                             EquipmentSource,
                             distance);
@@ -298,7 +296,8 @@ namespace CombatExtended.Compatibility.SOS2Compat
             if (targetThing != null)
             {
                 float shotHeight = shotSource.y;
-                AdjustShotHeight(caster, targetThing, ref shotHeight);
+                GetHighestCoverAndSmokeForTarget(targetThing, out Thing highestCover, out _, out _);
+                AdjustShotHeight(caster, targetThing, highestCover, ref shotHeight);
                 shotSource.y = shotHeight;
                 Vector3 targDrawPos = targetThing.DrawPos;
                 targetPos = new Vector3(targDrawPos.x, new CollisionVertical(targetThing).Max, targDrawPos.z);
