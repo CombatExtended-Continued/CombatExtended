@@ -32,6 +32,39 @@
 		</projectile>
 	</ThingDef>
 
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>dvd_Projectile_RipperRack_CE</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>ripper rack</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Grenade_RipperMechanites</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>0</speed>
+			<flyOverhead>True</flyOverhead>
+			<gravityFactor>5</gravityFactor>
+			<damageDef>dvd_RipperBomb</damageDef>
+			<damageAmountBase>50</damageAmountBase>
+			<explosionRadius>3.0</explosionRadius>
+			<filth>dvd_Filth_RipperMechanites</filth>
+			<filthCount>1</filthCount>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>dvd_Fleck_RipperMechanites_Random</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0</rotation>
+						<scale>.5</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
 	<ThingDef ParentName="Base8x50mmChargedBullet">
 		<defName>dvd_SkipBolt_CE</defName>
 		<label>skipbolt</label>
