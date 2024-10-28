@@ -318,7 +318,7 @@
 			<ammoSet>AmmoSet_8mmRailgunIon</ammoSet>
 		</AmmoUser>
 		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
+			<aiAimMode>Snapshot</aiAimMode>
 			<aimedBurstShotCount>10</aimedBurstShotCount>
 		</FireModes>
 		<weaponTags>
@@ -376,30 +376,38 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "IW_Gun_HeavyIonLance"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoDef</xpath>
+		<xpath>Defs/ThingDef[defName="IW_Gun_HeavyIonLance"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
 		<value>
-			<ammoDef>Ammo_12mmRailgun_Ion</ammoDef>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "IW_Gun_HeavyIonLance"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]/ammoCountPerCharge</xpath>
-		<value>
-			<ammoCountPerCharge>50</ammoCountPerCharge>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="IW_IonBlast"]/verbProperties/range</xpath>
-		<value>
-			<range>70</range>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AbilityDef[defName="IW_IonBlast"]/comps/li[@Class="CompProperties_AbilityLaunchProjectile"]/projectileDef</xpath>
-		<value>
-			<projectileDef>Bullet_12mmRailgun_Ion_Blast</projectileDef>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<standardLabel>switch to Lance</standardLabel>
+				<underBarrelLabel>switch to Ion Blast</underBarrelLabel>
+				<propsUnderBarrel>
+					<magazineSize>100</magazineSize>
+					<reloadTime>8</reloadTime>
+					<ammoSet>AmmoSet_12mmRailgunIon_Blast</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>0.35</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12mmRailgun_Ion_Blast</defaultProjectile>
+					<ammoConsumedPerShotCount>50</ammoConsumedPerShotCount>
+					<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+					<warmupTime>1.1</warmupTime>
+					<range>70</range>
+					<soundCast>IW_Shot_IonBlast</soundCast>
+					<muzzleFlashScale>18</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiAimMode>AimedShot</aiAimMode>
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
 		</value>
 	</Operation>
 
