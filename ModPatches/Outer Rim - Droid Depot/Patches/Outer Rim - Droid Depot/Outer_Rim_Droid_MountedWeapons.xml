@@ -1,249 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="OuterRimBase_DroidWeapon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>OuterRim_DroidWeapon_WristBlaster</defName>
+		<statBases>
+			<SightsEfficiency>0.95</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.2</SwayFactor>
+			<Bulk>1.00</Bulk>
+			<Mass>1.00</Mass>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterRifle_Red</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>OuterRim_Shot_BlasterBolt</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<AmmoUser>
+			<magazineSize>200</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_PlasmaGasCartridgeRed_Rifle</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+	<!-- Ion variant isn't needed, since we can change ammo types. -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_WristRocket" or defName="OuterRim_DroidWeapon_WristBlasterIon" or defName="OuterRim_DroidWeapon_TwinWristBlaster" or defName="OuterRim_DroidWeapon_BlasterCannon" or defName="OuterRim_DroidWeapon_WristBlaster"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_WristBlasterIon"]</xpath>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_WristRocket" or defName="OuterRim_DroidWeapon_WristBlasterIon" or defName="OuterRim_DroidWeapon_TwinWristBlaster" or defName="OuterRim_DroidWeapon_BlasterCannon" or defName="OuterRim_DroidWeapon_WristBlaster"]/verbs</xpath>
+		<xpath>Defs/ThingDef[defName="OuterRim_GNKDroid"]/modExtensions/li[@Class="Asimov.DefModExt_AutomatonApparel"]/apparelWhitelist/li[.="OuterRim_DroidWeapon_WristBlasterIon"]</xpath>
 	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_WristBlaster"]</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<label>wrist blaster</label>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<onlyManualCast>False</onlyManualCast>
-					<warmupTime>0.5</warmupTime>
-					<range>36</range>
-					<minRange>0</minRange>
-					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-					<soundCast>OuterRim_Shot_BlasterBolt</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>0</muzzleFlashScale>
-					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-					<targetParams>
-						<canTargetItems>true</canTargetItems>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-					<defaultProjectile>Bullet_BlasterRifle_Red</defaultProjectile>
-					<rangedFireRulepack>Combat_RangedFire</rangedFireRulepack>
-				</li>
-			</verbs>
-		</value>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>OuterRim_DroidWeapon_TwinWristBlaster</defName>
+		<statBases>
+			<SightsEfficiency>0.95</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>0.75</SwayFactor>
+			<Bulk>1.00</Bulk>
+			<Mass>1.00</Mass>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterBolt_DualShot</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>44</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>OuterRim_Shot_BlasterBolt</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+		</FireModes>
+		<AmmoUser>
+			<magazineSize>200</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_PlasmaGasCartridge_DualShot</ammoSet>
+		</AmmoUser>
 	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_WristBlaster"]</xpath>
-		<value>
-			<comps>
-				<li Class="CompProperties_Reloadable">
-					<maxCharges>100</maxCharges>
-					<ammoDef>Ammo_PlasmaGasCartridge_Standard</ammoDef>
-					<ammoCountPerCharge>2</ammoCountPerCharge>
-					<baseReloadTicks>60</baseReloadTicks>
-					<soundReload>Standard_Reload</soundReload>
-					<hotKey>Misc4</hotKey>
-					<chargeNoun>shot</chargeNoun>
-					<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-				</li>
-			</comps>
-		</value>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>OuterRim_DroidWeapon_BlasterCannon</defName>
+		<statBases>
+			<SightsEfficiency>2.5</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>2.25</SwayFactor>
+			<Bulk>1.00</Bulk>
+			<Mass>1.00</Mass>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.5</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlasterSniper_Red</defaultProjectile>
+			<warmupTime>2.0</warmupTime>
+			<range>75</range>
+			<soundCast>OuterRim_Shot_DLT19DBlasterBolt</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<AmmoUser>
+			<magazineSize>120</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_PlasmaGasCartridgeRed_Sniper</ammoSet>
+		</AmmoUser>
 	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_TwinWristBlaster"]</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<label>twin wrist blaster</label>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<onlyManualCast>False</onlyManualCast>
-					<warmupTime>0.5</warmupTime>
-					<range>32</range>
-					<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-					<burstShotCount>2</burstShotCount>
-					<minRange>0</minRange>
-					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-					<soundCast>OuterRim_Shot_BlasterBolt</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>0</muzzleFlashScale>
-					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-					<targetParams>
-						<canTargetItems>true</canTargetItems>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-					<defaultProjectile>Bullet_BlasterRifle_Red</defaultProjectile>
-					<rangedFireRulepack>Combat_RangedFire</rangedFireRulepack>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_TwinWristBlaster"]</xpath>
-		<value>
-			<comps>
-				<li Class="CompProperties_Reloadable">
-					<maxCharges>100</maxCharges>
-					<ammoDef>Ammo_PlasmaGasCartridge_Standard</ammoDef>
-					<ammoCountPerCharge>2</ammoCountPerCharge>
-					<baseReloadTicks>60</baseReloadTicks>
-					<soundReload>Standard_Reload</soundReload>
-					<hotKey>Misc4</hotKey>
-					<chargeNoun>shot</chargeNoun>
-					<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-				</li>
-			</comps>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_BlasterCannon"]</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<label>wrist blaster cannon</label>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<onlyManualCast>False</onlyManualCast>
-					<warmupTime>0.5</warmupTime>
-					<range>48</range>
-					<minRange>0</minRange>
-					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-					<soundCast>OuterRim_Shot_HeavyMinigunBlasterBolt</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>0</muzzleFlashScale>
-					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-					<targetParams>
-						<canTargetItems>true</canTargetItems>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-					<defaultProjectile>Bullet_BlasterSniper_RedAP</defaultProjectile>
-					<rangedFireRulepack>Combat_RangedFire</rangedFireRulepack>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_BlasterCannon"]</xpath>
-		<value>
-			<comps>
-				<li Class="CompProperties_Reloadable">
-					<maxCharges>20</maxCharges>
-					<ammoDef>Ammo_PlasmaGasCartridge_AP</ammoDef>
-					<ammoCountPerCharge>3</ammoCountPerCharge>
-					<baseReloadTicks>60</baseReloadTicks>
-					<soundReload>Standard_Reload</soundReload>
-					<hotKey>Misc4</hotKey>
-					<chargeNoun>shot</chargeNoun>
-					<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-				</li>
-			</comps>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_WristBlasterIon"]</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<label>wrist blaster (ion)</label>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<onlyManualCast>False</onlyManualCast>
-					<warmupTime>0.5</warmupTime>
-					<range>36</range>
-					<minRange>0</minRange>
-					<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
-					<soundCast>OuterRim_Shot_BlasterBolt</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>0</muzzleFlashScale>
-					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-					<targetParams>
-						<canTargetItems>true</canTargetItems>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-					<defaultProjectile>Bullet_BlasterRifle_Ion</defaultProjectile>
-					<rangedFireRulepack>Combat_RangedFire</rangedFireRulepack>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_WristBlasterIon"]</xpath>
-		<value>
-			<comps>
-				<li Class="CompProperties_Reloadable">
-					<maxCharges>100</maxCharges>
-					<ammoDef>Ammo_PlasmaGasCartridge_Ion</ammoDef>
-					<ammoCountPerCharge>2</ammoCountPerCharge>
-					<baseReloadTicks>60</baseReloadTicks>
-					<soundReload>Standard_Reload</soundReload>
-					<hotKey>Misc4</hotKey>
-					<chargeNoun>shot</chargeNoun>
-					<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-				</li>
-			</comps>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_WristRocket"]</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<label>wrist rocket launcher</label>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<onlyManualCast>True</onlyManualCast>
-					<warmupTime>0.75</warmupTime>
-					<range>45</range>
-					<minRange>0</minRange>
-					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-					<soundCast>OuterRim_Shot_RocketLauncher</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>0</muzzleFlashScale>
-					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-					<targetParams>
-						<canTargetItems>true</canTargetItems>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-					<defaultProjectile>Bullet_OR_WristRocket</defaultProjectile>
-					<rangedFireRulepack>Combat_RangedFire</rangedFireRulepack>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="OuterRim_DroidWeapon_WristRocket"]</xpath>
-		<value>
-			<comps>
-				<li Class="CompProperties_Reloadable">
-					<maxCharges>3</maxCharges>
-					<ammoDef>Ammo_OR_MiniRocket_Standard</ammoDef>
-					<ammoCountPerCharge>1</ammoCountPerCharge>
-					<baseReloadTicks>60</baseReloadTicks>
-					<soundReload>Standard_Reload</soundReload>
-					<hotKey>Misc4</hotKey>
-					<chargeNoun>rocket</chargeNoun>
-					<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
-				</li>
-			</comps>
-		</value>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>OuterRim_DroidWeapon_WristRocket</defName>
+		<statBases>
+			<Mass>1.0</Mass>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>1.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.45</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_OR_WristRocket</defaultProjectile>
+			<warmupTime>3.0</warmupTime>
+			<range>75</range>
+			<soundCast>OuterRim_Shot_RocketLauncher</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_OuterRimMiniRockets</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
 	</Operation>
 
 </Patch>
