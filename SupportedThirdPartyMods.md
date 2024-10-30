@@ -458,6 +458,7 @@ Rimworld - Witcher Monster Hunt |
 Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
+Robotic Servitude   |
 Rockmen race    |
 Roren, People of Rorensia   |
 Royal Arsenal |
