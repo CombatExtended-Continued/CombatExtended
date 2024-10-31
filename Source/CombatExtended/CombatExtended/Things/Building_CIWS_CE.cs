@@ -26,7 +26,7 @@ namespace CombatExtended
         }
         #endregion
 
-        IEnumerable<ThingDef> IgnoredDefs
+        public IEnumerable<ThingDef> IgnoredDefs
         {
             get
             {

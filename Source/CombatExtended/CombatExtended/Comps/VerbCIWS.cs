@@ -15,8 +15,7 @@ namespace CombatExtended
     {
         
         protected bool holdFire;
-        public IEnumerable<ThingDef> IgnoredDefs { get; private set; }
-        public Building_TurretGun Turret => Caster as Building_TurretGun;
+        
         public VerbProperties_CIWS Props => verbProps as VerbProperties_CIWS;
         protected abstract string HoldLabel { get; }
         protected abstract string HoldDesc { get; }
@@ -57,7 +56,7 @@ namespace CombatExtended
         public override bool TryFindNewTarget(out LocalTargetInfo target)
         {
             float range = this.verbProps.range;
-            var _target = Targets.Where(x => Props.Interceptable(x.def) && !IgnoredDefs.Contains(x.def)).Where(x => !IsFriendlyTo(x)).FirstOrDefault(t =>
+            var _target = Targets.Where(x => Props.Interceptable(x.def) && !Turret.IgnoredDefs.Contains(x.def)).Where(x => !IsFriendlyTo(x)).FirstOrDefault(t =>
             {
                 var verb = this;
                 if (Caster.Map.GetComponent<TurretTracker>().CIWS.Any(turret => turret.currentTargetInt.Thing == t) || ProjectileCE_CIWS.ProjectilesAt(Caster.Map).Any(x => x.intendedTarget.Thing == t))

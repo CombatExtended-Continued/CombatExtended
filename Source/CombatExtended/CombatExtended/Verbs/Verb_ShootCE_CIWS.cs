@@ -11,6 +11,7 @@ namespace CombatExtended
 {
     public class Verb_ShootCE_CIWS : Verb_ShootCE
     {
+        public Building_CIWS_CE Turret => Caster as Building_CIWS_CE;
         public override ThingDef Projectile
         {
             get
