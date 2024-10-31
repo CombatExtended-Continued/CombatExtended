@@ -8,15 +8,15 @@ using Verse;
 
 namespace CombatExtended
 {
-    public class VerbCIWSProjectile : VerbCIWS<Projectile>
+    public class VerbCIWSProjectile : VerbCIWS<ProjectileCE>
     {
         protected override string HoldDesc => "HoldCloseInProjectilesFireDesc";
         protected override string HoldLabel => "HoldCloseInProjectilesFire";
         public new CompProperties_CIWSProjectile Props => verbProps as CompProperties_CIWSProjectile;
 
-        public override IEnumerable<Projectile> Targets => Caster.Map?.listerThings.ThingsInGroup(ThingRequestGroup.Projectile).OfType<Projectile>() ?? Array.Empty<Projectile>();
+        public override IEnumerable<ProjectileCE> Targets => Caster.Map?.listerThings.ThingsInGroup(ThingRequestGroup.Projectile).OfType<ProjectileCE>() ?? Array.Empty<ProjectileCE>();
 
-        protected override bool IsFriendlyTo(Projectile thing) => base.IsFriendlyTo(thing) && !thing.Launcher.HostileTo(Caster);
+        protected override bool IsFriendlyTo(ProjectileCE thing) => base.IsFriendlyTo(thing) && !thing.launcher.HostileTo(Caster);
         public override bool ValidateTarget(LocalTargetInfo targetInfo, bool showMessages) => Turret.currentTargetInt.Thing is Projectile;
     }
     public class CompProperties_CIWSProjectile : VerbProperties_CIWS
