@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Shock Prod -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_ShockProd"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.59</cooldownTime>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>zapper</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>5</power>
+					<extraMeleeDamages>
+					<li>
+						<def>Flame</def>
+						<amount>1</amount>
+						<chance>0.2</chance>
+					</li>
+					<li>
+						<def>Stun</def>
+						<amount>1</amount>
+					</li>
+					<li>
+						<def>EMP</def>
+						<amount>1</amount>
+						<chance>0.4</chance>
+					</li>
+					</extraMeleeDamages>
+					<cooldownTime>1.68</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_ShockProd"]/statBases</xpath>
+		<value>
+			<MeleeCounterParryBonus>0.9</MeleeCounterParryBonus>
+			<Bulk>5</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_ShockProd"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>0.9</MeleeParryChance>
+				<MeleeDodgeChance>0.3</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_ShockProd"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- Broken Bottle -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_ShatteredBottle"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>bottle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetrationBlunt>0.430</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.8</cooldownTime>
+					<armorPenetrationSharp>0.175</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.255</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_ShatteredBottle"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<!-- Blow Torch -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_Blowtorch"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>chemfuel tank</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.59</cooldownTime>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>pipe</label>
+					<labelUsedInLogging>false</labelUsedInLogging>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2.02</cooldownTime>
+					<extraMeleeDamages>
+					<li>
+						<def>Flame</def>
+						<amount>1</amount>
+						<chance>1</chance>
+					</li>
+					</extraMeleeDamages>					
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+				</li>				
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_Blowtorch"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+
+</Patch>
