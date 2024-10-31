@@ -21,19 +21,6 @@ namespace CombatExtended
 
         public static RulePackDef Shelling => shellingDamageEvent ?? (shellingDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_Shelling"));
 
-        public virtual float PenetrationAmount
-        {
-            get
-            {
-                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-
-                float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
-
-                return lerpPosition ? penetrationAmount : penetrationAmount * RemainingKineticEnergyPct;
-            }
-        }
-
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
             var ed = equipmentDef ?? ThingDef.Named("Gun_Autopistol");
