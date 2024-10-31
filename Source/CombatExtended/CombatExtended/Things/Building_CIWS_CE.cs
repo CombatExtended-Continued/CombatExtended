@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mono.Unix.Native;
+using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,46 +10,29 @@ using Verse;
 
 namespace CombatExtended
 {
-    public class Building_CIWS_CE : Building_TurretGunCE
+    public class Building_CIWS_CE : Building_Turret_MultiVerbs
     {
-        IEnumerable<CompCIWS> ciws;
-        public IEnumerable<CompCIWS> CIWS => ciws ??= this.GetComps<CompCIWS>().ToList();
+        #region Caching
 
-        public override Verb AttackVerb
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            map.GetComponent<TurretTracker>().Register(this);
+        }
+        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+        {
+            Map.GetComponent<TurretTracker>()?.Unregister(this);
+            base.DeSpawn(mode);
+        }
+        #endregion
+
+        IEnumerable<ThingDef> IgnoredDefs
         {
             get
             {
-                foreach (var ciws in CIWS)
-                {
-                    if (ciws.HasTarget)
-                    {
-                        var verb = ciws.Verb;
-                        if (verb != null)
-                        {
-                            return verb;
-                        }
-                    }
-                }
-                return base.AttackVerb;
+                Log.WarningOnce("IgnoredDefs not implemented yet", 82469265);
+                return Enumerable.Empty<ThingDef>();
             }
-        }
-        public override void DrawExtraSelectionOverlays()
-        {
-            base.DrawExtraSelectionOverlays();
-            foreach (var verb in GunCompEq.AllVerbs.Except(AttackVerb))
-            {
-                float range = verb.verbProps.range;
-                if (range < 90f)
-                {
-                    GenDraw.DrawRadiusRing(base.Position, range);
-                }
-                float num = verb.verbProps.EffectiveMinRange(true);
-                if (num < 90f && num > 0.1f)
-                {
-                    GenDraw.DrawRadiusRing(base.Position, num);
-                }
-            }
-
         }
     }
 }
