@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- All Banners -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_BarbBannerI" or
+			defName="pphhyy_Barbarian_BarbBannerII" or
+			defName="pphhyy_Barbarian_BarbBannerIII" or
+			defName="pphhyy_Barbarian_BarbBannerIV"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<Suppressability>-0.25</Suppressability>
+				<PainShockThreshold>0.1</PainShockThreshold>
+				<ReloadSpeed>-0.05</ReloadSpeed>
+				<MeleeHitChance>-0.5</MeleeHitChance>
+				<ShootingAccuracyPawn>-0.25</ShootingAccuracyPawn>
+				<AimingAccuracy>-0.15</AimingAccuracy>
+				<MeleeCritChance>-0.1</MeleeCritChance>
+				<MeleeParryChance>0.5</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_BarbBannerI" or
+			defName="pphhyy_Barbarian_BarbBannerII" or
+			defName="pphhyy_Barbarian_BarbBannerIII" or
+			defName="pphhyy_Barbarian_BarbBannerIV"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_BarbBannerI" or
+			defName="pphhyy_Barbarian_BarbBannerII" or
+			defName="pphhyy_Barbarian_BarbBannerIII" or
+			defName="pphhyy_Barbarian_BarbBannerIV"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_BarbBannerI" or
+			defName="pphhyy_Barbarian_BarbBannerII" or
+			defName="pphhyy_Barbarian_BarbBannerIII" or
+			defName="pphhyy_Barbarian_BarbBannerIV"]</xpath>
+		<value>
+			<li Class="CombatExtended.ShieldDefExtension">
+				<shieldCoverage>
+					<li>Hands</li>
+				</shieldCoverage>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_BarbBannerI" or
+			defName="pphhyy_Barbarian_BarbBannerII" or
+			defName="pphhyy_Barbarian_BarbBannerIII" or
+			defName="pphhyy_Barbarian_BarbBannerIV"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- Banner 1 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_BarbBannerI"]</xpath>
+		<value>
+			<apparel>
+				<tags>
+					<li>TribalShield</li>
+				</tags>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+						<texPath>Shields/BarbBannerI</texPath>
+						<shaderTypeDef>CutoutComplex</shaderTypeDef>
+						<parentTagDef>ApparelBody</parentTagDef>
+						<drawData>
+							<scale>1.3</scale>
+							<defaultData>
+								<layer>80</layer>
+							</defaultData>
+							<dataEast>
+								<layer>-5</layer>
+								<offset>(0, 0, -0.1)</offset>
+								<rotationOffset>30</rotationOffset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>-30</rotationOffset>
+							</dataWest>
+							<dataNorth>
+								<layer>-5</layer>
+								<offset>(0.15, 0, -0.1)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0.15, 0, -0.1)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</apparel>
+		</value>
+	</Operation>
+
+	<!-- Banner 2 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_BarbBannerII"]</xpath>
+		<value>
+			<apparel>
+				<tags>
+					<li>TribalShield</li>
+				</tags>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+						<texPath>Shields/BarbBannerII</texPath>
+						<shaderTypeDef>CutoutComplex</shaderTypeDef>
+						<parentTagDef>ApparelBody</parentTagDef>
+						<drawData>
+							<scale>1.3</scale>
+							<defaultData>
+								<layer>80</layer>
+							</defaultData>
+							<dataEast>
+								<layer>-5</layer>
+								<offset>(0, 0, -0.1)</offset>
+								<rotationOffset>30</rotationOffset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>-30</rotationOffset>
+							</dataWest>
+							<dataNorth>
+								<layer>-5</layer>
+								<offset>(0.15, 0, -0.1)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0.15, 0, -0.1)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</apparel>
+		</value>
+	</Operation>
+
+	<!-- Banner 3 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_BarbBannerIII"]</xpath>
+		<value>
+			<apparel>
+				<tags>
+					<li>TribalShield</li>
+				</tags>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+						<texPath>Shields/BarbBannerIII</texPath>
+						<shaderTypeDef>CutoutComplex</shaderTypeDef>
+						<parentTagDef>ApparelBody</parentTagDef>
+						<drawData>
+							<scale>1.3</scale>
+							<defaultData>
+								<layer>80</layer>
+							</defaultData>
+							<dataEast>
+								<layer>-5</layer>
+								<offset>(0, 0, -0.1)</offset>
+								<rotationOffset>30</rotationOffset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>-30</rotationOffset>
+							</dataWest>
+							<dataNorth>
+								<layer>-5</layer>
+								<offset>(0.15, 0, -0.1)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0.15, 0, -0.1)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</apparel>
+		</value>
+	</Operation>
+
+	<!-- Banner 4 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_BarbBannerIV"]</xpath>
+		<value>
+			<apparel>
+				<tags>
+					<li>TribalShield</li>
+				</tags>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+						<texPath>Shields/BarbBannerIV</texPath>
+						<shaderTypeDef>CutoutComplex</shaderTypeDef>
+						<parentTagDef>ApparelBody</parentTagDef>
+						<drawData>
+							<scale>1.3</scale>
+							<defaultData>
+								<layer>80</layer>
+							</defaultData>
+							<dataEast>
+								<layer>-5</layer>
+								<offset>(0, 0, -0.1)</offset>
+								<rotationOffset>30</rotationOffset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>-30</rotationOffset>
+							</dataWest>
+							<dataNorth>
+								<layer>-5</layer>
+								<offset>(0.15, 0, -0.1)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0.15, 0, -0.1)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</apparel>
+		</value>
+	</Operation>
+
+</Patch>

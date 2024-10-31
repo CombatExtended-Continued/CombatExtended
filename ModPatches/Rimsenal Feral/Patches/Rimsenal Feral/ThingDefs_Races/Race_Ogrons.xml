@@ -34,7 +34,81 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mutant_Ogron"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>2</ArmorRating_Blunt>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mutant_Ogron"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mutant_Ogron"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mutant_Ogron"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1500</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mutant_Ogron"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+						<parts>
+							<li>Shoulder</li>
+							<li>Arm</li>
+							<li>Hand</li>
+							<li>Leg</li>
+							<li>Foot</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+						<parts>
+							<li>Shoulder</li>
+							<li>Arm</li>
+							<li>Hand</li>
+							<li>Leg</li>
+							<li>Foot</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.65</ArmorRating_Sharp>
+						<parts>
+							<li>Head</li>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
+						<parts>
+							<li>Head</li>
+							<li>Neck</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mutant_Ogron"]/statBases</xpath>
+		<value>
+			<PartialArmorBody>0</PartialArmorBody>
 		</value>
 	</Operation>
 
@@ -91,4 +165,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>

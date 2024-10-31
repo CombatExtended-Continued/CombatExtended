@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Give Shields -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementKnight"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>350</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>KiteShield</li>
+					<li>HeaterShield</li>
+					<li>Buckler</li>
+				</shieldTags>
+				<shieldChance>0.40</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Give Ammo -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementArcher"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>20</min>
+					<max>45</max>
+				</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>
+						<min>50</min>
+						<max>150</max>
+					</sidearmMoney>
+					<weaponTags>
+						<li>NeolithicMeleeBasic</li>
+						<li>MedievalMeleeDecent</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementArcher"]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementArcher"]/weaponTags</xpath>
+		<value>
+			<li>CE_XBow</li>
+			<li>CE_Bow</li>
+		</value>
+	</Operation>
+
+</Patch>

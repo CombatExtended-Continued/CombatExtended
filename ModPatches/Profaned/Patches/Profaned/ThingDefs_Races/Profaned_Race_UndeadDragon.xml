@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Undead Dragon ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="BotchJob_UndeadDragon"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Birdlike</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_UndeadDragon"]/statBases</xpath>
+		<value>
+			<MeleeCritChance>1.75</MeleeCritChance>
+			<MeleeParryChance>0.54</MeleeParryChance>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.13</MeleeDodgeChance>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_UndeadDragon"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_UndeadDragon"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BotchJob_UndeadDragon"]/tools</xpath>
+		<value>
+			<tools>
+				<li MayRequire="onyxae.dragonsdescent" Class="CombatExtended.ToolCE">
+					<label>DD_Knockback</label>
+					<capacities>
+						<li>DD_Knockback</li>
+					</capacities>
+					<power>110</power>
+					<armorPenetrationBlunt>115.115</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+					<cooldownTime>4.0</cooldownTime>
+					<linkedBodyPartsGroup>Tail</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>76</power>
+					<cooldownTime>3</cooldownTime>
+					<armorPenetrationSharp>16.09</armorPenetrationSharp>
+					<armorPenetrationBlunt>120.417</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>76</power>
+					<cooldownTime>3</cooldownTime>
+					<armorPenetrationSharp>16.09</armorPenetrationSharp>
+					<armorPenetrationBlunt>120.417</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<cooldownTime>3.6</cooldownTime>
+					<power>100</power>
+					<capacities>
+						<li>ToxicBite</li>
+					</capacities>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<label>teeth</label>
+					<armorPenetrationSharp>24.26</armorPenetrationSharp>
+					<armorPenetrationBlunt>460.97</armorPenetrationBlunt>
+				</li>
+				<li MayRequire="onyxae.dragonsdescent" Class="CombatExtended.ToolCE">
+					<label>horn</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>30</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<power>69</power>
+					<cooldownTime>5.68</cooldownTime>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<armorPenetrationBlunt>24.725</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Horns</linkedBodyPartsGroup>
+				</li>
+				<li MayRequire="onyxae.dragonsdescent" Class="CombatExtended.ToolCE">
+					<label>horn</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>30</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<power>38</power>
+					<cooldownTime>5.68</cooldownTime>
+					<armorPenetrationSharp>14</armorPenetrationSharp>
+					<armorPenetrationBlunt>21.725</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Horns</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BotchJob_UndeadDragon"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>4250</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

@@ -45,7 +45,7 @@ namespace CombatExtended
                     return false;
                 }
 
-                if (parent.TryGetComp<CompCanBeDormant>()?.Awake ?? false)
+                if (!(parent.TryGetComp<CompCanBeDormant>()?.Awake ?? true))
                 {
                     return false;
                 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Insectoids 2</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="AA_GreaterVileSpit"]/verbProperties/range</xpath>
+					<value>
+						<range>30.9</range>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AA_GreaterBlackHiveBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AA_BlackHiveBolt</damageDef>
+							<speed>30</speed>
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationSharp>9</armorPenetrationSharp>
+							<armorPenetrationBlunt>12</armorPenetrationBlunt>
+							<numExtraHitCells>5</numExtraHitCells>
+							<filthCount>1</filthCount>
+							<shadowSize>0</shadowSize>
+							<filth>AA_FilthSlimyPuke</filth>
+						</projectile>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

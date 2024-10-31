@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Adding extra points to the curve to better control when the mechs become possible, since I raised their combatPower-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/FactionDef[@Name="RH2_FactionBase_GruppaKrovi"]/maxPawnCostPerTotalPointsCurve</xpath>
+		<value>
+			<maxPawnCostPerTotalPointsCurve>
+				<points>
+					<li>(0,35)</li>
+					<li>(70, 50)</li>
+					<li>(700, 100)</li>
+					<li>(1300, 150)</li>
+					<li>(2000, 450)</li>
+					<li>(4200, 1400)</li>
+					<li>(100000, 10000)</li>
+				</points>
+			</maxPawnCostPerTotalPointsCurve>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/FactionDef[@Name="RH2_FactionBase_GruppaKrovi"]/apparelStuffFilter/thingDefs/li[text()="Hyperweave"]</xpath>
+	</Operation>
+
+	<!--Due to the more extreme combatPower differences between the mechs and the humans, RimWorld raid generation logic massively favors spawning the mechs-->
+	<!--Increasing the selectionWeight of the human PawnKinds counteracts that imbalance-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/FactionDef[@Name="RH2_FactionBase_GruppaKrovi"]/pawnGroupMakers</xpath>
+		<value>
+			<pawnGroupMakers>
+				<li>
+					<!-- Normal fights, ranged with melee mix-ins -->
+					<kindDef>Combat</kindDef>
+					<commonality>100</commonality>
+					<options>
+						<RH2_GruppaKrovi_FNG>300</RH2_GruppaKrovi_FNG>
+						<RH2_GruppaKrovi_Sharpshooter>30</RH2_GruppaKrovi_Sharpshooter>
+						<RH2_GruppaKrovi_Assault>210</RH2_GruppaKrovi_Assault>
+						<RH2_GruppaKrovi_Elite>150</RH2_GruppaKrovi_Elite>
+						<RH2Mech_KV2Walker>1</RH2Mech_KV2Walker>
+						<RH2Mech_TeslaDrone>9</RH2Mech_TeslaDrone>
+						<RH2Mech_PlasmaDrone>7</RH2Mech_PlasmaDrone>
+						<RH2_GruppaKrovi_EliteGunner>150</RH2_GruppaKrovi_EliteGunner>
+						<RH2_GruppaKrovi_Boss>30</RH2_GruppaKrovi_Boss>
+					</options>
+				</li>
+				<li>
+					<!-- Normal fights, senior ranks only. -->
+					<kindDef>Combat</kindDef>
+					<commonality>20</commonality>
+					<options>
+						<RH2_GruppaKrovi_Assault>300</RH2_GruppaKrovi_Assault>
+						<RH2_GruppaKrovi_Elite>90</RH2_GruppaKrovi_Elite>
+						<RH2_GruppaKrovi_EliteGunner>150</RH2_GruppaKrovi_EliteGunner>
+						<RH2_GruppaKrovi_Boss>20</RH2_GruppaKrovi_Boss>
+						<RH2Mech_KV2Walker>2</RH2Mech_KV2Walker>
+						<RH2Mech_TeslaDrone>8</RH2Mech_TeslaDrone>
+						<RH2Mech_PlasmaDrone>6</RH2Mech_PlasmaDrone>
+					</options>
+				</li>
+				<li>
+					<!-- Normal fights, explosives with ranged mix-ins -->
+					<kindDef>Combat</kindDef>
+					<commonality>15</commonality>
+					<disallowedStrategies>
+						<li>Siege</li>
+					</disallowedStrategies>
+					<options>
+						<RH2_GruppaKrovi_Assault>300</RH2_GruppaKrovi_Assault>
+						<RH2_GruppaKrovi_Elite>60</RH2_GruppaKrovi_Elite>
+						<RH2_GruppaKrovi_EliteGunner>60</RH2_GruppaKrovi_EliteGunner>
+						<RH2_GruppaKrovi_Boss>30</RH2_GruppaKrovi_Boss>
+						<RH2Mech_KV2Walker>1</RH2Mech_KV2Walker>
+						<RH2Mech_TeslaDrone>8</RH2Mech_TeslaDrone>
+						<RH2Mech_PlasmaDrone>6</RH2Mech_PlasmaDrone>
+					</options>
+				</li>
+
+				<li>
+					<kindDef>Peaceful</kindDef>
+					<options>
+						<RH2_GruppaKrovi_FNG>300</RH2_GruppaKrovi_FNG>
+						<RH2_GruppaKrovi_Assault>300</RH2_GruppaKrovi_Assault>
+						<RH2_GruppaKrovi_Gunner>90</RH2_GruppaKrovi_Gunner>
+						<RH2_GruppaKrovi_EliteGunner>60</RH2_GruppaKrovi_EliteGunner>
+						<RH2_GruppaKrovi_Elite>90</RH2_GruppaKrovi_Elite>
+						<RH2Mech_TeslaDrone>8</RH2Mech_TeslaDrone>
+						<RH2Mech_PlasmaDrone>6</RH2Mech_PlasmaDrone>
+						<RH2Mech_KV2Walker>1</RH2Mech_KV2Walker>
+					</options>
+				</li>
+
+				<li>
+					<kindDef>Trader</kindDef>
+					<traders>
+						<RH2_GruppaKrovi_Trader>1</RH2_GruppaKrovi_Trader>
+					</traders>
+					<carriers>
+						<Muffalo>5</Muffalo>
+						<Dromedary>10</Dromedary>
+						<Alpaca>5</Alpaca>
+						<Elephant>1</Elephant>
+					</carriers>
+					<guards>
+						<RH2_GruppaKrovi_CloseProtection>300</RH2_GruppaKrovi_CloseProtection>
+						<RH2_GruppaKrovi_Gunner>60</RH2_GruppaKrovi_Gunner>
+						<RH2Mech_TeslaDrone>8</RH2Mech_TeslaDrone>
+						<RH2Mech_PlasmaDrone>6</RH2Mech_PlasmaDrone>
+						<RH2Mech_KV2Walker>1</RH2Mech_KV2Walker>
+					</guards>
+				</li>
+
+				<li>
+					<kindDef>Settlement</kindDef>
+					<options>
+						<RH2_GruppaKrovi_FNG>300</RH2_GruppaKrovi_FNG>
+						<RH2_GruppaKrovi_Assault>570</RH2_GruppaKrovi_Assault>
+						<RH2_GruppaKrovi_Sharpshooter>240</RH2_GruppaKrovi_Sharpshooter>
+						<RH2_GruppaKrovi_Elite>150</RH2_GruppaKrovi_Elite>
+						<RH2_GruppaKrovi_EliteGunner>90</RH2_GruppaKrovi_EliteGunner>
+						<RH2_GruppaKrovi_Gunner>90</RH2_GruppaKrovi_Gunner>
+						<RH2_GruppaKrovi_Boss>150</RH2_GruppaKrovi_Boss>
+						<RH2Mech_TeslaDrone>8</RH2Mech_TeslaDrone>
+						<RH2Mech_PlasmaDrone>6</RH2Mech_PlasmaDrone>
+						<RH2Mech_KV2Walker>2</RH2Mech_KV2Walker>
+					</options>
+				</li>
+			</pawnGroupMakers>
+		</value>
+	</Operation>
+
+</Patch>

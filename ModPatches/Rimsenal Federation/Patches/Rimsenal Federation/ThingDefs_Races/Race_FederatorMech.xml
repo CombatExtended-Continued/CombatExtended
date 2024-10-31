@@ -9,25 +9,32 @@
 			</li>
 		</value>
 	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Federator"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>7</baseHealthScale>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+			<ArmorRating_Blunt>400</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>35</ArmorRating_Sharp>
+			<ArmorRating_Sharp>75</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Federator"]/statBases/ArmorRating_Heat</xpath>
 		<value>
-			<ArmorRating_Heat>0.95</ArmorRating_Heat>
+			<ArmorRating_Heat>1.90</ArmorRating_Heat>
 		</value>
 	</Operation>
 
@@ -36,13 +43,64 @@
 		<value>
 			<CarryWeight>60</CarryWeight>
 			<CarryBulk>60</CarryBulk>
-			<AimingAccuracy>1.1</AimingAccuracy>
-			<ShootingAccuracyPawn>1.1</ShootingAccuracyPawn>
+			<AimingAccuracy>1.4</AimingAccuracy>
+			<ShootingAccuracyPawn>1.4</ShootingAccuracyPawn>
 			<MeleeDodgeChance>0.05</MeleeDodgeChance>
 			<MeleeCritChance>0.4</MeleeCritChance>
 			<MeleeParryChance>0.3</MeleeParryChance>
 			<SmokeSensitivity>0</SmokeSensitivity>
 			<NightVisionEfficiency>0.80</NightVisionEfficiency>
+			<MeleeHitChance>1.5</MeleeHitChance>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Mech_Federator"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mech_Federator"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Federator"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>3750</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0</MinArmorPct>
+				<MinArmorValueSharp>26.25</MinArmorValueSharp>
+				<MinArmorValueBlunt>40</MinArmorValueBlunt>
+				<MinArmorValueHeat>0.7</MinArmorValueHeat>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_Federator"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<useStatic>true</useStatic>
+						<ArmorRating_Sharp>28</ArmorRating_Sharp>
+						<parts>
+							<li>SightSensor</li>
+						</parts>
+					</li>
+					<li>
+						<useStatic>true</useStatic>
+						<ArmorRating_Blunt>28</ArmorRating_Blunt>
+						<parts>
+							<li>SightSensor</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
 		</value>
 	</Operation>
 
@@ -67,7 +125,7 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>35</power>
+					<power>40</power>
 					<cooldownTime>2.67</cooldownTime>
 					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
 					<surpriseAttack>
@@ -78,14 +136,14 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
-					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+					<armorPenetrationBlunt>37.5</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right fist</label>
 					<capacities>
-						<li>Blunt</li>
+						<li>Stab</li>
 					</capacities>
-					<power>35</power>
+					<power>55</power>
 					<cooldownTime>2.67</cooldownTime>
 					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
 					<surpriseAttack>
@@ -96,9 +154,20 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
-					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+					<armorPenetrationBlunt>37.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>15</armorPenetrationSharp>
 				</li>
 			</tools>
 		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/PawnKindDef[@Name="BaseMechKind"]/ignoresPainShock</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[@Name="BaseMechKind"]</xpath>
+			<value>
+				<ignoresPainShock>true</ignoresPainShock>
+			</value>
+		</nomatch>
 	</Operation>
 </Patch>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Turret === -->
+
+	<!-- Long Barrel -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Long"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Flamethrower_Prometheum</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Long"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>1.5</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Long"]/maxRange</xpath>
+		<value>
+			<maxRange>60</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Long"]/fireModes</xpath>
+		<value>
+			<fireModes Inherit="False">
+				<li>
+					<shotsPerBurst>5</shotsPerBurst>
+					<ticksBetweenShots>3</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Burst</label>
+					<texPath>UI/Gizmos/FireRate_Burst</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>10</shotsPerBurst>
+					<ticksBetweenShots>3</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Auto</label>
+					<texPath>UI/Gizmos/FireRate_Auto</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Long"]</xpath>
+		<value>
+			<modExtensions Inherit="False">
+				<li Class="Vehicles.CETurretDataDefModExtension">
+					<ammoSet>AmmoSet_Flamethrower</ammoSet>
+					<shotHeight>2.0</shotHeight>
+					<speed>20</speed>
+					<sway>0.25</sway>
+					<spread>0.30</spread>
+				</li>
+			</modExtensions>
+		</value>
+	</Operation>
+
+	<!-- Launcher Barrel -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Launcher"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_30x64mmFuel_Incendiary</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Launcher"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>1.0</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Launcher"]</xpath>
+			<value>
+				<magazineCapacity>30</magazineCapacity>
+			</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Launcher"]/maxRange</xpath>
+		<value>
+			<maxRange>70</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Launcher"]/fireModes</xpath>
+		<value>
+			<fireModes Inherit="False">
+				<li>
+					<shotsPerBurst>1</shotsPerBurst>
+					<ticksBetweenShots>6</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>3</shotsPerBurst>
+					<ticksBetweenShots>30</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Burst</label>
+					<texPath>UI/Gizmos/FireRate_Burst</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Launcher"]</xpath>
+		<value>
+			<modExtensions Inherit="False">
+				<li Class="Vehicles.CETurretDataDefModExtension">
+					<ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+					<shotHeight>2.5</shotHeight>
+					<speed>44</speed>
+					<sway>0.2</sway>
+					<spread>0.25</spread>
+				</li>
+			</modExtensions>
+		</value>
+	</Operation>
+
+	<!-- Short Barrel -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Short"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Flamethrower_Prometheum</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Short"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>0.5</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Short"]/maxRange</xpath>
+		<value>
+			<maxRange>26</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Short"]</xpath>
+		<value>
+			<fireModes Inherit="False">
+				<li>
+					<shotsPerBurst>10</shotsPerBurst>
+					<ticksBetweenShots>3</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Burst</label>
+					<texPath>UI/Gizmos/FireRate_Burst</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>20</shotsPerBurst>
+					<ticksBetweenShots>3</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Auto</label>
+					<texPath>UI/Gizmos/FireRate_Auto</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="VVE_Bunsen_MainTurret_Short"]</xpath>
+		<value>
+			<modExtensions Inherit="False">
+				<li Class="Vehicles.CETurretDataDefModExtension">
+					<ammoSet>AmmoSet_Flamethrower</ammoSet>
+					<shotHeight>2.0</shotHeight>
+					<speed>20</speed>
+					<sway>0.25</sway>
+					<spread>0.50</spread>
+				</li>
+			</modExtensions>
+		</value>
+	</Operation>
+
+	<!-- === Upgrade === -->
+
+	<!-- Engine Cover -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="EngineCover"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>2</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="EngineCover"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>4</value>
+		</value>
+	</Operation>
+
+	<!-- Reinforced Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="ReinforcedArmor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>2.5</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="ReinforcedArmor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>5</value>
+		</value>
+	</Operation>
+
+	<!-- Armored Treads -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="ArmoredTreads"]/upgrades/li[@Class="Vehicles.VehicleUpgrade"]/armor/li[key="LeftTrack" or key="RightTrack"]/statModifiers</xpath>
+		<value>
+			<statModifiers>
+				<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+				<ArmorRating_Sharp>5</ArmorRating_Sharp>
+			</statModifiers>
+		</value>
+	</Operation>
+
+	<!-- # Using default li class from VVE made our turret extension unable to reload with specified ammoSet, replacing with framework default # -->
+	<!-- Long Barrel -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="LongBarrel"]/upgrades/li[@Class="Vehicles.TurretUpgrade"]/turrets/li[@Class="VanillaVehiclesExpanded.FueledVehicleTurret"]</xpath>
+		<value>
+			<li>
+				<turretDef>VVE_Bunsen_MainTurret_Long</turretDef>
+				<renderProperties>
+					<north>(-0.05, 0.2)</north>
+					<south>(-0.02, 0.2)</south>
+					<east>(-0.02, 0.4)</east>
+				</renderProperties>
+				<drawLayer>3</drawLayer>
+				<gizmoLabel>Main Turret</gizmoLabel>
+				<angleRestricted/>
+				<aimPieOffset>(0, 1.5)</aimPieOffset>
+				<key>mainTurret</key>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Launcher Barrel -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="LauncherBarrel"]/upgrades/li[@Class="Vehicles.TurretUpgrade"]/turrets/li[@Class="VanillaVehiclesExpanded.FueledVehicleTurret"]</xpath>
+		<value>
+			<li>
+				<turretDef>VVE_Bunsen_MainTurret_Launcher</turretDef>
+				<renderProperties>
+					<north>(-0.05, 0.2)</north>
+					<south>(-0.02, 0.2)</south>
+					<east>(-0.02, 0.4)</east>
+				</renderProperties>
+				<drawLayer>3</drawLayer>
+				<gizmoLabel>Main Turret</gizmoLabel>
+				<angleRestricted/>
+				<aimPieOffset>(0, 1.5)</aimPieOffset>
+				<key>mainTurret</key>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Short Barrel -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="ShortBarrel"]/upgrades/li[@Class="Vehicles.TurretUpgrade"]/turrets/li[@Class="VanillaVehiclesExpanded.FueledVehicleTurret"]</xpath>
+		<value>
+			<li>
+				<turretDef>VVE_Bunsen_MainTurret_Short</turretDef>
+				<renderProperties>
+					<north>(-0.05, 0.2)</north>
+					<south>(-0.02, 0.2)</south>
+					<east>(-0.02, 0.4)</east>
+				</renderProperties>
+				<drawLayer>3</drawLayer>
+				<gizmoLabel>Main Turret</gizmoLabel>
+				<angleRestricted/>
+				<aimPieOffset>(0, 1.5)</aimPieOffset>
+				<key>mainTurret</key>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Cargo Capacity -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="CargoCapacity"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/vehicleStats/li[def="CargoCapacity"]/value</xpath>
+		<value>
+			<value>40</value>
+		</value>
+	</Operation>
+
+	<!-- Armor -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="Armor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Sharp"]/value</xpath>
+		<value>
+			<value>1</value>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="VVE_Bunsen_UpgradeTree"]/nodes/li[key="Armor"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats/li[def="ArmorRating_Blunt"]/value</xpath>
+		<value>
+			<value>2</value>
+		</value>
+	</Operation>
+
+</Patch>
