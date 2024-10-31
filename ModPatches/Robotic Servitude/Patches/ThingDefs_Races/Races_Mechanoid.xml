@@ -28,6 +28,7 @@
 			<MeleeCritChance>0.08</MeleeCritChance>
 			<MeleeParryChance>0.07</MeleeParryChance>
 			<MaxHitPoints>150</MaxHitPoints>
+			<NightVisionEfficiency>0.4</NightVisionEfficiency>
 		</value>
 	</Operation>
 
@@ -55,9 +56,10 @@
 						<li>Blunt</li>
 					</capacities>
 					<power>4</power>
-					<cooldownTime>1.85</cooldownTime>
+					<cooldownTime>2.0</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -162,44 +164,21 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>11</ArmorRating_Blunt>
+			<ArmorRating_Blunt>5.25</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>5.5</ArmorRating_Sharp>
+			<ArmorRating_Sharp>3.5</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]/race/baseHealthScale</xpath>
 		<value>
-			<baseHealthScale>1.0</baseHealthScale>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]/statBases</xpath>
-		<value>
-			<MeleeDodgeChance>0.17</MeleeDodgeChance>
-			<MeleeCritChance>0.17</MeleeCritChance>
-			<MeleeParryChance>0.09</MeleeParryChance>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>12</ArmorRating_Blunt>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>4.5</ArmorRating_Sharp>
+			<baseHealthScale>1.15</baseHealthScale>
 		</value>
 	</Operation>
 
