@@ -17,7 +17,6 @@ namespace CombatExtended
 
         
         protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && thing.ContainedThings().All(x => !x.HostileTo(Caster));
-        public override bool ValidateTarget(LocalTargetInfo targetInfo, bool showMessages) => Turret.currentTargetInt.Thing is Skyfaller;
 
     }
     public class VerbProperties_CIWSSkyfaller : VerbProperties_CIWS

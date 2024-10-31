@@ -82,6 +82,7 @@ namespace CombatExtended
         }
         protected virtual bool IsFriendlyTo(TargetType thing) => ((!thing.TryGetComp<CompCIWSTarget>()?.Props.alwaysIntercept) ?? false) && !thing.HostileTo(Caster);
         public abstract IEnumerable<TargetType> Targets { get; }
+        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && base.ValidateTarget(target, showMessages);
     }
 
     public abstract class VerbProperties_CIWS : VerbPropertiesCE

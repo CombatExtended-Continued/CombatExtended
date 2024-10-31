@@ -17,7 +17,6 @@ namespace CombatExtended
         public override IEnumerable<ProjectileCE> Targets => Caster.Map?.listerThings.ThingsInGroup(ThingRequestGroup.Projectile).OfType<ProjectileCE>() ?? Array.Empty<ProjectileCE>();
 
         protected override bool IsFriendlyTo(ProjectileCE thing) => base.IsFriendlyTo(thing) && !thing.launcher.HostileTo(Caster);
-        public override bool ValidateTarget(LocalTargetInfo targetInfo, bool showMessages) => Turret.currentTargetInt.Thing is Projectile;
     }
     public class CompProperties_CIWSProjectile : VerbProperties_CIWS
     {
