@@ -17,6 +17,10 @@ namespace CombatExtended
             {
                 var result = base.Projectile;
                 var ciwsVersion = (result?.projectile as ProjectilePropertiesCE)?.CIWSVersion;
+                if (ciwsVersion == null && typeof(ProjectileCE_CIWS).IsAssignableFrom(result.thingClass))
+                {
+                    Log.WarningOnce($"{result} is not a CIWS projectile and the projectile does not have the CIWS version specified in its properties. Must be on-ground projectile used for CIWS", result.GetHashCode());
+                }
                 return ciwsVersion ?? result;
             }
         }
@@ -57,7 +61,7 @@ namespace CombatExtended
                         }
                         var report = ShiftVecReportFor(pos.ToIntVec3());
                         ShiftTarget(report);
-                        
+
                         Vector2 originV2 = new Vector2(originV3.x, originV3.z), destinationV2 = new Vector2(pos.x, pos.z);
                         var positions = CIWS_ProjectilePropeties.NextPositions(shotRotation, shotAngle, originV2, destinationV2, maximumPredectionTicks, ShotHeight, false, Vector3.zero, ShotSpeed, originV3, -1f, -1f, -1f, -1f, ShotSpeed, 0).Skip(i - 1).Take(2).ToList();
                         if (positions.Count < 2)
