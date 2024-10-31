@@ -546,6 +546,7 @@ Vanilla Persona Weapons Expanded   |
 Vanilla Plants Expanded - Mushrooms  |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
+Vanilla Psycasts Expanded - Runesmith   |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
