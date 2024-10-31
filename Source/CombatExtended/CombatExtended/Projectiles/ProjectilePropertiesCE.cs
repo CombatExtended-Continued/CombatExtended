@@ -69,6 +69,7 @@ namespace CombatExtended
         public float impactChance = 1f;
 
         public float Gravity => CE_Utility.GravityConst * gravityFactor;
+        public ThingDef CIWSVersion;
         #region Moving methods
         public virtual Vector2 Vec2Position(Vector2 origin, Vector2 destination, float startingTicksToImpact, int ticks)
         {

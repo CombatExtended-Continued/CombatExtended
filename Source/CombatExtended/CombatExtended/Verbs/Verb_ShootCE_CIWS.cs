@@ -11,6 +11,16 @@ namespace CombatExtended
 {
     public class Verb_ShootCE_CIWS : Verb_ShootCE
     {
+        public override ThingDef Projectile
+        {
+            get
+            {
+                var result = base.Projectile;
+                var ciwsVersion = (result?.projectile as ProjectilePropertiesCE)?.CIWSVersion;
+                return ciwsVersion ?? result;
+            }
+        }
+
         protected int maximumPredectionTicks = 40;
         public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {
