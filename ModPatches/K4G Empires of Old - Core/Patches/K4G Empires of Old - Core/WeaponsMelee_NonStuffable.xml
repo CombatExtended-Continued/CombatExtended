@@ -110,4 +110,47 @@
 
 	<!-- Blow Torch -->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_Blowtorch"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>chemfuel tank</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.59</cooldownTime>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>pipe</label>
+					<labelUsedInLogging>false</labelUsedInLogging>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>2.02</cooldownTime>
+					<extraMeleeDamages>
+					<li>
+						<def>Flame</def>
+						<amount>1</amount>
+						<chance>1</chance>
+					</li>
+					</extraMeleeDamages>					
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+				</li>				
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_Blowtorch"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+
 </Patch>
