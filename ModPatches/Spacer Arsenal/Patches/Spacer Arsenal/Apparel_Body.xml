@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Body Armour -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_EnsignArmor"]</xpath>
+		<value>
+      <statBases>
+			<Bulk>80</Bulk>
+			<WornBulk>12</WornBulk>
+			<ReloadSpeed>0.1</ReloadSpeed>
+      <Mass>30</Mass>
+      <ArmorRating_Sharp>16</ArmorRating_Sharp>
+      <ArmorRating_Blunt>38.25</ArmorRating_Blunt>
+      <MaxHitPoints>400</MaxHitPoints>
+      </statBases>
+		</value>
+	</Operation>
+
+	<!-- Increase Devilstrand Cost due to much higher heat protection -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_EnsignArmor"]</xpath>
+		<value>
+      <costList>
+			<DevilstrandCloth>60</DevilstrandCloth>
+        <Plasteel>140</Plasteel>
+        <Uranium>20</Uranium>
+        <ComponentSpacer>5</ComponentSpacer>
+      </costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_EnsignArmor"]</xpath>
+		<value>
+      <equippedStatOffsets>
+				<CarryWeight>50</CarryWeight>
+				<CarryBulk>8</CarryBulk>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+        <MoveSpeed>0</MoveSpeed>
+      </equippedStatOffsets>
+		</value>
+	</Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="DV_Apparel_EnsignArmor"]/apparel</xpath>
+    <value>
+        <bodyPartGroups>
+          <li>Torso</li>
+          <li>Neck</li>
+          <li>Shoulders</li>
+          <li>Arms</li>
+          <li>Legs</li>
+          <li>Hands</li>
+          <li>Feet</li>
+        </bodyPartGroups>
+    </value>
+  </Operation>
+
+</Patch>
