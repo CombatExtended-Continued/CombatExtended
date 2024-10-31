@@ -192,6 +192,7 @@ Edge of Descension - Vanguard   |
 Edo Themed Expansion	|
 Eltex Bodysuit  |
 Enchanted Sword  |
+Epochs - Pyrinth    |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
@@ -457,6 +458,7 @@ Rimworld - Witcher Monster Hunt |
 Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
+Robotic Servitude   |
 Rockmen race    |
 Roren, People of Rorensia   |
 Royal Arsenal |
@@ -545,6 +547,7 @@ Vanilla Persona Weapons Expanded   |
 Vanilla Plants Expanded - Mushrooms  |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
+Vanilla Psycasts Expanded - Runesmith   |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
@@ -586,6 +589,7 @@ WarCasket Barbatos Gundam Addon  |
 Warcaskets: Adeptus Astartes    |
 Warhammer 40.000 - Imperium Weaponry    |
 Warhammer 40.000 - Imperium Materials   |
+Warhammer 40k - Factions  |
 Warhammer 40k - Genes and Psycasts  |
 Warhammer"ish" - Dryad    |
 Wasters Toxic Breather  |
