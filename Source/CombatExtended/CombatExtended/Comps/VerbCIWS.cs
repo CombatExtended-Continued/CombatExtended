@@ -13,9 +13,9 @@ namespace CombatExtended
 {
     public abstract class VerbCIWS : Verb_ShootCE_CIWS, ITargetSearcher
     {
-        
+
         protected bool holdFire;
-        
+
         public VerbProperties_CIWS Props => verbProps as VerbProperties_CIWS;
         protected abstract string HoldLabel { get; }
         protected abstract string HoldDesc { get; }
@@ -82,7 +82,7 @@ namespace CombatExtended
         }
         protected virtual bool IsFriendlyTo(TargetType thing) => ((!thing.TryGetComp<CompCIWSTarget>()?.Props.alwaysIntercept) ?? false) && !thing.HostileTo(Caster);
         public abstract IEnumerable<TargetType> Targets { get; }
-        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && base.ValidateTarget(target, showMessages);
+        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && TryFindCEShootLineFromTo(Caster.Position, target, out _) && base.ValidateTarget(target, showMessages);
     }
 
     public abstract class VerbProperties_CIWS : VerbPropertiesCE
