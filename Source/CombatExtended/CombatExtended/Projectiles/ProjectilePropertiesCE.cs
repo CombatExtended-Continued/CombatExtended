@@ -127,8 +127,18 @@ namespace CombatExtended
             return newPosition;
         }
 
-        // This can also be made virtual, and would be the ideal entry point for guided ammunition and rockets.
-        protected void Accelerate(float radius, float ballisticCoefficient, float mass, float gravity, ref Vector3 velocity, ref float shotSpeed)
+        protected virtual void Accelerate(float radius, float ballisticCoefficient, float mass, float gravity, ref Vector3 velocity, ref float shotSpeed)
+        {
+            AffectedByDrag(radius, shotSpeed, ballisticCoefficient, mass, ref velocity);
+            AffectedByGravity(gravity, ref velocity);
+        }
+
+        protected void AffectedByGravity(float gravity, ref Vector3 velocity)
+        {
+            velocity.y -= gravity / GenTicks.TicksPerRealSecond;
+        }
+
+        protected void AffectedByDrag(float radius, float shotSpeed, float ballisticCoefficient, float mass, ref Vector3 velocity)
         {
             float crossSectionalArea = radius;
             crossSectionalArea *= crossSectionalArea * 3.14159f;
@@ -137,14 +147,12 @@ namespace CombatExtended
             var dragForce = q * crossSectionalArea / ballisticCoefficient;
             // F = mA
             // A = F / m
-            var a = (float)((-dragForce / (float)mass));
+            var a = (float)-dragForce / mass;
             var normalized = velocity.normalized;
             velocity.x += a * normalized.x;
-            velocity.y += a * normalized.y - (float)(1 / ballisticCoefficient) * (float)gravity / GenTicks.TicksPerRealSecond;
+            velocity.y += a * normalized.y;
             velocity.z += a * normalized.z;
-            shotSpeed = velocity.magnitude;
         }
-
         protected float GetHeightAtTicks(float shotHeight, float shotSpeed, float shotAngle, int ticks)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;

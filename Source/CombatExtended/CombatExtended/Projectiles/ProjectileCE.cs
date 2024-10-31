@@ -1081,57 +1081,10 @@ namespace CombatExtended
             }
         }
 
-        // If anyone wants to override how projectiles move, this can be made virtual.
-        // For now, it is non-virtual for performance.
-        protected Vector3 MoveForward()
-        {
-            Vector3 curPosition = ExactPosition;
-            float sr = shotRotation * Mathf.Deg2Rad + 3.14159f / 2.0f;
-            if (!kinit)
-            {
-                kinit = true;
-                var projectileProperties = def.projectile as ProjectilePropertiesCE;
-                ballisticCoefficient = projectileProperties.ballisticCoefficient.RandomInRange;
-                mass = projectileProperties.mass.RandomInRange;
-                radius = projectileProperties.diameter.RandomInRange / 2000;
-                gravity = projectileProperties.Gravity;
-                float sspt = shotSpeed / GenTicks.TicksPerRealSecond;
-                velocity = new Vector3(Mathf.Cos(sr) * Mathf.Cos(shotAngle) * sspt, Mathf.Sin(shotAngle) * sspt, Mathf.Sin(sr) * Mathf.Cos(shotAngle) * sspt);
-                initialSpeed = sspt;
-            }
-            Accelerate();
-            Vector3 newPosition = curPosition + velocity;
-            shotSpeed = velocity.magnitude;
-            return newPosition;
-        }
+
 
         // This is the ideal entry point for guided ammunition and rockets.
-        protected virtual void Accelerate()
-        {
-            AffectedByDrag();
-            AffectedByGravity();
-        }
-
-        protected void AffectedByGravity()
-        {
-            velocity.y -= gravity / GenTicks.TicksPerRealSecond;
-        }
-
-        protected void AffectedByDrag()
-        {
-            float crossSectionalArea = radius;
-            crossSectionalArea *= crossSectionalArea * 3.14159f;
-            // 2.5f is half the mass of 1m² x 1cell of air.
-            var q = 2.5f * shotSpeed * shotSpeed;
-            var dragForce = q * crossSectionalArea / ballisticCoefficient;
-            // F = mA
-            // A = F / m
-            var a = (float)-dragForce / mass;
-            var normalized = velocity.normalized;
-            velocity.x += a * normalized.x;
-            velocity.y += a * normalized.y;
-            velocity.z += a * normalized.z;
-        }
+        
         public virtual IEnumerable<Vector3> NextPositions => (def.projectile as ProjectilePropertiesCE).NextPositions(shotRotation, shotAngle, origin, Destination, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, FlightTicks);
 
         #region Tick/Draw
