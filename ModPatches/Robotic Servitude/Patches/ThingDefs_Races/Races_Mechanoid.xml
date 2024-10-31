@@ -68,7 +68,7 @@
 	<!-- ========== Laborers ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Gha_Corpse_Laborer" or defName="Gha_Combat_Laborer" or defName="Gha_Assassin_Laborer"]</xpath>
+		<xpath>Defs/ThingDef[defName="Gha_Corpse_Laborer" or defName="Gha_Combat_Laborer" or defName="Gha_Assassin_Laborer" or defName="Gha_Assassin_Laborer"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -179,6 +179,51 @@
 		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>1.15</baseHealthScale>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.17</MeleeDodgeChance>
+			<MeleeCritChance>0.17</MeleeCritChance>
+			<MeleeParryChance>0.09</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>700</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>70</MaxOverHeal>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
