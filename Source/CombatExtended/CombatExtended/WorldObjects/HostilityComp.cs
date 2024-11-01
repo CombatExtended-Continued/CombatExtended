@@ -101,6 +101,11 @@ namespace CombatExtended.WorldObjects
             raider.ThrottledTick();
         }
 
+        /// <summary>
+        /// Retaliate against a world object due to hostile shelling.
+        /// </summary>
+        /// <param name="attackingFaction">The faction to retaliate against.</param>
+        /// <param name="sourceInfo">The tile the shelling came from.</param>
         public virtual void TryHostilityResponse(Faction attackingFaction, GlobalTargetInfo sourceInfo)
         {
 
@@ -115,9 +120,9 @@ namespace CombatExtended.WorldObjects
                 return;
             }
             Map attackerMap = sourceInfo.Map;
+            MapParent attackerMapParent = Find.World.worldObjects.MapParentAt(sourceInfo.Tile);
             if (attackerMap == null)
             {
-                MapParent attackerMapParent = Find.World.worldObjects.MapParentAt(sourceInfo.Tile);
                 if (attackerMapParent != null && attackerMapParent.HasMap && attackerMapParent.Map != null && Find.Maps.Contains(attackerMapParent.Map))
                 {
                     attackerMap = attackerMapParent.Map;
@@ -145,7 +150,10 @@ namespace CombatExtended.WorldObjects
                 Log.Warning($"CE: Threat points {revengePoints}");
             }
 #endif
-            if (!sheller.Shooting && Rand.Chance(ShellingPropability))
+            // Only allow retaliation shelling if this faction is hostile to the owner of the site at the source location,
+            // in case players shell world objects from other faction maps.
+            Faction sourceTileFaction = attackerMapParent?.Faction;
+            if (!sheller.Shooting && Rand.Chance(ShellingPropability) && parent.Faction.HostileTo(sourceTileFaction))
             {
                 sheller.TryStartShelling(sourceInfo, revengePoints, attackingFaction);
             }

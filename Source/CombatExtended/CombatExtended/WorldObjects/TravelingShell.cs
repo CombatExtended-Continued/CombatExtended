@@ -143,7 +143,7 @@ namespace CombatExtended
                 if (!shelled)
                 {
                     shelled = true;
-                    healthComp.ApplyDamage(shellDef, Faction, globalSource.Map);
+                    healthComp.ApplyDamage(shellDef, Faction, globalSource);
                 }
             }
             return shelled;
