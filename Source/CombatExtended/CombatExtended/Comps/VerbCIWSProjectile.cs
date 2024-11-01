@@ -14,7 +14,7 @@ namespace CombatExtended
     {
         protected override string HoldDesc => "HoldCloseInProjectilesFireDesc";
         protected override string HoldLabel => "HoldCloseInProjectilesFire";
-        public new CompProperties_CIWSProjectile Props => verbProps as CompProperties_CIWSProjectile;
+        public new VerbProperties_CIWSProjectile Props => verbProps as VerbProperties_CIWSProjectile;
 
         public override IEnumerable<ProjectileCE> Targets => Caster.Map?.listerThings.ThingsInGroup(ThingRequestGroup.Projectile).OfType<ProjectileCE>() ?? Array.Empty<ProjectileCE>();
 
@@ -78,9 +78,9 @@ namespace CombatExtended
             return false;
         }
     }
-    public class CompProperties_CIWSProjectile : VerbProperties_CIWS
+    public class VerbProperties_CIWSProjectile : VerbProperties_CIWS
     {
-        public CompProperties_CIWSProjectile()
+        public VerbProperties_CIWSProjectile()
         {
             this.verbClass = typeof(VerbCIWSProjectile);
         }
