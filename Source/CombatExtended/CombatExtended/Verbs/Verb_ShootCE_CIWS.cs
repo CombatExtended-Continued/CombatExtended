@@ -18,7 +18,7 @@ namespace CombatExtended
             {
                 var result = base.Projectile;
                 var ciwsVersion = (result?.projectile as ProjectilePropertiesCE)?.CIWSVersion;
-                if (ciwsVersion == null && typeof(ProjectileCE_CIWS).IsAssignableFrom(result.thingClass))
+                if (ciwsVersion == null && !typeof(ProjectileCE_CIWS).IsAssignableFrom(result.thingClass))
                 {
                     Log.WarningOnce($"{result} is not a CIWS projectile and the projectile does not have the CIWS version specified in its properties. Must be on-ground projectile used for CIWS", result.GetHashCode());
                 }
