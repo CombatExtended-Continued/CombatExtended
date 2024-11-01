@@ -9,33 +9,30 @@ namespace CombatExtended
 {
     public class Building_Turret_MultiVerbs : Building_TurretGunCE
     {
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_References.Look(ref activeVerb, nameof(activeVerb));
+        }
+
+        Verb activeVerb;
         public override Verb AttackVerb
         {
             get
             {
-                if (CurrentTarget.IsValid)
-                {
-                    foreach (var verb in GunCompEq.AllVerbs)
-                    {
-                        if (verb.ValidateTarget(CurrentTarget, false))
-                        {
-                            return verb;
-                        }
-                    }
-                }
-
-                return base.AttackVerb;
+                return activeVerb ?? GunCompEq.AllVerbs.FirstOrDefault(x=>x.state == VerbState.Bursting) ?? base.AttackVerb;
             }
         }
         IEnumerable<ITargetSearcher> cachedVerbsWithTargetSearcher;
-        protected IEnumerable<ITargetSearcher> VerbsWithTargetSearcher => cachedVerbsWithTargetSearcher ??= GunCompEq.AllVerbs.OfType<ITargetSearcher>();
+        protected IEnumerable<ITargetSearcher> VerbsWithTargetSearcher => cachedVerbsWithTargetSearcher ??= GunCompEq.AllVerbs.OfType<ITargetSearcher>().ToList();
         public override void DrawExtraSelectionOverlays()
         {
             base.DrawExtraSelectionOverlays();
             foreach (var verb in GunCompEq.AllVerbs.Except(AttackVerb))
             {
                 float range = verb.verbProps.range;
-                if (range < 90f)
+                if (range < 120f)
                 {
                     GenDraw.DrawRadiusRing(base.Position, range);
                 }
@@ -52,10 +49,22 @@ namespace CombatExtended
             {
                 if (verb.TryFindNewTarget(out var target))
                 {
+                    activeVerb = (Verb)verb;
                     return target;
                 }
             }
             return base.TryFindNewTarget();
+        }
+
+        public override void ResetCurrentTarget()
+        {
+            base.ResetCurrentTarget();
+            activeVerb = null;
+        }
+        public override void ResetForcedTarget()
+        {
+            base.ResetForcedTarget();
+            activeVerb = null;
         }
     }
 }
