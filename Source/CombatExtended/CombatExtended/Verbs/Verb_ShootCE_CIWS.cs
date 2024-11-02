@@ -37,9 +37,10 @@ namespace CombatExtended
                 var result = targetComp.CalculatePointForPreemptiveFire(Projectile, originV3, out var targetPos, ticksToSkip);
                 resultingLine = new ShootLine(originV3.ToIntVec3(), targetPos.ToIntVec3());
                 return result;
-            }           
-            
-            return base.TryFindCEShootLineFromTo(root, targ, out resultingLine);
+            }
+            resultingLine = default;
+            return false;
         }
+
     }
 }
