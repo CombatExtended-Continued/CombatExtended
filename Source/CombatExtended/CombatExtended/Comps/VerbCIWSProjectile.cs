@@ -30,7 +30,7 @@ namespace CombatExtended
                 return false;
             }
             var originV3 = Caster.Position.ToVector3Shifted();
-            var ticksToSkip = (int)verbProps.warmupTime;
+            var ticksToSkip = verbProps.warmupTime.SecondsToTicks();
             var instant = Projectile.projectile is ProjectilePropertiesCE CIWSProjectilePropertiesCE && CIWSProjectilePropertiesCE.isInstant;
             if (instant)
             {
