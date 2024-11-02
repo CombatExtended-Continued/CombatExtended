@@ -253,7 +253,7 @@ Glitter Tech	|
 Glitter Weaponry	|
 Gloomy Dragonian Race	|
 GouRIMet	|
-/Grimstone Beasts   |
+Grimstone Beasts   |
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
 Grimworld: Melee	|
