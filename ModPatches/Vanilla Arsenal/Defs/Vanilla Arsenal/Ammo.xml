@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo145x114mm_Demo</defName>
+		<label>14.5x114mm demolition</label>
+		<parent>AmmoHighCaliber</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_145x114mm_Demo</defName>
+		<label>14.5x114mm demolition</label>
+		<ammoTypes>
+			<Ammo_145x114mm_Demo>Bullet_145x114mm_Demo</Ammo_145x114mm_Demo>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo145x114mmBase">
+		<defName>Ammo_145x114mm_Demo</defName>
+		<label>14.5x114mm bullet (Demo)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.27</MarketValue>
+		</statBases>
+		<ammoClass>Demolition</ammoClass>
+		<cookOffProjectile>Bullet_145x114mm_Demo</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base145x114mmBullet">
+		<defName>Bullet_145x114mm_Demo</defName>
+		<label>14.5x114mm bullet (Demo)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>27</damageAmountBase>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>634</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Thermobaric</def>
+					<amount>10</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_145x114mm_Demo</defName>
+		<label>make 14.5x114mm (Demo) cartridge x200</label>
+		<description>Craft 200 14.5mm demolition rounds.</description>
+		<jobString>Making 14.5mm demolition rounds.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>76</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>13</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Prometheum</li>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_145x114mm_Demo>200</Ammo_145x114mm_Demo>
+		</products>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workAmount>12800</workAmount>
+	</RecipeDef>
+
+</Defs>
