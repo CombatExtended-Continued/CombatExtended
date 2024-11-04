@@ -157,7 +157,7 @@ namespace CombatExtended
         protected float GetHeightAtTicks(float shotHeight, float shotSpeed, float shotAngle, int ticks)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
-            return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (CE_Utility.GravityConst * seconds * seconds) / 2f, 3);
+            return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (Gravity * seconds * seconds) / 2f, 3);
         }
 
         public virtual IEnumerable<Vector3> NextPositions(float shotRotation,
