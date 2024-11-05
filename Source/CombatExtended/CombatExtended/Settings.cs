@@ -37,7 +37,7 @@ namespace CombatExtended
 
         private bool fragmentsFromWalls = false;
 
-        private bool fasterRepeatShots = false;
+        private bool fasterRepeatShots = true;
 
         public bool ShowCasings => showCasings;
 
