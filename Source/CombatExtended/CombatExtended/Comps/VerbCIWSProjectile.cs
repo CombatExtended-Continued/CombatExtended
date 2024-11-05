@@ -47,7 +47,7 @@ namespace CombatExtended
             if (targetProjectile.def.projectile is ProjectilePropertiesCE targetProjectileProperties && Projectile.projectile is ProjectilePropertiesCE CIWS_ProjectileProperties)
             {
                 var targetPos1 = new Vector2(targetProjectile.Position.x, targetProjectile.Position.z);
-                foreach (var pos in targetProjectile.NextPositions.Skip(ticksToSkip))
+                foreach (var pos in targetProjectile.NextPositions.Skip(ticksToSkip).Select(x => targetProjectile.ExactPosToDrawPos(x)))
                 {
                     if (i > maximumPredectionTicks)
                     {
