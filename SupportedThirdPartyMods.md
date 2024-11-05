@@ -124,6 +124,7 @@ Autocleaner	|
 Auto-Mortars	|
 Beast Man Tribes  |
 Beeralope Squad	|
+Beliar Xenotype |
 Better Wool Production - C# Edition	|
 Big and Small - Genes & More	|
 Big and Small - Heaven and Hell
