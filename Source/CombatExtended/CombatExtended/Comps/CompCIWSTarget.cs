@@ -120,7 +120,7 @@ namespace CombatExtended
         public virtual bool CalculatePointForPreemptiveFire(ThingDef projectile, Vector3 source, out Vector3 result, int tickOffset = 0)
         {
             result = Vector3.zero;
-            return true;
+            return false;
         }
 
     }
