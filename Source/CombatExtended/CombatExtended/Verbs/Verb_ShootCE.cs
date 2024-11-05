@@ -349,17 +349,7 @@ namespace CombatExtended
 
             if (reduction < 1.0f)
             {
-                if (caster is Building_TurretGunCE turret)
-                {
-                    if (turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
-                    {
-                        turret.burstWarmupTicksLeft = (int)(turret.burstWarmupTicksLeft * reduction);
-                    }
-                }
-                else if (this.WarmupStance != null)
-                {
-                    this.WarmupStance.ticksLeft = (int)(this.WarmupStance.ticksLeft * reduction);
-                }
+                this.BurstWarmupTicksLeft = (int)(BurstWarmupTicksLeft * reduction);
             }
 
         }

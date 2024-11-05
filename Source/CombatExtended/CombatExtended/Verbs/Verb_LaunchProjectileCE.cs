@@ -1192,6 +1192,41 @@ namespace CombatExtended
         public virtual void VerbTickCE()
         {
         }
+        public int BurstWarmupTicksLeft
+        {
+            get
+            {
+                if (caster is Building_TurretGunCE turret)
+                {
+                    return turret.burstWarmupTicksLeft;
+
+                }
+                else if (this.WarmupStance != null)
+                {
+                    return this.WarmupStance.ticksLeft;
+                }
+                Log.Error("Verb caster is not a turret and does not have a WarmupStance");
+                return -1;
+            }
+            set
+            {
+                if (caster is Building_TurretGunCE turret)
+                {
+                    if (turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
+                    {
+                        turret.burstWarmupTicksLeft = value;
+                    }
+                }
+                else if (this.WarmupStance != null)
+                {
+                    this.WarmupStance.ticksLeft = value;
+                }
+                else
+                {
+                    Log.Error("Verb caster is not a turret and does not have a WarmupStance");
+                }
+            }
+        }
 
 
         #region Line of Sight Utility
