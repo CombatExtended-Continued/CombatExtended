@@ -208,16 +208,20 @@ namespace CombatExtended
             }
         }
 
-        public override Vector3 DrawPos
+        public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition)
         {
-            get
-            {
-                var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
+            var sh = Mathf.Max(0f, (exactPosition.y) * 0.84f);
                 if (FlightTicks < ticksToTruePosition)
                 {
                     sh *= (float)FlightTicks / ticksToTruePosition;
                 }
-                return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
+            return new Vector3(exactPosition.x, def.Altitude, exactPosition.z + sh);
+        }
+        public override Vector3 DrawPos
+        {
+            get
+            {
+                return ExactPosToDrawPos(ExactPosition);
             }
         }
 
