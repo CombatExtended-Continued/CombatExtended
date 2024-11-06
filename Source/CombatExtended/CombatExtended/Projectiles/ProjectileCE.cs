@@ -924,7 +924,7 @@ namespace CombatExtended
             Impact(null);
             return true;
         }
-        protected bool CanCollideWith(Thing thing, out float dist)
+        protected virtual bool CanCollideWith(Thing thing, out float dist)
         {
             dist = -1f;
             if (globalTargetInfo.IsValid)
