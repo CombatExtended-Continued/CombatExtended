@@ -31,6 +31,7 @@ namespace CombatExtended
         // Targeting factors
         private float estimatedTargDist = -1;           // Stores estimate target distance for each burst, so each burst shot uses the same
         protected int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
+        protected int sinceTicks = 0;
 
         // Angle in Vector2(degrees, radians)        
         protected Vector2 newTargetLoc = new Vector2(0, 0);
@@ -351,7 +352,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, bool midBurst = false)
+        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, bool midBurst = false, int sinceTicks = 0)
         {
             if (!calculateMechanicalOnly)
             {
@@ -363,7 +364,16 @@ namespace CombatExtended
                     // On first shot of burst do a range estimate
                     estimatedTargDist = report.GetRandDist();
                 }
-                Vector3 v = report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
+                Vector3 v;
+                if (report.target.Thing is ProjectileCE projectile)
+                {
+                    v = projectile.ExactPosToDrawPos(projectile.NextPositions.ElementAtOrLast(sinceTicks));
+                }
+                else
+                {
+                    v = report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
+                }
+
                 if (report.targetPawn != null)
                 {
                     v += report.targetPawn.Drawer.leaner.LeanOffset * 0.5f;
@@ -401,7 +411,11 @@ namespace CombatExtended
                 var coverRange = new CollisionVertical(report.cover).HeightRange;   //Get " " cover, assume it is the edifice
 
                 // Projectiles with flyOverhead target the surface in front of the target
-                if (Projectile.projectile.flyOverhead)
+                if (currentTarget.Thing is ProjectileCE)
+                {
+                    targetHeight = v.y;
+                }
+                else if (Projectile.projectile.flyOverhead)
                 {
                     targetHeight = coverRange.max;
                 }
@@ -995,6 +1009,7 @@ namespace CombatExtended
         public override bool TryCastShot()
         {
             Retarget();
+            sinceTicks = 0;
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
@@ -1080,7 +1095,7 @@ namespace CombatExtended
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly, instant, midBurst);
+                ShiftTarget(report, pelletMechanicsOnly, instant, midBurst, sinceTicks);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;

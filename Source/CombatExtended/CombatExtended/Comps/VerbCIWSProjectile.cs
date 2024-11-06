@@ -29,6 +29,7 @@ namespace CombatExtended
             {
                 return false;
             }
+            var midBurst = numShotsFired > 0;
             var originV3 = Caster.Position.ToVector3Shifted();
             var ticksToSkip = this.BurstWarmupTicksLeft;
             var instant = Projectile.projectile is ProjectilePropertiesCE CIWSProjectilePropertiesCE && CIWSProjectilePropertiesCE.isInstant;
@@ -44,6 +45,7 @@ namespace CombatExtended
                 return true;
             }
             int i = 1;
+            var report = ShiftVecReportFor((LocalTargetInfo)targetProjectile);
             if (targetProjectile.def.projectile is ProjectilePropertiesCE targetProjectileProperties && Projectile.projectile is ProjectilePropertiesCE CIWS_ProjectileProperties)
             {
                 var targetPos1 = new Vector2(targetProjectile.Position.x, targetProjectile.Position.z);
@@ -53,8 +55,7 @@ namespace CombatExtended
                     {
                         break;
                     }
-                    var report = ShiftVecReportFor(pos.ToIntVec3());
-                    ShiftTarget(report);
+                    ShiftTarget(report, false, instant, midBurst, i);
 
                     Vector2 originV2 = new Vector2(originV3.x, originV3.z), destinationV2 = new Vector2(pos.x, pos.z);
                     var positions = CIWS_ProjectileProperties.NextPositions(shotRotation, shotAngle, originV2, destinationV2, maximumPredectionTicks, ShotHeight, false, Vector3.zero, ShotSpeed, originV3, -1f, -1f, -1f, -1f, ShotSpeed, 0).Skip(i - 1).Take(2).ToList();
@@ -69,6 +70,8 @@ namespace CombatExtended
                     {
                         resultingLine = new ShootLine(Shooter.Position, point.ToVector3().ToIntVec3());
                         Shooter.Map.debugDrawer.FlashLine(Shooter.Position, point.ToVector3().ToIntVec3(), 100, SimpleColor.Red);
+
+                        this.sinceTicks = i;
                         return true;
                     }
                     targetPos1 = targetPos2;

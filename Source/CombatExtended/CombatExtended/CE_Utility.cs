@@ -1680,5 +1680,19 @@ namespace CombatExtended
                 }
             }
         }
+        internal static T ElementAtOrLast<T>(this IEnumerable<T> enumerable, int index)
+        {
+            var source = enumerable.GetEnumerator();
+            T current = source.Current;
+            for (int i = 0; i < index; i++)
+            {
+                if (!source.MoveNext())
+                {
+                    break;
+                }
+                current = source.Current;
+            }
+            return current;
+        }
     }
 }
