@@ -54,6 +54,16 @@ namespace CombatExtended
         }
         public abstract bool IsFriendlyTo(Thing thing);
         public abstract bool CalculatePointForPreemptiveFire(ThingDef projectile, Vector3 source, out Vector3 result, int tickOffset = 0);
+
+        /// <summary>
+        /// Checks if projectile can intersect with this object
+        /// </summary>
+        /// <returns>Can the projectile collide with parent. Null if should use original logic</returns>
+        public virtual bool? CanCollideWith(ProjectileCE_CIWS projectileCE_CIWS, out float dist)
+        {
+            dist = -1f;
+            return null;
+        }
     }
     public class CompProperties_CIWSTarget : CompProperties
     {

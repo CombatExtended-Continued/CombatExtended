@@ -57,6 +57,33 @@ namespace CombatExtended
             base.Tick();
             TryCollideWith(intendedTargetThing);
         }
+        protected override bool CanCollideWith(Thing thing, out float dist)
+        {
+            dist = 0f;
+            if (!Rand.Chance(ImpactChance))
+            {
+                return false;
+            }
+            var ciwsTargetCompResult = thing.TryGetComp<CompCIWSTarget>()?.CanCollideWith(this, out dist);
+            if (ciwsTargetCompResult != null)
+            {
+                return ciwsTargetCompResult.Value;
+            }
+            dist = (thing.DrawPos.Yto0() - this.DrawPos.Yto0()).MagnitudeHorizontalSquared();
+            var collideDistance = CollideDistance;
+            if (dist < collideDistance * collideDistance)
+            {
+                dist = Mathf.Sqrt(dist);
+                return true;
+            }
+            return false;
+
+        }
+        public override void Impact(Thing hitThing)
+        {
+            hitThing?.TryGetComp<CompCIWSImpactHandler>()?.OnImpact(this, DamageInfo);
+            base.Impact(hitThing);
+        }
         protected override bool CheckForCollisionBetween()
         {
             return false;
