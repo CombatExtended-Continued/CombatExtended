@@ -80,9 +80,25 @@ namespace CombatExtended
             target = null;
             return false;
         }
-        protected virtual bool IsFriendlyTo(TargetType thing) => ((!thing.TryGetComp<CompCIWSTarget>()?.Props.alwaysIntercept) ?? false) && !thing.HostileTo(Caster);
+        protected virtual bool IsFriendlyTo(TargetType thing) => !thing.HostileTo(Caster);
         public abstract IEnumerable<TargetType> Targets { get; }
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && TryFindCEShootLineFromTo(Caster.Position, target, out _) && base.ValidateTarget(target, showMessages);
+    }
+    public abstract class VerbCIWS_Comp<TargetType> : VerbCIWS<Thing> where TargetType : CompCIWSTarget
+    {
+        public override IEnumerable<Thing> Targets => CompCIWSTarget.Targets<TargetType>(Caster.Map);
+        protected override bool IsFriendlyTo(Thing thing) => thing.TryGetComp<TargetType>()?.IsFriendlyTo(thing) ?? base.IsFriendlyTo(thing);
+        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.HasThing && target.Thing.HasComp<TargetType>() && base.ValidateTarget(target, showMessages);
+        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        {
+            if (targ.Thing?.TryGetComp<TargetType>()?.CalculatePointForPreemptiveFire(Projectile, root.ToVector3Shifted(), out var result, BurstWarmupTicksLeft) ?? false)
+            {
+                resultingLine = new ShootLine(root, result.ToIntVec3());
+                return true;
+            }
+            resultingLine = default;
+            return false;
+        }
     }
 
     public abstract class VerbProperties_CIWS : VerbPropertiesCE

@@ -6,17 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
-using Verse.Sound;
 
 namespace CombatExtended
 {
-    public class CompCIWSTarget : ThingComp
+    /// <summary>
+    /// Base class for third-party mods compatibility (if their skyfallers\projectiles needs custom targeting logic)
+    /// </summary>
+    public abstract class CompCIWSTarget : ThingComp
     {
         protected static Dictionary<Map, List<Thing>> CIWSTargets = new Dictionary<Map, List<Thing>>();
         public static IEnumerable<Thing> Targets(Map map)
         {
             CIWSTargets.TryGetValue(map, out var targets);
             return targets ?? Enumerable.Empty<Thing>();
+        }
+        public static IEnumerable<Thing> Targets<T>(Map map) where T : CompCIWSTarget
+        {
+            return Targets(map).Where(x=>x.HasComp<T>());
         }
 
         public CompProperties_CIWSTarget Props => props as CompProperties_CIWSTarget;
@@ -46,91 +52,23 @@ namespace CombatExtended
                 }
             }
         }
-        public virtual void OnImpact(ProjectileCE projectile, DamageInfo dinfo)
-        {
-            parent.Position = projectile.Position;
-            if (parent is IThingHolder pod)
-            {
-                var containedThings = pod.ContainedThings().ToList();
-
-                foreach (var thing in containedThings)
-                {
-                    if (thing is Building)
-                    {
-                        var leavingList = new List<Thing>();
-                        GenLeaving.DoLeavingsFor(thing, parent.Map, DestroyMode.KillFinalize, CellRect.CenteredOn(parent.Position, thing.def.size), listOfLeavingsOut: leavingList);
-                        continue;
-                    }
-                    TryDropThing(thing, projectile.Map, projectile.Position);
-                    if (thing is Pawn pawn)
-                    {
-                        pawn.TakeDamage(dinfo);
-                        if (!pawn.Dead)
-                        {
-                            pawn.Kill(dinfo);
-                        }
-                    }
-                    else
-                    {
-                        thing.HitPoints = Rand.RangeInclusive(1, thing.MaxHitPoints);
-                    }
-
-                }
-            }
-            if (!Props.impacted.NullOrUndefined())
-            {
-                Props.impacted.PlayOneShot(new TargetInfo(parent.DrawPos.ToIntVec3(), parent.Map));
-            }
-            parent.Destroy(DestroyMode.Vanish);
-        }
-        private Thing TryDropThing(Thing thing, Map map, IntVec3 position)
-        {
-            var contents = (parent as IActiveDropPod)?.Contents;
-            Rot4 rot = (contents?.setRotation != null) ? contents.setRotation.Value : Rot4.North;
-            if (contents?.moveItemsAsideBeforeSpawning ?? false)
-            {
-                GenSpawn.CheckMoveItemsAside(parent.Position, rot, thing.def, map);
-            }
-            Thing thing2;
-            if (contents?.spawnWipeMode == null)
-            {
-                GenPlace.TryPlaceThing(thing, position, map, ThingPlaceMode.Near, out thing2, null, null, rot);
-            }
-            else if (contents?.setRotation != null)
-            {
-                thing2 = GenSpawn.Spawn(thing, position, map, contents.setRotation.Value, contents.spawnWipeMode.Value, false, false);
-            }
-            else
-            {
-                thing2 = GenSpawn.Spawn(thing, position, map, contents.spawnWipeMode.Value);
-            }
-            Pawn pawn = thing2 as Pawn;
-            if (pawn != null)
-            {
-                if (pawn.RaceProps.Humanlike)
-                {
-                    TaleRecorder.RecordTale(TaleDefOf.LandedInPod, new object[]
-                    {
-                            pawn
-                    });
-                }
-            }
-            return thing2;
-        }
-        public virtual bool CalculatePointForPreemptiveFire(ThingDef projectile, Vector3 source, out Vector3 result, int tickOffset = 0)
-        {
-            result = Vector3.zero;
-            return false;
-        }
-
+        public abstract bool IsFriendlyTo(Thing thing);
+        public abstract bool CalculatePointForPreemptiveFire(ThingDef projectile, Vector3 source, out Vector3 result, int tickOffset = 0);
     }
     public class CompProperties_CIWSTarget : CompProperties
     {
-        public CompProperties_CIWSTarget()
+        public CompProperties_CIWSTarget(){}
+        public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
         {
-            compClass = typeof(CompCIWSTarget);
+            foreach (var item in base.ConfigErrors(parentDef))
+            {
+                yield return item;
+            }
+            if (!compClass.IsAssignableFrom(typeof(CompCIWSTarget)))
+            {
+                yield return "compClass must be the heir to class " + nameof(CompCIWSTarget);
+            }
         }
-        public SoundDef impacted;
         public bool alwaysIntercept;
     }
 }

@@ -29,15 +29,6 @@ namespace CombatExtended
         protected int maximumPredectionTicks = 40;
         public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {
-            var originV3 = Shooter.Position.ToVector3Shifted();
-            var targetComp = targ.Thing?.TryGetComp<CompCIWSTarget>();
-            var ticksToSkip = (int)verbProps.warmupTime;
-            if (targetComp != null)
-            {
-                var result = targetComp.CalculatePointForPreemptiveFire(Projectile, originV3, out var targetPos, ticksToSkip);
-                resultingLine = new ShootLine(originV3.ToIntVec3(), targetPos.ToIntVec3());
-                return result;
-            }
             resultingLine = default;
             return false;
         }
