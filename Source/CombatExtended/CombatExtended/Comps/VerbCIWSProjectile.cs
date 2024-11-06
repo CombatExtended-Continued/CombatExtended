@@ -30,7 +30,7 @@ namespace CombatExtended
                 return false;
             }
             var originV3 = Caster.Position.ToVector3Shifted();
-            var ticksToSkip = verbProps.warmupTime.SecondsToTicks();
+            var ticksToSkip = this.BurstWarmupTicksLeft;
             var instant = Projectile.projectile is ProjectilePropertiesCE CIWSProjectilePropertiesCE && CIWSProjectilePropertiesCE.isInstant;
             if (instant)
             {
@@ -68,6 +68,7 @@ namespace CombatExtended
                     if (CE_Utility.TryFindIntersectionPoint(ciwsPos1, ciwsPos2, targetPos1, targetPos2, out var point))
                     {
                         resultingLine = new ShootLine(Shooter.Position, point.ToVector3().ToIntVec3());
+                        Shooter.Map.debugDrawer.FlashLine(Shooter.Position, point.ToVector3().ToIntVec3(), 100, SimpleColor.Red);
                         return true;
                     }
                     targetPos1 = targetPos2;
