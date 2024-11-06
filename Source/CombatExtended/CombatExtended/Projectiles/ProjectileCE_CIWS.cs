@@ -11,7 +11,7 @@ using Verse.Sound;
 
 namespace CombatExtended
 {
-    internal class ProjectileCE_CIWS : ProjectileCE
+    public class ProjectileCE_CIWS : ProjectileCE
     {
         #region Caching
         protected static Dictionary<Map, List<ProjectileCE_CIWS>> CIWSProjectiles = new Dictionary<Map, List<ProjectileCE_CIWS>>();
