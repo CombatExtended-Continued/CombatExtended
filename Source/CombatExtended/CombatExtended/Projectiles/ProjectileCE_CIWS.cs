@@ -60,6 +60,10 @@ namespace CombatExtended
         protected override bool CanCollideWith(Thing thing, out float dist)
         {
             dist = 0f;
+            if (thing.Destroyed)
+            {
+                return false;
+            }
             if (!Rand.Chance(ImpactChance))
             {
                 return false;
