@@ -13,18 +13,15 @@ namespace CombatExtended
     {
         public AmmoDef ammo;
         public ThingDef projectile;
-        private ThingDef projectileCIWS;
 
         public AmmoLink() { }
 
-        public AmmoLink(AmmoDef ammo, ThingDef projectile, ThingDef CIWSProjectile = null)
+        public AmmoLink(AmmoDef ammo, ThingDef projectile)
         {
             this.ammo = ammo;
             this.projectile = projectile;
-            this.projectileCIWS = CIWSProjectile;
         }
 
-        public ThingDef CIWSProjectile => projectileCIWS ?? projectile;
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
             if (xmlRoot.ChildNodes.Count != 1)
