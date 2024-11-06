@@ -1457,11 +1457,6 @@ namespace CombatExtended
                 }
             }
 
-            var compCIWSTarget = hitThing?.TryGetComp<CompCIWSTarget>();
-            if (compCIWSTarget != null)
-            {
-                compCIWSTarget.OnImpact(this, DamageInfo);
-            }
             Destroy();
         }
         #endregion
