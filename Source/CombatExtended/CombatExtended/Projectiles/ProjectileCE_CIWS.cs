@@ -83,6 +83,7 @@ namespace CombatExtended
             return false;
 
         }
+        public override Vector3 DrawPos => ExactPosition.WithY(def.Altitude);
         public override void Impact(Thing hitThing)
         {
             hitThing?.TryGetComp<CompCIWSImpactHandler>()?.OnImpact(this, DamageInfo);
