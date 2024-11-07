@@ -1087,9 +1087,10 @@ namespace CombatExtended
 
 
 
-        // This is the ideal entry point for guided ammunition and rockets.
+
+        public virtual IEnumerable<Vector3> NextPositions => TrajectoryWorker.NextPositions(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, exactPosition, Destination, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, FlightTicks);
+        protected Vector3 MoveForward() => TrajectoryWorker.MoveForward(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, ExactPosition, ref Destination, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
         
-        public virtual IEnumerable<Vector3> NextPositions => (def.projectile as ProjectilePropertiesCE).NextPositions(shotRotation, shotAngle, origin, Destination, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, FlightTicks);
 
         #region Tick/Draw
         public override void Tick()
@@ -1101,7 +1102,7 @@ namespace CombatExtended
             }
             LastPos = ExactPosition;
             ticksToImpact--;
-            Vector3 nextPosition = (def.projectile as ProjectilePropertiesCE).MoveForward(shotRotation, shotAngle, origin, Destination, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
+            Vector3 nextPosition = MoveForward();
             if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
@@ -1372,7 +1373,7 @@ namespace CombatExtended
 
                 var suppressThings = new List<Pawn>();
                 float dangerAmount = 0f;
-                var dir = new float?(origin.AngleTo((def.projectile as ProjectilePropertiesCE).Vec2Position(origin, Destination, startingTicksToImpact, FlightTicks)));
+                var dir = new float?(origin.AngleTo(new Vector2(ExactPosition.x, ExactPosition.z)));
 
                 // Opt-out for things without explosionRadius
                 if (def.projectile.explosionRadius > 0f)
@@ -1462,6 +1463,7 @@ namespace CombatExtended
         #endregion
 
         #region Ballistics
+        public BaseTrajectoryWorker TrajectoryWorker => (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
         /// <summary>
         /// Calculated rounding to three decimales the output of h0 + v * sin(a0) * t - g/2 * t^2 with {h0 -> shotHeight, v -> shotSpeed, a0 -> shotAngle, t -> ticks/GenTicks.TicksPerRealSecond, g -> GravityFactor}. Called roughly each tick for impact checks and for drawing.
         /// </summary>
