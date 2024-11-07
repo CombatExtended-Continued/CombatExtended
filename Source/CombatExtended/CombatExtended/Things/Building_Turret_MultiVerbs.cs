@@ -45,6 +45,7 @@ namespace CombatExtended
         }
         public override LocalTargetInfo TryFindNewTarget()
         {
+            activeVerb = null;
             foreach (var verb in VerbsWithTargetSearcher)
             {
                 if (verb.TryFindNewTarget(out var target))
