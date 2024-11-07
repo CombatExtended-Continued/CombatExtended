@@ -47,7 +47,7 @@ namespace CombatExtended.HarmonyCE
 
                                                      // Only allow EMP or tox gas shells if explicitly allowed and relevant DLC is available
                                                      where allowEMP || (explosiveDamageDef != DamageDefOf.EMP && projectileDamageDef != DamageDefOf.EMP)
-                                                     where (allowToxGas && ModsConfig.BiotechActive) || (explosiveDamageDef != DamageDefOf.ToxGas &&
+                                                     where allowToxGas || !ModsConfig.BiotechActive || (explosiveDamageDef != DamageDefOf.ToxGas &&
                                                                                                          projectileDamageDef != DamageDefOf.ToxGas)
 
                                                      // No antigrain warheads
