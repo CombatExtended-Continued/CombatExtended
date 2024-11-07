@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace CombatExtended
             Vector2 origin,
             Vector3 exactPosition,
             ref Vector2 destination,
+            float tickToImpact,
             float startingTicksToImpact,
             float shotHeight,
             ref bool kinit,
@@ -40,6 +42,7 @@ namespace CombatExtended
             Vector3 exactPosition,
             Vector2 destination,
             float ticksToImpact,
+            float startingTicksToImpact,
             float shotHeight,
             bool kinit,
             Vector3 velocity,
@@ -54,8 +57,18 @@ namespace CombatExtended
         {
             for (; ticksToImpact >= 0; ticksToImpact--)
             {
-                yield return MoveForward(currentTarget, shotRotation, shotAngle, gravityFactor, origin, exactPosition, ref destination, ticksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
+                Log.Message($"{ticksToImpact}, {flightTicks}");
+                yield return MoveForward(currentTarget, shotRotation, shotAngle, gravityFactor, origin, exactPosition, ref destination, ticksToImpact, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
             }
+        }
+        public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
+        {
+            var sh = Mathf.Max(0f, (exactPosition.y) * 0.84f);
+            if (FlightTicks < ticksToTruePosition)
+            {
+                sh *= (float)FlightTicks / ticksToTruePosition;
+            }
+            return new Vector3(exactPosition.x, altitude, exactPosition.z + sh);
         }
     }
 }

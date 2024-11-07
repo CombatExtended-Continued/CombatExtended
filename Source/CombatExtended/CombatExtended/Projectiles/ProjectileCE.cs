@@ -208,20 +208,12 @@ namespace CombatExtended
             }
         }
 
-        public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition)
-        {
-            var sh = Mathf.Max(0f, (exactPosition.y) * 0.84f);
-                if (FlightTicks < ticksToTruePosition)
-                {
-                    sh *= (float)FlightTicks / ticksToTruePosition;
-                }
-            return new Vector3(exactPosition.x, def.Altitude, exactPosition.z + sh);
-        }
+        
         public override Vector3 DrawPos
         {
             get
             {
-                return ExactPosToDrawPos(ExactPosition);
+                return TrajectoryWorker.ExactPosToDrawPos(ExactPosition, FlightTicks, ticksToTruePosition, def.Altitude);
             }
         }
 
@@ -1088,8 +1080,8 @@ namespace CombatExtended
 
 
 
-        public virtual IEnumerable<Vector3> NextPositions => TrajectoryWorker.NextPositions(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, exactPosition, Destination, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, FlightTicks);
-        protected Vector3 MoveForward() => TrajectoryWorker.MoveForward(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, ExactPosition, ref Destination, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
+        public virtual IEnumerable<Vector3> NextPositions => TrajectoryWorker.NextPositions(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, exactPosition, Destination, ticksToImpact, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, FlightTicks);
+        protected Vector3 MoveForward() => TrajectoryWorker.MoveForward(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, ExactPosition, ref Destination, ticksToImpact, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
         
 
         #region Tick/Draw
@@ -1472,11 +1464,16 @@ namespace CombatExtended
                 return;
             }
             var previous = ExactPosition;
+            int sinceTicks = 1;
             foreach (var next in NextPositions)
             {
                 Map.debugDrawer.FlashLine(previous.ToIntVec3(), next.ToIntVec3(), 70, SimpleColor.Orange);
-                Map.debugDrawer.FlashLine(ExactPosToDrawPos(previous).ToIntVec3(), ExactPosToDrawPos(next).ToIntVec3(), 70, SimpleColor.Red);
+                Map.debugDrawer.FlashLine(
+                    TrajectoryWorker.ExactPosToDrawPos(next, FlightTicks + sinceTicks, (def.projectile as ProjectilePropertiesCE).TickToTruePos, def.Altitude).ToIntVec3(),
+                    TrajectoryWorker.ExactPosToDrawPos(previous, FlightTicks + sinceTicks -1, (def.projectile as ProjectilePropertiesCE).TickToTruePos, def.Altitude).ToIntVec3()
+                    , 70, SimpleColor.Red);
                 previous = next;
+                sinceTicks++;
             }
         }
         /// <summary>

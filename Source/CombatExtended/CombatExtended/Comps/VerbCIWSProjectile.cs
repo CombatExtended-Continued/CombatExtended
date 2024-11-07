@@ -49,8 +49,9 @@ namespace CombatExtended
             if (targetProjectile.def.projectile is ProjectilePropertiesCE targetProjectileProperties && Projectile.projectile is ProjectilePropertiesCE CIWS_ProjectileProperties)
             {
                 var targetPos1 = new Vector2(targetProjectile.Position.x, targetProjectile.Position.z);
-                foreach (var pos in targetProjectile.NextPositions.Skip(ticksToSkip).Select(x => targetProjectile.ExactPosToDrawPos(x)))
+                foreach (var exactPos in targetProjectile.NextPositions.Skip(ticksToSkip))
                 {
+                    var pos = targetProjectile.TrajectoryWorker.ExactPosToDrawPos(exactPos, targetProjectile.FlightTicks + ticksToSkip + i - 1, (targetProjectile.def.projectile as ProjectilePropertiesCE).TickToTruePos, targetProjectile.def.Altitude);
                     if (i > maximumPredectionTicks)
                     {
                         break;
@@ -58,7 +59,7 @@ namespace CombatExtended
                     ShiftTarget(report, false, instant, midBurst, i);
 
                     Vector2 originV2 = new Vector2(originV3.x, originV3.z), destinationV2 = new Vector2(pos.x, pos.z);
-                    var positions = CIWS_ProjectileProperties.TrajectoryWorker.NextPositions(targetProjectile, shotRotation, shotAngle, CIWS_ProjectileProperties.Gravity, originV2, Shooter.Position.ToVector3(), destinationV2, maximumPredectionTicks, ShotHeight, false, Vector3.zero, ShotSpeed, originV3, -1f, -1f, -1f, -1f, ShotSpeed, 0).Skip(i - 1).Take(2).ToList();
+                    var positions = CIWS_ProjectileProperties.TrajectoryWorker.NextPositions(targetProjectile, shotRotation, shotAngle, CIWS_ProjectileProperties.Gravity, originV2, Shooter.Position.ToVector3(), destinationV2, maximumPredectionTicks, maximumPredectionTicks, ShotHeight, false, Vector3.zero, ShotSpeed, originV3, -1f, -1f, -1f, -1f, ShotSpeed, 0).Skip(i - 1).Take(2).ToList();
                     if (positions.Count < 2)
                     {
                         resultingLine = default(ShootLine);

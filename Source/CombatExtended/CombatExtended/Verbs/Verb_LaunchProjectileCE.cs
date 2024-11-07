@@ -367,7 +367,7 @@ namespace CombatExtended
                 Vector3 v;
                 if (report.target.Thing is ProjectileCE projectile)
                 {
-                    v = projectile.ExactPosToDrawPos(projectile.NextPositions.ElementAtOrLast(sinceTicks));
+                    v = projectile.TrajectoryWorker.ExactPosToDrawPos(projectile.NextPositions.ElementAtOrLast(sinceTicks), projectile.FlightTicks + sinceTicks, (projectile.def.projectile as ProjectilePropertiesCE).TickToTruePos, projectile.def.Altitude);
                 }
                 else
                 {
@@ -584,7 +584,7 @@ namespace CombatExtended
                     }
                 }
                 angleRadians += lastShotAngle;
-            }
+                }
 
             // ----------------------------------- STEP 4: Mechanical variation
 
