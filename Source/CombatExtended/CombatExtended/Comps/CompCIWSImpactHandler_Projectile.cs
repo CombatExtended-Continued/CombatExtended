@@ -11,6 +11,7 @@ namespace CombatExtended
     {
         public override void OnImpact(ProjectileCE projectile, DamageInfo dinfo)
         {
+            projectile.ExactPosition = parent.DrawPos;
             base.OnImpact(projectile, dinfo);
         }
     }

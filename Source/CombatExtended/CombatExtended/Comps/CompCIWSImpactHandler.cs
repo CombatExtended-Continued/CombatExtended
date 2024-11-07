@@ -16,7 +16,6 @@ namespace CombatExtended
      
         public virtual void OnImpact(ProjectileCE projectile, DamageInfo dinfo)
         {
-            parent.Position = projectile.Position;
             if (!Props.impacted.NullOrUndefined())
             {
                 Props.impacted.PlayOneShot(new TargetInfo(parent.DrawPos.ToIntVec3(), parent.Map));
