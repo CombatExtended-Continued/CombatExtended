@@ -13,7 +13,7 @@ namespace CombatExtended
 {
     public abstract class VerbCIWS : Verb_ShootCE_CIWS, ITargetSearcher
     {
-
+        protected bool debug;
         protected bool holdFire;
 
         public VerbProperties_CIWS Props => verbProps as VerbProperties_CIWS;
@@ -49,6 +49,22 @@ namespace CombatExtended
         //}
         public virtual bool Active => !holdFire && Turret.Active;
         public abstract bool TryFindNewTarget(out LocalTargetInfo target);
+        public virtual void ShowTrajectories()
+        {
+            if (lastShootLine != null)
+            {
+                Caster.Map.debugDrawer.FlashLine(lastShootLine.Value.source, lastShootLine.Value.Dest, 60, SimpleColor.Green);
+            }
+        }
+        public override bool TryCastShot()
+        {
+            var result = base.TryCastShot();
+            if (result && debug)
+            {
+                ShowTrajectories();
+            }
+            return result;
+        }
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {

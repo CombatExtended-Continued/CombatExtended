@@ -1464,6 +1464,21 @@ namespace CombatExtended
 
         #region Ballistics
         public BaseTrajectoryWorker TrajectoryWorker => (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
+
+        public void DrawNextPositions()
+        {
+            if (Map == null)
+            {
+                return;
+            }
+            var previous = ExactPosition;
+            foreach (var next in NextPositions)
+            {
+                Map.debugDrawer.FlashLine(previous.ToIntVec3(), next.ToIntVec3(), 70, SimpleColor.Orange);
+                Map.debugDrawer.FlashLine(ExactPosToDrawPos(previous).ToIntVec3(), ExactPosToDrawPos(next).ToIntVec3(), 70, SimpleColor.Red);
+                previous = next;
+            }
+        }
         /// <summary>
         /// Calculated rounding to three decimales the output of h0 + v * sin(a0) * t - g/2 * t^2 with {h0 -> shotHeight, v -> shotSpeed, a0 -> shotAngle, t -> ticks/GenTicks.TicksPerRealSecond, g -> GravityFactor}. Called roughly each tick for impact checks and for drawing.
         /// </summary>
