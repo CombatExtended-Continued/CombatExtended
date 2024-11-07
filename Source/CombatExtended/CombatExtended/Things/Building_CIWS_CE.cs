@@ -34,5 +34,13 @@ namespace CombatExtended
                 return Enumerable.Empty<ThingDef>();
             }
         }
+        public override void Tick()
+        {
+            base.Tick();
+            if (CurrentTarget.IsValid && CurrentTarget.HasThing)
+            {
+                this.top.CurRotation = (CurrentTarget.Thing.DrawPos - this.DrawPos).AngleFlat();
+            }
+        }
     }
 }
