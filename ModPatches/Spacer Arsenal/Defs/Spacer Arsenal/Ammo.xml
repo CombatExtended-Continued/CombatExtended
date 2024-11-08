@@ -24,11 +24,9 @@
 		</projectile>
 	</ThingDef>
 	
-	<!--==============================================================================================================================================================
-		==============================================================================================================================================================
-		==============================================================================================================================================================-->
+	<!-- ==================== -->
 
-  <!--Plasma Blaster Ammo-->
+	<!-- Plasma Blaster Ammo -->
   
 	<ThingCategoryDef>
 		<defName>AmmoHotPlasmaCell</defName>
@@ -39,21 +37,21 @@
 
   <!-- ==================== Ammo Category ========================== -->
   
-  <CombatExtended.AmmoCategoryDef>
-    <defName>PlasmaBolt</defName>
-    <label>Plasma Bolt</label>
-    <description>A concentrated bolt of radiation, imparting disruptive energy into the target.</description>
-  </CombatExtended.AmmoCategoryDef>
+	<CombatExtended.AmmoCategoryDef>
+		<defName>PlasmaBolt</defName>
+		<label>Plasma Bolt</label>
+		<description>A concentrated bolt of radiation, imparting disruptive energy into the target.</description>
+	</CombatExtended.AmmoCategoryDef>
   
 	<!-- ==================== AmmoSet ========================== -->
 
-  <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_PlasmaBlaster</defName>
-    <label>Hot Plasma Cell</label>
-    <ammoTypes>
-      <Ammo_HotPlasmaCell>Bullet_Bolt_PlasmaBlaster</Ammo_HotPlasmaCell>
-    </ammoTypes>
-  </CombatExtended.AmmoSetDef>
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_PlasmaBlaster</defName>
+		<label>Hot Plasma Cell</label>
+		<ammoTypes>
+			<Ammo_HotPlasmaCell>Bullet_Bolt_PlasmaBlaster</Ammo_HotPlasmaCell>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
 
@@ -85,41 +83,40 @@
 			<MarketValue>0.69</MarketValue>
 		</statBases>
 		<ammoClass>PlasmaBolt</ammoClass>
-    <cookOffProjectile>Bullet_Bolt_PlasmaBlaster</cookOffProjectile>
+		<cookOffProjectile>Bullet_Bolt_PlasmaBlaster</cookOffProjectile>
 	</ThingDef>
 
-  <!-- ================== Projectiles ================== -->
+	<!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="BasePlasmaBlastBullet" ParentName="BaseBulletCE" Abstract="true">
-    <label>plasma bolt</label>
-    <graphicData>
-      <texPath>Things/Projectiles/Bullet_Plasma</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>TransparentPostLight</shaderType>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>CE_Laser</damageDef>
-      <speed>170</speed>
-      <dropsCasings>false</dropsCasings>
-    </projectile>
-  </ThingDef>
+	<ThingDef Name="BasePlasmaBlastBullet" ParentName="BaseBulletCE" Abstract="true">
+		<label>plasma bolt</label>
+		<graphicData>
+			<texPath>Things/Projectiles/Bullet_Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<speed>170</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
 
-
-  <ThingDef ParentName="BasePlasmaBlastBullet">
-    <defName>Bullet_Bolt_PlasmaBlaster</defName>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>5</damageAmountBase>
-      <armorPenetrationSharp>15</armorPenetrationSharp>
-      <armorPenetrationBlunt>5</armorPenetrationBlunt>
-      <secondaryDamage>
-        <li>
-          <def>Flame_Secondary</def>
-          <amount>17</amount>
-        </li>
-      </secondaryDamage>
-    </projectile>
-  </ThingDef>
+	<ThingDef ParentName="BasePlasmaBlastBullet">
+		<defName>Bullet_Bolt_PlasmaBlaster</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+			<armorPenetrationBlunt>5</armorPenetrationBlunt>
+			<secondaryDamage>
+			<li>
+				<def>Flame_Secondary</def>
+				<amount>17</amount>
+			</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -185,13 +182,10 @@
 		<workAmount>8400</workAmount>
 	</RecipeDef>
 	
-  	<!--==============================================================================================================================================================
-		==============================================================================================================================================================
-		==============================================================================================================================================================-->
+	<!-- ==================== -->
 
-  <!--Photon Blaster Ammo-->
+	<!--Photon Blaster Ammo-->
   
-
 	<ThingCategoryDef>
 		<defName>AmmoPhotonCell</defName>
 		<label>Photon Cell</label>
@@ -201,21 +195,21 @@
 
   <!-- ==================== Ammo Category ========================== -->
   
-  <CombatExtended.AmmoCategoryDef>
-    <defName>PhotonCell</defName>
-    <label>Photon Bolt</label>
-    <description>A concentrated bolt of radiation, imparting disruptive energy into the target.</description>
-  </CombatExtended.AmmoCategoryDef>
+	<CombatExtended.AmmoCategoryDef>
+		<defName>PhotonCell</defName>
+		<label>Photon Bolt</label>
+		<description>A concentrated bolt of radiation, imparting disruptive energy into the target.</description>
+	</CombatExtended.AmmoCategoryDef>
   
 	<!-- ==================== AmmoSet ========================== -->
 
-  <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_PhotonBlaster</defName>
-    <label>Photon charge</label>
-    <ammoTypes>
-      <Ammo_PhotonCell>Bullet_Bolt_PhotonBlaster</Ammo_PhotonCell>
-    </ammoTypes>
-  </CombatExtended.AmmoSetDef>
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_PhotonBlaster</defName>
+		<label>Photon charge</label>
+		<ammoTypes>
+			<Ammo_PhotonCell>Bullet_Bolt_PhotonBlaster</Ammo_PhotonCell>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
 
@@ -247,33 +241,33 @@
 			<MarketValue>0.69</MarketValue>
 		</statBases>
 		<ammoClass>PhotonCell</ammoClass>
-    <cookOffProjectile>Bullet_Bolt_PhotonBlaster</cookOffProjectile>
+	<cookOffProjectile>Bullet_Bolt_PhotonBlaster</cookOffProjectile>
 	</ThingDef>
 
   <!-- ================== Projectiles ================== -->
 
   <ThingDef Name="BasePhotonBoltBullet" ParentName="BaseBulletCE" Abstract="true">
-    <label>Photon Bullet</label>
-    <graphicData>
-      <texPath>Things/Projectiles/Bullet_Photon</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>TransparentPostLight</shaderType>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Photon</damageDef>
-      <speed>156</speed>
-      <dropsCasings>false</dropsCasings>
-    </projectile>
+	<label>Photon Bullet</label>
+	<graphicData>
+	  <texPath>Things/Projectiles/Bullet_Photon</texPath>
+	  <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>TransparentPostLight</shaderType>
+	</graphicData>
+	<projectile Class="CombatExtended.ProjectilePropertiesCE">
+	  <damageDef>Photon</damageDef>
+	  <speed>156</speed>
+	  <dropsCasings>false</dropsCasings>
+	</projectile>
   </ThingDef>
 
   <ThingDef ParentName="BasePhotonBoltBullet">
-    <defName>Bullet_Bolt_PhotonBlaster</defName>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Photon</damageDef>
-      <damageAmountBase>12</damageAmountBase>
-      <armorPenetrationSharp>10.5</armorPenetrationSharp>
-      <armorPenetrationBlunt>7</armorPenetrationBlunt>
-    </projectile>
+	<defName>Bullet_Bolt_PhotonBlaster</defName>
+	<projectile Class="CombatExtended.ProjectilePropertiesCE">
+	  <damageDef>Photon</damageDef>
+	  <damageAmountBase>12</damageAmountBase>
+	  <armorPenetrationSharp>10.5</armorPenetrationSharp>
+	  <armorPenetrationBlunt>7</armorPenetrationBlunt>
+	</projectile>
   </ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
@@ -317,10 +311,9 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-      <Ammo_PhotonCell>500</Ammo_PhotonCell>
+	  <Ammo_PhotonCell>500</Ammo_PhotonCell>
 		</products>
 		<workAmount>8400</workAmount>
 	</RecipeDef>
-  
-	
+
 </Defs>
