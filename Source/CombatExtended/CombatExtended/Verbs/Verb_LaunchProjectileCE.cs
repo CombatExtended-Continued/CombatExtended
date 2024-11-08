@@ -519,11 +519,12 @@ namespace CombatExtended
             }
             return targetHeight;
         }
+        protected virtual bool LockRotationAndAngle => numShotsFired > 0;
 
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, bool midBurst = false, int sinceTicks = 0)
+        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, int sinceTicks = 0)
         {
             if (!calculateMechanicalOnly)
             {
@@ -573,7 +574,7 @@ namespace CombatExtended
                 
                 var targetHeight = GetTargetHeight(report.target, report.cover, report.roofed, v, sinceTicks);
 
-                if (!midBurst)
+                if (!LockRotationAndAngle)
                 {
                     if (projectilePropsCE.isInstant)
                     {
@@ -594,7 +595,7 @@ namespace CombatExtended
             // ----------------------------------- STEP 5: Finalization
 
             var w = (newTargetLoc - sourceLoc);
-            if (!midBurst)
+            if (!LockRotationAndAngle)
             {
                 lastShotRotation = -90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x);
             }
@@ -1096,7 +1097,7 @@ namespace CombatExtended
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly, instant, midBurst, sinceTicks);
+                ShiftTarget(report, pelletMechanicsOnly, instant, sinceTicks);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
