@@ -32,6 +32,41 @@
 		</projectile>
 	</ThingDef>
 
+	<ThingDef ParentName="BaseFragGrenadeProjectile">
+		<defName>dvd_Projectile_RipperRack_CE</defName>
+		<label>ripper rack</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Grenade_RipperMechanites</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>20</speed>
+			<gravityFactor>3</gravityFactor>
+			<damageDef>dvd_RipperBomb</damageDef>
+			<damageAmountBase>50</damageAmountBase>
+			<dangerFactor>3.0</dangerFactor>
+			<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			<suppressionFactor>3.0</suppressionFactor>			
+			<explosionDelay>50</explosionDelay>
+			<explosionRadius>3.9</explosionRadius>
+			<filth>dvd_Filth_RipperMechanites</filth>
+			<filthCount>1</filthCount>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>dvd_Fleck_RipperMechanites_Random</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0</rotation>
+						<scale>0.5</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
 	<ThingDef ParentName="Base8x50mmChargedBullet">
 		<defName>dvd_SkipBolt_CE</defName>
 		<label>skipbolt</label>
@@ -52,14 +87,14 @@
 						<fleck>dvd_Fleck_ArchoPack_Main</fleck>
 						<emissionsPerTick>0.5</emissionsPerTick>
 						<rotation>0</rotation>
-						<scale>.5</scale>
+						<scale>0.5</scale>
 						<flecksPerEmission>1</flecksPerEmission>
 					</li>
 					<li>
 						<fleck>dvd_Fleck_ArchoPack_Smoke</fleck>
 						<emissionsPerTick>0.5</emissionsPerTick>
 						<rotation>0</rotation>
-						<scale>.5</scale>
+						<scale>0.5</scale>
 						<flecksPerEmission>1</flecksPerEmission>
 						<cutoffTickRange>120~240</cutoffTickRange>
 					</li>
