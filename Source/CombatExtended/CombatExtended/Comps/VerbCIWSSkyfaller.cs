@@ -22,6 +22,22 @@ namespace CombatExtended
         {
             return target.DrawPositions();
         }
+        public override Vector3 GetTargetLoc(LocalTargetInfo target, int sinceTicks)
+        {
+            if (target.Thing is Skyfaller skyfaller)
+            {
+                return skyfaller.DrawPosSinceTicks(sinceTicks);
+            }
+            return base.GetTargetLoc(target, sinceTicks);
+        }
+        public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc, int sinceTicks)
+        {
+            if (target.Thing is Skyfaller skyfaller)
+            {
+                return 0.5f * (skyfaller.ticksToImpact - sinceTicks);
+            }
+            return base.GetTargetHeight(target, cover, roofed, targetLoc, sinceTicks);
+        }
 
     }
     public class VerbProperties_CIWSSkyfaller : VerbProperties_CIWS
