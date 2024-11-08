@@ -1694,5 +1694,20 @@ namespace CombatExtended
             }
             return current;
         }
+        public static Vector3 DrawPosSinceTicks(this Skyfaller thing, int ticksAmount)
+        {
+            thing.ticksToImpact -= ticksAmount;
+            var result = thing.DrawPos;
+            thing.ticksToImpact += ticksAmount;
+            return result;
+        }
+        public static IEnumerable<Vector3> DrawPositions(this Skyfaller skyfaller)
+        {
+            int max = skyfaller.ticksToImpact;
+            for (int i = 1; i <= max; i++)
+            {
+                yield return skyfaller.DrawPosSinceTicks(i);            
+            }
+        }
     }
 }
