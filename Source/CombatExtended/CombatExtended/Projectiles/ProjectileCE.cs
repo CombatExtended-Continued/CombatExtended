@@ -38,7 +38,7 @@ namespace CombatExtended
         #endregion
 
         #region Drawing
-        protected int ticksToTruePosition;
+        public int ticksToTruePosition;
         #endregion
 
         #region Origin destination

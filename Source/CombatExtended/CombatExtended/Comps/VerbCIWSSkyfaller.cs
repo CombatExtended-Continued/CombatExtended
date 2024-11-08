@@ -18,6 +18,11 @@ namespace CombatExtended
         
         protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && thing.ContainedThings().All(x => !x.HostileTo(Caster));
 
+        protected override IEnumerable<Vector3> TargetNextPositions(Skyfaller target)
+        {
+            return target.DrawPositions();
+        }
+
     }
     public class VerbProperties_CIWSSkyfaller : VerbProperties_CIWS
     {
