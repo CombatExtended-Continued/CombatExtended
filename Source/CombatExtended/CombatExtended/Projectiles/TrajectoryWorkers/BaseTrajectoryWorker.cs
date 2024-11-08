@@ -57,7 +57,6 @@ namespace CombatExtended
         {
             for (; ticksToImpact >= 0; ticksToImpact--)
             {
-                Log.Message($"{ticksToImpact}, {flightTicks}");
                 yield return MoveForward(currentTarget, shotRotation, shotAngle, gravityFactor, origin, exactPosition, ref destination, ticksToImpact, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
             }
         }
