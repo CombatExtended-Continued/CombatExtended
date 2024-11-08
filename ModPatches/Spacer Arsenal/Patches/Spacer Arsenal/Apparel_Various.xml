@@ -34,27 +34,22 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="DV_ApparelArmorEnsignBase"]/MoveSpeed</xpath>
 		<value>
-			<equippedStatOffsets>
-				<CarryWeight>50</CarryWeight>
-				<CarryBulk>8</CarryBulk>
-				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
-			</equippedStatOffsets>
+			<CarryWeight>50</CarryWeight>
+			<CarryBulk>8</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="DV_ApparelArmorEnsignBase"]/apparel</xpath>
+		<xpath>Defs/ThingDef[@Name="DV_ApparelArmorEnsignBase"]/apparel/bodyPartGroups</xpath>
 		<value>
-			<bodyPartGroups>
-				<li>Hands</li>
-				<li>Feet</li>
-			</bodyPartGroups>
+			<li>Hands</li>
+			<li>Feet</li>
 		</value>
 	</Operation>
 
-
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="DV_Apparel_EnsignArmor"]</xpath>
+		<xpath>Defs/ThingDef[@Name="DV_ApparelArmorEnsignBase"]</xpath>
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
