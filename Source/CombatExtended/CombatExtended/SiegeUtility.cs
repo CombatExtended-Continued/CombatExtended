@@ -49,6 +49,11 @@ namespace CombatExtended
         public static void DropAdditionalShells(LordToil_Siege siege)
         {
             Lord lord = siege.lord;
+            bool allowToxGas = false;
+            if (ModsConfig.BiotechActive && lord.faction.def == FactionDefOf.PirateWaster)
+            {
+                allowToxGas = true;
+            }
 
             foreach (var artilleryDef in UniqueArtilleryDefs(siege))
             {
@@ -58,7 +63,7 @@ namespace CombatExtended
                 var shellDef = TurretGunUtility.TryFindRandomShellDef(
                     artilleryDef,
                     allowEMP: false,
-                    allowToxGas: false,
+                    allowToxGas: allowToxGas,
                     mustHarmHealth: true,
                     lord.faction.def.techLevel,
                     allowAntigrainWarhead: false,
