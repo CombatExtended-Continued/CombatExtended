@@ -16,6 +16,7 @@ namespace CombatExtended.HarmonyCE
             ThingDef turret,
             bool allowEMP,
             bool allowToxGas,
+            bool mustHarmHealth,
             TechLevel techLevel,
             bool allowAntigrainWarhead,
             ref ThingDef __result
@@ -49,6 +50,8 @@ namespace CombatExtended.HarmonyCE
                                                      where allowEMP || (explosiveDamageDef != DamageDefOf.EMP && projectileDamageDef != DamageDefOf.EMP)
                                                      where allowToxGas || !ModsConfig.BiotechActive || (explosiveDamageDef != DamageDefOf.ToxGas &&
                                                                                                          projectileDamageDef != DamageDefOf.ToxGas)
+                                                     // Filter non-damaging shells
+                                                     where !mustHarmHealth || projectileDamageDef.harmsHealth
 
                                                      // No antigrain warheads
                                                      where allowAntigrainWarhead || ammoDef != ThingDefOf.Shell_AntigrainWarhead
