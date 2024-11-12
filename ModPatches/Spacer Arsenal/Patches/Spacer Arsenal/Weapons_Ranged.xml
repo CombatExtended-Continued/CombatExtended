@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	
+	<!-- Tools -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="DV_Gun_ClashHMG" or
+			defName="DV_Gun_SonicStunner" or
+			defName="DV_Gun_BruteRifle" or
+			defName="DV_Gun_PhotonSMG" or
+			defName="DV_Gun_PlasmaBlaster" or
+			defName="DV_Gun_CoilgunLance"
+			]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Clash HMG -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_ClashHMG</defName>
+		<statBases>
+			<Bulk>25</Bulk>
+			<SwayFactor>2.07</SwayFactor>
+			<ShotSpread>0.07</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.33</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_145x114mm_FMJ</defaultProjectile>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<warmupTime>2.1</warmupTime>
+			<range>60</range>
+			<soundCast>Shot_Autocannon</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_145x114mm</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_MachineGun</li>
+			<li>CE_AI_LMG</li>
+		</weaponTags>
+	</Operation>
+  
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DV_Gun_ClashHMG"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+	
+	<!-- Coilgun Sniper -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_CoilgunLance</defName>
+		<statBases>
+			<Mass>4.0</Mass>
+			<Bulk>9.0</Bulk>
+			<SwayFactor>1.30</SwayFactor>
+			<ShotSpread>0.07</ShotSpread>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.09</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_CoilGunLance</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>60</range>
+			<soundCast>Shot_TurretSniper</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_8mmRailgun_CoilgunLance</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>False</aiUseBurstMode>
+		</FireModes>
+		<weaponTags>
+			<li>SpacerGun</li>
+			<li>Coilgun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Photon Blaster -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_PhotonSMG</defName>
+		<statBases>
+			<Mass>2.50</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>0.94</SwayFactor>
+			<Bulk>4.50</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.79</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Bolt_PhotonBlaster</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>DV_Shot_PhotonSMG</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>25</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_PhotonBlaster</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_SMG</li>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- Plasmer Blaster -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_PlasmaBlaster</defName>
+		<statBases>
+			<Mass>8.7</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.37</SwayFactor>
+			<Bulk>12.9</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.38</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Bolt_PlasmaBlaster</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>62</range>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>DV_Shot_PlasmaBlaster</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>40</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_PlasmaBlaster</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_MachineGun</li>
+			<li>CE_AI_LMG</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- Brute Rifle -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_BruteRifle</defName>
+		<statBases>
+			<Bulk>25</Bulk>
+			<SwayFactor>2.07</SwayFactor>
+			<ShotSpread>0.07</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.33</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+			<burstShotCount>4</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<warmupTime>2.1</warmupTime>
+			<range>40</range>
+			<soundCast>Shot_Autocannon</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_50BMG</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DV_Gun_BruteRifle"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+	
+</Patch>
