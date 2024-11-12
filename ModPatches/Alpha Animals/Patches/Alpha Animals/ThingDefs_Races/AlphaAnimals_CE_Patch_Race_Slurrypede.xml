@@ -50,6 +50,34 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AA_Slurrypede"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+						<parts>
+							<li>SightSensor</li>
+							<li>HearingSensor</li>
+							<li>SmellSensor</li>
+						</parts>
+					</li>
+					<li>
+						<useStatic>false</useStatic>
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+						<parts>
+							<li>SightSensor</li>
+							<li>HearingSensor</li>
+							<li>SmellSensor</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="AA_Slurrypede"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
