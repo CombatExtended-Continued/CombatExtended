@@ -208,7 +208,7 @@ namespace CombatExtended
                 var sh = Mathf.Max(0f, (ExactPosition.y) * 0.84f);
                 if (FlightTicks < ticksToTruePosition)
                 {
-                    sh *= FlightTicks / ticksToTruePosition;
+                    sh *= (float)FlightTicks / ticksToTruePosition;
                 }
                 return new Vector3(ExactPosition.x, def.Altitude, ExactPosition.z + sh);
             }
@@ -551,7 +551,9 @@ namespace CombatExtended
         /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
         /// <param name="equipment">The equipment used to fire the projectile.</param>
         /// <param name="distance">The distance to the estimated intercept point</param>
-        /// <param name="ticksToTruePosition">The number of ticks before the bullet is drawn at its true height instead of the muzzle height</param>
+        /// <remarks>
+        /// Note that the launcher may not be spawned at all, e.g. for projectiles launched by enemy bases as retaliation.
+        /// </remarks>
         public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
         {
             this.shotAngle = shotAngle;
@@ -565,7 +567,7 @@ namespace CombatExtended
                 this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
             }
-            if (shotHeight >= CollisionVertical.WallCollisionHeight && Position.Roofed(launcher.Map))
+            if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Spawned && Position.Roofed(launcher.Map))
             {
                 ignoreRoof = true;
             }
@@ -958,7 +960,7 @@ namespace CombatExtended
                 {
                     MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
                 }
-                if (!Rand.Chance(chance))
+                if (!Rand.ChanceSeeded(chance, thing.HashOffsetTicks()))
                 {
                     return false;
                 }
@@ -1258,7 +1260,7 @@ namespace CombatExtended
                     //TODO : EXPERIMENTAL Add edifice height
                     var shadowPos = new Vector3(ExactPosition.x,
                                                 def.Altitude - 0.001f,
-                                                ExactPosition.z - Mathf.Max(0f, ExactPosition.y));
+                                                ExactPosition.z);
                     //EXPERIMENTAL: + (new CollisionVertical(ExactPosition.ToIntVec3().GetEdifice(Map))).Max);
 
                     //TODO : Vary ShadowMat plane

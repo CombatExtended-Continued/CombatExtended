@@ -7,13 +7,6 @@
 		<parent>AmmoAdvanced</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
 	</ThingCategoryDef>
-	
-	<ThingCategoryDef>
-		<defName>AmmoOuterRimTranqDart</defName>
-		<label>tranquilizer darts</label>
-		<parent>AmmoAdvanced</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
-	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSets ========================== -->
 	
@@ -158,6 +151,17 @@
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_PlasmaGasCartridge_DualShot</defName>
+		<label>Dual Shot Plasma Gas Cartridges</label>
+		<ammoTypes>
+			<Ammo_PlasmaGasCartridge_Standard>Bullet_BlasterBolt_DualShot</Ammo_PlasmaGasCartridge_Standard>
+			<Ammo_PlasmaGasCartridge_AP>Bullet_BlasterBolt_DualShotAP</Ammo_PlasmaGasCartridge_AP>
+			<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterBolt_DualShotIon</Ammo_PlasmaGasCartridge_Ion>
+			<Ammo_PlasmaGasCartridge_Stun>Bullet_BlasterBolt_DualShotStun</Ammo_PlasmaGasCartridge_Stun>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_PlasmaGasCartridgeIon_Pistol</defName>
 		<label>Ionized Pistol Plasma Gas Cartridges</label>
 		<ammoTypes>
@@ -178,14 +182,6 @@
 		<label>Heavy Ionized Plasma Gas Cartridges</label>
 		<ammoTypes>
 			<Ammo_PlasmaGasCartridge_Ion>Bullet_BlasterSniper_Ion</Ammo_PlasmaGasCartridge_Ion>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_OuterRim_KnockoutDarts</defName>
-		<label>Knockout Darts</label>
-		<ammoTypes>
-			<Ammo_OuterRim_KnockoutDart>Bullet_OR_KnockoutDart</Ammo_OuterRim_KnockoutDart>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 	
@@ -266,25 +262,6 @@
 		<ammoClass>BlasterStun</ammoClass>
 		<generateAllowChance>0</generateAllowChance>
 		<cookOffProjectile>Bullet_BlasterPistol_Stun</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="PlasmaGasCartridgeBase">
-		<defName>Ammo_OuterRim_KnockoutDart</defName>
-		<description>A small durasteel dart with an integrated injector that's laden with an extremely potent and fast-acting anesthetic. Favoured by bounty hunters who want to bring their targets in alive.</description>
-		<label>Knockout Darts</label>
-		<graphicData>
-			<texPath>ThirdParty/StarWars/Ammo/KnockoutDart</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>3.00</MarketValue>
-		</statBases>
-		<thingCategories>
-			<li>AmmoOuterRimTranqDart</li>
-		</thingCategories>
-		<ammoClass>TranqNonLethal</ammoClass>
-		<generateAllowChance>0</generateAllowChance>
-		<cookOffProjectile>Bullet_OR_KnockoutDart</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -600,11 +577,11 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>8</damageAmountBase>
+			<damageAmountBase>4</damageAmountBase>
 			<secondaryDamage>
 				<li>
 					<def>EMP</def>
-					<amount>5</amount>
+					<amount>9</amount>
 				</li>
 			</secondaryDamage>
 			<empShieldBreakChance>0.2</empShieldBreakChance>
@@ -619,11 +596,11 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>12</damageAmountBase>
+			<damageAmountBase>6</damageAmountBase>
 			<secondaryDamage>
 				<li>
 					<def>EMP</def>
-					<amount>8</amount>
+					<amount>14</amount>
 				</li>
 			</secondaryDamage>
 			<empShieldBreakChance>0.33</empShieldBreakChance>
@@ -638,11 +615,11 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>14</damageAmountBase>
+			<damageAmountBase>7</damageAmountBase>
 			<secondaryDamage>
 				<li>
 					<def>EMP</def>
-					<amount>11</amount>
+					<amount>18</amount>
 				</li>
 			</secondaryDamage>
 			<empShieldBreakChance>0.66</empShieldBreakChance>
@@ -704,6 +681,75 @@
 			<armorPenetrationSharp>9</armorPenetrationSharp>
 			<pelletCount>12</pelletCount>
 			<spreadMult>15</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBlasterBolt_Rifle">
+		<defName>Bullet_BlasterBolt_DualShot</defName>
+		<graphicData>
+			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<armorPenetrationSharp>22</armorPenetrationSharp>
+			<pelletCount>2</pelletCount>
+			<spreadMult>4</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBlasterBolt_RifleAP">
+		<defName>Bullet_BlasterBolt_DualShotAP</defName>
+		<graphicData>
+			<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBlunt>4</armorPenetrationBlunt>
+			<armorPenetrationSharp>33</armorPenetrationSharp>
+			<pelletCount>2</pelletCount>
+			<spreadMult>4</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBlasterBolt_Rifle">
+		<defName>Bullet_BlasterBolt_DualShotIon</defName>
+		<graphicData>
+			<texPath>OuterRim/Projectile/BlasterBolt_Blue</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>18</amount>
+				</li>
+			</secondaryDamage>
+			<empShieldBreakChance>0.33</empShieldBreakChance>
+			<pelletCount>2</pelletCount>
+			<spreadMult>4</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBlasterBolt_Rifle">
+		<defName>Bullet_BlasterBolt_DualShotStun</defName>
+		<graphicData>
+			<texPath>OuterRim/Projectile/Proj_StunPulse</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Neuralizer</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>90</speed>
+			<pelletCount>2</pelletCount>
+			<spreadMult>4</spreadMult>
 		</projectile>
 	</ThingDef>
 	
@@ -1216,53 +1262,6 @@
 		</recipeUsers>
 		<products>
 			<Ammo_PlasmaGasCartridge_Stun>500</Ammo_PlasmaGasCartridge_Stun>
-		</products>
-		<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
-	</RecipeDef>
-
-	<RecipeDef ParentName="ChargeAmmoRecipeBase">
-		<defName>MakeAmmo_OuterRim_KnockoutDarts</defName>
-		<label>make knockout dart x5</label>
-		<description>Craft 5 knockout darts.</description>
-		<jobString>Making knockout darts.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>OuterRim_Durasteel</li>
-					</thingDefs>
-				</filter>
-				<count>30</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Neutroamine</li>
-					</thingDefs>
-				</filter>
-				<count>10</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>OuterRim_ComponentHypertech</li>
-					</thingDefs>
-				</filter>
-				<count>1</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>OuterRim_Durasteel</li>
-				<li>Neutroamine</li>
-				<li>OuterRim_ComponentHypertech</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<recipeUsers Inherit="False">
-			<li>OuterRim_HypertechFabricator</li>
-		</recipeUsers>
-		<products>
-			<Ammo_OuterRim_KnockoutDart>5</Ammo_OuterRim_KnockoutDart>
 		</products>
 		<researchPrerequisite>OuterRim_HypertechFabrication</researchPrerequisite>
 	</RecipeDef>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseExplosiveBullet" MayRequire="Ludeon.RimWorld.Anomaly">
+		<defName>dvd_grubpack_spit_CE</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>grub glob</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/GrubpackGlob</texPath>
+			<drawSize>(1.0,1.0)</drawSize>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>0</speed>
+			<useGraphicClass>True</useGraphicClass>
+			<shadowSize>1</shadowSize>
+			<spinRate>10</spinRate>
+			<flyOverhead>True</flyOverhead>
+			<gravityFactor>5</gravityFactor>
+			<damageDef>AcidBurn</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<explosionRadius>2.9</explosionRadius>
+			<soundExplode>SpitterSpitLands</soundExplode>
+			<filth>Filth_SpentAcid</filth>
+			<filthCount>1</filthCount>
+			<explosionEffect>Shell_AcidSpitImpact</explosionEffect>
+			<explosionEffectLifetimeTicks>60</explosionEffectLifetimeTicks>
+			<doExplosionVFX>false</doExplosionVFX>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseFragGrenadeProjectile">
+		<defName>dvd_Projectile_RipperRack_CE</defName>
+		<label>ripper rack</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Projectile/Grenade_RipperMechanites</texPath>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>20</speed>
+			<gravityFactor>3</gravityFactor>
+			<damageDef>dvd_RipperBomb</damageDef>
+			<damageAmountBase>50</damageAmountBase>
+			<dangerFactor>3.0</dangerFactor>
+			<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			<suppressionFactor>3.0</suppressionFactor>			
+			<explosionDelay>50</explosionDelay>
+			<explosionRadius>3.9</explosionRadius>
+			<filth>dvd_Filth_RipperMechanites</filth>
+			<filthCount>1</filthCount>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>dvd_Fleck_RipperMechanites_Random</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0</rotation>
+						<scale>0.5</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base8x50mmChargedBullet">
+		<defName>dvd_SkipBolt_CE</defName>
+		<label>skipbolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/ArchoPack_Bolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>dvd_SkipBolt</damageDef>
+			<damageAmountBase>26</damageAmountBase>
+			<armorPenetrationSharp>120</armorPenetrationSharp>
+			<armorPenetrationBlunt>120</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>dvd_Fleck_ArchoPack_Main</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0</rotation>
+						<scale>0.5</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>dvd_Fleck_ArchoPack_Smoke</fleck>
+						<emissionsPerTick>0.5</emissionsPerTick>
+						<rotation>0</rotation>
+						<scale>0.5</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>120~240</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

@@ -217,6 +217,11 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
                     return false;
                 }
 
+                if (potentialAmmo.IsBurning())
+                {
+                    return false;
+                }
+
                 if (potentialAmmo.IsForbidden(pawn) || !pawn.CanReserve(potentialAmmo))
                 {
                     return false;

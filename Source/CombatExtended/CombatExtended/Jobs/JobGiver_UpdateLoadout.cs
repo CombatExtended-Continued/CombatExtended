@@ -282,7 +282,7 @@ namespace CombatExtended
         {
             if (thing != null && thing.def.IsNutritionGivingIngestible)
             {
-                return pawn.foodRestriction.GetCurrentRespectedRestriction(pawn).Allows(thing);
+                return pawn.foodRestriction.GetCurrentRespectedRestriction(pawn)?.Allows(thing) ?? true; //better to ignore food restrictions than never pick up a meal
             }
             else
             {
