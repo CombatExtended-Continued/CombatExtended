@@ -36,13 +36,13 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_12mmRailgunIon_Lance</defName>
-		<label>12mm Railgun Ion(lance)</label>
+		<label>12mm Railgun Ion (Lance)</label>
 		<ammoTypes>
 			<Ammo_12mmRailgun_Ion>Bullet_12mmRailgun_Ion_Lance</Ammo_12mmRailgun_Ion>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- ==== incase the ability patch broke==== -->
+	<!-- ==== incase the ability patch broke ==== -->
 	
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_12mmRailgunIon_Blast</defName>
@@ -54,96 +54,71 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="IonRailGunBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun rifles. Features an ionized particle payload.</description>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+		</tradeTags>
+		<graphicData>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<thingCategories>
+			<li>AmmoRailgun_Ion</li>
+		</thingCategories>
+		<ammoClass>Ionized</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="IonRailGunBase">
 		<defName>Ammo_4mmRailgun_Ion</defName>
 		<label>4mm Railgun cartridge (Discharge)</label>
-		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun rifles. Features an ionized particle payload.</description>
 		<statBases>
 			<Mass>0.006</Mass>
 			<Bulk>0.008</Bulk>
 			<MarketValue>0.06</MarketValue>
 		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_FabricationBench</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoRailgun_Ion</li>
-		</thingCategories>
 		<graphicData>
 			<texPath>ThirdParty/VanillaXCOM/Railgun/EMP/Pistol</texPath>
-			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
-		<ammoClass>Ionized</ammoClass>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerAmmoBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="IonRailGunBase">
 		<defName>Ammo_6mmRailgun_Ion</defName>
 		<label>6mm Railgun cartridge (Discharge)</label>
-		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun rifles. Features an ionized particle payload.</description>
 		<statBases>
 			<Mass>0.008</Mass>
 			<Bulk>0.008</Bulk>
 			<MarketValue>0.08</MarketValue>
 		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_FabricationBench</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoRailgun_Ion</li>
-		</thingCategories>
 		<graphicData>
 			<texPath>ThirdParty/VanillaXCOM/Railgun/EMP/Rifle</texPath>
-			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
-		<ammoClass>Ionized</ammoClass>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerAmmoBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="IonRailGunBase">
 		<defName>Ammo_8mmRailgun_Ion</defName>
 		<label>8mm Railgun cartridge (Discharge)</label>
-		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun pistols. Features an ionized particle payload.</description>
 		<statBases>
 			<Mass>0.01</Mass>
 			<Bulk>0.01</Bulk>
 			<MarketValue>0.10</MarketValue>
 		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_FabricationBench</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoRailgun_Ion</li>
-		</thingCategories>
 		<graphicData>
 			<texPath>ThirdParty/VanillaXCOM/Railgun/EMP/Rifle</texPath>
-			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
-		<ammoClass>Ionized</ammoClass>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerAmmoBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="IonRailGunBase">
 		<defName>Ammo_12mmRailgun_Ion</defName>
 		<label>12mm Railgun cartridge (Discharge)</label>
-		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun pistols. Features an ionized particle payload.</description>
 		<statBases>
 			<Mass>0.012</Mass>
 			<Bulk>0.01</Bulk>
 			<MarketValue>0.12</MarketValue>
 		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_FabricationBench</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoRailgun_Ion</li>
-		</thingCategories>
 		<graphicData>
 			<texPath>ThirdParty/VanillaXCOM/Railgun/EMP/HighCaliber</texPath>
-			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
-		<ammoClass>Ionized</ammoClass>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
