@@ -519,6 +519,10 @@ namespace CombatExtended
             return targetHeight;
         }
         protected virtual bool LockRotationAndAngle => numShotsFired > 0;
+        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, bool midBurst = false)
+        {
+            ShiftTarget(report, report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(), calculateMechanicalOnly, isInstant);
+        }
 
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
@@ -535,7 +539,7 @@ namespace CombatExtended
                     // On first shot of burst do a range estimate
                     estimatedTargDist = report.GetRandDist();
                 }
-                
+
 
                 if (report.targetPawn != null)
                 {
@@ -569,13 +573,13 @@ namespace CombatExtended
                 GetRecoilVec(ref rotationDegrees, ref angleRadians);
 
                 // Height difference calculations for ShotAngle
-                
+
                 var targetHeight = GetTargetHeight(report.target, report.cover, report.roofed, v);
 
                 if (!LockRotationAndAngle)
                 {
                     lastShotAngle = ShotAngle(u.WithY(ShotHeight), newTargetLoc.ToVector3().WithY(targetHeight));
-                    }
+                }
                 angleRadians += lastShotAngle;
             }
 
@@ -1105,10 +1109,10 @@ namespace CombatExtended
             else // We cannot hit the current target
             {
                 if (!KeepBurstOnNoShootLine(suppressing, out shootLine))
-                        {
-                            return false;
-                        }
-                    }
+                {
+                    return false;
+                }
+            }
             if (projectilePropsCE.pelletCount < 1)
             {
                 Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
