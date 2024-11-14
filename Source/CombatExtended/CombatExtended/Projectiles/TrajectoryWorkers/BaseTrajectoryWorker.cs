@@ -11,6 +11,7 @@ namespace CombatExtended
 {
     public abstract class BaseTrajectoryWorker
     {
+        public abstract float DistanceTraveled(float shotHeight, float shotSpeed, float shotAngle, float GravityFactor);
         public abstract Vector3 MoveForward(
             LocalTargetInfo currentTarget,
             float shotRotation,
@@ -69,5 +70,7 @@ namespace CombatExtended
             }
             return new Vector3(exactPosition.x, altitude, exactPosition.z + sh);
         }
+        public virtual Vector2 Destination(Vector2 origin, float shotRotation, float shotHeight, float shotSpeed, float shotAngle, float GravityFactor) => origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
+        public abstract float GetFlightTime(float shotAngle, float shotSpeed, float GravityFactor, float shotHeight);
     }
 }

@@ -590,7 +590,7 @@ namespace CombatExtended
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
             }
-            this.startingTicksToImpact = GetFlightTime() * GenTicks.TicksPerRealSecond;
+            this.startingTicksToImpact = TrajectoryWorker.GetFlightTime(shotAngle, shotSpeed, GravityFactor, shotHeight) * GenTicks.TicksPerRealSecond;
             this.ticksToImpact = Mathf.CeilToInt(this.startingTicksToImpact);
             this.ExactPosition = this.LastPos = new Vector3(origin.x, shotHeight, origin.y);
 
@@ -1494,11 +1494,7 @@ namespace CombatExtended
         /// <param name="angle">Shot angle in radians off the ground.</param>
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Time in seconds that the projectile will take to traverse the given arc.</returns>
-        protected float GetFlightTime()
-        {
-            //Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
-            return (Mathf.Sin(shotAngle) * shotSpeed + Mathf.Sqrt(Mathf.Pow(Mathf.Sin(shotAngle) * shotSpeed, 2f) + 2f * GravityFactor * shotHeight)) / GravityFactor;
-        }
+        
 
         /// <summary>
         /// Calculates the range reachable with a projectile of speed <i>velocity</i> fired at <i>angle</i> from height <i>shotHeight</i>. Does not take into account air resistance.
@@ -1507,7 +1503,7 @@ namespace CombatExtended
         /// <param name="angle">Shot angle in radians off the ground.</param>
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Distance in cells that the projectile will fly at the given arc.</returns>
-        protected float DistanceTraveled => CE_Utility.MaxProjectileRange(shotHeight, shotSpeed, shotAngle, GravityFactor);
+        protected float DistanceTraveled => TrajectoryWorker.DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
 
         /// <summary>
         /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.
