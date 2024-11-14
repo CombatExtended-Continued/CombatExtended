@@ -51,7 +51,7 @@ namespace CombatExtended
             }
         }
 
-        private bool ShouldAim
+        protected virtual bool ShouldAim
         {
             get
             {

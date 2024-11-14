@@ -47,6 +47,7 @@ namespace CombatExtended
         //        };
         //    }
         //}
+        protected override bool ShouldAim => false;
         public virtual bool Active => !holdFire && Turret.Active;
         protected override bool LockRotationAndAngle => false;
         public abstract bool TryFindNewTarget(out LocalTargetInfo target);
