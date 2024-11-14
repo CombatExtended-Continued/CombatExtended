@@ -84,6 +84,7 @@ namespace CombatExtended
 
         }
 
+        protected override bool ShouldCollideWithSomething => ExactPosition.y <= 0f;
         public override void Impact(Thing hitThing)
         {
             hitThing?.TryGetComp<CompCIWSImpactHandler>()?.OnImpact(this, DamageInfo);

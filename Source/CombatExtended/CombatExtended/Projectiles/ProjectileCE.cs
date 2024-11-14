@@ -1083,7 +1083,7 @@ namespace CombatExtended
         public virtual IEnumerable<Vector3> NextPositions => TrajectoryWorker.NextPositions(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, exactPosition, Destination, ticksToImpact, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, FlightTicks);
         protected Vector3 MoveForward() => TrajectoryWorker.MoveForward(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, ExactPosition, ref Destination, ticksToImpact, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
         
-
+        protected virtual bool ShouldCollideWithSomething => (lerpPosition && ticksToImpact <= 0) || ExactPosition.y <= 0f;
         #region Tick/Draw
         public override void Tick()
         {
@@ -1139,7 +1139,7 @@ namespace CombatExtended
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }
             //TODO : It appears that the final steps in the arc (past ticksToImpact == 0) don't CheckForCollisionBetween.
-            if ((lerpPosition && ticksToImpact <= 0) || nextPosition.y <= 0f)
+            if (ShouldCollideWithSomething)
             {
                 ImpactSomething();
                 return;
