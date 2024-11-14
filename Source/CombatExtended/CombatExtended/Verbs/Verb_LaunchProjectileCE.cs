@@ -31,7 +31,6 @@ namespace CombatExtended
         // Targeting factors
         private float estimatedTargDist = -1;           // Stores estimate target distance for each burst, so each burst shot uses the same
         protected int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
-        protected int sinceTicks = 0;
 
         // Angle in Vector2(degrees, radians)        
         protected Vector2 newTargetLoc = new Vector2(0, 0);
@@ -353,7 +352,7 @@ namespace CombatExtended
         {
             return target.Thing?.TrueCenter() ?? target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
         }
-        public virtual float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc, int sinceTicks)
+        public virtual float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
         {
             float targetHeight = 0f;
 
@@ -524,7 +523,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, int sinceTicks = 0)
+        public virtual void ShiftTarget(ShiftVecReport report, Vector3 v, bool calculateMechanicalOnly = false, bool isInstant = false)
         {
             if (!calculateMechanicalOnly)
             {
@@ -536,7 +535,6 @@ namespace CombatExtended
                     // On first shot of burst do a range estimate
                     estimatedTargDist = report.GetRandDist();
                 }
-                Vector3 v = GetTargetLoc(report.target, sinceTicks);
                 
 
                 if (report.targetPawn != null)
@@ -572,19 +570,12 @@ namespace CombatExtended
 
                 // Height difference calculations for ShotAngle
                 
-                var targetHeight = GetTargetHeight(report.target, report.cover, report.roofed, v, sinceTicks);
+                var targetHeight = GetTargetHeight(report.target, report.cover, report.roofed, v);
 
                 if (!LockRotationAndAngle)
                 {
-                    if (projectilePropsCE.isInstant)
-                    {
-                        lastShotAngle = Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+                    lastShotAngle = ShotAngle(u.WithY(ShotHeight), newTargetLoc.ToVector3().WithY(targetHeight));
                     }
-                    else
-                    {
-                        lastShotAngle = ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
-                    }
-                }
                 angleRadians += lastShotAngle;
             }
 
@@ -594,16 +585,49 @@ namespace CombatExtended
             Vector2 spreadVec = (projectilePropsCE.isInstant && projectilePropsCE.damageFalloff) ? new Vector2(0, 0) : report.GetRandSpreadVec();
             // ----------------------------------- STEP 5: Finalization
 
-            var w = (newTargetLoc - sourceLoc);
             if (!LockRotationAndAngle)
             {
-                lastShotRotation = -90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x);
+                lastShotRotation = ShotRotation(newTargetLoc.ToVector3());
             }
             shotRotation = (lastShotRotation + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
             distance = (newTargetLoc - sourceLoc).magnitude;
         }
-
+        protected float ShotAngle(Vector3 targetPos)
+        {
+            return ShotAngle(caster.TrueCenter().WithY(ShotHeight), targetPos);
+        }
+        /// <summary>
+        /// Shot angle in radians
+        /// </summary>
+        /// <param name="source">Source shot, including shot height</param>
+        /// <param name="targetPos">Target position, including target height</param>
+        /// <returns>angle in radians</returns>
+        protected virtual float ShotAngle(Vector3 source, Vector3 targetPos)
+        {
+            var targetHeight = targetPos.y;
+            if (projectilePropsCE.isInstant)
+            {
+                return Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
+            }
+            else
+            {
+                return ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+            }
+        }
+        protected float ShotRotation(Vector3 targetPos)
+        {
+            return ShotRotation(Caster.TrueCenter(), targetPos);
+        }
+        /// <summary>
+        /// Rotation in degrees
+        /// </summary>
+        /// <returns>rotation in degrees</returns>
+        protected virtual float ShotRotation(Vector3 source, Vector3 targetPos)
+        {
+            var w = targetPos - source;
+            return -90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x);
+        }
         /// <summary>
         /// Calculates the amount of recoil at a given point in a burst, up to a maximum
         /// </summary>
@@ -640,7 +664,10 @@ namespace CombatExtended
 
         public virtual ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)
         {
-            IntVec3 targetCell = target.Cell;
+            return ShiftVecReportFor(target, target.Cell);
+        }
+        public virtual ShiftVecReport ShiftVecReportFor(LocalTargetInfo target, IntVec3 targetCell)
+        {
             ShiftVecReport report = new ShiftVecReport();
 
             report.target = target;
@@ -782,7 +809,10 @@ namespace CombatExtended
             for (int i = 0; i < endCell; i++)
             {
                 var cell = cells[i];
-
+                if (!cell.InBounds(map))
+                {
+                    continue;
+                }
                 if (cell.AdjacentTo8Way(caster.Position))
                 {
                     continue;
@@ -1003,7 +1033,43 @@ namespace CombatExtended
             return startedCasting;
         }
 
-
+        protected virtual bool KeepBurstOnNoShootLine(bool suppressing, out ShootLine shootLine)
+        {
+            shootLine = (ShootLine)lastShootLine;
+            if (LockRotationAndAngle) // Case 2,3,6,7
+            {
+                if (VerbPropsCE.interruptibleBurst && !suppressing) // Case 2, 6
+                {
+                    return false;
+                }
+                // Case 3, 7
+                if (lastShootLine == null)
+                {
+                    return false;
+                }
+                shootLine = (ShootLine)lastShootLine;
+                currentTarget = new LocalTargetInfo(lastTargetPos);
+            }
+            else // case 4,5,8
+            {
+                if (suppressing) // case 4,5
+                {
+                    if (currentTarget.IsValid && !currentTarget.ThingDestroyed)
+                    {
+                        lastShootLine = shootLine = new ShootLine(caster.Position, currentTarget.Cell);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         /// <summary>
         /// Fires a projectile using the new aiming system
         /// </summary>
@@ -1011,7 +1077,6 @@ namespace CombatExtended
         public override bool TryCastShot()
         {
             Retarget();
-            sinceTicks = 0;
             repeating = true;
             doRetarget = true;
             storedShotReduction = null;
@@ -1039,39 +1104,11 @@ namespace CombatExtended
             }
             else // We cannot hit the current target
             {
-                if (midBurst) // Case 2,3,6,7
-                {
-                    if (props.interruptibleBurst && !suppressing) // Case 2, 6
-                    {
-                        return false;
-                    }
-                    // Case 3, 7
-                    if (lastShootLine == null)
-                    {
-                        return false;
-                    }
-                    shootLine = (ShootLine)lastShootLine;
-                    currentTarget = new LocalTargetInfo(lastTargetPos);
-                }
-                else // case 4,5,8
-                {
-                    if (suppressing) // case 4,5
-                    {
-                        if (currentTarget.IsValid && !currentTarget.ThingDestroyed)
-                        {
-                            lastShootLine = shootLine = new ShootLine(caster.Position, currentTarget.Cell);
-                        }
-                        else
+                if (!KeepBurstOnNoShootLine(suppressing, out shootLine))
                         {
                             return false;
                         }
                     }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
             if (projectilePropsCE.pelletCount < 1)
             {
                 Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
@@ -1089,15 +1126,15 @@ namespace CombatExtended
                 spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * pprop.spreadMult;
                 aperatureSize = 0.03f;
             }
-
-            ShiftVecReport report = ShiftVecReportFor(currentTarget);
+            Vector3 targetLoc = currentTarget.Thing is Pawn ? currentTarget.Thing.TrueCenter() : shootLine.Dest.ToVector3Shifted();
+            ShiftVecReport report = ShiftVecReportFor(currentTarget, targetLoc.ToIntVec3());
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly, instant, sinceTicks);
+                ShiftTarget(report, targetLoc, pelletMechanicsOnly, instant);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;

@@ -92,6 +92,12 @@ namespace CombatExtended
             }
             return result;
         }
+        protected override bool KeepBurstOnNoShootLine(bool suppressing, out ShootLine shootLine)
+        {
+            shootLine = lastShootLine.HasValue ? lastShootLine.Value : default;
+            return !currentTarget.ThingDestroyed;
+    }
+
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {

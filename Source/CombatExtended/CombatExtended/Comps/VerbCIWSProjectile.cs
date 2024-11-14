@@ -34,13 +34,13 @@ namespace CombatExtended
             }
             return base.GetTargetLoc(tagret, sinceTicks);
         }
-        public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc, int sinceTicks)
+        public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
         {
             if (target.Thing is ProjectileCE projectile)
             {
                 return targetLoc.y;
             }
-            return base.GetTargetHeight(target, cover, roofed, targetLoc, sinceTicks);
+            return base.GetTargetHeight(target, cover, roofed, targetLoc);
         }
         protected override IEnumerable<Vector3> TargetNextPositions(ProjectileCE target)
         {
