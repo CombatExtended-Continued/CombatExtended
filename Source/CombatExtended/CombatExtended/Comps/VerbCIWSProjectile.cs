@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
-using static UnityEngine.UI.Image;
 
 namespace CombatExtended
 {
@@ -47,7 +46,7 @@ namespace CombatExtended
             int tickOffset = 1;
             foreach (var exactPos in target.NextPositions)
             {
-                yield return target.TrajectoryWorker.ExactPosToDrawPos(exactPos, target.FlightTicks + tickOffset, target.ticksToTruePosition, target.def.Altitude);
+                yield return target.TrajectoryWorker.ExactPosToDrawPos(exactPos, target.FlightTicks + tickOffset, target.ticksToTruePosition, target.def.Altitude).WithY(exactPos.y);
                 tickOffset++;
             }
         }
