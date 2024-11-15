@@ -30,13 +30,13 @@ namespace CombatExtended
             }
             return base.GetTargetLoc(target, sinceTicks);
         }
-        public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc, int sinceTicks)
+        public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
         {
             if (target.Thing is Skyfaller skyfaller)
             {
-                return 0.5f * (skyfaller.ticksToImpact - sinceTicks);
+                return 0.5f * (skyfaller.ticksToImpact);
             }
-            return base.GetTargetHeight(target, cover, roofed, targetLoc, sinceTicks);
+            return base.GetTargetHeight(target, cover, roofed, targetLoc);
         }
 
     }
