@@ -151,7 +151,7 @@ namespace CombatExtended
             }
             var midBurst = numShotsFired > 0;
             var originV3 = Caster.Position.ToVector3Shifted();
-            var ticksToSkip = this.BurstWarmupTicksLeft;
+            var ticksToSkip = (Caster as Building_TurretGunCE)?.CurrentTarget.IsValid ?? CurrentTarget.IsValid ? this.BurstWarmupTicksLeft : VerbPropsCE.warmupTime.SecondsToTicks();
             var instant = projectilePropsCE.isInstant;
             if (instant)
             {
