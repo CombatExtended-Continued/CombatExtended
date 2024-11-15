@@ -58,13 +58,18 @@ namespace CombatExtended
                 Caster.Map.debugDrawer.FlashLine(lastShootLine.Value.source, lastShootLine.Value.Dest, 60, SimpleColor.Green);
             }
         }
-        protected (Vector2 firstPos, Vector2 secondPos) PositionOfCIWSProjectile(int sinceTicks, Vector2 destination, bool drawPos = false)
+        protected (Vector2 firstPos, Vector2 secondPos) PositionOfCIWSProjectile(int sinceTicks, Vector3 targetPos, bool drawPos = false)
         {
             var firstPos = Caster.Position.ToVector3Shifted();
             var secondPos = firstPos;
             var originV3 = firstPos;
             var originV2 = new Vector2(originV3.x, originV3.z);
-            var enumeration = projectilePropsCE.TrajectoryWorker.NextPositions(currentTarget, shotRotation, shotAngle, projectilePropsCE.Gravity, originV2, this.Caster.Position.ToVector3Shifted(), destination, maximumPredectionTicks, maximumPredectionTicks, ShotHeight, false, Vector3.zero, ShotSpeed, originV3, -1f, -1f, -1f, -1f, ShotSpeed, 0).GetEnumerator();
+            var shotAngle = ShotAngle(targetPos);
+            var shotRotation = ShotRotation(targetPos);
+
+            var destination = projectilePropsCE.TrajectoryWorker.Destination(originV2, shotRotation, ShotHeight, ShotSpeed, shotAngle, projectilePropsCE.Gravity);
+            var flightTime = projectilePropsCE.TrajectoryWorker.GetFlightTime(shotAngle, ShotSpeed, projectilePropsCE.Gravity, ShotHeight) * GenTicks.TicksPerRealSecond;
+            var enumeration = projectilePropsCE.TrajectoryWorker.NextPositions(currentTarget, shotRotation, shotAngle, projectilePropsCE.Gravity, originV2, this.Caster.Position.ToVector3Shifted(), destination, (int)flightTime, flightTime, ShotHeight, false, Vector3.zero, ShotSpeed, originV3, -1f, -1f, -1f, -1f, ShotSpeed, 0).GetEnumerator();
             for (int i = 1; i <= sinceTicks; i++)
             {
                 firstPos = secondPos;
@@ -160,7 +165,6 @@ namespace CombatExtended
                 return true;
             }
             int i = 1;
-            var report = ShiftVecReportFor(targetInfo);
 
             var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
             foreach (var pos in TargetNextPositions(target).Skip(ticksToSkip))
@@ -169,23 +173,21 @@ namespace CombatExtended
                 {
                     break;
                 }
-                ShiftTarget(report, false, instant, midBurst, i);
 
-                Vector2 originV2 = new Vector2(originV3.x, originV3.z), destinationV2 = new Vector2(pos.x, pos.z);
+                Vector2 originV2 = new Vector2(originV3.x, originV3.z);
 
-                var positions = PositionOfCIWSProjectile(i, destinationV2);
-                if (positions.firstPos == positions.secondPos)
-                {
-                    resultingLine = default(ShootLine);
-                    return false;
-                }
+                var positions = PositionOfCIWSProjectile(i, pos, true);
+                //if (positions.firstPos == positions.secondPos) //Not sure why, but sometimes this code drops calculations on i = 1
+                //{
+                //    resultingLine = default(ShootLine);
+                //    return false;
+                //}
                 Vector2 ciwsPos1 = positions.firstPos, ciwsPos2 = positions.secondPos, targetPos2 = new Vector2(pos.x, pos.z);
 
                 if (CE_Utility.TryFindIntersectionPoint(ciwsPos1, ciwsPos2, targetPos1, targetPos2, out var point))
                 {
-                    resultingLine = new ShootLine(Shooter.Position, point.ToVector3().ToIntVec3());
+                    resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)point.x, (int)pos.y, (int)point.y));
 
-                    this.sinceTicks = i;
                     return true;
                 }
                 targetPos1 = targetPos2;
