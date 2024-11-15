@@ -610,6 +610,7 @@ namespace CombatExtended
         protected virtual float ShotAngle(Vector3 source, Vector3 targetPos)
         {
             var targetHeight = targetPos.y;
+            var newTargetLoc = new Vector2(targetPos.x, targetPos.z);
             if (projectilePropsCE.isInstant)
             {
                 return Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
