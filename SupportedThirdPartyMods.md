@@ -254,6 +254,7 @@ Glitter Tech	|
 Glitter Weaponry	|
 Gloomy Dragonian Race	|
 GouRIMet	|
+GREG	|
 Grimstone Beasts   |
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
