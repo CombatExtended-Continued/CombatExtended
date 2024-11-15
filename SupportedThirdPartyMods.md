@@ -445,6 +445,7 @@ RimCities   |
 RimFantasy - Medieval Overhaul Edition   |
 RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
+Rimrats |
 RimNauts 2 |
 RimSec Security |
 Rimsenal - Core |
