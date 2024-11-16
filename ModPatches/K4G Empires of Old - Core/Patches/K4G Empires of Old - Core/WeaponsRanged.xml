@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- ========== Tools ========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -8,7 +9,9 @@
 		defName="K4G_Gun_Bolter" or
 		defName="K4G_Gun_AdvancedAutopistol" or
 		defName="K4G_Gun_PrecisionPistol" or
-		defName="K4G_Gun_ComradePistol"
+		defName="K4G_Gun_ComradePistol" or
+		defName="K4G_Gun_Shortbarrel" or
+		defName="K4G_Gun_Nailgun"
 		]/tools</xpath>
 		<value>
 			<tools>
@@ -45,8 +48,8 @@
 		defName="K4G_Gun_HeavyShotgun" or
 		defName="K4G_Gun_LightSMG" or
 		defName="K4G_Gun_AdvancedSMG" or
-		defName="K4G_Gun_CompactRifle" or
-		defName="K4G_Gun_BattleRifle"
+		defName="K4G_Gun_BattleRifle" or
+		defName="K4G_Gun_DrumRifle"
 		]/tools</xpath>
 		<value>
 			<tools>
@@ -83,6 +86,12 @@
 				</li>
 			</tools>
 		</value>
+	</Operation>
+
+	<!-- ========== Remove Brawler ========== -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="K4G_Gun_Brawler"]</xpath>
 	</Operation>
 
 	<!-- ========== Snubgun ========== -->
@@ -507,43 +516,6 @@
 		</FireModes>
 	</Operation>
 
-	<!-- ========== Compact Rifle (M4A1) ========== -->
-
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>K4G_Gun_CompactRifle</defName>
-		<statBases>
-			<Mass>2.90</Mass>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.00</SightsEfficiency>
-			<ShotSpread>0.1</ShotSpread>
-			<SwayFactor>1.13</SwayFactor>
-			<Bulk>7.56</Bulk>
-		</statBases>
-		<Properties>
-			<recoilAmount>1.58</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-			<warmupTime>1.1</warmupTime>
-			<range>55</range>
-			<burstShotCount>6</burstShotCount>
-			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-			<soundCast>Shot_AssaultRifle</soundCast>
-			<soundCastTail>GunTail_Medium</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>30</magazineSize>
-			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiUseBurstMode>TRUE</aiUseBurstMode>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aimedBurstShotCount>3</aimedBurstShotCount>
-		</FireModes>
-	</Operation>
-
 	<!-- ========== Batttle Rifle (G3A2) ========== -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -564,7 +536,7 @@
 			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
 			<warmupTime>1.1</warmupTime>
-			<range>57</range>
+			<range>55</range>
 			<soundCast>Shot_AssaultRifle</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
@@ -579,6 +551,160 @@
 			<aiAimMode>AimedShot</aiAimMode>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
 		</FireModes>
+	</Operation>
+
+	<!-- ========== Comrade Pistol (Makarov) ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>K4G_Gun_ComradePistol</defName>
+		<statBases>
+			<Mass>0.73</Mass>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.18</ShotSpread>
+			<SwayFactor>0.78</SwayFactor>
+			<Bulk>1.62</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x18mmMakarov_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Autopistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_9x18mmMakarov</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Pistol</li>
+			<li>CE_Sidearm</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Shortbarrel (Cut-down G3) ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>K4G_Gun_Shortbarrel</defName>
+		<statBases>
+			<Mass>2.95</Mass>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>3.00</SwayFactor>
+			<Bulk>6.05</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.43</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<soundCast>Shot_HeavySMG</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Drum Rifle (HK21) ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>K4G_Gun_DrumRifle</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.81</SwayFactor>
+			<Bulk>10.21</Bulk>
+			<Mass>7.92</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<recoilAmount>1.42</recoilAmount>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>50</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_LMG</li>
+			<li>Bipod_LMG</li>
+		</weaponTags>		
+	</Operation>
+
+	<!-- ========== Nailgun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>K4G_Gun_Nailgun</defName>
+		<statBases>
+			<Mass>1.80</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.5</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.07</SwayFactor>
+			<Bulk>2.50</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.24</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Nail</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<soundCast>Shot_Autopistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>4.6</reloadTime>
+			<ammoSet>AmmoSet_Nail</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
 	</Operation>
 
 </Patch>

@@ -34,11 +34,6 @@ namespace CombatExtended.Loader
             LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
         }
 
-        public override string SettingsCategory()
-        {
-            return "Combat Extended";
-        }
-
         private static void ShowUncompiledBuildWarning()
         {
             Log.Error("You are running CE Uncompiled.  See https://github.com/CombatExtended-Continued/CombatExtended#development-version for details");

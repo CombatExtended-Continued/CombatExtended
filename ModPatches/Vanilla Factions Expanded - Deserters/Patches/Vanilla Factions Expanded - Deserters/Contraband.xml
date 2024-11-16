@@ -3,40 +3,79 @@
 
 	<!-- Allow ammo for Empire/Deserter weapons to be purchased using intel. -->
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Ammo_6x24mmCharged"]</xpath>
-		<value>
-			<li Class="VFED.ContrabandExtension">
-				<category>VFED_Imperial</category>
-				<intelCost>5</intelCost>
-				<useCriticalIntel>false</useCriticalIntel>
-				<countMult>100</countMult>
-			</li>
-		</value>
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Ammo_6x24mmCharged"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>5</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+					<countMult>100</countMult>
+				</li>
+			</value>
+		</standard>
+		<generic Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Ammo_RifleCharged"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>5</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+					<countMult>100</countMult>
+				</li>
+			</value>
+		</generic>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Ammo_6x24mmCharged_AP"]</xpath>
-		<value>
-			<li Class="VFED.ContrabandExtension">
-				<category>VFED_Imperial</category>
-				<intelCost>5</intelCost>
-				<useCriticalIntel>false</useCriticalIntel>
-				<countMult>100</countMult>
-			</li>
-		</value>
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Ammo_6x24mmCharged_AP"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>5</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+					<countMult>100</countMult>
+				</li>
+			</value>
+		</standard>
+		<generic Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Ammo_RifleCharged_AP"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>5</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+					<countMult>100</countMult>
+				</li>
+			</value>
+		</generic>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Ammo_6x24mmCharged_Ion"]</xpath>
-		<value>
-			<li Class="VFED.ContrabandExtension">
-				<category>VFED_Imperial</category>
-				<intelCost>5</intelCost>
-				<useCriticalIntel>false</useCriticalIntel>
-				<countMult>100</countMult>
-			</li>
-		</value>
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Ammo_6x24mmCharged_Ion"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>5</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+					<countMult>100</countMult>
+				</li>
+			</value>
+		</standard>
+		<generic Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Ammo_RifleCharged_Ion"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>5</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+					<countMult>100</countMult>
+				</li>
+			</value>
+		</generic>
 	</Operation>
 
 	<!-- Combat Extended: Guns -->
@@ -57,40 +96,46 @@
 		</match>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Ammo_8x50mmCharged"]</xpath>
-		<value>
-			<li Class="VFED.ContrabandExtension">
-				<category>VFED_Imperial</category>
-				<intelCost>6</intelCost>
-				<useCriticalIntel>false</useCriticalIntel>
-				<countMult>100</countMult>
-			</li>
-		</value>
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Ammo_8x50mmCharged"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>6</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+					<countMult>100</countMult>
+				</li>
+			</value>
+		</standard>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Ammo_8x50mmCharged_AP"]</xpath>
-		<value>
-			<li Class="VFED.ContrabandExtension">
-				<category>VFED_Imperial</category>
-				<intelCost>6</intelCost>
-				<useCriticalIntel>false</useCriticalIntel>
-				<countMult>100</countMult>
-			</li>
-		</value>
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Ammo_8x50mmCharged_AP"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>6</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+					<countMult>100</countMult>
+				</li>
+			</value>
+		</standard>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Ammo_8x50mmCharged_Ion"]</xpath>
-		<value>
-			<li Class="VFED.ContrabandExtension">
-				<category>VFED_Imperial</category>
-				<intelCost>6</intelCost>
-				<useCriticalIntel>false</useCriticalIntel>
-				<countMult>100</countMult>
-			</li>
-		</value>
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<standard Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="Ammo_8x50mmCharged_Ion"]</xpath>
+			<value>
+				<li Class="VFED.ContrabandExtension">
+					<category>VFED_Imperial</category>
+					<intelCost>6</intelCost>
+					<useCriticalIntel>false</useCriticalIntel>
+					<countMult>100</countMult>
+				</li>
+			</value>
+		</standard>
 	</Operation>
 
 	<!-- Remove Charge Lance from available contraband. -->
