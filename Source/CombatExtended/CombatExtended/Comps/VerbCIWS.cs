@@ -184,9 +184,10 @@ namespace CombatExtended
                 //}
                 Vector2 ciwsPos1 = positions.firstPos, ciwsPos2 = positions.secondPos, targetPos2 = new Vector2(pos.x, pos.z);
 
-                if (CE_Utility.TryFindIntersectionPoint(ciwsPos1, ciwsPos2, targetPos1, targetPos2, out var point))
+                if (CE_Utility.TryFindIntersectionPoint(ciwsPos1, ciwsPos2, targetPos1, targetPos2, out _))
                 {
                     resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)point.x, (int)pos.y, (int)point.y));
+                    resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.y));
 
                     return true;
                 }
