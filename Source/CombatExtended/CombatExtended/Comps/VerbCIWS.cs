@@ -119,7 +119,7 @@ namespace CombatExtended
                     return false;
                 }
                 float num = verb.verbProps.EffectiveMinRange(t, this.Caster);
-                if (!verb.TryFindCEShootLineFromTo(Caster.Position, t, out var shootLine))
+                if (!verb.TryFindCEShootLineFromTo(Caster.Position, t, out var shootLine, out var targetPos))
                 {
                     return false;
                 }
@@ -137,11 +137,11 @@ namespace CombatExtended
         }
         protected virtual bool IsFriendlyTo(TargetType thing) => !thing.HostileTo(Caster);
         public abstract IEnumerable<TargetType> Targets { get; }
-        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && TryFindCEShootLineFromTo(Caster.Position, target, out _) && base.ValidateTarget(target, showMessages);
+        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && TryFindCEShootLineFromTo(Caster.Position, target, out _, out _) && base.ValidateTarget(target, showMessages);
         protected abstract IEnumerable<Vector3> TargetNextPositions(TargetType target);
-        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targetInfo, out ShootLine resultingLine)
+        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targetInfo, out ShootLine resultingLine, out Vector3 targetPos)
         {
-            if (base.TryFindCEShootLineFromTo(root, targetInfo, out resultingLine))
+            if (base.TryFindCEShootLineFromTo(root, targetInfo, out resultingLine, out targetPos))
             {
                 return true;
             }
@@ -186,7 +186,8 @@ namespace CombatExtended
 
                 if (CE_Utility.TryFindIntersectionPoint(ciwsPos1, ciwsPos2, targetPos1, targetPos2, out _))
                 {
-                    resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)point.x, (int)pos.y, (int)point.y));
+                    targetPos = pos;
+
                     resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.y));
 
                     return true;
@@ -212,14 +213,16 @@ namespace CombatExtended
         public override IEnumerable<Thing> Targets => CompCIWSTarget.Targets<TargetType>(Caster.Map);
         protected override bool IsFriendlyTo(Thing thing) => thing.TryGetComp<TargetType>()?.IsFriendlyTo(thing) ?? base.IsFriendlyTo(thing);
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.HasThing && target.Thing.HasComp<TargetType>() && base.ValidateTarget(target, showMessages);
-        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
         {
             if (targ.Thing?.TryGetComp<TargetType>()?.CalculatePointForPreemptiveFire(Projectile, root.ToVector3Shifted(), out var result, BurstWarmupTicksLeft) ?? false)
             {
+                targetPos = result;
                 resultingLine = new ShootLine(root, result.ToIntVec3());
                 return true;
             }
             resultingLine = default;
+            targetPos = default;
             return false;
         }
     }

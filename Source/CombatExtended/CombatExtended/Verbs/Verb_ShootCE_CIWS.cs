@@ -27,8 +27,9 @@ namespace CombatExtended
         }
 
         protected int maximumPredectionTicks = 40;
-        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
         {
+            targetPos = default(Vector3);
             resultingLine = default;
             return false;
         }

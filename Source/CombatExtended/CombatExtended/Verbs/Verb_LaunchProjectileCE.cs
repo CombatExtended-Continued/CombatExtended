@@ -948,7 +948,7 @@ namespace CombatExtended
             }
             // Check for line of sight
             ShootLine shootLine;
-            if (!TryFindCEShootLineFromTo(root, targ, out shootLine))
+            if (!TryFindCEShootLineFromTo(root, targ, out shootLine, out _))
             {
                 float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
                 if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
@@ -1103,7 +1103,7 @@ namespace CombatExtended
             // 6:       Interruptible -> stop shooting
             // 7:       Not interruptible -> shoot along previous line
             // 8:     else -> stop
-            if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // Case 1
+            if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine, out var targetLoc)) // Case 1
             {
                 lastShootLine = shootLine;
             }
@@ -1131,7 +1131,7 @@ namespace CombatExtended
                 spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * pprop.spreadMult;
                 aperatureSize = 0.03f;
             }
-            Vector3 targetLoc = currentTarget.Thing is Pawn ? currentTarget.Thing.TrueCenter() : shootLine.Dest.ToVector3Shifted();
+            
             ShiftVecReport report = ShiftVecReportFor(currentTarget, targetLoc.ToIntVec3());
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
@@ -1300,8 +1300,9 @@ namespace CombatExtended
 
         private new List<IntVec3> tempLeanShootSources = new List<IntVec3>();
 
-        public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
         {
+            targetPos = targ.Thing is Pawn ? targ.Thing.TrueCenter() : targ.Cell.ToVector3Shifted();
             if (targ.HasThing && targ.Thing.Map != caster.Map)
             {
                 resultingLine = default(ShootLine);
@@ -1309,20 +1310,20 @@ namespace CombatExtended
             }
             if (EffectiveRange <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
             {
-                resultingLine = new ShootLine(root, targ.Cell);
+                resultingLine = new ShootLine(root, targetPos.ToIntVec3());
                 return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
             }
             CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
             float num = cellRect.ClosestDistSquaredTo(root);
             if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
             {
-                resultingLine = new ShootLine(root, targ.Cell);
+                resultingLine = new ShootLine(root, targetPos.ToIntVec3());
                 return false;
             }
             //if (!this.verbProps.NeedsLineOfSight) This method doesn't consider the currently loaded projectile
             if (Projectile.projectile.flyOverhead)
             {
-                resultingLine = new ShootLine(root, targ.Cell);
+                resultingLine = new ShootLine(root, targetPos.ToIntVec3());
                 return true;
             }
 
@@ -1339,6 +1340,7 @@ namespace CombatExtended
 
             if (CanHitFromCellIgnoringRange(shotSource, targ, out dest))
             {
+                targetPos = dest.ToVector3Shifted();
                 resultingLine = new ShootLine(root, dest);
                 return true;
             }
@@ -1353,6 +1355,7 @@ namespace CombatExtended
                     var leanPosOffset = (leanLoc - root).ToVector3() * leanOffset;
                     if (CanHitFromCellIgnoringRange(shotSource + leanPosOffset, targ, out dest))
                     {
+                        targetPos = dest.ToVector3Shifted();
                         resultingLine = new ShootLine(leanLoc, dest);
                         return true;
                     }
