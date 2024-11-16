@@ -124,6 +124,7 @@ Autocleaner	|
 Auto-Mortars	|
 Beast Man Tribes  |
 Beeralope Squad	|
+Beliar Xenotype |
 Better Wool Production - C# Edition	|
 Big and Small - Genes & More	|
 Big and Small - Heaven and Hell
@@ -278,6 +279,7 @@ Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
+Ion Weaponry    |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
 Jernalk's Skeletal Legion (Continued)	|
@@ -445,6 +447,7 @@ RimFantasy - Medieval Overhaul Edition   |
 RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
 RimNauts 2 |
+Rimrats |
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
