@@ -25,22 +25,6 @@ namespace CombatExtended
             (currentTarget.Thing as ProjectileCE)?.DrawNextPositions();
         }
 
-        public override Vector3 GetTargetLoc(LocalTargetInfo tagret, int sinceTicks)
-        {
-            if (tagret.Thing is ProjectileCE projectile)
-            {
-                return projectile.TrajectoryWorker.ExactPosToDrawPos(projectile.NextPositions.ElementAtOrLast(sinceTicks), projectile.FlightTicks + sinceTicks, (projectile.def.projectile as ProjectilePropertiesCE).TickToTruePos, projectile.def.Altitude);
-            }
-            return base.GetTargetLoc(tagret, sinceTicks);
-        }
-        public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
-        {
-            if (target.Thing is ProjectileCE projectile)
-            {
-                return targetLoc.y;
-            }
-            return base.GetTargetHeight(target, cover, roofed, targetLoc);
-        }
         protected override IEnumerable<Vector3> TargetNextPositions(ProjectileCE target)
         {
             int tickOffset = 1;

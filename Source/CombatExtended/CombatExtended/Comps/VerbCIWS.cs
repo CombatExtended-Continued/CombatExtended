@@ -198,6 +198,14 @@ namespace CombatExtended
             resultingLine = default;
             return false;
         }
+        public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
+        {
+            if (target.Thing is TargetType targ)
+            {
+                return targetLoc.y;
+            }
+            return base.GetTargetHeight(target, cover, roofed, targetLoc);
+        }
     }
     public abstract class VerbCIWS_Comp<TargetType> : VerbCIWS<Thing> where TargetType : CompCIWSTarget
     {

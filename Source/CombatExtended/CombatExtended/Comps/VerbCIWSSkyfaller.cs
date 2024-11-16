@@ -15,28 +15,12 @@ namespace CombatExtended
         protected override string HoldLabel => "HoldSkyfallerFire";
         public override IEnumerable<Skyfaller> Targets => Caster.Map?.listerThings.ThingsInGroup(Verse.ThingRequestGroup.ActiveDropPod).OfType<Skyfaller>();
 
-        
+
         protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && thing.ContainedThings().All(x => !x.HostileTo(Caster));
 
         protected override IEnumerable<Vector3> TargetNextPositions(Skyfaller target)
         {
-            return target.DrawPositions();
-        }
-        public override Vector3 GetTargetLoc(LocalTargetInfo target, int sinceTicks)
-        {
-            if (target.Thing is Skyfaller skyfaller)
-            {
-                return skyfaller.DrawPosSinceTicks(sinceTicks);
-            }
-            return base.GetTargetLoc(target, sinceTicks);
-        }
-        public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
-        {
-            if (target.Thing is Skyfaller skyfaller)
-            {
-                return 0.5f * (skyfaller.ticksToImpact);
-            }
-            return base.GetTargetHeight(target, cover, roofed, targetLoc);
+            return target.DrawPositions().Select(x => x.WithY(45f));
         }
 
     }
