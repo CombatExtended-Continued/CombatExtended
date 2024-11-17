@@ -55,6 +55,7 @@ namespace CombatExtended
         private bool shootingAtDowned = false;
         private LocalTargetInfo lastTarget = null;
         protected IntVec3 lastTargetPos = IntVec3.Invalid;
+        protected Vector3 lastExactPos = Vector3.negativeInfinity;
 
         protected float lastShotAngle;
         protected float lastShotRotation;
@@ -1054,6 +1055,7 @@ namespace CombatExtended
                 }
                 shootLine = (ShootLine)lastShootLine;
                 currentTarget = new LocalTargetInfo(lastTargetPos);
+                lastExactPos = lastTargetPos.ToVector3Shifted();
             }
             else // case 4,5,8
             {
@@ -1062,6 +1064,7 @@ namespace CombatExtended
                     if (currentTarget.IsValid && !currentTarget.ThingDestroyed)
                     {
                         lastShootLine = shootLine = new ShootLine(caster.Position, currentTarget.Cell);
+                        lastExactPos = currentTarget.Cell.ToVector3Shifted();
                     }
                     else
                     {
@@ -1106,6 +1109,7 @@ namespace CombatExtended
             if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine, out var targetLoc)) // Case 1
             {
                 lastShootLine = shootLine;
+                lastExactPos = targetLoc;
             }
             else // We cannot hit the current target
             {
@@ -1139,7 +1143,7 @@ namespace CombatExtended
 
                 ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, targetLoc, pelletMechanicsOnly, instant);
+                ShiftTarget(report, lastExactPos, pelletMechanicsOnly, instant);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
