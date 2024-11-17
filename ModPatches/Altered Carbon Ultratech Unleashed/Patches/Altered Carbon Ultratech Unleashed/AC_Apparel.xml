@@ -35,6 +35,14 @@
 			defName="AC_Apparel_FusilierHelmet"]/statBases/VEF_RangedCooldownFactor</xpath>
 	</Operation>
 
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			@Name="AC_ApparelArmorChrysalisMakeableBase" or
+			defName="AC_Apparel_FusilierArmor" or
+			defName="AC_EnviroSuit" or
+			defName="AC_Apparel_HayabusaArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
 	<!-- Chrysalis Helmet -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/statBases</xpath>
@@ -731,6 +739,10 @@
 	</Operation>
 
 	<!-- Dragoon Armor -->
+	<Operation Class="PatchOperationRemove" MayRequire="Ludeon.RimWorld.Royalty">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Royalty">
 		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases</xpath>
 		<value>
@@ -995,7 +1007,6 @@
 			<li>Feet</li>
 		</value>
 	</Operation>
-
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/statBases</xpath>
