@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/HediffDef[defName="AC_PainProtection"]/stages/li/statFactors</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="AC_PainProtection"]/stages/li</xpath>
+			<value>
+				<statFactors />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="AC_PainProtection"]/stages/li/statFactors</xpath>
+		<value>
+			<Suppressability>0.5</Suppressability>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="AC_RogianArmBlade"]/comps/li[@Class="AlteredCarbon.HediffCompProperties_MeleeWeapon"]/tools</xpath>
 		<value>
