@@ -6,49 +6,34 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 using Verse;
 using Verse.Sound;
 
 namespace CombatExtended
 {
-    public abstract class VerbCIWS : Verb_ShootCE_CIWS, ITargetSearcher
+    public abstract class VerbCIWS : Verb_ShootCE_CIWS, ITargetSearcher, IVerbDisableable
     {
         protected bool debug;
-        protected bool holdFire;
+        protected Texture2D icon;
+        public virtual bool HoldFire { get; set; }
 
         public VerbProperties_CIWS Props => verbProps as VerbProperties_CIWS;
-        protected abstract string HoldLabel { get; }
-        protected abstract string HoldDesc { get; }
-        protected virtual string HoldIcon => "UI/Commands/HoldFire";
-
-        //public override IEnumerable<Gizmo> CompGetGizmosExtra()
-        //{
-        //    foreach (var gizmo in base.CompGetGizmosExtra())
-        //    {
-        //        yield return gizmo;
-        //    }
-        //    if (Turret.CanToggleHoldFire)
-        //    {
-        //        yield return new Command_Toggle
-        //        {
-        //            defaultLabel = HoldLabel.Translate(),
-        //            defaultDesc = HoldDesc.Translate(),
-        //            icon = ContentFinder<Texture2D>.Get(HoldIcon, true),
-        //            hotKey = KeyBindingDefOf.Misc6,
-        //            toggleAction = delegate ()
-        //            {
-        //                this.holdFire = !this.holdFire;
-        //                if (this.holdFire && HasTarget)
-        //                {
-        //                    Turret.ResetForcedTarget();
-        //                }
-        //            },
-        //            isActive = (() => this.holdFire)
-        //        };
-        //    }
-        //}
+        public virtual string HoldFireLabel => Props.holdFireLabel;
+        public virtual string HoldFireDesc => Props.holdFireDesc;
+        public virtual Texture2D HoldFireIcon
+        {
+            get
+            {
+                if (icon == null)
+                {
+                    icon = ContentFinder<Texture2D>.Get(Props.holdFireIcon);
+                }
+                return icon;
+            }
+        }
         protected override bool ShouldAim => false;
-        public virtual bool Active => !holdFire && Turret.Active;
+        public virtual bool Active => !HoldFire && Turret.Active;
         protected override bool LockRotationAndAngle => false;
         public abstract bool TryFindNewTarget(out LocalTargetInfo target);
         public virtual void ShowTrajectories()
@@ -102,14 +87,22 @@ namespace CombatExtended
         {
             shootLine = lastShootLine.HasValue ? lastShootLine.Value : default;
             return !currentTarget.ThingDestroyed;
-    }
-
+        }
+        public override bool Available()
+        {
+            return Active && base.Available();
+        }
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {
 
         public override bool TryFindNewTarget(out LocalTargetInfo target)
         {
+            if (!Active)
+            {
+                target = LocalTargetInfo.Invalid;
+                return false;
+            }
             float range = this.verbProps.range;
             var _target = Targets.Where(x => Props.Interceptable(x.def) && !Turret.IgnoredDefs.Contains(x.def)).Where(x => !IsFriendlyTo(x)).FirstOrDefault(t =>
             {
@@ -229,6 +222,9 @@ namespace CombatExtended
 
     public abstract class VerbProperties_CIWS : VerbPropertiesCE
     {
+        public string holdFireIcon = "UI/Commands/HoldFire";
+        public string holdFireLabel = "HoldFire";
+        public string holdFireDesc;
         public List<ThingDef> ignored = new List<ThingDef>();
         public IEnumerable<ThingDef> Ignored => ignored;
         public virtual bool Interceptable(ThingDef targetDef) => true;

@@ -11,8 +11,6 @@ namespace CombatExtended
 {
     public class VerbCIWSProjectile : VerbCIWS<ProjectileCE>
     {
-        protected override string HoldDesc => "HoldCloseInProjectilesFireDesc";
-        protected override string HoldLabel => "HoldCloseInProjectilesFire";
         public new VerbProperties_CIWSProjectile Props => verbProps as VerbProperties_CIWSProjectile;
 
         public override IEnumerable<ProjectileCE> Targets => Caster.Map?.listerThings.ThingsInGroup(ThingRequestGroup.Projectile).OfType<ProjectileCE>() ?? Array.Empty<ProjectileCE>();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,6 +67,24 @@ namespace CombatExtended
         {
             base.ResetForcedTarget();
             activeVerb = null;
+        }
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            foreach (var gizmo in base.GetGizmos())
+            {
+                yield return gizmo;
+            }
+            if (PlayerControlled)
+            {
+                var disablerComp = Gun.TryGetComp<CompVerbDisabler>();
+                if (disablerComp != null)
+                {
+                    foreach (var gizmo in disablerComp.CompGetGizmosExtra())
+                    {
+                        yield return gizmo;
+                    }
+                }
+            }
         }
     }
 }

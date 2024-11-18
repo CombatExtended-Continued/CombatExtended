@@ -11,8 +11,6 @@ namespace CombatExtended
 {
     public class VerbCIWSSkyfaller : VerbCIWS<Skyfaller>
     {
-        protected override string HoldDesc => "HoldSkyfallerFireDesc";
-        protected override string HoldLabel => "HoldSkyfallerFire";
         public override IEnumerable<Skyfaller> Targets => Caster.Map?.listerThings.ThingsInGroup(Verse.ThingRequestGroup.ActiveDropPod).OfType<Skyfaller>();
 
 
