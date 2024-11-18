@@ -272,6 +272,7 @@ Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
 Hive Armory |
+Hyena (Continued) |
 Idhale Race	|
 Impact Weaponry	|
 Imperial Arsenal: Royal Warcasket 	|
