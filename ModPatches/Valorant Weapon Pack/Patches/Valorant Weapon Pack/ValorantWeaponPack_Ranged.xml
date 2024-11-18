@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Biaopei" or defName="Guimei" or defName="Zhengyi" or defName="Kuangnu" or defName="Duanpao"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Fengci" or defName="Hailing" or defName="Xionglu" or defName="Panguan" or defName="Liaoquan" or defName="Shuwei" or defName="Huanying" or defName="Kuangtu" or defName="Feijiang" or defName="Mangxia" or defName="Mingju" or defName="Zhanshen" or defName="Aodin"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Biaopei"]/statBases/AccuracyTouch
+				| Defs/ThingDef[defName="Biaopei"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Biaopei"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Biaopei"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Guimei"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Guimei"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Guimei"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Guimei"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Zhengyi"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Zhengyi"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Zhengyi"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Zhengyi"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Kuangnu"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Kuangnu"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Kuangnu"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Kuangnu"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Duanpao"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Duanpao"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Duanpao"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Duanpao"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Fengci"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Fengci"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Fengci"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Fengci"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Hailing"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Hailing"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Hailing"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Hailing"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Xionglu"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Xionglu"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Xionglu"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Xionglu"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Panguan"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Panguan"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Panguan"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Panguan"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Liaoquan"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Liaoquan"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Liaoquan"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Liaoquan"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Shuwei"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Shuwei"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Shuwei"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Shuwei"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Huanying"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Huanying"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Huanying"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Huanying"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Kuangtu"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Kuangtu"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Kuangtu"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Kuangtu"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Feijiang"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Feijiang"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Feijiang"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Feijiang"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Mangxia"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Mangxia"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Mangxia"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Mangxia"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Mingju"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Mingju"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Mingju"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Mingju"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Zhanshen"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Zhanshen"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Zhanshen"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Zhanshen"]/statBases/AccuracyLong
+				| Defs/ThingDef[defName="Aodin"]/statBases/AccuracyTouch 
+				| Defs/ThingDef[defName="Aodin"]/statBases/AccuracyShort
+				| Defs/ThingDef[defName="Aodin"]/statBases/AccuracyMedium
+				| Defs/ThingDef[defName="Aodin"]/statBases/AccuracyLong</xpath>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Biaopei</defName> <!-- Classic Semi Pistol -->
+		<statBases>
+			<Mass>1.11</Mass>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.07</SwayFactor>
+			<Bulk>2.1</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.72</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Biaopei</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>1.75</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Guimei</defName> <!-- Ghost Suppressed Pistol -->
+		<statBases>
+			<Mass>1.24</Mass>
+			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.07</SwayFactor>
+			<Bulk>2.4</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.72</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Guimei</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>1.5</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Zhengyi</defName> <!-- Sheriff Revolver -->
+		<statBases>
+			<Mass>2.79</Mass>
+			<RangedWeapon_Cooldown>0.49</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.39</SwayFactor>
+			<Bulk>1.39</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.96</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_357Magnum_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Zhengyi</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>2.25</reloadTime>
+			<ammoSet>AmmoSet_357Magnum_Revolver</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Kuangnu</defName> <!-- Frenzy Autopistol -->
+		<statBases>
+			<Mass>2.84</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.93</SwayFactor>
+			<Bulk>2.95</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.71</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<burstShotCount>13</burstShotCount>
+			<soundCast>Shot_Kuangnu</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>13</magazineSize>
+			<reloadTime>1.5</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Duanpao</defName> <!-- Shorty Sawnoff DB -->
+		<statBases>
+			<Mass>2.84</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.93</SwayFactor>
+			<Bulk>2.95</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>3.13</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<soundCast>Shot_Duanpao</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>1.75</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Fengci</defName> <!-- Stinger SMG -->
+		<statBases>
+			<Mass>2.5</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>0.94</SwayFactor>
+			<Bulk>4.5</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.79</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<soundCast>Shot_Fengci</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>2.25</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Hailing</defName> <!-- Specter Suppressed SMG -->
+		<statBases>
+			<Mass>2.85</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>0.94</SwayFactor>
+			<Bulk>5</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.79</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>Shot_Hailing</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>2.25</reloadTime>
+			<ammoSet>AmmoSet_45ACP</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Xionglu</defName> <!-- Bucky Pump Shotgun -->
+		<statBases>
+			<Mass>3.00</Mass>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>9.0</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.75</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>16</range>
+			<soundCast>Shot_Xionglu</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>0.5</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Panguan</defName> <!-- Judge Autoshotgun -->
+		<statBases>
+			<Mass>3.5</Mass>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>1.26</SwayFactor>
+			<Bulk>6.7</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.54</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>16</range>
+			<soundCast>Shot_Panguan</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Liaoquan</defName> <!-- Bulldog Bullpup AR -->
+		<statBases>
+			<Mass>4.62</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.07</ShotSpread>
+			<SwayFactor>1.47</SwayFactor>
+			<Bulk>8.2</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.26</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>Shot_Liaoquan</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Shuwei</defName> <!-- Guardian Battle Rifle -->
+		<statBases>
+			<Mass>4.3</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.52</SwayFactor>
+			<Bulk>10.90</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.92</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<soundCast>Shot_Shuwei</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Huanying</defName> <!-- Phantom Suppressed AR -->
+		<statBases>
+			<Mass>4.55</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.52</SwayFactor>
+			<Bulk>11.20</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.92</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>Shot_Huanying</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Kuangtu</defName> <!-- Vanda AR (Kalash) -->
+		<statBases>
+			<Mass>3.3</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.28</SwayFactor>
+			<Bulk>7.25</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.82</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x39mmSoviet_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>Shot_Kuangtu</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>24</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_762x39mmSoviet</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Feijiang</defName> <!-- Marshal Lever Sniper -->
+		<statBases>
+			<Mass>3.06</Mass>
+			<RangedWeapon_Cooldown>0.78</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.7</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.38</SwayFactor>
+			<Bulk>10.70</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.37</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_44Magnum_HV_FMJ</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>31</range>
+			<soundCast>Shot_Feijiang</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>0.5</reloadTime>
+			<ammoSet>AmmoSet_44Magnum_HV</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Mangxia</defName>  <!-- Outlaw Double Sniper -->
+		<statBases>
+			<Mass>11.00</Mass>
+			<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.6</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.31</SwayFactor>
+			<Bulk>6.40</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.5</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
+			<warmupTime>1.8</warmupTime>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>2</burstShotCount>
+			<range>75</range>
+			<soundCast>Shot_Mangxia</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>1.6</reloadTime>
+			<ammoSet>AmmoSet_338Lapua</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Mingju</defName> <!-- Operator Bolt Sniper -->
+		<statBases>
+			<Mass>6.8</Mass>
+			<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.6</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.31</SwayFactor>
+			<Bulk>11.92</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.5</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
+			<warmupTime>1.8</warmupTime>
+			<range>75</range>
+			<soundCast>Shot_Mingju</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>3.7</reloadTime>
+			<ammoSet>AmmoSet_338Lapua</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Zhanshen</defName> <!-- Ares Drum MG -->
+		<statBases>
+			<Mass>8.70</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.37</SwayFactor>
+			<Bulk>12.90</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.38</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>62</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Zhanshen</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>50</magazineSize>
+			<reloadTime>3.25</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Aodin</defName> <!-- Odin Box MG -->
+		<statBases>
+			<Mass>9.60</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>12.65</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.25</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>62</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>10</burstShotCount>
+			<soundCast>Shot_Aodin</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+</Patch>
