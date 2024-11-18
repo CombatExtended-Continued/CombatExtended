@@ -206,17 +206,9 @@ namespace CombatExtended
         public override IEnumerable<Thing> Targets => CompCIWSTarget.Targets<TargetType>(Caster.Map);
         protected override bool IsFriendlyTo(Thing thing) => thing.TryGetComp<TargetType>()?.IsFriendlyTo(thing) ?? base.IsFriendlyTo(thing);
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.HasThing && target.Thing.HasComp<TargetType>() && base.ValidateTarget(target, showMessages);
-        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
+        protected override IEnumerable<Vector3> TargetNextPositions(Thing target)
         {
-            if (targ.Thing?.TryGetComp<TargetType>()?.CalculatePointForPreemptiveFire(Projectile, root.ToVector3Shifted(), out var result, BurstWarmupTicksLeft) ?? false)
-            {
-                targetPos = result;
-                resultingLine = new ShootLine(root, result.ToIntVec3());
-                return true;
-            }
-            resultingLine = default;
-            targetPos = default;
-            return false;
+            return target.TryGetComp<CompCIWSTarget>().NextPositions;
         }
     }
 

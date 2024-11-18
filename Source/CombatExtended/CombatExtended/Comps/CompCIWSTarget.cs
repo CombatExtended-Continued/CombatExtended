@@ -53,7 +53,7 @@ namespace CombatExtended
             }
         }
         public abstract bool IsFriendlyTo(Thing thing);
-        public abstract bool CalculatePointForPreemptiveFire(ThingDef projectile, Vector3 source, out Vector3 result, int tickOffset = 0);
+        public abstract IEnumerable<Vector3> NextPositions { get; }
 
         /// <summary>
         /// Checks if projectile can intersect with this object
