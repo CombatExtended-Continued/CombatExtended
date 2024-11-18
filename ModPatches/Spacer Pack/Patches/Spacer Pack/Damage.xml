@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ================== Damages ================== -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/DamageDef[defName="dvd_SkipBolt"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>Bullet</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/DamageDef[defName="dvd_RipperBomb"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>Bomb</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="dvd_RipperBomb"]/defaultArmorPenetration</xpath>
+		<value>
+			<defaultArmorPenetration>62</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="dvd_RipperBomb"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Blunt</armorCategory>
+		</value>
+	</Operation>
+
+	<!-- Get rid of the unused vanilla projectile to suppress an error. -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="dvd_Projectile_RipperRack"]</xpath>
+	</Operation>
+
+</Patch>

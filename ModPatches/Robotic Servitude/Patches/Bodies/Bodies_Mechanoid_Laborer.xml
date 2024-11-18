@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Gha_Laborer"]//*[
+			def="MechanicalThoraxCanManipulate" or
+			def="MechanicalNeck" or
+			def="SightSensor" or
+			def="HearingSensor" or
+			def="SmellSensor" or
+			def="MechanicalLeg"]
+		</xpath>
+		<value>
+			<groups />
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="Gha_Laborer"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[customLabel="rear left foot"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="Gha_Laborer"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[customLabel="rear left foot"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="Gha_Laborer"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[customLabel="rear right foot"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="Gha_Laborer"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[customLabel="rear right foot"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>
+			Defs/BodyDef[defName="Gha_Laborer"]//*[
+			def="MechanicalThoraxCanManipulate" or
+			def="MechanicalNeck" or
+			def="MechanicalHead" or
+			def="SightSensor" or
+			def="HearingSensor" or
+			def="SmellSensor" or
+			def="MechanicalLeg" or
+			def="MechanicalFoot"]/groups
+		</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
+</Patch>

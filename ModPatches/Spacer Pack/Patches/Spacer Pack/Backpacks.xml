@@ -131,7 +131,7 @@
 					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<onlyManualCast>True</onlyManualCast>
-					<warmupTime>2</warmupTime>
+					<warmupTime>1.5</warmupTime>
 					<range>35</range>
 					<minRange>5</minRange>
 					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
@@ -167,6 +167,62 @@
 		<value>
 			<Mass>4</Mass>
 			<Bulk>5</Bulk>
+		</value>
+	</Operation>
+
+	<!-- Miner Pack (with grey goo Grenade built in)-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>80</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"> <!-- Cost increase cause grey goo Grenade -->
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/costList</xpath>
+		<value>
+			<ComponentSpacer>1</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>4</Mass>
+			<Bulk>5</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>launch ripper rack</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>1.0</warmupTime>
+					<range>21</range>
+					<minRange>6</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>dvd_Projectile_RipperRack_CE</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
 		</value>
 	</Operation>
 
