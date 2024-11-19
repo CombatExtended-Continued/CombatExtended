@@ -521,6 +521,7 @@ T's Conversion Staff |
 T's Samurai Faction |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
+Valorant Weapon Pack |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
