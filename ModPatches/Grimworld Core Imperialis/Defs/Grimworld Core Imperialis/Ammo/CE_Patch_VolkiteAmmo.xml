@@ -36,10 +36,20 @@
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ================== Projectiles ================== -->
-
-	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
-		<defName>Bullet_Volk_Pistol</defName>
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet" Name="VolkiteBulletBase" Abstract="True">
 		<label>laser beam</label>
+		 <graphicData Inherit="False">
+            <texPath>Things/Weapons/GW_Volkite_Bolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+            <drawSize>2.0</drawSize>
+        </graphicData>
+		<textures>
+			<li>Things/Weapons/GW_Volkite_Bolt</li>
+		</textures>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="VolkiteBulletBase">
+		<defName>Bullet_Volk_Pistol</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>CE_Laser</damageDef>
 			<damageAmountBase>16</damageAmountBase>
@@ -48,9 +58,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="VolkiteBulletBase">
 		<defName>Bullet_Volk_Rifle</defName>
-		<label>laser beam</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>CE_Laser</damageDef>
 			<damageAmountBase>30</damageAmountBase>
@@ -59,9 +68,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="VolkiteBulletBase">
 		<defName>Bullet_Volk_HellGun</defName>
-		<label>laser beam</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>CE_Laser</damageDef>
 			<damageAmountBase>39</damageAmountBase>
@@ -70,9 +78,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="VolkiteBulletBase">
 		<defName>Bullet_Volk_Cannon</defName>
-		<label>laser beam</label>
 		<beamGraphic>BeamGraphic</beamGraphic>
 		<beamWidth>2</beamWidth>
 		<graphicData>

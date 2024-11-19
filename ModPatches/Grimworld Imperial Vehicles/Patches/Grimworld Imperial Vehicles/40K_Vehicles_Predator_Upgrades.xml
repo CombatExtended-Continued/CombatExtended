@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--===== Predator Gatling Turret =====-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BaalPredator_MainTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_20x102mmNATO_AP</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BaalPredator_MainTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.2</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BaalPredator_MainTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.8</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BaalPredator_MainTurret"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BaalPredator_MainTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>66</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BaalPredator_MainTurret"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_20x102mmNATO_AP</li>
+				<li>Ammo_20x102mmNATO_Incendiary</li>
+				<li>Ammo_20x102mmNATO_HE</li>
+				<li>Ammo_20x102mmNATO_Sabot</li>				
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_BaalPredator_MainTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+				<shotHeight>2</shotHeight>
+				<speed>96</speed>
+				<sway>1.0</sway>
+				<spread>0.05</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!--===== Predator Lascannon Turret =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>600</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Lasgun_Cannon</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/fireModes</xpath>
+		<value>
+			<fireModes>
+				<li>
+					<shotsPerBurst>2</shotsPerBurst>
+					<ticksBetweenShots>2</ticksBetweenShots>
+					<ticksBetweenBursts>100</ticksBetweenBursts>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>75</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_LasgunPowerPack</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]/chargePerAmmoCount</xpath>
+		<value>
+			<chargePerAmmoCount>5</chargePerAmmoCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorAnihilator_MainTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_Lasgun_Cannon</ammoSet>
+				<shotHeight>2</shotHeight>
+				<sway>1.0</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!--===== Plasma Destroyer =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorExecutioner_MainTurret"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>800</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorExecutioner_MainTurret"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorExecutioner_MainTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Laser_PlasmaDestroyer</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorExecutioner_MainTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>75</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorExecutioner_MainTurret"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_PlasmaCanister</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorExecutioner_MainTurret"]/chargePerAmmoCount</xpath>
+		<value>
+			<chargePerAmmoCount>50</chargePerAmmoCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_PredatorExecutioner_MainTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_PlasmaCanister_Destroyer</ammoSet>
+				<shotHeight>1</shotHeight>
+				<sway>0.73</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
