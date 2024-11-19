@@ -624,240 +624,251 @@
 		</value>
 	</Operation>
 
-	<!-- Dragoon Helmet -->
-	<Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases</xpath>
-		<value>
-			<Bulk>5</Bulk>
-			<WornBulk>1</WornBulk>
-			<Flammability>0</Flammability>
-			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
-		</value>
-	</Operation>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<Operation Class="PatchOperationAddModExtension" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]</xpath>
-		<value>
-			<li Class="CombatExtended.ApparelDefExtension">
-				<isRadioPack>true</isRadioPack>
-			</li>
-		</value>
-	</Operation>
+				<!-- Dragoon Helmet -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+						<Flammability>0</Flammability>
+						<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>225</MaxHitPoints>
-		</value>
-	</Operation>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]</xpath>
+					<value>
+						<li Class="CombatExtended.ApparelDefExtension">
+							<isRadioPack>true</isRadioPack>
+						</li>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/Mass</xpath>
-		<value>
-			<Mass>4</Mass>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>225</MaxHitPoints>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>14.4</ArmorRating_Sharp>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/Mass</xpath>
+					<value>
+						<Mass>4</Mass>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>31.2</ArmorRating_Blunt>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14.4</ArmorRating_Sharp>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAddModExtension" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]</xpath>
-		<value>
-			<li Class="CombatExtended.PartialArmorExt">
-				<stats>
-					<li>
-						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-						<parts>
-							<li>Eye</li>
-							<li>Nose</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-						<parts>
-							<li>Eye</li>
-							<li>Nose</li>
-						</parts>
-					</li>
-				</stats>
-			</li>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>31.2</ArmorRating_Blunt>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/equippedStatOffsets</xpath>
-		<value>
-			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
-			<SmokeSensitivity>-1</SmokeSensitivity>
-		</value>
-	</Operation>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Eye</li>
+										<li>Nose</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Eye</li>
+										<li>Nose</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/ComponentSpacer</xpath>
-		<value>
-			<ComponentSpacer>2</ComponentSpacer>
-		</value>
-	</Operation>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/equippedStatOffsets</xpath>
+					<value>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/Plasteel</xpath>
-		<value>
-			<Plasteel>65</Plasteel>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/ComponentSpacer</xpath>
+					<value>
+						<ComponentSpacer>2</ComponentSpacer>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList</xpath>
-		<value>
-			<DevilstrandCloth>20</DevilstrandCloth>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>65</Plasteel>
+					</value>
+				</li>
 
-	<!-- Dragoon Armor -->
-	<Operation Class="PatchOperationRemove" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/equippedStatOffsets/MoveSpeed</xpath>
-	</Operation>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>20</DevilstrandCloth>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases</xpath>
-		<value>
-			<Bulk>80</Bulk>
-			<WornBulk>15</WornBulk>
-			<Flammability>0</Flammability>
-		</value>
-	</Operation>
+				<!-- Dragoon Armor -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/MaxHitPoints</xpath>
-		<value>
-			<MaxHitPoints>500</MaxHitPoints>
-		</value>
-	</Operation>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases</xpath>
+					<value>
+						<Bulk>80</Bulk>
+						<WornBulk>15</WornBulk>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/Mass</xpath>
-		<value>
-			<Mass>40</Mass>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>500</MaxHitPoints>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>19.2</ArmorRating_Sharp>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/Mass</xpath>
+					<value>
+						<Mass>40</Mass>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>40.8</ArmorRating_Blunt>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>19.2</ArmorRating_Sharp>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAddModExtension" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]</xpath>
-		<value>
-			<li Class="CombatExtended.PartialArmorExt">
-				<stats>
-					<li>
-						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-						<parts>
-							<li>Neck</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-				</stats>
-			</li>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>40.8</ArmorRating_Blunt>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/equippedStatOffsets</xpath>
-		<value>
-			<CarryWeight>60</CarryWeight>
-			<CarryBulk>10</CarryBulk>
-			<MoveSpeed>0.5</MoveSpeed>
-			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
-		</value>
-	</Operation>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/ComponentSpacer</xpath>
-		<value>
-			<ComponentSpacer>8</ComponentSpacer>
-		</value>
-	</Operation>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>10</CarryBulk>
+						<MoveSpeed>0.5</MoveSpeed>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/Plasteel</xpath>
-		<value>
-			<Plasteel>185</Plasteel>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/ComponentSpacer</xpath>
+					<value>
+						<ComponentSpacer>8</ComponentSpacer>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList</xpath>
-		<value>
-			<DevilstrandCloth>65</DevilstrandCloth>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>185</Plasteel>
+					</value>
+				</li>
 
-	<!-- Jump Wings -->
-	<Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases</xpath>
-		<value>
-			<Bulk>10</Bulk>
-			<WornBulk>3</WornBulk>
-		</value>
-	</Operation>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>65</DevilstrandCloth>
+					</value>
+				</li>
 
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases/JumpRange</xpath>
-		<value>
-			<JumpRange>20</JumpRange>
-		</value>
+				<!-- Jump Wings -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases/JumpRange</xpath>
+					<value>
+						<JumpRange>20</JumpRange>
+					</value>
+				</li>
+
+			</operations>
+		</match>
 	</Operation>
 
 	<!-- Hayabusa Helmet ported stats from Spartan Armory Patch -->
@@ -949,7 +960,7 @@
 		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
 		<value>
 			<PsychicSensitivity>-0.08</PsychicSensitivity>
-			<ToxicEnvironmentResistance>0.20</ToxicEnvironmentResistance>
+			<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 			<MeleeHitChance>0.15</MeleeHitChance>
 			<MeleeCritChance>0.35</MeleeCritChance>
 			<MeleeDodgeChance>0.05</MeleeDodgeChance>
