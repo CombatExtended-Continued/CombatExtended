@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- Melee Tools -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Biaopei" or defName="Guimei" or defName="Zhengyi" or defName="Kuangnu" or defName="Duanpao"]/tools</xpath>
+		<xpath>Defs/ThingDef[
+			defName="Biaopei" or
+			defName="Guimei" or
+			defName="Zhengyi" or
+			defName="Kuangnu" or
+			defName="Duanpao"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -31,7 +37,20 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Fengci" or defName="Hailing" or defName="Xionglu" or defName="Panguan" or defName="Liaoquan" or defName="Shuwei" or defName="Huanying" or defName="Kuangtu" or defName="Feijiang" or defName="Mangxia" or defName="Mingju" or defName="Zhanshen" or defName="Aodin"]/tools</xpath>
+		<xpath>Defs/ThingDef[
+			defName="Fengci" or
+			defName="Hailing" or
+			defName="Xionglu" or
+			defName="Panguan" or
+			defName="Liaoquan" or
+			defName="Shuwei" or
+			defName="Huanying" or
+			defName="Kuangtu" or
+			defName="Feijiang" or
+			defName="Mangxia" or
+			defName="Mingju" or
+			defName="Zhanshen" or
+			defName="Aodin"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -69,93 +88,19 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="Biaopei"]/statBases/AccuracyTouch
-				| Defs/ThingDef[defName="Biaopei"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Biaopei"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Biaopei"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Guimei"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Guimei"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Guimei"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Guimei"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Zhengyi"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Zhengyi"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Zhengyi"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Zhengyi"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Kuangnu"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Kuangnu"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Kuangnu"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Kuangnu"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Duanpao"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Duanpao"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Duanpao"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Duanpao"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Fengci"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Fengci"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Fengci"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Fengci"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Hailing"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Hailing"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Hailing"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Hailing"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Xionglu"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Xionglu"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Xionglu"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Xionglu"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Panguan"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Panguan"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Panguan"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Panguan"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Liaoquan"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Liaoquan"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Liaoquan"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Liaoquan"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Shuwei"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Shuwei"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Shuwei"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Shuwei"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Huanying"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Huanying"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Huanying"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Huanying"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Kuangtu"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Kuangtu"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Kuangtu"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Kuangtu"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Feijiang"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Feijiang"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Feijiang"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Feijiang"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Mangxia"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Mangxia"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Mangxia"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Mangxia"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Mingju"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Mingju"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Mingju"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Mingju"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Zhanshen"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Zhanshen"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Zhanshen"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Zhanshen"]/statBases/AccuracyLong
-				| Defs/ThingDef[defName="Aodin"]/statBases/AccuracyTouch 
-				| Defs/ThingDef[defName="Aodin"]/statBases/AccuracyShort
-				| Defs/ThingDef[defName="Aodin"]/statBases/AccuracyMedium
-				| Defs/ThingDef[defName="Aodin"]/statBases/AccuracyLong</xpath>
-	</Operation>
-
+	<!-- Classic -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Biaopei</defName> <!-- Classic Semi Pistol -->
+		<defName>Biaopei</defName>
 		<statBases>
 			<Mass>1.11</Mass>
 			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
 			<SightsEfficiency>0.7</SightsEfficiency>
 			<ShotSpread>0.17</ShotSpread>
-			<SwayFactor>1.07</SwayFactor>
-			<Bulk>2.1</Bulk>
+			<SwayFactor>0.97</SwayFactor>
+			<Bulk>2.03</Bulk>
 		</statBases>
 		<Properties>
-			<recoilAmount>2.72</recoilAmount>
+			<recoilAmount>2.51</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
@@ -179,21 +124,22 @@
 		</weaponTags>
 	</Operation>
 
+	<!-- Ghost -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Guimei</defName> <!-- Ghost Suppressed Pistol -->
+		<defName>Guimei</defName>
 		<statBases>
 			<Mass>1.24</Mass>
-			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>0.42</RangedWeapon_Cooldown>
 			<SightsEfficiency>0.7</SightsEfficiency>
 			<ShotSpread>0.17</ShotSpread>
-			<SwayFactor>1.07</SwayFactor>
+			<SwayFactor>1.17</SwayFactor>
 			<Bulk>2.4</Bulk>
 		</statBases>
 		<Properties>
-			<recoilAmount>2.72</recoilAmount>
+			<recoilAmount>2.40</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_9x19mmParaSD_FMJ</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
 			<range>12</range>
 			<soundCast>Shot_Guimei</soundCast>
@@ -206,22 +152,23 @@
 		<AmmoUser>
 			<magazineSize>15</magazineSize>
 			<reloadTime>1.5</reloadTime>
-			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+			<ammoSet>AmmoSet_9x19mmParaSD</ammoSet>
 		</AmmoUser>
 	</Operation>
 
+ 	<!-- Sheriff -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Zhengyi</defName> <!-- Sheriff Revolver -->
+		<defName>Zhengyi</defName>
 		<statBases>
 			<Mass>2.79</Mass>
 			<RangedWeapon_Cooldown>0.49</RangedWeapon_Cooldown>
 			<SightsEfficiency>0.7</SightsEfficiency>
-			<ShotSpread>0.16</ShotSpread>
+			<ShotSpread>0.15</ShotSpread>
 			<SwayFactor>1.39</SwayFactor>
 			<Bulk>1.39</Bulk>
 		</statBases>
 		<Properties>
-			<recoilAmount>2.96</recoilAmount>
+			<recoilAmount>2.76</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_357Magnum_FMJ</defaultProjectile>
@@ -241,8 +188,9 @@
 		</AmmoUser>
 	</Operation>
 
+ 	<!-- Frenzy -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Kuangnu</defName> <!-- Frenzy Autopistol -->
+		<defName>Kuangnu</defName>
 		<statBases>
 			<Mass>2.84</Mass>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -277,8 +225,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Shorty -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Duanpao</defName> <!-- Shorty Sawnoff DB -->
+		<defName>Duanpao</defName>
 		<statBases>
 			<Mass>2.84</Mass>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -313,8 +262,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Stinger SMG -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Fengci</defName> <!-- Stinger SMG -->
+		<defName>Fengci</defName>
 		<statBases>
 			<Mass>2.5</Mass>
 			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
@@ -349,8 +299,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Specter -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Hailing</defName> <!-- Specter Suppressed SMG -->
+		<defName>Hailing</defName>
 		<statBases>
 			<Mass>2.85</Mass>
 			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
@@ -385,8 +336,9 @@
 		</FireModes>
 	</Operation>
 
+	 <!-- Bucky -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Xionglu</defName> <!-- Bucky Pump Shotgun -->
+		<defName>Xionglu</defName>
 		<statBases>
 			<Mass>3.00</Mass>
 			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
@@ -420,8 +372,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Judge -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Panguan</defName> <!-- Judge Autoshotgun -->
+		<defName>Panguan</defName>
 		<statBases>
 			<Mass>3.5</Mass>
 			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
@@ -454,8 +407,9 @@
 		</FireModes>
 	</Operation>
 
+	 <!-- Bulldog -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Liaoquan</defName> <!-- Bulldog Bullpup AR -->
+		<defName>Liaoquan</defName>
 		<statBases>
 			<Mass>4.62</Mass>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -490,8 +444,9 @@
 		</FireModes>
 	</Operation>
 
+	 <!-- Guardian -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Shuwei</defName> <!-- Guardian Battle Rifle -->
+		<defName>Shuwei</defName>
 		<statBases>
 			<Mass>4.3</Mass>
 			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
@@ -524,8 +479,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Phantom Suppressed AR -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Huanying</defName> <!-- Phantom Suppressed AR -->
+		<defName>Huanying</defName>
 		<statBases>
 			<Mass>4.55</Mass>
 			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
@@ -560,8 +516,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Vanda -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Kuangtu</defName> <!-- Vanda AR (Kalash) -->
+		<defName>Kuangtu</defName>
 		<statBases>
 			<Mass>3.3</Mass>
 			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -596,8 +553,9 @@
 		</FireModes>
 	</Operation>
 
+	 <!-- Marshal -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Feijiang</defName> <!-- Marshal Lever Sniper -->
+		<defName>Feijiang</defName>
 		<statBases>
 			<Mass>3.06</Mass>
 			<RangedWeapon_Cooldown>0.78</RangedWeapon_Cooldown>
@@ -631,8 +589,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Outlaw -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Mangxia</defName>  <!-- Outlaw Double Sniper -->
+		<defName>Mangxia</defName>
 		<statBases>
 			<Mass>11.00</Mass>
 			<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
@@ -660,7 +619,7 @@
 		<AmmoUser>
 			<magazineSize>2</magazineSize>
 			<reloadOneAtATime>true</reloadOneAtATime>
-			<reloadTime>1.6</reloadTime>
+			<reloadTime>1.2</reloadTime>
 			<ammoSet>AmmoSet_338Lapua</ammoSet>
 		</AmmoUser>
 		<FireModes>
@@ -668,8 +627,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Operator -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Mingju</defName> <!-- Operator Bolt Sniper -->
+		<defName>Mingju</defName>
 		<statBases>
 			<Mass>6.8</Mass>
 			<RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
@@ -702,8 +662,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Ares -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Zhanshen</defName> <!-- Ares Drum MG -->
+		<defName>Zhanshen</defName>
 		<statBases>
 			<Mass>8.70</Mass>
 			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
@@ -739,8 +700,9 @@
 		</FireModes>
 	</Operation>
 
+	<!-- Odin -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Aodin</defName> <!-- Odin Box MG -->
+		<defName>Aodin</defName>
 		<statBases>
 			<Mass>9.60</Mass>
 			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
@@ -775,4 +737,5 @@
 			<aimedBurstShotCount>5</aimedBurstShotCount>
 		</FireModes>
 	</Operation>
+
 </Patch>
