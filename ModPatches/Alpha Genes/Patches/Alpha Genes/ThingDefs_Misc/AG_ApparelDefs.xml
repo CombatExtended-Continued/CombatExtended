@@ -6,10 +6,7 @@
 	<!-- Note: Forsaken fabric apparel are only craftable from Synthread -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="AG_Forsaken_Hood" or
-			defName="AG_Forsaken_Hood_Child"
-			]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="AG_Forsaken_Hood" or defName="AG_Forsaken_Hood_Child"]/statBases</xpath>
 		<value>
 			<Bulk>1</Bulk>
 		</value>
@@ -37,7 +34,7 @@
 			defName="AG_Forsaken_Hood_Child" or
 			defName="AG_ForsakenCloak" or
 			defName="AG_ForsakenCloak_Child"
-			]/statBases/ArmorRating_Sharp </xpath>
+			]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<!-- Equvalent to vanilla Synthread duster at normal quality -->
 			<ArmorRating_Sharp>1.25</ArmorRating_Sharp>
@@ -50,7 +47,7 @@
 			defName="AG_Forsaken_Hood_Child" or
 			defName="AG_ForsakenCloak" or
 			defName="AG_ForsakenCloak_Child"
-			]/statBases/ArmorRating_Blunt </xpath>
+			]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<!-- Equvalent to vanilla Synthread duster at normal quality -->
 			<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
@@ -60,49 +57,41 @@
 	<!-- ========== Forsaken Helmet ========== -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="AG_ForsakenMarineHelmet" or
-			defName="AG_ForsakenMarineHelmetPsy"
-			]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet" or defName="AG_ForsakenMarineHelmetPsy"]/statBases</xpath>
 		<value>
-			<!-- No night vision stats as Forsakens already have night vision >:( -->
 			<Bulk>6</Bulk>
-			<WornBulk>1.5</WornBulk>
+			<WornBulk>1.5</WornBulk> <!-- No night vision stats as Forsakens already have night vision. -->
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="AG_ForsakenMarineHelmet" or
-			defName="AG_ForsakenMarineHelmetPsy"
-			]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet" or defName="AG_ForsakenMarineHelmetPsy"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<!-- Equvalent to vanilla Power armor helmet at normal quality -->
-			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp> <!-- Equvalent to vanilla Power armor helmet at normal quality -->
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="AG_ForsakenMarineHelmet" or
-			defName="AG_ForsakenMarineHelmetPsy"
-			]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet" or defName="AG_ForsakenMarineHelmetPsy"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<!-- Equvalent to vanilla Power armor helmet at normal quality -->
-			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt> <!-- Equvalent to vanilla Power armor helmet at normal quality -->
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[
-			defName="AG_ForsakenMarineHelmet" or
-			defName="AG_ForsakenMarineHelmetPsy"
-			]/apparel/immuneToToxGasExposure</xpath>
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet"]/apparel/immuneToToxGasExposure</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[
-				defName="AG_ForsakenMarineHelmet" or
-				defName="AG_ForsakenMarineHelmetPsy"
-				]/apparel</xpath>
+			<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmetPsy"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmetPsy"]/apparel</xpath>
 			<value>
 				<immuneToToxGasExposure>true</immuneToToxGasExposure>
 			</value>
@@ -110,10 +99,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="AG_ForsakenMarineHelmet" or
-			defName="AG_ForsakenMarineHelmetPsy"
-			]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet" or defName="AG_ForsakenMarineHelmetPsy"]/equippedStatOffsets</xpath>
 		<value>
 			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 			<SmokeSensitivity>-1</SmokeSensitivity>
@@ -121,30 +107,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="AG_ForsakenMarineHelmet" or
-			defName="AG_ForsakenMarineHelmetPsy"
-			]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet" or defName="AG_ForsakenMarineHelmetPsy"]/statBases</xpath>
 		<value>
 			<Flammability>0</Flammability>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="AG_ForsakenMarineHelmet" or
-			defName="AG_ForsakenMarineHelmetPsy"
-			]/statBases/MaxHitPoints</xpath>
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet" or defName="AG_ForsakenMarineHelmetPsy"]/statBases/MaxHitPoints</xpath>
 		<value>
 			<MaxHitPoints>250</MaxHitPoints>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="AG_ForsakenMarineHelmet" or
-			defName="AG_ForsakenMarineHelmetPsy"
-			]/apparel/layers</xpath>
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet" or defName="AG_ForsakenMarineHelmetPsy"]/apparel/layers</xpath>
 		<value>
 			<li>OnHead</li>
 			<li>StrappedHead</li>
@@ -152,10 +129,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[
-			defName="AG_ForsakenMarineHelmet" or
-			defName="AG_ForsakenMarineHelmetPsy"
-			]</xpath>
+		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineHelmet" or defName="AG_ForsakenMarineHelmetPsy"]</xpath>
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
@@ -199,16 +173,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineArmor"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<!-- Equvalent to vanilla Power armor at normal quality -->
-			<ArmorRating_Sharp>20</ArmorRating_Sharp>
+			<ArmorRating_Sharp>20</ArmorRating_Sharp> <!-- Equvalent to vanilla Power armor at normal quality -->
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AG_ForsakenMarineArmor"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<!-- Equvalent to vanilla Power armor at normal quality -->
-			<ArmorRating_Blunt>45</ArmorRating_Blunt>
+			<ArmorRating_Blunt>45</ArmorRating_Blunt> <!-- Equvalent to vanilla Power armor at normal quality -->
 		</value>
 	</Operation>
 
@@ -279,6 +251,5 @@
 			</li>
 		</value>
 	</Operation>
-
 
 </Patch>
