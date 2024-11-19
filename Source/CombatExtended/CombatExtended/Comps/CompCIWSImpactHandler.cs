@@ -20,6 +20,10 @@ namespace CombatExtended
             {
                 Props.impacted.PlayOneShot(new TargetInfo(parent.DrawPos.ToIntVec3(), parent.Map));
             }
+            if (Props.impactEffecter != null)
+            {
+                Props.impactEffecter.Spawn(parent.DrawPos.ToIntVec3(), parent.Map);
+            }
             parent.Destroy(DestroyMode.Vanish);
         }
         
@@ -31,5 +35,6 @@ namespace CombatExtended
             compClass = typeof(CompCIWSImpactHandler);
         }
         public SoundDef impacted;
+        public EffecterDef impactEffecter;
     }
 }
