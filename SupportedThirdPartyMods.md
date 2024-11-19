@@ -254,6 +254,7 @@ Glitter Tech	|
 Glitter Weaponry	|
 Gloomy Dragonian Race	|
 GouRIMet	|
+GREG	|
 Grimstone Beasts   |
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
@@ -271,6 +272,7 @@ Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
 Hive Armory |
+Hyena (Continued) |
 Idhale Race	|
 Impact Weaponry	|
 Imperial Arsenal: Royal Warcasket 	|
@@ -279,6 +281,7 @@ Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
+Ion Weaponry    |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
 Jernalk's Skeletal Legion (Continued)	|
@@ -446,6 +449,7 @@ RimFantasy - Medieval Overhaul Edition   |
 RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
 RimNauts 2 |
+Rimrats |
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -517,6 +521,7 @@ T's Conversion Staff |
 T's Samurai Faction |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
+Valorant Weapon Pack |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
