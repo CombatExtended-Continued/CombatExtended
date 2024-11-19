@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- == Melee tools == -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="AG_ForsakenSniper" or
+			defName="AG_ForsakenShotgun" or
+			defName="AG_ForsakenAssaultRifle"
+			]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AG_ForsakenBow"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AG_ForsakenHydra"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Forsaken Sniper ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AG_ForsakenSniper</defName>
+		<statBases>
+			<Mass>7.18</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.80</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.6</SwayFactor>
+			<Bulk>12.60</Bulk>
+			<WorkToMake>50500</WorkToMake>
+		</statBases>
+		<costList>
+			<!-- og mod added gold -->
+			<Gold>2</Gold>
+			<Steel>50</Steel>
+			<Chemfuel>15</Chemfuel>
+			<Plasteel>35</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_8x35mmCharged_ForsakenSniper</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<range>86</range>
+			<soundCast>Shot_SniperRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_8x35mmCharged_ForsakenSniper</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>Bipod_AMR</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Forsaken ShotGun ========== -->
+
+	<!-- (CE implementation based on UTS-15 shotgun from RN Weapons, chambered for 12 Gauge Charged shotgun cartridge) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AG_ForsakenShotgun</defName>
+		<statBases>
+			<Mass>3.10</Mass>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.03</SwayFactor>
+			<Bulk>7.20</Bulk>
+			<WorkToMake>54500</WorkToMake>
+		</statBases>
+		<costList>
+			<!-- og mod added gold -->
+			<Gold>1</Gold>
+			<Steel>50</Steel>
+			<Chemfuel>15</Chemfuel>
+			<Plasteel>30</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
+			<ComponentIndustrial>4</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12GaugeCharged_ForsakenShotGun</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>18</range>
+			<soundCast>Shot_Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<!-- Reduced magazine size -->
+			<magazineSize>8</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_12GaugeCharged_ForsakenShotGun</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Forsaken Assault Rifle ========== -->
+
+	<!-- (CE implementation based on M16A1 assault rifle from RN Weapons, chambered for 5x35mm Charged cartridge) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AG_ForsakenAssaultRifle</defName>
+		<statBases>
+			<Mass>3</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.1</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<Bulk>10.03</Bulk>
+			<WorkToMake>60500</WorkToMake>
+		</statBases>
+		<costList>
+			<Gold>1</Gold>
+			<Steel>50</Steel>
+			<Chemfuel>15</Chemfuel>
+			<Plasteel>35</Plasteel>
+			<ComponentSpacer>1</ComponentSpacer>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.29</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_5x35mmCharged_ForsakenAR</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>55</range>
+			<burstShotCount>8</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>1</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>40</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_5x35mmCharged_ForsakenAR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>4</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Forsaken Bow ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AG_ForsakenBow</defName>
+		<statBases>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.75</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>4.00</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>100</Steel>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_ForsakensArrows</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>26</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_ForsakensArrows</ammoSet>
+		</AmmoUser>
+		<FireModes />
+		<researchPrerequisite>RecurveBow</researchPrerequisite>
+		<AllowWithRunAndGun>true</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>AG_ForsakenHydra</defName>
+		<statBases>
+			<Mass>10.00</Mass>
+			<RangedWeapon_Cooldown>1.20</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>13.00</Bulk>
+			<WorkToMake>80000</WorkToMake>
+		</statBases>
+		<costList>
+			<Gold>10</Gold>
+			<Silver>100</Silver>
+			<Plasteel>100</Plasteel>
+			<AG_Ultima>50</AG_Ultima>
+			<ComponentSpacer>6</ComponentSpacer>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>AG_Bullet_HydraBlast</defaultProjectile>
+			<warmupTime>3</warmupTime>
+			<ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>
+			<range>62</range>
+			<soundCast>ChargeLance_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<onlyManualCast>false</onlyManualCast>
+			<muzzleFlashScale>1</muzzleFlashScale>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>6</reloadTime>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+	
+</Patch>

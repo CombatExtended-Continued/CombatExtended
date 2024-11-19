@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Ultima Plant ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AG_Ultima"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<!-- Equvalent to vanilla Power armor at normal quality -->
+			<StuffPower_Armor_Sharp>0.2</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AG_Ultima"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<!-- Equvalent to vanilla Power armor at normal quality -->
+			<StuffPower_Armor_Blunt>0.18</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AG_Ultima"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<!-- Equvalent to vanilla Power armor at normal quality -->
+			<StuffPower_Armor_Heat>0.08</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AG_Ultima"]/stuffProps/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AG_Ultima"]/stuffProps</xpath>
+			<value>
+				<categories>
+					<li>SoftArmor</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AG_Ultima"]/stuffProps/categories</xpath>
+			<value>
+				<li>SoftArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AG_Ultima"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
+		</value>
+	</Operation>
+
+</Patch>
