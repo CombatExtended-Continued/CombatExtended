@@ -28,7 +28,6 @@
 
 	<!-- some of Chrysalis stats are here Chrysalis Helmet Base -->
 
-
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
 			defName="AC_Apparel_ChrysalisHelmet" or
@@ -946,8 +945,8 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/equippedStatOffsets</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
 		<value>
 			<PsychicSensitivity>-0.08</PsychicSensitivity>
 			<ToxicEnvironmentResistance>0.20</ToxicEnvironmentResistance>
@@ -1076,11 +1075,23 @@
 		<value>
 			<CarryWeight>88.1</CarryWeight>
 			<CarryBulk>10.7</CarryBulk>
-			<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 			<MeleeHitChance>0.05</MeleeHitChance>
 			<MeleeCritChance>0.1</MeleeCritChance>
-			<MeleeDodgeChance>0.15</MeleeDodgeChance>
 			<MeleeParryChance>0.3</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
 		</value>
 	</Operation>
 
