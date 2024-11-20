@@ -1,4 +1,5 @@
-﻿using Mono.Unix.Native;
+﻿using CombatExtended.CombatExtended;
+using Mono.Unix.Native;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,31 @@ namespace CombatExtended
         }
         #endregion
 
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look(ref ignoredDefs, nameof(ignoredDefs));
+        }
+
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            foreach (var gizmo in base.GetGizmos())
+            {
+                yield return gizmo;
+            }
+            yield return new Command_Action()
+            {
+                action = () => Find.WindowStack.Add(new Dialog_ManageCIWSTargets(GunCompEq.AllVerbs.OfType<VerbCIWS>().SelectMany(x=>x.Props.AllTargets).Distinct().ToList(), ignoredDefs)),
+                defaultLabel = "Dialog_ManageCIWS".Translate(),
+            };
+        }
+
+        private List<ThingDef> ignoredDefs = new List<ThingDef>();
         public IEnumerable<ThingDef> IgnoredDefsSettings
         {
             get
             {
-                Log.WarningOnce("IgnoredDefs not implemented yet", 82469265);
-                return Enumerable.Empty<ThingDef>();
+                return ignoredDefs ??= new List<ThingDef>();
             }
         }
         public override void Tick()
