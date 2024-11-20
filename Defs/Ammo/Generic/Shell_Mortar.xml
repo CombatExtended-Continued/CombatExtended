@@ -37,14 +37,14 @@
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_HeavyMortarShell</defName>
+		<defName>AmmoSet_ArtilleryShell</defName>
 		<label>artillery shells</label>
 		<ammoTypes>
-			<Ammo_HeavyMortarShell_HE>Bullet_155mmHowitzerShell_HE</Ammo_HeavyMortarShell_HE>
-			<Ammo_HeavyMortarShell_HE_HFuzed>Bullet_155mmHowitzerShell_HE_HFuzed</Ammo_HeavyMortarShell_HE_HFuzed>
-			<Ammo_HeavyMortarShell_Incendiary>Bullet_155mmHowitzerShell_Incendiary</Ammo_HeavyMortarShell_Incendiary>
-			<Ammo_HeavyMortarShell_EMP>Bullet_155mmHowitzerShell_EMP</Ammo_HeavyMortarShell_EMP>
-			<Ammo_HeavyMortarShell_Smoke>Bullet_155mmHowitzerShell_Smoke</Ammo_HeavyMortarShell_Smoke>
+			<Ammo_ArtilleryShell_HE>Bullet_155mmHowitzerShell_HE</Ammo_ArtilleryShell_HE>
+			<Ammo_ArtilleryShell_HE_HFuzed>Bullet_155mmHowitzerShell_HE_HFuzed</Ammo_ArtilleryShell_HE_HFuzed>
+			<Ammo_ArtilleryShell_Incendiary>Bullet_155mmHowitzerShell_Incendiary</Ammo_ArtilleryShell_Incendiary>
+			<Ammo_ArtilleryShell_EMP>Bullet_155mmHowitzerShell_EMP</Ammo_ArtilleryShell_EMP>
+			<Ammo_ArtilleryShell_Smoke>Bullet_155mmHowitzerShell_Smoke</Ammo_ArtilleryShell_Smoke>
 		</ammoTypes>
 		<isMortarAmmoSet>true</isMortarAmmoSet>
 	</CombatExtended.AmmoSetDef>
@@ -270,7 +270,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HeavyMortarShellBase">
-		<defName>Ammo_HeavyMortarShell_HE</defName>
+		<defName>Ammo_ArtilleryShell_HE</defName>
 		<label>artillery shell (HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
@@ -284,7 +284,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HeavyMortarShellBase">
-		<defName>Ammo_HeavyMortarShell_HE_HFuzed</defName>
+		<defName>Ammo_ArtilleryShell_HE_HFuzed</defName>
 		<label>artillery shell (Airburst)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Howitzer/AB</texPath>
@@ -298,7 +298,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HeavyMortarShellBase">
-		<defName>Ammo_HeavyMortarShell_Incendiary</defName>
+		<defName>Ammo_ArtilleryShell_Incendiary</defName>
 		<label>artillery shell (Incendiary)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Howitzer/INC</texPath>
@@ -312,7 +312,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HeavyMortarShellBase">
-		<defName>Ammo_HeavyMortarShell_EMP</defName>
+		<defName>Ammo_ArtilleryShell_EMP</defName>
 		<label>artillery shell (EMP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Howitzer/EMP</texPath>
@@ -326,7 +326,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HeavyMortarShellBase">
-		<defName>Ammo_HeavyMortarShell_Smoke</defName>
+		<defName>Ammo_ArtilleryShell_Smoke</defName>
 		<label>artillery shell (Smoke)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/Howitzer/SMK</texPath>
@@ -720,7 +720,7 @@
 	<!-- Heavy shells-->
 
 	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
-		<defName>MakeAmmo_HeavyMortarShell_HE</defName>
+		<defName>MakeAmmo_ArtilleryShell_HE</defName>
 		<label>make artillery shells (HE) x2</label>
 		<description>Craft 2 artillery shells (HE).</description>
 		<jobString>Making artillery shells (HE).</jobString>
@@ -764,12 +764,12 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_HeavyMortarShell_HE>2</Ammo_HeavyMortarShell_HE>
+			<Ammo_ArtilleryShell_HE>2</Ammo_ArtilleryShell_HE>
 		</products>
 	</RecipeDef>
 
 	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
-		<defName>MakeAmmo_HeavyMortarShell_HE_HFuzed</defName>
+		<defName>MakeAmmo_ArtilleryShell_HE_HFuzed</defName>
 		<label>make artillery shells (Airburst) x2</label>
 		<description>Craft 2 155mm (Airburst) artillery shells.</description>
 		<jobString>Making 155mm (Airburst) artillery shells.</jobString>
@@ -813,7 +813,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_HeavyMortarShell_HE_HFuzed>2</Ammo_HeavyMortarShell_HE_HFuzed>
+			<Ammo_ArtilleryShell_HE_HFuzed>2</Ammo_ArtilleryShell_HE_HFuzed>
 		</products>
 		<skillRequirements>
 			<Crafting>5</Crafting>
@@ -821,7 +821,7 @@
 	</RecipeDef>
 
 	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
-		<defName>MakeAmmo_HeavyMortarShell_Incendiary</defName>
+		<defName>MakeAmmo_ArtilleryShell_Incendiary</defName>
 		<label>make artillery shells (Incendiary) x2</label>
 		<description>Craft 2 artillery shells (Incendiary).</description>
 		<jobString>Making artillery shell (Incendiary).</jobString>
@@ -865,12 +865,12 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_HeavyMortarShell_Incendiary>2</Ammo_HeavyMortarShell_Incendiary>
+			<Ammo_ArtilleryShell_Incendiary>2</Ammo_ArtilleryShell_Incendiary>
 		</products>
 	</RecipeDef>
 
 	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
-		<defName>MakeAmmo_HeavyMortarShell_EMP</defName>
+		<defName>MakeAmmo_ArtilleryShell_EMP</defName>
 		<label>make artillery shells (EMP) x2</label>
 		<description>Craft 2 artillery shells (EMP).</description>
 		<jobString>Making artillery shells (EMP).</jobString>
@@ -906,12 +906,12 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_HeavyMortarShell_EMP>2</Ammo_HeavyMortarShell_EMP>
+			<Ammo_ArtilleryShell_EMP>2</Ammo_ArtilleryShell_EMP>
 		</products>
 	</RecipeDef>
 
 	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
-		<defName>MakeAmmo_HeavyMortarShell_Smoke</defName>
+		<defName>MakeAmmo_ArtilleryShell_Smoke</defName>
 		<label>make artillery shells (Smoke) x2</label>
 		<description>Craft 2 artillery shells (Smoke).</description>
 		<jobString>Making artillery shells (Smoke).</jobString>
@@ -955,7 +955,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_HeavyMortarShell_Smoke>2</Ammo_HeavyMortarShell_Smoke>
+			<Ammo_ArtilleryShell_Smoke>2</Ammo_ArtilleryShell_Smoke>
 		</products>
 	</RecipeDef>
 
