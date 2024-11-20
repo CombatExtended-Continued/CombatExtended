@@ -21,7 +21,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_MortarShell</defName>
-		<label>mortar shells</label>
+		<label>mortar shell</label>
 		<ammoTypes>
 			<Ammo_MortarShell_HighExplosive>Bullet_81mmMortarShell_HE</Ammo_MortarShell_HighExplosive>
 			<Ammo_MortarShell_HighExplosive_HFuzed>Bullet_81mmMortarShell_HE_HFuzed</Ammo_MortarShell_HighExplosive_HFuzed>
@@ -38,7 +38,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_ArtilleryShell</defName>
-		<label>artillery shells</label>
+		<label>artillery shell</label>
 		<ammoTypes>
 			<Ammo_ArtilleryShell_HE>Bullet_155mmHowitzerShell_HE</Ammo_ArtilleryShell_HE>
 			<Ammo_ArtilleryShell_HE_HFuzed>Bullet_155mmHowitzerShell_HE_HFuzed</Ammo_ArtilleryShell_HE_HFuzed>
@@ -53,8 +53,7 @@
 
 	<!-- Light shells-->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="GenericMortarShellBase" ParentName="HeavyAmmoBase"
-		Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="GenericMortarShellBase" ParentName="HeavyAmmoBase" Abstract="True">
 		<description>Low-velocity shell designed to be fired from a mortar.</description>
 		<statBases>
 			<MaxHitPoints>200</MaxHitPoints>
@@ -68,8 +67,7 @@
 		<isMortarAmmo>true</isMortarAmmo>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="GenericMortarShellBaseCraftableBase"
-		ParentName="GenericMortarShellBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="GenericMortarShellBaseCraftableBase" ParentName="GenericMortarShellBase" Abstract="True">
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting_TableMachining</li>
@@ -212,8 +210,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="GenericMortarShellBaseCraftableBase"
-		MayRequire="Ludeon.RimWorld.Biotech">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="GenericMortarShellBaseCraftableBase" MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>Ammo_MortarShell_Toxic</defName>
 		<label>mortar shell (Toxic)</label>
 		<graphicData>
@@ -248,8 +245,7 @@
 
 	<!-- Heavy shells-->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="HeavyMortarShellBase" ParentName="HeavyAmmoBase"
-		Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="HeavyMortarShellBase" ParentName="HeavyAmmoBase" Abstract="True">
 		<description>Large cannon shell used by howitzers.</description>
 		<thingCategories>
 			<li>AmmoMortarShellHeavy</li>
