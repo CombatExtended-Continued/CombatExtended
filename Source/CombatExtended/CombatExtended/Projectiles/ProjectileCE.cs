@@ -567,6 +567,10 @@ namespace CombatExtended
                 this.castShadow = props.castShadow;
                 this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
+                ballisticCoefficient = props.ballisticCoefficient.RandomInRange;
+                mass = props.mass.RandomInRange;
+                radius = props.diameter.RandomInRange / 2000; // half the diameter and mm -> m
+                
             }
             if (shotHeight >= CollisionVertical.WallCollisionHeight && Position.Roofed(launcher.Map))
             {
@@ -581,6 +585,7 @@ namespace CombatExtended
             this.origin = origin;
             this.OriginIV3 = new IntVec3(origin);
             this.Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
+            velocity = TrajectoryWorker.GetVelocity(shotSpeed, shotRotation, shotAngle);
             this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
@@ -1470,7 +1475,7 @@ namespace CombatExtended
                 Map.debugDrawer.FlashLine(previous.ToIntVec3(), next.ToIntVec3(), 70, SimpleColor.Orange);
                 Map.debugDrawer.FlashLine(
                     TrajectoryWorker.ExactPosToDrawPos(next, FlightTicks + sinceTicks, (def.projectile as ProjectilePropertiesCE).TickToTruePos, def.Altitude).ToIntVec3(),
-                    TrajectoryWorker.ExactPosToDrawPos(previous, FlightTicks + sinceTicks -1, (def.projectile as ProjectilePropertiesCE).TickToTruePos, def.Altitude).ToIntVec3()
+                    TrajectoryWorker.ExactPosToDrawPos(previous, FlightTicks + sinceTicks - 1, (def.projectile as ProjectilePropertiesCE).TickToTruePos, def.Altitude).ToIntVec3()
                     , 70, SimpleColor.Red);
                 previous = next;
                 sinceTicks++;

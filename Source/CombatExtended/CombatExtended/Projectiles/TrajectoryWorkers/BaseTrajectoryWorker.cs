@@ -11,7 +11,6 @@ namespace CombatExtended
 {
     public abstract class BaseTrajectoryWorker
     {
-        public abstract float DistanceTraveled(float shotHeight, float shotSpeed, float shotAngle, float GravityFactor);
         public abstract Vector3 MoveForward(
             LocalTargetInfo currentTarget,
             float shotRotation,
@@ -58,7 +57,7 @@ namespace CombatExtended
         {
             for (; ticksToImpact >= 0; ticksToImpact--)
             {
-                yield return MoveForward(currentTarget, shotRotation, shotAngle, gravityFactor, origin, exactPosition, ref destination, ticksToImpact, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
+                yield return exactPosition = MoveForward(currentTarget, shotRotation, shotAngle, gravityFactor, origin, exactPosition, ref destination, ticksToImpact, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
             }
         }
         public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
@@ -71,6 +70,36 @@ namespace CombatExtended
             return new Vector3(exactPosition.x, altitude, exactPosition.z + sh);
         }
         public virtual Vector2 Destination(Vector2 origin, float shotRotation, float shotHeight, float shotSpeed, float shotAngle, float GravityFactor) => origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
-        public abstract float GetFlightTime(float shotAngle, float shotSpeed, float GravityFactor, float shotHeight);
+        public virtual float DistanceTraveled(float shotHeight, float shotSpeed, float shotAngle, float GravityFactor)
+        {
+            return CE_Utility.MaxProjectileRange(shotHeight, shotSpeed, shotAngle, GravityFactor);
+        }
+        public virtual float GetFlightTime(float shotAngle, float shotSpeed, float GravityFactor, float shotHeight)
+        {
+            //Calculates quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> vSin, y -> 0, y0 -> shotHeight} to find t in fractional ticks where height equals zero.
+            return (Mathf.Sin(shotAngle) * shotSpeed + Mathf.Sqrt(Mathf.Pow(Mathf.Sin(shotAngle) * shotSpeed, 2f) + 2f * GravityFactor * shotHeight)) / GravityFactor;
+        }
+
+        public virtual float GetSpeed(Vector3 velocity)
+        {
+            return velocity.magnitude;
+        }
+
+        public virtual Vector3 GetVelocity(float shotSpeed, Vector3 origin, Vector3 destination)
+        {
+            return (destination - origin).normalized * shotSpeed / GenTicks.TicksPerRealSecond;
+        }
+        /// <summary>
+        /// Get initial velocity
+        /// </summary>
+        /// <param name="shotSpeed">speed</param>
+        /// <param name="rotation">rotation in degrees</param>
+        /// <param name="angle">angle in radians</param>
+        /// <returns></returns>
+        public virtual Vector3 GetVelocity(float shotSpeed, float rotation, float angle)
+        {
+            angle = angle * Mathf.Rad2Deg; // transform to degrees
+            return Vector2.up.RotatedBy(rotation).ToVector3().RotatedBy(angle) * shotSpeed / GenTicks.TicksPerRealSecond;
+        }
     }
 }
