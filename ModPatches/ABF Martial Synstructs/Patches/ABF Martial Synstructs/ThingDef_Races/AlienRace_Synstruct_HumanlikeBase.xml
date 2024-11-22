@@ -3,9 +3,9 @@
 
 	<!--Test for comps-->
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior"]/comps</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Warrior"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior"]</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Warrior"]</xpath>
 			<value>
 				<comps/>
 			</value>
@@ -13,9 +13,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark2Bishop"]/comps</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Bishop"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark2Bishop"]</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Bishop"]</xpath>
 			<value>
 				<comps/>
 			</value>
@@ -23,9 +23,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark3Paladin"]/comps</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Paladin"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark3Paladin"]</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Paladin"]</xpath>
 			<value>
 				<comps/>
 			</value>
@@ -33,9 +33,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark4Jellyman"]/comps</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Jellyman"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark4Jellyman"]</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Jellyman"]</xpath>
 			<value>
 				<comps/>
 			</value>
@@ -43,9 +43,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]/comps</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Juggernaut"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Juggernaut"]</xpath>
 			<value>
 				<comps/>
 			</value>
@@ -53,11 +53,11 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior" or
-			defName="ATM_Mark2Bishop" or
-			defName="ATM_Mark3Paladin" or
-			defName="ATM_Mark4Jellyman" or
-			defName="ATM_Mark5Titan"
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Warrior" or
+			defName="Synstruct_Bishop" or
+			defName="Synstruct_Paladin" or
+			defName="Synstruct_Jellyman" or
+			defName="Synstruct_Juggernaut"
 			] </xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
@@ -67,11 +67,11 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior" or
-			defName="ATM_Mark2Bishop" or
-			defName="ATM_Mark3Paladin" or
-			defName="ATM_Mark4Jellyman" or
-			defName="ATM_Mark5Titan"
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Warrior" or
+			defName="Synstruct_Bishop" or
+			defName="Synstruct_Paladin" or
+			defName="Synstruct_Jellyman" or
+			defName="Synstruct_Juggernaut"
 			]/comps </xpath>
 		<value>
 			<li>
@@ -85,8 +85,8 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/AlienRace.ThingDef_AlienRace[
-			defName="ATM_Mark3Paladin" or
-			defName="ATM_Mark4Jellyman"
+			defName="Synstruct_Paladin" or
+			defName="Synstruct_Jellyman"
 			]/comps </xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_Suppressable"/>
@@ -96,7 +96,7 @@
 	<!-- MK1 -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior"]/statBases</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Warrior"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.8</MeleeDodgeChance>
 			<MeleeCritChance>0.8</MeleeCritChance>
@@ -107,28 +107,28 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Warrior"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>5</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Warrior"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior"]/race/baseBodySize</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Warrior"]/race/baseBodySize</xpath>
 		<value>
 			<baseBodySize>0.85</baseBodySize>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark1Warrior"]/tools</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Warrior"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -170,7 +170,7 @@
 	<!-- MK2 -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark2Bishop"]/statBases</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Bishop"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.9</MeleeDodgeChance>
 			<MeleeCritChance>0.9</MeleeCritChance>
@@ -181,21 +181,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark2Bishop"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Bishop"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>5</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark2Bishop"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Bishop"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark2Bishop"]/tools</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Bishop"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -238,7 +238,7 @@
 	<!-- MK3 -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark3Paladin"]/statBases</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Paladin"]/statBases</xpath>
 		<value>
 			<NightVisionEfficiency>0.25</NightVisionEfficiency>
 			<MeleeDodgeChance>1</MeleeDodgeChance>
@@ -251,14 +251,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark3Paladin"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Paladin"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark3Paladin"]/tools</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Paladin"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -322,7 +322,7 @@
 	<!-- MK4 -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark4Jellyman"]/statBases</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Jellyman"]/statBases</xpath>
 		<value>
 			<NightVisionEfficiency>0.4</NightVisionEfficiency>
 			<AimingAccuracy>1.1</AimingAccuracy>
@@ -337,21 +337,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark4Jellyman"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Jellyman"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>10</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark4Jellyman"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Jellyman"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>20</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark4Jellyman"]/tools</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Jellyman"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -372,28 +372,28 @@
 	<!-- MK5 -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Juggernaut"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>30</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Juggernaut"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>67.5</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]/statBases/ArmorRating_Heat</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Juggernaut"]/statBases/ArmorRating_Heat</xpath>
 		<value>
 			<ArmorRating_Heat>0</ArmorRating_Heat>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]/statBases</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Juggernaut"]/statBases</xpath>
 		<value>
 			<NightVisionEfficiency>0.4</NightVisionEfficiency>
 			<MeleeDodgeChance>1.0</MeleeDodgeChance>
@@ -406,7 +406,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATM_Mark5Titan"]/tools</xpath>
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Synstruct_Juggernaut"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
