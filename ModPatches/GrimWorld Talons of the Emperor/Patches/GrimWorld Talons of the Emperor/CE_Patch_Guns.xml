@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!--===== Melee Attacks for Guns =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Bolt_Caliver" or defName="GW_TotE_Kinetic_Destructor"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<!--===== Terminator Weapons =====-->
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Adrathic_Destructor"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.63</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<!--===== Guns =====-->
+	
+	<!--===== Adrathic Destructor =====-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_TotE_Adrathic_Destructor</defName>
+		<statBases>
+			<Mass>14.8</Mass>
+			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.65</SwayFactor>
+			<Bulk>10.7</Bulk>
+			<WorkToMake>38000</WorkToMake>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Lasgun_Cannon</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>42</range>
+			<soundCast>Talon_Pulse_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<recoilAmount>2.15</recoilAmount>
+			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>40</magazineSize>
+			<reloadTime>6.8</reloadTime>
+			<ammoSet>AmmoSet_Lasgun_Cannon</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============ Bolt Caliver ============ -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_TotE_Bolt_Caliver</defName>
+		<statBases>
+			<Mass>21</Mass>
+			<RangedWeapon_Cooldown>0.54</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.1</ShotSpread>
+			<SwayFactor>1</SwayFactor>
+			<Bulk>18</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Bolter998_Standard</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>54</range>
+			<burstShotCount>20</burstShotCount>
+			<soundCast>Talon_Bolt_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<recoilAmount>2.3</recoilAmount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>6.8</reloadTime>
+			<ammoSet>AmmoSet_Bolter998</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+		<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+			<li>CE_SMG</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ============ Kinetic Destroyer ============ -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_TotE_Kinetic_Destructor</defName>
+		<statBases>
+			<Mass>6</Mass>
+			<Bulk>8.6</Bulk>
+			<SwayFactor>1.17</SwayFactor>
+			<ShotSpread>0.15</ShotSpread>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.5</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaRifle</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>20</range>
+			<soundCast>Talon_Bolt_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCanister_Rifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>
