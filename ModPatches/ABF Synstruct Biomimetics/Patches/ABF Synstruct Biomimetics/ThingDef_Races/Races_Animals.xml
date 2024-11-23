@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!--Bodytype-->
+	<!-- Bodytype -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="ATB_MicroScyther"]</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Razorstruct"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>QuadrupedLow</bodyShape>
@@ -12,11 +12,12 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="ATB_DroneTORT" or
-			defName="ATB_DroneMineralUnit" or
-			defName="ATB_DroneNutritionUnit" or
-			defName="ATB_DroneWatchdog"
-			] </xpath>
+		<xpath>Defs/ThingDef[
+			defName="ABF_Thing_Synstruct_Convoystruct" or
+			defName="ABF_Thing_Synstruct_Steelstruct" or
+			defName="ABF_Thing_Synstruct_Nutristruct" or
+			defName="ABF_Thing_Synstruct_Guardstruct"
+			]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -25,7 +26,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="ATB_DroneChemUnit"]</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Chemstruct"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Birdlike</bodyShape>
@@ -33,10 +34,10 @@
 		</value>
 	</Operation>
 
-	<!-- Micro Scyther-->
+	<!-- Razorstruct -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ATB_MicroScyther"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Razorstruct"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.26</MeleeDodgeChance>
 			<MeleeCritChance>0.03</MeleeCritChance>
@@ -45,7 +46,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_MicroScyther"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Razorstruct"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -55,7 +56,7 @@
 					</capacities>
 					<power>6</power>
 					<cooldownTime>0.54</cooldownTime>
-					<linkedBodyPartsGroup>ATB_MechanicalLeftWing</linkedBodyPartsGroup>
+					<linkedBodyPartsGroup>ABF_BodyPartGroup_Synstruct_LeftWing</linkedBodyPartsGroup>
 					<armorPenetrationBlunt>0.303</armorPenetrationBlunt>
 					<armorPenetrationSharp>1</armorPenetrationSharp>
 				</li>
@@ -67,7 +68,7 @@
 					</capacities>
 					<power>6</power>
 					<cooldownTime>0.54</cooldownTime>
-					<linkedBodyPartsGroup>ATB_MechanicalRightWing</linkedBodyPartsGroup>
+					<linkedBodyPartsGroup>ABF_BodyPartGroup_Synstruct_RightWing</linkedBodyPartsGroup>
 					<armorPenetrationBlunt>0.303</armorPenetrationBlunt>
 					<armorPenetrationSharp>1</armorPenetrationSharp>
 				</li>
@@ -87,10 +88,10 @@
 		</value>
 	</Operation>
 
-	<!--Chemical Processing Unit-->
+	<!-- Chemical Processing Unit -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ATB_DroneChemUnit"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Chemstruct"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.15</MeleeDodgeChance>
 			<MeleeCritChance>0.0</MeleeCritChance>
@@ -99,7 +100,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneChemUnit"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Chemstruct"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -116,10 +117,10 @@
 		</value>
 	</Operation>
 
-	<!-- Mineral unit -->
+	<!-- Mineral Unit -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ATB_DroneMineralUnit"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Steelstruct"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.08</MeleeDodgeChance>
 			<MeleeCritChance>0.13</MeleeCritChance>
@@ -131,7 +132,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneMineralUnit"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Steelstruct"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -151,7 +152,7 @@
 	<!-- Nutrition unit -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ATB_DroneNutritionUnit"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Nutristruct"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.23</MeleeDodgeChance>
 			<MeleeCritChance>0.28</MeleeCritChance>
@@ -163,7 +164,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneNutritionUnit"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Nutristruct"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -183,7 +184,7 @@
 	<!-- TORT unit -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Convoystruct"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.17</MeleeDodgeChance>
 			<MeleeCritChance>0.23</MeleeCritChance>
@@ -195,7 +196,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Convoystruct"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -213,21 +214,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Convoystruct"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>12</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Convoystruct"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>36</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneTORT"]/statBases/ArmorRating_Heat</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Convoystruct"]/statBases/ArmorRating_Heat</xpath>
 		<value>
 			<ArmorRating_Heat>0</ArmorRating_Heat>
 		</value>
@@ -236,7 +237,7 @@
 	<!-- Watchdog unit -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="ATB_DroneWatchdog"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Guardstruct"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.16</MeleeDodgeChance>
 			<MeleeCritChance>0.21</MeleeCritChance>
@@ -248,21 +249,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneWatchdog"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Guardstruct"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>4</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneWatchdog"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Guardstruct"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>6</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="ATB_DroneWatchdog"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Guardstruct"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">

@@ -2,9 +2,9 @@
 <Patch>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[12]/parts/li[def="ATR_MechanicalFoot"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Leg"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[12]/parts/li[def="ATR_MechanicalFoot"]</xpath>
+			<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Leg"]</xpath>
 			<value>
 				<groups/>
 			</value>
@@ -12,9 +12,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[13]/parts/li[def="ATR_MechanicalFoot"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Leg"]/parts/li[def="ABF_BodyPart_Synstruct_Foot"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[13]/parts/li[def="ATR_MechanicalFoot"]</xpath>
+			<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Leg"]/parts/li[def="ABF_BodyPart_Synstruct_Foot"]</xpath>
 			<value>
 				<groups/>
 			</value>
@@ -22,63 +22,49 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/groups</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[def="ATR_Framework"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Counterweight"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[def="ATR_CounterWeightTail"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Neck"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Neck"]/parts/li[def="ABF_BodyPart_Synstruct_Head"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/parts/li[def="ATR_MechanicalHead"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Neck"]/parts/li[def="ABF_BodyPart_Synstruct_Head"]/parts/li[def="ABF_BodyPart_Synstruct_AudialSensor"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/parts/li[def="ATR_MechanicalHead"]/parts/li[def="ATR_MechanicalAudioSensor"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Neck"]/parts/li[def="ABF_BodyPart_Synstruct_Head"]/parts/li[def="ABF_BodyPart_Synstruct_Jaw"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/parts/li[def="ATR_MechanicalHead"]/parts/li[def="ATR_SmellSensor"]/groups</xpath>
-		<value>
-			<li>CoveredByNaturalArmor</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[def="ATR_MechanicalNeck"]/parts/li[def="ATR_MechanicalHead"]/parts/li[def="ATR_MechanicalJaw"]/groups</xpath>
-		<value>
-			<li>CoveredByNaturalArmor</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[def="ATR_MechanicalLeg"]</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Leg"]</xpath>
 		<value>
 			<groups>
 				<li>CoveredByNaturalArmor</li>
@@ -87,7 +73,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/BodyDef[defName="ATB_MechQuadrupedal"]/corePart/parts/li[def="ATR_MechanicalLeg"]/parts/li[def="ATR_MechanicalFoot"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="ABF_Body_Synstruct_QuadrupedalBiomimetic"]/corePart/parts/li[def="ABF_BodyPart_Synstruct_Leg"]/parts/li[def="ABF_BodyPart_Synstruct_Foot"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
