@@ -1617,6 +1617,84 @@ namespace CombatExtended
             return pawn;
         }
 
+        public static object LaunchProjectileCE(ThingDef projectileDef,
+                                                ThingDef _ammoDef,
+                                                Def _ammosetDef,
+                                                Vector2 origin,
+                                                LocalTargetInfo target,
+                                                Pawn launcher,
+                                                float shotAngle,
+                                                float shotRotation,
+                                                float shotHeight,
+                                                float shotSpeed)
+        {
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            {
+                foreach (var al in ammosetDef.ammoTypes)
+                {
+                    if (al.ammo == ammoDef)
+                    {
+                        projectileDef = al.projectile;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                projectileDef = projectileDef.GetProjectile();
+            }
+            var p = ThingMaker.MakeThing(projectileDef, null);
+            ProjectileCE projectile = (ProjectileCE)p;
+            GenSpawn.Spawn(projectile, launcher.Position, launcher.Map);
+            projectile.ExactPosition = origin;
+            projectile.canTargetSelf = false;
+            projectile.minCollisionDistance = 1;
+            projectile.intendedTarget = target;
+            projectile.mount = null;
+            projectile.AccuracyFactor = 1;
+
+            ProjectilePropertiesCE pprop = projectileDef.projectile as ProjectilePropertiesCE;
+            bool instant = false;
+            float spreadDegrees = 0;
+            float aperatureSize = 0.03f;
+            // Hard coded as a super high max range - TODO: change in 1.6 to pass the range from the turret to this function.
+            // Should also update ProjectileCE.RayCast to not need a VerbPropertiesCE input just a float for range (Since thats all its used for).
+            VerbPropertiesCE verbPropsRange = new VerbPropertiesCE
+            {
+                range = 1000
+            };
+            if (pprop != null)
+            {
+                instant = pprop.isInstant;
+            }
+            if (instant)
+            {
+                projectile.RayCast(
+                    launcher,
+                    verbPropsRange,
+                    origin,
+                    shotAngle,
+                    shotRotation,
+                    shotHeight,
+                    shotSpeed,
+                    spreadDegrees,
+                    aperatureSize,
+                    launcher);
+            }
+            else
+            {
+                projectile.Launch(
+                    launcher,
+                    origin,
+                    shotAngle,
+                    shotRotation,
+                    shotHeight,
+                    shotSpeed,
+                    launcher);
+            }
+            return projectile;
+        }
+
         public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
     }
 }
