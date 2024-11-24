@@ -35,8 +35,9 @@ namespace CombatExtended.Compatibility.SOS2Compat
             }
         }
         // To stop blowing up your own spaceships roof if the shots miss, technically its cheating but gameplay feels too punishing if not added
-        protected override bool TryCollideWithRoof(IntVec3 cell)
+        protected override bool CanCollideWithRoof(IntVec3 cell, out Vector3 point)
         {
+            point = Vector3.negativeInfinity;
             if (!cell.Roofed(Map))
             {
                 return false;
@@ -54,7 +55,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                 return false;
             }
 
-            var point = ShotLine.GetPoint(dist);
+            point = ShotLine.GetPoint(dist);
             ExactPosition = point;
             landed = true;
 
@@ -62,9 +63,11 @@ namespace CombatExtended.Compatibility.SOS2Compat
             {
                 MoteMakerCE.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
             }
-
-            InterceptProjectile(null, ExactPosition, true); // Modified here to just remove the projectile instead of doing an impact, could maybe add some kind of impact sound
             return true;
+        }
+        public override void CollideWithRoof(Vector3 point)
+        {
+            InterceptProjectile(null, ExactPosition, true); // Modified here to just remove the projectile instead of doing an impact, could maybe add some kind of impact sound
         }
 
     }
