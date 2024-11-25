@@ -131,30 +131,32 @@ namespace CombatExtended
         }
         protected virtual bool IsFriendlyTo(TargetType thing) => !thing.HostileTo(Caster);
         public abstract IEnumerable<TargetType> Targets { get; }
-        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && TryFindCEShootLineFromTo(Caster.Position, target, out _, out _) && base.ValidateTarget(target, showMessages);
+        //public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && TryFindCEShootLineFromTo(Caster.Position, target, out _, out _) && base.ValidateTarget(target, showMessages);
         protected abstract IEnumerable<Vector3> TargetNextPositions(TargetType target);
         public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targetInfo, out ShootLine resultingLine, out Vector3 targetPos)
         {
-            if (base.TryFindCEShootLineFromTo(root, targetInfo, out resultingLine, out targetPos))
-            {
-                return true;
-            }
+
             if (!(targetInfo.Thing is TargetType target))
             {
+                resultingLine = default;
+                targetPos = default;
                 return false;
             }
             var midBurst = numShotsFired > 0;
             var originV3 = Caster.Position.ToVector3Shifted();
             var ticksToSkip = (Caster as Building_TurretGunCE)?.CurrentTarget.IsValid ?? CurrentTarget.IsValid ? this.BurstWarmupTicksLeft : VerbPropsCE.warmupTime.SecondsToTicks();
             var instant = projectilePropsCE.isInstant;
+            var maxDistSqr = Props.range * Props.range;
             if (instant)
             {
                 var to = TargetNextPositions(target).Skip(ticksToSkip).FirstOrFallback(Vector3.negativeInfinity);
                 if (to == Vector3.negativeInfinity)
                 {
                     resultingLine = default;
+                    targetPos = default;
                     return false;
                 }
+                targetPos = to;
                 resultingLine = new ShootLine(originV3.ToIntVec3(), to.ToIntVec3());
                 return true;
             }
@@ -163,9 +165,9 @@ namespace CombatExtended
             var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
             foreach (var pos in TargetNextPositions(target).Skip(ticksToSkip))
             {
-                if (i > maximumPredectionTicks)
+                if ((pos - originV3).MagnitudeHorizontalSquared() > maxDistSqr)
                 {
-                    break;
+                    continue;
                 }
 
                 Vector2 originV2 = new Vector2(originV3.x, originV3.z);
@@ -188,9 +190,13 @@ namespace CombatExtended
                 }
                 targetPos1 = targetPos2;
                 i++;
-
+                if (i > maximumPredectionTicks)
+                {
+                    break;
+                }
             }
             resultingLine = default;
+            targetPos = default;
             return false;
         }
         public override float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
