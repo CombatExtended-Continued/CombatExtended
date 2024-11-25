@@ -610,16 +610,7 @@ namespace CombatExtended
         /// <returns>angle in radians</returns>
         protected virtual float ShotAngle(Vector3 source, Vector3 targetPos)
         {
-            var targetHeight = targetPos.y;
-            var newTargetLoc = new Vector2(targetPos.x, targetPos.z);
-            if (projectilePropsCE.isInstant)
-            {
-                return Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
-            }
-            else
-            {
-                return ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
-            }
+            return projectilePropsCE.TrajectoryWorker.ShotAngle(projectilePropsCE, source, targetPos);
         }
         protected float ShotRotation(Vector3 targetPos)
         {
