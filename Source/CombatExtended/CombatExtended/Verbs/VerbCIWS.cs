@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using ProjectRimFactory.AutoMachineTool;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -142,11 +143,24 @@ namespace CombatExtended
                 targetPos = default;
                 return false;
             }
-            var midBurst = numShotsFired > 0;
+            var maxDistSqr = Props.range * Props.range;
             var originV3 = Caster.Position.ToVector3Shifted();
+            if (!Props.tryPredict)
+            {
+                if ((originV3 - target.DrawPos).MagnitudeHorizontalSquared() > maxDistSqr)
+                {
+                    resultingLine = default;
+                    targetPos = default;
+                    return false;
+                }
+                var y = TargetNextPositions(target).FirstOrDefault().y;
+                targetPos = target.DrawPos;
+                resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)targetPos.x, (int)y, (int)targetPos.z));
+                return true;
+            }
+            var midBurst = numShotsFired > 0;
             var ticksToSkip = (Caster as Building_TurretGunCE)?.CurrentTarget.IsValid ?? CurrentTarget.IsValid ? this.BurstWarmupTicksLeft : VerbPropsCE.warmupTime.SecondsToTicks();
             var instant = projectilePropsCE.isInstant;
-            var maxDistSqr = Props.range * Props.range;
             if (instant)
             {
                 var to = TargetNextPositions(target).Skip(ticksToSkip).FirstOrFallback(Vector3.negativeInfinity);
@@ -224,6 +238,7 @@ namespace CombatExtended
 
     public abstract class VerbProperties_CIWS : VerbPropertiesCE
     {
+        public bool tryPredict = true;
         public string holdFireIcon = "UI/Commands/HoldFire";
         public string holdFireLabel = "HoldFire";
         public string holdFireDesc;
