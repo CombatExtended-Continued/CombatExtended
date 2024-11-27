@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Body Shape -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[
+			defName="ABF_Thing_Synstruct_Envoy" or
+			defName="ABF_Thing_Synstruct_Grunt" or
+			defName="ABF_Thing_Synstruct_Overseer"
+			]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/AlienRace.ThingDef_AlienRace[
+			defName="ABF_Thing_Synstruct_Envoy" or
+			defName="ABF_Thing_Synstruct_Grunt" or
+			defName="ABF_Thing_Synstruct_Overseer"
+            ]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>500</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct><!-- The default minimal armor percentage for all armor kinds. Will be overriden by any below -->
+			</li>
+			<li Class="CombatExtended.CompProperties_Suppressable" />
+			<li>
+				<compClass>CombatExtended.CompAmmoGiver</compClass>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
