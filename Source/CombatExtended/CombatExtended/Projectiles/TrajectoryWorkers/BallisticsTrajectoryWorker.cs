@@ -10,17 +10,27 @@ namespace CombatExtended
 {
     public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
     {
-        public override Vector3 MoveForward(LocalTargetInfo currentTarget, float shotRotation, float shotAngle, float gravityFactor, Vector2 origin, Vector3 exactPosition, ref Vector2 destination, float ticksToImpact, float startingTicksToImpact, float shotHeight, ref bool kinit, ref Vector3 velocity, ref float shotSpeed, ref Vector3 curPosition, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity, ref float initialSpeed, ref int flightTicks)
+        public override Vector3 MoveForward(LocalTargetInfo currentTarget, float shotRotation, float shotAngle, float gravityFactor, Vector2 origin, Vector3 exactPosition, ref Vector2 destination, float tickToImpact, float startingTicksToImpact, float shotHeight, float speedGain, float maxSpeed, ref bool kinit, ref Vector3 velocity, ref float shotSpeed, ref Vector3 curPosition, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity, ref float initialSpeed, ref int flightTicks)
         {
             flightTicks++;
-            Accelerate(radius, ballisticCoefficient, mass, gravity, ref velocity, ref shotSpeed);
+            Accelerate(currentTarget, radius, ballisticCoefficient, mass, gravity, speedGain, maxSpeed, exactPosition, ref velocity, ref shotSpeed);
             shotSpeed = GetSpeed(velocity);
             return exactPosition + velocity;
         }
-        protected virtual void Accelerate(float radius, float ballisticCoefficient, float mass, float gravity, ref Vector3 velocity, ref float shotSpeed)
+        protected virtual void Accelerate(LocalTargetInfo currentTarget, float radius, float ballisticCoefficient, float mass, float gravity, float speedGain, float maxSpeed, Vector3 exactPosition, ref Vector3 velocity, ref float shotSpeed)
         {
             AffectedByDrag(radius, shotSpeed, ballisticCoefficient, mass, ref velocity);
             AffectedByGravity(gravity, ref velocity);
+            ReactiveAcceleration(currentTarget, speedGain, maxSpeed, exactPosition, ref velocity, ref shotSpeed);
+        }
+
+        protected virtual void ReactiveAcceleration(LocalTargetInfo currentTarget, float speedGain, float maxSpeed, Vector3 exactPosition, ref Vector3 velocity, ref float shotSpeed)
+        {
+            var speedChange = Mathf.Min(maxSpeed - shotSpeed, speedGain);
+            if (speedChange > 0.001f)
+            {
+                velocity = velocity + GetVelocity(speedChange, Vector3.zero, velocity);
+            }
         }
 
         protected void AffectedByGravity(float gravity, ref Vector3 velocity)

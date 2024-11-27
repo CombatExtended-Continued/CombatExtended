@@ -55,7 +55,7 @@ namespace CombatExtended
             var destination = projectilePropsCE.TrajectoryWorker.Destination(originV2, shotRotation, ShotHeight, ShotSpeed, shotAngle, projectilePropsCE.Gravity);
             var flightTime = projectilePropsCE.TrajectoryWorker.GetFlightTime(shotAngle, ShotSpeed, projectilePropsCE.Gravity, ShotHeight) * GenTicks.TicksPerRealSecond;
             var initialVelocity = projectilePropsCE.TrajectoryWorker.GetVelocity(ShotSpeed, shotRotation, shotAngle);
-            var enumeration = projectilePropsCE.TrajectoryWorker.NextPositions(currentTarget, shotRotation, shotAngle, projectilePropsCE.Gravity, originV2, this.Caster.Position.ToVector3Shifted(), destination, (int)flightTime, flightTime, ShotHeight, false, initialVelocity, ShotSpeed, originV3, projectilePropsCE.mass.max, projectilePropsCE.ballisticCoefficient.max, projectilePropsCE.diameter.max / 2000, projectilePropsCE.Gravity, ShotSpeed, 0).GetEnumerator();
+            var enumeration = projectilePropsCE.TrajectoryWorker.NextPositions(currentTarget, shotRotation, shotAngle, projectilePropsCE.Gravity, originV2, this.Caster.Position.ToVector3Shifted(), destination, (int)flightTime, flightTime, ShotHeight, false, initialVelocity, ShotSpeed, originV3, projectilePropsCE.mass.max, projectilePropsCE.ballisticCoefficient.max, projectilePropsCE.diameter.max / 2000, projectilePropsCE.Gravity, ShotSpeed, projectilePropsCE.speedGain, projectilePropsCE.speed, 0).GetEnumerator();
             for (int i = 1; i <= sinceTicks; i++)
             {
                 firstPos = secondPos;

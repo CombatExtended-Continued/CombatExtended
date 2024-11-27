@@ -1085,8 +1085,8 @@ namespace CombatExtended
 
 
 
-        public virtual IEnumerable<Vector3> NextPositions => TrajectoryWorker.NextPositions(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, exactPosition, Destination, ticksToImpact, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, FlightTicks);
-        protected Vector3 MoveForward() => TrajectoryWorker.MoveForward(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, ExactPosition, ref Destination, ticksToImpact, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
+        public virtual IEnumerable<Vector3> NextPositions => TrajectoryWorker.NextPositions(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, exactPosition, Destination, ticksToImpact, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, (def.projectile as ProjectilePropertiesCE).speedGain, (def.projectile as ProjectilePropertiesCE).speed, FlightTicks);
+        protected Vector3 MoveForward() => TrajectoryWorker.MoveForward(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, ExactPosition, ref Destination, ticksToImpact, startingTicksToImpact, shotHeight, (def.projectile as ProjectilePropertiesCE).speedGain, (def.projectile as ProjectilePropertiesCE).speed, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
         
         protected virtual bool ShouldCollideWithSomething => (lerpPosition && ticksToImpact <= 0) || ExactPosition.y <= 0f;
         #region Tick/Draw

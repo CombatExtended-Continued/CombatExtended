@@ -10,13 +10,17 @@ namespace CombatExtended
 {
     public class SmartRocketTrajectoryWorker : BallisticsTrajectoryWorker
     {
-        public override Vector3 MoveForward(LocalTargetInfo currentTarget, float shotRotation, float shotAngle, float gravityFactor, Vector2 origin, Vector3 exactPosition, ref Vector2 destination, float tickToImpact, float startingTicksToImpact, float shotHeight, ref bool kinit, ref Vector3 velocity, ref float shotSpeed, ref Vector3 curPosition, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity, ref float initialSpeed, ref int flightTicks)
+        protected override void ReactiveAcceleration(LocalTargetInfo currentTarget, float speedGain, float maxSpeed, Vector3 exactPosition, ref Vector3 velocity, ref float shotSpeed)
         {
-            if (currentTarget.HasThing)
+            if (currentTarget.ThingDestroyed)
             {
-                velocity = Vector3.RotateTowards(velocity, currentTarget.Thing.DrawPos, 360, 0); //Rotate rocket towards target. Not sure how it should work, haven't tested it yet
+                base.ReactiveAcceleration(currentTarget, speedGain, maxSpeed, exactPosition, ref velocity, ref shotSpeed);
+                return;
             }
-            return base.MoveForward(currentTarget, shotRotation, shotAngle, gravityFactor, origin, exactPosition, ref destination, tickToImpact, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
+            var targetPos = currentTarget.Thing?.DrawPos ?? currentTarget.Cell.ToVector3Shifted();
+            var velocityChange = GetVelocity(speedGain, exactPosition, targetPos);
+            shotSpeed = Mathf.Min(shotSpeed + speedGain, maxSpeed);
+            velocity = GetVelocity(shotSpeed, Vector3.zero, velocity + velocityChange);
         }
     }
 }

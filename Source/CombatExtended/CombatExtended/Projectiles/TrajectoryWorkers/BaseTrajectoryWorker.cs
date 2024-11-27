@@ -22,6 +22,8 @@ namespace CombatExtended
             float tickToImpact,
             float startingTicksToImpact,
             float shotHeight,
+            float speedGain,
+            float maxSpeed,
             ref bool kinit,
             ref Vector3 velocity,
             ref float shotSpeed,
@@ -53,11 +55,13 @@ namespace CombatExtended
             float radius,
             float gravity,
             float initialSpeed,
+            float speedGain,
+            float maxSpeed,
             int flightTicks)
         {
             for (; ticksToImpact >= 0; ticksToImpact--)
             {
-                yield return exactPosition = MoveForward(currentTarget, shotRotation, shotAngle, gravityFactor, origin, exactPosition, ref destination, ticksToImpact, startingTicksToImpact, shotHeight, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
+                yield return exactPosition = MoveForward(currentTarget, shotRotation, shotAngle, gravityFactor, origin, exactPosition, ref destination, ticksToImpact, startingTicksToImpact, shotHeight, speedGain, maxSpeed, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
             }
         }
         public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
