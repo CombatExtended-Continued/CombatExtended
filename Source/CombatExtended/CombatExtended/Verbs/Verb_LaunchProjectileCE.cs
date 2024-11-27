@@ -610,7 +610,7 @@ namespace CombatExtended
         /// <returns>angle in radians</returns>
         protected virtual float ShotAngle(Vector3 source, Vector3 targetPos)
         {
-            return projectilePropsCE.TrajectoryWorker.ShotAngle(projectilePropsCE, source, targetPos);
+            return projectilePropsCE.TrajectoryWorker.ShotAngle(projectilePropsCE, source, targetPos, ShotSpeed);
         }
         protected float ShotRotation(Vector3 targetPos)
         {
