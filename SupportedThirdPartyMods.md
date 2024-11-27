@@ -605,6 +605,7 @@ Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
 Windows |
+Xen's Spirit Wolf	|
 Xenn Race	|
 Xenohumans - Anthromorphs |
 Xenohumans Expanded |
