@@ -165,8 +165,11 @@ namespace CombatExtended
             var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
             foreach (var pos in TargetNextPositions(target).Skip(ticksToSkip))
             {
+                var targetPos2 = new Vector2(pos.x, pos.z);
                 if ((pos - originV3).MagnitudeHorizontalSquared() > maxDistSqr)
                 {
+                    targetPos1 = targetPos2;
+                    i++;
                     continue;
                 }
 
@@ -178,7 +181,7 @@ namespace CombatExtended
                 //    resultingLine = default(ShootLine);
                 //    return false;
                 //}
-                Vector2 ciwsPos1 = positions.firstPos, ciwsPos2 = positions.secondPos, targetPos2 = new Vector2(pos.x, pos.z);
+                Vector2 ciwsPos1 = positions.firstPos, ciwsPos2 = positions.secondPos;
 
                 if (CE_Utility.TryFindIntersectionPoint(ciwsPos1, ciwsPos2, targetPos1, targetPos2, out _))
                 {
