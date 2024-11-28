@@ -13,7 +13,7 @@ using Verse.Sound;
 
 namespace CombatExtended
 {
-    public abstract class VerbCIWS : Verb_ShootCE_CIWS, ITargetSearcher, IVerbDisableable
+    public abstract class VerbCIWS : Verb_ShootCE, ITargetSearcher, IVerbDisableable
     {
         protected bool debug = true;
         protected Texture2D icon;
@@ -75,6 +75,23 @@ namespace CombatExtended
             }
             return (new Vector2(firstPos.x, firstPos.z), new Vector2(secondPos.x, secondPos.z));
         }
+
+        public Building_CIWS_CE Turret => Caster as Building_CIWS_CE;
+        public override ThingDef Projectile
+        {
+            get
+            {
+                var result = base.Projectile;
+                var ciwsVersion = (result?.projectile as ProjectilePropertiesCE)?.CIWSVersion;
+                if (ciwsVersion == null && !typeof(ProjectileCE_CIWS).IsAssignableFrom(result.thingClass))
+                {
+                    Log.WarningOnce($"{result} is not a CIWS projectile and the projectile does not have the CIWS version specified in its properties. Must be on-ground projectile used for CIWS", result.GetHashCode());
+                }
+                return ciwsVersion ?? result;
+            }
+        }
+
+        protected int maximumPredectionTicks = 40;
 
         public override bool TryCastShot()
         {
