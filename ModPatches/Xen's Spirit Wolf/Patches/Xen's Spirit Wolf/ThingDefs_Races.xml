@@ -22,6 +22,8 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="XenSpiritWolf"]/statBases</xpath>
 		<value>
+			<ArmorRating_Blunt>0.24</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.16</ArmorRating_Sharp>		
 			<MeleeDodgeChance>0.33</MeleeDodgeChance>
 			<MeleeCritChance>0.12</MeleeCritChance>
 			<MeleeParryChance>0.07</MeleeParryChance>
@@ -37,7 +39,7 @@
 					<capacities>
 						<li>Scratch</li>
 					</capacities>
-					<power>6</power>
+					<power>16</power>
 					<cooldownTime>0.75</cooldownTime>
 					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
 					<surpriseAttack>
@@ -48,15 +50,15 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
-					<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
-					<armorPenetrationSharp>0.07</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.350</armorPenetrationBlunt>
+					<armorPenetrationSharp>1</armorPenetrationSharp>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right claw</label>
 					<capacities>
 						<li>Scratch</li>
 					</capacities>
-					<power>6</power>
+					<power>16</power>
 					<cooldownTime>0.75</cooldownTime>
 					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
 					<surpriseAttack>
@@ -67,15 +69,16 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
-					<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
-					<armorPenetrationSharp>0.07</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.350</armorPenetrationBlunt>
+					<armorPenetrationSharp>1</armorPenetrationSharp>
 				</li>
 				<li Class="CombatExtended.ToolCE">
+					<label>fangs</label>
 					<capacities>
 						<li>Bite</li>
 					</capacities>
-					<power>23</power>
-					<cooldownTime>1.7</cooldownTime>
+					<power>30</power>
+					<cooldownTime>1.72</cooldownTime>
 					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 					<surpriseAttack>
 						<extraMeleeDamages>
@@ -85,21 +88,45 @@
 							</li>
 						</extraMeleeDamages>
 					</surpriseAttack>
-					<armorPenetrationSharp>0.55</armorPenetrationSharp>
-					<armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+					<chanceFactor>0.9</chanceFactor>
+					<armorPenetrationSharp>1.75</armorPenetrationSharp>
+					<armorPenetrationBlunt>9.15</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>1</power>
-					<cooldownTime>1.2</cooldownTime>
+					<power>8</power>
+					<cooldownTime>3.2</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					<armorPenetrationBlunt>2.350</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="XenSpiritWolf"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="XenSpiritWolf"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="XenSpiritWolf"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>4035</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
