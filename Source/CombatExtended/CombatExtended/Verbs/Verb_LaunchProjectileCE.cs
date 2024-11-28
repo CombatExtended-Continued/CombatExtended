@@ -349,10 +349,6 @@ namespace CombatExtended
             );
         }
 
-        public virtual Vector3 GetTargetLoc(LocalTargetInfo target, int sinceTicks)
-        {
-            return target.Thing?.TrueCenter() ?? target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
-        }
         public virtual float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
         {
             float targetHeight = 0f;

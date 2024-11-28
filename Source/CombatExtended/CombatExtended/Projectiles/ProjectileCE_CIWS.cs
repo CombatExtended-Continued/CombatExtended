@@ -51,6 +51,15 @@ namespace CombatExtended
 
         public virtual float CollideDistance => (def.projectile as ProjectilePropertiesCE)?.collideDistance ?? 1f;
         public virtual float ImpactChance => (def.projectile as ProjectilePropertiesCE)?.impactChance ?? 1f;
+        protected override bool ShouldCollideWithSomething => ExactPosition.y <= 0f;
+
+        public override Quaternion DrawRotation
+        {
+            get
+            {
+                return Quaternion.LookRotation((NextPositions.FirstOrDefault() - ExactPosition).Yto0());
+            }
+        }
         public override void Tick()
         {
             ticksToImpact++; //do not allow it hit zero
@@ -83,16 +92,7 @@ namespace CombatExtended
             return false;
 
         }
-
-        public override Quaternion DrawRotation
-        {
-            get
-            {
-                return Quaternion.LookRotation((NextPositions.FirstOrDefault() - ExactPosition).Yto0());
-            }
-        }
-
-        protected override bool ShouldCollideWithSomething => ExactPosition.y <= 0f;
+                
         public override void Impact(Thing hitThing)
         {
             hitThing?.TryGetComp<CompCIWSImpactHandler>()?.OnImpact(this, DamageInfo);

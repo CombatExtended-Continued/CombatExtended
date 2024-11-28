@@ -11,13 +11,9 @@ namespace CombatExtended
     public class Building_Turret_MultiVerbs : Building_TurretGunCE
     {
 
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_References.Look(ref activeVerb, nameof(activeVerb));
-        }
-
         Verb activeVerb;
+        IEnumerable<ITargetSearcher> cachedVerbsWithTargetSearcher;
+        
         public override Verb AttackVerb
         {
             get
@@ -25,7 +21,6 @@ namespace CombatExtended
                 return activeVerb ?? GunCompEq.AllVerbs.FirstOrDefault(x=>x.state == VerbState.Bursting) ?? base.AttackVerb;
             }
         }
-        IEnumerable<ITargetSearcher> cachedVerbsWithTargetSearcher;
         protected IEnumerable<ITargetSearcher> VerbsWithTargetSearcher => cachedVerbsWithTargetSearcher ??= GunCompEq.AllVerbs.OfType<ITargetSearcher>().ToList();
         public override void DrawExtraSelectionOverlays()
         {
@@ -85,6 +80,11 @@ namespace CombatExtended
                     }
                 }
             }
+        }
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_References.Look(ref activeVerb, nameof(activeVerb));
         }
     }
 }

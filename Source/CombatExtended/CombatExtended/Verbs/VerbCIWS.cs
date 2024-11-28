@@ -17,11 +17,15 @@ namespace CombatExtended
     {
         protected bool debug;
         protected Texture2D icon;
+        protected int maximumPredectionTicks = 40;
+
         public virtual bool HoldFire { get; set; }
 
         public VerbProperties_CIWS Props => verbProps as VerbProperties_CIWS;
         public virtual string HoldFireLabel => Props.holdFireLabel;
         public virtual string HoldFireDesc => Props.holdFireDesc;
+        public Building_CIWS_CE Turret => Caster as Building_CIWS_CE;
+
         public virtual Texture2D HoldFireIcon
         {
             get
@@ -76,7 +80,6 @@ namespace CombatExtended
             return (new Vector2(firstPos.x, firstPos.z), new Vector2(secondPos.x, secondPos.z));
         }
 
-        public Building_CIWS_CE Turret => Caster as Building_CIWS_CE;
         public override ThingDef Projectile
         {
             get
@@ -91,7 +94,6 @@ namespace CombatExtended
             }
         }
 
-        protected int maximumPredectionTicks = 40;
 
         public override bool TryCastShot()
         {
@@ -114,6 +116,11 @@ namespace CombatExtended
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {
+        public abstract IEnumerable<TargetType> Targets { get; }
+        protected abstract IEnumerable<Vector3> TargetNextPositions(TargetType target);
+
+
+
 
         public override bool TryFindNewTarget(out LocalTargetInfo target)
         {
@@ -148,9 +155,7 @@ namespace CombatExtended
             return false;
         }
         protected virtual bool IsFriendlyTo(TargetType thing) => !thing.HostileTo(Caster);
-        public abstract IEnumerable<TargetType> Targets { get; }
         //public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.Thing is TargetType && TryFindCEShootLineFromTo(Caster.Position, target, out _, out _) && base.ValidateTarget(target, showMessages);
-        protected abstract IEnumerable<Vector3> TargetNextPositions(TargetType target);
         public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targetInfo, out ShootLine resultingLine, out Vector3 targetPos)
         {
 

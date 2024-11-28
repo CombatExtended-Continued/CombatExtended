@@ -27,6 +27,14 @@ namespace CombatExtended
         }
         #endregion
 
+        private List<ThingDef> ignoredDefs = new List<ThingDef>();
+        public IEnumerable<ThingDef> IgnoredDefsSettings
+        {
+            get
+            {
+                return ignoredDefs ??= new List<ThingDef>();
+            }
+        }
         public override void ExposeData()
         {
             base.ExposeData();
@@ -45,15 +53,7 @@ namespace CombatExtended
                 defaultLabel = "Dialog_ManageCIWS".Translate(),
             };
         }
-
-        private List<ThingDef> ignoredDefs = new List<ThingDef>();
-        public IEnumerable<ThingDef> IgnoredDefsSettings
-        {
-            get
-            {
-                return ignoredDefs ??= new List<ThingDef>();
-            }
-        }
+                
         public override void Tick()
         {
             base.Tick();
