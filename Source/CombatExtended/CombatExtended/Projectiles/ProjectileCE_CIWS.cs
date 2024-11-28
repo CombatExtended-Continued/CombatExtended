@@ -84,6 +84,14 @@ namespace CombatExtended
 
         }
 
+        public override Quaternion DrawRotation
+        {
+            get
+            {
+                return Quaternion.LookRotation((NextPositions.FirstOrDefault() - ExactPosition).Yto0());
+            }
+        }
+
         protected override bool ShouldCollideWithSomething => ExactPosition.y <= 0f;
         public override void Impact(Thing hitThing)
         {

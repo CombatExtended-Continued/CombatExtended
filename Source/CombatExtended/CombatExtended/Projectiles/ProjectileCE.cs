@@ -208,7 +208,7 @@ namespace CombatExtended
             }
         }
 
-        
+
         public override Vector3 DrawPos
         {
             get
@@ -247,7 +247,7 @@ namespace CombatExtended
         /// <summary>
         /// Based on equations of motion
         /// </summary>
-        public Quaternion DrawRotation
+        public virtual Quaternion DrawRotation
         {
             get
             {
@@ -729,7 +729,7 @@ namespace CombatExtended
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
                     landed = true;
-                    this.Impact(null);
+                    InterceptProjectile(list[i], ExactPosition, def.projectile.flyOverhead);
                     return true;
                 }
             }
@@ -1087,7 +1087,7 @@ namespace CombatExtended
 
         public virtual IEnumerable<Vector3> NextPositions => TrajectoryWorker.NextPositions(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, exactPosition, Destination, ticksToImpact, startingTicksToImpact, shotHeight, kinit, velocity, shotSpeed, ExactPosition, mass, ballisticCoefficient, radius, gravity, initialSpeed, (def.projectile as ProjectilePropertiesCE).speedGain, (def.projectile as ProjectilePropertiesCE).speed, FlightTicks);
         protected Vector3 MoveForward() => TrajectoryWorker.MoveForward(intendedTarget, shotRotation, shotAngle, GravityFactor, origin, ExactPosition, ref Destination, ticksToImpact, startingTicksToImpact, shotHeight, (def.projectile as ProjectilePropertiesCE).speedGain, (def.projectile as ProjectilePropertiesCE).speed, ref kinit, ref velocity, ref shotSpeed, ref exactPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref FlightTicks);
-        
+
         protected virtual bool ShouldCollideWithSomething => (lerpPosition && ticksToImpact <= 0) || ExactPosition.y <= 0f;
         #region Tick/Draw
         public override void Tick()
@@ -1499,7 +1499,7 @@ namespace CombatExtended
         /// <param name="angle">Shot angle in radians off the ground.</param>
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Time in seconds that the projectile will take to traverse the given arc.</returns>
-        
+
 
         /// <summary>
         /// Calculates the range reachable with a projectile of speed <i>velocity</i> fired at <i>angle</i> from height <i>shotHeight</i>. Does not take into account air resistance.
