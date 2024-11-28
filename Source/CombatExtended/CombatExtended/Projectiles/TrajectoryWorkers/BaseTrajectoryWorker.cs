@@ -86,7 +86,7 @@ namespace CombatExtended
 
         public virtual float GetSpeed(Vector3 velocity)
         {
-            return velocity.magnitude;
+            return velocity.magnitude * GenTicks.TicksPerRealSecond;
         }
 
         public virtual Vector3 GetVelocity(float shotSpeed, Vector3 origin, Vector3 destination)
