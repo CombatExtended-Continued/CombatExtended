@@ -15,7 +15,7 @@ namespace CombatExtended
 {
     public abstract class VerbCIWS : Verb_ShootCE, ITargetSearcher, IVerbDisableable
     {
-        protected bool debug = true;
+        protected bool debug;
         protected Texture2D icon;
         public virtual bool HoldFire { get; set; }
 
