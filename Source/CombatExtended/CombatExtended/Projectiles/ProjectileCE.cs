@@ -1509,7 +1509,27 @@ namespace CombatExtended
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Distance in cells that the projectile will fly at the given arc.</returns>
         protected float DistanceTraveled => TrajectoryWorker.DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
-
+        /// <summary>
+        /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.
+        /// </summary>
+        /// <param name="velocity">Projectile velocity in cells per second.</param>
+        /// <param name="range">Cells between shooter and target.</param>
+        /// <param name="heightDifference">Difference between initial shot height and target height in vertical cells.</param>
+        /// <param name="flyOverhead">Whether to take the lower (False) or upper (True) arc angle.</param>
+        /// <returns>Arc angle in radians off the ground.</returns>
+        public static float GetShotAngle(float velocity, float range, float heightDifference, bool flyOverhead, float gravity)
+        {
+            Log.WarningOnce("ProjectileCE.GetShotAngle is obsolete and will be removed in future updates. Please, use TrajectoryWorker.GetShotAngle, that can be obtained from ProjectilePropertiesCE", 58606596);
+            float squareRootCheck = Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)));
+            if (float.IsNaN(squareRootCheck))
+            {
+                //Target is too far to hit with given velocity/range/gravity params
+                //set firing angle for maximum distance
+                Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
+                return 45.0f * Mathf.Deg2Rad;
+            }
+            return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
+        }
 
         #endregion
 
