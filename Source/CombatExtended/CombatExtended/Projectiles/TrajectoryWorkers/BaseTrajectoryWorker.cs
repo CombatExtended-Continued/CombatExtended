@@ -142,7 +142,7 @@ namespace CombatExtended
         public virtual float ShotRotation(ProjectilePropertiesCE projectilePropertiesCE, Vector3 source, Vector3 targetPos)
         {
             var w = targetPos - source;
-            return ( - 90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x)) % 360;
+            return (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x)) % 360;
         }
     }
 }

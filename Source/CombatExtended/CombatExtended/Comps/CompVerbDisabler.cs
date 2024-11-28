@@ -28,7 +28,7 @@ namespace CombatExtended
                         icon = verb.HoldFireIcon,
                         isActive = () => verb.HoldFire,
                         toggleAction = () => verb.HoldFire = !verb.HoldFire,
-                        
+
                     };
                     yield return command;
                 }

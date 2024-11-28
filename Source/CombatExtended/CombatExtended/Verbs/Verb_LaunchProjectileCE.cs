@@ -1122,7 +1122,7 @@ namespace CombatExtended
                 spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * pprop.spreadMult;
                 aperatureSize = 0.03f;
             }
-            
+
             ShiftVecReport report = ShiftVecReportFor(currentTarget, targetLoc.ToIntVec3());
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)

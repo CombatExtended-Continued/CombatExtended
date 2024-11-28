@@ -13,12 +13,12 @@ namespace CombatExtended
 
         Verb activeVerb;
         IEnumerable<ITargetSearcher> cachedVerbsWithTargetSearcher;
-        
+
         public override Verb AttackVerb
         {
             get
             {
-                return activeVerb ?? GunCompEq.AllVerbs.FirstOrDefault(x=>x.state == VerbState.Bursting) ?? base.AttackVerb;
+                return activeVerb ?? GunCompEq.AllVerbs.FirstOrDefault(x => x.state == VerbState.Bursting) ?? base.AttackVerb;
             }
         }
         protected IEnumerable<ITargetSearcher> VerbsWithTargetSearcher => cachedVerbsWithTargetSearcher ??= GunCompEq.AllVerbs.OfType<ITargetSearcher>().ToList();

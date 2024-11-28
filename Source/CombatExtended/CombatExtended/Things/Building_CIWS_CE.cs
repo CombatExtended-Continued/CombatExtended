@@ -49,11 +49,11 @@ namespace CombatExtended
             }
             yield return new Command_Action()
             {
-                action = () => Find.WindowStack.Add(new Dialog_ManageCIWSTargets(GunCompEq.AllVerbs.OfType<VerbCIWS>().SelectMany(x=>x.Props.AllTargets).Distinct().ToList(), ignoredDefs)),
+                action = () => Find.WindowStack.Add(new Dialog_ManageCIWSTargets(GunCompEq.AllVerbs.OfType<VerbCIWS>().SelectMany(x => x.Props.AllTargets).Distinct().ToList(), ignoredDefs)),
                 defaultLabel = "Dialog_ManageCIWS".Translate(),
             };
         }
-                
+
         public override void Tick()
         {
             base.Tick();

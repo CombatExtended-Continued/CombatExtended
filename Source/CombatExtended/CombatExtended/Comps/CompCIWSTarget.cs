@@ -22,7 +22,7 @@ namespace CombatExtended
         }
         public static IEnumerable<Thing> Targets<T>(Map map) where T : CompCIWSTarget
         {
-            return Targets(map).Where(x=>x.HasComp<T>());
+            return Targets(map).Where(x => x.HasComp<T>());
         }
 
         public CompProperties_CIWSTarget Props => props as CompProperties_CIWSTarget;
@@ -67,7 +67,7 @@ namespace CombatExtended
     }
     public class CompProperties_CIWSTarget : CompProperties
     {
-        public CompProperties_CIWSTarget(){}
+        public CompProperties_CIWSTarget() { }
         public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
         {
             foreach (var item in base.ConfigErrors(parentDef))

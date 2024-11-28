@@ -9,7 +9,7 @@ namespace CombatExtended
 {
     public interface IVerbDisableable
     {
-        bool HoldFire {  get; set; }
+        bool HoldFire { get; set; }
         string HoldFireLabel { get; }
         string HoldFireDesc { get; }
         Texture2D HoldFireIcon { get; }

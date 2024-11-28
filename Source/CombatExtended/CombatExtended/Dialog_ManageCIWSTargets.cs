@@ -76,7 +76,7 @@ namespace CombatExtended.CombatExtended
 
             Rect searchBarRect = new Rect(inRect.width / 2 + TextOffset, y, inRect.width / 2 - BufferArea * 3, ElementsHeight);
             Rect copyRect = new Rect(inRect.x + BufferArea, y, 46f, ElementsHeight);
-            Rect pasteRect = new Rect(copyRect.xMax + BufferArea, y, 46f, ElementsHeight); 
+            Rect pasteRect = new Rect(copyRect.xMax + BufferArea, y, 46f, ElementsHeight);
 
 
             SearchString = Widgets.TextArea(searchBarRect, SearchString);

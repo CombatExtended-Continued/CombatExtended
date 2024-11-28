@@ -1706,7 +1706,7 @@ namespace CombatExtended
             int max = skyfaller.ticksToImpact;
             for (int i = 1; i <= max; i++)
             {
-                yield return skyfaller.DrawPosSinceTicks(i);            
+                yield return skyfaller.DrawPosSinceTicks(i);
             }
         }
     }

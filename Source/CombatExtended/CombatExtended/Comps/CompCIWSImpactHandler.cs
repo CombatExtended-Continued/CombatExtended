@@ -13,7 +13,7 @@ namespace CombatExtended
     public class CompCIWSImpactHandler : ThingComp
     {
         public CompProperties_CIWSImpactHandler Props => props as CompProperties_CIWSImpactHandler;
-     
+
         public virtual void OnImpact(ProjectileCE projectile, DamageInfo dinfo)
         {
             if (!Props.impacted.NullOrUndefined())
@@ -26,7 +26,7 @@ namespace CombatExtended
             }
             parent.Destroy(DestroyMode.Vanish);
         }
-        
+
     }
     public class CompProperties_CIWSImpactHandler : CompProperties
     {

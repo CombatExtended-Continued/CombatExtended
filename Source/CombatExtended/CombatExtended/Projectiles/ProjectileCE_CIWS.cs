@@ -92,7 +92,7 @@ namespace CombatExtended
             return false;
 
         }
-                
+
         public override void Impact(Thing hitThing)
         {
             hitThing?.TryGetComp<CompCIWSImpactHandler>()?.OnImpact(this, DamageInfo);
