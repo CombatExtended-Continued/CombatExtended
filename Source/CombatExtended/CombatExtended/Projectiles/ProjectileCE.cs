@@ -729,7 +729,7 @@ namespace CombatExtended
                 if (CheckIntercept(list[i], list[i].TryGetComp<CompProjectileInterceptor>()))
                 {
                     landed = true;
-                    InterceptProjectile(list[i], ExactPosition, def.projectile.flyOverhead);
+                    this.Impact(null);
                     return true;
                 }
             }
