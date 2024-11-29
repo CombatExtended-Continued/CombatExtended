@@ -1197,7 +1197,7 @@ namespace CombatExtended
         }
         protected virtual ProjectileCE SpawnProjectile()
         {
-           return (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
+            return (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
         }
 
         /// <summary>
