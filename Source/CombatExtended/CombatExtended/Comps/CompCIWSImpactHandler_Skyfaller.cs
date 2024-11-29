@@ -13,6 +13,22 @@ namespace CombatExtended
     {
         public override void OnImpact(ProjectileCE projectile, DamageInfo dinfo)
         {
+
+            base.OnImpact(projectile, dinfo);
+            if (!parent.Destroyed)
+            {
+                if (parent is IThingHolder pod)
+                {
+                    var pawns = pod.ContainedThings().OfType<Pawn>().ToList();
+                    if (pawns.Any())
+                    {
+                        pawns.RandomElement().TakeDamage(dinfo);
+                    }
+                }
+            }
+        }
+        protected override void OnDestroying(DamageInfo dinfo)
+        {
             if (parent is IThingHolder pod)
             {
                 var containedThings = pod.ContainedThings().ToList();
@@ -25,7 +41,7 @@ namespace CombatExtended
                         GenLeaving.DoLeavingsFor(thing, parent.Map, DestroyMode.KillFinalize, CellRect.CenteredOn(parent.Position, thing.def.size), listOfLeavingsOut: leavingList);
                         continue;
                     }
-                    TryDropThing(thing, projectile.Map, projectile.Position);
+                    TryDropThing(thing, parent.Map, parent.DrawPos.ToIntVec3());
                     if (thing is Pawn pawn)
                     {
                         pawn.TakeDamage(dinfo);
@@ -41,8 +57,7 @@ namespace CombatExtended
 
                 }
             }
-            base.OnImpact(projectile, dinfo);
-
+            base.OnDestroying(dinfo);
         }
         private Thing TryDropThing(Thing thing, Map map, IntVec3 position)
         {
