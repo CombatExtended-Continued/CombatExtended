@@ -1128,7 +1128,7 @@ namespace CombatExtended
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
 
-                ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
+                ProjectileCE projectile = SpawnProjectile();
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
                 ShiftTarget(report, lastExactPos, pelletMechanicsOnly, instant);
 
@@ -1194,6 +1194,10 @@ namespace CombatExtended
             }
             lastShotTick = Find.TickManager.TicksGame;
             return true;
+        }
+        protected virtual ProjectileCE SpawnProjectile()
+        {
+           return (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
         }
 
         /// <summary>

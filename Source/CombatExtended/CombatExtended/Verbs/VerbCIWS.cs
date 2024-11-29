@@ -57,10 +57,10 @@ namespace CombatExtended
             var shotAngle = ShotAngle(targetPos);
             var shotRotation = ShotRotation(targetPos);
 
-            var destination = projectilePropsCE.TrajectoryWorker.Destination(originV2, shotRotation, ShotHeight, ShotSpeed, shotAngle, projectilePropsCE.Gravity);
-            var flightTime = projectilePropsCE.TrajectoryWorker.GetFlightTime(shotAngle, ShotSpeed, projectilePropsCE.Gravity, ShotHeight) * GenTicks.TicksPerRealSecond;
-            var initialVelocity = projectilePropsCE.TrajectoryWorker.GetVelocity(ShotSpeed, shotRotation, shotAngle);
-            var enumeration = projectilePropsCE.TrajectoryWorker.NextPositions(currentTarget, shotRotation, shotAngle, projectilePropsCE.Gravity, originV2, this.Caster.Position.ToVector3Shifted(), destination, (int)flightTime, flightTime, ShotHeight, false, initialVelocity, ShotSpeed, originV3, projectilePropsCE.mass.max, projectilePropsCE.ballisticCoefficient.max, projectilePropsCE.diameter.max / 2000, projectilePropsCE.Gravity, ShotSpeed, projectilePropsCE.speedGain, projectilePropsCE.speed, 0).GetEnumerator();
+            var destination = TrajectoryWorker.Destination(originV2, shotRotation, ShotHeight, ShotSpeed, shotAngle, projectilePropsCE.Gravity);
+            var flightTime = TrajectoryWorker.GetFlightTime(shotAngle, ShotSpeed, projectilePropsCE.Gravity, ShotHeight) * GenTicks.TicksPerRealSecond;
+            var initialVelocity = TrajectoryWorker.GetVelocity(ShotSpeed, shotRotation, shotAngle);
+            var enumeration = TrajectoryWorker.NextPositions(currentTarget, shotRotation, shotAngle, projectilePropsCE.Gravity, originV2, this.Caster.Position.ToVector3Shifted(), destination, (int)flightTime, flightTime, ShotHeight, false, initialVelocity, ShotSpeed, originV3, projectilePropsCE.mass.max, projectilePropsCE.ballisticCoefficient.max, projectilePropsCE.diameter.max / 2000, projectilePropsCE.Gravity, ShotSpeed, projectilePropsCE.speedGain, projectilePropsCE.speed, 0).GetEnumerator();
             for (int i = 1; i <= sinceTicks; i++)
             {
                 firstPos = secondPos;
@@ -74,8 +74,8 @@ namespace CombatExtended
             }
             if (drawPos)
             {
-                firstPos = projectilePropsCE.TrajectoryWorker.ExactPosToDrawPos(firstPos, sinceTicks - 1, projectilePropsCE.TickToTruePos, Projectile.Altitude);
-                secondPos = projectilePropsCE.TrajectoryWorker.ExactPosToDrawPos(secondPos, sinceTicks, projectilePropsCE.TickToTruePos, Projectile.Altitude);
+                firstPos = TrajectoryWorker.ExactPosToDrawPos(firstPos, sinceTicks - 1, projectilePropsCE.TickToTruePos, Projectile.Altitude);
+                secondPos = TrajectoryWorker.ExactPosToDrawPos(secondPos, sinceTicks, projectilePropsCE.TickToTruePos, Projectile.Altitude);
             }
             return (new Vector2(firstPos.x, firstPos.z), new Vector2(secondPos.x, secondPos.z));
         }
@@ -112,6 +112,32 @@ namespace CombatExtended
         public override bool Available()
         {
             return Active && base.Available();
+        }
+        protected override ProjectileCE SpawnProjectile()
+        {
+            if (!typeof(ProjectileCE_CIWS).IsAssignableFrom(Projectile.thingClass))
+            {
+                var def = Projectile;
+                var thing = new ProjectileCE_CIWS();
+                thing.forcedTrajectoryWorker = TrajectoryWorker;
+                thing.def = def;
+                thing.PostMake();
+                thing.PostPostMake();
+                return thing;
+            }
+            return base.SpawnProjectile();
+        }
+        static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
+        protected BaseTrajectoryWorker TrajectoryWorker
+        {
+            get
+            {
+                if (!typeof(ProjectileCE_CIWS).IsAssignableFrom(Projectile.thingClass) && projectilePropsCE.TrajectoryWorker.GetType() == typeof(LerpedTrajectoryWorker))
+                {
+                    return lerpedTrajectoryWorker;
+                }
+                return projectilePropsCE.TrajectoryWorker;
+            }
         }
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
