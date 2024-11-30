@@ -4,17 +4,17 @@
 	<!-- === Mega Wolverine === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_MegaWolverine"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.07</MeleeDodgeChance>
 			<MeleeCritChance>0.59</MeleeCritChance>
 			<MeleeParryChance>0.29</MeleeParryChance>
+			<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.065</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_MegaWolverine"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -87,10 +87,32 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AEXP_MegaWolverine"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AEXP_MegaWolverine"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_MegaWolverine"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1850</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- === Moose === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Moose"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.07</MeleeDodgeChance>
 			<MeleeCritChance>0.14</MeleeCritChance>
@@ -100,7 +122,6 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Moose"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -131,7 +152,6 @@
 	<!-- === Musk Ox === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Muskox"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.17</MeleeDodgeChance>
 			<MeleeCritChance>0.25</MeleeCritChance>
@@ -141,7 +161,6 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Muskox"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -171,7 +190,6 @@
 	<!-- === Porcupine === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Porcupine"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.01</MeleeDodgeChance>
 			<MeleeCritChance>0</MeleeCritChance>
@@ -181,7 +199,6 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Porcupine"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">

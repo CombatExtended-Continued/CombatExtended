@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_DisruptorFlare</defName>
+		<label>disruptor flare shell</label>
+		<ammoTypes>
+			<Ammo_DisruptorFlare>Grenade_DisruptorFlare</Ammo_DisruptorFlare>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="DisruptorFlareBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A capsule of bioferrite incaseed in shotgunshell, on impact creates a bright flash and a local psychic disruption. This stuns psychically sensitive creatures, revealing those that are invisible, and reducing their consciousness and movement speed for a short while. Afterwards, the flare continues to burn, lighting up a wide area for some time.</description>
+		<statBases>
+			<Mass>0.023</Mass>
+			<Bulk>0.06</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoFlare</li>
+		</thingCategories>
+		<stackLimit>200</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="DisruptorFlareBase">
+		<defName>Ammo_DisruptorFlare</defName>
+		<label>Disruptorflare round</label>
+		<graphicData>
+			<texPath>Things/Ammo/Flare</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<drawSize>0.5</drawSize>
+		</graphicData>
+		<statBases>
+			<Mass>0.048</Mass>
+			<MarketValue>0.2</MarketValue>
+		</statBases>
+		<ammoClass>Flare</ammoClass>
+		<cookOffProjectile>Grenade_DisruptorFlare</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_DisruptorFlare</defName>
+		<label>make disruptorflare x4</label>
+		<description>Craft 4 disruptorflare shells.</description>
+		<jobString>Making disruptorflare shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Bioferrite</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Bioferrite</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_DisruptorFlare>4</Ammo_DisruptorFlare>
+		</products>
+		<workAmount>500</workAmount>
+	</RecipeDef>
+
+</Defs>

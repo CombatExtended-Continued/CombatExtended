@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Insectoids 2</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Black Defiler -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AA_BlackDefiler"]</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AA_BlackDefiler"]/statBases</xpath>
+					<value>
+						<statBases>
+							<MaxHitPoints>500</MaxHitPoints>
+							<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+							<AimingAccuracy>0.5</AimingAccuracy>
+						</statBases>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AA_BlackDefiler"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>4</turretBurstCooldownTime>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AA_BlackDefiler_Gun"]/statBases/RangedWeapon_Cooldown</xpath>
+					<value>
+						<RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AA_BlackDefiler_Gun"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<recoilAmount>0.5</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>AA_BlackDefiler_Projectile</defaultProjectile>
+								<warmupTime>3.5</warmupTime>
+								<minRange>4.9</minRange>
+								<range>44</range>
+								<soundCast>VFEI2_AcidSpray_Resolve</soundCast>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AA_BlackDefiler_Projectile"]</xpath>
+					<value>
+						<ThingDef ParentName="BaseBulletCE">
+							<defName>AA_BlackDefiler_Projectile</defName>
+							<label>black defiler projectile</label>
+							<graphicData>
+								<texPath>Things/Projectiles/AA_PoisonBolt</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<drawSize>2</drawSize>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>50</speed>
+								<damageDef>AA_BlackHiveBolt</damageDef>
+								<damageAmountBase>10</damageAmountBase>
+								<armorPenetrationSharp>9</armorPenetrationSharp>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							</projectile>
+							<comps>
+								<li Class="CombatExtended.CompProperties_ExplosiveCE">
+									<damageAmountBase>20</damageAmountBase>
+									<explosiveDamageType>AA_BlackHiveExplosion</explosiveDamageType>
+									<explosiveRadius>3.9</explosiveRadius>
+									<preExplosionSpawnChance>0.4</preExplosionSpawnChance>
+									<preExplosionSpawnThingDef>AA_FilthSlimyPuke</preExplosionSpawnThingDef>
+									<explosionSound>VFEI2_AcidSpray_Resolve</explosionSound>
+								</li>
+							</comps>
+						</ThingDef>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

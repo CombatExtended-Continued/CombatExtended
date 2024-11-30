@@ -109,7 +109,7 @@ namespace CombatExtended
         private bool TryShell(WorldObject worldObject)
         {
             bool shelled = false;
-            if (worldObject is MapParent mapParent && mapParent.HasMap)
+            if (worldObject is MapParent mapParent && mapParent.HasMap && Find.Maps.Contains(mapParent.Map))
             {
                 shelled = true;
                 Map map = mapParent.Map;
@@ -143,7 +143,7 @@ namespace CombatExtended
                 if (!shelled)
                 {
                     shelled = true;
-                    healthComp.ApplyDamage(shellDef, Faction, globalSource.Map);
+                    healthComp.ApplyDamage(shellDef, Faction, globalSource);
                 }
             }
             return shelled;

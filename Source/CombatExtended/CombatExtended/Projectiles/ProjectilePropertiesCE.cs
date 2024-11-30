@@ -39,6 +39,9 @@ namespace CombatExtended
         public ThingDef detonateMoteDef;
         public FleckDef detonateFleckDef;
         public float detonateEffectsScaleOverride = -1;
+        public int? tickToTruePos;
+        //If undefined, use 3 or the tick it needed to cover 10 cells, whichever is larger.
+        public int TickToTruePos => tickToTruePos ?? Mathf.Max(3, Mathf.CeilToInt(600 / speed));
         [MustTranslate]
         public string genericLabelOverride = null;
 

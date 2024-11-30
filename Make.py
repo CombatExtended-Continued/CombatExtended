@@ -49,6 +49,7 @@ def parseArgs(argv):
     argParser.add_argument("--publicizer", type=str, metavar="PATH", help="Location of AssemblyPublicizer source code or parent directory of AssemblyPublicizer.exe")
     argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
     argParser.add_argument("--refout", metavar="PATH", default=None, help="Specify where to save a reference library")
+    argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify directory containing updated csc.exe")
 
     options = argParser.parse_args(argv[1:])
     if not options.download_libs and options.reference is None:
@@ -61,6 +62,10 @@ def parseArgs(argv):
     if options.reference is None:
         options.reference = f"{tdir}/rwreference"
 
+    if options.csc is not None:
+        args[0] = options.csc + "/csc.exe"
+        args.insert(0, "mono")
+        
     return options
 
 

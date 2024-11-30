@@ -18,7 +18,7 @@
 			<MeleeParryChance>1</MeleeParryChance>
 		</value>
 	</Operation>
-	
+
 	<!-- give everyone the same basic tool set -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/Asimov.PawnDef[defName="OuterRim_BattleDroid" or defName="OuterRim_BattleDroidAdvanced" or defName="OuterRim_MagnaGuardDroid" or defName="OuterRim_ProtocolDroid" or defName="OuterRim_CommandoDroid" or defName="OuterRim_HKDroid" or defName="OuterRim_ImperialLaborDroid" or defName="OuterRim_KXSecurityDroid" or defName="OuterRim_SuperTacticalDroid" or defName="OuterRim_TacticalDroid"]/tools</xpath>
@@ -93,7 +93,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/Asimov.PawnDef[@Name="OuterRim_BaseHumanoidDroid"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -118,7 +118,7 @@
 				<RepairValue>200</RepairValue>
 				<CanOverHeal>true</CanOverHeal>
 				<MaxOverHeal>500</MaxOverHeal> -->
-				<MinArmorPct>0.75</MinArmorPct><!-- The default minimal armor percentage for all armor kinds. Will be overriden by any below -->
+				<MinArmorPct>0.5</MinArmorPct><!-- The default minimal armor percentage for all armor kinds. Will be overriden by any below -->
 				<!-- <MinArmorValueSharp>14</MinArmorValueSharp>
 				<MinArmorValueBlunt>30</MinArmorValueBlunt>
 				<MinArmorValueHeat>0.2</MinArmorValueHeat>
@@ -135,7 +135,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/Asimov.PawnDef[defName="OuterRim_TacticalDroid" or defName="OuterRim_SuperTacticalDroid"]/comps</xpath>
 		<value>
-			<li Class="CombatExtended.CompProperties_Suppressable"/>
+			<li Class="CombatExtended.CompProperties_Suppressable" />
 		</value>
 	</Operation>
 

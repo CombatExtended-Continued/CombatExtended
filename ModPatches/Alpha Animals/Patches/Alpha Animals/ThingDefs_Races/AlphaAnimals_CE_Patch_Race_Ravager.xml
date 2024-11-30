@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="AA_Ravager"]</xpath>
 		<value>
@@ -23,16 +24,10 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="AA_Ravager"]/race/baseHealthScale</xpath>
-		<value>
-			<baseHealthScale>3.1</baseHealthScale>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AA_Ravager"]/statBases</xpath>
 		<value>
+			<PainShockThreshold>0.9</PainShockThreshold>
 			<MeleeDodgeChance>0.01</MeleeDodgeChance>
 			<MeleeCritChance>0.36</MeleeCritChance>
 			<MeleeParryChance>0.2</MeleeParryChance>
@@ -75,7 +70,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="AA_Ravager"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -84,12 +79,13 @@
 		<xpath>Defs/ThingDef[defName="AA_Ravager"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ArmorDurability">
-				<Durability>1400</Durability>
+				<Durability>1875</Durability>
 				<Regenerates>true</Regenerates>
 				<RegenInterval>600</RegenInterval>
 				<RegenValue>5</RegenValue>
-				<MinArmorPct>0.5</MinArmorPct>
+				<MinArmorPct>0.25</MinArmorPct>
 			</li>
 		</value>
 	</Operation>
+
 </Patch>

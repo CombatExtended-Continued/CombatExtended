@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<!-- ======== Misericordia ======= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Misericordia"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.4</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>47</power>
+					<cooldownTime>1.17</cooldownTime>
+					<armorPenetrationBlunt>4.06</armorPenetrationBlunt>
+					<armorPenetrationSharp>44</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.05</cooldownTime>
+					<armorPenetrationBlunt>2.048</armorPenetrationBlunt>
+					<armorPenetrationSharp>100</armorPenetrationSharp>
+				</li>			
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Misericordia"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_TotE_Misericordia"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Misericordia"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Misericordia"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.23</MeleeCritChance>
+				<MeleeParryChance>0.45</MeleeParryChance>
+				<MeleeDodgeChance>0.35</MeleeDodgeChance>
+			</equippedStatOffsets>			
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Misericordia"]/statBases</xpath>
+		<value>
+			<Bulk>4.9</Bulk>
+			<MeleeCounterParryBonus>0.58</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!--===== Sentinel Blade =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Sentinel_Blade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.4</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>56</power>
+					<cooldownTime>1.17</cooldownTime>
+					<armorPenetrationBlunt>4.06</armorPenetrationBlunt>
+					<armorPenetrationSharp>52</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>38</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationBlunt>2.048</armorPenetrationBlunt>
+					<armorPenetrationSharp>120</armorPenetrationSharp>
+				</li>			
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Sentinel_Blade"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_TotE_Sentinel_Blade"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Sentinel_Blade"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.0</MeleeCritChance>
+				<MeleeParryChance>0.5</MeleeParryChance>
+				<MeleeDodgeChance>0.16</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Sentinel_Blade"]/statBases</xpath>
+		<value>
+			<Bulk>6.2</Bulk>
+			<MeleeCounterParryBonus>0.53</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!-- ========== Vexilla ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Vexilla"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.85</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>2.15</cooldownTime>
+					<armorPenetrationBlunt>16</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>				
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Vexilla"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<MeleeCounterParryBonus>0.93</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Vexilla"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.00</MeleeCritChance>
+				<MeleeParryChance>0.70</MeleeParryChance>
+				<MeleeDodgeChance>0.47</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<!-- === Vaultsword === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Vaultsword"]/statBases</xpath>
+		<value>
+			<Bulk>14</Bulk>
+			<MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
+			<ToughnessRating>24</ToughnessRating>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Vaultsword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_TotE_Vaultsword"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Vaultsword"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Vaultsword"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>0.63</MeleeParryChance>
+				<MeleeDodgeChance>0.22</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_Vaultsword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>62</power>
+					<cooldownTime>2.35</cooldownTime>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+					<armorPenetrationSharp>142</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>82</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationBlunt>17</armorPenetrationBlunt>
+					<armorPenetrationSharp>128</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>
