@@ -419,6 +419,10 @@ namespace CombatExtended
 
         public virtual LocalTargetInfo TryFindNewTarget()    // Core method
         {
+            if (!AttackVerb.Available())
+            {
+                return null;
+            }
             IAttackTargetSearcher attackTargetSearcher = this.TargSearcher();
             Faction faction = attackTargetSearcher.Thing.Faction;
             float range = this.AttackVerb.verbProps.range;
