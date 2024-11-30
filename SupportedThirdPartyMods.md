@@ -177,6 +177,7 @@ Det's Xenotypes - Boglegs   |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
+Diverse Mechanoid War Procedure |
 Divine Order |
 DOOM - Faction (Continued) |
 DMWands |
