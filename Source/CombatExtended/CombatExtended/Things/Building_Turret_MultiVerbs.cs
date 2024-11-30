@@ -42,11 +42,12 @@ namespace CombatExtended
         public override LocalTargetInfo TryFindNewTarget()
         {
             activeVerb = null;
-            foreach (var verb in VerbsWithTargetSearcher)
+            foreach (var targetSearcher in VerbsWithTargetSearcher)
             {
-                if (verb.TryFindNewTarget(out var target))
+                var verb = (Verb)targetSearcher;
+                if (verb.Available() && targetSearcher.TryFindNewTarget(out var target))
                 {
-                    activeVerb = (Verb)verb;
+                    activeVerb = (Verb)targetSearcher;
                     return target;
                 }
             }
