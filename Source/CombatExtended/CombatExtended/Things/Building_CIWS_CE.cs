@@ -11,6 +11,7 @@ using Verse;
 
 namespace CombatExtended
 {
+    [StaticConstructorOnStartup]
     public class Building_CIWS_CE : Building_Turret_MultiVerbs
     {
         #region Caching
@@ -40,7 +41,7 @@ namespace CombatExtended
             base.ExposeData();
             Scribe_Collections.Look(ref ignoredDefs, nameof(ignoredDefs));
         }
-        static Texture2D icon;
+        static Texture2D icon = ContentFinder<Texture2D>.Get("UI/Commands/LaunchReport");
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (var gizmo in base.GetGizmos())
@@ -50,7 +51,7 @@ namespace CombatExtended
             yield return new Command_Action()
             {
                 action = () => Find.WindowStack.Add(new Dialog_ManageCIWSTargets(GunCompEq.AllVerbs.OfType<VerbCIWS>().SelectMany(x => x.Props.AllTargets).Distinct().ToList(), ignoredDefs)),
-                icon = Building_CIWS_CE.icon ??= ContentFinder<Texture2D>.Get("UI/Commands/LaunchReport"),
+                icon = icon,
                 defaultLabel = "Dialog_ManageCIWS".Translate(),
                 defaultDesc = "Dialog_ManageCIWSDesc".Translate()
             };
