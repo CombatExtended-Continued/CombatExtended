@@ -22,5 +22,6 @@ namespace CombatExtended
             shotSpeed = Mathf.Min(shotSpeed + speedGain, maxSpeed);
             velocity = GetVelocity(shotSpeed, Vector3.zero, velocity + velocityChange);
         }
+        public override bool GuidedProjectile => true;
     }
 }

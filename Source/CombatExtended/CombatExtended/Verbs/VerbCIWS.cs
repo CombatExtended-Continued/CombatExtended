@@ -193,7 +193,7 @@ namespace CombatExtended
             }
             var maxDistSqr = Props.range * Props.range;
             var originV3 = Caster.Position.ToVector3Shifted();
-            if (!Props.tryPredict)
+            if (TrajectoryWorker.GuidedProjectile)
             {
                 if ((originV3 - target.DrawPos).MagnitudeHorizontalSquared() > maxDistSqr)
                 {
@@ -286,7 +286,6 @@ namespace CombatExtended
 
     public abstract class VerbProperties_CIWS : VerbPropertiesCE
     {
-        public bool tryPredict = true;
         public string holdFireIcon = "UI/Commands/HoldFire";
         public string holdFireLabel = "HoldFire";
         public string holdFireDesc;

@@ -144,5 +144,6 @@ namespace CombatExtended
             var w = targetPos - source;
             return (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x)) % 360;
         }
+        public virtual bool GuidedProjectile => false;
     }
 }
