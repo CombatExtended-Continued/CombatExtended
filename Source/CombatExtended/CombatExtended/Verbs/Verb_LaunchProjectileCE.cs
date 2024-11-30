@@ -401,23 +401,23 @@ namespace CombatExtended
                                     Apparel LegArmor = LegArmors.MaxByWithFallback(funcArmor);
                                     #endregion
 
-                                        #region checks for whether the pawn can penetrate armor, which armor is stronger, etc
+                                    #region checks for whether the pawn can penetrate armor, which armor is stronger, etc
 
                                     var TargetedBodyPartArmor = TorsoArmor;
 
                                     bool flagTorsoArmor = ((TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
 
-                                        bool flag2 = (projectilePropsCE.armorPenetrationSharp >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
-                                        //Headshots do too little damage too often, so if the pawn can penetrate torso armor, they should aim at it
-                                        if ((flagTorsoArmor && !flag2))
-                                        {
-                                            TargetedBodyPartArmor = Helmet;
-                                        }
-                                        //Leg armor is artificially increased in calculation so pawns will prefer headshots over leg shots even with medium strength helmets
-                                        bool flag3 = (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) >= ((LegArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) + 4f);
+                                    bool flag2 = (projectilePropsCE.armorPenetrationSharp >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+                                    //Headshots do too little damage too often, so if the pawn can penetrate torso armor, they should aim at it
+                                    if ((flagTorsoArmor && !flag2))
+                                    {
+                                        TargetedBodyPartArmor = Helmet;
+                                    }
+                                    //Leg armor is artificially increased in calculation so pawns will prefer headshots over leg shots even with medium strength helmets
+                                    bool flag3 = (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) >= ((LegArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) + 4f);
 
-                                        //bool for whether the pawn can penetrate helmet
-                                        bool flag4 = (projectilePropsCE.armorPenetrationSharp >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+                                    //bool for whether the pawn can penetrate helmet
+                                    bool flag4 = (projectilePropsCE.armorPenetrationSharp >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
 
                                     //if the pawn can penetrate the helmet or torso armor there's no need to aim for legs
                                     if (flag3 && (!flag4) && (!flag2))
