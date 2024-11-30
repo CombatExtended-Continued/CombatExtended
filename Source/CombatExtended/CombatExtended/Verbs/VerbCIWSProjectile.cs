@@ -39,6 +39,8 @@ namespace CombatExtended
         {
             this.verbClass = typeof(VerbCIWSProjectile);
             this.holdFireIcon = "UI/Buttons/CE_CIWS_Projectile";
+            this.holdFireLabel = "HoldCloseInProjectilesFire";
+            this.holdFireDesc = "HoldCloseInProjectilesFireDesc";
         }
         public override bool Interceptable(ThingDef targetDef) => targetDef.projectile.speed < maximumSpeed && targetDef.projectile.flyOverhead && base.Interceptable(targetDef);
         public float maximumSpeed = 80;

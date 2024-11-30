@@ -28,6 +28,8 @@ namespace CombatExtended
         {
             this.verbClass = typeof(VerbCIWSSkyfaller);
             this.holdFireIcon = "UI/Buttons/CE_CIWS_Skyfaller";
+            this.holdFireLabel = "HoldCloseInSkyfallersFire";
+            this.holdFireDesc = "HoldCloseInSkyfallersFireDesc";
         }
         protected override IEnumerable<ThingDef> InitAllTargets() => DefDatabase<ThingDef>.AllDefsListForReading.Where(x => (typeof(Skyfaller).IsAssignableFrom(x.thingClass) && typeof(IActiveDropPod).IsAssignableFrom(x.thingClass)));
     }
