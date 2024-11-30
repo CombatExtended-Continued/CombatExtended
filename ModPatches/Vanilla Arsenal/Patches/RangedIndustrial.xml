@@ -38,7 +38,8 @@
 			defName="DV_Gun_LeverShotgun" or
 			defName="DV_Gun_LightCarbine" or
 			defName="DV_Gun_CombatShotgun" or
-			defName="DV_Gun_DMR"
+			defName="DV_Gun_DMR" or
+			defName="DV_Gun_ThermoRifle"
 			]/tools
 		</xpath>
 		<value>
@@ -304,6 +305,52 @@
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
+	</Operation>
+
+	<!--ThermoRifle-->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>DV_Gun_ThermoRifle</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>1.60</RangedWeapon_Cooldown>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>1.8</SwayFactor>
+			<Bulk>13</Bulk>
+			<Mass>10</Mass>
+			<SightsEfficiency>1.50</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<recoilAmount>2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_30x64mmFuel_Thermobaric</defaultProjectile>
+			<warmupTime>2</warmupTime>
+			<range>48</range>
+			<soundCast>Shot_Autocannon</soundCast>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>			
+		</Properties>
+		<AmmoUser>
+			<magazineSize>4</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_30x64mmFuel_Thermobaric</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DV_Gun_ThermoRifle"]/weaponTags</xpath>
+		<value>
+			<weaponTags>
+				<li>GunHeavy</li>
+				<li>SpacerGun</li>
+				<li>Bipod_AMR</li>
+			</weaponTags>
+		</value>
 	</Operation>
 
 </Patch>

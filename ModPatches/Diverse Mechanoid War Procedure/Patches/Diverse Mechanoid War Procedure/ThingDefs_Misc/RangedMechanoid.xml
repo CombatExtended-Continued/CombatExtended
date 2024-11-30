@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Melee Tools -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_SlugPistol"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>2.0</cooldownTime>
+					<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Gun_MiniNeedleGun" or
+			defName="Gun_ChargeLanceRifle" or
+			defName="Gun_BeamRifle"
+			]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Gun_ToxCannon" or
+			defName="Gun_MechanoidAutocannon"
+			]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2.44</cooldownTime>
+				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Autopistol Stats -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_SlugPistol</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.07</SwayFactor>
+			<Bulk>2.10</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.72</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Slugthrower</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_45ACP</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>MechanoidGunMinipistol</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- Same as Alpha Mechs -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_MiniNeedleGun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.06</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>0.6</SwayFactor>
+			<Bulk>7.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_5x50mmCaseless_Sabot_LV</defaultProjectile>
+			<warmupTime>1.35</warmupTime>
+			<range>75</range>
+			<soundCast>Shot_NeedleGun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<AmmoGenPerMagOverride>10</AmmoGenPerMagOverride>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_5x50mmCaseless_LV</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- Charge Rifle Stats -->
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_ChargeLanceRifle</defName>
+		<statBases>
+			<Mass>3.0</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>7.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.46</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x22mmCharged</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>ChargeLance_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_6x22mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Tox Cannon -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_ToxCannon</defName>
+		<statBases>
+			<Mass>75.00</Mass>
+			<RangedWeapon_Cooldown>2.2</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>0.21</SwayFactor>
+			<Bulk>20.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_70mmMechanoidGrenade_Tox</defaultProjectile>
+			<warmupTime>2</warmupTime>
+			<range>42</range>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>ThumpCannon_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+			<minRange>4</minRange>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>2</AmmoGenPerMagOverride>
+			<reloadTime>9.8</reloadTime>
+			<ammoSet>AmmoSet_70mmMechanoidGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Launcher</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- EMP Cannon - Just force the ToxCannon to spawn with EMP ammo instead. -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Gun_EMPCannon"]</xpath>
+	</Operation>
+	
+	<!-- Mech Autocannon -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>Gun_MechanoidAutocannon</defName>
+        <statBases>
+			<Mass>30</Mass>
+			<Bulk>25</Bulk>
+			<SwayFactor>2.07</SwayFactor>
+			<ShotSpread>0.07</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+            <recoilAmount>2.42</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_20x82mmMauser_AP</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<warmupTime>2.1</warmupTime>
+			<range>60</range>
+			<soundCast>Shot_Autocannon</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+            <magazineSize>30</magazineSize>
+            <reloadTime>7.8</reloadTime>
+            <ammoSet>AmmoSet_20x82mmMauser</ammoSet>
+        </AmmoUser>
+        <FireModes>
+			<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+            <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+            <li>CE_AI_Suppressive</li>
+            <li>NoSwitch</li>
+        </weaponTags>
+    </Operation>
+
+	<!-- Beam Rifle -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_BeamRifle"]/statBases/RangedWeapon_Cooldown</xpath>
+		<value>
+			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_BeamRifle"]/verbs/li/warmupTime</xpath>
+		<value>
+			<warmupTime>1.3</warmupTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_BeamRifle"]/verbs/li/range</xpath>
+		<value>
+			<range>50</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_BeamRifle"]/verbs/li/burstShotCount</xpath>
+		<value>
+			<burstShotCount>20</burstShotCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_BeamRifle"]/verbs/li/ticksBetweenBurstShots</xpath>
+		<value>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+		</value>
+	</Operation>
+
+</Patch>

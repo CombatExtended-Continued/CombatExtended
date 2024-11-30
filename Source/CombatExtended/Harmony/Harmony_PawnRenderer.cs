@@ -60,11 +60,13 @@ namespace CombatExtended.HarmonyCE
                 muzzleJump = -muzzleJump;
                 casingOffset.x *= -1;
             }
-            matrix.SetTRS(position + posVec.RotatedBy(matrix.rotation.eulerAngles.y) + recoilOffset, Quaternion.AngleAxis(matrix.rotation.eulerAngles.y + muzzleJump, Vector3.up), scale);
+
+            float yAngle = matrix.rotation.eulerAngles.y;
+            matrix.SetTRS(position + posVec.RotatedBy(yAngle) + recoilOffset, Quaternion.AngleAxis(yAngle + muzzleJump, Vector3.up), scale);
             CompEquippable compEquippable = eq.TryGetComp<CompEquippable>();
             if (compEquippable != null && compEquippable.PrimaryVerb is Verb_ShootCE verbCE)
             {
-                verbCE.drawPos = casingDrawPos + (casingOffset + posVec).RotatedBy(matrix.rotation.eulerAngles.y);
+                verbCE.drawPos = casingDrawPos + (casingOffset + posVec).RotatedBy(yAngle);
             }
             if (eq is WeaponPlatform platform)
             {

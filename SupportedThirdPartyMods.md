@@ -124,6 +124,7 @@ Autocleaner	|
 Auto-Mortars	|
 Beast Man Tribes  |
 Beeralope Squad	|
+Beliar Xenotype |
 Better Wool Production - C# Edition	|
 Big and Small - Genes & More	|
 Big and Small - Heaven and Hell
@@ -176,6 +177,7 @@ Det's Xenotypes - Boglegs   |
 Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
+Diverse Mechanoid War Procedure |
 Divine Order |
 DOOM - Faction (Continued) |
 DMWands |
@@ -253,6 +255,8 @@ Glitter Tech	|
 Glitter Weaponry	|
 Gloomy Dragonian Race	|
 GouRIMet	|
+GREG	|
+Grimstone Beasts   |
 Grimworld: Autoguns	|
 Grimworld: Lasguns	|
 Grimworld: Melee	|
@@ -260,6 +264,7 @@ GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Hammer of the Imperium |
 GrimWorld 40,000 - Imperial Vehicles of Grimworld |
+GrimWorld 40,000 - Talons of the Emperor |
 Gulden Mod  |
 Half Dragons    |
 HALO: UNSC Armoury |
@@ -269,6 +274,7 @@ Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
 Hive Armory |
+Hyena (Continued) |
 Idhale Race	|
 Impact Weaponry	|
 Imperial Arsenal: Royal Warcasket 	|
@@ -277,6 +283,7 @@ Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
+Ion Weaponry    |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
 Jernalk's Skeletal Legion (Continued)	|
@@ -444,6 +451,7 @@ RimFantasy - Medieval Overhaul Edition   |
 RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
 RimNauts 2 |
+Rimrats |
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -458,6 +466,7 @@ Rimworld - Witcher Monster Hunt |
 Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
+Robotic Servitude   |
 Rockmen race    |
 Roren, People of Rorensia   |
 Royal Arsenal |
@@ -514,6 +523,7 @@ T's Conversion Staff |
 T's Samurai Faction |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
+Valorant Weapon Pack |
 Vanilla Animals Expanded |
 Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
@@ -596,6 +606,7 @@ Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
 Windows |
+Xen's Spirit Wolf	|
 Xenn Race	|
 Xenohumans - Anthromorphs |
 Xenohumans Expanded |

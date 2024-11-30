@@ -92,6 +92,20 @@
 		</match>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AA_ScorpionLike"]//*[def="InsectLeg"]</xpath>
+		<value>
+			<groups />
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/BodyDef[defName="AA_ScorpionLike"]//*[def="InsectLeg" or def="AA_LeftPincer" or def="AA_RightPincer"]/groups</xpath>
+		<value>
+			<li>CoveredByNaturalArmor</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="AA_ScorpionLike"]/corePart/parts/li[def="AA_InsectTail"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
