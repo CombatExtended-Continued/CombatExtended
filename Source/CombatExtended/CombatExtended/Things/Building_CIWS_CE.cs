@@ -52,6 +52,7 @@ namespace CombatExtended
                 action = () => Find.WindowStack.Add(new Dialog_ManageCIWSTargets(GunCompEq.AllVerbs.OfType<VerbCIWS>().SelectMany(x => x.Props.AllTargets).Distinct().ToList(), ignoredDefs)),
                 icon = Building_CIWS_CE.icon ??= ContentFinder<Texture2D>.Get("UI/Commands/LaunchReport"),
                 defaultLabel = "Dialog_ManageCIWS".Translate(),
+                defaultDesc = "Dialog_ManageCIWSDesc".Translate()
             };
         }
 
