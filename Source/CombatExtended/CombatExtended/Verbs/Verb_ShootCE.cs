@@ -31,6 +31,8 @@ namespace CombatExtended
 
         public Vector3 drawPos;
 
+        private CompAmmoUser compAmmo;
+
         #endregion
 
         #region Properties
@@ -125,6 +127,17 @@ namespace CombatExtended
 
         // Whether our shooter is currently under suppressive fire
         private bool IsSuppressed => ShooterPawn?.TryGetComp<CompSuppressable>()?.isSuppressed ?? false;
+
+        public CompAmmoUser CompAmmo
+        {
+            get
+            {
+                compAmmo ??= EquipmentSource?.TryGetComp<CompAmmoUser>();
+                return compAmmo;
+            }
+        }
+
+        public override ThingDef Projectile => CompAmmo?.CurrentAmmo != null ? CompAmmo.CurAmmoProjectile : base.Projectile;
 
         #endregion
 
@@ -240,6 +253,25 @@ namespace CombatExtended
             }
         }
 
+        public override bool Available()
+        {
+            if (!base.Available())
+            {
+                return false;
+            }
+
+            // Add check for reload
+            bool isAttacking = ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
+            if (isAttacking && !(CompAmmo?.CanBeFiredNow ?? true))
+            {
+                CompAmmo?.TryStartReload();
+                resetRetarget();
+                return false;
+            }
+
+            return true;
+        }
+
         public override void VerbTickCE()
         {
             if (_isAiming)
@@ -344,13 +376,9 @@ namespace CombatExtended
 
         public override bool TryCastShot()
         {
-            //Reduce ammunition
-            if (CompAmmo != null)
+            if (!CompAmmo?.TryPrepareShot() ?? false)
             {
-                if (!CompAmmo.TryReduceAmmoCount(((CompAmmo.Props.ammoSet != null) ? CompAmmo.Props.ammoSet.ammoConsumedPerShot : 1) * VerbPropsCE.ammoConsumedPerShotCount))
-                {
-                    return false;
-                }
+                return false;
             }
             if (base.TryCastShot())
             {
@@ -374,10 +402,25 @@ namespace CombatExtended
             {
                 CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext);
             }
-            // This needs to here for weapons without magazine to ensure their last shot plays sounds
-            if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
+
+            if (CompAmmo == null)
             {
-                if (!CompAmmo.Notify_ShotFired())
+                return true;
+            }
+
+            int ammoConsumedPerShot = (CompAmmo.Props.ammoSet?.ammoConsumedPerShot ?? 1) * VerbPropsCE.ammoConsumedPerShotCount;
+            CompAmmo.Notify_ShotFired(ammoConsumedPerShot);
+
+            if (ShooterPawn != null && !CompAmmo.CanBeFiredNow)
+            {
+                CompAmmo.TryStartReload();
+                resetRetarget();
+            }
+
+            // This needs to here for weapons without magazine to ensure their last shot plays sounds
+            if (!CompAmmo.HasMagazine && CompAmmo.UseAmmo)
+            {
+                if (!CompAmmo.HasAmmoOrMagazine)
                 {
                     if (VerbPropsCE.muzzleFlashScale > 0.01f)
                     {
