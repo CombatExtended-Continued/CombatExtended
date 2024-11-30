@@ -93,9 +93,7 @@ Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Ancient Humans   |
-Android Tiers Reforged	|
-Android Tiers SM7 Overhaul (Continued)  |
-Android - TX Series (Continued)  |
+Android Tiers (Unofficial 1.5 Update)	|
 Androids	|
 Androids Expanded	|
 Anima Animals Combined  |
