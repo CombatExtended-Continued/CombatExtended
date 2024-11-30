@@ -38,6 +38,7 @@ namespace CombatExtended
         public VerbProperties_CIWSProjectile()
         {
             this.verbClass = typeof(VerbCIWSProjectile);
+            this.holdFireIcon = "UI/Buttons/CE_CIWS_Projectile";
         }
         public override bool Interceptable(ThingDef targetDef) => targetDef.projectile.speed < maximumSpeed && targetDef.projectile.flyOverhead && base.Interceptable(targetDef);
         public float maximumSpeed = 80;
