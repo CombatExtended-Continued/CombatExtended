@@ -60,6 +60,7 @@ namespace CombatExtended
                 return Quaternion.LookRotation((NextPositions.FirstOrDefault() - ExactPosition).Yto0());
             }
         }
+        public override Quaternion ExactRotation => DrawRotation;
         public override void Tick()
         {
             ticksToImpact++; //do not allow it hit zero
