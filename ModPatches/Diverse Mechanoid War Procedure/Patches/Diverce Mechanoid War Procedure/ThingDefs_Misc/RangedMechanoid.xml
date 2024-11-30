@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- autopistol stats -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Gun_SlugPistol</defName>
-		<statBases>
-			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-			<SightsEfficiency>0.7</SightsEfficiency>
-			<ShotSpread>0.17</ShotSpread>
-			<SwayFactor>1.07</SwayFactor>
-			<Bulk>2.10</Bulk>
-		</statBases>
-		<Properties>
-			<recoilAmount>2.72</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
-			<warmupTime>0.6</warmupTime>
-			<range>12</range>
-			<soundCast>Shot_Slugthrower</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>7</magazineSize>
-			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_45ACP</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>Snapshot</aiAimMode>
-		</FireModes>
-		<weaponTags>
-			<li>MechanoidGunMinipistol</li>
-		</weaponTags>
-	</Operation>
-	
+	<!-- Melee Tools -->
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Gun_SlugPistol"]/tools</xpath>
 		<value>
@@ -52,45 +20,13 @@
 			</tools>
 		</value>
 	</Operation>	
-	
-	<!-- same as alpha mechs -->
-
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Gun_MiniNeedleGun</defName>
-		<statBases>
-			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
-			<SightsEfficiency>2.06</SightsEfficiency>
-			<ShotSpread>0.05</ShotSpread>
-			<SwayFactor>0.6</SwayFactor>
-			<Bulk>7.00</Bulk>
-		</statBases>
-		<Properties>
-			<recoilAmount>1.2</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_5x50mmCaseless_Sabot_LV</defaultProjectile>
-			<warmupTime>1.35</warmupTime>
-			<range>75</range>
-			<soundCast>Shot_NeedleGun</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>5</magazineSize>
-			<AmmoGenPerMagOverride>10</AmmoGenPerMagOverride>
-			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_5x50mmCaseless_LV</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-		</FireModes>
-		<weaponTags>
-			<li>NoSwitch</li>
-		</weaponTags>
-	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_MiniNeedleGun"]/tools</xpath>
+		<xpath>Defs/ThingDef[
+			defName="Gun_MiniNeedleGun" or
+			defName="Gun_ChargeLanceRifle" or
+			defName="Gun_BeamRifle"
+			]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -127,8 +63,101 @@
 			</tools>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Gun_ToxCannon" or
+			defName="Gun_EMPCannon" or
+			defName="Gun_MechanoidAutocannon"
+			]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>barrel</label>
+				<capacities>
+				<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2.44</cooldownTime>
+				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Autopistol Stats -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_SlugPistol</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>1.07</SwayFactor>
+			<Bulk>2.10</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.72</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Slugthrower</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_45ACP</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>MechanoidGunMinipistol</li>
+		</weaponTags>
+	</Operation>
 	
-	<!-- charge rifle stats -->
+	<!-- Same as Alpha Mechs -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_MiniNeedleGun</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+			<SightsEfficiency>2.06</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>0.6</SwayFactor>
+			<Bulk>7.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_5x50mmCaseless_Sabot_LV</defaultProjectile>
+			<warmupTime>1.35</warmupTime>
+			<range>75</range>
+			<soundCast>Shot_NeedleGun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<AmmoGenPerMagOverride>10</AmmoGenPerMagOverride>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_5x50mmCaseless_LV</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+	
+	<!-- Charge Rifle Stats -->
 	
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_ChargeLanceRifle</defName>
@@ -167,25 +196,9 @@
 			<li>NoSwitch</li>
 		</weaponTags>
 	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_ChargeLanceRifle"]/tools</xpath>
-		<value>
-			<tools>
-			<li Class="CombatExtended.ToolCE">
-				<label>barrel</label>
-				<capacities>
-				<li>Blunt</li>
-				</capacities>
-				<power>10</power>
-				<cooldownTime>2.44</cooldownTime>
-				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-			</li>
-			</tools>
-		</value>
-	</Operation>
-	
+
+	<!-- EMP Cannon -->
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_EMPCannon</defName>
 		<statBases>
@@ -228,6 +241,8 @@
 		</weaponTags>
 	</Operation>
 	
+	<!-- Tox Cannon -->
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_ToxCannon</defName>
 		<statBases>
@@ -270,42 +285,8 @@
 		</weaponTags>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_EMPCannon"]/tools</xpath>
-		<value>
-			<tools>
-			<li Class="CombatExtended.ToolCE">
-				<label>barrel</label>
-				<capacities>
-				<li>Blunt</li>
-				</capacities>
-				<power>10</power>
-				<cooldownTime>2.44</cooldownTime>
-				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-			</li>
-			</tools>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_ToxCannon"]/tools</xpath>
-		<value>
-			<tools>
-			<li Class="CombatExtended.ToolCE">
-				<label>barrel</label>
-				<capacities>
-				<li>Blunt</li>
-				</capacities>
-				<power>10</power>
-				<cooldownTime>2.44</cooldownTime>
-				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-			</li>
-			</tools>
-		</value>
-	</Operation>
-	
+	<!-- Mech Autocannon -->
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
         <defName>Gun_MechanoidAutocannon</defName>
         <statBases>
@@ -344,43 +325,8 @@
             <li>NoSwitch</li>
         </weaponTags>
     </Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_MechanoidAutocannon"]/tools</xpath>
-		<value>
-			<tools>
-			<li Class="CombatExtended.ToolCE">
-				<label>barrel</label>
-				<capacities>
-				<li>Blunt</li>
-				</capacities>
-				<power>10</power>
-				<cooldownTime>2.44</cooldownTime>
-				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-			</li>
-			</tools>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_BeamRifle"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>10</power>
-					<cooldownTime>2.44</cooldownTime>
-					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-	
+
+	<!-- Beam Rifle -->	
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Gun_BeamRifle"]/statBases/RangedWeapon_Cooldown</xpath>
 		<value>
