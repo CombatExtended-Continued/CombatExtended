@@ -268,7 +268,7 @@ namespace CombatExtended
                 }
             }
 
-            return Projectile != null && !VerbPropsCE.cantShotWith.Contains(Projectile);
+            return Projectile != null && !VerbPropsCE.disallowedProjectileDefs.Contains(Projectile);
         }
 
         /// <summary>
