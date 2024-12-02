@@ -67,27 +67,27 @@ namespace CombatExtended
             {
                 GenSpawn.CheckMoveItemsAside(parent.Position, rot, thingToDrop.def, map);
             }
-            Thing dropedThing;
+            Thing droppedThing;
             if (contents?.spawnWipeMode == null)
             {
-                GenPlace.TryPlaceThing(thingToDrop, position, map, ThingPlaceMode.Near, out dropedThing, null, null, rot);
+                GenPlace.TryPlaceThing(thingToDrop, position, map, ThingPlaceMode.Near, out droppedThing, null, null, rot);
             }
             else if (contents?.setRotation != null)
             {
-                dropedThing = GenSpawn.Spawn(thingToDrop, position, map, contents.setRotation.Value, contents.spawnWipeMode.Value, false, false);
+                droppedThing = GenSpawn.Spawn(thingToDrop, position, map, contents.setRotation.Value, contents.spawnWipeMode.Value, false, false);
             }
             else
             {
-                dropedThing = GenSpawn.Spawn(thingToDrop, position, map, contents.spawnWipeMode.Value);
+                droppedThing = GenSpawn.Spawn(thingToDrop, position, map, contents.spawnWipeMode.Value);
             }
-            if (dropedThing is Pawn pawn && pawn.RaceProps.Humanlike)
+            if (droppedThing is Pawn pawn && pawn.RaceProps.Humanlike)
             {
                 TaleRecorder.RecordTale(TaleDefOf.LandedInPod, new object[]
                 {
                     pawn
                 });
             }
-            return dropedThing;
+            return droppedThing;
         }
     }
 }
