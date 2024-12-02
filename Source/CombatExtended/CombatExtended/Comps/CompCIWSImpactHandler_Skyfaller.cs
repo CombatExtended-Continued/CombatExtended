@@ -59,29 +59,28 @@ namespace CombatExtended
             }
             base.OnDestroying(dinfo);
         }
-        private Thing TryDropThing(Thing thing, Map map, IntVec3 position)
+        private Thing TryDropThing(Thing thingToDrop, Map map, IntVec3 position)
         {
             var contents = (parent as IActiveDropPod)?.Contents;
             Rot4 rot = (contents?.setRotation != null) ? contents.setRotation.Value : Rot4.North;
             if (contents?.moveItemsAsideBeforeSpawning ?? false)
             {
-                GenSpawn.CheckMoveItemsAside(parent.Position, rot, thing.def, map);
+                GenSpawn.CheckMoveItemsAside(parent.Position, rot, thingToDrop.def, map);
             }
-            Thing thing2;
+            Thing dropedThing;
             if (contents?.spawnWipeMode == null)
             {
-                GenPlace.TryPlaceThing(thing, position, map, ThingPlaceMode.Near, out thing2, null, null, rot);
+                GenPlace.TryPlaceThing(thingToDrop, position, map, ThingPlaceMode.Near, out dropedThing, null, null, rot);
             }
             else if (contents?.setRotation != null)
             {
-                thing2 = GenSpawn.Spawn(thing, position, map, contents.setRotation.Value, contents.spawnWipeMode.Value, false, false);
+                dropedThing = GenSpawn.Spawn(thingToDrop, position, map, contents.setRotation.Value, contents.spawnWipeMode.Value, false, false);
             }
             else
             {
-                thing2 = GenSpawn.Spawn(thing, position, map, contents.spawnWipeMode.Value);
+                dropedThing = GenSpawn.Spawn(thingToDrop, position, map, contents.spawnWipeMode.Value);
             }
-            Pawn pawn = thing2 as Pawn;
-            if (pawn != null)
+            if (dropedThing is Pawn pawn)
             {
                 if (pawn.RaceProps.Humanlike)
                 {
@@ -91,7 +90,7 @@ namespace CombatExtended
                     });
                 }
             }
-            return thing2;
+            return dropedThing;
         }
     }
 }
