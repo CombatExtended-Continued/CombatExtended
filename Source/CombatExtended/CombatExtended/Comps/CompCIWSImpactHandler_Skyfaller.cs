@@ -80,15 +80,12 @@ namespace CombatExtended
             {
                 dropedThing = GenSpawn.Spawn(thingToDrop, position, map, contents.spawnWipeMode.Value);
             }
-            if (dropedThing is Pawn pawn)
+            if (dropedThing is Pawn pawn && pawn.RaceProps.Humanlike)
             {
-                if (pawn.RaceProps.Humanlike)
+                TaleRecorder.RecordTale(TaleDefOf.LandedInPod, new object[]
                 {
-                    TaleRecorder.RecordTale(TaleDefOf.LandedInPod, new object[]
-                    {
-                            pawn
-                    });
-                }
+                    pawn
+                });
             }
             return dropedThing;
         }
