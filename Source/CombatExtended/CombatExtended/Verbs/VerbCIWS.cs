@@ -21,7 +21,7 @@ namespace CombatExtended
 
         public virtual bool HoldFire { get; set; }
 
-        public VerbProperties_CIWS Props => verbProps as VerbProperties_CIWS;
+        public VerbProperties_CIWS Props => (VerbProperties_CIWS)verbProps;
         public virtual string HoldFireLabel => Props.holdFireLabel;
         public virtual string HoldFireDesc => Props.holdFireDesc;
         public Building_CIWS_CE Turret => Caster as Building_CIWS_CE;
