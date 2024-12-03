@@ -163,7 +163,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                         projectileCE = (ShipProjectileCE)ThingMaker.MakeThing(Projectile, null);
                     }
                     GenSpawn.Spawn(projectileCE, shootLine.Source, caster.Map);
-                    ShiftTarget(report, pelletMechanicsOnly, instant, midBurst);
+                    ShiftTarget(report, pelletMechanicsOnly, instant);
 
                     //New aiming algorithm
                     projectileCE.canTargetSelf = false;

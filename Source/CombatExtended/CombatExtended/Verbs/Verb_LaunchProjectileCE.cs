@@ -471,7 +471,7 @@ namespace CombatExtended
         public bool MidBurst => numShotsFired > 0;
         protected virtual bool LockRotationAndAngle => MidBurst;
 
-        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, bool midBurst = false)
+        public void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
         {
             ShiftTarget(report, report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(), calculateMechanicalOnly, isInstant);
         }
