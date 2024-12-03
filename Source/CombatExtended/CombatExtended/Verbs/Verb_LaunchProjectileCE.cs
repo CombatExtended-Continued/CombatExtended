@@ -218,6 +218,9 @@ namespace CombatExtended
             }
         }
 
+        public bool MidBurst => numShotsFired > 0;
+        protected virtual bool LockRotationAndAngle => MidBurst;
+
         #endregion
 
         #region Methods
@@ -468,8 +471,6 @@ namespace CombatExtended
             }
             return targetHeight;
         }
-        public bool MidBurst => numShotsFired > 0;
-        protected virtual bool LockRotationAndAngle => MidBurst;
 
         public void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
         {
