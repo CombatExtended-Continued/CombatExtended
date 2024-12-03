@@ -206,7 +206,7 @@ namespace CombatExtended
                 resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)targetPos.x, (int)y, (int)targetPos.z));
                 return true;
             }
-            var midBurst = numShotsFired > 0;
+            var midBurst = MidBurst;
             var ticksToSkip = (Caster as Building_TurretGunCE)?.CurrentTarget.IsValid ?? CurrentTarget.IsValid ? this.BurstWarmupTicksLeft : VerbPropsCE.warmupTime.SecondsToTicks();
             var instant = projectilePropsCE.isInstant;
             if (instant)
