@@ -16,18 +16,22 @@ namespace CombatExtended
             {
                 yield return gizmo;
             }
-            var verbs = parent.GetComp<CompEquippable>()?.AllVerbs.OfType<IVerbDisableable>();
+            var verbs = parent.GetComp<CompEquippable>()?.AllVerbs;
             if (verbs != null)
             {
                 foreach (var verb in verbs)
                 {
+                    if (!(verb is IVerbDisableable disableableVerb))
+                    {
+                        continue;
+                    }
                     var command = new Command_Toggle()
                     {
-                        defaultDesc = verb.HoldFireDesc.Translate(),
-                        defaultLabel = verb.HoldFireLabel.Translate(),
-                        icon = verb.HoldFireIcon,
-                        isActive = () => verb.HoldFire,
-                        toggleAction = () => verb.HoldFire = !verb.HoldFire,
+                        defaultDesc = disableableVerb.HoldFireDesc.Translate(),
+                        defaultLabel = disableableVerb.HoldFireLabel.Translate(),
+                        icon = disableableVerb.HoldFireIcon,
+                        isActive = () => disableableVerb.HoldFire,
+                        toggleAction = () => disableableVerb.HoldFire = !disableableVerb.HoldFire,
 
                     };
                     yield return command;
