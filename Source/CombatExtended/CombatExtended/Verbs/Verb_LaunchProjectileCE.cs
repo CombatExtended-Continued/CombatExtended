@@ -1055,12 +1055,9 @@ namespace CombatExtended
                 lastShootLine = shootLine;
                 lastExactPos = targetLoc;
             }
-            else // Case 2. We cannot hit the current target, check if we should continue shooting
+            else if (!KeepBurstOnNoShootLine(suppressing, out shootLine))// Case 2. We cannot hit the current target, check if we should continue shooting
             {
-                if (!KeepBurstOnNoShootLine(suppressing, out shootLine))
-                {
-                    return false;
-                }
+                return false;
             }
             if (projectilePropsCE.pelletCount < 1)
             {
