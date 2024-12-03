@@ -984,14 +984,23 @@ namespace CombatExtended
 
         protected virtual bool KeepBurstOnNoShootLine(bool suppressing, out ShootLine shootLine)
         {
+            // 1:       Interruptible -> stop shooting
+            // 2:       Not interruptible -> continue shooting at last position (do *not* shoot at target position as it will play badly with skip or other teleport effects)
+            // 3:     Suppressing fire -> set our shoot line and continue
+            // 4:     else -> stop
+            //      Target missing
+            //        Mid burst
+            // 5:       Interruptible -> stop shooting
+            // 6:       Not interruptible -> shoot along previous line
+            // 7:     else -> stop
             shootLine = (ShootLine)lastShootLine;
-            if (LockRotationAndAngle) // Case 2,3,6,7
+            if (LockRotationAndAngle) // Case 1,2,5,6
             {
-                if (VerbPropsCE.interruptibleBurst && !suppressing) // Case 2, 6
+                if (VerbPropsCE.interruptibleBurst && !suppressing) // Case 1, 5
                 {
                     return false;
                 }
-                // Case 3, 7
+                // Case 2, 6
                 if (lastShootLine == null)
                 {
                     return false;
@@ -1000,9 +1009,9 @@ namespace CombatExtended
                 currentTarget = new LocalTargetInfo(lastTargetPos);
                 lastExactPos = lastTargetPos.ToVector3Shifted();
             }
-            else // case 4,5,8
+            else // case 3,4,7
             {
-                if (suppressing) // case 4,5
+                if (suppressing) // case 3,4
                 {
                     if (currentTarget.IsValid && !currentTarget.ThingDestroyed)
                     {
@@ -1040,21 +1049,13 @@ namespace CombatExtended
             //    Cannot hit target
             //      Target exists
             //        Mid burst
-            // 2:       Interruptible -> stop shooting
-            // 3:       Not interruptible -> continue shooting at last position (do *not* shoot at target position as it will play badly with skip or other teleport effects)
-            // 4:     Suppressing fire -> set our shoot line and continue
-            // 5:     else -> stop
-            //      Target missing
-            //        Mid burst
-            // 6:       Interruptible -> stop shooting
-            // 7:       Not interruptible -> shoot along previous line
-            // 8:     else -> stop
+            // 2: Check if we should continue shooting
             if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine, out var targetLoc)) // Case 1
             {
                 lastShootLine = shootLine;
                 lastExactPos = targetLoc;
             }
-            else // We cannot hit the current target
+            else // Case 2. We cannot hit the current target, check if we should continue shooting
             {
                 if (!KeepBurstOnNoShootLine(suppressing, out shootLine))
                 {
