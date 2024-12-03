@@ -163,14 +163,14 @@ namespace CombatExtended
                 {
                     return false;
                 }
-                float num = verb.verbProps.EffectiveMinRange(t, this.Caster);
+                float minRange = verb.verbProps.EffectiveMinRange(t, this.Caster);
                 if (!verb.TryFindCEShootLineFromTo(Caster.Position, t, out var shootLine, out var targetPos))
                 {
                     return false;
                 }
                 var intersectionPoint = shootLine.Dest;
-                float num2 = intersectionPoint.DistanceToSquared(Caster.Position);
-                return num2 > num * num && num2 < range * range;
+                float distToSqr = intersectionPoint.DistanceToSquared(Caster.Position);
+                return distToSqr > minRange * minRange && distToSqr < range * range;
             });
             if (_target != null)
             {
