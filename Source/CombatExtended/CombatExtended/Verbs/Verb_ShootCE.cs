@@ -31,8 +31,6 @@ namespace CombatExtended
 
         public Vector3 drawPos;
 
-        private CompAmmoUser compAmmo;
-
         #endregion
 
         #region Properties
@@ -128,14 +126,7 @@ namespace CombatExtended
         // Whether our shooter is currently under suppressive fire
         private bool IsSuppressed => ShooterPawn?.TryGetComp<CompSuppressable>()?.isSuppressed ?? false;
 
-        public CompAmmoUser CompAmmo
-        {
-            get
-            {
-                compAmmo ??= EquipmentSource?.TryGetComp<CompAmmoUser>();
-                return compAmmo;
-            }
-        }
+        public override CompAmmoUser CompAmmo => base.CompAmmo;
 
         public override ThingDef Projectile => CompAmmo?.CurrentAmmo != null ? CompAmmo.CurAmmoProjectile : base.Projectile;
 
