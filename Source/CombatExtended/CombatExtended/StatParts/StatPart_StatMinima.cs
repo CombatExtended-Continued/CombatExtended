@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using RimWorld;
 using UnityEngine;
+using Verse;
 
 namespace CombatExtended
 {
@@ -15,7 +16,7 @@ namespace CombatExtended
 
         public override string ExplanationPart(StatRequest req)
         {
-            return "Picks the lowest value of available: \n\n" + base.ExplanationPart(req);
+            return "CE_StatPart_MinimaExplanation".Translate() + ": \n\n" + base.ExplanationPart(req);
         }
     }
 }
