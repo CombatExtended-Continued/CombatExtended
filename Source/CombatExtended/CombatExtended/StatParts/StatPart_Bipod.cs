@@ -64,7 +64,7 @@ namespace CombatExtended
                 else if (req.Def is ThingDef reqDef)
                 {
                     var bipodProps = reqDef.GetCompProperties<CompProperties_BipodComp>();
-                    if (bipodProps != null) return "Bipod IS set up -" + " x".Colorize(ColorLibrary.Green) + bipodProps.recoilMulton.ToString().Colorize(ColorLibrary.Green);
+                    if (bipodProps != null) { return "Bipod IS set up -" + " x".Colorize(ColorLibrary.Green) + bipodProps.recoilMulton.ToString().Colorize(ColorLibrary.Green); }
                 }
             }
             return null;
@@ -124,7 +124,7 @@ namespace CombatExtended
                 else if (req.Def is ThingDef reqDef)
                 {
                     var bipodProps = reqDef.GetCompProperties<CompProperties_BipodComp>();
-                    if (bipodProps != null) return "Bipod IS set up -" + " x".Colorize(ColorLibrary.Green) + bipodProps.swayPenalty.ToString().Colorize(ColorLibrary.Green);
+                    if (bipodProps != null) { return "Bipod IS set up -" + " x".Colorize(ColorLibrary.Green) + bipodProps.swayPenalty.ToString().Colorize(ColorLibrary.Green); }
                 }
             }
             return null;
