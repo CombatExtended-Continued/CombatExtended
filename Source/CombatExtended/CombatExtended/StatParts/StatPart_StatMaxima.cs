@@ -15,5 +15,10 @@ namespace CombatExtended
         {
             return Mathf.Max(first, second);
         }
+
+        public override string ExplanationPart(StatRequest req)
+        {
+            return "Picks the highest value of available: \n\n" + base.ExplanationPart(req);
+        }
     }
 }

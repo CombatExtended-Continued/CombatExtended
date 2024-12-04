@@ -12,5 +12,10 @@ namespace CombatExtended
         {
             return Mathf.Min(first, second);
         }
+
+        public override string ExplanationPart(StatRequest req)
+        {
+            return "Picks the lowest value of available: \n\n" + base.ExplanationPart(req);
+        }
     }
 }
