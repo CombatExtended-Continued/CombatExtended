@@ -93,7 +93,9 @@ Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Ancient Humans   |
-Android Tiers (Unofficial 1.5 Update)	|
+Android Tiers Reforged	|
+Android Tiers SM7 Overhaul (Continued)  |
+Android - TX Series (Continued)  |
 Androids	|
 Androids Expanded	|
 Anima Animals Combined  |
@@ -330,6 +332,10 @@ Medieval Tailor   |
 Megafauna	|
 Melee Animation	|
 Metal Gear Rimworld - Gekko	|
+MH: Android Tiers	|
+MH: Android Tiers Core	|
+MH: Mechanical Biomimetics	|
+MH: Military Tiers	|
 Midworld Expanded: Flak Armor  |
 Miho, the Celestial Fox  |
 Mincho, The Mint Choco Slime ~ HAR ver. |
