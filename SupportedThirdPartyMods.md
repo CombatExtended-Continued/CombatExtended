@@ -94,8 +94,6 @@ Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Ancient Humans   |
 Android Tiers Reforged	|
-Android Tiers SM7 Overhaul (Continued)  |
-Android - TX Series (Continued)  |
 Androids	|
 Androids Expanded	|
 Anima Animals Combined  |
