@@ -4,7 +4,7 @@
 	<!-- ========== Android Base ========== -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/TraderKindDef[defName="Base_AndroidCollective_Standard"]/stockGenerators</xpath>
+		<xpath>Defs/TraderKindDef[defName="ATR_Base_AndroidCollective_Standard"]/stockGenerators</xpath>
 		<value>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>FSX</thingDef>
@@ -102,7 +102,7 @@
 	<!-- Pirate Merchant and Bulk Goods ammo -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/TraderKindDef[defName="Caravan_AndroidCollective_BulkGoods" or defName="Caravan_AndroidCollective_AndroidMerchant" or defName="Caravan_AndroidCollective_HighTech"]/stockGenerators</xpath>
+		<xpath>Defs/TraderKindDef[defName="ATR_Caravan_AndroidCollective_BulkGoods" or defName="Caravan_AndroidCollective_AndroidMerchant" or defName="Caravan_AndroidCollective_HighTech"]/stockGenerators</xpath>
 		<value>
 			<li Class="StockGenerator_Tag">
 				<tradeTag>CE_Ammo</tradeTag>
@@ -148,7 +148,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/TraderKindDef[defName="Caravan_AndroidCollective_BulkGoods"]/stockGenerators</xpath>
+		<xpath>Defs/TraderKindDef[defName="ATR_Caravan_AndroidCollective_BulkGoods"]/stockGenerators</xpath>
 		<value>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>FSX</thingDef>
@@ -262,6 +262,57 @@
 					<min>-1</min>
 					<max>2</max>
 				</countRange>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Orbital Mechanized Trader -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/TraderKindDef[defName="ATR_Orbital_Mechanized"]/stockGenerators</xpath>
+		<value>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_Ammo</tradeTag>
+				<countRange>
+					<min>400</min>
+					<max>1000</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>2</min>
+					<max>4</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_MediumAmmo</tradeTag>
+				<countRange>
+					<min>60</min>
+					<max>120</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>4</min>
+					<max>7</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Tag">
+				<tradeTag>CE_HeavyAmmo</tradeTag>
+				<countRange>
+					<min>15</min>
+					<max>50</max>
+				</countRange>
+				<price>Cheap</price>
+				<thingDefCountRange>
+					<min>2</min>
+					<max>4</max>
+				</thingDefCountRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>Ammo</categoryDef>
+				<thingDefCountRange>
+					<min>0</min>
+					<max>0</max>
+				</thingDefCountRange>
 			</li>
 		</value>
 	</Operation>
