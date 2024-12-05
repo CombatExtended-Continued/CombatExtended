@@ -310,6 +310,7 @@ Logann Race	|
 Logistics_Mechanoid |
 Machines of War |
 Makeshift Melee Weapons |
+Mantis Race |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
