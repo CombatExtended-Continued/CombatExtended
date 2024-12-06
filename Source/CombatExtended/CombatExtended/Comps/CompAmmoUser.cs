@@ -360,6 +360,8 @@ namespace CombatExtended
                     ammoToBeDeleted = null;
                     CompInventory.UpdateInventory();
                 }
+
+                return;
             }
 
             if (curMagCountInt <= 0)
