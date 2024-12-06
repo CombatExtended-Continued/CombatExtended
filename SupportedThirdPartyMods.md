@@ -69,6 +69,11 @@ Mod |
 ↁ House Sanguin |
 A Dog Said...	|
 A Dog Said... Animal Prosthetics 2	|
+ABF: Civil Synstructs   |
+ABF: Martial Synstructs   |
+ABF: Synstructs Biomimetics   |
+ABF: Synstructs Core   |
+ABF: Utility Synstructs   |
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
@@ -89,8 +94,6 @@ Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Ancient Humans   |
 Android Tiers Reforged	|
-Android Tiers SM7 Overhaul (Continued)  |
-Android - TX Series (Continued)  |
 Androids	|
 Androids Expanded	|
 Anima Animals Combined  |
