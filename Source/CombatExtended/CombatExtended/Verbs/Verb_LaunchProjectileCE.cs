@@ -33,6 +33,7 @@ namespace CombatExtended
         protected float distance = 10f;
 
         public CompCharges compCharges = null;
+        public CompAmmoUser compAmmo = null;
 
         public CompFireModes compFireModes = null;
         public CompChangeableProjectile compChangeable = null;
@@ -138,6 +139,8 @@ namespace CombatExtended
         public float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
         public float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
         public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(CE_StatDefOf.SwayFactor) ?? 1f));
+
+        public virtual CompAmmoUser CompAmmo => compAmmo ??= EquipmentSource?.TryGetComp<CompAmmoUser>();
 
         public virtual ThingDef Projectile
         {
