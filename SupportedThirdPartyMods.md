@@ -488,6 +488,7 @@ Simple Ogre Race  |
 Simply More Melee	|
 Slime Rancher	|
 Solark Race |
+Spacer Arsenal  |
 Spacer Pack |
 Spacer Shields	|
 Space Worms (Continued) |
