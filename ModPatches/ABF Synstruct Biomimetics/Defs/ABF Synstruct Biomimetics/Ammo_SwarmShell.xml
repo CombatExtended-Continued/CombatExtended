@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- Ammo Category -->
+	<CombatExtended.AmmoCategoryDef>
+		<defName>SwarmShell</defName>
+		<label>swarm shell</label>
+		<description>Releases several pre-programmed microscythers on impact.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+
+	<!-- Ammo -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Swarm_shell_81mm</defName>
+		<label>81mm mortar shell (Swarm)</label>
+		<graphicData>
+            <texPath>Things/Items/Shells/Razorstruct_shell</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>60</MarketValue>
+			<Mass>4.1</Mass>
+			<Bulk>11.34</Bulk>
+		</statBases>
+		<ammoClass>SwarmShell</ammoClass>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>2</explosiveRadius>
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+				<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+				<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<explosionEffect>ExtinguisherExplosion</explosionEffect>
+				<wickTicks>
+					<min>10</min>
+					<max>30</max>
+				</wickTicks>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Projectile -->
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_81mmMortarShell_Swarm</defName>
+		<label>81mm mortar shell (Swarm)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
+			<damageAmountBase>0</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>39.493</armorPenetrationBlunt>
+			<explosionRadius>1.9</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
+			<postExplosionSpawnThingDef>ABF_Thing_Synstruct_RazorstructGenerator</postExplosionSpawnThingDef>
+			<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
+
+	<!-- Recipe -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeSwarm_shell_81mm</defName>
+		<label>make 81mm Swarm mortar shell x1</label>
+		<description>Craft 1 81mm Swarm shell.</description>
+		<jobString>Making 81mm Swarm shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Swarm_shell_81mm>1</Swarm_shell_81mm>
+		</products>
+		<workAmount>3000</workAmount>
+		<recipeUsers Inherit="False">
+			<li>ABF_Thing_Synstruct_Cradle</li>
+		</recipeUsers>
+		<researchPrerequisite>ABF_ResearchProject_Synstruct_Biomimetics</researchPrerequisite>
+	</RecipeDef>
+
+</Defs>

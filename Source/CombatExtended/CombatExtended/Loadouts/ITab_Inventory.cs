@@ -517,18 +517,30 @@ namespace CombatExtended
         {
             armorCache.Clear();
             List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
-            var shield = wornApparel.FirstOrDefault(x => x is Apparel_Shield);
+            Apparel shield = wornApparel?.FirstOrDefault(x => x is Apparel_Shield);
+
             foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
             {
                 if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def.tags.Contains(BodyPartTagDefOf.BreathingPathway) || part.def.tags.Contains(BodyPartTagDefOf.SightSource))))
                 {
                     var armorValue = SelPawnForGear.PartialStat(stat, part);
-                    if (shield != null)
+
+                    if (wornApparel != null)
                     {
-                        var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
-                        if (shieldCoverage == true)
+                        foreach (Apparel apparel in wornApparel)
                         {
-                            armorValue += shield.GetStatValue(stat);
+                            armorValue += apparel.PartialStat(stat, part);
+                        }
+                        if (shield != null)
+                        {
+                            if (!shield.def.apparel.CoversBodyPart(part))
+                            {
+                                var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                                if (shieldCoverage == true)
+                                {
+                                    armorValue += shield.GetStatValue(stat);
+                                }
+                            }
                         }
                     }
                     armorCache[part] = armorValue;

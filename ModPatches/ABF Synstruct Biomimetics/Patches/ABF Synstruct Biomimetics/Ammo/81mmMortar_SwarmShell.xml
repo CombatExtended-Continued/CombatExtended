@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+		<value>
+			<Swarm_shell_81mm>Bullet_81mmMortarShell_Swarm</Swarm_shell_81mm>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_RazorstructShell"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_RazorstructTrap"]/costList</xpath>
+		<value>
+			<costList>
+				<Swarm_shell_81mm>2</Swarm_shell_81mm>
+			</costList>
+		</value>
+	</Operation>
+
+</Patch>

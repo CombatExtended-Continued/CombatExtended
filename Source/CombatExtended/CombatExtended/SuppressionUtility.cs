@@ -24,8 +24,6 @@ namespace CombatExtended
 
         private static DangerTracker dangerTracker;
 
-        private static IEnumerable<CompProjectileInterceptor> Interceptors(Thing pawn) => pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).Where(x => x.Props.interceptNonHostileProjectiles || !x.parent.HostileTo(pawn));
-
         public static bool TryRequestHelp(Pawn pawn)
         {
             //TODO: 1.5
@@ -150,7 +148,7 @@ namespace CombatExtended
                 }
             }
 
-            float cellRating = 0f, bonusCellRating = 1f, distToSuppressor = (pawn.Position - shooterPos).LengthHorizontal,
+            float cellRating = 0f, bonusCellRating = 1f,
                   pawnHeightFactor = CE_Utility.GetCollisionBodyFactors(pawn).y,
                   pawnVisibleOverCoverFillPercent = pawnHeightFactor * (1f - CollisionVertical.BodyRegionMiddleHeight) + 0.01f,
                   pawnLowestCrouchFillPercent = pawnHeightFactor * CollisionVertical.BodyRegionBottomHeight + pawnVisibleOverCoverFillPercent,
@@ -209,7 +207,7 @@ namespace CombatExtended
             cellRating += 10f - (bonusCellRating * 10f);
 
             // If the cell is covered by a shield and there are no enemies inside, then increases by 15 (for each such shield)
-            cellRating += InterceptorZonesFor(pawn).Where(x => !IsOccupiedByEnemies(x, pawn)).Count(x => x.Contains(cell)) * 15;
+            cellRating += CalculateShieldRating(cell, pawn);
 
             // Avoid bullets and other danger sources;
             // Yet do not discard cover that is extremely good, even if it may be dangerous
@@ -245,19 +243,78 @@ namespace CombatExtended
             }
             return cellRating;
         }
+
+        /// <summary>
+        /// Calculate the additional cover rating from shields covering the given cell.
+        /// </summary>
+        /// <param name="cell">The cell to compute the cover rating for.</param>
+        /// <param name="pawn">The pawn seeking cover.</param>
+        /// <returns>The computed cover rating (15 for each shield covering the cell).</returns>
+        private static int CalculateShieldRating(IntVec3 cell, Pawn pawn)
+        {
+            int rating = 0;
+            foreach (var zone in InterceptorZonesFor(pawn))
+            {
+                foreach (var zoneCell in zone)
+                {
+                    if (zoneCell == cell)
+                    {
+                        if (!IsOccupiedByEnemies(zone, pawn))
+                        {
+                            rating += 15;
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            return rating;
+        }
+
+        /// <summary>
+        /// Get areas covered by a shield that may be suitable for protecting the given pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn seeking cover.</param>
+        /// <returns>An enumerator of areas covered by shields on the map that may protect the pawn.</returns>
         public static IEnumerable<IEnumerable<IntVec3>> InterceptorZonesFor(Pawn pawn)
         {
-            var result = Interceptors(pawn).Where(x => x.Active).Select(x => GenRadial.RadialCellsAround(x.parent.Position, x.Props.radius, true));
-            var compatibilityZones = BlockerRegistry.ShieldZonesCallback(pawn);
-            if (compatibilityZones != null)
+            foreach (var interceptor in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor))
             {
-                result = result.Union(compatibilityZones);
+                var comp = interceptor.TryGetComp<CompProjectileInterceptor>();
+                if (comp.Active && (comp.Props.interceptNonHostileProjectiles || !interceptor.HostileTo(pawn)))
+                {
+                    yield return GenRadial.RadialCellsAround(interceptor.Position, comp.Props.radius, true);
+                }
             }
-            return result;
+
+            foreach (var zone in BlockerRegistry.ShieldZonesCallback(pawn))
+            {
+                yield return zone;
+            }
         }
+
+        /// <summary>
+        /// Check whether the given area contains any objects hostile to the given pawn.
+        /// </summary>
+        /// <param name="cells">The area to scan for hostile objects.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>true if the area contained any hostile objects, false otherwise.</returns>
         private static bool IsOccupiedByEnemies(IEnumerable<IntVec3> cells, Pawn pawn)
         {
-            return cells.Any(cell => pawn.Map.thingGrid.ThingsListAt(cell).Any(thing => (thing.HostileTo(pawn))));
+            foreach (var cell in cells)
+            {
+                var things = pawn.Map.thingGrid.ThingsListAt(cell);
+                foreach (var thing in things)
+                {
+                    if (thing.HostileTo(pawn))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
         private static float GetCoverRating(Thing cover)
         {

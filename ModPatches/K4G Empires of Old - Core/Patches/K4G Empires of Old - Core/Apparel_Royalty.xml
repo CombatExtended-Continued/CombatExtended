@@ -9,13 +9,74 @@
 		<operations>
 
 		<!-- Dynasty Crown -->
-
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="K4G_Apparel_DynastyCrown"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
 			</value>
 		</li>				
+
+		<!-- Headgear -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="K4G_Apparel_GarrisonCap" or defName="K4G_Apparel_PeakedCap"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				<Bulk>1</Bulk>
+				<WornBulk>0</WornBulk>
+			</value>
+		</li>
+
+		<!-- Prestige Advanced Flak Vest -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="K4G_Apparel_PrestigeAdvancedFlakVest"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>3.5</WornBulk>						
+			</value>
+		</li>
+
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/ThingDef[defName="K4G_Apparel_PrestigeAdvancedFlakVest"]</xpath>
+			<value>
+				<li Class="CombatExtended.PartialArmorExt">
+					<stats>
+						<li>
+							<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+							<parts>
+								<li>Neck</li>
+								<li>Shoulder</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+							<parts>
+								<li>Neck</li>
+								<li>Shoulder</li>
+							</parts>
+						</li>
+					</stats>
+				</li>
+			</value>
+		</li>
+
+		<!-- Military Uniform -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="K4G_Apparel_MilitaryUniform"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>1</WornBulk>
+				<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Monocle -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="K4G_Apparel_Monocle"]/statBases</xpath>
+			<value>
+				<Bulk>0.15</Bulk>
+				<WornBulk>0</WornBulk>
+			</value>
+		</li>
 
 		</operations>
 	</match>

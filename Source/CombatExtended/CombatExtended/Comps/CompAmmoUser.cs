@@ -339,19 +339,37 @@ namespace CombatExtended
             }
         }
 
-        public bool Notify_ShotFired()
+
+        /// <summary>
+        /// <para>Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam). </para>
+        /// <para>Has an optional argument for the amount of ammo to consume per shot, which defaults to 1; this caters for special cases such as different sci-fi weapons using up different amounts of the same energy cell ammo type per shot, or a double-barrelled shotgun that fires both cartridges at the same time (projectile treated as a single, more powerful bullet)</para>
+        /// </summary>
+        public void Notify_ShotFired(int ammoConsumedPerShot = 1)
         {
-            if (ammoToBeDeleted != null)
+            ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
+
+            if (!IsEquippedGun && turret == null)
             {
-                ammoToBeDeleted.Destroy();
-                ammoToBeDeleted = null;
-                CompInventory.UpdateInventory();
-                if (!HasAmmoOrMagazine)
+                Log.Error(parent.ToString() + " tried reducing its ammo count without a wielder");
+            }
+
+            // Mag-less weapons feed directly from inventory
+            if (!HasMagazine)
+            {
+                if (ammoToBeDeleted != null)
                 {
-                    return false;
+                    ammoToBeDeleted.Destroy();
+                    ammoToBeDeleted = null;
+                    CompInventory.UpdateInventory();
                 }
             }
-            return true;
+
+            if (curMagCountInt <= 0)
+            {
+                Log.Error($"{parent} tried reducing its ammo count when already empty");
+            }
+            // Reduce ammo count and update inventory
+            CurMagCount = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
         }
 
         public bool Notify_PostShotFired()
@@ -365,63 +383,45 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// <para>Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam). </para>
-        /// <para>Has an optional argument for the amount of ammo to consume per shot, which defaults to 1; this caters for special cases such as different sci-fi weapons using up different amounts of the same energy cell ammo type per shot, or a double-barrelled shotgun that fires both cartridges at the same time (projectile treated as a single, more powerful bullet)</para>
+        /// Check whether ammo is available for firing a shot.
         /// </summary>
-        public bool TryReduceAmmoCount(int ammoConsumedPerShot = 1)
+        /// <remarks>
+        /// For weapons without a magazine, this may update the currently selected ammo type
+        /// if we ran out of the currently selected ammo type but have different, compatible, types
+        /// available in the inventory.
+        /// </remarks>
+        /// <returns></returns>
+        public bool TryPrepareShot()
         {
-            ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
-
-            if (!IsEquippedGun && turret == null)
+            if (HasMagazine)
             {
-                Log.Error(parent.ToString() + " tried reducing its ammo count without a wielder");
-            }
-
-            // Mag-less weapons feed directly from inventory
-            if (!HasMagazine)
-            {
-                if (UseAmmo)
+                // If magazine is empty, return false
+                if (curMagCountInt <= 0)
                 {
-                    if (!TryFindAmmoInInventory(out ammoToBeDeleted))
-                    {
-                        return false;
-                    }
-                    if (ammoToBeDeleted.def != CurrentAmmo)
-                    {
-                        currentAmmoInt = ammoToBeDeleted.def as AmmoDef;
-                    }
-
-                    if (ammoToBeDeleted.stackCount > 1)
-                    {
-                        ammoToBeDeleted = ammoToBeDeleted.SplitOff(1);
-                    }
+                    CurMagCount = 0;
+                    return false;
                 }
+
                 return true;
             }
-            // If magazine is empty, return false
-            if (curMagCountInt <= 0)
+
+            if (UseAmmo)
             {
-                CurMagCount = 0;
-                return false;
+                if (!TryFindAmmoInInventory(out ammoToBeDeleted))
+                {
+                    return false;
+                }
+                if (ammoToBeDeleted.def != CurrentAmmo)
+                {
+                    currentAmmoInt = ammoToBeDeleted.def as AmmoDef;
+                }
+
+                if (ammoToBeDeleted.stackCount > 1)
+                {
+                    ammoToBeDeleted = ammoToBeDeleted.SplitOff(1);
+                }
             }
-            // Reduce ammo count and update inventory
-            CurMagCount = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
 
-
-            /*if (curMagCountInt - ammoConsumedPerShot < 0)
-            {
-                curMagCountInt = 0;
-            } else
-            {
-                curMagCountInt = curMagCountInt - ammoConsumedPerShot;
-            }*/
-
-
-            // Original: curMagCountInt--;
-            if (curMagCountInt < 0)
-            {
-                TryStartReload();
-            }
             return true;
         }
 

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ThingDef Editing -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[@Name="BackpackBase"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ApparelBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BackpackBase"]/apparel</xpath>
+		<value>
+			<apparel>
+				<careIfWornByCorpse>true</careIfWornByCorpse>
+				<countsAsClothingForNudity>false</countsAsClothingForNudity>
+				<careIfDamaged>true</careIfDamaged>
+				<bodyPartGroups>
+					<li>Shoulders</li>
+				</bodyPartGroups>
+				<layers>
+					<li>Backpack</li>
+				</layers>
+				<wornGraphicData>
+					<north>
+						<offset>(0.0,-0.1)</offset>
+						<hulk>
+							<offset>(-0.0,-0.1)</offset>
+						</hulk>
+						<fat>
+							<offset>(-0.0,-0.0)</offset>
+						</fat>
+						<thin>
+							<offset>(0.0,-0.0)</offset>
+						</thin>
+					</north>
+					<south>
+						<offset>(0.0,0.20)</offset>
+						<female>
+							<offset>(0.0,-0.2)</offset>
+						</female>
+						<hulk>
+							<offset>(-0.0,-0.0)</offset>
+						</hulk>
+						<fat>
+							<offset>(-0.0,-0.0)</offset>
+						</fat>
+						<thin>
+							<offset>(-0.0,-0.25)</offset>
+						</thin>
+					</south>
+					<east>
+						<offset>(-0.4,-0.1)</offset>
+						<hulk>
+							<offset>(-0.15,-0.0)</offset>
+						</hulk>
+						<fat>
+							<offset>(-0.15,-0.0)</offset>
+						</fat>
+						<thin>
+							<offset>(0.05,-0.0)</offset>
+						</thin>
+					</east>
+					<west>
+						<offset>(0.4,-0.1)</offset>
+						<hulk>
+							<offset>(0.15,-0.0)</offset>
+						</hulk>
+						<fat>
+							<offset>(0.15,-0.0)</offset>
+						</fat>
+						<thin>
+							<offset>(-0.05,-0.0)</offset>
+						</thin>
+					</west>
+					<male>
+						<scale>(0.75,0.75)</scale>
+					</male>
+					<female>
+						<scale>(0.75,0.75)</scale>
+					</female>
+					<thin>
+						<scale>(0.7,0.7)</scale>
+					</thin>
+					<hulk>
+						<scale>(0.95,0.95)</scale>
+					</hulk>
+					<fat>
+						<scale>(0.85,0.85)</scale>
+					</fat>
+				</wornGraphicData>
+			</apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BackpackBase"]/thingCategories</xpath>
+		<value>
+			<thingCategories>
+				<li>Loadout</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="BackpackBase"]/tradeTags</xpath>
+		<value>
+			<tradeTags>
+				<li>Clothing</li>
+			</tradeTags>
+		</value>
+	</Operation>
+
+	<!-- Harvest Pack -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_harvestpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>30</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_harvestpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>6</Mass>
+			<Bulk>8</Bulk>
+		</value>
+	</Operation>
+
+	<!-- Psychic Foilpack -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_foilpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>40</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_foilpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>4</Mass>
+			<Bulk>8</Bulk>
+		</value>
+	</Operation>
+
+	<!-- Venting Pack -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>25</CarryBulk>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>6</Mass>
+			<Bulk>8</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_ventpack"]/statBases/JumpRange</xpath>
+		<value>
+			<JumpRange>20</JumpRange>
+		</value>
+	</Operation>
+
+	<!-- Devourer Grubpack -->
+
+	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Anomaly">
+		<xpath>Defs/ThingDef[defName="dvd_grubpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>70</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove" MayRequire="Ludeon.RimWorld.Anomaly">
+		<xpath>Defs/ThingDef[defName="dvd_grubpack"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Anomaly">
+		<xpath>Defs/ThingDef[defName="dvd_grubpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>6</Mass>
+			<Bulk>8</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Anomaly">
+		<xpath>Defs/ThingDef[defName="dvd_grubpack"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Anomaly">
+		<xpath>Defs/ThingDef[defName="dvd_grubpack"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>splash acid</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>1.5</warmupTime>
+					<range>35</range>
+					<minRange>5</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>SpitterSpit</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>dvd_grubpack_spit_CE</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+
+	<!-- Spacer Pack -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_spacerpack"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>80</CarryBulk>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_spacerpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>4</Mass>
+			<Bulk>5</Bulk>
+		</value>
+	</Operation>
+
+	<!-- Miner Pack (with grey goo Grenade built in)-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>80</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd"> <!-- Cost increase cause grey goo Grenade -->
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/costList</xpath>
+		<value>
+			<ComponentSpacer>1</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>4</Mass>
+			<Bulk>5</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_minerpack"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>launch ripper rack</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>1.0</warmupTime>
+					<range>21</range>
+					<minRange>6</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>dvd_Projectile_RipperRack_CE</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<!-- Med Pack -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_medpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>50</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="dvd_medpack"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+		</value>
+	</Operation>
+
+	<!-- Voidsent Pack -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_voidpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>80</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="dvd_voidpack"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_voidpack"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>30</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_voidpack"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>6</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<!-- Archotech Skippack -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_archopack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryBulk>120</CarryBulk>
+			<CarryWeight>100</CarryWeight>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_archopack"]/statBases/Mass</xpath>
+		<value>
+			<Mass>6</Mass>
+			<Bulk>6</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_archopack"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>archotech skipbolt</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>true</onlyManualCast>
+					<warmupTime>0.5</warmupTime>
+					<range>55</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<soundCast>dvd_Sound_SkipBolt</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<defaultProjectile>dvd_SkipBolt_CE</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+</Patch>

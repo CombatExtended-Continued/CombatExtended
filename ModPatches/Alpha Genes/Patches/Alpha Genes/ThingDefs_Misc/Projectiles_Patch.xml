@@ -29,4 +29,38 @@
 		</value>
 	</Operation>
 
+	<!-- ======= Hydra Blast ======= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AG_Bullet_HydraBlast"]</xpath>
+		<value>
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+				<defName>AG_Bullet_HydraBlast</defName>
+				<label>Hydra Blast</label>
+				<graphicData>
+					<texPath>Things/Item/Weapon/AG_BlackHydra/AG_BigPulse</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>50</damageAmountBase>
+					<armorPenetrationSharp>76</armorPenetrationSharp>
+					<armorPenetrationBlunt>42.273</armorPenetrationBlunt>
+					<speed>90</speed>
+					<ai_IsIncendiary>true</ai_IsIncendiary>
+				</projectile>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>120</damageAmountBase>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<explosiveRadius>3</explosiveRadius>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+						<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
 </Patch>

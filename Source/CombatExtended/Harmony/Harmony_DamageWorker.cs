@@ -20,7 +20,7 @@ namespace CombatExtended.HarmonyCE
             {
                 return true;
             }
-            if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.Def != DamageDefOf.Mining)
+            if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null && dinfo.Def != DamageDefOf.Mining)
             {
                 if (victim.def.category == ThingCategory.Building)
                 {
