@@ -15,5 +15,10 @@ namespace CombatExtended
         {
             return Mathf.Max(first, second);
         }
+
+        public override string ExplanationPart(StatRequest req)
+        {
+            return "CE_StatPart_MaximaExplanation".Translate() + ": \n\n" + base.ExplanationPart(req);
+        }
     }
 }

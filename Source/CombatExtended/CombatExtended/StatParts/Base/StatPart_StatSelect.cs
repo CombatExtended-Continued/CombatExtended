@@ -103,9 +103,40 @@ namespace CombatExtended
 
         public override string ExplanationPart(StatRequest req)
         {
-            if (req.HasThing && req.Pawn != null)
+            if (req.HasThing && req.Thing is Pawn pawn)
             {
-                return "";
+                string result = "";
+                if (apparelStat != null)
+                {
+                    float value = 0;
+                    ThingOwner<Apparel> wornApparel = pawn.apparel.wornApparel;
+                    if (sumApparelsStat)
+                    {
+                        for (int i = 0; i < wornApparel.Count; i++)
+                        {
+                            value += GetEquipmentStat(wornApparel[i], apparelStat);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < wornApparel.Count; i++)
+                        {
+                            value = Select(value, GetEquipmentStat(wornApparel[i], apparelStat));
+                        }
+                    }
+                    result += apparelStat.LabelCap + ": " + value.ToStringPercent() + "\n";
+                }
+                if (weaponStat != null)
+                {
+                    result += weaponStat.LabelCap + ": " + (pawn.equipment.Primary != null
+                        ? GetEquipmentStat(pawn.equipment.Primary, weaponStat).ToStringPercent()
+                        : "0%") + "\n";
+                }
+                if (implantStat != null)
+                {
+                    result += implantStat.LabelCap + ": " + pawn.GetStatValue(implantStat).ToStringPercent() + "\n";
+                }
+                return result;
             }
             return null;
         }
