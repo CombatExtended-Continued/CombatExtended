@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BX_BloodletterBlade"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="BX_BloodletterBlade"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.00</MeleeCritChance>
+				<MeleeParryChance>0.40</MeleeParryChance>
+				<MeleeDodgeChance>0.27</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BX_BloodletterBlade"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.5</cooldownTime>
+					<chanceFactor>0.1</chanceFactor>
+					<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>GS_BleedDamage</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>0.94</cooldownTime>
+					<armorPenetrationBlunt>1.28</armorPenetrationBlunt>
+					<armorPenetrationSharp>23</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>GS_BleedDamage</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>0.83</cooldownTime>
+					<armorPenetrationBlunt>2.88</armorPenetrationBlunt>
+					<armorPenetrationSharp>14</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

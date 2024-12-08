@@ -13,6 +13,13 @@ namespace CombatExtended
         public float defaultRaidMTBDays = 0.0f;
 
         /// <summary>
+        /// Penalty to be applied to retaliation shelling based on the current health status of a world object.
+        /// The lower bound of this range represents the multiplier to be applied at 100% health,
+        /// while the upper bound at 0% health.
+        /// </summary>
+        public FloatRange retaliationShellingCooldownImpact = new FloatRange(1f, 10f);
+
+        /// <summary>
         /// The list of projectiles that can be used in response when shelled
         /// </summary>
         public List<ShellingResponsePart_Projectile> projectiles = new List<ShellingResponsePart_Projectile>();

@@ -27,7 +27,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
         {
             VehicleTurret.ProjectileAngleCE = ProjectileAngleCE;
             VehicleTurret.LookupAmmosetCE = LookupAmmosetCE;
-            VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
+            VehicleTurret.LaunchProjectileCE = CE_Utility.LaunchProjectileCE;
             VehicleTurret.LookupProjectileCountAndSpreadCE = LookupProjectileCountAndSpreadCE;
             VehicleTurret.NotifyShotFiredCE = NotifyShotFiredCE;
             global::CombatExtended.Compatibility.Patches.RegisterCollisionBodyFactorCallback(_GetCollisionBodyFactors);
@@ -146,83 +146,7 @@ namespace CombatExtended.Compatibility.VehiclesCompat
             return new Vector2(dTurretRotation, shotAngle);
         }
 
-        public static object LaunchProjectileCE(ThingDef projectileDef,
-                                                ThingDef _ammoDef,
-                                                Def _ammosetDef,
-                                                Vector2 origin,
-                                                LocalTargetInfo target,
-                                                VehiclePawn vehicle,
-                                                float shotAngle,
-                                                float shotRotation,
-                                                float shotHeight,
-                                                float shotSpeed)
-        {
-            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
-            {
-                foreach (var al in ammosetDef.ammoTypes)
-                {
-                    if (al.ammo == ammoDef)
-                    {
-                        projectileDef = al.projectile;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                projectileDef = projectileDef.GetProjectile();
-            }
-            var p = ThingMaker.MakeThing(projectileDef, null);
-            ProjectileCE projectile = (ProjectileCE)p;
-            GenSpawn.Spawn(projectile, vehicle.Position, vehicle.Map);
-            projectile.ExactPosition = origin;
-            projectile.canTargetSelf = false;
-            projectile.minCollisionDistance = 1;
-            projectile.intendedTarget = target;
-            projectile.mount = null;
-            projectile.AccuracyFactor = 1;
 
-            ProjectilePropertiesCE pprop = projectileDef.projectile as ProjectilePropertiesCE;
-            bool instant = false;
-            float spreadDegrees = 0;
-            float aperatureSize = 0.03f;
-            // Hard coded as a super high max range - TODO: change in 1.6 to pass the range from the turret to this function.
-            // Should also update ProjectileCE.RayCast to not need a VerbPropertiesCE input just a float for range (Since thats all its used for).
-            VerbPropertiesCE verbPropsRange = new VerbPropertiesCE
-            {
-                range = 1000
-            };
-            if (pprop != null)
-            {
-                instant = pprop.isInstant;
-            }
-            if (instant)
-            {
-                projectile.RayCast(
-                    vehicle,
-                    verbPropsRange,
-                    origin,
-                    shotAngle,
-                    shotRotation,
-                    shotHeight,
-                    shotSpeed,
-                    spreadDegrees,
-                    aperatureSize,
-                    vehicle);
-            }
-            else
-            {
-                projectile.Launch(
-                    vehicle,
-                    origin,
-                    shotAngle,
-                    shotRotation,
-                    shotHeight,
-                    shotSpeed,
-                    vehicle);
-            }
-            return projectile;
-        }
         private static Tuple<bool, Vector2> _GetCollisionBodyFactors(Pawn pawn)
         {
             Vector2 ret = new Vector2();

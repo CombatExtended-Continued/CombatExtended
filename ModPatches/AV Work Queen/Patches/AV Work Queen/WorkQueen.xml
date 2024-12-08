@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	
+	<!-- Worker Queen -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Workerqueen"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Workerqueen"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.75</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Workerqueen"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>4.5</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Workerqueen"]/statBases</xpath>
+		<value>
+			<ArmorRating_Heat>0.5</ArmorRating_Heat>
+			<CarryWeight>75</CarryWeight>
+			<CarryBulk>50</CarryBulk>
+			<MeleeDodgeChance>0.02</MeleeDodgeChance>
+			<MeleeCritChance>0.22</MeleeCritChance>
+			<MeleeParryChance>0.64</MeleeParryChance>
+			<MaxHitPoints>600</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Workerqueen"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.0</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AV_Mech_Workerqueen"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>4600</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>1250</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>460</MaxOverHeal>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+</Patch>

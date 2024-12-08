@@ -246,9 +246,25 @@ namespace CombatExtended.WorldObjects
                 .Where(p => (budget - p.points) > 0 && p.projectile.projectile is ProjectilePropertiesCE propEC && propEC.shellingProps.range >= Find.WorldGrid.TraversalDistanceBetween(target.Tile, comp.parent.Tile, true) * 0.5f)
                 .RandomElementByWeightWithFallback(p => p.weight, null);
 
-        private int GetTicksToCooldown() => Rand.Range(SHELLER_MINCOOLDOWNTICKS, Mathf.Clamp(7 - (int)comp.parent.Faction.def.techLevel, 1, SHELLER_MAXCOOLDOWNTICKS_TECHMULMAX) * SHELLER_MAXCOOLDOWNTICKS);
+        private int GetTicksToCooldown() => Rand.Range(SHELLER_MINCOOLDOWNTICKS,
+            Mathf.Clamp(7 - (int)comp.parent.Faction.def.techLevel, 1, SHELLER_MAXCOOLDOWNTICKS_TECHMULMAX) *
+            SHELLER_MAXCOOLDOWNTICKS) * HealthMultiplier();
 
-        private int GetTicksToShot() => Rand.Range(SHELLER_MIN_TICKSBETWEENSHOTS, SHELLER_MAX_TICKSBETWEENSHOTS);
+        private int GetTicksToShot() => Rand.Range(SHELLER_MIN_TICKSBETWEENSHOTS, SHELLER_MAX_TICKSBETWEENSHOTS) * HealthMultiplier();
+
+        /// <summary>
+        /// Compute the multiplier to be applied to retaliation fire rate based on the current health of this world object.
+        /// </summary>
+        /// <returns>The computed multiplier.</returns>
+        private int HealthMultiplier()
+        {
+            var retaliationShellingCooldownMultiplier =
+                comp.parent.Faction.GetShellingResponseDef().retaliationShellingCooldownImpact;
+
+            var curHealth = comp.parent.GetComponent<HealthComp>()?.Health ?? 1f;
+
+            return Mathf.FloorToInt(retaliationShellingCooldownMultiplier.LerpThroughRange(1f - curHealth));
+        }
     }
 }
 

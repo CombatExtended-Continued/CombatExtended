@@ -170,8 +170,16 @@ namespace CombatExtended.WorldObjects
                 }
             }
         }
-        protected virtual void TryFinishDestroyQuests(Map launcherMap)
+
+        /// <summary>
+        /// Clean up quests associated with a world object and update ideology raiding state.
+        /// </summary>
+        /// <param name="attackingFaction">The faction that destroyed this world object via intertile shelling.</param>
+        /// <param name="sourceInfo">The tile the shelling originated from.</param>
+        protected virtual void TryFinishDestroyQuests(Faction attackingFaction, GlobalTargetInfo sourceInfo)
         {
+            Map launcherMap = sourceInfo.Map;
+
             QuestUtility.SendQuestTargetSignals(parent.questTags, "AllEnemiesDefeated", parent.Named("SUBJECT"), new NamedArgument(launcherMap, "MAP"));
             int num;
             List<Quest> quests = Find.QuestManager.QuestsListForReading;
@@ -189,11 +197,15 @@ namespace CombatExtended.WorldObjects
             {
                 quest.End(QuestEndOutcome.Fail);
             }
-            IdeoUtility.Notify_PlayerRaidedSomeone(launcherMap.mapPawns.FreeColonistsSpawned);
+
+            if (attackingFaction == Faction.OfPlayer && Find.Maps.Contains(launcherMap))
+            {
+                IdeoUtility.Notify_PlayerRaidedSomeone(launcherMap.mapPawns.FreeColonistsSpawned);
+            }
         }
 
         IEnumerable<Quest> RelatedQuests => Find.QuestManager.QuestsListForReading.Where(x => !x.Historical && x.QuestLookTargets.Contains(parent));
-        public void ApplyDamage(ThingDef shellDef, Faction attackingFaction, Map launcherMap)
+        public void ApplyDamage(ThingDef shellDef, Faction attackingFaction, GlobalTargetInfo sourceInfo)
         {
             if (Rand.Chance(NegateChance))
             {
@@ -201,13 +213,13 @@ namespace CombatExtended.WorldObjects
             }
             if (DestoyedInstantly)
             {
-                TryFinishDestroyQuests(launcherMap);
+                TryFinishDestroyQuests(attackingFaction, sourceInfo);
                 TryDestroy();
                 return;
             }
             var damage = shellDef.GetWorldObjectDamageWorker().ApplyDamage(this, shellDef);
             recentShells.Add(new WorldDamageInfo() { Value = damage, ShellDef = shellDef });
-            Notify_DamageTaken(attackingFaction, launcherMap);
+            Notify_DamageTaken(attackingFaction, sourceInfo);
         }
 
 
@@ -218,12 +230,12 @@ namespace CombatExtended.WorldObjects
                 parent.Destroy();
             }
         }
-        public virtual void Notify_DamageTaken(Faction attackingFaction, Map launcherMap)
+        public virtual void Notify_DamageTaken(Faction attackingFaction, GlobalTargetInfo sourceInfo)
         {
             if (health <= 1e-4)
             {
-                TryFinishDestroyQuests(launcherMap);
-                Notify_PreDestroyed(attackingFaction, new GlobalTargetInfo(launcherMap.Parent));
+                TryFinishDestroyQuests(attackingFaction, sourceInfo);
+                Notify_PreDestroyed(attackingFaction, sourceInfo);
                 Destroy();
                 return;
             }

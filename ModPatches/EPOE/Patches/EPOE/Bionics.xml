@@ -104,4 +104,50 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AdvancedBionicEye"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Implant>0.4</NightVisionEfficiency_Implant>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="AdvancedBionicEye"]</xpath>
+		<value>
+			<stages>
+				<li>
+					<statOffsets>
+						<NightVisionEfficiency_Implant>0.4</NightVisionEfficiency_Implant>
+					</statOffsets>
+				</li>
+			</stages>
+		</value>
+	</Operation>
+
+	<!-- ========== Archotech Bionics ========== -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="TacticalCorneaImplant"]/thingClass</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="TacticalCorneaImplant"]</xpath>
+			<value>
+				<thingClass>ThingWithComps</thingClass>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="TacticalCorneaImplant"]/statBases</xpath>
+		<value>
+			<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="TacticalCorneaImplant"]/stages/li/statOffsets</xpath>
+		<value>
+			<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+		</value>
+	</Operation>
+
 </Patch>

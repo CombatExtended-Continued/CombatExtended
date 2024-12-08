@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Rimrat ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Rimrat"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Rimrat"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>3.0</MoveSpeed>
+			<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			<MeleeCritChance>0.01</MeleeCritChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Rimrat"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.69</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.69</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>0.95</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.085</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>3.00</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

@@ -67,7 +67,7 @@ namespace CombatExtended.WorldObjects
                 ticksToRaid -= WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
                 return;
             }
-            if (parms != null)
+            if (parms != null && Find.Maps.Contains(parms.target))
             {
                 IncidentDef incidentDef = IncidentDefOf.RaidEnemy;
                 incidentDef.Worker.TryExecute(parms);

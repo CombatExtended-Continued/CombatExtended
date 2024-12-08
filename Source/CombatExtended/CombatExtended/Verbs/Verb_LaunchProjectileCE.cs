@@ -17,14 +17,6 @@ namespace CombatExtended
 {
     public class Verb_LaunchProjectileCE : Verb
     {
-        #region Constants
-
-        // Cover check constants
-        private const float distToCheckForCover = 3f;   // How many cells to raycast on the cover check
-        private const float segmentLength = 0.2f;       // How long a single raycast segment is
-        //private const float shotHeightFactor = 0.85f;   // The height at which pawns hold their guns
-
-        #endregion
 
         #region Fields
 
@@ -42,6 +34,7 @@ namespace CombatExtended
 
         public CompCharges compCharges = null;
         public CompAmmoUser compAmmo = null;
+
         public CompFireModes compFireModes = null;
         public CompChangeableProjectile compChangeable = null;
         public CompApparelReloadable compReloadable = null;
@@ -74,14 +67,6 @@ namespace CombatExtended
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
-
-        public override float EffectiveRange
-        {
-            get
-            {
-                return base.EffectiveRange;
-            }
-        }
 
         public override int ShotsPerBurst
         {
@@ -155,26 +140,12 @@ namespace CombatExtended
         public float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
         public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(CE_StatDefOf.SwayFactor) ?? 1f));
 
-        // Ammo variables
-        public virtual CompAmmoUser CompAmmo
-        {
-            get
-            {
-                if (compAmmo == null && EquipmentSource != null)
-                {
-                    compAmmo = EquipmentSource.TryGetComp<CompAmmoUser>();
-                }
-                return compAmmo;
-            }
-        }
+        public virtual CompAmmoUser CompAmmo => compAmmo ??= EquipmentSource?.TryGetComp<CompAmmoUser>();
+
         public virtual ThingDef Projectile
         {
             get
             {
-                if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
-                {
-                    return CompAmmo.CurAmmoProjectile;
-                }
                 if (CompChangeable != null && CompChangeable.Loaded)
                 {
                     return CompChangeable.Projectile;
@@ -235,8 +206,6 @@ namespace CombatExtended
                 return recoil;
             }
         }
-
-        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
         private LightingTracker _lightingTracker = null;
         protected LightingTracker LightingTracker
@@ -302,14 +271,7 @@ namespace CombatExtended
                 }
             }
 
-            // Add check for reload
-            if (Projectile == null || (IsAttacking && CompAmmo != null && !CompAmmo.CanBeFiredNow))
-            {
-                CompAmmo?.TryStartReload();
-                resetRetarget();
-                return false;
-            }
-            return true;
+            return Projectile != null;
         }
 
         /// <summary>
@@ -487,19 +449,13 @@ namespace CombatExtended
                                         Apparel LegArmor = LegArmors.MaxByWithFallback(funcArmor);
                                         #endregion
 
-                                        #region get CompAmmo's Current ammo projectile
-
-                                        var ProjCE = (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
-
-                                        #endregion
-
                                         #region checks for whether the pawn can penetrate armor, which armor is stronger, etc
 
                                         var TargetedBodyPartArmor = TorsoArmor;
 
                                         bool flagTorsoArmor = ((TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
 
-                                        bool flag2 = ((ProjCE?.armorPenetrationSharp ?? 0f) >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+                                        bool flag2 = (projectilePropsCE.armorPenetrationSharp >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
                                         //Headshots do too little damage too often, so if the pawn can penetrate torso armor, they should aim at it
                                         if ((flagTorsoArmor && !flag2))
                                         {
@@ -509,7 +465,7 @@ namespace CombatExtended
                                         bool flag3 = (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) >= ((LegArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) + 4f);
 
                                         //bool for whether the pawn can penetrate helmet
-                                        bool flag4 = ((ProjCE?.armorPenetrationSharp ?? 0f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+                                        bool flag4 = (projectilePropsCE.armorPenetrationSharp >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
 
                                         //if the pawn can penetrate the helmet or torso armor there's no need to aim for legs
                                         if (flag3 && (!flag4) && (!flag2))
@@ -1119,8 +1075,7 @@ namespace CombatExtended
                         ShotHeight,
                         ShotSpeed,
                         EquipmentSource,
-                        distance,
-                        ticksToTruePosition);
+                        distance);
                 }
                 pelletMechanicsOnly = true;
             }
@@ -1133,11 +1088,6 @@ namespace CombatExtended
             numShotsFired++;
             if (ShooterPawn != null)
             {
-                if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
-                {
-                    CompAmmo?.TryStartReload();
-                    resetRetarget();
-                }
                 if (CompReloadable != null)
                 {
                     CompReloadable.UsedOnce();
@@ -1277,46 +1227,13 @@ namespace CombatExtended
                 goodDest = IntVec3.Invalid;
                 return false;
             }
-            // DISABLED: reason is testing a better alternative..
-            //if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
-            //{
-            //    goodDest = IntVec3.Invalid;
-            //    return false;
-            //}
+
             if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
             {
                 goodDest = targ.Cell;
                 return true;
             }
             goodDest = IntVec3.Invalid;
-            return false;
-        }
-
-        private bool IntercepterBlockingTarget(Vector3 source, Vector3 target)
-        {
-            List<Thing> list = Caster.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
-            for (int i = 0; i < list.Count; i++)
-            {
-                Thing thing = list[i];
-                CompProjectileInterceptor interceptor = thing.TryGetComp<CompProjectileInterceptor>();
-                if (!interceptor.Active)
-                {
-                    continue;
-                }
-                float d1 = Vector3.Distance(source, thing.Position.ToVector3());
-                if (d1 < interceptor.Props.radius + 1)
-                {
-                    continue;
-                }
-                if (Vector3.Distance(target, thing.Position.ToVector3()) < interceptor.Props.radius)
-                {
-                    return true;
-                }
-                if (thing.Position.ToVector3().DistanceToSegment(source, target, out _) < interceptor.Props.radius)
-                {
-                    return true;
-                }
-            }
             return false;
         }
 

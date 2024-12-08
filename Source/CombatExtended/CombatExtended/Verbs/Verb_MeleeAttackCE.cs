@@ -471,6 +471,7 @@ namespace CombatExtended
             damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             damageInfo.SetWeaponHediff(hediffDef);
             damageInfo.SetAngle(direction);
+            damageInfo.SetTool(tool);
             yield return damageInfo;
             if (this.tool != null && this.tool.extraMeleeDamages != null)
             {
