@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--Mech Grub Tools-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="LTS_Mech_Isopod"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>mandible</label>
+					<capacities>
+						<li>Cut</li>
+						<li>Stab</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.2</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<!--Mechanitor Bionics-->
+	
+	<!--WarprogrammerInterface-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="WarprogrammerInterfaceImplant"]/stages</xpath>
+		<value>
+			<stages>
+				<li>
+					<minSeverity>1</minSeverity>
+					<statOffsets>
+						<AimingAccuracy>0.1</AimingAccuracy>
+						<ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.1</MeleeDodgeChance>
+						<MeleeCritChance>0.1</MeleeCritChance>
+						<MeleeParryChance>0.1</MeleeParryChance>
+					</statOffsets>
+				</li>
+				<li>
+					<minSeverity>2</minSeverity>
+					<statOffsets>
+						<AimingAccuracy>0.2</AimingAccuracy>
+						<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.2</MeleeDodgeChance>
+						<MeleeCritChance>0.2</MeleeCritChance>
+						<MeleeParryChance>0.2</MeleeParryChance>
+					</statOffsets>
+				</li>
+				<li>
+					<minSeverity>3</minSeverity>
+					<statOffsets>
+						<AimingAccuracy>0.3</AimingAccuracy>
+						<ShootingAccuracyPawn>0.3</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.3</MeleeDodgeChance>
+						<MeleeCritChance>0.3</MeleeCritChance>
+						<MeleeParryChance>0.3</MeleeParryChance>
+					</statOffsets>
+				</li>
+			</stages>
+		</value>
+	</Operation>
+	
+	
+	
+	
+	<!--Sangophage Bionics-->
+	
+	
+	<!--Hemo Fangs-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="HemoFangs"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>hemo-fangs</label>
+					<capacities>
+						<li>HemoBite</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationSharp>0.72</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.72</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	
+	
+</Patch>
