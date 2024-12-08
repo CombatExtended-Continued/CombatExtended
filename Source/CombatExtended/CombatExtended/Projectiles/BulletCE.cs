@@ -21,19 +21,6 @@ namespace CombatExtended
 
         public static RulePackDef Shelling => shellingDamageEvent ?? (shellingDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_Shelling"));
 
-        public virtual float PenetrationAmount
-        {
-            get
-            {
-                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-
-                float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
-
-                return lerpPosition ? penetrationAmount : penetrationAmount * RemainingKineticEnergyPct;
-            }
-        }
-
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
             var ed = equipmentDef ?? ThingDef.Named("Gun_Autopistol");
@@ -67,20 +54,9 @@ namespace CombatExtended
             if (hitThing != null)
             {
                 // launcher being the pawn equipping the weapon, not the weapon itself
-                float damageAmountBase = DamageAmount;
                 var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                var penetration = PenetrationAmount;
                 var damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
-                var dinfo = new DamageInfo(
-                    def.projectile.damageDef,
-                    damageAmountBase,
-                    penetration, //Armor Penetration
-                    ExactRotation.eulerAngles.y,
-                    launcher,
-                    null,
-                    def,
-                    instigatorGuilty: InstigatorGuilty);
+                var dinfo = DamageInfo;
 
                 // Set impact height
                 BodyPartDepth partDepth = damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;

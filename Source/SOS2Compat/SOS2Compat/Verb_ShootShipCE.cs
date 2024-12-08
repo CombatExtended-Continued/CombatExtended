@@ -93,7 +93,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                 // 6:       Interruptible -> stop shooting
                 // 7:       Not interruptible -> shoot along previous line
                 // 8:     else -> stop
-                if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // Case 1
+                if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine, out var targetPos)) // Case 1
                 {
                     lastShootLine = shootLine;
                 }
@@ -163,7 +163,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                         projectileCE = (ShipProjectileCE)ThingMaker.MakeThing(Projectile, null);
                     }
                     GenSpawn.Spawn(projectileCE, shootLine.Source, caster.Map);
-                    ShiftTarget(report, pelletMechanicsOnly, instant, midBurst);
+                    ShiftTarget(report, pelletMechanicsOnly, instant);
 
                     //New aiming algorithm
                     projectileCE.canTargetSelf = false;
