@@ -28,45 +28,6 @@ namespace CombatExtended
             }
         }
 
-        //Merge ammosets with identical ammo usage. I'm worried about its performance and I might want to caculate this during game start up.
-        protected bool IsIdenticalToAny(AmmoSetDef def)
-        {
-            if (usableAmmoSets.NullOrEmpty())
-            {
-                return false;
-            }
-            foreach (var v in usableAmmoSets)
-            {
-                if (IsIdenticalTo(v, def))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        protected bool IsIdenticalTo(AmmoSetDef a, AmmoSetDef b)
-        {
-            if (a.ammoTypes.Count != b.ammoTypes.Count)
-            {
-                return false;
-            }
-            HashSet<AmmoDef> list = new HashSet<AmmoDef>();
-            foreach (var v in a.ammoTypes)
-            {
-                list.Add(v.ammo);
-            }
-            foreach (var n in b.ammoTypes)
-            {
-                if (!list.Contains(n.ammo))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-
         public override AmmoSetDef CurAmmoSet => SelectedAmmoSet;
 
         public override void PostExposeData()
@@ -119,29 +80,27 @@ namespace CombatExtended
             {
                 yield return gizmo;
             }
-            if (!Controller.settings.GenericAmmo)
+
+            Command_Action command_Action = new Command_Action();
+            command_Action.defaultLabel = "CE_SelectAmmoSet".Translate();
+            command_Action.defaultDesc = "CE_SelectAmmoSetDesc".Translate();
+            command_Action.icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload", reportFailure: false);
+            command_Action.action = delegate
             {
-                Command_Action command_Action = new Command_Action();
-                command_Action.defaultLabel = "CE_SelectAmmoSet".Translate();
-                command_Action.defaultDesc = "CE_SelectAmmoSetDesc".Translate();
-                command_Action.icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload", reportFailure: false);
-                command_Action.action = delegate
+                List<FloatMenuOption> list = new List<FloatMenuOption>();
+                foreach (AmmoSetDef caliber in UsableAmmoSets)
                 {
-                    List<FloatMenuOption> list = new List<FloatMenuOption>();
-                    foreach (AmmoSetDef caliber in UsableAmmoSets)
-                    {
-                        FloatMenuOption item = new FloatMenuOption(
-                           caliber.LabelCap,
-                           delegate { SyncedSelectAmmoSet(caliber); },
-                           caliber.ammoTypes.First().ammo,
-                           priority: MenuOptionPriority.Default,
-                           mouseoverGuiAction: delegate (Rect rect) { ContainedAmmoPopOut(rect, caliber); });
-                        list.Add(item);
-                    }
-                    Find.WindowStack.Add(new FloatMenu(list));
-                };
-                yield return command_Action;
-            }
+                    FloatMenuOption item = new FloatMenuOption(
+                        caliber.LabelCap,
+                        delegate { SyncedSelectAmmoSet(caliber); },
+                        caliber.ammoTypes.First().ammo,
+                        priority: MenuOptionPriority.Default,
+                        mouseoverGuiAction: delegate (Rect rect) { ContainedAmmoPopOut(rect, caliber); });
+                    list.Add(item);
+                }
+                Find.WindowStack.Add(new FloatMenu(list));
+            };
+            yield return command_Action;
         }
 
         public void ContainedAmmoPopOut(Rect rect, AmmoSetDef ammoSet)

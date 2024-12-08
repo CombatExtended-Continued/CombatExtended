@@ -8,7 +8,7 @@ namespace CombatExtended
 
         public CompProperties_AmmoListUser()
         {
-            compClass = typeof(CompAmmoUser);
+            compClass = typeof(CompAmmoListUser);
         }
     }
 }
