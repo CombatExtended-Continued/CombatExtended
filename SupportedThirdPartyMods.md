@@ -34,7 +34,6 @@ Mod |
 [LTS] Military |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
-[O21] Outland - Core    |
 [O21] Outland - Eastborn Empire    |
 [O21] Outland - Motz Coalition  |
 [O21] Outland - Redburn Pact  |
