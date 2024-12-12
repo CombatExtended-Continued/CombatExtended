@@ -617,7 +617,6 @@ namespace CombatExtended
         {
             if (pawn == null
                     || pawn.Dead
-                    || !pawn.RaceProps.Humanlike
                     || pawn.WorkTagIsDisabled(WorkTags.Violent)
                     || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                     || IsTargetImmobile(pawn)
