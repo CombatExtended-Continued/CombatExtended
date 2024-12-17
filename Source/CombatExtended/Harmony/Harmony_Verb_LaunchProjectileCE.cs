@@ -16,7 +16,7 @@ namespace CombatExtended.HarmonyCE
         {
             if (__instance is Verb_LaunchProjectileCE launchVerbCE)
             {
-                __result = (launchVerbCE as Verb_LaunchProjectileCE).TryFindCEShootLineFromTo(root, targ, out resultingLine);
+                __result = (launchVerbCE as Verb_LaunchProjectileCE).TryFindCEShootLineFromTo(root, targ, out resultingLine, out _);
                 return false;
             }
             return true;
