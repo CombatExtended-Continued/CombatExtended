@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ThingCategoryDef -->
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingCategoryDef[defName="Ammo81mmMortarShells"]/label</xpath>
+			<value>
+				<label>mortar shells</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<!-- AmmoSetDef -->
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/label</xpath>
+			<value>
+				<label>mortar shells</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<!-- Ammo -->
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_HighExplosive"]/label</xpath>
+			<value>
+				<label>mortar shell (HE)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_HighExplosive_HFuzed"]/label</xpath>
+			<value>
+			<label>mortar shell (Airburst)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_Incendiary"]/label</xpath>
+			<value>
+				<label>mortar shell (Incendiary)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_EMP"]/label</xpath>
+			<value>
+				<label>mortar shell (EMP)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_Firefoam"]/label</xpath>
+			<value>
+				<label>mortar shell (Foam)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_Smoke"]/label</xpath>
+			<value>
+				<label>mortar shell (Smoke)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_AntigrainWarhead"]/label</xpath>
+			<value>
+				<label>mortar shell (Anti)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="CombatExtended.PatchOperation_ConditionalGeneric">
+					<generic Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="Shell_Toxic"]/label</xpath>
+						<value>
+							<label>mortar shell (Toxic)</label>
+						</value>
+					</generic>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="CombatExtended.PatchOperation_ConditionalGeneric">
+					<generic Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="Shell_Deadlife"]/label</xpath>
+						<value>
+							<label>mortar shell (Deadlife)</label>
+						</value>
+					</generic>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+	<!-- Projectiles -->
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_81mmMortarShell_HE"]/label</xpath>
+			<value>
+				<label>mortar shell (HE)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_81mmMortarShell_HE_HFuzed"]/label</xpath>
+			<value>
+			<label>mortar shell (Airburst)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_81mmMortarShell_Incendiary"]/label</xpath>
+			<value>
+				<label>mortar shell (Incendiary)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_81mmMortarShell_EMP"]/label</xpath>
+			<value>
+				<label>mortar shell (EMP)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_81mmMortarShell_Firefoam"]/label</xpath>
+			<value>
+				<label>mortar shell (Foam)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_81mmMortarShell_Smoke"]/label</xpath>
+			<value>
+				<label>mortar shell (Smoke)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_81mmMortarShell_Antigrain"]/label</xpath>
+			<value>
+				<label>mortar shell (Anti)</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech</li>
+		</mods>
+		<match Class="CombatExtended.PatchOperation_ConditionalGeneric">
+			<generic Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Bullet_81mmMortarShell_Tox"]/label</xpath>
+				<value>
+					<label>mortar shell (Toxic)</label>
+				</value>
+			</generic>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+		<match Class="CombatExtended.PatchOperation_ConditionalGeneric">
+			<generic Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Bullet_81mmMortarShell_Deadlife"]/label</xpath>
+				<value>
+					<label>mortar shell (Deadlife)</label>
+				</value>
+			</generic>
+		</match>
+	</Operation>
+
+	<!-- Recipes -->
+
+	<!-- Ammo -->
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/RecipeDef[defName="Shell_HighExplosive"]/label</xpath>
+			<value>
+				<label>make mortar shell (HE) x5</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/RecipeDef[defName="Shell_HighExplosive_HFuzed"]/label</xpath>
+			<value>
+			<label>make mortar shell (Airburst) x5</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/RecipeDef[defName="Shell_Incendiary"]/label</xpath>
+			<value>
+				<label>make mortar shell (Incendiary) x5</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/RecipeDef[defName="Shell_EMP"]/label</xpath>
+			<value>
+				<label>make mortar shell (EMP) x5</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/RecipeDef[defName="Shell_Firefoam"]/label</xpath>
+			<value>
+				<label>make mortar shell (Foam) x5</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperation_ConditionalGeneric">
+		<generic Class="PatchOperationReplace">
+			<xpath>Defs/RecipeDef[defName="Shell_Smoke"]/label</xpath>
+			<value>
+				<label>make mortar shell (Smoke) x5</label>
+			</value>
+		</generic>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="CombatExtended.PatchOperation_ConditionalGeneric">
+					<generic Class="PatchOperationReplace">
+						<xpath>Defs/RecipeDef[defName="Shell_Toxic"]/label</xpath>
+						<value>
+							<label>make mortar shell (Toxic) x5</label>
+						</value>
+					</generic>
+				</li>
+
+				<li Class="CombatExtended.PatchOperation_ConditionalGeneric">
+					<generic Class="PatchOperationReplace">
+						<xpath>Defs/RecipeDef[defName="Shell_Toxic"]/description</xpath>
+						<value>
+							<description>craft 5 toxic mortar shells.</description>
+						</value>
+					</generic>
+				</li>
+
+
+			</operations>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="CombatExtended.PatchOperation_ConditionalGeneric">
+					<generic Class="PatchOperationReplace">
+						<xpath>Defs/RecipeDef[defName="Shell_Deadlife"]/label</xpath>
+						<value>
+							<label>mortar shell (Deadlife) x5</label>
+						</value>
+					</generic>
+				</li>
+
+				<li Class="CombatExtended.PatchOperation_ConditionalGeneric">
+					<generic Class="PatchOperationReplace">
+						<xpath>Defs/RecipeDef[defName="Shell_Deadlife"]/description</xpath>
+						<value>
+							<description>craft 5 deadlife mortar shells.</description>
+						</value>
+					</generic>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+
+</Patch>
