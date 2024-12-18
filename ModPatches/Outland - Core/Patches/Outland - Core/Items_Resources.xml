@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!-- Bones -->
 
+	<!-- Fockatt Fur -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Outland_FockattFur"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Outland_FockattFur"]/statBases</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Bones -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Outland_Bones"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
@@ -32,6 +47,14 @@
 		</value>
 	</Operation>
 
+	<!-- Ration Pack -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Outland_RationPack"]/statBases</xpath>
+		<value>
+			<Bulk>0.5</Bulk>
+		</value>
+	</Operation>
+
 	<!-- Siege Weapon Ammo -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="Outland_Ammo_BallistaBolt"]</xpath>
@@ -48,4 +71,5 @@
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/RecipeDef[defName="Outland_Make_RoundShots"]</xpath>
 	</Operation>
+
 </Patch>

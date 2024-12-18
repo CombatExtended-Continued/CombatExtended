@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- Dory Spear-->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Outland_DorySpear"]/statBases</xpath>
@@ -439,57 +440,4 @@
 		</value>
 	</Operation>
 
-	<!-- crossbow -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Outland_MotzCrossbow"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>7</power>
-					<cooldownTime>1.6</cooldownTime>
-					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</Operation>
-
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Outland_MotzCrossbow</defName>
-		<statBases>
-			<Bulk>6</Bulk>
-			<SwayFactor>1.2</SwayFactor>
-			<ShotSpread>0.5</ShotSpread>
-			<SightsEfficiency>1</SightsEfficiency>
-			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-		</statBases>
-		<costList>
-			<WoodLog>70</WoodLog>
-			<ComponentIndustrial>1</ComponentIndustrial>
-		</costList>
-		<Properties>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
-			<warmupTime>1</warmupTime>
-			<range>20</range>
-			<soundCast>Bow_Large</soundCast>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>1</magazineSize>
-			<reloadTime>7</reloadTime>
-			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-		</FireModes>
-		<weaponTags>
-			<li>NeolithicRangedHeavy</li>
-			<li>NeolithicRangedChief</li>
-			<li>CE_Bow</li>
-		</weaponTags>
-	</Operation>
 </Patch>
