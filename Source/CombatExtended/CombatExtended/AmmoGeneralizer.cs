@@ -19,6 +19,18 @@ namespace CombatExtended
             if (Controller.settings.GenericAmmo)
             {
 
+                // Goes before the main generalizer to propagate the name to child ammosets
+                var toGenericAmmoSetLabels = DefDatabase<AmmoSetDef>.AllDefs.Where(def => def.GetModExtension<GenericLabelExtension>() != null);
+
+                foreach (var def in toGenericAmmoSetLabels)
+                {
+                    var ext = def.GetModExtension<GenericLabelExtension>();
+                    if (ext.genericLabel != null)
+                    {
+                        def.label = ext.genericLabel;
+                    }
+                }
+                
                 var toGenericAmmos = DefDatabase<AmmoSetDef>.AllDefs.Where(x => x.similarTo != null);
 
                 foreach (AmmoSetDef amset in toGenericAmmos)
@@ -122,9 +134,44 @@ namespace CombatExtended
                         }
                     }
                 }
+                
+                var toChangeLabelsDefs = DefDatabase<ThingDef>.AllDefs.Where(x => x.GetModExtension<GenericLabelExtension>() != null);
+
+                foreach (ThingDef def in toChangeLabelsDefs)
+                {
+                    var ext = def.GetModExtension<GenericLabelExtension>();
+                    if (ext.genericLabel != null)
+                    {
+                        def.label = ext.genericLabel;
+                    }
+
+                    if (ext.genericDescription != null)
+                    {
+                        def.description = ext.genericDescription;
+                    }
+                }
+                
+                var toChangeLabelsRecipes = DefDatabase<RecipeDef>.AllDefs.Where(x => x.GetModExtension<GenericLabelExtension>() != null);
+
+                foreach (var def in toChangeLabelsRecipes)
+                {
+                    var ext = def.GetModExtension<GenericLabelExtension>();
+                    if (ext.genericLabel != null)
+                    {
+                        def.label = ext.genericLabel;
+                    }
+
+                    if (ext.genericDescription != null)
+                    {
+                        def.description = ext.genericDescription;
+                    }
+
+                    if (ext.genericJobString != null)
+                    {
+                        def.jobString = ext.genericJobString;
+                    }
+                }
             }
-
-
         }
     }
 }
