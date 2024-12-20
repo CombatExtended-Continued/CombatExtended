@@ -30,7 +30,7 @@ namespace CombatExtended
                         def.label = ext.genericLabel;
                     }
                 }
-                
+
                 var toGenericAmmos = DefDatabase<AmmoSetDef>.AllDefs.Where(x => x.similarTo != null);
 
                 foreach (AmmoSetDef amset in toGenericAmmos)
@@ -134,7 +134,7 @@ namespace CombatExtended
                         }
                     }
                 }
-                
+
                 var toChangeLabelsDefs = DefDatabase<ThingDef>.AllDefs.Where(x => x.GetModExtension<GenericLabelExtension>() != null);
 
                 foreach (ThingDef def in toChangeLabelsDefs)
@@ -150,7 +150,7 @@ namespace CombatExtended
                         def.description = ext.genericDescription;
                     }
                 }
-                
+
                 var toChangeLabelsRecipes = DefDatabase<RecipeDef>.AllDefs.Where(x => x.GetModExtension<GenericLabelExtension>() != null);
 
                 foreach (var def in toChangeLabelsRecipes)
