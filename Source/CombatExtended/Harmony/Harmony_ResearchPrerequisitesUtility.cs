@@ -14,6 +14,7 @@ namespace CombatExtended
             {
                 pair.second.RemoveWhere(x => x is AmmoDef ammoDef && ammoDef.menuHidden);
             }
+            input.RemoveWhere(x => x.second.NullOrEmpty());
             return input;
         }
     }
