@@ -15,7 +15,6 @@ namespace CombatExtended
         public float height;
         public bool radiusChange = false;
         public bool toBeMerged = false;
-        private const int DamageAtEdge = 2;      // Synch these with spreadsheet
         private const float PenAtEdge = 0.6f;
         private const float PressurePerDamage = 0.3f;
         private const float MaxMergeTicks = 3f;
@@ -403,15 +402,15 @@ namespace CombatExtended
         }
 
         //New methods
-        public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(0.333f)
+        public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(0.666f)
         {
             if (!damageFalloff)
             {
                 return damAmount;
             }
             var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 0.333f);
-            return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, DamageAtEdge, t)), 1);
+            t = Mathf.Pow(t, 0.666f);
+            return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, (float)damAmount / 3, t)), 1);
         }
 
         public float GetArmorPenetrationAtCE(IntVec3 c) //t => t^(0.55f), penetrationAmount => damAmount * PressurePerDamage
