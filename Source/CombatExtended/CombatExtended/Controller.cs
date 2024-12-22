@@ -115,7 +115,7 @@ namespace CombatExtended
             }
 
             LongEventHandler.QueueLongEvent(patches.Install, "CE_LongEvent_CompatibilityPatches", false, null);
-            
+
             genericState = settings.GenericAmmo;
         }
 
