@@ -15,7 +15,6 @@ namespace CombatExtended
         public float height;
         public bool radiusChange = false;
         public bool toBeMerged = false;
-        private const float PenAtEdge = 0.6f;
         private const float PressurePerDamage = 0.3f;
         private const float MaxMergeTicks = 3f;
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
@@ -422,7 +421,7 @@ namespace CombatExtended
             }
             var t = c.DistanceTo(Position) / radius;
             t = Mathf.Pow(t, 0.55f);
-            return Mathf.Lerp(basePen, PenAtEdge, t);
+            return Mathf.Lerp(basePen, basePen / 3, t);
         }
     }
 }
