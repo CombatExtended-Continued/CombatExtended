@@ -33,14 +33,14 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_PirateCaravel_MainTurret" or defName="AV_PirateCaravel_SecondTurret"]/minRange</xpath>
 		<value>
-			<minRange>16</minRange>
+			<minRange>37</minRange> <!-- +5 from maxRange to predict non-obstructed impact -->
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_PirateCaravel_MainTurret" or defName="AV_PirateCaravel_SecondTurret"]/maxRange</xpath>
 		<value>
-			<maxRange>64</maxRange>
+			<maxRange>32</maxRange>
 		</value>
 	</Operation>
 
@@ -71,10 +71,10 @@
 		<value>
 			<li Class="Vehicles.CETurretDataDefModExtension">
 				<ammoSet>AmmoSet_CannonBall</ammoSet>
-				<shotHeight>2.5</shotHeight>
+				<shotHeight>2.75</shotHeight>
 				<speed>40</speed>
-				<sway>0.5</sway>
-				<spread>0.15</spread>
+				<sway>0.81</sway>
+				<spread>0.3</spread>
 			</li>
 		</value>
 	</Operation>
