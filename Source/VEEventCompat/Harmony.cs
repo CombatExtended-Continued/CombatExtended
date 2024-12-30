@@ -69,7 +69,6 @@ namespace VEEventCompat
         public static void InsertMethod(List<Thing> outThings)
         {
             CE_ThingSetMakerUtility.GenerateAmmoForWeapon(outThings, true, true, new IntRange(1, 3));
-            Log.Message(outThings);
         }
     }
 }
