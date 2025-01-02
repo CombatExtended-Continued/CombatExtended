@@ -87,7 +87,7 @@ namespace CombatExtended
 
                             if (partstat.stat == this.stat)
                             {
-                                if (!partstat.useStatic)
+                                if (partstat.staticValue <= 0f)
                                 {
                                     result += "\n" + "CE_Multiplier".Translate() + " " + partstat.mult.ToStringPercent();
                                 }
@@ -164,7 +164,7 @@ namespace CombatExtended
                             {
 
                                 float thisArmor = value;
-                                if (p.useStatic)
+                                if (p.staticValue > 0f)
                                 {
                                     thisArmor = p.staticValue;
                                 }
@@ -197,7 +197,7 @@ namespace CombatExtended
                             float thisArmor = value;
                             if (partstat.stat == stat)
                             {
-                                if (partstat.useStatic)
+                                if (partstat.staticValue > 0f)
                                 {
                                     thisArmor = partstat.staticValue;
                                 }

@@ -13,20 +13,19 @@ namespace CombatExtended
     {
         public StatDef stat;
 
-        public float mult;
+        public float mult = 0f;
 
         public List<BodyPartDef> parts;
 
         public float staticValue = 0f;
 
-        public bool useStatic = false;
-
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
+            bool useStatic = false;
             int index = 1;
             if (xmlRoot.FirstChild.Name.Contains("use"))
             {
-                this.useStatic = ParseHelper.FromString<bool>(xmlRoot.FirstChild.InnerText);
+                useStatic = ParseHelper.FromString<bool>(xmlRoot.FirstChild.InnerText);
             }
             else
             {

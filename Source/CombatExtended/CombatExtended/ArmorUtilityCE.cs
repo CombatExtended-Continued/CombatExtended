@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
@@ -96,7 +95,7 @@ namespace CombatExtended
                         }
                         else
                         {
-                            var hasCoverage = shieldDef.PartIsCoveredByShield(hitPart, pawn);
+                            var hasCoverage = shieldDef.PartIsCoveredByShield(hitPart, pawn.IsCrouching());
                             if (hasCoverage)
                             {
                                 // Right arm is vulnerable during warmup/attack/cooldown
@@ -245,7 +244,7 @@ namespace CombatExtended
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                var armorAmount = coveredByArmor ? pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart, dmgAmount, penAmount) : 0;
+                var armorAmount = coveredByArmor ? pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart) : 0;
 
                 // Only apply damage reduction when penetrating armored body parts
                 if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
@@ -544,7 +543,7 @@ namespace CombatExtended
                                           localPenAmount,
                                           dinfo.Angle,
                                           dinfo.Instigator,
-                                          GetOuterMostParent(hitPart),
+                                          CE_Utility.GetOuterMostParent(hitPart),
                                           partialPen ? null : dinfo.Weapon, //To not apply the secondary damage twice on partial penetrations.
                                           instigatorGuilty: dinfo.InstigatorGuilty);
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
@@ -558,24 +557,6 @@ namespace CombatExtended
                 penAmount = localPenAmount;
             }
             return newDinfo;
-        }
-
-        /// <summary>
-        /// Retrieves the first parent of a body part with depth Outside
-        /// </summary>
-        /// <param name="part">The part to get the parent of</param>
-        /// <returns>The first parent part with depth Outside, the original part if it already is Outside or doesn't have a parent, the root part if no parents are Outside</returns>
-        private static BodyPartRecord GetOuterMostParent(BodyPartRecord part)
-        {
-            var curPart = part;
-            if (curPart != null)
-            {
-                while (curPart.parent != null && curPart.depth != BodyPartDepth.Outside)
-                {
-                    curPart = curPart.parent;
-                }
-            }
-            return curPart;
         }
 
         /// <summary>
