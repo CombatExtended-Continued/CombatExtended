@@ -290,24 +290,25 @@ namespace CombatExtended
             }
         }
 
-        private static int GetUnreservedStackCount(LocalTargetInfo target, ReservationLayerDef layer = null)
+        /// <summary>
+        /// Gets the unreserved stack count of a Thing.
+        /// </summary>
+        /// <param name="target">The Thing for which to get the unreserved stack count.</param>
+        /// <returns>Returns 0 if the target is not a Thing, is not on a Map, or all of its stack is reserved. Otherwise returns the unreserved stack count of a target.</returns>
+        private static int GetUnreservedStackCount(Thing thing)
         {
-            var reservations = target.Thing?.Map?.reservationManager.ReservationsReadOnly;
+            var reservations = thing.Map?.reservationManager.ReservationsReadOnly;
             if (reservations == null)
             {
                 return 0;
             }
 
-            int stackCount = target.Thing.stackCount;
+            int stackCount = thing.stackCount;
 
             for (int i = 0; stackCount > 0 && i < reservations.Count(); ++i)
             {
                 var reservation = reservations[i];
-                if (reservation.Target.Thing != target.Thing)
-                {
-                    continue;
-                }
-                if (layer != null && reservation.Layer != layer)
+                if (reservation.Target.Thing != thing)
                 {
                     continue;
                 }
