@@ -304,7 +304,6 @@ namespace CombatExtended
             }
 
             int stackCount = thing.stackCount;
-
             for (int i = 0; stackCount > 0 && i < reservations.Count(); ++i)
             {
                 var reservation = reservations[i];
