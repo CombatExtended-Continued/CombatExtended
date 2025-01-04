@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- === Stuff Category === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="TSFApparel_NinjaMask" or
+			defName="TSFApparel_AshigaruArmor" or
+			defName="TSFApparel_AshigaruHelmet" or
+			defName="TSFApparel_SamuraiArmor" or
+			defName="TSFApparel_DaimyoArmor" or
+			defName="TSFApparel_SamuraiHelmet" or
+			defName="TSFApparel_DaimyoHelmet"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
 	<!--Utility-->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="TSFApparel_SmokeBomb"]/costList</xpath>
@@ -20,29 +37,16 @@
 
 	<!--Clothes-->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_StrawCoat" or
-			defName="TSFApparel_StrawHat"]/statBases/ArmorRating_Sharp </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_StrawCoat" or defName="TSFApparel_StrawHat"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<ArmorRating_Sharp>0.10</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_NinjaMask" or
-			defName="TSFApparel_StrawCoat"]/equippedStatOffsets/MeleeDodgeChance </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_NinjaMask" or defName="TSFApparel_StrawCoat"]/equippedStatOffsets/MeleeDodgeChance</xpath>
 		<value>
 			<MeleeDodgeChance>0.3</MeleeDodgeChance>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="TSFApparel_NinjaMask"]/stuffCategories</xpath>
-		<value>
-			<stuffCategories>
-				<li>Steeled</li>
-			</stuffCategories>
 		</value>
 	</Operation>
 
@@ -54,37 +58,28 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_NinjaMask" or
-			defName="TSFApparel_Gi" or
-			defName="TSFApparel_Kimono"]/statBases/StuffEffectMultiplierArmor </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_Gi" or defName="TSFApparel_Kimono"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_Gi" or
-			defName="TSFApparel_Kimono"]/statBases/Mass </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_Gi" or defName="TSFApparel_Kimono"]/statBases/Mass</xpath>
 		<value>
 			<Mass>1.2</Mass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_Yukata" or
-			defName="TSFApparel_HaoriJacket"]/statBases/StuffEffectMultiplierArmor </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_Yukata" or defName="TSFApparel_HaoriJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_HaoriJacket" or
-			defName="TSFApparel_Yukata"]/costStuffCount </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_HaoriJacket" or defName="TSFApparel_Yukata"]/costStuffCount</xpath>
 		<value>
 			<costStuffCount>60</costStuffCount>
 		</value>
@@ -99,23 +94,7 @@
 
 	<!-- ======= Armor ======= -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_AshigaruArmor" or
-			defName="TSFApparel_AshigaruHelmet" or
-			defName="TSFApparel_SamuraiArmor" or
-			defName="TSFApparel_SamuraiHelmet" or
-			defName="TSFApparel_DaimyoHelmet"]/stuffCategories </xpath>
-		<value>
-			<stuffCategories>
-				<li>Steeled</li>
-			</stuffCategories>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_AshigaruArmor" or
-			defName="TSFApparel_SamuraiArmor"]/apparel/layers </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_AshigaruArmor" or defName="TSFApparel_SamuraiArmor" or defName="TSFApparel_DaimyoArmor"]/apparel/layers</xpath>
 		<value>
 			<layers>
 				<li>Shell</li>
@@ -155,7 +134,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="TSFApparel_AshigaruArmor"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_AshigaruArmor"]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 
 	<!-- == Helmet == -->
@@ -181,10 +160,10 @@
 		</value>
 	</Operation>
 
-	<!-- === Samurai === -->
+	<!-- === Samurai/Daimyo === -->
 	<!-- == Armor == -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiArmor"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiArmor" or defName="TSFApparel_DaimyoArmor"]/statBases</xpath>
 		<value>
 			<Bulk>60</Bulk>
 			<WornBulk>10</WornBulk>
@@ -192,30 +171,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiArmor"]/costStuffCount</xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiArmor" or defName="TSFApparel_DaimyoArmor"]/costStuffCount</xpath>
 		<value>
 			<costStuffCount>160</costStuffCount>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiArmor"]/apparel/layers</xpath>
-		<value>
-			<layers>
-				<li>Shell</li>
-			</layers>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiArmor" or defName="TSFApparel_DaimyoArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>2.00</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiArmor"]/statBases/Mass</xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiArmor" or defName="TSFApparel_DaimyoArmor"]/statBases/Mass</xpath>
 		<value>
 			<Mass>13</Mass>
 		</value>
@@ -231,20 +201,24 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="TSFApparel_DaimyoArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+			<Suppressability>-0.20</Suppressability>
+		</value>
+	</Operation>
+
 	<!-- == Helmet == -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_SamuraiHelmet" or
-			defName="TSFApparel_DaimyoHelmet"]/statBases/StuffEffectMultiplierArmor </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiHelmet" or defName="TSFApparel_DaimyoHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
 			<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_SamuraiHelmet" or
-			defName="TSFApparel_DaimyoHelmet"]/statBases </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiHelmet" or defName="TSFApparel_DaimyoHelmet"]/statBases</xpath>
 		<value>
 			<Bulk>8</Bulk>
 			<WornBulk>1</WornBulk>
@@ -252,18 +226,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_SamuraiHelmet" or
-			defName="TSFApparel_DaimyoHelmet"]/equippedStatOffsets </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiHelmet" or defName="TSFApparel_DaimyoHelmet"]/equippedStatOffsets</xpath>
 		<value>
 			<Suppressability>-0.10</Suppressability>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="TSFApparel_SamuraiHelmet" or
-			defName="TSFApparel_DaimyoHelmet"]/apparel/bodyPartGroups </xpath>
+		<xpath>Defs/ThingDef[defName="TSFApparel_SamuraiHelmet" or defName="TSFApparel_DaimyoHelmet"]/apparel/bodyPartGroups</xpath>
 		<value>
 			<bodyPartGroups>
 				<li>UpperHead</li>
