@@ -16,7 +16,6 @@
 			<graphicData>
 				<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
 			</graphicData>
-			<menuHidden>False</menuHidden>
 			<destroyOnDrop>False</destroyOnDrop>
 			<thingClass>CombatExtended.AmmoThing</thingClass>
 			<label>unspecified ammunition</label>
@@ -49,7 +48,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="GiantBaseRange"]/comps</xpath>
 		<value>
-			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Forbiddable" />
 			<li>
 				<compClass>CompEquippable</compClass>
 			</li>
@@ -73,7 +72,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Jackstones_limestone"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -89,7 +88,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -105,7 +104,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Javelin"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -121,7 +120,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Scrapmetal"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -137,7 +136,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Rockpillar_granite"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -153,7 +152,7 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Rockpillar_Marble"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
 	</Operation>
@@ -169,9 +168,16 @@
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="GI_Lightningjavelin"]</xpath>
 			<value>
-				<comps/>
+				<comps />
 			</value>
 		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GI_Scrapmetal" or defName="GI_Lightningjavelin"]/smeltable</xpath>
+		<value>
+			<smeltable>false</smeltable>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -349,7 +355,7 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
+		<FireModes />
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
@@ -392,7 +398,7 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
+		<FireModes />
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
@@ -448,7 +454,7 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
+		<FireModes />
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -489,7 +495,7 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
+		<FireModes />
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
@@ -532,7 +538,7 @@
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
-		<FireModes/>
+		<FireModes />
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -574,7 +580,7 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
+		<FireModes />
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
@@ -630,7 +636,7 @@
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
 		</Properties>
-		<FireModes/>
+		<FireModes />
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
