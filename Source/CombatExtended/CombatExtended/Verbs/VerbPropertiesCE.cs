@@ -18,5 +18,6 @@ namespace CombatExtended
         public bool ejectsCasings = true;
         public bool ignorePartialLoSBlocker = false;
         public bool interruptibleBurst = true;
+        public List<ThingDef> disallowedProjectileDefs = new List<ThingDef>();
     }
 }
