@@ -80,6 +80,7 @@ Advanced Mortar (Continued) |
 All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
+Alpha Books |
 Alpha Genes |
 Alpha Implants |
 Alpha Mechs |
