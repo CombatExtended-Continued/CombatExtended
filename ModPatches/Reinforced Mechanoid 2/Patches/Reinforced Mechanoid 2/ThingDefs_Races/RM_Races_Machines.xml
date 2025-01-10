@@ -80,6 +80,38 @@
 		</value>
 	</Operation>
 
+  <Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RM_Droid_Buffer"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RM_Droid_Buffer"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RM_Droid_Buffer"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1500</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>2500</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>150</MaxOverHeal>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+  
 	<!-- ===== Spartan Droid ===== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RM_Droid_Spartan"]/statBases/ArmorRating_Sharp</xpath>
@@ -95,4 +127,36 @@
 		</value>
 	</Operation>
 
+  <Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RM_Droid_Spartan"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RM_Droid_Spartan"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RM_Droid_Spartan"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>2000</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>2500</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<Repairable>true</Repairable>
+				<RepairIngredients>
+					<Steel>5</Steel>
+					<Plasteel>5</Plasteel>
+				</RepairIngredients>
+				<RepairTime>300</RepairTime>
+				<RepairValue>200</RepairValue>
+				<CanOverHeal>true</CanOverHeal>
+				<MaxOverHeal>200</MaxOverHeal>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+  
 </Patch>
