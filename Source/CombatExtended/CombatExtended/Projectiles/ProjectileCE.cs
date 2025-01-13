@@ -360,6 +360,7 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
             Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
             Scribe_Values.Look(ref ignoreRoof, "ignoreRoof", true);
+            Scribe_Values.Look(ref ticksToTruePosition, "ticksToTruePosition");
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
