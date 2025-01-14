@@ -480,6 +480,12 @@ namespace CombatExtended
             {
                 targetScanFlags |= TargetScanFlags.NeedNonBurning;
             }
+
+            if (NonSnap)
+            {
+                return (Thing)NonSnapAttackTargetFinder.BestShootTargetFromCurrentPosition(attackTargetSearcher, targetScanFlags, TurretOrientation, IsValidTarget);
+            }
+
             return (Thing)AttackTargetFinder.BestShootTargetFromCurrentPosition(
                        attackTargetSearcher,
                        targetScanFlags,
