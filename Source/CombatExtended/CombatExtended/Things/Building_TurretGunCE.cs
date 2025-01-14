@@ -60,6 +60,14 @@ namespace CombatExtended
         // Core properties
         public virtual bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
         public CompEquippable GunCompEq => Gun.TryGetComp<CompEquippable>();
+        public NonSnapTurretExtension NonSnapExtension => def.GetModExtension<NonSnapTurretExtension>();
+        public bool NonSnap => NonSnapExtension != null;
+        public CompFireArc CompFireArc => this.GetComp<CompFireArc>();
+
+        public float NonSnapTurretRot = 0;
+        Vector3 TurretOrientation => Vector3.forward.RotatedBy(NonSnapTurretRot);
+        public float DeltaAngle => currentTargetInt == null ? 0 : Vector3.SignedAngle(TurretOrientation, (currentTargetInt.CenterVector3 - DrawPos).Yto0(), Vector3.up);
+
         public override LocalTargetInfo CurrentTarget => currentTargetInt;
         protected bool WarmingUp => burstWarmupTicksLeft > 0;
         public override Verb AttackVerb => Gun == null ? null : GunCompEq.verbTracker.PrimaryVerb;
@@ -193,6 +201,12 @@ namespace CombatExtended
                 }
             }
 
+
+            if (NonSnap && !respawningAfterLoad)
+            {
+                NonSnapTurretRot = Rotation.AsAngle;
+            }
+
             // if (CompAmmo == null || CompAmmo.Props == null || CompAmmo.Props.ammoSet == null || CompAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
             //     return;
 
@@ -251,6 +265,7 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
 
             Scribe_TargetInfo.Look(ref globalTargetInfo, "globalSourceInfo");
+            Scribe_Values.Look(ref NonSnapTurretRot, "NonSnapTurretRot");
             BackCompatibility.PostExposeData(this);
         }
 
@@ -272,6 +287,11 @@ namespace CombatExtended
                 {
                     this.ResetForcedTarget();
                 }
+                return;
+            }
+            if (!CompFireArc?.WithinFireArc(targ) ?? false)
+            {
+                this.ResetForcedTarget();
                 return;
             }
             if ((targ.Cell - base.Position).LengthHorizontal < this.GunCompEq.PrimaryVerb.verbProps.minRange)
@@ -333,12 +353,17 @@ namespace CombatExtended
             {
                 ResetForcedTarget();
             }
+            if (CurrentTarget != null && (!CompFireArc?.WithinFireArc(CurrentTarget) ?? false))
+            {
+                ResetForcedTarget();
+                ResetCurrentTarget();
+            }
             if (Active && (this.mannableComp == null || this.mannableComp.MannedNow) && base.Spawned && !(isReloading && WarmingUp))
             {
                 this.GunCompEq.verbTracker.VerbsTick();
                 if (!IsStunned && this.GunCompEq.PrimaryVerb.state != VerbState.Bursting)
                 {
-                    if (this.WarmingUp)
+                    if (this.WarmingUp && !(NonSnap && burstWarmupTicksLeft == 1 && Mathf.Abs(DeltaAngle) > NonSnapExtension.speed))
                     {
                         this.burstWarmupTicksLeft--;
                         if (this.burstWarmupTicksLeft == 0)
@@ -358,6 +383,10 @@ namespace CombatExtended
                         }
                     }
                     this.top.TurretTopTick();
+                    if (NonSnap)
+                    {
+                        NonSnapTurretRot += (Mathf.Abs(DeltaAngle) - NonSnapExtension.speed) > 0 ? Mathf.Sign(DeltaAngle) * NonSnapExtension.speed : DeltaAngle;
+                    }
                     return;
                 }
             }
@@ -478,14 +507,14 @@ namespace CombatExtended
             {
                 if (this.mannableComp == null)
                 {
-                    return !GenAI.MachinesLike(base.Faction, pawn);
+                    return !GenAI.MachinesLike(base.Faction, pawn) && (CompFireArc?.WithinFireArc(t) ?? true);
                 }
                 if (pawn.RaceProps.Animal && pawn.Faction == Faction.OfPlayer)
                 {
                     return false;
                 }
             }
-            return true;
+            return (CompFireArc?.WithinFireArc(t) ?? true);
         }
 
         public virtual void BeginBurst()                     // Added handling for ticksUntilAutoReload
@@ -583,6 +612,7 @@ namespace CombatExtended
         {
             Vector3 drawOffset = Vector3.zero;
             float angleOffset = 0f;
+            if (NonSnap) { top.CurRotation = NonSnapTurretRot; }
             if (Controller.settings.RecoilAnim)
             {
                 CE_Utility.Recoil(def.building.turretGunDef, AttackVerb, out drawOffset, out angleOffset, top.CurRotation, false);
@@ -593,6 +623,7 @@ namespace CombatExtended
 
         public override void DrawExtraSelectionOverlays()           // Draw at range less than 1.42 tiles
         {
+            base.DrawExtraSelectionOverlays();
             float range = this.GunCompEq.PrimaryVerb.verbProps.range;
             if (range < 90f)
             {
@@ -910,6 +941,13 @@ namespace CombatExtended
                 }
             }
             return false;
+        }
+
+        public virtual void PostAdjustFireArc()
+        {
+            currentTargetInt = LocalTargetInfo.Invalid;
+            forcedTarget = LocalTargetInfo.Invalid;
+            TryFindNewTarget();
         }
         #endregion
     }
