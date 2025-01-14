@@ -958,6 +958,10 @@ namespace CombatExtended
 
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
         {
+            foreach (var s in base.SpecialDisplayStats())
+            {
+                yield return s;
+            }
             if (NonSnap)
             {
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon_Ranged, "CE_NonSnapTurretSpeed".Translate(), (NonSnapExtension.speed * 60).ToString() + "°/sec", "", 0);
