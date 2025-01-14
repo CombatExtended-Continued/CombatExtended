@@ -955,6 +955,14 @@ namespace CombatExtended
             forcedTarget = LocalTargetInfo.Invalid;
             TryFindNewTarget();
         }
+
+        public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
+        {
+            if (NonSnap)
+            {
+                yield return new StatDrawEntry(StatCategoryDefOf.Weapon_Ranged, "CE_NonSnapTurretSpeed".Translate(), (NonSnapExtension.speed * 60).ToString() + "°/sec", "", 0);
+            }
+        }
         #endregion
     }
 }

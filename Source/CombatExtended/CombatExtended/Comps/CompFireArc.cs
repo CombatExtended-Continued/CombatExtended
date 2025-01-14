@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Verse;
+using RimWorld;
 using UnityEngine;
 
 namespace CombatExtended
@@ -136,8 +137,8 @@ namespace CombatExtended
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             Command_Action Edit = new Command_Action();
-            Edit.defaultLabel = "L";
-            Edit.defaultDesc = "Right click to save change\nLeft click to cancel change\nMiddle click to edit span";
+            Edit.defaultLabel = "CE_ArcOfFireAdjLabel".Translate();
+            Edit.defaultDesc = "CE_ArcOfFireAdjDesc".Translate();
             Edit.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
             Edit.action = delegate
             {
@@ -145,11 +146,34 @@ namespace CombatExtended
                 NewSpan = CurrentSpan;
             };
             yield return Edit;
+
+            Command_Action Copy = new Command_Action();
+            Copy.defaultLabel = "CE_ArcOfFireCopyLabel".Translate();
+            Copy.defaultDesc = "CE_ArcOfFireCopyDesc".Translate();
+            Copy.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+            Copy.action = delegate
+            {
+                FireArcCopyPaster.CopyFrom(this);
+            };
+            yield return Copy;
+
+            if (FireArcCopyPaster.HasData)
+            {
+                Command_Action Paste = new Command_Action();
+                Paste.defaultLabel = "CE_ArcOfFirePasteLabel".Translate();
+                Paste.defaultDesc = "CE_ArcOfFirePasteDesc".Translate();
+                Paste.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                Paste.action = delegate
+                {
+                    FireArcCopyPaster.PasteTo(this);
+                };
+                yield return Paste;
+            }
         }
 
         public override string CompInspectStringExtra()
         {
-            return $"Arc of fire: {(int)effectiveLeftSpan}~{(int)effectiveRightSpan}";
+            return $"CE_ArcOfFire".Translate((int)effectiveLeftSpan, (int)effectiveRightSpan);
         }
 
         public override void PostExposeData()
@@ -188,9 +212,16 @@ namespace CombatExtended
                 startingAngle += step;
             }
         }
+
+        public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
+        {
+            yield return new StatDrawEntry(StatCategoryDefOf.Weapon_Ranged, "CE_MaxArcOfFireSpan".Translate(), Props.spanRange.ToString(), "CE_MaxArcOfFireSpanDesc".Translate(), 0);
+            if (Props.maxSpanDeviation < 180)
+            {
+                yield return new StatDrawEntry(StatCategoryDefOf.Weapon_Ranged, "CE_MaxArcOfFireDeviation".Translate(), Props.maxSpanDeviation.ToString(), "CE_MaxArcOfFireDeviationDesc".Translate(), 0);
+            }
+        }
     }
-
-
 
     public class CompProperties_FireArc : CompProperties
     {
@@ -203,5 +234,25 @@ namespace CombatExtended
         public float maxSpanDeviation = 180;
 
         public float lineLength = 3;
+    }
+
+    public static class FireArcCopyPaster
+    {
+        public static float CenterAngle = 0;
+
+        public static float Span = -1;
+
+        public static bool HasData => Span > 0;
+
+        public static void CopyFrom(CompFireArc comp)
+        {
+            CenterAngle = comp.CenterAngle;
+            Span = comp.Span;
+        }
+        public static void PasteTo(CompFireArc comp)
+        {
+            comp.CurrentSpan = Mathf.Clamp(Span, comp.Props.spanRange.min, comp.Props.spanRange.max);
+            comp.CurrentCenterAngle = Mathf.Clamp(CenterAngle, -comp.Props.maxSpanDeviation, comp.Props.maxSpanDeviation);
+        }
     }
 }
