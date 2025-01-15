@@ -12,6 +12,7 @@ namespace CombatExtended
     {
         static AmmoGeneralizer()
         {
+            Log.Message("Ammo generalizer started, if I see this after the first injector I'm going to explode");
             /*
              * Generic ammosetdefs need projectiles for the code to work, but what the projectiles are doesn't matter
              * Also generic ammosetdefs need their own recipes for ammo, the similarTo caliber's will have their recipes hidden
