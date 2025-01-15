@@ -16,6 +16,8 @@ namespace CombatExtended
 
         public float LineLength => Editing ? EditingLineLength : Props.lineLength;
 
+        bool enabled => Controller.settings.EnableArcOfFire;
+
 
         float NewCenterAngle;
         float NewSpan;
@@ -60,12 +62,21 @@ namespace CombatExtended
 
         public bool WithinFireArc(LocalTargetInfo tgt)
         {
+            if (!enabled)
+            {
+                return true;
+            }
             var angle = Vector3.SignedAngle(Vector3.forward.RotatedBy(parent.Rotation.AsAngle), (tgt.CenterVector3 - parent.DrawPos).Yto0(), Vector3.up);
             return angle > effectiveLeftSpan && angle < effectiveRightSpan;
         }
 
         public override void PostDrawExtraSelectionOverlays()
         {
+            if (!enabled)
+            {
+                return;
+            }
+
             var drawPos = parent.DrawPos.Yto0();
             if (Editing)
             {
@@ -136,44 +147,52 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            Command_Action Edit = new Command_Action();
-            Edit.defaultLabel = "CE_ArcOfFireAdjLabel".Translate();
-            Edit.defaultDesc = "CE_ArcOfFireAdjDesc".Translate();
-            Edit.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
-            Edit.action = delegate
+            if (enabled)
             {
-                Editing = true;
-                NewSpan = CurrentSpan;
-            };
-            yield return Edit;
-
-            Command_Action Copy = new Command_Action();
-            Copy.defaultLabel = "CE_ArcOfFireCopyLabel".Translate();
-            Copy.defaultDesc = "CE_ArcOfFireCopyDesc".Translate();
-            Copy.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
-            Copy.action = delegate
-            {
-                FireArcCopyPaster.CopyFrom(this);
-            };
-            yield return Copy;
-
-            if (FireArcCopyPaster.HasData)
-            {
-                Command_Action Paste = new Command_Action();
-                Paste.defaultLabel = "CE_ArcOfFirePasteLabel".Translate();
-                Paste.defaultDesc = "CE_ArcOfFirePasteDesc".Translate();
-                Paste.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
-                Paste.action = delegate
+                Command_Action Edit = new Command_Action();
+                Edit.defaultLabel = "CE_ArcOfFireAdjLabel".Translate();
+                Edit.defaultDesc = "CE_ArcOfFireAdjDesc".Translate();
+                Edit.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                Edit.action = delegate
                 {
-                    FireArcCopyPaster.PasteTo(this);
+                    Editing = true;
+                    NewSpan = CurrentSpan;
                 };
-                yield return Paste;
+                yield return Edit;
+
+                Command_Action Copy = new Command_Action();
+                Copy.defaultLabel = "CE_ArcOfFireCopyLabel".Translate();
+                Copy.defaultDesc = "CE_ArcOfFireCopyDesc".Translate();
+                Copy.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                Copy.action = delegate
+                {
+                    FireArcCopyPaster.CopyFrom(this);
+                };
+                yield return Copy;
+
+                if (FireArcCopyPaster.HasData)
+                {
+                    Command_Action Paste = new Command_Action();
+                    Paste.defaultLabel = "CE_ArcOfFirePasteLabel".Translate();
+                    Paste.defaultDesc = "CE_ArcOfFirePasteDesc".Translate();
+                    Paste.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                    Paste.action = delegate
+                    {
+                        FireArcCopyPaster.PasteTo(this);
+                    };
+                    yield return Paste;
+                }
             }
+
         }
 
         public override string CompInspectStringExtra()
         {
-            return $"CE_ArcOfFire".Translate((int)effectiveLeftSpan, (int)effectiveRightSpan);
+            if (enabled)
+            {
+                return $"CE_ArcOfFire".Translate((int)effectiveLeftSpan, (int)effectiveRightSpan);
+            }
+            return null;
         }
 
         public override void PostExposeData()
@@ -215,10 +234,13 @@ namespace CombatExtended
 
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
         {
-            yield return new StatDrawEntry(StatCategoryDefOf.Weapon_Ranged, "CE_MaxArcOfFireSpan".Translate(), Props.spanRange.ToString(), "CE_MaxArcOfFireSpanDesc".Translate(), 0);
-            if (Props.maxSpanDeviation < 180)
+            if (enabled)
             {
-                yield return new StatDrawEntry(StatCategoryDefOf.Weapon_Ranged, "CE_MaxArcOfFireDeviation".Translate(), Props.maxSpanDeviation.ToString(), "CE_MaxArcOfFireDeviationDesc".Translate(), 0);
+                yield return new StatDrawEntry(StatCategoryDefOf.Weapon_Ranged, "CE_MaxArcOfFireSpan".Translate(), Props.spanRange.ToString(), "CE_MaxArcOfFireSpanDesc".Translate(), 0);
+                if (Props.maxSpanDeviation < 180)
+                {
+                    yield return new StatDrawEntry(StatCategoryDefOf.Weapon_Ranged, "CE_MaxArcOfFireDeviation".Translate(), Props.maxSpanDeviation.ToString(), "CE_MaxArcOfFireDeviationDesc".Translate(), 0);
+                }
             }
         }
     }

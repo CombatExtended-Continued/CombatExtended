@@ -62,7 +62,7 @@ namespace CombatExtended
         public CompEquippable GunCompEq => Gun.TryGetComp<CompEquippable>();
         public NonSnapTurretExtension NonSnapExtension => def.GetModExtension<NonSnapTurretExtension>();
         public bool NonSnap => NonSnapExtension != null;
-        public CompFireArc CompFireArc => this.GetComp<CompFireArc>();
+        public CompFireArc CompFireArc => GetComp<CompFireArc>();
 
         public float NonSnapTurretRot = 0;
         Vector3 TurretOrientation => Vector3.forward.RotatedBy(NonSnapTurretRot);
