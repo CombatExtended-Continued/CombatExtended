@@ -171,6 +171,7 @@ namespace CombatExtended
                         def.jobString = ext.genericJobString;
                     }
                 }
+                Log.Message("Combat Extended :: Generalizer enabled");
             }
         }
     }
