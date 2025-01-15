@@ -48,6 +48,7 @@ namespace CombatExtended
 
         public static void Inject()
         {
+            Log.Warning("Injector started, why are you like this");
             if (InjectAmmos())
             {
                 Log.Message("Combat Extended :: Ammo " + (Controller.settings.EnableAmmoSystem ? "injected" : "removed"));
