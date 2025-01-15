@@ -93,8 +93,8 @@ namespace CombatExtended
                     }
 
                 }
-
-                throw new Exception("I need to know the fuccin stack trace");
+                Log.Error("A different form of a stack trace this time");
+                return users;
             }
         }
 
