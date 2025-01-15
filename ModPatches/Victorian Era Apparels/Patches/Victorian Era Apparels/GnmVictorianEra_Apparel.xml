@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Apparel ======= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="Gunmar_Apparel_DressA" or 
+			defName="Gunmar_Apparel_DressB" or 
+			defName="Gunmar_Apparel_Maid" or 
+			defName="Gunmar_Apparel_Maidb" or 
+			defName="Gunmar_Apparel_WalkingDress" or 
+			defName="Gunmar_Apparel_RidingHabit" or 
+			defName="Gunmar_Apparel_SimpleDress"
+			]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Gunmar_Apparel_DressA" or 
+			defName="Gunmar_Apparel_DressB" or 
+			defName="Gunmar_Apparel_Maid" or 
+			defName="Gunmar_Apparel_Maidb" or 
+			defName="Gunmar_Apparel_WalkingDress" or 
+			defName="Gunmar_Apparel_SimpleDress"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_RidingHabit"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.25</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_DressCoat"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="Gunmar_Apparel_Frock_Coat" or 
+			defName="Gunmar_Apparel_Smoking_Jacket" or 
+			defName="Gunmar_Apparel_Soldier_Coat" or 
+			defName="Gunmar_Apparel_Hussar_Jacket"
+			]/statBases</xpath>
+		<value>
+			<Bulk>7.5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Gunmar_Apparel_DressCoat" or 
+			defName="Gunmar_Apparel_Frock_Coat" or 
+			defName="Gunmar_Apparel_Smoking_Jacket" or 
+			defName="Gunmar_Apparel_Soldier_Coat" or 
+			defName="Gunmar_Apparel_Hussar_Jacket"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_Waistcoat"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_Waistcoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_BpWaistcoat"]/statBases/Mass</xpath>
+		<value>
+			<Mass>6</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_BpWaistcoat"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_BpWaistcoat"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_BpWaistcoat"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_BpWaistcoat"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+	<!-- ======= Headgear ======= -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+		defName="Gunmar_Apparel_FeatheredHat" or 
+		defName="Gunmar_Apparel_MaidHead" or 
+		defName="Gunmar_Apparel_MaidHeadb" or 
+		defName="Gunmar_Apparel_BoaterHat" or 
+		defName="Gunmar_Apparel_TopHat" or 
+		defName="Gunmar_Apparel_Slouch_Hat" or 
+		defName="Gunmar_Apparel_Shako_Hat" or 
+		defName="Gunmar_Apparel_Soldier_Helmet"
+		]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Gunmar_Apparel_FeatheredHat" or 
+			defName="Gunmar_Apparel_MaidHead" or 
+			defName="Gunmar_Apparel_MaidHeadb" or 
+			defName="Gunmar_Apparel_BoaterHat" or 
+			defName="Gunmar_Apparel_TopHat"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_Slouch_Hat" or defName="Gunmar_Apparel_Shako_Hat"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_Soldier_Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_Metal_Helmet"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_Metal_Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_Apparel_Metal_Helmet"]/stuffCategories</xpath>
+		<value>
+			<stuffCategories>
+				<li>Steeled</li>
+			</stuffCategories>
+		</value>
+	</Operation>
+
+</Patch>
