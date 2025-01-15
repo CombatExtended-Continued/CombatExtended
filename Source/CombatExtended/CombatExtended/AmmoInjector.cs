@@ -19,7 +19,6 @@ namespace CombatExtended
      *
      * Call Inject() on game start and whenever ammo system setting is changed.
      */
-    [StaticConstructorOnStartup]
     public static class AmmoInjector
     {
 
@@ -40,12 +39,6 @@ namespace CombatExtended
         }
         */
 
-        static AmmoInjector()
-        {
-            Inject();
-            AddRemoveCaliberFromGunRecipes();
-        }
-
         public static void Inject()
         {
             Log.Warning("Injector started, why are you like this");
@@ -58,6 +51,7 @@ namespace CombatExtended
                 Log.Error("Combat Extended :: Ammo injector failed to get injected");
             }
             ThingSetMakerUtility.Reset();   // Reset pool of spawnable ammos for quests, etc.
+            AddRemoveCaliberFromGunRecipes();
         }
 
         public static bool InjectAmmos()
