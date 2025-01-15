@@ -191,6 +191,23 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_Scyther"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFE_Mech_Scyther"]</xpath>
+			<value>
+				<statBases />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_Scyther"]/statBases</xpath>
+		<value>
+			<MeleeHitChance>6</MeleeHitChance>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFE_Mech_Scyther"]/tools</xpath>
 		<value>
