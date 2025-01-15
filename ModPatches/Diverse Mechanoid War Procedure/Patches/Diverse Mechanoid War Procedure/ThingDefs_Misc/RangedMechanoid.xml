@@ -19,7 +19,7 @@
 				</li>
 			</tools>
 		</value>
-	</Operation>	
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
@@ -71,16 +71,16 @@
 			]/tools</xpath>
 		<value>
 			<tools>
-			<li Class="CombatExtended.ToolCE">
-				<label>barrel</label>
-				<capacities>
-				<li>Blunt</li>
-				</capacities>
-				<power>10</power>
-				<cooldownTime>2.44</cooldownTime>
-				<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-				<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-			</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
 			</tools>
 		</value>
 	</Operation>
@@ -119,7 +119,7 @@
 			<li>MechanoidGunMinipistol</li>
 		</weaponTags>
 	</Operation>
-	
+
 	<!-- Same as Alpha Mechs -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -132,7 +132,7 @@
 			<Bulk>7.00</Bulk>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.2</recoilAmount>
+			<recoilAmount>1.4</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_5x50mmCaseless_Sabot_LV</defaultProjectile>
@@ -155,9 +155,9 @@
 			<li>NoSwitch</li>
 		</weaponTags>
 	</Operation>
-	
+
 	<!-- Charge Rifle Stats -->
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_ChargeLanceRifle</defName>
 		<statBases>
@@ -245,21 +245,21 @@
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="Gun_EMPCannon"]</xpath>
 	</Operation>
-	
+
 	<!-- Mech Autocannon -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>Gun_MechanoidAutocannon</defName>
-        <statBases>
+		<defName>Gun_MechanoidAutocannon</defName>
+		<statBases>
 			<Mass>30</Mass>
 			<Bulk>25</Bulk>
 			<SwayFactor>2.07</SwayFactor>
 			<ShotSpread>0.07</ShotSpread>
 			<SightsEfficiency>1</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
-        </statBases>
-        <Properties>
-            <recoilAmount>2.42</recoilAmount>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.42</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_20x82mmMauser_AP</defaultProjectile>
@@ -270,25 +270,25 @@
 			<soundCast>Shot_Autocannon</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
-        </Properties>
-        <AmmoUser>
-            <magazineSize>30</magazineSize>
-            <reloadTime>7.8</reloadTime>
-            <ammoSet>AmmoSet_20x82mmMauser</ammoSet>
-        </AmmoUser>
-        <FireModes>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>7.8</reloadTime>
+			<ammoSet>AmmoSet_20x82mmMauser</ammoSet>
+		</AmmoUser>
+		<FireModes>
 			<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
 			<aiUseBurstMode>true</aiUseBurstMode>
 			<aimedBurstShotCount>2</aimedBurstShotCount>
-            <aiAimMode>AimedShot</aiAimMode>
-        </FireModes>
-        <weaponTags>
-            <li>CE_AI_Suppressive</li>
-            <li>NoSwitch</li>
-        </weaponTags>
-    </Operation>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Suppressive</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
 
-	<!-- Beam Rifle -->	
+	<!-- Beam Rifle -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Gun_BeamRifle"]/statBases/RangedWeapon_Cooldown</xpath>
 		<value>
