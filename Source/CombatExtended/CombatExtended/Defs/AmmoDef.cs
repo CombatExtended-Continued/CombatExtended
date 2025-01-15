@@ -93,7 +93,8 @@ namespace CombatExtended
                     }
 
                 }
-                return users;
+
+                throw new Exception("I need to know the fuccin stack trace");
             }
         }
 
