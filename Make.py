@@ -9,8 +9,8 @@ from dataclasses import dataclass
 import subprocess
 
 tdir = tempfile.gettempdir()
-
-args = ["csc", "-unsafe", "-warnaserror", "-nostdlib", "-target:library"]
+CSC = ["csc"]
+args = [*CSC, "-unsafe", "-warnaserror", "-nostdlib", "-target:library"]
 
 
 def system(*cmd):
@@ -63,8 +63,10 @@ def parseArgs(argv):
         options.reference = f"{tdir}/rwreference"
 
     if options.csc is not None:
+        global CSC
         args[0] = options.csc + "/csc.exe"
         args.insert(0, "mono")
+        CSC = args[0:2]
         
     return options
 
@@ -126,7 +128,7 @@ def makePublicizer(p, verbose):
         system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.cecil.zip", "-d", ".")
         system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.options.zip", "-d", ".")
         os.system("cp lib/net40/*dll .")
-        system("csc", "-out:AssemblyPublicizer.exe", "./AssemblyPublicizer/AssemblyPublicizer.cs", "./AssemblyPublicizer/Properties/AssemblyInfo.cs", "-r:Mono.Options.dll", "-r:Mono.Cecil.dll")
+        system(*CSC, "-out:AssemblyPublicizer.exe", "./AssemblyPublicizer/AssemblyPublicizer.cs", "./AssemblyPublicizer/Properties/AssemblyInfo.cs", "-r:Mono.Options.dll", "-r:Mono.Cecil.dll")
         system("mono", "--aot", "AssemblyPublicizer.exe")
         os.chdir(cwd)
     return ap_path
