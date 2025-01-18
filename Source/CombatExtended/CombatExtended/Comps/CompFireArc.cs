@@ -16,7 +16,11 @@ namespace CombatExtended
 
         public float LineLength => Editing ? EditingLineLength : Props.lineLength;
 
-        bool enabled => Controller.settings.EnableArcOfFire;
+        bool functionEnabled => Controller.settings.EnableArcOfFire && (turnedOn || !canTurnOff);
+
+        bool canTurnOff => Props.maxSpanDeviation >= 180 && Props.spanRange.max >= 180;
+
+        bool turnedOn = true;
 
 
         float NewCenterAngle;
@@ -62,7 +66,7 @@ namespace CombatExtended
 
         public bool WithinFireArc(LocalTargetInfo tgt)
         {
-            if (!enabled)
+            if (!functionEnabled)
             {
                 return true;
             }
@@ -72,7 +76,7 @@ namespace CombatExtended
 
         public override void PostDrawExtraSelectionOverlays()
         {
-            if (!enabled)
+            if (!functionEnabled)
             {
                 return;
             }
@@ -147,7 +151,7 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (enabled)
+            if (Controller.settings.EnableArcOfFire)
             {
                 Command_Action Edit = new Command_Action();
                 Edit.defaultLabel = "CE_ArcOfFireAdjLabel".Translate();
@@ -155,10 +159,23 @@ namespace CombatExtended
                 Edit.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
                 Edit.action = delegate
                 {
-                    Editing = true;
-                    NewSpan = CurrentSpan;
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        turnedOn = !turnedOn;
+                    }
+                    else
+                    {
+                        Editing = true;
+                        NewSpan = CurrentSpan;
+                        turnedOn = true;
+                    }
                 };
                 yield return Edit;
+            }
+
+            if (functionEnabled)
+            {
+
 
                 Command_Action Copy = new Command_Action();
                 Copy.defaultLabel = "CE_ArcOfFireCopyLabel".Translate();
@@ -186,9 +203,14 @@ namespace CombatExtended
 
         }
 
+        List<FloatMenuOption> Toggle()
+        {
+            return null;
+        }
+
         public override string CompInspectStringExtra()
         {
-            if (enabled)
+            if (functionEnabled)
             {
                 return $"CE_ArcOfFire".Translate((int)effectiveLeftSpan, (int)effectiveRightSpan);
             }
@@ -234,7 +256,7 @@ namespace CombatExtended
 
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats()
         {
-            if (enabled)
+            if (functionEnabled)
             {
                 yield return new StatDrawEntry(StatCategoryDefOf.Weapon_Ranged, "CE_MaxArcOfFireSpan".Translate(), Props.spanRange.ToString(), "CE_MaxArcOfFireSpanDesc".Translate(), 0);
                 if (Props.maxSpanDeviation < 180)
