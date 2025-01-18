@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using System.Xml;
@@ -13,34 +9,28 @@ namespace CombatExtended
     {
         public StatDef stat;
 
-        public float mult = 0f;
-
         public List<BodyPartDef> parts;
 
-        public float staticValue = 0f;
+        public float statValue = 1f;
+
+        public bool isStatValueStatic = false;
+
+        public float GetStatValue(float baseValue)
+        {
+            return isStatValueStatic ? statValue : statValue * baseValue;
+        }
 
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
-            bool useStatic = false;
-            int index = 1;
+            int index = 0;
             if (xmlRoot.FirstChild.Name.Contains("use"))
             {
-                useStatic = ParseHelper.FromString<bool>(xmlRoot.FirstChild.InnerText);
-            }
-            else
-            {
-                index = 0;
-            }
-            DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "stat", xmlRoot.ChildNodes[index].Name, null, null);
-            if (useStatic)
-            {
-                this.staticValue = ParseHelper.FromString<float>(xmlRoot.ChildNodes[index].InnerText);
-            }
-            else
-            {
-                this.mult = ParseHelper.FromString<float>(xmlRoot.ChildNodes[index].InnerText);
+                isStatValueStatic = ParseHelper.FromString<bool>(xmlRoot.FirstChild.InnerText);
+                index = 1;
             }
 
+            DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "stat", xmlRoot.ChildNodes[index].Name, null, null);
+            this.statValue = ParseHelper.FromString<float>(xmlRoot.ChildNodes[index].InnerText);
 
             if (parts == null)
             {

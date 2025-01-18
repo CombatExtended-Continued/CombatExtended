@@ -582,6 +582,7 @@ namespace CombatExtended
                 // Pawns run their own armor calculations
                 dinfo.SetAmount(dinfo.Amount * Mathf.Clamp01(Rand.Range(0.5f - pawn.GetStatValue(CE_StatDefOf.MeleeParryChance), 1f - pawn.GetStatValue(CE_StatDefOf.MeleeParryChance) * 1.25f)));
                 pawn.TakeDamage(dinfo);
+                return;
             }
             else if (dinfo.IsAmbientDamage())
             {
@@ -681,7 +682,7 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                result = partial.staticValue > 0f ? partial.staticValue : result * partial.mult;
+                result = partial.GetStatValue(result);
             }
             return result;
         }
@@ -719,7 +720,7 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                result = partial.staticValue > 0f ? partial.staticValue : result * partial.mult;
+                result = partial.GetStatValue(result);
             }
             return result;
         }
@@ -742,7 +743,7 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                result = partial.staticValue > 0f ? partial.staticValue : result * partial.mult;
+                result = partial.GetStatValue(result);
             }
             return result;
         }
@@ -765,7 +766,7 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                result = partial.staticValue > 0f ? partial.staticValue : result * partial.mult;
+                result = partial.GetStatValue(result);
             }
             return result;
         }
