@@ -39,7 +39,7 @@ namespace CombatExtended
                                 var value = 0f;
                                 if (req.Thing is Apparel)
                                 {
-                                    value = (float)Math.Round(CE_Utility.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First()), 2);
+                                    value = (float)Math.Round(ArmorUtilityCE.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First()), 2);
                                 }
                                 else if (req.Thing is Pawn pawn)
                                 {

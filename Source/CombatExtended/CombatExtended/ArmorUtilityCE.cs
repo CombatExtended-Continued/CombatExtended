@@ -543,7 +543,7 @@ namespace CombatExtended
                                           localPenAmount,
                                           dinfo.Angle,
                                           dinfo.Instigator,
-                                          CE_Utility.GetOuterMostParent(hitPart),
+                                          GetFirstOuterPart(hitPart),
                                           partialPen ? null : dinfo.Weapon, //To not apply the secondary damage twice on partial penetrations.
                                           instigatorGuilty: dinfo.InstigatorGuilty);
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
@@ -625,6 +625,151 @@ namespace CombatExtended
 
             }
         }
+
+        /// <summary>
+        /// Retrieves the first body part with Outside depth, tavelling up the part's ancestors until finding one.
+        /// </summary>
+        /// <param name="part">The part to get the parent of</param>
+        /// <returns>The first parent part with depth Outside, the original part if it already is Outside or doesn't have a parent, the root part if no parents are Outside</returns>
+        public static BodyPartRecord GetFirstOuterPart(BodyPartRecord part)
+        {
+            var curPart = part;
+            if (curPart != null)
+            {
+                while (curPart.parent != null && curPart.depth != BodyPartDepth.Outside)
+                {
+                    curPart = curPart.parent;
+                }
+            }
+            return curPart;
+        }
+
+        /// <summary>
+        /// Gets the true rating of armor with partial stats taken into account
+        /// </summary>
+        public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartRecord part)
+        {
+            float result = apparel.GetStatValue(stat);
+            if (part == null)
+            {
+                return result;
+            }
+
+            if (!apparel.def.apparel.CoversBodyPart(part))
+            {
+                var shieldDef = apparel.def.GetModExtension<ShieldDefExtension>();
+                if (shieldDef == null || !shieldDef.PartIsCoveredByShield(part, true))
+                {
+                    return 0f;
+                }
+            }
+
+            if (!Controller.settings.PartialStat)
+            {
+                return result;
+            }
+
+            PartialArmorExt partialArmorExt = apparel.def.GetModExtension<PartialArmorExt>();
+            if (partialArmorExt == null)
+            {
+                return result;
+            }
+
+            foreach (ApparelPartialStat partial in partialArmorExt.stats)
+            {
+                if (partial.stat != stat || !partial.parts.Contains(GetFirstOuterPart(part).def))
+                {
+                    continue;
+                }
+                result = partial.staticValue > 0f ? partial.staticValue : result * partial.mult;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Gets the true rating of armor with partial stats taken into account
+        /// </summary>
+        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartRecord part)
+        {
+            float result = pawn.GetStatValue(stat);
+            if (part == null)
+            {
+                return result;
+            }
+
+            if (!part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor))
+            {
+                return 0f;
+            }
+
+            if (!Controller.settings.PartialStat)
+            {
+                return result;
+            }
+
+            PartialArmorExt partialArmorExt = pawn.def.GetModExtension<PartialArmorExt>();
+            if (partialArmorExt == null)
+            {
+                return result;
+            }
+
+            foreach (ApparelPartialStat partial in partialArmorExt.stats)
+            {
+                if (partial.stat != stat || !partial.parts.Contains(GetFirstOuterPart(part).def))
+                {
+                    continue;
+                }
+                result = partial.staticValue > 0f ? partial.staticValue : result * partial.mult;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// version of PartialStat used for display in StatWorker_ArmorPartial
+        /// </summary>
+        public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartDef part)
+        {
+            float result = apparel.GetStatValue(stat);
+            PartialArmorExt partialArmorExt = apparel.def.GetModExtension<PartialArmorExt>();
+            if (partialArmorExt == null)
+            {
+                return result;
+            }
+
+            foreach (ApparelPartialStat partial in partialArmorExt.stats)
+            {
+                if (partial.stat != stat || !partial.parts.Contains(part))
+                {
+                    continue;
+                }
+                result = partial.staticValue > 0f ? partial.staticValue : result * partial.mult;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// version of PartialStat used for display in StatWorker_ArmorPartial
+        /// </summary>
+        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartDef part)
+        {
+            float result = pawn.GetStatValue(stat);
+            PartialArmorExt partialArmorExt = pawn.def.GetModExtension<PartialArmorExt>();
+            if (partialArmorExt == null)
+            {
+                return result;
+            }
+
+            foreach (ApparelPartialStat partial in partialArmorExt.stats)
+            {
+                if (partial.stat != stat || !partial.parts.Contains(part))
+                {
+                    continue;
+                }
+                result = partial.staticValue > 0f ? partial.staticValue : result * partial.mult;
+            }
+            return result;
+        }
+
 
         #endregion
     }
