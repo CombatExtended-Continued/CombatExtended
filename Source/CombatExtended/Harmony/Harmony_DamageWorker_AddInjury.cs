@@ -93,19 +93,24 @@ namespace CombatExtended.HarmonyCE
 
             if (dinfo.Weapon?.projectile is ProjectilePropertiesCE props && !props.secondaryDamage.NullOrEmpty() && !_applyingSecondary)
             {
-                _applyingSecondary = true;
-                foreach (var sec in props.secondaryDamage)
+                try
                 {
-                    if (pawn.Dead || !Rand.Chance(sec.chance))
+                    _applyingSecondary = true;
+                    foreach (var sec in props.secondaryDamage)
                     {
-                        break;
+                        if (pawn.Dead || !Rand.Chance(sec.chance))
+                        {
+                            break;
+                        }
+                        var secDinfo = sec.GetDinfo(dinfo);
+
+                        pawn.TakeDamage(secDinfo);
                     }
-                    var secDinfo = sec.GetDinfo(dinfo);
-
-                    pawn.TakeDamage(secDinfo);
                 }
-
-                _applyingSecondary = false;
+                finally
+                {
+                    _applyingSecondary = false;
+                }
             }
         }
     }
