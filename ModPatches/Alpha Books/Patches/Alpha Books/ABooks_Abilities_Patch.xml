@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Greater Firesprew Ability -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="ABooks_GreaterFireSpew_Charges"]/verbProperties/range</xpath>
+		<value>
+			<range>24.9</range>
+		</value>
+	</Operation>
+
+	<!-- Sharpshooter Command -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ABooks_SharpshooterCommand_Buff"]/stages/li[1]/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.25</Suppressability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="ABooks_SharpshooterCommand_Buff"]/stages/li[1]/statOffsets</xpath>
+		<value>
+			<AimingDelayFactor>-0.15</AimingDelayFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ABooks_SharpshooterCommand_Buff"]/stages/li[1]/statOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>0.5</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="ABooks_SharpshooterCommand_Buff"]/stages/li[1]/statOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.5</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+</Patch>
