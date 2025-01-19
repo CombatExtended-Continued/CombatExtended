@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Volk_Pistol</defName>
+		<label>lasgun power pack</label>
+		<ammoTypes>
+			<Ammo_LasgunPowerPack>Bullet_Volk_Pistol</Ammo_LasgunPowerPack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Volk_Rifle</defName>
+		<label>lasgun power pack</label>
+		<ammoTypes>
+			<Ammo_LasgunPowerPack>Bullet_Volk_Rifle</Ammo_LasgunPowerPack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Volk_HellGun</defName>
+		<label>lasgun power pack</label>
+		<ammoTypes>
+			<Ammo_LasgunPowerPack>Bullet_Volk_HellGun</Ammo_LasgunPowerPack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Volk_Cannon</defName>
+		<label>lasgun power pack</label>
+		<ammoTypes>
+			<Ammo_LasgunPowerPack>Bullet_Volk_Cannon</Ammo_LasgunPowerPack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet" Name="VolkiteBulletBase" Abstract="True">
+		<label>laser beam</label>
+		 <graphicData Inherit="False">
+            <texPath>Things/Weapons/GW_Volkite_Bolt</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+            <drawSize>2.0</drawSize>
+        </graphicData>
+		<textures>
+			<li>Things/Weapons/GW_Volkite_Bolt</li>
+		</textures>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="VolkiteBulletBase">
+		<defName>Bullet_Volk_Pistol</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>9</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="VolkiteBulletBase">
+		<defName>Bullet_Volk_Rifle</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationSharp>14</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="VolkiteBulletBase">
+		<defName>Bullet_Volk_HellGun</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>39</damageAmountBase>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="VolkiteBulletBase">
+		<defName>Bullet_Volk_Cannon</defName>
+		<beamGraphic>BeamGraphic</beamGraphic>
+		<beamWidth>2</beamWidth>
+		<graphicData>
+			<texPath>ThirdParty/Warhammer/Projectiles/MeltaBeam</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>Transparent</shaderType>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>CE_Laser</damageDef>
+			<damageAmountBase>51</damageAmountBase>
+			<armorPenetrationSharp>33</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+</Defs>

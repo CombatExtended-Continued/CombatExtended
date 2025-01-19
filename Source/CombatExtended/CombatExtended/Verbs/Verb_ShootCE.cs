@@ -123,16 +123,12 @@ namespace CombatExtended
             }
         }
 
-        public float SpreadDegrees
-        {
-            get
-            {
-                return (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * (projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f);
-            }
-        }
-
         // Whether our shooter is currently under suppressive fire
         private bool IsSuppressed => ShooterPawn?.TryGetComp<CompSuppressable>()?.isSuppressed ?? false;
+
+        public override CompAmmoUser CompAmmo => base.CompAmmo;
+
+        public override ThingDef Projectile => CompAmmo?.CurrentAmmo != null ? CompAmmo.CurAmmoProjectile : base.Projectile;
 
         #endregion
 
@@ -248,6 +244,25 @@ namespace CombatExtended
             }
         }
 
+        public override bool Available()
+        {
+            if (!base.Available())
+            {
+                return false;
+            }
+
+            // Add check for reload
+            bool isAttacking = ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
+            if (isAttacking && !(CompAmmo?.CanBeFiredNow ?? true))
+            {
+                CompAmmo?.TryStartReload();
+                resetRetarget();
+                return false;
+            }
+
+            return true;
+        }
+
         public override void VerbTickCE()
         {
             if (_isAiming)
@@ -266,33 +281,6 @@ namespace CombatExtended
             {
                 EquipmentSource.TryGetComp<BipodComp>().SetUpStart(CasterPawn);
             }
-        }
-
-        public virtual ShiftVecReport SimulateShiftVecReportFor(LocalTargetInfo target, AimMode aimMode)
-        {
-            IntVec3 targetCell = target.Cell;
-            ShiftVecReport report = new ShiftVecReport();
-
-            report.target = target;
-            report.aimingAccuracy = AimingAccuracy;
-            report.sightsEfficiency = SightsEfficiency;
-            if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
-            {
-                report.sightsEfficiency = 0;
-            }
-            report.shotDist = (targetCell - caster.Position).LengthHorizontal;
-            report.maxRange = EffectiveRange;
-            report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
-
-            if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
-            {
-                report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
-            }
-            report.shotSpeed = ShotSpeed;
-            report.swayDegrees = SwayAmplitudeFor(aimMode);
-            float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
-            report.spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * spreadmult;
-            return report;
         }
 
         /// <summary>
@@ -364,15 +352,24 @@ namespace CombatExtended
 
         }
 
+        //For revolvers and break actions. Intended to be called by compammouser on reload
+        public void ExternalCallDropCasing(int randomSeedOffset = -1)
+        {
+            bool fromPawn = false;
+            GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
+            if (ShooterPawn != null)
+            {
+                fromPawn = drawPos != Vector3.zero;
+            }
+            //No aim angle because casing eject happens when pawn lowers its gun to reload
+            CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, 0, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext, randomSeedOffset);
+        }
+
         public override bool TryCastShot()
         {
-            //Reduce ammunition
-            if (CompAmmo != null)
+            if (!CompAmmo?.TryPrepareShot() ?? false)
             {
-                if (!CompAmmo.TryReduceAmmoCount(((CompAmmo.Props.ammoSet != null) ? CompAmmo.Props.ammoSet.ammoConsumedPerShot : 1) * VerbPropsCE.ammoConsumedPerShotCount))
-                {
-                    return false;
-                }
+                return false;
             }
             if (base.TryCastShot())
             {
@@ -392,14 +389,29 @@ namespace CombatExtended
             }
 
             //Drop casings
-            if (VerbPropsCE.ejectsCasings)
+            if (VerbPropsCE.ejectsCasings && (!ext?.DropCasingWhenReload ?? true))
             {
-                CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos + CasingOffsetRotated(ext), caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, casingAngleOffset: EquipmentSource?.def.GetModExtension<GunDrawExtension>()?.CasingAngleOffset ?? 0);
+                CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext);
             }
-            // This needs to here for weapons without magazine to ensure their last shot plays sounds
-            if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
+
+            if (CompAmmo == null)
             {
-                if (!CompAmmo.Notify_ShotFired())
+                return true;
+            }
+
+            int ammoConsumedPerShot = (CompAmmo.Props.ammoSet?.ammoConsumedPerShot ?? 1) * VerbPropsCE.ammoConsumedPerShotCount;
+            CompAmmo.Notify_ShotFired(ammoConsumedPerShot);
+
+            if (ShooterPawn != null && !CompAmmo.CanBeFiredNow)
+            {
+                CompAmmo.TryStartReload();
+                resetRetarget();
+            }
+
+            // This needs to here for weapons without magazine to ensure their last shot plays sounds
+            if (!CompAmmo.HasMagazine && CompAmmo.UseAmmo)
+            {
+                if (!CompAmmo.HasAmmoOrMagazine)
                 {
                     if (VerbPropsCE.muzzleFlashScale > 0.01f)
                     {
@@ -424,16 +436,6 @@ namespace CombatExtended
                 return CompAmmo.Notify_PostShotFired();
             }
             return true;
-        }
-
-        Vector3 CasingOffsetRotated(GunDrawExtension ext)
-        {
-            if (ext == null || ext.CasingOffset == Vector2.zero)
-            {
-                return Vector3.zero;
-            }
-            return new Vector3(ext.CasingOffset.x, 0, ext.CasingOffset.y).RotatedBy(AimAngle);
-
         }
         #endregion
     }

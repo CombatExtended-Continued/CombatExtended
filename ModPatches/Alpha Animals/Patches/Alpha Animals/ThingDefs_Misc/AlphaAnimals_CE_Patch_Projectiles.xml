@@ -21,6 +21,7 @@
 			defName="AA_FrostWeb" or
 			defName="AA_Plasma" or
 			defName="AA_PoisonBolt" or
+			defName="AA_BlackHiveBolt" or
 			defName="AA_Quill" or
 			defName="AA_RedPoisonBolt" or
 			defName="AA_Web" or
@@ -120,6 +121,20 @@
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<flyOverhead>false</flyOverhead>
 				<damageDef>AA_ToxicBolt</damageDef>
+				<damageAmountBase>9</damageAmountBase>
+				<speed>25</speed>
+				<armorPenetrationSharp>2.3</armorPenetrationSharp>
+				<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AA_BlackHiveBolt"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<flyOverhead>false</flyOverhead>
+				<damageDef>AA_BlackHiveBolt</damageDef>
 				<damageAmountBase>10</damageAmountBase>
 				<speed>27</speed>
 				<armorPenetrationSharp>2.5</armorPenetrationSharp>

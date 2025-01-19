@@ -5,6 +5,5 @@ namespace CombatExtended.Compatibility
     {
         public bool CanInstall();
         public void Install();
-        public IEnumerable<string> GetCompatList();
     }
 }

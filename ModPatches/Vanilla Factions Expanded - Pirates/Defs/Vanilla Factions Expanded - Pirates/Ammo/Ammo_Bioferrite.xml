@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>AmmoWarBolter</defName>
+		<label>WarBolter Rockets</label>
+		<parent>AmmoRockets</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_WarBolter</defName>
+		<label>WarBolter Rockets</label>
+		<ammoTypes>
+			<Ammo_WarBolter_HE>Bullet_WarBolter_HE</Ammo_WarBolter_HE>
+			<Ammo_WarBolter_Incendiary>Bullet_WarBolter_Incendiary</Ammo_WarBolter_Incendiary>
+			<Ammo_WarBolter_Frag>Bullet_WarBolter_Frag</Ammo_WarBolter_Frag>
+			<Ammo_WarBolter_HEAT>Bullet_WarBolter_HEAT</Ammo_WarBolter_HEAT>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoWarBolterBase" ParentName="AmmoBase" Abstract="True">
+		<description>Small, self-propelled rockets used by the warbolter.</description>
+		<statBases>
+			<Mass>0.385</Mass>
+			<Bulk>0.15</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoWarBolter</li>
+		</thingCategories>
+		<stackLimit>2000</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoWarBolterBase">
+		<defName>Ammo_WarBolter_HE</defName>
+		<label>WarBolter Rockets (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rocket/MiniRocket/Standard</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>4.44</MarketValue>
+		</statBases>
+		<ammoClass>RocketHE</ammoClass>
+		<cookOffProjectile>Bullet_WarBolter_HE</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoWarBolterBase">
+		<defName>Ammo_WarBolter_Incendiary</defName>
+		<label>WarBolter Rockets (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rocket/MiniRocket/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.28</MarketValue>
+		</statBases>
+		<ammoClass>GrenadeIncendiary</ammoClass>
+		<cookOffProjectile>Bullet_WarBolter_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoWarBolterBase">
+		<defName>Ammo_WarBolter_Frag</defName>
+		<label>WarBolter Rockets (Frag)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rocket/MiniRocket/Frag</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.70</MarketValue>
+		</statBases>
+		<ammoClass>RocketFrag</ammoClass>
+		<cookOffProjectile>Bullet_WarBolter_Frag</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoWarBolterBase">
+		<defName>Ammo_WarBolter_HEAT</defName>
+		<label>WarBolter Rockets (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rocket/MiniRocket/HEAT</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.37</MarketValue>
+		</statBases>
+		<ammoClass>RocketHEAT</ammoClass>
+		<cookOffProjectile>Bullet_WarBolter_HEAT</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="BaseWarBolterBullet" ParentName="BaseExplosiveBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>96</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseWarBolterBullet">
+		<defName>Bullet_WarBolter_HE</defName>
+		<label>warBolter rocket (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>64</damageAmountBase>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>38</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseWarBolterBullet">
+		<defName>Bullet_WarBolter_Incendiary</defName>
+		<label>warBolter rocket (Incendiary)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<explosionRadius>1.5</explosionRadius>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.7</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>7</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarIncendiary_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseWarBolterBullet">
+		<defName>Bullet_WarBolter_Frag</defName>
+		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+		<label>warBolter rocket (Frag)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionRadius>1</explosionRadius>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>17</damageAmountBase>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<aimHeightOffset>1.05</aimHeightOffset>
+			<armingDelay>2</armingDelay>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>6</Fragment_Small>
+				</fragments>
+				<fragAngleRange>-89~-5</fragAngleRange>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseWarBolterBullet">
+		<defName>Bullet_WarBolter_HEAT</defName>
+		<label>warBolter rocket (HEAT)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>142</damageAmountBase>
+			<armorPenetrationSharp>46</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>17</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_WarBolter_HE</defName>
+		<label>make WarBolter Rockets (HE) x200</label>
+		<description>Craft 200 WarBolter Rockets (HE).</description>
+		<jobString>Making WarBolter Rockets (HE).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>154</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_WarBolter_HE>200</Ammo_WarBolter_HE>
+		</products>
+		<workAmount>36600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_WarBolter_Incendiary</defName>
+		<label>make WarBolter Rockets (Incendiary) x200</label>
+		<description>Craft 200 WarBolter Rockets (Incendiary).</description>
+		<jobString>Making WarBolter Rockets (Incendiary).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>154</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_WarBolter_Incendiary>200</Ammo_WarBolter_Incendiary>
+		</products>
+		<workAmount>19400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_WarBolter_Frag</defName>
+		<label>make WarBolter Rockets (Frag) x200</label>
+		<description>Craft 200 WarBolter Rockets (Frag).</description>
+		<jobString>Making WarBolter Rockets (Frag).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>154</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_WarBolter_Frag>200</Ammo_WarBolter_Frag>
+		</products>
+		<workAmount>21800</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_WarBolter_HEAT</defName>
+		<label>make WarBolter Rockets (HEAT) x200</label>
+		<description>Craft 200 WarBolter Rockets (HEAT).</description>
+		<jobString>Making WarBolter Rockets (HEAT).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>154</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_WarBolter_HEAT>200</Ammo_WarBolter_HEAT>
+		</products>
+		<workAmount>20600</workAmount>
+	</RecipeDef>
+
+</Defs>

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>AmmoRailgun_Ion</defName>
+		<label>Railgun ammo (Ion)</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRailgunPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_4mmRailgunIon</defName>
+		<label>4mm Railgun Ion</label>
+		<ammoTypes>
+			<Ammo_4mmRailgun_Ion>Bullet_4mmRailgun_Ion</Ammo_4mmRailgun_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_6mmRailgunIon</defName>
+		<label>6mm Railgun</label>
+		<ammoTypes>
+			<Ammo_6mmRailgun_Ion>Bullet_6mmRailgun_Ion</Ammo_6mmRailgun_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_8mmRailgunIon</defName>
+		<label>8mm Railgun Ion</label>
+		<ammoTypes>
+			<Ammo_8mmRailgun_Ion>Bullet_8mmRailgun_Ion</Ammo_8mmRailgun_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_12mmRailgunIon_Lance</defName>
+		<label>12mm Railgun Ion (Lance)</label>
+		<ammoTypes>
+			<Ammo_12mmRailgun_Ion>Bullet_12mmRailgun_Ion_Lance</Ammo_12mmRailgun_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==== incase the ability patch broke ==== -->
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_12mmRailgunIon_Blast</defName>
+		<label>Ion Blast</label>
+		<ammoTypes>
+			<Ammo_12mmRailgun_Ion>Bullet_12mmRailgun_Ion_Blast</Ammo_12mmRailgun_Ion>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="IonRailGunBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun rifles. Features an ionized particle payload.</description>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FabricationBench</li>
+		</tradeTags>
+		<graphicData>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<thingCategories>
+			<li>AmmoRailgun_Ion</li>
+		</thingCategories>
+		<ammoClass>Ionized</ammoClass>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="IonRailGunBase">
+		<defName>Ammo_4mmRailgun_Ion</defName>
+		<label>4mm Railgun cartridge (Discharge)</label>
+		<statBases>
+			<Mass>0.006</Mass>
+			<Bulk>0.008</Bulk>
+			<MarketValue>0.06</MarketValue>
+		</statBases>
+		<graphicData>
+			<texPath>ThirdParty/VanillaXCOM/Railgun/EMP/Pistol</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="IonRailGunBase">
+		<defName>Ammo_6mmRailgun_Ion</defName>
+		<label>6mm Railgun cartridge (Discharge)</label>
+		<statBases>
+			<Mass>0.008</Mass>
+			<Bulk>0.008</Bulk>
+			<MarketValue>0.08</MarketValue>
+		</statBases>
+		<graphicData>
+			<texPath>ThirdParty/VanillaXCOM/Railgun/EMP/Rifle</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="IonRailGunBase">
+		<defName>Ammo_8mmRailgun_Ion</defName>
+		<label>8mm Railgun cartridge (Discharge)</label>
+		<statBases>
+			<Mass>0.01</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.10</MarketValue>
+		</statBases>
+		<graphicData>
+			<texPath>ThirdParty/VanillaXCOM/Railgun/EMP/Rifle</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="IonRailGunBase">
+		<defName>Ammo_12mmRailgun_Ion</defName>
+		<label>12mm Railgun cartridge (Discharge)</label>
+		<statBases>
+			<Mass>0.012</Mass>
+			<Bulk>0.01</Bulk>
+			<MarketValue>0.12</MarketValue>
+		</statBases>
+		<graphicData>
+			<texPath>ThirdParty/VanillaXCOM/Railgun/EMP/HighCaliber</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="BaseIonRailgunBullet" ParentName="BaseBulletCE" Abstract="True">
+		<graphicData>
+			<texPath>Projectile/IW_IonBullet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<dropsCasings>false</dropsCasings>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseIonRailgunBullet">
+		<defName>Bullet_4mmRailgun_Ion</defName>
+		<label>4mm Railgun bullet (Discharge)</label>
+		<graphicData>
+			<drawSize>0.6</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>8.4</armorPenetrationSharp>
+			<armorPenetrationBlunt>88.73</armorPenetrationBlunt>
+			<speed>250</speed>
+			<secondaryDamage>
+				<li>
+					<def>IW_IonBullet</def>
+					<amount>10</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseIonRailgunBullet">
+		<defName>Bullet_6mmRailgun_Ion</defName>
+		<label>6mm Railgun bullet (Discharge)</label>
+		<graphicData>
+			<drawSize>1.1</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>5.5</damageAmountBase>
+			<armorPenetrationSharp>22</armorPenetrationSharp>
+			<armorPenetrationBlunt>126.36</armorPenetrationBlunt>
+			<speed>300</speed>
+			<secondaryDamage>
+				<li>
+					<def>IW_IonBullet</def>
+					<amount>14</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseIonRailgunBullet">
+		<defName>Bullet_8mmRailgun_Ion</defName>
+		<label>8mm Railgun bullet (Discharge)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>37.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>145.4</armorPenetrationBlunt>
+			<speed>360</speed>
+			<secondaryDamage>
+				<li>
+					<def>IW_IonBullet</def>
+					<amount>20</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseIonRailgunBullet">
+		<defName>Bullet_12mmRailgun_Ion_Lance</defName>
+		<label>12mm Railgun bullet (Discharge)</label>
+		<graphicData>
+			<drawSize>1.3</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>55</armorPenetrationSharp>
+			<armorPenetrationBlunt>252.720</armorPenetrationBlunt>
+			<speed>380</speed>
+			<secondaryDamage>
+				<li>
+					<def>IW_IonBullet</def>
+					<amount>20</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseIonRailgunBullet">
+		<defName>Bullet_12mmRailgun_Ion_Blast</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>Ion Blast</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<explosionRadius>4.9</explosionRadius>
+			<speed>120</speed>
+			<secondaryDamage>
+				<li>
+					<def>IW_IonBullet</def>
+					<amount>20</amount>
+				</li>
+			</secondaryDamage>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_4mmRailgun_Ion</defName>
+		<label>make 4mm Railgun cartridge (Discharge) x500</label>
+		<description>Craft 500 4mm Railgun (Discharge) cartridges.</description>
+		<jobString>Making 4mm Railgun (Discharge) cartridges.</jobString>
+		<workAmount>3000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_4mmRailgun_Ion>500</Ammo_4mmRailgun_Ion>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_6mmRailgun_Ion</defName>
+		<label>make 6mm Railgun cartridge (Discharge) x500</label>
+		<description>Craft 500 6mm Railgun (Discharge) cartridges.</description>
+		<jobString>Making 6mm Railgun (Discharge) cartridges.</jobString>
+		<workAmount>3000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>ComponentIndustrial</li>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_6mmRailgun_Ion>500</Ammo_6mmRailgun_Ion>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_8mmRailgun_Ion</defName>
+		<label>make 8mm Railgun cartridge (Discharge) x200</label>
+		<description>Craft 200 8mm Railgun (Discharge) cartridges.</description>
+		<jobString>Making 8mm Railgun (Discharge) cartridges.</jobString>
+		<workAmount>3000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>ComponentIndustrial</li>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_8mmRailgun_Ion>200</Ammo_8mmRailgun_Ion>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_12mmRailgun_Ion</defName>
+		<label>make 12mm Railgun cartridge (Discharge) x100</label>
+		<description>Craft 100 12mm Railgun (Discharge) cartridges.</description>
+		<jobString>Making 12mm Railgun (Discharge) cartridges.</jobString>
+		<workAmount>3500</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>ComponentIndustrial</li>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_12mmRailgun_Ion>100</Ammo_12mmRailgun_Ion>
+		</products>
+	</RecipeDef>
+
+</Defs>

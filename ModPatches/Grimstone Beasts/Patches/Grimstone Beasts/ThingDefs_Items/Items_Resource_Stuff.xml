@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Belloceros Horn -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Grimstone_BellocerosHorn"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Grimstone_BellocerosHorn"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>ResourceBase</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grimstone_BellocerosHorn"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+			<Bulk>25</Bulk>
+		</value>
+	</Operation>
+
+	<!-- Ivory -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Grimstone_Ivory"]/statBases</xpath>
+		<value>
+			<Bulk>0.07</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grimstone_Ivory"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<value>
+			<StuffPower_Armor_Sharp>0.35</StuffPower_Armor_Sharp> <!-- Decent sharp protection, but brittle. -->
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grimstone_Ivory"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<value>
+			<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grimstone_Ivory"]/statBases/StuffPower_Armor_Heat</xpath>
+		<value>
+			<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Grimstone_Ivory"]/stuffProps/statFactors</xpath>
+		<value>
+			<MeleePenetrationFactor>0.5</MeleePenetrationFactor>
+		</value>
+	</Operation>
+
+	<!-- Grimshadow Skull -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Grimstone_GrimshadowSkull"]/statBases/Mass</xpath>
+		<value>
+			<Mass>60</Mass>
+			<Bulk>30</Bulk>
+		</value>
+	</Operation>
+
+</Patch>

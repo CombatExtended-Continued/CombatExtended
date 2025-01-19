@@ -20,14 +20,14 @@
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
-						<li>Poke</li>
+						<li>PW_Taser</li>
 					</capacities>
 					<power>5</power>
 					<extraMeleeDamages>
 						<li>
 							<def>Stun</def>
 							<amount>32</amount>
-							<chance>0.20</chance>
+							<chance>0.40</chance>
 						</li>
 					</extraMeleeDamages>
 					<cooldownTime>1.68</cooldownTime>
@@ -62,6 +62,24 @@
 				<MeleeParryChance>0.9</MeleeParryChance>
 				<MeleeDodgeChance>0.3</MeleeDodgeChance>
 			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_MeleeWeapon_Stunstick"]/weaponTags</xpath>
+		<value>
+			<li>CE_Sidearm_Melee</li>
+			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 

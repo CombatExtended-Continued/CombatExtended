@@ -5,13 +5,13 @@
 
 	<!-- Anima War Arm -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="AnimaWarArmHeddiff"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<xpath>Defs/HediffDef[defName="AnimaWarArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<label>Scythe</label>
+					<label>Claw</label>
 					<capacities>
-						<li>Stab</li>
+						<li>ToxinScratch</li>
 					</capacities>
 					<power>21</power>
 					<cooldownTime>1.29</cooldownTime>
@@ -23,44 +23,30 @@
 		</value>
 	</Operation>
 
+	<!-- Anima Leg -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AnimaLeg"]/stages/li/statOffsets/CarryingCapacity</xpath>
+		<value>
+			<CarryWeight>30</CarryWeight>
+		</value>
+	</Operation>
+
 	<!-- ===== V2 ===== -->
 
 	<!-- ===== V3 ===== -->
 
 	<!-- Anima Plate -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="AnimaPlateHediff"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<xpath>Defs/HediffDef[defName="AnimaPlate"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>1.25</ArmorRating_Sharp>
+			<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="AnimaPlateHediff"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<xpath>Defs/HediffDef[defName="AnimaPlate"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>1.8</ArmorRating_Blunt>
-		</value>
-	</Operation>
-
-	<!-- Anima Spine -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/HediffDef[defName="AnimaspineHediff"]/stages/li/statOffsets</xpath>
-		<value>
-			<CarryWeight>10</CarryWeight>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="AnimaspineHediff"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="AnimaspineHediff"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>1.2</ArmorRating_Blunt>
+			<ArmorRating_Blunt>1.3</ArmorRating_Blunt>
 		</value>
 	</Operation>
 

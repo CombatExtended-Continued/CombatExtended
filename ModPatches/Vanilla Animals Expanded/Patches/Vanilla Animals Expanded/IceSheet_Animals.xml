@@ -4,7 +4,6 @@
 	<!-- === Penguin === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Penguin"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.25</MeleeDodgeChance>
 			<MeleeCritChance>0.10</MeleeCritChance>
@@ -14,7 +13,6 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Penguin"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -56,7 +54,6 @@
 	<!-- === Seal === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Seal"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.08</MeleeDodgeChance>
 			<MeleeCritChance>0.41</MeleeCritChance>
@@ -66,7 +63,6 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Seal"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -120,17 +116,17 @@
 	<!-- === Walrus === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Walrus"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.06</MeleeDodgeChance>
 			<MeleeCritChance>0.25</MeleeCritChance>
 			<MeleeParryChance>0.23</MeleeParryChance>
+			<ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.075</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Walrus"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -157,6 +153,29 @@
 					<armorPenetrationBlunt>9</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AEXP_Walrus"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AEXP_Walrus"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_Walrus"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1700</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 

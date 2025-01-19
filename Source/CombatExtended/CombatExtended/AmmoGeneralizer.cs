@@ -30,7 +30,8 @@ namespace CombatExtended
                         var sameClass = ammoSource.ammoTypes.Find(x => x.ammo.ammoClass == link.ammo.ammoClass);
                         if (sameClass != null)
                         {
-                            link.projectile.label = ammoSource.label + " bullet " + "(" + link.ammo.ammoClass.labelShort + ")";
+                            string labelNew = (link.projectile.projectile is ProjectilePropertiesCE projPropCE && projPropCE.genericLabelOverride != null) ? projPropCE.genericLabelOverride : ammoSource.label;
+                            link.projectile.label = labelNew + " " + "CE_GenericBullet".Translate() + " (" + link.ammo.ammoClass.labelShort + ")";
                             newAmmos.Add(new AmmoLink { ammo = sameClass.ammo, projectile = link.projectile });
                         }
 

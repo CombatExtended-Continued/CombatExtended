@@ -164,7 +164,7 @@ namespace CombatExtended
         public override void PostPreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(ref dinfo, out absorbed);
-            if (curDurability > 0)
+            if (curDurability > 0 && dinfo.Def.harmsHealth && dinfo.Def.ExternalViolenceFor(parent))
             {
                 curDurability -= dinfo.Amount;
                 if (curDurability < 0)
@@ -176,57 +176,62 @@ namespace CombatExtended
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            if (durabilityProps.Repairable && !this.parent.HostileTo(selPawn))
+            if (!durabilityProps.Repairable || this.parent.HostileTo(selPawn))
             {
-                var firstIngredientProvidedOrNotNeeded = true;
-                var secondIngredientProvidedOrNotNeeded = true;
-
-                List<Thing> ingredientsA = null;
-                List<Thing> ingredientsB = null;
-
-                // Only check for ingredients if there's any required
-                if (!durabilityProps.RepairIngredients.NullOrEmpty())
-                {
-                    ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count);
-                    firstIngredientProvidedOrNotNeeded = ingredientsA.Any();
-
-                    //The system supports only 2 ingredients at max
-                    if (firstIngredientProvidedOrNotNeeded && durabilityProps.RepairIngredients.Count > 1)
-                    {
-                        ingredientsB = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.Last().thingDef && x.stackCount >= durabilityProps.RepairIngredients.Last().count);
-                        secondIngredientProvidedOrNotNeeded = ingredientsB.Any();
-                    }
-                }
-
-                if (curDurability < maxDurability + durabilityProps.MaxOverHeal && firstIngredientProvidedOrNotNeeded && secondIngredientProvidedOrNotNeeded)
-                {
-                    yield return new FloatMenuOption("CE_RepairArmorDurability".Translate(), delegate
-                    {
-                        Thing firstIngredient = null;
-                        Thing secondIngredient = null;
-
-                        // If ingredients are required, pick them. Otherwise just leave the variables as null.
-                        if (!ingredientsA.NullOrEmpty())
-                        {
-                            firstIngredient = ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position));
-                        }
-                        if (!ingredientsB.NullOrEmpty())
-                        {
-                            secondIngredient = ingredientsB.MinBy(x => x.Position.DistanceTo(selPawn.Position));
-                        }
-
-                        StartJob(selPawn, firstIngredient, secondIngredient);
-                    });
-                }
-                else if (this.curDurability >= maxDurability + durabilityProps.MaxOverHeal)
-                {
-                    yield return new FloatMenuOption("CE_ArmorDurability_CannotRepairUndamaged".Translate(), null);
-                }
-                else
-                {
-                    yield return new FloatMenuOption("CE_ArmorDurability_CannonRepairNoResource".Translate(), null);
-                }
+                yield break;
             }
+
+            if (this.curDurability >= maxDurability + durabilityProps.MaxOverHeal)
+            {
+                yield return new FloatMenuOption("CE_ArmorDurability_CannotRepairUndamaged".Translate(), null);
+                yield break;
+            }
+
+            // Only check for ingredients if there's any required
+            if (durabilityProps.RepairIngredients.NullOrEmpty())
+            {
+                yield return new FloatMenuOption(
+                    "CE_RepairArmorDurability".Translate(),
+                    () => StartJob(selPawn)
+                );
+                yield break;
+            }
+
+            var needsSecondIngredient = durabilityProps.RepairIngredients.Count >= 1;
+            Thing firstIngredient = FindIngredient(selPawn, durabilityProps.RepairIngredients.First());
+            Thing secondIngredient = needsSecondIngredient ? FindIngredient(selPawn, durabilityProps.RepairIngredients.Last()) : null;
+
+            if (firstIngredient != null && !(needsSecondIngredient && secondIngredient == null))
+            {
+                yield return new FloatMenuOption(
+                    "CE_RepairArmorDurability".Translate(),
+                    () => StartJob(selPawn, firstIngredient, secondIngredient)
+                );
+            }
+            else
+            {
+                yield return new FloatMenuOption("CE_ArmorDurability_CannonRepairNoResource".Translate(), null);
+            }
+        }
+
+        /// <summary>
+        /// Find an ingredient to be used for repairing the given pawn's natural armor.
+        /// </summary>
+        /// <param name="selPawn">The pawn that will be performing the repairs.</param>
+        /// <param name="ingredientDefCount">The required ingredient type and count</param>
+        /// <returns>The best matching ingredient stack, or null if none were found.</returns>
+        private static Thing FindIngredient(Pawn selPawn, ThingDefCountClass ingredientDefCount)
+        {
+            bool IsValidIngredient(Thing ingredient) => ingredient.stackCount >= ingredientDefCount.count && !ingredient.IsForbidden(selPawn);
+
+            return GenClosest.ClosestThingReachable(
+                selPawn.Position,
+                selPawn.Map,
+                ThingRequest.ForDef(ingredientDefCount.thingDef),
+                PathEndMode.ClosestTouch,
+                TraverseParms.For(selPawn),
+                validator: IsValidIngredient
+            );
         }
 
         [Compatibility.Multiplayer.SyncMethod]

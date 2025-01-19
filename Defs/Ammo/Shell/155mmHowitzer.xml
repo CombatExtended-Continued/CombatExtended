@@ -21,6 +21,7 @@
 			<Ammo_155mmHowitzerShell_Smoke>Bullet_155mmHowitzerShell_Smoke</Ammo_155mmHowitzerShell_Smoke>
 		</ammoTypes>
 		<isMortarAmmoSet>true</isMortarAmmoSet>
+		<similarTo>AmmoSet_ArtilleryShell</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
@@ -125,6 +126,7 @@
 		</statBases>
 		<ammoClass>Smoke</ammoClass>
 		<detonateProjectile>Bullet_155mmHowitzerShell_Smoke</detonateProjectile>
+		<spawnAsSiegeAmmo>false</spawnAsSiegeAmmo>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -141,9 +143,7 @@
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
 			<flyOverhead>true</flyOverhead>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Fleck_BigShell</casingMoteDefname>
-			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
+			<dropsCasings>false</dropsCasings>
 			<gravityFactor>5</gravityFactor>
 			<shellingProps>
 				<tilesPerTick>0.12</tilesPerTick>
@@ -219,7 +219,7 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>PrometheumFlame</damageDef>
 			<damageAmountBase>31</damageAmountBase>
-			<explosionRadius>12</explosionRadius>
+			<explosionRadius>11.5</explosionRadius>
 			<flyOverhead>true</flyOverhead>
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
@@ -230,7 +230,7 @@
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>150</damageAmountBase>
+				<damageAmountBase>253</damageAmountBase>
 				<explosiveDamageType>Thermobaric</explosiveDamageType>
 				<explosiveRadius>4</explosiveRadius>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -330,14 +330,14 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>PrometheumFlame</damageDef>
 			<damageAmountBase>31</damageAmountBase>
-			<explosionRadius>12</explosionRadius>
+			<explosionRadius>11.5</explosionRadius>
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.20</preExplosionSpawnChance>
 			<soundExplode>MortarIncendiary_Explode</soundExplode>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>150</damageAmountBase>
+				<damageAmountBase>253</damageAmountBase>
 				<explosiveDamageType>Thermobaric</explosiveDamageType>
 				<explosiveRadius>4</explosiveRadius>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -384,7 +384,7 @@
 	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_155mmHowitzerShell_HE</defName>
 		<label>make 155mm (HE) howitzer shells x1</label>
-		<description>Craft 1 155mm (HE) howitzer shells.</description>
+		<description>Craft a 155mm (HE) howitzer shell.</description>
 		<jobString>Making 155mm (HE) howitzer shells.</jobString>
 		<researchPrerequisite Inherit="False" />
 		<researchPrerequisites>
@@ -433,7 +433,7 @@
 	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_155mmHowitzerShell_HE_HFuzed</defName>
 		<label>make 155mm (Airburst) howitzer shells x1</label>
-		<description>Craft 1 155mm (Airburst) howitzer shells.</description>
+		<description>Craft a 155mm (Airburst) howitzer shell.</description>
 		<jobString>Making 155mm (Airburst) howitzer shells.</jobString>
 		<researchPrerequisite Inherit="False" />
 		<researchPrerequisites>
@@ -485,7 +485,7 @@
 	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_155mmHowitzerShell_Incendiary</defName>
 		<label>make 155mm (Incendiary) howitzer shells x1</label>
-		<description>Craft 155mm (Incendiary) Howitzer shell.</description>
+		<description>Craft a 155mm (Incendiary) Howitzer shell.</description>
 		<jobString>Making 155mm (Incendiary) Howitzer shell.</jobString>
 		<researchPrerequisite Inherit="False" />
 		<researchPrerequisites>
@@ -534,8 +534,8 @@
 	<RecipeDef ParentName="ArtilleryAmmoRecipeBase">
 		<defName>MakeAmmo_155mmHowitzerShell_EMP</defName>
 		<label>make 155mm (EMP) howitzer shells x1</label>
-		<description>Craft 155mm (EMP) Howitzer shell.</description>
-		<jobString>Making 155mm (EMP) Howitzer shell.</jobString>
+		<description>Craft a 155mm (EMP) Howitzer shell.</description>
+		<jobString>Making 155mm (EMP) Howitzer shells.</jobString>
 		<researchPrerequisite Inherit="False" />
 		<researchPrerequisites>
 			<li>Mortars</li>

@@ -1,0 +1,1221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Common armor properties -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AC_ApparelArmorHelmetChrysalisMakeableBase"]/apparel</xpath>
+		<value>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			<parentTagDef>ApparelHead</parentTagDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AC_ApparelArmorHelmetChrysalisMakeableBase"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="AC_ApparelArmorChrysalisMakeableBase"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<!-- some of Chrysalis stats are here Chrysalis Helmet Base -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="AC_Apparel_ChrysalisHelmet" or
+			defName="AC_Apparel_FusilierHelmet" or
+			defName="AC_Apparel_LancierHelmet"]/statBases/VEF_RangedCooldownFactor</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			@Name="AC_ApparelArmorChrysalisMakeableBase" or
+			defName="AC_Apparel_FusilierArmor" or
+			defName="AC_EnviroSuit" or
+			defName="AC_Apparel_HayabusaArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<!-- Chrysalis Helmet -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>19</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>43</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/statBases</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/statBases</xpath>
+		<value>
+			<Mass>3.0</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/statBases</xpath>
+		<value>
+			<MaxHitPoints>250</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]</xpath>
+		<value>
+			<costList />
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/costList</xpath>
+		<value>
+			<Plasteel>75</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>25</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/equippedStatOffsets/AimingDelayFactor</xpath>
+		<value>
+			<AimingDelayFactor>-0.1</AimingDelayFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisHelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<!-- Chrysalis Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]</xpath>
+		<value>
+			<statBases />
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/statBases</xpath>
+		<value>
+			<Bulk>100</Bulk>
+			<WornBulk>15</WornBulk>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/statBases</xpath>
+		<value>
+			<MaxHitPoints>600</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/statBases</xpath>
+		<value>
+			<Mass>60</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>58.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]</xpath>
+		<value>
+			<equippedStatOffsets />
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>90</CarryWeight>
+			<CarryBulk>15</CarryBulk>
+			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]</xpath>
+		<value>
+			<costList />
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/costList</xpath>
+		<value>
+			<ComponentSpacer>5</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/costList</xpath>
+		<value>
+			<Plasteel>225</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/costList</xpath>
+		<value>
+			<Uranium>50</Uranium>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_ChrysalisArmor"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>60</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<!-- Fusilier Helmet -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>2</WornBulk>
+			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>300</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>24</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>65</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.30</AimingAccuracy>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/equippedStatOffsets/AimingDelayFactor</xpath>
+		<value>
+			<AimingDelayFactor>-0.25</AimingDelayFactor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>3</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>3</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>140</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierHelmet"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>30</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<!-- Lancier Helmet -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<WornBulk>1</WornBulk>
+			<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]/statBases</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>220</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>3</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>12.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>28</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<AimingAccuracy>0.25</AimingAccuracy>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+				<AimingDelayFactor>-0.25</AimingDelayFactor>
+				<ShootingAccuracyPawn>2.5</ShootingAccuracyPawn>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>2</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>15</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_LancierHelmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.7</ArmorRating_Sharp>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.7</ArmorRating_Blunt>
+						<parts>
+							<li>Jaw</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Fusilier Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/statBases</xpath>
+		<value>
+			<Bulk>130</Bulk>
+			<WornBulk>20</WornBulk>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>700</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>100</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>33</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>85</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>100</CarryWeight>
+			<CarryBulk>20</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/costList/ComponentSpacer</xpath>
+		<value>
+			<ComponentSpacer>8</ComponentSpacer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>300</Plasteel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/costList/Uranium</xpath>
+		<value>
+			<Uranium>95</Uranium>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_FusilierArmor"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>75</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<!-- Enviro Suit Helmet (copied sos2 suit stats) -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuitHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<NightVisionEfficiency_Apparel>0.40</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuitHelmet"]/apparel/immuneToToxGasExposure</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AC_EnviroSuitHelmet"]/apparel</xpath>
+			<value>
+				<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuitHelmet"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuitHelmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>150</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuitHelmet"]/statBases/Mass</xpath>
+		<value>
+			<Mass>2.6</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuitHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuitHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>20</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuitHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<!-- Enviro Suit -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuit"]/statBases</xpath>
+		<value>
+			<Bulk>6</Bulk>
+			<WornBulk>4</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuit"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuit"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>200</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuit"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>6.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_EnviroSuit"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>20</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- Cuirassier Belt -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_CuirassierBelt"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_CuirassierBelt"]/statBases/Mass</xpath>
+		<value>
+			<Mass>2</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Dragoon Helmet -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+						<Flammability>0</Flammability>
+						<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]</xpath>
+					<value>
+						<li Class="CombatExtended.ApparelDefExtension">
+							<isRadioPack>true</isRadioPack>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>225</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/Mass</xpath>
+					<value>
+						<Mass>4</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14.4</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>31.2</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Eye</li>
+										<li>Nose</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Eye</li>
+										<li>Nose</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/equippedStatOffsets</xpath>
+					<value>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/ComponentSpacer</xpath>
+					<value>
+						<ComponentSpacer>2</ComponentSpacer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>65</Plasteel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonHelmet"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>20</DevilstrandCloth>
+					</value>
+				</li>
+
+				<!-- Dragoon Armor -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases</xpath>
+					<value>
+						<Bulk>80</Bulk>
+						<WornBulk>15</WornBulk>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>500</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/Mass</xpath>
+					<value>
+						<Mass>40</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>19.2</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>40.8</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>10</CarryBulk>
+						<MoveSpeed>0.5</MoveSpeed>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/ComponentSpacer</xpath>
+					<value>
+						<ComponentSpacer>8</ComponentSpacer>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>185</Plasteel>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_DragoonArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>65</DevilstrandCloth>
+					</value>
+				</li>
+
+				<!-- Jump Wings -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AC_Apparel_WingJump"]/statBases/JumpRange</xpath>
+					<value>
+						<JumpRange>20</JumpRange>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+	<!-- Hayabusa Helmet ported stats from Spartan Armory Patch -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/apparel/layers</xpath>
+		<value>
+			<li>OnHead</li>
+			<li>StrappedHead</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/apparel</xpath>
+		<value>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
+			<parentTagDef>ApparelHead</parentTagDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>240</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>30</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<value>
+			<PsychicSensitivity>-0.08</PsychicSensitivity>
+			<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+			<MeleeHitChance>0.15</MeleeHitChance>
+			<MeleeCritChance>0.35</MeleeCritChance>
+			<MeleeDodgeChance>0.05</MeleeDodgeChance>
+			<MeleeParryChance>0.1</MeleeParryChance>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+		<value>
+			<ShootingAccuracyPawn>2.5</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaHelmet"]/equippedStatOffsets/AimingDelayFactor</xpath>
+		<value>
+			<AimingDelayFactor>-0.2</AimingDelayFactor>
+		</value>
+	</Operation>
+
+	<!-- Hayabusa Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/statBases</xpath>
+		<value>
+			<Bulk>106.7</Bulk>
+			<WornBulk>16</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>1200</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>53.3</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>16</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/equippedStatOffsets/CarryingCapacity</xpath>
+		<value>
+			<CarryWeight>88.1</CarryWeight>
+			<CarryBulk>10.7</CarryBulk>
+			<MeleeHitChance>0.05</MeleeHitChance>
+			<MeleeCritChance>0.1</MeleeCritChance>
+			<MeleeParryChance>0.3</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<value>
+			<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AC_Apparel_HayabusaArmor"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>100</DevilstrandCloth>
+		</value>
+	</Operation>
+
+</Patch>

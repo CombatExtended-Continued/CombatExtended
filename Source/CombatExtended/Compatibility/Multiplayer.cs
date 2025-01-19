@@ -23,11 +23,6 @@ namespace CombatExtended.Compatibility
             isMultiplayerActive = true;
         }
 
-        public IEnumerable<string> GetCompatList()
-        {
-            yield return "MultiplayerCompat";
-        }
-
         public static bool InMultiplayer
         {
             get

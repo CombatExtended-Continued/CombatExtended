@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--Ammo for Tesla Coil-->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_RNTeslaCharge</defName>
+		<label>tesla coil power cell</label>
+		<ammoTypes>
+			<Ammo_PlasmaCellHeavy>Bullet_CE_RNBullet_Tesla_Charge</Ammo_PlasmaCellHeavy>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_CE_RNBullet_Tesla_Charge</defName>
+		<label>Tesla Charge</label>
+		<graphicData>
+			<texPath>Things/Projectile/Tesla_Arc</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>4</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Electrical</damageDef>
+			<explosionRadius>2.0</explosionRadius>
+			<speed>25</speed>
+			<flyOverhead>false</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>RN_Tesla_Explode</soundExplode>
+			<damageAmountBase>93</damageAmountBase>
+			<stoppingPower>3.2</stoppingPower>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<screenShakeFactor>0</screenShakeFactor>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CompProperties_ThrownFleckEmitter">
+			<fleck>Smoke</fleck>
+			<offsetMin>(-0.3,0,0.35)</offsetMin>
+			<offsetMax>(0.3,0,0.35)</offsetMax>
+			<emissionInterval>90</emissionInterval>
+			<scale>1~1.1</scale>
+			<colorA>(0,235,31,255)</colorA>
+			<colorB>(0,235,31,255)</colorB>
+			</li>
+		</comps>
+	</ThingDef>
+
+
+	<!--Ammo for Red Star Plasma Cannon-->
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_RNPlasmaCharge</defName>
+		<label>plasma cannon power cell</label>
+		<ammoTypes>
+			<Ammo_PlasmaCellHeavy>Bullet_CE_RNBullet_RedStar_Plasma</Ammo_PlasmaCellHeavy>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseExplosiveBullet">
+		<defName>Bullet_CE_RNBullet_RedStar_Plasma</defName>
+		<label>Plasma Bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/RedStar_Plasma</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>4</drawSize>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>RN2_RedStarBomb</damageDef>
+			<explosionRadius>1.95</explosionRadius>
+			<speed>30</speed>
+			<flyOverhead>false</flyOverhead>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>RN_RedStar_Explode</soundExplode>
+			<damageAmountBase>76</damageAmountBase>
+			<stoppingPower>3</stoppingPower>
+			<screenShakeFactor>0</screenShakeFactor>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CompProperties_ThrownFleckEmitter">
+			<fleck>Smoke</fleck>
+			<offsetMin>(-0.3,0,0.35)</offsetMin>
+			<offsetMax>(0.3,0,0.35)</offsetMax>
+			<emissionInterval>90</emissionInterval>
+			<scale>1~1.1</scale>
+			<colorA>(0,235,31,255)</colorA>
+			<colorB>(0,235,31,255)</colorB>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

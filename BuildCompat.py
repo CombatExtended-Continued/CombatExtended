@@ -4,10 +4,13 @@ from twisted.python.filepath import FilePath
 from subprocess import Popen
 import re
 import sys
+from xml.dom.minidom import parse as XMLOpen
 
 tm = '-m' in sys.argv
 
 parallel = '-j' in sys.argv
+
+csc = sys.argv[sys.argv.index("--csc") + 1]
 
 PROJECT_PATTERN = re.compile(r'''Project.".[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{12}.". = '''
                              r'''"([0-9a-zA-Z]+Compat)", '''
@@ -37,9 +40,21 @@ with open("Source/CombatExtended.sln") as f:
             if tm and name not in sys.argv: continue
             csproj = csproj.replace('\\', '/').split('/')
             csproj = FilePath("Source").descendant(csproj)
-            print(f"Building {name}")
             output = FilePath("AssembliesCompat").child(name+".dll")
-            system("python3", "Make.py", "--csproj", csproj.path, "--output", output.path, DOWNLOAD_LIBS, "--all-libs", "--publicizer", PUBLICIZER, "--", "-r:Assemblies/CombatExtended.dll")
+            with XMLOpen(csproj.path) as cpath:
+                op = cpath.getElementsByTagName("OutputPath")
+                if op:
+                    op = op[0].firstChild.data
+                    if 'ModPatches' in op:
+                        op = op.rsplit("..\\ModPatches", 1)[-1].replace('\\', '/').split('/')
+                        if op:
+                            od = FilePath("ModPatches").descendant(op)
+                            if not od.exists():
+                                od.makedirs()
+                            output = od.child(name+".dll")
+
+            print(f"Building {name}")
+            system("python3", "Make.py", "--csproj", csproj.path, "--output", output.path, DOWNLOAD_LIBS, "--all-libs", "--publicizer", PUBLICIZER, "--csc", csc, "--", "-r:Assemblies/CombatExtended.dll")
 
 for t in tasks:
     t.wait()

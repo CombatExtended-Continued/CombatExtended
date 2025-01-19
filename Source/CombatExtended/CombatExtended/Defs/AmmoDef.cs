@@ -111,6 +111,7 @@ namespace CombatExtended
             }
         }
 
+        [NoTranslate]
         private string oldDescription;
         public void AddDescriptionParts()
         {

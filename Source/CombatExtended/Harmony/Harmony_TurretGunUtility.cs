@@ -1,94 +1,66 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using System.Collections;
-using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
 
-// ReSharper disable InconsistentNaming
-// ReSharper disable InlineOutVariableDeclaration
-// ReSharper disable UsePatternMatching
-
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch]
+    /// <summary>
+    /// Replace <see cref="TurretGunUtility.TryFindRandomShellDef" /> to support turrets other than the 81mm mortar.
+    /// </summary>
+    [HarmonyPatch(typeof(TurretGunUtility), nameof(TurretGunUtility.TryFindRandomShellDef))]
     public static class Harmony_TurretGunUtility
     {
-        const string className = "DisplayClass";
-        const string methodName = "<TryFindRandomShellDef>";
-
-        // This should be kept up to date with the check in CombatExtended.HarmonyCE.Harmony_LordToil_Siege
-        public static void Postfix(object __instance, ThingDef x, ref bool __result, bool ___allowEMP, float ___maxMarketValue)
+        public static bool Prefix(
+            ThingDef turret,
+            bool allowEMP,
+            bool allowToxGas,
+            TechLevel techLevel,
+            bool allowAntigrainWarhead,
+            ref ThingDef __result
+        )
         {
-            // Ignore already true results.
-            if (__result)
+            if (!TurretGunUtility.NeedsShells(turret))
             {
-                return;
+                __result = null;
+                return false;
             }
 
-            var ammoDef = x as AmmoDef;
-
-            // Ignore all non-shell defs.
-            if (ammoDef == null || !AmmoUtility.IsShell(ammoDef))
+            // Fall back to the vanilla logic if we have no ammo configured for this turret (unpatched?)
+            var ammoUserProps = turret.building.turretGunDef.comps.OfType<CompProperties_AmmoUser>()
+                .FirstOrDefault();
+            if (ammoUserProps == null)
             {
-                return;
+                return true;
             }
 
-            // Check if market value is within range.
-            if (___maxMarketValue >= 0.0f && ammoDef.BaseMarketValue > ___maxMarketValue)
-            {
-                return;
-            }
+            IEnumerable<AmmoDef> potentialAmmoDefs = from ammoLink in ammoUserProps.ammoSet.ammoTypes
+                                                     let ammoDef = ammoLink.ammo
+                                                     where ammoDef.spawnAsSiegeAmmo
+                                                     let projectileDef = ammoLink.projectile
+                                                     let explosiveDamageDef =
+                                                         projectileDef.GetCompProperties<CompProperties_ExplosiveCE>()?.explosiveDamageType ??
+                                                         projectileDef.GetCompProperties<CompProperties_Explosive>()?.explosiveDamageType
+                                                     let projectileDamageDef = projectileDef.projectile.damageDef
+                                                     where explosiveDamageDef != null || projectileDamageDef != null
 
-            // Get the explosive damage def.
-            var explosiveDamageDef = ammoDef.GetCompProperties<CompProperties_ExplosiveCE>()?.explosiveDamageType ??
-                                     ammoDef.GetCompProperties<CompProperties_Explosive>()?.explosiveDamageType;
+                                                     // Only allow EMP or tox gas shells if explicitly allowed and relevant DLC is available
+                                                     where allowEMP || (explosiveDamageDef != DamageDefOf.EMP && projectileDamageDef != DamageDefOf.EMP)
+                                                     where allowToxGas || !ModsConfig.BiotechActive || (explosiveDamageDef != DamageDefOf.ToxGas &&
+                                                                                                         projectileDamageDef != DamageDefOf.ToxGas)
 
-            // Get the projectile damage def via the mortar ammo set.
-            //var mortarAmmoSet = DefDatabase<AmmoSetDef>.GetNamed("AmmoSet_81mmMortarShell");
-            var projectileDamageDef = ammoDef.projectile?.damageDef ?? CE_AmmoSetDefOf.AmmoSet_81mmMortarShell.ammoTypes.FirstOrDefault(t => t.ammo == ammoDef)?.projectile?.projectile?.damageDef;
+                                                     // No antigrain warheads
+                                                     where allowAntigrainWarhead || ammoDef != ThingDefOf.Shell_AntigrainWarhead
 
-            // Ignore shells that don't have damage defs.
-            if (explosiveDamageDef == null && projectileDamageDef == null)
-            {
-                return;
-            }
+                                                     // No higher tech shells than the tech level of the requesting faction
+                                                     where techLevel == TechLevel.Undefined || ammoDef.techLevel <= techLevel
+                                                     select ammoDef;
 
-            // Ignore EMP if not allowed.
-            if (!___allowEMP && (explosiveDamageDef == DamageDefOf.EMP || projectileDamageDef == DamageDefOf.EMP))
-            {
-                return;
-            }
+            // Respect individual weighting of matching shells within the ammoset
+            potentialAmmoDefs.TryRandomElementByWeight(def => def.generateAllowChance, out __result);
 
-            // Check if blacklisted
-            if (!ammoDef.spawnAsSiegeAmmo)
-            {
-                return;
-            }
-
-            __result = true;
-        }
-
-        public static MethodBase TargetMethod()
-        {
-            var classTargets = typeof(TurretGunUtility).GetNestedTypes(AccessTools.all)
-                               .Where(x => x.Name.Contains(className));
-
-            if (!classTargets.Any())
-            {
-                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find subclass with part `" + className + "`");
-            }
-
-            var methodTarget = classTargets.SelectMany(x => x.GetMethods(AccessTools.all))
-                               .FirstOrDefault(x => x.Name.Contains(methodName));
-
-            if (methodTarget == null)
-            {
-                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find method with part `" + methodName + "` in subclasses with part `" + className + "`");
-            }
-
-            return methodTarget;
+            return false;
         }
     }
 }

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- All Shields -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>pphhyy_BaseShield</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]</xpath>
+		<value>
+			<tradeTags>
+				<li>Armor</li>
+			</tradeTags>
+			<costList>
+				<Steel>50</Steel>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<ReloadSpeed>-0.2</ReloadSpeed>
+				<MeleeHitChance>-1</MeleeHitChance>
+				<ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
+				<AimingAccuracy>-0.08</AimingAccuracy>
+				<Suppressability>-0.25</Suppressability>
+				<MeleeCritChance>-0.05</MeleeCritChance>
+				<MeleeParryChance>1.0</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/statBases</xpath>
+		<value>
+			<statBases>
+				<MaxHitPoints>150</MaxHitPoints>
+				<Mass>4.5</Mass>
+				<Bulk>7</Bulk>
+				<WornBulk>5</WornBulk>
+			</statBases>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShield"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>3.75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShieldII"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>2.75</ArmorRating_Sharp>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShieldIII"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>3</ArmorRating_Sharp>
+			<ArmorRating_Blunt>4.25</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/weaponTags</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/tools</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[
+			defName="pphhyy_Barbarian_RoundShield" or
+			defName="pphhyy_Barbarian_RoundShieldII" or
+			defName="pphhyy_Barbarian_RoundShieldIII"]</xpath>
+		<value>
+			<li Class="CombatExtended.ShieldDefExtension">
+				<shieldCoverage>
+					<li>Hands</li>
+					<li>Arms</li>
+					<li>Shoulders</li>
+					<li>Torso</li>
+					<li>Neck</li>
+				</shieldCoverage>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Round Shield 1 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShield"]</xpath>
+		<value>
+			<apparel>
+				<tags>
+					<li>pphhyy_Barbarian_BarbRoundShield1</li>
+				</tags>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+						<texPath>Shields/Barbarian_RoundShield</texPath>
+						<shaderTypeDef>CutoutComplex</shaderTypeDef>
+						<parentTagDef>ApparelBody</parentTagDef>
+						<drawData>
+							<scale>0.6</scale>
+							<defaultData>
+								<layer>80</layer>
+							</defaultData>
+							<dataEast>
+								<layer>-5</layer>
+								<offset>(0, 0, -0.1)</offset>
+								<rotationOffset>30</rotationOffset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>-30</rotationOffset>
+							</dataWest>
+							<dataNorth>
+								<layer>-5</layer>
+								<offset>(0.15, 0, -0.15)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0.15, 0, -0.15)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</apparel>
+		</value>
+	</Operation>
+
+	<!-- Round Shield 2 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShieldII"]</xpath>
+		<value>
+			<apparel>
+				<tags>
+					<li>pphhyy_Barbarian_BarbRoundShield2</li>
+				</tags>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+						<texPath>Shields/Barbarian_RoundShieldII</texPath>
+						<shaderTypeDef>CutoutComplex</shaderTypeDef>
+						<parentTagDef>ApparelBody</parentTagDef>
+						<drawData>
+							<scale>0.6</scale>
+							<defaultData>
+								<layer>80</layer>
+							</defaultData>
+							<dataEast>
+								<layer>-5</layer>
+								<offset>(0, 0, -0.1)</offset>
+								<rotationOffset>30</rotationOffset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>-30</rotationOffset>
+							</dataWest>
+							<dataNorth>
+								<layer>-5</layer>
+								<offset>(0.15, 0, -0.15)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0.15, 0, -0.15)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</apparel>
+		</value>
+	</Operation>
+
+	<!-- Round Shield 3 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="pphhyy_Barbarian_RoundShieldIII"]</xpath>
+		<value>
+			<apparel>
+				<tags>
+					<li>pphhyy_Barbarian_BarbRoundShield3</li>
+				</tags>
+				<renderNodeProperties>
+					<li>
+						<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+						<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+						<texPath>Shields/Barbarian_RoundShieldIII</texPath>
+						<shaderTypeDef>CutoutComplex</shaderTypeDef>
+						<parentTagDef>ApparelBody</parentTagDef>
+						<drawData>
+							<scale>0.6</scale>
+							<defaultData>
+								<layer>80</layer>
+							</defaultData>
+							<dataEast>
+								<layer>-5</layer>
+								<offset>(0, 0, -0.1)</offset>
+								<rotationOffset>30</rotationOffset>
+							</dataEast>
+							<dataWest>
+								<rotationOffset>-30</rotationOffset>
+							</dataWest>
+							<dataNorth>
+								<layer>-5</layer>
+								<offset>(0.15, 0, -0.15)</offset>
+							</dataNorth>
+							<dataSouth>
+								<offset>(0.15, 0, -0.15)</offset>
+							</dataSouth>
+						</drawData>
+					</li>
+				</renderNodeProperties>
+			</apparel>
+		</value>
+	</Operation>
+
+</Patch>

@@ -4,7 +4,6 @@
 	<!-- === Cheetah === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Cheetah"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.46</MeleeDodgeChance>
 			<MeleeCritChance>0.27</MeleeCritChance>
@@ -14,7 +13,6 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Cheetah"]</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -75,7 +73,6 @@
 	<!-- === Coyote === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Coyote"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.27</MeleeDodgeChance>
 			<MeleeCritChance>0.06</MeleeCritChance>
@@ -85,7 +82,6 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Coyote"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -138,17 +134,17 @@
 	<!-- === Crocodile === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Crocodile"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.1</MeleeDodgeChance>
 			<MeleeCritChance>0.24</MeleeCritChance>
 			<MeleeParryChance>0.31</MeleeParryChance>
+			<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Crocodile"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -198,10 +194,32 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AEXP_Crocodile"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AEXP_Crocodile"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_Crocodile"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>800</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- === Giraffe === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Giraffe"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.1</MeleeDodgeChance>
 			<MeleeCritChance>0.45</MeleeCritChance>
@@ -211,7 +229,6 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Giraffe"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -264,17 +281,17 @@
 	<!-- === Hippo === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Hippopotamus"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.07</MeleeDodgeChance>
 			<MeleeCritChance>0.6</MeleeCritChance>
 			<MeleeParryChance>0.35</MeleeParryChance>
+			<ArmorRating_Blunt>0.085</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Hippopotamus"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -324,10 +341,32 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="AEXP_Hippopotamus"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="AEXP_Hippopotamus"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AEXP_Hippopotamus"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1850</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- === Wildebeest === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Wildebeest"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.18</MeleeDodgeChance>
 			<MeleeCritChance>0.2</MeleeCritChance>
@@ -337,7 +376,6 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Wildebeest"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -390,7 +428,6 @@
 	<!-- === Zebra === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AEXP_Zebra"]/statBases</xpath>
-
 		<value>
 			<MeleeDodgeChance>0.1</MeleeDodgeChance>
 			<MeleeCritChance>0.14</MeleeCritChance>
@@ -400,7 +437,6 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AEXP_Zebra"]/tools</xpath>
-
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">

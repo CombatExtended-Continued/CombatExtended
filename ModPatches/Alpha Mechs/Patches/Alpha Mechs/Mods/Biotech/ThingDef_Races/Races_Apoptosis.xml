@@ -130,8 +130,6 @@
 							<CanOverHeal>true</CanOverHeal>
 							<MaxOverHeal>525</MaxOverHeal>
 							<MinArmorPct>0.5</MinArmorPct>
-							<MinArmorValueSharp>14</MinArmorValueSharp>
-							<MinArmorValueBlunt>35</MinArmorValueBlunt>
 						</li>
 					</value>
 				</li>
@@ -140,6 +138,18 @@
 					<xpath>Defs/PawnKindDef[defName="AM_Apoptosis"]/combatPower</xpath>
 					<value>
 						<combatPower>1000</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/PawnKindDef[defName="AM_Apoptosis"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>9</min>
+								<max>10</max>
+							</primaryMagazineCount>
+						</li>
 					</value>
 				</li>
 

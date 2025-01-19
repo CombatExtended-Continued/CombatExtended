@@ -18,6 +18,7 @@
 			<Ammo_Bolter998_Inferno>Bullet_Bolter998_Inferno</Ammo_Bolter998_Inferno>
 			<Ammo_Bolter998_MetalStorm>Bullet_Bolter998_MetalStorm</Ammo_Bolter998_MetalStorm>
 			<Ammo_Bolter998_Kraken>Bullet_Bolter998_Kraken</Ammo_Bolter998_Kraken>
+			<Ammo_Bolter998_Tempest>Bullet_Bolter998_Tempest</Ammo_Bolter998_Tempest>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -32,6 +33,7 @@
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
+			<li>CE_AutoEnableCrafting_GWAmmoBench</li>			
 		</tradeTags>
 		<thingCategories>
 			<li>AmmoBolter998</li>
@@ -43,11 +45,11 @@
 		<defName>Ammo_Bolter998_Standard</defName>
 		<label>.998 cal bolter shell (Standard)</label>
 		<graphicData>
-			<texPath>ThirdParty/Warhammer/HeavyBolter/Standard</texPath>
+			<texPath>ThirdParty/Warhammer/Ammo/HeavyBolter/Standard</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>4.44</MarketValue>
+			<MarketValue>6.11</MarketValue>
 		</statBases>
 		<ammoClass>Standard</ammoClass>
 		<cookOffProjectile>Bullet_Bolter998_Standard</cookOffProjectile>
@@ -57,11 +59,11 @@
 		<defName>Ammo_Bolter998_Inferno</defName>
 		<label>.998 cal bolter shell (Inferno)</label>
 		<graphicData>
-			<texPath>ThirdParty/Warhammer/HeavyBolter/Inferno</texPath>
+			<texPath>ThirdParty/Warhammer/Ammo/HeavyBolter/Inferno</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>2.28</MarketValue>
+			<MarketValue>5.65</MarketValue>
 		</statBases>
 		<ammoClass>Inferno</ammoClass>
 		<cookOffProjectile>Bullet_Bolter998_Inferno</cookOffProjectile>
@@ -71,11 +73,11 @@
 		<defName>Ammo_Bolter998_MetalStorm</defName>
 		<label>.998 cal bolter shell (Metal Storm)</label>
 		<graphicData>
-			<texPath>ThirdParty/Warhammer/HeavyBolter/MetalStorm</texPath>
+			<texPath>ThirdParty/Warhammer/Ammo/HeavyBolter/MetalStorm</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>2.70</MarketValue>
+			<MarketValue>5.42</MarketValue>
 		</statBases>
 		<ammoClass>MetalStorm</ammoClass>
 		<cookOffProjectile>Bullet_Bolter998_MetalStorm</cookOffProjectile>
@@ -85,14 +87,28 @@
 		<defName>Ammo_Bolter998_Kraken</defName>
 		<label>.998 cal bolter shell (Kraken)</label>
 		<graphicData>
-			<texPath>ThirdParty/Warhammer/HeavyBolter/Kraken</texPath>
+			<texPath>ThirdParty/Warhammer/Ammo/HeavyBolter/Kraken</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>2.37</MarketValue>
+			<MarketValue>6.41</MarketValue>
 		</statBases>
 		<ammoClass>Kraken</ammoClass>
 		<cookOffProjectile>Bullet_Bolter998_Kraken</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter998Base">
+		<defName>Ammo_Bolter998_Tempest</defName>
+		<label>.998 cal bolter shell (Tempest)</label>
+		<graphicData>
+			<texPath>ThirdParty/Warhammer/Ammo/HeavyBolter/Tempest</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>5.68</MarketValue>
+		</statBases>
+		<ammoClass>Tempest</ammoClass>
+		<cookOffProjectile>Bullet_Bolter998_Tempest</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
@@ -105,9 +121,8 @@
 		<thingClass>CombatExtended.BulletCE</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>96</speed>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
+			<speed>129</speed>
+			<dropsCasings>false</dropsCasings>
 		</projectile>
 	</ThingDef>
 
@@ -115,13 +130,13 @@
 		<defName>Bullet_Bolter998_Standard</defName>
 		<label>.998 cal bolt (Standard)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>64</damageAmountBase>
-			<armorPenetrationSharp>20</armorPenetrationSharp>
-			<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
+			<damageAmountBase>72</damageAmountBase>
+			<armorPenetrationSharp>35</armorPenetrationSharp>
+			<armorPenetrationBlunt>908.38</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 					<def>Bomb_Secondary</def>
-					<amount>38</amount>
+					<amount>50</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -130,44 +145,39 @@
 	<ThingDef ParentName="BaseBolter998Bullet">
 		<defName>Bullet_Bolter998_Inferno</defName>
 		<label>.998 cal bolt (Inferno)</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>PrometheumFlame</damageDef>
-			<damageAmountBase>5</damageAmountBase>
-			<explosionRadius>1.5</explosionRadius>
-			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.7</preExplosionSpawnChance>
-			<soundExplode>MortarIncendiary_Explode</soundExplode>
+			<damageAmountBase>57</damageAmountBase>
+			<armorPenetrationSharp>35</armorPenetrationSharp>
+			<armorPenetrationBlunt>908.38</armorPenetrationBlunt>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>7</damageAmountBase>
-				<explosiveDamageType>Thermobaric</explosiveDamageType>
-				<explosiveRadius>1</explosiveRadius>
-				<explosionSound>MortarIncendiary_Explode</explosionSound>
+				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+				<damageAmountBase>56</damageAmountBase>
+				<explosiveRadius>0.5</explosiveRadius>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
 			</li>
 		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseBolter998Bullet">
 		<defName>Bullet_Bolter998_MetalStorm</defName>
-		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
 		<label>.998 cal bolt (Metal Storm)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>1</explosionRadius>
+			<explosionRadius>1.5</explosionRadius>
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>17</damageAmountBase>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			<aimHeightOffset>1.05</aimHeightOffset>
-			<armingDelay>2</armingDelay>
+			<damageAmountBase>58</damageAmountBase>
+			<armorPenetrationSharp>17.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>59.81</armorPenetrationBlunt>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>			
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-					<Fragment_Small>6</Fragment_Small>
+					<Fragment_Medium>12</Fragment_Medium>
 				</fragments>
-				<fragAngleRange>-89~-5</fragAngleRange>
 			</li>
 		</comps>
 	</ThingDef>
@@ -177,19 +187,34 @@
 		<label>.998 cal bolt (Kraken)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>142</damageAmountBase>
-			<armorPenetrationSharp>46</armorPenetrationSharp>
-			<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
+			<damageAmountBase>46</damageAmountBase>
+			<armorPenetrationSharp>70</armorPenetrationSharp>
+			<armorPenetrationBlunt>908.38</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>25</amount>
+				</li>
+			</secondaryDamage>
 		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>17</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>0.5</explosiveRadius>
-				<explosionSound>MortarBomb_Explode</explosionSound>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseBolter998Bullet">
+		<defName>Bullet_Bolter998_Tempest</defName>
+		<label>.998 cal bolt (Tempest)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>46</damageAmountBase>
+			<armorPenetrationSharp>35</armorPenetrationSharp>
+			<armorPenetrationBlunt>908.38</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>EMP</def>
+					<amount>21</amount>
+				</li>
+			</secondaryDamage>
+			<empShieldBreakChance>1</empShieldBreakChance>
+		</projectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
@@ -206,7 +231,15 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>154</count>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>43</count>
 			</li>
 			<li>
 				<filter>
@@ -214,7 +247,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>18</count>
+				<count>40</count>
 			</li>
 			<li>
 				<filter>
@@ -222,12 +255,13 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>19</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
+				<li>Uranium</li>
 				<li>FSX</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
@@ -235,7 +269,7 @@
 		<products>
 			<Ammo_Bolter998_Standard>200</Ammo_Bolter998_Standard>
 		</products>
-		<workAmount>36600</workAmount>
+		<workAmount>44400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -250,7 +284,15 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>154</count>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>43</count>
 			</li>
 			<li>
 				<filter>
@@ -258,7 +300,7 @@
 						<li>Prometheum</li>
 					</thingDefs>
 				</filter>
-				<count>12</count>
+				<count>35</count>
 			</li>
 			<li>
 				<filter>
@@ -266,12 +308,13 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>6</count>
+				<count>19</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
+				<li>Uranium</li>
 				<li>Prometheum</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
@@ -279,7 +322,7 @@
 		<products>
 			<Ammo_Bolter998_Inferno>200</Ammo_Bolter998_Inferno>
 		</products>
-		<workAmount>19400</workAmount>
+		<workAmount>42000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -294,7 +337,15 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>154</count>
+				<count>20</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>43</count>
 			</li>
 			<li>
 				<filter>
@@ -302,7 +353,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>8</count>
+				<count>20</count>
 			</li>
 			<li>
 				<filter>
@@ -310,12 +361,13 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>8</count>
+				<count>19</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
+				<li>Uranium</li>
 				<li>FSX</li>
 				<li>ComponentIndustrial</li>
 			</thingDefs>
@@ -323,7 +375,7 @@
 		<products>
 			<Ammo_Bolter998_MetalStorm>200</Ammo_Bolter998_MetalStorm>
 		</products>
-		<workAmount>21800</workAmount>
+		<workAmount>36000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -338,23 +390,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>154</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>FSX</li>
-					</thingDefs>
-				</filter>
-				<count>6</count>
-			</li>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>ComponentIndustrial</li>
-					</thingDefs>
-				</filter>
-				<count>6</count>
+				<count>40</count>
 			</li>
 			<li>
 				<filter>
@@ -362,21 +398,81 @@
 						<li>Uranium</li>
 					</thingDefs>
 				</filter>
-				<count>8</count>
+				<count>43</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>40</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>19</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Steel</li>
+				<li>Uranium</li>
 				<li>FSX</li>
 				<li>ComponentIndustrial</li>
-				<li>Uranium</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_Bolter998_Kraken>200</Ammo_Bolter998_Kraken>
 		</products>
-		<workAmount>20600</workAmount>
+		<workAmount>48000</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Bolter998_Tempest</defName>
+		<label>make .998 Cal Bolter (tempest) shell x200</label>
+		<description>Craft 200 .998 Cal Bolter (tempest) shells.</description>
+		<jobString>Making .998 Cal Bolter (tempest) shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>43</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>26</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Bolter998_Tempest>200</Ammo_Bolter998_Tempest>
+		</products>
+		<workAmount>30240</workAmount>
 	</RecipeDef>
 
 </Defs>

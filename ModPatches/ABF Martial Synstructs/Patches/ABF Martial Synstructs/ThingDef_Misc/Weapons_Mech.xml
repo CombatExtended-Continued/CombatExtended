@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ==========  Melee Tools  =========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="ABF_Thing_Synstruct_Juggernaut_RotaryAutocannon" or
+			defName="ABF_Thing_Synstruct_Juggernaut_ShrapnelCannon" or
+			defName="ABF_Thing_Synstruct_Juggernaut_HeadhunterCannon"
+			]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>47</power>
+					<cooldownTime>3.65</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>21</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>47</power>
+					<cooldownTime>3.65</cooldownTime>
+					<armorPenetrationBlunt>21</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>65</power>
+					<cooldownTime>2.81</cooldownTime>
+					<armorPenetrationBlunt>30.24</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ==========  Rotary Autocannon  =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>ABF_Thing_Synstruct_Juggernaut_RotaryAutocannon</defName>
+		<statBases>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.8</SwayFactor>
+			<Bulk>35</Bulk>
+			<Mass>42</Mass>
+			<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.88</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+			<warmupTime>1.45</warmupTime>
+			<range>64</range>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<burstShotCount>5</burstShotCount>			
+			<soundCast>ABF_Sound_Synstruct_Juggernaut_AutocannonBlast</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>18</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Juggernaut_RotaryAutocannon"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawOffset>0.0,0.0</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ==========  Rotary Shrapnelcannon  =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>ABF_Thing_Synstruct_Juggernaut_ShrapnelCannon</defName>
+		<statBases>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>1.37</SwayFactor>
+			<Bulk>30</Bulk>
+			<Mass>42</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.72</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_RotaryShrapnelcannonShell</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>32</range>
+			<soundCast>ABF_Sound_Synstruct_Juggernaut_ShrapnelBlast</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+			<reloadOneAtATime>true</reloadOneAtATime>
+			<reloadTime>1.7</reloadTime>
+			<ammoSet>AmmoSet_RotaryShrapnelcannonShell</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Juggernaut_ShrapnelCannon"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawOffset>0.0,0.0</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ==========  Headhunter Cannon  =========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>ABF_Thing_Synstruct_Juggernaut_HeadhunterCannon</defName>
+		<statBases>
+			<SightsEfficiency>2.0</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.17</SwayFactor>
+			<Bulk>20</Bulk>
+			<Mass>30</Mass>
+			<RangedWeapon_Cooldown>0.63</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+			<warmupTime>3.8</warmupTime>
+			<range>84</range>
+			<soundCast>ABF_Sound_Synstruct_Juggernaut_AutocannonBlast</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>20</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Juggernaut_HeadhunterCannon"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawOffset>0.0,0.0</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ==========  Juggernaut Poleaxe  =========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Juggernaut_Poleaxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>spike</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>125</power>
+					<cooldownTime>1.92</cooldownTime>
+					<armorPenetrationBlunt>38.28</armorPenetrationBlunt>
+					<armorPenetrationSharp>47.86</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>axe</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>182</power>
+					<cooldownTime>2.0</cooldownTime>
+					<armorPenetrationBlunt>63</armorPenetrationBlunt>
+					<armorPenetrationSharp>14.00</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>hammer</label>
+					<capacities>
+						<li>Demolish</li>
+					</capacities>
+					<power>182</power>
+					<cooldownTime>2.0</cooldownTime>
+					<armorPenetrationBlunt>150</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Juggernaut_Poleaxe"]/statBases</xpath>
+		<value>
+			<Bulk>35</Bulk>
+			<MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ABF_Thing_Synstruct_Juggernaut_Poleaxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.0</MeleeCritChance>
+				<MeleeParryChance>1.0</MeleeParryChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+</Patch>

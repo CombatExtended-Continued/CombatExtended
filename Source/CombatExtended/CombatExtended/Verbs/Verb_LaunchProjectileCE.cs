@@ -17,20 +17,12 @@ namespace CombatExtended
 {
     public class Verb_LaunchProjectileCE : Verb
     {
-        #region Constants
-
-        // Cover check constants
-        private const float distToCheckForCover = 3f;   // How many cells to raycast on the cover check
-        private const float segmentLength = 0.2f;       // How long a single raycast segment is
-        //private const float shotHeightFactor = 0.85f;   // The height at which pawns hold their guns
-
-        #endregion
 
         #region Fields
 
         // Targeting factors
         private float estimatedTargDist = -1;           // Stores estimate target distance for each burst, so each burst shot uses the same
-        private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
+        protected int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
 
         // Angle in Vector2(degrees, radians)        
         protected Vector2 newTargetLoc = new Vector2(0, 0);
@@ -42,6 +34,7 @@ namespace CombatExtended
 
         public CompCharges compCharges = null;
         public CompAmmoUser compAmmo = null;
+
         public CompFireModes compFireModes = null;
         public CompChangeableProjectile compChangeable = null;
         public CompApparelReloadable compReloadable = null;
@@ -54,7 +47,7 @@ namespace CombatExtended
 
         private bool shootingAtDowned = false;
         private LocalTargetInfo lastTarget = null;
-        private IntVec3 lastTargetPos = IntVec3.Invalid;
+        protected IntVec3 lastTargetPos = IntVec3.Invalid;
 
         protected float lastShotAngle;
         protected float lastShotRotation;
@@ -62,7 +55,7 @@ namespace CombatExtended
         protected float? storedShotReduction = null;
         protected ShootLine? lastShootLine;
         protected bool repeating = false;
-        private bool doRetarget = true;
+        protected bool doRetarget = true;
 
         #endregion
 
@@ -74,14 +67,6 @@ namespace CombatExtended
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
-
-        public override float EffectiveRange
-        {
-            get
-            {
-                return base.EffectiveRange;
-            }
-        }
 
         public override int ShotsPerBurst
         {
@@ -129,7 +114,7 @@ namespace CombatExtended
                 return shotSpeed;
             }
         }
-        public float ShotHeight => (new CollisionVertical(caster)).shotHeight;
+        public virtual float ShotHeight => (new CollisionVertical(caster)).shotHeight;
         private Vector3 ShotSource
         {
             get
@@ -155,26 +140,12 @@ namespace CombatExtended
         public float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
         public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(CE_StatDefOf.SwayFactor) ?? 1f));
 
-        // Ammo variables
-        public virtual CompAmmoUser CompAmmo
-        {
-            get
-            {
-                if (compAmmo == null && EquipmentSource != null)
-                {
-                    compAmmo = EquipmentSource.TryGetComp<CompAmmoUser>();
-                }
-                return compAmmo;
-            }
-        }
+        public virtual CompAmmoUser CompAmmo => compAmmo ??= EquipmentSource?.TryGetComp<CompAmmoUser>();
+
         public virtual ThingDef Projectile
         {
             get
             {
-                if (CompAmmo != null && CompAmmo.CurrentAmmo != null)
-                {
-                    return CompAmmo.CurAmmoProjectile;
-                }
                 if (CompChangeable != null && CompChangeable.Loaded)
                 {
                     return CompChangeable.Projectile;
@@ -236,14 +207,12 @@ namespace CombatExtended
             }
         }
 
-        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
-
         private LightingTracker _lightingTracker = null;
         protected LightingTracker LightingTracker
         {
             get
             {
-                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0)
+                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0 || _lightingTracker.map != caster.Map)
                 {
                     _lightingTracker = caster.Map.GetLightingTracker();
                 }
@@ -302,14 +271,7 @@ namespace CombatExtended
                 }
             }
 
-            // Add check for reload
-            if (Projectile == null || (IsAttacking && CompAmmo != null && !CompAmmo.CanBeFiredNow))
-            {
-                CompAmmo?.TryStartReload();
-                resetRetarget();
-                return false;
-            }
-            return true;
+            return Projectile != null;
         }
 
         /// <summary>
@@ -487,19 +449,13 @@ namespace CombatExtended
                                         Apparel LegArmor = LegArmors.MaxByWithFallback(funcArmor);
                                         #endregion
 
-                                        #region get CompAmmo's Current ammo projectile
-
-                                        var ProjCE = (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
-
-                                        #endregion
-
                                         #region checks for whether the pawn can penetrate armor, which armor is stronger, etc
 
                                         var TargetedBodyPartArmor = TorsoArmor;
 
                                         bool flagTorsoArmor = ((TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
 
-                                        bool flag2 = ((ProjCE?.armorPenetrationSharp ?? 0f) >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+                                        bool flag2 = (projectilePropsCE.armorPenetrationSharp >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
                                         //Headshots do too little damage too often, so if the pawn can penetrate torso armor, they should aim at it
                                         if ((flagTorsoArmor && !flag2))
                                         {
@@ -509,7 +465,7 @@ namespace CombatExtended
                                         bool flag3 = (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) >= ((LegArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) + 4f);
 
                                         //bool for whether the pawn can penetrate helmet
-                                        bool flag4 = ((ProjCE?.armorPenetrationSharp ?? 0f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+                                        bool flag4 = (projectilePropsCE.armorPenetrationSharp >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
 
                                         //if the pawn can penetrate the helmet or torso armor there's no need to aim for legs
                                         if (flag3 && (!flag4) && (!flag2))
@@ -847,7 +803,7 @@ namespace CombatExtended
             }
             if (caster?.Map == null || !targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
             {
-                report = "Out of bounds";
+                report = "CE_OutofBounds".Translate();
                 return false;
             }
             // Check target self
@@ -855,7 +811,7 @@ namespace CombatExtended
             {
                 if (!verbProps.targetParams.canTargetSelf)
                 {
-                    report = "Can't target self";
+                    report = "CE_NoSelfTarget".Translate();
                     return false;
                 }
                 return true;
@@ -866,7 +822,7 @@ namespace CombatExtended
                 RoofDef roofDef = caster.Map.roofGrid.RoofAt(targ.Cell);
                 if (roofDef != null && roofDef.isThickRoof)
                 {
-                    report = "Blocked by roof";
+                    report = "CE_BlockedRoof".Translate();
                     return false;
                 }
             }
@@ -889,7 +845,7 @@ namespace CombatExtended
                         //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
                         if (!current.AllowVerbCast(this) && !(current.TryGetComp<CompShield>() != null && isTurretOperator))
                         {
-                            report = "Shooting disallowed by " + current.LabelShort;
+                            report = "CE_BlockedShield".Translate() + current.LabelShort;
                             return false;
                         }
                     }
@@ -902,15 +858,15 @@ namespace CombatExtended
                 float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
                 if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
                 {
-                    report = "Out of range";
+                    report = "CE_BlockedMaxRange".Translate();
                 }
                 else if (lengthHorizontalSquared < verbProps.minRange * verbProps.minRange)
                 {
-                    report = "Within minimum range";
+                    report = "CE_BlockedMinRange".Translate();
                 }
                 else
                 {
-                    report = "No line of sight";
+                    report = "CE_NoLoS".Translate();
                 }
                 return false;
             }
@@ -1064,6 +1020,7 @@ namespace CombatExtended
 
             float spreadDegrees = 0;
             float aperatureSize = 0;
+            int ticksToTruePosition = VerbPropsCE.ticksToTruePosition;
 
             if (Projectile.projectile is ProjectilePropertiesCE pprop)
             {
@@ -1131,11 +1088,6 @@ namespace CombatExtended
             numShotsFired++;
             if (ShooterPawn != null)
             {
-                if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
-                {
-                    CompAmmo?.TryStartReload();
-                    resetRetarget();
-                }
                 if (CompReloadable != null)
                 {
                     CompReloadable.UsedOnce();
@@ -1166,7 +1118,7 @@ namespace CombatExtended
             return explosionRadiusForDisplay;
         }
 
-        private float GetMinCollisionDistance(float targetDistance)
+        protected float GetMinCollisionDistance(float targetDistance)
         {
             var shortRangeMinCollisionDistance = 1.5f;
             var longRangeMinCollisionDistMult = 0.2f;
@@ -1275,12 +1227,7 @@ namespace CombatExtended
                 goodDest = IntVec3.Invalid;
                 return false;
             }
-            // DISABLED: reason is testing a better alternative..
-            //if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
-            //{
-            //    goodDest = IntVec3.Invalid;
-            //    return false;
-            //}
+
             if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
             {
                 goodDest = targ.Cell;
@@ -1290,36 +1237,8 @@ namespace CombatExtended
             return false;
         }
 
-        private bool IntercepterBlockingTarget(Vector3 source, Vector3 target)
-        {
-            List<Thing> list = Caster.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
-            for (int i = 0; i < list.Count; i++)
-            {
-                Thing thing = list[i];
-                CompProjectileInterceptor interceptor = thing.TryGetComp<CompProjectileInterceptor>();
-                if (!interceptor.Active)
-                {
-                    continue;
-                }
-                float d1 = Vector3.Distance(source, thing.Position.ToVector3());
-                if (d1 < interceptor.Props.radius + 1)
-                {
-                    continue;
-                }
-                if (Vector3.Distance(target, thing.Position.ToVector3()) < interceptor.Props.radius)
-                {
-                    return true;
-                }
-                if (thing.Position.ToVector3().DistanceToSegment(source, target, out _) < interceptor.Props.radius)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         // Added targetThing to parameters so we can calculate its height
-        private bool CanHitCellFromCellIgnoringRange(Vector3 shotSource, IntVec3 targetLoc, Thing targetThing = null)
+        protected virtual bool CanHitCellFromCellIgnoringRange(Vector3 shotSource, IntVec3 targetLoc, Thing targetThing = null)
         {
             // Vanilla checks
             if (verbProps.mustCastOnOpenGround && (!targetLoc.Standable(caster.Map) || caster.Map.thingGrid.CellContains(targetLoc, ThingCategory.Pawn)))

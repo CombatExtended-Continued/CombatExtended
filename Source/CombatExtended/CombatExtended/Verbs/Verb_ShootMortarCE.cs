@@ -38,7 +38,7 @@ namespace CombatExtended
         private int destinationTile;
         private int globalDistance;
         private Vector3 direction;
-        private int numShotsFired;
+        private new int numShotsFired;
 
         public override void ExposeData()
         {
@@ -206,10 +206,6 @@ namespace CombatExtended
             numShotsFired++;
             if (ShooterPawn != null)
             {
-                if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
-                {
-                    CompAmmo?.TryStartReload();
-                }
                 if (CompReloadable != null)
                 {
                     CompReloadable.UsedOnce();
@@ -225,13 +221,7 @@ namespace CombatExtended
             {
                 return base.TryCastShot();
             }
-            if (CompAmmo != null)
-            {
-                if (!CompAmmo.TryReduceAmmoCount(CompAmmo.Props.ammoSet.ammoConsumedPerShot * VerbPropsCE.ammoConsumedPerShotCount))
-                {
-                    return false;
-                }
-            }
+
             if (this.TryCastGlobalShot())
             {
                 return this.OnCastSuccessful();
