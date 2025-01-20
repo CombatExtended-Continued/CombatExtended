@@ -35,8 +35,8 @@ namespace CombatExtended.HarmonyCE
 
             FieldInfo fverbProps = AccessTools.Field(typeof(Verb), nameof(Verb.verbProps));
             FieldInfo fticksBetweenBurstShots = AccessTools.Field(typeof(VerbProperties), nameof(VerbProperties.ticksBetweenBurstShots));
-            FieldInfo fnonInterruptingSelfCast = AccessTools.Field(typeof(VerbProperties), nameof(VerbProperties.nonInterruptingSelfCast));
 
+            MethodInfo pnonInterruptingSelfCast = AccessTools.PropertyGetter(typeof(Verb), nameof(Verb.NonInterruptingSelfCast));
             MethodInfo pCasterPawn = AccessTools.PropertyGetter(typeof(Verb), nameof(Verb.CasterPawn));
             MethodInfo pSpawned = AccessTools.PropertyGetter(typeof(Pawn), nameof(Pawn.Spawned));
 
@@ -58,7 +58,7 @@ namespace CombatExtended.HarmonyCE
                 // Check if the caster pawn is spawned before attempting to set them into cooldown stance,
                 // since the caster may be dead as a result e.g. a successful melee riposte in TryCastShot().
                 // Vanilla already performs this check if the attack connected, but not when it missed.
-                if (codes[i].Branches(out Label? blockEndLabel) && codes[i - 1].LoadsField(fnonInterruptingSelfCast))
+                if (codes[i].Branches(out Label? blockEndLabel) && codes[i - 1].Is(OpCodes.Call, pnonInterruptingSelfCast))
                 {
                     yield return codes[i];
                     yield return new CodeInstruction(OpCodes.Ldarg_0);

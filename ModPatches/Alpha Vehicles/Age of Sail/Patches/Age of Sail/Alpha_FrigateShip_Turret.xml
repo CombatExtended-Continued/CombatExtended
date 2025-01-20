@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Turret -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_Frigate_MainTurret" or defName="AV_Frigate_SecondTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_CannonBall_Round</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_Frigate_MainTurret" or defName="AV_Frigate_SecondTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>24.0</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_Frigate_MainTurret" or defName="AV_Frigate_SecondTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>6.5</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_Frigate_MainTurret" or defName="AV_Frigate_SecondTurret"]/magazineCapacity</xpath>
+		<value>
+			<magazineCapacity>5</magazineCapacity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_Frigate_MainTurret" or defName="AV_Frigate_SecondTurret"]/minRange</xpath>
+		<value>
+			<minRange>45</minRange> <!-- +5 from maxRange to predict non-obstructed impact -->
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_Frigate_MainTurret" or defName="AV_Frigate_SecondTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>40</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_Frigate_MainTurret" or defName="AV_Frigate_SecondTurret"]/fireModes</xpath>
+		<value>
+			<fireModes>
+				<li>
+					<shotsPerBurst>1</shotsPerBurst>
+					<ticksBetweenShots>15</ticksBetweenShots>
+					<ticksBetweenBursts>30</ticksBetweenBursts>
+					<label>Single</label>
+					<texPath>UI/Gizmos/FireRate_Single</texPath>
+				</li>
+				<li>
+					<shotsPerBurst>5</shotsPerBurst>
+					<ticksBetweenShots>30</ticksBetweenShots>
+					<ticksBetweenBursts>60</ticksBetweenBursts>
+					<label>Broadside</label>
+					<texPath>UI/Gizmos/AV_Broadside</texPath>
+				</li>
+			</fireModes>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="AV_Frigate_MainTurret" or defName="AV_Frigate_SecondTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_CannonBall</ammoSet>
+				<shotHeight>3.5</shotHeight>
+				<speed>40</speed>
+				<sway>0.81</sway>
+				<spread>0.2</spread>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
