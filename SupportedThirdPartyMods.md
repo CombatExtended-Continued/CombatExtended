@@ -34,10 +34,6 @@ Mod |
 [LTS] Military |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
-[O21] Outland - Core    |
-[O21] Outland - Eastborn Empire    |
-[O21] Outland - Motz Coalition  |
-[O21] Outland - Redburn Pact  |
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH2] DOOM  |
 [RH2] Faction: Bounty Hunters   |
@@ -395,6 +391,10 @@ Outer Rim - Old Republic	|
 Outer Rim - Rebel Alliance	|
 Outer Rim - Separatists	|
 Outer Rim - Tatooine    |
+Outland - Core    |
+Outland - Eastborn Empire    |
+Outland - Motz Coalition  |
+Outland - Redburn Pact  |
 Palm Cats   |
 Paniel the Automata |
 Pawnbold Race   |
