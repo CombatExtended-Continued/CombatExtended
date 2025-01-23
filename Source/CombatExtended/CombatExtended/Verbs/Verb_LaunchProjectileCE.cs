@@ -57,6 +57,8 @@ namespace CombatExtended
         protected bool repeating = false;
         protected bool doRetarget = true;
 
+        protected const float smokePenaltyMultiplier = 4f; //increases penalty for shooting through smoke 
+
         #endregion
 
         #region Properties
@@ -734,6 +736,8 @@ namespace CombatExtended
                 if (cell.AnyGas(map, GasType.BlindSmoke))
                 {
                     smokeDensity += GasUtility.BlindingGasAccuracyPenalty;
+                    //increase the hardcoded vanilla blind smoke penalty
+                    smokeDensity += GasUtility.BlindingGasAccuracyPenalty * smokePenaltyMultiplier;
                 }
                 if (!roofed)
                 {
