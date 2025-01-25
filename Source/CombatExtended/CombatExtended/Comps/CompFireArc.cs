@@ -156,7 +156,7 @@ namespace CombatExtended
                 Command_Action Edit = new Command_Action();
                 Edit.defaultLabel = "CE_ArcOfFireAdjLabel".Translate();
                 Edit.defaultDesc = "CE_ArcOfFireAdjDesc".Translate();
-                Edit.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                Edit.icon = ContentFinder<Texture2D>.Get("UI/Buttons/AdjustFireArc", true);
                 Edit.action = delegate
                 {
                     if (Input.GetMouseButtonDown(1))
@@ -180,7 +180,7 @@ namespace CombatExtended
                 Command_Action Copy = new Command_Action();
                 Copy.defaultLabel = "CE_ArcOfFireCopyLabel".Translate();
                 Copy.defaultDesc = "CE_ArcOfFireCopyDesc".Translate();
-                Copy.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                Copy.icon = ContentFinder<Texture2D>.Get("UI/Commands/CopySettings", true);
                 Copy.action = delegate
                 {
                     FireArcCopyPaster.CopyFrom(this);
@@ -192,7 +192,7 @@ namespace CombatExtended
                     Command_Action Paste = new Command_Action();
                     Paste.defaultLabel = "CE_ArcOfFirePasteLabel".Translate();
                     Paste.defaultDesc = "CE_ArcOfFirePasteDesc".Translate();
-                    Paste.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                    Paste.icon = ContentFinder<Texture2D>.Get("UI/Commands/PasteSettings", true);
                     Paste.action = delegate
                     {
                         FireArcCopyPaster.PasteTo(this);
