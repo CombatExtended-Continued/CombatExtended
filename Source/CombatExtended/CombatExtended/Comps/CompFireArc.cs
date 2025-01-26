@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using Verse.Noise;
+using System.Linq;
 
 namespace CombatExtended
 {
+    [StaticConstructorOnStartup]
     public class CompFireArc : ThingComp
     {
+        public CompFireArc()
+        {
+            _greenMat = DebugMatsSpectrum.Mat(50, false);
+            _greenMat.color = _greenMat.color.ToTransparent(0.1f);
+        }
+
         public CompProperties_FireArc Props => props as CompProperties_FireArc;
 
         public float CenterAngle => Editing ? NewCenterAngle : CurrentCenterAngle;
@@ -61,8 +70,32 @@ namespace CombatExtended
         float maxLeftSpan => -Props.maxSpanDeviation;
         float maxRightSpan => Props.maxSpanDeviation;
 
+        FloatRange? supplementarySpan;
+
+        FloatRange? SupplementarySpan
+        {
+            get
+            {
+                if (Editing)
+                {
+                    if (effectiveLeftSpan < -180)
+                    {
+                        supplementarySpan = new FloatRange(effectiveLeftSpan + 360, 180);
+                    }
+                    else
+                    {
+                        supplementarySpan = effectiveRightSpan > 180 ? new FloatRange(-180, effectiveRightSpan - 360) : (FloatRange?)null;
+                    }
+                }
+                return supplementarySpan;
+            }
+        }
+
         public Vector3 Left => Vector3.forward.RotatedBy(effectiveLeftSpan + parent.Rotation.AsAngle);
         public Vector3 Right => Vector3.forward.RotatedBy(effectiveRightSpan + parent.Rotation.AsAngle);
+
+        List<IntVec3> _cellCache = new List<IntVec3>();
+        Material _greenMat;
 
         public bool WithinFireArc(LocalTargetInfo tgt)
         {
@@ -71,7 +104,7 @@ namespace CombatExtended
                 return true;
             }
             var angle = Vector3.SignedAngle(Vector3.forward.RotatedBy(parent.Rotation.AsAngle), (tgt.CenterVector3 - parent.DrawPos).Yto0(), Vector3.up);
-            return angle > effectiveLeftSpan && angle < effectiveRightSpan;
+            return (angle >= effectiveLeftSpan && angle <= effectiveRightSpan) || (SupplementarySpan.HasValue && angle >= SupplementarySpan.Value.min && angle <= SupplementarySpan.Value.max);
         }
 
         public override void PostDrawExtraSelectionOverlays()
@@ -122,7 +155,7 @@ namespace CombatExtended
                     NewSpan = Mathf.Lerp(Props.spanRange.min, Props.spanRange.max, l);
 
                     var norm = Vector3.right.RotatedBy(NewCenterAngle);
-                    var ext = Vector3.forward.RotatedBy(CenterAngle);
+                    var ext = Vector3.forward.RotatedBy(CenterAngle + parent.Rotation.AsAngle);
 
                     var ext2 = ext * DiagonalLength;
                     GenDraw.DrawLineBetween(drawPos + ext2 - norm, drawPos + ext2 + norm, color: SimpleColor.Red);
@@ -147,27 +180,62 @@ namespace CombatExtended
             GenDraw.DrawLineBetween(drawPos, drawPos + Right * LineLength);
 
             DrawCircleOutline(drawPos, LineLength, effectiveLeftSpan, effectiveRightSpan, CenterAngle);
+
+
+            if (KeyBindingDefOf.ShowEyedropper.IsDown)
+            {
+                _cellCache.Clear();
+                foreach (VerbProperties verbProperties in parent.def.building.turretGunDef.Verbs)
+                {
+                    var cells = GenRadial.RadialCellsAround(parent.Position, verbProperties.minRange, verbProperties.range).ToList();
+                    foreach (var cell in cells)
+                    {
+                        if (GenSight.LineOfSightToThing(cell, parent, parent.Map) && WithinFireArc(cell))
+                        {
+                            _cellCache.Add(cell);
+                        }
+                    }
+                }
+                if (_cellCache.Any())
+                {
+                    GenDraw.DrawFieldEdges(_cellCache);
+                    foreach (var cell in _cellCache)
+                    {
+                        CellRenderer.RenderCell(cell, _greenMat);
+                    }
+                }
+            }
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (Controller.settings.EnableArcOfFire)
             {
-                Command_Action Edit = new Command_Action();
-                Edit.defaultLabel = "CE_ArcOfFireAdjLabel".Translate();
-                Edit.defaultDesc = "CE_ArcOfFireAdjDesc".Translate();
-                Edit.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
-                Edit.action = delegate
+                Command_Action Edit = new Command_Action
                 {
-                    if (Input.GetMouseButtonDown(1))
+                    defaultLabel = "CE_ArcOfFireAdjLabel".Translate(),
+                    defaultDesc = "CE_ArcOfFireAdjDesc".Translate(KeyBindingDefOf.ShowEyedropper.MainKeyLabel) + "\n\n" + (canTurnOff ? "CE_ArcOfFireToggle" : "CE_ArcOfFireReset").Translate(KeyBindingDefOf.ShowEyedropper.MainKeyLabel),
+                    icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true),
+                    action = delegate
                     {
-                        turnedOn = !turnedOn;
-                    }
-                    else
-                    {
-                        Editing = true;
-                        NewSpan = CurrentSpan;
-                        turnedOn = true;
+                        if (KeyBindingDefOf.ShowEyedropper.IsDown)
+                        {
+                            if (canTurnOff)
+                            {
+                                turnedOn = !turnedOn;
+                            }
+                            else
+                            {
+                                CurrentCenterAngle = 0;
+                                CurrentSpan = Props.spanRange.max;
+                            }
+                        }
+                        else
+                        {
+                            Editing = true;
+                            NewSpan = CurrentSpan;
+                            turnedOn = true;
+                        }
                     }
                 };
                 yield return Edit;
@@ -275,9 +343,15 @@ namespace CombatExtended
         }
         public FloatRange spanRange = new FloatRange(0, 360);
 
-        public float maxSpanDeviation = 180;
+        public float maxSpanDeviation = 360;
 
         public float lineLength = 3;
+
+        public override void ResolveReferences(ThingDef parentDef)
+        {
+            base.ResolveReferences(parentDef);
+            if (maxSpanDeviation >= 180) { maxSpanDeviation = 360; }
+        }
     }
 
     public static class FireArcCopyPaster
