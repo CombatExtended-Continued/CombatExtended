@@ -11,7 +11,7 @@ namespace CombatExtended
     [StaticConstructorOnStartup]
     public class CompFireArc : ThingComp
     {
-        public CompFireArc()
+        static CompFireArc()
         {
             _greenMat = DebugMatsSpectrum.Mat(50, false);
             _greenMat.color = _greenMat.color.ToTransparent(0.1f);
@@ -95,7 +95,7 @@ namespace CombatExtended
         public Vector3 Right => Vector3.forward.RotatedBy(effectiveRightSpan + parent.Rotation.AsAngle);
 
         List<IntVec3> _cellCache = new List<IntVec3>();
-        Material _greenMat;
+        static readonly Material _greenMat;
 
         public bool WithinFireArc(LocalTargetInfo tgt)
         {
@@ -154,7 +154,7 @@ namespace CombatExtended
                     var l = (EditingLineLength - DiagonalLength) / EditingSpanLineLength;
                     NewSpan = Mathf.Lerp(Props.spanRange.min, Props.spanRange.max, l);
 
-                    var norm = Vector3.right.RotatedBy(NewCenterAngle);
+                    var norm = Vector3.right.RotatedBy(NewCenterAngle + parent.Rotation.AsAngle);
                     var ext = Vector3.forward.RotatedBy(CenterAngle + parent.Rotation.AsAngle);
 
                     var ext2 = ext * DiagonalLength;
@@ -215,7 +215,7 @@ namespace CombatExtended
                 {
                     defaultLabel = "CE_ArcOfFireAdjLabel".Translate(),
                     defaultDesc = "CE_ArcOfFireAdjDesc".Translate(KeyBindingDefOf.ShowEyedropper.MainKeyLabel) + "\n\n" + (canTurnOff ? "CE_ArcOfFireToggle" : "CE_ArcOfFireReset").Translate(KeyBindingDefOf.ShowEyedropper.MainKeyLabel),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true),
+                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/AdjustFireArc", true),
                     action = delegate
                     {
                         if (KeyBindingDefOf.ShowEyedropper.IsDown)
@@ -248,7 +248,7 @@ namespace CombatExtended
                 Command_Action Copy = new Command_Action();
                 Copy.defaultLabel = "CE_ArcOfFireCopyLabel".Translate();
                 Copy.defaultDesc = "CE_ArcOfFireCopyDesc".Translate();
-                Copy.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                Copy.icon = ContentFinder<Texture2D>.Get("UI/Commands/CopySettings", true);
                 Copy.action = delegate
                 {
                     FireArcCopyPaster.CopyFrom(this);
@@ -260,7 +260,7 @@ namespace CombatExtended
                     Command_Action Paste = new Command_Action();
                     Paste.defaultLabel = "CE_ArcOfFirePasteLabel".Translate();
                     Paste.defaultDesc = "CE_ArcOfFirePasteDesc".Translate();
-                    Paste.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                    Paste.icon = ContentFinder<Texture2D>.Get("UI/Commands/PasteSettings", true);
                     Paste.action = delegate
                     {
                         FireArcCopyPaster.PasteTo(this);
