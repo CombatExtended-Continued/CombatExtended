@@ -8,66 +8,45 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<!-- ==========  YP CQC Gun =========== -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="YP_Seu"]/statBases</xpath>
-					<value>
-						<statBases>
-							<WorkToMake>50500</WorkToMake>
-							<SightsEfficiency>1.1</SightsEfficiency>
-							<ShotSpread>0.3</ShotSpread>
-							<SwayFactor>1.5</SwayFactor>
-							<Bulk>9.7</Bulk>
-							<Mass>3.52</Mass>
-							<RangedWeapon_Cooldown>0.2</RangedWeapon_Cooldown>
-						</statBases>
-					</value>
-				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="YP_Seu"]/verbs</xpath>
-					<value>
-						<verbs>
-							<li Class="CombatExtended.VerbPropertiesCE">
-								<recoilAmount>0.75</recoilAmount>
-								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-								<hasStandardCommand>true</hasStandardCommand>
-								<defaultProjectile>Bullet_RifleYP</defaultProjectile>
-								<warmupTime>0.5</warmupTime>
-								<burstShotCount>10</burstShotCount>
-								<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
-								<range>18</range>
-								<soundCast>RS_ShotShard</soundCast>
-								<soundCastTail>GunTail_Light</soundCastTail>
-								<muzzleFlashScale>4</muzzleFlashScale>
-							</li>
-						</verbs>
-					</value>
-				</li>
-
-				<li Class="PatchOperationConditional">
-					<xpath>Defs/ThingDef[defName="YP_Seu"]/comps</xpath>
-					<nomatch Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="YP_Seu"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</nomatch>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="YP_Seu"]</xpath>
-					<value>
-						<li Class="CombatExtended.CompProperties_AmmoUser">
-							<magazineSize>40</magazineSize>
-							<reloadTime>4.5</reloadTime>
-							<ammoSet>AmmoSet_RifleYP</ammoSet>
-						</li>
-						<li Class="CombatExtended.CompProperties_FireModes">
-							<aimedBurstShotCount>5</aimedBurstShotCount>
-							<aiUseBurstMode>FALSE</aiUseBurstMode>
-							<aiAimMode>Snapshot</aiAimMode>
-						</li>
-					</value>
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>YP_Seu</defName>
+					<statBases>
+						<WorkToMake>50500</WorkToMake>
+						<SightsEfficiency>1.1</SightsEfficiency>
+						<ShotSpread>0.3</ShotSpread>
+						<SwayFactor>1.5</SwayFactor>
+						<Bulk>9.7</Bulk>
+						<Mass>3.52</Mass>
+						<RangedWeapon_Cooldown>0.2</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>0.75</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_RifleYP</defaultProjectile>
+						<warmupTime>0.5</warmupTime>
+						<burstShotCount>10</burstShotCount>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<range>18</range>
+						<soundCast>RS_ShotShard</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>4</muzzleFlashScale>
+					</Properties>					
+					<AmmoUser>
+						<magazineSize>40</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_RifleYP</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_AR</li>
+						<li>YPGun</li>
+					</weaponTags>
 				</li>
 
 				<li Class="PatchOperationReplace">

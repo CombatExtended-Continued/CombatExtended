@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!-- ========== Longjump ========== -->
+	<!-- ========== Short Jump ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/AbilityDef[defName="Cast_Short_Jump"]/verbProperties/range</xpath>
 		<value>
 			<range>13.75</range>
 		</value>
 	</Operation>
-	
+
+	<!-- ========== Agile Fighter ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/GeneDef[defName="AgileStriker"]/statOffsets/MeleeDodgeChance</xpath>
+		<value>
+			<MeleeDodgeChance>0.16</MeleeDodgeChance> <!-- Gives 1/3 the bonus of 'Nimble' trait.-->
+		</value>
+	</Operation>
+
 </Patch>
