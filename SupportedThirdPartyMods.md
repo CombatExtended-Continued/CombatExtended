@@ -414,6 +414,7 @@ PsiTech	|
 PsyBlasters |
 Pulsefire Turret (Continued)    |
 Pulse Weaponry  |
+RPG Adventure Flavour Pack  |
 Rabbie The Moonrabbit race	|
 Racc Race	|
 Race to the Rim |
