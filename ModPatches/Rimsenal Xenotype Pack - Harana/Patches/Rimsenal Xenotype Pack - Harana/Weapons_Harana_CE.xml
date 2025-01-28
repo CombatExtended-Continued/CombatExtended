@@ -44,26 +44,34 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="YP_Seu"]</xpath>
-					<value>
-						<comps>
-							<li Class="CombatExtended.CompProperties_AmmoUser">
-								<magazineSize>40</magazineSize>
-								<reloadTime>4.5</reloadTime>
-								<ammoSet>AmmoSet_RifleYP</ammoSet>
-							</li>
-							<li Class="CombatExtended.CompProperties_FireModes">
-								<aimedBurstShotCount>5</aimedBurstShotCount>
-								<aiUseBurstMode>FALSE</aiUseBurstMode>
-								<aiAimMode>Snapshot</aiAimMode>
-							</li>
-						</comps>
-					</value>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="YP_Seu"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="YP_Seu"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="YP_Seu"]</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>40</magazineSize>
+							<reloadTime>4.5</reloadTime>
+							<ammoSet>AmmoSet_RifleYP</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>5</aimedBurstShotCount>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiAimMode>Snapshot</aiAimMode>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="YP_Seu"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">

@@ -1,131 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- ========== Drop Suit =========== -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimsenal - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+						
+				<!-- ========== Shock Suit =========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/statBases/Mass</xpath>
-		<value>
-			<Mass>60</Mass>
-			<Bulk>90</Bulk>
-			<WornBulk>18</WornBulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/costList/Plasteel</xpath>
-		<value>
-			<Plasteel>180</Plasteel>
-			<DevilstrandCloth>40</DevilstrandCloth>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<li>Hands</li>
-			<li>Feet</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/equippedStatOffsets/MoveSpeed</xpath>
-		<value>
-			<CarryWeight>90</CarryWeight>
-			<CarryBulk>10</CarryBulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>17</ArmorRating_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/statBases/ArmorRating_Blunt</xpath>
-		<value>
-			<ArmorRating_Blunt>51</ArmorRating_Blunt>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]</xpath>
-		<value>
-			<li Class="CombatExtended.PartialArmorExt">
-				<stats>
-					<li>
-						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
-						<parts>
-							<li>Neck</li>
-							<li>Arm</li>
-							<li>Leg</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
-						<parts>
-							<li>Neck</li>
-							<li>Arm</li>
-							<li>Leg</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
-						<parts>
-							<li>Hand</li>
-						</parts>
-					</li>
-				</stats>
-			</li>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<label>launch microwave grenade</label>
-					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<onlyManualCast>True</onlyManualCast>
-					<warmupTime>1.0</warmupTime>
-					<range>10</range>
-					<minRange>3</minRange>
-					<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
-					<soundCast>RS_ShotGrendel</soundCast>
-					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-					<defaultProjectile>Proj_BaegYa</defaultProjectile>
-					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/statBases/Mass</xpath>
+					<value>
+						<Mass>60</Mass>
+						<Bulk>90</Bulk>
+						<WornBulk>18</WornBulk>
+					</value>
 				</li>
-			</verbs>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoDef</xpath>
-		<value>
-			<ammoDef>YP_BaegYa</ammoDef>
-		</value>
-	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountPerCharge</xpath>
-		<value>
-			<ammoCountPerCharge>1</ammoCountPerCharge>
-		</value>
-	</Operation>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>180</Plasteel>
+						<DevilstrandCloth>40</DevilstrandCloth>
+					</value>
+				</li>
 
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/equippedStatOffsets/MoveSpeed</xpath>
+					<value>
+						<CarryWeight>90</CarryWeight>
+						<CarryBulk>10</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>17</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>51</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+										<li>Arm</li>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+										<li>Arm</li>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>launch microwave grenade</label>
+								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<onlyManualCast>True</onlyManualCast>
+								<warmupTime>1.0</warmupTime>
+								<range>10</range>
+								<minRange>3</minRange>
+								<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+								<soundCast>RS_ShotGrendel</soundCast>
+								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+								<defaultProjectile>Proj_BaegYa</defaultProjectile>
+								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+							</li>
+						</verbs>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoDef</xpath>
+					<value>
+						<ammoDef>YP_BaegYa</ammoDef>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Shocksuit"]/comps/li[@Class="CompProperties_ApparelReloadable"]/ammoCountPerCharge</xpath>
+					<value>
+						<ammoCountPerCharge>1</ammoCountPerCharge>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
 </Patch>
