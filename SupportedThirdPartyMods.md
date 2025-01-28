@@ -466,6 +466,8 @@ Rimsenal - Federation Faction Pack |
 Rimsenal - Feral Faction Pack |
 Rimsenal - Security Pack |
 Rimsenal - Spacer Faction Pack  |
+Rimsenal Xenotype Pack - Askbarn    |
+Rimsenal Xenotype Pack - Harana |
 RimTraits - General Traits  |
 RimTraits – Medieval Talents    |
 Rimworld - The Dark Descent |
