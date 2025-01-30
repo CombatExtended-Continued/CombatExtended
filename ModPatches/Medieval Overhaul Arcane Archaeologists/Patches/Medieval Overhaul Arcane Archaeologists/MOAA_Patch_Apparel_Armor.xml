@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Capes === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="Ogam_SimpleCapeBase" or @Name="Ogam_CapeBase"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_SimpleCapeBase" or @Name="Ogam_CapeBase"]/statBases/Mass</xpath>
+		<value>
+			<Mass>2</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_SimpleCapeBase" or @Name="Ogam_CapeBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- Caster Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="Ogam_CasterArmorBase"]/statBases</xpath>
+		<value>
+			<Bulk>60</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_CasterArmorBase"]/statBases/Mass</xpath>
+		<value>
+			<Mass>9</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_CasterArmorBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.35</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_CasterArmorBase"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_CasterArmorBase"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<!-- Guardian Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="Ogam_GuardianBase" or @Name="Ogam_RoyalGuardBase"]/statBases</xpath>
+		<value>
+			<Bulk>70</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_GuardianBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.65</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_RoyalGuardBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.75</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_GuardianBase" or @Name="Ogam_RoyalGuardBase"]/statBases/Mass</xpath>
+		<value>
+			<Mass>14</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_GuardianBase" or @Name="Ogam_RoyalGuardBase"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="Ogam_GuardianBase" or @Name="Ogam_RoyalGuardBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Scout Padded Armor -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="Ogam_ScoutArmorBase"]/statBases</xpath>
+		<value>
+			<Bulk>50</Bulk>
+			<WornBulk>10</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_ScoutArmorBase"]/statBases/Mass</xpath>
+		<value>
+			<Mass>8</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_ScoutArmorBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2.45</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_ScoutArmorBase"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Ogam_ScoutArmorBase"]/equippedStatOffsets/MoveSpeed</xpath>
+		<value>
+			<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+</Patch>
