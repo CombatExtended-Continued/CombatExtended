@@ -735,7 +735,6 @@ namespace CombatExtended
                 // TODO 1.4: Figure out how the new hardcoded gas system will work for our smoke and custom gases
                 if (cell.AnyGas(map, GasType.BlindSmoke))
                 {
-                    smokeDensity += GasUtility.BlindingGasAccuracyPenalty;
                     //increase the hardcoded vanilla blind smoke penalty
                     smokeDensity += GasUtility.BlindingGasAccuracyPenalty * smokePenaltyMultiplier;
                 }
