@@ -30,6 +30,7 @@ namespace CombatExtended
         private bool genericammo = false;
         private bool partialstats = true;
         private bool enableExtraEffects = true;
+        private bool enableArcOfFire = false;
 
         private bool showExtraTooltips = false;
 
@@ -52,6 +53,8 @@ namespace CombatExtended
         public bool TurretsBreakShields => turretsBreakShields;
         public bool ShowBackpacks => showBackpacks;
         public bool ShowTacticalVests => showTacticalVests;
+
+        public bool EnableArcOfFire => enableArcOfFire;
 
         public bool PartialStat => partialstats;
         public bool EnableExtraEffects => enableExtraEffects;
@@ -160,6 +163,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref partialstats, "PartialArmor", true);
             Scribe_Values.Look(ref enableExtraEffects, "enableExtraEffects", true);
             Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
+            Scribe_Values.Look(ref enableArcOfFire, "enableArcOfFire", false);
 
             Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
 
@@ -227,6 +231,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_EnableExtraEffects_Title".Translate(), ref enableExtraEffects, "CE_Settings_EnableExtraEffects_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_EnableArcOfFire_Title".Translate(), ref enableArcOfFire, "CE_Settings_EnableArcOfFire_Desc".Translate());
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
             if (Current.Game == null)
