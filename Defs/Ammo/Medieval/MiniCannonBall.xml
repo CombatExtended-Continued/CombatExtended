@@ -27,7 +27,7 @@
 		</thingCategories>
 		<stackLimit>500</stackLimit>
 		<graphicData>
-			<drawSize>1.0</drawSize>
+			<drawSize>0.6</drawSize>
 		</graphicData>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -47,8 +47,8 @@
 		<label>mini round shot</label>
 		<description>A solid ball of metal, capable of delivering significant damage on a direct hit.</description>
 		<graphicData>
-			<texPath>Things/Ammo/Cannon/BlackPowder/Cannon_Round</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Ammo/Cannon/BlackPowder/Roundshot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>1.12</MarketValue>
@@ -61,8 +61,8 @@
 		<label>mini grape shot shell</label>
 		<description>A canister of numerous metal balls, fired in a wide spread to deal horrific damage against enemy infantry.</description>
 		<graphicData>
-			<texPath>Things/Ammo/Cannon/BlackPowder/Cannon_Grape</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Ammo/Cannon/BlackPowder/Grapeshot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>1.12</MarketValue>
@@ -90,9 +90,9 @@
 
 	<ThingDef Name="BaseMiniCannonBall" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<texPath>Things/Projectile/Cannon/Blackpowder/CannonBall</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>1.5,1.5</drawSize>
+			<drawSize>0.6,0.6</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>73</speed>
@@ -100,6 +100,15 @@
 			<flyOverhead>false</flyOverhead>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+                    <AutoAssign>false</AutoAssign>
+                    <CreateTerrainEffects>true</CreateTerrainEffects>
+                    <ImpactSoundDef>CE_HeavyProjectileImpact</ImpactSoundDef>
+					<explosionFleckDef>Fleck_CECannonball</explosionFleckDef>
+					<explosionFleckSize>0.4</explosionFleckSize>
+            </li>
+        </modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseMiniCannonBall">

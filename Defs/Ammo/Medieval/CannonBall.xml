@@ -38,9 +38,6 @@
 			<li>CannonBall</li>
 		</thingCategories>
 		<stackLimit>25</stackLimit>
-		<graphicData>
-			<drawSize>1.50</drawSize>
-		</graphicData>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting_FueledSmithy</li>
@@ -59,8 +56,8 @@
 		<label>round shot</label>
 		<description>A solid ball of metal fired, capable of delivering significant damage on a direct hit.</description>
 		<graphicData>
-			<texPath>Things/Ammo/Cannon/BlackPowder/Cannon_Round</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Ammo/Cannon/BlackPowder/Roundshot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>26.18</MarketValue>
@@ -73,8 +70,8 @@
 		<label>bursting shell</label>
 		<description>A round shell, hollow and filled with explosives, exploding on impact and producing razor-sharp metal splinters.</description>
 		<graphicData>
-			<texPath>Things/Ammo/Cannon/BlackPowder/Cannon_Bursting</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Ammo/Cannon/BlackPowder/Bursting</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>32.45</MarketValue>
@@ -88,8 +85,8 @@
 		<label>incendiary shell</label>
 		<description>A round shell, hollow and filled with flammable liquid, spreading fire across a small area on impact.</description>
 		<graphicData>
-			<texPath>Things/Ammo/Cannon/BlackPowder/Cannon_Bursting</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Ammo/Cannon/BlackPowder/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>28.72</MarketValue>
@@ -103,8 +100,8 @@
 		<label>grape shot shell</label>
 		<description>A canister of numerous metal balls, fired in a wide spread to deal horrific damage against enemy infantry.</description>
 		<graphicData>
-			<texPath>Things/Ammo/Cannon/BlackPowder/Cannon_Grape</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Ammo/Cannon/BlackPowder/Grapeshot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>26.18</MarketValue>
@@ -132,9 +129,8 @@
 
 	<ThingDef Name="BaseCannonBall" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<texPath>Things/Projectile/Cannon/Blackpowder/CannonBall</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>2,2</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>99</speed>
@@ -142,6 +138,15 @@
 			<flyOverhead>false</flyOverhead>
 			<dropsCasings>false</dropsCasings>
 		</projectile>
+		<modExtensions>
+            <li Class="ProjectileImpactFX.EffectProjectileExtension">
+                    <AutoAssign>false</AutoAssign>
+                    <CreateTerrainEffects>true</CreateTerrainEffects>
+                    <ImpactSoundDef>CE_HeavyProjectileImpact</ImpactSoundDef>
+					<explosionFleckDef>Fleck_CECannonball</explosionFleckDef>
+					<explosionFleckSize>0.8</explosionFleckSize>
+            </li>
+        </modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCannonBall">
@@ -236,7 +241,7 @@
 		<label>bursting shell</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<texPath>Things/Projectile/Cannon/Blackpowder/CannonBall</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -261,7 +266,7 @@
 		<label>flaming shell</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<texPath>Things/Projectile/Cannon/Blackpowder/CannonBall</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
