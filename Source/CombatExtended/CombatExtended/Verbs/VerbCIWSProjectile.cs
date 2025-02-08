@@ -26,10 +26,13 @@ namespace CombatExtended
         protected override IEnumerable<Vector3> TargetNextPositions(ProjectileCE target)
         {
             int tickOffset = 1;
-            foreach (var exactPos in target.NextPositions)
+            if (target.IsPredictable(out var nextPositions) || Props.shouldInterceptUnpredictable)
             {
-                yield return target.TrajectoryWorker.ExactPosToDrawPos(exactPos, target.FlightTicks + tickOffset, target.ticksToTruePosition, target.def.Altitude).WithY(exactPos.y);
-                tickOffset++;
+                foreach (var exactPos in nextPositions)
+                {
+                    yield return target.TrajectoryWorker.ExactPosToDrawPos(exactPos, target.FlightTicks + tickOffset, target.ticksToTruePosition, target.def.Altitude).WithY(exactPos.y);
+                    tickOffset++;
+                }
             }
         }
     }
@@ -44,6 +47,7 @@ namespace CombatExtended
         }
         public override bool Interceptable(ThingDef targetDef) => targetDef.projectile.speed < maximumSpeed && targetDef.projectile.flyOverhead && base.Interceptable(targetDef);
         public float maximumSpeed = 80;
+        public bool shouldInterceptUnpredictable = true;
         protected override IEnumerable<ThingDef> InitAllTargets() => DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.projectile != null && x.projectile.flyOverhead && x.projectile.speed < maximumSpeed);
     }
 }
