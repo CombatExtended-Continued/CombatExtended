@@ -18,6 +18,7 @@ namespace CombatExtended
         protected bool debug;
         protected Texture2D icon;
         protected int maximumPredectionTicks = 40;
+        protected ProjectileCE dummyCIWSProjectile;
 
         public virtual bool HoldFire { get; set; }
 
@@ -50,17 +51,10 @@ namespace CombatExtended
         }
         protected (Vector2 firstPos, Vector2 secondPos) PositionOfCIWSProjectile(int sinceTicks, Vector3 targetPos, bool drawPos = false)
         {
+            AimDummyCIWSProjectileTo(targetPos);
             var firstPos = Caster.Position.ToVector3Shifted();
             var secondPos = firstPos;
-            var originV3 = firstPos;
-            var originV2 = new Vector2(originV3.x, originV3.z);
-            var shotAngle = ShotAngle(targetPos);
-            var shotRotation = ShotRotation(targetPos);
-
-            var destination = TrajectoryWorker.Destination(originV2, shotRotation, ShotHeight, ShotSpeed, shotAngle, projectilePropsCE.Gravity);
-            var flightTime = TrajectoryWorker.GetFlightTime(shotAngle, ShotSpeed, projectilePropsCE.Gravity, ShotHeight) * GenTicks.TicksPerRealSecond;
-            var initialVelocity = TrajectoryWorker.GetVelocity(ShotSpeed, shotRotation, shotAngle);
-            var enumeration = TrajectoryWorker.NextPositions(currentTarget, shotRotation, shotAngle, projectilePropsCE.Gravity, originV2, this.Caster.Position.ToVector3Shifted(), destination, (int)flightTime, flightTime, ShotHeight, false, initialVelocity, ShotSpeed, originV3, projectilePropsCE.mass.max, projectilePropsCE.ballisticCoefficient.max, projectilePropsCE.diameter.max / 2000, projectilePropsCE.Gravity, ShotSpeed, projectilePropsCE.speedGain, projectilePropsCE.speed, 0).GetEnumerator();
+            var enumeration = TrajectoryWorker.NextPositions(dummyCIWSProjectile).GetEnumerator();
             for (int i = 1; i <= sinceTicks; i++)
             {
                 firstPos = secondPos;
@@ -79,7 +73,17 @@ namespace CombatExtended
             }
             return (new Vector2(firstPos.x, firstPos.z), new Vector2(secondPos.x, secondPos.z));
         }
+        protected void AimDummyCIWSProjectileTo(Vector3 to)
+        {
+            if (dummyCIWSProjectile == null || dummyCIWSProjectile.def != Projectile)
+            {
+                dummyCIWSProjectile = SpawnProjectile(); // Not sure if we should call PostMake and etc for dummy
+            }
+            var originV3 = Caster.Position.ToVector3Shifted();
+            var originV2 = new Vector2(originV3.x, originV3.z);
+            dummyCIWSProjectile.Launch(Caster, originV2, ShotAngle(to), ShotRotation(to), ShotHeight, ShotSpeed, Caster);
 
+        }
         public override ThingDef Projectile
         {
             get
@@ -236,7 +240,7 @@ namespace CombatExtended
                 }
 
                 Vector2 originV2 = new Vector2(originV3.x, originV3.z);
-
+                
                 var positions = PositionOfCIWSProjectile(i, pos, true);
                 //if (positions.firstPos == positions.secondPos) //Not sure why, but sometimes this code drops calculations on i = 1
                 //{
