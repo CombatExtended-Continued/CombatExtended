@@ -1137,10 +1137,15 @@ namespace CombatExtended
 
 
         private Queue<Vector3> cachedNextPositions;
+        protected virtual bool ShouldCacheNextPositions => !TrajectoryWorker.GuidedProjectile;
         public virtual IEnumerable<Vector3> NextPositions
         {
             get
             {
+                if (!ShouldCacheNextPositions)
+                {
+                    TrajectoryWorker.NextPositions(this);
+                }
                 cachedNextPositions ??= new Queue<Vector3>(100);
                 foreach (var pos in cachedNextPositions)
                 {
