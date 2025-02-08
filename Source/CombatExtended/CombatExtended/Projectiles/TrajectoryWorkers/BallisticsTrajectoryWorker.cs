@@ -25,7 +25,7 @@ namespace CombatExtended
             float ballisticCoefficient = projectile.ballisticCoefficient;
             float radius = projectile.radius;
             float gravity = projectile.gravity;
-            for (; ticksToImpact >= 0; ticksToImpact--)
+            for (int ticksOffset = 1; ticksOffset <= ticksToImpact; ticksOffset++)
             {
                 yield return exactPosition = BallisticMove(currentTarget, exactPosition, speedGain, maxSpeed, ref velocity, ref shotSpeed, ref mass, ref ballisticCoefficient, ref radius, ref gravity);
             }

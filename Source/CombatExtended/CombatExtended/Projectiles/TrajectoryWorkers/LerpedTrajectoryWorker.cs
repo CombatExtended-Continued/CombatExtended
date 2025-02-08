@@ -20,11 +20,12 @@ namespace CombatExtended
             var shotSpeed = projectile.shotSpeed;
             var shotAngle = projectile.shotAngle;
             var gravityFactor = projectile.GravityFactor;
-            for (; ticksToImpact >= 0; ticksToImpact--)
+
+            for (int ticksOffset = 1; ticksOffset <= ticksToImpact; ticksOffset++)
             {
-                var ticks = projectile.FlightTicks + (ticksToImpact - projectile.ticksToImpact);
-                var v = Vec2Position(origin, destination, startingTicksToImpact, ticks);
-                yield return new Vector3(v.x, GetHeightAtTicks(shotHeight, shotSpeed, shotAngle, ticks, gravityFactor), v.y);
+                var tick = projectile.FlightTicks + ticksOffset;
+                var v = Vec2Position(origin, destination, startingTicksToImpact, tick);
+                yield return new Vector3(v.x, GetHeightAtTicks(shotHeight, shotSpeed, shotAngle, tick, gravityFactor), v.y);
             }
         }
         protected override void MoveForward(ProjectileCE projectile)
