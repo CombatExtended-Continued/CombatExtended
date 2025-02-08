@@ -1136,8 +1136,24 @@ namespace CombatExtended
 
 
 
+        private Queue<Vector3> cachedNextPositions;
+        public virtual IEnumerable<Vector3> NextPositions
+        {
+            get
+            {
+                cachedNextPositions ??= new Queue<Vector3>(100);
+                foreach (var pos in cachedNextPositions)
+                {
+                    yield return pos;
+                }
+                foreach (var pos in TrajectoryWorker.NextPositions(this).Skip(cachedNextPositions.Count))
+                {
+                    cachedNextPositions.Enqueue(pos);
+                    yield return pos;
+                }
+            }
+        }
 
-        public virtual IEnumerable<Vector3> NextPositions => TrajectoryWorker.NextPositions(this);
         public virtual bool IsPredictable(out IEnumerable<Vector3> possiblePositionsForCIWS)
         {
             possiblePositionsForCIWS = NextPositions;
@@ -1157,6 +1173,10 @@ namespace CombatExtended
             if (landed)
             {
                 return;
+            }
+            if (cachedNextPositions != null && cachedNextPositions.Count > 0)
+            {
+                cachedNextPositions.Dequeue();
             }
             LastPos = ExactPosition;
             ticksToImpact--;
