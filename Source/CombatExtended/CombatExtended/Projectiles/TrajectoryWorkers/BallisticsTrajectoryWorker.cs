@@ -4,15 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 using Verse;
 
 namespace CombatExtended
 {
     public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
     {
-        public override Vector3 MoveForward(LocalTargetInfo currentTarget, float shotRotation, float shotAngle, float gravityFactor, Vector2 origin, Vector3 exactPosition, ref Vector2 destination, float tickToImpact, float startingTicksToImpact, float shotHeight, float speedGain, float maxSpeed, ref bool kinit, ref Vector3 velocity, ref float shotSpeed, ref Vector3 curPosition, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity, ref float initialSpeed, ref int flightTicks)
+        public override IEnumerable<Vector3> NextPositions(ProjectileCE projectile)
         {
-            flightTicks++;
+            var ticksToImpact = projectile.ticksToImpact;
+            var exactPosition = projectile.ExactPosition;
+            LocalTargetInfo currentTarget = projectile.intendedTarget;
+            var props = projectile.Props;
+            float speedGain = props.speedGain;
+            float maxSpeed = props.speed; 
+            Vector3 velocity = projectile.velocity;
+            float shotSpeed = props.speed;
+            float mass = projectile.mass;
+            float ballisticCoefficient = projectile.ballisticCoefficient;
+            float radius = projectile.radius;
+            float gravity = projectile.gravity;
+            for (; ticksToImpact >= 0; ticksToImpact--)
+            {
+                yield return exactPosition = BallisticMove(currentTarget, exactPosition, speedGain, maxSpeed, ref velocity, ref shotSpeed, ref mass, ref ballisticCoefficient, ref radius, ref gravity);
+            }
+        }
+        protected override void MoveForward(ProjectileCE projectile)
+        {
+            projectile.ExactPosition = BallisticMove(projectile.intendedTarget, projectile.ExactPosition, projectile.Props.speedGain, projectile.Props.speed, ref projectile.velocity, ref projectile.shotSpeed, ref projectile.mass, ref projectile.ballisticCoefficient, ref projectile.radius, ref projectile.gravity);
+            projectile.FlightTicks++;
+        }
+        protected virtual Vector3 BallisticMove(LocalTargetInfo currentTarget, Vector3 exactPosition, float speedGain, float maxSpeed, ref Vector3 velocity, ref float shotSpeed, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity)
+        {
             Accelerate(currentTarget, radius, ballisticCoefficient, mass, gravity, speedGain, maxSpeed, exactPosition, ref velocity, ref shotSpeed);
             shotSpeed = GetSpeed(velocity);
             return exactPosition + velocity;

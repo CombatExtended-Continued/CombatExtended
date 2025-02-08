@@ -10,11 +10,27 @@ namespace CombatExtended
 {
     public class LerpedTrajectoryWorker : BaseTrajectoryWorker
     {
-        public override Vector3 MoveForward(LocalTargetInfo currentTarget, float shotRotation, float shotAngle, float gravityFactor, Vector2 origin, Vector3 exactPosition, ref Vector2 destination, float tickToImpact, float startingTicksToImpact, float shotHeight, float speedGain, float maxSpeed, ref bool kinit, ref Vector3 velocity, ref float shotSpeed, ref Vector3 curPosition, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity, ref float initialSpeed, ref int ticks)
+        public override IEnumerable<Vector3> NextPositions(ProjectileCE projectile)
         {
-            ticks++;
-            var v = Vec2Position(origin, destination, startingTicksToImpact, ticks);
-            return new Vector3(v.x, GetHeightAtTicks(shotHeight, shotSpeed, shotAngle, ticks, gravityFactor), v.y);
+            var ticksToImpact = projectile.ticksToImpact;
+            var origin = projectile.origin;
+            var destination = projectile.Destination;
+            var startingTicksToImpact = projectile.startingTicksToImpact;
+            var shotHeight = projectile.shotHeight;
+            var shotSpeed = projectile.shotSpeed;
+            var shotAngle = projectile.shotAngle;
+            var gravityFactor = projectile.GravityFactor;
+            for (; ticksToImpact >= 0; ticksToImpact--)
+            {
+                var ticks = projectile.FlightTicks + (ticksToImpact - projectile.ticksToImpact);
+                var v = Vec2Position(origin, destination, startingTicksToImpact, ticks);
+                yield return new Vector3(v.x, GetHeightAtTicks(shotHeight, shotSpeed, shotAngle, ticks, gravityFactor), v.y);
+            }
+        }
+        protected override void MoveForward(ProjectileCE projectile)
+        {
+            base.MoveForward(projectile);
+            projectile.FlightTicks++;
         }
         protected float GetHeightAtTicks(float shotHeight, float shotSpeed, float shotAngle, int ticks, float gravityFactor)
         {

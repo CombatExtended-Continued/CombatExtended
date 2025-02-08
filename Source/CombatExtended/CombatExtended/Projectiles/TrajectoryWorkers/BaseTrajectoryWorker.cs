@@ -11,59 +11,21 @@ namespace CombatExtended
 {
     public abstract class BaseTrajectoryWorker
     {
-        public abstract Vector3 MoveForward(
-            LocalTargetInfo currentTarget,
-            float shotRotation,
-            float shotAngle,
-            float gravityFactor,
-            Vector2 origin,
-            Vector3 exactPosition,
-            ref Vector2 destination,
-            float tickToImpact,
-            float startingTicksToImpact,
-            float shotHeight,
-            float speedGain,
-            float maxSpeed,
-            ref bool kinit,
-            ref Vector3 velocity,
-            ref float shotSpeed,
-            ref Vector3 curPosition,
-            ref float mass,
-            ref float ballisticCoefficient,
-            ref float radius,
-            ref float gravity,
-            ref float initialSpeed,
-            ref int flightTicks
-            );
-        public virtual IEnumerable<Vector3> NextPositions(
-            LocalTargetInfo currentTarget,
-            float shotRotation,
-            float shotAngle,
-            float gravityFactor,
-            Vector2 origin,
-            Vector3 exactPosition,
-            Vector2 destination,
-            float ticksToImpact,
-            float startingTicksToImpact,
-            float shotHeight,
-            bool kinit,
-            Vector3 velocity,
-            float shotSpeed,
-            Vector3 curPosition,
-            float mass,
-            float ballisticCoefficient,
-            float radius,
-            float gravity,
-            float initialSpeed,
-            float speedGain,
-            float maxSpeed,
-            int flightTicks)
+        public bool TryMoveForward(ProjectileCE projectile)
         {
-            for (; ticksToImpact >= 0; ticksToImpact--)
+            if (NextPositions(projectile).Any())
             {
-                yield return exactPosition = MoveForward(currentTarget, shotRotation, shotAngle, gravityFactor, origin, exactPosition, ref destination, ticksToImpact, startingTicksToImpact, shotHeight, speedGain, maxSpeed, ref kinit, ref velocity, ref shotSpeed, ref curPosition, ref mass, ref ballisticCoefficient, ref radius, ref gravity, ref initialSpeed, ref flightTicks);
+                MoveForward(projectile);
+                return true;
             }
+            return false;
         }
+        protected virtual void MoveForward(ProjectileCE projectile)
+        {
+            var nextPosition = NextPositions(projectile).First();
+            projectile.ExactPosition = nextPosition;
+        }
+        public abstract IEnumerable<Vector3> NextPositions(ProjectileCE projectile);
         public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
         {
             var sh = Mathf.Max(0f, (exactPosition.y) * 0.84f);
