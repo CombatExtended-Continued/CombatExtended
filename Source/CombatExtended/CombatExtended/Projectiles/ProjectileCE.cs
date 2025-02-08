@@ -191,7 +191,10 @@ namespace CombatExtended
             set
             {
                 exactPosition = value;
+                if (Map == null || value.InBounds(Map))
+                {
                 Position = ((Vector3)exactPosition).ToIntVec3();
+            }
             }
             get
             {
@@ -1135,6 +1138,11 @@ namespace CombatExtended
 
 
         public virtual IEnumerable<Vector3> NextPositions => TrajectoryWorker.NextPositions(this);
+        public virtual bool IsPredictable(out IEnumerable<Vector3> possiblePositionsForCIWS)
+        {
+            possiblePositionsForCIWS = NextPositions;
+            return !TrajectoryWorker.GuidedProjectile;
+        }
         protected Vector3 MoveForward()
         {
             TrajectoryWorker.TryMoveForward(this);
