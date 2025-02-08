@@ -26,7 +26,7 @@ namespace CombatExtended
 
         protected virtual void ReactiveAcceleration(LocalTargetInfo currentTarget, float speedGain, float maxSpeed, Vector3 exactPosition, ref Vector3 velocity, ref float shotSpeed)
         {
-            var speedChange = Mathf.Min(maxSpeed - shotSpeed, speedGain);
+            var speedChange = Mathf.Max(Mathf.Min(maxSpeed - shotSpeed, speedGain), 0f);
             if (speedChange > 0.001f)
             {
                 velocity = velocity + GetVelocity(speedChange, Vector3.zero, velocity);

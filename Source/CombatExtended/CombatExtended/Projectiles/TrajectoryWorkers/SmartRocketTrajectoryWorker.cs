@@ -19,7 +19,7 @@ namespace CombatExtended
             }
             var targetPos = currentTarget.Thing?.DrawPos ?? currentTarget.Cell.ToVector3Shifted();
             var velocityChange = GetVelocity(speedGain, exactPosition, targetPos);
-            shotSpeed = Mathf.Min(shotSpeed + speedGain, maxSpeed);
+            shotSpeed = Mathf.Max(Mathf.Min(shotSpeed + speedGain, maxSpeed), 0f);
             velocity = GetVelocity(shotSpeed, Vector3.zero, velocity + velocityChange);
         }
         public override bool GuidedProjectile => true;
