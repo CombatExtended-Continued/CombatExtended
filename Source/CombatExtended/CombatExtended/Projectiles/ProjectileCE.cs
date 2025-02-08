@@ -1590,7 +1590,7 @@ namespace CombatExtended
 
             return shadows;
         }
-
+        public ProjectilePropertiesCE Props => (ProjectilePropertiesCE)def.projectile;
         #endregion
     }
 }
