@@ -18,7 +18,7 @@ namespace CombatExtended
             LocalTargetInfo currentTarget = projectile.intendedTarget;
             var props = projectile.Props;
             float speedGain = props.speedGain;
-            float maxSpeed = props.speed; 
+            float maxSpeed = props.speed;
             Vector3 velocity = projectile.velocity;
             float shotSpeed = props.speed;
             float mass = projectile.mass;

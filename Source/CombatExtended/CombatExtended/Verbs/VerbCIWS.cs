@@ -240,7 +240,7 @@ namespace CombatExtended
                 }
 
                 Vector2 originV2 = new Vector2(originV3.x, originV3.z);
-                
+
                 var positions = PositionOfCIWSProjectile(i, pos, true);
                 //if (positions.firstPos == positions.secondPos) //Not sure why, but sometimes this code drops calculations on i = 1
                 //{

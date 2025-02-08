@@ -193,8 +193,8 @@ namespace CombatExtended
                 exactPosition = value;
                 if (Map == null || value.InBounds(Map))
                 {
-                Position = ((Vector3)exactPosition).ToIntVec3();
-            }
+                    Position = ((Vector3)exactPosition).ToIntVec3();
+                }
             }
             get
             {
