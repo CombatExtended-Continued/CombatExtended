@@ -135,6 +135,16 @@ namespace CombatExtended
         public bool blindFiring = false;
         public bool roofed = false;
 
+        /// <summary>
+        /// The height at which this shot is fired, adjusted for potential cover or other factors.
+        /// </summary>
+        public float AdjustedShotHeight = 0f;
+
+        /// <summary>
+        /// Adjustment in radians to be added to the angle of this shot, adjusted for potential cover or other factors.
+        /// </summary>
+        public float ShotAngleAdjustment = 0f;
+
         // Copy-constructor
         public ShiftVecReport(ShiftVecReport report)
         {
@@ -215,6 +225,8 @@ namespace CombatExtended
                 stringBuilder.AppendLine("   " + $"DEBUG: weathershift\t\t{weatherShift}");
                 stringBuilder.AppendLine("   " + $"DEBUG: accuracyFactor\t\t{accuracyFactor}");
                 stringBuilder.AppendLine("   " + $"DEBUG: lightingShift\t\t{lightingShift}");
+                stringBuilder.AppendLine("   " + $"DEBUG: AdjustedShotHeight\t\t{AdjustedShotHeight}");
+                stringBuilder.AppendLine("   " + $"DEBUG: ShotAngleAdjustment\t\t{ShotAngleAdjustment}");
             }
 
             if (lightingShift > 0)
