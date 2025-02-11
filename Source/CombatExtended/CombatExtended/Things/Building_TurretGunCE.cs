@@ -590,8 +590,7 @@ namespace CombatExtended
             top.DrawTurret(drawLoc, drawOffset, angleOffset);
             base.DrawAt(drawLoc, flip);
         }
-
-        public override void DrawExtraSelectionOverlays()           // Draw at range less than 1.42 tiles
+        protected virtual void DrawRangeRings()
         {
             float range = this.GunCompEq.PrimaryVerb.verbProps.range;
             if (range < 90f)
@@ -603,6 +602,10 @@ namespace CombatExtended
             {
                 GenDraw.DrawRadiusRing(base.Position, minRange);
             }
+        }
+        public override void DrawExtraSelectionOverlays()           // Draw at range less than 1.42 tiles
+        {
+            DrawRangeRings();
             if (this.WarmingUp)
             {
                 int degreesWide = (int)((float)this.burstWarmupTicksLeft * 0.5f);
