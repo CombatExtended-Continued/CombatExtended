@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-		<!-- Ranged weapon patch -->
+	
+	<!-- Ranged weapon patch -->
     <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>AV_Gun_ChargeLance</defName>
 		<statBases>
@@ -74,7 +75,26 @@
 		<value>BaseGun</value>
 	</Operation>
 
-			<!-- Melee mode patching -->
+	<!-- Melee mode patching -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.48</MeleeCritChance>
+				<MeleeParryChance>0.65</MeleeParryChance>
+				<MeleeDodgeChance>0.35</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]/tools</xpath>
@@ -117,22 +137,4 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]/statBases</xpath>
-		<value>
-			<Bulk>13</Bulk>
-			<MeleeCounterParryBonus>0.75</MeleeCounterParryBonus>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AV_Gun_ChargeLance_BladesMode"]</xpath>
-		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.48</MeleeCritChance>
-				<MeleeParryChance>0.65</MeleeParryChance>
-				<MeleeDodgeChance>0.35</MeleeDodgeChance>
-			</equippedStatOffsets>
-		</value>
-	</Operation>
 </Patch>
