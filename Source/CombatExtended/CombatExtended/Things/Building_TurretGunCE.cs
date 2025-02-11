@@ -336,7 +336,7 @@ namespace CombatExtended
             if (Active && (this.mannableComp == null || this.mannableComp.MannedNow) && base.Spawned && !(isReloading && WarmingUp))
             {
                 this.GunCompEq.verbTracker.VerbsTick();
-                if (!IsStunned && this.GunCompEq.PrimaryVerb.state != VerbState.Bursting)
+                if (!IsStunned && AttackVerb.state != VerbState.Bursting)
                 {
                     if (this.WarmingUp)
                     {
@@ -800,7 +800,7 @@ namespace CombatExtended
             }
         }
 
-        public void ResetCurrentTarget()               // Core method
+        public virtual void ResetCurrentTarget()               // Core method
         {
             this.currentTargetInt = LocalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;
