@@ -25,6 +25,10 @@ namespace CombatExtended
                     {
                         continue;
                     }
+                    if (verb is VerbCIWS && !Controller.settings.EnableCIWS)
+                    {
+                        continue;
+                    }
                     var command = new Command_Toggle()
                     {
                         defaultDesc = disableableVerb.HoldFireDesc.Translate(),
