@@ -84,6 +84,7 @@ namespace CombatExtended
                 FactionStrengthTracker tracker = new FactionStrengthTracker(faction);
                 trackers.Add(tracker);
             }
+            initialized = true;
         }
     }
 }
