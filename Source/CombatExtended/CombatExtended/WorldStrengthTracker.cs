@@ -77,16 +77,12 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                FactionStrengthTracker tracker = trackers.FirstOrDefault(x => x.Faction == faction);
-                if (tracker != null)
+                if (trackers.Any(s => s.Faction == faction))
                 {
-                    tracker.TickLonger();
+                    continue;
                 }
-                else
-                {
-                    tracker = new FactionStrengthTracker(faction);
+                FactionStrengthTracker tracker = new FactionStrengthTracker(faction);
                 trackers.Add(tracker);
-            }
             }
             initialized = true;
         }
