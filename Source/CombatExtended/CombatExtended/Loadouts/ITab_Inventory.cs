@@ -359,14 +359,13 @@ namespace CombatExtended
                     if (eq != null && eq.TryGetComp<CompEquippable>() != null)
                     {
                         CompInventory compInventory = SelPawnForGear.TryGetComp<CompInventory>();
-                        CompBiocodable compBiocoded = eq.TryGetComp<CompBiocodable>();
                         if (compInventory != null)
                         {
                             FloatMenuOption equipOption;
                             string eqLabel = GenLabel.ThingLabel(eq.def, eq.Stuff, 1);
-                            if (compBiocoded != null && compBiocoded.Biocoded && compBiocoded.CodedPawn != SelPawnForGear)
+                            if (!EquipmentUtility.CanEquip(eq, SelPawnForGear, out var reason))
                             {
-                                equipOption = new FloatMenuOption("CannotEquip".Translate(eqLabel) + ": " + "BiocodedCodedForSomeoneElse".Translate(), null);
+                                equipOption = new FloatMenuOption("CannotEquip".Translate(eqLabel) + ": " + reason, null);
                             }
                             else if (SelPawnForGear.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanEquip(eq, SelPawnForGear))
                             {
