@@ -2,11 +2,25 @@
 <Patch>
 
 	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="DankPyon_High_BattleElixir" or defName="DankPyon_KnowledgePotion" or defName="DankPyon_Luhix" or defName="DankPyon_Miracle"]/statBases</xpath>
+		<value>
+			<Bulk>0.2</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/HediffDef[defName="DankPyon_High_BattleElixir"]/stages/li[1]</xpath>
 		<value>
 			<statOffsets>
 				<Suppressability>-0.5</Suppressability>
 			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_HappyPowder" or defName="DankPyon_HornetHoney" or defName="DankPyon_Stardust"]/statBases</xpath>
+		<value>
+			<Bulk>0.05</Bulk>
 		</value>
 	</Operation>
 

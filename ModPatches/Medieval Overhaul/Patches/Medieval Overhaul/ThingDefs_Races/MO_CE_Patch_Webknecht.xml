@@ -16,6 +16,8 @@
 		<value>
 			<ArmorRating_Blunt>2</ArmorRating_Blunt>
 			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+			<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+			<AimingAccuracy>0.7</AimingAccuracy>
 		</value>
 	</Operation>
 
@@ -107,6 +109,26 @@
 				<RegenValue>5</RegenValue>
 				<MinArmorPct>0.5</MinArmorPct>
 			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_Webknecht"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>DankPyon_WebknechtWeb</defaultProjectile>
+					<burstShotCount>2</burstShotCount>
+					<warmupTime>3</warmupTime>
+					<range>16</range>
+					<minRange>1</minRange>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<label>web</label>
+					<commonality>0.2</commonality>
+				</li>
+			</verbs>
 		</value>
 	</Operation>
 

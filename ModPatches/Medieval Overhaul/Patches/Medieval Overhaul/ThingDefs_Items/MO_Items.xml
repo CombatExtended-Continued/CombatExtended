@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!--Make ammos craftable with the anvil-->
+	<!-- Make ammos craftable with the anvil -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="AmmoGreatArrowBase" or @Name="AmmoArrowBase" or @Name="AmmoCrossbowBoltBase"]/tradeTags</xpath>
 		<value>
@@ -11,9 +11,53 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="DankPyon_DrugBase" or defName="DankPyon_JuiceApple" or defName="DankPyon_JuiceAppleUnfermented"]/statBases</xpath>
+		<xpath>Defs/ThingDef[@Name="DankPyon_DrugBase"]</xpath>
+		<value>
+			<statBases>
+				<Bulk>1.5</Bulk>
+				<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+			</statBases>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.1</MeleeCritChance>
+				<MeleeParryChance>0.33</MeleeParryChance>
+				<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_JuiceApple" or defName="DankPyon_JuiceAppleUnfermented"]/statBases</xpath>
 		<value>
 			<Bulk>1.5</Bulk>
+			<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_JuiceApple" or defName="DankPyon_JuiceAppleUnfermented"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.1</MeleeCritChance>
+				<MeleeParryChance>0.33</MeleeParryChance>
+				<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="DankPyon_DrugBase" or defName="DankPyon_JuiceApple" or defName="DankPyon_JuiceAppleUnfermented"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="DankPyon_DrugBase" or defName="DankPyon_JuiceApple" or defName="DankPyon_JuiceAppleUnfermented"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DankPyon_DrugBase" or defName="DankPyon_JuiceApple" or defName="DankPyon_JuiceAppleUnfermented"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
 		</value>
 	</Operation>
 
@@ -44,4 +88,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>
