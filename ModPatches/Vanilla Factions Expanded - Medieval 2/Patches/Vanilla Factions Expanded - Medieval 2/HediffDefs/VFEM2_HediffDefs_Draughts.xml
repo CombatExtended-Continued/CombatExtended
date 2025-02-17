@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Add suppressability to the effect -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VFEM2_StrengthDraught"]/stages/li[1]</xpath>
+		<value>
+			<statOffsets>
+				<Suppressability>-0.2</Suppressability>
+			</statOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VFEM2_StrengthDraught"]/stages/li[2]/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.5</Suppressability>
+		</value>
+	</Operation>
+
+</Patch>

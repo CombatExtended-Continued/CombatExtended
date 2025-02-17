@@ -3,7 +3,7 @@
 
 	<!-- ======= Clothes ======= -->
 
-	<!-- Jester, Dame -->
+	<!-- ===== Jester, Dame ===== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_JesterOutfit" or defName="VFEM2_Apparel_DameDress"]/statBases</xpath>
 		<value>
@@ -19,7 +19,7 @@
 		</value>
 	</Operation>
 
-	<!-- King -->
+	<!-- ===== King ===== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_KingsRobes"]/statBases</xpath>
 		<value>
@@ -37,7 +37,7 @@
 
 	<!-- ======= Armors ======= -->
 
-	<!-- Heavy Leather -->
+	<!-- ===== Heavy Leather ===== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_HeavyLeatherArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
@@ -83,7 +83,7 @@
 		</value>
 	</Operation>
 
-	<!-- Leather -->
+	<!-- ===== Leather ===== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_LeatherArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
@@ -106,7 +106,7 @@
 		</value>
 	</Operation>
 
-	<!-- Tabard -->
+	<!-- ===== Tabard ===== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_Tabard"]/statBases</xpath>
 		<value>
@@ -115,7 +115,7 @@
 		</value>
 	</Operation>
 
-	<!-- Padded -->
+	<!-- ===== Padded ===== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_PaddedArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
@@ -138,7 +138,7 @@
 		</value>
 	</Operation>
 
-	<!-- Mantle -->
+	<!-- ===== Mantle ===== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_Mantle"]/statBases</xpath>
 		<value>
@@ -154,7 +154,7 @@
 		</value>
 	</Operation>
 	
-	<!-- Plate -->
+	<!-- ===== Plate ===== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_PlateArmorHeavy"]/statBases</xpath>
 		<value>
@@ -177,8 +177,12 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_PlateArmorHeavy"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_PlateArmorHeavy"]/equippedStatOffsets/MeleeDodgeChance</xpath>
 		<value>
 			<MeleeDodgeChance>-0.15</MeleeDodgeChance>
 		</value>
