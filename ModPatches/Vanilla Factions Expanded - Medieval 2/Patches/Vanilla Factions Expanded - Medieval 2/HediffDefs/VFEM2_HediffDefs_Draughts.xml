@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- Add suppressability to the effect -->
+	<!-- ===== Strength ===== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/HediffDef[defName="VFEM2_StrengthDraught"]/stages/li[1]</xpath>
 		<value>
@@ -16,6 +16,55 @@
 		<value>
 			<Suppressability>-0.5</Suppressability>
 		</value>
+	</Operation>
+
+	<!-- ===== Stoneskin ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VFEM2_StoneskinDraught"]/stages/li[1]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VFEM2_StoneskinDraught"]/stages/li[1]/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>3.75</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VFEM2_StoneskinDraught"]/stages/li[1]/statOffsets</xpath>
+		<value>
+			<MoveSpeed>-0.5</MoveSpeed>
+			<MeleeDodgeChance>-0.05</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VFEM2_StoneskinDraught"]/stages/li[2]/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VFEM2_StoneskinDraught"]/stages/li[2]/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="VFEM2_StoneskinDraught"]/stages/li[2]/statOffsets</xpath>
+		<value>
+			<MoveSpeed>-1.0</MoveSpeed>
+			<MeleeDodgeChance>-0.1</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="VFEM2_StoneskinDraught"]/stages/li[2]/capMods</xpath>
 	</Operation>
 
 </Patch>
