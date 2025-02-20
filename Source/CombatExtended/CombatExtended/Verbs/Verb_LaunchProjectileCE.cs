@@ -74,9 +74,10 @@ namespace CombatExtended
             get
             {
                 float shotsPerBurst = base.ShotsPerBurst;
-                if (EquipmentSource != null)
+                WeaponPlatform platform = this.WeaponPlatform;
+                if (platform != null)
                 {
-                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
+                    float modified = platform.GetStatValue(CE_StatDefOf.BurstShotCount);
                     if (modified > 0)
                     {
                         shotsPerBurst = modified;
@@ -191,14 +192,17 @@ namespace CombatExtended
             }
         }
 
+        public WeaponPlatform WeaponPlatform => EquipmentSource as WeaponPlatform;
+
         public float RecoilAmount
         {
             get
             {
                 float recoil = VerbPropsCE.recoilAmount;
-                if (EquipmentSource != null)
+                WeaponPlatform platform = this.WeaponPlatform;
+                if (platform != null)
                 {
-                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.Recoil);
+                    float modified = platform.GetStatValue(CE_StatDefOf.Recoil);
                     if (modified > 0)
                     {
                         recoil = modified;

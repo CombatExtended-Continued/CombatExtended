@@ -782,9 +782,9 @@ namespace CombatExtended
             {
                 return;
             }
-            float recoil = ((VerbPropertiesCE)weaponDef.verbs[0]).recoilAmount;
+            float recoil = ((VerbPropertiesCE)shootVerb.verbProps).recoilAmount;
 
-            float recoilRelaxation = weaponDef.verbs[0].burstShotCount > 1 ? weaponDef.verbs[0].ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
+            float recoilRelaxation = shootVerb.verbProps.burstShotCount > 1 ? shootVerb.verbProps.ticksBetweenBurstShots : weaponDef.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown) * 20f;
 
             recoil = Math.Min(recoil * recoil, 20) * RecoilMagicNumber * Mathf.Clamp((float)Math.Log10(recoilRelaxation), 0.1f, 10);
 
