@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!--disabled very stupid raid type-->
+
+	<!-- === Disabled very stupid raid type === -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/FactionDef[@Name = "DankPyon_NobleHouseFactionBase"]/pawnGroupMakers/li[2]/commonality</xpath>
 		<value>
@@ -8,8 +9,7 @@
 		</value>
 	</Operation>
 
-	<!--Give Shields-->
-
+	<!-- === Give Shields === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[
 			defName="DankPyon_Medieval_Mercenary" or
@@ -83,7 +83,93 @@
 		</value>
 	</li>-->
 
-	<!--Give ammo to crosbowman-->
+	<!-- === Replace hard requirement shield === -->
+
+	<!-- Amboisse -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanAmboise"]/apparelRequired/li[.="DankPyon_ShieldHeater_Amboise"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanAmboise"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>350</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Amboise</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Soren -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanSoren"]/apparelRequired/li[.="DankPyon_ShieldHeater_Soren"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanSoren"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>350</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Soren</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Oswin -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanOswin"]/apparelRequired/li[.="DankPyon_ShieldHeater_Oswin"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanOswin"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>350</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Oswin</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Hesse -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanHesse"]/apparelRequired/li[.="DankPyon_ShieldHeater_Hesse"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanHesse"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>
+					<min>100</min>
+					<max>350</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Hesse</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Give ammo to Crosbowman === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
 		<value>
