@@ -2,7 +2,7 @@
 
 namespace CombatExtended
 {
-    public class PawnRenderNodeWorker_Webbing : PawnRenderNodeWorker
+    public class PawnRenderNodeWorker_Webbing : PawnRenderNodeWorker_Apparel_Body
     {
         public override bool CanDrawNow(PawnRenderNode node, PawnDrawParms parms)
         {
