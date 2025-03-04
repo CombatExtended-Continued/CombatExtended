@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="70mmMechanoidGrenadeBase">
+		<defName>Ammo_70mmMechanoidGrenade_Tox</defName>
+		<label>70mm mechanoid grenade (Tox)</label>
+		<graphicData>
+			<texPath>Things/Ammo/GrenadeLauncher/Tox</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>18.34</MarketValue><!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+		</statBases>
+		<ammoClass>Toxic</ammoClass>
+		<detonateProjectile>Bullet_70mmMechanoidGrenade_Tox</detonateProjectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="Base40x46mmGrenadeBullet" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>Bullet_70mmMechanoidGrenade_Tox</defName>
+		<label>70mm mechanoid grenade (Tox)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>ToxGas</damageDef>
+			<explosionRadius>6.5</explosionRadius>
+			<postExplosionGasType>ToxGas</postExplosionGasType>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		</projectile>
+	</ThingDef>
+	
+	<RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>MakeAmmo_70mmMechanoidGrenade_Tox</defName>
+		<label>make 70mm Mechanoid Tox Grenade x5</label>
+		<description>Craft 5 70mm Mechanoid Tox Grenades.</description>
+		<jobString>Making 70mm Mechanoid Tox Grenades.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_70mmMechanoidGrenade_Tox>5</Ammo_70mmMechanoidGrenade_Tox>
+		</products>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workAmount>9240</workAmount><!-- 10% more work -->
+	</RecipeDef>
+
+</Defs>

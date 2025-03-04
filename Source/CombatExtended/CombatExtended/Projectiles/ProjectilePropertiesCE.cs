@@ -1,10 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using static UnityEngine.UI.Image;
+
 
 namespace CombatExtended
 {
@@ -13,6 +15,7 @@ namespace CombatExtended
         public TravelingShellProperties shellingProps;
 
         // public float armorPenetration = 0;
+        public float speedGain = 0f;
         public int pelletCount = 1;
         public float spreadMult = 1;
         public List<SecondaryDamage> secondaryDamage = new List<SecondaryDamage>();
@@ -61,6 +64,34 @@ namespace CombatExtended
         public float aimHeightOffset = 0;
 
         public float empShieldBreakChance = 1f;
+        public float collideDistance = 1f;
+        public float impactChance = 1f;
+
         public float Gravity => CE_Utility.GravityConst * gravityFactor;
+        public ThingDef CIWSVersion;
+        public System.Type trajectoryWorker;
+        private BaseTrajectoryWorker trajectoryWorkerInt;
+        public BaseTrajectoryWorker TrajectoryWorker
+        {
+            get
+            {
+                if (trajectoryWorkerInt == null)
+                {
+                    if (trajectoryWorker != null)
+                    {
+                        trajectoryWorkerInt = (BaseTrajectoryWorker)Activator.CreateInstance(trajectoryWorker);
+                    }
+                    else if (lerpPosition)
+                    {
+                        trajectoryWorkerInt = new LerpedTrajectoryWorker();
+                    }
+                    else
+                    {
+                        trajectoryWorkerInt = new BallisticsTrajectoryWorker();
+                    }
+                }
+                return trajectoryWorkerInt;
+            }
+        }
     }
 }

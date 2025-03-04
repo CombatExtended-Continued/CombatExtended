@@ -24,6 +24,7 @@ namespace CombatExtended
         public static Settings settings;
         public static Controller instance;
         public static ModContentPack content;
+        private static bool genericState;
         private static Patches patches;
         private Vector2 scrollPosition;
 
@@ -91,7 +92,6 @@ namespace CombatExtended
                 }
 
                 modPart.PostLoad(content, settings);
-
             }
 
             // Initialize loadout generator
@@ -116,11 +116,31 @@ namespace CombatExtended
 
             LongEventHandler.QueueLongEvent(patches.Install, "CE_LongEvent_CompatibilityPatches", false, null);
 
+            genericState = settings.GenericAmmo;
         }
 
         public override string SettingsCategory()
         {
             return "Combat Extended";
+        }
+
+        public override void WriteSettings()
+        {
+            base.WriteSettings();
+            if (settings.GenericAmmo != genericState)
+            {
+                GenericRestartPopup();
+            }
+        }
+
+        private static void GenericRestartPopup()
+        {
+            var acceptAction = new Action(() =>
+            {
+                GenCommandLine.Restart();
+            });
+            var dialog = new Dialog_MessageBox("CE_Settings_GenericRestartPopup".Translate(), "CE_Settings_AcceptRestart".Translate(), acceptAction, "CE_Settings_DeclineRestart".Translate(), null, "CE_Settings_RestartTitle".Translate(), true);
+            Find.WindowStack.Add(dialog);
         }
 
         private static void DoTutorialPopup()

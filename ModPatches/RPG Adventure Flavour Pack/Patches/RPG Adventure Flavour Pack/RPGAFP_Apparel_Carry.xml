@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- == Bag of Holding == -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Psycasts Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MSSRPG_HoldingBag"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MSSRPG_HoldingBag"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>100</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MSSRPG_HoldingBag"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryBulk>25</CarryBulk>
+							<CarryWeight>25</CarryWeight>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MSSRPG_HoldingBag"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<bodyPartGroups>
+							<li>Torso</li>
+							<li>Shoulders</li>
+						</bodyPartGroups>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MSSRPG_HoldingBag"]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>Webbing</li>
+						</layers>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

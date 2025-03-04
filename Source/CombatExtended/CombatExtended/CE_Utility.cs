@@ -1459,6 +1459,35 @@ namespace CombatExtended
             return Mathf.Sqrt(dx * dx + dz * dz);
         }
 
+        /// <summary>
+        /// Finds intersection point for two segments
+        /// </summary>
+        /// <param name="A">First point of first segment</param>
+        /// <param name="B">Second point of first segment</param>
+        /// <param name="C">First point of second segment</param>
+        /// <param name="D">Second point of second segment</param>
+        /// <param name="result">Intersection point or <see cref="Vector2.negativeInfinity"/></param>
+        /// <returns>True if intersects, false if not</returns>
+        public static bool TryFindIntersectionPoint(Vector2 A, Vector2 B, Vector2 C, Vector2 D, out Vector2 result)
+        {
+            float x1 = A.x, y1 = A.y, x2 = B.x, y2 = B.y, x3 = C.x, y3 = C.y, x4 = D.x, y4 = D.y;
+            var det = ((x4 - x3) * (y2 - y1) - (y4 - y3) * (x2 - x1));
+            if (Mathf.Abs(det) < 0.0000001f)
+            {
+                result = Vector2.negativeInfinity;
+                return false;
+            }
+            var alpha = ((x4 - x3) * (y3 - y1) - (y4 - y3) * (x3 - x1)) / det;
+            var beta = ((x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1)) / det;
+            if (alpha < 0.0f || alpha > 1.0f || beta < 0.0f || beta > 1.0f)
+            {
+                result = Vector2.negativeInfinity;
+                return false;
+            }
+            result = new Vector2(x1 + alpha * (x2 - x1), y1 + alpha * (y2 - y1));
+            return true;
+        }
+
         public static Vector3 ToVec3Gridified(this Vector3 originalVec3)
         {
             Vector2 tempVec2 = new Vector2(originalVec3.normalized.x, originalVec3.normalized.z);
@@ -1617,6 +1646,146 @@ namespace CombatExtended
             return pawn;
         }
 
+        public static object LaunchProjectileCE(ThingDef projectileDef,
+                                                ThingDef _ammoDef,
+                                                Def _ammosetDef,
+                                                Vector2 origin,
+                                                LocalTargetInfo target,
+                                                Pawn launcher,
+                                                float shotAngle,
+                                                float shotRotation,
+                                                float shotHeight,
+                                                float shotSpeed)
+        {
+            if (_ammoDef is AmmoDef ammoDef && _ammosetDef is AmmoSetDef ammosetDef)
+            {
+                foreach (var al in ammosetDef.ammoTypes)
+                {
+                    if (al.ammo == ammoDef)
+                    {
+                        projectileDef = al.projectile;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                projectileDef = projectileDef.GetProjectile();
+            }
+            var p = ThingMaker.MakeThing(projectileDef, null);
+            ProjectileCE projectile = (ProjectileCE)p;
+            GenSpawn.Spawn(projectile, launcher.Position, launcher.Map);
+            projectile.ExactPosition = origin;
+            projectile.canTargetSelf = false;
+            projectile.minCollisionDistance = 1;
+            projectile.intendedTarget = target;
+            projectile.mount = null;
+            projectile.AccuracyFactor = 1;
+
+            ProjectilePropertiesCE pprop = projectileDef.projectile as ProjectilePropertiesCE;
+            bool instant = false;
+            float spreadDegrees = 0;
+            float aperatureSize = 0.03f;
+            // Hard coded as a super high max range - TODO: change in 1.6 to pass the range from the turret to this function.
+            // Should also update ProjectileCE.RayCast to not need a VerbPropertiesCE input just a float for range (Since thats all its used for).
+            VerbPropertiesCE verbPropsRange = new VerbPropertiesCE
+            {
+                range = 1000
+            };
+            if (pprop != null)
+            {
+                instant = pprop.isInstant;
+            }
+            if (instant)
+            {
+                projectile.RayCast(
+                    launcher,
+                    verbPropsRange,
+                    origin,
+                    shotAngle,
+                    shotRotation,
+                    shotHeight,
+                    shotSpeed,
+                    spreadDegrees,
+                    aperatureSize,
+                    launcher);
+            }
+            else
+            {
+                projectile.Launch(
+                    launcher,
+                    origin,
+                    shotAngle,
+                    shotRotation,
+                    shotHeight,
+                    shotSpeed,
+                    launcher);
+            }
+            return projectile;
+        }
+
         public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
+
+        internal static IEnumerable<Thing> ContainedThings(this IThingHolder thingHolder)
+        {
+            if (thingHolder == null)
+            {
+                yield break;
+            }
+            var heldThings = thingHolder.GetDirectlyHeldThings();
+            if (heldThings != null)
+            {
+                foreach (var thing in heldThings)
+                {
+                    if (thing is IThingHolder childThingHolder && (thing is Skyfaller || thing is IActiveDropPod))
+                    {
+                        foreach (var childThing in ContainedThings(childThingHolder))
+                        {
+                            yield return childThing;
+                        }
+                        if (thing is IActiveDropPod dropPod)
+                        {
+                            foreach (var childThing in ContainedThings(dropPod.Contents))
+                            {
+                                yield return childThing;
+                            }
+                        }
+                    }
+                    else if (thing != null)
+                    {
+                        yield return thing;
+                    }
+                }
+            }
+        }
+        internal static T ElementAtOrLast<T>(this IEnumerable<T> enumerable, int index)
+        {
+            var source = enumerable.GetEnumerator();
+            T current = source.Current;
+            for (int i = 0; i < index; i++)
+            {
+                if (!source.MoveNext())
+                {
+                    break;
+                }
+                current = source.Current;
+            }
+            return current;
+        }
+        public static Vector3 DrawPosSinceTicks(this Skyfaller thing, int ticksAmount)
+        {
+            thing.ticksToImpact -= ticksAmount;
+            var result = thing.DrawPos;
+            thing.ticksToImpact += ticksAmount;
+            return result;
+        }
+        public static IEnumerable<Vector3> DrawPositions(this Skyfaller skyfaller)
+        {
+            int max = skyfaller.ticksToImpact;
+            for (int i = 1; i <= max; i++)
+            {
+                yield return skyfaller.DrawPosSinceTicks(i);
+            }
+        }
     }
 }

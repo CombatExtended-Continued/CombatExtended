@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<!--===== Guardian Spear - Melee =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_GuardianSpear"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>				
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>52</power>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
+					<armorPenetrationSharp>98</armorPenetrationSharp>
+				</li>			
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_GuardianSpear"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.67</MeleeCritChance>
+				<MeleeParryChance>1.95</MeleeParryChance>
+				<MeleeDodgeChance>1.1</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_GuardianSpear"]/statBases</xpath>
+		<value>
+			<Bulk>13</Bulk>
+			<MeleeCounterParryBonus>1.88</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!--===== Guardian Spear - Ranged =====-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_TotE_GuardianSpearR</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.62</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.43</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>16</range>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>Talon_Bolt_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<recoilAmount>1.35</recoilAmount>
+			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>5.2</reloadTime>
+			<ammoSet>AmmoSet_Bolter75</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!--===== Adrathic Spear - Melee =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_AdrathicSpear"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>				
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>52</power>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
+					<armorPenetrationSharp>98</armorPenetrationSharp>
+				</li>			
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_AdrathicSpear"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.67</MeleeCritChance>
+				<MeleeParryChance>1.95</MeleeParryChance>
+				<MeleeDodgeChance>1.1</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_AdrathicSpear"]/statBases</xpath>
+		<value>
+			<Bulk>13</Bulk>
+			<MeleeCounterParryBonus>1.88</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!--===== Adrathic Spear - Ranged =====-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_TotE_AdrathicSpearR</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.12</ShotSpread>
+			<SwayFactor>1.95</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Lasgun_Cannon</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>22</range>
+			<soundCast>Talon_Pulse_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<recoilAmount>2.15</recoilAmount>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>6.2</reloadTime>
+			<ammoSet>AmmoSet_Lasgun_Cannon</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+	</Operation>
+
+	<!--===== Melta Spear - Melee =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_MeltaSpear"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>				
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>52</power>
+					<cooldownTime>1.35</cooldownTime>
+					<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
+					<armorPenetrationSharp>98</armorPenetrationSharp>
+				</li>			
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_MeltaSpear"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.67</MeleeCritChance>
+				<MeleeParryChance>1.95</MeleeParryChance>
+				<MeleeDodgeChance>1.1</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_MeltaSpear"]/statBases</xpath>
+		<value>
+			<Bulk>13</Bulk>
+			<MeleeCounterParryBonus>1.88</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!--===== Melta Spear - Ranged =====-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_TotE_MeltaSpear</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.11</ShotSpread>
+			<SwayFactor>1.56</SwayFactor>
+			<Bulk>13</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Laser_MeltaCharge</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>Shot_SniperRifle</soundCast> <!-- Weird choice, but it's what the base mod uses. -->
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilAmount>2.7</recoilAmount>
+			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize>
+			<reloadTime>4.8</reloadTime>
+			<ammoSet>AmmoSet_MeltaCharge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!--===== Castellan Axe - Melee =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_CastellanAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.74</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.88</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>				
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>56</power>
+					<cooldownTime>1.85</cooldownTime>
+					<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
+					<armorPenetrationSharp>100</armorPenetrationSharp>
+				</li>			
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_CastellanAxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.67</MeleeCritChance>
+				<MeleeParryChance>1.95</MeleeParryChance>
+				<MeleeDodgeChance>0.87</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_CastellanAxe"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<MeleeCounterParryBonus>2.02</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!--===== Castellan Axe - Ranged =====-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_TotE_CastellanAxeR</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.62</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.09</ShotSpread>
+			<SwayFactor>1.63</SwayFactor>
+			<Bulk>15</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>16</range>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>Talon_Bolt_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<recoilAmount>1.35</recoilAmount>
+			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>5.2</reloadTime>
+			<ammoSet>AmmoSet_Bolter75</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!--===== Watcher's Axe - Melee =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_TotE_WatchersAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.74</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.88</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>				
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>72</power>
+					<cooldownTime>1.85</cooldownTime>
+					<armorPenetrationBlunt>2.8</armorPenetrationBlunt>
+					<armorPenetrationSharp>135</armorPenetrationSharp>
+				</li>			
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_WatchersAxe"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.67</MeleeCritChance>
+				<MeleeParryChance>1.95</MeleeParryChance>
+				<MeleeDodgeChance>0.87</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_TotE_WatchersAxe"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<MeleeCounterParryBonus>2.02</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<!--===== Castellan Axe - Ranged =====-->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>GW_TotE_WatchersAxeR</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>0.52</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>1.51</SwayFactor>
+			<Bulk>15</Bulk>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Bolter75_Standard</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>20</range>
+			<burstShotCount>4</burstShotCount>
+			<soundCast>Talon_Bolt_Gun_Sound</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<recoilAmount>1.14</recoilAmount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>5.2</reloadTime>
+			<ammoSet>AmmoSet_Bolter75</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>

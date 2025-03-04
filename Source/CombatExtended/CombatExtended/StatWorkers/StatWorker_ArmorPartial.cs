@@ -227,39 +227,5 @@ namespace CombatExtended
             return base.GetStatDrawEntryLabel(stat, value, numberSense, optionalReq, finalized);
         }
 
-        public override string ValueToString(float val, bool finalized, ToStringNumberSense numberSense = ToStringNumberSense.Absolute)
-        {
-            if (this.stat.defName == "PartialArmorBody")
-            {
-                return "Hover over";
-            }
-            return base.ValueToString(val, finalized, numberSense);
-        }
-
-        public override bool ShouldShowFor(StatRequest req)
-        {
-            if (!(req.Def is ThingDef))
-            {
-                return false;
-            }
-
-            if (((ThingDef)req.Def)?.IsApparel ?? req.Thing?.def?.IsApparel ?? false)
-            {
-                return this.stat.defName != "PartialArmorBody";
-            }
-            else if (req.Thing is Pawn)
-            {
-                if (req.Thing.def.HasModExtension<PartialArmorExt>())
-                {
-                    return true;
-                }
-                else
-                {
-                    return this.stat.defName != "PartialArmorBody";
-                }
-            }
-            return false;
-
-        }
     }
 }

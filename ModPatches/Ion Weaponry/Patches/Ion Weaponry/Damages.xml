@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="IW_IonBullet"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="IW_IonBullet"]</xpath>
+		<value>
+			<label>Ion Discharge</label>
+			<armorCategory>Electric</armorCategory>
+			<defaultArmorPenetration>0.50</defaultArmorPenetration>
+			<combatLogRules>Damage_EMP</combatLogRules>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="IW_Ionization"]/comps/li[@Class="AthenaFramework.HediffCompProperties_Bomb"]/damageAmount</xpath>
+		<value>
+			<damageAmount>30</damageAmount>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--===== Armor Upgrades =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="GW_Landraider_UpgradeTree"]/nodes/li[key="RedeemerUpgrade"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats</xpath>
+		<value>
+			<stats>
+				<li>
+					<def>ArmorRating_Blunt</def>
+					<value>8</value>
+				</li>
+				<li>
+					<def>ArmorRating_Sharp</def>
+					<value>4</value>
+				</li>
+			</stats>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.UpgradeTreeDef[defName="GW_Landraider_UpgradeTree"]/nodes/li[key="CrusaderUpgrade"]/upgrades/li[@Class="Vehicles.StatUpgrade"]/stats</xpath>
+		<value>
+			<stats>
+				<li>
+					<def>ArmorRating_Blunt</def>
+					<value>8</value>
+				</li>
+				<li>
+					<def>ArmorRating_Sharp</def>
+					<value>4</value>
+				</li>
+			</stats>
+		</value>
+	</Operation>
+
+	<!--===== Redeemer Autocannon =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_RedeemerLandRaiderAC_MainTurret"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_20x102mmNATO_AP</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_RedeemerLandRaiderAC_MainTurret"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.8</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_RedeemerLandRaiderAC_MainTurret"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.3</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_RedeemerLandRaiderAC_MainTurret"]/chargePerAmmoCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_RedeemerLandRaiderAC_MainTurret"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_RedeemerLandRaiderAC_MainTurret"]/maxRange</xpath>
+		<value>
+			<maxRange>72</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_RedeemerLandRaiderAC_MainTurret"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_20x102mmNATO_AP</li>
+				<li>Ammo_20x102mmNATO_Incendiary</li>
+				<li>Ammo_20x102mmNATO_HE</li>
+				<li>Ammo_20x102mmNATO_Sabot</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_RedeemerLandRaiderAC_MainTurret"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+				<shotHeight>1.5</shotHeight>
+				<speed>182</speed>
+				<sway>1.0</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+	<!--===== Side Heavy Bolter Turret =====-->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Sidebolter"]/projectile</xpath>
+		<value>
+			<projectile>Bullet_Bolter998_Standard</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Sidebolter"]/reloadTimer</xpath>
+		<value>
+			<reloadTimer>7.8</reloadTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Sidebolter"]/warmUpTimer</xpath>
+		<value>
+			<warmUpTimer>2.3</warmUpTimer>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Sidebolter"]/chargePerAmmoCount</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Sidebolter"]/genericAmmo</xpath>
+		<value>
+			<genericAmmo>false</genericAmmo>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Sidebolter"]/maxRange</xpath>
+		<value>
+			<maxRange>62</maxRange>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Sidebolter"]/ammunition/thingDefs</xpath>
+		<value>
+			<thingDefs>
+				<li>Ammo_Bolter998_Standard</li>
+				<li>Ammo_Bolter998_MetalStorm</li>
+				<li>Ammo_Bolter998_Kraken</li>
+				<li>Ammo_Bolter998_Inferno</li>
+			</thingDefs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/Vehicles.VehicleTurretDef[defName="GW_LandRaider_Sidebolter"]</xpath>
+		<value>
+			<li Class="Vehicles.CETurretDataDefModExtension">
+				<ammoSet>AmmoSet_Bolter998</ammoSet>
+				<shotHeight>1.5</shotHeight>
+				<speed>229</speed>
+				<sway>1.0</sway>
+				<spread>0.01</spread>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
