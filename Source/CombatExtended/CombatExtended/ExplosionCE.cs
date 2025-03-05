@@ -19,6 +19,14 @@ namespace CombatExtended
         private const float MaxMergeTicks = 3f;
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
         public const bool MergeExplosions = false;
+        
+        private SimpleCurve falloffCurve = new SimpleCurve
+        {
+            {1.5f, 1f},
+            {3f, 0.5f},
+            {5f, 0.3f},
+            {8f, 0.15f}
+        };
 
         // New method
         public virtual bool MergeWith(ExplosionCE other, out ExplosionCE merged, out ExplosionCE nonMerged)
@@ -401,18 +409,19 @@ namespace CombatExtended
         }
 
         //New methods
-        public int GetDamageAmountAtCE(IntVec3 c)   //t => t^(0.666f)
+        public int GetDamageAmountAtCE(IntVec3 c)
         {
             if (!damageFalloff)
             {
                 return damAmount;
             }
             var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 0.666f);
-            return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, (float)damAmount / 3, t)), 1);
+            int dam = Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, (float)damAmount * falloffCurve.Evaluate(radius), t)), 1);
+            MoteMaker.ThrowText(c.ToVector3(), MapHeld, dam.ToString());
+            return dam;
         }
 
-        public float GetArmorPenetrationAtCE(IntVec3 c) //t => t^(0.55f), penetrationAmount => damAmount * PressurePerDamage
+        public float GetArmorPenetrationAtCE(IntVec3 c)
         {
             var basePen = Mathf.Max(damAmount * PressurePerDamage, armorPenetration);
             if (!damageFalloff)
@@ -420,8 +429,7 @@ namespace CombatExtended
                 return basePen;
             }
             var t = c.DistanceTo(Position) / radius;
-            t = Mathf.Pow(t, 0.55f);
-            return Mathf.Lerp(basePen, basePen / 3, t);
+            return Mathf.Lerp(basePen, basePen * falloffCurve.Evaluate(radius), t);
         }
     }
 }
