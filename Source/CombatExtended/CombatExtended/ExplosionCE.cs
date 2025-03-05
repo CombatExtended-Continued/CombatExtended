@@ -416,9 +416,7 @@ namespace CombatExtended
                 return damAmount;
             }
             var t = c.DistanceTo(Position) / radius;
-            int dam = Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, (float)damAmount * falloffCurve.Evaluate(radius), t)), 1);
-            MoteMaker.ThrowText(c.ToVector3(), MapHeld, dam.ToString());
-            return dam;
+            return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, (float)damAmount * falloffCurve.Evaluate(radius), t)), 1);
         }
 
         public float GetArmorPenetrationAtCE(IntVec3 c)
