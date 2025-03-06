@@ -137,6 +137,7 @@ Big and Small - Vampires and the Undead  |
 Big and Small - Weapons	|
 Biomes! Caverns	|
 Biomes! Core	|
+Biomes! Polluted Lands  |
 Biotech Expansion - Insectoid   |
 Biotech Expansion - Mammalia  |
 Biotech Expansion - Mythic  |
@@ -266,6 +267,7 @@ GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Hammer of the Imperium |
 GrimWorld 40,000 - Imperial Vehicles of Grimworld |
+GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
 Gulden Mod  |
 Half Dragons    |
@@ -366,7 +368,6 @@ MorrowRim - Just the Animals	|
 Moyo - From the Depth   |
 Moyo - Light in the Abyss   |
 Moyo - The Cartel Arrives   |
-Moyo 2.0-Blood Stained Business |
 Multiplayer |
 Nakin Race  |
 Nanosuit    |
@@ -425,6 +426,7 @@ Rah's Vanilla Turrets Expansion |
 Rakkle The Rattle Snake Race Mod  |
 Rambo Weapons Pack (Continued)  |
 Ratkin Apparel+ |
+Ratkin Xenotype |
 Ratnik-3 Prototype Armor    |
 ReBuild - Doors and Corners |
 Red Army (Continued) |

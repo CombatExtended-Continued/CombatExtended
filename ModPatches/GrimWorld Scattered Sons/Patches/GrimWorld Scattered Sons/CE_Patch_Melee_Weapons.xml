@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- === Lion Sword === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SS_LionSword"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+			<ToughnessRating>30</ToughnessRating>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_SS_LionSword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_SS_LionSword"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SS_LionSword"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SS_LionSword"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.33</MeleeCritChance>
+			<MeleeParryChance>0.7</MeleeParryChance>
+			<MeleeDodgeChance>0.3</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SS_LionSword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>68</power>
+					<cooldownTime>2.3</cooldownTime>
+					<armorPenetrationBlunt>14</armorPenetrationBlunt>
+					<armorPenetrationSharp>206</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>94</power>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetrationBlunt>22</armorPenetrationBlunt>
+					<armorPenetrationSharp>142</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Flame Sword === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_Melee_FlameSword"]/statBases</xpath>
+		<value>
+			<Bulk>15</Bulk>
+			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+			<ToughnessRating>30</ToughnessRating>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="GW_SM_Melee_FlameSword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="GW_SM_Melee_FlameSword"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_Melee_FlameSword"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_Melee_FlameSword"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.27</MeleeCritChance>
+			<MeleeParryChance>0.66</MeleeParryChance>
+			<MeleeDodgeChance>0.33</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_Melee_FlameSword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>98</power>
+					<cooldownTime>2.3</cooldownTime>
+					<armorPenetrationBlunt>20</armorPenetrationBlunt>
+					<armorPenetrationSharp>268</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>124</power>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetrationBlunt>36 </armorPenetrationBlunt>
+					<armorPenetrationSharp>154</armorPenetrationSharp>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

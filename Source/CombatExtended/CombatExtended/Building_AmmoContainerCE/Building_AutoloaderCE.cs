@@ -438,7 +438,7 @@ namespace CombatExtended
                 int ammoCount = Mathf.Min(CompAmmoUser.CurMagCount, TargetAmmoUser.MissingToFullMagazine);
                 TargetAmmoUser.CurMagCount += ammoCount;
                 CompAmmoUser.CurMagCount -= ammoCount;
-            };
+            }
             TargetTurret.SetReloading(false);
             TargetTurret = null;
             TryActiveReload();

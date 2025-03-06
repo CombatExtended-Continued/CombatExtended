@@ -25,7 +25,8 @@ namespace CombatExtended
         public override void DrawExtraSelectionOverlays()
         {
             base.DrawExtraSelectionOverlays();
-            foreach (var verb in GunCompEq.AllVerbs.Except(AttackVerb))
+            IEnumerable<Verb> verbs = (Controller.settings.EnableCIWS ? GunCompEq.AllVerbs : GunCompEq.AllVerbs.Where(x => !(x is VerbCIWS))).Except(AttackVerb);
+            foreach (var verb in verbs)
             {
                 float range = verb.verbProps.range;
                 if (range < 120f)

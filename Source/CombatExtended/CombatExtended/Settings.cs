@@ -30,6 +30,7 @@ namespace CombatExtended
         private bool genericammo = false;
         private bool partialstats = true;
         private bool enableExtraEffects = true;
+        private bool enableCIWS = true;
 
         private bool showExtraTooltips = false;
 
@@ -58,6 +59,7 @@ namespace CombatExtended
         public bool ShowExtraTooltips => showExtraTooltips;
 
         public bool ShowExtraStats => showExtraStats;
+        public bool EnableCIWS => enableCIWS;
 
         public bool ShowTutorialPopup = true;
 
@@ -204,6 +206,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
             Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
 
+            //CIWS
+            Scribe_Values.Look(ref enableCIWS, nameof(enableCIWS), true);
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
@@ -227,6 +231,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_EnableExtraEffects_Title".Translate(), ref enableExtraEffects, "CE_Settings_EnableExtraEffects_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_EnableCIWS".Translate(), ref enableCIWS, "CE_Settings_EnableCIWS_Desc".Translate());
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
             if (Current.Game == null)

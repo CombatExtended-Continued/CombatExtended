@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== all secondary damage, set Parent node to AcidBurn ========== -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/DamageDef[defName="AcidBurn"]</xpath>
+		<attribute>Name</attribute>
+		<value>AcidBurn</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/DamageDef[defName="BMT_SlimedUp" or
+		@Name="BMT_SharpToxicAttackBase" or
+		@Name="BMT_BluntToxicAttackBase" or
+		defName="BMT_Neurotoxin" or
+		defName="BMT_PhoridSting"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>AcidBurn</value>
+	</Operation>
+
+</Patch>
