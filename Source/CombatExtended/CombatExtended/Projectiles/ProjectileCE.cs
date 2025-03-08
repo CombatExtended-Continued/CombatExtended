@@ -1271,7 +1271,7 @@ namespace CombatExtended
             {
                 Quaternion shadowRotation = TrajectoryWorker.ShadowRotation(this);
                 Quaternion projectileRotation = TrajectoryWorker.DrawRotation(this);
-                
+
                 //Projectile
                 //Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
                 Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), drawLoc, projectileRotation, def.DrawMatSingle, 0);
