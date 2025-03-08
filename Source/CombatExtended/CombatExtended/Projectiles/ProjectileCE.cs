@@ -903,11 +903,6 @@ namespace CombatExtended
                 // Check for collision
                 if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
-                    if (thing == intendedTargetThing)
-                    {
-                        var canCollide = CanCollideWith(thing, out var dist);
-                        Log.Message($"{canCollide}, {dist}");
-                    }
                     if (!CanCollideWith(thing, out _))
                     {
                         continue;
