@@ -255,17 +255,7 @@ namespace CombatExtended
         {
             get
             {
-                Vector2 w = (Destination - origin);
-
-                var vx = w.x / startingTicksToImpact;
-
-                var vy = (w.y - shotHeight) / startingTicksToImpact
-                         + shotSpeed * Mathf.Sin(shotAngle) / GenTicks.TicksPerRealSecond
-                         - (GravityFactor * FlightTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
-
-                return Quaternion.AngleAxis(
-                           Mathf.Rad2Deg * Mathf.Atan2(-vy, vx) + 90f
-                           , Vector3.up);
+                return TrajectoryWorker.DrawRotation(this);
             }
         }
 

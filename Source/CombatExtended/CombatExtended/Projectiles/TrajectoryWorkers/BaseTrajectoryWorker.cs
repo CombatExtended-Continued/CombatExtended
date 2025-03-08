@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using static UnityEngine.UI.Image;
 
 namespace CombatExtended
 {
@@ -34,6 +35,20 @@ namespace CombatExtended
                 sh *= (float)FlightTicks / ticksToTruePosition;
             }
             return new Vector3(exactPosition.x, altitude, exactPosition.z + sh);
+        }
+        public virtual Quaternion DrawRotation(ProjectileCE projectile)
+        {
+            Vector2 w = (projectile.Destination - projectile.origin);
+
+            var vx = w.x / projectile.startingTicksToImpact;
+
+            var vy = (w.y - projectile.shotHeight) / projectile.startingTicksToImpact
+                     + projectile.shotSpeed * Mathf.Sin(projectile.shotAngle) / GenTicks.TicksPerRealSecond
+                     - (projectile.GravityFactor * projectile.FlightTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
+
+            return Quaternion.AngleAxis(
+                       Mathf.Rad2Deg * Mathf.Atan2(-vy, vx) + 90f
+                       , Vector3.up);
         }
         public virtual Vector2 Destination(Vector2 origin, float shotRotation, float shotHeight, float shotSpeed, float shotAngle, float GravityFactor) => origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
         public virtual float DistanceTraveled(float shotHeight, float shotSpeed, float shotAngle, float GravityFactor)

@@ -82,5 +82,9 @@ namespace CombatExtended
         {
             return exactPosition.WithY(altitude);
         }
+        public override Quaternion DrawRotation(ProjectileCE projectile)
+        {
+            return Quaternion.LookRotation((projectile.NextPositions.FirstOrDefault() - projectile.ExactPosition).Yto0());
+        }
     }
 }
