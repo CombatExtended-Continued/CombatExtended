@@ -16,7 +16,11 @@ namespace CombatExtended
         }
         public override Quaternion DrawRotation(ProjectileCE projectile)
         {
-            return Quaternion.LookRotation((projectile.NextPositions.FirstOrDefault() - projectile.ExactPosition).Yto0());
+            return SpinIfNeeded(projectile, Quaternion.LookRotation((projectile.NextPositions.FirstOrDefault() - projectile.ExactPosition).Yto0()));
+        }
+        public override Quaternion ShadowRotation(ProjectileCE projectile)
+        {
+            return DrawRotation(projectile);
         }
     }
 }

@@ -1269,15 +1269,9 @@ namespace CombatExtended
             }
             else
             {
-                Quaternion shadowRotation = ExactRotation;
-                Quaternion projectileRotation = DrawRotation;
-                if (def.projectile.spinRate != 0f)
-                {
-                    float num2 = GenTicks.TicksPerRealSecond / def.projectile.spinRate;
-                    var spinRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
-                    shadowRotation *= spinRotation;
-                    projectileRotation *= spinRotation;
-                }
+                Quaternion shadowRotation = TrajectoryWorker.ShadowRotation(this);
+                Quaternion projectileRotation = TrajectoryWorker.DrawRotation(this);
+                
                 //Projectile
                 //Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
                 Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), drawLoc, projectileRotation, def.DrawMatSingle, 0);
