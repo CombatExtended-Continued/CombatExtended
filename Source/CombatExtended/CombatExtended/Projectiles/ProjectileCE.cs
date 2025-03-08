@@ -1549,8 +1549,6 @@ namespace CombatExtended
         #region Ballistics
         public BaseTrajectoryWorker TrajectoryWorker => forcedTrajectoryWorker ?? (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
         internal BaseTrajectoryWorker forcedTrajectoryWorker;
-        
-
         public void DrawNextPositions()
         {
             if (Map == null)
