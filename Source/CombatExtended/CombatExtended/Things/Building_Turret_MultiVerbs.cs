@@ -27,7 +27,8 @@ namespace CombatExtended
         {
             var colors = ColorsForRangeRing.GetEnumerator();
             Color color = Color.white;
-            foreach (var verb in GunCompEq.AllVerbs)
+            IEnumerable<Verb> verbs = (Controller.settings.EnableCIWS ? GunCompEq.AllVerbs : GunCompEq.AllVerbs.Where(x => !(x is VerbCIWS))).Except(AttackVerb);
+            foreach (var verb in verbs)
             {
                 if (colors.MoveNext())
                 {

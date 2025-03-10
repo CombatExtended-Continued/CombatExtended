@@ -417,7 +417,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
             }
             ShipCombatProjectile proj = new ShipCombatProjectile
             {
-                turret = turret,
+                turret = turret.ToBuilding_ShipTurret(),
                 target = target,
                 range = 0,
                 //rangeAtStart = mapComp.Range,

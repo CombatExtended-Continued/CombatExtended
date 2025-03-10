@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ==================== PawnKinds ==================== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_HedgeKnightRox"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>3~5</primaryMagazineCount>
+				<forcedSidearm>
+					<sidearmMoney>50~200</sidearmMoney>
+					<weaponTags>
+						<li>CE_Sidearm_Tribal</li>
+					</weaponTags>
+				</forcedSidearm>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Replace hard requirement shield === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanRoxmont"]/apparelRequired/li[.="DankPyon_ShieldHeater_Roxmont"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanRoxmont"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<shieldMoney>100~350</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldHeater_Roxmont</li>
+				</shieldTags>
+				<shieldChance>0.65</shieldChance>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
