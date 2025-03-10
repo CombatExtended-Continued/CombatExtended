@@ -1079,18 +1079,18 @@ namespace CombatExtended
                 spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * pprop.spreadMult;
                 aperatureSize = 0.03f;
 
-                if(EquipmentSource != null && pprop.weaponDeteriorationChance > 0 && Rand.Chance(pprop.weaponDeteriorationChance))
+                if (EquipmentSource != null && pprop.weaponDeteriorationChance > 0 && Rand.Chance(pprop.weaponDeteriorationChance))
                 {
                     float damageToWeapon = pprop.weaponDeteriorationHP.RandomInRange / (Mathf.Clamp(EquipmentSource?.GetStatValue(CE_StatDefOf.ToughnessRating) ?? 1f, 0.01f, 1f));
                     //save weapon position before it explodes
                     Vector3? weaponPosition = EquipmentSource.DrawPosHeld;
-                    
+
                     float decimalPart = damageToWeapon % 1;
                     float integerPart = Mathf.Floor(damageToWeapon);
                     DamageInfo dinfo = new DamageInfo(DamageDefOf.Bullet, integerPart);
                     Log.Warning("decimal: " + decimalPart + "; integer: " + integerPart + "; ToughnessRating: " + EquipmentSource?.GetStatValue(CE_StatDefOf.ToughnessRating));
                     bool tookDamage = false;
-                    if(integerPart > 0)
+                    if (integerPart > 0)
                     {
                         EquipmentSource?.TakeDamage(dinfo);
                         tookDamage = true;
