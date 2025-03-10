@@ -1078,6 +1078,39 @@ namespace CombatExtended
                 instant = pprop.isInstant;
                 spreadDegrees = (EquipmentSource?.GetStatValue(CE_StatDefOf.ShotSpread) ?? 0) * pprop.spreadMult;
                 aperatureSize = 0.03f;
+
+                if(EquipmentSource != null && pprop.weaponDeteriorationChance > 0 && Rand.Chance(pprop.weaponDeteriorationChance))
+                {
+                    float damageToWeapon = pprop.weaponDeteriorationHP.RandomInRange / (Mathf.Clamp(EquipmentSource?.GetStatValue(CE_StatDefOf.ToughnessRating) ?? 1f, 0.01f, 1f));
+                    //save weapon position before it explodes
+                    Vector3? weaponPosition = EquipmentSource.DrawPosHeld;
+                    
+                    float decimalPart = damageToWeapon % 1;
+                    float integerPart = Mathf.Floor(damageToWeapon);
+                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Bullet, integerPart);
+                    Log.Warning("decimal: " + decimalPart + "; integer: " + integerPart + "; ToughnessRating: " + EquipmentSource?.GetStatValue(CE_StatDefOf.ToughnessRating));
+                    bool tookDamage = false;
+                    if(integerPart > 0)
+                    {
+                        EquipmentSource?.TakeDamage(dinfo);
+                        tookDamage = true;
+                    }
+                    //apply decimal part via chance, as item hp is integer
+                    if (Rand.Chance(decimalPart))
+                    {
+                        dinfo.amountInt = 1;
+                        EquipmentSource?.TakeDamage(dinfo);
+                        tookDamage = true;
+                        Log.Warning("weapon took decimal damage");
+                    }
+                    if (tookDamage && weaponPosition != null)
+                    {
+                        //simplified gun position calculation, because the exact spot doesn't matter here
+                        Vector3 gunPosition = (Vector3)weaponPosition + ((Vector3)(targetLoc - weaponPosition)).normalized * 0.75f;
+                        FleckCreationData dataStatic = FleckMaker.GetDataStatic(gunPosition, Caster.Map, CE_FleckDefOf.Fleck_HeatGlow_API, 1);
+                        Caster.Map.flecks.CreateFleck(dataStatic);
+                    }
+                }
             }
 
             ShiftVecReport report = ShiftVecReportFor(currentTarget, targetLoc.ToIntVec3());
