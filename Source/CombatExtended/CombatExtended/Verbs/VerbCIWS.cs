@@ -228,14 +228,11 @@ namespace CombatExtended
                 return true;
             }
             int i = 1;
-            var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
             foreach (var nextPos in TargetNextPositions(target).Skip(ticksToSkip))
             {
                 var pos = nextPos;
-                var targetPos2 = new Vector2(pos.x, pos.z);
                 if ((pos - originV3).MagnitudeHorizontalSquared() > maxDistSqr)
                 {
-                    targetPos1 = targetPos2;
                     i++;
                     continue;
                 }
@@ -261,7 +258,6 @@ namespace CombatExtended
                     resultingLine = new ShootLine(Shooter.Position, new IntVec3(Mathf.FloorToInt(nextPos.x), Mathf.FloorToInt(nextPos.y), Mathf.FloorToInt(nextPos.z)));
                     return true;
                 }
-                targetPos1 = targetPos2;
                 i++;
                 if (i > maximumPredectionTicks)
                 {
