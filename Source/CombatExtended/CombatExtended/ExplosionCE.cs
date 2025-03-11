@@ -23,7 +23,7 @@ namespace CombatExtended
         private SimpleCurve falloffCurve = new SimpleCurve
         {
             {1.5f, 1f},
-            {3f, 0.5f},
+            {2.5f, 0.5f},
             {5f, 0.3f},
             {8f, 0.15f}
         };
