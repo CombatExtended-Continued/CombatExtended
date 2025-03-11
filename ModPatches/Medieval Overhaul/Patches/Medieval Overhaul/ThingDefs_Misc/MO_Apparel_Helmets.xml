@@ -95,7 +95,7 @@
 		</value>
 	</Operation>
 
-	<!--Arming Cap, Full, Coif-->
+	<!-- Arming Cap, Full, Coif -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
 			defName="DankPyon_Headgear_coif" or
@@ -134,6 +134,45 @@
 				<layers Inherit="False">
 					<li>StrappedHead</li>
 				</layers>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- Layer adjustment as strapped head -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[
+			defName="DankPyon_Headgear_coif" or
+			defName="DankPyon_Headgear_ArmingCap" or
+			defName="DankPyon_Headgear_FullArmingCap"
+			]/apparel/drawData</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[
+				defName="DankPyon_Headgear_coif" or
+				defName="DankPyon_Headgear_ArmingCap" or
+				defName="DankPyon_Headgear_FullArmingCap"
+				]/apparel</xpath>
+			<value>
+				<drawData />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[
+			defName="DankPyon_Headgear_coif" or
+			defName="DankPyon_Headgear_ArmingCap" or
+			defName="DankPyon_Headgear_FullArmingCap"
+			]/apparel/drawData/dataNorth</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[
+				defName="DankPyon_Headgear_coif" or
+				defName="DankPyon_Headgear_ArmingCap" or
+				defName="DankPyon_Headgear_FullArmingCap"
+				]/apparel/drawData</xpath>
+			<value>
+				<dataNorth>
+					<layer>60</layer>
+				</dataNorth>
 			</value>
 		</nomatch>
 	</Operation>
