@@ -13,8 +13,6 @@ namespace CombatExtended
                 return (CompProperties_AmmoListUser)props;
             }
         }
-        public AmmoSetDef UsedGenericAmmoSet => Props.ammoSet.similarTo ?? Props.ammoSet;
-
         public override List<AmmoSetDef> UsableAmmoSets
         {
             get
