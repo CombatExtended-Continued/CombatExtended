@@ -13,7 +13,7 @@ namespace CombatExtended
                 return (CompProperties_AmmoListUser)props;
             }
         }
-
+        public AmmoSetDef UsedGenericAmmoSet => Props.ammoSet.similarTo ?? Props.ammoSet;
 
         public override List<AmmoSetDef> UsableAmmoSets
         {
@@ -40,22 +40,25 @@ namespace CombatExtended
 
                     foreach (var def in allowedAmmoSets)
                     {
-                        var similarAmmoSets = DefDatabase<AmmoSetDef>.AllDefs
-                            .Where(other => other.similarTo == def)
-                            .ToList();
-
-                        // Allow specifying a generic ammoset directly, and allow its constituent ammosets in this case.
-                        if (similarAmmoSets.Any())
+                        if (Props.allowSimilarAmmo)
                         {
-                            foreach (var similarAmmoSet in similarAmmoSets)
-                            {
-                                if (IsUsableAmmoSet(similarAmmoSet))
-                                {
-                                    usableAmmoSets.Add(similarAmmoSet);
-                                }
-                            }
+                            var similarAmmoSets = DefDatabase<AmmoSetDef>.AllDefs
+                                                    .Where(other => other.similarTo == def)
+                                                    .ToList();
 
-                            continue;
+                            // Allow specifying a generic ammoset directly, and allow its constituent ammosets in this case.
+                            if (similarAmmoSets.Any())
+                            {
+                                foreach (var similarAmmoSet in similarAmmoSets)
+                                {
+                                    if (IsUsableAmmoSet(similarAmmoSet))
+                                    {
+                                        usableAmmoSets.Add(similarAmmoSet);
+                                    }
+                                }
+
+                                continue;
+                            }
                         }
 
                         if (IsUsableAmmoSet(def))
