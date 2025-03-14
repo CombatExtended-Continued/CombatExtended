@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- === Give backpack to melee pawn with shield chance === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementKnight"]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
+
 	<!-- === Give Shields === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementKnight"]</xpath>
@@ -8,16 +16,28 @@
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<shieldMoney>100~350</shieldMoney>
 				<shieldTags>
-					<li>KiteShield</li>
-					<li>HeaterShield</li>
-					<li>Buckler</li>
+					<li>DankPyon_Shield</li>
+					<li>DankPyon_ShieldKite</li>
+					<li>DankPyon_ShieldHeater</li>
 				</shieldTags>
-				<shieldChance>0.40</shieldChance>
+				<shieldChance>0.4</shieldChance>
 			</li>
 		</value>
 	</Operation>
 
 	<!-- === Replace hard requirement shield === -->
+
+	<!-- === Give backpack to melee pawn with shield chance === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="DankPyon_Amboisse_Knight" or
+			defName="DankPyon_Soren_Knight" or
+			defName="DankPyon_Oswin_Knight" or
+			defName="DankPyon_Hesse_Knight"]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
 
 	<!-- Amboisse -->
 	<Operation Class="PatchOperationRemove">

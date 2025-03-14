@@ -1,146 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- === Give Shields === -->
+	<!-- === Give backpack to melee pawn with shield chance === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="DankPyon_Medieval_Mercenary" or
+			defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
+		<value>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<!-- === Give shields === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[
 			defName="DankPyon_Medieval_Mercenary" or
-			defName="DankPyon_Medieval_MercenaryHeavy"] </xpath>
+			defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<shieldMoney>100~350</shieldMoney>
 				<shieldTags>
-					<li>KiteShield</li>
-					<li>HeaterShield</li>
-					<li>Buckler</li>
+					<li>DankPyon_Shield</li>
+					<li>DankPyon_ShieldKite</li>
+					<li>DankPyon_ShieldHeater</li>
 				</shieldTags>
 				<shieldChance>0.35</shieldChance>
 			</li>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Footman"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>100~350</shieldMoney>
-				<shieldTags>
-					<li>KiteShield</li>
-					<li>HeaterShield</li>
-					<li>Buckler</li>
-				</shieldTags>
-				<shieldChance>0.65</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Knight" or defName="DankPyon_Medieval_Lord"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>200~600</shieldMoney>
-				<shieldTags>
-					<li>HeaterShield</li>
-					<li>KiteShield</li>
-				</shieldTags>
-				<shieldChance>0.5</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Trying to add shields to Arbalesters, doesn't work
-	<li Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>100</min>
-					<max>600</max>
-				</shieldMoney>
-				<shieldTags>
-					<li>Pavise</li>
-					<li>KiteShield</li>
-				</shieldTags>
-				<shieldChance>0.9</shieldChance>
-			</li>
-		</value>
-	</li>-->
-
-	<!-- === Replace hard requirement shield === -->
-
-	<!-- Amboisse -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanAmboise"]/apparelRequired/li[.="DankPyon_ShieldHeater_Amboise"]</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanAmboise"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>100~350</shieldMoney>
-				<shieldTags>
-					<li>DankPyon_ShieldHeater_Amboise</li>
-				</shieldTags>
-				<shieldChance>0.65</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Soren -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanSoren"]/apparelRequired/li[.="DankPyon_ShieldHeater_Soren"]</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanSoren"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>100~350</shieldMoney>
-				<shieldTags>
-					<li>DankPyon_ShieldHeater_Soren</li>
-				</shieldTags>
-				<shieldChance>0.65</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Oswin -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanOswin"]/apparelRequired/li[.="DankPyon_ShieldHeater_Oswin"]</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanOswin"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>100~350</shieldMoney>
-				<shieldTags>
-					<li>DankPyon_ShieldHeater_Oswin</li>
-				</shieldTags>
-				<shieldChance>0.65</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Hesse -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanHesse"]/apparelRequired/li[.="DankPyon_ShieldHeater_Hesse"]</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_FootmanHesse"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>100~350</shieldMoney>
-				<shieldTags>
-					<li>DankPyon_ShieldHeater_Hesse</li>
-				</shieldTags>
-				<shieldChance>0.65</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- === Give ammo to Crosbowman === -->
+	<!-- === Give loadout to ranged PawnKind === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
 		<value>
@@ -153,6 +44,14 @@
 						<li>MedievalMeleeDecent</li>
 					</weaponTags>
 				</forcedSidearm>
+				<shieldMoney>
+					<min>100</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldKite</li>
+				</shieldTags>
+				<shieldChance>0.7</shieldChance>
 			</li>
 		</value>
 	</Operation>

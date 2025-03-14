@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!--Headgear; Helmets include padding-->
+	<!-- Headgear; Helmets include padding -->
 
-	<!--Coverage-->
+	<!-- Coverage -->
 
-	<!--Cover top of the head + neck-->
+	<!-- Cover top of the head + neck -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="DankPyon_Headgear_ChainCoif" or
@@ -17,8 +17,7 @@
 			defName="DankPyon_Headgear_ChainNasalHelm" or
 			defName="DankPyon_Headgear_ChainNasalRedHelmet" or
 			defName="DankPyon_Headgear_ChainKettle" or
-			defName="DankPyon_Headgear_ChainClosedFlatTop"
-			]/apparel/bodyPartGroups</xpath>
+			defName="DankPyon_Headgear_ChainClosedFlatTop"]/apparel/bodyPartGroups</xpath>
 		<value>
 			<bodyPartGroups>
 				<li>UpperHead</li>
@@ -27,7 +26,25 @@
 		</value>
 	</Operation>
 
-	<!--Cover jaw-->
+	<!-- Cover inner head like coif -->
+	<!-- <Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[
+			defName="DankPyon_Headgear_ChainCoif" or
+			defName="DankPyon_Headgear_ChainCoifClosed" or
+			defName="DankPyon_Headgear_ChainCoifFull" or
+			defName="DankPyon_Headgear_PaddedNasalHelmet" or
+			defName="DankPyon_Headgear_PaddedKettle" or
+			defName="DankPyon_Headgear_PaddedFlatTop" or
+			defName="DankPyon_Headgear_ChainNasalHelm" or
+			defName="DankPyon_Headgear_ChainNasalRedHelmet" or
+			defName="DankPyon_Headgear_ChainKettle" or
+			defName="DankPyon_Headgear_ChainClosedFlatTop"]/apparel/layers</xpath>
+		<value>
+			<li>DankPyon_InnerHelmet</li>
+		</value>
+	</Operation> -->
+
+	<!-- Cover jaw -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
 			defName="DankPyon_Headgear_ChainCoifClosed" or
@@ -108,73 +125,18 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[
-			defName="DankPyon_Headgear_coif" or
-			defName="DankPyon_Headgear_ArmingCap" or
-			defName="DankPyon_Headgear_FullArmingCap"
-			]/apparel/layers</xpath>
-		<match Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[
-				defName="DankPyon_Headgear_coif" or
-				defName="DankPyon_Headgear_ArmingCap" or
-				defName="DankPyon_Headgear_FullArmingCap"
-				]/apparel/layers/li[.="Overhead"]</xpath>
-			<value>
-				<li>StrappedHead</li>
-			</value>
-		</match>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[
-				defName="DankPyon_Headgear_coif" or
-				defName="DankPyon_Headgear_ArmingCap" or
-				defName="DankPyon_Headgear_FullArmingCap"
-				]/apparel</xpath>
-			<value>
-				<layers Inherit="False">
-					<li>StrappedHead</li>
-				</layers>
-			</value>
-		</nomatch>
-	</Operation>
-
-	<!-- Layer adjustment as strapped head -->
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[
-			defName="DankPyon_Headgear_coif" or
-			defName="DankPyon_Headgear_ArmingCap" or
-			defName="DankPyon_Headgear_FullArmingCap"
-			]/apparel/drawData</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[
-				defName="DankPyon_Headgear_coif" or
-				defName="DankPyon_Headgear_ArmingCap" or
-				defName="DankPyon_Headgear_FullArmingCap"
-				]/apparel</xpath>
-			<value>
-				<drawData />
-			</value>
-		</nomatch>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
+	<!-- Layer adjustment as OnHead -->
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="DankPyon_Headgear_coif" or
 			defName="DankPyon_Headgear_ArmingCap" or
 			defName="DankPyon_Headgear_FullArmingCap"
 			]/apparel/drawData/dataNorth</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[
-				defName="DankPyon_Headgear_coif" or
-				defName="DankPyon_Headgear_ArmingCap" or
-				defName="DankPyon_Headgear_FullArmingCap"
-				]/apparel/drawData</xpath>
-			<value>
-				<dataNorth>
-					<layer>60</layer>
-				</dataNorth>
-			</value>
-		</nomatch>
+		<value>
+			<dataNorth>
+				<layer>60</layer>
+			</dataNorth>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -271,7 +233,7 @@
 			@Name="DankPyon_ZweihanderHelmBase"
 			]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>2.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>2.4</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
@@ -296,17 +258,20 @@
 	<!--Bascinet, Armet, Sallet, Klappvisier, Klappvisier Open, Honskull, Visored Kettle-->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName=
-			"DankPyon_Headgear_ClosedBascinetHelmet" or
+		<xpath>Defs/ThingDef[
+			defName="DankPyon_Headgear_ClosedBascinetHelmet" or
 			defName="DankPyon_Headgear_SalletHelmet" or
 			defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
+			defName="DankPyon_Headgear_KlappvisorBascinet" or
+			defName="DankPyon_Headgear_HounskullHelmet" or
 			defName="DankPyon_Headgear_GreatHelm" or
 			defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
 			defName="DankPyon_Headgear_Armet" or
 			defName="DankPyon_Headgear_ArmetGilded" or
 			defName="DankPyon_Headgear_ArmetNamed" or
 			defName="DankPyon_Adorned_FlatTop" or
-			defName="DankPyon_Adorned_GreatHelm"
+			defName="DankPyon_Adorned_GreatHelm" or
+			defName="DankPyon_Headgear_Lindwurm"
 			]/statBases</xpath>
 		<value>
 			<Bulk>6</Bulk>
@@ -319,6 +284,8 @@
 			defName="DankPyon_Headgear_ClosedBascinetHelmet" or
 			defName="DankPyon_Headgear_SalletHelmet" or
 			defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
+			defName="DankPyon_Headgear_KlappvisorBascinet" or
+			defName="DankPyon_Headgear_HounskullHelmet" or
 			defName="DankPyon_Headgear_GreatHelm" or
 			defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
 			defName="DankPyon_Headgear_Armet" or
@@ -337,9 +304,11 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName="DankPyon_Headgear_ClosedBascinetHelmet" or 
+			defName="DankPyon_Headgear_ClosedBascinetHelmet" or
 			defName="DankPyon_Headgear_SalletHelmet" or
 			defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
+			defName="DankPyon_Headgear_KlappvisorBascinet" or
+			defName="DankPyon_Headgear_HounskullHelmet" or
 			defName="DankPyon_Headgear_GreatHelm" or
 			defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
 			defName="DankPyon_Headgear_Armet" or
@@ -356,6 +325,8 @@
 			defName="DankPyon_Headgear_ClosedBascinetHelmet" or
 			defName="DankPyon_Headgear_SalletHelmet" or
 			defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
+			defName="DankPyon_Headgear_KlappvisorBascinet" or
+			defName="DankPyon_Headgear_HounskullHelmet" or
 			defName="DankPyon_Headgear_GreatHelm" or
 			defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
 			defName="DankPyon_Headgear_Armet" or
@@ -377,6 +348,8 @@
 			defName="DankPyon_Headgear_ClosedBascinetHelmet" or
 			defName="DankPyon_Headgear_SalletHelmet" or
 			defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
+			defName="DankPyon_Headgear_KlappvisorBascinet" or
+			defName="DankPyon_Headgear_HounskullHelmet" or
 			defName="DankPyon_Adorned_FlatTop"
 			]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
