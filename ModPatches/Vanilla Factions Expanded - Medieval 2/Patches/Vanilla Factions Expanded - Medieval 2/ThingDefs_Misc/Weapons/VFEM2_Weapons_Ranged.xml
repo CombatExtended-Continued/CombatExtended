@@ -129,14 +129,65 @@
 		<AmmoUser>
 			<ammoSet>AmmoSet_VFEM2WarArrow</ammoSet>
 		</AmmoUser>
-		<FireModes/>
+		<FireModes />
 		<weaponTags>
 			<li>CE_Bow</li>
 			<li>VFEM2_Warbow</li>
 		</weaponTags>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VFEM2_Warbow"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEM2_Warbow"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEM2_Warbow"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<oneAmmoHolder>true</oneAmmoHolder>
+				<propsUnderBarrel>
+					<ammoSet>AmmoSet_VFEM2WarArrow_Indirect</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_VFEM2WarArrow_Stone_Indirect</defaultProjectile>
+					<warmupTime>3</warmupTime>
+					<range>32</range>
+					<minRange>3</minRange>
+					<indirectFirePenalty>0.01</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>VFEM2_Shot_Warbow</soundCast>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel />
+				<underBarrelLabel>Volley Shot</underBarrelLabel>
+				<!-- <underBarrelIconTexPath /> -->
+				<standardLabel>Direct Shot</standardLabel>
+				<!-- <standardIconTexPath /> -->
+			</li>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>20</li>
+					<li>30</li>
+					<li>40</li>
+					<li>50</li>
+					<li>60</li>
+					<li>70</li>
+					<li>80</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
 	<!-- ===== Arquebus ===== -->
 	<Operation Class="PatchOperationReplace"> <!-- Without this patch it will keep the vanilla verb for unknown reason -->
 		<xpath>Defs/ThingDef[defName="VFEM2_Gun_Arquebus"]/verbs</xpath>
