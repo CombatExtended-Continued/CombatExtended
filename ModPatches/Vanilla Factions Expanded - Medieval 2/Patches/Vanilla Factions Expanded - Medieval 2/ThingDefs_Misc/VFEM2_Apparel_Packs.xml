@@ -34,4 +34,27 @@
 		</value>
 	</Operation>
 
+	<!-- Projectile -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_Proj_GrenadeTorch"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_Proj_GrenadeTorch"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>0.9</explosionRadius>
+				<damageDef>Flame</damageDef>
+				<speed>12</speed>
+				<suppressionFactor>0</suppressionFactor>
+				<dangerFactor>0.25</dangerFactor>
+				<airborneSuppressionFactor>0.05</airborneSuppressionFactor>
+			</projectile>
+		</value>
+	</Operation>
+
 </Patch>

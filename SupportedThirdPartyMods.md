@@ -554,6 +554,7 @@ Vanilla Factions Expanded - Empire  |
 Vanilla Factions Expanded - Insectoids 2|
 Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
+Vanilla Factions Expanded - Medieval 2  |
 Vanilla Factions Expanded - Pirates |
 Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Tribals |
