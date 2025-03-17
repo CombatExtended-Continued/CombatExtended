@@ -8,6 +8,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 			<damageDef>Fragment</damageDef>
 			<damageAmountBase>34</damageAmountBase>
 			<speed>60</speed>
@@ -62,6 +63,28 @@
                         <diameter>3.5~4.5</diameter>
                         <mass>3.5~4.5</mass>
                         <ballisticCoefficient>0.95~1.42</ballisticCoefficient>
+                        <lerpPosition>false</lerpPosition>
+		</projectile>
+	</ThingDef>
+
+        <ThingDef ParentName="BaseFragment"><!-- Flies from around 4 to 35 cells away from the explosion if the angle range is unchanged. -->
+		<defName>Fragment_Tiny</defName>
+		<label>tiny fragments</label>
+		<graphicData>
+			<texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Fragment</damageDef>
+			<damageAmountBase>1.5</damageAmountBase>
+			<speed>200</speed>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
+			<tickToTruePos>0</tickToTruePos>
+			<gravityFactor>1</gravityFactor>
+                        <diameter>0.7~1.45</diameter>
+                        <mass>0.0125~0.0250</mass>
+                        <ballisticCoefficient>0.00045~0.000072</ballisticCoefficient>
                         <lerpPosition>false</lerpPosition>
 		</projectile>
 	</ThingDef>

@@ -10,29 +10,30 @@ namespace CombatExtended
 {
     public class LerpedTrajectoryWorker : BaseTrajectoryWorker
     {
-        public override IEnumerable<Vector3> NextPositions(ProjectileCE projectile)
+        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int ticks)
         {
             var ticksToImpact = projectile.ticksToImpact;
-            var origin = projectile.origin;
-            var destination = projectile.Destination;
             var startingTicksToImpact = projectile.startingTicksToImpact;
-            var shotHeight = projectile.shotHeight;
-            var shotSpeed = projectile.shotSpeed;
-            var shotAngle = projectile.shotAngle;
-            var gravityFactor = projectile.GravityFactor;
-
-            for (int ticksOffset = 1; ticksOffset <= ticksToImpact; ticksOffset++)
+            var end = (projectile.FlightTicks - startingTicksToImpact < ticks) ? projectile.FlightTicks - startingTicksToImpact : ticks;
+            
+            for (int ticksOffset = 1; ticksOffset <= end; ticksOffset++)
             {
                 var tick = projectile.FlightTicks + ticksOffset;
-                var v = Vec2Position(origin, destination, startingTicksToImpact, tick);
-                yield return new Vector3(v.x, GetHeightAtTicks(shotHeight, shotSpeed, shotAngle, tick, gravityFactor), v.y);
+                yield return GetPositionAtTick(projectile, tick);
             }
         }
-        protected override void MoveForward(ProjectileCE projectile)
+        public override Vector3 MoveForward(ProjectileCE projectile)
         {
-            base.MoveForward(projectile);
             projectile.FlightTicks++;
+            return GetPositionAtTick(projectile, projectile.FlightTicks);
         }
+
+        protected Vector3 GetPositionAtTick(ProjectileCE projectile, int tick)
+        {
+            var v = Vec2Position(projectile.origin, projectile.Destination, projectile.startingTicksToImpact, tick);
+            return new Vector3(v.x, GetHeightAtTicks(projectile.shotHeight, projectile.shotSpeed, projectile.shotAngle, tick, projectile.GravityFactor), v.y);
+        }
+        
         protected float GetHeightAtTicks(float shotHeight, float shotSpeed, float shotAngle, int ticks, float gravityFactor)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;

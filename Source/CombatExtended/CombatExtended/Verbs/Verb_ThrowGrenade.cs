@@ -19,7 +19,8 @@ namespace CombatExtended
         private ShootLine _line;
         private ShootLine _direct;
         private bool hasLine = false;
-        
+        private List<IntVec3> ringDrawCells = null;
+        private int lastCacheTick = 0;
 
         public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false, bool nonInterruptingSelfCast = false)
         {
@@ -31,13 +32,33 @@ namespace CombatExtended
             return r;
         }
         
-        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
         {
-            hasLine = base.TryFindCEShootLineFromTo(root, targ, out _line);
+            hasLine = base.TryFindCEShootLineFromTo(root, targ, out _line, out targetPos);
             _direct = resultingLine = new ShootLine(root, targ.Cell);
             return hasLine;
         }
 
+        public override void DrawHighlight(LocalTargetInfo target)                                                                                                         
+        {
+            if (target.IsValid && this.CanHitTarget(target))                                                                                                           
+            {                                                                                                                                                          
+                GenDraw.DrawTargetHighlightWithLayer(target.CenterVector3, AltitudeLayer.MetaOverlays);                                                            
+                base.DrawHighlightFieldRadiusAroundTarget(target);                                                                                                 
+            }                                                                                                                                                          
+            int thisTick = Find.TickManager.TicksAbs;
+            if (thisTick != lastCacheTick)
+            {
+                GenDraw.DrawRadiusRing(this.caster.Position, this.EffectiveRange, Color.white, (IntVec3 c) => this.CanHitTarget(c));
+                ringDrawCells = new List<IntVec3>(GenDraw.ringDrawCells);
+                lastCacheTick = thisTick;
+            }
+            else
+            {
+                GenDraw.DrawFieldEdges(ringDrawCells, Color.white, null);
+            }    
+        }
+        
         public override float EffectiveRange
         {
             get
@@ -120,7 +141,12 @@ namespace CombatExtended
             if (velocity == -1) //No cover required adjusting the angle up, so line-drive it straight, or lob it if we need the distance
             {
                 float v0 = ShotSpeed * manip / GenTicks.TicksPerRealSecond * 3;
-                float H_offset = (targetThing?.TrueCenter().y ?? 0) - ShotHeight;
+                float target_height = 0;
+                if (targetThing != null) {
+                    var cv = new CollisionVertical(targetThing);
+                    target_height = (cv.HeightRange.max + cv.HeightRange.min) / 2;
+                }
+                float H_offset = target_height - ShotHeight;
                 float discriminant = v0*v0*v0*v0 - gravity * (gravity * X*X + 2 * H_offset * v0*v0);
                 if (discriminant < 0) // At max speed, and optimal angle, we can't reach the target
                 {
@@ -139,6 +165,8 @@ namespace CombatExtended
                 return false;
             }
             ticks = (int)(X / (Mathf.Cos(launchAngle) * velocity)) + 1;
+            ProjectilePropertiesCE pprop = Projectile.projectile as ProjectilePropertiesCE;
+            ticks = Rand.RangeInclusive(ticks, pprop.explosionDelay);
             //TODO: The pawn should delay ticks equal difference between this value and the default grenade detonation delay, to properly simulate cooking grenades.
             return true;
         }
@@ -154,7 +182,8 @@ namespace CombatExtended
             {
                 return false;
             }
-            base.TryFindCEShootLineFromTo(caster.Position, currentTarget, out _line);
+            Vector3 _;
+            base.TryFindCEShootLineFromTo(caster.Position, currentTarget, out _line, out _);
             
             ProjectilePropertiesCE pprop = Projectile.projectile as ProjectilePropertiesCE;
             this.CasterPawn.Drawer.Notify_WarmingCastAlongLine(_line, this.caster.Position);

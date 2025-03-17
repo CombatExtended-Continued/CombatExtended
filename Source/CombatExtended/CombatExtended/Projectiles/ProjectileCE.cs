@@ -28,7 +28,6 @@ namespace CombatExtended
 
         #region Kinetic Projectiles
         public bool lerpPosition = true;
-        public bool kinit = false;
         public float ballisticCoefficient;
         public float mass;
         public float radius;
@@ -379,38 +378,6 @@ namespace CombatExtended
         }
         #endregion
 
-        #region Throw
-        public virtual void Throw(Thing launcher, Vector3 origin, Vector3 heading, Thing equipment = null)
-        {
-            this.ExactPosition = LastPos = origin;
-            this.shotHeight = origin.y;
-            this.origin = new Vector2(origin.x, origin.z);
-            this.OriginIV3 = new IntVec3(this.origin);
-            this.Destination = this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
-            this.shotSpeed = Math.Max(heading.magnitude, def.projectile.speed);
-            var projectileProperties = def.projectile as ProjectilePropertiesCE;
-            this.castShadow = projectileProperties.castShadow;
-            this.velocity = heading;
-            this.launcher = launcher;
-            this.equipment = equipment;
-            //For explosives/bullets, equipmentDef is important
-            equipmentDef = (equipment != null) ? equipment.def : null;
-
-            if (!def.projectile.soundAmbient.NullOrUndefined())
-            {
-                var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
-                ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
-            }
-            ballisticCoefficient = projectileProperties.ballisticCoefficient.RandomInRange;
-            mass = projectileProperties.mass.RandomInRange;
-            radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
-            gravity = projectileProperties.Gravity;
-            initialSpeed = shotSpeed;
-            lerpPosition = false;
-            kinit = true;
-        }
-        #endregion
-
         #region Raycast
         public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null)
         {
@@ -548,6 +515,37 @@ namespace CombatExtended
         }
         #endregion
 
+        #region Throw
+        public virtual void Throw(Thing launcher, Vector3 origin, Vector3 heading, Thing equipment = null)
+        {
+            this.ExactPosition = LastPos = origin;
+            this.shotHeight = origin.y;
+            this.origin = new Vector2(origin.x, origin.z);
+            this.OriginIV3 = new IntVec3(this.origin);
+            this.Destination = this.origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
+            this.shotSpeed = Math.Max(heading.magnitude, def.projectile.speed);
+            var projectileProperties = def.projectile as ProjectilePropertiesCE;
+            this.castShadow = projectileProperties.castShadow;
+            this.velocity = heading;
+            this.launcher = launcher;
+            this.equipment = equipment;
+            //For explosives/bullets, equipmentDef is important
+            equipmentDef = (equipment != null) ? equipment.def : null;
+
+            if (!def.projectile.soundAmbient.NullOrUndefined())
+            {
+                var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
+                ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
+            }
+            ballisticCoefficient = projectileProperties.ballisticCoefficient.RandomInRange;
+            mass = projectileProperties.mass.RandomInRange;
+            radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
+            gravity = projectileProperties.Gravity;
+            initialSpeed = shotSpeed;
+            lerpPosition = false;
+        }
+        #endregion
+
         #region Launch
         /// <summary>
         /// Physics-enabled Launch() method.
@@ -578,7 +576,7 @@ namespace CombatExtended
                 ballisticCoefficient = props.ballisticCoefficient.RandomInRange;
                 mass = props.mass.RandomInRange;
                 radius = props.diameter.RandomInRange / 2000; // half the diameter and mm -> m
-
+                gravity = props.Gravity;
             }
             if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Spawned && Position.Roofed(launcher.Map))
             {
@@ -593,7 +591,8 @@ namespace CombatExtended
             this.origin = origin;
             this.OriginIV3 = new IntVec3(origin);
             this.Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
-            velocity = TrajectoryWorker.GetVelocity(shotSpeed, shotRotation, shotAngle);
+            velocity = TrajectoryWorker.GetInitialVelocity(shotSpeed, shotRotation, shotAngle);
+            initialSpeed = shotSpeed;
             this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
@@ -1137,39 +1136,27 @@ namespace CombatExtended
             }
         }
 
-
-
-        private Queue<Vector3> cachedNextPositions;
-        protected virtual bool ShouldCacheNextPositions => !TrajectoryWorker.GuidedProjectile;
-        public virtual IEnumerable<Vector3> NextPositions
+        private List<Vector3> cachedPredictedPositions;
+        public virtual IEnumerable<Vector3> PredictedPositions
         {
             get
             {
-                if (!ShouldCacheNextPositions)
+                if (cachedPredictedPositions == null)
                 {
-                    TrajectoryWorker.NextPositions(this);
+                    cachedPredictedPositions = TrajectoryWorker.PredictPositions(this, GenTicks.TicksPerRealSecond).ToList();
                 }
-                cachedNextPositions ??= new Queue<Vector3>(100);
-                foreach (var pos in cachedNextPositions)
-                {
-                    yield return pos;
-                }
-                foreach (var pos in TrajectoryWorker.NextPositions(this).Skip(cachedNextPositions.Count))
-                {
-                    cachedNextPositions.Enqueue(pos);
-                    yield return pos;
-                }
+                return cachedPredictedPositions;
             }
         }
 
         public virtual bool IsPredictable(out IEnumerable<Vector3> possiblePositionsForCIWS)
         {
-            possiblePositionsForCIWS = NextPositions;
+            possiblePositionsForCIWS = PredictedPositions;
             return !TrajectoryWorker.GuidedProjectile;
         }
         protected Vector3 MoveForward()
         {
-            TrajectoryWorker.TryMoveForward(this);
+            ExactPosition = TrajectoryWorker.MoveForward(this);
             return ExactPosition;
         }
 
@@ -1182,13 +1169,16 @@ namespace CombatExtended
             {
                 return;
             }
-            if (cachedNextPositions != null && cachedNextPositions.Count > 0)
+            if (!lerpPosition && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
             {
-                cachedNextPositions.Dequeue();
+                Destroy(DestroyMode.Vanish);
+                return;
             }
+            cachedPredictedPositions = null;
             LastPos = ExactPosition;
             ticksToImpact--;
             Vector3 nextPosition = MoveForward();
+            
             if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
@@ -1560,7 +1550,7 @@ namespace CombatExtended
             }
             var previous = ExactPosition;
             int sinceTicks = 1;
-            foreach (var next in NextPositions)
+            foreach (var next in PredictedPositions)
             {
                 Map.debugDrawer.FlashLine(previous.ToIntVec3(), next.ToIntVec3(), 70, SimpleColor.Orange);
                 Map.debugDrawer.FlashLine(

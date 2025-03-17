@@ -11,21 +11,13 @@ namespace CombatExtended
 {
     public abstract class BaseTrajectoryWorker
     {
-        public bool TryMoveForward(ProjectileCE projectile)
+        public abstract Vector3 MoveForward(ProjectileCE projectile);
+
+        public virtual IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount)
         {
-            if (NextPositions(projectile).Any())
-            {
-                MoveForward(projectile);
-                return true;
-            }
-            return false;
+            return new List<Vector3>();
         }
-        protected virtual void MoveForward(ProjectileCE projectile)
-        {
-            var nextPosition = NextPositions(projectile).First();
-            projectile.ExactPosition = nextPosition;
-        }
-        public abstract IEnumerable<Vector3> NextPositions(ProjectileCE projectile);
+        
         public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
         {
             var sh = Mathf.Max(0f, (exactPosition.y) * 0.84f);
@@ -62,10 +54,13 @@ namespace CombatExtended
         /// <param name="rotation">rotation in degrees</param>
         /// <param name="angle">angle in radians</param>
         /// <returns></returns>
-        public virtual Vector3 GetVelocity(float shotSpeed, float rotation, float angle)
+        public virtual Vector3 GetInitialVelocity(float shotSpeed, float rotation, float angle)
         {
-            angle = angle * Mathf.Rad2Deg; // transform to degrees
-            return Vector2.up.RotatedBy(rotation).ToVector3().RotatedBy(angle) * shotSpeed / GenTicks.TicksPerRealSecond;
+            rotation = (rotation - 90) * Mathf.Deg2Rad;
+            var ss = (shotSpeed / GenTicks.TicksPerRealSecond);
+            return new Vector3(Mathf.Cos(rotation) * Mathf.Cos(angle) * ss,
+                               Mathf.Sin(angle) * ss,
+                               Mathf.Sin(rotation) * Mathf.Cos(angle) * ss);
         }
 
         /// <summary>

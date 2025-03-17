@@ -54,7 +54,10 @@ namespace CombatExtended
             AimDummyCIWSProjectileTo(targetPos);
             var firstPos = Caster.Position.ToVector3Shifted();
             var secondPos = firstPos;
-            var enumeration = TrajectoryWorker.NextPositions(dummyCIWSProjectile).GetEnumerator();
+            int maxTicks = (int)(this.verbProps.range / ShotSpeed) + 5;
+            
+            // todo: calculate max ticks needed to reach edge of our range
+            var enumeration = TrajectoryWorker.PredictPositions(dummyCIWSProjectile, maxTicks).GetEnumerator();
             for (int i = 1; i <= sinceTicks; i++)
             {
                 firstPos = secondPos;

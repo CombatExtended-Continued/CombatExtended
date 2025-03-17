@@ -36,14 +36,12 @@ namespace CombatExtended
             }
             var cell = pos.ToIntVec3();
             var exactOrigin = new Vector2(pos.x, pos.z);
-
             var fragToSpawn = frag.count;
             var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
             var fragSpawnedInTick = 0;
 
             //fun calculus and trigonometry stuff
             FloatRange fragAngleSinRange = new FloatRange(Mathf.Sin(fragAngleRange.min * Mathf.Deg2Rad), Mathf.Sin(fragAngleRange.max * Mathf.Deg2Rad));  //Fix fragment distribution being biased towards the poles of the sphere.
-
 
             while (fragToSpawn-- > 0)
             {
@@ -54,7 +52,6 @@ namespace CombatExtended
                 projectile.minCollisionDistance = minCollisionDistance;
                 projectile.logMisses = false;
                 float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);
-
                 projectile.Launch(
                     instigator,
                     exactOrigin,

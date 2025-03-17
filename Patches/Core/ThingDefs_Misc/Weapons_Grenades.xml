@@ -90,10 +90,11 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
 		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<explosionRadius>1.5</explosionRadius>
+		  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
+				<explosionRadius>0.5</explosionRadius>
 				<damageDef>Bomb</damageDef>
-				<damageAmountBase>56</damageAmountBase>
+				<damageAmountBase>5.6</damageAmountBase>
 				<explosionDelay>60</explosionDelay>
 				<dropsCasings>true</dropsCasings>
 				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
@@ -103,7 +104,7 @@
 				<suppressionFactor>3.0</suppressionFactor>
 				<dangerFactor>2.0</dangerFactor>
 				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-                                <ballisticCoefficient>1.0~1.0</ballisticCoefficient>
+                                <ballisticCoefficient>2.0~2.0</ballisticCoefficient>
                                 <mass>400~400</mass>
                                 <diameter>64~64</diameter>
                                 <lerpPosition>false</lerpPosition>
@@ -124,9 +125,11 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
 		<value>
-			<li Class="CombatExtended.CompProperties_Fragments">
+		  <li Class="CombatExtended.CompProperties_Fragments">
+                    <fragAngleRange>0~90</fragAngleRange>
 				<fragments>
-					<Fragment_Small>40</Fragment_Small>
+				  <Fragment_Small>10</Fragment_Small>
+                                  <Fragment_Tiny>400</Fragment_Tiny>
 				</fragments>
 			</li>
 		</value>
@@ -179,9 +182,9 @@
 		<value>
 			<comps>
 				<li Class="CombatExtended.CompProperties_ExplosiveCE">
-					<damageAmountBase>56</damageAmountBase>
+					<damageAmountBase>5.6</damageAmountBase>
 					<explosiveDamageType>Bomb</explosiveDamageType>
-					<explosiveRadius>1.5</explosiveRadius>
+					<explosiveRadius>0.5</explosiveRadius>
 				</li>
 			</comps>
 		</value>
@@ -224,6 +227,7 @@
 			<onlyManualCast>true</onlyManualCast>
 			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 			<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+                        <minRangeInCover>2</minRangeInCover>
 		</Properties>
 		<weaponTags>
 			<li>CE_AI_Grenade</li>
@@ -258,6 +262,10 @@
 				<suppressionFactor>3.0</suppressionFactor>
 				<dangerFactor>2.0</dangerFactor>
 				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+                                <ballisticCoefficient>2.0~2.0</ballisticCoefficient>
+                                <mass>400~400</mass>
+                                <diameter>64~64</diameter>
+                                <lerpPosition>false</lerpPosition>
 			</projectile>
 		</value>
 	</Operation>
@@ -345,6 +353,10 @@
 			<onlyManualCast>true</onlyManualCast>
 			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 			<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+                        <ballisticCoefficient>2.0~2.0</ballisticCoefficient>
+                        <mass>400~400</mass>
+                        <diameter>64~64</diameter>
+                        <lerpPosition>false</lerpPosition>
 		</Properties>
 		<weaponTags>
 			<li>CE_AI_Grenade</li>
@@ -386,6 +398,10 @@
 				<screenShakeFactor>0</screenShakeFactor>
 				<suppressionFactor>3.0</suppressionFactor>
 				<dangerFactor>2.0</dangerFactor>
+                                <ballisticCoefficient>2.0~2.0</ballisticCoefficient>
+                                <mass>400~400</mass>
+                                <diameter>64~64</diameter>
+                                <lerpPosition>false</lerpPosition>
 				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 			</projectile>
 		</value>
