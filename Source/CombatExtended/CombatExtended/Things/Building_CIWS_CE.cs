@@ -48,13 +48,16 @@ namespace CombatExtended
             {
                 yield return gizmo;
             }
-            yield return new Command_Action()
+            if (Controller.settings.EnableCIWS)
             {
-                action = () => Find.WindowStack.Add(new Dialog_ManageCIWSTargets(GunCompEq.AllVerbs.OfType<VerbCIWS>().SelectMany(x => x.Props.AllTargets).Distinct().ToList(), ignoredDefs)),
-                icon = icon,
-                defaultLabel = "Dialog_ManageCIWS".Translate(),
-                defaultDesc = "Dialog_ManageCIWSDesc".Translate()
-            };
+                yield return new Command_Action()
+                {
+                    action = () => Find.WindowStack.Add(new Dialog_ManageCIWSTargets(GunCompEq.AllVerbs.OfType<VerbCIWS>().SelectMany(x => x.Props.AllTargets).Distinct().ToList(), ignoredDefs)),
+                    icon = icon,
+                    defaultLabel = "Dialog_ManageCIWS".Translate(),
+                    defaultDesc = "Dialog_ManageCIWSDesc".Translate()
+                };
+            }
         }
 
         public override void Tick()

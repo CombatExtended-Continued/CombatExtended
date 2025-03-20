@@ -195,9 +195,24 @@
 		<xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/equippedStatOffsets</xpath>
 		<value>
 			<AimingAccuracy>0.15</AimingAccuracy>
-			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 			<SmokeSensitivity>-1</SmokeSensitivity>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="ApparelArmorHelmetPowerBase"]/equippedStatOffsets</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">

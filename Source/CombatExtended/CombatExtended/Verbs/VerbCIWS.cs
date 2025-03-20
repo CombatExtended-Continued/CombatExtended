@@ -39,7 +39,7 @@ namespace CombatExtended
             }
         }
         protected override bool ShouldAim => false;
-        public virtual bool Active => !HoldFire && Turret.Active;
+        public virtual bool Active => Controller.settings.EnableCIWS && !HoldFire && Turret.Active;
         protected override bool LockRotationAndAngle => false;
         public abstract bool TryFindNewTarget(out LocalTargetInfo target);
         public virtual void ShowTrajectories()
