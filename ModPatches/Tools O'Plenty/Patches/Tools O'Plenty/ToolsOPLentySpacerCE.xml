@@ -1,0 +1,112 @@
+<Patch>
+    <!-- Medical Stim-->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Medical_Stim"]/tools</xpath>
+            <value>
+                 <tools>
+                    <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>3</power>
+                    <cooldownTime>2</cooldownTime>
+                    <armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+                    <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>
+                </tools>    
+            </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Medical_Stim"]/statBases</xpath>
+        <value>
+            <Bulk>1.5</Bulk>
+            <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Medical_Stim"]/equippedStatOffsets</xpath>
+        <value>
+        <MeleeCritChance>0.05</MeleeCritChance>
+        <MeleeParryChance>0.1</MeleeParryChance>
+        <MeleeDodgeChance>0.2</MeleeDodgeChance>
+        </value>
+    </Operation>
+    <!-- Multi Tool-->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Multi_Tool"]/tools</xpath>
+            <value>
+                 <tools>
+                    <li Class="CombatExtended.ToolCE">
+                    <label>blade</label>
+                    <capacities>
+                        <li>Cut</li>
+                    </capacities>
+                    <power>24</power>
+                    <cooldownTime>1</cooldownTime>
+                    <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+                    <armorPenetrationSharp>9</armorPenetrationSharp>
+                    <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Stab</li>
+                    </capacities>
+                    <power>6</power>
+                    <cooldownTime>1.2</cooldownTime>
+                    <armorPenetrationBlunt>0.45</armorPenetrationBlunt>
+                    <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>
+                </tools>    
+            </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Multi_Tool"]/statBases</xpath>
+        <value>
+            <Bulk>3</Bulk>
+            <MeleeCounterParryBonus>0.08</MeleeCounterParryBonus>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Multi_Tool"]/equippedStatOffsets</xpath>
+        <value>
+        <MeleeCritChance>0.05</MeleeCritChance>
+        <MeleeParryChance>0.1</MeleeParryChance>
+        <MeleeDodgeChance>0.3</MeleeDodgeChance>
+        </value>
+    </Operation>
+     <!-- Datapad-->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Datapad"]/tools</xpath>
+            <value>
+                 <tools>
+                    <li Class="CombatExtended.ToolCE">
+                    <label>handle</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>2</power>
+                    <cooldownTime>2</cooldownTime>
+                    <armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+                    <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>
+                </tools>    
+            </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Datapad"]/statBases</xpath>
+        <value>
+            <Bulk>1.5</Bulk>
+            <MeleeCounterParryBonus>0.05</MeleeCounterParryBonus>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Datapad"]/equippedStatOffsets</xpath>
+        <value>
+        <MeleeCritChance>0.05</MeleeCritChance>
+        <MeleeParryChance>0.1</MeleeParryChance>
+        <MeleeDodgeChance>0.15</MeleeDodgeChance>
+        </value>
+    </Operation>
+</Patch>
