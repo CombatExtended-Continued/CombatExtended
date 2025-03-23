@@ -53,16 +53,9 @@
 		</value>
 	</Operation>
 	
-	<!-- Stalker Skull -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="StalkerSkull"]/comps/li[@Class="AthenaFramework.HediffCompProperties_Armored"]/armorStats</xpath>
-		<value>
-			<armorStats>
-				<ArmorRating_Sharp>10</ArmorRating_Sharp>
-				<ArmorRating_Blunt>8</ArmorRating_Blunt>
-				<ArmorRating_Heat>0.25</ArmorRating_Heat>
-			</armorStats>
-		</value>
+	<!-- Stalker Skull - Doesn't work with CE. -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="StalkerSkull"]/comps/li[@Class="AthenaFramework.HediffCompProperties_Armored"]</xpath>
 	</Operation>
 
 	<!-- Ghoul Power Plating -->
