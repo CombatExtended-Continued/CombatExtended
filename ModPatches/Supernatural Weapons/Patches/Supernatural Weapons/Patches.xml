@@ -51,7 +51,6 @@
 		<value>
 			<Bulk>1</Bulk>
 			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
-			<!-- <StuffEffectMultiplierToughness>1</StuffEffectMultiplierToughness> --><!-- Same as apaprel thickness multiplier but for toughness -->
 		</value>
 	</Operation>
 
@@ -85,9 +84,7 @@
 		</value>
 	</Operation>
 
-
 	<!-- ==================== Revolver ========================== -->
-
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Artemiish_SNRevolver"]/tools</xpath>
@@ -127,8 +124,6 @@
 			<ShotSpread>0.16</ShotSpread>
 			<SwayFactor>1.39</SwayFactor>
 			<Bulk>2.79</Bulk>
-			<!-- <ToughnessRating>2.5</ToughnessRating> -->
-			<!-- Base toughness rating of a weapon -->
 		</statBases>
 		<Properties>
 			<recoilAmount>2.96</recoilAmount>
@@ -160,15 +155,13 @@
 		<xpath>Defs/ThingDef[defName="Artemiish_SNRevolver"]</xpath>
 		<value>
 			<li Class="CombatExtended.GunDrawExtension">
-				<DrawSize>1.00,1.00</DrawSize><!-- Keeping for documentation purposes -->
+				<DrawSize>1.00,1.00</DrawSize>
 				<DrawOffset>0.0,-0.04</DrawOffset>
 				<DropCasingWhenReload>true</DropCasingWhenReload>
 				<AdvancedCasingVariables>true</AdvancedCasingVariables>
 				<CasingRotationRandomRange>20</CasingRotationRandomRange>
-				<!--You'll want a lower casing speed and longer casing life time for this case-->
 				<CasingOffset>-0.1,0.05</CasingOffset>
 				<CasingSpeedOverrideRange>1.5~2</CasingSpeedOverrideRange>
-				<!--Reload drop casings doesn't follow aiming angle. negative 135 degrees make it eject up left.-->
 				<CasingAngleOffset>-135</CasingAngleOffset>
 				<CasingLifeTimeMultiplier>2</CasingLifeTimeMultiplier>
 			</li>
@@ -183,9 +176,7 @@
 		<xpath>Defs/ThingDef[defName="Artemiish_SNRevolver"]/descriptionHyperlinks/ThingDef[text()="Artemiish_SNBulletAmmo"]</xpath>
 	</Operation>
 
-
 	<!-- ==================== Ammo ========================== -->
-	
 	
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="Artemiish_SNBulletAmmo"]</xpath>

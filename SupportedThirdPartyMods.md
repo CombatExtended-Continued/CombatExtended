@@ -511,6 +511,7 @@ Starship Troopers Aracnids  |
 Steamworld Uniforms |
 Steves Animals  |
 Stoneborn - Delights  |
+Supernatural Weapons    |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
