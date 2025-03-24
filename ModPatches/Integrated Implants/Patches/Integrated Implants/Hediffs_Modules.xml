@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Remove Local Armor -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>
+			Defs/ThingDef[
+			defName = "LTS_ModuleEye_LocalArmour" or
+			defName = "LTS_ModuleArm_LocalArmour" or
+			defName = "LTS_ModuleLeg_LocalArmour" or
+			defName = "LTS_RemoveImplantedArmorPiercing" or
+			defName = "LTS_InstallImplantedCluster" or
+			defName = "LTS_RemoveImplantedCluster"
+			]|
+			Defs/HediffDef[
+			defName = "LTS_ModuleEye_LocalArmour" or
+			defName = "LTS_ModuleArm_LocalArmour" or
+			defName = "LTS_ModuleLeg_LocalArmour"
+			]
+		</xpath>	
+	</Operation>
+
+	<!-- Nightvision Module -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="LTS_ModuleEye_NightVision"]/stages/li/statOffsets/LTS_DarkVision</xpath>
+		<value>
+			<NightVisionEfficiency_Implant>0.6</NightVisionEfficiency_Implant>
+		</value>
+	</Operation>
+
+	<!-- Arm Blade -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="LTS_ModuleArm_ArmBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.19</cooldownTime>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.36</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Bionic Claw -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="LTS_ModuleArm_BionicClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>0.89</cooldownTime>
+					<armorPenetrationSharp>1.6</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					<soundMeleeHit>Pawn_Melee_PowerClaw_Hit</soundMeleeHit>
+					<soundMeleeMiss>Pawn_Melee_PowerClaw_Miss</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Monowire -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="LTS_ModuleArm_Monowire"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>monowire</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.39</cooldownTime>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					<armorPenetrationSharp>5</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_MonoSword</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Zeus Knuckles -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="LTS_ModuleArm_ZeusKnuckles"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>zeusknuckles</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>26</power>
+					<extraMeleeDamages>
+						<li>
+							<def>EMP</def>
+							<amount>3</amount>
+						</li>
+					</extraMeleeDamages>					
+					<cooldownTime>1.28</cooldownTime>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					<soundMeleeHit>MeleeHit_ZeusHammer</soundMeleeHit>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Plasma Claw -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="LTS_ModuleArm_PlasmaClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>plasma claw</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>18</power>
+					<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>3</amount>
+							<chance>0.3</chance>
+						</li>
+					</extraMeleeDamages>					
+					<cooldownTime>1.46</cooldownTime>
+					<armorPenetrationSharp>9</armorPenetrationSharp>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_PlasmaSword</soundMeleeHit>
+					<soundMeleeMiss>Pawn_Melee_PowerClaw_Miss</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Laser Arm Blade -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="LTS_ModuleArm_LaserArmBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>laser arm blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>34</power>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetrationSharp>14</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.25</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_MonoSword</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Can't currently patch the below to launch CE projectiles *and* have a working cooldown. For now, best to just leave them unpatched. -->
+
+	<!-- Shotgun Arm -->
+
+	<!-- SMG Arm -->
+
+	<!-- Gauss Arm -->
+
+	<!-- Incinerator Arm -->
+
+	<!-- Dart Arm -->
+
+</Patch>
