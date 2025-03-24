@@ -359,14 +359,13 @@ namespace CombatExtended
                     if (eq != null && eq.TryGetComp<CompEquippable>() != null)
                     {
                         CompInventory compInventory = SelPawnForGear.TryGetComp<CompInventory>();
-                        CompBiocodable compBiocoded = eq.TryGetComp<CompBiocodable>();
                         if (compInventory != null)
                         {
                             FloatMenuOption equipOption;
                             string eqLabel = GenLabel.ThingLabel(eq.def, eq.Stuff, 1);
-                            if (compBiocoded != null && compBiocoded.Biocoded && compBiocoded.CodedPawn != SelPawnForGear)
+                            if (!EquipmentUtility.CanEquip(eq, SelPawnForGear, out var reason))
                             {
-                                equipOption = new FloatMenuOption("CannotEquip".Translate(eqLabel) + ": " + "BiocodedCodedForSomeoneElse".Translate(), null);
+                                equipOption = new FloatMenuOption("CannotEquip".Translate(eqLabel) + ": " + reason, null);
                             }
                             else if (SelPawnForGear.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanEquip(eq, SelPawnForGear))
                             {
@@ -517,24 +516,29 @@ namespace CombatExtended
         {
             armorCache.Clear();
             List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
-            var shield = wornApparel.FirstOrDefault(x => x is Apparel_Shield);
+            Apparel shield = wornApparel?.FirstOrDefault(x => x is Apparel_Shield);
+
             foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
             {
                 if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def.tags.Contains(BodyPartTagDefOf.BreathingPathway) || part.def.tags.Contains(BodyPartTagDefOf.SightSource))))
                 {
                     var armorValue = SelPawnForGear.PartialStat(stat, part);
-                    foreach (Apparel apparel in wornApparel)
+
+                    if (wornApparel != null)
                     {
-                        armorValue += apparel.PartialStat(stat, part);
-                    }
-                    if (shield != null)
-                    {
-                        if (!shield.def.apparel.CoversBodyPart(part))
+                        foreach (Apparel apparel in wornApparel)
                         {
-                            var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
-                            if (shieldCoverage == true)
+                            armorValue += apparel.PartialStat(stat, part);
+                        }
+                        if (shield != null)
+                        {
+                            if (!shield.def.apparel.CoversBodyPart(part))
                             {
-                                armorValue += shield.GetStatValue(stat);
+                                var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                                if (shieldCoverage == true)
+                                {
+                                    armorValue += shield.GetStatValue(stat);
+                                }
                             }
                         }
                     }

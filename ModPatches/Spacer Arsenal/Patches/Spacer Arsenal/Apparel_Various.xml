@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Body Armour -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_EnsignArmor"]</xpath>
+		<value>
+			<statBases>
+				<Bulk>80</Bulk>
+				<WornBulk>12</WornBulk>
+				<ReloadSpeed>0.1</ReloadSpeed>
+				<Mass>30</Mass>
+				<ArmorRating_Sharp>16</ArmorRating_Sharp>
+				<ArmorRating_Blunt>38.25</ArmorRating_Blunt>
+				<MaxHitPoints>400</MaxHitPoints>
+			</statBases>
+		</value>
+	</Operation>
+
+	<!-- Increase Devilstrand Cost due to much higher heat protection -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Apparel_EnsignArmor"]</xpath>
+		<value>
+			<costList>
+				<DevilstrandCloth>60</DevilstrandCloth>
+				<Plasteel>140</Plasteel>
+				<Uranium>20</Uranium>
+				<ComponentSpacer>5</ComponentSpacer>
+			</costList>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="DV_ApparelArmorEnsignBase"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<value>
+			<CarryWeight>50</CarryWeight>
+			<CarryBulk>8</CarryBulk>
+			<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="DV_ApparelArmorEnsignBase"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="DV_ApparelArmorEnsignBase"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

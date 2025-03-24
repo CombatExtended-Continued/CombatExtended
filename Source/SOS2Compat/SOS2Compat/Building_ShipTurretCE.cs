@@ -17,10 +17,11 @@ namespace CombatExtended.Compatibility.SOS2Compat
         #endregion
         public bool GroundDefenseMode;
 
-        // Allows conversion of Building_ShipTurretCE into Building_ShipTurret as the SaveOurShip2.ShipCombatProjectile class which is used in Verb_ShootShipCE requires a Building_ShipTurret to be passed into its constructor.
-        public static implicit operator Building_ShipTurret(Building_ShipTurretCE turretCE)
+        // Explicit type conversion that will be used in SOS2 code for turrets added to heat net turrets list.
+        // Also allows conversion of Building_ShipTurretCE into Building_ShipTurret as the SaveOurShip2.ShipCombatProjectile class which is used in Verb_ShootShipCE requires a Building_ShipTurret to be passed into its constructor.
+        public Building_ShipTurret ToBuilding_ShipTurret()
         {
-            return new ShipTurretWrapperCE(turretCE);
+            return new ShipTurretWrapperCE(this);
         }
 
         #region Shared

@@ -24,26 +24,14 @@ namespace CombatExtended.HarmonyCE
                 if (projectileDef.projectile is ProjectilePropertiesCE ppce)
                 {
                     Pawn pawn = __instance.parent.pawn;
-                    var u = pawn.TrueCenter();
-                    var sourceLoc = new Vector2();
-                    sourceLoc.Set(u.x, u.z);
-                    var targetLocation = new Vector2();
+                    var u = pawn.TrueCenter().WithY((new CollisionVertical(pawn)).shotHeight);
+                    var targetPos = target.Thing != null ? target.Thing.TrueCenter() : target.Cell.ToVector3Shifted();
+                    targetPos = targetPos.WithY((new CollisionVertical(target.Thing)).shotHeight);
 
-                    if (target.HasThing)
-                    {
-                        targetLocation.Set(target.Thing.TrueCenter().x, target.Thing.TrueCenter().z);
-                    }
-                    else
-                    {
-                        targetLocation.Set(target.Cell.ToIntVec2.x, target.Cell.ToIntVec2.z);
-                    }
 
-                    var w = (targetLocation - sourceLoc);
-                    float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
-
-                    var targetVert = new CollisionVertical(target.Thing);
-                    var angle = ProjectileCE.GetShotAngle(ppce.speed, (target.Cell - pawn.Position).LengthHorizontal, targetVert.HeightRange.Average - 1, ppce.flyOverhead, ppce.Gravity);
-                    CE_Utility.LaunchProjectileCE(projectileDef, sourceLoc, target, pawn, angle, shotRotation, 1, ppce.speed);
+                    var angle = ppce.TrajectoryWorker.ShotAngle(ppce, u, targetPos);
+                    float shotRotation = ppce.TrajectoryWorker.ShotRotation(ppce, u, targetPos);
+                    CE_Utility.LaunchProjectileCE(projectileDef, new Vector2(u.x, u.z), target, pawn, angle, shotRotation, u.y, ppce.speed);
                     return false;
                 }
             }

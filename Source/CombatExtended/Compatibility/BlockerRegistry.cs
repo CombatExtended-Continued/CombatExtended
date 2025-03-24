@@ -137,9 +137,16 @@ namespace CombatExtended.Compatibility
         {
             if (!enabledSZ)
             {
-                return null;
+                yield break;
             }
-            return shieldZonesCallback.SelectMany(cb => cb(thing));
+
+            foreach (var callback in shieldZonesCallback)
+            {
+                foreach (var zone in callback(thing))
+                {
+                    yield return zone;
+                }
+            }
         }
         public static bool PawnUnsuppressableFromCallback(Pawn pawn, IntVec3 origin)
         {
