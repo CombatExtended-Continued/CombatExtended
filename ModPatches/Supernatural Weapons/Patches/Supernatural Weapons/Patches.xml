@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-
-	<!-- ==================== Knife ========================== -->
-
+	<!-- ==================== Blade of the Killer ========================== -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Artemiish_SNKnife"]/tools</xpath>
@@ -139,7 +137,7 @@
 		<AmmoUser>
 			<magazineSize>5</magazineSize>
 			<reloadTime>4.1</reloadTime>
-			<ammoSet>AmmoSet_Artemiish_SNBulletAmmo</ammoSet>
+			<ammoSet>AmmoSet_44Magnum_Revolver_Cursed</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -171,27 +169,36 @@
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="Artemiish_SNRevolver"]/comps/li[compClass="MVCF.Comps.Comp_VerbProps"]</xpath>
 	</Operation>
-	
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Artemiish_SNRevolver"]/descriptionHyperlinks/ThingDef[text()="Artemiish_SNBulletAmmo"]</xpath>
-	</Operation>
 
-	<!-- ==================== Ammo ========================== -->
+	<!-- ==================== Silver Bullet ========================== -->
 	
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="Artemiish_SNBulletAmmo"]</xpath>
 		<attribute>Class</attribute>
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
-	
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Artemiish_SNBulletAmmo"]/descriptionHyperlinks/ThingDef[text()="Artemiish_SNRevolver"]</xpath>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Artemiish_SNBulletAmmo"]/statBases/Mass</xpath>
+		<value>
+			<Mass>0.025</Mass>
+			<Bulk>0.03</Bulk>
+		</value>
 	</Operation>
-	
+
+	<!-- For the non-usable bullet "ingredient" used for the ritual. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Artemiish_SNBulletIngredient"]/statBases/Mass</xpath>
+		<value>
+			<Mass>0.025</Mass>
+			<Bulk>0.03</Bulk>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Artemiish_SNBulletAmmo"]</xpath>
 		<value>
-			<ammoClass>FullMetalJacket</ammoClass>
+			<ammoClass>SilverBullet</ammoClass>
 			<cookOffProjectile>Bullet_Artemiish_SNBulletAmmo</cookOffProjectile>
 			<thingCategories>
 				<li>Ammo44Magnum</li>
