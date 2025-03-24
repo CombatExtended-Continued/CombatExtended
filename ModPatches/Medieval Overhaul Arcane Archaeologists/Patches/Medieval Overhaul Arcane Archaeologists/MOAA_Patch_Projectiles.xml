@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ======= Magic Projectiles ======= -->
+
+	<!-- ===== Magic Bolts Ring ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Amber"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Amber"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>60</speed>
+				<damageAmountBase>14</damageAmountBase>
+				<armorPenetrationBlunt>26</armorPenetrationBlunt>
+				<armorPenetrationSharp>8</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt_AmberRing</damageDef>
+				<dropsCasings>false</dropsCasings>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Ring_Amber"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>4</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>1.2</explosiveRadius>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					<preExplosionSpawnChance>0.06</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>RF_RubbleShardsRF_Amber</preExplosionSpawnThingDef>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
+	<!-- ===== Magic Bolts Wand ===== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Amber"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RF_MagicBolt_Amber"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>70</speed>
+				<damageAmountBase>17</damageAmountBase>
+				<armorPenetrationBlunt>30</armorPenetrationBlunt>
+				<armorPenetrationSharp>9</armorPenetrationSharp>
+				<damageDef>RF_MagicBolt</damageDef>
+				<dropsCasings>false</dropsCasings>
+			</projectile>
+		</value>
+	</Operation>
+
+	<!-- ===== Lance Pylon ===== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Ogam_MagicBolt_Amber"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<armorPenetrationBlunt>30</armorPenetrationBlunt>
+				<armorPenetrationSharp>6.5</armorPenetrationSharp>
+				<dropsCasings>false</dropsCasings>
+				<damageDef>RF_LancePylon_MagicBolt</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<speed>55</speed>
+			</projectile>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Ogam_MagicBolt_Amber"]</xpath>
+		<value>
+			<thingClass>CombatExtended.BulletCE</thingClass>
+		</value>
+	</Operation>
+
+</Patch>
