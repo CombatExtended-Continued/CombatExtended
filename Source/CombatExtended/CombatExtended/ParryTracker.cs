@@ -53,8 +53,17 @@ namespace CombatExtended
                 Log.Error("CE tried checking CanParry with Null-Pawn");
                 return false;
             }
-
-            int parriesLeft = Mathf.RoundToInt(pawn.skills.GetSkill(SkillDefOf.Melee).Level / SkillPerParry) - GetUsedParriesFor(pawn);
+            var skill = pawn.skills?.GetSkill(SkillDefOf.Melee);
+            int parrySkill;
+            if (skill != null)
+            {
+                parrySkill = Mathf.RoundToInt(skill.Level / SkillPerParry);
+            }
+            else
+            {
+                parrySkill = pawn.def.GetModExtension<RacePropertiesExtensionCE>()?.maxParry ?? 1;
+            }
+            int parriesLeft = parrySkill - GetUsedParriesFor(pawn);
             return parriesLeft > 0;
         }
 
