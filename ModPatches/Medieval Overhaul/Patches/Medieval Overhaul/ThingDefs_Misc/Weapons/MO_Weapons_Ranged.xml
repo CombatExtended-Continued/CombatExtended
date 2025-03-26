@@ -209,57 +209,6 @@
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="Bow_War"]/comps</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Bow_War"]</xpath>
-			<value>
-				<comps />
-			</value>
-		</nomatch>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Bow_War"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_UnderBarrel">
-				<oneAmmoHolder>true</oneAmmoHolder>
-				<propsUnderBarrel>
-					<ammoSet>AmmoSet_WarArrow_Indirect</ammoSet>
-				</propsUnderBarrel>
-				<verbPropsUnderBarrel>
-					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Projectile_WarArrow_Stone_Indirect</defaultProjectile>
-					<warmupTime>3</warmupTime>
-					<range>32</range>
-					<minRange>3</minRange>
-					<indirectFirePenalty>0.01</indirectFirePenalty>
-					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<soundCast>Bow_Large</soundCast>
-				</verbPropsUnderBarrel>
-				<propsFireModesUnderBarrel />
-				<underBarrelLabel>Volley Shot</underBarrelLabel>
-				<!-- <underBarrelIconTexPath /> -->
-				<standardLabel>Direct Shot</standardLabel>
-				<!-- <standardIconTexPath /> -->
-			</li>
-			<li Class="CombatExtended.CompProperties_Charges">
-				<chargeSpeeds>
-					<li>20</li>
-					<li>30</li>
-					<li>40</li>
-					<li>50</li>
-					<li>60</li>
-					<li>70</li>
-					<li>80</li>
-				</chargeSpeeds>
-			</li>
-		</value>
-	</Operation>
-
 	<!-- ===== Handgonne ===== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DankPyon_Handgonne</defName>
