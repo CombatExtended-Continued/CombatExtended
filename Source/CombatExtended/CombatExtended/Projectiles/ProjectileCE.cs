@@ -852,6 +852,7 @@ namespace CombatExtended
             }
             var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell)).Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
 
+            potentialCollisionCandidates.Clear();
             foreach (var thing in Map.thingGrid.ThingsListAtFast(cell))
             {
                 if (thing is Pawn || thing.def.Fillage != FillCategory.None)
@@ -895,6 +896,7 @@ namespace CombatExtended
                 }
 
             }
+            mainThingList.AddRange(potentialCollisionCandidates);
             (Vector3 IntersectionPos, Action OnIntersection)? result = null;
             float resultDist = float.MaxValue;
             float dist;
