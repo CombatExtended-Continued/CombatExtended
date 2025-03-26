@@ -996,7 +996,7 @@ namespace CombatExtended
             // 5:       Interruptible -> stop shooting
             // 6:       Not interruptible -> shoot along previous line
             // 7:     else -> stop
-            shootLine = (ShootLine)lastShootLine;
+            shootLine = lastShootLine ?? default;
             if (LockRotationAndAngle) // Case 1,2,5,6
             {
                 if (VerbPropsCE.interruptibleBurst && !suppressing) // Case 1, 5
