@@ -996,7 +996,12 @@ namespace CombatExtended
             // 5:       Interruptible -> stop shooting
             // 6:       Not interruptible -> shoot along previous line
             // 7:     else -> stop
-            shootLine = lastShootLine ?? default;
+            if (lastShootLine == null)
+            {
+                shootLine = default;
+                return false;
+            }
+            shootLine = (ShootLine)lastShootLine;
             if (LockRotationAndAngle) // Case 1,2,5,6
             {
                 if (VerbPropsCE.interruptibleBurst && !suppressing) // Case 1, 5
@@ -1004,11 +1009,6 @@ namespace CombatExtended
                     return false;
                 }
                 // Case 2, 6
-                if (lastShootLine == null)
-                {
-                    return false;
-                }
-                shootLine = (ShootLine)lastShootLine;
                 currentTarget = new LocalTargetInfo(lastTargetPos);
                 lastExactPos = lastTargetPos.ToVector3Shifted();
             }
