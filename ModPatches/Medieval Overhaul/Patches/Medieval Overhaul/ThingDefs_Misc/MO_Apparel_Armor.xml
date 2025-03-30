@@ -2,12 +2,13 @@
 <Patch>
 
 	<!-- === Padded Surcoat, Gambeson === -->
-	<!-- Surcoat:skin, Gambeson:middle -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Surcoat" or defName="Dankpyon_Apparel_Gambeson"]/statBases</xpath>
 		<value>
-			<Bulk>15</Bulk>
-			<WornBulk>6</WornBulk>
+			<Bulk>10</Bulk>
+			<WornBulk>4</WornBulk>
+			<ArmorRating_Sharp>0.24</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.36</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -34,9 +35,23 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Surcoat" or defName="Dankpyon_Apparel_Gambeson"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Surcoat"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dankpyon_Apparel_Gambeson"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Dankpyon_Apparel_Gambeson"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>80</costStuffCount>
 		</value>
 	</Operation>
 
