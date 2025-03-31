@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Huscarl Armor ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlPlate"]/statBases/Mass</xpath>
+		<value>
+			<Mass>50</Mass>
+			<Bulk>100</Bulk>
+			<WornBulk>15</WornBulk>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorPowerBase"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>580</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlPlate"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>16.5</ArmorRating_Sharp> <!-- Add a base armor value to reduce armor range across different materials. -->
+			<ArmorRating_Blunt>37</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlPlate"]/costList</xpath>
+		<value>
+			<DevilstrandCloth>40</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlPlate"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlPlate"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryWeight>70</CarryWeight>
+			<CarryBulk>10</CarryBulk>
+			<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlPlate"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="ODZ_HuscarlPlate"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="ODZ_HuscarlPlate"]/equippedStatOffsets</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlPlate"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Huscarl Helmet ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]/statBases/Mass</xpath>
+		<value>
+			<Mass>5</Mass>
+			<Bulk>5</Bulk>
+			<WornBulk>1</WornBulk>
+			<NightVisionEfficiency_Apparel>0.5</NightVisionEfficiency_Apparel>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>280</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>11</ArmorRating_Sharp> <!-- Add a base armor value to reduce armor range across different materials. -->
+			<ArmorRating_Blunt>27</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>0.1</AimingAccuracy>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]/equippedStatOffsets</xpath>
+			<value>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]/costList/Plasteel</xpath>
+		<value>
+			<Plasteel>10</Plasteel>
+			<DevilstrandCloth>10</DevilstrandCloth>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]/apparel</xpath>
+		<value>
+			<immuneToToxGasExposure>true</immuneToToxGasExposure>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlHelm"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- ========== Huscarl Gambeson ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlGambeson"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ODZ_HuscarlGambeson"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>1</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+</Patch>
