@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!--The mod's implanted explosives use the item's `CompProperties_Explosive` to determine the explosion.
+		Since we use `detonateProjectile` for ammo items instead, we need some dummy "shells" to use. 
+		These have the same properties as the shell projectiles. -->
+
+	<!-- High Explosive -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+		<defName>Shell_HighExplosive_Dummy</defName>
+		<label>81mm mortar shell (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Mortar/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<damageAmountBase>156</damageAmountBase>
+				<explosiveRadius>2.5</explosiveRadius>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>16</Fragment_Large>
+					<Fragment_Small>25</Fragment_Small>
+				</fragments>
+			</li>			
+		</comps>
+	</ThingDef>
+
+	<!-- Antigrain -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+		<defName>Shell_Anti_Dummy</defName>
+		<label>81mm mortar shell (Anti)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Mortar/Antigrain</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>BombSuper</explosiveDamageType>
+				<damageAmountBase>800</damageAmountBase>
+				<explosiveRadius>50</explosiveRadius>
+				<chanceToStartFire>0.22</chanceToStartFire>
+				<explosionEffect>GiantExplosion</explosionEffect>
+			</li>	
+		</comps>
+	</ThingDef>
+
+	<!-- Incendiary -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+		<defName>Shell_Incendiary_Dummy</defName>
+		<label>81mm mortar shell (Incendiary)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Mortar/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+				<damageAmountBase>11</damageAmountBase>
+				<explosiveRadius>6.5</explosiveRadius>
+				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.15</preExplosionSpawnChance>				
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Smoke -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+		<defName>Shell_Smoke_Dummy</defName>
+		<label>81mm mortar shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Mortar/Smoke</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<explosiveRadius>6</explosiveRadius>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Firefoam -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+		<defName>Shell_Foam_Dummy</defName>
+		<label>81mm mortar shell (Foam)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Mortar/Firefoam</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Extinguish</explosiveDamageType>
+				<explosiveRadius>5</explosiveRadius>
+				<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>				
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- EMP -->	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+		<defName>Shell_EMP_Dummy</defName>
+		<label>81mm mortar shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>EMP</explosiveDamageType>
+				<damageAmountBase>156</damageAmountBase>
+				<explosiveRadius>5.5</explosiveRadius>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Toxic -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+		<defName>Shell_Toxic_Dummy</defName>
+		<label>81mm mortar shell (Toxic)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Mortar/Toxic</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>ToxGas</explosiveDamageType>
+				<explosiveRadius>4</explosiveRadius>
+				<postExplosionGasType>ToxGas</postExplosionGasType>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- Deadlife -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBase">
+		<defName>Shell_Deadlife_Dummy</defName>
+		<label>81mm mortar shell (Deadlife)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Mortar/Deadlife</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>DeadlifeDust</explosiveDamageType>
+				<explosiveRadius>4</explosiveRadius>
+				<postExplosionGasType>DeadlifeDust</postExplosionGasType>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

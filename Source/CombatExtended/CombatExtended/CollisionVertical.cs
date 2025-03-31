@@ -67,7 +67,12 @@ namespace CombatExtended
                 shotHeight = fillPercent;
                 return;
             }
-
+            if (thing is ProjectileCE projectile)
+            {
+                heightRange = new FloatRange(projectile.Height);
+                shotHeight = projectile.Height;
+                return;
+            }
             float collisionHeight = 0f;
             float shotHeightOffset = 0;
             float heightAdjust = CETrenches.GetHeightAdjust(thing.Position, thing.Map);

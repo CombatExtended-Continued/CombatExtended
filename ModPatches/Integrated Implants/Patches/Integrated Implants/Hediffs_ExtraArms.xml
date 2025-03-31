@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/HediffDef[
+			defName="LeftExtraArchotechArm" or
+			defName="RightExtraArchotechArm" or
+			defName="LeftExtraBionicArm" or
+			defName="RightExtraBionicArm"
+			]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/HediffDef[
+			defName="LeftExtraPowerClaw" or
+			defName="RightExtraPowerClaw"
+			]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>power claw</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<soundMeleeHit>Pawn_Melee_PowerClaw_Hit</soundMeleeHit>
+					<soundMeleeMiss>Pawn_Melee_PowerClaw_Miss</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/HediffDef[
+			defName="LeftExtraDrillArm" or
+			defName="RightExtraDrillArm"
+			]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>drill</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationSharp>0.1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_DrillArm</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_DrillArm</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/HediffDef[
+			defName="LeftExtraFieldHand" or
+			defName="RightExtraFieldHand"
+			]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>knuckle</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.66</cooldownTime>
+					<armorPenetrationSharp>0.00</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>MeleeHit_FieldHand</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_FieldHand</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/HediffDef[
+			defName="LeftExtraNerveShredderClaw" or
+			defName="RightExtraNerveShredderClaw"
+			]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>nerve shredder claw</label>
+					<capacities>
+						<li>ScratchNerve</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.66</cooldownTime>
+					<armorPenetrationSharp>5</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.25</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>Pawn_Melee_PowerClaw_Hit</soundMeleeHit>
+					<soundMeleeMiss>Pawn_Melee_PowerClaw_Miss</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/HediffDef[
+			defName="LeftExtraDeadlifeVenomClaw" or
+			defName="RightExtraDeadlifeVenomClaw"
+			]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>deadlife venom claw</label>
+					<capacities>
+						<li>ScratchDeadlife</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>1.66</cooldownTime>
+					<armorPenetrationSharp>5</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.25</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<soundMeleeHit>Pawn_Melee_PowerClaw_Hit</soundMeleeHit>
+					<soundMeleeMiss>Pawn_Melee_PowerClaw_Miss</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>
