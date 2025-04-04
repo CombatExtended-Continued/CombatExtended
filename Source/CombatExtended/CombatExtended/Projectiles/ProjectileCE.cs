@@ -596,7 +596,7 @@ namespace CombatExtended
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
 
-            if (!def.projectile.soundAmbient.NullOrUndefined())
+            if (Map != null && !def.projectile.soundAmbient.NullOrUndefined())
             {
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
