@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Empire</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/PawnKindDef[@Name="VFEE_DeserterBase"]/apparelMoney</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/PawnKindDef[@Name="VFEE_DeserterBase"]</xpath>
+						<value>
+							<apparelMoney>0</apparelMoney>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/PawnKindDef[@Name="VFEE_DeserterBase"]/apparelMoney</xpath>
+						<value>
+							<apparelMoney>0</apparelMoney>
+						</value>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/PawnKindDef[@Name="VFEE_DeserterBase"]/apparelTags</xpath>
+					<match Class="PatchOperationRemove">
+						<xpath>Defs/PawnKindDef[@Name="VFEE_DeserterBase"]/apparelTags</xpath>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/PawnKindDef[@Name="VFEE_DeserterBase"]/apparelDisallowTags</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/PawnKindDef[@Name="VFEE_DeserterBase"]</xpath>
+						<value>
+							<apparelDisallowTags>
+								<li>IndustrialMilitaryAdvanced</li>
+								<li>IndustrialMilitaryBasic</li>
+								<li>IndustrialAdvanced</li>
+								<li>IndustrialBasic</li>
+								<li>Western</li>
+							</apparelDisallowTags>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/PawnKindDef[@Name="VFEE_DeserterBase"]/apparelDisallowTags</xpath>
+						<value>
+							<apparelDisallowTags>
+								<li>IndustrialMilitaryAdvanced</li>
+								<li>IndustrialMilitaryBasic</li>
+								<li>IndustrialAdvanced</li>
+								<li>IndustrialBasic</li>
+								<li>Western</li>
+							</apparelDisallowTags>
+						</value>
+					</match>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="VFEE_Deserter"]/combatPower</xpath>
+					<value>
+						<combatPower>80</combatPower>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="VFEE_Deserter"]/weaponTags</xpath>
+					<value>
+						<weaponTags>
+							<li>DankPyon_TwoHandedFlangedMace</li>
+							<li>DankPyon_Greatsword</li>
+							<li>DankPyon_Bardiche</li>
+						</weaponTags>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="VFEE_Deserter"]/apparelRequired</xpath>
+					<value>
+						<apparelRequired Inherit="False">
+							<li>DankPyon_Headgear_KlappvisorBascinet</li>
+							<li>DankPyon_Apparel_Padded_Surcoat</li>
+							<li>DankPyon_Apparel_Brigandine</li>
+							<li>DankPyon_Handwear_GlovesLeather</li>
+							<li>DankPyon_Footwear_BootsLeather</li>
+							<li>DankPyon_Apparel_Trousers</li>
+						</apparelRequired>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="VFEE_Deserter"]/specificApparelRequirements</xpath>
+					<value>
+						<specificApparelRequirements Inherit="False">
+							<li>
+								<bodyPartGroup>FullHead</bodyPartGroup>
+								<apparelLayer>Overhead</apparelLayer>
+								<stuff>Steel</stuff>
+							</li>
+							<li>
+								<bodyPartGroup>Torso</bodyPartGroup>
+								<apparelLayer>OnSkin</apparelLayer>
+								<stuff>DankPyon_Linen</stuff>
+							</li>
+							<li>
+								<bodyPartGroup>Torso</bodyPartGroup>
+								<apparelLayer>Shell</apparelLayer>
+								<stuff>Steel</stuff>
+							</li>
+							<li>
+								<bodyPartGroup>Hands</bodyPartGroup>
+								<apparelLayer>Middle</apparelLayer>
+								<stuff>DankPyon_Leather_Daer</stuff>
+							</li>
+							<li>
+								<bodyPartGroup>Feet</bodyPartGroup>
+								<apparelLayer>OnSkin</apparelLayer>
+								<stuff>DankPyon_Leather_Daer</stuff>
+							</li>
+							<li>
+								<bodyPartGroup>Legs</bodyPartGroup>
+								<apparelLayer>OnSkin</apparelLayer>
+								<stuff>DankPyon_Linen</stuff>
+							</li>
+						</specificApparelRequirements>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/PawnKindDef[defName="VFEE_Deserter"]/skills</xpath>
+					<value>
+						<li>
+							<skill>Melee</skill>
+							<range>8~12</range>
+						</li>
+					</value>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
