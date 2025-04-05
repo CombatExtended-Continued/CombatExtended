@@ -3,6 +3,19 @@
 
 	<!-- ==================== PawnKinds ==================== -->
 
+	<!-- === Remove conflicting apparel layer === -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[
+			defName="DankPyon_KnightRoxmont" or defName="DankPyon_Medieval_LordRoxmont"
+			]/apparelRequired/li[.="DankPyon_Footwear_BootsPlate"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/PawnKindDef[
+			defName="DankPyon_KnightRoxmont" or defName="DankPyon_Medieval_LordRoxmont"
+			]/apparelRequired/li[.="DankPyon_Handwear_GlovesPlate"]</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="DankPyon_HedgeKnightRox"]</xpath>
 		<value>
