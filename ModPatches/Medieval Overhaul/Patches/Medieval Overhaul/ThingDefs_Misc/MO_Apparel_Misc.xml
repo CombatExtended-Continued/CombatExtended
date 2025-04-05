@@ -32,11 +32,17 @@
 
 	<!--Gloves 'n Boots'-->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="DankPyon_Handwear_GlovesLeather" or defName="DankPyon_Handwear_GlovesSplinted" or defName="DankPyon_Handwear_GlovesPlate" or defName="DankPyon_Footwear_BootsLeather" or defName="DankPyon_Footwear_BootsSplinted" or defName="DankPyon_Footwear_BootsPlate"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[
+			defName="DankPyon_Handwear_GlovesLeather" or defName="DankPyon_Handwear_GlovesSplinted" or defName="DankPyon_Handwear_GlovesPlate" or defName="DankPyon_Footwear_BootsLeather" or defName="DankPyon_Footwear_BootsSplinted" or defName="DankPyon_Footwear_BootsPlate"
+			]/equippedStatOffsets</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DankPyon_Handwear_GlovesLeather" or defName="DankPyon_Handwear_GlovesSplinted" or defName="DankPyon_Handwear_GlovesPlate" or defName="DankPyon_Footwear_BootsLeather" or defName="DankPyon_Footwear_BootsSplinted" or defName="DankPyon_Footwear_BootsPlate"]/statBases</xpath>
+		<xpath>Defs/ThingDef[
+			defName="DankPyon_Handwear_GlovesLeather" or defName="DankPyon_Handwear_GlovesSplinted" or
+			defName="DankPyon_Handwear_GlovesPlate" or defName="DankPyon_Footwear_BootsLeather" or
+			defName="DankPyon_Footwear_BootsSplinted" or defName="DankPyon_Footwear_BootsPlate"
+			]/statBases</xpath>
 		<value>
 			<Bulk>3</Bulk>
 			<WornBulk>0.5</WornBulk>
@@ -103,6 +109,13 @@
 		<value>
 			<Bulk>2</Bulk>
 			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="DankPyon_Base_Pants"]/statBases/Mass</xpath>
+		<value>
+			<Mass>0.75</Mass>
 		</value>
 	</Operation>
 
