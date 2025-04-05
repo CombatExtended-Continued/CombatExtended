@@ -44,6 +44,14 @@ namespace CombatExtended
         public float lightingShift = 0f;
         public float weatherShift = 0f;
 
+        static readonly SimpleCurve LightingShiftCurve = new SimpleCurve()
+        {
+            { 0.0f, 0f },
+            { 0.5f, 7f },
+            { 0.8f, 35f },
+            { 1.0f, 70f }
+        };
+
         private float enviromentShiftInt = -1;
         public float enviromentShift
         {
@@ -51,7 +59,7 @@ namespace CombatExtended
             {
                 if (enviromentShiftInt < 0)
                 {
-                    enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 7f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
+                    enviromentShiftInt = LightingShiftCurve.Evaluate(((blindFiring ? 1 : lightingShift)) + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
                 }
                 return enviromentShiftInt;
             }
