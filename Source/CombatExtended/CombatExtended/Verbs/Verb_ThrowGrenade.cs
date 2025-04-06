@@ -140,7 +140,12 @@ namespace CombatExtended
             if (velocity == -1) //No cover required adjusting the angle up, so line-drive it straight, or lob it if we need the distance
             {
                 float v0 = ShotSpeed * manip / GenTicks.TicksPerRealSecond * 3;
-                float H_offset = (targetThing?.TrueCenter().y ?? 0) - ShotHeight;
+                float target_height = 0;
+                if (targetThing != null) {
+                    var cv = new CollisionVertical(targetThing);
+                    target_height = (cv.HeightRange.max + cv.HeightRange.min) / 2;
+                }
+                float H_offset = target_height - ShotHeight;
                 float discriminant = v0*v0*v0*v0 - gravity * (gravity * X*X + 2 * H_offset * v0*v0);
                 if (discriminant < 0) // At max speed, and optimal angle, we can't reach the target
                 {
