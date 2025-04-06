@@ -11,15 +11,6 @@ namespace CombatExtended
 {
     public abstract class BaseTrajectoryWorker
     {
-        public bool TryMoveForward(ProjectileCE projectile)
-        {
-            if (NextPositions(projectile).Any())
-            {
-                MoveForward(projectile);
-                return true;
-            }
-            return false;
-        }
         public abstract Vector3 MoveForward(ProjectileCE projectile);
 
         public virtual IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount)
