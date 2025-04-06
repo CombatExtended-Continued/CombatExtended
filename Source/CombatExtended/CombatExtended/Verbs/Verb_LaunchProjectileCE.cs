@@ -913,7 +913,8 @@ namespace CombatExtended
                             {
                                 Thing cover = ivc.GetFirstPawn(caster.Map) ?? ivc.GetCover(caster.Map);
                                 Bounds bounds = CE_Utility.GetBoundsFor(cover);
-                                if (bounds.size.y >= vpce.minCoverHeight) {
+                                if (bounds.size.y >= vpce.minCoverHeight)
+                                {
                                     return true;
                                 }
                             }

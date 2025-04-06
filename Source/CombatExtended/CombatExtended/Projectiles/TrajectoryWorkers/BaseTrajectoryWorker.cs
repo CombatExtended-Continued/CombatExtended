@@ -18,7 +18,8 @@ namespace CombatExtended
             return new List<Vector3>();
         }
 
-        public virtual void NotifyTicked(ProjectileCE projectile) {
+        public virtual void NotifyTicked(ProjectileCE projectile)
+        {
             projectile.cachedPredictedPositions = null;
         }
 

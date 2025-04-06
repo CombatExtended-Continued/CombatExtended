@@ -18,7 +18,7 @@ namespace CombatExtended
                 tickCount = GenTicks.TicksPerRealSecond;
             }
             var ep = projectile.ExactPosition;
-            for (int i = 1; i < tickCount; i++ )
+            for (int i = 1; i < tickCount; i++)
             {
                 yield return ep + projectile.velocity * i;
             }
@@ -71,7 +71,8 @@ namespace CombatExtended
             // A = F / m
             var a = (float)-dragForce / mass;
             var normalized = velocity.normalized;
-            if (a*a > velocity.sqrMagnitude) {
+            if (a * a > velocity.sqrMagnitude)
+            {
                 a = -velocity.magnitude;
             }
             velocity.x += a * normalized.x;

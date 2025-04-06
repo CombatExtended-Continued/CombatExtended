@@ -123,7 +123,7 @@ namespace CombatExtended
                         float a = p_y / (p_x * (p_x - X));
                         float b = -a * X;
                         float vertex_x = -b / (2 * a);
-                        float vertex_y = a * vertex_x*vertex_x + b * vertex_x;
+                        float vertex_y = a * vertex_x * vertex_x + b * vertex_x;
                         float t = Mathf.Sqrt(2 * vertex_y / gravity);
                         float theta = Mathf.Atan((4 * vertex_y) / X);
                         float v0 = X / (2 * t * Mathf.Cos(theta));
@@ -141,19 +141,20 @@ namespace CombatExtended
             {
                 float v0 = ShotSpeed * manip / GenTicks.TicksPerRealSecond * 3;
                 float target_height = 0;
-                if (targetThing != null) {
+                if (targetThing != null)
+                {
                     var cv = new CollisionVertical(targetThing);
                     target_height = (cv.HeightRange.max + cv.HeightRange.min) / 2;
                 }
                 float H_offset = target_height - ShotHeight;
-                float discriminant = v0*v0*v0*v0 - gravity * (gravity * X*X + 2 * H_offset * v0*v0);
+                float discriminant = v0 * v0 * v0 * v0 - gravity * (gravity * X * X + 2 * H_offset * v0 * v0);
                 if (discriminant < 0) // At max speed, and optimal angle, we can't reach the target
                 {
                     return false;
                 }
 
-                float positive_angle = Mathf.Atan((v0*v0 + Mathf.Sqrt(discriminant)) / (gravity * X));
-                float negative_angle = Mathf.Atan((v0*v0 - Mathf.Sqrt(discriminant)) / (gravity * X));
+                float positive_angle = Mathf.Atan((v0 * v0 + Mathf.Sqrt(discriminant)) / (gravity * X));
+                float negative_angle = Mathf.Atan((v0 * v0 - Mathf.Sqrt(discriminant)) / (gravity * X));
 
                 launchAngle = Mathf.Min(positive_angle, negative_angle);
                 velocity = v0;
