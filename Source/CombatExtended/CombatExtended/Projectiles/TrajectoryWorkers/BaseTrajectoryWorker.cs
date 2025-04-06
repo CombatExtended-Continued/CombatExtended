@@ -21,11 +21,11 @@ namespace CombatExtended
             return false;
         }
         protected virtual void MoveForward(ProjectileCE projectile)
+        public virtual IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount)
         {
-            var nextPosition = NextPositions(projectile).First();
-            projectile.ExactPosition = nextPosition;
+            return new List<Vector3>();
         }
-        public abstract IEnumerable<Vector3> NextPositions(ProjectileCE projectile);
+
         public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
         {
             var sh = Mathf.Max(0f, (exactPosition.y) * 0.84f);

@@ -1136,39 +1136,27 @@ namespace CombatExtended
             }
         }
 
-
-
-        private Queue<Vector3> cachedNextPositions;
-        protected virtual bool ShouldCacheNextPositions => !TrajectoryWorker.GuidedProjectile;
-        public virtual IEnumerable<Vector3> NextPositions
+        private List<Vector3> cachedPredictedPositions;
+        public virtual IEnumerable<Vector3> PredictedPositions
         {
             get
             {
-                if (!ShouldCacheNextPositions)
+                if (cachedPredictedPositions == null)
                 {
-                    TrajectoryWorker.NextPositions(this);
+                    cachedPredictedPositions = TrajectoryWorker.PredictPositions(this, GenTicks.TicksPerRealSecond).ToList();
                 }
-                cachedNextPositions ??= new Queue<Vector3>(100);
-                foreach (var pos in cachedNextPositions)
-                {
-                    yield return pos;
-                }
-                foreach (var pos in TrajectoryWorker.NextPositions(this).Skip(cachedNextPositions.Count))
-                {
-                    cachedNextPositions.Enqueue(pos);
-                    yield return pos;
-                }
+                return cachedPredictedPositions;
             }
         }
 
         public virtual bool IsPredictable(out IEnumerable<Vector3> possiblePositionsForCIWS)
         {
-            possiblePositionsForCIWS = NextPositions;
+            possiblePositionsForCIWS = PredictedPositions;
             return !TrajectoryWorker.GuidedProjectile;
         }
         protected Vector3 MoveForward()
         {
-            TrajectoryWorker.TryMoveForward(this);
+            ExactPosition = TrajectoryWorker.MoveForward(this);
             return ExactPosition;
         }
 

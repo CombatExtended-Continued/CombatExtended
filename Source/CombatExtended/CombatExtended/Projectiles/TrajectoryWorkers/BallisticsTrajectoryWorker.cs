@@ -11,7 +11,7 @@ namespace CombatExtended
 {
     public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
     {
-        public override IEnumerable<Vector3> NextPositions(ProjectileCE projectile)
+        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount)
         {
             var ticksToImpact = projectile.ticksToImpact;
             var exactPosition = projectile.ExactPosition;

@@ -57,7 +57,7 @@ namespace CombatExtended
         {
             get
             {
-                return Quaternion.LookRotation((NextPositions.FirstOrDefault() - ExactPosition).Yto0());
+                return Quaternion.LookRotation((PredictedPositions.FirstOrDefault() - ExactPosition).Yto0());
             }
         }
         public override Quaternion ExactRotation => DrawRotation;

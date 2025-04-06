@@ -10,7 +10,7 @@ namespace CombatExtended
 {
     public class LerpedTrajectoryWorker : BaseTrajectoryWorker
     {
-        public override IEnumerable<Vector3> NextPositions(ProjectileCE projectile)
+        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int ticks)
         {
             var ticksToImpact = projectile.ticksToImpact;
             var origin = projectile.origin;
