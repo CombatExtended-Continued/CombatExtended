@@ -578,7 +578,7 @@ namespace CombatExtended
                 ballisticCoefficient = props.ballisticCoefficient.RandomInRange;
                 mass = props.mass.RandomInRange;
                 radius = props.diameter.RandomInRange / 2000; // half the diameter and mm -> m
-
+                gravity = props.Gravity;
             }
             if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Spawned && Position.Roofed(launcher.Map))
             {
