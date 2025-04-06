@@ -60,8 +60,11 @@ namespace CombatExtended
         /// <returns></returns>
         public virtual Vector3 GetInitialVelocity(float shotSpeed, float rotation, float angle)
         {
-            angle = angle * Mathf.Rad2Deg; // transform to degrees
-            return Vector2.up.RotatedBy(rotation).ToVector3().RotatedBy(angle) * shotSpeed / GenTicks.TicksPerRealSecond;
+            rotation = (rotation - 90) * Mathf.Deg2Rad;
+            var ss = (shotSpeed / GenTicks.TicksPerRealSecond);
+            return new Vector3(Mathf.Cos(rotation) * Mathf.Cos(angle) * ss,
+                               Mathf.Sin(angle) * ss,
+                               Mathf.Sin(rotation) * Mathf.Cos(angle) * ss);
         }
 
         /// <summary>
