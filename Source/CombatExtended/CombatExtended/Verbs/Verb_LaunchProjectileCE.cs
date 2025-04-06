@@ -904,7 +904,23 @@ namespace CombatExtended
                 }
                 else if (lengthHorizontalSquared < verbProps.minRange * verbProps.minRange)
                 {
+                    if (verbProps is VerbPropertiesCE vpce)
+                    {
+                        var mric = vpce.minRangeInCover;
+                        if ((mric > -1) && lengthHorizontalSquared >= (mric * mric)) // Check if we're in or behind cover
+                        {
+                            foreach (var ivc in shootLine.Points().Skip(1).SkipLast(1))
+                            {
+                                Thing cover = ivc.GetFirstPawn(caster.Map) ?? ivc.GetCover(caster.Map);
+                                Bounds bounds = CE_Utility.GetBoundsFor(cover);
+                                if (bounds.size.y >= vpce.minCoverHeight) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
                     report = "CE_BlockedMinRange".Translate();
+                    return false;
                 }
                 else
                 {
