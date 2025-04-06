@@ -65,12 +65,15 @@ namespace CombatExtended
             float crossSectionalArea = radius;
             crossSectionalArea *= crossSectionalArea * 3.14159f;
             // 2.5f is half the mass of 1m² x 1cell of air.
-            var q = 2.5f * shotSpeed * shotSpeed;
+            var q = 2.5f * velocity.sqrMagnitude;
             var dragForce = q * crossSectionalArea / ballisticCoefficient;
             // F = mA
             // A = F / m
             var a = (float)-dragForce / mass;
             var normalized = velocity.normalized;
+            if (a*a > velocity.sqrMagnitude) {
+                a = -velocity.magnitude;
+            }
             velocity.x += a * normalized.x;
             velocity.y += a * normalized.y;
             velocity.z += a * normalized.z;
