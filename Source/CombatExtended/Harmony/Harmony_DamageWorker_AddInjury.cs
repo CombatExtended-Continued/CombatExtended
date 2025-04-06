@@ -150,7 +150,7 @@ namespace CombatExtended.HarmonyCE
                 var setHitPart = AccessTools.Method(typeof(DamageInfo), "SetHitPart");
                 var callHelper = AccessTools.Method(typeof(Patch_DamageWorker_Cut), "ApplyCECleavedDamage");
 
-                for (int i = 0; i < code.Count - 6; i++)
+                for (int i = 0; i < code.Count - 12; i++)
                 {
                     if (
                         code[i].opcode == OpCodes.Stloc_S &&                            
@@ -207,6 +207,71 @@ namespace CombatExtended.HarmonyCE
             {
                 CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
                 return true;
+            }
+        }
+
+        [StaticConstructorOnStartup]
+        [HarmonyPatch(typeof(DamageWorker_Scratch), "ApplySpecialEffectsToPart")]
+        static class Patch_DamageWorker_Scratch
+        {
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            {
+                var code = instructions.ToList();
+                var finalizeAddInjury = AccessTools.Method(typeof(DamageWorker_AddInjury), "FinalizeAndAddInjury", new[]
+                {
+                    typeof(Pawn), typeof(float), typeof(DamageInfo), typeof(DamageWorker.DamageResult)
+                });
+                var setHitPart = AccessTools.Method(typeof(DamageInfo), nameof(DamageInfo.SetHitPart));
+                var callHelper = AccessTools.Method(typeof(Patch_DamageWorker_Scratch), "ApplyCEScratchedDamage");
+                for (int i = 0; i < code.Count - 15; i++)
+                {
+                    if (code[i].opcode == OpCodes.Ldloc_0 &&
+                        code[i + 1].opcode == OpCodes.Ldfld &&
+                        code[i + 2].opcode == OpCodes.Stloc_S &&
+                        code[i + 3].opcode == OpCodes.Ldloca_S &&
+                        code[i + 5].Calls(setHitPart)
+                    )
+
+                    {
+                        int j = i;
+                        while (j < code.Count && !code[j].Calls(finalizeAddInjury))
+                        {
+                            j++;
+                        }
+                        if (j < code.Count && code[j + 1].opcode == OpCodes.Pop)
+                        {
+                            int count = (j + 2) - i;
+                            code.RemoveRange(i, count);
+                            var type = typeof(DamageWorker_Scratch).GetNestedType("<>c__DisplayClass1_0", BindingFlags.NonPublic);
+                            var injected = new List<CodeInstruction>
+                            {
+                                new CodeInstruction(OpCodes.Ldarg_0),
+                                new CodeInstruction(OpCodes.Ldloc_0),
+                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(type, "pawn")),
+                                new CodeInstruction(OpCodes.Ldloc_0),
+                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(type, "dinfo")),
+                                new CodeInstruction(OpCodes.Ldloc_S, 7),
+                                new CodeInstruction(OpCodes.Ldarg_S, 4),
+                                new CodeInstruction(OpCodes.Ldarg_2),
+                                new CodeInstruction(OpCodes.Call, callHelper)
+                            };
+                            code.InsertRange(i, injected);
+                            break;
+                        }
+                    }
+                }
+                return code;
+            }
+            public static void ApplyCEScratchedDamage(DamageWorker instance, Pawn pawn, DamageInfo originalDinfo, BodyPartRecord secondPart, DamageWorker.DamageResult result, float scratchDamage)
+            {
+                DamageInfo clone = originalDinfo;
+                clone.SetAmount(scratchDamage * instance.def.scratchSplitPercentage);
+                DamageInfo newDinfo = ArmorUtilityCE.GetAfterArmorDamage(clone, pawn, secondPart, out bool deflected, out bool diminished, out bool shieldAbsorbed);
+                newDinfo.SetHitPart(secondPart);
+                if (newDinfo.Amount > 0)
+                {
+                    ((DamageWorker_AddInjury)instance).FinalizeAndAddInjury(pawn, newDinfo.Amount, newDinfo, result);
+                }
             }
         }
     }
