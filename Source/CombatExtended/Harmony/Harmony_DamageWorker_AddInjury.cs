@@ -5,6 +5,7 @@ using System.Reflection.Emit;
 using Verse;
 using RimWorld;
 using HarmonyLib;
+using UnityEngine;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -238,14 +239,11 @@ namespace CombatExtended.HarmonyCE
                         {
                             int count = (j + 2) - i;
                             code.RemoveRange(i, count);
-                            var type = typeof(DamageWorker_Scratch).GetNestedType("<>c__DisplayClass1_0", BindingFlags.NonPublic);
                             var injected = new List<CodeInstruction>
                             {
                                 new CodeInstruction(OpCodes.Ldarg_0),
-                                new CodeInstruction(OpCodes.Ldloc_0),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(type, "pawn")),
-                                new CodeInstruction(OpCodes.Ldloc_0),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(type, "dinfo")),
+                                new CodeInstruction(OpCodes.Ldarg_1),
+                                new CodeInstruction(OpCodes.Ldarg_3),
                                 new CodeInstruction(OpCodes.Ldloc_S, 7),
                                 new CodeInstruction(OpCodes.Ldarg_S, 4),
                                 new CodeInstruction(OpCodes.Ldarg_2),
@@ -270,9 +268,62 @@ namespace CombatExtended.HarmonyCE
                 }
             }
         }
+        [StaticConstructorOnStartup]
+        [HarmonyPatch(typeof(DamageWorker_Blunt), "ApplySpecialEffectsToPart")]
+        static class Patch_DamageWorker_Blunt
+        {
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            {
+                var code = instructions.ToList();
+                var finalizeAddInjury = AccessTools.Method(typeof(DamageWorker_AddInjury), "FinalizeAndAddInjury", new[]
+                {
+                    typeof(Pawn), typeof(float), typeof(DamageInfo), typeof(DamageWorker.DamageResult)
+                });
+                var callHelper = AccessTools.Method(typeof(Patch_DamageWorker_Blunt), "ApplyCEBluntDamage");
+                var type = typeof(DamageWorker_Blunt).GetNestedType("<>c__DisplayClass1_0", BindingFlags.NonPublic);
+                var lastInfo = AccessTools.Field(type, "lastInfo");
+
+                for (int i = 0; i < code.Count - 10; i++)
+                {
+                    if (
+                        code[i + 7].Calls(finalizeAddInjury) &&
+                        code[i + 8].opcode == OpCodes.Sub &&
+                        code[i + 9].opcode == OpCodes.Stloc_3
+                    )
+                    {
+                        code.RemoveRange(i, 10);
+                        var injected = new List<CodeInstruction>
+                        {
+                            new CodeInstruction(OpCodes.Ldarg_1),
+                            new CodeInstruction(OpCodes.Ldloc_3),
+                            new CodeInstruction(OpCodes.Ldloc_0),
+                            new CodeInstruction(OpCodes.Ldfld, lastInfo),
+                            new CodeInstruction(OpCodes.Ldarg_S, 4),
+                            new CodeInstruction(OpCodes.Ldarg_3),
+                            new CodeInstruction(OpCodes.Ldarg_0),
+                            new CodeInstruction(OpCodes.Call, callHelper),
+                            new CodeInstruction(OpCodes.Sub),
+                            new CodeInstruction(OpCodes.Stloc_3),
+                        };
+
+                        code.InsertRange(i, injected);
+                        break;
+                    }
+                }
+                return code;
+            }
+            public static float ApplyCEBluntDamage(Pawn pawn, float amount, DamageInfo lastInfo, DamageWorker.DamageResult result, DamageInfo originalDinfo, DamageWorker instance)
+            {
+                if (lastInfo.HitPart == originalDinfo.HitPart)
+                {
+                    return ((DamageWorker_AddInjury)instance).FinalizeAndAddInjury(pawn, amount, lastInfo, result);
+                }
+                DamageInfo newDinfo = ArmorUtilityCE.GetAfterArmorDamage(lastInfo, pawn, lastInfo.HitPart, out bool deflected, out bool diminished, out bool shieldAbsorbed);
+                float injuryAmount = ((DamageWorker_AddInjury)instance).FinalizeAndAddInjury(pawn, newDinfo.Amount, newDinfo, result);
+                return Mathf.Max(injuryAmount, lastInfo.Amount);
+            }
+        }
     }
-
-
 
     // Should work as long as ShouldReduceDamageToPreservePart exists
 
