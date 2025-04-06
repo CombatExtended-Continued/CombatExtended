@@ -1170,8 +1170,10 @@ namespace CombatExtended
                 return;
             }
             if (cachedNextPositions != null && cachedNextPositions.Count > 0)
+            if (!lerpPosition && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
             {
-                cachedNextPositions.Dequeue();
+                Destroy(DestroyMode.Vanish);
+                return;
             }
             LastPos = ExactPosition;
             ticksToImpact--;
