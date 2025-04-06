@@ -1262,7 +1262,11 @@ namespace CombatExtended
          */
 
         private new List<IntVec3> tempLeanShootSources = new List<IntVec3>();
-
+        public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        {
+            Vector3 _;
+            return TryFindCEShootLineFromTo(root, targ, out resultingLine, out _);
+        }
         public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
         {
             targetPos = targ.Thing is Pawn ? targ.Thing.TrueCenter() : targ.Cell.ToVector3Shifted();
