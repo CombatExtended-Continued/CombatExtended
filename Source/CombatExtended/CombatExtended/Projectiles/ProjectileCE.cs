@@ -1169,15 +1169,16 @@ namespace CombatExtended
             {
                 return;
             }
-            if (cachedNextPositions != null && cachedNextPositions.Count > 0)
             if (!lerpPosition && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
             {
                 Destroy(DestroyMode.Vanish);
                 return;
             }
+            TrajectoryWorker.NotifyTicked(this);
             LastPos = ExactPosition;
             ticksToImpact--;
             Vector3 nextPosition = MoveForward();
+
             if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
