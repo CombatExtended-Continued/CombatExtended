@@ -18,6 +18,10 @@ namespace CombatExtended
             return new List<Vector3>();
         }
 
+        public virtual void NotifyTicked(ProjectileCE projectile) {
+            projectile.cachedPredictedPositions = null;
+        }
+
         public virtual Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
         {
             var sh = Mathf.Max(0f, (exactPosition.y) * 0.84f);
