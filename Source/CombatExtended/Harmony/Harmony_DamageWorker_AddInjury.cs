@@ -8,6 +8,7 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 using HarmonyLib;
+using System.Runtime.Remoting.Messaging;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -135,6 +136,65 @@ namespace CombatExtended.HarmonyCE
             {
                 CE_Utility.DamageOutsideSquishy(__instance, dinfo, pawn, totalDamage, result, lastHitPartHealth);
                 return true;
+            }
+
+            // Replaces loop for cleave damage to properly have armor be checked for the cleave target parts.
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            {
+                var code = instructions.ToList();
+                var finalizeAddInjury = AccessTools.Method(typeof(DamageWorker_AddInjury), "FinalizeAndAddInjury", new[]
+                {
+                    typeof(Pawn), typeof(float), typeof(DamageInfo), typeof(DamageWorker.DamageResult)
+                });
+                var getItem = AccessTools.PropertyGetter(typeof(List<BodyPartRecord>), "Item");
+                var setHitPart = AccessTools.Method(typeof(DamageInfo), "SetHitPart");
+                var callHelper = AccessTools.Method(typeof(Patch_DamageWorker_Cut), "ApplyCECleavedDamage");
+
+                for (int i = 0; i < code.Count - 6; i++)
+                {
+                    if (
+                        code[i].opcode == OpCodes.Stloc_S &&                            
+                        code[i + 1].opcode == OpCodes.Ldloca_S &&   
+                        code[i + 4].Calls(getItem) &&
+                        code[i + 5].Calls(setHitPart) &&
+                        code[i + 11].Calls(finalizeAddInjury)
+                    )
+                    {
+                        code.RemoveRange(i, 12);
+                        var injected = new List<CodeInstruction>
+                        {
+                            new CodeInstruction(OpCodes.Ldarg_0),
+	                        new CodeInstruction(OpCodes.Ldarg_1),
+	                        new CodeInstruction(OpCodes.Ldarg_3),
+	                        new CodeInstruction(OpCodes.Ldloc_S, 6),
+	                        new CodeInstruction(OpCodes.Ldloc_S, 9),
+	                        new CodeInstruction(OpCodes.Callvirt, getItem),
+                            new CodeInstruction(OpCodes.Ldarg_S, 4),
+                            new CodeInstruction(OpCodes.Ldloc_S, 7),
+	                        new CodeInstruction(OpCodes.Call, callHelper)
+                        };
+                        code.InsertRange(i, injected);
+                        break;
+                    }
+                }
+                return code;
+            }
+
+            public static void ApplyCECleavedDamage(DamageWorker instance, Pawn pawn, DamageInfo originalDinfo, BodyPartRecord part, DamageWorker.DamageResult result, float cleaveDamage)
+            {
+                if (originalDinfo.HitPart == part)
+                {
+                    ((DamageWorker_AddInjury)instance).FinalizeAndAddInjury(pawn, cleaveDamage, originalDinfo, result);
+                    return;
+                }
+                DamageInfo clone = originalDinfo;
+                clone.SetAmount(cleaveDamage);
+                DamageInfo newDinfo = ArmorUtilityCE.GetAfterArmorDamage(clone, pawn, part, out bool deflected, out bool diminished, out bool shieldAbsorbed);
+                newDinfo.SetHitPart(part);
+                if (newDinfo.Amount > 0)
+                {
+                    ((DamageWorker_AddInjury)instance).FinalizeAndAddInjury(pawn, newDinfo.Amount, newDinfo, result);
+                }
             }
         }
 
