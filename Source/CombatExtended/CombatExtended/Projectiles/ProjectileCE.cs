@@ -28,7 +28,6 @@ namespace CombatExtended
 
         #region Kinetic Projectiles
         public bool lerpPosition = true;
-        public bool kinit = false;
         public float ballisticCoefficient;
         public float mass;
         public float radius;
@@ -407,7 +406,6 @@ namespace CombatExtended
             gravity = projectileProperties.Gravity;
             initialSpeed = shotSpeed;
             lerpPosition = false;
-            kinit = true;
         }
         #endregion
 
