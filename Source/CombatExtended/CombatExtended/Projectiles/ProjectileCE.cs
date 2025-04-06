@@ -1136,7 +1136,7 @@ namespace CombatExtended
             }
         }
 
-        private List<Vector3> cachedPredictedPositions;
+        public List<Vector3> cachedPredictedPositions;
         public virtual IEnumerable<Vector3> PredictedPositions
         {
             get
