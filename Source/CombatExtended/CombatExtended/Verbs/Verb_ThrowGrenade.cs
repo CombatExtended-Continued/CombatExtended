@@ -60,7 +60,7 @@ namespace CombatExtended
             ticks = 0;
             // Iterate through all cells on line of sight and check for cover and smoke
             var cells = GenSightCE.AllPointsOnLineOfSight(target.Cell, caster.Position);
-        
+
             int endCell = cells.Count;
             float X;
             if (targetThing != null)
@@ -69,7 +69,7 @@ namespace CombatExtended
                 proj.y = 0;
                 X = proj.magnitude;
             }
-                
+
             else
             {
                 var tc = caster.TrueCenter();
@@ -111,7 +111,6 @@ namespace CombatExtended
                             launchAngle = theta;
                             velocity = v0;
                         }
-                        
                     }
                 }
 
@@ -126,14 +125,14 @@ namespace CombatExtended
                 {
                     return false;
                 }
-    
+
                 float positive_angle = Mathf.Atan((v0*v0 + Mathf.Sqrt(discriminant)) / (gravity * X));
                 float negative_angle = Mathf.Atan((v0*v0 - Mathf.Sqrt(discriminant)) / (gravity * X));
-                
+
                 launchAngle = Mathf.Min(positive_angle, negative_angle);
                 velocity = v0;
             }
-            
+
             if (velocity > ShotSpeed * manip) // Required velocity is higher than we can throw.
             {
                 return false;
@@ -142,7 +141,7 @@ namespace CombatExtended
             //TODO: The pawn should delay ticks equal difference between this value and the default grenade detonation delay, to properly simulate cooking grenades.
             return true;
         }
-        
+
         public override bool TryCastShot()
         {
             float smokeDensity;
@@ -162,28 +161,28 @@ namespace CombatExtended
             ProjectileCE_Explosive projectile = (ProjectileCE_Explosive)ThingMaker.MakeThing(Projectile, null);
             Vector3 u = caster.TrueCenter();
             sourceLoc.Set(u.x, u.z);
-            
+
             GenSpawn.Spawn(projectile, u.ToIntVec3(), caster.Map);
-            
+
 
             var disp = (_line.Dest - _line.Source);
-            
+
             float targetDistance = Mathf.Sqrt(disp.x * disp.x + disp.z * disp.z);
 
             projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
             projectile.intendedTarget = currentTarget;
             projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
-            
+
             float Y_0 = ShotHeight;
             float V_x = Mathf.Cos(launchAngle) * velocity;
             float time = targetDistance / V_x;
             projectile.ticksToDetonation = ticks;
-            
+
             float t2 = time * time;
             float V_y = Mathf.Sin(launchAngle) * velocity;
-            
+
             Vector3 heading = new Vector3(disp.x / targetDistance * V_x, V_y, disp.z / targetDistance * V_x);
-            
+
             projectile.Throw(
                               Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
                               new Vector3(sourceLoc.x, Y_0, sourceLoc.y),
@@ -204,7 +203,7 @@ namespace CombatExtended
             this.CasterPawn.Drawer.Notify_WarmingCastAlongLine(_direct, this.caster.Position);
             lastShotTick = Find.TickManager.TicksGame;
             this.SelfConsume();
-            return true;   
+            return true;
 
         }
 
