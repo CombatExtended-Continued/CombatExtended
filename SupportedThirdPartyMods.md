@@ -333,6 +333,7 @@ Medieval Overhaul   |
 Medieval Overhaul: Arcane Archeologists   |
 Medieval Overhaul: Barbarians   |
 Medieval Overhaul: House Roxmont  |
+Medieval Overhaul: Royalty  |
 Medieval Tailor   |
 Megafauna	|
 Melee Animation	|
