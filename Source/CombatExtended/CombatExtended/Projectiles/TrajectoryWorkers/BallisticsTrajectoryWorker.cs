@@ -23,7 +23,8 @@ namespace CombatExtended
                 yield return ep + projectile.velocity * i;
             }
         }
-        protected override void MoveForward(ProjectileCE projectile)
+
+        public override Vector3 MoveForward(ProjectileCE projectile)
         {
             projectile.ExactPosition = BallisticMove(projectile.intendedTarget, projectile.ExactPosition, projectile.Props.speedGain, projectile.Props.speed, ref projectile.velocity, ref projectile.shotSpeed, ref projectile.mass, ref projectile.ballisticCoefficient, ref projectile.radius, ref projectile.gravity);
             projectile.FlightTicks++;

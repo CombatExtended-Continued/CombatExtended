@@ -20,7 +20,8 @@ namespace CombatExtended
             }
             return false;
         }
-        protected virtual void MoveForward(ProjectileCE projectile)
+        public abstract Vector3 MoveForward(ProjectileCE projectile);
+
         public virtual IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount)
         {
             return new List<Vector3>();

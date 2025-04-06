@@ -28,7 +28,7 @@ namespace CombatExtended
                 yield return new Vector3(v.x, GetHeightAtTicks(shotHeight, shotSpeed, shotAngle, tick, gravityFactor), v.y);
             }
         }
-        protected override void MoveForward(ProjectileCE projectile)
+        public override Vector3 MoveForward(ProjectileCE projectile)
         {
             base.MoveForward(projectile);
             projectile.FlightTicks++;
