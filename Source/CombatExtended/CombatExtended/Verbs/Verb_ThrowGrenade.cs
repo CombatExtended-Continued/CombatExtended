@@ -159,6 +159,8 @@ namespace CombatExtended
                 return false;
             }
             ticks = (int)(X / (Mathf.Cos(launchAngle) * velocity)) + 1;
+            ProjectilePropertiesCE pprop = Projectile.projectile as ProjectilePropertiesCE;
+            ticks = Rand.RangeInclusive(ticks, pprop.explosionDelay);
             //TODO: The pawn should delay ticks equal difference between this value and the default grenade detonation delay, to properly simulate cooking grenades.
             return true;
         }
