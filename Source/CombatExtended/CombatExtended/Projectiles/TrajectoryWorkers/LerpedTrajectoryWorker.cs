@@ -30,15 +30,14 @@ namespace CombatExtended
         }
         public override Vector3 MoveForward(ProjectileCE projectile)
         {
-            base.MoveForward(projectile);
             projectile.FlightTicks++;
+            return GetPositionAtTick(projectile, projectile.FlightTicks);
         }
         protected Vector3 GetPositionAtTick(ProjectileCE projectile, int tick)
         {
             var v = Vec2Position(projectile.origin, projectile.Destination, projectile.startingTicksToImpact, tick);
             return new Vector3(v.x, GetHeightAtTicks(projectile.shotHeight, projectile.shotSpeed, projectile.shotAngle, tick, projectile.GravityFactor), v.y);
         }
-
         protected float GetHeightAtTicks(float shotHeight, float shotSpeed, float shotAngle, int ticks, float gravityFactor)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
