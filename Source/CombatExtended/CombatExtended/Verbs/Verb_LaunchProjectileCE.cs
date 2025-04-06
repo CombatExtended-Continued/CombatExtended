@@ -897,7 +897,7 @@ namespace CombatExtended
             ShootLine shootLine;
             if (!TryFindCEShootLineFromTo(root, targ, out shootLine, out _))
             {
-                float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
+                int lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
                 if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
                 {
                     report = "CE_BlockedMaxRange".Translate();
