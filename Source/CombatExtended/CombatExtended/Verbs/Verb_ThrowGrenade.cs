@@ -31,10 +31,10 @@ namespace CombatExtended
             }
             return r;
         }
-        
-        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+
+        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
         {
-            hasLine = base.TryFindCEShootLineFromTo(root, targ, out _line);
+            hasLine = base.TryFindCEShootLineFromTo(root, targ, out _line, out targetPos);
             _direct = resultingLine = new ShootLine(root, targ.Cell);
             return hasLine;
         }
