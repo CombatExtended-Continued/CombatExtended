@@ -27,7 +27,6 @@ namespace CombatExtended
         protected const int collisionCheckSize = 5;
 
         #region Kinetic Projectiles
-        public bool lerpPosition = true;
         public float ballisticCoefficient;
         public float mass;
         public float radius;
@@ -89,10 +88,6 @@ namespace CombatExtended
                     this.damageAmount = def.projectile.GetDamageAmount(weaponDamageMultiplier);
                 }
 
-                if (lerpPosition)
-                {
-                    return (float)this.damageAmount;
-                }
                 return ((float)this.damageAmount) * RemainingKineticEnergyPct;
             }
         }
@@ -105,7 +100,7 @@ namespace CombatExtended
 
                 float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
 
-                return lerpPosition ? penetrationAmount : penetrationAmount * RemainingKineticEnergyPct;
+                return penetrationAmount * RemainingKineticEnergyPct;
             }
         }
         public virtual DamageInfo DamageInfo => new DamageInfo(
@@ -118,7 +113,7 @@ namespace CombatExtended
                     def,
                     instigatorGuilty: InstigatorGuilty);
 
-        public float RemainingKineticEnergyPct => (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
+        public float RemainingKineticEnergyPct => TrajectoryWorker is BallisticsTrajectoryWorker ? (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed) : 1f;
 
         /// <summary>
         /// Reference to the weapon that fired this projectile, may be null.
@@ -363,9 +358,16 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
-            Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
             Scribe_Values.Look(ref ignoreRoof, "ignoreRoof", true);
             Scribe_Values.Look(ref ticksToTruePosition, "ticksToTruePosition");
+
+            Scribe_Values.Look(ref ballisticCoefficient, "ballisticCoefficient");
+            Scribe_Values.Look(ref mass, "mass");
+            Scribe_Values.Look(ref radius, "radius");
+            Scribe_Values.Look(ref gravity, "gravity");
+            Scribe_Values.Look(ref velocity, "velocity");
+            Scribe_Values.Look(ref initialSpeed, "initialSpeed");
+
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
@@ -405,7 +407,7 @@ namespace CombatExtended
             radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
             gravity = projectileProperties.Gravity;
             initialSpeed = shotSpeed;
-            lerpPosition = false;
+            forcedTrajectoryWorker = new BallisticsTrajectoryWorker();
         }
         #endregion
 
@@ -571,7 +573,6 @@ namespace CombatExtended
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 this.castShadow = props.castShadow;
-                this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
                 ballisticCoefficient = props.ballisticCoefficient.RandomInRange;
                 mass = props.mass.RandomInRange;
@@ -1160,7 +1161,7 @@ namespace CombatExtended
             return ExactPosition;
         }
 
-        protected virtual bool ShouldCollideWithSomething => (lerpPosition && ticksToImpact <= 0) || ExactPosition.y <= 0f;
+        protected virtual bool ShouldCollideWithSomething => (TrajectoryWorker is LerpedTrajectoryWorker && ticksToImpact <= 0) || ExactPosition.y <= 0f;
         #region Tick/Draw
         public override void Tick()
         {
@@ -1169,7 +1170,7 @@ namespace CombatExtended
             {
                 return;
             }
-            if (!lerpPosition && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
+            if (TrajectoryWorker is BallisticsTrajectoryWorker && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
             {
                 Destroy(DestroyMode.Vanish);
                 return;

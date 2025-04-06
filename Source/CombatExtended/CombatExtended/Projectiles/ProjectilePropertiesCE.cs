@@ -38,7 +38,6 @@ namespace CombatExtended
         public FloatRange mass = new FloatRange(1f, 1f);
         public FloatRange diameter = new FloatRange(1f, 1f);
 
-        public bool lerpPosition = true;
         public ThingDef detonateMoteDef;
         public FleckDef detonateFleckDef;
         public float detonateEffectsScaleOverride = -1;
@@ -71,6 +70,26 @@ namespace CombatExtended
         public ThingDef CIWSVersion;
         public System.Type trajectoryWorker;
         private BaseTrajectoryWorker trajectoryWorkerInt;
+        public bool lerpPosition
+        {
+            get
+            {
+                return TrajectoryWorker is LerpedTrajectoryWorker;
+            }
+            set
+            {
+                Log.WarningOnce("Setting lerpPosition in ProjectilePropertiesCE is deprecated. Set the TrajectoryWorker instead", 56444);
+                if (value)
+                {
+                    trajectoryWorkerInt = new LerpedTrajectoryWorker();
+                }
+                else
+                {
+                    trajectoryWorkerInt = new BallisticsTrajectoryWorker();
+                }
+            }
+        }
+
         public BaseTrajectoryWorker TrajectoryWorker
         {
             get
