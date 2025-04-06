@@ -12,14 +12,24 @@ namespace CombatExtended
     {
         public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int ticks)
         {
-            var ticksToImpact = projectile.ticksToImpact;
-            var startingTicksToImpact = projectile.startingTicksToImpact;
-            var end = (projectile.FlightTicks - startingTicksToImpact < ticks) ? projectile.FlightTicks - startingTicksToImpact : ticks;
-
-            for (int ticksOffset = 1; ticksOffset <= end; ticksOffset++)
+            if (projectile.cachedPredictedPositions != null && projectile.cachedPredictedPositions.Count >= ticks)
             {
-                var tick = projectile.FlightTicks + ticksOffset;
-                yield return GetPositionAtTick(projectile, tick);
+                foreach (var p in projectile.cachedPredictedPositions)
+                {
+                    yield return p;
+                }
+            }
+            else
+            {
+                var ticksToImpact = projectile.ticksToImpact;
+                var startingTicksToImpact = projectile.startingTicksToImpact;
+                var end = (projectile.FlightTicks - startingTicksToImpact < ticks) ? projectile.FlightTicks - startingTicksToImpact : ticks;
+
+                for (int ticksOffset = 1; ticksOffset <= end; ticksOffset++)
+                {
+                    var tick = projectile.FlightTicks + ticksOffset;
+                    yield return GetPositionAtTick(projectile, tick);
+                }
             }
         }
         public override Vector3 MoveForward(ProjectileCE projectile)
