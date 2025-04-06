@@ -1547,7 +1547,7 @@ namespace CombatExtended
             }
             var previous = ExactPosition;
             int sinceTicks = 1;
-            foreach (var next in NextPositions)
+            foreach (var next in PredictedPositions)
             {
                 Map.debugDrawer.FlashLine(previous.ToIntVec3(), next.ToIntVec3(), 70, SimpleColor.Orange);
                 Map.debugDrawer.FlashLine(
