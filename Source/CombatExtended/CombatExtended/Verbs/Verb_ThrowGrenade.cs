@@ -176,8 +176,9 @@ namespace CombatExtended
             {
                 return false;
             }
-            base.TryFindCEShootLineFromTo(caster.Position, currentTarget, out _line);
-            
+            Vector3 _;
+            base.TryFindCEShootLineFromTo(caster.Position, currentTarget, out _line, out _);
+
             ProjectilePropertiesCE pprop = Projectile.projectile as ProjectilePropertiesCE;
             this.CasterPawn.Drawer.Notify_WarmingCastAlongLine(_line, this.caster.Position);
             this.CasterPawn.Drawer.leaner.leanOffsetCurPct = 1.0f;
