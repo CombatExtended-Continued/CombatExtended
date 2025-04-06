@@ -62,7 +62,7 @@ namespace CombatExtended
         /// <param name="rotation">rotation in degrees</param>
         /// <param name="angle">angle in radians</param>
         /// <returns></returns>
-        public virtual Vector3 GetVelocity(float shotSpeed, float rotation, float angle)
+        public virtual Vector3 GetInitialVelocity(float shotSpeed, float rotation, float angle)
         {
             angle = angle * Mathf.Rad2Deg; // transform to degrees
             return Vector2.up.RotatedBy(rotation).ToVector3().RotatedBy(angle) * shotSpeed / GenTicks.TicksPerRealSecond;
