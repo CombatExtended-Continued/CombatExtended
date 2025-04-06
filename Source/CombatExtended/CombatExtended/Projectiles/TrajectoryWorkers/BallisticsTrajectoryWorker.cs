@@ -13,21 +13,14 @@ namespace CombatExtended
     {
         public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount)
         {
-            var ticksToImpact = projectile.ticksToImpact;
-            var exactPosition = projectile.ExactPosition;
-            LocalTargetInfo currentTarget = projectile.intendedTarget;
-            var props = projectile.Props;
-            float speedGain = props.speedGain;
-            float maxSpeed = props.speed;
-            Vector3 velocity = projectile.velocity;
-            float shotSpeed = props.speed;
-            float mass = projectile.mass;
-            float ballisticCoefficient = projectile.ballisticCoefficient;
-            float radius = projectile.radius;
-            float gravity = projectile.gravity;
-            for (int ticksOffset = 1; ticksOffset <= ticksToImpact; ticksOffset++)
+            if (tickCount > GenTicks.TicksPerRealSecond)
             {
-                yield return exactPosition = BallisticMove(currentTarget, exactPosition, speedGain, maxSpeed, ref velocity, ref shotSpeed, ref mass, ref ballisticCoefficient, ref radius, ref gravity);
+                tickCount = GenTicks.TicksPerRealSecond;
+            }
+            var ep = projectile.ExactPosition;
+            for (int i = 1; i < tickCount; i++ )
+            {
+                yield return ep + projectile.velocity * i;
             }
         }
         protected override void MoveForward(ProjectileCE projectile)
