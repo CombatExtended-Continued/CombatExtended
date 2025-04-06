@@ -1010,11 +1010,11 @@ namespace CombatExtended
                 return false;
             }
             // Trees and bushes have RNG chance to collide
-            if (thing is Plant)
+            if (thing is Plant plant)
             {
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
                 var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
-                var chance = thing.def.fillPercent * accuracyFactor;
+                var chance = thing.def.fillPercent * plant.Growth * accuracyFactor;
                 if (Controller.settings.DebugShowTreeCollisionChance)
                 {
                     MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
