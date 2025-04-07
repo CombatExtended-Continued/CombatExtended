@@ -150,8 +150,8 @@ namespace CombatExtended.HarmonyCE
                 for (int i = 0; i < code.Count - 12; i++)
                 {
                     if (
-                        code[i].opcode == OpCodes.Stloc_S &&                            
-                        code[i + 1].opcode == OpCodes.Ldloca_S &&   
+                        code[i].opcode == OpCodes.Stloc_S &&
+                        code[i + 1].opcode == OpCodes.Ldloca_S &&
                         code[i + 4].Calls(getItem) &&
                         code[i + 5].Calls(setHitPart) &&
                         code[i + 11].Calls(finalizeAddInjury)
@@ -161,14 +161,14 @@ namespace CombatExtended.HarmonyCE
                         var injected = new List<CodeInstruction>
                         {
                             new CodeInstruction(OpCodes.Ldarg_0),
-	                        new CodeInstruction(OpCodes.Ldarg_1),
-	                        new CodeInstruction(OpCodes.Ldarg_3),
-	                        new CodeInstruction(OpCodes.Ldloc_S, 6),
-	                        new CodeInstruction(OpCodes.Ldloc_S, 9),
-	                        new CodeInstruction(OpCodes.Callvirt, getItem),
+                            new CodeInstruction(OpCodes.Ldarg_1),
+                            new CodeInstruction(OpCodes.Ldarg_3),
+                            new CodeInstruction(OpCodes.Ldloc_S, 6),
+                            new CodeInstruction(OpCodes.Ldloc_S, 9),
+                            new CodeInstruction(OpCodes.Callvirt, getItem),
                             new CodeInstruction(OpCodes.Ldarg_S, 4),
                             new CodeInstruction(OpCodes.Ldloc_S, 7),
-	                        new CodeInstruction(OpCodes.Call, callHelper)
+                            new CodeInstruction(OpCodes.Call, callHelper)
                         };
                         code.InsertRange(i, injected);
                         break;
