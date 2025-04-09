@@ -11,6 +11,7 @@ namespace CombatExtended
 {
     public class Verb_ShootCEOneUseStatic : Verb_ShootCEOneUse
     {
+        [Compatibility.Multiplayer.SyncMethod]
         public override void OrderForceTarget(LocalTargetInfo target)
         {
             Job job = JobMaker.MakeJob(JobDefOf.UseVerbOnThingStaticReserve, target);
