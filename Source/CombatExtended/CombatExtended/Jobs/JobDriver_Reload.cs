@@ -188,7 +188,8 @@ namespace CombatExtended
             bool hasCasing = true;
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = Mathf.CeilToInt(weapon.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            WeaponPlatform platform = weapon as WeaponPlatform;
+            waitToil.defaultDuration = Mathf.CeilToInt((platform?.GetStatValue(CE_StatDefOf.ReloadTime) ?? compReloader.Props.reloadTime).SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             //If we're 30 ticks through the reload timer or if reload was too fast, before it completes, drop casings if dropcasingwhenreload.
             waitToil.AddPreTickAction(() =>
             {
