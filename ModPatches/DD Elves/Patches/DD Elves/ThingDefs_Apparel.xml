@@ -7,18 +7,12 @@
 		<xpath>Defs/ThingDef[@Name="DevDesigner_Elves_BreastplateBase"]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="DevDesigner_Elves_BreastplateBase"]/statBases</xpath>
-		<value>
-			<Bulk>40</Bulk>
-			<WornBulk>8</WornBulk>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="DevDesigner_Elves_BreastplateBase"]/statBases/Mass</xpath>
 		<value>
 			<Mass>8</Mass>
+			<Bulk>40</Bulk>
+			<WornBulk>8</WornBulk>
 		</value>
 	</Operation>
 
@@ -40,26 +34,6 @@
 		<xpath>Defs/ThingDef[@Name="DevDesigner_Elves_BreastplateBase"]/costStuffCount</xpath>
 		<value>
 			<costStuffCount>90</costStuffCount>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="DevDesigner_Elves_BreastplateBase"]/apparel/layers</xpath>
-		<value>
-			<layers>
-				<li>Shell</li>
-			</layers>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="DevDesigner_Elves_BreastplateBase"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<bodyPartGroups>
-				<li>Neck</li>
-				<li>Torso</li>
-				<li>Shoulders</li>
-			</bodyPartGroups>
 		</value>
 	</Operation>
 
@@ -102,12 +76,6 @@
 		<xpath>Defs/ThingDef[defName="DevDesigner_Elves_Chainmail"]/statBases/Mass</xpath>
 		<value>
 			<Mass>4</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DevDesigner_Elves_Chainmail"]/statBases</xpath>
-		<value>
 			<Bulk>20</Bulk>
 			<WornBulk>5</WornBulk>
 		</value>
@@ -128,9 +96,11 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DevDesigner_Elves_Chainmail"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="DevDesigner_Elves_Chainmail"]</xpath>
 		<value>
-			<MeleeDodgeChance>-0.05</MeleeDodgeChance>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.05</MeleeDodgeChance>
+			</equippedStatOffsets>
 		</value>
 	</Operation>
 
@@ -207,7 +177,8 @@
 	<!-- === Cloak ===-->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_DarkElves_ColdOneKnightCloak" or defName="DevDesigner_DarkElves_BlackGuardCloak" or
+			defName="DevDesigner_DarkElves_ColdOneKnightCloak" or
+			defName="DevDesigner_DarkElves_BlackGuardCloak" or
 			defName="DevDesigner_DarkElves_Cape"
 			]/statBases</xpath>
 		<value>
@@ -218,7 +189,8 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_DarkElves_ColdOneKnightCloak" or defName="DevDesigner_DarkElves_BlackGuardCloak" or
+			defName="DevDesigner_DarkElves_ColdOneKnightCloak" or
+			defName="DevDesigner_DarkElves_BlackGuardCloak" or
 			defName="DevDesigner_DarkElves_Cape"
 			]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
@@ -228,19 +200,7 @@
 
 	<!-- === Breast Plate === -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[
-			defName="DevDesigner_DarkElves_ColdOneKnightArmor" or defName="DevDesigner_DarkElves_BlackGuardArmor"
-			]/equippedStatOffsets/MoveSpeed</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="DevDesigner_DarkElves_ColdOneKnightArmor" or defName="DevDesigner_DarkElves_BlackGuardArmor"
-			]/statBases</xpath>
-		<value>
-			<Bulk>40</Bulk>
-			<WornBulk>10</WornBulk>
-		</value>
+		<xpath>Defs/ThingDef[defName="DevDesigner_DarkElves_ColdOneKnightArmor" or defName="DevDesigner_DarkElves_BlackGuardArmor"]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -249,6 +209,8 @@
 			]/statBases/Mass</xpath>
 		<value>
 			<Mass>8</Mass>
+			<Bulk>40</Bulk>
+			<WornBulk>10</WornBulk>
 		</value>
 	</Operation>
 
@@ -282,7 +244,8 @@
 	<!-- === Clothing ===-->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_DarkElves_MorathiRobe" or defName="DevDesigner_DarkElves_SorceressRobe" or
+			defName="DevDesigner_DarkElves_MorathiRobe" or
+			defName="DevDesigner_DarkElves_SorceressRobe" or
 			defName="DevDesigner_DarkElves_WitchBikini"
 			]/statBases</xpath>
 		<value>
@@ -293,7 +256,8 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_DarkElves_MorathiRobe" or defName="DevDesigner_DarkElves_SorceressRobe" or
+			defName="DevDesigner_DarkElves_MorathiRobe" or
+			defName="DevDesigner_DarkElves_SorceressRobe" or
 			defName="DevDesigner_DarkElves_WitchBikini"
 			]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
@@ -305,7 +269,8 @@
 	<!-- === Cloak ===-->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_HighElves_Cloak" or defName="DevDesigner_HighElves_WhiteLionPelt" or
+			defName="DevDesigner_HighElves_Cloak" or
+			defName="DevDesigner_HighElves_WhiteLionPelt" or
 			defName="DevDesigner_HighElves_LordCloak"
 			]/statBases</xpath>
 		<value>
@@ -316,7 +281,8 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_HighElves_Cloak" or defName="DevDesigner_HighElves_WhiteLionPelt" or
+			defName="DevDesigner_HighElves_Cloak" or
+			defName="DevDesigner_HighElves_WhiteLionPelt" or
 			defName="DevDesigner_HighElves_LordCloak"
 			]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
@@ -327,17 +293,20 @@
 	<!-- === Breast Plate === -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_HighElves_WhiteLionArmor" or defName="DevDesigner_HighElves_DragonPrinceArmor" or
+			defName="DevDesigner_HighElves_WhiteLionArmor" or
+			defName="DevDesigner_HighElves_DragonPrinceArmor" or
 			defName="DevDesigner_HighElves_LordArmor"
 			]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_HighElves_WhiteLionArmor" or defName="DevDesigner_HighElves_DragonPrinceArmor" or
+			defName="DevDesigner_HighElves_WhiteLionArmor" or
+			defName="DevDesigner_HighElves_DragonPrinceArmor" or
 			defName="DevDesigner_HighElves_LordArmor"
-			]/statBases</xpath>
+			]/statBases/Mass</xpath>
 		<value>
+			<Mass>8</Mass>
 			<Bulk>40</Bulk>
 			<WornBulk>10</WornBulk>
 		</value>
@@ -345,17 +314,8 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_HighElves_WhiteLionArmor" or defName="DevDesigner_HighElves_DragonPrinceArmor" or
-			defName="DevDesigner_HighElves_LordArmor"
-			]/statBases/Mass</xpath>
-		<value>
-			<Mass>8</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="DevDesigner_HighElves_WhiteLionArmor" or defName="DevDesigner_HighElves_DragonPrinceArmor" or
+			defName="DevDesigner_HighElves_WhiteLionArmor" or
+			defName="DevDesigner_HighElves_DragonPrinceArmor" or
 			defName="DevDesigner_HighElves_LordArmor"
 			]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
@@ -365,7 +325,8 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_HighElves_WhiteLionArmor" or defName="DevDesigner_HighElves_DragonPrinceArmor" or
+			defName="DevDesigner_HighElves_WhiteLionArmor" or
+			defName="DevDesigner_HighElves_DragonPrinceArmor" or
 			defName="DevDesigner_HighElves_LordArmor"
 			]/statBases/MaxHitPoints</xpath>
 		<value>
@@ -375,7 +336,8 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_HighElves_WhiteLionArmor" or defName="DevDesigner_HighElves_DragonPrinceArmor" or
+			defName="DevDesigner_HighElves_WhiteLionArmor" or
+			defName="DevDesigner_HighElves_DragonPrinceArmor" or
 			defName="DevDesigner_HighElves_LordArmor"
 			]/statBases/WorkToMake</xpath>
 		<value>
@@ -443,14 +405,8 @@
 		<xpath>Defs/ThingDef[defName="DevDesigner_Elves_Chainmail"]/statBases/Mass</xpath>
 		<value>
 			<Mass>4</Mass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DevDesigner_Elves_Chainmail"]/statBases</xpath>
-		<value>
 			<Bulk>20</Bulk>
-			<WornBulk>5</WornBulk>
+			<WornBulk>5</WornBulk>	
 		</value>
 	</Operation>
 
@@ -469,9 +425,11 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DevDesigner_WoodElves_Scalemail"]/equippedStatOffsets</xpath>
+		<xpath>Defs/ThingDef[defName="DevDesigner_WoodElves_Scalemail"]</xpath>
 		<value>
-			<MeleeDodgeChance>-0.05</MeleeDodgeChance>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.05</MeleeDodgeChance>
+			</equippedStatOffsets>
 		</value>
 	</Operation>
 
@@ -499,8 +457,10 @@
 	<!-- === Clothing ===-->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_WoodElves_Tunic" or defName="DevDesigner_WoodElves_ShamanRobe" or
-			defName="DevDesigner_WoodElves_Bikini" or defName="DevDesigner_WoodElves_Lioncloth" or
+			defName="DevDesigner_WoodElves_Tunic" or
+			defName="DevDesigner_WoodElves_ShamanRobe" or
+			defName="DevDesigner_WoodElves_Bikini" or
+			defName="DevDesigner_WoodElves_Lioncloth" or
 			defName="DevDesigner_WoodElves_Corset"
 			]/statBases</xpath>
 		<value>
@@ -511,8 +471,10 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="DevDesigner_WoodElves_Tunic" or defName="DevDesigner_WoodElves_ShamanRobe" or
-			defName="DevDesigner_WoodElves_Bikini" or defName="DevDesigner_WoodElves_Lioncloth" or
+			defName="DevDesigner_WoodElves_Tunic" or
+			defName="DevDesigner_WoodElves_ShamanRobe" or
+			defName="DevDesigner_WoodElves_Bikini" or
+			defName="DevDesigner_WoodElves_Lioncloth" or
 			defName="DevDesigner_WoodElves_Corset"
 			]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
