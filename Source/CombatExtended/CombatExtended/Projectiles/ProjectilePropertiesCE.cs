@@ -81,14 +81,17 @@ namespace CombatExtended
                 Log.WarningOnce("Setting lerpPosition in ProjectilePropertiesCE is deprecated. Set the TrajectoryWorker instead", 56444);
                 if (value)
                 {
-                    trajectoryWorkerInt = new LerpedTrajectoryWorker();
+                    trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
                 }
                 else
                 {
-                    trajectoryWorkerInt = new BallisticsTrajectoryWorker();
+                    trajectoryWorkerInt = defaultBallisticTrajectoryWorker;
                 }
             }
         }
+
+        private static LerpedTrajectoryWorker defaultLerpedTrajectoryWorker = new LerpedTrajectoryWorker();
+        private static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
 
         public BaseTrajectoryWorker TrajectoryWorker
         {
@@ -98,15 +101,22 @@ namespace CombatExtended
                 {
                     if (trajectoryWorker != null)
                     {
-                        trajectoryWorkerInt = (BaseTrajectoryWorker)Activator.CreateInstance(trajectoryWorker);
-                    }
-                    else if (lerpPosition)
-                    {
-                        trajectoryWorkerInt = new LerpedTrajectoryWorker();
+                        if (trajectoryWorker == typeof(BallisticsTrajectoryWorker))
+                        {
+                            trajectoryWorkerInt = defaultBallisticTrajectoryWorker;
+                        }
+                        else if (trajectoryWorker == typeof(LerpedTrajectoryWorker))
+                        {
+                            trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                        }
+                        else
+                        {
+                            trajectoryWorkerInt = (BaseTrajectoryWorker)Activator.CreateInstance(trajectoryWorker);
+                        }
                     }
                     else
                     {
-                        trajectoryWorkerInt = new BallisticsTrajectoryWorker();
+                        trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
                     }
                 }
                 return trajectoryWorkerInt;
