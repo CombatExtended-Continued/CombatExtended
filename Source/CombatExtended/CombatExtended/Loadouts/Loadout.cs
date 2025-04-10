@@ -105,6 +105,13 @@ namespace CombatExtended
                 return _slots.Sum(slot => slot.mass * slot.count);
             }
         }
+        public int UniqueID
+        {
+            get
+            {
+                return uniqueID;
+            }
+        }
 
         #endregion Properties
 
