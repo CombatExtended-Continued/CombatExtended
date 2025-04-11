@@ -74,9 +74,10 @@ namespace CombatExtended.HarmonyCE
         private static int GetTicksBetweenBurstShots(Verb verb)
         {
             float ticksBetweenBurstShots = verb.verbProps.ticksBetweenBurstShots;
-            if (verb is Verb_LaunchProjectileCE && verb.EquipmentSource != null)
+            WeaponPlatform platform = verb.EquipmentSource as WeaponPlatform;
+            if (verb is Verb_LaunchProjectileCE && platform != null)
             {
-                float modified = verb.EquipmentSource.GetStatValue(CE_StatDefOf.TicksBetweenBurstShots);
+                float modified = platform.GetStatValue(CE_StatDefOf.TicksBetweenBurstShots);
                 if (modified > 0)
                 {
                     ticksBetweenBurstShots = modified;

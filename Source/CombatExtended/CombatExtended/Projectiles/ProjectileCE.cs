@@ -596,7 +596,7 @@ namespace CombatExtended
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
 
-            if (!def.projectile.soundAmbient.NullOrUndefined())
+            if (Map != null && !def.projectile.soundAmbient.NullOrUndefined())
             {
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
@@ -1547,7 +1547,27 @@ namespace CombatExtended
         #endregion
 
         #region Ballistics
-        public BaseTrajectoryWorker TrajectoryWorker => forcedTrajectoryWorker ?? (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
+        public BaseTrajectoryWorker TrajectoryWorker
+        {
+            get
+            {
+                if (forcedTrajectoryWorker != null)
+                {
+                    return forcedTrajectoryWorker;
+                }
+                if (def.projectile is ProjectilePropertiesCE propertiesCE)
+                {
+                    return propertiesCE.TrajectoryWorker;
+                }
+                else
+                {
+                    Log.WarningOnce($"{this} properties is not ProjectilePropertiesCE, please contact CE team", this.def.GetHashCode());
+                    forcedTrajectoryWorker = new LerpedTrajectoryWorker();
+                    return forcedTrajectoryWorker;
+                }
+            }
+        }
+
         internal BaseTrajectoryWorker forcedTrajectoryWorker;
 
         public void DrawNextPositions()

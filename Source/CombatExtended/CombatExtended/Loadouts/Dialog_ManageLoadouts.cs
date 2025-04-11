@@ -56,6 +56,7 @@ namespace CombatExtended
         private const float _barHeight = 24f;
         private Vector2 _countFieldSize = new Vector2(40f, 24f);
         private Loadout _currentLoadout;
+        private string _localLabel;
         private LoadoutSlot _draggedSlot;
         private bool _dragging;
         private string _filter = "";
@@ -115,11 +116,8 @@ namespace CombatExtended
             }
             set
             {
-                if (Compatibility.Multiplayer.InMultiplayer && _currentLoadout != null)
-                {
-                    SyncedSetName(_currentLoadout, _currentLoadout.label);
-                }
                 _currentLoadout = value;
+                _localLabel = value?.label;
             }
         }
 
@@ -526,10 +524,11 @@ namespace CombatExtended
 
         private void DrawNameField(Rect canvas)
         {
-            string label = GUI.TextField(canvas, CurrentLoadout.label);
-            if (validNameRegex.IsMatch(label))
+            string label = GUI.TextField(canvas, _localLabel);
+            if (validNameRegex.IsMatch(label) && label != _localLabel)
             {
-                CurrentLoadout.label = label;
+                _localLabel = label;
+                SyncedSetName(CurrentLoadout, label);
             }
         }
 
@@ -907,15 +906,23 @@ namespace CombatExtended
         public override void Close(bool doCloseSound = true)
         {
             base.Close(doCloseSound);
-
-            if (Compatibility.Multiplayer.InMultiplayer && CurrentLoadout != null)
-            {
-                SyncedSetName(CurrentLoadout, CurrentLoadout.label);
-            }
         }
 
         [Compatibility.Multiplayer.SyncMethod]
-        private static void SyncedSetName(Loadout loadout, string name) => loadout.label = name;
+        private static void SyncedSetName(Loadout loadout, string name)
+        {
+            loadout.label = name;
+
+            // Update the label if the loadout window is open on the same loadout for other players
+            if (Compatibility.Multiplayer.InMultiplayer && !Compatibility.Multiplayer.IsExecutingCommandsIssuedBySelf)
+            {
+                var window = Find.WindowStack.WindowOfType<Dialog_ManageLoadouts>();
+                if (window != null && window.CurrentLoadout == loadout)
+                {
+                    window._localLabel = name;
+                }
+            }
+        }
 
         [Compatibility.Multiplayer.SyncMethod]
         private static void AddLoadoutSlotGeneric(Loadout loadout, LoadoutGenericDef generic) => loadout.AddSlot(new LoadoutSlot(generic));
