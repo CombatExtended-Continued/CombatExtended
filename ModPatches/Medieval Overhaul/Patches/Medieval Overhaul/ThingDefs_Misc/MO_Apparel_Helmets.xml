@@ -93,24 +93,9 @@
 			defName="DankPyon_Headgear_ArmetNamed" or defName="DankPyon_Adorned_FlatTop" or
 			defName="DankPyon_Adorned_GreatHelm" or defName="DankPyon_Headgear_Lindwurm"
 			]/apparel/layers</xpath>
+		<order>Prepend</order><!-- required to prioritize Overhead rendering drawOrder -->
 		<value>
 			<li>StrappedHead</li>
-		</value>
-	</Operation>
-
-	<!-- Additional rendering order for some helmets with strapped layer -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="DankPyon_ArmorHelmetMakeableBase"]/apparel/drawData</xpath>
-		<value>
-			<dataSouth>
-				<layer>95</layer>
-			</dataSouth>
-			<dataEast>
-				<layer>95</layer>
-			</dataEast>
-			<dataWest>
-				<layer>95</layer>
-			</dataWest>
 		</value>
 	</Operation>
 
