@@ -12,7 +12,7 @@ namespace CombatExtended
         }
 
         public List<BodyPartGroupDef> bodyPartGroupList = [];
-        List<BodyPartRecord> notMissingParts = [];
+        public List<BodyPartRecord> notMissingPartList = [];
         public override string ExplanationPart(StatRequest req)
         {
             return null;
@@ -42,17 +42,17 @@ namespace CombatExtended
                     }
                 }
             }
-            notMissingParts.Clear();
+            notMissingPartList.Clear();
             foreach (var part in pawn.health.hediffSet.GetNotMissingParts())
             {
-                notMissingParts.Add(part);
+                notMissingPartList.Add(part);
             }
             int matchCount = 0;
-            for (int i = 0; i < notMissingParts.Count; i++)
+            for (int i = 0; i < notMissingPartList.Count; i++)
             {
                 for (int j = 0; j < bodyPartGroupList.Count; j++)
                 {
-                    if (notMissingParts[i].groups.Contains(bodyPartGroupList[j]))
+                    if (notMissingPartList[i].groups.Contains(bodyPartGroupList[j]))
                     {
                         matchCount++;
                         break;
