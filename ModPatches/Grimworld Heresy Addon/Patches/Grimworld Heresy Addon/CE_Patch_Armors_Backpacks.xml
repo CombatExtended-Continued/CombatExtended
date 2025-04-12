@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ============ Light ============ -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GW_SM_IronBackpackA" or defName="GW_SM_IronBackpackB"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IronBackpackA" or defName="GW_SM_IronBackpackB"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<value>
+			<CarryWeight>40</CarryWeight>
+			<CarryBulk>60</CarryBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IronBackpackA" or defName="GW_SM_IronBackpackB"]/statBases/Flammability</xpath>
+		<value>
+			<Flammability>0</Flammability>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IronBackpackA" or defName="GW_SM_IronBackpackB"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_SM_IronBackpackA" or defName="GW_SM_IronBackpackB"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>26</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+</Patch>

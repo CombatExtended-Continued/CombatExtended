@@ -266,6 +266,7 @@ Grimworld: Melee	|
 GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Hammer of the Imperium |
+Grimworld 40,000 - Heresy Armor Addon   |
 GrimWorld 40,000 - Imperial Vehicles of Grimworld |
 GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
