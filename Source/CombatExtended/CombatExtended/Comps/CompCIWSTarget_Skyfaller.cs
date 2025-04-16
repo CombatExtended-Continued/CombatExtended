@@ -11,7 +11,7 @@ namespace CombatExtended
 {
     public class CompCIWSTarget_Skyfaller : CompCIWSTarget
     {
-        public override IEnumerable<Vector3> NextPositions
+        public override IEnumerable<Vector3> PredictedPositions
         {
             get
             {
