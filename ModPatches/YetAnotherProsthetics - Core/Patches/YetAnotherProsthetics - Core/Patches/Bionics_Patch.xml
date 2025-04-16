@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<!-- Patches the BionicArm and BIE_BionicHand -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="BionicArm" or defName="BIE_BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -17,6 +18,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<!-- Patches the BIE_AdvancedBionicArm and BIE_AdvancedBionicHand -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="BIE_AdvancedBionicArm" or defName="BIE_AdvancedBionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -34,6 +36,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<!-- Patches the BIE_UltratechBionicArm (no hand for this tier) -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="BIE_UltratechBionicArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -51,6 +54,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<!-- Patches the ArchotechArm (no hand for this tier, it's patching vanilla for this) -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="ArchotechArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -68,6 +72,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<!-- Commented out until we can resolve issues with smoke hediff on body parts for resistance -->
 	<!-- Add for lungs of advanced nature, scale, recommended 15% for elite bionics, down to 5% for better-than -->
 	<!-- BIE_BionicLung -->
@@ -122,6 +127,7 @@
 			</comps>
 		</value>
 	</Operation>
+
 	<!-- BIE_UltratechBionicJaw -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="BIE_UltratechBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -140,6 +146,7 @@
 			</tools>
 		</value>
 	</Operation>
+
 	<!-- SoSArchotechJaw -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="SoSArchotechJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -174,6 +181,7 @@
 			<ArmorRating_Electric>0.2</ArmorRating_Electric>
 		</value>
 	</Operation>
+
 	<!-- Patch for SoSArchotechSkin (YAP uses SOSArch for these) -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="SoSArchotechSkin"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
@@ -189,4 +197,5 @@
 			<ArmorRating_Electric>0.4</ArmorRating_Electric>
 		</value>
 	</Operation>
+
 </Patch>
