@@ -18,7 +18,6 @@ namespace CombatExtended
         protected bool debug;
         protected Texture2D icon;
         protected int maximumPredectionTicks = 40;
-        protected ProjectileCE dummyCIWSProjectile;
 
         public virtual bool HoldFire { get; set; }
 
@@ -49,43 +48,8 @@ namespace CombatExtended
                 Caster.Map.debugDrawer.FlashLine(lastShootLine.Value.source, lastShootLine.Value.Dest, 60, SimpleColor.Green);
             }
         }
-        protected (Vector2 firstPos, Vector2 secondPos) PositionOfCIWSProjectile(int sinceTicks, Vector3 targetPos, bool drawPos = false)
-        {
-            AimDummyCIWSProjectileTo(targetPos);
-            var firstPos = Caster.Position.ToVector3Shifted();
-            var secondPos = firstPos;
-            int maxTicks = (int)(this.verbProps.range / ShotSpeed) + 5;
 
-            var enumeration = TrajectoryWorker.PredictPositions(dummyCIWSProjectile, maxTicks).GetEnumerator();
-            for (int i = 1; i <= sinceTicks; i++)
-            {
-                firstPos = secondPos;
 
-                if (!enumeration.MoveNext())
-                {
-                    break;
-                }
-                secondPos = enumeration.Current;
-
-            }
-            if (drawPos)
-            {
-                firstPos = TrajectoryWorker.ExactPosToDrawPos(firstPos, sinceTicks - 1, projectilePropsCE.TickToTruePos, Projectile.Altitude);
-                secondPos = TrajectoryWorker.ExactPosToDrawPos(secondPos, sinceTicks, projectilePropsCE.TickToTruePos, Projectile.Altitude);
-            }
-            return (new Vector2(firstPos.x, firstPos.z), new Vector2(secondPos.x, secondPos.z));
-        }
-        protected void AimDummyCIWSProjectileTo(Vector3 to)
-        {
-            if (dummyCIWSProjectile == null || dummyCIWSProjectile.def != Projectile)
-            {
-                dummyCIWSProjectile = SpawnProjectile(); // Not sure if we should call PostMake and etc for dummy
-            }
-            var originV3 = Caster.Position.ToVector3Shifted();
-            var originV2 = new Vector2(originV3.x, originV3.z);
-            dummyCIWSProjectile.Launch(Caster, originV2, ShotAngle(to), ShotRotation(to), ShotHeight, ShotSpeed, Caster);
-
-        }
         public override ThingDef Projectile
         {
             get
