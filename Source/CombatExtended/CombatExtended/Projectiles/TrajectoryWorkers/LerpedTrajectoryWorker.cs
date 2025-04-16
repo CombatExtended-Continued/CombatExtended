@@ -32,7 +32,6 @@ namespace CombatExtended
 
         public override Vector3 MoveForward(ProjectileCE projectile)
         {
-            projectile.FlightTicks++;
             // Someone has asked us to predict our positions before. It's probably faster to just recalculate, but this handles shifting the cached values out without rebuilding the whole cache.
             if (projectile.cachedPredictedPositions != null && projectile.cachedPredictedPositions.Count > 0)
             {

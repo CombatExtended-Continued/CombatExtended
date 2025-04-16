@@ -28,8 +28,6 @@ namespace CombatExtended
         {
             projectile.shotSpeed = projectile.velocity.magnitude * GenTicks.TicksPerRealSecond / 5;
             var ep = BallisticMove(projectile.intendedTarget, projectile.ExactPosition, projectile.Props.speedGain, projectile.Props.speed, ref projectile.velocity, ref projectile.shotSpeed, ref projectile.mass, ref projectile.ballisticCoefficient, ref projectile.radius, ref projectile.gravity);
-            projectile.FlightTicks++;
-            projectile.ExactPosition = ep;
             return ep;
         }
         protected virtual Vector3 BallisticMove(LocalTargetInfo currentTarget, Vector3 exactPosition, float speedGain, float maxSpeed, ref Vector3 velocity, ref float shotSpeed, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity)

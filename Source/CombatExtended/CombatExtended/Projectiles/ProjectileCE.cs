@@ -1161,8 +1161,7 @@ namespace CombatExtended
 
         protected Vector3 MoveForward()
         {
-            ExactPosition = TrajectoryWorker.MoveForward(this);
-            return ExactPosition;
+            return TrajectoryWorker.MoveForward(this);
         }
 
         protected virtual bool ShouldCollideWithSomething => (TrajectoryWorker is LerpedTrajectoryWorker && ticksToImpact <= 0) || ExactPosition.y <= 0f;
@@ -1182,6 +1181,7 @@ namespace CombatExtended
             TrajectoryWorker.NotifyTicked(this);
             LastPos = ExactPosition;
             ticksToImpact--;
+            FlightTicks++;
             Vector3 nextPosition = MoveForward();
 
             if (!nextPosition.InBounds(Map))
