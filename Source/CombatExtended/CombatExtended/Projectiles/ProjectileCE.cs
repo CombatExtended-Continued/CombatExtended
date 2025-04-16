@@ -101,7 +101,8 @@ namespace CombatExtended
 
                 float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
 
-                return penetrationAmount * RemainingKineticEnergyPct;
+                float speedFactor = isSharpDmg ? RemainingSpeedPct : RemainingKineticEnergyPct;
+                return penetrationAmount * speedFactor;
             }
         }
         public virtual DamageInfo DamageInfo => new DamageInfo(
@@ -115,6 +116,7 @@ namespace CombatExtended
                     instigatorGuilty: InstigatorGuilty);
 
         public float RemainingKineticEnergyPct => TrajectoryWorker is BallisticsTrajectoryWorker ? (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed) : 1f;
+        public float RemainingSpeedPct => TrajectoryWorker is BallisticsTrajectoryWorker ? (shotSpeed) / (initialSpeed) : 1f;
 
         /// <summary>
         /// Reference to the weapon that fired this projectile, may be null.
