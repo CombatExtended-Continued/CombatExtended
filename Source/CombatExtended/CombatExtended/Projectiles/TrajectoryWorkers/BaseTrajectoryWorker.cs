@@ -70,8 +70,9 @@ namespace CombatExtended
         /// </summary>
         /// <param name="source">Source shot, including shot height</param>
         /// <param name="targetPos">Target position, including target height</param>
+        /// <param name="speed">speed (cells / second)</param>
         /// <returns>angle in radians</returns>
-        public virtual float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? velocity = null)
+        public virtual float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null)
         {
             var targetHeight = targetPos.y;
             var shotHeight = source.y;
@@ -83,11 +84,11 @@ namespace CombatExtended
             }
             else
             {
-                var _velocity = velocity ?? projectilePropsCE.speed;
+                var _speed = speed ?? projectilePropsCE.speed;
                 var gravity = projectilePropsCE.Gravity;
                 var heightDifference = targetHeight - shotHeight;
                 var range = (newTargetLoc - sourceV2).magnitude;
-                float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_velocity, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_velocity, 2f)));
+                float squareRootCheck = Mathf.Sqrt(Mathf.Pow(_speed, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(_speed, 2f)));
                 if (float.IsNaN(squareRootCheck))
                 {
                     //Target is too far to hit with given velocity/range/gravity params
@@ -95,7 +96,7 @@ namespace CombatExtended
                     Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
                     return 45.0f * Mathf.Deg2Rad;
                 }
-                return Mathf.Atan((Mathf.Pow(_velocity, 2f) + (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
+                return Mathf.Atan((Mathf.Pow(_speed, 2f) + (projectilePropsCE.flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
             }
         }
         public virtual float ShotRotation(ProjectilePropertiesCE projectilePropertiesCE, Vector3 source, Vector3 targetPos)
