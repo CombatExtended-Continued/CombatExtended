@@ -36,9 +36,9 @@ namespace CombatExtended
         }
         protected virtual void Accelerate(ProjectileCE projectile)
         {
+            ReactiveAcceleration(projectile);
             AffectedByDrag(projectile);
             AffectedByGravity(projectile);
-            ReactiveAcceleration(projectile);
         }
 
         protected virtual void ReactiveAcceleration(ProjectileCE projectile)
