@@ -1152,8 +1152,9 @@ namespace CombatExtended
 
         public virtual bool IsPredictable(out IEnumerable<Vector3> possiblePositionsForCIWS)
         {
-            possiblePositionsForCIWS = PredictedPositions;
-            return !TrajectoryWorker.GuidedProjectile;
+            var pp = PredictedPositions.ToList();
+            possiblePositionsForCIWS = pp;
+            return pp.Count > 0;
         }
         protected Vector3 MoveForward()
         {
