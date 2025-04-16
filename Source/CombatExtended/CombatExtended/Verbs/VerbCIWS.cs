@@ -230,42 +230,73 @@ namespace CombatExtended
                 return true;
             }
             int i = 1;
+            var speed = ShotSpeed;
 
             var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
             foreach (var pos in PredictPositions(target, ticksToSkip + maxTicks).Skip(ticksToSkip))
             {
                 var targetPos2 = new Vector2(pos.x, pos.z);
-                if ((pos - originV3).MagnitudeHorizontalSquared() > maxDistSqr)
+                var dhs = (pos - originV3).MagnitudeHorizontalSquared();
+                // Check if the projected location is outside our maximum targeting range.
+                if (dhs > maxDistSqr)
                 {
                     targetPos1 = targetPos2;
                     i++;
                     continue;
                 }
-
-                Vector2 originV2 = new Vector2(originV3.x, originV3.z);
-
-                var positions = PositionOfCIWSProjectile(i, pos, true);
-                //if (positions.firstPos == positions.secondPos) //Not sure why, but sometimes this code drops calculations on i = 1
-                //{
-                //    resultingLine = default(ShootLine);
-                //    return false;
-                //}
-                Vector2 ciwsPos1 = positions.firstPos, ciwsPos2 = positions.secondPos;
-
-                if (CE_Utility.TryFindIntersectionPoint(ciwsPos1, ciwsPos2, targetPos1, targetPos2, out _))
+                /* Target will be in range, check if we can intercept it.
+                 * For each potential target position, we need to see if the number of ticks for us to shoot that position is
+                 * equal to the number of ticks before the target is there. So calculate the shot angle to hit the cell,
+                 * then calculate how many ticks to reach it.
+                 */
+                var distance = Mathf.Sqrt(dhs);
+                var heightOffset = ShotHeight - pos.y;
+                var gravity = projectilePropsCE.Gravity;
+                var shotAngle = CE_Utility.GetShotAngle(speed, distance, heightOffset, Projectile.projectile.flyOverhead, gravity);
+                var v_xz = speed * Mathf.Sin(shotAngle);
+                var d = v_xz * v_xz - 2 * gravity * heightOffset;
+                if (d < 0) // cannot actually reach the given location, probably too high up
                 {
-                    targetPos = pos;
-
-                    resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.y));
-
-                    return true;
+                    targetPos1 = targetPos2;
+                    i++;
+                    continue;
                 }
-                targetPos1 = targetPos2;
-                i++;
-                if (i > maximumPredectionTicks)
+                var t = (v_xz + Mathf.Sqrt(d)) / gravity;
+                if (Mathf.Abs(t * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way up, must be after the zenith
                 {
+                    t = (v_xz - Mathf.Sqrt(d)) / gravity;
+                    if (Mathf.Abs(t * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way down either, something's wrong
+                    {
+                        Log.Error($"Cannot reach target: {speed}, {pos}, {distance}, {heightOffset}, {gravity}, {shotAngle}, {v_xz}, {d}, {t}");
+                        i++;
+                        continue;
+                    }
+                }
+                int ticksToIntercept = Mathf.CeilToInt(t);
+                if (ticksToIntercept > i)
+                {
+                    if (debug)
+                    {
+                        Log.Message($"Can hit target, but not at the right time, checking next position");
+                    }
+                    i++;
+                    continue;
+                }
+                if (ticksToIntercept < i)
+                {
+                    if (debug)
+                    {
+                        Log.Message($"Can hit target, but not yet. Need to delay {i - ticksToIntercept} ticks;");
+                    }
                     break;
                 }
+                if (debug)
+                {
+                    Log.Message("Found shot line at the right delay");
+                }
+                resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.y));
+                targetPos = pos;
+                return true;
             }
             resultingLine = default;
             targetPos = default;
