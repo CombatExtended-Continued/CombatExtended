@@ -45,8 +45,10 @@ namespace CombatExtended
         {
             if (projectile.fuelTicks > 0)
             {
+                Vector3 v = projectile.velocity;
                 projectile.fuelTicks--;
-                projectile.velocity += projectile.velocity.normalized * projectile.Props.speedGain;
+                v += v.normalized * projectile.Props.speedGain;
+                projectile.velocity = v;
             }
         }
 
