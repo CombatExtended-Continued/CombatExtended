@@ -81,5 +81,46 @@ namespace CombatExtended
         {
             return exactPosition.WithY(altitude);
         }
+
+        /// <summary>
+        /// Shot angle in radians
+        /// </summary>
+        /// <param name="source">Source shot, including shot height</param>
+        /// <param name="targetPos">Target position, including target height</param>
+        /// <returns>angle in radians</returns>
+        public override float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null)
+        {
+            float D = (targetPos - source).sqrMagnitude;
+            var initialSpeed = speed ?? projectilePropsCE.speed;
+            float acceleration = projectilePropsCE.speedGain;
+            int fuelLimit = projectilePropsCE.fuelTicks;
+
+            if (acceleration == 0 && fuelLimit == 0)
+            {
+                return base.ShotAngle(projectilePropsCE, source, targetPos, speed);
+            }
+            /* First calculate the distance covered while the thrust is still applied
+             * Then find the average speed over the whole flight
+             */
+            var D_accel = initialSpeed * fuelLimit + 0.5f * acceleration * fuelLimit * fuelLimit;
+            if (D_accel < D) // Fuel runs out before reaching the destination
+            {
+                float finalSpeed = initialSpeed + acceleration * fuelLimit;
+                float D_remaining = D - D_accel;
+                float time = fuelLimit + D_remaining / finalSpeed;
+                float averageSpeed = D / time;
+                return base.ShotAngle(projectilePropsCE, source, targetPos, averageSpeed);
+            }
+            else
+            {
+                var a = acceleration / 2;
+                var b = initialSpeed;
+                var c = -D;
+                var discriminant = b * b - 4 * a * c;
+                float time = (-b + Mathf.Sqrt(discriminant)) / (2 * a);
+                float averageSpeed = D / time;
+                return base.ShotAngle(projectilePropsCE, source, targetPos, averageSpeed);
+            }
+        }
     }
 }
