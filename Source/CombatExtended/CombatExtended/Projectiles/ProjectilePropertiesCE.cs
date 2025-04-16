@@ -91,7 +91,7 @@ namespace CombatExtended
         }
 
         private static LerpedTrajectoryWorker defaultLerpedTrajectoryWorker = new LerpedTrajectoryWorker();
-        private static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
+        public static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
 
         public BaseTrajectoryWorker TrajectoryWorker
         {

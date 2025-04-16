@@ -407,7 +407,16 @@ namespace CombatExtended
             radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
             gravity = projectileProperties.Gravity;
             initialSpeed = shotSpeed;
-            forcedTrajectoryWorker = new BallisticsTrajectoryWorker();
+            var worker = (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
+            if (worker is BallisticsTrajectoryWorker)
+            {
+                forcedTrajectoryWorker = worker;
+            }
+            else
+            {
+                Log.ErrorOnce($"Tried setting a non-Ballistic TrajectoryWorker ({worker}) on a projectile being Thrown. Falling back to default.", 50019);
+                forcedTrajectoryWorker = ProjectilePropertiesCE.defaultBallisticTrajectoryWorker;
+            }
         }
         #endregion
 
