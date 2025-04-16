@@ -1544,7 +1544,21 @@ namespace CombatExtended
         #endregion
 
         #region Ballistics
-        public BaseTrajectoryWorker TrajectoryWorker => forcedTrajectoryWorker ?? (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
+        public BaseTrajectoryWorker TrajectoryWorker
+        {
+            get
+            {
+                if (forcedTrajectoryWorker == null)
+                {
+                    if ((def.projectile as ProjectilePropertiesCE).lerpPosition != "")
+                    {
+                        Log.ErrorOnce($"Setting lerpPosition in ProjectilePropertiesCE for {this} is deprecated, set the TrajectoryWorker instead", 50002 + def.projectile.GetHashCode());
+                    }
+                    forcedTrajectoryWorker = (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
+                }
+                return forcedTrajectoryWorker;
+            }
+        }
         internal BaseTrajectoryWorker forcedTrajectoryWorker;
 
         public void DrawNextPositions()

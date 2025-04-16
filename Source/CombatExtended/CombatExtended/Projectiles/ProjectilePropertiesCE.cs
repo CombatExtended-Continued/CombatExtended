@@ -70,25 +70,7 @@ namespace CombatExtended
         public ThingDef CIWSVersion;
         public System.Type trajectoryWorker;
         private BaseTrajectoryWorker trajectoryWorkerInt;
-        public bool lerpPosition
-        {
-            get
-            {
-                return TrajectoryWorker is LerpedTrajectoryWorker;
-            }
-            set
-            {
-                Log.WarningOnce("Setting lerpPosition in ProjectilePropertiesCE is deprecated. Set the TrajectoryWorker instead", 56444);
-                if (value)
-                {
-                    trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
-                }
-                else
-                {
-                    trajectoryWorkerInt = defaultBallisticTrajectoryWorker;
-                }
-            }
-        }
+        public string lerpPosition = "";
 
         private static LerpedTrajectoryWorker defaultLerpedTrajectoryWorker = new LerpedTrajectoryWorker();
         public static BallisticsTrajectoryWorker defaultBallisticTrajectoryWorker = new BallisticsTrajectoryWorker();
@@ -116,7 +98,21 @@ namespace CombatExtended
                     }
                     else
                     {
-                        trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                        if (lerpPosition != "")
+                        {
+                            if (lerpPosition == "false")
+                            {
+                                trajectoryWorkerInt = defaultBallisticTrajectoryWorker;
+                            }
+                            else
+                            {
+                                trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                            }
+                        }
+                        else
+                        {
+                            trajectoryWorkerInt = defaultLerpedTrajectoryWorker;
+                        }
                     }
                 }
                 return trajectoryWorkerInt;
