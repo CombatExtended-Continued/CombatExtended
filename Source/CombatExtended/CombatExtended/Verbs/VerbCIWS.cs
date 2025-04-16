@@ -149,7 +149,7 @@ namespace CombatExtended
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {
         public abstract IEnumerable<TargetType> Targets { get; }
-        protected abstract IEnumerable<Vector3> TargetNextPositions(TargetType target);
+        protected abstract IEnumerable<Vector3> PredictPositions(TargetType target, int maxTicks);
 
 
 
@@ -207,7 +207,7 @@ namespace CombatExtended
                     targetPos = default;
                     return false;
                 }
-                var y = TargetNextPositions(target).FirstOrDefault().y;
+                var y = PredictPositions(target, 1).FirstOrDefault().y;
                 targetPos = target.DrawPos;
                 resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)targetPos.x, (int)y, (int)targetPos.z));
                 return true;
@@ -217,7 +217,7 @@ namespace CombatExtended
             var instant = projectilePropsCE.isInstant;
             if (instant)
             {
-                var to = TargetNextPositions(target).Skip(ticksToSkip).FirstOrFallback(Vector3.negativeInfinity);
+                var to = PredictPositions(target, ticksToSkip + 1).Skip(ticksToSkip).FirstOrFallback(Vector3.negativeInfinity);
                 if (to == Vector3.negativeInfinity)
                 {
                     resultingLine = default;
@@ -284,9 +284,9 @@ namespace CombatExtended
         public override IEnumerable<Thing> Targets => CompCIWSTarget.Targets<TargetType>(Caster.Map);
         protected override bool IsFriendlyTo(Thing thing) => thing.TryGetComp<TargetType>()?.IsFriendlyTo(thing) ?? base.IsFriendlyTo(thing);
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.HasThing && target.Thing.HasComp<TargetType>() && base.ValidateTarget(target, showMessages);
-        protected override IEnumerable<Vector3> TargetNextPositions(Thing target)
+        protected override IEnumerable<Vector3> PredictPositions(Thing target, int maxTicks)
         {
-            return target.TryGetComp<CompCIWSTarget>().NextPositions;
+            return target.TryGetComp<CompCIWSTarget>().PredictedPositions;
         }
     }
 
