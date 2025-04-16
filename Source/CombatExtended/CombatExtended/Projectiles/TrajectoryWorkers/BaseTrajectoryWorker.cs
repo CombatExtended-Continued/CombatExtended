@@ -52,14 +52,14 @@ namespace CombatExtended
         /// <summary>
         /// Get initial velocity
         /// </summary>
-        /// <param name="shotSpeed">speed</param>
+        /// <param name="shotSpeed">speed (meters / second)</param>
         /// <param name="rotation">rotation in degrees</param>
         /// <param name="angle">angle in radians</param>
         /// <returns></returns>
         public virtual Vector3 GetInitialVelocity(float shotSpeed, float rotation, float angle)
         {
-            rotation = (rotation - 90) * Mathf.Deg2Rad;
-            var ss = (shotSpeed / GenTicks.TicksPerRealSecond);
+            rotation = (rotation + 90) * Mathf.Deg2Rad;
+            var ss = (shotSpeed / GenTicks.TicksPerRealSecond * 5); // Speed in cells / tick
             return new Vector3(Mathf.Cos(rotation) * Mathf.Cos(angle) * ss,
                                Mathf.Sin(angle) * ss,
                                Mathf.Sin(rotation) * Mathf.Cos(angle) * ss);
