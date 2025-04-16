@@ -12,29 +12,34 @@ namespace CombatExtended
     {
         public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int ticks)
         {
-            if (projectile.cachedPredictedPositions != null && projectile.cachedPredictedPositions.Count >= ticks)
+            List<Vector3> cachedPredictedPositions = projectile.cachedPredictedPositions ?? new List<Vector3>();
+            var ticksToImpact = projectile.ticksToImpact;
+            var end = (ticksToImpact < ticks) ? ticksToImpact : ticks;
+            if (cachedPredictedPositions.Count < end)
             {
-                foreach (var p in projectile.cachedPredictedPositions)
-                {
-                    yield return p;
-                }
-            }
-            else
-            {
-                var ticksToImpact = projectile.ticksToImpact;
-                var startingTicksToImpact = projectile.startingTicksToImpact;
-                var end = (projectile.FlightTicks - startingTicksToImpact < ticks) ? projectile.FlightTicks - startingTicksToImpact : ticks;
-
-                for (int ticksOffset = 1; ticksOffset <= end; ticksOffset++)
+                for (int ticksOffset = cachedPredictedPositions.Count; ticksOffset < end; ticksOffset++)
                 {
                     var tick = projectile.FlightTicks + ticksOffset;
-                    yield return GetPositionAtTick(projectile, tick);
+                    cachedPredictedPositions.Add(GetPositionAtTick(projectile, tick));
                 }
             }
+            return cachedPredictedPositions;
         }
+        public override void NotifyTicked(ProjectileCE projectile)
+        {
+            // Don't invalidate the cache, as our MoveForward handles dequeing it.
+        }
+
         public override Vector3 MoveForward(ProjectileCE projectile)
         {
             projectile.FlightTicks++;
+            // Someone has asked us to predict our positions before. It's probably faster to just recalculate, but this handles shifting the cached values out without rebuilding the whole cache.
+            if (projectile.cachedPredictedPositions != null && projectile.cachedPredictedPositions.Count > 0)
+            {
+                Vector3 np = projectile.cachedPredictedPositions[0];
+                projectile.cachedPredictedPositions.RemoveAt(0);
+                return np;
+            }
             return GetPositionAtTick(projectile, projectile.FlightTicks);
         }
         protected Vector3 GetPositionAtTick(ProjectileCE projectile, int tick)
