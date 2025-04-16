@@ -31,6 +31,7 @@ namespace CombatExtended
         public float mass;
         public float radius;
         public float gravity;
+        public int fuelTicks;
         public Vector3 velocity;
         public float initialSpeed;
         #endregion
@@ -365,6 +366,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref mass, "mass");
             Scribe_Values.Look(ref radius, "radius");
             Scribe_Values.Look(ref gravity, "gravity");
+            Scribe_Values.Look(ref fuelTicks, "fuelTicks");
             Scribe_Values.Look(ref velocity, "velocity");
             Scribe_Values.Look(ref initialSpeed, "initialSpeed");
 
@@ -406,6 +408,7 @@ namespace CombatExtended
             mass = projectileProperties.mass.RandomInRange;
             radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
             gravity = projectileProperties.Gravity;
+            fuelTicks = projectileProperties.fuelTicks;
             initialSpeed = shotSpeed;
             var worker = (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
             if (worker is BallisticsTrajectoryWorker)
@@ -587,6 +590,7 @@ namespace CombatExtended
                 mass = props.mass.RandomInRange;
                 radius = props.diameter.RandomInRange / 2000; // half the diameter and mm -> m
                 gravity = props.Gravity;
+                fuelTicks = props.fuelTicks;
             }
             if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Spawned && Position.Roofed(launcher.Map))
             {

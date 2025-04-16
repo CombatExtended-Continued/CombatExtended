@@ -16,6 +16,7 @@ namespace CombatExtended
 
         // public float armorPenetration = 0;
         public float speedGain = 0f;
+        public int fuelTicks = 0;
         public int pelletCount = 1;
         public float spreadMult = 1;
         public List<SecondaryDamage> secondaryDamage = new List<SecondaryDamage>();
