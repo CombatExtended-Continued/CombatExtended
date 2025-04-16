@@ -577,8 +577,7 @@ namespace CombatExtended
         /// <returns>rotation in degrees</returns>
         protected virtual float ShotRotation(Vector3 source, Vector3 targetPos)
         {
-            var w = targetPos - source;
-            return -90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x);
+            return projectilePropsCE.TrajectoryWorker.ShotRotation(projectilePropsCE, source, targetPos);
         }
         /// <summary>
         /// Calculates the amount of recoil at a given point in a burst, up to a maximum
