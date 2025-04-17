@@ -165,7 +165,7 @@ Comigo's Fancy Floating Turrets |
 Communicable Diseases   |
 Cossacks of the Rim |
 Crowns and Regalia  |
-Crossbows
+Crossbows  |
 Cupro's Alloys	|
 Cursed Guns |
 CutePenguin	|
