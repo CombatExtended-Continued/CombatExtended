@@ -74,9 +74,10 @@ namespace CombatExtended
             get
             {
                 float shotsPerBurst = base.ShotsPerBurst;
-                if (EquipmentSource != null)
+                WeaponPlatform platform = this.WeaponPlatform;
+                if (platform != null)
                 {
-                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
+                    float modified = platform.GetStatValue(CE_StatDefOf.BurstShotCount);
                     if (modified > 0)
                     {
                         shotsPerBurst = modified;
@@ -191,14 +192,17 @@ namespace CombatExtended
             }
         }
 
+        public WeaponPlatform WeaponPlatform => EquipmentSource as WeaponPlatform;
+
         public float RecoilAmount
         {
             get
             {
                 float recoil = VerbPropsCE.recoilAmount;
-                if (EquipmentSource != null)
+                WeaponPlatform platform = this.WeaponPlatform;
+                if (platform != null)
                 {
-                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.Recoil);
+                    float modified = platform.GetStatValue(CE_StatDefOf.Recoil);
                     if (modified > 0)
                     {
                         recoil = modified;
@@ -1012,6 +1016,11 @@ namespace CombatExtended
             // 5:       Interruptible -> stop shooting
             // 6:       Not interruptible -> shoot along previous line
             // 7:     else -> stop
+            if (lastShootLine == null)
+            {
+                shootLine = default;
+                return false;
+            }
             shootLine = (ShootLine)lastShootLine;
             if (LockRotationAndAngle) // Case 1,2,5,6
             {
@@ -1020,11 +1029,6 @@ namespace CombatExtended
                     return false;
                 }
                 // Case 2, 6
-                if (lastShootLine == null)
-                {
-                    return false;
-                }
-                shootLine = (ShootLine)lastShootLine;
                 currentTarget = new LocalTargetInfo(lastTargetPos);
                 lastExactPos = lastTargetPos.ToVector3Shifted();
             }

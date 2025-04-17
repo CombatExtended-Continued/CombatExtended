@@ -72,7 +72,7 @@ namespace CombatExtended
             }
             if (req.HasThing)
             {
-                return (int)req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity);
+                return (int)(compAmmo?.MagSize ?? req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity));
             }
             return GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
         }

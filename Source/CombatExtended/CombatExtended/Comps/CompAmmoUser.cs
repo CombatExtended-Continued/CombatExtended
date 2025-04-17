@@ -59,7 +59,8 @@ namespace CombatExtended
         {
             get
             {
-                return (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
+                WeaponPlatform platform = parent as WeaponPlatform;
+                return (int)(platform?.GetStatValue(CE_StatDefOf.MagazineCapacity) ?? Props.magazineSize);
             }
         }
 
@@ -83,7 +84,8 @@ namespace CombatExtended
         {
             get
             {
-                return (int)parent.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride);
+                WeaponPlatform platform = parent as WeaponPlatform;
+                return (int)(platform?.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride) ?? Props.AmmoGenPerMagOverride);
             }
         }
         public int CurMagCount

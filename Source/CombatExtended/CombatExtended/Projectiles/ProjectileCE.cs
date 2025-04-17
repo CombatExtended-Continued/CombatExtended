@@ -611,7 +611,7 @@ namespace CombatExtended
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
 
-            if (!def.projectile.soundAmbient.NullOrUndefined())
+            if (Map != null && !def.projectile.soundAmbient.NullOrUndefined())
             {
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
@@ -1552,17 +1552,23 @@ namespace CombatExtended
         {
             get
             {
-                if (forcedTrajectoryWorker == null)
+                if (def.projectile is ProjectilePropertiesCE propertiesCE)
                 {
-                    if ((def.projectile as ProjectilePropertiesCE).lerpPosition != "")
+                    if (propertiesCE.lerpPosition != "")
                     {
                         Log.ErrorOnce($"Setting lerpPosition in ProjectilePropertiesCE for {this} is deprecated, set the TrajectoryWorker instead", 50002 + def.projectile.GetHashCode());
                     }
-                    forcedTrajectoryWorker = (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
+                    return propertiesCE.TrajectoryWorker;
+                }
+                else
+                {
+                    Log.WarningOnce($"{this} properties is not ProjectilePropertiesCE, please contact CE team", this.def.GetHashCode());
+                    forcedTrajectoryWorker = new LerpedTrajectoryWorker();
                 }
                 return forcedTrajectoryWorker;
             }
         }
+
         internal BaseTrajectoryWorker forcedTrajectoryWorker;
 
         public void DrawNextPositions()
