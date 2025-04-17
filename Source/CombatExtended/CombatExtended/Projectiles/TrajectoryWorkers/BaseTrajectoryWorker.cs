@@ -42,7 +42,7 @@ namespace CombatExtended
 
         public virtual float GetSpeed(Vector3 velocity)
         {
-            return velocity.magnitude * GenTicks.TicksPerRealSecond / 5;
+            return velocity.magnitude * GenTicks.TicksPerRealSecond;
         }
 
         public virtual Vector3 GetVelocity(float shotSpeed, Vector3 origin, Vector3 destination)
@@ -59,7 +59,7 @@ namespace CombatExtended
         public virtual Vector3 GetInitialVelocity(float shotSpeed, float rotation, float angle)
         {
             rotation = (rotation + 90) * Mathf.Deg2Rad;
-            var ss = (shotSpeed / GenTicks.TicksPerRealSecond * 5); // Speed in cells / tick
+            var ss = (shotSpeed / GenTicks.TicksPerRealSecond); // Speed in cells / tick
             return new Vector3(Mathf.Cos(rotation) * Mathf.Cos(angle) * ss,
                                Mathf.Sin(angle) * ss,
                                Mathf.Sin(rotation) * Mathf.Cos(angle) * ss);

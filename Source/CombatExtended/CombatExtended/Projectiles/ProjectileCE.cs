@@ -608,7 +608,7 @@ namespace CombatExtended
             this.OriginIV3 = new IntVec3(origin);
             this.Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
             velocity = TrajectoryWorker.GetInitialVelocity(shotSpeed, shotRotation, shotAngle);
-            initialSpeed = shotSpeed;
+            initialSpeed = shotSpeed = velocity.magnitude * GenTicks.TicksPerRealSecond;
             this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;

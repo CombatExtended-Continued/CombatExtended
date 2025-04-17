@@ -45,16 +45,18 @@ namespace CombatExtended
         {
             if (projectile.fuelTicks > 0)
             {
+                // acceleration in cells / second / second to cells / tick / tick
+                float acceleration = projectile.Props.speedGain / GenTicks.TicksPerRealSecond / GenTicks.TicksPerRealSecond;
                 Vector3 v = projectile.velocity;
                 projectile.fuelTicks--;
-                v += v.normalized * projectile.Props.speedGain;
+                v += v.normalized * acceleration;
                 projectile.velocity = v;
             }
         }
 
         protected void AffectedByGravity(ProjectileCE projectile)
         {
-            projectile.velocity.y -= projectile.gravity / GenTicks.TicksPerRealSecond;
+            projectile.velocity.y -= projectile.gravity / GenTicks.TicksPerRealSecond / GenTicks.TicksPerRealSecond;
         }
 
         protected void AffectedByDrag(ProjectileCE projectile)
@@ -90,10 +92,16 @@ namespace CombatExtended
         /// <returns>angle in radians</returns>
         public override float ShotAngle(ProjectilePropertiesCE projectilePropsCE, Vector3 source, Vector3 targetPos, float? speed = null)
         {
-            float D = (targetPos - source).sqrMagnitude;
-            var initialSpeed = speed ?? projectilePropsCE.speed;
+            /* Distance in cells
+             * Speed in cells / second
+             * acceleration in cells / second / second
+             * gravity in cells / second / second
+             * fuelLimit in seconds
+             */
+            float D = (targetPos - source).magnitude;
+            var initialSpeed = (speed ?? projectilePropsCE.speed);
             float acceleration = projectilePropsCE.speedGain;
-            int fuelLimit = projectilePropsCE.fuelTicks;
+            float fuelLimit = ((float)projectilePropsCE.fuelTicks) / GenTicks.TicksPerRealSecond;
 
             if (acceleration == 0 && fuelLimit == 0)
             {
