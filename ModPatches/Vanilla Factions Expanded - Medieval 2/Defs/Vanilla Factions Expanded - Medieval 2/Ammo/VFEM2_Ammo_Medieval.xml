@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ===== War Bow Ammo (base great arrows | great bow) ===== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VFEM2WarArrow</defName>
+		<label>great arrows</label>
+		<ammoTypes>
+			<Ammo_GreatArrow_Stone>Projectile_VFEM2WarArrow_Stone</Ammo_GreatArrow_Stone>
+<!-- 		<Ammo_GreatArrow_Iron MayRequire="DankPyon.Medieval.Overhaul">Projectile_VFEM2WarArrow_Iron</Ammo_GreatArrow_Iron> -->
+			<Ammo_GreatArrow_Steel>Projectile_VFEM2WarArrow_Steel</Ammo_GreatArrow_Steel>
+			<Ammo_GreatArrow_Plasteel>Projectile_VFEM2WarArrow_Plasteel</Ammo_GreatArrow_Plasteel>
+			<Ammo_GreatArrow_Venom>Projectile_VFEM2WarArrow_Venom</Ammo_GreatArrow_Venom>
+			<Ammo_GreatArrow_Flame>Projectile_VFEM2WarArrow_Flame</Ammo_GreatArrow_Flame>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Stone</defName>
+		<label>great war arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>33</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>7</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.1</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance><!-- 12.5 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+<!-- 	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Iron</defName>
+		<label>great war arrow (iron)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>33</speed>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationBlunt>7</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.8</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Iron</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef> -->
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Steel</defName>
+		<label>great war arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>33</speed>
+			<damageAmountBase>14</damageAmountBase><!-- + 1 -->
+			<armorPenetrationBlunt>7</armorPenetrationBlunt><!-- + 0.5 -->
+			<armorPenetrationSharp>2</armorPenetrationSharp><!-- + 0.2 -->
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Plasteel</defName>
+		<label>great war arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>33</speed>
+			<damageAmountBase>14</damageAmountBase><!-- + 1 -->
+			<armorPenetrationBlunt>6.5</armorPenetrationBlunt><!-- + 0.5 -->
+			<armorPenetrationSharp>4.5</armorPenetrationSharp><!-- + 0.2 -->
+			<preExplosionSpawnChance>0.75</preExplosionSpawnChance><!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Venom</defName>
+		<label>great war arrow (venom)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>33</speed>
+			<damageDef>Arrow</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>ArrowVenom</def>
+					<amount>3</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.2</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Flame</defName>
+		<label>great war arrow (flame)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>33</speed>
+			<damageDef>Arrow</damageDef>
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationBlunt>1.48</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.1</armorPenetrationSharp>
+			<secondaryDamage>
+				<li>
+					<def>Flame</def>
+					<amount>1</amount>
+					<chance>0.33</chance>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!-- === Indirect Warbow Arrow === -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VFEM2WarArrow_Indirect</defName>
+		<label>great arrows</label>
+		<ammoTypes>
+			<Ammo_GreatArrow_Stone>Projectile_VFEM2WarArrow_Stone_Indirect</Ammo_GreatArrow_Stone>
+<!-- 			<Ammo_GreatArrow_Iron MayRequire="DankPyon.Medieval.Overhaul">Projectile_VFEM2WarArrow_Iron_Indirect</Ammo_GreatArrow_Iron> -->
+			<Ammo_GreatArrow_Steel>Projectile_VFEM2WarArrow_Steel_Indirect</Ammo_GreatArrow_Steel>
+			<Ammo_GreatArrow_Plasteel>Projectile_VFEM2WarArrow_Plasteel_Indirect</Ammo_GreatArrow_Plasteel>
+			<Ammo_GreatArrow_Venom>Projectile_VFEM2WarArrow_Venom_Indirect</Ammo_GreatArrow_Venom>
+			<Ammo_GreatArrow_Flame>Projectile_VFEM2WarArrow_Flame_Indirect</Ammo_GreatArrow_Flame>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- === Main Projectile === -->
+
+	<ThingDef Name="VFEM2_BaseWarArrow_IndirectProjectile" ParentName="BaseGreatArrowProjectile" Abstract="True">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Arrow_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>VFEM2_Arrow_Indirect</damageDef>
+			<speed>0</speed>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<explosionRadius>0.25</explosionRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<screenShakeFactor>0</screenShakeFactor>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<gravityFactor>100</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="VFEM2_BaseWarArrow_IndirectProjectile">
+		<defName>Projectile_VFEM2WarArrow_Stone_Indirect</defName>
+		<label>great war arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Projectile_VFEM2WarArrow_Stone_Impact>1</Projectile_VFEM2WarArrow_Stone_Impact>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+<!-- 	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="VFEM2_BaseWarArrow_IndirectProjectile">
+		<defName>Projectile_VFEM2WarArrow_Iron_Indirect</defName>
+		<label>great war arrow (iron)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Projectile_VFEM2WarArrow_Iron_Impact>1</Projectile_VFEM2WarArrow_Iron_Impact>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef> -->
+
+	<ThingDef ParentName="VFEM2_BaseWarArrow_IndirectProjectile">
+		<defName>Projectile_VFEM2WarArrow_Steel_Indirect</defName>
+		<label>great war arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Projectile_VFEM2WarArrow_Steel_Impact>1</Projectile_VFEM2WarArrow_Steel_Impact>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="VFEM2_BaseWarArrow_IndirectProjectile">
+		<defName>Projectile_VFEM2WarArrow_Plasteel_Indirect</defName>
+		<label>great war arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Projectile_VFEM2WarArrow_Plasteel_Impact>1</Projectile_VFEM2WarArrow_Plasteel_Impact>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="VFEM2_BaseWarArrow_IndirectProjectile">
+		<defName>Projectile_VFEM2WarArrow_Venom_Indirect</defName>
+		<label>great war arrow (venom)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Projectile_VFEM2WarArrow_Venom_Impact>1</Projectile_VFEM2WarArrow_Venom_Impact>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="VFEM2_BaseWarArrow_IndirectProjectile">
+		<defName>Projectile_VFEM2WarArrow_Flame_Indirect</defName>
+		<label>great war arrow (flame)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Projectile_VFEM2WarArrow_Flame_Impact>1</Projectile_VFEM2WarArrow_Flame_Impact>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- === Impact Projectile === -->
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Stone_Impact</defName>
+		<label>great war arrow (stone)</label>
+		<graphicData>
+			<texPath>Things/Mote/Transparent</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>7</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.1</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.2</preExplosionSpawnChance><!-- 12.5 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+			<speed>5</speed>
+			<gravityFactor>50</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+<!-- 	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Iron_Impact</defName>
+		<label>great war arrow (iron)</label>
+		<graphicData>
+			<texPath>Things/Mote/Transparent</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationBlunt>7</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.8</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Iron</preExplosionSpawnThingDef>
+			<speed>5</speed>
+			<gravityFactor>50</gravityFactor>
+		</projectile>
+	</ThingDef> -->
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Steel_Impact</defName>
+		<label>great war arrow (steel)</label>
+		<graphicData>
+			<texPath>Things/Mote/Transparent</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase><!-- + 1 -->
+			<armorPenetrationBlunt>7</armorPenetrationBlunt><!-- + 0.5 -->
+			<armorPenetrationSharp>2</armorPenetrationSharp><!-- + 0.2 -->
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+			<speed>5</speed>
+			<gravityFactor>50</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Plasteel_Impact</defName>
+		<label>great war arrow (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Mote/Transparent</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>14</damageAmountBase><!-- + 1 -->
+			<armorPenetrationBlunt>6.5</armorPenetrationBlunt><!-- + 0.5 -->
+			<armorPenetrationSharp>4.5</armorPenetrationSharp><!-- + 0.2 -->
+			<preExplosionSpawnChance>0.75</preExplosionSpawnChance><!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+			<speed>5</speed>
+			<gravityFactor>50</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Venom_Impact</defName>
+		<label>great war arrow (venom)</label>
+		<graphicData>
+			<texPath>Things/Mote/Transparent</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<secondaryDamage>
+				<li>
+					<def>ArrowVenom</def>
+					<amount>3</amount>
+				</li>
+			</secondaryDamage>
+			<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.2</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+			<speed>5</speed>
+			<gravityFactor>50</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseGreatArrowProjectile">
+		<defName>Projectile_VFEM2WarArrow_Flame_Impact</defName>
+		<label>great war arrow (flame)</label>
+		<graphicData>
+			<texPath>Things/Mote/Transparent</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationBlunt>1.48</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.1</armorPenetrationSharp>
+			<secondaryDamage>
+				<li>
+					<def>Flame</def>
+					<amount>1</amount>
+					<chance>0.33</chance>
+				</li>
+			</secondaryDamage>
+			<speed>5</speed>
+			<gravityFactor>50</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<!-- ===== Arbalest Ammo ===== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VFEM2ArbalestBolt</defName>
+		<label>crossbow bolts</label>
+		<ammoTypes>
+			<Ammo_CrossbowBolt_Stone>Projectile_VFEM2ArbalestBolt_Stone</Ammo_CrossbowBolt_Stone>
+<!-- 			<Ammo_CrossbowBolt_Iron MayRequire="DankPyon.Medieval.Overhaul">Projectile_VFEM2ArbalestBolt_Iron</Ammo_CrossbowBolt_Iron> -->
+			<Ammo_CrossbowBolt_Steel>Projectile_VFEM2ArbalestBolt_Steel</Ammo_CrossbowBolt_Steel>
+			<Ammo_CrossbowBolt_Plasteel>Projectile_VFEM2ArbalestBolt_Plasteel</Ammo_CrossbowBolt_Plasteel>
+			<Ammo_CrossbowBolt_Venom>Projectile_VFEM2ArbalestBolt_Venom</Ammo_CrossbowBolt_Venom>
+			<Ammo_CrossbowBolt_Flame>Projectile_VFEM2ArbalestBolt_Flame</Ammo_CrossbowBolt_Flame>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_VFEM2ArbalestBolt_Stone</defName>
+		<label>crossbow bolt (stone)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.85</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.1</preExplosionSpawnChance><!-- 11.11 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Stone</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+<!-- 	<ThingDef MayRequire="DankPyon.Medieval.Overhaul" ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_VFEM2ArbalestBolt_Iron</defName>
+		<label>crossbow bolt (iron)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.7</armorPenetrationSharp>
+			<speed>35</speed>
+			<preExplosionSpawnChance>0.333</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Iron</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef> -->
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_VFEM2ArbalestBolt_Steel</defName>
+		<label>crossbow bolt (steel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.85</armorPenetrationSharp>
+			<speed>30</speed>
+			<preExplosionSpawnChance>0.333</preExplosionSpawnChance><!-- 14.99 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_VFEM2ArbalestBolt_Plasteel</defName>
+		<label>crossbow bolt (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>8.12</armorPenetrationBlunt>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<speed>32</speed>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Plasteel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_VFEM2ArbalestBolt_Venom</defName>
+		<label>crossbow bolt (venom)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>ArrowVenom</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<speed>30</speed>
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance> <!-- 25 arrows per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_VFEM2ArbalestBolt_Flame</defName>
+		<label>crossbow bolt (flame)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Flame</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<armorPenetrationBlunt>3.28</armorPenetrationBlunt>
+			<armorPenetrationSharp>1.5</armorPenetrationSharp>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.24</preExplosionSpawnChance>
+			<speed>30</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ===== Hand Cannon Ammo (1-Handed Blunderbuss) ===== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_VFEM2HandCannonShot</defName>
+		<label>Hand cannon Shot</label>
+		<ammoTypes>
+			<Ammo_MusketBall>Bullet_VFEM2HandCannon_Ball</Ammo_MusketBall>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<ThingDef ParentName="Base12GaugeBullet">
+		<defName>Bullet_VFEM2HandCannon_Ball</defName>
+		<label>lead pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<pelletCount>6</pelletCount>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>12</armorPenetrationBlunt>
+			<spreadMult>22.5</spreadMult>
+			<speed>64</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ===== Throwing Axe ===== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+		<defName>Projectile_VFEM2ThrowingAxe_Thrown</defName>
+		<label>thrown axe</label>
+		<graphicData>
+			<texPath>Things/Projectile/AxeThrown</texPath>
+			<graphicClass>Graphic_Flicker</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Cut</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<speed>25</speed>
+			<armorPenetrationSharp>1.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>3</armorPenetrationBlunt>
+			<preExplosionSpawnChance>0.60</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>VFEM2_ThrowingAxe</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_VFEM2_ThrowingAxe</defName>
+		<label>make throwing axe x5</label>
+		<description>Craft 5 throwing axes.</description>
+		<jobString>Making throwing axes.</jobString>
+		<workAmount>900</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<recipeUsers>
+			<li>ElectricSmithy</li>
+			<li>FueledSmithy</li>
+		</recipeUsers>
+		<products>
+			<VFEM2_ThrowingAxe>5</VFEM2_ThrowingAxe>
+		</products>
+	</RecipeDef>
+
+</Defs>

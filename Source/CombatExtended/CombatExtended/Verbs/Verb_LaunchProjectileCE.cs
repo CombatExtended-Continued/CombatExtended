@@ -50,6 +50,7 @@ namespace CombatExtended
         private bool shootingAtDowned = false;
         private LocalTargetInfo lastTarget = null;
         protected IntVec3 lastTargetPos = IntVec3.Invalid;
+        protected Vector3 lastExactPos = Vector3.negativeInfinity;
 
         protected float lastShotAngle;
         protected float lastShotRotation;
@@ -76,9 +77,10 @@ namespace CombatExtended
             get
             {
                 float shotsPerBurst = base.ShotsPerBurst;
-                if (EquipmentSource != null)
+                WeaponPlatform platform = this.WeaponPlatform;
+                if (platform != null)
                 {
-                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
+                    float modified = platform.GetStatValue(CE_StatDefOf.BurstShotCount);
                     if (modified > 0)
                     {
                         shotsPerBurst = modified;
@@ -193,14 +195,17 @@ namespace CombatExtended
             }
         }
 
+        public WeaponPlatform WeaponPlatform => EquipmentSource as WeaponPlatform;
+
         public float RecoilAmount
         {
             get
             {
                 float recoil = VerbPropsCE.recoilAmount;
-                if (EquipmentSource != null)
+                WeaponPlatform platform = this.WeaponPlatform;
+                if (platform != null)
                 {
-                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.Recoil);
+                    float modified = platform.GetStatValue(CE_StatDefOf.Recoil);
                     if (modified > 0)
                     {
                         recoil = modified;
@@ -222,6 +227,9 @@ namespace CombatExtended
                 return _lightingTracker;
             }
         }
+
+        public bool MidBurst => numShotsFired > 0;
+        protected virtual bool LockRotationAndAngle => MidBurst;
 
         #endregion
 
@@ -313,10 +321,176 @@ namespace CombatExtended
             );
         }
 
+        public virtual float GetTargetHeight(LocalTargetInfo target, Thing cover, bool roofed, Vector3 targetLoc)
+        {
+            float targetHeight = 0f;
+
+            var coverRange = new CollisionVertical(cover).HeightRange;   //Get " " cover, assume it is the edifice
+
+            // Projectiles with flyOverhead target the surface in front of the target
+            if (Projectile.projectile.flyOverhead)
+            {
+                targetHeight = coverRange.max;
+            }
+            else
+            {
+                var victimVert = new CollisionVertical(currentTarget.Thing);
+                var targetRange = victimVert.HeightRange;   //Get lower and upper heights of the target
+                if (targetRange.min < coverRange.max)   //Some part of the target is hidden behind some cover
+                {
+                    // - It is possible for targetRange.max < coverRange.max, technically, in which case the shooter will never hit until the cover is gone.
+                    // - This should be checked for in LoS -NIA
+                    targetRange.min = coverRange.max;
+
+                    // Target fully hidden, shift aim upwards if we're doing suppressive fire
+                    if (targetRange.max <= coverRange.max && (CompFireModes?.CurrentAimMode == AimMode.SuppressFire || VerbPropsCE.ignorePartialLoSBlocker))
+                    {
+                        targetRange.max = coverRange.max * 2;
+                    }
+                }
+                else if (currentTarget.Thing is Pawn Victim)
+                {
+                    targetRange.min = victimVert.BottomHeight;
+                    targetRange.max = victimVert.MiddleHeight;
+
+                    bool AppropiateAimMode = CompFireModes?.CurrentAimMode != AimMode.SuppressFire;
+
+                    bool IsAccurate = (ShootingAccuracy >= 2.45f) | isTurretMannable;
+
+
+                    if (IsAccurate)
+                    {
+                        if (((CasterPawn?.Faction ?? Caster.Faction) == Faction.OfPlayer) &&
+                                (CompFireModes?.targetMode != TargettingMode.automatic))
+                        {
+                            if (AppropiateAimMode)
+                            {
+                                if (CompFireModes?.targetMode == TargettingMode.head)
+                                {
+                                    // Aim upper thoraxic to head
+                                    targetRange.min = victimVert.MiddleHeight;
+                                    targetRange.max = victimVert.Max;
+                                }
+                                else if (CompFireModes?.targetMode == TargettingMode.legs)
+                                {
+                                    // Aim legs to lower abdomen
+                                    targetRange.min = victimVert.Min;
+                                    targetRange.max = victimVert.BottomHeight;
+                                }
+                                else
+                                {
+                                    // Aim center mass
+                                    targetRange.min = victimVert.BottomHeight;
+                                    targetRange.max = victimVert.MiddleHeight;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if ((Victim?.kindDef?.RaceProps?.Humanlike ?? false))
+                            {
+                                if (AppropiateAimMode)
+                                {
+                                    #region Finding highest protection apparel on legs, head and torso
+
+                                    Func<Apparel, float> funcArmor = x => (x?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f);
+
+                                    var Torso = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.IsCorePart).First();
+
+                                    var TorsoArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Torso)) ?? null);
+
+                                    Apparel TorsoArmor = TorsoArmors.MaxByWithFallback(funcArmor);
+
+                                    var Head = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Head").FirstOrFallback(Torso);
+
+                                    var Helmets = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Head)) ?? null);
+
+                                    Apparel Helmet = Helmets.MaxByWithFallback(funcArmor);
+
+                                    var Leg = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Leg").FirstOrFallback(Torso);
+
+                                    var LegArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Leg)) ?? null);
+
+                                    Apparel LegArmor = LegArmors.MaxByWithFallback(funcArmor);
+                                    #endregion
+
+                                    #region checks for whether the pawn can penetrate armor, which armor is stronger, etc
+
+                                    var TargetedBodyPartArmor = TorsoArmor;
+
+                                    bool flagTorsoArmor = ((TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
+
+                                    bool flag2 = (projectilePropsCE.armorPenetrationSharp >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+                                    //Headshots do too little damage too often, so if the pawn can penetrate torso armor, they should aim at it
+                                    if ((flagTorsoArmor && !flag2))
+                                    {
+                                        TargetedBodyPartArmor = Helmet;
+                                    }
+                                    //Leg armor is artificially increased in calculation so pawns will prefer headshots over leg shots even with medium strength helmets
+                                    bool flag3 = (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) >= ((LegArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) + 4f);
+
+                                    //bool for whether the pawn can penetrate helmet
+                                    bool flag4 = (projectilePropsCE.armorPenetrationSharp >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+
+                                    //if the pawn can penetrate the helmet or torso armor there's no need to aim for legs
+                                    if (flag3 && (!flag4) && (!flag2))
+                                    {
+                                        TargetedBodyPartArmor = LegArmor;
+                                    }
+                                    #endregion
+
+
+                                    #region choose shot height based on TargetedBodyPartArmor
+                                    if (TargetedBodyPartArmor == Helmet)
+                                    {
+                                        targetRange.min = victimVert.MiddleHeight;
+                                        targetRange.max = victimVert.Max;
+                                    }
+                                    else if (TargetedBodyPartArmor == LegArmor)
+                                    {
+                                        targetRange.min = victimVert.Min;
+                                        targetRange.max = victimVert.BottomHeight;
+                                    }
+                                    #endregion
+
+
+                                }
+                                else // Shooting at non-humanlike, go for headshots
+                                {
+                                    targetRange.min = victimVert.MiddleHeight;
+                                    targetRange.max = victimVert.Max;
+                                }
+                            }
+
+                        }
+
+                    }
+
+
+                }
+
+                targetHeight = targetRange.Average;
+                if (projectilePropsCE != null)
+                {
+                    targetHeight += projectilePropsCE.aimHeightOffset;
+                }
+                if (targetHeight > CollisionVertical.WallCollisionHeight && roofed)
+                {
+                    targetHeight = CollisionVertical.WallCollisionHeight;
+                }
+            }
+            return targetHeight;
+        }
+
+        public void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
+        {
+            ShiftTarget(report, report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(), calculateMechanicalOnly, isInstant);
+        }
+
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false, bool midBurst = false)
+        public virtual void ShiftTarget(ShiftVecReport report, Vector3 v, bool calculateMechanicalOnly = false, bool isInstant = false)
         {
             if (!calculateMechanicalOnly)
             {
@@ -328,7 +502,8 @@ namespace CombatExtended
                     // On first shot of burst do a range estimate
                     estimatedTargDist = report.GetRandDist();
                 }
-                Vector3 v = report.target.Thing?.TrueCenter() ?? report.target.Cell.ToVector3Shifted(); //report.targetPawn != null ? report.targetPawn.DrawPos + report.targetPawn.Drawer.leaner.LeanOffset * 0.5f : report.target.Cell.ToVector3Shifted();
+
+
                 if (report.targetPawn != null)
                 {
                     v += report.targetPawn.Drawer.leaner.LeanOffset * 0.5f;
@@ -361,172 +536,12 @@ namespace CombatExtended
                 GetRecoilVec(ref rotationDegrees, ref angleRadians);
 
                 // Height difference calculations for ShotAngle
-                float targetHeight = 0f;
 
-                var coverRange = new CollisionVertical(report.cover).HeightRange;   //Get " " cover, assume it is the edifice
+                var targetHeight = GetTargetHeight(report.target, report.cover, report.roofed, v);
 
-                // Projectiles with flyOverhead target the surface in front of the target
-                if (Projectile.projectile.flyOverhead)
+                if (!LockRotationAndAngle)
                 {
-                    targetHeight = coverRange.max;
-                }
-                else
-                {
-                    var victimVert = new CollisionVertical(currentTarget.Thing);
-                    var targetRange = victimVert.HeightRange;   //Get lower and upper heights of the target
-                    if (targetRange.min < coverRange.max)   //Some part of the target is hidden behind some cover
-                    {
-                        // - It is possible for targetRange.max < coverRange.max, technically, in which case the shooter will never hit until the cover is gone.
-                        // - This should be checked for in LoS -NIA
-                        targetRange.min = coverRange.max;
-
-                        // Target fully hidden, shift aim upwards if we're doing suppressive fire
-                        if (targetRange.max <= coverRange.max && (CompFireModes?.CurrentAimMode == AimMode.SuppressFire || VerbPropsCE.ignorePartialLoSBlocker))
-                        {
-                            targetRange.max = coverRange.max * 2;
-                        }
-                    }
-                    else if (currentTarget.Thing is Pawn Victim)
-                    {
-                        targetRange.min = victimVert.BottomHeight;
-                        targetRange.max = victimVert.MiddleHeight;
-
-                        bool AppropiateAimMode = CompFireModes?.CurrentAimMode != AimMode.SuppressFire;
-
-                        bool IsAccurate = (ShootingAccuracy >= 2.45f) | isTurretMannable;
-
-
-                        if (IsAccurate)
-                        {
-                            if (((CasterPawn?.Faction ?? Caster.Faction) == Faction.OfPlayer) &&
-                                    (CompFireModes?.targetMode != TargettingMode.automatic))
-                            {
-                                if (AppropiateAimMode)
-                                {
-                                    if (CompFireModes?.targetMode == TargettingMode.head)
-                                    {
-                                        // Aim upper thoraxic to head
-                                        targetRange.min = victimVert.MiddleHeight;
-                                        targetRange.max = victimVert.Max;
-                                    }
-                                    else if (CompFireModes?.targetMode == TargettingMode.legs)
-                                    {
-                                        // Aim legs to lower abdomen
-                                        targetRange.min = victimVert.Min;
-                                        targetRange.max = victimVert.BottomHeight;
-                                    }
-                                    else
-                                    {
-                                        // Aim center mass
-                                        targetRange.min = victimVert.BottomHeight;
-                                        targetRange.max = victimVert.MiddleHeight;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if ((Victim?.kindDef?.RaceProps?.Humanlike ?? false))
-                                {
-                                    if (AppropiateAimMode)
-                                    {
-                                        #region Finding highest protection apparel on legs, head and torso
-
-                                        Func<Apparel, float> funcArmor = x => (x?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f);
-
-                                        var Torso = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.IsCorePart).First();
-
-                                        var TorsoArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Torso)) ?? null);
-
-                                        Apparel TorsoArmor = TorsoArmors.MaxByWithFallback(funcArmor);
-
-                                        var Head = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Head").FirstOrFallback(Torso);
-
-                                        var Helmets = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Head)) ?? null);
-
-                                        Apparel Helmet = Helmets.MaxByWithFallback(funcArmor);
-
-                                        var Leg = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Leg").FirstOrFallback(Torso);
-
-                                        var LegArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Leg)) ?? null);
-
-                                        Apparel LegArmor = LegArmors.MaxByWithFallback(funcArmor);
-                                        #endregion
-
-                                        #region checks for whether the pawn can penetrate armor, which armor is stronger, etc
-
-                                        var TargetedBodyPartArmor = TorsoArmor;
-
-                                        bool flagTorsoArmor = ((TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
-
-                                        bool flag2 = (projectilePropsCE.armorPenetrationSharp >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
-                                        //Headshots do too little damage too often, so if the pawn can penetrate torso armor, they should aim at it
-                                        if ((flagTorsoArmor && !flag2))
-                                        {
-                                            TargetedBodyPartArmor = Helmet;
-                                        }
-                                        //Leg armor is artificially increased in calculation so pawns will prefer headshots over leg shots even with medium strength helmets
-                                        bool flag3 = (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) >= ((LegArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) + 4f);
-
-                                        //bool for whether the pawn can penetrate helmet
-                                        bool flag4 = (projectilePropsCE.armorPenetrationSharp >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
-
-                                        //if the pawn can penetrate the helmet or torso armor there's no need to aim for legs
-                                        if (flag3 && (!flag4) && (!flag2))
-                                        {
-                                            TargetedBodyPartArmor = LegArmor;
-                                        }
-                                        #endregion
-
-
-                                        #region choose shot height based on TargetedBodyPartArmor
-                                        if (TargetedBodyPartArmor == Helmet)
-                                        {
-                                            targetRange.min = victimVert.MiddleHeight;
-                                            targetRange.max = victimVert.Max;
-                                        }
-                                        else if (TargetedBodyPartArmor == LegArmor)
-                                        {
-                                            targetRange.min = victimVert.Min;
-                                            targetRange.max = victimVert.BottomHeight;
-                                        }
-                                        #endregion
-
-
-                                    }
-                                    else // Shooting at non-humanlike, go for headshots
-                                    {
-                                        targetRange.min = victimVert.MiddleHeight;
-                                        targetRange.max = victimVert.Max;
-                                    }
-                                }
-
-                            }
-
-                        }
-
-
-                    }
-
-                    targetHeight = targetRange.Average;
-                    if (projectilePropsCE != null)
-                    {
-                        targetHeight += projectilePropsCE.aimHeightOffset;
-                    }
-                    if (targetHeight > CollisionVertical.WallCollisionHeight && report.roofed)
-                    {
-                        targetHeight = CollisionVertical.WallCollisionHeight;
-                    }
-                }
-                if (!midBurst)
-                {
-                    if (projectilePropsCE.isInstant)
-                    {
-                        lastShotAngle = Mathf.Atan2(targetHeight - ShotHeight, (newTargetLoc - sourceLoc).magnitude);
-                    }
-                    else
-                    {
-                        lastShotAngle = ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
-                    }
+                    lastShotAngle = ShotAngle(u.WithY(ShotHeight), newTargetLoc.ToVector3().WithY(targetHeight));
                 }
                 angleRadians += lastShotAngle;
             }
@@ -537,10 +552,9 @@ namespace CombatExtended
             Vector2 spreadVec = (projectilePropsCE.isInstant && projectilePropsCE.damageFalloff) ? new Vector2(0, 0) : report.GetRandSpreadVec();
             // ----------------------------------- STEP 5: Finalization
 
-            var w = (newTargetLoc - sourceLoc);
-            if (!midBurst)
+            if (!LockRotationAndAngle)
             {
-                lastShotRotation = -90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x);
+                lastShotRotation = ShotRotation(newTargetLoc.ToVector3());
             }
             shotRotation = (lastShotRotation + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
@@ -556,7 +570,33 @@ namespace CombatExtended
             multiBarrelIndex++;
             return multiBarrelExt?.GetOffsetFor(multiBarrelIndex).RotatedBy(shotRotation) ?? Vector2.zero;
         }
-
+        protected float ShotAngle(Vector3 targetPos)
+        {
+            return ShotAngle(caster.TrueCenter().WithY(ShotHeight), targetPos);
+        }
+        /// <summary>
+        /// Shot angle in radians
+        /// </summary>
+        /// <param name="source">Source shot, including shot height</param>
+        /// <param name="targetPos">Target position, including target height</param>
+        /// <returns>angle in radians</returns>
+        protected virtual float ShotAngle(Vector3 source, Vector3 targetPos)
+        {
+            return projectilePropsCE.TrajectoryWorker.ShotAngle(projectilePropsCE, source, targetPos, ShotSpeed);
+        }
+        protected float ShotRotation(Vector3 targetPos)
+        {
+            return ShotRotation(Caster.TrueCenter(), targetPos);
+        }
+        /// <summary>
+        /// Rotation in degrees
+        /// </summary>
+        /// <returns>rotation in degrees</returns>
+        protected virtual float ShotRotation(Vector3 source, Vector3 targetPos)
+        {
+            var w = targetPos - source;
+            return -90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x);
+        }
         /// <summary>
         /// Calculates the amount of recoil at a given point in a burst, up to a maximum
         /// </summary>
@@ -593,7 +633,10 @@ namespace CombatExtended
 
         public virtual ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)
         {
-            IntVec3 targetCell = target.Cell;
+            return ShiftVecReportFor(target, target.Cell);
+        }
+        public virtual ShiftVecReport ShiftVecReportFor(LocalTargetInfo target, IntVec3 targetCell)
+        {
             ShiftVecReport report = new ShiftVecReport();
 
             report.target = target;
@@ -735,7 +778,10 @@ namespace CombatExtended
             for (int i = 0; i < endCell; i++)
             {
                 var cell = cells[i];
-
+                if (!cell.InBounds(map))
+                {
+                    continue;
+                }
                 if (cell.AdjacentTo8Way(caster.Position))
                 {
                     continue;
@@ -866,7 +912,7 @@ namespace CombatExtended
             }
             // Check for line of sight
             ShootLine shootLine;
-            if (!TryFindCEShootLineFromTo(root, targ, out shootLine))
+            if (!TryFindCEShootLineFromTo(root, targ, out shootLine, out _))
             {
                 float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
                 if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
@@ -956,7 +1002,54 @@ namespace CombatExtended
             return startedCasting;
         }
 
-
+        protected virtual bool KeepBurstOnNoShootLine(bool suppressing, out ShootLine shootLine)
+        {
+            // 1:       Interruptible -> stop shooting
+            // 2:       Not interruptible -> continue shooting at last position (do *not* shoot at target position as it will play badly with skip or other teleport effects)
+            // 3:     Suppressing fire -> set our shoot line and continue
+            // 4:     else -> stop
+            //      Target missing
+            //        Mid burst
+            // 5:       Interruptible -> stop shooting
+            // 6:       Not interruptible -> shoot along previous line
+            // 7:     else -> stop
+            if (lastShootLine == null)
+            {
+                shootLine = default;
+                return false;
+            }
+            shootLine = (ShootLine)lastShootLine;
+            if (LockRotationAndAngle) // Case 1,2,5,6
+            {
+                if (VerbPropsCE.interruptibleBurst && !suppressing) // Case 1, 5
+                {
+                    return false;
+                }
+                // Case 2, 6
+                currentTarget = new LocalTargetInfo(lastTargetPos);
+                lastExactPos = lastTargetPos.ToVector3Shifted();
+            }
+            else // case 3,4,7
+            {
+                if (suppressing) // case 3,4
+                {
+                    if (currentTarget.IsValid && !currentTarget.ThingDestroyed)
+                    {
+                        lastShootLine = shootLine = new ShootLine(caster.Position, currentTarget.Cell);
+                        lastExactPos = currentTarget.Cell.ToVector3Shifted();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         /// <summary>
         /// Fires a projectile using the new aiming system
         /// </summary>
@@ -976,53 +1069,15 @@ namespace CombatExtended
             //    Cannot hit target
             //      Target exists
             //        Mid burst
-            // 2:       Interruptible -> stop shooting
-            // 3:       Not interruptible -> continue shooting at last position (do *not* shoot at target position as it will play badly with skip or other teleport effects)
-            // 4:     Suppressing fire -> set our shoot line and continue
-            // 5:     else -> stop
-            //      Target missing
-            //        Mid burst
-            // 6:       Interruptible -> stop shooting
-            // 7:       Not interruptible -> shoot along previous line
-            // 8:     else -> stop
-            if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // Case 1
+            // 2: Check if we should continue shooting
+            if (TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine, out var targetLoc)) // Case 1
             {
                 lastShootLine = shootLine;
+                lastExactPos = targetLoc;
             }
-            else // We cannot hit the current target
+            else if (!KeepBurstOnNoShootLine(suppressing, out shootLine))// Case 2. We cannot hit the current target, check if we should continue shooting
             {
-                if (midBurst) // Case 2,3,6,7
-                {
-                    if (props.interruptibleBurst && !suppressing) // Case 2, 6
-                    {
-                        return false;
-                    }
-                    // Case 3, 7
-                    if (lastShootLine == null)
-                    {
-                        return false;
-                    }
-                    shootLine = (ShootLine)lastShootLine;
-                    currentTarget = new LocalTargetInfo(lastTargetPos);
-                }
-                else // case 4,5,8
-                {
-                    if (suppressing) // case 4,5
-                    {
-                        if (currentTarget.IsValid && !currentTarget.ThingDestroyed)
-                        {
-                            lastShootLine = shootLine = new ShootLine(caster.Position, currentTarget.Cell);
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+                return false;
             }
             if (projectilePropsCE.pelletCount < 1)
             {
@@ -1042,14 +1097,14 @@ namespace CombatExtended
                 aperatureSize = 0.03f;
             }
 
-            ShiftVecReport report = ShiftVecReportFor(currentTarget);
+            ShiftVecReport report = ShiftVecReportFor(currentTarget, targetLoc.ToIntVec3());
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {
 
-                ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
+                ProjectileCE projectile = SpawnProjectile();
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
-                ShiftTarget(report, pelletMechanicsOnly, instant, midBurst);
+                ShiftTarget(report, lastExactPos, pelletMechanicsOnly, instant);
 
                 //New aiming algorithm
                 projectile.canTargetSelf = false;
@@ -1109,6 +1164,10 @@ namespace CombatExtended
             lastShotTick = Find.TickManager.TicksGame;
             return true;
         }
+        protected virtual ProjectileCE SpawnProjectile()
+        {
+            return (ProjectileCE)ThingMaker.MakeThing(Projectile, null);
+        }
 
         /// <summary>
         /// Highlight the explosion radius for this projectile.
@@ -1156,6 +1215,41 @@ namespace CombatExtended
         public virtual void VerbTickCE()
         {
         }
+        public int BurstWarmupTicksLeft
+        {
+            get
+            {
+                if (caster is Building_TurretGunCE turret)
+                {
+                    return turret.burstWarmupTicksLeft;
+
+                }
+                else if (this.WarmupStance != null)
+                {
+                    return this.WarmupStance.ticksLeft;
+                }
+                Log.Error("Verb caster is not a turret and does not have a WarmupStance");
+                return -1;
+            }
+            set
+            {
+                if (caster is Building_TurretGunCE turret)
+                {
+                    if (turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
+                    {
+                        turret.burstWarmupTicksLeft = value;
+                    }
+                }
+                else if (this.WarmupStance != null)
+                {
+                    this.WarmupStance.ticksLeft = value;
+                }
+                else
+                {
+                    Log.Error("Verb caster is not a turret and does not have a WarmupStance");
+                }
+            }
+        }
 
 
         #region Line of Sight Utility
@@ -1170,8 +1264,9 @@ namespace CombatExtended
 
         private new List<IntVec3> tempLeanShootSources = new List<IntVec3>();
 
-        public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
         {
+            targetPos = targ.Thing is Pawn ? targ.Thing.TrueCenter() : targ.Cell.ToVector3Shifted();
             if (targ.HasThing && targ.Thing.Map != caster.Map)
             {
                 resultingLine = default(ShootLine);
@@ -1179,20 +1274,20 @@ namespace CombatExtended
             }
             if (EffectiveRange <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
             {
-                resultingLine = new ShootLine(root, targ.Cell);
+                resultingLine = new ShootLine(root, targetPos.ToIntVec3());
                 return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
             }
             CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
             float num = cellRect.ClosestDistSquaredTo(root);
             if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
             {
-                resultingLine = new ShootLine(root, targ.Cell);
+                resultingLine = new ShootLine(root, targetPos.ToIntVec3());
                 return false;
             }
             //if (!this.verbProps.NeedsLineOfSight) This method doesn't consider the currently loaded projectile
             if (Projectile.projectile.flyOverhead)
             {
-                resultingLine = new ShootLine(root, targ.Cell);
+                resultingLine = new ShootLine(root, targetPos.ToIntVec3());
                 return true;
             }
 
@@ -1209,6 +1304,7 @@ namespace CombatExtended
 
             if (CanHitFromCellIgnoringRange(shotSource, targ, out dest))
             {
+                targetPos = dest.ToVector3Shifted();
                 resultingLine = new ShootLine(root, dest);
                 return true;
             }
@@ -1223,6 +1319,7 @@ namespace CombatExtended
                     var leanPosOffset = (leanLoc - root).ToVector3() * leanOffset;
                     if (CanHitFromCellIgnoringRange(shotSource + leanPosOffset, targ, out dest))
                     {
+                        targetPos = dest.ToVector3Shifted();
                         resultingLine = new ShootLine(leanLoc, dest);
                         return true;
                     }

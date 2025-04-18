@@ -7,6 +7,15 @@
 			| Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]</xpath>
 	</Operation>
 
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Furniture Expanded - Security</li>
+		</mods>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="VFES_Turret_AutocannonDouble"]/comps/li[@Class="VFED.CompProperties_BoxRefuel"]</xpath>
+		</match>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFED_RemoteTrapIED_HighExplosive"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 		<value>

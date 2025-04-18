@@ -311,7 +311,7 @@ namespace CombatExtended
             return label;
         }
 
-        internal static Loadout GetLoadoutById(int id)
+        public static Loadout GetLoadoutById(int id)
         {
             if (_current == null)
             {
