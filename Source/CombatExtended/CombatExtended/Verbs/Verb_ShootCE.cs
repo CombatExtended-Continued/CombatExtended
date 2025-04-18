@@ -192,9 +192,10 @@ namespace CombatExtended
                 }
             }
             float burstShotCount = VerbPropsCE.burstShotCount;
-            if (EquipmentSource != null && (!EquipmentSource.TryGetComp<CompUnderBarrel>()?.usingUnderBarrel ?? false))
+            WeaponPlatform platform = WeaponPlatform;
+            if (platform != null && (!platform.TryGetComp<CompUnderBarrel>()?.usingUnderBarrel ?? false))
             {
-                float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
+                float modified = platform.GetStatValue(CE_StatDefOf.BurstShotCount);
                 if (modified > 0)
                 {
                     burstShotCount = modified;

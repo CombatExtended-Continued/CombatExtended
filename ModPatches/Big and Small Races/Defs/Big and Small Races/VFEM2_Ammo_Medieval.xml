@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-	<!-- === Ammo === -->
+	<!-- ===== Heavy Crossbow Ammo ===== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_HeavyCrossbowBolt</defName>
+		<defName>AmmoSet_BASRHeavyCrossbowBolt</defName>
 		<label>crossbow bolts</label>
 		<ammoTypes>
-			<Ammo_CrossbowBolt_Stone>Projectile_HeavyCrossbowBolt_Stone</Ammo_CrossbowBolt_Stone>
-			<Ammo_CrossbowBolt_Steel>Projectile_HeavyCrossbowBolt_Steel</Ammo_CrossbowBolt_Steel>
-			<Ammo_CrossbowBolt_Plasteel>Projectile_HeavyCrossbowBolt_Plasteel</Ammo_CrossbowBolt_Plasteel>
-			<Ammo_CrossbowBolt_Venom>Projectile_HeavyCrossbowBolt_Venom</Ammo_CrossbowBolt_Venom>
-			<Ammo_CrossbowBolt_Flame>Projectile_HeavyCrossbowBolt_Flame</Ammo_CrossbowBolt_Flame>
+			<Ammo_CrossbowBolt_Stone>Projectile_BASRHeavyCrossbowBolt_Stone</Ammo_CrossbowBolt_Stone>
+			<Ammo_CrossbowBolt_Steel>Projectile_BASRHeavyCrossbowBolt_Steel</Ammo_CrossbowBolt_Steel>
+			<Ammo_CrossbowBolt_Plasteel>Projectile_BASRHeavyCrossbowBolt_Plasteel</Ammo_CrossbowBolt_Plasteel>
+			<Ammo_CrossbowBolt_Venom>Projectile_BASRHeavyCrossbowBolt_Venom</Ammo_CrossbowBolt_Venom>
+			<Ammo_CrossbowBolt_Flame>Projectile_BASRHeavyCrossbowBolt_Flame</Ammo_CrossbowBolt_Flame>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<ThingDef ParentName="BaseCrossbowBoltProjectile">
-		<defName>Projectile_HeavyCrossbowBolt_Stone</defName>
+		<defName>Projectile_BASRHeavyCrossbowBolt_Stone</defName>
 		<label>crossbow bolt (stone)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
@@ -32,7 +32,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCrossbowBoltProjectile">
-		<defName>Projectile_HeavyCrossbowBolt_Steel</defName>
+		<defName>Projectile_BASRHeavyCrossbowBolt_Steel</defName>
 		<label>crossbow bolt (steel)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
@@ -49,7 +49,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCrossbowBoltProjectile">
-		<defName>Projectile_HeavyCrossbowBolt_Plasteel</defName>
+		<defName>Projectile_BASRHeavyCrossbowBolt_Plasteel</defName>
 		<label>crossbow bolt (plasteel)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
@@ -66,7 +66,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCrossbowBoltProjectile">
-		<defName>Projectile_HeavyCrossbowBolt_Venom</defName>
+		<defName>Projectile_BASRHeavyCrossbowBolt_Venom</defName>
 		<label>crossbow bolt (venom)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
@@ -78,13 +78,13 @@
 			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
 			<armorPenetrationSharp>2.5</armorPenetrationSharp>
 			<speed>30</speed>
-			<preExplosionSpawnChance>0.6</preExplosionSpawnChance><!-- 25 arrows per resource -->
+			<preExplosionSpawnChance>0.6</preExplosionSpawnChance> <!-- 25 arrows per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseCrossbowBoltProjectile">
-		<defName>Projectile_HeavyCrossbowBolt_Flame</defName>
+		<defName>Projectile_BASRHeavyCrossbowBolt_Flame</defName>
 		<label>crossbow bolt (flame)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
@@ -95,6 +95,8 @@
 			<damageAmountBase>5</damageAmountBase>
 			<armorPenetrationBlunt>3.28</armorPenetrationBlunt>
 			<armorPenetrationSharp>1.5</armorPenetrationSharp>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.24</preExplosionSpawnChance>
 			<speed>30</speed>
 		</projectile>
 	</ThingDef>
