@@ -51,23 +51,46 @@
 
 	<!-- ========== Armors ========== -->
 
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/statBases</xpath>
 		<value>
-			<Bulk>25</Bulk>
-			<WornBulk>5</WornBulk>
+			<Bulk>50</Bulk>
+			<WornBulk>8</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/statBases/Mass</xpath>
+		<value>
+			<Mass>7</Mass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>3.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>2.15</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/equippedStatOffsets/MoveSpeed</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>110</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace"><!-- Ensure layering is correct -->
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Zweihanders_Cuirass_Roxmont"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>Shell</li>
+			</layers>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -104,11 +127,21 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/statBases</xpath>
+		<value>
+			<Bulk>100</Bulk>
+			<WornBulk>12</WornBulk>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/statBases/Mass</xpath>
 		<value>
-			<Bulk>100</Bulk>
-			<WornBulk>10</WornBulk>
 			<Mass>15</Mass>
 		</value>
 	</Operation>
@@ -116,18 +149,24 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>3.4</StuffEffectMultiplierArmor>
 		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/equippedStatOffsets</xpath>
 		<value>
 			<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace"><!-- Ensure layering is correct -->
+		<xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate_Roxmont"]/apparel/layers</xpath>
+		<value>
+			<layers>
+				<li>Middle</li>
+				<li>Shell</li>
+			</layers>
 		</value>
 	</Operation>
 

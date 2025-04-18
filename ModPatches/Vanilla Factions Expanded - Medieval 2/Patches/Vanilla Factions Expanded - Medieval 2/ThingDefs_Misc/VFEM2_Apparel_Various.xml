@@ -38,17 +38,30 @@
 	<!-- ======= Armors ======= -->
 
 	<!-- ===== Heavy Leather ===== -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_HeavyLeatherArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_HeavyLeatherArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>12</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_HeavyLeatherArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>6</Mass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_HeavyLeatherArmor"]/statBases</xpath>
 		<value>
-			<Bulk>14</Bulk>
+			<Bulk>24</Bulk>
 			<WornBulk>4</WornBulk>
 		</value>
 	</Operation>
@@ -84,17 +97,28 @@
 	</Operation>
 
 	<!-- ===== Leather ===== -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_LeatherArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_LeatherArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_LeatherArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>5</Mass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_LeatherArmor"]/statBases</xpath>
 		<value>
-			<Bulk>12</Bulk>
+			<Bulk>20</Bulk>
 			<WornBulk>4</WornBulk>
 		</value>
 	</Operation>
@@ -131,18 +155,31 @@
 	</Operation>
 
 	<!-- ===== Padded ===== -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_PaddedArmor"]/apparel/layers/li[.="Middle"]</xpath>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_PaddedArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_PaddedArmor"]/statBases</xpath>
 		<value>
-			<Bulk>10</Bulk>
-			<WornBulk>4</WornBulk>
+			<Bulk>12</Bulk>
+			<WornBulk>5</WornBulk>
+			<ArmorRating_Sharp>0.24</ArmorRating_Sharp>
+			<ArmorRating_Blunt>0.36</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_PaddedArmor"]/statBases/Mass</xpath>
+		<value>
+			<Mass>3.5</Mass>
 		</value>
 	</Operation>
 
@@ -181,7 +218,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="VFEM2_Apparel_PlateArmorHeavy"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
