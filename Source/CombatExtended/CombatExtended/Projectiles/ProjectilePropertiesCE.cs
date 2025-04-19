@@ -101,7 +101,7 @@ namespace CombatExtended
                     {
                         if (lerpPosition != "")
                         {
-                            if (lerpPosition == "false")
+                            if (lerpPosition.ToLower().Trim() == "false")
                             {
                                 trajectoryWorkerInt = defaultBallisticTrajectoryWorker;
                             }
