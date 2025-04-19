@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-    <!-- =============================== PACKS =============================================================================-->
+
+	<!-- =============================== PACKS =============================================================================-->
 	<!-- RemoveCarryCapacity -->
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[@Name="AmmoPackMachineableBase_ProtectGears"]/equippedStatOffsets/CarryingCapacity </xpath>
+		<xpath>Defs/ThingDef[@Name="AmmoPackMachineableBase_ProtectGears"]/equippedStatOffsets/CarryingCapacity</xpath>
 	</Operation>
+
 	<!-- Base Bulk -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="AmmoPackMachineableBase_ProtectGears"]/statBases </xpath>
+		<xpath>Defs/ThingDef[@Name="AmmoPackMachineableBase_ProtectGears"]/statBases</xpath>
 		<value>
 			<Bulk>20</Bulk>
 		</value>
 	</Operation>
+
 	<!-- Carry Bulk -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="AmmoPackMachineableBase_ProtectGears"]/equippedStatOffsets</xpath>
@@ -20,4 +23,5 @@
 			<CarryBulk>100</CarryBulk>
 		</value>
 	</Operation>
+
 </Patch>

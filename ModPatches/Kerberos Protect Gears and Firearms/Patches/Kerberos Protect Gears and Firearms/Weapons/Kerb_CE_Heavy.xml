@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-    <!-- MG-42 -->
-    <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+
+	<!-- MG-42 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_JinRoh_MG</defName>
 		<statBases>
 			<Mass>11.6</Mass>
@@ -15,7 +16,7 @@
 		<costList>
 			<Steel>95</Steel>
 			<ComponentIndustrial>6</ComponentIndustrial>
-            <WoodLog>10</WoodLog>
+			<WoodLog>10</WoodLog>
 		</costList>
 		<Properties>
 			<recoilAmount>1.47</recoilAmount>
@@ -50,7 +51,7 @@
 		</weaponTags>
 	</Operation>
 
-    <!-- MG-34 -->
+	<!-- MG-34 -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_PanzerJager_MG</defName>
 		<statBases>
@@ -65,7 +66,7 @@
 		<costList>
 			<Steel>95</Steel>
 			<ComponentIndustrial>5</ComponentIndustrial>
-            <WoodLog>10</WoodLog>
+			<WoodLog>10</WoodLog>
 		</costList>
 		<Properties>
 			<recoilAmount>1.20</recoilAmount>
@@ -100,12 +101,12 @@
 		</weaponTags>
 	</Operation>
 
-    <!-- == Shared patches for firearm melee tools == -->
-
+	<!-- == Shared patches for firearm melee tools == -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="Gun_PanzerJager_MG" or
-			defName="Gun_JinRoh_MG"]/tools </xpath>
+			defName="Gun_JinRoh_MG"]/tools
+		</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -142,4 +143,5 @@
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>
