@@ -1558,7 +1558,7 @@ namespace CombatExtended
                 {
                     if (propertiesCE.lerpPosition != "")
                     {
-                        Log.ErrorOnce($"Setting lerpPosition in ProjectilePropertiesCE for {this} is deprecated, set the TrajectoryWorker instead", 50002 + def.projectile.GetHashCode());
+                        Log.ErrorOnce($"Setting lerpPosition in ProjectilePropertiesCE for {this} is deprecated, set the trajectoryWorker instead", 50002 + def.projectile.GetHashCode());
                     }
                     return propertiesCE.TrajectoryWorker;
                 }
