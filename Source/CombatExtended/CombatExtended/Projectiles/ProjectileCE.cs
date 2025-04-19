@@ -1554,18 +1554,21 @@ namespace CombatExtended
         {
             get
             {
-                if (def.projectile is ProjectilePropertiesCE propertiesCE)
+                if (forcedTrajectoryWorker == null)
                 {
-                    if (propertiesCE.lerpPosition != "")
+                    if (def.projectile is ProjectilePropertiesCE propertiesCE)
                     {
-                        Log.ErrorOnce($"Setting lerpPosition in ProjectilePropertiesCE for {this} is deprecated, set the trajectoryWorker instead", 50002 + def.projectile.GetHashCode());
+                        if (propertiesCE.lerpPosition != "")
+                        {
+                            Log.ErrorOnce($"Setting lerpPosition in ProjectilePropertiesCE for {this} is deprecated, set the trajectoryWorker instead", 50002 + def.projectile.GetHashCode());
+                        }
+                        forcedTrajectoryWorker = propertiesCE.TrajectoryWorker;
                     }
-                    return propertiesCE.TrajectoryWorker;
-                }
-                else
-                {
-                    Log.WarningOnce($"{this} properties is not ProjectilePropertiesCE, please contact CE team", this.def.GetHashCode());
-                    forcedTrajectoryWorker = new LerpedTrajectoryWorker();
+                    else
+                    {
+                        Log.WarningOnce($"{this} properties is not ProjectilePropertiesCE, please contact CE team", this.def.GetHashCode());
+                        forcedTrajectoryWorker = new LerpedTrajectoryWorker();
+                    }
                 }
                 return forcedTrajectoryWorker;
             }
