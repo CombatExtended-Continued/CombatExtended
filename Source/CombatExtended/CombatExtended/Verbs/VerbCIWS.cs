@@ -258,7 +258,7 @@ namespace CombatExtended
                 {
                     Log.Message("Found shot line at the right delay");
                 }
-                resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.y));
+                resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.z));
                 targetPos = pos;
                 return true;
             }
