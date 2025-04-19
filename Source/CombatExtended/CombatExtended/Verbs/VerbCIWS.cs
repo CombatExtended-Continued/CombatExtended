@@ -214,7 +214,7 @@ namespace CombatExtended
                  * then calculate how many ticks to reach it.
                  */
                 var distance = Mathf.Sqrt(dhs);
-                var heightOffset = ShotHeight - pos.y;
+                var heightOffset = pos.y - ShotHeight;
                 var gravity = projectilePropsCE.Gravity;
                 var shotAngle = CE_Utility.GetShotAngle(speed, distance, heightOffset, Projectile.projectile.flyOverhead, gravity);
                 var v_xz = speed * Mathf.Sin(shotAngle);
