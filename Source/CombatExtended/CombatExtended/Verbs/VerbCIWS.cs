@@ -195,8 +195,9 @@ namespace CombatExtended
             }
             int i = 1;
             var speed = ShotSpeed;
-
+            var tworker = TrajectoryWorker;
             var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
+            var source = new Vector3(originV3.x, ShotHeight, originV3.z);
             foreach (var pos in PredictPositions(target, ticksToSkip + maxTicks).Skip(ticksToSkip))
             {
                 var targetPos2 = new Vector2(pos.x, pos.z);
@@ -216,7 +217,7 @@ namespace CombatExtended
                 var distance = Mathf.Sqrt(dhs);
                 var heightOffset = pos.y - ShotHeight;
                 var gravity = projectilePropsCE.Gravity;
-                var shotAngle = CE_Utility.GetShotAngle(speed, distance, heightOffset, Projectile.projectile.flyOverhead, gravity);
+                var shotAngle = tworker.ShotAngle(Projectile.projectile as ProjectilePropertiesCE, source, pos, speed);
                 var v_xz = speed * Mathf.Sin(shotAngle);
                 var d = v_xz * v_xz - 2 * gravity * heightOffset;
                 if (d < 0) // cannot actually reach the given location, probably too high up
