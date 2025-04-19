@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- Mauser C96 -->
+    <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>Gun_Mauser</defName>
+		<statBases>
+			<Mass>1.13</Mass>
+			<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.12</ShotSpread>
+			<SwayFactor>1.42</SwayFactor>
+			<Bulk>3.12</Bulk>
+			<WorkToMake>6000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>30</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_763x25mmMauser_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_Mauser</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>false</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4.3</reloadTime>
+			<ammoSet>AmmoSet_763x25mmMauser</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>0</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>SimpleGun</li>
+            <li>CE_Sidearm</li>
+            <li>CE_AI_BROOM</li>
+            <li>CE_OneHandedWeapon</li>
+		</weaponTags>
+        <weaponClasses>
+            <li>RangedLight</li>
+        </weaponClasses>
+        <tools>
+            <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>1.54</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                    <li>Poke</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>1.54</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+        </tools>
+    </Operation>
+
+    <!-- STG 44 -->
+    <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_STG_Rifle</defName>
+		<statBases>
+			<Mass>4.6</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.40</SwayFactor>
+			<Bulk>9.40</Bulk>
+			<WorkToMake>28500</WorkToMake>
+		</statBases>
+		<costList>
+			<WoodLog>5</WoodLog>
+			<Steel>60</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<recoilAmount>1.54</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_792x33mmKurz_FMJ</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>48</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<soundCast>Shot_STG44</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<recoilPattern>Regular</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_792x33mmKurz</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+		</weaponTags>
+    </Operation>
+
+    <!-- Grenade Launcher Pistol -->
+    <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>Gun_GrenadePistol</defName>
+        <statBases>
+			<Mass>2.60</Mass>
+			<RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>3.14</SwayFactor>
+			<Bulk>6.83</Bulk>
+			<WorkToMake>11500</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>45</Steel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>44</range>
+			<minRange>5</minRange>
+			<soundCast>Shot_GrenadePistol</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<onlyManualCast>true</onlyManualCast>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+			<reloadTime>0.85</reloadTime>
+			<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+		</AmmoUser>
+
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+
+		<!-- No additional CE weaponTags needed -->
+
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+    </Operation>
+</Patch>
