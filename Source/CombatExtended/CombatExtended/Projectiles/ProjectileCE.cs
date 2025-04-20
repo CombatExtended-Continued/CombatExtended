@@ -1010,7 +1010,7 @@ namespace CombatExtended
                 return false;
             }
             // Trees and bushes have RNG chance to collide
-            if (thing is Plant plant)
+            if (thing is Plant plant && plant.positionInt != LastPos.ToIntVec3())
             {
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
                 var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
