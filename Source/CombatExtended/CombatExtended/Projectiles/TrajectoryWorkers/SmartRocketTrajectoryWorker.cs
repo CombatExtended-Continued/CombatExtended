@@ -25,7 +25,7 @@ namespace CombatExtended
             projectile.fuelTicks--;
             var targetPos = currentTarget.Thing?.DrawPos ?? currentTarget.Cell.ToVector3Shifted();
             var delta = targetPos - projectile.ExactPosition;
-            projectile.velocity += delta.normalized * projectile.Props.speedGain;
+            projectile.velocity += delta.normalized * projectile.Props.speedGain / GenTicks.TicksPerRealSecond / GenTicks.TicksPerRealSecond;
         }
         public override bool GuidedProjectile => true;
     }
