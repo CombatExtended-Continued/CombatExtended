@@ -19,6 +19,8 @@ namespace ProjectileImpactFX
             FleckDef ExplosionFleck = ext.explosionFleckDef;
             FleckDef ImpactFleck = ext.ImpactFleckDef;
             FleckDef ImpactGlowFleck = ext.ImpactGlowFleckDef;
+            FleckDef StuckProjectileFleck = ext.StuckProjectileFleckDef;
+
             SoundDef ImpactSound = ext.ImpactSoundDef;
             float ExplosionFleckSize = ext.explosionFleckSizeRange?.RandomInRange ?? ext.explosionFleckSize;
             float ImpactFleckSize = ext.ImpactFleckSizeRange?.RandomInRange ?? ext.ImpactFleckSize;
@@ -145,6 +147,17 @@ namespace ProjectileImpactFX
                 creationData.rotationRate = rotationRate;
                 creationData.spawnPosition = loc;
                 creationData.instanceColor = projProps.damageDef.explosionColorCenter;
+                map.flecks.CreateFleck(creationData);
+            }
+
+            if (StuckProjectileFleck != null)
+            {
+                FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, StuckProjectileFleck);
+                creationData.scale = ext.StuckProjectileFleckSize;
+                creationData.rotation = direction > 0 ? 360 - direction : 0 - direction;
+                creationData.rotation += Rand.Range(-30, 30);
+                creationData.rotationRate = 0;
+                creationData.spawnPosition = loc;
                 map.flecks.CreateFleck(creationData);
             }
 
