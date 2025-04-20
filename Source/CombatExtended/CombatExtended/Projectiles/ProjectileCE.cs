@@ -1014,7 +1014,7 @@ namespace CombatExtended
             {
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
                 var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
-                var chance = thing.def.fillPercent * plant.Growth * accuracyFactor;
+                var chance = thing.def.fillPercent * accuracyFactor;
                 if (Controller.settings.DebugShowTreeCollisionChance)
                 {
                     MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
