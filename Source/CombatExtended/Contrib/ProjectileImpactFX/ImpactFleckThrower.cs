@@ -155,7 +155,8 @@ namespace ProjectileImpactFX
                 FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, StuckProjectileFleck);
                 creationData.scale = ext.StuckProjectileFleckSize;
                 creationData.rotation = direction > 0 ? 360 - direction : 0 - direction;
-                creationData.rotation += Rand.Range(-30, 30);
+                //tilt landed projectile slightly upwards so it looks stuck in ground
+                creationData.rotation += creationData.rotation > 180 ? Rand.Range(-45, -0) : Rand.Range(0, 45);
                 creationData.rotationRate = 0;
                 creationData.spawnPosition = loc;
                 map.flecks.CreateFleck(creationData);
