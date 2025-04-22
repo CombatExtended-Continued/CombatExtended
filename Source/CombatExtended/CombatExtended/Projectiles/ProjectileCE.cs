@@ -1576,25 +1576,6 @@ namespace CombatExtended
 
         internal BaseTrajectoryWorker forcedTrajectoryWorker;
 
-        public void DrawNextPositions()
-        {
-            if (Map == null)
-            {
-                return;
-            }
-            var previous = ExactPosition;
-            int sinceTicks = 1;
-            foreach (var next in PredictedPositions)
-            {
-                Map.debugDrawer.FlashLine(previous.ToIntVec3(), next.ToIntVec3(), 70, SimpleColor.Orange);
-                Map.debugDrawer.FlashLine(
-                    TrajectoryWorker.ExactPosToDrawPos(next, FlightTicks + sinceTicks, (def.projectile as ProjectilePropertiesCE).TickToTruePos, def.Altitude).ToIntVec3(),
-                    TrajectoryWorker.ExactPosToDrawPos(previous, FlightTicks + sinceTicks - 1, (def.projectile as ProjectilePropertiesCE).TickToTruePos, def.Altitude).ToIntVec3()
-                    , 70, SimpleColor.Red);
-                previous = next;
-                sinceTicks++;
-            }
-        }
         /// <summary>
         /// Calculated rounding to three decimales the output of h0 + v * sin(a0) * t - g/2 * t^2 with {h0 -> shotHeight, v -> shotSpeed, a0 -> shotAngle, t -> ticks/GenTicks.TicksPerRealSecond, g -> GravityFactor}. Called roughly each tick for impact checks and for drawing.
         /// </summary>

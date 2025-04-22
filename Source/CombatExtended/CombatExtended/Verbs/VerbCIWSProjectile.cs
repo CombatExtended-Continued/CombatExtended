@@ -17,12 +17,6 @@ namespace CombatExtended
 
         protected override bool IsFriendlyTo(ProjectileCE thing) => base.IsFriendlyTo(thing) && !thing.launcher.HostileTo(Caster);
 
-        public override void ShowTrajectories()
-        {
-            base.ShowTrajectories();
-            (currentTarget.Thing as ProjectileCE)?.DrawNextPositions();
-        }
-
         protected override IEnumerable<Vector3> PredictPositions(ProjectileCE target, int maxTicks)
         {
             return target.TrajectoryWorker.PredictPositions(target, maxTicks);
