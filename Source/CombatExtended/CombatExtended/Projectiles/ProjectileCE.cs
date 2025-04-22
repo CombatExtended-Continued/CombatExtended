@@ -177,6 +177,7 @@ namespace CombatExtended
         public float startingTicksToImpact;
 
         public int FlightTicks = 0;
+        public float intendedTargetHeight = 0f;
 
         #endregion
 
@@ -254,17 +255,7 @@ namespace CombatExtended
         {
             get
             {
-                Vector2 w = (Destination - origin);
-
-                var vx = w.x / startingTicksToImpact;
-
-                var vy = (w.y - shotHeight) / startingTicksToImpact
-                         + shotSpeed * Mathf.Sin(shotAngle) / GenTicks.TicksPerRealSecond
-                         - (GravityFactor * FlightTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
-
-                return Quaternion.AngleAxis(
-                           Mathf.Rad2Deg * Mathf.Atan2(-vy, vx) + 90f
-                           , Vector3.up);
+                return TrajectoryWorker.DrawRotation(this);
             }
         }
 
@@ -1279,15 +1270,9 @@ namespace CombatExtended
             }
             else
             {
-                Quaternion shadowRotation = ExactRotation;
-                Quaternion projectileRotation = DrawRotation;
-                if (def.projectile.spinRate != 0f)
-                {
-                    float num2 = GenTicks.TicksPerRealSecond / def.projectile.spinRate;
-                    var spinRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
-                    shadowRotation *= spinRotation;
-                    projectileRotation *= spinRotation;
-                }
+                Quaternion shadowRotation = TrajectoryWorker.ShadowRotation(this);
+                Quaternion projectileRotation = TrajectoryWorker.DrawRotation(this);
+
                 //Projectile
                 //Graphics.DrawMesh(MeshPool.plane10, DrawPos, DrawRotation, def.DrawMatSingle, 0);
                 Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), drawLoc, projectileRotation, def.DrawMatSingle, 0);
@@ -1570,7 +1555,6 @@ namespace CombatExtended
         }
 
         internal BaseTrajectoryWorker forcedTrajectoryWorker;
-
         public void DrawNextPositions()
         {
             if (Map == null)

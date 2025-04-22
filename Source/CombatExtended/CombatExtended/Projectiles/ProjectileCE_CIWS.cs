@@ -53,13 +53,6 @@ namespace CombatExtended
         public virtual float ImpactChance => (def.projectile as ProjectilePropertiesCE)?.impactChance ?? 1f;
         protected override bool ShouldCollideWithSomething => ExactPosition.y <= 0f;
 
-        public override Quaternion DrawRotation
-        {
-            get
-            {
-                return Quaternion.LookRotation((NextPositions.FirstOrDefault() - ExactPosition).Yto0());
-            }
-        }
         public override Quaternion ExactRotation => DrawRotation;
         public override void Tick()
         {

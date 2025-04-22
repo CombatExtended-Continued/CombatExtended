@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using static UnityEngine.UI.Image;
 
 namespace CombatExtended
 {
@@ -34,6 +35,25 @@ namespace CombatExtended
                 sh *= (float)FlightTicks / ticksToTruePosition;
             }
             return new Vector3(exactPosition.x, altitude, exactPosition.z + sh);
+        }
+        public virtual Quaternion DrawRotation(ProjectileCE projectile)
+        {
+            Vector2 w = (projectile.Destination - projectile.origin);
+
+            var vx = w.x / projectile.startingTicksToImpact;
+
+            var vy = (w.y - projectile.shotHeight) / projectile.startingTicksToImpact
+                     + projectile.shotSpeed * Mathf.Sin(projectile.shotAngle) / GenTicks.TicksPerRealSecond
+                     - (projectile.GravityFactor * projectile.FlightTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
+
+            return SpinIfNeeded(projectile, Quaternion.AngleAxis(
+                       Mathf.Rad2Deg * Mathf.Atan2(-vy, vx) + 90f
+                       , Vector3.up));
+
+        }
+        public virtual Quaternion ShadowRotation(ProjectileCE projectile)
+        {
+            return SpinIfNeeded(projectile, Quaternion.AngleAxis(projectile.shotRotation, Vector3.down));
         }
         public virtual Vector2 Destination(Vector2 origin, float shotRotation, float shotHeight, float shotSpeed, float shotAngle, float GravityFactor) => origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
         public virtual float DistanceTraveled(float shotHeight, float shotSpeed, float shotAngle, float GravityFactor)
@@ -107,5 +127,15 @@ namespace CombatExtended
             return (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x)) % 360;
         }
         public virtual bool GuidedProjectile => false;
+        protected Quaternion SpinIfNeeded(ProjectileCE projectile, Quaternion rotation)
+        {
+            if (projectile.def.projectile.spinRate != 0f)
+            {
+                float num2 = GenTicks.TicksPerRealSecond / projectile.def.projectile.spinRate;
+                var spinRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
+                rotation *= spinRotation;
+            }
+            return rotation;
+        }
     }
 }

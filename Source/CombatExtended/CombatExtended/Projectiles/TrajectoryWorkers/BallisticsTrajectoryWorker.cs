@@ -27,28 +27,28 @@ namespace CombatExtended
             float gravity = projectile.gravity;
             for (int ticksOffset = 1; ticksOffset <= ticksToImpact; ticksOffset++)
             {
-                yield return exactPosition = BallisticMove(currentTarget, exactPosition, speedGain, maxSpeed, ref velocity, ref shotSpeed, ref mass, ref ballisticCoefficient, ref radius, ref gravity);
+                yield return exactPosition = BallisticMove(currentTarget, projectile.intendedTargetHeight, exactPosition, speedGain, maxSpeed, ref velocity, ref shotSpeed, ref mass, ref ballisticCoefficient, ref radius, ref gravity);
             }
         }
         protected override void MoveForward(ProjectileCE projectile)
         {
-            projectile.ExactPosition = BallisticMove(projectile.intendedTarget, projectile.ExactPosition, projectile.Props.speedGain, projectile.Props.speed, ref projectile.velocity, ref projectile.shotSpeed, ref projectile.mass, ref projectile.ballisticCoefficient, ref projectile.radius, ref projectile.gravity);
+            projectile.ExactPosition = BallisticMove(projectile.intendedTarget, projectile.intendedTargetHeight, projectile.ExactPosition, projectile.Props.speedGain, projectile.Props.speed, ref projectile.velocity, ref projectile.shotSpeed, ref projectile.mass, ref projectile.ballisticCoefficient, ref projectile.radius, ref projectile.gravity);
             projectile.FlightTicks++;
         }
-        protected virtual Vector3 BallisticMove(LocalTargetInfo currentTarget, Vector3 exactPosition, float speedGain, float maxSpeed, ref Vector3 velocity, ref float shotSpeed, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity)
+        protected virtual Vector3 BallisticMove(LocalTargetInfo currentTarget, float targetHeight, Vector3 exactPosition, float speedGain, float maxSpeed, ref Vector3 velocity, ref float shotSpeed, ref float mass, ref float ballisticCoefficient, ref float radius, ref float gravity)
         {
-            Accelerate(currentTarget, radius, ballisticCoefficient, mass, gravity, speedGain, maxSpeed, exactPosition, ref velocity, ref shotSpeed);
+            Accelerate(currentTarget, targetHeight, radius, ballisticCoefficient, mass, gravity, speedGain, maxSpeed, exactPosition, ref velocity, ref shotSpeed);
             shotSpeed = GetSpeed(velocity);
             return exactPosition + velocity;
         }
-        protected virtual void Accelerate(LocalTargetInfo currentTarget, float radius, float ballisticCoefficient, float mass, float gravity, float speedGain, float maxSpeed, Vector3 exactPosition, ref Vector3 velocity, ref float shotSpeed)
+        protected virtual void Accelerate(LocalTargetInfo currentTarget, float targetHeight, float radius, float ballisticCoefficient, float mass, float gravity, float speedGain, float maxSpeed, Vector3 exactPosition, ref Vector3 velocity, ref float shotSpeed)
         {
             AffectedByDrag(radius, shotSpeed, ballisticCoefficient, mass, ref velocity);
             AffectedByGravity(gravity, ref velocity);
-            ReactiveAcceleration(currentTarget, speedGain, maxSpeed, exactPosition, ref velocity, ref shotSpeed);
+            ReactiveAcceleration(currentTarget, targetHeight, speedGain, maxSpeed, exactPosition, ref velocity, ref shotSpeed);
         }
 
-        protected virtual void ReactiveAcceleration(LocalTargetInfo currentTarget, float speedGain, float maxSpeed, Vector3 exactPosition, ref Vector3 velocity, ref float shotSpeed)
+        protected virtual void ReactiveAcceleration(LocalTargetInfo currentTarget, float targetHeight, float speedGain, float maxSpeed, Vector3 exactPosition, ref Vector3 velocity, ref float shotSpeed)
         {
             var speedChange = Mathf.Max(Mathf.Min(maxSpeed - shotSpeed, speedGain), 0f);
             if (speedChange > 0.001f)
@@ -81,6 +81,14 @@ namespace CombatExtended
         public override Vector3 ExactPosToDrawPos(Vector3 exactPosition, int FlightTicks, int ticksToTruePosition, float altitude)
         {
             return exactPosition.WithY(altitude);
+        }
+        public override Quaternion DrawRotation(ProjectileCE projectile)
+        {
+            return SpinIfNeeded(projectile, Quaternion.LookRotation((projectile.NextPositions.FirstOrDefault() - projectile.ExactPosition).Yto0()));
+        }
+        public override Quaternion ShadowRotation(ProjectileCE projectile)
+        {
+            return DrawRotation(projectile);
         }
     }
 }

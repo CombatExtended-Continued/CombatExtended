@@ -14,5 +14,13 @@ namespace CombatExtended
         {
             return exactPosition.WithY(altitude);
         }
+        public override Quaternion DrawRotation(ProjectileCE projectile)
+        {
+            return SpinIfNeeded(projectile, Quaternion.LookRotation((projectile.NextPositions.FirstOrDefault() - projectile.ExactPosition).Yto0()));
+        }
+        public override Quaternion ShadowRotation(ProjectileCE projectile)
+        {
+            return DrawRotation(projectile);
+        }
     }
 }
