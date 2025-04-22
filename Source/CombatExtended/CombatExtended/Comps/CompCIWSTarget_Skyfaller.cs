@@ -15,7 +15,13 @@ namespace CombatExtended
         {
             get
             {
-                return (parent as Skyfaller).DrawPositions().Select(x => x.WithY(45f));
+                Skyfaller skyfaller = parent as Skyfaller;
+                int end = skyfaller.ticksToImpact;
+                if (skyfaller.def.skyfaller.reversed)
+                {
+                    end = skyfaller.LeaveMapAfterTicks - end;
+                }
+                return skyfaller.PredictPositions(end);
             }
         }
 
