@@ -20,6 +20,16 @@
 		</value>
 	</Operation>
 
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="VFEM2_Turret_WallMountedArbalest" or defName="VFEM2_Turret_WallMountedArquebus"]/placeWorkers</xpath>
+    <value>
+      <placeWorkers>
+        <li>PlaceWorker_ShowTurretRadius</li>
+        <li>PlaceWorker_TurretTop</li>
+      </placeWorkers>
+    </value>
+  </Operation>
+
 	<!-- ========== Arbalest - Weapon ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VFEM2_Gun_ArbalestTurret</defName>

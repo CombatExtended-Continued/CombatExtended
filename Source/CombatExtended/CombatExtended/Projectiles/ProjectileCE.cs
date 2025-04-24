@@ -596,7 +596,7 @@ namespace CombatExtended
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
 
-            if (!def.projectile.soundAmbient.NullOrUndefined())
+            if (Map != null && !def.projectile.soundAmbient.NullOrUndefined())
             {
                 var info = SoundInfo.InMap(this, MaintenanceType.PerTick);
                 ambientSustainer = def.projectile.soundAmbient.TrySpawnSustainer(info);
@@ -1398,7 +1398,8 @@ namespace CombatExtended
                     var reusableAmmo = ThingMaker.MakeThing(thingDef);
                     reusableAmmo.stackCount = 1;
                     reusableAmmo.SetForbidden(true, false);
-                    GenPlace.TryPlaceThing(reusableAmmo, Position, Map, ThingPlaceMode.Near);
+                    Thing existingStack = Position.GetRegion(Map).listerThings.ThingsOfDef(thingDef).FirstOrFallback(thing => thing.stackCount < thing.def.stackLimit, null);
+                    GenPlace.TryPlaceThing(reusableAmmo, existingStack != null ? existingStack.positionInt : Position, Map, ThingPlaceMode.Near);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, reusableAmmo, OpportunityType.GoodToKnow);
                     ignoredThings.Add(reusableAmmo);
                 }

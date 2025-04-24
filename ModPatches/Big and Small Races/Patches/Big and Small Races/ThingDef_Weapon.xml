@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- === Tools === -->
+	<!-- ===== Heavy Crossbow ===== -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFEM_Bow_HeavyCrossbow"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="VFEM_Bow_HeavyCrossbow"]/tools</xpath><!-- Why with the unchanged def and prefix -->
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -18,7 +18,6 @@
 		</value>
 	</Operation>
 
-	<!-- === Heavy Crossbow === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VFEM_Bow_HeavyCrossbow</defName>
 		<statBases>
@@ -36,7 +35,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Projectile_HeavyCrossbowBolt_Steel</defaultProjectile>
+			<defaultProjectile>Projectile_BASRHeavyCrossbowBolt_Steel</defaultProjectile>
 			<warmupTime>1</warmupTime>
 			<range>34</range>
 			<soundCast>Bow_Large</soundCast>
@@ -44,7 +43,7 @@
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
 			<reloadTime>8</reloadTime>
-			<ammoSet>AmmoSet_HeavyCrossbowBolt</ammoSet>
+			<ammoSet>AmmoSet_BASRHeavyCrossbowBolt</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -52,7 +51,13 @@
 		<weaponTags>
 			<li>NeolithicRangedHeavy</li>
 			<li>NeolithicRangedChief</li>
-			<li>CE_Bow</li>
+			<li>CE_XBow</li>
 		</weaponTags>
 	</Operation>
+
+	<!-- Source of suffering -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFEM_Arrow_HeavyBolt"]</xpath>
+	</Operation>
+
 </Patch>
