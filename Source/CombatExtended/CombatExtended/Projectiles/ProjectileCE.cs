@@ -34,6 +34,7 @@ namespace CombatExtended
         public int fuelTicks;
         public Vector3 velocity;
         public float initialSpeed;
+        public bool isCIWS = false;
         #endregion
 
         #region Drawing
@@ -1184,6 +1185,15 @@ namespace CombatExtended
                 Destroy(DestroyMode.Vanish);
                 return;
             }
+            if (isCIWS && !(TrajectoryWorker is BallisticsTrajectoryWorker) && intendedTarget.ThingDestroyed)
+            {
+                if (shotAngle > 0.7853f) // 45 degrees
+                {
+                    Destroy(DestroyMode.Vanish);
+                    return;
+                }
+            }
+
             TrajectoryWorker.NotifyTicked(this);
             LastPos = ExactPosition;
             ticksToImpact--;
