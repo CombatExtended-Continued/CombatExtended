@@ -6,9 +6,9 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
-[Cosplay Equipment]	Blue Archive |
 [AV] Mechtech   |
 [AV] Work Queen |
+[Cosplay Equipment]	Blue Archive |
 [CP] DOOM	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
@@ -164,6 +164,7 @@ Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
 Communicable Diseases   |
 Cossacks of the Rim |
+Crossbows   |
 Crowns and Regalia  |
 Cupro's Alloys	|
 Cursed Guns |
