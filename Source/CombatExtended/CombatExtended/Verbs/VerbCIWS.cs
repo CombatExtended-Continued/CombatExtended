@@ -64,7 +64,6 @@ namespace CombatExtended
             }
         }
 
-
         public override bool TryCastShot()
         {
             var result = base.TryCastShot();
