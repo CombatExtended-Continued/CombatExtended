@@ -38,6 +38,8 @@ namespace CombatExtended
         public CompFireModes compFireModes = null;
         public CompChangeableProjectile compChangeable = null;
         public CompApparelReloadable compReloadable = null;
+        protected int multiBarrelIndex;
+
         private float shotSpeed = -1;
 
         private float rotationDegrees = 0f;
@@ -64,6 +66,7 @@ namespace CombatExtended
 
         public VerbPropertiesCE VerbPropsCE => verbProps as VerbPropertiesCE;
         public ProjectilePropertiesCE projectilePropsCE => Projectile.projectile as ProjectilePropertiesCE;
+        public MultiBarrelExtension multiBarrelExt => EquipmentSource.def.GetModExtension<MultiBarrelExtension>();
 
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
@@ -556,6 +559,16 @@ namespace CombatExtended
             shotRotation = (lastShotRotation + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
             distance = (newTargetLoc - sourceLoc).magnitude;
+            sourceLoc += IncrementBarrelCount();
+        }
+
+        /// <summary>
+        /// Add 1 to multi barrel index then returns the barrel offset.
+        /// </summary>
+        protected Vector2 IncrementBarrelCount()
+        {
+            multiBarrelIndex++;
+            return multiBarrelExt?.GetOffsetFor(multiBarrelIndex).RotatedBy(shotRotation) ?? Vector2.zero;
         }
         protected float ShotAngle(Vector3 targetPos)
         {
