@@ -6,7 +6,6 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
-[Cosplay Equipment]	Blue Archive |
 [AV] Mechtech   |
 [AV] Work Queen |
 [CP] DOOM	|
@@ -16,6 +15,7 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
+[Cosplay Equipment]	Blue Archive |
 [FF] Bushi!	|
 [FSF] Advanced Bionics Expansion    |
 [FSF] More Psycast Powers   |
@@ -44,9 +44,9 @@ Mod |
 [RH2] Faction: Utilitarian  |
 [RH2] Faction: V.O.I.D.	|
 [RH2] Metal Gear Solid  |
-[RH2] Rimmu-NationÂ² - Clothing	|
-[RH2] Rimmu-NationÂ² - Security  |
-[RH2] Rimmu-NationÂ² - Weapons	|
+[RH2] Rimmu-Nation² - Clothing	|
+[RH2] Rimmu-Nation² - Security  |
+[RH2] Rimmu-Nation² - Weapons	|
 [Ry]Rimcraft	|
 [Ry]Rimcraft Allied Races	|
 [Ry]Rimcraft Animals	|
@@ -62,8 +62,8 @@ Mod |
 [SYR] Thrumkin	|
 [UEM] More Mechanitor Mechs	|
 [XND] Vanilla-Friendly Animal Surgery (Continued)
-â† Elves |
-â† House Sanguin |
+ↁ Elves |
+ↁ House Sanguin |
 A Dog Said...	|
 A Dog Said... Animal Prosthetics 2	|
 ABF: Civil Synstructs   |
@@ -160,12 +160,11 @@ Civilization Beyond Earth Armor Sets    |
 Clay Soldier Race |
 Colonial Shuttle |
 Colony Leadership   |
-Combat Enthusiastâ€™s Collection	|
+Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
 Communicable Diseases   |
 Cossacks of the Rim |
 Crowns and Regalia  |
-Crossbows  |
 Cupro's Alloys	|
 Cursed Guns |
 CutePenguin	|
@@ -478,7 +477,7 @@ Rimsenal - Spacer Faction Pack  |
 Rimsenal Xenotype Pack - Askbarn    |
 Rimsenal Xenotype Pack - Harana |
 RimTraits - General Traits  |
-RimTraits â€“ Medieval Talents    |
+RimTraits – Medieval Talents    |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
@@ -509,7 +508,7 @@ Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
 SRTS Expanded	|
-Stalingrad â€“ Uniforms   |
+Stalingrad – Uniforms   |
 Star Crafters Armory  |
 Star Wars - Factions |
 Starship Troopers Aracnids  |
@@ -550,7 +549,7 @@ Vanilla Animals Expanded - Endangered |
 Vanilla Animals Expanded - Royal Animals |
 Vanilla Animals Expanded - Waste Animals |
 Vanilla Apparel Expanded	|
-Vanilla Apparel Expanded â€” Accessories  |
+Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
 Vanilla Arsenal |
 Vanilla Base Generation Expanded    |
@@ -569,7 +568,7 @@ Vanilla Factions Expanded - Tribals |
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Genetics Expanded   |
-Vanilla Ideology Expanded â€“ Dryads  |
+Vanilla Ideology Expanded – Dryads  |
 Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Persona Weapons Expanded   |
@@ -578,6 +577,7 @@ Vanilla Prestige Specialist Armours Reworked    |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
+Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
