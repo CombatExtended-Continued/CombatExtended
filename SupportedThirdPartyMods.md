@@ -164,6 +164,7 @@ Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
 Communicable Diseases   |
 Cossacks of the Rim |
+Crossbows   |
 Crowns and Regalia  |
 Cupro's Alloys	|
 Cursed Guns |
