@@ -1,36 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/DamageDef[defName="GR_ToxicExplosion"]/armorCategory</xpath>
-		<match Class="PatchOperationReplace">
-			<xpath>Defs/DamageDef[defName="GR_ToxicExplosion"]/armorCategory</xpath>
-			<value>
-				<armorCategory>Blunt</armorCategory>
-			</value>
-		</match>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/DamageDef[defName="GR_ToxicExplosion"]</xpath>
-			<value>
-				<armorCategory>Blunt</armorCategory>
-			</value>
-		</nomatch>
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/DamageDef[defName="GR_ToxicExplosion" or 
+			defName="GR_HairballExplosion"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>Bomb</value>
 	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/DamageDef[defName="GR_HairballExplosion"]/armorCategory</xpath>
-		<match Class="PatchOperationAdd">
-			<xpath>Defs/DamageDef[defName="GR_HairballExplosion"]/armorCategory</xpath>
-			<value>
-				<armorCategory>Blunt</armorCategory>
-			</value>
-		</match>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/DamageDef[defName="GR_HairballExplosion"]</xpath>
-			<value>
-				<armorCategory>Blunt</armorCategory>
-			</value>
-		</nomatch>
-	</Operation>
-
 </Patch>
