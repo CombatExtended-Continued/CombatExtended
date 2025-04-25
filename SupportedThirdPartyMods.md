@@ -8,6 +8,7 @@ Mod |
 --- |
 [AV] Mechtech   |
 [AV] Work Queen |
+[Cosplay Equipment]	Blue Archive |
 [CP] DOOM	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
@@ -15,7 +16,6 @@ Mod |
 [CP] Rimmu-Nation - Weapons	|
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
-[Cosplay Equipment]	Blue Archive |
 [FF] Bushi!	|
 [FSF] Advanced Bionics Expansion    |
 [FSF] More Psycast Powers   |
