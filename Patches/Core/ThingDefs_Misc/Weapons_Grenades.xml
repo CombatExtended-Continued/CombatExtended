@@ -106,7 +106,6 @@
 				<ballisticCoefficient>2.0~2.0</ballisticCoefficient>
 				<mass>400~400</mass>
 				<diameter>64~64</diameter>
-				<lerpPosition>true</lerpPosition>
 			</projectile>
 		</value>
 	</Operation>
@@ -124,9 +123,9 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
 		<value>
-		  <li Class="CombatExtended.CompProperties_Fragments">
+			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-				  <Fragment_Small>40</Fragment_Small>
+					<Fragment_Small>40</Fragment_Small>
 				</fragments>
 			</li>
 		</value>
@@ -209,7 +208,7 @@
 		</statBases>
 		<Properties>
 			<label>throw frag grenade</label>
-			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<range>10.0</range>
 			<minRange>4</minRange>
@@ -224,7 +223,7 @@
 			<onlyManualCast>true</onlyManualCast>
 			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 			<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
-                        <minRangeInCover>2</minRangeInCover>
+            <minRangeInCover>2</minRangeInCover>
 		</Properties>
 		<weaponTags>
 			<li>CE_AI_Grenade</li>
