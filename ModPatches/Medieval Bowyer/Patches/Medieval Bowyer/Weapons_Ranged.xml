@@ -11,8 +11,8 @@
 			defName="MB_Hunting_Crossbow" or
 			defName="MB_Watchmen_Crossbow" or
 			defName="MB_War_Crossbow" or
-			defName="MB_Garrison_Crossbow"
-			]/tools </xpath>
+			defName="MB_Garrison_Crossbow"]/tools
+		</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -26,9 +26,8 @@
 			</tools>
 		</value>
 	</Operation>
-	
-	<!-- ========== Peasant Bow ========== -->
 
+	<!-- ========== Peasant Bow ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MB_Bow_Peasant</defName>
 		<statBases>
@@ -52,13 +51,13 @@
 		<AmmoUser>
 			<ammoSet>AmmoSet_Arrow</ammoSet>
 		</AmmoUser>
-		<FireModes />
+		<FireModes/>
 		<weaponTags>
 			<li>CE_Bow</li>
 		</weaponTags>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
-	
+
 	<!-- ========== Mercenary Bow ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MB_Bow_Mercenary</defName>
@@ -83,16 +82,15 @@
 		<AmmoUser>
 			<ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
 		</AmmoUser>
-		<FireModes />
+		<FireModes/>
 		<weaponTags>
 			<li>CE_Bow</li>
 		</weaponTags>
 		<researchPrerequisite>RecurveBow</researchPrerequisite>
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
-	
-	<!-- ========== Carved Long Bow ========== -->
 
+	<!-- ========== Carved Long Bow ========== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MB_Bow_CarvedLongBow</defName>
 		<statBases>
@@ -116,7 +114,7 @@
 		<AmmoUser>
 			<ammoSet>AmmoSet_GreatArrow</ammoSet>
 		</AmmoUser>
-		<FireModes />
+		<FireModes/>
 		<weaponTags>
 			<li>CE_Bow</li>
 		</weaponTags>
@@ -132,7 +130,7 @@
 			</li>
 		</value>
 	</Operation>
-	
+
 	<!-- === Training Crossbow === -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MB_Training_Crossbow"]/weaponTags</xpath>
@@ -149,7 +147,6 @@
 		</statBases>
 		<costList>
 			<WoodLog>40</WoodLog>
-			<ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -172,12 +169,12 @@
 			<li>MedievalRangedDecent</li>
 		</weaponTags>
 	</Operation>
-	
+
 	<!-- === Hunting Crossbow === -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MB_Hunting_Crossbow"]/weaponTags</xpath>
 	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MB_Hunting_Crossbow</defName>
 		<statBases>
@@ -188,8 +185,8 @@
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<WoodLog>70</WoodLog>
-			<ComponentIndustrial>1</ComponentIndustrial>
+			<WoodLog>40</WoodLog>
+			<Steel>10</Steel>
 		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -212,12 +209,12 @@
 			<li>MedievalRangedDecent</li>
 		</weaponTags>
 	</Operation>
-	
+
 	<!-- === Watchmen Crossbow === -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MB_Watchmen_Crossbow"]/weaponTags</xpath>
 	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MB_Watchmen_Crossbow</defName>
 		<statBases>
@@ -228,8 +225,8 @@
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<WoodLog>80</WoodLog>
-			<ComponentIndustrial>2</ComponentIndustrial>
+			<WoodLog>50</WoodLog>
+			<Steel>15</Steel>
 		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -252,12 +249,12 @@
 			<li>MedievalRangedDecent</li>
 		</weaponTags>
 	</Operation>
-	
+
 	<!-- === War Crossbow === -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MB_War_Crossbow"]/weaponTags</xpath>
 	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MB_War_Crossbow</defName>
 		<statBases>
@@ -268,8 +265,8 @@
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<WoodLog>90</WoodLog>
-			<ComponentIndustrial>2</ComponentIndustrial>
+			<WoodLog>60</WoodLog>
+			<Steel>25</Steel>
 		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -292,12 +289,12 @@
 			<li>MedievalRangedDecent</li>
 		</weaponTags>
 	</Operation>
-	
+
 	<!-- === Garrison Crossbow === -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="MB_Garrison_Crossbow"]/weaponTags</xpath>
 	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>MB_Garrison_Crossbow</defName>
 		<statBases>
@@ -308,8 +305,8 @@
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
-			<WoodLog>100</WoodLog>
-			<ComponentIndustrial>4</ComponentIndustrial>
+			<WoodLog>80</WoodLog>
+			<Steel>35</Steel>
 		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -332,5 +329,5 @@
 			<li>MedievalRangedDecent</li>
 		</weaponTags>
 	</Operation>
-	
+
 </Patch>
