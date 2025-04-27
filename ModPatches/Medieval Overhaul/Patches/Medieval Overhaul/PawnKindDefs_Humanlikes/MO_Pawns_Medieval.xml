@@ -1,107 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<!--disabled very stupid raid type-->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/FactionDef[@Name = "DankPyon_NobleHouseFactionBase"]/pawnGroupMakers/li[2]/commonality</xpath>
+
+	<!-- === Give backpack to melee pawn with shield chance === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			defName="DankPyon_Medieval_Mercenary" or
+			defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
 		<value>
-			<commonality>0</commonality>
+			<apparelRequired>
+				<li>CE_Apparel_TribalBackpack</li>
+			</apparelRequired>
 		</value>
 	</Operation>
 
-	<!--Give Shields-->
+	<!-- === Give backpack to melee pawn with shield chance === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_Medieval_Knight"]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
 
+	<!-- === Give shields === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[
 			defName="DankPyon_Medieval_Mercenary" or
-			defName="DankPyon_Medieval_MercenaryHeavy"] </xpath>
+			defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>100</min>
-					<max>350</max>
-				</shieldMoney>
+				<shieldMoney>100~350</shieldMoney>
 				<shieldTags>
-					<li>KiteShield</li>
-					<li>HeaterShield</li>
-					<li>Buckler</li>
+					<li>DankPyon_Shield</li>
+					<li>DankPyon_ShieldKite</li>
+					<li>DankPyon_ShieldHeater</li>
 				</shieldTags>
 				<shieldChance>0.35</shieldChance>
 			</li>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Footman"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>100</min>
-					<max>350</max>
-				</shieldMoney>
-				<shieldTags>
-					<li>KiteShield</li>
-					<li>HeaterShield</li>
-					<li>Buckler</li>
-				</shieldTags>
-				<shieldChance>0.65</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Knight" or defName="DankPyon_Medieval_Lord"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>200</min>
-					<max>600</max>
-				</shieldMoney>
-				<shieldTags>
-					<li>HeaterShield</li>
-					<li>KiteShield</li>
-				</shieldTags>
-				<shieldChance>0.5</shieldChance>
-			</li>
-		</value>
-	</Operation>
-
-	<!-- Trying to add shields to Arbalesters, doesn't work
-	<li Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
-		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>100</min>
-					<max>600</max>
-				</shieldMoney>
-				<shieldTags>
-					<li>Pavise</li>
-					<li>KiteShield</li>
-				</shieldTags>
-				<shieldChance>0.9</shieldChance>
-			</li>
-		</value>
-	</li>-->
-
-	<!--Give ammo to crosbowman-->
+	<!-- === Give loadout to ranged PawnKind === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>12</min>
-					<max>20</max>
-				</primaryMagazineCount>
+				<primaryMagazineCount>12~20</primaryMagazineCount>
 				<forcedSidearm>
-					<sidearmMoney>
-						<min>100</min>
-						<max>200</max>
-					</sidearmMoney>
+					<sidearmMoney>100~200</sidearmMoney>
 					<weaponTags>
 						<li>NeolithicMeleeBasic</li>
 						<li>MedievalMeleeDecent</li>
 					</weaponTags>
 				</forcedSidearm>
+				<shieldMoney>
+					<min>100</min>
+					<max>600</max>
+				</shieldMoney>
+				<shieldTags>
+					<li>DankPyon_ShieldKite</li>
+				</shieldTags>
+				<shieldChance>0.7</shieldChance>
 			</li>
 		</value>
 	</Operation>
@@ -110,10 +68,7 @@
 		<xpath>Defs/PawnKindDef[defName="DankPyon_Medieval_Bowman"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>15</min>
-					<max>30</max>
-				</primaryMagazineCount>
+				<primaryMagazineCount>15~30</primaryMagazineCount>
 				<forcedSidearm>
 					<sidearmMoney>
 						<min>50</min>
@@ -132,15 +87,9 @@
 		<xpath>Defs/PawnKindDef[defName="DankPyon_BrigandMarksman"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>12</min>
-					<max>20</max>
-				</primaryMagazineCount>
+				<primaryMagazineCount>12~20</primaryMagazineCount>
 				<forcedSidearm>
-					<sidearmMoney>
-						<min>50</min>
-						<max>150</max>
-					</sidearmMoney>
+					<sidearmMoney>50~150</sidearmMoney>
 					<weaponTags>
 						<li>NeolithicMeleeBasic</li>
 						<li>MedievalMeleeDecent</li>

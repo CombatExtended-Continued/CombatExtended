@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!--Give Shields to Tier 2+ Melee-->
+	<!-- === Replace conflicting apparel layer === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_Cultist_HighPristBase"]/apparelRequired</xpath>
+		<value>
+			<apparelRequired Inherit="False">
+				<li>DankPyon_Headgear_CultistHood</li>
+				<li>Dankpyon_Apparel_Gambeson</li>
+				<li>DankPyon_Apparel_Trousers</li>
+				<li>DankPyon_Footwear_BootsLeather</li>
+				<li>DankPyon_Handwear_GlovesLeather</li>
+				<li>DankPyon_Apparel_Heavy_Hauberk</li>
+				<li>DankPyon_Apparel_ChaussesPadded</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<!-- === Give backpack to melee pawn with shield chance === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[
+			@Name="DankPyon_CultistAcolyteBase" or @Name="DankPyon_CultistAdeptBase" or
+			@Name="DankPyon_Cultist_HighPristBase"]/apparelRequired</xpath>
+		<value>
+			<li>CE_Apparel_TribalBackpack</li>
+		</value>
+	</Operation>
+
+	<!-- === Give Shields to Tier 2+ Melee === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="DanyPyon_Cultist_Acolyte_Melee"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>100</min>
-					<max>350</max>
-				</shieldMoney>
+				<shieldMoney>100~350</shieldMoney>
 				<shieldTags>
-					<li>KiteShield</li>
-					<li>HeaterShield</li>
-					<li>Buckler</li>
+					<li>DankPyon_Shield</li>
+					<li>DankPyon_ShieldKite</li>
+					<li>DankPyon_ShieldHeater</li>
 				</shieldTags>
 				<shieldChance>0.15</shieldChance>
 			</li>
@@ -24,14 +47,11 @@
 		<xpath>Defs/PawnKindDef[defName="DanyPyon_Cultist_Adept_Melee"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>100</min>
-					<max>350</max>
-				</shieldMoney>
+				<shieldMoney>100~350</shieldMoney>
 				<shieldTags>
-					<li>KiteShield</li>
-					<li>HeaterShield</li>
-					<li>Buckler</li>
+					<li>DankPyon_Shield</li>
+					<li>DankPyon_ShieldKite</li>
+					<li>DankPyon_ShieldHeater</li>
 				</shieldTags>
 				<shieldChance>0.35</shieldChance>
 			</li>
@@ -42,28 +62,22 @@
 		<xpath>Defs/PawnKindDef[defName="DanyPyon_Cultist_HighPriest_Melee"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<shieldMoney>
-					<min>200</min>
-					<max>600</max>
-				</shieldMoney>
+				<shieldMoney>200~600</shieldMoney>
 				<shieldTags>
-					<li>HeaterShield</li>
-					<li>KiteShield</li>
+					<li>DankPyon_ShieldKite</li>
+					<li>DankPyon_ShieldHeater</li>
 				</shieldTags>
 				<shieldChance>0.65</shieldChance>
 			</li>
 		</value>
 	</Operation>
 
-	<!-- Ranged Cultists -->
+	<!-- === Ranged Cultists === -->
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="DanyPyon_Cultist_Acolyte_Ranged"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>15</min>
-					<max>30</max>
-				</primaryMagazineCount>
+				<primaryMagazineCount>15~30</primaryMagazineCount>
 				<forcedSidearm>
 					<sidearmMoney>
 						<min>50</min>
@@ -82,10 +96,7 @@
 		<xpath>Defs/PawnKindDef[defName="DanyPyon_Cultist_Adept_Ranged"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>12</min>
-					<max>20</max>
-				</primaryMagazineCount>
+				<primaryMagazineCount>12~20</primaryMagazineCount>
 				<forcedSidearm>
 					<sidearmMoney>
 						<min>100</min>
@@ -104,10 +115,7 @@
 		<xpath>Defs/PawnKindDef[defName="DanyPyon_Cultist_HighPriest_Ranged"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>15</min>
-					<max>20</max>
-				</primaryMagazineCount>
+				<primaryMagazineCount>15~20</primaryMagazineCount>
 				<forcedSidearm>
 					<sidearmMoney>
 						<min>100</min>
@@ -123,19 +131,19 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/PawnKindDef[
-			defName="DanyPyon_Cultist_Acolyte_Ranged" or
-			defName="DanyPyon_Cultist_Adept_Ranged" or
-			defName="DanyPyon_Cultist_HighPriest_Ranged"] </xpath>
+			defName="DanyPyon_Cultist_Acolyte_Ranged" or defName="DanyPyon_Cultist_Adept_Ranged" or
+			defName="DanyPyon_Cultist_HighPriest_Ranged"]</xpath>
 		<value>
 			<apparelRequired>
-				<li>CE_Apparel_TribalBackpack</li>
 				<li>DankPyon_Apparel_Quiver</li>
 			</apparelRequired>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="DanyPyon_Cultist_Adept_Ranged" or defName="DanyPyon_Cultist_HighPriest_Ranged"]/weaponTags</xpath>
+		<xpath>Defs/PawnKindDef[
+			defName="DanyPyon_Cultist_Adept_Ranged" or defName="DanyPyon_Cultist_HighPriest_Ranged"
+			]/weaponTags</xpath>
 		<value>
 			<li>CE_XBow</li>
 		</value>
