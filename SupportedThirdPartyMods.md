@@ -266,6 +266,7 @@ Grimworld: Melee	|
 GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Hammer of the Imperium |
+Grimworld 40,000 - Heresy Armor Addon   |
 GrimWorld 40,000 - Imperial Vehicles of Grimworld |
 GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
@@ -278,6 +279,7 @@ Heyra the Horned    |
 High Caliber	|
 High Tech Laboratory Facilities	|
 Hive Armory |
+Huscarl - Power Armor   |
 Hyena (Continued) |
 Idhale Race	|
 Impact Weaponry	|
@@ -287,6 +289,7 @@ Industrial Melee Weaponry	|
 Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
+Integrated Implants |
 Ion Weaponry    |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
@@ -328,6 +331,7 @@ Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Overhaul   |
+Medieval Overhaul: Arcane Archeologists   |
 Medieval Overhaul: Barbarians   |
 Medieval Overhaul: House Roxmont  |
 Medieval Tailor   |
@@ -511,6 +515,7 @@ Starship Troopers Aracnids  |
 Steamworld Uniforms |
 Steves Animals  |
 Stoneborn - Delights  |
+Supernatural Weapons    |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
@@ -528,6 +533,7 @@ Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
 Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
+Tools O'Plenty  |
 TouhouStyle	|
 Tribal Warrior Set! |
 Tsar Armory	|
@@ -555,12 +561,10 @@ Vanilla Factions Expanded - Deserters  |
 Vanilla Factions Expanded - Empire  |
 Vanilla Factions Expanded - Insectoids 2|
 Vanilla Factions Expanded - Mechanoids	|
-Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Medieval 2  |
 Vanilla Factions Expanded - Pirates |
 Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Tribals |
-Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Genetics Expanded   |
@@ -569,6 +573,7 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Persona Weapons Expanded   |
 Vanilla Plants Expanded - Mushrooms  |
+Vanilla Prestige Specialist Armours Reworked    |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |

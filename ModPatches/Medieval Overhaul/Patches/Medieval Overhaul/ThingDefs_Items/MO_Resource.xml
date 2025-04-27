@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- Make ammos craftable with the anvil -->
+	<!-- Make ammos craftable with the workbench and anvil -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="AmmoGreatArrowBase" or @Name="AmmoArrowBase" or @Name="AmmoCrossbowBoltBase"]/tradeTags</xpath>
 		<value>
 			<li>CE_AutoEnableCrafting_DankPyon_Workbench</li>
-			<li>CE_AutoEnableCrafting_DankPyon_Workbench</li>
+			<li>CE_AutoEnableCrafting_DankPyon_Anvil</li>
+		</value>
+	</Operation>
+
+	<!-- === Musket and blunderbuss ammo research. === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="MusketBallBase" or @Name="BlunderbussShotBase"]/tradeTags</xpath>
+		<value>
+			<li>CE_AutoEnableCrafting_DankPyon_Anvil</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/RecipeDef[defName="MakeAmmo_MusketBall" or defName="MakeAmmo_BlunderbussShot"]/researchPrerequisite</xpath>
+		<value>
+			<researchPrerequisite>DankPyon_Gunpowder</researchPrerequisite>
 		</value>
 	</Operation>
 

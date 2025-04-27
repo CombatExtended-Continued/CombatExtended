@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
+	<!-- === Replace conflicting apparel layer === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementArcher"]/apparelRequired</xpath>
+		<value>
+			<apparelRequired Inherit="False">
+				<li>DankPyon_Apparel_Padded_Surcoat</li>
+				<li>DankPyon_Apparel_Trousers</li>
+				<li>DankPyon_Apparel_ChaussesPadded</li>
+				<li>DankPyon_Handwear_GlovesLeather</li>
+				<li>DankPyon_Footwear_BootsLeather</li>
+				<li>DankPyon_Apparel_Quiver</li>
+				<li>DankPyon_Headgear_ChainKettleHelmet</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementFootman"]/apparelRequired</xpath>
+		<value>
+			<apparelRequired Inherit="False">
+				<li>DankPyon_Apparel_Padded_Surcoat</li>
+				<li>DankPyon_Apparel_Trousers</li>
+				<li>DankPyon_Apparel_ChaussesPadded</li>
+				<li>DankPyon_Handwear_GlovesLeather</li>
+				<li>DankPyon_Footwear_BootsLeather</li>
+				<li>DankPyon_Apparel_Quiver</li>
+				<li>DankPyon_Headgear_ClosedChain_FlatTopHelmet</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementKnight"]/apparelRequired</xpath>
+		<value>
+			<apparelRequired Inherit="False">
+				<li>DankPyon_Apparel_Padded_Surcoat</li>
+				<li>DankPyon_Apparel_Trousers</li>
+				<li>DankPyon_Apparel_FullPlate</li>
+			</apparelRequired>
+		</value>
+	</Operation>
+
 	<!-- === Give backpack to melee pawn with shield chance === -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/PawnKindDef[@Name="DankPyon_SettlementKnight"]/apparelRequired</xpath>
