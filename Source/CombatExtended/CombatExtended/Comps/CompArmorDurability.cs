@@ -277,8 +277,10 @@ namespace CombatExtended
 
         public float RepairValue;
 
+        [Obsolete("This field is deprecated and no longer functions. Will be removed in future versions.")]
         public bool CanOverHeal;
 
+        [Obsolete("This field is deprecated and no longer functions. Will be removed in future versions.")]
         public float MaxOverHeal;
 
         public float MinArmorValueSharp = -1;
