@@ -3,7 +3,7 @@
 
 	<!-- Add Body Shapes -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="DankPyon_BaseGolem"]</xpath>
+		<xpath>Defs/ThingDef[@Name="DankPyon_BaseGolem"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -13,9 +13,9 @@
 
 	<!-- Add Armor Durability -->
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="DankPyon_BaseGolem"]/comps</xpath>
+		<xpath>Defs/ThingDef[@Name="DankPyon_BaseGolem"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="DankPyon_BaseGolem"]</xpath>
+			<xpath>Defs/ThingDef[@Name="DankPyon_BaseGolem"]</xpath>
 			<value>
 				<comps />
 			</value>
