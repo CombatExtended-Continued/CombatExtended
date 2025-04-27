@@ -427,10 +427,6 @@ namespace CombatExtended
                     {
                         natArmor.curDurability = natArmor.maxDurability;
                     }
-                    else
-                    {
-                        natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                    }
                 }
 
             });
