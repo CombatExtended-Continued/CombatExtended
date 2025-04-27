@@ -488,6 +488,7 @@ Robotic Servitude   |
 Rockmen race    |
 Roo Fauna    |
 Roo Satyr    |
+Roo Satyr and Faun Xenotype Expanded    |
 Roren, People of Rorensia   |
 Royal Arsenal |
 Royal Arsenal - Speciality Weapons  |
