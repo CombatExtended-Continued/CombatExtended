@@ -3,7 +3,7 @@
 
 	<!-- Add Body Shapes -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="DankPyon_Golem_Iron"]</xpath>
+		<xpath>Defs/ThingDef[@Name="DankPyon_BaseGolem"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
@@ -12,13 +12,23 @@
 	</Operation>
 
 	<!-- Add Armor Durability -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="DankPyon_BaseGolem"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="DankPyon_BaseGolem"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="DankPyon_Golem_Iron"]/comps</xpath>
+		<xpath>Defs/ThingDef[@Name="DankPyon_BaseGolem"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ArmorDurability">
 				<Durability>1000</Durability>
 				<Regenerates>true</Regenerates>
-				<RegenInterval>1250</RegenInterval>
+				<RegenInterval>1250</RegenInterval><!-- Double than average, halved durability -->
 				<RegenValue>5</RegenValue>
 				<Repairable>false</Repairable>
 				<RepairIngredients>

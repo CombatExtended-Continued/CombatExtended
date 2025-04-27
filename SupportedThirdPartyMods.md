@@ -6,9 +6,9 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
-[Cosplay Equipment]	Blue Archive |
 [AV] Mechtech   |
 [AV] Work Queen |
+[Cosplay Equipment]	Blue Archive |
 [CP] DOOM	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
@@ -164,6 +164,7 @@ Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
 Communicable Diseases   |
 Cossacks of the Rim |
+Crossbows   |
 Crowns and Regalia  |
 Cupro's Alloys	|
 Cursed Guns |
@@ -266,6 +267,7 @@ Grimworld: Melee	|
 GrimWorld 40,000 - Angels of Death |
 GrimWorld 40,000 - Core Imperialis |
 GrimWorld 40,000 - Hammer of the Imperium |
+Grimworld 40,000 - Heresy Armor Addon   |
 GrimWorld 40,000 - Imperial Vehicles of Grimworld |
 GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
@@ -575,9 +577,11 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Persona Weapons Expanded   |
 Vanilla Plants Expanded - Mushrooms  |
+Vanilla Prestige Specialist Armours Reworked    |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
+Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |

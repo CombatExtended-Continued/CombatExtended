@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- === Tools === -->
+	<!-- ===== Tools ===== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="DankPyon_Crossbow" or defName="DankPyon_CrossbowHeavy"]/tools</xpath>
 		<value>
@@ -73,8 +73,7 @@
 		</value>
 	</Operation>
 
-	<!-- === Crossbow === -->
-
+	<!-- ===== Crossbow ===== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DankPyon_Crossbow</defName>
 		<statBases>
@@ -110,7 +109,7 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- === Heavy Crossbow === -->
+	<!-- ===== Heavy Crossbow ===== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DankPyon_CrossbowHeavy</defName>
 		<statBases>
@@ -128,7 +127,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Projectile_ArbalestBolt_Steel</defaultProjectile>
+			<defaultProjectile>Projectile_DankPyonArbalestBolt_Steel</defaultProjectile>
 			<warmupTime>1</warmupTime>
 			<range>26</range>
 			<soundCast>Bow_Large</soundCast>
@@ -136,7 +135,7 @@
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
 			<reloadTime>5.5</reloadTime>
-			<ammoSet>AmmoSet_ArbalestBolt</ammoSet>
+			<ammoSet>AmmoSet_DankPyonArbalestBolt</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -146,8 +145,7 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- ========== Hunting bow ========== -->
-
+	<!-- ===== Hunting bow ===== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DankPyon_Bow_Hunting</defName>
 		<statBases>
@@ -179,8 +177,7 @@
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
-	<!-- ========== War bow ========== -->
-
+	<!-- ===== War Bow ===== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Bow_War</defName>
 		<statBases>
@@ -212,7 +209,7 @@
 		<AllowWithRunAndGun>false</AllowWithRunAndGun>
 	</Operation>
 
-	<!-- === Handgonne === -->
+	<!-- ===== Handgonne ===== -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DankPyon_Handgonne</defName>
 		<statBases>
@@ -237,6 +234,7 @@
 			<magazineSize>4</magazineSize>
 			<reloadTime>5.1</reloadTime>
 			<ammoSet>AmmoSet_HandgonneShot</ammoSet>
+			<AmmoGenPerMagOverride>4</AmmoGenPerMagOverride>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -248,18 +246,4 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- === Let musket ammo by made at Medieval Overhaul anvil. === -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="MusketBallBase"]/tradeTags</xpath>
-		<value>
-			<li>CE_AutoEnableCrafting_DankPyon_Anvil</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/RecipeDef[defName="MakeAmmo_MusketBall"]/researchPrerequisite</xpath>
-		<value>
-			<researchPrerequisite>DankPyon_Gunpowder</researchPrerequisite>
-		</value>
-	</Operation>
 </Patch>
