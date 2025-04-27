@@ -277,9 +277,11 @@ namespace CombatExtended
 
         public float RepairValue;
 
+        //TO-DO: To be removed in RimWorld 1.6
         [Obsolete("This field is deprecated and no longer functions. Will be removed in future versions.")]
         public bool CanOverHeal;
 
+        //TO-DO: To be removed in RimWorld 1.6
         [Obsolete("This field is deprecated and no longer functions. Will be removed in future versions.")]
         public float MaxOverHeal;
 
