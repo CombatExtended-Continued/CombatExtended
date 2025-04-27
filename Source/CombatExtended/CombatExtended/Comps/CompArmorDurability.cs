@@ -181,7 +181,7 @@ namespace CombatExtended
                 yield break;
             }
 
-            if (this.curDurability >= maxDurability + durabilityProps.MaxOverHeal)
+            if (this.curDurability >= maxDurability)
             {
                 yield return new FloatMenuOption("CE_ArmorDurability_CannotRepairUndamaged".Translate(), null);
                 yield break;
@@ -421,28 +421,13 @@ namespace CombatExtended
                     second?.SplitOff(countC).Destroy();
 
                     natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                    if (natArmor.durabilityProps.CanOverHeal)
+                    if (natArmor.curDurability > natArmor.maxDurability)
                     {
-                        if (natArmor.curDurability > natArmor.durabilityProps.MaxOverHeal + natArmor.maxDurability)
-                        {
-                            natArmor.curDurability = natArmor.maxDurability + natArmor.durabilityProps.MaxOverHeal;
-                        }
-                        else
-                        {
-                            natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                        }
-
+                        natArmor.curDurability = natArmor.maxDurability;
                     }
                     else
                     {
-                        if (natArmor.curDurability > natArmor.maxDurability)
-                        {
-                            natArmor.curDurability = natArmor.maxDurability;
-                        }
-                        else
-                        {
-                            natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                        }
+                        natArmor.curDurability += natArmor.durabilityProps.RepairValue;
                     }
                 }
 
