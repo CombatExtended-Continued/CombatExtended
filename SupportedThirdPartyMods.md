@@ -563,12 +563,10 @@ Vanilla Factions Expanded - Deserters  |
 Vanilla Factions Expanded - Empire  |
 Vanilla Factions Expanded - Insectoids 2|
 Vanilla Factions Expanded - Mechanoids	|
-Vanilla Factions Expanded - Medieval	|
 Vanilla Factions Expanded - Medieval 2  |
 Vanilla Factions Expanded - Pirates |
 Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Tribals |
-Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Genetics Expanded   |
