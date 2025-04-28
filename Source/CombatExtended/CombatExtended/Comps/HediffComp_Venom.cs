@@ -23,7 +23,7 @@ namespace CombatExtended
         public override void CompPostTick(ref float severityAdjustment)
         {
             _isPermanent ??= parent.IsPermanent();
-            
+
             base.CompPostTick(ref severityAdjustment);
             if (parent.ageTicks < _lifetime && !_isPermanent.Value)
             {
