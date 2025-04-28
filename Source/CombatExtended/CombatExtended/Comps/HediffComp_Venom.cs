@@ -8,6 +8,7 @@ namespace CombatExtended
     {
         private float _venomPerTick;
         private int _lifetime;
+        private bool? _isPermanent;
 
         public HediffCompProperties_Venom Props => props as HediffCompProperties_Venom;
 
@@ -21,8 +22,10 @@ namespace CombatExtended
 
         public override void CompPostTick(ref float severityAdjustment)
         {
+            _isPermanent ??= parent.IsPermanent();
+            
             base.CompPostTick(ref severityAdjustment);
-            if (parent.ageTicks < _lifetime)
+            if (parent.ageTicks < _lifetime && !_isPermanent.Value)
             {
                 HealthUtility.AdjustSeverity(parent.pawn, CE_HediffDefOf.VenomBuildup, _venomPerTick);
             }
