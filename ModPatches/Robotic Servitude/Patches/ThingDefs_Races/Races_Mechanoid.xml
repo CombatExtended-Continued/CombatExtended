@@ -161,6 +161,16 @@
 
 	<!-- Combat Laborers -->
 
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<canParry>true</canParry>
+				<maxParry>4</maxParry>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
@@ -179,6 +189,16 @@
 		<xpath>Defs/ThingDef[defName="Gha_Combat_Laborer"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>1.15</baseHealthScale>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Gha_Assassin_Laborer"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<canParry>true</canParry>
+				<maxParry>6</maxParry>
+			</li>
 		</value>
 	</Operation>
 
