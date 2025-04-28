@@ -58,7 +58,10 @@ namespace CombatExtended
                 var ciwsVersion = (result?.projectile as ProjectilePropertiesCE)?.CIWSVersion;
                 if (ciwsVersion == null && !typeof(ProjectileCE_CIWS).IsAssignableFrom(result.thingClass))
                 {
-                    Log.WarningOnce($"{result} is not a CIWS projectile and the projectile does not have the CIWS version specified in its properties. Must be on-ground projectile used for CIWS", result.GetHashCode());
+                    if (debug)
+                    {
+                        Log.WarningOnce($"{result} is not a CIWS projectile and the projectile does not have the CIWS version specified in its properties. Must be on-ground projectile used for CIWS", result.GetHashCode());
+                    }
                 }
                 return ciwsVersion ?? result;
             }
@@ -232,9 +235,8 @@ namespace CombatExtended
                 if (Mathf.Abs(t * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way up, must be after the zenith
                 {
                     t = (v_xz - Mathf.Sqrt(d)) / gravity;
-                    if (Mathf.Abs(t * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way down either, something's wrong
+                    if (Mathf.Abs(t * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way down either, it's probably landed, or otherwise invalid
                     {
-                        Log.Error($"Cannot reach target: {speed}, {pos}, {distance}, {heightOffset}, {gravity}, {shotAngle}, {v_xz}, {d}, {t}");
                         i++;
                         continue;
                     }
