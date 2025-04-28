@@ -1097,7 +1097,7 @@ namespace CombatExtended
                 aperatureSize = 0.03f;
             }
 
-            ShiftVecReport report = ShiftVecReportFor(currentTarget, targetLoc.ToIntVec3());
+            ShiftVecReport report = ShiftVecReportFor(currentTarget, shootLine.Dest);
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {

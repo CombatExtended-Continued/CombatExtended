@@ -49,7 +49,7 @@ namespace CombatExtended
                 Caster.Map.debugDrawer.FlashLine(lastShootLine.Value.source, lastShootLine.Value.Dest, 60, SimpleColor.Green);
             }
         }
-        protected (Vector2 firstPos, Vector2 secondPos) PositionOfCIWSProjectile(int sinceTicks, Vector3 targetPos, bool drawPos = false)
+        protected (Vector3 firstPos, Vector3 secondPos) PositionOfCIWSProjectile(int sinceTicks, Vector3 targetPos, bool drawPos = false)
         {
             AimDummyCIWSProjectileTo(targetPos);
             var firstPos = Caster.Position.ToVector3Shifted();
@@ -71,7 +71,7 @@ namespace CombatExtended
                 firstPos = TrajectoryWorker.ExactPosToDrawPos(firstPos, sinceTicks - 1, projectilePropsCE.TickToTruePos, Projectile.Altitude);
                 secondPos = TrajectoryWorker.ExactPosToDrawPos(secondPos, sinceTicks, projectilePropsCE.TickToTruePos, Projectile.Altitude);
             }
-            return (new Vector2(firstPos.x, firstPos.z), new Vector2(secondPos.x, secondPos.z));
+            return (firstPos, secondPos);
         }
         protected void AimDummyCIWSProjectileTo(Vector3 to)
         {
@@ -148,7 +148,8 @@ namespace CombatExtended
     {
         public abstract IEnumerable<TargetType> Targets { get; }
         protected abstract IEnumerable<Vector3> TargetNextPositions(TargetType target);
-
+        protected virtual Bounds ConvertToBounds(TargetType target, Vector3 pos) => new Bounds(pos, new Vector3(1f, 1f, 1f));
+        protected virtual bool IgnoreHeightCheck => true;
 
 
 
@@ -173,7 +174,7 @@ namespace CombatExtended
                     return false;
                 }
                 var intersectionPoint = shootLine.Dest;
-                float distToSqr = intersectionPoint.DistanceToSquared(Caster.Position);
+                float distToSqr = (intersectionPoint - Caster.Position).LengthHorizontalSquared;
                 return distToSqr > minRange * minRange && distToSqr < range * range;
             });
             if (_target != null)
@@ -227,19 +228,14 @@ namespace CombatExtended
                 return true;
             }
             int i = 1;
-
-            var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
-            foreach (var pos in TargetNextPositions(target).Skip(ticksToSkip))
+            foreach (var nextPos in TargetNextPositions(target).Skip(ticksToSkip))
             {
-                var targetPos2 = new Vector2(pos.x, pos.z);
+                var pos = nextPos;
                 if ((pos - originV3).MagnitudeHorizontalSquared() > maxDistSqr)
                 {
-                    targetPos1 = targetPos2;
                     i++;
                     continue;
                 }
-
-                Vector2 originV2 = new Vector2(originV3.x, originV3.z);
 
                 var positions = PositionOfCIWSProjectile(i, pos, true);
                 //if (positions.firstPos == positions.secondPos) //Not sure why, but sometimes this code drops calculations on i = 1
@@ -247,17 +243,21 @@ namespace CombatExtended
                 //    resultingLine = default(ShootLine);
                 //    return false;
                 //}
-                Vector2 ciwsPos1 = positions.firstPos, ciwsPos2 = positions.secondPos;
-
-                if (CE_Utility.TryFindIntersectionPoint(ciwsPos1, ciwsPos2, targetPos1, targetPos2, out _))
+                Vector3 ciwsPos1 = positions.firstPos, ciwsPos2 = positions.secondPos;
+                if (IgnoreHeightCheck)
                 {
-                    targetPos = pos;
-
-                    resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.y));
-
+                    ciwsPos1.y = 0;
+                    ciwsPos2.y = 0;
+                    pos.y = 0f;
+                }
+                var targetBounds = ConvertToBounds(target, pos);
+                var ray = new Ray(ciwsPos1, ciwsPos2 - ciwsPos1);
+                if (targetBounds.IntersectRay(ray, out var dist) && dist * dist < (ciwsPos1 - ciwsPos2).sqrMagnitude)
+                {
+                    targetPos = nextPos;
+                    resultingLine = new ShootLine(Shooter.Position, new IntVec3(Mathf.FloorToInt(nextPos.x), Mathf.FloorToInt(nextPos.y), Mathf.FloorToInt(nextPos.z)));
                     return true;
                 }
-                targetPos1 = targetPos2;
                 i++;
                 if (i > maximumPredectionTicks)
                 {
