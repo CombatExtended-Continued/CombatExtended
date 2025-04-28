@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
@@ -31,6 +29,7 @@ namespace CombatExtended
         private const int TicksToTimeout = 120; // Reset parry counter after this many ticks
 
         private Dictionary<Pawn, ParryCounter> parryTracker = new Dictionary<Pawn, ParryCounter>();
+        private List<Pawn> reusablePawnList = new List<Pawn>();
 
         public ParryTracker(Map map) : base(map)
         {
@@ -38,8 +37,7 @@ namespace CombatExtended
 
         private int GetUsedParriesFor(Pawn pawn)
         {
-            ParryCounter counter;
-            if (!parryTracker.TryGetValue(pawn, out counter))
+            if (!parryTracker.TryGetValue(pawn, out ParryCounter counter))
             {
                 return 0;
             }
@@ -53,15 +51,23 @@ namespace CombatExtended
                 Log.Error("CE tried checking CanParry with Null-Pawn");
                 return false;
             }
-
-            int parriesLeft = Mathf.RoundToInt(pawn.skills.GetSkill(SkillDefOf.Melee).Level / SkillPerParry) - GetUsedParriesFor(pawn);
+            var skill = pawn.skills?.GetSkill(SkillDefOf.Melee);
+            int parrySkill;
+            if (skill != null)
+            {
+                parrySkill = Mathf.RoundToInt(skill.Level / SkillPerParry);
+            }
+            else
+            {
+                parrySkill = pawn.def.GetModExtension<RacePropertiesExtensionCE>()?.maxParry ?? 1;
+            }
+            int parriesLeft = parrySkill - GetUsedParriesFor(pawn);
             return parriesLeft > 0;
         }
 
         public void RegisterParryFor(Pawn pawn, int timeoutTicks)
         {
-            ParryCounter counter;
-            if (!parryTracker.TryGetValue(pawn, out counter))
+            if (!parryTracker.TryGetValue(pawn, out ParryCounter counter))
             {
                 // Register new pawn in tracker
                 counter = new ParryCounter(timeoutTicks);
@@ -79,16 +85,57 @@ namespace CombatExtended
         {
             if (Find.TickManager.TicksGame % 10 == 0)
             {
-                foreach (var entry in parryTracker.Where(kvp => kvp.Value.ShouldTimeout()).ToArray())
+                reusablePawnList.Clear();
+
+                foreach (var kvp in parryTracker)
                 {
-                    parryTracker.Remove(entry.Key);
+                    if (kvp.Value.ShouldTimeout())
+                    {
+                        reusablePawnList.Add(kvp.Key);
+                    }
+                }
+
+                for (int i = 0; i < reusablePawnList.Count; i++)
+                {
+                    parryTracker.Remove(reusablePawnList[i]);
                 }
             }
         }
 
         public override void ExposeData()
         {
-            // TODO Save parryTracker
+            base.ExposeData();
+            List<Pawn> pawns = null;
+            List<ParryCounter> counters = null;
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                pawns = new List<Pawn>();
+                counters = new List<ParryCounter>();
+
+                foreach (var kvp in parryTracker)
+                {
+                    pawns.Add(kvp.Key);
+                    counters.Add(kvp.Value);
+                }
+            }
+            Scribe_Collections.Look(ref pawns, "parryPawns", LookMode.Reference);
+            Scribe_Collections.Look(ref counters, "parryCounters", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                parryTracker.Clear();
+
+                if (pawns != null && counters != null && pawns.Count == counters.Count)
+                {
+                    for (int i = 0; i < pawns.Count; i++)
+                    {
+                        if (pawns[i] != null)
+                        {
+                            parryTracker[pawns[i]] = counters[i];
+                        }
+
+                    }
+                }
+            }
         }
     }
 }

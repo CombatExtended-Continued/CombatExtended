@@ -205,7 +205,18 @@ namespace CombatExtended
                     {
                         var deflectChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance);
                         // Attack is parried
-                        Apparel shield = defender.apparel.WornApparel.FirstOrDefault(x => x is Apparel_Shield);
+                        Apparel shield = null;
+                        if (defender.apparel != null)
+                        {
+                            foreach (var apparel in defender.apparel.WornApparel)
+                            {
+                                if (apparel is Apparel_Shield)
+                                {
+                                    shield = apparel;
+                                    break;
+                                }
+                            }
+                        }
                         bool isShieldBlock = shield != null && Rand.Chance(ShieldBlockChance);
                         Thing parryThing = isShieldBlock ? shield
                                            : defender.equipment?.Primary ?? defender;
@@ -617,8 +628,8 @@ namespace CombatExtended
         {
             if (pawn == null
                     || pawn.Dead
-                    || !pawn.RaceProps.Humanlike
                     || pawn.WorkTagIsDisabled(WorkTags.Violent)
+                    || (!pawn.RaceProps.Humanlike && (pawn.def.GetModExtension<RacePropertiesExtensionCE>()?.canParry != true))
                     || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                     || IsTargetImmobile(pawn)
                     || pawn.MentalStateDef == MentalStateDefOf.SocialFighting)
