@@ -989,9 +989,6 @@ namespace CombatExtended
             }
             if (Controller.settings.DebugDrawInterceptChecks)
             {
-                map?.debugDrawer.debugCells.Clear();
-                map?.debugDrawer.debugLines.Clear();
-                map?.debugDrawer.DebugDrawerUpdate();
                 map?.debugDrawer.FlashLine(p1.ToIntVec3(), p2.ToIntVec3(), color: SimpleColor.Red);
             }
             Message($"p1 = {p1}, p2 = {p2}, center = {center}, radius = {radius}");
@@ -1015,7 +1012,15 @@ namespace CombatExtended
             float lp2sq = lp2.sqrMagnitude;
             Vector3 displacement;
             float displacementSq;
-
+            displacement = (lp2 - lp1);
+            displacementSq = displacement.sqrMagnitude;
+            if (Mathf.Abs(displacementSq) < 0.000001f)
+            {
+#if DEBUG
+                Message($"displacementSq zero ({displacementSq:F10})");
+#endif
+                return false;
+            }
             if (lp1sq < radSq) // Case 1, 2, or 3
             {
                 if (!catchOutbound || lp2sq < radSq) // Case 1 or 2
@@ -1029,16 +1034,14 @@ namespace CombatExtended
 #if DEBUG
                 Message($"Case 3");
 #endif
-                displacement = (lp2 - lp1);
-                displacementSq = displacement.sqrMagnitude;
+
             }
             else // case 4 or 5
             {
 #if DEBUG
                 Message($"Case 4 or 5");
 #endif
-                displacement = (lp2 - lp1);
-                displacementSq = displacement.sqrMagnitude;
+
                 if (lp2sq > radSq) // case 5
                 {
 #if DEBUG
@@ -1055,7 +1058,7 @@ namespace CombatExtended
                     if (projectionDistance <= 0 || projectionDistance >= length) // One of the ends is closest, and both are outside, so we didn't cross
                     {
 #if DEBUG
-                        Log.Message($"Endpoint is closest");
+                        Message($"Endpoint is closest");
 #endif
                         return false;
                     }

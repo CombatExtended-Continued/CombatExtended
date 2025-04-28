@@ -67,9 +67,10 @@ namespace CombatExtended
             base.Tick();
             TryCollideWith(intendedTargetThing);
         }
-        protected override bool CanCollideWith(Thing thing, out float dist)
+        protected override bool CanCollideWith(Thing thing, out float dist, out Vector3 point)
         {
             dist = 0f;
+            point = Vector3.zero;
             if (thing.Destroyed)
             {
                 return false;
@@ -87,6 +88,7 @@ namespace CombatExtended
             var collideDistance = CollideDistance;
             if (dist < collideDistance * collideDistance)
             {
+                point = thing.DrawPos.Yto0();
                 dist = Mathf.Sqrt(dist);
                 return true;
             }
