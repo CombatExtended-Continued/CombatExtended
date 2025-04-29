@@ -66,7 +66,7 @@ namespace CombatExtended
 
         public VerbPropertiesCE VerbPropsCE => verbProps as VerbPropertiesCE;
         public ProjectilePropertiesCE projectilePropsCE => Projectile.projectile as ProjectilePropertiesCE;
-        public MultiBarrelExtension multiBarrelExt => EquipmentSource.def.GetModExtension<MultiBarrelExtension>();
+        public MultiBarrelExtension multiBarrelExt => EquipmentSource?.def.GetModExtension<MultiBarrelExtension>();
 
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
