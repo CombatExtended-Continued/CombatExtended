@@ -201,7 +201,6 @@ namespace CombatExtended
             int i = 1;
             var speed = ShotSpeed;
             var tworker = TrajectoryWorker;
-            var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
             var source = new Vector3(originV3.x, ShotHeight, originV3.z);
             foreach (var pos in PredictPositions(target, ticksToSkip + maxTicks).Skip(ticksToSkip))
             {
@@ -210,7 +209,6 @@ namespace CombatExtended
                 // Check if the projected location is outside our maximum targeting range.
                 if (dhs > maxDistSqr)
                 {
-                    targetPos1 = targetPos2;
                     i++;
                     continue;
                 }
@@ -221,7 +219,6 @@ namespace CombatExtended
                  */
                 if (!tworker.CanReachPos(projectilePropsCE, speed, source, pos, out int ticksToIntercept))
                 {
-                    targetPos1 = targetPos2;
                     i++;
                     continue;
                 }
