@@ -248,10 +248,15 @@ namespace CombatExtended
         /// <summary>
         /// Based on equations of motion
         /// </summary>
+        private Quaternion? _drawRotation = null;
         public virtual Quaternion DrawRotation
         {
             get
             {
+                if (_drawRotation != null)
+                {
+                    return (Quaternion)_drawRotation;
+                }
                 Vector2 w = (Destination - origin);
 
                 var vx = w.x / startingTicksToImpact;
@@ -1199,6 +1204,7 @@ namespace CombatExtended
             ticksToImpact--;
             FlightTicks++;
             Vector3 nextPosition = MoveForward();
+            _drawRotation = Quaternion.LookRotation(nextPosition - ExactPosition);
 
             if (!nextPosition.InBounds(Map))
             {
