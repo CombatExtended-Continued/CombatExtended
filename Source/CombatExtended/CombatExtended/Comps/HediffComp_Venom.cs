@@ -36,5 +36,12 @@ namespace CombatExtended
             base.CompTended(quality, maxQuality, batchPosition);
             _venomPerTick *= 1 - quality;
         }
+
+        public override void CompExposeData()
+        {
+            base.CompExposeData();
+            Scribe_Values.Look(ref _venomPerTick, "venomPerTick");
+            Scribe_Values.Look(ref _lifetime, "lifetime");
+        }
     }
 }
