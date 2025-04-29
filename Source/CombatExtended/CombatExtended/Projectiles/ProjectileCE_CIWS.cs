@@ -63,6 +63,14 @@ namespace CombatExtended
         public override Quaternion ExactRotation => DrawRotation;
         public override void Tick()
         {
+            if (!(TrajectoryWorker is BallisticsTrajectoryWorker) && intendedTarget.ThingDestroyed)
+            {
+                if (shotAngle > 0.7853f) // 45 degrees
+                {
+                    Destroy(DestroyMode.Vanish);
+                    return;
+                }
+            }
             ticksToImpact++; //do not allow it hit zero
             base.Tick();
             TryCollideWith(intendedTargetThing);
