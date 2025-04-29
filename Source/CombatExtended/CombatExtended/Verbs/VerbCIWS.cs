@@ -102,7 +102,7 @@ namespace CombatExtended
             projectile.isCIWS = true;
             return projectile;
         }
-        static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
+        static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker();
         protected BaseTrajectoryWorker TrajectoryWorker
         {
             get
