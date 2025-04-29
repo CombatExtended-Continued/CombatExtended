@@ -1411,7 +1411,7 @@ namespace CombatExtended
                     var reusableAmmo = ThingMaker.MakeThing(thingDef);
                     reusableAmmo.stackCount = 1;
                     reusableAmmo.SetForbidden(true, false);
-                    Thing existingStack = Position.GetRegion(Map).listerThings.ThingsOfDef(thingDef).FirstOrFallback(thing => thing.stackCount < thing.def.stackLimit, null);
+                    Thing existingStack = Position.GetRegion(Map)?.listerThings.ThingsOfDef(thingDef).FirstOrFallback(thing => thing.stackCount < thing.def.stackLimit, null);
                     GenPlace.TryPlaceThing(reusableAmmo, existingStack != null ? existingStack.positionInt : Position, Map, ThingPlaceMode.Near);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, reusableAmmo, OpportunityType.GoodToKnow);
                     ignoredThings.Add(reusableAmmo);
