@@ -48,6 +48,11 @@ namespace CombatExtended
 
         public Controller(ModContentPack content) : base(content)
         {
+            var author = content.ModMetaData.Authors.First();
+            var repo = content.ModMetaData.Url;
+            var version = content.ModMetaData.ModVersion;
+            var commit = VersionInfo.COMMIT;
+            Log.Message($"Loading Combat Extended {version} ({commit}):\nPlease report issues with CE to {author} at {repo}");
             patches = new Patches();
             Controller.instance = this;
             Controller.content = content;
