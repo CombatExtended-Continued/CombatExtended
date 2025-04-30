@@ -218,6 +218,28 @@ namespace CombatExtended.HarmonyCE
             string targetString = "CannotPickUp";
             int stringIndex = -1;
             List<CodeInstruction> codes = Modify_ForceWear(instructions).ToList();
+            var formingCaravan = AccessTools.Method(typeof(RimWorld.Planet.CaravanFormingUtility), "IsFormingCaravan");
+            bool foundCaravanInjection = false;
+            // Sets IsFormingCaravan to true for if(!pawn.IsFormingCaravan)
+            // Fixes duplicate float menu while not at home
+            for (int i = 0; i < codes.Count - 5; i++)
+            {
+                if (
+                    codes[i].opcode == OpCodes.Endfinally &&
+                    codes[i + 1].opcode == OpCodes.Ldloc_0 &&
+                    codes[i + 3].Calls(formingCaravan) &&
+                    codes[i + 4].opcode == OpCodes.Brtrue &&
+                    codes[i + 5].opcode == OpCodes.Ldloc_0)
+                {
+                    codes[i + 3].opcode = OpCodes.Ldc_I4_1;
+                    codes[i + 3].operand = null;
+                    foundCaravanInjection = true;
+                }
+            }
+            if (!foundCaravanInjection)
+            {
+                Log.Error("CE failed to patch FloatMenuMakerMap: !pawn.IsFormingCaravan not found");
+            }
             // Find Ldstr "CannotPickUp"
             for (int i = 0; i < codes.Count; i++)
             {
