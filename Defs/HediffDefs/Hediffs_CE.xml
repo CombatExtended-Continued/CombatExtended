@@ -147,7 +147,7 @@
 		<hediffClass>HediffWithComps</hediffClass>
 		<defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
 		<label>venom buildup</label>
-		<description>Venom building up</description>
+		<description>Venom building up. Severity will continue to progress until all venomous wounds are treated.</description>
 		<lethalSeverity>1</lethalSeverity>
 		<makesSickThought>true</makesSickThought>
 		<scenarioCanAdd>true</scenarioCanAdd>
@@ -156,7 +156,7 @@
 				<severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
 			</li>
 			<li Class="HediffCompProperties_MessageAfterTicks">
-				<ticks>100</ticks>
+				<ticks>200</ticks>
 				<message>{0} is poisoned!</message>
 				<messageType>NegativeHealthEvent</messageType>
 			  </li>
@@ -171,16 +171,20 @@
 				<minSeverity>0.05</minSeverity>
 				<capMods>
 					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.35</offset>
+					</li>
+					<li>
 						<capacity>Consciousness</capacity>
 						<offset>-0.05</offset>
 					</li>
 					<li>
 						<capacity>Breathing</capacity>
-						<offset>-0.05</offset>
+						<offset>-0.1</offset>
 					</li>
 					<li>
 						<capacity>BloodPumping</capacity>
-						<offset>-0.05</offset>
+						<offset>-0.1</offset>
 					</li>
 				</capMods>
 			</li>
@@ -189,16 +193,20 @@
 				<minSeverity>0.2</minSeverity>
 				<capMods>
 					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.65</offset>
+					</li>
+					<li>
 						<capacity>Consciousness</capacity>
 						<offset>-0.05</offset>
 					</li>
 					<li>
 						<capacity>Breathing</capacity>
-						<offset>-0.15</offset>
+						<offset>-0.3</offset>
 					</li>
 					<li>
 						<capacity>BloodPumping</capacity>
-						<offset>-0.15</offset>
+						<offset>-0.3</offset>
 					</li>
 				</capMods>
 			</li>
@@ -208,16 +216,24 @@
 				<vomitMtbDays>2</vomitMtbDays>
 				<capMods>
 					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.8</offset>
+					</li>
+					<li>
 						<capacity>Consciousness</capacity>
-						<offset>-0.05</offset>
+						<setMax>0.7</setMax>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.25</offset>
 					</li>
 					<li>
 						<capacity>Breathing</capacity>
-						<offset>-0.3</offset>
+						<offset>-0.6</offset>
 					</li>
 					<li>
 						<capacity>BloodPumping</capacity>
-						<offset>-0.3</offset>
+						<offset>-0.6</offset>
 					</li>
 				</capMods>
 			</li>
@@ -227,16 +243,24 @@
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
 					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.95</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.45</offset>
+					</li>
+					<li>
 						<capacity>Consciousness</capacity>
-						<offset>-0.05</offset>
+						<setMax>0.5</setMax>
 					</li>
 					<li>
 						<capacity>Breathing</capacity>
-						<offset>-0.6</offset>
+						<offset>-0.8</offset>
 					</li>
 					<li>
 						<capacity>BloodPumping</capacity>
-						<offset>-0.6</offset>
+						<offset>-0.8</offset>
 					</li>
 				</capMods>
 			</li>
@@ -246,8 +270,12 @@
 				<vomitMtbDays>0.5</vomitMtbDays>
 				<capMods>
 					<li>
+						<capacity>Sight</capacity>
+						<offset>-1</offset>
+					</li>
+					<li>
 						<capacity>Consciousness</capacity>
-						<offset>-0.05</offset>
+						<setMax>0.1</setMax>
 					</li>
 					<li>
 						<capacity>Breathing</capacity>
