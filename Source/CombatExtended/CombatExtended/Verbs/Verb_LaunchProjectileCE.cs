@@ -71,6 +71,22 @@ namespace CombatExtended
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
+        public virtual LocalTargetInfo OriginalTarget
+        {
+            get
+            {
+                if (Shooter is Building_TurretGunCE turretCE)
+                {
+                    return turretCE.currentTargetInt;
+                }
+                var shooterPawn = ShooterPawn;
+                if (shooterPawn != null)
+                {
+                    return shooterPawn.TargetCurrentlyAimingAt;
+                }
+                return currentTarget;
+            }
+        }
 
         public override int ShotsPerBurst
         {
