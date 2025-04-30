@@ -1136,6 +1136,7 @@ namespace CombatExtended
             {
 
                 ProjectileCE projectile = SpawnProjectile();
+                projectile.forcedTrajectoryWorker = TrajectoryWorker;
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
                 ShiftTarget(report, lastExactPos, pelletMechanicsOnly, instant);
 
