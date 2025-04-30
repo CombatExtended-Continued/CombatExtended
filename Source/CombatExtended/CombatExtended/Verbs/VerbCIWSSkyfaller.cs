@@ -15,10 +15,9 @@ namespace CombatExtended
 
 
         protected override bool IsFriendlyTo(Skyfaller thing) => base.IsFriendlyTo(thing) && thing.ContainedThings().All(x => !x.HostileTo(Caster));
-
-        protected override IEnumerable<Vector3> TargetNextPositions(Skyfaller target)
+        protected override IEnumerable<Vector3> PredictPositions(Skyfaller target, int maxTicks)
         {
-            return target.DrawPositions().Select(x => x.WithY(45f));
+            return target.PredictPositions(maxTicks);
         }
 
     }

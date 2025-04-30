@@ -27,12 +27,11 @@ namespace CombatExtended
         protected const int collisionCheckSize = 5;
 
         #region Kinetic Projectiles
-        public bool lerpPosition = true;
-        public bool kinit = false;
         public float ballisticCoefficient;
         public float mass;
         public float radius;
         public float gravity;
+        public int fuelTicks;
         public Vector3 velocity;
         public float initialSpeed;
         #endregion
@@ -90,10 +89,6 @@ namespace CombatExtended
                     this.damageAmount = def.projectile.GetDamageAmount(weaponDamageMultiplier);
                 }
 
-                if (lerpPosition)
-                {
-                    return (float)this.damageAmount;
-                }
                 return ((float)this.damageAmount) * RemainingKineticEnergyPct;
             }
         }
@@ -106,7 +101,8 @@ namespace CombatExtended
 
                 float penetrationAmount = (equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f) * (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
 
-                return lerpPosition ? penetrationAmount : penetrationAmount * RemainingKineticEnergyPct;
+                float speedFactor = isSharpDmg ? RemainingSpeedPct : RemainingKineticEnergyPct;
+                return penetrationAmount * speedFactor;
             }
         }
         public virtual DamageInfo DamageInfo => new DamageInfo(
@@ -119,7 +115,8 @@ namespace CombatExtended
                     def,
                     instigatorGuilty: InstigatorGuilty);
 
-        public float RemainingKineticEnergyPct => (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed);
+        public float RemainingKineticEnergyPct => TrajectoryWorker is BallisticsTrajectoryWorker ? (shotSpeed * shotSpeed) / (initialSpeed * initialSpeed) : 1f;
+        public float RemainingSpeedPct => TrajectoryWorker is BallisticsTrajectoryWorker ? (shotSpeed) / (initialSpeed) : 1f;
 
         /// <summary>
         /// Reference to the weapon that fired this projectile, may be null.
@@ -364,9 +361,17 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
-            Scribe_Values.Look<bool>(ref lerpPosition, "lerpPosition", true);
             Scribe_Values.Look(ref ignoreRoof, "ignoreRoof", true);
             Scribe_Values.Look(ref ticksToTruePosition, "ticksToTruePosition");
+
+            Scribe_Values.Look(ref ballisticCoefficient, "ballisticCoefficient");
+            Scribe_Values.Look(ref mass, "mass");
+            Scribe_Values.Look(ref radius, "radius");
+            Scribe_Values.Look(ref gravity, "gravity");
+            Scribe_Values.Look(ref fuelTicks, "fuelTicks");
+            Scribe_Values.Look(ref velocity, "velocity");
+            Scribe_Values.Look(ref initialSpeed, "initialSpeed");
+
 
             //To fix landed grenades sl problem
             Scribe_Values.Look(ref exactPosition, "exactPosition");
@@ -405,7 +410,18 @@ namespace CombatExtended
             mass = projectileProperties.mass.RandomInRange;
             radius = projectileProperties.diameter.RandomInRange / 2000; // half the diameter and mm -> m
             gravity = projectileProperties.Gravity;
+            fuelTicks = projectileProperties.fuelTicks;
             initialSpeed = shotSpeed;
+            var worker = (def.projectile as ProjectilePropertiesCE).TrajectoryWorker;
+            if (worker is BallisticsTrajectoryWorker)
+            {
+                forcedTrajectoryWorker = worker;
+            }
+            else
+            {
+                Log.ErrorOnce($"Tried setting a non-Ballistic TrajectoryWorker ({worker}) on a projectile being Thrown. Falling back to default.", 50019);
+                forcedTrajectoryWorker = ProjectilePropertiesCE.defaultBallisticTrajectoryWorker;
+            }
         }
         #endregion
 
@@ -571,12 +587,12 @@ namespace CombatExtended
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 this.castShadow = props.castShadow;
-                this.lerpPosition = props.lerpPosition;
                 this.GravityFactor = props.Gravity;
                 ballisticCoefficient = props.ballisticCoefficient.RandomInRange;
                 mass = props.mass.RandomInRange;
                 radius = props.diameter.RandomInRange / 2000; // half the diameter and mm -> m
-
+                gravity = props.Gravity;
+                fuelTicks = props.fuelTicks;
             }
             if (shotHeight >= CollisionVertical.WallCollisionHeight && launcher.Spawned && Position.Roofed(launcher.Map))
             {
@@ -591,7 +607,8 @@ namespace CombatExtended
             this.origin = origin;
             this.OriginIV3 = new IntVec3(origin);
             this.Destination = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
-            velocity = TrajectoryWorker.GetVelocity(shotSpeed, shotRotation, shotAngle);
+            velocity = TrajectoryWorker.GetInitialVelocity(shotSpeed, shotRotation, shotAngle);
+            initialSpeed = shotSpeed = velocity.magnitude * GenTicks.TicksPerRealSecond;
             this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
@@ -1010,7 +1027,7 @@ namespace CombatExtended
                 return false;
             }
             // Trees and bushes have RNG chance to collide
-            if (thing is Plant)
+            if (thing is Plant plant && plant.positionInt != LastPos.ToIntVec3())
             {
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
                 var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
@@ -1135,43 +1152,25 @@ namespace CombatExtended
             }
         }
 
-
-
-        private Queue<Vector3> cachedNextPositions;
-        protected virtual bool ShouldCacheNextPositions => !TrajectoryWorker.GuidedProjectile;
-        public virtual IEnumerable<Vector3> NextPositions
+        public List<Vector3> cachedPredictedPositions;
+        public virtual IEnumerable<Vector3> PredictedPositions
         {
             get
             {
-                if (!ShouldCacheNextPositions)
+                if (cachedPredictedPositions == null)
                 {
-                    TrajectoryWorker.NextPositions(this);
+                    cachedPredictedPositions = TrajectoryWorker.PredictPositions(this, GenTicks.TicksPerRealSecond).ToList();
                 }
-                cachedNextPositions ??= new Queue<Vector3>(100);
-                foreach (var pos in cachedNextPositions)
-                {
-                    yield return pos;
-                }
-                foreach (var pos in TrajectoryWorker.NextPositions(this).Skip(cachedNextPositions.Count))
-                {
-                    cachedNextPositions.Enqueue(pos);
-                    yield return pos;
-                }
+                return cachedPredictedPositions;
             }
         }
 
-        public virtual bool IsPredictable(out IEnumerable<Vector3> possiblePositionsForCIWS)
-        {
-            possiblePositionsForCIWS = NextPositions;
-            return !TrajectoryWorker.GuidedProjectile;
-        }
         protected Vector3 MoveForward()
         {
-            TrajectoryWorker.TryMoveForward(this);
-            return ExactPosition;
+            return TrajectoryWorker.MoveForward(this);
         }
 
-        protected virtual bool ShouldCollideWithSomething => (lerpPosition && ticksToImpact <= 0) || ExactPosition.y <= 0f;
+        protected virtual bool ShouldCollideWithSomething => (TrajectoryWorker is LerpedTrajectoryWorker && ticksToImpact <= 0) || ExactPosition.y <= 0f;
         #region Tick/Draw
         public override void Tick()
         {
@@ -1180,13 +1179,18 @@ namespace CombatExtended
             {
                 return;
             }
-            if (cachedNextPositions != null && cachedNextPositions.Count > 0)
+            if (TrajectoryWorker is BallisticsTrajectoryWorker && DamageAmount < 0.01f && mass < 1f) // We've stopped, and won't restart.
             {
-                cachedNextPositions.Dequeue();
+                Destroy(DestroyMode.Vanish);
+                return;
             }
+
+            TrajectoryWorker.NotifyTicked(this);
             LastPos = ExactPosition;
             ticksToImpact--;
+            FlightTicks++;
             Vector3 nextPosition = MoveForward();
+
             if (!nextPosition.InBounds(Map))
             {
                 if (globalTargetInfo.IsValid)
@@ -1398,7 +1402,8 @@ namespace CombatExtended
                     var reusableAmmo = ThingMaker.MakeThing(thingDef);
                     reusableAmmo.stackCount = 1;
                     reusableAmmo.SetForbidden(true, false);
-                    GenPlace.TryPlaceThing(reusableAmmo, Position, Map, ThingPlaceMode.Near);
+                    Thing existingStack = Position.GetRegion(Map)?.listerThings.ThingsOfDef(thingDef).FirstOrFallback(thing => thing.stackCount < thing.def.stackLimit, null);
+                    GenPlace.TryPlaceThing(reusableAmmo, existingStack != null ? existingStack.positionInt : Position, Map, ThingPlaceMode.Near);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ReusableNeolithicProjectiles, reusableAmmo, OpportunityType.GoodToKnow);
                     ignoredThings.Add(reusableAmmo);
                 }
@@ -1551,44 +1556,28 @@ namespace CombatExtended
         {
             get
             {
-                if (forcedTrajectoryWorker != null)
+                if (forcedTrajectoryWorker == null)
                 {
-                    return forcedTrajectoryWorker;
+                    if (def.projectile is ProjectilePropertiesCE propertiesCE)
+                    {
+                        if (propertiesCE.lerpPosition != "")
+                        {
+                            Log.ErrorOnce($"Setting lerpPosition in ProjectilePropertiesCE for {this} is deprecated, set the trajectoryWorker instead", 50002 + def.projectile.GetHashCode());
+                        }
+                        forcedTrajectoryWorker = propertiesCE.TrajectoryWorker;
+                    }
+                    else
+                    {
+                        Log.WarningOnce($"{this} properties is not ProjectilePropertiesCE, please contact CE team", this.def.GetHashCode());
+                        forcedTrajectoryWorker = new LerpedTrajectoryWorker();
+                    }
                 }
-                if (def.projectile is ProjectilePropertiesCE propertiesCE)
-                {
-                    return propertiesCE.TrajectoryWorker;
-                }
-                else
-                {
-                    Log.WarningOnce($"{this} properties is not ProjectilePropertiesCE, please contact CE team", this.def.GetHashCode());
-                    forcedTrajectoryWorker = new LerpedTrajectoryWorker();
-                    return forcedTrajectoryWorker;
-                }
+                return forcedTrajectoryWorker;
             }
         }
 
         internal BaseTrajectoryWorker forcedTrajectoryWorker;
 
-        public void DrawNextPositions()
-        {
-            if (Map == null)
-            {
-                return;
-            }
-            var previous = ExactPosition;
-            int sinceTicks = 1;
-            foreach (var next in NextPositions)
-            {
-                Map.debugDrawer.FlashLine(previous.ToIntVec3(), next.ToIntVec3(), 70, SimpleColor.Orange);
-                Map.debugDrawer.FlashLine(
-                    TrajectoryWorker.ExactPosToDrawPos(next, FlightTicks + sinceTicks, (def.projectile as ProjectilePropertiesCE).TickToTruePos, def.Altitude).ToIntVec3(),
-                    TrajectoryWorker.ExactPosToDrawPos(previous, FlightTicks + sinceTicks - 1, (def.projectile as ProjectilePropertiesCE).TickToTruePos, def.Altitude).ToIntVec3()
-                    , 70, SimpleColor.Red);
-                previous = next;
-                sinceTicks++;
-            }
-        }
         /// <summary>
         /// Calculated rounding to three decimales the output of h0 + v * sin(a0) * t - g/2 * t^2 with {h0 -> shotHeight, v -> shotSpeed, a0 -> shotAngle, t -> ticks/GenTicks.TicksPerRealSecond, g -> GravityFactor}. Called roughly each tick for impact checks and for drawing.
         /// </summary>
@@ -1617,27 +1606,6 @@ namespace CombatExtended
         /// <param name="shotHeight">Height from which the projectile is fired in vertical cells.</param>
         /// <returns>Distance in cells that the projectile will fly at the given arc.</returns>
         protected float DistanceTraveled => TrajectoryWorker.DistanceTraveled(shotHeight, shotSpeed, shotAngle, GravityFactor);
-        /// <summary>
-        /// Calculates the shot angle necessary to reach <i>range</i> with a projectile of speed <i>velocity</i> at a height difference of <i>heightDifference</i>, returning either the upper or lower arc in radians. Does not take into account air resistance.
-        /// </summary>
-        /// <param name="velocity">Projectile velocity in cells per second.</param>
-        /// <param name="range">Cells between shooter and target.</param>
-        /// <param name="heightDifference">Difference between initial shot height and target height in vertical cells.</param>
-        /// <param name="flyOverhead">Whether to take the lower (False) or upper (True) arc angle.</param>
-        /// <returns>Arc angle in radians off the ground.</returns>
-        public static float GetShotAngle(float velocity, float range, float heightDifference, bool flyOverhead, float gravity)
-        {
-            Log.WarningOnce("ProjectileCE.GetShotAngle is obsolete and will be removed in future updates. Please, use TrajectoryWorker.GetShotAngle, that can be obtained from ProjectilePropertiesCE", 58606596);
-            float squareRootCheck = Mathf.Sqrt(Mathf.Pow(velocity, 4f) - gravity * (gravity * Mathf.Pow(range, 2f) + 2f * heightDifference * Mathf.Pow(velocity, 2f)));
-            if (float.IsNaN(squareRootCheck))
-            {
-                //Target is too far to hit with given velocity/range/gravity params
-                //set firing angle for maximum distance
-                Log.Warning("[CE] Tried to fire projectile to unreachable target cell, truncating to maximum distance.");
-                return 45.0f * Mathf.Deg2Rad;
-            }
-            return Mathf.Atan((Mathf.Pow(velocity, 2f) + (flyOverhead ? 1f : -1f) * squareRootCheck) / (gravity * range));
-        }
 
         #endregion
 

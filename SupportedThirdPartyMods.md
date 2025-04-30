@@ -6,9 +6,9 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
-[Cosplay Equipment]	Blue Archive |
 [AV] Mechtech   |
 [AV] Work Queen |
+[Cosplay Equipment]	Blue Archive |
 [CP] DOOM	|
 [CP] Red Horse Furniture	|
 [CP] Rimmu-Nation - Clothing	|
@@ -164,6 +164,7 @@ Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
 Communicable Diseases   |
 Cossacks of the Rim |
+Crossbows   |
 Crowns and Regalia  |
 Cupro's Alloys	|
 Cursed Guns |
@@ -327,9 +328,10 @@ Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
-Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
+Medieval Bowyer   |
+Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medieval Overhaul   |
 Medieval Overhaul: Arcane Archeologists   |
 Medieval Overhaul: Barbarians   |
@@ -577,6 +579,7 @@ Vanilla Prestige Specialist Armours Reworked    |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
+Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
