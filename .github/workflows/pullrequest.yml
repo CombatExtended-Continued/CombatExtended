@@ -38,6 +38,7 @@ jobs:
         
     - name: build core
       run: |
+        sed "s_UNKNOWN_$(git rev-parse HEAD | head -c 10)-pr${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}_" Source/CombatExtended/Version.cs
         TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer --csc $PWD/csc
 
     - name: build compat
