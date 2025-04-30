@@ -93,13 +93,11 @@ namespace CombatExtended
                 var thing = new ProjectileCE_CIWS();
                 thing.forcedTrajectoryWorker = TrajectoryWorker;
                 thing.def = def;
-                thing.isCIWS = true;
                 thing.PostMake();
                 thing.PostPostMake();
                 return thing;
             }
             var projectile = base.SpawnProjectile();
-            projectile.isCIWS = true;
             return projectile;
         }
         static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
