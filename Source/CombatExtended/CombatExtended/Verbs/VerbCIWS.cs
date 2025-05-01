@@ -169,7 +169,8 @@ namespace CombatExtended
             var maxDistSqr = Props.range * Props.range;
             var originV3 = Caster.Position.ToVector3Shifted();
             int maxTicks = (int)(this.verbProps.range / ShotSpeed) + 5;
-            if (TrajectoryWorker.GuidedProjectile)
+            var tworker = TrajectoryWorker(originalTarget);
+            if (tworker.GuidedProjectile)
             {
                 if ((originV3 - target.DrawPos).MagnitudeHorizontalSquared() > maxDistSqr)
                 {
@@ -200,7 +201,6 @@ namespace CombatExtended
             }
             int i = 1;
             var speed = ShotSpeed;
-            var tworker = TrajectoryWorker;
             var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
             var source = new Vector3(originV3.x, ShotHeight, originV3.z);
             foreach (var pos in PredictPositions(target, ticksToSkip + maxTicks).Skip(ticksToSkip))

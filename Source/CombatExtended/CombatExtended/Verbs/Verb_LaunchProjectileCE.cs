@@ -102,7 +102,7 @@ namespace CombatExtended
                 return compCharges;
             }
         }
-        public virtual BaseTrajectoryWorker TrajectoryWorker => projectilePropsCE.TrajectoryWorker;
+        public virtual BaseTrajectoryWorker TrajectoryWorker(LocalTargetInfo target) => projectilePropsCE.TrajectoryWorker;
         protected float ShotSpeed
         {
             get
@@ -586,7 +586,7 @@ namespace CombatExtended
         /// <returns>angle in radians</returns>
         protected virtual float ShotAngle(Vector3 source, Vector3 targetPos)
         {
-            return TrajectoryWorker.ShotAngle(projectilePropsCE, source, targetPos, ShotSpeed);
+            return TrajectoryWorker(originalTarget).ShotAngle(projectilePropsCE, source, targetPos, ShotSpeed);
         }
         protected float ShotRotation(Vector3 targetPos)
         {
@@ -598,7 +598,7 @@ namespace CombatExtended
         /// <returns>rotation in degrees</returns>
         protected virtual float ShotRotation(Vector3 source, Vector3 targetPos)
         {
-            return TrajectoryWorker.ShotRotation(projectilePropsCE, source, targetPos);
+            return TrajectoryWorker(originalTarget).ShotRotation(projectilePropsCE, source, targetPos);
         }
         /// <summary>
         /// Calculates the amount of recoil at a given point in a burst, up to a maximum
@@ -1127,7 +1127,7 @@ namespace CombatExtended
             {
 
                 ProjectileCE projectile = SpawnProjectile();
-                projectile.forcedTrajectoryWorker = TrajectoryWorker;
+                projectile.forcedTrajectoryWorker = TrajectoryWorker(originalTarget);
                 GenSpawn.Spawn(projectile, shootLine.Source, caster.Map);
                 ShiftTarget(report, lastExactPos, pelletMechanicsOnly, instant);
 
