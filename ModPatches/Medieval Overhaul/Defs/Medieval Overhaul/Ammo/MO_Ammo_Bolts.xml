@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>IronCrossbowBolt</defName>
+		<label>iron crossbow bolt</label>
+		<labelShort>iron</labelShort>
+		<description>The bolt head is made from iron to enhance armor penetration.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoCrossbowBoltBase">
+		<defName>Ammo_CrossbowBolt_Iron</defName>
+		<label>crossbow bolt (iron)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Medieval/Bolt/Steel</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.66</MarketValue>
+		</statBases>
+		<ammoClass>IronCrossbowBolt</ammoClass>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
+		<defName>Projectile_CrossbowBolt_Iron</defName>
+		<label>crossbow bolt (iron)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+			<armorPenetrationSharp>2.25</armorPenetrationSharp>
+			<preExplosionSpawnChance>0.333</preExplosionSpawnChance><!-- 14.99 bolts per resource -->
+			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Iron</preExplosionSpawnThingDef>
+		</projectile>
+	</ThingDef>
+
+	<!-- Recipes -->
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_CrossbowBolt_Iron</defName>
+		<label>make iron crossbow bolts x10</label>
+		<description>Craft 10 iron crossbow bolts.</description>
+		<jobString>Making iron crossbow bolts.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>DankPyon_IronIngot</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>WoodLog</li>
+				<li>DankPyon_IronIngot</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CrossbowBolt_Iron>10</Ammo_CrossbowBolt_Iron>
+		</products>
+		<workAmount>400</workAmount>
+	</RecipeDef>
+
+</Defs>

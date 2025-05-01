@@ -66,7 +66,7 @@ namespace CombatExtended
 
         public VerbPropertiesCE VerbPropsCE => verbProps as VerbPropertiesCE;
         public ProjectilePropertiesCE projectilePropsCE => Projectile.projectile as ProjectilePropertiesCE;
-        public MultiBarrelExtension multiBarrelExt => EquipmentSource.def.GetModExtension<MultiBarrelExtension>();
+        public MultiBarrelExtension multiBarrelExt => EquipmentSource?.def.GetModExtension<MultiBarrelExtension>();
 
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
@@ -594,8 +594,7 @@ namespace CombatExtended
         /// <returns>rotation in degrees</returns>
         protected virtual float ShotRotation(Vector3 source, Vector3 targetPos)
         {
-            var w = targetPos - source;
-            return -90 + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x);
+            return projectilePropsCE.TrajectoryWorker.ShotRotation(projectilePropsCE, source, targetPos);
         }
         /// <summary>
         /// Calculates the amount of recoil at a given point in a burst, up to a maximum
@@ -914,14 +913,31 @@ namespace CombatExtended
             ShootLine shootLine;
             if (!TryFindCEShootLineFromTo(root, targ, out shootLine, out _))
             {
-                float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
+                int lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
                 if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
                 {
                     report = "CE_BlockedMaxRange".Translate();
                 }
                 else if (lengthHorizontalSquared < verbProps.minRange * verbProps.minRange)
                 {
+                    if (verbProps is VerbPropertiesCE vpce)
+                    {
+                        var mric = vpce.minRangeInCover;
+                        if ((mric > -1) && lengthHorizontalSquared >= (mric * mric)) // Check if we're in or behind cover
+                        {
+                            foreach (var ivc in shootLine.Points().Skip(1).SkipLast(1))
+                            {
+                                Thing cover = ivc.GetFirstPawn(caster.Map) ?? ivc.GetCover(caster.Map);
+                                Bounds bounds = CE_Utility.GetBoundsFor(cover);
+                                if (bounds.size.y >= vpce.minCoverHeight)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
                     report = "CE_BlockedMinRange".Translate();
+                    return false;
                 }
                 else
                 {
@@ -1263,7 +1279,11 @@ namespace CombatExtended
          */
 
         private new List<IntVec3> tempLeanShootSources = new List<IntVec3>();
-
+        public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        {
+            Vector3 _;
+            return TryFindCEShootLineFromTo(root, targ, out resultingLine, out _);
+        }
         public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine, out Vector3 targetPos)
         {
             targetPos = targ.Thing is Pawn ? targ.Thing.TrueCenter() : targ.Cell.ToVector3Shifted();

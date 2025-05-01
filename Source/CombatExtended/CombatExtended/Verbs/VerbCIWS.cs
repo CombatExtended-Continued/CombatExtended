@@ -18,7 +18,6 @@ namespace CombatExtended
         protected bool debug;
         protected Texture2D icon;
         protected int maximumPredectionTicks = 40;
-        protected ProjectileCE dummyCIWSProjectile;
 
         public virtual bool HoldFire { get; set; }
 
@@ -49,41 +48,8 @@ namespace CombatExtended
                 Caster.Map.debugDrawer.FlashLine(lastShootLine.Value.source, lastShootLine.Value.Dest, 60, SimpleColor.Green);
             }
         }
-        protected (Vector2 firstPos, Vector2 secondPos) PositionOfCIWSProjectile(int sinceTicks, Vector3 targetPos, bool drawPos = false)
-        {
-            AimDummyCIWSProjectileTo(targetPos);
-            var firstPos = Caster.Position.ToVector3Shifted();
-            var secondPos = firstPos;
-            var enumeration = TrajectoryWorker.NextPositions(dummyCIWSProjectile).GetEnumerator();
-            for (int i = 1; i <= sinceTicks; i++)
-            {
-                firstPos = secondPos;
 
-                if (!enumeration.MoveNext())
-                {
-                    break;
-                }
-                secondPos = enumeration.Current;
 
-            }
-            if (drawPos)
-            {
-                firstPos = TrajectoryWorker.ExactPosToDrawPos(firstPos, sinceTicks - 1, projectilePropsCE.TickToTruePos, Projectile.Altitude);
-                secondPos = TrajectoryWorker.ExactPosToDrawPos(secondPos, sinceTicks, projectilePropsCE.TickToTruePos, Projectile.Altitude);
-            }
-            return (new Vector2(firstPos.x, firstPos.z), new Vector2(secondPos.x, secondPos.z));
-        }
-        protected void AimDummyCIWSProjectileTo(Vector3 to)
-        {
-            if (dummyCIWSProjectile == null || dummyCIWSProjectile.def != Projectile)
-            {
-                dummyCIWSProjectile = SpawnProjectile(); // Not sure if we should call PostMake and etc for dummy
-            }
-            var originV3 = Caster.Position.ToVector3Shifted();
-            var originV2 = new Vector2(originV3.x, originV3.z);
-            dummyCIWSProjectile.Launch(Caster, originV2, ShotAngle(to), ShotRotation(to), ShotHeight, ShotSpeed, Caster);
-
-        }
         public override ThingDef Projectile
         {
             get
@@ -92,12 +58,14 @@ namespace CombatExtended
                 var ciwsVersion = (result?.projectile as ProjectilePropertiesCE)?.CIWSVersion;
                 if (ciwsVersion == null && !typeof(ProjectileCE_CIWS).IsAssignableFrom(result.thingClass))
                 {
-                    Log.WarningOnce($"{result} is not a CIWS projectile and the projectile does not have the CIWS version specified in its properties. Must be on-ground projectile used for CIWS", result.GetHashCode());
+                    if (debug)
+                    {
+                        Log.WarningOnce($"{result} is not a CIWS projectile and the projectile does not have the CIWS version specified in its properties. Must be on-ground projectile used for CIWS", result.GetHashCode());
+                    }
                 }
                 return ciwsVersion ?? result;
             }
         }
-
 
         public override bool TryCastShot()
         {
@@ -129,7 +97,8 @@ namespace CombatExtended
                 thing.PostPostMake();
                 return thing;
             }
-            return base.SpawnProjectile();
+            var projectile = base.SpawnProjectile();
+            return projectile;
         }
         static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
         protected BaseTrajectoryWorker TrajectoryWorker
@@ -147,7 +116,7 @@ namespace CombatExtended
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {
         public abstract IEnumerable<TargetType> Targets { get; }
-        protected abstract IEnumerable<Vector3> TargetNextPositions(TargetType target);
+        protected abstract IEnumerable<Vector3> PredictPositions(TargetType target, int maxTicks);
 
 
 
@@ -197,6 +166,7 @@ namespace CombatExtended
             }
             var maxDistSqr = Props.range * Props.range;
             var originV3 = Caster.Position.ToVector3Shifted();
+            int maxTicks = (int)(this.verbProps.range / ShotSpeed) + 5;
             if (TrajectoryWorker.GuidedProjectile)
             {
                 if ((originV3 - target.DrawPos).MagnitudeHorizontalSquared() > maxDistSqr)
@@ -205,7 +175,7 @@ namespace CombatExtended
                     targetPos = default;
                     return false;
                 }
-                var y = TargetNextPositions(target).FirstOrDefault().y;
+                var y = PredictPositions(target, 1).FirstOrDefault().y;
                 targetPos = target.DrawPos;
                 resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)targetPos.x, (int)y, (int)targetPos.z));
                 return true;
@@ -215,7 +185,7 @@ namespace CombatExtended
             var instant = projectilePropsCE.isInstant;
             if (instant)
             {
-                var to = TargetNextPositions(target).Skip(ticksToSkip).FirstOrFallback(Vector3.negativeInfinity);
+                var to = PredictPositions(target, ticksToSkip + 1).Skip(ticksToSkip).FirstOrFallback(Vector3.negativeInfinity);
                 if (to == Vector3.negativeInfinity)
                 {
                     resultingLine = default;
@@ -227,42 +197,73 @@ namespace CombatExtended
                 return true;
             }
             int i = 1;
-
+            var speed = ShotSpeed;
+            var tworker = TrajectoryWorker;
             var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
-            foreach (var pos in TargetNextPositions(target).Skip(ticksToSkip))
+            var source = new Vector3(originV3.x, ShotHeight, originV3.z);
+            foreach (var pos in PredictPositions(target, ticksToSkip + maxTicks).Skip(ticksToSkip))
             {
                 var targetPos2 = new Vector2(pos.x, pos.z);
-                if ((pos - originV3).MagnitudeHorizontalSquared() > maxDistSqr)
+                var dhs = (pos - originV3).MagnitudeHorizontalSquared();
+                // Check if the projected location is outside our maximum targeting range.
+                if (dhs > maxDistSqr)
                 {
                     targetPos1 = targetPos2;
                     i++;
                     continue;
                 }
-
-                Vector2 originV2 = new Vector2(originV3.x, originV3.z);
-
-                var positions = PositionOfCIWSProjectile(i, pos, true);
-                //if (positions.firstPos == positions.secondPos) //Not sure why, but sometimes this code drops calculations on i = 1
-                //{
-                //    resultingLine = default(ShootLine);
-                //    return false;
-                //}
-                Vector2 ciwsPos1 = positions.firstPos, ciwsPos2 = positions.secondPos;
-
-                if (CE_Utility.TryFindIntersectionPoint(ciwsPos1, ciwsPos2, targetPos1, targetPos2, out _))
+                /* Target will be in range, check if we can intercept it.
+                 * For each potential target position, we need to see if the number of ticks for us to shoot that position is
+                 * equal to the number of ticks before the target is there. So calculate the shot angle to hit the cell,
+                 * then calculate how many ticks to reach it.
+                 */
+                var distance = Mathf.Sqrt(dhs);
+                var heightOffset = pos.y - ShotHeight;
+                var gravity = projectilePropsCE.Gravity;
+                var shotAngle = tworker.ShotAngle(Projectile.projectile as ProjectilePropertiesCE, source, pos, speed);
+                var v_xz = speed * Mathf.Sin(shotAngle);
+                var d = v_xz * v_xz - 2 * gravity * heightOffset;
+                if (d < 0) // cannot actually reach the given location, probably too high up
                 {
-                    targetPos = pos;
-
-                    resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.y));
-
-                    return true;
+                    targetPos1 = targetPos2;
+                    i++;
+                    continue;
                 }
-                targetPos1 = targetPos2;
-                i++;
-                if (i > maximumPredectionTicks)
+                var t = (v_xz + Mathf.Sqrt(d)) / gravity;
+                if (Mathf.Abs(t * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way up, must be after the zenith
                 {
+                    t = (v_xz - Mathf.Sqrt(d)) / gravity;
+                    if (Mathf.Abs(t * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way down either, it's probably landed, or otherwise invalid
+                    {
+                        i++;
+                        continue;
+                    }
+                }
+                int ticksToIntercept = Mathf.CeilToInt(t);
+                if (ticksToIntercept > i)
+                {
+                    if (debug)
+                    {
+                        Log.Message($"Can hit target, but not at the right time, checking next position");
+                    }
+                    i++;
+                    continue;
+                }
+                if (ticksToIntercept < i)
+                {
+                    if (debug)
+                    {
+                        Log.Message($"Can hit target, but not yet. Need to delay {i - ticksToIntercept} ticks;");
+                    }
                     break;
                 }
+                if (debug)
+                {
+                    Log.Message("Found shot line at the right delay");
+                }
+                resultingLine = new ShootLine(Shooter.Position, new IntVec3((int)pos.x, (int)pos.y, (int)pos.z));
+                targetPos = pos;
+                return true;
             }
             resultingLine = default;
             targetPos = default;
@@ -282,9 +283,9 @@ namespace CombatExtended
         public override IEnumerable<Thing> Targets => CompCIWSTarget.Targets<TargetType>(Caster.Map);
         protected override bool IsFriendlyTo(Thing thing) => thing.TryGetComp<TargetType>()?.IsFriendlyTo(thing) ?? base.IsFriendlyTo(thing);
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true) => target.HasThing && target.Thing.HasComp<TargetType>() && base.ValidateTarget(target, showMessages);
-        protected override IEnumerable<Vector3> TargetNextPositions(Thing target)
+        protected override IEnumerable<Vector3> PredictPositions(Thing target, int maxTicks)
         {
-            return target.TryGetComp<CompCIWSTarget>().NextPositions;
+            return target.TryGetComp<CompCIWSTarget>().PredictedPositions;
         }
     }
 
