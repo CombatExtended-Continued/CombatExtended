@@ -71,22 +71,7 @@ namespace CombatExtended
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
-        public virtual LocalTargetInfo OriginalTarget
-        {
-            get
-            {
-                if (Shooter is Building_TurretGunCE turretCE)
-                {
-                    return turretCE.currentTargetInt;
-                }
-                var shooterPawn = ShooterPawn;
-                if (shooterPawn != null)
-                {
-                    return shooterPawn.TargetCurrentlyAimingAt;
-                }
-                return currentTarget;
-            }
-        }
+        public LocalTargetInfo originalTarget; // currentTarget may change in burst
 
         public override int ShotsPerBurst
         {
@@ -261,6 +246,7 @@ namespace CombatExtended
         protected void resetRetarget()
         {
             shootingAtDowned = false;
+            originalTarget = null;
             lastTarget = null;
             lastTargetPos = IntVec3.Invalid;
             lastShootLine = null;
@@ -272,6 +258,7 @@ namespace CombatExtended
         {
             base.ExposeData();
             Scribe_Values.Look<bool>(ref this.shootingAtDowned, "shootingAtDowned", false, false);
+            Scribe_TargetInfo.Look(ref originalTarget, nameof(originalTarget));
             Scribe_TargetInfo.Look(ref this.lastTarget, "lastTarget");
             Scribe_Values.Look<IntVec3>(ref this.lastTargetPos, "lastTargetPos", IntVec3.Invalid, false);
             Scribe_Values.Look<bool>(ref this.repeating, "repeating", false, false);
@@ -1116,6 +1103,10 @@ namespace CombatExtended
             {
                 Log.Error(EquipmentSource.LabelCap + " tried firing with pelletCount less than 1.");
                 return false;
+            }
+            if (!originalTarget.IsValid || !MidBurst)
+            {
+                originalTarget = currentTarget;
             }
             bool instant = false;
 
