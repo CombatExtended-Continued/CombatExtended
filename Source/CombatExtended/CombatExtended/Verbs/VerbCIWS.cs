@@ -91,7 +91,6 @@ namespace CombatExtended
             {
                 var def = Projectile;
                 var thing = new ProjectileCE_CIWS();
-                thing.forcedTrajectoryWorker = TrajectoryWorker;
                 thing.def = def;
                 thing.isCIWS = true;
                 thing.PostMake();
