@@ -11,7 +11,7 @@ namespace CombatExtended
 {
     public class BallisticsTrajectoryWorker : BaseTrajectoryWorker
     {
-        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount)
+        public override IEnumerable<Vector3> PredictPositions(ProjectileCE projectile, int tickCount, bool drawPos)
         {
             if (tickCount > GenTicks.TicksPerRealSecond)
             {
@@ -20,7 +20,12 @@ namespace CombatExtended
             var ep = projectile.ExactPosition;
             for (int i = 1; i < tickCount; i++)
             {
-                yield return ep + projectile.velocity * i;
+                var result = ep + projectile.velocity * i;
+                if (drawPos)
+                {
+                    ExactPosToDrawPos(result, projectile.FlightTicks + i, projectile.ticksToTruePosition, projectile.def.Altitude);
+                }
+                yield return result;
             }
         }
 
