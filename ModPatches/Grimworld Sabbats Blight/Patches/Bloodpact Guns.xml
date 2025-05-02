@@ -105,27 +105,6 @@
 			<li>CE_AI_SR</li>
 		</weaponTags>
 
-		
-		  <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="GW_BP_Gun_Flashlight"]/tools</xpath>
-        <value>
-            <tools>
-                 <li Class="CombatExtended.ToolCE">
-                    <label>bayonet</label>
-                    <capacities>
-                        <li>Stab</li>
-                    </capacities>
-                    <power>18</power>
-                    <cooldownTime>1.79</cooldownTime>
-                    <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
-                    <armorPenetrationSharp>2.25</armorPenetrationSharp>
-                    <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-                </li>
-            </tools>
-			   
-        </value>
-    </Operation>
-
 	</Operation>
 
 	<!-- ============ BP Longlas ============ -->
@@ -226,28 +205,6 @@
 			<li>CE_AI_AR</li>
 			<li>AssaultRifle</li>
 		</weaponTags>
-		  
-		  <Operation Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="GW_BP_Gun_Flashlight"]/tools</xpath>
-        <value>
-            <tools>
-                 <li Class="CombatExtended.ToolCE">
-                    <label>bayonet</label>
-                    <capacities>
-                        <li>Stab</li>
-                    </capacities>
-                    <power>18</power>
-                    <cooldownTime>1.79</cooldownTime>
-                    <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
-                    <armorPenetrationSharp>2.25</armorPenetrationSharp>
-                    <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-                </li>
-            </tools>
-			   
-        </value>
-    </Operation>
-      
-    
 	</Operation>
 
 	
@@ -288,7 +245,7 @@
 			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>20</magazineSize>
+			<magazineSize>60</magazineSize>
 			<reloadTime>3.5</reloadTime>
 			<ammoSet>AmmoSet_825mmLong</ammoSet>
 		</AmmoUser>
@@ -667,155 +624,208 @@
 	<!--BP Melee rifles Non Bayonet-->
 
 	<Operation Class="PatchOperationReplace">
-<xpath>Defs/ThingDef[
-defName="GW_BP_Autocarbine" or
-defName="GW_BP_Heavystubber" or
-defName="GW_BP_MissileLauncher" or
-defName="GW_BP_Flamer" 
-]/tools </xpath>
-<value>
-<tools>
-<li Class="CombatExtended.ToolCE">
-<label>stock</label>
-<capacities>
-<li>Blunt</li>
-</capacities>
-<power>8</power>
-<cooldownTime>1.55</cooldownTime>
-<chanceFactor>1.5</chanceFactor>
-<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-</li>
-<li Class="CombatExtended.ToolCE">
-<label>barrel</label>
-<capacities>
-<li>Blunt</li>
-</capacities>
-<power>5</power>
-<cooldownTime>2.02</cooldownTime>
-<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-</li>
-<li Class="CombatExtended.ToolCE">
-<label>muzzle</label>
-<capacities>
-<li>Poke</li>
-</capacities>
-<power>8</power>
-<cooldownTime>1.55</cooldownTime>
-<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-</li>
-</tools>
-</value>
-</Operation>
+		<xpath>Defs/ThingDef[
+				defName="GW_BP_Autocarbine" or
+				defName="GW_BP_Heavystubber" or
+				defName="GW_BP_MissileLauncher" or
+				defName="GW_BP_Flamer" 
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+					<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+					<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
 
-<Operation Class="PatchOperationReplace">
-<xpath>Defs/ThingDef[defName="GW_BP_Autopistol"]/tools </xpath>
-<value>
-<tools>
-<li Class="CombatExtended.ToolCE">
-<label>grip</label>
-<capacities>
-<li>Blunt</li>
-</capacities>
-<power>2</power>
-<cooldownTime>1.54</cooldownTime>
-<chanceFactor>1.5</chanceFactor>
-<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-</li>
-<li Class="CombatExtended.ToolCE">
-<label>muzzle</label>
-<capacities>
-<li>Poke</li>
-</capacities>
-<power>2</power>
-<cooldownTime>1.54</cooldownTime>
-<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-</li>
-</tools>
-</value>
-</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="GW_BP_Autopistol"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
 
+	<!--BP Las Melee Nonbayonet-->
 
-<!--BP Las Melee Nonbayonet-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName = "GW_BP_longLasgun" or
+			defName = "GW_BP_PlasmaGun" or
+			defName = "GW_BP_Melta" 
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
 
-<Operation Class="PatchOperationReplace">
-<xpath>Defs/ThingDef[
-defName = "GW_BP_Gun_Flashlight" or
-defName = "GW_BP_longLasgun" or
-defName = "GW_BP_PlasmaGun" or
-defName = "GW_BP_Melta" 
-]/tools </xpath>
-<value>
-<tools>
-<li Class="CombatExtended.ToolCE">
-<label>stock</label>
-<capacities>
-<li>Blunt</li>
-</capacities>
-<power>8</power>
-<cooldownTime>1.55</cooldownTime>
-<chanceFactor>1.5</chanceFactor>
-<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-</li>
-<li Class="CombatExtended.ToolCE">
-<label>barrel</label>
-<capacities>
-<li>Blunt</li>
-</capacities>
-<power>5</power>
-<cooldownTime>2.02</cooldownTime>
-<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-</li>
-<li Class="CombatExtended.ToolCE">
-<label>muzzle</label>
-<capacities>
-<li>Poke</li>
-</capacities>
-<power>8</power>
-<cooldownTime>1.55</cooldownTime>
-<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-</li>
-</tools>
-</value>
-</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName = "GW_BP_Laspistol" or
+			defName = "GW_BP_PlasmaPistol"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+	
+	<!--BP bayonet melees-->
 
-<Operation Class="PatchOperationReplace">
-<xpath>Defs/ThingDef[
-defName = "GW_BP_Laspistol" or
-defName = "GW_BP_PlasmaPistol"
-]/tools </xpath>
-<value>
-<tools>
-<li Class="CombatExtended.ToolCE">
-<label>grip</label>
-<capacities>
-<li>Blunt</li>
-</capacities>
-<power>2</power>
-<cooldownTime>1.54</cooldownTime>
-<chanceFactor>1.5</chanceFactor>
-<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-</li>
-<li Class="CombatExtended.ToolCE">
-<label>muzzle</label>
-<capacities>
-<li>Poke</li>
-</capacities>
-<power>2</power>
-<cooldownTime>1.54</cooldownTime>
-<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-</li>
-</tools>
-</value>
-</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName = "GW_BP_Gun_Flashlight" or
+			defName = "GW_BP_Autogun"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>                
+				<li Class="CombatExtended.ToolCE">
+					<label>bayonet</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.79</cooldownTime>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.25</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                		</li>
+			</tools>
+		</value>
+	</Operation>
 
 </Patch>
