@@ -234,6 +234,7 @@ namespace CombatExtended.HarmonyCE
                     codes[i + 3].opcode = OpCodes.Ldc_I4_1;
                     codes[i + 3].operand = null;
                     foundCaravanInjection = true;
+                    break;
                 }
             }
             if (!foundCaravanInjection)
