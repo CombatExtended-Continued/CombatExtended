@@ -102,17 +102,7 @@ namespace CombatExtended
             return projectile;
         }
         static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
-        protected BaseTrajectoryWorker TrajectoryWorker
-        {
-            get
-            {
-                if (!typeof(ProjectileCE_CIWS).IsAssignableFrom(Projectile.thingClass) && projectilePropsCE.TrajectoryWorker.GetType() == typeof(LerpedTrajectoryWorker))
-                {
-                    return lerpedTrajectoryWorker;
-                }
-                return projectilePropsCE.TrajectoryWorker;
-            }
-        }
+        
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {
