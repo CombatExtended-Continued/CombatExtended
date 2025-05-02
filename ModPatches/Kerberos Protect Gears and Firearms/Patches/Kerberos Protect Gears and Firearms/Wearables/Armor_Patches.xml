@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- =============================== HELMET =============================================================================-->
+	<!-- ===== HELMET ===== -->
 	<!-- Equipped Stat Offsets -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="HelmetMachineableBase_ProtectGears"]/equippedStatOffsets</xpath>
@@ -47,10 +47,12 @@
 
 	<!-- Layers -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="HelmetMachineableBase_ProtectGears"]/apparel/layers</xpath>
+		<xpath>Defs/ThingDef[@Name="HelmetMachineableBase_ProtectGears"]/apparel</xpath>
 		<value>
-			<li>OnHead</li>
-			<li>StrappedHead</li>
+			<apparel>
+				<li>OnHead</li>
+				<li>StrappedHead</li>
+			</apparel>
 		</value>
 	</Operation>
 
@@ -91,7 +93,7 @@
 		</value>
 	</Operation>
 
-	<!-- =============================== ARMOR =============================================================================-->
+	<!-- ===== ARMOR =====-->
 	<!--Equipped Stat Offsets -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="ArmorMachineableBase_ProtectGears"]/equippedStatOffsets</xpath>
@@ -131,15 +133,6 @@
 		<xpath>Defs/ThingDef[@Name="ArmorMachineableBase_ProtectGears"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
 			<ArmorRating_Blunt>32</ArmorRating_Blunt>
-		</value>
-	</Operation>
-
-	<!-- Cover hands and feet -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="ArmorMachineableBase_ProtectGears"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<li>Hands</li>
-			<li>Feet</li>
 		</value>
 	</Operation>
 
