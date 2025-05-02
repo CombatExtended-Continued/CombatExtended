@@ -16,13 +16,19 @@ namespace CombatExtended
         public override IEnumerable<ProjectileCE> Targets => Caster.Map?.listerThings.ThingsInGroup(ThingRequestGroup.Projectile).OfType<ProjectileCE>() ?? Array.Empty<ProjectileCE>();
 
         protected override bool IsFriendlyTo(ProjectileCE thing) => base.IsFriendlyTo(thing) && !thing.launcher.HostileTo(Caster);
-
+        protected override bool ShouldAimDrawPos(ProjectileCE target) => Props.forceUseDrawPos || projectilePropsCE.TrajectoryWorker.GetType() != target.TrajectoryWorker.GetType(); //Because the target may use different render methods
         protected override IEnumerable<Vector3> PredictPositions(ProjectileCE target, int maxTicks, bool drawPos)
         {
             return target.TrajectoryWorker.PredictPositions(target, maxTicks, drawPos);
         }
+        public override BaseTrajectoryWorker TrajectoryWorker(LocalTargetInfo target)
         {
-            return target.TrajectoryWorker.PredictPositions(target, maxTicks);
+            var defaultTrajectoryWorker = base.TrajectoryWorker(target);
+            if (target.Thing is ProjectileCE projectile && ShouldAimDrawPos(projectile) && defaultTrajectoryWorker.GetType() == typeof(LerpedTrajectoryWorker))
+            {
+                return lerpedTrajectoryWorker;
+            }
+            return defaultTrajectoryWorker;
         }
     }
     public class VerbProperties_CIWSProjectile : VerbProperties_CIWS

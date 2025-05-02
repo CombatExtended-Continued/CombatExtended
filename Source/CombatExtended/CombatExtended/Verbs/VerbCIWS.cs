@@ -101,7 +101,7 @@ namespace CombatExtended
             projectile.isCIWS = true;
             return projectile;
         }
-        static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
+        protected static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
         
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
