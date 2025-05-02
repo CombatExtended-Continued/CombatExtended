@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="BP_KhornemarineT"]/statBases</xpath>
+        <value>
+          <statBases>
+            <MaxHitPoints>1000</MaxHitPoints>
+            <Flammability>0.2</Flammability>
+            <DeteriorationRate>2</DeteriorationRate>
+            <Beauty>-3</Beauty>
+            <WorkToMake>25000</WorkToMake>
+            <Mass>11</Mass>
+            <ArmorRating_Sharp>36</ArmorRating_Sharp>
+            <ArmorRating_Blunt>350</ArmorRating_Blunt>
+            <ArmorRating_Heat>1</ArmorRating_Heat>
+            <Insulation_Cold>20</Insulation_Cold>
+            <Insulation_Heat>20</Insulation_Heat>
+            <EquipDelay>4</EquipDelay>
+            <Bulk>200</Bulk>
+            <WornBulk>20</WornBulk>
+          </statBases>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="BP_KhornemarineT"]</xpath>
+        <value>
+          <li Class="CombatExtended.PartialArmorExt">
+            <stats>
+              <li>
+                <ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+                <parts>
+                  <li>Hand</li>
+                </parts>
+              </li>
+              <li>
+                <ArmorRating_Blunt>0.8</ArmorRating_Blunt>
+                <parts>
+                  <li>Hand</li>
+                </parts>
+              </li>
+            </stats>
+          </li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>
