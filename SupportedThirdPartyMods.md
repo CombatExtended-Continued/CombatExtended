@@ -328,9 +328,10 @@ Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
-Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical Supplements |
 Medical System Expansion	|
+Medieval Bowyer   |
+Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medieval Overhaul   |
 Medieval Overhaul: Arcane Archeologists   |
 Medieval Overhaul: Barbarians   |
@@ -486,6 +487,9 @@ Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Robotic Servitude   |
 Rockmen race    |
+Roo Fauna    |
+Roo Satyr    |
+Roo Satyr and Faun Xenotype Expanded    |
 Roren, People of Rorensia   |
 Royal Arsenal |
 Royal Arsenal - Speciality Weapons  |

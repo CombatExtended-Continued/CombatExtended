@@ -92,13 +92,11 @@ namespace CombatExtended
                 var def = Projectile;
                 var thing = new ProjectileCE_CIWS();
                 thing.def = def;
-                thing.isCIWS = true;
                 thing.PostMake();
                 thing.PostPostMake();
                 return thing;
             }
             var projectile = base.SpawnProjectile();
-            projectile.isCIWS = true;
             return projectile;
         }
         protected static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
@@ -190,7 +188,7 @@ namespace CombatExtended
             }
             int i = 1;
             var speed = ShotSpeed;
-            var targetPos1 = new Vector2(target.DrawPos.x, target.DrawPos.z);
+            var tworker = TrajectoryWorker;
             var source = new Vector3(originV3.x, ShotHeight, originV3.z);
             foreach (var pos in PredictPositions(target, ticksToSkip + maxTicks, ShouldAimDrawPos(target)).Skip(ticksToSkip))
             {
@@ -199,7 +197,6 @@ namespace CombatExtended
                 // Check if the projected location is outside our maximum targeting range.
                 if (dhs > maxDistSqr)
                 {
-                    targetPos1 = targetPos2;
                     i++;
                     continue;
                 }
@@ -208,29 +205,11 @@ namespace CombatExtended
                  * equal to the number of ticks before the target is there. So calculate the shot angle to hit the cell,
                  * then calculate how many ticks to reach it.
                  */
-                var distance = Mathf.Sqrt(dhs);
-                var heightOffset = pos.y - ShotHeight;
-                var gravity = projectilePropsCE.Gravity;
-                var shotAngle = tworker.ShotAngle(Projectile.projectile as ProjectilePropertiesCE, source, pos, speed);
-                var v_xz = speed * Mathf.Sin(shotAngle);
-                var d = v_xz * v_xz - 2 * gravity * heightOffset;
-                if (d < 0) // cannot actually reach the given location, probably too high up
+                if (!tworker.CanReachPos(projectilePropsCE, speed, source, pos, out int ticksToIntercept))
                 {
-                    targetPos1 = targetPos2;
                     i++;
                     continue;
                 }
-                var t = (v_xz + Mathf.Sqrt(d)) / gravity;
-                if (Mathf.Abs(t * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way up, must be after the zenith
-                {
-                    t = (v_xz - Mathf.Sqrt(d)) / gravity;
-                    if (Mathf.Abs(t * speed * Mathf.Cos(shotAngle) - distance) > 0.01f) // Didn't reach there on the way down either, it's probably landed, or otherwise invalid
-                    {
-                        i++;
-                        continue;
-                    }
-                }
-                int ticksToIntercept = Mathf.CeilToInt(t);
                 if (ticksToIntercept > i)
                 {
                     if (debug)
