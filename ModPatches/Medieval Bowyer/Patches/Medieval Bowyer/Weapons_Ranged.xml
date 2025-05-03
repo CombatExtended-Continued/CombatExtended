@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Melee Stuff === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="MB_Bow_Peasant" or
+			defName="MB_Bow_Mercenary" or
+			defName="MB_Bow_CarvedLongBow" or
+			defName="MB_Training_Crossbow" or
+			defName="MB_Hunting_Crossbow" or
+			defName="MB_Watchmen_Crossbow" or
+			defName="MB_War_Crossbow" or
+			defName="MB_Garrison_Crossbow"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Peasant Bow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MB_Bow_Peasant</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>3.00</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>20</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_Arrow_Stone</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>18</range>
+			<soundCast>Bow_Small</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_Arrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Mercenary Bow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MB_Bow_Mercenary</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>4.20</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>35</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>26</range>
+			<soundCast>Bow_Recurve</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<researchPrerequisite>RecurveBow</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<!-- ========== Carved Long Bow ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MB_Bow_CarvedLongBow</defName>
+		<statBases>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>1</ShotSpread>
+			<SwayFactor>2</SwayFactor>
+			<Bulk>5.20</Bulk>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>45</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>32</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<ammoSet>AmmoSet_GreatArrow</ammoSet>
+		</AmmoUser>
+		<FireModes/>
+		<weaponTags>
+			<li>CE_Bow</li>
+		</weaponTags>
+		<researchPrerequisite>Greatbow</researchPrerequisite>
+		<AllowWithRunAndGun>false</AllowWithRunAndGun>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="MB_Bow_CarvedLongBow"]</xpath>
+		<value>
+			<li Class="CombatExtended.GunDrawExtension">
+				<DrawOffset>0.0,0.25</DrawOffset>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Training Crossbow === -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MB_Training_Crossbow</defName>
+		<statBases>
+			<Bulk>4</Bulk>
+			<SwayFactor>1.2</SwayFactor>
+			<ShotSpread>0.6</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>40</WoodLog>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Stone</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>16</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_XBow</li>
+			<li>MedievalRangedDecent</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Hunting Crossbow === -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MB_Hunting_Crossbow</defName>
+		<statBases>
+			<Bulk>5</Bulk>
+			<SwayFactor>1.1</SwayFactor>
+			<ShotSpread>0.6</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>40</WoodLog>
+			<Steel>10</Steel>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>18</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_XBow</li>
+			<li>MedievalRangedDecent</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Watchmen Crossbow === -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MB_Watchmen_Crossbow</defName>
+		<statBases>
+			<Bulk>6</Bulk>
+			<SwayFactor>1.2</SwayFactor>
+			<ShotSpread>0.4</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>50</WoodLog>
+			<Steel>15</Steel>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>23</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_XBow</li>
+			<li>MedievalRangedDecent</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === War Crossbow === -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MB_War_Crossbow</defName>
+		<statBases>
+			<Bulk>7</Bulk>
+			<SwayFactor>1.3</SwayFactor>
+			<ShotSpread>0.5</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>60</WoodLog>
+			<Steel>25</Steel>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>26</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_XBow</li>
+			<li>MedievalRangedDecent</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- === Garrison Crossbow === -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>MB_Garrison_Crossbow</defName>
+		<statBases>
+			<Bulk>7</Bulk>
+			<SwayFactor>1.4</SwayFactor>
+			<ShotSpread>0.4</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<WoodLog>80</WoodLog>
+			<Steel>35</Steel>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Projectile_GarrisonCrossbowBolt_Steel</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>32</range>
+			<soundCast>Bow_Large</soundCast>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>8</reloadTime>
+			<ammoSet>AmmoSet_GarrisonCrossbowBolt</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_XBow</li>
+			<li>MedievalRangedDecent</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>
