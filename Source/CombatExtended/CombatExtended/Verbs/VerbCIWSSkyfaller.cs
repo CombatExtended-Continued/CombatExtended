@@ -19,6 +19,16 @@ namespace CombatExtended
         {
             return target.PredictPositions(maxTicks);
         }
+        protected override bool ShouldAimDrawPos(Skyfaller target) => true;
+        public override BaseTrajectoryWorker TrajectoryWorker(LocalTargetInfo target)
+        {
+            var defaultTrajectoryWorker = base.TrajectoryWorker(target);
+            if (target.Thing is Skyfaller skyfaller && ShouldAimDrawPos(skyfaller) && defaultTrajectoryWorker.GetType() == typeof(LerpedTrajectoryWorker))
+            {
+                return lerpedTrajectoryWorker;
+            }
+            return defaultTrajectoryWorker;
+        }
 
     }
     public class VerbProperties_CIWSSkyfaller : VerbProperties_CIWS
