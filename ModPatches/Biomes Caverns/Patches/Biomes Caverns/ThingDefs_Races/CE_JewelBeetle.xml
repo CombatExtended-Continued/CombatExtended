@@ -3,7 +3,7 @@
 
 	<!-- Larvae -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetleLarvae"]</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetleLarvae"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -12,7 +12,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetleLarvae"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetleLarvae"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.00</MeleeDodgeChance>
 			<MeleeCritChance>0.01</MeleeCritChance>
@@ -21,13 +21,13 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetleLarvae"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetleLarvae"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
-						<li>Blunt</li>
+						<li>Bite</li>
 					</capacities>
 					<power>3</power>
 					<cooldownTime>2</cooldownTime>
@@ -36,26 +36,13 @@
 					<armorPenetrationSharp>0.1</armorPenetrationSharp>
 					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 				</li>
-
-				<li Class="CombatExtended.ToolCE">
-					<label>mandible</label>
-					<capacities>
-						<li>Bite</li>
-					</capacities>
-					<power>4</power>
-					<cooldownTime>2</cooldownTime>
-					<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
-					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-					<armorPenetrationSharp>1.0</armorPenetrationSharp>
-					<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-				</li>
 			</tools>
 		</value>
 	</Operation>
 
 	<!-- Pupae -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetlePupa"]</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetlePupa"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -64,7 +51,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetlePupa"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetlePupa"]/statBases</xpath>
 		<value>
 			<MeleeDodgeChance>0.00</MeleeDodgeChance>
 			<MeleeCritChance>0.00</MeleeCritChance>
@@ -73,14 +60,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetlePupa"]/statBases/ArmorRating_Sharp</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetlePupa"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Sharp>4.5</ArmorRating_Sharp>
+			<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetlePupa"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetlePupa"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -99,67 +86,66 @@
 		</value>
 	</Operation>
 
-	<!-- Fully Grown -->
+	<!-- Full Grown Aaroxis -->
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetle"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
-				<bodyShape>Quadruped</bodyShape>
+				<bodyShape>QuadrupedLow</bodyShape>
 			</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetle"]/statBases</xpath>
 		<value>
-			<MeleeDodgeChance>0.03</MeleeDodgeChance>
-			<MeleeCritChance>0.24</MeleeCritChance>
-			<MeleeParryChance>0.13</MeleeParryChance>
+			<MeleeDodgeChance>0.21</MeleeDodgeChance>
+			<MeleeCritChance>0.02</MeleeCritChance>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetle"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]/statBases/ArmorRating_Blunt</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetle"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
-			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.7</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]/statBases/ArmorRating_Sharp</xpath>
-		<value>
-			<ArmorRating_Sharp>20</ArmorRating_Sharp>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="BMT_CrystalBeetle"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="BMT_JewelBeetle"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
-					<label>Mandibles</label>
+					<label>mandibles</label>
 					<capacities>
 						<li>Bite</li>
 					</capacities>
-					<power>15</power>
-					<cooldownTime>2</cooldownTime>
+					<power>9</power>
+					<cooldownTime>1.5</cooldownTime>
 					<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>2</armorPenetrationBlunt>
-					<armorPenetrationSharp>8</armorPenetrationSharp>
-					<chanceFactor>0.7</chanceFactor>
+					<armorPenetrationSharp>0.24</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>head</label>
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>10</power>
-					<cooldownTime>2.9</cooldownTime>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>7</armorPenetrationBlunt>
-					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
 	</Operation>
+
 </Patch>
