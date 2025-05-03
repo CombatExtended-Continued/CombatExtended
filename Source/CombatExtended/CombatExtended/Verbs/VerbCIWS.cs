@@ -100,7 +100,7 @@ namespace CombatExtended
             return projectile;
         }
         protected static BaseTrajectoryWorker lerpedTrajectoryWorker = new LerpedTrajectoryWorker_ExactPosDrawing();
-        
+
     }
     public abstract class VerbCIWS<TargetType> : VerbCIWS where TargetType : Thing
     {
